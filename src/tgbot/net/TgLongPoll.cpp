@@ -20,36 +20,23 @@
  * SOFTWARE.
  */
 
-#include "EventManager.h"
-
-#include "tgbot/tools/StringTools.h"
-
-using namespace std;
+#include "TgLongPoll.h"
 
 namespace TgBot {
 
-EventManager::EventManager(Bot* const bot) : _bot(bot) {
+TgLongPoll::TgLongPoll(const Api* api, const EventHandler* eventHandler) : _api(api), _eventHandler(eventHandler) {
 }
 
-void EventManager::handleUpdate(const Update::Ptr& update) {
-    for (EventManager::Listener& item : _onAnyMessageListeners) {
-        item(update->message, _bot);
-    }
-    if (StringTools::startsWith(update->message->text, "/")) {
-        string command = update->message->text.substr(1, update->message->text.find(' ') - 2);
-        for (pair<const string, Listener>& item : _onCommandListeners) {
-            if (item.first == command) {
-                item.second(update->message, _bot);
-                return;
-            }
+TgLongPoll::TgLongPoll(const Bot& bot) : TgLongPoll(&bot.getApi(), &bot.getEventHandler()) {
+}
+
+void TgLongPoll::start() {
+    std::vector<Update::Ptr> updates = _api->getUpdates(_lastUpdateId, 100, 60);
+    for (Update::Ptr& item : updates) {
+        if (item->updateId >= _lastUpdateId) {
+            _lastUpdateId = item->updateId + 1;
         }
-        for (EventManager::Listener& item : _onUnknownCommandListeners) {
-            item(update->message, _bot);
-        }
-    } else {
-        for (EventManager::Listener& item : _onNonCommandMessageListeners) {
-            item(update->message, _bot);
-        }
+        _eventHandler->handleUpdate(item);
     }
 }
 

@@ -20,56 +20,37 @@
  * SOFTWARE.
  */
 
-#ifndef TGBOT_CPP_EVENTMANAGER_H
-#define TGBOT_CPP_EVENTMANAGER_H
+#ifndef TGBOT_EVENTHANDLER_H
+#define TGBOT_EVENTHANDLER_H
 
-#include <string>
-#include <functional>
-#include <vector>
-#include <map>
-
+#include "tgbot/EventBroadcaster.h"
 #include "tgbot/types/Update.h"
-#include "tgbot/types/Message.h"
+#include "tgbot/tools/StringTools.h"
 
 namespace TgBot {
 
-class Bot;
-
-class EventManager {
-
-friend Bot;
+class EventHandler {
 
 public:
-    typedef std::function<void (const Message::Ptr&, Bot* const)> Listener;
-
-    inline void onAnyMessage(const Listener& listener) {
-        _onAnyMessageListeners.push_back(listener);
+    explicit EventHandler(const EventBroadcaster* broadcaster) : _broadcaster(broadcaster) {
     }
 
-    inline void onCommand(const std::string& commandName, const Listener& listener) {
-        _onCommandListeners[commandName] = listener;
-    }
-
-    inline void onUnknownCommand(const Listener& listener) {
-        _onUnknownCommandListeners.push_back(listener);
-    }
-
-    inline void onNonCommandMessage(const Listener& listener) {
-        _onNonCommandMessageListeners.push_back(listener);
+    inline void handleUpdate(const Update::Ptr& update) const {
+        _broadcaster->broadcastAnyMessage(update->message);
+        if (StringTools::startsWith(update->message->text, "/")) {
+            std::string command = update->message->text.substr(1, update->message->text.find(' ') - 2);
+            if (!_broadcaster->broadcastCommand(command, update->message)) {
+                _broadcaster->broadcastUnknownCommand(update->message);
+            }
+        } else {
+            _broadcaster->broadcastNonCommandMessage(update->message);
+        }
     }
 
 private:
-    explicit EventManager(Bot* const bot);
-
-    void handleUpdate(const Update::Ptr& update);
-
-    Bot* const _bot;
-    std::vector<Listener> _onAnyMessageListeners;
-    std::map<std::string, Listener> _onCommandListeners;
-    std::vector<Listener> _onUnknownCommandListeners;
-    std::vector<Listener> _onNonCommandMessageListeners;
+    const EventBroadcaster* _broadcaster;
 };
 
 }
 
-#endif //TGBOT_CPP_EVENTMANAGER_H
+#endif //TGBOT_EVENTHANDLER_H

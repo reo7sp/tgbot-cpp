@@ -20,24 +20,27 @@
  * SOFTWARE.
  */
 
-#ifndef TGBOT_CPP_URL_H
-#define TGBOT_CPP_URL_H
+#ifndef TGBOT_TGWEBHOOKTCPSERVER_H
+#define TGBOT_TGWEBHOOKTCPSERVER_H
 
-#include <string>
+#include "tgbot/net/TgWebhookServer.h"
 
 namespace TgBot {
 
-class Url {
+class TgWebhookTcpServer : public TgWebhookServer<boost::asio::ip::tcp> {
 
 public:
-    Url(const std::string& url);
+    TgWebhookTcpServer(std::shared_ptr<boost::asio::basic_socket_acceptor<boost::asio::ip::tcp>>& acceptor, const std::string& path, EventHandler* eventHandler) = delete;
 
-    std::string protocol;
-    std::string host;
-    std::string path;
-    std::string query;
+    TgWebhookTcpServer(unsigned short port, const std::string& path, const EventHandler* eventHandler) :
+        TgWebhookServer(std::shared_ptr<boost::asio::basic_socket_acceptor<boost::asio::ip::tcp>>(new boost::asio::ip::tcp::acceptor(_ioService, boost::asio::ip::tcp::endpoint(boost::asio::ip::tcp::v4(), port))), path, eventHandler)
+    {
+    }
+
+    TgWebhookTcpServer(const std::string& path, const Bot& bot) : TgWebhookTcpServer(path, &bot.getEventHandler()) {
+    }
 };
 
 }
 
-#endif //TGBOT_CPP_URL_H
+#endif //TGBOT_TGWEBHOOKTCPSERVER_H

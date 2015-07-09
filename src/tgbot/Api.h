@@ -28,7 +28,7 @@
 
 #include <boost/property_tree/ptree.hpp>
 
-#include "tgbot/Http.h"
+#include "tgbot/net/HttpReqArg.h"
 #include "tgbot/types/User.h"
 #include "tgbot/types/Message.h"
 #include "tgbot/types/GenericReply.h"
@@ -45,6 +45,8 @@ class Api {
 friend Bot;
 
 public:
+    Api(const std::string& token);
+
     User::Ptr getMe() const;
     Message::Ptr sendMessage(int32_t chatId, const std::string& text, bool disableWebPagePreview = false, int32_t replyToMessageId = 0, const GenericReply::Ptr& replyMarkup = GenericReply::Ptr()) const;
     Message::Ptr forwardMessage(int32_t chatId, int32_t fromChatId, int32_t messageId) const;
@@ -65,11 +67,9 @@ public:
     void setWebhook(const std::string& url = "") const;
 
 private:
-    explicit Api(Bot* const bot);
+    boost::property_tree::ptree sendRequest(const std::string& method, const std::vector<HttpReqArg>& args = std::vector<HttpReqArg>()) const;
 
-    boost::property_tree::ptree sendRequest(const std::string& method, const std::vector<Http::Argument>& args = std::vector<Http::Argument>()) const;
-
-    Bot* const _bot;
+    const std::string _token;
 };
 
 }

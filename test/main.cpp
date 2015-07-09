@@ -20,28 +20,7 @@
  * SOFTWARE.
  */
 
-#ifndef TGBOT_CPP_STRINGTOOLS_H
-#define TGBOT_CPP_STRINGTOOLS_H
+#define BOOST_TEST_DYN_LINK
+#define BOOST_TEST_MODULE TgBot
 
-#include <vector>
-#include <string>
-#include <sstream>
-
-namespace StringTools {
-
-bool startsWith(const std::string& str1, const std::string& str2);
-bool endsWith(const std::string& str1, const std::string& str2);
-void split(const std::string& str, char delimiter, std::vector<std::string>& dest);
-std::string generateRandomString(size_t length);
-std::string urlEncode(const std::string& value);
-std::string urlDecode(const std::string& value);
-
-inline std::vector<std::string> split(const std::string& str, char delimiter) {
-    std::vector<std::string> result;
-    split(str, delimiter, result);
-    return result;
-}
-
-}
-
-#endif //TGBOT_CPP_STRINGTOOLS_H
+#include <boost/test/unit_test.hpp>

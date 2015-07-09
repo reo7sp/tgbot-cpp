@@ -20,14 +20,19 @@
  * SOFTWARE.
  */
 
-#include "Parser.h"
+#include "TgTypeParser.h"
 
 using namespace std;
 using namespace boost::property_tree;
 
 namespace TgBot {
 
-User::Ptr Parser::parseUser(const ptree& data) const {
+TgTypeParser& TgTypeParser::getInstance() {
+    static TgTypeParser result;
+    return result;
+}
+
+User::Ptr TgTypeParser::parseUser(const ptree& data) const {
     User::Ptr result(new User);
     result->id = data.get<int32_t>("id");
     result->firstName = data.get<string>("first_name");
@@ -36,7 +41,7 @@ User::Ptr Parser::parseUser(const ptree& data) const {
     return result;
 }
 
-string Parser::parseUser(const User::Ptr& object) const {
+string TgTypeParser::parseUser(const User::Ptr& object) const {
     if (!object) {
         return "";
     }
@@ -51,14 +56,14 @@ string Parser::parseUser(const User::Ptr& object) const {
     return result;
 }
 
-GroupChat::Ptr Parser::parseGroupChat(const ptree& data) const {
+GroupChat::Ptr TgTypeParser::parseGroupChat(const ptree& data) const {
     GroupChat::Ptr result(new GroupChat);
     result->id = data.get<int32_t>("id");
     result->title = data.get<string>("title");
     return result;
 }
 
-string Parser::parseGroupChat(const GroupChat::Ptr& object) const {
+string TgTypeParser::parseGroupChat(const GroupChat::Ptr& object) const {
     if (!object) {
         return "";
     }
@@ -71,7 +76,7 @@ string Parser::parseGroupChat(const GroupChat::Ptr& object) const {
     return result;
 }
 
-Message::Ptr Parser::parseMessage(const ptree& data) const {
+Message::Ptr TgTypeParser::parseMessage(const ptree& data) const {
     Message::Ptr result(new Message);
     result->messageId = data.get<int32_t>("message_id");
     result->from = parseUser(data.find("from")->second);
@@ -97,7 +102,7 @@ Message::Ptr Parser::parseMessage(const ptree& data) const {
     return result;
 }
 
-string Parser::parseMessage(const Message::Ptr& object) const {
+string TgTypeParser::parseMessage(const Message::Ptr& object) const {
     if (!object) {
         return "";
     }
@@ -129,7 +134,7 @@ string Parser::parseMessage(const Message::Ptr& object) const {
     return result;
 }
 
-PhotoSize::Ptr Parser::parsePhotoSize(const ptree& data) const {
+PhotoSize::Ptr TgTypeParser::parsePhotoSize(const ptree& data) const {
     PhotoSize::Ptr result(new PhotoSize);
     result->fileId = data.get<string>("file_id");
     result->width = data.get<int32_t>("width");
@@ -138,7 +143,7 @@ PhotoSize::Ptr Parser::parsePhotoSize(const ptree& data) const {
     return result;
 }
 
-string Parser::parsePhotoSize(const PhotoSize::Ptr& object) const {
+string TgTypeParser::parsePhotoSize(const PhotoSize::Ptr& object) const {
     if (!object) {
         return "";
     }
@@ -153,7 +158,7 @@ string Parser::parsePhotoSize(const PhotoSize::Ptr& object) const {
     return result;
 }
 
-Audio::Ptr Parser::parseAudio(const ptree& data) const {
+Audio::Ptr TgTypeParser::parseAudio(const ptree& data) const {
     Audio::Ptr result(new Audio);
     result->fileId = data.get<string>("file_id");
     result->duration = data.get<int32_t>("duration");
@@ -162,7 +167,7 @@ Audio::Ptr Parser::parseAudio(const ptree& data) const {
     return result;
 }
 
-string Parser::parseAudio(const Audio::Ptr& object) const {
+string TgTypeParser::parseAudio(const Audio::Ptr& object) const {
     if (!object) {
         return "";
     }
@@ -177,7 +182,7 @@ string Parser::parseAudio(const Audio::Ptr& object) const {
     return result;
 }
 
-Document::Ptr Parser::parseDocument(const ptree& data) const {
+Document::Ptr TgTypeParser::parseDocument(const ptree& data) const {
     Document::Ptr result(new Document);
     result->fileId = data.get<string>("file_id");
     result->thumb = parsePhotoSize(data.find("thumb")->second);
@@ -187,7 +192,7 @@ Document::Ptr Parser::parseDocument(const ptree& data) const {
     return result;
 }
 
-string Parser::parseDocument(const Document::Ptr& object) const {
+string TgTypeParser::parseDocument(const Document::Ptr& object) const {
     if (!object) {
         return "";
     }
@@ -203,7 +208,7 @@ string Parser::parseDocument(const Document::Ptr& object) const {
     return result;
 }
 
-Sticker::Ptr Parser::parseSticker(const ptree& data) const {
+Sticker::Ptr TgTypeParser::parseSticker(const ptree& data) const {
     Sticker::Ptr result(new Sticker);
     result->fileId = data.get<string>("file_id");
     result->width = data.get<int32_t>("width");
@@ -213,7 +218,7 @@ Sticker::Ptr Parser::parseSticker(const ptree& data) const {
     return result;
 }
 
-string Parser::parseSticker(const Sticker::Ptr& object) const {
+string TgTypeParser::parseSticker(const Sticker::Ptr& object) const {
     if (!object) {
         return "";
     }
@@ -229,7 +234,7 @@ string Parser::parseSticker(const Sticker::Ptr& object) const {
     return result;
 }
 
-Video::Ptr Parser::parseVideo(const ptree& data) const {
+Video::Ptr TgTypeParser::parseVideo(const ptree& data) const {
     Video::Ptr result(new Video);
     result->fileId = data.get<string>("file_id");
     result->width = data.get<int32_t>("width");
@@ -242,7 +247,7 @@ Video::Ptr Parser::parseVideo(const ptree& data) const {
     return result;
 }
 
-string Parser::parseVideo(const Video::Ptr& object) const {
+string TgTypeParser::parseVideo(const Video::Ptr& object) const {
     if (!object) {
         return "";
     }
@@ -261,7 +266,7 @@ string Parser::parseVideo(const Video::Ptr& object) const {
     return result;
 }
 
-Contact::Ptr Parser::parseContact(const ptree& data) const {
+Contact::Ptr TgTypeParser::parseContact(const ptree& data) const {
     Contact::Ptr result(new Contact);
     result->phoneNumber = data.get<string>("phone_number");
     result->firstName = data.get<string>("first_name");
@@ -270,7 +275,7 @@ Contact::Ptr Parser::parseContact(const ptree& data) const {
     return result;
 }
 
-string Parser::parseContact(const Contact::Ptr& object) const {
+string TgTypeParser::parseContact(const Contact::Ptr& object) const {
     if (!object) {
         return "";
     }
@@ -285,14 +290,14 @@ string Parser::parseContact(const Contact::Ptr& object) const {
     return result;
 }
 
-Location::Ptr Parser::parseLocation(const ptree& data) const {
+Location::Ptr TgTypeParser::parseLocation(const ptree& data) const {
     Location::Ptr result(new Location);
     result->longitude = data.get<float>("longitude");
     result->latitude = data.get<float>("latitude");
     return result;
 }
 
-string Parser::parseLocation(const Location::Ptr& object) const {
+string TgTypeParser::parseLocation(const Location::Ptr& object) const {
     if (!object) {
         return "";
     }
@@ -305,14 +310,14 @@ string Parser::parseLocation(const Location::Ptr& object) const {
     return result;
 }
 
-Update::Ptr Parser::parseUpdate(const ptree& data) const {
+Update::Ptr TgTypeParser::parseUpdate(const ptree& data) const {
     Update::Ptr result(new Update);
     result->updateId = data.get<int32_t>("update_id");
     result->message = parseMessage(data.find("message")->second);
     return result;
 }
 
-string Parser::parseUpdate(const Update::Ptr& object) const {
+string TgTypeParser::parseUpdate(const Update::Ptr& object) const {
     if (!object) {
         return "";
     }
@@ -325,14 +330,14 @@ string Parser::parseUpdate(const Update::Ptr& object) const {
     return result;
 }
 
-UserProfilePhotos::Ptr Parser::parseUserProfilePhotos(const ptree& data) const {
+UserProfilePhotos::Ptr TgTypeParser::parseUserProfilePhotos(const ptree& data) const {
     UserProfilePhotos::Ptr result(new UserProfilePhotos);
     result->totalCount = data.get<int32_t>("total_count");
     result->photos = parse2DArray<PhotoSize>(parsePhotoSize, data, "photos");
     return result;
 }
 
-string Parser::parseUserProfilePhotos(const UserProfilePhotos::Ptr& object) const {
+string TgTypeParser::parseUserProfilePhotos(const UserProfilePhotos::Ptr& object) const {
     if (!object) {
         return "";
     }
@@ -345,7 +350,7 @@ string Parser::parseUserProfilePhotos(const UserProfilePhotos::Ptr& object) cons
     return result;
 }
 
-ReplyKeyboardMarkup::Ptr Parser::parseReplyKeyboardMarkup(const boost::property_tree::ptree& data) const {
+ReplyKeyboardMarkup::Ptr TgTypeParser::parseReplyKeyboardMarkup(const boost::property_tree::ptree& data) const {
     ReplyKeyboardMarkup::Ptr result(new ReplyKeyboardMarkup);
     for (const pair<const string, ptree>& item : data.find("keyboard")->second) {
         vector<string> array;
@@ -360,7 +365,7 @@ ReplyKeyboardMarkup::Ptr Parser::parseReplyKeyboardMarkup(const boost::property_
     return result;
 }
 
-std::string Parser::parseReplyKeyboardMarkup(const ReplyKeyboardMarkup::Ptr& object) const {
+std::string TgTypeParser::parseReplyKeyboardMarkup(const ReplyKeyboardMarkup::Ptr& object) const {
     if (!object) {
         return "";
     }
@@ -387,13 +392,13 @@ std::string Parser::parseReplyKeyboardMarkup(const ReplyKeyboardMarkup::Ptr& obj
     return result;
 }
 
-ReplyKeyboardHide::Ptr Parser::parseReplyKeyboardHide(const boost::property_tree::ptree& data) const {
+ReplyKeyboardHide::Ptr TgTypeParser::parseReplyKeyboardHide(const boost::property_tree::ptree& data) const {
     ReplyKeyboardHide::Ptr result(new ReplyKeyboardHide);
     result->selective = data.get<bool>("selective");
     return result;
 }
 
-std::string Parser::parseReplyKeyboardHide(const ReplyKeyboardHide::Ptr& object) const {
+std::string TgTypeParser::parseReplyKeyboardHide(const ReplyKeyboardHide::Ptr& object) const {
     if (!object) {
         return "";
     }
@@ -405,13 +410,13 @@ std::string Parser::parseReplyKeyboardHide(const ReplyKeyboardHide::Ptr& object)
     return result;
 }
 
-ForceReply::Ptr Parser::parseForceReply(const boost::property_tree::ptree& data) const {
+ForceReply::Ptr TgTypeParser::parseForceReply(const boost::property_tree::ptree& data) const {
     ForceReply::Ptr result(new ForceReply);
     result->selective = data.get<bool>("selective");
     return result;
 }
 
-std::string Parser::parseForceReply(const ForceReply::Ptr& object) const {
+std::string TgTypeParser::parseForceReply(const ForceReply::Ptr& object) const {
     if (!object) {
         return "";
     }
@@ -423,7 +428,7 @@ std::string Parser::parseForceReply(const ForceReply::Ptr& object) const {
     return result;
 }
 
-GenericChat::Ptr Parser::parseGenericChat(const ptree& data) const {
+GenericChat::Ptr TgTypeParser::parseGenericChat(const ptree& data) const {
     if (data.find("first_name") == data.not_found()) {
         return static_pointer_cast<GenericChat>(parseGroupChat(data));
     } else {
@@ -431,7 +436,7 @@ GenericChat::Ptr Parser::parseGenericChat(const ptree& data) const {
     }
 }
 
-string Parser::parseGenericChat(const GenericChat::Ptr& object) const {
+string TgTypeParser::parseGenericChat(const GenericChat::Ptr& object) const {
     if (!object) {
         return "";
     }
@@ -442,7 +447,7 @@ string Parser::parseGenericChat(const GenericChat::Ptr& object) const {
     }
 }
 
-GenericReply::Ptr Parser::parseGenericReply(const boost::property_tree::ptree& data) const {
+GenericReply::Ptr TgTypeParser::parseGenericReply(const boost::property_tree::ptree& data) const {
     if (data.find("force_reply") != data.not_found()) {
         return static_pointer_cast<GenericReply>(parseForceReply(data));
     } else if (data.find("hide_keyboard") != data.not_found()) {
@@ -452,7 +457,7 @@ GenericReply::Ptr Parser::parseGenericReply(const boost::property_tree::ptree& d
     }
 }
 
-std::string Parser::parseGenericReply(const GenericReply::Ptr& object) const {
+std::string TgTypeParser::parseGenericReply(const GenericReply::Ptr& object) const {
     if (!object) {
         return "";
     }
@@ -465,7 +470,7 @@ std::string Parser::parseGenericReply(const GenericReply::Ptr& object) const {
     }
 }
 
-void Parser::appendToJson(string& json, const string& varName, const string& value) const {
+void TgTypeParser::appendToJson(string& json, const string& varName, const string& value) const {
     if (value.empty()) {
         return;
     }

@@ -20,8 +20,8 @@
  * SOFTWARE.
  */
 
-#ifndef TGBOT_CPP_PARSER_H
-#define TGBOT_CPP_PARSER_H
+#ifndef TGBOT_CPP_TGTYPEPARSER_H
+#define TGBOT_CPP_TGTYPEPARSER_H
 
 #include <string>
 
@@ -47,9 +47,11 @@
 
 namespace TgBot {
 
-class Parser {
+class TgTypeParser {
 
 public:
+    static TgTypeParser& getInstance();
+
     User::Ptr parseUser(const boost::property_tree::ptree& data) const;
     std::string parseUser(const User::Ptr& object) const;
     GroupChat::Ptr parseGroupChat(const boost::property_tree::ptree& data) const;
@@ -93,7 +95,7 @@ public:
     }
 
     template<typename T>
-    std::shared_ptr<T> tryParse(std::shared_ptr<T> (Parser::*const parseFunc)(const boost::property_tree::ptree&) const, const boost::property_tree::ptree& data, const std::string& keyName) const {
+    std::shared_ptr<T> tryParse(std::shared_ptr<T> (TgTypeParser::*const parseFunc)(const boost::property_tree::ptree&) const, const boost::property_tree::ptree& data, const std::string& keyName) const {
         auto treeItem = data.find(keyName);
         if (treeItem == data.not_found()) {
             return std::shared_ptr<T>();
@@ -102,7 +104,7 @@ public:
     }
 
     template<typename T>
-    std::vector<std::shared_ptr<T>> parseArray(std::shared_ptr<T> (Parser::*const parseFunc)(const boost::property_tree::ptree&) const, const boost::property_tree::ptree& data, const std::string& keyName) const {
+    std::vector<std::shared_ptr<T>> parseArray(std::shared_ptr<T> (TgTypeParser::*const parseFunc)(const boost::property_tree::ptree&) const, const boost::property_tree::ptree& data, const std::string& keyName) const {
         std::vector<std::shared_ptr<T>> result;
         auto treeItem = data.find(keyName);
         if (treeItem == data.not_found()) {
@@ -115,7 +117,7 @@ public:
     }
 
     template<typename T>
-    std::vector<std::vector<std::shared_ptr<T>>> parse2DArray(std::shared_ptr<T> (Parser::*const parseFunc)(const boost::property_tree::ptree&) const, const boost::property_tree::ptree& data, const std::string& keyName) const {
+    std::vector<std::vector<std::shared_ptr<T>>> parse2DArray(std::shared_ptr<T> (TgTypeParser::*const parseFunc)(const boost::property_tree::ptree&) const, const boost::property_tree::ptree& data, const std::string& keyName) const {
         std::vector<std::vector<std::shared_ptr<T>>> result;
         auto treeItem = data.find(keyName);
         if (treeItem == data.not_found()) {
@@ -132,7 +134,7 @@ public:
     }
 
     template<typename T>
-    std::string parseArray(std::string (Parser::*const parseFunc)(const std::shared_ptr<T>&) const, const std::vector<std::shared_ptr<T>>& objects) const {
+    std::string parseArray(std::string (TgTypeParser::*const parseFunc)(const std::shared_ptr<T>&) const, const std::vector<std::shared_ptr<T>>& objects) const {
         std::string result;
         result += '[';
         for (const std::shared_ptr<T>& item : objects) {
@@ -145,7 +147,7 @@ public:
     }
 
     template<typename T>
-    std::string parse2DArray(std::string (Parser::*const parseFunc)(const std::shared_ptr<T>&) const, const std::vector<std::vector<std::shared_ptr<T>>>& objects) const {
+    std::string parse2DArray(std::string (TgTypeParser::*const parseFunc)(const std::shared_ptr<T>&) const, const std::vector<std::vector<std::shared_ptr<T>>>& objects) const {
         std::string result;
         result += '[';
         for (const std::vector<std::shared_ptr<T>>& item : objects) {
@@ -175,4 +177,4 @@ private:
 
 }
 
-#endif //TGBOT_CPP_PARSER_H
+#endif //TGBOT_CPP_TGTYPEPARSER_H

@@ -20,28 +20,31 @@
  * SOFTWARE.
  */
 
-#ifndef TGBOT_CPP_STRINGTOOLS_H
-#define TGBOT_CPP_STRINGTOOLS_H
+#ifndef TGBOT_HTTPPARAMETER_H
+#define TGBOT_HTTPPARAMETER_H
 
-#include <vector>
 #include <string>
-#include <sstream>
 
-namespace StringTools {
+#include <boost/lexical_cast.hpp>
 
-bool startsWith(const std::string& str1, const std::string& str2);
-bool endsWith(const std::string& str1, const std::string& str2);
-void split(const std::string& str, char delimiter, std::vector<std::string>& dest);
-std::string generateRandomString(size_t length);
-std::string urlEncode(const std::string& value);
-std::string urlDecode(const std::string& value);
+namespace TgBot {
 
-inline std::vector<std::string> split(const std::string& str, char delimiter) {
-    std::vector<std::string> result;
-    split(str, delimiter, result);
-    return result;
+class HttpReqArg {
+
+public:
+    template<typename T>
+    HttpReqArg(const std::string& name, const T& value, bool isFile = false, const std::string& mimeType = "text/plain") :
+            name(name), value(boost::lexical_cast<std::string>(value)), isFile(isFile), mimeType(mimeType)
+    {
+    }
+
+    std::string name;
+    std::string value;
+    bool isFile = false;
+    std::string mimeType;
+};
+
 }
 
-}
 
-#endif //TGBOT_CPP_STRINGTOOLS_H
+#endif //TGBOT_HTTPPARAMETER_H

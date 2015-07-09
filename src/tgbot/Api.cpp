@@ -22,241 +22,240 @@
 
 #include "Api.h"
 
-#include <boost/property_tree/json_parser.hpp>
-
-#include "tgbot/Bot.h"
+#include "tgbot/TgTypeParser.h"
 #include "tgbot/TgException.h"
+#include "tgbot/net/HttpClient.h"
 
 using namespace std;
 using namespace boost::property_tree;
 
 namespace TgBot {
 
-Api::Api(Bot* const bot) : _bot(bot) {
+Api::Api(const std::string& token) : _token(token) {
 }
 
 User::Ptr Api::getMe() const {
-    return _bot->getParser().parseUser(sendRequest("getMe").find("result")->second);
+    return TgTypeParser::getInstance().parseUser(sendRequest("getMe").find("result")->second);
 }
 
 Message::Ptr Api::sendMessage(int32_t chatId, const string& text, bool disableWebPagePreview, int32_t replyToMessageId, const GenericReply::Ptr& replyMarkup) const {
-    vector<Http::Argument> args;
-    args.push_back(Http::Argument("chat_id", chatId));
-    args.push_back(Http::Argument("text", text));
+    vector<HttpReqArg> args;
+    args.push_back(HttpReqArg("chat_id", chatId));
+    args.push_back(HttpReqArg("text", text));
     if (disableWebPagePreview) {
-        args.push_back(Http::Argument("disable_web_page_preview", disableWebPagePreview));
+        args.push_back(HttpReqArg("disable_web_page_preview", disableWebPagePreview));
     }
     if (replyToMessageId) {
-        args.push_back(Http::Argument("reply_to_message_id", replyToMessageId));
+        args.push_back(HttpReqArg("reply_to_message_id", replyToMessageId));
     }
     if (replyMarkup) {
-        args.push_back(Http::Argument("reply_markup", _bot->getParser().parseGenericReply(replyMarkup)));
+        args.push_back(HttpReqArg("reply_markup", TgTypeParser::getInstance().parseGenericReply(replyMarkup)));
     }
-    return _bot->getParser().parseMessage(sendRequest("sendMessage", args).find("result")->second);
+    return TgTypeParser::getInstance().parseMessage(sendRequest("sendMessage", args).find("result")->second);
 }
 
 Message::Ptr Api::forwardMessage(int32_t chatId, int32_t fromChatId, int32_t messageId) const {
-    vector<Http::Argument> args;
-    args.push_back(Http::Argument("chat_id", chatId));
-    args.push_back(Http::Argument("from_chat_id", fromChatId));
-    args.push_back(Http::Argument("message_id", messageId));
-    return _bot->getParser().parseMessage(sendRequest("forwardMessage", args).find("result")->second);
+    vector<HttpReqArg> args;
+    args.push_back(HttpReqArg("chat_id", chatId));
+    args.push_back(HttpReqArg("from_chat_id", fromChatId));
+    args.push_back(HttpReqArg("message_id", messageId));
+    return TgTypeParser::getInstance().parseMessage(sendRequest("forwardMessage", args).find("result")->second);
 }
 
 Message::Ptr Api::sendPhoto(int32_t chatId, const InputFile::Ptr& photo, const string& caption, int32_t replyToMessageId, const GenericReply::Ptr& replyMarkup) const {
-    vector<Http::Argument> args;
-    args.push_back(Http::Argument("chat_id", chatId));
-    args.push_back(Http::Argument("photo", photo->data, true, photo->mimeType));
+    vector<HttpReqArg> args;
+    args.push_back(HttpReqArg("chat_id", chatId));
+    args.push_back(HttpReqArg("photo", photo->data, true, photo->mimeType));
     if (!caption.empty()) {
-        args.push_back(Http::Argument("caption", caption));
+        args.push_back(HttpReqArg("caption", caption));
     }
     if (replyToMessageId) {
-        args.push_back(Http::Argument("reply_to_message_id", replyToMessageId));
+        args.push_back(HttpReqArg("reply_to_message_id", replyToMessageId));
     }
     if (replyMarkup) {
-        args.push_back(Http::Argument("reply_markup", _bot->getParser().parseGenericReply(replyMarkup)));
+        args.push_back(HttpReqArg("reply_markup", TgTypeParser::getInstance().parseGenericReply(replyMarkup)));
     }
-    return _bot->getParser().parseMessage(sendRequest("sendPhoto", args).find("result")->second);
+    return TgTypeParser::getInstance().parseMessage(sendRequest("sendPhoto", args).find("result")->second);
 }
 
 Message::Ptr Api::sendPhoto(int32_t chatId, const string& photo, const string& caption, int32_t replyToMessageId, const GenericReply::Ptr& replyMarkup) const {
-    vector<Http::Argument> args;
-    args.push_back(Http::Argument("chat_id", chatId));
-    args.push_back(Http::Argument("photo", photo));
+    vector<HttpReqArg> args;
+    args.push_back(HttpReqArg("chat_id", chatId));
+    args.push_back(HttpReqArg("photo", photo));
     if (!caption.empty()) {
-        args.push_back(Http::Argument("caption", caption));
+        args.push_back(HttpReqArg("caption", caption));
     }
     if (replyToMessageId) {
-        args.push_back(Http::Argument("reply_to_message_id", replyToMessageId));
+        args.push_back(HttpReqArg("reply_to_message_id", replyToMessageId));
     }
     if (replyMarkup) {
-        args.push_back(Http::Argument("reply_markup", _bot->getParser().parseGenericReply(replyMarkup)));
+        args.push_back(HttpReqArg("reply_markup", TgTypeParser::getInstance().parseGenericReply(replyMarkup)));
     }
-    return _bot->getParser().parseMessage(sendRequest("sendPhoto", args).find("result")->second);
+    return TgTypeParser::getInstance().parseMessage(sendRequest("sendPhoto", args).find("result")->second);
 }
 
 Message::Ptr Api::sendAudio(int32_t chatId, const InputFile::Ptr& audio, int32_t replyToMessageId, const GenericReply::Ptr& replyMarkup) const {
-    vector<Http::Argument> args;
-    args.push_back(Http::Argument("chat_id", chatId));
-    args.push_back(Http::Argument("audio", audio->data, true, audio->mimeType));
+    vector<HttpReqArg> args;
+    args.push_back(HttpReqArg("chat_id", chatId));
+    args.push_back(HttpReqArg("audio", audio->data, true, audio->mimeType));
     if (replyToMessageId) {
-        args.push_back(Http::Argument("reply_to_message_id", replyToMessageId));
+        args.push_back(HttpReqArg("reply_to_message_id", replyToMessageId));
     }
     if (replyMarkup) {
-        args.push_back(Http::Argument("reply_markup", _bot->getParser().parseGenericReply(replyMarkup)));
+        args.push_back(HttpReqArg("reply_markup", TgTypeParser::getInstance().parseGenericReply(replyMarkup)));
     }
-    return _bot->getParser().parseMessage(sendRequest("sendAudio", args).find("result")->second);
+    return TgTypeParser::getInstance().parseMessage(sendRequest("sendAudio", args).find("result")->second);
 }
 
 Message::Ptr Api::sendAudio(int32_t chatId, const string& audio, int32_t replyToMessageId, const GenericReply::Ptr& replyMarkup) const {
-    vector<Http::Argument> args;
-    args.push_back(Http::Argument("chat_id", chatId));
-    args.push_back(Http::Argument("audio", audio));
+    vector<HttpReqArg> args;
+    args.push_back(HttpReqArg("chat_id", chatId));
+    args.push_back(HttpReqArg("audio", audio));
     if (replyToMessageId) {
-        args.push_back(Http::Argument("reply_to_message_id", replyToMessageId));
+        args.push_back(HttpReqArg("reply_to_message_id", replyToMessageId));
     }
     if (replyMarkup) {
-        args.push_back(Http::Argument("reply_markup", _bot->getParser().parseGenericReply(replyMarkup)));
+        args.push_back(HttpReqArg("reply_markup", TgTypeParser::getInstance().parseGenericReply(replyMarkup)));
     }
-    return _bot->getParser().parseMessage(sendRequest("sendAudio", args).find("result")->second);
+    return TgTypeParser::getInstance().parseMessage(sendRequest("sendAudio", args).find("result")->second);
 }
 
 Message::Ptr Api::sendDocument(int32_t chatId, const InputFile::Ptr& document, int32_t replyToMessageId, const GenericReply::Ptr& replyMarkup) const {
-    vector<Http::Argument> args;
-    args.push_back(Http::Argument("chat_id", chatId));
-    args.push_back(Http::Argument("document", document->data, true, document->mimeType));
+    vector<HttpReqArg> args;
+    args.push_back(HttpReqArg("chat_id", chatId));
+    args.push_back(HttpReqArg("document", document->data, true, document->mimeType));
     if (replyToMessageId) {
-        args.push_back(Http::Argument("reply_to_message_id", replyToMessageId));
+        args.push_back(HttpReqArg("reply_to_message_id", replyToMessageId));
     }
     if (replyMarkup) {
-        args.push_back(Http::Argument("reply_markup", _bot->getParser().parseGenericReply(replyMarkup)));
+        args.push_back(HttpReqArg("reply_markup", TgTypeParser::getInstance().parseGenericReply(replyMarkup)));
     }
-    return _bot->getParser().parseMessage(sendRequest("sendDocument", args).find("result")->second);
+    return TgTypeParser::getInstance().parseMessage(sendRequest("sendDocument", args).find("result")->second);
 }
 
 Message::Ptr Api::sendDocument(int32_t chatId, const string& document, int32_t replyToMessageId, const GenericReply::Ptr& replyMarkup) const {
-    vector<Http::Argument> args;
-    args.push_back(Http::Argument("chat_id", chatId));
-    args.push_back(Http::Argument("document", document));
+    vector<HttpReqArg> args;
+    args.push_back(HttpReqArg("chat_id", chatId));
+    args.push_back(HttpReqArg("document", document));
     if (replyToMessageId) {
-        args.push_back(Http::Argument("reply_to_message_id", replyToMessageId));
+        args.push_back(HttpReqArg("reply_to_message_id", replyToMessageId));
     }
     if (replyMarkup) {
-        args.push_back(Http::Argument("reply_markup", _bot->getParser().parseGenericReply(replyMarkup)));
+        args.push_back(HttpReqArg("reply_markup", TgTypeParser::getInstance().parseGenericReply(replyMarkup)));
     }
-    return _bot->getParser().parseMessage(sendRequest("sendDocument", args).find("result")->second);
+    return TgTypeParser::getInstance().parseMessage(sendRequest("sendDocument", args).find("result")->second);
 }
 
 Message::Ptr Api::sendSticker(int32_t chatId, const InputFile::Ptr& sticker, int32_t replyToMessageId, const GenericReply::Ptr& replyMarkup) const {
-    vector<Http::Argument> args;
-    args.push_back(Http::Argument("chat_id", chatId));
-    args.push_back(Http::Argument("sticker", sticker->data, true, sticker->mimeType));
+    vector<HttpReqArg> args;
+    args.push_back(HttpReqArg("chat_id", chatId));
+    args.push_back(HttpReqArg("sticker", sticker->data, true, sticker->mimeType));
     if (replyToMessageId) {
-        args.push_back(Http::Argument("reply_to_message_id", replyToMessageId));
+        args.push_back(HttpReqArg("reply_to_message_id", replyToMessageId));
     }
     if (replyMarkup) {
-        args.push_back(Http::Argument("reply_markup", _bot->getParser().parseGenericReply(replyMarkup)));
+        args.push_back(HttpReqArg("reply_markup", TgTypeParser::getInstance().parseGenericReply(replyMarkup)));
     }
-    return _bot->getParser().parseMessage(sendRequest("sendSticker", args).find("result")->second);
+    return TgTypeParser::getInstance().parseMessage(sendRequest("sendSticker", args).find("result")->second);
 }
 
 Message::Ptr Api::sendSticker(int32_t chatId, const string& sticker, int32_t replyToMessageId, const GenericReply::Ptr& replyMarkup) const {
-    vector<Http::Argument> args;
-    args.push_back(Http::Argument("chat_id", chatId));
-    args.push_back(Http::Argument("sticker", sticker));
+    vector<HttpReqArg> args;
+    args.push_back(HttpReqArg("chat_id", chatId));
+    args.push_back(HttpReqArg("sticker", sticker));
     if (replyToMessageId) {
-        args.push_back(Http::Argument("reply_to_message_id", replyToMessageId));
+        args.push_back(HttpReqArg("reply_to_message_id", replyToMessageId));
     }
     if (replyMarkup) {
-        args.push_back(Http::Argument("reply_markup", _bot->getParser().parseGenericReply(replyMarkup)));
+        args.push_back(HttpReqArg("reply_markup", TgTypeParser::getInstance().parseGenericReply(replyMarkup)));
     }
-    return _bot->getParser().parseMessage(sendRequest("sendSticker", args).find("result")->second);
+    return TgTypeParser::getInstance().parseMessage(sendRequest("sendSticker", args).find("result")->second);
 }
 
 Message::Ptr Api::sendVideo(int32_t chatId, const InputFile::Ptr& video, int32_t replyToMessageId, const GenericReply::Ptr& replyMarkup) const {
-    vector<Http::Argument> args;
-    args.push_back(Http::Argument("chat_id", chatId));
-    args.push_back(Http::Argument("video", video->data, true, video->mimeType));
+    vector<HttpReqArg> args;
+    args.push_back(HttpReqArg("chat_id", chatId));
+    args.push_back(HttpReqArg("video", video->data, true, video->mimeType));
     if (replyToMessageId) {
-        args.push_back(Http::Argument("reply_to_message_id", replyToMessageId));
+        args.push_back(HttpReqArg("reply_to_message_id", replyToMessageId));
     }
     if (replyMarkup) {
-        args.push_back(Http::Argument("reply_markup", _bot->getParser().parseGenericReply(replyMarkup)));
+        args.push_back(HttpReqArg("reply_markup", TgTypeParser::getInstance().parseGenericReply(replyMarkup)));
     }
-    return _bot->getParser().parseMessage(sendRequest("sendVideo", args).find("result")->second);
+    return TgTypeParser::getInstance().parseMessage(sendRequest("sendVideo", args).find("result")->second);
 }
 
 Message::Ptr Api::sendVideo(int32_t chatId, const string& video, int32_t replyToMessageId, const GenericReply::Ptr& replyMarkup) const {
-    vector<Http::Argument> args;
-    args.push_back(Http::Argument("chat_id", chatId));
-    args.push_back(Http::Argument("video", video));
+    vector<HttpReqArg> args;
+    args.push_back(HttpReqArg("chat_id", chatId));
+    args.push_back(HttpReqArg("video", video));
     if (replyToMessageId) {
-        args.push_back(Http::Argument("reply_to_message_id", replyToMessageId));
+        args.push_back(HttpReqArg("reply_to_message_id", replyToMessageId));
     }
     if (replyMarkup) {
-        args.push_back(Http::Argument("reply_markup", _bot->getParser().parseGenericReply(replyMarkup)));
+        args.push_back(HttpReqArg("reply_markup", TgTypeParser::getInstance().parseGenericReply(replyMarkup)));
     }
-    return _bot->getParser().parseMessage(sendRequest("sendVideo", args).find("result")->second);
+    return TgTypeParser::getInstance().parseMessage(sendRequest("sendVideo", args).find("result")->second);
 }
 
 Message::Ptr Api::sendLocation(int32_t chatId, float latitude, float longitude, int32_t replyToMessageId, const GenericReply::Ptr& replyMarkup) const {
-    vector<Http::Argument> args;
-    args.push_back(Http::Argument("chat_id", chatId));
-    args.push_back(Http::Argument("latitude", latitude));
-    args.push_back(Http::Argument("longitude", longitude));
+    vector<HttpReqArg> args;
+    args.push_back(HttpReqArg("chat_id", chatId));
+    args.push_back(HttpReqArg("latitude", latitude));
+    args.push_back(HttpReqArg("longitude", longitude));
     if (replyToMessageId) {
-        args.push_back(Http::Argument("reply_to_message_id", replyToMessageId));
+        args.push_back(HttpReqArg("reply_to_message_id", replyToMessageId));
     }
     if (replyMarkup) {
-        args.push_back(Http::Argument("reply_markup", _bot->getParser().parseGenericReply(replyMarkup)));
+        args.push_back(HttpReqArg("reply_markup", TgTypeParser::getInstance().parseGenericReply(replyMarkup)));
     }
-    return _bot->getParser().parseMessage(sendRequest("sendLocation", args).find("result")->second);
+    return TgTypeParser::getInstance().parseMessage(sendRequest("sendLocation", args).find("result")->second);
 }
 
 void Api::sendChatAction(int32_t chatId, const string& action) const {
-    vector<Http::Argument> args;
-    args.push_back(Http::Argument("chat_id", chatId));
-    args.push_back(Http::Argument("action", action));
+    vector<HttpReqArg> args;
+    args.push_back(HttpReqArg("chat_id", chatId));
+    args.push_back(HttpReqArg("action", action));
     sendRequest("sendChatAction", args);
 }
 
 UserProfilePhotos::Ptr Api::getUserProfilePhotos(int32_t userId, int32_t offset, int32_t limit) const {
-    vector<Http::Argument> args;
-    args.push_back(Http::Argument("user_id", userId));
+    vector<HttpReqArg> args;
+    args.push_back(HttpReqArg("user_id", userId));
     if (offset) {
-        args.push_back(Http::Argument("offset", offset));
+        args.push_back(HttpReqArg("offset", offset));
     }
     limit = max(1, min(100, limit));
-    args.push_back(Http::Argument("limit", limit));
-    return _bot->getParser().parseUserProfilePhotos(sendRequest("getUserProfilePhotos", args).find("result")->second);
+    args.push_back(HttpReqArg("limit", limit));
+    return TgTypeParser::getInstance().parseUserProfilePhotos(sendRequest("getUserProfilePhotos", args).find("result")->second);
 }
 
 vector<Update::Ptr> Api::getUpdates(int32_t offset, int32_t limit, int32_t timeout) const {
-    vector<Http::Argument> args;
+    vector<HttpReqArg> args;
     if (offset) {
-        args.push_back(Http::Argument("offset", offset));
+        args.push_back(HttpReqArg("offset", offset));
     }
     limit = max(1, min(100, limit));
-    args.push_back(Http::Argument("limit", limit));
+    args.push_back(HttpReqArg("limit", limit));
     if (timeout) {
-        args.push_back(Http::Argument("timeout", timeout));
+        args.push_back(HttpReqArg("timeout", timeout));
     }
-    return _bot->getParser().parseArray<Update>(_bot->getParser().parseUpdate, sendRequest("getUpdates", args), "result");
+    return TgTypeParser::getInstance().parseArray<Update>(TgTypeParser::getInstance().parseUpdate, sendRequest("getUpdates", args), "result");
 }
 
 void Api::setWebhook(const string& url) const {
-    vector<Http::Argument> args;
-    args.push_back(Http::Argument("url", url));
+    vector<HttpReqArg> args;
+    args.push_back(HttpReqArg("url", url));
     sendRequest("setWebhook", args);
 }
 
-boost::property_tree::ptree Api::sendRequest(const std::string& method, const std::vector<Http::Argument>& args) const {
+boost::property_tree::ptree Api::sendRequest(const std::string& method, const std::vector<HttpReqArg>& args) const {
     std::string url = "https://api.telegram.org/bot";
-    url += _bot->getToken();
+    url += _token;
     url += "/";
     url += method;
     try {
-        ptree result = _bot->getParser().parseJson(_bot->getHttp().makeRequest(url, args));
+        ptree result = TgTypeParser::getInstance().parseJson(HttpClient::getInstance().makeRequest(url, args));
         if (result.get<bool>("ok")) {
             return result;
         } else {

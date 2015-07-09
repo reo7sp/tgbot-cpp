@@ -20,28 +20,29 @@
  * SOFTWARE.
  */
 
-#ifndef TGBOT_CPP_STRINGTOOLS_H
-#define TGBOT_CPP_STRINGTOOLS_H
+#ifndef TGBOT_TGLONGPOLL_H
+#define TGBOT_TGLONGPOLL_H
 
-#include <vector>
-#include <string>
-#include <sstream>
+#include "tgbot/Bot.h"
+#include "tgbot/Api.h"
+#include "tgbot/EventHandler.h"
 
-namespace StringTools {
+namespace TgBot {
 
-bool startsWith(const std::string& str1, const std::string& str2);
-bool endsWith(const std::string& str1, const std::string& str2);
-void split(const std::string& str, char delimiter, std::vector<std::string>& dest);
-std::string generateRandomString(size_t length);
-std::string urlEncode(const std::string& value);
-std::string urlDecode(const std::string& value);
+class TgLongPoll {
 
-inline std::vector<std::string> split(const std::string& str, char delimiter) {
-    std::vector<std::string> result;
-    split(str, delimiter, result);
-    return result;
+public:
+    TgLongPoll(const Api* api, const EventHandler* eventHandler);
+    TgLongPoll(const Bot& bot);
+
+    void start();
+
+private:
+    int32_t _lastUpdateId = 0;
+    const Api* _api;
+    const EventHandler* _eventHandler;
+};
+
 }
 
-}
-
-#endif //TGBOT_CPP_STRINGTOOLS_H
+#endif //TGBOT_TGLONGPOLL_H

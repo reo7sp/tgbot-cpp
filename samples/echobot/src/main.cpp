@@ -25,8 +25,9 @@
 #include <exception>
 
 #include <tgbot/Bot.h>
-#include <tgbot/tools/StringTools.h>
+#include <tgbot/net/TgLongPoll.h>
 #include <tgbot/TgException.h>
+#include <tgbot/tools/StringTools.h>
 
 using namespace std;
 using namespace TgBot;
@@ -39,28 +40,31 @@ int main() {
         sigintGot = true;
     });
 
-    Bot bot("PLACE_YOUR_TOKEN_HERE");
-    bot.getEvents().onCommand("start", [](Message::Ptr message, Bot* const bot) {
-        bot->getApi().sendMessage(message->chat->id, "Hi!");
+    Bot bot("100743144:AAEzJJSWYezyUYlwgzSjf0-5hdokGyUjbXM");
+    bot.getEvents().onCommand("start", [&bot](Message::Ptr message) {
+        bot.getApi().sendMessage(message->chat->id, "Hi!");
     });
-    bot.getEvents().onAnyMessage([](Message::Ptr message, Bot* const bot) {
+    bot.getEvents().onAnyMessage([&bot](Message::Ptr message) {
         printf("User wrote %s\n", message->text.c_str());
         if (StringTools::startsWith(message->text, "/start")) {
             return;
         }
-        bot->getApi().sendMessage(message->chat->id, "Your message is: " + message->text);
+        bot.getApi().sendMessage(message->chat->id, "Your message is: " + message->text);
     });
 
+    printf("try {\n");
     try {
         printf("Bot username: %s\n", bot.getApi().getMe()->username.c_str());
 
+        TgLongPoll longPoll(bot);
         while (!sigintGot) {
             printf("Long poll started\n");
-            bot.startLongPoll();
+            longPoll.start();
         }
     } catch (TgException& e) {
         printf("error: %s\n", e.what());
     }
+    printf("}\n");
 
     return 0;
 }

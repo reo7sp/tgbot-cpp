@@ -2,19 +2,20 @@ cmake_minimum_required(VERSION 3.0)
 project(TgBot)
 
 ### options
-option(ENABLE_TESTS "Set to ON to enable building of tests and samples" ON)
+option(ENABLE_TESTS "Set to ON to enable building of tests" OFF)
+option(ENABLE_SAMPLES "Set to ON to enable building of samples" OFF)
 
 ### sources
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 include_directories("${PROJECT_SOURCE_DIR}/src")
 set(SRC_LIST
-    src/tgbot/Bot.cpp
     src/tgbot/Api.cpp
-    src/tgbot/EventManager.cpp
-    src/tgbot/Http.cpp
-    src/tgbot/Url.cpp
-    src/tgbot/Parser.cpp
+    src/tgbot/TgTypeParser.cpp
     src/tgbot/TgException.cpp
+    src/tgbot/net/Url.cpp
+    src/tgbot/net/HttpClient.cpp
+    src/tgbot/net/HttpParser.cpp
+    src/tgbot/net/TgLongPoll.cpp
     src/tgbot/tools/StringTools.cpp
 )
 
@@ -25,7 +26,7 @@ include_directories(${OPENSSL_INCLUDE_DIR})
 
 # boost
 set(Boost_USE_MULTITHREADED ON)
-find_package(Boost COMPONENTS system container iostreams REQUIRED)
+find_package(Boost COMPONENTS system container iostreams unit_test_framework REQUIRED)
 include_directories(${Boost_INCLUDE_DIR})
 
 set(LIB_LIST
@@ -39,6 +40,13 @@ target_link_libraries(${PROJECT_NAME} ${LIB_LIST})
 
 ### tests
 if (ENABLE_TESTS)
-    message(STATUS "Building of tests and sambles is enabled")
+    message(STATUS "Building of tests is enabled")
+    enable_testing()
+    add_subdirectory(test)
+endif()
+
+### samples
+if (ENABLE_SAMPLES)
+    message(STATUS "Building of sambles is enabled")
     add_subdirectory(samples)
 endif()

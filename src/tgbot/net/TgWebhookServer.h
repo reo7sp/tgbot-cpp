@@ -20,46 +20,38 @@
  * SOFTWARE.
  */
 
-#ifndef TGBOT_CPP_BOT_H
-#define TGBOT_CPP_BOT_H
+#ifndef TGBOT_TGHTTPSERVER_H
+#define TGBOT_TGHTTPSERVER_H
 
-#include <string>
-
-#include "tgbot/Api.h"
-#include "tgbot/EventBroadcaster.h"
+#include "tgbot/Bot.h"
 #include "tgbot/EventHandler.h"
+#include "tgbot/TgTypeParser.h"
+#include "tgbot/net/HttpServer.h"
 
 namespace TgBot {
 
-class Bot {
+template<typename Protocol>
+class TgWebhookServer : public HttpServer<Protocol> {
 
 public:
-    explicit Bot(const std::string& token) : _token(token), _api(token), _eventHandler(&_eventBroadcaster) {
+    TgWebhookServer(std::shared_ptr<boost::asio::basic_socket_acceptor<Protocol>>& acceptor, const ServerHandler& handler) = delete;
+
+    TgWebhookServer(std::shared_ptr<boost::asio::basic_socket_acceptor<Protocol>>& acceptor, const std::string& path, const EventHandler* eventHandler) :
+        HttpServer(acceptor, [this, eventHandler, &path](const std::string& data, const std::map<std::string, std::string>& headers) -> std::string {
+            if (headers["method"] == "POST" && headers["path"] == path) {
+                eventHandler->handleUpdate(TgTypeParser::getInstance().parseUpdate(TgTypeParser::getInstance().parseJson(data)));
+            }
+            return HttpParser::generateResponse("");
+        })
+    {
     }
 
-    inline const std::string& getToken() const {
-        return _token;
+    TgWebhookServer(std::shared_ptr<boost::asio::basic_socket_acceptor<Protocol>>& acceptor, const std::string& path, const Bot& bot) :
+        TgWebhookServer(acceptor, path, &bot.getEventHandler())
+    {
     }
-
-    inline const Api& getApi() const {
-        return _api;
-    }
-
-    inline EventBroadcaster& getEvents() {
-        return _eventBroadcaster;
-    }
-
-    inline const EventHandler& getEventHandler() const {
-        return _eventHandler;
-    }
-
-private:
-    const std::string _token;
-    const Api _api;
-    EventBroadcaster _eventBroadcaster;
-    const EventHandler _eventHandler;
 };
 
 }
 
-#endif //TGBOT_CPP_BOT_H
+#endif //TGBOT_TGHTTPSERVER_H

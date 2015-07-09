@@ -20,33 +20,25 @@
  * SOFTWARE.
  */
 
-#include "Bot.h"
+#ifndef TGBOT_CPP_URL_H
+#define TGBOT_CPP_URL_H
 
-using namespace std;
-using namespace boost::property_tree;
+#include <string>
 
 namespace TgBot {
 
-Bot::Bot(const string& token) :
-    _token(token),
-    _api(this),
-    _events(this),
-    _http(),
-    _parser(),
-    _webhooksServerHandler([this](const string& data) {
-        _events.handleUpdate(_parser.parseUpdate(_parser.parseJson(data)));
-    })
-{
-}
+class Url {
 
-void Bot::startLongPoll() {
-    std::vector<Update::Ptr> updates = _api.getUpdates(_lastUpdateId, 100, 60);
-    for (Update::Ptr& item : updates) {
-        if (item->updateId >= _lastUpdateId) {
-            _lastUpdateId = item->updateId + 1;
-        }
-        _events.handleUpdate(item);
-    }
-}
+public:
+    Url(const std::string& url);
+
+    std::string protocol;
+    std::string host;
+    std::string path;
+    std::string query;
+    std::string fragment;
+};
 
 }
+
+#endif //TGBOT_CPP_URL_H

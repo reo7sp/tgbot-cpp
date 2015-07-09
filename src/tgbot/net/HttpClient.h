@@ -20,46 +20,30 @@
  * SOFTWARE.
  */
 
-#include "Url.h"
+#ifndef TGBOT_HTTPCLIENT_H
+#define TGBOT_HTTPCLIENT_H
 
-using namespace std;
+#include <string>
+
+#include <boost/asio.hpp>
+
+#include "tgbot/net/Url.h"
+#include "tgbot/net/HttpReqArg.h"
+#include "tgbot/net/HttpParser.h"
 
 namespace TgBot {
 
-Url::Url(const string& url) {
-    bool isProtocolParsed = false;
-    bool isHostParsed = false;
-    bool isPathParsed = false;
+class HttpClient {
 
-    for (size_t i = 0, count = url.length(); i < count; ++i) {
-        char c = url[i];
+public:
+    static HttpClient& getInstance();
 
-        if (!isProtocolParsed) {
-            if (c == ':') {
-                isProtocolParsed = true;
-                i += 2;
-            } else {
-                protocol += c;
-            }
-        } else if (!isHostParsed) {
-            if (c == '/') {
-                isHostParsed = true;
-                path += c;
-            } else if (c == '?') {
-                isHostParsed = isPathParsed = true;
-            } else {
-                host += c;
-            }
-        } else if (!isPathParsed) {
-            if (c == '?') {
-                isPathParsed = true;
-            } else {
-                path += c;
-            }
-        } else {
-            query += c;
-        }
-    }
-}
+    std::string makeRequest(const Url& url, const std::vector<HttpReqArg>& args);
+
+private:
+    boost::asio::io_service _ioService;
+};
 
 }
+
+#endif //TGBOT_HTTPCLIENT_H

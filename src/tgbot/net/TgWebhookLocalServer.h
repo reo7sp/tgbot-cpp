@@ -20,28 +20,28 @@
  * SOFTWARE.
  */
 
-#ifndef TGBOT_CPP_STRINGTOOLS_H
-#define TGBOT_CPP_STRINGTOOLS_H
+#ifndef TGBOT_TGWEBHOOKTCPSERVER_H
+#define TGBOT_TGWEBHOOKTCPSERVER_H
 
-#include <vector>
-#include <string>
-#include <sstream>
+#include "tgbot/net/TgWebhookServer.h"
 
-namespace StringTools {
+namespace TgBot {
 
-bool startsWith(const std::string& str1, const std::string& str2);
-bool endsWith(const std::string& str1, const std::string& str2);
-void split(const std::string& str, char delimiter, std::vector<std::string>& dest);
-std::string generateRandomString(size_t length);
-std::string urlEncode(const std::string& value);
-std::string urlDecode(const std::string& value);
+class TgWebhookLocalServer : public TgWebhookServer<boost::asio::local::stream_protocol> {
 
-inline std::vector<std::string> split(const std::string& str, char delimiter) {
-    std::vector<std::string> result;
-    split(str, delimiter, result);
-    return result;
+public:
+    TgWebhookLocalServer(std::shared_ptr<boost::asio::basic_socket_acceptor<boost::asio::local::stream_protocol>>& acceptor, const std::string& path, EventHandler* eventHandler) = delete;
+
+    TgWebhookLocalServer(const std::string& path, const EventHandler* eventHandler) :
+        TgWebhookServer(std::shared_ptr<boost::asio::basic_socket_acceptor<boost::asio::local::stream_protocol>>(new boost::asio::local::stream_protocol::acceptor(_ioService, boost::asio::local::stream_protocol::endpoint(path))), path, eventHandler)
+    {
+    }
+
+    TgWebhookLocalServer(const std::string& path, const Bot& bot) : TgWebhookLocalServer(path, &bot.getEventHandler()) {
+
+    }
+};
+
 }
 
-}
-
-#endif //TGBOT_CPP_STRINGTOOLS_H
+#endif //TGBOT_TGWEBHOOKTCPSERVER_H

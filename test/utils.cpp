@@ -20,28 +20,48 @@
  * SOFTWARE.
  */
 
-#ifndef TGBOT_CPP_STRINGTOOLS_H
-#define TGBOT_CPP_STRINGTOOLS_H
+#include "utils.h"
 
-#include <vector>
-#include <string>
 #include <sstream>
 
-namespace StringTools {
+using namespace std;
+using namespace boost;
 
-bool startsWith(const std::string& str1, const std::string& str2);
-bool endsWith(const std::string& str1, const std::string& str2);
-void split(const std::string& str, char delimiter, std::vector<std::string>& dest);
-std::string generateRandomString(size_t length);
-std::string urlEncode(const std::string& value);
-std::string urlDecode(const std::string& value);
+string diff(const string& test, const string& expected) {
+    string result;
+    result += "\n*** BEGIN ***\n";
 
-inline std::vector<std::string> split(const std::string& str, char delimiter) {
-    std::vector<std::string> result;
-    split(str, delimiter, result);
+    istringstream ss1(test);
+    istringstream ss2(expected);
+
+    string s1, s2;
+    bool r1, r2;
+    size_t i = 0;
+    do {
+        r1 = getline(ss1, s1) ? true : false;
+        r2 = getline(ss2, s2) ? true : false;
+        if (r1 && r2 && s1 == s2) {
+            result += lexical_cast<string>(i);
+            result += " [=] ";
+            result += s1;
+            result += "\n";
+        } else {
+            if (r1) {
+                result += lexical_cast<string>(i);
+                result += " [t] ";
+                result += s1;
+                result += "\n";
+            }
+            if (r2) {
+                result += lexical_cast<string>(i);
+                result += " [e] ";
+                result += s2;
+                result += "\n";
+            }
+        }
+        ++i;
+    } while (r1 || r2);
+
+    result += "*** END ***\n";
     return result;
 }
-
-}
-
-#endif //TGBOT_CPP_STRINGTOOLS_H

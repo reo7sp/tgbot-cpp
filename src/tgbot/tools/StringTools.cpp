@@ -24,6 +24,7 @@
 
 #include <stdlib.h>
 #include <iomanip>
+#include <stdio.h>
 
 using namespace std;
 
@@ -46,15 +47,15 @@ bool startsWith(const string& str1, const string& str2) {
 
 bool endsWith(const string& str1, const string& str2) {
     string::const_iterator it1(str1.end());
-    string::const_iterator start1(str1.begin());
-    string::const_iterator it2(str2.begin());
-    string::const_iterator end2(str2.end());
-    while (it1 != start1 && it2 != end2) {
+    string::const_iterator begin1(str1.begin());
+    string::const_iterator it2(str2.end());
+    string::const_iterator begin2(str2.begin());
+    while (it1 != begin1 && it2 != begin2) {
         if (*it1 != *it2) {
             return false;
         }
         --it1;
-        ++it2;
+        --it2;
     }
     return true;
 }
@@ -78,21 +79,35 @@ string generateRandomString(size_t length) {
 }
 
 string urlEncode(const string& value) {
-    static const string legitPunctuation = "-_.~!*()'";
+    static const string legitPunctuation = "-_.~";
     ostringstream result;
     result.fill('0');
     result << hex;
     for (const char& c : value) {
         if (isalnum(c) || legitPunctuation.find(c) != legitPunctuation.npos) {
             result << c;
-        } else if (c == ' ') {
-            result << '+';
         } else {
             result << '%' << setw(2) << int((unsigned char) c);
         }
     }
 
     return result.str();
+}
+
+string urlDecode(const string& value) {
+    string result;
+    for (size_t i = 0, count = value.length(); i < count; ++i) {
+        const char c = value[i];
+        if (c == '%') {
+            int t = 0;
+            sscanf(value.substr(i + 1, 2).c_str(), "%x", &t);
+            result += (char) t;
+            i += 2;
+        } else {
+            result += c;
+        }
+    }
+    return result;
 }
 
 }
