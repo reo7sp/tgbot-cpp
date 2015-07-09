@@ -40,7 +40,7 @@ int main() {
         sigintGot = true;
     });
 
-    Bot bot("100743144:AAEzJJSWYezyUYlwgzSjf0-5hdokGyUjbXM");
+    Bot bot("PLACE YOUR TOKEN HERE");
     bot.getEvents().onCommand("start", [&bot](Message::Ptr message) {
         bot.getApi().sendMessage(message->chat->id, "Hi!");
     });
