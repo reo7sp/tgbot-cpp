@@ -3,9 +3,15 @@ script:
         - cmake .
         - make
         - make test
-before_script:
-        - sudo apt-get update -qq
-        - sudo apt-get install -qq libboost-all-dev
+sudo: false
+addons:
+apt:
+        sources:
+                - ubuntu-toolchain-r-test
+        packages:
+                - cmake
+                - gcc
+                - libboost-all-dev
 notifications:
         email:
                 recipients:
