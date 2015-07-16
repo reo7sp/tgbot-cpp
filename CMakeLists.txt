@@ -26,7 +26,7 @@ include_directories(${OPENSSL_INCLUDE_DIR})
 
 # boost
 set(Boost_USE_MULTITHREADED ON)
-find_package(Boost COMPONENTS system container iostreams unit_test_framework REQUIRED)
+find_package(Boost COMPONENTS system iostreams unit_test_framework REQUIRED)
 include_directories(${Boost_INCLUDE_DIR})
 
 set(LIB_LIST

@@ -5,7 +5,7 @@ script:
         - make test
 before_script:
         - sudo apt-get update -qq
-        - sudo apt-get install libboost-all-dev
+        - sudo apt-get install -qq libboost-all-dev
 notifications:
         email:
                 recipients:
