@@ -1,0 +1,11 @@
+language: cpp
+script: make && make test
+before_script:
+        - sudo apt-get update -qq
+        - sudo apt-get install libboost-all-dev
+notifications:
+        email:
+                recipients:
+                        - reo7sp@reo7sp.ru
+                on_success: change
+                on_failure: always
