@@ -36,14 +36,14 @@
  * Firstly you need to install some dependencies. You have to have boost library at the runtime and cmake at the compilation step to be able to use this library.
  * On Debian-based distibutives you can do it with these commands:
  * @code{.sh}
-sudo apt-get install cmake libboost-dev
+ * sudo apt-get install cmake libboost-dev
  * @endcode
  *
  * To compile the library execute this commands:
  * @code{.sh}
-cd /path/where/you/have/cloned/the/library/repository
-cmake .
-make -j4
+ * cd /path/where/you/have/cloned/the/library/repository
+ * cmake .
+ * make -j4
  * @endcode
  *
  * That's all. All you have to do now is just link compiled library to your project.
