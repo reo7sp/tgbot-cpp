@@ -99,6 +99,7 @@ Message::Ptr TgTypeParser::parseMessage(const ptree& data) const {
     result->newChatPhoto = parseArray<PhotoSize>(parsePhotoSize, data, "new_chat_photo");
     result->deleteChatPhoto = data.get("delete_chat_photo", false);
     result->groupChatCreated = data.get("group_chat_created", false);
+    result->caption = data.get("caption", false);
     return result;
 }
 
@@ -129,6 +130,7 @@ string TgTypeParser::parseMessage(const Message::Ptr& object) const {
     appendToJson(result, "new_chat_photo", parseArray(parsePhotoSize, object->newChatPhoto));
     appendToJson(result, "delete_chat_photo", object->deleteChatPhoto);
     appendToJson(result, "group_chat_created", object->groupChatCreated);
+    appendToJson(result, "caption", object->caption);
     result.erase(result.length() - 1);
     result += '}';
     return result;
@@ -243,7 +245,6 @@ Video::Ptr TgTypeParser::parseVideo(const ptree& data) const {
     result->thumb = parsePhotoSize(data.find("thumb")->second);
     result->mimeType = data.get("mime_type", "");
     result->fileSize = data.get("file_size", 0);
-    result->caption = data.get("caption", "");
     return result;
 }
 
@@ -260,7 +261,6 @@ string TgTypeParser::parseVideo(const Video::Ptr& object) const {
     appendToJson(result, "thumb", parsePhotoSize(object->thumb));
     appendToJson(result, "mime_type", object->mimeType);
     appendToJson(result, "file_size", object->fileSize);
-    appendToJson(result, "caption", object->caption);
     result.erase(result.length() - 1);
     result += '}';
     return result;

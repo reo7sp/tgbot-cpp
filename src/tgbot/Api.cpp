@@ -94,10 +94,13 @@ Message::Ptr Api::sendPhoto(int32_t chatId, const string& photo, const string& c
     return TgTypeParser::getInstance().parseMessage(sendRequest("sendPhoto", args).find("result")->second);
 }
 
-Message::Ptr Api::sendAudio(int32_t chatId, const InputFile::Ptr& audio, int32_t replyToMessageId, const GenericReply::Ptr& replyMarkup) const {
+Message::Ptr Api::sendAudio(int32_t chatId, const InputFile::Ptr& audio, int32_t duration = 0, int32_t replyToMessageId, const GenericReply::Ptr& replyMarkup) const {
     vector<HttpReqArg> args;
     args.push_back(HttpReqArg("chat_id", chatId));
     args.push_back(HttpReqArg("audio", audio->data, true, audio->mimeType));
+    if (duration) {
+        args.push_back(HttpReqArg("duration", duration));
+    }
     if (replyToMessageId) {
         args.push_back(HttpReqArg("reply_to_message_id", replyToMessageId));
     }
@@ -107,10 +110,13 @@ Message::Ptr Api::sendAudio(int32_t chatId, const InputFile::Ptr& audio, int32_t
     return TgTypeParser::getInstance().parseMessage(sendRequest("sendAudio", args).find("result")->second);
 }
 
-Message::Ptr Api::sendAudio(int32_t chatId, const string& audio, int32_t replyToMessageId, const GenericReply::Ptr& replyMarkup) const {
+Message::Ptr Api::sendAudio(int32_t chatId, const string& audio, int32_t duration = 0, int32_t replyToMessageId, const GenericReply::Ptr& replyMarkup) const {
     vector<HttpReqArg> args;
     args.push_back(HttpReqArg("chat_id", chatId));
     args.push_back(HttpReqArg("audio", audio));
+    if (duration) {
+        args.push_back(HttpReqArg("duration", duration));
+    }
     if (replyToMessageId) {
         args.push_back(HttpReqArg("reply_to_message_id", replyToMessageId));
     }

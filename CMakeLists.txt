@@ -7,7 +7,7 @@ option(ENABLE_SAMPLES "Set to ON to enable building of samples" OFF)
 
 ### sources
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
-include_directories("${PROJECT_SOURCE_DIR}/src")
+include_directories("${PROJECT_SOURCE_DIR}/include")
 set(SRC_LIST
     src/tgbot/Api.cpp
     src/tgbot/TgTypeParser.cpp
