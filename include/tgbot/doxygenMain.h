@@ -49,41 +49,10 @@ make -j4
  * That's all. All you have to do now is just link compiled library to your project.
  *
  * @section Samples
- * Simple echo bot which sends everything it recieves:
- * @code{.cpp}
-int main() {
-    TgBot::Bot bot("PLACE YOUR TOKEN HERE");
-    bot.getEvents().onCommand("start", [&bot](Message::Ptr message) {
-        bot.getApi().sendMessage(message->chat->id, "Hi!");
-    });
-    bot.getEvents().onAnyMessage([&bot](Message::Ptr message) {
-        printf("User wrote %s\n", message->text.c_str());
-        if (StringTools::startsWith(message->text, "/start")) {
-            return;
-        }
-        bot.getApi().sendMessage(message->chat->id, "Your message is: " + message->text);
-    });
-
-    try {
-        printf("Bot username: %s\n", bot.getApi().getMe()->username.c_str());
-
-        TgBot::TgLongPoll longPoll(bot);
-        while (true) {
-            printf("Long poll started\n");
-            longPoll.start();
-        }
-    } catch (TgBot::TgException& e) {
-        printf("error: %s\n", e.what());
-    }
-
-    return 0;
-}
- * @endcode
- *
  * All samples are located [here](https://github.com/reo7sp/tgbot-cpp/tree/master/samples)
  *
  * @section Feedback
- * Feel free to [https://github.com/reo7sp/tgbot-cpp/issues](create new issues on GitHub) or [https://telegram.me/Reo_SP](contact me on Telegram)
+ * Feel free to [create new issues on GitHub](https://github.com/reo7sp/tgbot-cpp/issues) or [contact me on Telegram](https://telegram.me/Reo_SP)
  */
 
 #endif //TGBOT_DOXYGENMAIN_H
