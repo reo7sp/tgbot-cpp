@@ -53,6 +53,9 @@
  *
  * @section Feedback
  * Feel free to [create new issues on GitHub](https://github.com/reo7sp/tgbot-cpp/issues) or [contact me on Telegram](https://telegram.me/Reo_SP)
+ *
+ * @section Licence
+ * [The MIT License](http://opensource.org/licenses/MIT)
  */
 
 #endif //TGBOT_DOXYGENMAIN_H

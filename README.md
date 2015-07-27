@@ -56,3 +56,6 @@ All samples are located [here](samples)
 
 ## Feedback
 Feel free to [create new issues on GitHub](https://github.com/reo7sp/tgbot-cpp/issues) or [contact me on Telegram](https://telegram.me/Reo_SP)
+
+## Licence
+[The MIT License](http://opensource.org/licenses/MIT)
