@@ -1,5 +1,7 @@
 # tgbot-cpp
 
+[![Join the chat at https://gitter.im/reo7sp/tgbot-cpp](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/reo7sp/tgbot-cpp?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 C++ library for Telegram bot API.
 
 **Warning:** It's not stable version yet. Something may not work.
