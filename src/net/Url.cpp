@@ -20,7 +20,9 @@
  * SOFTWARE.
  */
 
-#include "Url.h"
+#include "tgbot/net/Url.h"
+
+#include "tgbot/tools/StringTools.h"
 
 using namespace std;
 
@@ -73,6 +75,11 @@ Url::Url(const string& url) {
             fragment += c;
         }
     }
+
+	host = StringTools::urlEncode(host, ".");
+	path = StringTools::urlEncode(path, "/");
+	query = StringTools::urlEncode(query, "&");
+	fragment = StringTools::urlEncode(fragment);
 }
 
 }

@@ -20,7 +20,7 @@
  * SOFTWARE.
  */
 
-#include "TgTypeParser.h"
+#include "tgbot/TgTypeParser.h"
 
 using namespace std;
 using namespace boost::property_tree;

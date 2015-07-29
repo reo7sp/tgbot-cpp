@@ -7,16 +7,16 @@ option(ENABLE_SAMPLES "Set to ON to enable building of samples" OFF)
 
 ### sources
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
-include_directories("${PROJECT_SOURCE_DIR}/include")
+include_directories(include)
 set(SRC_LIST
-    src/tgbot/Api.cpp
-    src/tgbot/TgTypeParser.cpp
-    src/tgbot/TgException.cpp
-    src/tgbot/net/Url.cpp
-    src/tgbot/net/HttpClient.cpp
-    src/tgbot/net/HttpParser.cpp
-    src/tgbot/net/TgLongPoll.cpp
-    src/tgbot/tools/StringTools.cpp
+    src/Api.cpp
+    src/TgTypeParser.cpp
+    src/TgException.cpp
+    src/net/Url.cpp
+    src/net/HttpClient.cpp
+    src/net/HttpParser.cpp
+    src/net/TgLongPoll.cpp
+    src/tools/StringTools.cpp
 )
 
 ### libs

@@ -26,8 +26,6 @@
 
 #include <tgbot/Bot.h>
 #include <tgbot/net/TgLongPoll.h>
-#include <tgbot/TgException.h>
-#include <tgbot/tools/StringTools.h>
 
 using namespace std;
 using namespace TgBot;
@@ -52,7 +50,6 @@ int main() {
         bot.getApi().sendMessage(message->chat->id, "Your message is: " + message->text);
     });
 
-    printf("try {\n");
     try {
         printf("Bot username: %s\n", bot.getApi().getMe()->username.c_str());
 
@@ -61,10 +58,9 @@ int main() {
             printf("Long poll started\n");
             longPoll.start();
         }
-    } catch (TgException& e) {
+    } catch (exception& e) {
         printf("error: %s\n", e.what());
     }
-    printf("}\n");
 
     return 0;
 }

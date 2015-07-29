@@ -20,7 +20,7 @@
  * SOFTWARE.
  */
 
-#include "HttpParser.h"
+#include "tgbot/net/HttpParser.h"
 
 #include <boost/algorithm/string.hpp>
 

@@ -20,7 +20,7 @@
  * SOFTWARE.
  */
 
-#include "TgLongPoll.h"
+#include "tgbot/net/TgLongPoll.h"
 
 namespace TgBot {
 

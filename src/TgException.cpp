@@ -20,7 +20,7 @@
  * SOFTWARE.
  */
 
-#include "TgException.h"
+#include "tgbot/TgException.h"
 
 namespace TgBot {
 

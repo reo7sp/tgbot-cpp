@@ -20,7 +20,7 @@
  * SOFTWARE.
  */
 
-#include "Api.h"
+#include "tgbot/Api.h"
 
 #include "tgbot/TgTypeParser.h"
 #include "tgbot/TgException.h"
@@ -94,7 +94,7 @@ Message::Ptr Api::sendPhoto(int32_t chatId, const string& photo, const string& c
     return TgTypeParser::getInstance().parseMessage(sendRequest("sendPhoto", args).find("result")->second);
 }
 
-Message::Ptr Api::sendAudio(int32_t chatId, const InputFile::Ptr& audio, int32_t duration = 0, int32_t replyToMessageId, const GenericReply::Ptr& replyMarkup) const {
+Message::Ptr Api::sendAudio(int32_t chatId, const InputFile::Ptr& audio, int32_t duration, int32_t replyToMessageId, const GenericReply::Ptr& replyMarkup) const {
     vector<HttpReqArg> args;
     args.push_back(HttpReqArg("chat_id", chatId));
     args.push_back(HttpReqArg("audio", audio->data, true, audio->mimeType));
@@ -110,7 +110,7 @@ Message::Ptr Api::sendAudio(int32_t chatId, const InputFile::Ptr& audio, int32_t
     return TgTypeParser::getInstance().parseMessage(sendRequest("sendAudio", args).find("result")->second);
 }
 
-Message::Ptr Api::sendAudio(int32_t chatId, const string& audio, int32_t duration = 0, int32_t replyToMessageId, const GenericReply::Ptr& replyMarkup) const {
+Message::Ptr Api::sendAudio(int32_t chatId, const string& audio, int32_t duration, int32_t replyToMessageId, const GenericReply::Ptr& replyMarkup) const {
     vector<HttpReqArg> args;
     args.push_back(HttpReqArg("chat_id", chatId));
     args.push_back(HttpReqArg("audio", audio));
@@ -259,17 +259,21 @@ boost::property_tree::ptree Api::sendRequest(const std::string& method, const st
     std::string url = "https://api.telegram.org/bot";
     url += _token;
     url += "/";
-    url += method;
-    try {
-        ptree result = TgTypeParser::getInstance().parseJson(HttpClient::getInstance().makeRequest(url, args));
-        if (result.get<bool>("ok")) {
-            return result;
-        } else {
-            throw TgException(result.get("description", ""));
-        }
-    } catch (boost::property_tree::ptree_error& e) {
-        return ptree();
-    }
+	url += method;
+	string serverResponse = HttpClient::getInstance().makeRequest(url, args);
+	if (serverResponse.find("<html>") != serverResponse.npos) {
+		throw TgException("Bad request");
+	}
+	ptree result = TgTypeParser::getInstance().parseJson(serverResponse);
+	try {
+		if (result.get<bool>("ok")) {
+			return result;
+		} else {
+			throw TgException(result.get("description", ""));
+		}
+	} catch (boost::property_tree::ptree_error& e) {
+		throw TgException("");
+	}
 }
 
 }

@@ -20,7 +20,7 @@
  * SOFTWARE.
  */
 
-#include "HttpClient.h"
+#include "tgbot/net/HttpClient.h"
 
 #include <boost/asio/ssl.hpp>
 
@@ -46,9 +46,6 @@ string HttpClient::makeRequest(const Url& url, const vector<HttpReqArg>& args) {
 
     connect(socket.lowest_layer(), resolver.resolve(query));
 
-//    boost::asio::socket_base::keep_alive keepAliveOption(true);
-//    socket.lowest_layer().set_option(keepAliveOption);
-
     socket.set_verify_mode(ssl::verify_none);
     socket.set_verify_callback(ssl::rfc2818_verification(url.host));
     socket.handshake(ssl::stream<tcp::socket>::client);
@@ -62,7 +59,6 @@ string HttpClient::makeRequest(const Url& url, const vector<HttpReqArg>& args) {
     while (!error) {
         size_t bytes = read(socket, buffer(buff), error);
         response += string(buff, bytes);
-        printf("%s", string(buff, bytes).c_str());
     }
 
     return HttpParser::getInstance().parseResponse(response);

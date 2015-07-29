@@ -63,9 +63,10 @@ std::string generateRandomString(size_t length);
 /**
  * Performs url encode.
  * @param value Source url string
+ * @param additionalLegitChars Optional. String of chars which will be not encoded in source url string.
  * @return Encoded url string
  */
-std::string urlEncode(const std::string& value);
+std::string urlEncode(const std::string& value, const std::string additionalLegitChars = "");
 
 /**
  * Performs url decode.

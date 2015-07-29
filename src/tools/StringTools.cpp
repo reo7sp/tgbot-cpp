@@ -20,7 +20,7 @@
  * SOFTWARE.
  */
 
-#include "StringTools.h"
+#include "tgbot/tools/StringTools.h"
 
 #include <stdlib.h>
 #include <iomanip>
@@ -78,13 +78,13 @@ string generateRandomString(size_t length) {
     return result;
 }
 
-string urlEncode(const string& value) {
+string urlEncode(const string& value, const std::string additionalLegitChars) {
     static const string legitPunctuation = "-_.~";
     ostringstream result;
     result.fill('0');
     result << hex;
     for (const char& c : value) {
-        if (isalnum(c) || legitPunctuation.find(c) != legitPunctuation.npos) {
+        if (isalnum(c) || legitPunctuation.find(c) != legitPunctuation.npos || additionalLegitChars.find(c) != additionalLegitChars.npos) {
             result << c;
         } else {
             result << '%' << setw(2) << int((unsigned char) c);
