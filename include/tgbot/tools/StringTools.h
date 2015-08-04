@@ -33,14 +33,14 @@
 namespace StringTools {
 
 /**
- * Checks if first string is starting with second string and vice-versa
+ * Checks if first string is starting with second string
  * @param str1 First string
  * @param str2 Second string
  */
 bool startsWith(const std::string& str1, const std::string& str2);
 
 /**
- * Checks if first string is ending with second string and vice-versa
+ * Checks if first string is ending with second string
  * @param str1 First string
  * @param str2 Second string
  */

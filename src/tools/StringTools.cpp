@@ -31,7 +31,10 @@ using namespace std;
 namespace StringTools {
 
 bool startsWith(const string& str1, const string& str2) {
-    string::const_iterator it1(str1.begin());
+	if (str1.length() < str2.length()) {
+		return false;
+	}
+	string::const_iterator it1(str1.begin());
     string::const_iterator end1(str1.end());
     string::const_iterator it2(str2.begin());
     string::const_iterator end2(str2.end());
@@ -46,7 +49,10 @@ bool startsWith(const string& str1, const string& str2) {
 }
 
 bool endsWith(const string& str1, const string& str2) {
-    string::const_iterator it1(str1.end());
+	if (str1.length() < str2.length()) {
+		return false;
+	}
+	string::const_iterator it1(str1.end());
     string::const_iterator begin1(str1.begin());
     string::const_iterator it2(str2.end());
     string::const_iterator begin2(str2.begin());
