@@ -20,8 +20,43 @@
  * SOFTWARE.
  */
 
-#ifndef TGBOT_DOXYGENMAIN_H
-#define TGBOT_DOXYGENMAIN_H
+#ifndef TGBOT_TGBOT_H
+#define TGBOT_TGBOT_H
+
+#include "tgbot/Bot.h"
+#include "tgbot/Api.h"
+#include "tgbot/TgException.h"
+#include "tgbot/TgTypeParser.h"
+#include "tgbot/EventBroadcaster.h"
+#include "tgbot/EventHandler.h"
+#include "tgbot/types/Audio.h"
+#include "tgbot/types/Contact.h"
+#include "tgbot/types/Document.h"
+#include "tgbot/types/ForceReply.h"
+#include "tgbot/types/GenericChat.h"
+#include "tgbot/types/GenericReply.h"
+#include "tgbot/types/GroupChat.h"
+#include "tgbot/types/InputFile.h"
+#include "tgbot/types/Location.h"
+#include "tgbot/types/Message.h"
+#include "tgbot/types/PhotoSize.h"
+#include "tgbot/types/ReplyKeyboardHide.h"
+#include "tgbot/types/ReplyKeyboardMarkup.h"
+#include "tgbot/types/Sticker.h"
+#include "tgbot/types/Update.h"
+#include "tgbot/types/User.h"
+#include "tgbot/types/UserProfilePhotos.h"
+#include "tgbot/types/Video.h"
+#include "tgbot/tools/StringTools.h"
+#include "tgbot/net/HttpClient.h"
+#include "tgbot/net/HttpParser.h"
+#include "tgbot/net/HttpReqArg.h"
+#include "tgbot/net/HttpServer.h"
+#include "tgbot/net/TgLongPoll.h"
+#include "tgbot/net/TgWebhookLocalServer.h"
+#include "tgbot/net/TgWebhookServer.h"
+#include "tgbot/net/TgWebhookTcpServer.h"
+#include "tgbot/net/Url.h"
 
 /**
  * @defgroup general
@@ -59,4 +94,4 @@
  * [The MIT License](http://opensource.org/licenses/MIT)
  */
 
-#endif //TGBOT_DOXYGENMAIN_H
+#endif //TGBOT_TGBOT_H
