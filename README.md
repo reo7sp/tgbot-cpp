@@ -20,6 +20,7 @@ To compile the library execute this commands:
 cd /path/where/you/have/cloned/the/library/repository
 cmake .
 make -j4
+sudo make install
 ```
 
 That's all. All you have to do now is just link compiled library to your project.
