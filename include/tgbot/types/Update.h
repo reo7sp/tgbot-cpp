@@ -36,17 +36,17 @@ namespace TgBot {
 class Update {
 
 public:
-    typedef std::shared_ptr<Update> Ptr;
+	typedef std::shared_ptr<Update> Ptr;
 
 	/**
 	 * The update‘s unique identifier. Update identifiers start from a certain positive number and increase sequentially. This ID becomes especially handy if you’re using Webhooks, since it allows you to ignore repeated updates or to restore the correct update sequence, should they get out of order.
 	 */
-    int32_t updateId;
+	int32_t updateId;
 
 	/**
 	 * Optional. New incoming message of any kind — text, photo, sticker, etc.
 	 */
-    Message::Ptr message;
+	Message::Ptr message;
 };
 
 }

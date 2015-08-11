@@ -34,32 +34,32 @@ namespace TgBot {
 class Url {
 
 public:
-    Url(const std::string& url);
+	Url(const std::string& url);
 
 	/**
 	 * Protocol part of an url. Example: https://
 	 */
-    std::string protocol;
+	std::string protocol;
 
 	/**
 	 * Host part of an url. Example: www.example.com
 	 */
-    std::string host;
+	std::string host;
 
 	/**
 	 * Path part of an url including preceding '/' char. Example: /index.html
 	 */
-    std::string path;
+	std::string path;
 
 	/**
 	 * Query part of an url without '?' char. Example: a=1&b=2&c=3
 	 */
-    std::string query;
+	std::string query;
 
 	/**
 	 * Fragment part of an url without '#' char. Example: section1
 	 */
-    std::string fragment;
+	std::string fragment;
 };
 
 }

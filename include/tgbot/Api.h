@@ -49,13 +49,13 @@ class Api {
 friend Bot;
 
 public:
-    Api(const std::string& token);
+	Api(const std::string& token);
 
-    /**
-     * A simple method for testing your bot's auth token.
-     * @return Basic information about the bot in form of a User object.
-     */
-    User::Ptr getMe() const;
+	/**
+	 * A simple method for testing your bot's auth token.
+	 * @return Basic information about the bot in form of a User object.
+	 */
+	User::Ptr getMe() const;
 
 	/**
 	 * Use this method to send text messages.
@@ -66,7 +66,7 @@ public:
 	 * @param replyMarkup Optional. Additional interface options. An object for a custom reply keyboard, instructions to hide keyboard or to force a reply from the user.
 	 * @return On success, the sent message is returned.
 	 */
-    Message::Ptr sendMessage(int32_t chatId, const std::string& text, bool disableWebPagePreview = false, int32_t replyToMessageId = 0, const GenericReply::Ptr& replyMarkup = GenericReply::Ptr()) const;
+	Message::Ptr sendMessage(int32_t chatId, const std::string& text, bool disableWebPagePreview = false, int32_t replyToMessageId = 0, const GenericReply::Ptr& replyMarkup = GenericReply::Ptr()) const;
 
 	/**
 	 * Use this method to forward messages of any kind.
@@ -75,7 +75,7 @@ public:
 	 * @param messageId Unique message identifier.
 	 * @return On success, the sent message is returned.
 	 */
-    Message::Ptr forwardMessage(int32_t chatId, int32_t fromChatId, int32_t messageId) const;
+	Message::Ptr forwardMessage(int32_t chatId, int32_t fromChatId, int32_t messageId) const;
 
 	/**
 	 * Use this method to send photos.
@@ -86,7 +86,7 @@ public:
 	 * @param replyMarkup Optional. Additional interface options. An object for a custom reply keyboard, instructions to hide keyboard or to force a reply from the user.
 	 * @return On success, the sent message is returned.
 	 */
-    Message::Ptr sendPhoto(int32_t chatId, const InputFile::Ptr& photo, const std::string& caption = "", int32_t replyToMessageId = 0, const GenericReply::Ptr& replyMarkup = GenericReply::Ptr()) const;
+	Message::Ptr sendPhoto(int32_t chatId, const InputFile::Ptr& photo, const std::string& caption = "", int32_t replyToMessageId = 0, const GenericReply::Ptr& replyMarkup = GenericReply::Ptr()) const;
 
 	/**
 	 * Use this method to send photos.
@@ -97,7 +97,7 @@ public:
 	 * @param replyMarkup Optional. Additional interface options. An object for a custom reply keyboard, instructions to hide keyboard or to force a reply from the user.
 	 * @return On success, the sent message is returned.
 	 */
-    Message::Ptr sendPhoto(int32_t chatId, const std::string& photo, const std::string& caption = "", int32_t replyToMessageId = 0, const GenericReply::Ptr& replyMarkup = GenericReply::Ptr()) const;
+	Message::Ptr sendPhoto(int32_t chatId, const std::string& photo, const std::string& caption = "", int32_t replyToMessageId = 0, const GenericReply::Ptr& replyMarkup = GenericReply::Ptr()) const;
 
 	/**
 	 * Use this method to send audio files, if you want Telegram clients to display the file as a playable voice message. For this to work, your audio must be in an .ogg file encoded with OPUS (other formats may be sent as Document).
@@ -108,7 +108,7 @@ public:
 	 * @param replyMarkup Optional. Additional interface options. An object for a custom reply keyboard, instructions to hide keyboard or to force a reply from the user.
 	 * @return On success, the sent message is returned.
 	 */
-    Message::Ptr sendAudio(int32_t chatId, const InputFile::Ptr& audio, int32_t duration = 0, int32_t replyToMessageId = 0, const GenericReply::Ptr& replyMarkup = GenericReply::Ptr()) const;
+	Message::Ptr sendAudio(int32_t chatId, const InputFile::Ptr& audio, int32_t duration = 0, int32_t replyToMessageId = 0, const GenericReply::Ptr& replyMarkup = GenericReply::Ptr()) const;
 
 	/**
 	 * Use this method to send audio files, if you want Telegram clients to display the file as a playable voice message. For this to work, your audio must be in an .ogg file encoded with OPUS (other formats may be sent as Document).
@@ -119,7 +119,7 @@ public:
 	 * @param replyMarkup Optional. Additional interface options. An object for a custom reply keyboard, instructions to hide keyboard or to force a reply from the user.
 	 * @return On success, the sent message is returned.
 	 */
-    Message::Ptr sendAudio(int32_t chatId, const std::string& audio, int32_t duration = 0, int32_t replyToMessageId = 0, const GenericReply::Ptr& replyMarkup = GenericReply::Ptr()) const;
+	Message::Ptr sendAudio(int32_t chatId, const std::string& audio, int32_t duration = 0, int32_t replyToMessageId = 0, const GenericReply::Ptr& replyMarkup = GenericReply::Ptr()) const;
 
 	/**
 	 * Use this method to send general files.
@@ -129,7 +129,7 @@ public:
 	 * @param replyMarkup Optional. Additional interface options. An object for a custom reply keyboard, instructions to hide keyboard or to force a reply from the user.
 	 * @return On success, the sent message is returned.
 	 */
-    Message::Ptr sendDocument(int32_t chatId, const InputFile::Ptr& document, int32_t replyToMessageId = 0, const GenericReply::Ptr& replyMarkup = GenericReply::Ptr()) const;
+	Message::Ptr sendDocument(int32_t chatId, const InputFile::Ptr& document, int32_t replyToMessageId = 0, const GenericReply::Ptr& replyMarkup = GenericReply::Ptr()) const;
 
 	/**
 	 * Use this method to send general files.
@@ -139,7 +139,7 @@ public:
 	 * @param replyMarkup Optional. Additional interface options. An object for a custom reply keyboard, instructions to hide keyboard or to force a reply from the user.
 	 * @return On success, the sent message is returned.
 	 */
-    Message::Ptr sendDocument(int32_t chatId, const std::string& document, int32_t replyToMessageId = 0, const GenericReply::Ptr& replyMarkup = GenericReply::Ptr()) const;
+	Message::Ptr sendDocument(int32_t chatId, const std::string& document, int32_t replyToMessageId = 0, const GenericReply::Ptr& replyMarkup = GenericReply::Ptr()) const;
 
 	/**
 	 * Use this method to send .webp stickers.
@@ -149,7 +149,7 @@ public:
 	 * @param replyMarkup Optional. Additional interface options. An object for a custom reply keyboard, instructions to hide keyboard or to force a reply from the user.
 	 * @return On success, the sent message is returned.
 	 */
-    Message::Ptr sendSticker(int32_t chatId, const InputFile::Ptr& sticker, int32_t replyToMessageId = 0, const GenericReply::Ptr& replyMarkup = GenericReply::Ptr()) const;
+	Message::Ptr sendSticker(int32_t chatId, const InputFile::Ptr& sticker, int32_t replyToMessageId = 0, const GenericReply::Ptr& replyMarkup = GenericReply::Ptr()) const;
 
 	/**
 	 * Use this method to send .webp stickers.
@@ -159,7 +159,7 @@ public:
 	 * @param replyMarkup Optional. Additional interface options. A object for a custom reply keyboard, instructions to hide keyboard or to force a reply from the user.
 	 * @return On success, the sent message is returned.
 	 */
-    Message::Ptr sendSticker(int32_t chatId, const std::string& sticker, int32_t replyToMessageId = 0, const GenericReply::Ptr& replyMarkup = GenericReply::Ptr()) const;
+	Message::Ptr sendSticker(int32_t chatId, const std::string& sticker, int32_t replyToMessageId = 0, const GenericReply::Ptr& replyMarkup = GenericReply::Ptr()) const;
 
 	/**
 	 * Use this method to send video files, Telegram clients support mp4 videos (other formats may be sent as Document).
@@ -169,7 +169,7 @@ public:
 	 * @param replyMarkup Optional. Additional interface options. An object for a custom reply keyboard, instructions to hide keyboard or to force a reply from the user.
 	 * @return On success, the sent message is returned.
 	 */
-    Message::Ptr sendVideo(int32_t chatId, const InputFile::Ptr& video, int32_t replyToMessageId = 0, const GenericReply::Ptr& replyMarkup = GenericReply::Ptr()) const;
+	Message::Ptr sendVideo(int32_t chatId, const InputFile::Ptr& video, int32_t replyToMessageId = 0, const GenericReply::Ptr& replyMarkup = GenericReply::Ptr()) const;
 
 	/**
 	 * Use this method to send video files, Telegram clients support mp4 videos (other formats may be sent as Document).
@@ -179,7 +179,7 @@ public:
 	 * @param replyMarkup Optional. Additional interface options. A object for a custom reply keyboard, instructions to hide keyboard or to force a reply from the user.
 	 * @return On success, the sent message is returned.
 	 */
-    Message::Ptr sendVideo(int32_t chatId, const std::string& video, int32_t replyToMessageId = 0, const GenericReply::Ptr& replyMarkup = GenericReply::Ptr()) const;
+	Message::Ptr sendVideo(int32_t chatId, const std::string& video, int32_t replyToMessageId = 0, const GenericReply::Ptr& replyMarkup = GenericReply::Ptr()) const;
 
 	/**
 	 * Use this method to send point on the map.
@@ -190,7 +190,7 @@ public:
 	 * @param replyMarkup Optional. Additional interface options. A object for a custom reply keyboard, instructions to hide keyboard or to force a reply from the user.
 	 * @return On success, the sent message is returned.
 	 */
-    Message::Ptr sendLocation(int32_t chatId, float latitude, float longitude, int32_t replyToMessageId = 0, const GenericReply::Ptr& replyMarkup = GenericReply::Ptr()) const;
+	Message::Ptr sendLocation(int32_t chatId, float latitude, float longitude, int32_t replyToMessageId = 0, const GenericReply::Ptr& replyMarkup = GenericReply::Ptr()) const;
 
 	/**
 	 * Use this method when you need to tell the user that something is happening on the bot's side. The status is set for 5 seconds or less (when a message arrives from your bot, Telegram clients clear its typing status).
@@ -199,7 +199,7 @@ public:
 	 * @param chatId Unique identifier for the message recipient — User or GroupChat id.
 	 * @param action Type of action to broadcast. Choose one, depending on what the user is about to receive: typing for text messages, upload_photo for photos, record_video or upload_video for videos, record_audio or upload_audio for audio files, upload_document for general files, find_location for location data.
 	 */
-    void sendChatAction(int32_t chatId, const std::string& action) const;
+	void sendChatAction(int32_t chatId, const std::string& action) const;
 
 	/**
 	 * Use this method to get a list of profile pictures for a user.
@@ -208,7 +208,7 @@ public:
 	 * @param limit Optional. Limits the number of photos to be retrieved. Values between 1—100 are accepted. Defaults to 100.
 	 * @return A UserProfilePhotos object.
 	 */
-    UserProfilePhotos::Ptr getUserProfilePhotos(int32_t userId, int32_t offset = 0, int32_t limit = 100) const;
+	UserProfilePhotos::Ptr getUserProfilePhotos(int32_t userId, int32_t offset = 0, int32_t limit = 100) const;
 
 	/**
 	 * Use this method to receive incoming updates using long polling.
@@ -219,7 +219,7 @@ public:
 	 * @param timeout Optional. Timeout in seconds for long polling. Defaults to 0, i.e. usual short polling.
 	 * @return An Array of Update objects
 	 */
-    std::vector<Update::Ptr> getUpdates(int32_t offset = 0, int32_t limit = 100, int32_t timeout = 0) const;
+	std::vector<Update::Ptr> getUpdates(int32_t offset = 0, int32_t limit = 100, int32_t timeout = 0) const;
 
 	/**
 	 * Use this method to specify a url and receive incoming updates via an outgoing webhook. Whenever there is an update for the bot, we will send an HTTPS POST request to the specified url, containing a JSON-serialized Update. In case of an unsuccessful request, we will give up after a reasonable amount of attempts.
@@ -229,12 +229,12 @@ public:
 	 * Ports currently supported for Webhooks: 443, 80, 88, 8443.
 	 * @param url Optional. HTTPS url to send updates to. Use an empty string to remove webhook integration.
 	 */
-    void setWebhook(const std::string& url = "") const;
+	void setWebhook(const std::string& url = "") const;
 
 private:
-    boost::property_tree::ptree sendRequest(const std::string& method, const std::vector<HttpReqArg>& args = std::vector<HttpReqArg>()) const;
+	boost::property_tree::ptree sendRequest(const std::string& method, const std::vector<HttpReqArg>& args = std::vector<HttpReqArg>()) const;
 
-    const std::string _token;
+	const std::string _token;
 };
 
 }

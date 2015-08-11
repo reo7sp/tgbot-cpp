@@ -34,14 +34,14 @@ namespace TgBot {
 class GenericChat {
 
 public:
-    typedef std::shared_ptr<GenericChat> Ptr;
+	typedef std::shared_ptr<GenericChat> Ptr;
 
-    virtual ~GenericChat() { }
+	virtual ~GenericChat() { }
 
-    /**
-     * Unique identifier for this user, bot  or group chat
-     */
-    int32_t id;
+	/**
+	 * Unique identifier for this user, bot  or group chat
+	 */
+	int32_t id;
 };
 
 }

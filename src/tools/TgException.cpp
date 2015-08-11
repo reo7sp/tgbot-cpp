@@ -20,48 +20,11 @@
  * SOFTWARE.
  */
 
-#include "utils.h"
+#include "tgbot/TgException.h"
 
-#include <sstream>
+namespace TgBot {
 
-using namespace std;
-using namespace boost;
+TgBot::TgException::TgException(const std::string description) : runtime_error(description) {
+}
 
-string diff(const string& test, const string& expected) {
-    string result;
-    result += "\n*** BEGIN ***\n";
-
-    istringstream ss1(test);
-    istringstream ss2(expected);
-
-    string s1, s2;
-    bool r1, r2;
-    size_t i = 0;
-    do {
-        r1 = getline(ss1, s1) ? true : false;
-        r2 = getline(ss2, s2) ? true : false;
-        if (r1 && r2 && s1 == s2) {
-            result += lexical_cast<string>(i);
-            result += " [=] ";
-            result += s1;
-            result += "\n";
-        } else {
-            if (r1) {
-                result += lexical_cast<string>(i);
-                result += " [t] ";
-                result += s1;
-                result += "\n";
-            }
-            if (r2) {
-                result += lexical_cast<string>(i);
-                result += " [e] ";
-                result += s2;
-                result += "\n";
-            }
-        }
-        ++i;
-    } while (r1 || r2);
-
-    result += "*** END ***\n";
-    return result;
 }

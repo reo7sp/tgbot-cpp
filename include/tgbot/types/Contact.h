@@ -35,27 +35,27 @@ namespace TgBot {
 class Contact {
 
 public:
-    typedef std::shared_ptr<Contact> Ptr;
+	typedef std::shared_ptr<Contact> Ptr;
 
-    /**
-     * Contact's phone number.
-     */
-    std::string phoneNumber;
+	/**
+	 * Contact's phone number.
+	 */
+	std::string phoneNumber;
 
-    /**
-     * Contact's first name.
-     */
-    std::string firstName;
+	/**
+	 * Contact's first name.
+	 */
+	std::string firstName;
 
-    /**
-     * Optional. Contact's last name.
-     */
-    std::string lastName;
+	/**
+	 * Optional. Contact's last name.
+	 */
+	std::string lastName;
 
-    /**
-     * Optional. Contact's user identifier in Telegram.
-     */
-    std::string userId;
+	/**
+	 * Optional. Contact's user identifier in Telegram.
+	 */
+	std::string userId;
 };
 
 }

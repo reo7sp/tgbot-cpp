@@ -34,17 +34,17 @@ namespace TgBot {
 class Location {
 
 public:
-    typedef std::shared_ptr<Location> Ptr;
+	typedef std::shared_ptr<Location> Ptr;
 
-    /**
-     * Longitude as defined by sender.
-     */
-    float longitude;
+	/**
+	 * Longitude as defined by sender.
+	 */
+	float longitude;
 
-    /**
-     * Latitude as defined by sender.
-     */
-    float latitude;
+	/**
+	 * Latitude as defined by sender.
+	 */
+	float latitude;
 };
 
 }

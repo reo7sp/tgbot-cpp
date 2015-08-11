@@ -37,12 +37,12 @@ namespace TgBot {
 class GroupChat : public GenericChat {
 
 public:
-    typedef std::shared_ptr<GroupChat> Ptr;
+	typedef std::shared_ptr<GroupChat> Ptr;
 
-    /**
-     * Group name.
-     */
-    std::string title;
+	/**
+	 * Group name.
+	 */
+	std::string title;
 };
 
 }

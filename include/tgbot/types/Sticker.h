@@ -37,32 +37,32 @@ namespace TgBot {
 class Sticker {
 
 public:
-    typedef std::shared_ptr<Sticker> Ptr;
+	typedef std::shared_ptr<Sticker> Ptr;
 
 	/**
 	 * Unique file identifier.
 	 */
-    std::string fileId;
+	std::string fileId;
 
 	/**
 	 * Optional. Sticker width.
 	 */
-    int32_t width;
+	int32_t width;
 
 	/**
 	 * Optional. Sticker height.
 	 */
-    int32_t height;
+	int32_t height;
 
 	/**
 	 * Optional. Optional. Sticker thumbnail in .webp or .jpg format.
 	 */
-    PhotoSize::Ptr thumb;
+	PhotoSize::Ptr thumb;
 
 	/**
 	 * Optional. File size.
 	 */
-    int32_t fileSize;
+	int32_t fileSize;
 };
 
 }

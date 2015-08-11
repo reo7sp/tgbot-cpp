@@ -12,7 +12,7 @@ Documentaion is located [here](http://reo7sp.ru/proj/tgbot-cpp/doc)
 
 Firstly you need to install some dependencies. You have to have Boost library at the runtime and CMake at the compilation step to be able to use this library. On Debian-based distibutives you can do it with these commands:
 ```sh
-sudo apt-get install cmake libboost-dev
+sudo apt-get install g++ make binutils cmake libssl-dev libboost-system-dev libboost-iostreams-dev libboost-test-dev
 ```
 
 To compile the library execute this commands:

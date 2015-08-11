@@ -34,22 +34,22 @@ template<typename Protocol>
 class TgWebhookServer : public HttpServer<Protocol> {
 
 public:
-    TgWebhookServer(std::shared_ptr<boost::asio::basic_socket_acceptor<Protocol>>& acceptor, const ServerHandler& handler) = delete;
+	TgWebhookServer(std::shared_ptr<boost::asio::basic_socket_acceptor<Protocol>>& acceptor, const ServerHandler& handler) = delete;
 
-    TgWebhookServer(std::shared_ptr<boost::asio::basic_socket_acceptor<Protocol>>& acceptor, const std::string& path, const EventHandler* eventHandler) :
-        HttpServer(acceptor, [this, eventHandler, &path](const std::string& data, const std::map<std::string, std::string>& headers) -> std::string {
-            if (headers["method"] == "POST" && headers["path"] == path) {
-                eventHandler->handleUpdate(TgTypeParser::getInstance().parseUpdate(TgTypeParser::getInstance().parseJson(data)));
-            }
-            return HttpParser::generateResponse("");
-        })
-    {
-    }
+	TgWebhookServer(std::shared_ptr<boost::asio::basic_socket_acceptor<Protocol>>& acceptor, const std::string& path, const EventHandler* eventHandler) :
+		HttpServer(acceptor, [this, eventHandler, &path](const std::string& data, const std::map<std::string, std::string>& headers) -> std::string {
+			if (headers["method"] == "POST" && headers["path"] == path) {
+				eventHandler->handleUpdate(TgTypeParser::getInstance().parseUpdate(TgTypeParser::getInstance().parseJson(data)));
+			}
+			return HttpParser::generateResponse("");
+		})
+	{
+	}
 
-    TgWebhookServer(std::shared_ptr<boost::asio::basic_socket_acceptor<Protocol>>& acceptor, const std::string& path, const Bot& bot) :
-        TgWebhookServer(acceptor, path, &bot.getEventHandler())
-    {
-    }
+	TgWebhookServer(std::shared_ptr<boost::asio::basic_socket_acceptor<Protocol>>& acceptor, const std::string& path, const Bot& bot) :
+		TgWebhookServer(acceptor, path, &bot.getEventHandler())
+	{
+	}
 };
 
 }

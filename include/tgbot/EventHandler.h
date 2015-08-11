@@ -32,23 +32,23 @@ namespace TgBot {
 class EventHandler {
 
 public:
-    explicit EventHandler(const EventBroadcaster* broadcaster) : _broadcaster(broadcaster) {
-    }
+	explicit EventHandler(const EventBroadcaster* broadcaster) : _broadcaster(broadcaster) {
+	}
 
-    inline void handleUpdate(const Update::Ptr& update) const {
-        _broadcaster->broadcastAnyMessage(update->message);
-        if (StringTools::startsWith(update->message->text, "/")) {
-            std::string command = update->message->text.substr(1, update->message->text.find(' ') - 2);
-            if (!_broadcaster->broadcastCommand(command, update->message)) {
-                _broadcaster->broadcastUnknownCommand(update->message);
-            }
-        } else {
-            _broadcaster->broadcastNonCommandMessage(update->message);
-        }
-    }
+	inline void handleUpdate(const Update::Ptr& update) const {
+		_broadcaster->broadcastAnyMessage(update->message);
+		if (StringTools::startsWith(update->message->text, "/")) {
+			std::string command = update->message->text.substr(1, update->message->text.find(' ') - 2);
+			if (!_broadcaster->broadcastCommand(command, update->message)) {
+				_broadcaster->broadcastUnknownCommand(update->message);
+			}
+		} else {
+			_broadcaster->broadcastNonCommandMessage(update->message);
+		}
+	}
 
 private:
-    const EventBroadcaster* _broadcaster;
+	const EventBroadcaster* _broadcaster;
 };
 
 }

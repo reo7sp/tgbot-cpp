@@ -47,117 +47,117 @@ namespace TgBot {
 class Message {
 
 public:
-    typedef std::shared_ptr<Message> Ptr;
+	typedef std::shared_ptr<Message> Ptr;
 
-    /**
-     * Unique message identifier.
-     */
-    int32_t messageId;
+	/**
+	 * Unique message identifier.
+	 */
+	int32_t messageId;
 
-    /**
-     * Sender.
-     */
-    User::Ptr from;
+	/**
+	 * Sender.
+	 */
+	User::Ptr from;
 
-    /**
-     * Date the message was sent in Unix time.
-     */
-    int32_t date;
+	/**
+	 * Date the message was sent in Unix time.
+	 */
+	int32_t date;
 
-    /**
-     * Conversation the message belongs to — user in case of a private message, GroupChat in case of a group.
-     */
-    GenericChat::Ptr chat;
+	/**
+	 * Conversation the message belongs to — user in case of a private message, GroupChat in case of a group.
+	 */
+	GenericChat::Ptr chat;
 
-    /**
-     * Optional. For forwarded messages, sender of the original message.
-     */
-    User::Ptr forwardFrom;
+	/**
+	 * Optional. For forwarded messages, sender of the original message.
+	 */
+	User::Ptr forwardFrom;
 
-    /**
-     * Optional. For forwarded messages, date the original message was sent in Unix time.
-     */
-    int32_t forwardDate;
+	/**
+	 * Optional. For forwarded messages, date the original message was sent in Unix time.
+	 */
+	int32_t forwardDate;
 
-    /**
-     * Optional. For replies, the original message. Note that the Message object in this field will not contain further reply_to_message fields even if it itself is a reply.
-     */
-    Message::Ptr replyToMessage;
+	/**
+	 * Optional. For replies, the original message. Note that the Message object in this field will not contain further reply_to_message fields even if it itself is a reply.
+	 */
+	Message::Ptr replyToMessage;
 
-    /**
-     * Optional. For text messages, the actual UTF-8 text of the message.
-     */
-    std::string text;
+	/**
+	 * Optional. For text messages, the actual UTF-8 text of the message.
+	 */
+	std::string text;
 
-    /**
-     * Optional. Message is an audio file, information about the file.
-     */
-    Audio::Ptr audio;
+	/**
+	 * Optional. Message is an audio file, information about the file.
+	 */
+	Audio::Ptr audio;
 
-    /**
-     * Optional. Message is a general file, information about the file.
-     */
-    Document::Ptr document;
+	/**
+	 * Optional. Message is a general file, information about the file.
+	 */
+	Document::Ptr document;
 
-    /**
-     * Optional. Message is a photo, available sizes of the photo.
-     */
-    std::vector<PhotoSize::Ptr> photo;
+	/**
+	 * Optional. Message is a photo, available sizes of the photo.
+	 */
+	std::vector<PhotoSize::Ptr> photo;
 
-    /**
-     * Optional. Message is a sticker, information about the sticker.
-     */
-    Sticker::Ptr sticker;
+	/**
+	 * Optional. Message is a sticker, information about the sticker.
+	 */
+	Sticker::Ptr sticker;
 
-    /**
-     * Optional. Message is a video, information about the video.
-     */
-    Video::Ptr video;
+	/**
+	 * Optional. Message is a video, information about the video.
+	 */
+	Video::Ptr video;
 
-    /**
-     * Optional. Message is a shared contact, information about the contact.
-     */
-    Contact::Ptr contact;
+	/**
+	 * Optional. Message is a shared contact, information about the contact.
+	 */
+	Contact::Ptr contact;
 
-    /**
-     * Optional. Message is a shared location, information about the location.
-     */
-    Location::Ptr location;
+	/**
+	 * Optional. Message is a shared location, information about the location.
+	 */
+	Location::Ptr location;
 
-    /**
-     * Optional. A new member was added to the group, information about them (this member may be bot itself).
-     */
-    User::Ptr newChatParticipant;
+	/**
+	 * Optional. A new member was added to the group, information about them (this member may be bot itself).
+	 */
+	User::Ptr newChatParticipant;
 
-    /**
-     * Optional. A member was removed from the group, information about them (this member may be bot itself).
-     */
-    User::Ptr leftChatParticipant;
+	/**
+	 * Optional. A member was removed from the group, information about them (this member may be bot itself).
+	 */
+	User::Ptr leftChatParticipant;
 
-    /**
-     * Optional. A group title was changed to this value.
-     */
-    std::string newChatTitle;
+	/**
+	 * Optional. A group title was changed to this value.
+	 */
+	std::string newChatTitle;
 
-    /**
-     * Optional. A group photo was change to this value.
-     */
-    std::vector<PhotoSize::Ptr> newChatPhoto;
+	/**
+	 * Optional. A group photo was change to this value.
+	 */
+	std::vector<PhotoSize::Ptr> newChatPhoto;
 
-    /**
-     * Optional. Informs that the group photo was deleted.
-     */
-    bool deleteChatPhoto;
+	/**
+	 * Optional. Informs that the group photo was deleted.
+	 */
+	bool deleteChatPhoto;
 
-    /**
-     * Optional. Informs that the group has been created.
-     */
-    bool groupChatCreated;
+	/**
+	 * Optional. Informs that the group has been created.
+	 */
+	bool groupChatCreated;
 
-    /**
-     * Optional. Text description of the photo or the video.
-     */
-    std::string caption;
+	/**
+	 * Optional. Text description of the photo or the video.
+	 */
+	std::string caption;
 };
 
 }

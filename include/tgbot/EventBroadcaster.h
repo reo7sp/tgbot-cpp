@@ -43,73 +43,73 @@ class EventBroadcaster {
 friend EventHandler;
 
 public:
-    typedef std::function<void (const Message::Ptr&)> MessageListener;
+	typedef std::function<void (const Message::Ptr&)> MessageListener;
 
-    /**
-     * Registers listener which receives all messages which the bot can ever receive.
-     * @param listener Listener.
-     */
-    inline void onAnyMessage(const MessageListener& listener) {
-        _onAnyMessageListeners.push_back(listener);
-    }
+	/**
+	 * Registers listener which receives all messages which the bot can ever receive.
+	 * @param listener Listener.
+	 */
+	inline void onAnyMessage(const MessageListener& listener) {
+		_onAnyMessageListeners.push_back(listener);
+	}
 
-    /**
-     * Registers listener which receives all messages with commands (messages with leading '/' char).
-     * @param commandName Command name which listener can handle.
-     * @param listener Listener.
-     */
-    inline void onCommand(const std::string& commandName, const MessageListener& listener) {
-        _onCommandListeners[commandName] = listener;
-    }
+	/**
+	 * Registers listener which receives all messages with commands (messages with leading '/' char).
+	 * @param commandName Command name which listener can handle.
+	 * @param listener Listener.
+	 */
+	inline void onCommand(const std::string& commandName, const MessageListener& listener) {
+		_onCommandListeners[commandName] = listener;
+	}
 
-    /**
-     * Registers listener which receives all messages with commands (messages with leading '/' char) which haven't been handled by other listeners.
-     * @param listener Listener.
-     */
-    inline void onUnknownCommand(const MessageListener& listener) {
-        _onUnknownCommandListeners.push_back(listener);
-    }
+	/**
+	 * Registers listener which receives all messages with commands (messages with leading '/' char) which haven't been handled by other listeners.
+	 * @param listener Listener.
+	 */
+	inline void onUnknownCommand(const MessageListener& listener) {
+		_onUnknownCommandListeners.push_back(listener);
+	}
 
-    /**
-     * Registers listener which receives all messages without commands (messages with no leading '/' char)
-     * @param listener Listener.
-     */
-    inline void onNonCommandMessage(const MessageListener& listener) {
-        _onNonCommandMessageListeners.push_back(listener);
-    }
+	/**
+	 * Registers listener which receives all messages without commands (messages with no leading '/' char)
+	 * @param listener Listener.
+	 */
+	inline void onNonCommandMessage(const MessageListener& listener) {
+		_onNonCommandMessageListeners.push_back(listener);
+	}
 
 private:
-    inline void broadcastAnyMessage(const Message::Ptr& message) const {
-        for (const MessageListener& item : _onAnyMessageListeners) {
-            item(message);
-        }
-    }
+	inline void broadcastAnyMessage(const Message::Ptr& message) const {
+		for (const MessageListener& item : _onAnyMessageListeners) {
+			item(message);
+		}
+	}
 
-    inline bool broadcastCommand(const std::string command, const Message::Ptr& message) const {
-        std::map<std::string, MessageListener>::const_iterator iter = _onCommandListeners.find(command);
-        if (iter == _onCommandListeners.end()) {
-            return false;
-        }
-        iter->second(message);
-        return true;
-    }
+	inline bool broadcastCommand(const std::string command, const Message::Ptr& message) const {
+		std::map<std::string, MessageListener>::const_iterator iter = _onCommandListeners.find(command);
+		if (iter == _onCommandListeners.end()) {
+			return false;
+		}
+		iter->second(message);
+		return true;
+	}
 
-    inline void broadcastUnknownCommand(const Message::Ptr& message) const {
-        for (const MessageListener& item : _onUnknownCommandListeners) {
-            item(message);
-        }
-    }
+	inline void broadcastUnknownCommand(const Message::Ptr& message) const {
+		for (const MessageListener& item : _onUnknownCommandListeners) {
+			item(message);
+		}
+	}
 
-    inline void broadcastNonCommandMessage(const Message::Ptr& message) const {
-        for (const MessageListener& item : _onNonCommandMessageListeners) {
-            item(message);
-        }
-    }
+	inline void broadcastNonCommandMessage(const Message::Ptr& message) const {
+		for (const MessageListener& item : _onNonCommandMessageListeners) {
+			item(message);
+		}
+	}
 
-    std::vector<MessageListener> _onAnyMessageListeners;
-    std::map<std::string, MessageListener> _onCommandListeners;
-    std::vector<MessageListener> _onUnknownCommandListeners;
-    std::vector<MessageListener> _onNonCommandMessageListeners;
+	std::vector<MessageListener> _onAnyMessageListeners;
+	std::map<std::string, MessageListener> _onCommandListeners;
+	std::vector<MessageListener> _onUnknownCommandListeners;
+	std::vector<MessageListener> _onNonCommandMessageListeners;
 };
 
 }

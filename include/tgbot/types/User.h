@@ -37,22 +37,22 @@ namespace TgBot {
 class User : public GenericChat {
 
 public:
-    typedef std::shared_ptr<User> Ptr;
+	typedef std::shared_ptr<User> Ptr;
 
 	/**
 	 * User‘s or bot’s first name.
 	 */
-    std::string firstName;
+	std::string firstName;
 
 	/**
 	 * Optional. User‘s or bot’s last name.
 	 */
-    std::string lastName;
+	std::string lastName;
 
 	/**
 	 * Optional. User‘s or bot’s username.
 	 */
-    std::string username;
+	std::string username;
 };
 
 }

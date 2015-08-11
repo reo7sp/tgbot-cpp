@@ -36,18 +36,18 @@ namespace TgBot {
 class TgLongPoll {
 
 public:
-    TgLongPoll(const Api* api, const EventHandler* eventHandler);
-    TgLongPoll(const Bot& bot);
+	TgLongPoll(const Api* api, const EventHandler* eventHandler);
+	TgLongPoll(const Bot& bot);
 
-    /**
-     * Starts long poll. After new update will come, this method will parse it and send to EventHandler which invokes your listeners. Designed to be executed in a loop.
-     */
-    void start();
+	/**
+	 * Starts long poll. After new update will come, this method will parse it and send to EventHandler which invokes your listeners. Designed to be executed in a loop.
+	 */
+	void start();
 
 private:
-    int32_t _lastUpdateId = 0;
-    const Api* _api;
-    const EventHandler* _eventHandler;
+	int32_t _lastUpdateId = 0;
+	const Api* _api;
+	const EventHandler* _eventHandler;
 };
 
 }

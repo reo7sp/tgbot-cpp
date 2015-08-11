@@ -35,27 +35,27 @@ namespace TgBot {
 class Audio {
 
 public:
-    typedef std::shared_ptr<Audio> Ptr;
+	typedef std::shared_ptr<Audio> Ptr;
 
 	/**
 	 * Unique identifier for this file.
 	 */
-    std::string fileId;
+	std::string fileId;
 
 	/**
 	 * Duration of the audio in seconds as defined by sender.
 	 */
-    int32_t duration;
+	int32_t duration;
 
 	/**
 	 * Optional. MIME type of the file as defined by sender.
 	 */
-    std::string mimeType;
+	std::string mimeType;
 
 	/**
 	 * Optional. File size.
 	 */
-    int32_t fileSize;
+	int32_t fileSize;
 };
 
 }

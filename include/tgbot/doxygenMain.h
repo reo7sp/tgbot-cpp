@@ -36,7 +36,7 @@
  * Firstly you need to install some dependencies. You have to have boost library at the runtime and cmake at the compilation step to be able to use this library.
  * On Debian-based distibutives you can do it with these commands:
  * @code{.sh}
- * sudo apt-get install cmake libboost-dev
+ * sudo apt-get install g++ make binutils cmake libssl-dev libboost-system-dev libboost-iostreams-dev libboost-test-dev
  * @endcode
  *
  * To compile the library execute this commands:

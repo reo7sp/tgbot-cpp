@@ -39,63 +39,63 @@ template<typename Protocol>
 class HttpServer {
 
 private:
-    class Connection;
+	class Connection;
 
 public:
-    typedef std::function<std::string (const std::string&, const std::map<std::string, std::string>)> ServerHandler;
+	typedef std::function<std::string (const std::string&, const std::map<std::string, std::string>)> ServerHandler;
 
-    HttpServer(std::shared_ptr<boost::asio::basic_socket_acceptor<Protocol>>& acceptor, const ServerHandler& handler) : _acceptor(acceptor), _handler(handler) {
-    }
+	HttpServer(std::shared_ptr<boost::asio::basic_socket_acceptor<Protocol>>& acceptor, const ServerHandler& handler) : _acceptor(acceptor), _handler(handler) {
+	}
 
-    /**
-     * Starts receiving new connections.
-     */
-    void start() {
-        std::shared_ptr<boost::asio::basic_stream_socket<Protocol>> socket(new boost::asio::basic_stream_socket<Protocol>(acceptor->get_io_service()));
-        std::shared_ptr<Connection<Protocol>> connection(new Connection<Protocol>(socket, _handler));
-        acceptor->async_accept(*connection->socket, [this, connection]() {
-            connection->start();
-            start();
-        });
-        _ioService.run();
-    }
+	/**
+	 * Starts receiving new connections.
+	 */
+	void start() {
+		std::shared_ptr<boost::asio::basic_stream_socket<Protocol>> socket(new boost::asio::basic_stream_socket<Protocol>(acceptor->get_io_service()));
+		std::shared_ptr<Connection<Protocol>> connection(new Connection<Protocol>(socket, _handler));
+		acceptor->async_accept(*connection->socket, [this, connection]() {
+			connection->start();
+			start();
+		});
+		_ioService.run();
+	}
 
-    /**
-     * Stops receiving new connections.
-     */
-    void stop() {
-        _ioService.stop();
-    }
+	/**
+	 * Stops receiving new connections.
+	 */
+	void stop() {
+		_ioService.stop();
+	}
 
 private:
-    template<typename Protocol>
-    class Connection {
+	template<typename Protocol>
+	class Connection {
 
-    public:
-        Connection(std::shared_ptr<boost::asio::basic_stream_socket<Protocol>>& socket, const ServerHandler& handler) : socket(socket), _handler(handler) {
-            boost::asio::socket_base::keep_alive option(true);
-            socket.set_option(option);
-        }
+	public:
+		Connection(std::shared_ptr<boost::asio::basic_stream_socket<Protocol>>& socket, const ServerHandler& handler) : socket(socket), _handler(handler) {
+			boost::asio::socket_base::keep_alive option(true);
+			socket.set_option(option);
+		}
 
-        void start() {
-            data.reserve(10240);
-            socket->async_receive(data, [this]() {
-                std::map<std::string, std::string> headers;
-                std::string body = HttpParser::parseResponse(data, headers);
-                socket->async_send(_handler(body, headers));
-            });
-        }
+		void start() {
+			data.reserve(10240);
+			socket->async_receive(data, [this]() {
+				std::map<std::string, std::string> headers;
+				std::string body = HttpParser::parseResponse(data, headers);
+				socket->async_send(_handler(body, headers));
+			});
+		}
 
-        std::shared_ptr<boost::asio::basic_stream_socket<Protocol>> socket;
-        std::string data;
+		std::shared_ptr<boost::asio::basic_stream_socket<Protocol>> socket;
+		std::string data;
 
-    private:
-        const ServerHandler _handler;
-    };
+	private:
+		const ServerHandler _handler;
+	};
 
-    boost::asio::io_service _ioService;
-    std::shared_ptr<boost::asio::basic_socket_acceptor<Protocol>> _acceptor;
-    const ServerHandler _handler;
+	boost::asio::io_service _ioService;
+	std::shared_ptr<boost::asio::basic_socket_acceptor<Protocol>> _acceptor;
+	const ServerHandler _handler;
 };
 
 }

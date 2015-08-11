@@ -84,19 +84,19 @@ Message::Ptr TgTypeParser::parseJsonAndGetMessage(const ptree& data) const {
 	result->chat = parseJsonAndGetGenericChat(data.find("chat")->second);
 	result->forwardFrom = tryParseJson<User>(&TgTypeParser::parseJsonAndGetUser, data, "forward_from");
 	result->forwardDate = data.get("forward_date", 0);
-	result->replyToMessage = tryParseJson<Message>(&TgTypeParser::parseJsonAndGetMessage, data, "reply_to_message");
+	result->replyToMessage = tryParseJson<Message>(parseJsonAndGetMessage, data, "reply_to_message");
 	result->text = data.get("text", "");
-	result->audio = tryParseJson<Audio>(&TgTypeParser::parseJsonAndGetAudio, data, "audio");
-	result->document = tryParseJson<Document>(&TgTypeParser::parseJsonAndGetDocument, data, "document");
-	result->photo = parseJsonAndGetArray<PhotoSize>(&TgTypeParser::parseJsonAndGetPhotoSize, data, "photo");
-	result->sticker = tryParseJson<Sticker>(&TgTypeParser::parseJsonAndGetSticker, data, "sticker");
-	result->video = tryParseJson<Video>(&TgTypeParser::parseJsonAndGetVideo, data, "video");
-	result->contact = tryParseJson<Contact>(&TgTypeParser::parseJsonAndGetContact, data, "contact");
-	result->location = tryParseJson<Location>(&TgTypeParser::parseJsonAndGetLocation, data, "location");
-	result->newChatParticipant = tryParseJson<User>(&TgTypeParser::parseJsonAndGetUser, data, "new_chat_participant");
-	result->leftChatParticipant = tryParseJson<User>(&TgTypeParser::parseJsonAndGetUser, data, "left_chat_participant");
+	result->audio = tryParseJson<Audio>(parseJsonAndGetAudio, data, "audio");
+	result->document = tryParseJson<Document>(parseJsonAndGetDocument, data, "document");
+	result->photo = parseArray<PhotoSize>(parseJsonAndGetPhotoSize, data, "photo");
+	result->sticker = tryParseJson<Sticker>(parseJsonAndGetSticker, data, "sticker");
+	result->video = tryParseJson<Video>(parseJsonAndGetVideo, data, "video");
+	result->contact = tryParseJson<Contact>(parseJsonAndGetContact, data, "contact");
+	result->location = tryParseJson<Location>(parseJsonAndGetLocation, data, "location");
+	result->newChatParticipant = tryParseJson<User>(parseJsonAndGetUser, data, "new_chat_participant");
+	result->leftChatParticipant = tryParseJson<User>(parseJsonAndGetUser, data, "left_chat_participant");
 	result->newChatTitle = data.get("new_chat_title", "");
-	result->newChatPhoto = parseJsonAndGetArray<PhotoSize>(&TgTypeParser::parseJsonAndGetPhotoSize, data, "new_chat_photo");
+	result->newChatPhoto = parseJsonAndGetArray<PhotoSize>(parseJsonAndGetPhotoSize, data, "new_chat_photo");
 	result->deleteChatPhoto = data.get("delete_chat_photo", false);
 	result->groupChatCreated = data.get("group_chat_created", false);
 	result->caption = data.get("caption", false);
@@ -119,7 +119,7 @@ string TgTypeParser::parseMessage(const Message::Ptr& object) const {
 	appendToJson(result, "text", object->text);
 	appendToJson(result, "audio", parseAudio(object->audio));
 	appendToJson(result, "document", parseDocument(object->document));
-	appendToJson(result, "photo", parseArray(&TgTypeParser::parsePhotoSize, object->photo));
+	appendToJson(result, "photo", parseArray(parsePhotoSize, object->photo));
 	appendToJson(result, "sticker", parseSticker(object->sticker));
 	appendToJson(result, "video", parseVideo(object->video));
 	appendToJson(result, "contact", parseContact(object->contact));
@@ -127,7 +127,7 @@ string TgTypeParser::parseMessage(const Message::Ptr& object) const {
 	appendToJson(result, "new_chat_participant", parseUser(object->newChatParticipant));
 	appendToJson(result, "left_chat_participant", parseUser(object->leftChatParticipant));
 	appendToJson(result, "new_chat_title", object->newChatTitle);
-	appendToJson(result, "new_chat_photo", parseArray(&TgTypeParser::parsePhotoSize, object->newChatPhoto));
+	appendToJson(result, "new_chat_photo", parseArray(parsePhotoSize, object->newChatPhoto));
 	appendToJson(result, "delete_chat_photo", object->deleteChatPhoto);
 	appendToJson(result, "group_chat_created", object->groupChatCreated);
 	appendToJson(result, "caption", object->caption);
@@ -333,7 +333,7 @@ string TgTypeParser::parseUpdate(const Update::Ptr& object) const {
 UserProfilePhotos::Ptr TgTypeParser::parseJsonAndGetUserProfilePhotos(const ptree& data) const {
 	UserProfilePhotos::Ptr result(new UserProfilePhotos);
 	result->totalCount = data.get<int32_t>("total_count");
-	result->photos = parseJsonAndGet2DArray<PhotoSize>(&TgTypeParser::parseJsonAndGetPhotoSize, data, "photos");
+	result->photos = parseJsonAndGet2DArray<PhotoSize>(parseJsonAndGetPhotoSize, data, "photos");
 	return result;
 }
 
@@ -344,7 +344,7 @@ string TgTypeParser::parseUserProfilePhotos(const UserProfilePhotos::Ptr& object
 	string result;
 	result += '{';
 	appendToJson(result, "total_count", object->totalCount);
-	appendToJson(result, "photos", parse2DArray(&TgTypeParser::parsePhotoSize, object->photos));
+	appendToJson(result, "photos", parse2DArray(parsePhotoSize, object->photos));
 	result.erase(result.length() - 1);
 	result += '}';
 	return result;

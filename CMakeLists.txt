@@ -20,6 +20,9 @@ set(SRC_LIST
 )
 
 ### libs
+# threads
+find_package(Threads REQUIRED)
+
 # openssl
 find_package(OpenSSL REQUIRED)
 include_directories(${OPENSSL_INCLUDE_DIR})
@@ -30,13 +33,16 @@ find_package(Boost COMPONENTS system iostreams unit_test_framework REQUIRED)
 include_directories(${Boost_INCLUDE_DIR})
 
 set(LIB_LIST
-    ${Boost_LIBRARIES}
+    ${CMAKE_THREAD_LIBS_INIT}
     ${OPENSSL_LIBRARIES}
+    ${Boost_LIBRARIES}
 )
 
 ### building project
 add_library(${PROJECT_NAME} ${SRC_LIST})
 target_link_libraries(${PROJECT_NAME} ${LIB_LIST})
+install(TARGETS ${PROJECT_NAME} DESTINATION lib)
+install(DIRECTORY include/ DESTINATION include)
 
 ### tests
 if (ENABLE_TESTS)

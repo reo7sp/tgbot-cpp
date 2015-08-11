@@ -36,31 +36,31 @@ namespace TgBot {
 class HttpReqArg {
 
 public:
-    template<typename T>
-    HttpReqArg(const std::string& name, const T& value, bool isFile = false, const std::string& mimeType = "text/plain") :
-            name(name), value(boost::lexical_cast<std::string>(value)), isFile(isFile), mimeType(mimeType)
-    {
-    }
+	template<typename T>
+	HttpReqArg(const std::string& name, const T& value, bool isFile = false, const std::string& mimeType = "text/plain") :
+			name(name), value(boost::lexical_cast<std::string>(value)), isFile(isFile), mimeType(mimeType)
+	{
+	}
 
-    /**
-     * Name of an argument.
-     */
-    std::string name;
+	/**
+	 * Name of an argument.
+	 */
+	std::string name;
 
-    /**
-     * Value of an argument.
-     */
-    std::string value;
+	/**
+	 * Value of an argument.
+	 */
+	std::string value;
 
-    /**
-     * Should be true if an argument value hold some file contents
-     */
-    bool isFile = false;
+	/**
+	 * Should be true if an argument value hold some file contents
+	 */
+	bool isFile = false;
 
-    /**
-     * Mime type of an argument value. This field makes sense only if isFile is true.
-     */
-    std::string mimeType = "text/plain";
+	/**
+	 * Mime type of an argument value. This field makes sense only if isFile is true.
+	 */
+	std::string mimeType = "text/plain";
 };
 
 }
