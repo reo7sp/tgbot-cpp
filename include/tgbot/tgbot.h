@@ -84,6 +84,8 @@
  *
  * That's all. All you have to do now is just link compiled library to your project.
  *
+ * If you want, you can also use Docker to build and run your bot. Just set the base image of your's Dockerfile to reo7sp/tgbot-cpp.
+ *
  * @section Samples
  * All samples are located [here](https://github.com/reo7sp/tgbot-cpp/tree/master/samples)
  *
