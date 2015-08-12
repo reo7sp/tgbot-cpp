@@ -3,7 +3,6 @@ project(TgBot)
 
 ### options
 option(ENABLE_TESTS "Set to ON to enable building of tests" OFF)
-option(ENABLE_SAMPLES "Set to ON to enable building of samples" OFF)
 
 ### sources
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
@@ -49,10 +48,4 @@ if (ENABLE_TESTS)
     message(STATUS "Building of tests is enabled")
     enable_testing()
     add_subdirectory(test)
-endif()
-
-### samples
-if (ENABLE_SAMPLES)
-    message(STATUS "Building of sambles is enabled")
-    add_subdirectory(samples)
 endif()
