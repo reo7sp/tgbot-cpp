@@ -24,8 +24,7 @@
 #include <stdio.h>
 #include <exception>
 
-#include <tgbot/Bot.h>
-#include <tgbot/net/TgLongPoll.h>
+#include <tgbot/tgbot.h>
 
 using namespace std;
 using namespace TgBot;

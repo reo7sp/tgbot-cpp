@@ -38,22 +38,22 @@ namespace TgBot {
 template<typename Protocol>
 class HttpServer {
 
-private:
+protected:
 	class Connection;
 
 public:
 	typedef std::function<std::string (const std::string&, const std::map<std::string, std::string>)> ServerHandler;
 
-	HttpServer(std::shared_ptr<boost::asio::basic_socket_acceptor<Protocol>>& acceptor, const ServerHandler& handler) : _acceptor(acceptor), _handler(handler) {
+	HttpServer(std::shared_ptr<boost::asio::basic_socket_acceptor<Protocol>> acceptor, const ServerHandler& handler) : _acceptor(acceptor), _handler(handler) {
 	}
 
 	/**
 	 * Starts receiving new connections.
 	 */
 	void start() {
-		std::shared_ptr<boost::asio::basic_stream_socket<Protocol>> socket(new boost::asio::basic_stream_socket<Protocol>(acceptor->get_io_service()));
-		std::shared_ptr<Connection<Protocol>> connection(new Connection<Protocol>(socket, _handler));
-		acceptor->async_accept(*connection->socket, [this, connection]() {
+		std::shared_ptr<boost::asio::basic_stream_socket<Protocol>> socket(new boost::asio::basic_stream_socket<Protocol>(_acceptor->get_io_service()));
+		std::shared_ptr<Connection> connection(new Connection(socket, _handler));
+		_acceptor->async_accept(*connection->socket, [this, connection]() {
 			connection->start();
 			start();
 		});
@@ -67,8 +67,7 @@ public:
 		_ioService.stop();
 	}
 
-private:
-	template<typename Protocol>
+protected:
 	class Connection {
 
 	public:
@@ -89,7 +88,7 @@ private:
 		std::shared_ptr<boost::asio::basic_stream_socket<Protocol>> socket;
 		std::string data;
 
-	private:
+	protected:
 		const ServerHandler _handler;
 	};
 

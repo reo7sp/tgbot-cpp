@@ -29,6 +29,9 @@ That's all. All you have to do now is just link compiled library to your project
 
 Simple echo bot which sends everything it recieves:
 ```cpp
+#include <stdio.h>
+#include <tgbot/tgbot.h>
+
 int main() {
     TgBot::Bot bot("PLACE YOUR TOKEN HERE");
     bot.getEvents().onCommand("start", [&bot](Message::Ptr message) {
