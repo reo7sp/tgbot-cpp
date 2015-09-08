@@ -23,6 +23,8 @@
 #ifndef TGBOT_TGWEBHOOKTCPSERVER_H
 #define TGBOT_TGWEBHOOKTCPSERVER_H
 
+# ifdef BOOST_ASIO_HAS_LOCAL_SOCKETS
+
 #include "tgbot/net/TgWebhookServer.h"
 
 namespace TgBot {
@@ -46,5 +48,5 @@ public:
 };
 
 }
-
+# endif
 #endif //TGBOT_TGWEBHOOKTCPSERVER_H
