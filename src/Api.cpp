@@ -267,7 +267,10 @@ ptree Api::sendRequest(const string& method, const vector<HttpReqArg>& args) con
 	ptree result = TgTypeParser::getInstance().parseJson(serverResponse);
 	try {
 		if (result.get<bool>("ok")) {
-			return result.find("result")->second;
+            if(method != "getMe" && method != "sendMessage")
+                return result;
+            else
+                return result.find("result")->second;
 		} else {
 			throw TgException(result.get("description", ""));
 		}
