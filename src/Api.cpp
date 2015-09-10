@@ -65,7 +65,7 @@ Message::Ptr Api::forwardMessage(int32_t chatId, int32_t fromChatId, int32_t mes
 Message::Ptr Api::sendPhoto(int32_t chatId, const InputFile::Ptr& photo, const string& caption, int32_t replyToMessageId, const GenericReply::Ptr& replyMarkup) const {
 	vector<HttpReqArg> args;
 	args.push_back(HttpReqArg("chat_id", chatId));
-	args.push_back(HttpReqArg("photo", photo->data, true, photo->mimeType));
+    args.push_back(HttpReqArg("photo", photo->data, true, photo->mimeType, photo->fileName));
 	if (!caption.empty()) {
 		args.push_back(HttpReqArg("caption", caption));
 	}
@@ -78,10 +78,10 @@ Message::Ptr Api::sendPhoto(int32_t chatId, const InputFile::Ptr& photo, const s
 	return TgTypeParser::getInstance().parseJsonAndGetMessage(sendRequest("sendPhoto", args));
 }
 
-Message::Ptr Api::sendPhoto(int32_t chatId, const string& photo, const string& caption, int32_t replyToMessageId, const GenericReply::Ptr& replyMarkup) const {
+Message::Ptr Api::sendPhoto(int32_t chatId, const string& photoId, const string& caption, int32_t replyToMessageId, const GenericReply::Ptr& replyMarkup) const {
 	vector<HttpReqArg> args;
 	args.push_back(HttpReqArg("chat_id", chatId));
-	args.push_back(HttpReqArg("photo", photo));
+    args.push_back(HttpReqArg("photo", photoId));
 	if (!caption.empty()) {
 		args.push_back(HttpReqArg("caption", caption));
 	}
@@ -97,7 +97,7 @@ Message::Ptr Api::sendPhoto(int32_t chatId, const string& photo, const string& c
 Message::Ptr Api::sendAudio(int32_t chatId, const InputFile::Ptr& audio, int32_t duration, int32_t replyToMessageId, const GenericReply::Ptr& replyMarkup) const {
 	vector<HttpReqArg> args;
 	args.push_back(HttpReqArg("chat_id", chatId));
-	args.push_back(HttpReqArg("audio", audio->data, true, audio->mimeType));
+    args.push_back(HttpReqArg("audio", audio->data, true, audio->mimeType, audio->fileName));
 	if (duration) {
 		args.push_back(HttpReqArg("duration", duration));
 	}
@@ -110,10 +110,10 @@ Message::Ptr Api::sendAudio(int32_t chatId, const InputFile::Ptr& audio, int32_t
 	return TgTypeParser::getInstance().parseJsonAndGetMessage(sendRequest("sendAudio", args));
 }
 
-Message::Ptr Api::sendAudio(int32_t chatId, const string& audio, int32_t duration, int32_t replyToMessageId, const GenericReply::Ptr& replyMarkup) const {
+Message::Ptr Api::sendAudio(int32_t chatId, const string& audioId, int32_t duration, int32_t replyToMessageId, const GenericReply::Ptr& replyMarkup) const {
 	vector<HttpReqArg> args;
 	args.push_back(HttpReqArg("chat_id", chatId));
-	args.push_back(HttpReqArg("audio", audio));
+    args.push_back(HttpReqArg("audio", audioId));
 	if (duration) {
 		args.push_back(HttpReqArg("duration", duration));
 	}
@@ -129,7 +129,7 @@ Message::Ptr Api::sendAudio(int32_t chatId, const string& audio, int32_t duratio
 Message::Ptr Api::sendDocument(int32_t chatId, const InputFile::Ptr& document, int32_t replyToMessageId, const GenericReply::Ptr& replyMarkup) const {
 	vector<HttpReqArg> args;
 	args.push_back(HttpReqArg("chat_id", chatId));
-	args.push_back(HttpReqArg("document", document->data, true, document->mimeType));
+    args.push_back(HttpReqArg("document", document->data, true, document->mimeType, document->fileName));
 	if (replyToMessageId) {
 		args.push_back(HttpReqArg("reply_to_message_id", replyToMessageId));
 	}
@@ -155,7 +155,7 @@ Message::Ptr Api::sendDocument(int32_t chatId, const string& document, int32_t r
 Message::Ptr Api::sendSticker(int32_t chatId, const InputFile::Ptr& sticker, int32_t replyToMessageId, const GenericReply::Ptr& replyMarkup) const {
 	vector<HttpReqArg> args;
 	args.push_back(HttpReqArg("chat_id", chatId));
-	args.push_back(HttpReqArg("sticker", sticker->data, true, sticker->mimeType));
+    args.push_back(HttpReqArg("sticker", sticker->data, true, sticker->mimeType, sticker->fileName));
 	if (replyToMessageId) {
 		args.push_back(HttpReqArg("reply_to_message_id", replyToMessageId));
 	}
@@ -165,10 +165,10 @@ Message::Ptr Api::sendSticker(int32_t chatId, const InputFile::Ptr& sticker, int
 	return TgTypeParser::getInstance().parseJsonAndGetMessage(sendRequest("sendSticker", args));
 }
 
-Message::Ptr Api::sendSticker(int32_t chatId, const string& sticker, int32_t replyToMessageId, const GenericReply::Ptr& replyMarkup) const {
+Message::Ptr Api::sendSticker(int32_t chatId, const string& stickerId, int32_t replyToMessageId, const GenericReply::Ptr& replyMarkup) const {
 	vector<HttpReqArg> args;
 	args.push_back(HttpReqArg("chat_id", chatId));
-	args.push_back(HttpReqArg("sticker", sticker));
+    args.push_back(HttpReqArg("sticker", stickerId));
 	if (replyToMessageId) {
 		args.push_back(HttpReqArg("reply_to_message_id", replyToMessageId));
 	}
@@ -181,7 +181,7 @@ Message::Ptr Api::sendSticker(int32_t chatId, const string& sticker, int32_t rep
 Message::Ptr Api::sendVideo(int32_t chatId, const InputFile::Ptr& video, int32_t replyToMessageId, const GenericReply::Ptr& replyMarkup) const {
 	vector<HttpReqArg> args;
 	args.push_back(HttpReqArg("chat_id", chatId));
-	args.push_back(HttpReqArg("video", video->data, true, video->mimeType));
+    args.push_back(HttpReqArg("video", video->data, true, video->mimeType, video->fileName));
 	if (replyToMessageId) {
 		args.push_back(HttpReqArg("reply_to_message_id", replyToMessageId));
 	}
@@ -191,10 +191,10 @@ Message::Ptr Api::sendVideo(int32_t chatId, const InputFile::Ptr& video, int32_t
 	return TgTypeParser::getInstance().parseJsonAndGetMessage(sendRequest("sendVideo", args));
 }
 
-Message::Ptr Api::sendVideo(int32_t chatId, const string& video, int32_t replyToMessageId, const GenericReply::Ptr& replyMarkup) const {
+Message::Ptr Api::sendVideo(int32_t chatId, const string& videoId, int32_t replyToMessageId, const GenericReply::Ptr& replyMarkup) const {
 	vector<HttpReqArg> args;
 	args.push_back(HttpReqArg("chat_id", chatId));
-	args.push_back(HttpReqArg("video", video));
+    args.push_back(HttpReqArg("video", videoId));
 	if (replyToMessageId) {
 		args.push_back(HttpReqArg("reply_to_message_id", replyToMessageId));
 	}
@@ -267,7 +267,10 @@ ptree Api::sendRequest(const string& method, const vector<HttpReqArg>& args) con
 	ptree result = TgTypeParser::getInstance().parseJson(serverResponse);
 	try {
 		if (result.get<bool>("ok")) {
-			return result.find("result")->second;
+            if(method != "getMe" && method != "sendMessage" && method != "sendDocument")
+                return result;
+            else
+                return result.find("result")->second;
 		} else {
 			throw TgException(result.get("description", ""));
 		}

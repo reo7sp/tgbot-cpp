@@ -27,7 +27,6 @@
 using namespace std;
 using namespace boost::asio;
 using namespace boost::asio::ip;
-using namespace boost::asio::local;
 
 namespace TgBot {
 
