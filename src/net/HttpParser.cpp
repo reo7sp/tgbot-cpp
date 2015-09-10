@@ -63,16 +63,16 @@ string HttpParser::generateRequest(const Url& url, const vector<HttpReqArg>& arg
 		string bondary = generateMultipartBoundary(args);
 		if (bondary.empty()) {
 			result += "Content-Type: application/x-www-form-urlencoded\r\n";
-			requestData = generateWwwFormUrlencoded(args);
+            requestData = generateWwwFormUrlencoded(args);
 		} else {
 			result += "Content-Type: multipart/form-data; boundary=";
 			result += bondary;
-			result += "\r\n";
+            result += "\r\n";
 			requestData = generateMultipartFormData(args, bondary);
-		}
+        }
 
-		result += "Content-Length: ";
-		result += lexical_cast<string>(requestData.length());
+        result += "Content-Length: ";
+        result += lexical_cast<string>(requestData.length());
 		result += "\r\n\r\n";
 		result += requestData;
 	}
@@ -86,8 +86,11 @@ string HttpParser::generateMultipartFormData(const vector<HttpReqArg>& args, con
 		result += bondary;
 		result += "\r\nContent-Disposition: form-data; name=\"";
 		result += item.name;
+        if(item.isFile) {
+            result += "\"; filename=\"" + item.fileName;
+        }
 		result += "\"\r\n";
-		if (item.isFile) {
+        if (item.isFile) {
 			result += "Content-Type: ";
 			result += item.mimeType;
 			result += "\r\n";
@@ -96,6 +99,7 @@ string HttpParser::generateMultipartFormData(const vector<HttpReqArg>& args, con
 		result += item.value;
 		result += "\r\n";
 	}
+    result += "--" + bondary + "--";
 	return result;
 }
 
@@ -103,7 +107,7 @@ string HttpParser::generateMultipartBoundary(const vector<HttpReqArg>& args) {
 	string result;
 	srand((unsigned int) time(nullptr));
 	for (const HttpReqArg& item : args) {
-		if (item.isFile) {
+        if (item.isFile) {
 			while (result.empty() || item.value.find(result) != item.value.npos) {
 				result += StringTools::generateRandomString(4);
 			}

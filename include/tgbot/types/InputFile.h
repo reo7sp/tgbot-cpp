@@ -36,6 +36,10 @@ namespace TgBot {
 class InputFile {
 
 public:
+    InputFile() {
+        fileName = "set_file_name.ext";
+    }
+
 	typedef std::shared_ptr<InputFile> Ptr;
 
 	/**
@@ -47,6 +51,11 @@ public:
 	 * Mime type of a file.
 	 */
 	std::string mimeType;
+
+    /**
+     * File name.
+     */
+    std::string fileName;
 };
 
 }
