@@ -272,7 +272,7 @@ ptree Api::sendRequest(const string& method, const vector<HttpReqArg>& args) con
 			throw TgException(result.get("description", ""));
 		}
 	} catch (boost::property_tree::ptree_error& e) {
-		throw TgException("tgbot-cpp library can't parse json response. " + e.what());
+		throw TgException("tgbot-cpp library can't parse json response. " + string(e.what()));
 	}
 }
 
