@@ -65,7 +65,7 @@ Message::Ptr Api::forwardMessage(int32_t chatId, int32_t fromChatId, int32_t mes
 Message::Ptr Api::sendPhoto(int32_t chatId, const InputFile::Ptr& photo, const string& caption, int32_t replyToMessageId, const GenericReply::Ptr& replyMarkup) const {
 	vector<HttpReqArg> args;
 	args.push_back(HttpReqArg("chat_id", chatId));
-    args.push_back(HttpReqArg("photo", photo->data, true, photo->mimeType, photo->fileName));
+	args.push_back(HttpReqArg("photo", photo->data, true, photo->mimeType, photo->fileName));
 	if (!caption.empty()) {
 		args.push_back(HttpReqArg("caption", caption));
 	}
@@ -81,7 +81,7 @@ Message::Ptr Api::sendPhoto(int32_t chatId, const InputFile::Ptr& photo, const s
 Message::Ptr Api::sendPhoto(int32_t chatId, const string& photoId, const string& caption, int32_t replyToMessageId, const GenericReply::Ptr& replyMarkup) const {
 	vector<HttpReqArg> args;
 	args.push_back(HttpReqArg("chat_id", chatId));
-    args.push_back(HttpReqArg("photo", photoId));
+	args.push_back(HttpReqArg("photo", photoId));
 	if (!caption.empty()) {
 		args.push_back(HttpReqArg("caption", caption));
 	}
@@ -97,7 +97,7 @@ Message::Ptr Api::sendPhoto(int32_t chatId, const string& photoId, const string&
 Message::Ptr Api::sendAudio(int32_t chatId, const InputFile::Ptr& audio, int32_t duration, int32_t replyToMessageId, const GenericReply::Ptr& replyMarkup) const {
 	vector<HttpReqArg> args;
 	args.push_back(HttpReqArg("chat_id", chatId));
-    args.push_back(HttpReqArg("audio", audio->data, true, audio->mimeType, audio->fileName));
+	args.push_back(HttpReqArg("audio", audio->data, true, audio->mimeType, audio->fileName));
 	if (duration) {
 		args.push_back(HttpReqArg("duration", duration));
 	}
@@ -113,7 +113,7 @@ Message::Ptr Api::sendAudio(int32_t chatId, const InputFile::Ptr& audio, int32_t
 Message::Ptr Api::sendAudio(int32_t chatId, const string& audioId, int32_t duration, int32_t replyToMessageId, const GenericReply::Ptr& replyMarkup) const {
 	vector<HttpReqArg> args;
 	args.push_back(HttpReqArg("chat_id", chatId));
-    args.push_back(HttpReqArg("audio", audioId));
+	args.push_back(HttpReqArg("audio", audioId));
 	if (duration) {
 		args.push_back(HttpReqArg("duration", duration));
 	}
@@ -129,7 +129,7 @@ Message::Ptr Api::sendAudio(int32_t chatId, const string& audioId, int32_t durat
 Message::Ptr Api::sendDocument(int32_t chatId, const InputFile::Ptr& document, int32_t replyToMessageId, const GenericReply::Ptr& replyMarkup) const {
 	vector<HttpReqArg> args;
 	args.push_back(HttpReqArg("chat_id", chatId));
-    args.push_back(HttpReqArg("document", document->data, true, document->mimeType, document->fileName));
+	args.push_back(HttpReqArg("document", document->data, true, document->mimeType, document->fileName));
 	if (replyToMessageId) {
 		args.push_back(HttpReqArg("reply_to_message_id", replyToMessageId));
 	}
@@ -155,7 +155,7 @@ Message::Ptr Api::sendDocument(int32_t chatId, const string& document, int32_t r
 Message::Ptr Api::sendSticker(int32_t chatId, const InputFile::Ptr& sticker, int32_t replyToMessageId, const GenericReply::Ptr& replyMarkup) const {
 	vector<HttpReqArg> args;
 	args.push_back(HttpReqArg("chat_id", chatId));
-    args.push_back(HttpReqArg("sticker", sticker->data, true, sticker->mimeType, sticker->fileName));
+	args.push_back(HttpReqArg("sticker", sticker->data, true, sticker->mimeType, sticker->fileName));
 	if (replyToMessageId) {
 		args.push_back(HttpReqArg("reply_to_message_id", replyToMessageId));
 	}
@@ -168,7 +168,7 @@ Message::Ptr Api::sendSticker(int32_t chatId, const InputFile::Ptr& sticker, int
 Message::Ptr Api::sendSticker(int32_t chatId, const string& stickerId, int32_t replyToMessageId, const GenericReply::Ptr& replyMarkup) const {
 	vector<HttpReqArg> args;
 	args.push_back(HttpReqArg("chat_id", chatId));
-    args.push_back(HttpReqArg("sticker", stickerId));
+	args.push_back(HttpReqArg("sticker", stickerId));
 	if (replyToMessageId) {
 		args.push_back(HttpReqArg("reply_to_message_id", replyToMessageId));
 	}
@@ -181,7 +181,7 @@ Message::Ptr Api::sendSticker(int32_t chatId, const string& stickerId, int32_t r
 Message::Ptr Api::sendVideo(int32_t chatId, const InputFile::Ptr& video, int32_t replyToMessageId, const GenericReply::Ptr& replyMarkup) const {
 	vector<HttpReqArg> args;
 	args.push_back(HttpReqArg("chat_id", chatId));
-    args.push_back(HttpReqArg("video", video->data, true, video->mimeType, video->fileName));
+	args.push_back(HttpReqArg("video", video->data, true, video->mimeType, video->fileName));
 	if (replyToMessageId) {
 		args.push_back(HttpReqArg("reply_to_message_id", replyToMessageId));
 	}
@@ -194,7 +194,7 @@ Message::Ptr Api::sendVideo(int32_t chatId, const InputFile::Ptr& video, int32_t
 Message::Ptr Api::sendVideo(int32_t chatId, const string& videoId, int32_t replyToMessageId, const GenericReply::Ptr& replyMarkup) const {
 	vector<HttpReqArg> args;
 	args.push_back(HttpReqArg("chat_id", chatId));
-    args.push_back(HttpReqArg("video", videoId));
+	args.push_back(HttpReqArg("video", videoId));
 	if (replyToMessageId) {
 		args.push_back(HttpReqArg("reply_to_message_id", replyToMessageId));
 	}
@@ -262,20 +262,17 @@ ptree Api::sendRequest(const string& method, const vector<HttpReqArg>& args) con
 	url += method;
 	string serverResponse = HttpClient::getInstance().makeRequest(url, args);
 	if (serverResponse.find("<html>") != serverResponse.npos) {
-		throw TgException("Bad request");
+		throw TgException("tgbot-cpp library have got html page instead of json response. Maybe you entered wrong bot token.");
 	}
 	ptree result = TgTypeParser::getInstance().parseJson(serverResponse);
 	try {
-		if (result.get<bool>("ok")) {
-            if(method != "getMe" && method != "sendMessage" && method != "sendDocument")
-                return result;
-            else
-                return result.find("result")->second;
+		if (result.get<bool>("ok", false)) {
+			return result.get_child("result");
 		} else {
 			throw TgException(result.get("description", ""));
 		}
 	} catch (boost::property_tree::ptree_error& e) {
-		throw TgException("");
+		throw TgException("tgbot-cpp library can't parse json response. " + e.what());
 	}
 }
 

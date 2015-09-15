@@ -39,7 +39,7 @@ public:
 	virtual ~GenericChat() { }
 
 	/**
-	 * Unique identifier for this user, bot  or group chat
+	 * Unique identifier for this user, bot	 or group chat
 	 */
 	int32_t id;
 };

@@ -187,9 +187,7 @@ string TgTypeParser::parseAudio(const Audio::Ptr& object) const {
 Document::Ptr TgTypeParser::parseJsonAndGetDocument(const ptree& data) const {
 	Document::Ptr result(new Document);
 	result->fileId = data.get<string>("file_id");
-    if(data.find("thumb") != data.not_found()) {
-        result->thumb = parseJsonAndGetPhotoSize(data.find("thumb")->second);
-    }
+	result->thumb = tryParseJson<PhotoSize>(&TgTypeParser::parseJsonAndGetPhotoSize, data, "thumb");
 	result->fileName = data.get("file_name", "");
 	result->mimeType = data.get("mime_type", "");
 	result->fileSize = data.get("file_size", 0);
@@ -217,9 +215,7 @@ Sticker::Ptr TgTypeParser::parseJsonAndGetSticker(const ptree& data) const {
 	result->fileId = data.get<string>("file_id");
 	result->width = data.get<int32_t>("width");
 	result->height = data.get<int32_t>("height");
-    if(data.find("thumb") != data.not_found()) {
-        result->thumb = parseJsonAndGetPhotoSize(data.find("thumb")->second);
-    }
+	result->thumb = tryParseJson<PhotoSize>(&TgTypeParser::parseJsonAndGetPhotoSize, data, "thumb");
 	result->fileSize = data.get("file_size", 0);
 	return result;
 }
@@ -246,9 +242,7 @@ Video::Ptr TgTypeParser::parseJsonAndGetVideo(const ptree& data) const {
 	result->width = data.get<int32_t>("width");
 	result->height = data.get<int32_t>("height");
 	result->duration = data.get<int32_t>("duration");
-    if(data.find("thumb") != data.not_found()) {
-        result->thumb = parseJsonAndGetPhotoSize(data.find("thumb")->second);
-    }
+	result->thumb = tryParseJson<PhotoSize>(&TgTypeParser::parseJsonAndGetPhotoSize, data, "thumb");
 	result->mimeType = data.get("mime_type", "");
 	result->fileSize = data.get("file_size", 0);
 	return result;

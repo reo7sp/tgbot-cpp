@@ -53,7 +53,7 @@ std::string diff(const std::string& test, const std::string& expected) {
 template<typename T>
 std::string diff(const T& test, const T& expected, std::string (*toStringFunc)(const typename T::value_type&)) {
 	std::string result;
-	result += "\n*** BEGIN ***   Count: t=";
+	result += "\n*** BEGIN ***	 Count: t=";
 	result += boost::lexical_cast<std::string>(test.size());
 	result += " e=";
 	result += boost::lexical_cast<std::string>(expected.size());

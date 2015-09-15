@@ -91,13 +91,13 @@ public:
 	/**
 	 * Use this method to send photos.
 	 * @param chatId Unique identifier for the message recipient — User or GroupChat id.
-	 * @param photo Photo to send. Id of the photo that is already on the Telegram servers.
+	 * @param photoId Id of the photo that is already on the Telegram servers.
 	 * @param caption Optional. Photo caption.
 	 * @param replyToMessageId Optional. If the message is a reply, ID of the original message.
 	 * @param replyMarkup Optional. Additional interface options. An object for a custom reply keyboard, instructions to hide keyboard or to force a reply from the user.
 	 * @return On success, the sent message is returned.
 	 */
-    Message::Ptr sendPhoto(int32_t chatId, const std::string& photoId, const std::string& caption = "", int32_t replyToMessageId = 0, const GenericReply::Ptr& replyMarkup = GenericReply::Ptr()) const;
+	Message::Ptr sendPhoto(int32_t chatId, const std::string& photoId, const std::string& caption = "", int32_t replyToMessageId = 0, const GenericReply::Ptr& replyMarkup = GenericReply::Ptr()) const;
 
 	/**
 	 * Use this method to send audio files, if you want Telegram clients to display the file as a playable voice message. For this to work, your audio must be in an .ogg file encoded with OPUS (other formats may be sent as Document).
@@ -113,13 +113,13 @@ public:
 	/**
 	 * Use this method to send audio files, if you want Telegram clients to display the file as a playable voice message. For this to work, your audio must be in an .ogg file encoded with OPUS (other formats may be sent as Document).
 	 * @param chatId Unique identifier for the message recipient — User or GroupChat id.
-	 * @param audio Id of the audio that is already on the Telegram servers.
+	 * @param audioId Id of the audio that is already on the Telegram servers.
 	 * @param duration Duration of sent audio in seconds.
 	 * @param replyToMessageId Optional. If the message is a reply, ID of the original message.
 	 * @param replyMarkup Optional. Additional interface options. An object for a custom reply keyboard, instructions to hide keyboard or to force a reply from the user.
 	 * @return On success, the sent message is returned.
 	 */
-    Message::Ptr sendAudio(int32_t chatId, const std::string& audioId, int32_t duration = 0, int32_t replyToMessageId = 0, const GenericReply::Ptr& replyMarkup = GenericReply::Ptr()) const;
+	Message::Ptr sendAudio(int32_t chatId, const std::string& audioId, int32_t duration = 0, int32_t replyToMessageId = 0, const GenericReply::Ptr& replyMarkup = GenericReply::Ptr()) const;
 
 	/**
 	 * Use this method to send general files.
@@ -134,12 +134,12 @@ public:
 	/**
 	 * Use this method to send general files.
 	 * @param chatId Unique identifier for the message recipient — User or GroupChat id.
-	 * @param document Id of the document that is already on the Telegram servers.
+	 * @param documentId Id of the document that is already on the Telegram servers.
 	 * @param replyToMessageId Optional. If the message is a reply, ID of the original message.
 	 * @param replyMarkup Optional. Additional interface options. An object for a custom reply keyboard, instructions to hide keyboard or to force a reply from the user.
 	 * @return On success, the sent message is returned.
 	 */
-    Message::Ptr sendDocument(int32_t chatId, const std::string& documentId, int32_t replyToMessageId = 0, const GenericReply::Ptr& replyMarkup = GenericReply::Ptr()) const;
+	Message::Ptr sendDocument(int32_t chatId, const std::string& documentId, int32_t replyToMessageId = 0, const GenericReply::Ptr& replyMarkup = GenericReply::Ptr()) const;
 
 	/**
 	 * Use this method to send .webp stickers.
@@ -154,12 +154,12 @@ public:
 	/**
 	 * Use this method to send .webp stickers.
 	 * @param chatId Unique identifier for the message recipient — User or GroupChat id.
-	 * @param sticker Id of the sticker that is already on the Telegram servers.
+	 * @param stickerId Id of the sticker that is already on the Telegram servers.
 	 * @param replyToMessageId Optional. If the message is a reply, ID of the original message.
 	 * @param replyMarkup Optional. Additional interface options. A object for a custom reply keyboard, instructions to hide keyboard or to force a reply from the user.
 	 * @return On success, the sent message is returned.
 	 */
-    Message::Ptr sendSticker(int32_t chatId, const std::string& stickerId, int32_t replyToMessageId = 0, const GenericReply::Ptr& replyMarkup = GenericReply::Ptr()) const;
+	Message::Ptr sendSticker(int32_t chatId, const std::string& stickerId, int32_t replyToMessageId = 0, const GenericReply::Ptr& replyMarkup = GenericReply::Ptr()) const;
 
 	/**
 	 * Use this method to send video files, Telegram clients support mp4 videos (other formats may be sent as Document).
@@ -174,12 +174,12 @@ public:
 	/**
 	 * Use this method to send video files, Telegram clients support mp4 videos (other formats may be sent as Document).
 	 * @param chatId Unique identifier for the message recipient — User or GroupChat id.
-	 * @param video Id of the video that is already on the Telegram servers.
+	 * @param videoId Id of the video that is already on the Telegram servers.
 	 * @param replyToMessageId Optional. If the message is a reply, ID of the original message.
 	 * @param replyMarkup Optional. Additional interface options. A object for a custom reply keyboard, instructions to hide keyboard or to force a reply from the user.
 	 * @return On success, the sent message is returned.
 	 */
-    Message::Ptr sendVideo(int32_t chatId, const std::string& videoId, int32_t replyToMessageId = 0, const GenericReply::Ptr& replyMarkup = GenericReply::Ptr()) const;
+	Message::Ptr sendVideo(int32_t chatId, const std::string& videoId, int32_t replyToMessageId = 0, const GenericReply::Ptr& replyMarkup = GenericReply::Ptr()) const;
 
 	/**
 	 * Use this method to send point on the map.
