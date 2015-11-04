@@ -1,10 +1,10 @@
 # tgbot-cpp
 
 [![Join the chat at https://gitter.im/reo7sp/tgbot-cpp](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/reo7sp/tgbot-cpp?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+&nbsp;
+[![Flattr this](https://button.flattr.com/flattr-badge-large.png "Flattr this")](https://flattr.com/submit/auto?user_id=Reo_SP&url=https%3A%2F%2Fgithub.com%2Freo7sp%2Ftgbot-cpp)
 
 C++ library for Telegram bot API.
-
-**Warning:** It's not stable version yet. Something may not work.
 
 Documentaion is located [here](http://reo7sp.ru/proj/tgbot-cpp/doc)
 
@@ -25,7 +25,7 @@ sudo make install
 
 That's all. All you have to do now is just link compiled library to your project.
 
-If you want, you can also use Docker to build and run your bot. Just set the base image of your's Dockerfile to reo7sp/tgbot-cpp.
+If you want, you can also use Docker to build and run your bot. Just set the base image of your's Dockerfile to [reo7sp/tgbot-cpp](https://hub.docker.com/r/reo7sp/tgbot-cpp/).
 
 ## Samples
 
