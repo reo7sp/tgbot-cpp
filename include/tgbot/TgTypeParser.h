@@ -110,6 +110,15 @@ public:
 	}
 
 	template<typename T>
+	std::vector<std::shared_ptr<T>> parseJsonAndGetArray(JsonToTgTypeFunc<T> parseFunc, const boost::property_tree::ptree& data) const {
+		std::vector<std::shared_ptr<T>> result;
+		for (const std::pair<const std::string, boost::property_tree::ptree>& innerTreeItem : data) {
+			result.push_back((this->*parseFunc)(innerTreeItem.second));
+		}
+		return result;
+	}
+
+	template<typename T>
 	std::vector<std::shared_ptr<T>> parseJsonAndGetArray(JsonToTgTypeFunc<T> parseFunc, const boost::property_tree::ptree& data, const std::string& keyName) const {
 		std::vector<std::shared_ptr<T>> result;
 		auto treeItem = data.find(keyName);
@@ -175,6 +184,17 @@ private:
 		json += varName;
 		json += "\":";
 		json += value;
+		json += ',';
+	}
+
+	void appendToJson(std::string& json, const std::string& varName, const bool& value) const {
+		if (value == 0) {
+			return;
+		}
+		json += '"';
+		json += varName;
+		json += "\":";
+		json += (value ? "true" : "false");
 		json += ',';
 	}
 

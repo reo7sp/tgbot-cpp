@@ -196,11 +196,15 @@ string HttpParser::parseHttp(bool isRequest, const string& data, map<string, str
 
 string HttpParser::parseHttp(bool isRequest, const string& data) {
 	size_t headerEnd = data.find("\r\n\r\n");
-	if (headerEnd == data.npos) {
+	if (headerEnd != data.npos) {
+		headerEnd += 4;
+	} else {
 		headerEnd = data.find("\n\n");
-	}
-	if (headerEnd == data.npos) {
-		headerEnd = 0;
+		if (headerEnd != data.npos) {
+			headerEnd += 2;
+		} else {
+			headerEnd = 0;
+		}
 	}
 	return data.substr(headerEnd);
 }

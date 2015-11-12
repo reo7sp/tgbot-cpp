@@ -38,7 +38,13 @@ public:
 	inline void handleUpdate(const Update::Ptr& update) const {
 		_broadcaster->broadcastAnyMessage(update->message);
 		if (StringTools::startsWith(update->message->text, "/")) {
-			std::string command = update->message->text.substr(1, update->message->text.find(' ') - 2);
+			unsigned long spacePosition = update->message->text.find(' ');
+			std::string command;
+			if (spacePosition != update->message->text.npos) {
+				command = update->message->text.substr(1, spacePosition - 1);
+			} else {
+				command = update->message->text.substr(1, update->message->text.size() - 1);
+			}
 			if (!_broadcaster->broadcastCommand(command, update->message)) {
 				_broadcaster->broadcastUnknownCommand(update->message);
 			}
