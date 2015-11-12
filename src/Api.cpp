@@ -246,7 +246,7 @@ vector<Update::Ptr> Api::getUpdates(int32_t offset, int32_t limit, int32_t timeo
 	if (timeout) {
 		args.push_back(HttpReqArg("timeout", timeout));
 	}
-	return TgTypeParser::getInstance().parseJsonAndGetArray<Update>(&TgTypeParser::parseJsonAndGetUpdate, sendRequest("getUpdates", args), "result");
+	return TgTypeParser::getInstance().parseJsonAndGetArray<Update>(&TgTypeParser::parseJsonAndGetUpdate, sendRequest("getUpdates", args));
 }
 
 void Api::setWebhook(const string& url) const {
