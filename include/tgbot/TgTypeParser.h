@@ -187,6 +187,17 @@ private:
 		json += ',';
 	}
 
+	void appendToJson(std::string& json, const std::string& varName, const bool& value) const {
+		if (value == 0) {
+			return;
+		}
+		json += '"';
+		json += varName;
+		json += "\":";
+		json += (value ? "true" : "false");
+		json += ',';
+	}
+
 	void appendToJson(std::string& json, const std::string& varName, const std::string& value) const;
 };
 
