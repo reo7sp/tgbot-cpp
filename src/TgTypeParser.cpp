@@ -404,6 +404,7 @@ std::string TgTypeParser::parseReplyKeyboardHide(const ReplyKeyboardHide::Ptr& o
 	}
 	string result;
 	result += '{';
+	appendToJson(result, "hide_keyboard", object->hideKeyboard);
 	appendToJson(result, "selective", object->selective);
 	result.erase(result.length() - 1);
 	result += '}';
@@ -422,6 +423,7 @@ std::string TgTypeParser::parseForceReply(const ForceReply::Ptr& object) const {
 	}
 	string result;
 	result += '{';
+	appendToJson(result, "force_reply", object->forceReply);
 	appendToJson(result, "selective", object->selective);
 	result.erase(result.length() - 1);
 	result += '}';
