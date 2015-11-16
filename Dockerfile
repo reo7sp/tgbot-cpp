@@ -7,6 +7,7 @@ RUN apt-get update && \
 WORKDIR /tmp/tgbot-cpp
 COPY include include
 COPY src src
+COPY test test
 COPY CMakeLists.txt ./
 RUN sed -i 's/option(ENABLE_TESTS "Set to ON to enable building of tests" OFF)/option(ENABLE_TESTS "Set to ON to enable building of tests" ON)/g' CMakeLists.txt && \
 	cmake . && \
