@@ -29,6 +29,7 @@
 #include <boost/property_tree/json_parser.hpp>
 
 #include "tgbot/types/User.h"
+#include "tgbot/types/Chat.h"
 #include "tgbot/types/GroupChat.h"
 #include "tgbot/types/Message.h"
 #include "tgbot/types/PhotoSize.h"
@@ -58,6 +59,8 @@ public:
 
 	static TgTypeParser& getInstance();
 
+	Chat::Ptr parseJsonAndGetChat(const boost::property_tree::ptree& data) const;
+	std::string parseChat(const Chat::Ptr& object) const;
 	User::Ptr parseJsonAndGetUser(const boost::property_tree::ptree& data) const;
 	std::string parseUser(const User::Ptr& object) const;
 	GroupChat::Ptr parseJsonAndGetGroupChat(const boost::property_tree::ptree& data) const;

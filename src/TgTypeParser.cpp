@@ -32,6 +32,35 @@ TgTypeParser& TgTypeParser::getInstance() {
 	return result;
 }
 
+Chat::Ptr TgTypeParser::parseJsonAndGetChat(const ptree& data) const {
+	Chat::Ptr result(new Chat);
+	result->id = data.get<int32_t>("id");
+	result->type = data.get<string>("type");
+	result->title = data.get("title", "");
+	result->username = data.get("username", "");
+	result->firstName = data.get<string>("first_name");
+	result->lastName = data.get("last_name", "");
+
+	return result;
+}
+
+string TgTypeParser::parseChat(const Chat::Ptr& object) const {
+	if (!object) {
+		return "";
+	}
+	string result;
+	result += '{';
+	appendToJson(result, "id", object->id);
+	appendToJson(result, "type", object->type);
+	appendToJson(result, "title", object->title);
+	appendToJson(result, "username", object->username);
+	appendToJson(result, "first_name", object->firstName);
+	appendToJson(result, "last_name", object->lastName);
+	result.erase(result.length() - 1);
+	result += '}';
+	return result;
+}
+
 User::Ptr TgTypeParser::parseJsonAndGetUser(const ptree& data) const {
 	User::Ptr result(new User);
 	result->id = data.get<int32_t>("id");
@@ -81,7 +110,7 @@ Message::Ptr TgTypeParser::parseJsonAndGetMessage(const ptree& data) const {
 	result->messageId = data.get<int32_t>("message_id");
 	result->from = parseJsonAndGetUser(data.find("from")->second);
 	result->date = data.get<int32_t>("date");
-	result->chat = parseJsonAndGetGenericChat(data.find("chat")->second);
+	result->chat = tryParseJson<Chat>(&TgTypeParser::parseJsonAndGetChat, data, "chat");
 	result->forwardFrom = tryParseJson<User>(&TgTypeParser::parseJsonAndGetUser, data, "forward_from");
 	result->forwardDate = data.get("forward_date", 0);
 	result->replyToMessage = tryParseJson<Message>(&TgTypeParser::parseJsonAndGetMessage, data, "reply_to_message");
@@ -112,7 +141,7 @@ string TgTypeParser::parseMessage(const Message::Ptr& object) const {
 	appendToJson(result, "message_id", object->messageId);
 	appendToJson(result, "from", parseUser(object->from));
 	appendToJson(result, "date", object->date);
-	appendToJson(result, "chat", parseGenericChat(object->chat));
+	appendToJson(result, "chat", parseChat(object->chat));
 	appendToJson(result, "forward_from", parseUser(object->forwardFrom));
 	appendToJson(result, "forward_date", object->forwardDate);
 	appendToJson(result, "reply_to_message", parseMessage(object->replyToMessage));
