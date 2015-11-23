@@ -262,13 +262,10 @@ ptree Api::sendRequest(const string& method, const vector<HttpReqArg>& args) con
 	url += "/";
 	url += method;
 
-    std::cout << "URL: " << url << std::endl;
 	string serverResponse = HttpClient::getInstance().makeRequest(url, args);
 	if (serverResponse.find("<html>") != serverResponse.npos) {
 		throw TgException("tgbot-cpp library have got html page instead of json response. Maybe you entered wrong bot token.");
 	}
-
-    std::cout << "Server Response: " << serverResponse << std::endl;
 
 	ptree result = TgTypeParser::getInstance().parseJson(serverResponse);
 	try {
