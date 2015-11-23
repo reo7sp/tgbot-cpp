@@ -27,6 +27,7 @@
 #include <vector>
 #include <memory>
 
+#include "tgbot/types/Chat.h"
 #include "tgbot/types/User.h"
 #include "tgbot/types/GenericChat.h"
 #include "tgbot/types/Message.h"
@@ -65,9 +66,9 @@ public:
 	int32_t date;
 
 	/**
-	 * Conversation the message belongs to — user in case of a private message, GroupChat in case of a group.
+	 * Chat.
 	 */
-	GenericChat::Ptr chat;
+    Chat::Ptr chat;
 
 	/**
 	 * Optional. For forwarded messages, sender of the original message.
