@@ -29,7 +29,6 @@
 
 #include "tgbot/types/Chat.h"
 #include "tgbot/types/User.h"
-#include "tgbot/types/GenericChat.h"
 #include "tgbot/types/Message.h"
 #include "tgbot/types/Audio.h"
 #include "tgbot/types/Document.h"
@@ -56,7 +55,7 @@ public:
 	int32_t messageId;
 
 	/**
-	 * Sender.
+	 * Optional. Sender, can be empty for messages sent to channels.
 	 */
 	User::Ptr from;
 
@@ -66,9 +65,9 @@ public:
 	int32_t date;
 
 	/**
-	 * Chat.
+	 * Conversation the message belongs to.
 	 */
-    Chat::Ptr chat;
+	Chat::Ptr chat;
 
 	/**
 	 * Optional. For forwarded messages, sender of the original message.

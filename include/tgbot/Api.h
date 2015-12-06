@@ -59,7 +59,7 @@ public:
 
 	/**
 	 * Use this method to send text messages.
-	 * @param chatId Unique identifier for the message recipient — User or GroupChat id.
+	 * @param chatId Unique identifier for the target chat.
 	 * @param text Text of the message to be sent.
 	 * @param disableWebPagePreview Optional. Disables link previews for links in this message.
 	 * @param replyToMessageId Optional. If the message is a reply, ID of the original message.
@@ -70,7 +70,7 @@ public:
 
 	/**
 	 * Use this method to forward messages of any kind.
-	 * @param chatId Unique identifier for the message recipient — User or GroupChat id.
+	 * @param chatId Unique identifier for the target chat.
 	 * @param fromChatId Unique identifier for the chat where the original message was sent — User or GroupChat id.
 	 * @param messageId Unique message identifier.
 	 * @return On success, the sent message is returned.
@@ -79,7 +79,7 @@ public:
 
 	/**
 	 * Use this method to send photos.
-	 * @param chatId Unique identifier for the message recipient — User or GroupChat id.
+	 * @param chatId Unique identifier for the target chat.
 	 * @param photo Photo to send.
 	 * @param caption Optional. Photo caption.
 	 * @param replyToMessageId Optional. If the message is a reply, ID of the original message.
@@ -90,8 +90,8 @@ public:
 
 	/**
 	 * Use this method to send photos.
-	 * @param chatId Unique identifier for the message recipient — User or GroupChat id.
-	 * @param photoId Id of the photo that is already on the Telegram servers.
+	 * @param chatId Unique identifier for the target chat.
+	 * @param photo Photo to send. Id of the photo that is already on the Telegram servers.
 	 * @param caption Optional. Photo caption.
 	 * @param replyToMessageId Optional. If the message is a reply, ID of the original message.
 	 * @param replyMarkup Optional. Additional interface options. An object for a custom reply keyboard, instructions to hide keyboard or to force a reply from the user.
@@ -101,7 +101,7 @@ public:
 
 	/**
 	 * Use this method to send audio files, if you want Telegram clients to display the file as a playable voice message. For this to work, your audio must be in an .ogg file encoded with OPUS (other formats may be sent as Document).
-	 * @param chatId Unique identifier for the message recipient — User or GroupChat id.
+	 * @param chatId Unique identifier for the target chat.
 	 * @param audio Audio to send.
 	 * @param duration Duration of sent audio in seconds.
 	 * @param replyToMessageId Optional. If the message is a reply, ID of the original message.
@@ -112,8 +112,8 @@ public:
 
 	/**
 	 * Use this method to send audio files, if you want Telegram clients to display the file as a playable voice message. For this to work, your audio must be in an .ogg file encoded with OPUS (other formats may be sent as Document).
-	 * @param chatId Unique identifier for the message recipient — User or GroupChat id.
-	 * @param audioId Id of the audio that is already on the Telegram servers.
+	 * @param chatId Unique identifier for the target chat.
+	 * @param audio Id of the audio that is already on the Telegram servers.
 	 * @param duration Duration of sent audio in seconds.
 	 * @param replyToMessageId Optional. If the message is a reply, ID of the original message.
 	 * @param replyMarkup Optional. Additional interface options. An object for a custom reply keyboard, instructions to hide keyboard or to force a reply from the user.
@@ -123,7 +123,7 @@ public:
 
 	/**
 	 * Use this method to send general files.
-	 * @param chatId Unique identifier for the message recipient — User or GroupChat id.
+	 * @param chatId Unique identifier for the target chat.
 	 * @param document Document to send.
 	 * @param replyToMessageId Optional. If the message is a reply, ID of the original message.
 	 * @param replyMarkup Optional. Additional interface options. An object for a custom reply keyboard, instructions to hide keyboard or to force a reply from the user.
@@ -133,8 +133,8 @@ public:
 
 	/**
 	 * Use this method to send general files.
-	 * @param chatId Unique identifier for the message recipient — User or GroupChat id.
-	 * @param documentId Id of the document that is already on the Telegram servers.
+	 * @param chatId Unique identifier for the target chat.
+	 * @param document Id of the document that is already on the Telegram servers.
 	 * @param replyToMessageId Optional. If the message is a reply, ID of the original message.
 	 * @param replyMarkup Optional. Additional interface options. An object for a custom reply keyboard, instructions to hide keyboard or to force a reply from the user.
 	 * @return On success, the sent message is returned.
@@ -143,7 +143,7 @@ public:
 
 	/**
 	 * Use this method to send .webp stickers.
-	 * @param chatId Unique identifier for the message recipient — User or GroupChat id.
+	 * @param chatId Unique identifier for the target chat.
 	 * @param sticker Sticker to send.
 	 * @param replyToMessageId Optional. If the message is a reply, ID of the original message.
 	 * @param replyMarkup Optional. Additional interface options. An object for a custom reply keyboard, instructions to hide keyboard or to force a reply from the user.
@@ -153,8 +153,8 @@ public:
 
 	/**
 	 * Use this method to send .webp stickers.
-	 * @param chatId Unique identifier for the message recipient — User or GroupChat id.
-	 * @param stickerId Id of the sticker that is already on the Telegram servers.
+	 * @param chatId Unique identifier for the target chat.
+	 * @param sticker Id of the sticker that is already on the Telegram servers.
 	 * @param replyToMessageId Optional. If the message is a reply, ID of the original message.
 	 * @param replyMarkup Optional. Additional interface options. A object for a custom reply keyboard, instructions to hide keyboard or to force a reply from the user.
 	 * @return On success, the sent message is returned.
@@ -163,7 +163,7 @@ public:
 
 	/**
 	 * Use this method to send video files, Telegram clients support mp4 videos (other formats may be sent as Document).
-	 * @param chatId Unique identifier for the message recipient — User or GroupChat id.
+	 * @param chatId Unique identifier for the target chat.
 	 * @param video Video to send.
 	 * @param replyToMessageId Optional. If the message is a reply, ID of the original message.
 	 * @param replyMarkup Optional. Additional interface options. An object for a custom reply keyboard, instructions to hide keyboard or to force a reply from the user.
@@ -173,8 +173,8 @@ public:
 
 	/**
 	 * Use this method to send video files, Telegram clients support mp4 videos (other formats may be sent as Document).
-	 * @param chatId Unique identifier for the message recipient — User or GroupChat id.
-	 * @param videoId Id of the video that is already on the Telegram servers.
+	 * @param chatId Unique identifier for the target chat.
+	 * @param video Id of the video that is already on the Telegram servers.
 	 * @param replyToMessageId Optional. If the message is a reply, ID of the original message.
 	 * @param replyMarkup Optional. Additional interface options. A object for a custom reply keyboard, instructions to hide keyboard or to force a reply from the user.
 	 * @return On success, the sent message is returned.
@@ -183,7 +183,7 @@ public:
 
 	/**
 	 * Use this method to send point on the map.
-	 * @param chatId Unique identifier for the message recipient — User or GroupChat id.
+	 * @param chatId Unique identifier for the target chat.
 	 * @param latitude Latitude of location.
 	 * @param longitude Longitude of location.
 	 * @param replyToMessageId Optional. If the message is a reply, ID of the original message.
@@ -196,7 +196,7 @@ public:
 	 * Use this method when you need to tell the user that something is happening on the bot's side. The status is set for 5 seconds or less (when a message arrives from your bot, Telegram clients clear its typing status).
 	 * Example: The ImageBot needs some time to process a request and upload the image. Instead of sending a text message along the lines of “Retrieving image, please wait…”, the bot may use sendChatAction with action = upload_photo. The user will see a “sending photo” status for the bot.
 	 * We only recommend using this method when a response from the bot will take a noticeable amount of time to arrive.
-	 * @param chatId Unique identifier for the message recipient — User or GroupChat id.
+	 * @param chatId Unique identifier for the target chat.
 	 * @param action Type of action to broadcast. Choose one, depending on what the user is about to receive: typing for text messages, upload_photo for photos, record_video or upload_video for videos, record_audio or upload_audio for audio files, upload_document for general files, find_location for location data.
 	 */
 	void sendChatAction(int32_t chatId, const std::string& action) const;

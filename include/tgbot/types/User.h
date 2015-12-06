@@ -26,18 +26,21 @@
 #include <string>
 #include <memory>
 
-#include "tgbot/types/GenericChat.h"
-
 namespace TgBot {
 
 /**
  * This object represents a Telegram user or bot.
  * @ingroup types
  */
-class User : public GenericChat {
+class User  {
 
 public:
 	typedef std::shared_ptr<User> Ptr;
+
+	/**
+	 * Unique identifier for this user or bot.
+	 */
+	int32_t id;
 
 	/**
 	 * User‘s or bot’s first name.

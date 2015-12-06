@@ -26,25 +26,33 @@
 #include <string>
 #include <memory>
 
-#include "tgbot/types/GenericChat.h"
-
 namespace TgBot {
 
 /**
  * This object represents a Telegram Chat
  * @ingroup types
  */
-class Chat : public GenericChat {
+class Chat {
 
 public:
     typedef std::shared_ptr<Chat> Ptr;
 
     /**
-     * Type of chat : can be either
-     * "private", "group", "supergroup,
-     * or "channel"
+     * Enum of possible types of a chat.
      */
-    std::string type;
+    enum class Type {
+        Private, Group, Supergroup, Channel
+    };
+
+    /**
+     * Unique identifier for this chat, not exceeding 1e13 by absolute value
+     */
+	int64_t id;
+
+    /**
+     * Type of chat: can be either "private", "group", "supergroup, or "channel".
+     */
+    Type type;
 
     /**
      * Optional. Title for channels and group chat

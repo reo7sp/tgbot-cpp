@@ -35,7 +35,16 @@ TgTypeParser& TgTypeParser::getInstance() {
 Chat::Ptr TgTypeParser::parseJsonAndGetChat(const ptree& data) const {
 	Chat::Ptr result(new Chat);
 	result->id = data.get<int32_t>("id");
-	result->type = data.get<string>("type");
+	string type = data.get<string>("type");
+	if (type == "private") {
+		result->type = Chat::Type::Private;
+	} else if (type == "group") {
+		result->type = Chat::Type::Group;
+	} else if (type == "supergroup") {
+		result->type = Chat::Type::Supergroup;
+	} else if (type == "channel") {
+		result->type = Chat::Type::Channel;
+	}
 	result->title = data.get("title", "");
 	result->username = data.get("username", "");
 	result->firstName = data.get<string>("first_name");
@@ -51,7 +60,15 @@ string TgTypeParser::parseChat(const Chat::Ptr& object) const {
 	string result;
 	result += '{';
 	appendToJson(result, "id", object->id);
-	appendToJson(result, "type", object->type);
+	if (object->type == Chat::Type::Private) {
+		appendToJson(result, "type", "private");
+	} else if (object->type == Chat::Type::Group) {
+		appendToJson(result, "type", "group");
+	} else if (object->type == Chat::Type::Supergroup) {
+		appendToJson(result, "type", "supergroup");
+	} else if (object->type == Chat::Type::Channel) {
+		appendToJson(result, "type", "channel");
+	}
 	appendToJson(result, "title", object->title);
 	appendToJson(result, "username", object->username);
 	appendToJson(result, "first_name", object->firstName);
@@ -85,32 +102,12 @@ string TgTypeParser::parseUser(const User::Ptr& object) const {
 	return result;
 }
 
-GroupChat::Ptr TgTypeParser::parseJsonAndGetGroupChat(const ptree& data) const {
-	GroupChat::Ptr result(new GroupChat);
-	result->id = data.get<int32_t>("id");
-	result->title = data.get<string>("title");
-	return result;
-}
-
-string TgTypeParser::parseGroupChat(const GroupChat::Ptr& object) const {
-	if (!object) {
-		return "";
-	}
-	string result;
-	result += '{';
-	appendToJson(result, "id", object->id);
-	appendToJson(result, "title", object->title);
-	result.erase(result.length() - 1);
-	result += '}';
-	return result;
-}
-
 Message::Ptr TgTypeParser::parseJsonAndGetMessage(const ptree& data) const {
 	Message::Ptr result(new Message);
 	result->messageId = data.get<int32_t>("message_id");
-	result->from = parseJsonAndGetUser(data.find("from")->second);
+	result->from = tryParseJson<User>(&TgTypeParser::parseJsonAndGetUser, data, "from");
 	result->date = data.get<int32_t>("date");
-	result->chat = tryParseJson<Chat>(&TgTypeParser::parseJsonAndGetChat, data, "chat");
+	result->chat = parseJsonAndGetChat(data.find("chat")->second);
 	result->forwardFrom = tryParseJson<User>(&TgTypeParser::parseJsonAndGetUser, data, "forward_from");
 	result->forwardDate = data.get("forward_date", 0);
 	result->replyToMessage = tryParseJson<Message>(&TgTypeParser::parseJsonAndGetMessage, data, "reply_to_message");
@@ -457,25 +454,6 @@ std::string TgTypeParser::parseForceReply(const ForceReply::Ptr& object) const {
 	result.erase(result.length() - 1);
 	result += '}';
 	return result;
-}
-
-GenericChat::Ptr TgTypeParser::parseJsonAndGetGenericChat(const ptree& data) const {
-	if (data.find("first_name") == data.not_found()) {
-		return static_pointer_cast<GenericChat>(parseJsonAndGetGroupChat(data));
-	} else {
-		return static_pointer_cast<GenericChat>(parseJsonAndGetUser(data));
-	}
-}
-
-string TgTypeParser::parseGenericChat(const GenericChat::Ptr& object) const {
-	if (!object) {
-		return "";
-	}
-	if (dynamic_pointer_cast<User>(object) == nullptr) {
-		return parseGroupChat(static_pointer_cast<GroupChat>(object));
-	} else {
-		return parseUser(static_pointer_cast<User>(object));
-	}
 }
 
 GenericReply::Ptr TgTypeParser::parseJsonAndGetGenericReply(const boost::property_tree::ptree& data) const {

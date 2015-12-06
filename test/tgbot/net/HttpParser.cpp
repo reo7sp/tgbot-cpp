@@ -42,7 +42,7 @@ BOOST_AUTO_TEST_CASE(generateRequest) {
 		"Content-Length: 49\r\n"
 		"\r\n"
 		"email=test%40example.com&text=Hello%2c%20world%21";
-	BOOST_CHECK_MESSAGE(t == e, diff(t, e));
+	BOOST_CHECK_MESSAGE(t == e, diffS(t, e));
 }
 
 BOOST_AUTO_TEST_CASE(generateMultipartFormData) {
@@ -59,14 +59,14 @@ BOOST_AUTO_TEST_CASE(generateMultipartFormData) {
 		"Content-Type: text/plain\r\n"
 		"\r\n"
 		"Hello, world!\r\n";
-	BOOST_CHECK_MESSAGE(t == e, diff(t, e));
+	BOOST_CHECK_MESSAGE(t == e, diffS(t, e));
 }
 
 BOOST_AUTO_TEST_CASE(generateWwwFormUrlencoded) {
 	vector<HttpReqArg> args = { HttpReqArg("email", "test@example.com"), HttpReqArg("text", "Hello, world!") };
 	string t = HttpParser::getInstance().generateWwwFormUrlencoded(args);
 	string e = "email=test%40example.com&text=Hello%2c%20world%21";
-	BOOST_CHECK_MESSAGE(t == e, diff(t, e));
+	BOOST_CHECK_MESSAGE(t == e, diffS(t, e));
 }
 
 BOOST_AUTO_TEST_CASE(generateResponse) {
@@ -77,7 +77,7 @@ BOOST_AUTO_TEST_CASE(generateResponse) {
 		"Content-Length: 8\r\n"
 		"\r\n"
 		"testdata";
-	BOOST_CHECK_MESSAGE(t == e, diff(t, e));
+	BOOST_CHECK_MESSAGE(t == e, diffS(t, e));
 }
 
 BOOST_AUTO_TEST_CASE(parseRequest) {
@@ -103,7 +103,7 @@ BOOST_AUTO_TEST_CASE(parseRequest) {
 	};
 	string e = "testdata";
 
-	BOOST_CHECK_MESSAGE(t == e, diff(t, e));
+	BOOST_CHECK_MESSAGE(t == e, diffS(t, e));
 	BOOST_CHECK_MESSAGE(tHeaders == eHeaders, diff(tHeaders, eHeaders, [](const pair<const string, string>& item) -> string {
 		return item.first + '=' + item.second;
 	}));
@@ -127,7 +127,7 @@ BOOST_AUTO_TEST_CASE(parseResponse) {
 	};
 	string e = "testdata";
 
-	BOOST_CHECK_MESSAGE(t == e, diff(t, e));
+	BOOST_CHECK_MESSAGE(t == e, diffS(t, e));
 	BOOST_CHECK_MESSAGE(tHeaders == eHeaders, diff(tHeaders, eHeaders, [](const pair<const string, string>& item) -> string {
 		return item.first + '=' + item.second;
 	}));

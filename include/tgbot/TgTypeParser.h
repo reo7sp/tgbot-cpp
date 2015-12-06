@@ -30,7 +30,6 @@
 
 #include "tgbot/types/User.h"
 #include "tgbot/types/Chat.h"
-#include "tgbot/types/GroupChat.h"
 #include "tgbot/types/Message.h"
 #include "tgbot/types/PhotoSize.h"
 #include "tgbot/types/Audio.h"
@@ -63,8 +62,6 @@ public:
 	std::string parseChat(const Chat::Ptr& object) const;
 	User::Ptr parseJsonAndGetUser(const boost::property_tree::ptree& data) const;
 	std::string parseUser(const User::Ptr& object) const;
-	GroupChat::Ptr parseJsonAndGetGroupChat(const boost::property_tree::ptree& data) const;
-	std::string parseGroupChat(const GroupChat::Ptr& object) const;
 	Message::Ptr parseJsonAndGetMessage(const boost::property_tree::ptree& data) const;
 	std::string parseMessage(const Message::Ptr& object) const;
 	PhotoSize::Ptr parseJsonAndGetPhotoSize(const boost::property_tree::ptree& data) const;
@@ -91,8 +88,6 @@ public:
 	std::string parseReplyKeyboardHide(const ReplyKeyboardHide::Ptr& object) const;
 	ForceReply::Ptr parseJsonAndGetForceReply(const boost::property_tree::ptree& data) const;
 	std::string parseForceReply(const ForceReply::Ptr& object) const;
-	GenericChat::Ptr parseJsonAndGetGenericChat(const boost::property_tree::ptree& data) const;
-	std::string parseGenericChat(const GenericChat::Ptr& object) const;
 	GenericReply::Ptr parseJsonAndGetGenericReply(const boost::property_tree::ptree& data) const;
 	std::string parseGenericReply(const GenericReply::Ptr& object) const;
 

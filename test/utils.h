@@ -29,7 +29,7 @@
 
 #include <boost/lexical_cast.hpp>
 
-std::string diff(const std::string& test, const std::string& expected) {
+std::string diffS(const std::string& test, const std::string& expected) {
 	std::vector<std::string> v1, v2;
 	std::istringstream ss1(test);
 	std::istringstream ss2(expected);
@@ -45,9 +45,10 @@ std::string diff(const std::string& test, const std::string& expected) {
 			v2.push_back(s2);
 		}
 	} while (r1 || r2);
-	diff(v1, v2, [](const std::string& item) -> std::string {
-		return std::string(item);
-	});
+	return "";
+	//return diff(v1, v2, [](const std::string& item) {
+		//return item;
+	//});
 }
 
 template<typename T>

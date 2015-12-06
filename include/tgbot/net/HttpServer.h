@@ -80,7 +80,7 @@ protected:
 			data.reserve(10240);
 			socket->async_receive(data, [this]() {
 				std::map<std::string, std::string> headers;
-				std::string body = HttpParser::parseResponse(data, headers);
+				std::string body = HttpParser::getInstance().parseResponse(data, headers);
 				socket->async_send(_handler(body, headers));
 			});
 		}

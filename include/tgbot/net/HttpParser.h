@@ -25,6 +25,7 @@
 
 #include <string>
 #include <map>
+#include <vector>
 
 #include "tgbot/net/Url.h"
 #include "tgbot/net/HttpReqArg.h"
