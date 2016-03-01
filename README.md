@@ -7,7 +7,7 @@
 
 C++ library for Telegram bot API.
 
-Documentaion is located [here](http://reo7sp.ru/proj/tgbot-cpp/doc)
+Documentaion is located [here](http://reo7sp.github.io/tgbot-cpp/docs)
 
 ## Compilation
 
