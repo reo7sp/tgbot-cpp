@@ -34,7 +34,7 @@ TgTypeParser& TgTypeParser::getInstance() {
 
 Chat::Ptr TgTypeParser::parseJsonAndGetChat(const ptree& data) const {
 	Chat::Ptr result(new Chat);
-	result->id = data.get<int32_t>("id");
+	result->id = data.get<int64_t>("id");
 	string type = data.get<string>("type");
 	if (type == "private") {
 		result->type = Chat::Type::Private;
@@ -47,7 +47,7 @@ Chat::Ptr TgTypeParser::parseJsonAndGetChat(const ptree& data) const {
 	}
 	result->title = data.get("title", "");
 	result->username = data.get("username", "");
-	result->firstName = data.get<string>("first_name");
+	result->firstName = data.get<string>("first_name", "");
 	result->lastName = data.get("last_name", "");
 
 	return result;
