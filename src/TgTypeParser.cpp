@@ -126,6 +126,10 @@ Message::Ptr TgTypeParser::parseJsonAndGetMessage(const ptree& data) const {
 	result->deleteChatPhoto = data.get("delete_chat_photo", false);
 	result->groupChatCreated = data.get("group_chat_created", false);
 	result->caption = data.get("caption", false);
+	result->supergroupChatCreated = data.get("supergroup_chat_created", false);
+	result->channelChatCreated = data.get("channel_chat_created", false);
+	result->migrateToChatId = data.get<int64_t>("migrate_to_chat_id", 0);
+	result->migrateFromChatId = data.get<int64_t>("migrate_from_chat_id", 0);
 	return result;
 }
 
@@ -157,6 +161,10 @@ string TgTypeParser::parseMessage(const Message::Ptr& object) const {
 	appendToJson(result, "delete_chat_photo", object->deleteChatPhoto);
 	appendToJson(result, "group_chat_created", object->groupChatCreated);
 	appendToJson(result, "caption", object->caption);
+	appendToJson(result, "supergroup_chat_created", object->supergroupChatCreated);
+	appendToJson(result, "channel_chat_created", object->channelChatCreated);
+	appendToJson(result, "migrate_to_chat_id", object->migrateToChatId);
+	appendToJson(result, "migrate_from_chat_id", object->migrateFromChatId);
 	result.erase(result.length() - 1);
 	result += '}';
 	return result;
