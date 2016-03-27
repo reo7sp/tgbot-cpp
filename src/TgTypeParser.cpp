@@ -362,7 +362,7 @@ string TgTypeParser::parseUpdate(const Update::Ptr& object) const {
 	appendToJson(result, "update_id", object->updateId);
 	appendToJson(result, "message", parseMessage(object->message));
 	appendToJson(result, "inline_query", parseInlineQuery(object->inlineQuery));
-	appendToJson(result, "chosen_inline_result", parseChosenInlineResult(object->chosenInlineResult))
+	appendToJson(result, "chosen_inline_result", parseChosenInlineResult(object->chosenInlineResult));
 	result.erase(result.length() - 1);
 	result += '}';
 	return result;

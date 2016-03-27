@@ -25,6 +25,7 @@
 
 #include <string>
 #include <vector>
+#include <functional>
 
 #include <boost/lexical_cast.hpp>
 
@@ -41,22 +42,6 @@ public:
 	HttpReqArg(const std::string& name, const T& value, bool isFile = false, const std::string& mimeType = "text/plain", const std::string& fileName = "") :
 			name(name), value(boost::lexical_cast<std::string>(value)), isFile(isFile), mimeType(mimeType), fileName(fileName)
 	{
-	}
-
-	template<typename T>
-	HttpReqArg(const std::string& name, const std::vector<T>& list, function<std::string (const T&)> parsingFunction){
-		this->name = name;
-		value = "[";
-		for (const T& item : list){
-			value += parsingFunction(item);
-			value += ',';
-		}
-		value.erase(this->value.length() - 1);
-		value += ']';
-
-		isFile = false;
-		mimeType = "text/plain";
-		fileName = "";
 	}
 
 	/**

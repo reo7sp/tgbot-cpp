@@ -18,11 +18,13 @@ namespace TgBot {
  */
 class InlineQueryResultGif : public InlineQueryResult {
 public:
-    static const std::string TYPE = "gif";
+    static const std::string TYPE;
 
     typedef std::shared_ptr<InlineQueryResultGif> Ptr;
 
-    InlineQueryResultGif() : type(TYPE) {};
+    InlineQueryResultGif() {
+        this->type = TYPE;
+    }
 
     /**
      * A valid URL for the GIF file.

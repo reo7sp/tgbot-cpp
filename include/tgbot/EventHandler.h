@@ -31,8 +31,8 @@ namespace TgBot {
 
 class EventHandler {
 
-	inline void handleMessage(const Message::Ptr& message){
-		_broadcaster->broadcastAnyMessage(update->message);
+	void handleMessage(const Message::Ptr& message) const {
+		_broadcaster->broadcastAnyMessage(message);
 
 		if (StringTools::startsWith(message->text, "/")) {
 			unsigned long splitPosition;
@@ -68,7 +68,7 @@ public:
 		if (update->chosenInlineResult != NULL)
 			_broadcaster->broadcastChosenInlineResult(update->chosenInlineResult);
 		if (update->message != NULL)
-			handleMessag(update->message);
+			handleMessage(update->message);
 	}
 
 private:

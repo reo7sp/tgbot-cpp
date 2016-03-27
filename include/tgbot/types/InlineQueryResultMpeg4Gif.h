@@ -13,11 +13,13 @@ namespace TgBot {
  */
 class InlineQueryResultMpeg4Gif : public InlineQueryResult {
 public:
-	static const std::string TYPE = "mpeg4_gif";
+	static const std::string TYPE;
 
 	typedef std::shared_ptr<InlineQueryResultMpeg4Gif> Ptr;
 
-	InlineQueryResultMpeg4Gif() : type(TYPE) {};
+	InlineQueryResultMpeg4Gif() {
+		this->type = TYPE;
+	}
 
 	/**
 	 * A valid URL for the MP4 file.

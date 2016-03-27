@@ -13,11 +13,13 @@ namespace TgBot {
  */
 class InlineQueryResultVideo : public InlineQueryResult {
 public:
-	static const std::string TYPE = "video";
+	static const std::string TYPE;
 
 	typedef std::shared_ptr<InlineQueryResultVideo> Ptr;
 
-	InlineQueryResultVideo() : type(TYPE) {};
+	InlineQueryResultVideo() {
+		this->type = TYPE;
+	};
 
 	/**
 	 * A valid URL for the embedded video player or video file.

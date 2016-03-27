@@ -18,11 +18,13 @@ namespace TgBot {
  */
 class InlineQueryResultPhoto : public InlineQueryResult {
 public:
-    static const std::string TYPE = "photo";
+    static const std::string TYPE;
 
     typedef std::shared_ptr<InlineQueryResultPhoto> Ptr;
 
-    InlineQueryResultPhoto() : type(TYPE) {};
+    InlineQueryResultPhoto() {
+        this->type = TYPE;
+    }
 
     /**
      * A valid URL of the photo.

@@ -18,11 +18,13 @@ namespace TgBot {
  */
 class InlineQueryResultArticle : public InlineQueryResult {
 public:
-    static const std::string TYPE = "article";
+    static const std::string TYPE;
 
     typedef std::shared_ptr<InlineQueryResultArticle> Ptr;
 
-    InlineQueryResultArticle() : type(TYPE) {};
+    InlineQueryResultArticle() {
+        this->type = TYPE;
+    }
 
     /**
      * Optional. URL of the result.

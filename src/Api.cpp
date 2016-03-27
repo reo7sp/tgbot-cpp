@@ -255,11 +255,12 @@ void Api::setWebhook(const string& url) const {
 	sendRequest("setWebhook", args);
 }
 
-void Api::answerInlineQuery(const std::string inlineQueryId, const std::vector<InlineQueryResult::Ptr> results,
-                            int32_t cacheTime=300, bool isPersonal=false, const std::string& nextOffset=""){
+void Api::answerInlineQuery(const std::string& inlineQueryId, const std::vector<InlineQueryResult::Ptr>& results,
+                            int32_t cacheTime, bool isPersonal, const std::string& nextOffset){
 	vector<HttpReqArg> args;
 	args.push_back(HttpReqArg("inline_query_id", inlineQueryId));
-	args.push_back(HttpReqArg("results", results, TgTypeParser::getInstance().parseInlineQueryResult));
+	string resultsJson = TgTypeParser::getInstance().parseArray<InlineQueryResult>(&TgTypeParser::parseInlineQueryResult, results);
+	args.push_back(HttpReqArg("results", resultsJson));
 	args.push_back(HttpReqArg("cache_time", cacheTime));
 	args.push_back(HttpReqArg("is_personal", isPersonal));
 	args.push_back(HttpReqArg("next_offset", nextOffset));
