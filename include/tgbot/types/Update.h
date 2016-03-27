@@ -26,6 +26,8 @@
 #include <memory>
 
 #include "tgbot/types/Message.h"
+#include "tgbot/types/InlineQuery.h"
+#include "tgbot/types/ChosenInlineResult.h"
 
 namespace TgBot {
 
@@ -47,6 +49,16 @@ public:
 	 * Optional. New incoming message of any kind — text, photo, sticker, etc.
 	 */
 	Message::Ptr message;
+
+	/**
+	 * Optional. New incoming inline query
+	 */
+	InlineQuery::Ptr inlineQuery;
+
+	/**
+	 * Optional. The result of an inline query that was chosen by a user and sent to their chat partner.
+	 */
+	ChosenInlineResult::Ptr chosenInlineResult;
 };
 
 }

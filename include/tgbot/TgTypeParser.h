@@ -44,6 +44,14 @@
 #include "tgbot/types/ReplyKeyboardHide.h"
 #include "tgbot/types/ForceReply.h"
 #include "tgbot/types/GenericReply.h"
+#include "tgbot/types/InlineQuery.h"
+#include "tgbot/types/InlineQueryResult.h"
+#include "tgbot/types/InlineQueryResultArticle.h"
+#include "tgbot/types/InlineQueryResultPhoto.h"
+#include "tgbot/types/InlineQueryResultGif.h"
+#include "tgbot/types/InlineQueryResultMpeg4Gif.h"
+#include "tgbot/types/InlineQueryResultVideo.h"
+#include "tgbot/types/ChosenInlineResult.h"
 
 namespace TgBot {
 
@@ -90,6 +98,22 @@ public:
 	std::string parseForceReply(const ForceReply::Ptr& object) const;
 	GenericReply::Ptr parseJsonAndGetGenericReply(const boost::property_tree::ptree& data) const;
 	std::string parseGenericReply(const GenericReply::Ptr& object) const;
+	InlineQuery::Ptr parseJsonAndGetInlineQuery(const boost::property_tree::ptree& data) const;
+	std::string parseInlineQuery(const InlineQuery::Ptr& object) const;
+	InlineQueryResult::Ptr parseJsonAndGetInlineQueryResult(const boost::property_tree::ptree& data) const;
+	std::string parseInlineQueryResult(const InlineQueryResult::Ptr& object) const;
+	InlineQueryResultArticle::Ptr parseJsonAndGetInlineQueryResultArticle(const boost::property_tree::ptree& data) const;
+	std::string parseInlineQueryResultArticle(const InlineQueryResultArticle::Ptr& object) const;
+	InlineQueryResultPhoto::Ptr parseJsonAndGetInlineQueryResultPhoto(const boost::property_tree::ptree& data) const;
+	std::string parseInlineQueryResultPhoto(const InlineQueryResultPhoto::Ptr& object) const;
+	InlineQueryResultGif::Ptr parseJsonAndGetInlineQueryResultGif(const boost::property_tree::ptree& data) const;
+	std::string parseInlineQueryResultGif(const InlineQueryResultGif::Ptr& object) const;
+	InlineQueryResultMpeg4Gif::Ptr parseJsonAndGetInlineQueryResultMpeg4Gif(const boost::property_tree::ptree& data) const;
+	std::string parseInlineQueryResultMpeg4Gif(const InlineQueryResultMpeg4Gif::Ptr& object) const;
+	InlineQueryResultVideo::Ptr parseJsonAndGetInlineQueryResultVideo(const boost::property_tree::ptree& data) const;
+	std::string parseInlineQueryResultVideo(const InlineQueryResultVideo::Ptr& object) const;
+	ChosenInlineResult::Ptr parseJsonAndGetChosenInlineResult(const boost::property_tree::ptree& data) const;
+	std::string parseChosenInlineResult(const ChosenInlineResult::Ptr& object) const;
 
 	inline boost::property_tree::ptree parseJson(const std::string& json) const {
 		boost::property_tree::ptree tree;

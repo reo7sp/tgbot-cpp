@@ -255,6 +255,17 @@ void Api::setWebhook(const string& url) const {
 	sendRequest("setWebhook", args);
 }
 
+void Api::answerInlineQuery(const std::string inlineQueryId, const std::vector<InlineQueryResult::Ptr> results,
+                            int32_t cacheTime=300, bool isPersonal=false, const std::string& nextOffset=""){
+	vector<HttpReqArg> args;
+	args.push_back(HttpReqArg("inline_query_id", inlineQueryId));
+	args.push_back(HttpReqArg("results", results, TgTypeParser::getInstance().parseInlineQueryResult));
+	args.push_back(HttpReqArg("cache_time", cacheTime));
+	args.push_back(HttpReqArg("is_personal", isPersonal));
+	args.push_back(HttpReqArg("next_offset", nextOffset));
+	sendRequest("answerInlineQuery", args);
+}
+
 ptree Api::sendRequest(const string& method, const vector<HttpReqArg>& args) const {
 
 	string url = "https://api.telegram.org/bot";
