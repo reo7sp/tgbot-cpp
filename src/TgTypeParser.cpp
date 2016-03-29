@@ -347,9 +347,9 @@ string TgTypeParser::parseLocation(const Location::Ptr& object) const {
 Update::Ptr TgTypeParser::parseJsonAndGetUpdate(const ptree& data) const {
 	Update::Ptr result(new Update);
 	result->updateId = data.get<int32_t>("update_id");
-	result->message = parseJsonAndGetMessage(data.find("message")->second);
-	result->inlineQuery = parseJsonAndGetInlineQuery(data.find("inline_query")->second);
-	result->chosenInlineResult = parseJsonAndGetChosenInlineResult(data.find("chosen_inline_result")->second);
+	result->message = tryParseJson<Message>(&TgTypeParser::parseJsonAndGetMessage, data, "message");
+	result->inlineQuery = tryParseJson<InlineQuery>(&TgTypeParser::parseJsonAndGetInlineQuery, data, "inline_query");
+	result->chosenInlineResult = tryParseJson<ChosenInlineResult>(&TgTypeParser::parseJsonAndGetChosenInlineResult, data, "chosen_inline_result");
 	return result;
 }
 
