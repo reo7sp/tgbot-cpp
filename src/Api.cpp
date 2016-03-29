@@ -256,7 +256,7 @@ void Api::setWebhook(const string& url) const {
 }
 
 void Api::answerInlineQuery(const std::string& inlineQueryId, const std::vector<InlineQueryResult::Ptr>& results,
-                            int32_t cacheTime, bool isPersonal, const std::string& nextOffset){
+                            int32_t cacheTime, bool isPersonal, const std::string& nextOffset) const {
 	vector<HttpReqArg> args;
 	args.push_back(HttpReqArg("inline_query_id", inlineQueryId));
 	string resultsJson = TgTypeParser::getInstance().parseArray<InlineQueryResult>(&TgTypeParser::parseInlineQueryResult, results);
