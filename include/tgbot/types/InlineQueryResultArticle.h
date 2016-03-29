@@ -24,6 +24,9 @@ public:
 
     InlineQueryResultArticle() {
         this->type = TYPE;
+        this->hideUrl = false;
+        this->thumbHeight = 0;
+        this->thumbWidth = 0;
     }
 
     /**

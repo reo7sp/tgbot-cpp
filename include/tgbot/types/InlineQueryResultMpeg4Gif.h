@@ -19,6 +19,8 @@ public:
 
 	InlineQueryResultMpeg4Gif() {
 		this->type = TYPE;
+		this->mpeg4Width = 0;
+		this->mpeg4Height = 0;
 	}
 
 	/**

@@ -24,6 +24,8 @@ public:
 
     InlineQueryResultPhoto() {
         this->type = TYPE;
+        this->photoWidth = 0;
+        this->photoHeight = 0;
     }
 
     /**

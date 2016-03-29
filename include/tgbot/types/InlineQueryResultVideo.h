@@ -19,6 +19,9 @@ public:
 
 	InlineQueryResultVideo() {
 		this->type = TYPE;
+		this->videoWidth = 0;
+		this->videoHeight = 0;
+		this->videoDuration = 0;
 	};
 
 	/**

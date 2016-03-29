@@ -24,6 +24,8 @@ public:
 
     InlineQueryResultGif() {
         this->type = TYPE;
+        this->gifWidth = 0;
+        this->gifHeight = 0;
     }
 
     /**
