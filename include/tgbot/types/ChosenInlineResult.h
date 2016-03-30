@@ -28,7 +28,7 @@ public:
 	/**
 	 * The user that chose the result.
 	 */
-	User::Ptr user;
+	User::Ptr from;
 
 	/**
 	 * The query that was used to obtain the result.

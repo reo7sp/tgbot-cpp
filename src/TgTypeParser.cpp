@@ -711,7 +711,7 @@ std::string TgTypeParser::parseInlineQueryResultVideo(const InlineQueryResultVid
 ChosenInlineResult::Ptr TgTypeParser::parseJsonAndGetChosenInlineResult(const boost::property_tree::ptree& data) const {
 	ChosenInlineResult::Ptr result(new ChosenInlineResult);
 	result->resultId = data.get<string>("result_id");
-	result->user = tryParseJson<User>(&TgTypeParser::parseJsonAndGetUser, data, "user");
+	result->from = tryParseJson<User>(&TgTypeParser::parseJsonAndGetUser, data, "from");
 	result->query = data.get<string>("query");
 	return result;
 }
@@ -724,7 +724,7 @@ std::string TgTypeParser::parseChosenInlineResult(const ChosenInlineResult::Ptr&
 	string result;
 	result += '{';
 	appendToJson(result, "result_id", object->resultId);
-	appendToJson(result, "user", parseUser(object->user));
+	appendToJson(result, "from", parseUser(object->from));
 	appendToJson(result, "query", object->query);
 	result.erase(result.length() - 1);
 	result += '}';
