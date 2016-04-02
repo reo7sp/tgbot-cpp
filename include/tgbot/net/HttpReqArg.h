@@ -24,6 +24,8 @@
 #define TGBOT_HTTPPARAMETER_H
 
 #include <string>
+#include <vector>
+#include <functional>
 
 #include <boost/lexical_cast.hpp>
 

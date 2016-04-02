@@ -114,6 +114,8 @@ public:
 	 */
 	Video::Ptr video;
 
+	// TODO voice
+
 	/**
 	 * Optional. Message is a shared contact, information about the contact.
 	 */
@@ -158,6 +160,27 @@ public:
 	 * Optional. Text description of the photo or the video.
 	 */
 	std::string caption;
+
+	/**
+	 * Optional. Service message: the supergroup has been created.
+	 */
+	bool supergroupChatCreated;
+
+	/**
+	 * Optional. Service message: the channel has been created.
+	 */
+	bool channelChatCreated;
+
+	/**
+	 * Optional. The group has been migrated to a supergroup with the specified identifier, not exceeding 1e13 by absolute value.
+	 */
+	int64_t migrateToChatId;
+
+	/**
+	 * Optional. The supergroup has been migrated from a group with the specified identifier, not exceeding 1e13 by absolute value
+	 */
+	int64_t migrateFromChatId;
+
 };
 
 }

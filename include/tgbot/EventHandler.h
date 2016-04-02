@@ -31,34 +31,44 @@ namespace TgBot {
 
 class EventHandler {
 
+	void handleMessage(const Message::Ptr& message) const {
+		_broadcaster->broadcastAnyMessage(message);
+
+		if (StringTools::startsWith(message->text, "/")) {
+			unsigned long splitPosition;
+			unsigned long spacePosition = message->text.find(' ');
+			unsigned long atSymbolPosition = message->text.find('@');
+			if (spacePosition == message->text.npos) {
+				if (atSymbolPosition == message->text.npos) {
+					splitPosition = message->text.size();
+				} else {
+					splitPosition = atSymbolPosition;
+				}
+			} else if (atSymbolPosition == message->text.npos) {
+				splitPosition = spacePosition;
+			} else {
+				splitPosition = std::min(spacePosition, atSymbolPosition);
+			}
+			std::string command = message->text.substr(1, splitPosition - 1);
+			if (!_broadcaster->broadcastCommand(command, message)) {
+				_broadcaster->broadcastUnknownCommand(message);
+			}
+		} else {
+			_broadcaster->broadcastNonCommandMessage(message);
+		}
+	};
+
 public:
 	explicit EventHandler(const EventBroadcaster* broadcaster) : _broadcaster(broadcaster) {
 	}
 
 	inline void handleUpdate(const Update::Ptr& update) const {
-		_broadcaster->broadcastAnyMessage(update->message);
-		if (StringTools::startsWith(update->message->text, "/")) {
-			unsigned long splitPosition;
-			unsigned long spacePosition = update->message->text.find(' ');
-			unsigned long atSymbolPosition = update->message->text.find('@');
-			if (spacePosition == update->message->text.npos) {
-				if (atSymbolPosition == update->message->text.npos) {
-					splitPosition = update->message->text.size();
-				} else {
-					splitPosition = atSymbolPosition;
-				}
-			} else if (atSymbolPosition == update->message->text.npos) {
-				splitPosition = spacePosition;
-			} else {
-				splitPosition = std::min(spacePosition, atSymbolPosition);
-			}
-			std::string command = update->message->text.substr(1, splitPosition - 1);
-			if (!_broadcaster->broadcastCommand(command, update->message)) {
-				_broadcaster->broadcastUnknownCommand(update->message);
-			}
-		} else {
-			_broadcaster->broadcastNonCommandMessage(update->message);
-		}
+		if (update->inlineQuery != NULL)
+			_broadcaster->broadcastInlineQuery(update->inlineQuery);
+		if (update->chosenInlineResult != NULL)
+			_broadcaster->broadcastChosenInlineResult(update->chosenInlineResult);
+		if (update->message != NULL)
+			handleMessage(update->message);
 	}
 
 private:
