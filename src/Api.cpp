@@ -249,9 +249,13 @@ vector<Update::Ptr> Api::getUpdates(int32_t offset, int32_t limit, int32_t timeo
 	return TgTypeParser::getInstance().parseJsonAndGetArray<Update>(&TgTypeParser::parseJsonAndGetUpdate, sendRequest("getUpdates", args));
 }
 
-void Api::setWebhook(const string& url) const {
+void Api::setWebhook(const string& url, const InputFile::Ptr& certificate) const {
 	vector<HttpReqArg> args;
-	args.push_back(HttpReqArg("url", url));
+	if (!url.empty())
+		args.push_back(HttpReqArg("url", url));
+	if (certificate != nullptr)
+		args.push_back(HttpReqArg("certificate", certificate->data, true, certificate->mimeType, certificate->fileName));
+
 	sendRequest("setWebhook", args);
 }
 

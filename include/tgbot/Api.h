@@ -230,8 +230,7 @@ public:
 	 * Ports currently supported for Webhooks: 443, 80, 88, 8443.
 	 * @param url Optional. HTTPS url to send updates to. Use an empty string to remove webhook integration.
 	 */
-	// TODO Add support to self-signed certificate
-	void setWebhook(const std::string& url = "") const;
+	void setWebhook(const std::string& url = "", const InputFile::Ptr& certificate = nullptr) const;
 
 	/**
 	 * Use this method to send answers to an inline query.
