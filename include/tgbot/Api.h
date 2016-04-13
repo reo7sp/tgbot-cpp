@@ -68,7 +68,7 @@ public:
 	 * @param parseMode Optional. Set it to "Markdown" or "HTML" if you want Telegram apps to show bold, italic, fixed-width text or inline URLs in your bot's message.
 	 * @return On success, the sent message is returned.
 	 */
-	Message::Ptr sendMessage(int64_t chatId, const std::string& text, bool disableWebPagePreview = false, int32_t replyToMessageId = 0, const GenericReply::Ptr& replyMarkup = GenericReply::Ptr(), const string& parseMode = "") const;
+	Message::Ptr sendMessage(int64_t chatId, const std::string& text, bool disableWebPagePreview = false, int32_t replyToMessageId = 0, const GenericReply::Ptr& replyMarkup = GenericReply::Ptr(), const std::string& parseMode = "") const;
 
 	/**
 	 * Use this method to forward messages of any kind.
