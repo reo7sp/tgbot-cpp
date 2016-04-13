@@ -38,7 +38,7 @@ User::Ptr Api::getMe() const {
 	return TgTypeParser::getInstance().parseJsonAndGetUser(sendRequest("getMe"));
 }
 
-Message::Ptr Api::sendMessage(int64_t chatId, const string& text, bool disableWebPagePreview, int32_t replyToMessageId, const GenericReply::Ptr& replyMarkup) const {
+Message::Ptr Api::sendMessage(int64_t chatId, const string& text, bool disableWebPagePreview, int32_t replyToMessageId, const GenericReply::Ptr& replyMarkup, const string& parseMode) const {
 	vector<HttpReqArg> args;
 	args.push_back(HttpReqArg("chat_id", chatId));
 	args.push_back(HttpReqArg("text", text));
@@ -50,6 +50,9 @@ Message::Ptr Api::sendMessage(int64_t chatId, const string& text, bool disableWe
 	}
 	if (replyMarkup) {
 		args.push_back(HttpReqArg("reply_markup", TgTypeParser::getInstance().parseGenericReply(replyMarkup)));
+	}
+	if (!parseMode.empty()) {
+		args.push_back(HttpReqArg("parse_mode", parseMode));
 	}
 	return TgTypeParser::getInstance().parseJsonAndGetMessage(sendRequest("sendMessage", args));
 }
