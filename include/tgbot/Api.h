@@ -112,12 +112,15 @@ public:
 	 * @param chatId Unique identifier for the target chat.
 	 * @param audio Audio to send.
 	 * @param duration Duration of sent audio in seconds.
+	 * @param performer Performer
+	 * @param title Track name
 	 * @param replyToMessageId Optional. If the message is a reply, ID of the original message.
 	 * @param replyMarkup Optional. Additional interface options. An object for a custom reply keyboard, instructions to hide keyboard or to force a reply from the user.
 	 * @param disableNotification Optional. Sends the message silenty.
 	 * @return On success, the sent message is returned.
 	 */
-	Message::Ptr sendAudio(int64_t chatId, const InputFile::Ptr& audio, int32_t duration = 0, int32_t replyToMessageId = 0,
+	Message::Ptr sendAudio(int64_t chatId, const InputFile::Ptr& audio, int32_t duration = 0,
+	                       const std::string& performer = "", const std::string& title = "", int32_t replyToMessageId = 0,
 	                       const GenericReply::Ptr& replyMarkup = GenericReply::Ptr(), bool disableNotification = false) const;
 
 	/**
@@ -125,12 +128,15 @@ public:
 	 * @param chatId Unique identifier for the target chat.
 	 * @param audio Id of the audio that is already on the Telegram servers.
 	 * @param duration Duration of sent audio in seconds.
+	 * @param performer Performer
+	 * @param title Track name
 	 * @param replyToMessageId Optional. If the message is a reply, ID of the original message.
 	 * @param replyMarkup Optional. Additional interface options. An object for a custom reply keyboard, instructions to hide keyboard or to force a reply from the user.
 	 * @param disableNotification Optional. Sends the message silenty.
 	 * @return On success, the sent message is returned.
 	 */
-	Message::Ptr sendAudio(int64_t chatId, const std::string& audioId, int32_t duration = 0, int32_t replyToMessageId = 0,
+	Message::Ptr sendAudio(int64_t chatId, const std::string& audioId, int32_t duration = 0,
+	                       const std::string& performer = "", const std::string& title = "", int32_t replyToMessageId = 0,
 	                       const GenericReply::Ptr& replyMarkup = GenericReply::Ptr(), bool disableNotification = false) const;
 
 	/**
@@ -203,6 +209,32 @@ public:
 	 * @return On success, the sent message is returned.
 	 */
 	Message::Ptr sendVideo(int64_t chatId, const std::string& videoId, int32_t replyToMessageId = 0,
+	                       const GenericReply::Ptr& replyMarkup = GenericReply::Ptr(), bool disableNotification = false) const;
+
+	/**
+	 * Use this method to send audio files, if you want Telegram clients to display the file as a playable voice message.
+	 * @param chatId Unique identifier for the target chat.
+	 * @param voice Audio file to send.
+	 * @param duration Duration of send audio in seconds.
+	 * @param replyToMessageId Optional. If the message is a reply, ID of the original message.
+	 * @param replyMarkup Optional. Additional interface options. A object for a custom reply keyboard, instructions to hide keyboard or to force a reply from the user.
+	 * @param disableNotification Optional. Sends the message silenty.
+	 * @return On success, the sent message is returned.
+	 */
+	Message::Ptr sendVoice(int64_t chatId, const InputFile::Ptr& voice, int duration = 0, int32_t replyToMessageId = 0,
+	                      const GenericReply::Ptr& replyMarkup = GenericReply::Ptr(), bool disableNotification = false) const;
+
+	/**
+	 * Use this method to send audio files, if you want Telegram clients to display the file as a playable voice message.
+	 * @param chatId Unique identifier for the target chat.
+	 * @param voiceId Id of the voice that is already on the Telegram servers.
+	 * @param duration Duration of send audio in seconds.
+	 * @param replyToMessageId Optional. If the message is a reply, ID of the original message.
+	 * @param replyMarkup Optional. Additional interface options. A object for a custom reply keyboard, instructions to hide keyboard or to force a reply from the user.
+	 * @param disableNotification Optional. Sends the message silenty.
+	 * @return On success, the sent message is returned.
+	 */
+	Message::Ptr sendVoice(int64_t chatId, const std::string& voiceId, int duration = 0, int32_t replyToMessageId = 0,
 	                       const GenericReply::Ptr& replyMarkup = GenericReply::Ptr(), bool disableNotification = false) const;
 
 	/**

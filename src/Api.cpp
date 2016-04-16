@@ -106,12 +106,18 @@ Message::Ptr Api::sendPhoto(int64_t chatId, const string& photoId, const string&
 	return TgTypeParser::getInstance().parseJsonAndGetMessage(sendRequest("sendPhoto", args));
 }
 
-Message::Ptr Api::sendAudio(int64_t chatId, const InputFile::Ptr& audio, int32_t duration, int32_t replyToMessageId, const GenericReply::Ptr& replyMarkup, bool disableNotification) const {
+Message::Ptr Api::sendAudio(int64_t chatId, const InputFile::Ptr& audio, int32_t duration, const string& performer, const string& title, int32_t replyToMessageId, const GenericReply::Ptr& replyMarkup, bool disableNotification) const {
 	vector<HttpReqArg> args;
 	args.push_back(HttpReqArg("chat_id", chatId));
 	args.push_back(HttpReqArg("audio", audio->data, true, audio->mimeType, audio->fileName));
 	if (duration) {
 		args.push_back(HttpReqArg("duration", duration));
+	}
+	if (!performer.empty()){
+		args.push_back(HttpReqArg("performer", performer));
+	}
+	if (!title.empty()){
+		args.push_back(HttpReqArg("title", title));
 	}
 	if (replyToMessageId) {
 		args.push_back(HttpReqArg("reply_to_message_id", replyToMessageId));
@@ -125,12 +131,18 @@ Message::Ptr Api::sendAudio(int64_t chatId, const InputFile::Ptr& audio, int32_t
 	return TgTypeParser::getInstance().parseJsonAndGetMessage(sendRequest("sendAudio", args));
 }
 
-Message::Ptr Api::sendAudio(int64_t chatId, const string& audioId, int32_t duration, int32_t replyToMessageId, const GenericReply::Ptr& replyMarkup, bool disableNotification) const {
+Message::Ptr Api::sendAudio(int64_t chatId, const string& audioId, int32_t duration, const string& performer, const string& title, int32_t replyToMessageId, const GenericReply::Ptr& replyMarkup, bool disableNotification) const {
 	vector<HttpReqArg> args;
 	args.push_back(HttpReqArg("chat_id", chatId));
 	args.push_back(HttpReqArg("audio", audioId));
 	if (duration) {
 		args.push_back(HttpReqArg("duration", duration));
+	}
+	if (!performer.empty()){
+		args.push_back(HttpReqArg("performer", performer));
+	}
+	if (!title.empty()){
+		args.push_back(HttpReqArg("title", title));
 	}
 	if (replyToMessageId) {
 		args.push_back(HttpReqArg("reply_to_message_id", replyToMessageId));
@@ -228,6 +240,44 @@ Message::Ptr Api::sendVideo(int64_t chatId, const string& videoId, int32_t reply
 	vector<HttpReqArg> args;
 	args.push_back(HttpReqArg("chat_id", chatId));
 	args.push_back(HttpReqArg("video", videoId));
+	if (replyToMessageId) {
+		args.push_back(HttpReqArg("reply_to_message_id", replyToMessageId));
+	}
+	if (replyMarkup) {
+		args.push_back(HttpReqArg("reply_markup", TgTypeParser::getInstance().parseGenericReply(replyMarkup)));
+	}
+	if (disableNotification){
+		args.push_back(HttpReqArg("disable_notification", disableNotification));
+	}
+	return TgTypeParser::getInstance().parseJsonAndGetMessage(sendRequest("sendVideo", args));
+}
+
+Message::Ptr Api::sendVoice(int64_t chatId, const InputFile::Ptr& voice, int duration, int32_t replyToMessageId, const GenericReply::Ptr& replyMarkup, bool disableNotification) const {
+	vector<HttpReqArg> args;
+	args.push_back(HttpReqArg("chat_id", chatId));
+	args.push_back(HttpReqArg("voice", voice->data, true, voice->mimeType, voice->fileName));
+	if (duration){
+		args.push_back(HttpReqArg("duration", duration));
+	}
+	if (replyToMessageId) {
+		args.push_back(HttpReqArg("reply_to_message_id", replyToMessageId));
+	}
+	if (replyMarkup) {
+		args.push_back(HttpReqArg("reply_markup", TgTypeParser::getInstance().parseGenericReply(replyMarkup)));
+	}
+	if (disableNotification){
+		args.push_back(HttpReqArg("disable_notification", disableNotification));
+	}
+	return TgTypeParser::getInstance().parseJsonAndGetMessage(sendRequest("sendVideo", args));
+}
+
+Message::Ptr Api::sendVoice(int64_t chatId, const std::string& voiceId, int duration, int32_t replyToMessageId, const GenericReply::Ptr& replyMarkup, bool disableNotification) const {
+	vector<HttpReqArg> args;
+	args.push_back(HttpReqArg("chat_id", chatId));
+	args.push_back(HttpReqArg("voice", voiceId));
+	if (duration){
+		args.push_back(HttpReqArg("duration", duration));
+	}
 	if (replyToMessageId) {
 		args.push_back(HttpReqArg("reply_to_message_id", replyToMessageId));
 	}
