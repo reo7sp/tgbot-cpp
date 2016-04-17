@@ -307,6 +307,46 @@ Message::Ptr Api::sendLocation(int64_t chatId, float latitude, float longitude, 
 	return TgTypeParser::getInstance().parseJsonAndGetMessage(sendRequest("sendLocation", args));
 }
 
+Message::Ptr Api::sendVenue(int64_t chatId, float latitude, float longitude, std::string title, std::string address, std::string foursquareId, bool disableNotification, int32_t replyToMessageId = 0, const GenericReply::Ptr& replyMarkup) const {
+	vector<HttpReqArg> args;
+	args.push_back(HttpReqArg("chat_id", chatId));
+	args.push_back(HttpReqArg("latitude", latitude));
+	args.push_back(HttpReqArg("longitude", longitude));
+	args.push_back(HttpReqArg("title", title));
+	args.push_back(HttpReqArg("address", address));
+	if (!foursquareId.empty()) {
+		args.push_back(HttpReqArg("foursquare_id", foursquareId));
+	}
+	if (replyToMessageId) {
+		args.push_back(HttpReqArg("reply_to_message_id", replyToMessageId));
+	}
+	if (replyMarkup) {
+		args.push_back(HttpReqArg("reply_markup", TgTypeParser::getInstance().parseGenericReply(replyMarkup)));
+	}
+	if (disableNotification){
+		args.push_back(HttpReqArg("disable_notification", disableNotification));
+	}
+	return TgTypeParser::getInstance().parseJsonAndGetMessage(sendRequest("sendVenue", args));
+}
+
+Message::Ptr Api::sendContact(int64_t chatId, std::string phoneNumber, std::string firstName, std::string lastName, bool disableNotification, int32_t replyToMessageId, const GenericReply::Ptr& replyMarkup) const {
+	vector<HttpReqArg> args;
+	args.push_back(HttpReqArg("chat_id", chatId));
+	args.push_back(HttpReqArg("phone_number", phoneNumber));
+	args.push_back(HttpReqArg("first_name", firstName));
+	args.push_back(HttpReqArg("last_name", lastName));
+	if (replyToMessageId) {
+		args.push_back(HttpReqArg("reply_to_message_id", replyToMessageId));
+	}
+	if (replyMarkup) {
+		args.push_back(HttpReqArg("reply_markup", TgTypeParser::getInstance().parseGenericReply(replyMarkup)));
+	}
+	if (disableNotification){
+		args.push_back(HttpReqArg("disable_notification", disableNotification));
+	}
+	return TgTypeParser::getInstance().parseJsonAndGetMessage(sendRequest("sendContact", args));
+}
+
 void Api::sendChatAction(int64_t chatId, const string& action) const {
 	vector<HttpReqArg> args;
 	args.push_back(HttpReqArg("chat_id", chatId));
@@ -358,6 +398,20 @@ void Api::answerInlineQuery(const std::string& inlineQueryId, const std::vector<
 	args.push_back(HttpReqArg("is_personal", isPersonal));
 	args.push_back(HttpReqArg("next_offset", nextOffset));
 	sendRequest("answerInlineQuery", args);
+}
+
+void Api::kickChatMember(int64_t chatId, int32_t userId) const {
+	vector<HttpReqArg> args;
+	args.push_back(HttpReqArg("chat_id", chatId));
+	args.push_back(HttpReqArg("user_id", userId));
+	sendRequest("kickChatMember", args);
+}
+
+void Api::unbanChatMember(int64_t chatId, int32_t userId) const {
+	vector<HttpReqArg> args;
+	args.push_back(HttpReqArg("chat_id", chatId));
+	args.push_back(HttpReqArg("user_id", userId));
+	sendRequest("unbanChatMember", args);
 }
 
 ptree Api::sendRequest(const string& method, const vector<HttpReqArg>& args) const {

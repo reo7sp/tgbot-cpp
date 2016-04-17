@@ -36,6 +36,7 @@
 #include "tgbot/types/UserProfilePhotos.h"
 #include "tgbot/types/Update.h"
 #include "tgbot/types/InlineQueryResult.h"
+#include "tgbot/types/Venue.h"
 
 namespace TgBot {
 
@@ -251,6 +252,36 @@ public:
 	                          const GenericReply::Ptr& replyMarkup = GenericReply::Ptr(), bool disableNotification = false) const;
 
 	/**
+	 * Use this method to send information about a venue. On success, the sent Message is returned.
+	 * @param chatId Unique identifier for the target chat.
+	 * @param latitude Latitude of location.
+	 * @param longitude Longitude of location.
+	 * @param title Name of the venue.
+	 * @param address Address of the venue.
+	 * @param foursquare_id Foursquare identifier of the venue.
+	 * @param replyToMessageId Optional. If the message is a reply, ID of the original message.
+	 * @param replyMarkup Optional. Additional interface options. A object for a custom reply keyboard, instructions to hide keyboard or to force a reply from the user.
+	 * @param disableNotification Optional. Sends the message silenty.
+	 * @return On success, the sent message is returned.
+	 */
+	Message::Ptr sendVenue(int64_t chatId, float latitude, float longitude, std::string title, std::string address, std::string foursquareId = "",
+	                       bool disableNotification = false, int32_t replyToMessageId = 0, const GenericReply::Ptr& replyMarkup = GenericReply::Ptr()) const;
+
+	/**
+	 * Use this method to send phone contacts. On success, the sent Message is returned.
+	 * @param chatId Unique identifier for the target chat.
+	 * @param phoneNumber Contact's phone number.
+	 * @param firstName Contact's first name.
+	 * @param lastName Contact's last name.
+	 * @param disableNotification Optional. Sends the message silenty.
+	 * @param replyToMessageId Optional. If the message is a reply, ID of the original message.
+	 * @param replyMarkup Optional. Additional interface options. A object for a custom reply keyboard, instructions to hide keyboard or to force a reply from the user.
+	 * @return On success, the sent message is returned.
+	 */
+	Message::Ptr sendContact(int64_t chatId, std::string phoneNumber, std::string firstName, std::string lastName = "", bool disableNotification = false,
+							int32_t replyToMessageId = 0, const GenericReply::Ptr& replyMarkup = GenericReply::Ptr()) const;
+
+	/**
 	 * Use this method when you need to tell the user that something is happening on the bot's side. The status is set for 5 seconds or less (when a message arrives from your bot, Telegram clients clear its typing status).
 	 * Example: The ImageBot needs some time to process a request and upload the image. Instead of sending a text message along the lines of “Retrieving image, please wait…”, the bot may use sendChatAction with action = upload_photo. The user will see a “sending photo” status for the bot.
 	 * We only recommend using this method when a response from the bot will take a noticeable amount of time to arrive.
@@ -300,6 +331,20 @@ public:
 	 */
 	void answerInlineQuery(const std::string& inlineQueryId, const std::vector<InlineQueryResult::Ptr>& results,
 							int32_t cacheTime=300, bool isPersonal=false, const std::string& nextOffset="") const;
+
+	/**
+	 * Use this method to kick a user from a group or a supergroup.
+	 * @param chatId Unique identifier for the target group.
+	 * @param userId Unique identifier of the target user.
+	 */
+	void kickChatMember(int64_t chatId, int32_t userId) const;
+
+	/**
+	 * Use this method to unban a previously kicked user in a supergroup.
+	 * @param chatId Unique identifier for the target group.
+	 * @param userId Unique identifier of the target user.
+	 */
+	void unbanChatMember(int64_t chatId, int32_t userId) const;
 
 private:
 	boost::property_tree::ptree sendRequest(const std::string& method, const std::vector<HttpReqArg>& args = std::vector<HttpReqArg>()) const;
