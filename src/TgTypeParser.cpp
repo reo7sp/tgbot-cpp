@@ -350,6 +350,7 @@ Update::Ptr TgTypeParser::parseJsonAndGetUpdate(const ptree& data) const {
 	result->message = tryParseJson<Message>(&TgTypeParser::parseJsonAndGetMessage, data, "message");
 	result->inlineQuery = tryParseJson<InlineQuery>(&TgTypeParser::parseJsonAndGetInlineQuery, data, "inline_query");
 	result->chosenInlineResult = tryParseJson<ChosenInlineResult>(&TgTypeParser::parseJsonAndGetChosenInlineResult, data, "chosen_inline_result");
+	result->callbackQuery = tryParseJson<CallbackQuery>(&TgTypeParser::parseJsonAndGetCallbackQuery, data, "callback_query");
 	return result;
 }
 
@@ -363,6 +364,7 @@ string TgTypeParser::parseUpdate(const Update::Ptr& object) const {
 	appendToJson(result, "message", parseMessage(object->message));
 	appendToJson(result, "inline_query", parseInlineQuery(object->inlineQuery));
 	appendToJson(result, "chosen_inline_result", parseChosenInlineResult(object->chosenInlineResult));
+	appendToJson(result, "callback_query", parseCallbackQuery(object->callbackQuery));
 	result.erase(result.length() - 1);
 	result += '}';
 	return result;
@@ -473,8 +475,10 @@ GenericReply::Ptr TgTypeParser::parseJsonAndGetGenericReply(const boost::propert
 		return static_pointer_cast<GenericReply>(parseJsonAndGetForceReply(data));
 	} else if (data.find("hide_keyboard") != data.not_found()) {
 		return static_pointer_cast<GenericReply>(parseJsonAndGetReplyKeyboardHide(data));
-	} else {
+	} else if (data.find("keyboard") != data.not_found()) {
 		return static_pointer_cast<GenericReply>(parseJsonAndGetReplyKeyboardMarkup(data));
+	} else if (data.find("inline_keyboard") != data.not_found()) {
+		return static_pointer_cast<GenericReply>(parseJsonAndGetInlineKeyboardMarkup(data));
 	}
 }
 
@@ -486,8 +490,10 @@ std::string TgTypeParser::parseGenericReply(const GenericReply::Ptr& object) con
 		return parseForceReply(static_pointer_cast<ForceReply>(object));
 	} else if (dynamic_pointer_cast<ReplyKeyboardHide>(object) != nullptr) {
 		return parseReplyKeyboardHide(static_pointer_cast<ReplyKeyboardHide>(object));
-	} else {
+	} else if (dynamic_pointer_cast<ReplyKeyboardMarkup>(object) != nullptr){
 		return parseReplyKeyboardMarkup(static_pointer_cast<ReplyKeyboardMarkup>(object));
+	} else if (dynamic_pointer_cast<InlineKeyboardMarkup>(object) != nullptr){
+		return parseInlineKeyboardMarkup(static_pointer_cast<InlineKeyboardMarkup>(object));
 	}
 }
 
@@ -726,6 +732,85 @@ std::string TgTypeParser::parseChosenInlineResult(const ChosenInlineResult::Ptr&
 	appendToJson(result, "result_id", object->resultId);
 	appendToJson(result, "from", parseUser(object->from));
 	appendToJson(result, "query", object->query);
+	result.erase(result.length() - 1);
+	result += '}';
+	return result;
+}
+
+CallbackQuery::Ptr TgTypeParser::parseJsonAndGetCallbackQuery(const boost::property_tree::ptree& data) const {
+	CallbackQuery::Ptr result(new CallbackQuery);
+	result->id = data.get<string>("id");
+	result->from = tryParseJson<User>(&TgTypeParser::parseJsonAndGetUser, data, "from");
+	result->message = tryParseJson<Message>(&TgTypeParser::parseJsonAndGetMessage, data, "message");
+	result->inlineMessageId = data.get<string>("inline_message_id", "");
+	result->data = data.get<string>("data", "");
+	return result;
+}
+
+std::string TgTypeParser::parseCallbackQuery(const CallbackQuery::Ptr& object) const {
+	if (!object){
+		return "";
+	}
+
+	string result;
+	result += '{';
+	appendToJson(result, "id", object->id);
+	appendToJson(result, "from", parseUser(object->from));
+	appendToJson(result, "message", parseMessage(object->message));
+	appendToJson(result, "inline_message_id", object->inlineMessageId);
+	appendToJson(result, "data", object->data);
+	result.erase(result.length() - 1);
+	result += '}';
+	return result;
+}
+
+InlineKeyboardMarkup::Ptr TgTypeParser::parseJsonAndGetInlineKeyboardMarkup(const boost::property_tree::ptree& data) const {
+	InlineKeyboardMarkup::Ptr result(new InlineKeyboardMarkup);
+	for (const boost::property_tree::ptree::value_type& item : data.find("inline_keyboard")->second){
+		result->inlineKeyboard.push_back(parseJsonAndGetArray<InlineKeyboardButton>(&TgTypeParser::parseJsonAndGetInlineKeyboardButton, item.second));
+	}
+	return result;
+}
+
+std::string TgTypeParser::parseInlineKeyboardMarkup(const InlineKeyboardMarkup::Ptr& object) const {
+	if (!object){
+		return "";
+	}
+	string result;
+	result += '{';
+	result += "\"inline_keyboard\":[";
+	for (vector<InlineKeyboardButton::Ptr>& item : object->inlineKeyboard){
+		result += '[';
+		for (InlineKeyboardButton::Ptr& innerItem : item){
+			result += parseInlineKeyboardButton(innerItem);
+			result += ',';
+		}
+		result.erase(result.length() - 1);
+		result += "],";
+	}
+	result.erase(result.length() - 1);
+	result += "]}";
+	return result;
+}
+
+InlineKeyboardButton::Ptr TgTypeParser::parseJsonAndGetInlineKeyboardButton(const boost::property_tree::ptree& data) const {
+	InlineKeyboardButton::Ptr result(new InlineKeyboardButton);
+	result->text = data.get<string>("text");
+	result->url = data.get<string>("url", "");
+	result->callbackData = data.get<string>("callback_data", "");
+	result->switchInlineQuery = data.get<string>("switch_inline_query", "");
+	return result;
+}
+std::string TgTypeParser::parseInlineKeyboardButton(const InlineKeyboardButton::Ptr& object) const {
+	if (!object){
+		return "";
+	}
+	string result;
+	result += '{';
+	appendToJson(result, "text", object->text);
+	appendToJson(result, "url", object->url);
+	appendToJson(result, "callback_data", object->callbackData);
+	appendToJson(result, "switch_inline_query", object->switchInlineQuery);
 	result.erase(result.length() - 1);
 	result += '}';
 	return result;

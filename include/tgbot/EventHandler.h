@@ -67,6 +67,8 @@ public:
 			_broadcaster->broadcastInlineQuery(update->inlineQuery);
 		if (update->chosenInlineResult != NULL)
 			_broadcaster->broadcastChosenInlineResult(update->chosenInlineResult);
+		if (update->callbackQuery != NULL)
+			_broadcaster->broadcastCallbackQuery(update->callbackQuery);
 		if (update->message != NULL)
 			handleMessage(update->message);
 	}

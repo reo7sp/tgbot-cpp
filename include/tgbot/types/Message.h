@@ -37,6 +37,9 @@
 #include "tgbot/types/Contact.h"
 #include "tgbot/types/Location.h"
 #include "tgbot/types/PhotoSize.h"
+#include "tgbot/types/MessageEntity.h"
+#include "tgbot/types/Venue.h"
+#include "tgbot/types/Voice.h"
 
 namespace TgBot {
 
@@ -45,9 +48,17 @@ namespace TgBot {
  * @ingroup types
  */
 class Message {
-
 public:
 	typedef std::shared_ptr<Message> Ptr;
+
+	Message(){
+		deleteChatPhoto = false;
+		groupChatCreated = false;
+		supergroupChatCreated = false;
+		channelChatCreated = false;
+		migrateToChatId = 0;
+		migrateFromChatId = 0;
+	}
 
 	/**
 	 * Unique message identifier.
@@ -90,6 +101,11 @@ public:
 	std::string text;
 
 	/**
+	 * Optional. For text messages, special entities like usernames, URLs, bot commands, etc. that appear in the text.
+	 */
+	std::vector<MessageEntity::Ptr> entities;
+
+	/**
 	 * Optional. Message is an audio file, information about the file.
 	 */
 	Audio::Ptr audio;
@@ -114,7 +130,15 @@ public:
 	 */
 	Video::Ptr video;
 
-	// TODO voice
+	/**
+	 * Optional. Message is a voice message, information about the file.
+	 */
+	Voice::Ptr voice;
+
+	/**
+	 * Optional. Caption for the document, photo or video, 0-200 characters.
+	 */
+	std::string caption;
 
 	/**
 	 * Optional. Message is a shared contact, information about the contact.
@@ -127,14 +151,19 @@ public:
 	Location::Ptr location;
 
 	/**
+	 * Optional. Message is a venue, information about the venue.
+	 */
+	Venue::Ptr venue;
+
+	/**
 	 * Optional. A new member was added to the group, information about them (this member may be bot itself).
 	 */
-	User::Ptr newChatParticipant;
+	User::Ptr newChatMember;
 
 	/**
 	 * Optional. A member was removed from the group, information about them (this member may be bot itself).
 	 */
-	User::Ptr leftChatParticipant;
+	User::Ptr leftChatMember;
 
 	/**
 	 * Optional. A group title was changed to this value.
@@ -157,11 +186,6 @@ public:
 	bool groupChatCreated;
 
 	/**
-	 * Optional. Text description of the photo or the video.
-	 */
-	std::string caption;
-
-	/**
 	 * Optional. Service message: the supergroup has been created.
 	 */
 	bool supergroupChatCreated;
@@ -180,6 +204,11 @@ public:
 	 * Optional. The supergroup has been migrated from a group with the specified identifier, not exceeding 1e13 by absolute value
 	 */
 	int64_t migrateFromChatId;
+
+	/**
+	 * Optional. Specified message was pinned. Note that the Message object in this field will not contain further reply_to_message fields even if it is itself a reply.
+	 */
+	Message::Ptr pinnedMessage;
 
 };
 

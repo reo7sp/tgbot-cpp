@@ -31,6 +31,7 @@
 #include "tgbot/types/Message.h"
 #include "tgbot/types/InlineQuery.h"
 #include "tgbot/types/ChosenInlineResult.h"
+#include "tgbot/types/CallbackQuery.h"
 
 namespace TgBot {
 
@@ -48,6 +49,7 @@ public:
 	typedef std::function<void (const Message::Ptr&)> MessageListener;
 	typedef std::function<void (const InlineQuery::Ptr&)> InlineQueryListener;
 	typedef std::function<void (const ChosenInlineResult::Ptr&)> ChosenInlineResultListener;
+	typedef std::function<void (const CallbackQuery::Ptr&)> CallbackQueryListener;
 
 	/**
 	 * Registers listener which receives all messages which the bot can ever receive.
@@ -82,12 +84,24 @@ public:
 		_onNonCommandMessageListeners.push_back(listener);
 	}
 
+	/**
+	 * Registers listener which receives all the inline query.
+	 * @param listener Listener.
+	 */
 	inline void onInlineQuery(const InlineQueryListener& listener) {
 		_onInlineQueryListeners.push_back(listener);
 	}
 
+	/**
+	 * Registers listener which receives all the chosen inline result.
+	 * @param listener Listener.
+	 */
 	inline void onChosenInlineResult(const ChosenInlineResultListener& listener){
 		_onChosenInlineResultListeners.push_back(listener);
+	}
+
+	inline void onCallbackQuery(const CallbackQueryListener& listener){
+		_onCallbackQueryListeners.push_back(listener);
 	}
 
 private:
@@ -130,12 +144,17 @@ private:
 		broadcast<ChosenInlineResultListener, ChosenInlineResult::Ptr>(_onChosenInlineResultListeners, result);
 	}
 
+	inline void broadcastCallbackQuery(const CallbackQuery::Ptr& result) const {
+		broadcast<CallbackQueryListener, CallbackQuery::Ptr>(_onCallbackQueryListeners, result);
+	}
+
 	std::vector<MessageListener> _onAnyMessageListeners;
 	std::map<std::string, MessageListener> _onCommandListeners;
 	std::vector<MessageListener> _onUnknownCommandListeners;
 	std::vector<MessageListener> _onNonCommandMessageListeners;
 	std::vector<InlineQueryListener> _onInlineQueryListeners;
 	std::vector<ChosenInlineResultListener> _onChosenInlineResultListeners;
+	std::vector<CallbackQueryListener> _onCallbackQueryListeners;
 };
 
 }
