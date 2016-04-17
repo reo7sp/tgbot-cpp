@@ -314,7 +314,7 @@ Message::Ptr Api::sendLocation(int64_t chatId, float latitude, float longitude, 
 	return TgTypeParser::getInstance().parseJsonAndGetMessage(sendRequest("sendLocation", args));
 }
 
-Message::Ptr Api::sendVenue(int64_t chatId, float latitude, float longitude, std::string title, std::string address, std::string foursquareId, bool disableNotification, int32_t replyToMessageId = 0, const GenericReply::Ptr& replyMarkup) const {
+Message::Ptr Api::sendVenue(int64_t chatId, float latitude, float longitude, std::string title, std::string address, std::string foursquareId, bool disableNotification, int32_t replyToMessageId, const GenericReply::Ptr& replyMarkup) const {
 	vector<HttpReqArg> args;
 	args.push_back(HttpReqArg("chat_id", chatId));
 	args.push_back(HttpReqArg("latitude", latitude));

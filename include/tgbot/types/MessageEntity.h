@@ -16,7 +16,7 @@ namespace TgBot {
  */
 class MessageEntity {
 public:
-	std::shared_ptr<MessageEntity> Ptr;
+	typedef std::shared_ptr<MessageEntity> Ptr;
 
 	/**
 	 * Type of the entity. One of mention (@username), hashtag, bot_command, url, email, bold (bold text), italic (italic text), code (monowidth string), pre (monowidth block), text_link (for clickable text URLs).

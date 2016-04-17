@@ -16,7 +16,7 @@ namespace TgBot {
  */
 class Voice {
 public:
-	std::shared_ptr<Voice> Ptr;
+	typedef std::shared_ptr<Voice> Ptr;
 
 	/**
 	 * Unique identifier for this file.
