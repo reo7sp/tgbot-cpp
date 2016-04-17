@@ -52,6 +52,9 @@
 #include "tgbot/types/InlineQueryResultMpeg4Gif.h"
 #include "tgbot/types/InlineQueryResultVideo.h"
 #include "tgbot/types/ChosenInlineResult.h"
+#include "tgbot/types/CallbackQuery.h"
+#include "tgbot/types/InlineKeyboardMarkup.h"
+#include "tgbot/types/InlineKeyboardButton.h"
 
 namespace TgBot {
 
@@ -114,6 +117,12 @@ public:
 	std::string parseInlineQueryResultVideo(const InlineQueryResultVideo::Ptr& object) const;
 	ChosenInlineResult::Ptr parseJsonAndGetChosenInlineResult(const boost::property_tree::ptree& data) const;
 	std::string parseChosenInlineResult(const ChosenInlineResult::Ptr& object) const;
+	CallbackQuery::Ptr parseJsonAndGetCallbackQuery(const boost::property_tree::ptree& data) const;
+	std::string parseCallbackQuery(const CallbackQuery::Ptr& object) const;
+	InlineKeyboardMarkup::Ptr parseJsonAndGetInlineKeyboardMarkup(const boost::property_tree::ptree& data) const;
+	std::string parseInlineKeyboardMarkup(const InlineKeyboardMarkup::Ptr& object) const;
+	InlineKeyboardButton::Ptr parseJsonAndGetInlineKeyboardButton(const boost::property_tree::ptree& data) const;
+	std::string parseInlineKeyboardButton(const InlineKeyboardButton::Ptr& object) const;
 
 	inline boost::property_tree::ptree parseJson(const std::string& json) const {
 		boost::property_tree::ptree tree;

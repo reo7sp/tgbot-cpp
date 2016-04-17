@@ -28,6 +28,7 @@
 #include "tgbot/types/Message.h"
 #include "tgbot/types/InlineQuery.h"
 #include "tgbot/types/ChosenInlineResult.h"
+#include "tgbot/types/CallbackQuery.h"
 
 namespace TgBot {
 
@@ -59,6 +60,11 @@ public:
 	 * Optional. The result of an inline query that was chosen by a user and sent to their chat partner.
 	 */
 	ChosenInlineResult::Ptr chosenInlineResult;
+
+	/**
+	 * Optional. New incoming callback query.
+	 */
+	CallbackQuery::Ptr callbackQuery;
 };
 
 }
