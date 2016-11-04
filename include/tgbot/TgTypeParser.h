@@ -73,6 +73,7 @@ public:
 	std::string parseChat(const Chat::Ptr& object) const;
 	User::Ptr parseJsonAndGetUser(const boost::property_tree::ptree& data) const;
 	std::string parseUser(const User::Ptr& object) const;
+	MessageEntity::Ptr parseJsonAndGetEntity(const boost::property_tree::ptree& data) const;
 	Message::Ptr parseJsonAndGetMessage(const boost::property_tree::ptree& data) const;
 	std::string parseMessage(const Message::Ptr& object) const;
 	PhotoSize::Ptr parseJsonAndGetPhotoSize(const boost::property_tree::ptree& data) const;
