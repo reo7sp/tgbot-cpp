@@ -102,6 +102,15 @@ string TgTypeParser::parseUser(const User::Ptr& object) const {
 	return result;
 }
 
+MessageEntity::Ptr TgTypeParser::parseJsonAndGetEntity(const ptree& data) const{
+	MessageEntity::Ptr result(new MessageEntity);
+	result->type=data.get<string>("type");
+	result->offset=data.get<int32_t>("offset");
+	result->length=data.get<int32_t>("length");
+	result->url=data.get<string>("url", "");
+	return result;
+}	
+
 Message::Ptr TgTypeParser::parseJsonAndGetMessage(const ptree& data) const {
 	Message::Ptr result(new Message);
 	result->messageId = data.get<int32_t>("message_id");
