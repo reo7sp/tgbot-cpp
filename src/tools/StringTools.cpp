@@ -84,7 +84,7 @@ string generateRandomString(size_t length) {
 	return result;
 }
 
-string urlEncode(const string& value, const std::string additionalLegitChars) {
+string urlEncode(const string& value, const std::string& additionalLegitChars) {
 	static const string legitPunctuation = "-_.~";
 	ostringstream result;
 	result.fill('0');
