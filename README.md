@@ -2,7 +2,6 @@
 
 [![Build Status](https://travis-ci.org/reo7sp/tgbot-cpp.svg?branch=master)](https://travis-ci.org/reo7sp/tgbot-cpp)
 [![Join the chat at https://gitter.im/reo7sp/tgbot-cpp](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/reo7sp/tgbot-cpp?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-[![Flattr this](https://button.flattr.com/flattr-badge-large.png "Flattr this")](https://flattr.com/submit/auto?user_id=Reo_SP&url=https%3A%2F%2Fgithub.com%2Freo7sp%2Ftgbot-cpp)
 [![Donate using Yandex.Money](https://i.imgur.com/8Fi2DnS.png)](https://money.yandex.ru/to/410011554060830)
 
 C++ library for Telegram bot API.
@@ -64,7 +63,7 @@ int main() {
 All samples are located [here](samples)
 
 ## Feedback
-Feel free to [create new issues on GitHub](https://github.com/reo7sp/tgbot-cpp/issues) or [contact me on Telegram](https://telegram.me/Reo_SP)
+Feel free to [create new issues on GitHub](https://github.com/reo7sp/tgbot-cpp/issues) or [contact me on Telegram](https://telegram.me/reo7sp)
 
 ## Licence
 [The MIT License](http://opensource.org/licenses/MIT)
