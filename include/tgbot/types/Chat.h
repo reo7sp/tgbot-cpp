@@ -76,6 +76,12 @@ public:
      * other party in private chat
      */
     std::string lastName;
+
+	/**
+	 * Optional. True if a group 
+	 * has ‘All Members Are Admins’ enabled.
+	 */
+	bool allMembersAreAdministrators;
 };
 
 }

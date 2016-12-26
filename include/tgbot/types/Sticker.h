@@ -60,6 +60,11 @@ public:
 	PhotoSize::Ptr thumb;
 
 	/**
+	 * Optional. Emoji associated with the sticker
+	 */
+	std::string emoji;
+
+	/**
 	 * Optional. File size.
 	 */
 	int32_t fileSize;

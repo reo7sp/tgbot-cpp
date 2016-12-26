@@ -7,6 +7,7 @@
 
 #include <memory>
 #include <string>
+#include "tgbot/types/User.h"
 
 namespace TgBot {
 
@@ -37,6 +38,11 @@ public:
 	 * Optional. For “text_link” only, url that will be opened after user taps on the text
 	 */
 	std::string url;
+
+	/**
+	 * Optional. For “text_mention” only, the mentioned user
+	 */
+	User::Ptr user;
 };
 }
 

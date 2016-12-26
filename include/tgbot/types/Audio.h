@@ -48,6 +48,18 @@ public:
 	int32_t duration;
 
 	/**
+	 * Optional. Performer of the audio as defined by sender
+	 * or by audio tags
+	 */
+	std::string performer;
+
+	/**
+	* Optional. Title of the audio as defined by sender or 
+	* by audio tags
+	*/
+	std::string title;
+
+	/**
 	 * Optional. MIME type of the file as defined by sender.
 	 */
 	std::string mimeType;
