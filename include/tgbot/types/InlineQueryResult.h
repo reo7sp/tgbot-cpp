@@ -8,6 +8,9 @@
 #include <memory>
 #include <string>
 
+#include "tgbot/types/InlineKeyboardMarkup.h"
+#include "tgbot/types/InputMessageContent.h"
+
 namespace TgBot {
 
 /**
@@ -19,7 +22,7 @@ public:
     typedef std::shared_ptr<InlineQueryResult> Ptr;
 
     InlineQueryResult() {
-        this->disableWebPagePreview = false;
+        //this->disableWebPagePreview = false;
     }
 
     virtual ~InlineQueryResult() { }
@@ -40,26 +43,19 @@ public:
     std::string title;
 
     /**
-     * Text of the message t be sent. (1-4096 characters)
-     */
-    std::string messageText;
+	 * Optional. Caption of the file to be sent, 0-200 characters
+	 */
+	std::string caption;
 
-    /**
-     * Optional. Send Markdown or HTML, if you want Telegram apps to
-     * show bold, italic, fixed-width text or inline URLs in your bot's message.
-     */
-    std::string parseMode;
+	/**
+	 * Optional. Inline keyboard attached to the message
+	 */
+	InlineKeyboardMarkup::Ptr replyMarkup;
 
-    /**
-     * Optional. Disables link previews for links in the send message.
-     */
-    bool disableWebPagePreview;
-
-    /**
-     * Optional. Url of the thumbnail for the result.
-     */
-    std::string thumbUrl;
-
+	/**
+	 * Content of the message to be sent
+	 */
+	InputMessageContent::Ptr inputMessageContent;
 };
 }
 

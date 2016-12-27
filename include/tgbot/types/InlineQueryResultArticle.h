@@ -44,6 +44,11 @@ public:
      */
     std::string description;
 
+	/**
+	 * Optional. Url of the thumbnail for the result
+	 */
+	std::string thumbUrl;
+
     /**
      * Optional. Thumbnail width.
      */

@@ -552,10 +552,10 @@ InlineQueryResult::Ptr TgTypeParser::parseJsonAndGetInlineQueryResult(const boos
 
 	result->id = data.get<string>("id");
 	result->title = data.get<string>("title", "");
-	result->messageText = data.get<string>("message_text", "");
-	result->parseMode = data.get<string>("parse_mode", "");
-	result->disableWebPagePreview = data.get("disable_web_page_preview", false);
-	result->thumbUrl = data.get<string>("thumb_url", "");
+	//result->messageText = data.get<string>("message_text", "");
+	//result->parseMode = data.get<string>("parse_mode", "");
+	//result->disableWebPagePreview = data.get("disable_web_page_preview", false);
+	//result->thumbUrl = data.get<string>("thumb_url", "");
 
 	return result;
 }
@@ -570,10 +570,10 @@ std::string TgTypeParser::parseInlineQueryResult(const InlineQueryResult::Ptr& o
 	appendToJson(result, "id", object->id);
 	appendToJson(result, "type", object->type);
 	appendToJson(result, "title", object->title);
-	appendToJson(result, "message_text", object->messageText);
-	appendToJson(result, "parse_mode", object->parseMode);
-	appendToJson(result, "disable_web_page_preview", object->disableWebPagePreview);
-	appendToJson(result, "thumb_url", object->thumbUrl);
+	//appendToJson(result, "message_text", object->messageText);
+	//appendToJson(result, "parse_mode", object->parseMode);
+	//appendToJson(result, "disable_web_page_preview", object->disableWebPagePreview);
+	//appendToJson(result, "thumb_url", object->thumbUrl);
 
 	if (object->type == InlineQueryResultArticle::TYPE){
 		result += parseInlineQueryResultArticle(static_pointer_cast<InlineQueryResultArticle>(object));
