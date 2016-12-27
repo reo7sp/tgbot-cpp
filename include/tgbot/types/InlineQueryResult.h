@@ -22,7 +22,7 @@ public:
     typedef std::shared_ptr<InlineQueryResult> Ptr;
 
     InlineQueryResult() {
-        //this->disableWebPagePreview = false;
+        
     }
 
     virtual ~InlineQueryResult() { }

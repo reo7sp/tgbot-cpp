@@ -49,6 +49,7 @@ Chat::Ptr TgTypeParser::parseJsonAndGetChat(const ptree& data) const {
 	result->username = data.get("username", "");
 	result->firstName = data.get<string>("first_name", "");
 	result->lastName = data.get("last_name", "");
+	result->allMembersAreAdministrators = data.get<bool>("all_members_are_administrators", false);
 
 	return result;
 }
@@ -108,6 +109,7 @@ MessageEntity::Ptr TgTypeParser::parseJsonAndGetEntity(const ptree& data) const{
 	result->offset=data.get<int32_t>("offset");
 	result->length=data.get<int32_t>("length");
 	result->url=data.get<string>("url", "");
+	result->user = tryParseJson<User>(&TgTypeParser::parseJsonAndGetUser, data, "user");
 	return result;
 }	
 
@@ -208,6 +210,8 @@ Audio::Ptr TgTypeParser::parseJsonAndGetAudio(const ptree& data) const {
 	Audio::Ptr result(new Audio);
 	result->fileId = data.get<string>("file_id");
 	result->duration = data.get<int32_t>("duration");
+	result->performer = data.get<string>("performer", "");
+	result->title = data.get<string>("title", "");
 	result->mimeType = data.get("mime_type", "");
 	result->fileSize = data.get("file_size", 0);
 	return result;
@@ -260,6 +264,7 @@ Sticker::Ptr TgTypeParser::parseJsonAndGetSticker(const ptree& data) const {
 	result->width = data.get<int32_t>("width");
 	result->height = data.get<int32_t>("height");
 	result->thumb = tryParseJson<PhotoSize>(&TgTypeParser::parseJsonAndGetPhotoSize, data, "thumb");
+	result->emoji = data.get<string>("emoji");
 	result->fileSize = data.get("file_size", 0);
 	return result;
 }
@@ -274,6 +279,7 @@ string TgTypeParser::parseSticker(const Sticker::Ptr& object) const {
 	appendToJson(result, "width", object->width);
 	appendToJson(result, "height", object->height);
 	appendToJson(result, "thumb", parsePhotoSize(object->thumb));
+	appendToJson(result, "emoji", object->emoji);
 	appendToJson(result, "file_size", object->fileSize);
 	result.erase(result.length() - 1);
 	result += '}';
@@ -400,6 +406,28 @@ string TgTypeParser::parseUserProfilePhotos(const UserProfilePhotos::Ptr& object
 	return result;
 }
 
+File::Ptr TgTypeParser::parseJsonAndGetFile(const boost::property_tree::ptree& data) const {
+	File::Ptr result(new File);
+	result->fileId = data.get<string>("file_id");
+	result->filePath = data.get<int32_t>("file_size", 0);
+	result->filePath = data.get<string>("file_path", "");
+	return result;
+}
+
+string TgTypeParser::parseFile(const File::Ptr& object) const {
+	if (!object) {
+		return "";
+	}
+	string result;
+	result += '{';
+	appendToJson(result, "file_id", object->fileId);
+	appendToJson(result, "file_size", object->fileSize);
+	appendToJson(result, "file_path", object->filePath);
+	result.erase(result.length() - 1);
+	result += '}';
+	return result;
+}
+
 ReplyKeyboardMarkup::Ptr TgTypeParser::parseJsonAndGetReplyKeyboardMarkup(const boost::property_tree::ptree& data) const {
 	ReplyKeyboardMarkup::Ptr result(new ReplyKeyboardMarkup);
 	for (const pair<const string, ptree>& item : data.find("keyboard")->second) {
@@ -436,6 +464,47 @@ std::string TgTypeParser::parseReplyKeyboardMarkup(const ReplyKeyboardMarkup::Pt
 	result += "],";
 	appendToJson(result, "resize_keyboard", object->resizeKeyboard);
 	appendToJson(result, "one_time_keyboard", object->oneTimeKeyboard);
+	appendToJson(result, "selective", object->selective);
+	result.erase(result.length() - 1);
+	result += '}';
+	return result;
+}
+
+KeyboardButton::Ptr TgTypeParser::parseJsonAndGetKeyboardButton(const boost::property_tree::ptree& data) const {
+	KeyboardButton::Ptr result(new KeyboardButton);
+	result->text = data.get<string>("text");
+	result->requestContact = data.get<bool>("request_contact", false);
+	result->requestLocation = data.get<bool>("request_location", false);
+	return result;
+}
+
+std::string TgTypeParser::parseKeyboardButton(const KeyboardButton::Ptr& object) const {
+	if (!object) {
+		return "";
+	}
+	string result;
+	result += '{';
+	appendToJson(result, "text", object->text);
+	appendToJson(result, "request_contact", object->requestContact);
+	appendToJson(result, "request_location", object->requestLocation);
+	result.erase(result.length() - 1);
+	result += '}';
+	return result;
+}
+
+ReplyKeyboardRemove::Ptr TgTypeParser::parseJsonAndGetReplyKeyboardRemove(const boost::property_tree::ptree& data) const {
+	ReplyKeyboardRemove::Ptr result(new ReplyKeyboardRemove);
+	result->selective = data.get<bool>("selective", false);
+	return result;
+}
+
+std::string TgTypeParser::parseReplyKeyboardRemove(const ReplyKeyboardRemove::Ptr& object) const {
+	if (!object) {
+		return "";
+	}
+	string result;
+	result += '{';
+	appendToJson(result, "remove_keyboard", object->removeKeyboard);
 	appendToJson(result, "selective", object->selective);
 	result.erase(result.length() - 1);
 	result += '}';
@@ -480,6 +549,46 @@ std::string TgTypeParser::parseForceReply(const ForceReply::Ptr& object) const {
 	return result;
 }
 
+ChatMember::Ptr TgTypeParser::parseJsonAndGetChatMember(const boost::property_tree::ptree& data) const {
+	ChatMember::Ptr result(new ChatMember);
+	result->user = tryParseJson<User>(&TgTypeParser::parseJsonAndGetUser, data, "user");
+	result->status = data.get<string>("status");
+	return result;
+}
+
+std::string TgTypeParser::parseChatMember(const ChatMember::Ptr& object) const {
+	if (!object) {
+		return "";
+	}
+	string result;
+	result += '{';
+	appendToJson(result, "user", parseUser(object->user));
+	appendToJson(result, "status", object->status);
+	result.erase(result.length() - 1);
+	result += '}';
+	return result;
+}
+
+ResponseParameters::Ptr TgTypeParser::parseJsonAndGetResponseParameters(const boost::property_tree::ptree& data) const {
+	ResponseParameters::Ptr result(new ResponseParameters);
+	result->migrateToChatId = data.get<int32_t>("migrate_to_chat_id", 0);
+	result->retryAfter = data.get<int32_t>("retry_after", 0);
+	return result;
+}
+
+std::string TgTypeParser::parseResponseParameters(const ResponseParameters::Ptr& object) const {
+	if (!object) {
+		return "";
+	}
+	string result;
+	result += '{';
+	appendToJson(result, "migrate_to_chat_id", object->migrateToChatId);
+	appendToJson(result, "retry_after", object->retryAfter);
+	result.erase(result.length() - 1);
+	result += '}';
+	return result;
+}
+
 GenericReply::Ptr TgTypeParser::parseJsonAndGetGenericReply(const boost::property_tree::ptree& data) const {
 	if (data.find("force_reply") != data.not_found()) {
 		return static_pointer_cast<GenericReply>(parseJsonAndGetForceReply(data));
@@ -511,6 +620,7 @@ InlineQuery::Ptr TgTypeParser::parseJsonAndGetInlineQuery(const boost::property_
 	InlineQuery::Ptr result(new InlineQuery);
 	result->id = data.get<string>("id");
 	result->from = tryParseJson<User>(&TgTypeParser::parseJsonAndGetUser, data, "from");
+	result->location = tryParseJson<Location>(&TgTypeParser::parseJsonAndGetLocation, data, "location");
 	result->query = data.get<string>("query");
 	result->offset = data.get<string>("offset");
 
@@ -525,6 +635,7 @@ std::string TgTypeParser::parseInlineQuery(const InlineQuery::Ptr& object) const
 	result += '{';
 	appendToJson(result, "id", object->id);
 	appendToJson(result, "from", parseUser(object->from));
+	appendToJson(result, "location", parseLocation(object->location));
 	appendToJson(result, "query", object->query);
 	appendToJson(result, "offset", object->offset);
 	result.erase(result.length() - 1);
@@ -536,6 +647,19 @@ InlineQueryResult::Ptr TgTypeParser::parseJsonAndGetInlineQueryResult(const boos
 	string type = data.get<string>("type");
 	InlineQueryResult::Ptr result;
 
+	/*if (type == InlineQueryResultCachedAudio::TYPE) {
+		result = static_pointer_cast<InlineQueryResult>(parseJsonAndGetInlineQueryResultArticle(data));
+	} else if (type == InlineQueryResultCachedDocument::TYPE) {
+
+	} else if (type == InlineQueryResultCachedDocument::TYPE) {
+
+	} else if (type == InlineQueryResultCachedDocument::TYPE) {
+
+	} else if (type == InlineQueryResultCachedDocument::TYPE) {
+
+	} else if (type == InlineQueryResultCachedDocument::TYPE) {
+
+	}*/
 	if (type == InlineQueryResultArticle::TYPE) {
 		result = static_pointer_cast<InlineQueryResult>(parseJsonAndGetInlineQueryResultArticle(data));
 	} else if (type == InlineQueryResultPhoto::TYPE) {
@@ -753,6 +877,8 @@ CallbackQuery::Ptr TgTypeParser::parseJsonAndGetCallbackQuery(const boost::prope
 	result->from = tryParseJson<User>(&TgTypeParser::parseJsonAndGetUser, data, "from");
 	result->message = tryParseJson<Message>(&TgTypeParser::parseJsonAndGetMessage, data, "message");
 	result->inlineMessageId = data.get<string>("inline_message_id", "");
+	result->chatInstance = data.get<string>("chat_instance");
+	result->gameShortName = data.get<string>("game_short_name", "");
 	result->data = data.get<string>("data", "");
 	return result;
 }
@@ -768,6 +894,8 @@ std::string TgTypeParser::parseCallbackQuery(const CallbackQuery::Ptr& object) c
 	appendToJson(result, "from", parseUser(object->from));
 	appendToJson(result, "message", parseMessage(object->message));
 	appendToJson(result, "inline_message_id", object->inlineMessageId);
+	appendToJson(result, "chat_instance", object->chatInstance);
+	appendToJson(result, "game_short_name", object->gameShortName);
 	appendToJson(result, "data", object->data);
 	result.erase(result.length() - 1);
 	result += '}';
@@ -809,6 +937,7 @@ InlineKeyboardButton::Ptr TgTypeParser::parseJsonAndGetInlineKeyboardButton(cons
 	result->url = data.get<string>("url", "");
 	result->callbackData = data.get<string>("callback_data", "");
 	result->switchInlineQuery = data.get<string>("switch_inline_query", "");
+	result->switchInlineQueryCurrentChat = data.get<string>("switch_inline_query_current_chat", "");
 	return result;
 }
 std::string TgTypeParser::parseInlineKeyboardButton(const InlineKeyboardButton::Ptr& object) const {
@@ -821,6 +950,45 @@ std::string TgTypeParser::parseInlineKeyboardButton(const InlineKeyboardButton::
 	appendToJson(result, "url", object->url);
 	appendToJson(result, "callback_data", object->callbackData);
 	appendToJson(result, "switch_inline_query", object->switchInlineQuery);
+	appendToJson(result, "switch_inline_query_current_chat", object->switchInlineQueryCurrentChat);
+	result.erase(result.length() - 1);
+	result += '}';
+	return result;
+}
+
+WebhookInfo::Ptr TgTypeParser::parseJsonAndGetWebhookInfo(const boost::property_tree::ptree& data) const {
+	WebhookInfo::Ptr result(new WebhookInfo);
+	result->url = data.get<string>("url");
+	result->hasCustomCertificate = data.get<bool>("has_custom_certificate");
+	result->pendingUpdateCount = data.get<int32_t>("pending_update_count");
+	result->lastErrorDate = data.get<int32_t>("last_error_date", 0);
+	result->lastErrorMessage = data.get<string>("last_error_message", "");
+	result->maxConnections = data.get<int32_t>("max_connections", 0);
+	result->allowedUpdates = parseJsonAndGetArray<std::string>(
+		[](const boost::property_tree::ptree& innerData)->std::string {
+			return innerData.get<std::string>("");
+		}
+		, data);
+	return result;
+}
+
+std::string TgTypeParser::parseWebhookInfo(const WebhookInfo::Ptr& object) const {
+	if (!object) {
+		return "";
+	}
+	string result;
+	result += '{';
+	appendToJson(result, "url", object->url);
+	appendToJson(result, "has_custom_certificate", object->hasCustomCertificate);
+	appendToJson(result, "pending_update_count", object->pendingUpdateCount);
+	appendToJson(result, "last_error_date", object->lastErrorDate);
+	appendToJson(result, "last_error_message", object->lastErrorMessage);
+	appendToJson(result, "max_connections", object->maxConnections);
+	appendToJson(result, "allowed_updates", 
+		parseArray<std::string>([](const std::string &s)->std::string {
+			return s;
+		}
+		, object->allowedUpdates));
 	result.erase(result.length() - 1);
 	result += '}';
 	return result;
