@@ -18,6 +18,10 @@ class InputContactMessageContent : public InputMessageContent {
 public:
 	typedef std::shared_ptr<InputContactMessageContent> Ptr;
 
+	InputContactMessageContent() :
+		InputMessageContent("InputContactMessageContent")
+	{}
+
 	/**
 	* Contact's phone number
 	*/

@@ -17,6 +17,19 @@ class InputMessageContent {
 public:
 	typedef std::shared_ptr<InputMessageContent> Ptr;
 	
+	InputMessageContent(const std::string &tType):
+		type(tType)
+	{}
+
+	/**
+	 * May be
+	 * InputTextMessageContent
+	 * InputLocationMessageContent
+	 * InputVenueMessageContent
+	 * InputContactMessageContent
+	 */
+	std::string type;
+
 	virtual ~InputMessageContent() { }
 };
 }

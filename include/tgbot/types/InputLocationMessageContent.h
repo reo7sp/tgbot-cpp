@@ -17,6 +17,10 @@ class InputLocationMessageContent : public InputMessageContent {
 public:
 	typedef std::shared_ptr<InputLocationMessageContent> Ptr;
 
+	InputLocationMessageContent() :
+		InputMessageContent("InputLocationMessageContent")
+	{}
+
 	/**
 	* Latitude of the location in degrees
 	*/

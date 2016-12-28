@@ -18,6 +18,10 @@ class InputTextMessageContent : public InputMessageContent {
 public:
 	typedef std::shared_ptr<InputTextMessageContent> Ptr;
 
+	InputTextMessageContent():
+		InputMessageContent("InputTextMessageContent")
+	{}
+
 	/**
 	* Text of the message to be sent, 1-4096 characters
 	*/

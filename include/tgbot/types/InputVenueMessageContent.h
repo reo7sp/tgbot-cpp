@@ -19,6 +19,10 @@ class InputVenueMessageContent : public InputMessageContent {
 public:
 	typedef std::shared_ptr<InputVenueMessageContent> Ptr;
 
+	InputVenueMessageContent() :
+		InputMessageContent("InputVenueMessageContent")
+	{}
+
 	/**
 	* Latitude of the location in degrees
 	*/
@@ -42,7 +46,7 @@ public:
 	/**
 	* Optional. Foursquare identifier of the venue, if known
 	*/
-	std::string foursquare_id;
+	std::string foursquareId;
 
 	virtual ~InputVenueMessageContent() { }
 };

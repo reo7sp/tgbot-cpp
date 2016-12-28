@@ -76,6 +76,11 @@
 #include "tgbot/types/InlineKeyboardMarkup.h"
 #include "tgbot/types/InlineKeyboardButton.h"
 #include "tgbot/types/WebhookInfo.h"
+#include "tgbot/types/InputMessageContent.h"
+#include "tgbot/types/InputTextMessageContent.h"
+#include "tgbot/types/InputLocationMessageContent.h"
+#include "tgbot/types/InputVenueMessageContent.h"
+#include "tgbot/types/InputContactMessageContent.h"
 
 namespace TgBot {
 
@@ -181,6 +186,21 @@ public:
 	InlineQueryResultContact::Ptr parseJsonAndGetInlineQueryResultContact(const boost::property_tree::ptree& data) const;
 	std::string parseInlineQueryResultContact(const InlineQueryResultContact::Ptr& object) const;
 
+	InlineQueryResultGame::Ptr parseJsonAndGetInlineQueryResultGame(const boost::property_tree::ptree& data) const;
+	std::string parseInlineQueryResultGame(const InlineQueryResultGame::Ptr& object) const;
+
+	InlineQueryResultDocument::Ptr parseJsonAndGetInlineQueryResultDocument(const boost::property_tree::ptree& data) const;
+	std::string parseInlineQueryResultDocument(const InlineQueryResultDocument::Ptr& object) const;
+
+	InlineQueryResultLocation::Ptr parseJsonAndGetInlineQueryResultLocation(const boost::property_tree::ptree& data) const;
+	std::string parseInlineQueryResultLocation(const InlineQueryResultLocation::Ptr& object) const;
+
+	InlineQueryResultVenue::Ptr parseJsonAndGetInlineQueryResultVenue(const boost::property_tree::ptree& data) const;
+	std::string parseInlineQueryResultVenue(const InlineQueryResultVenue::Ptr& object) const;
+
+	InlineQueryResultVoice::Ptr parseJsonAndGetInlineQueryResultVoice(const boost::property_tree::ptree& data) const;
+	std::string parseInlineQueryResultVoice(const InlineQueryResultVoice::Ptr& object) const;
+
 	InlineQueryResultPhoto::Ptr parseJsonAndGetInlineQueryResultPhoto(const boost::property_tree::ptree& data) const;
 	std::string parseInlineQueryResultPhoto(const InlineQueryResultPhoto::Ptr& object) const;
 	InlineQueryResultGif::Ptr parseJsonAndGetInlineQueryResultGif(const boost::property_tree::ptree& data) const;
@@ -201,6 +221,21 @@ public:
 
 	WebhookInfo::Ptr parseJsonAndGetWebhookInfo(const boost::property_tree::ptree& data) const;
 	std::string parseWebhookInfo(const WebhookInfo::Ptr& object) const;
+
+	InputMessageContent::Ptr parseJsonAndGetInputMessageContent(const boost::property_tree::ptree& data) const;
+	std::string parseInputMessageContent(const InputMessageContent::Ptr& object) const;
+
+	InputTextMessageContent::Ptr parseJsonAndGetInputTextMessageContent(const boost::property_tree::ptree& data) const;
+	std::string parseInputTextMessageContent(const InputTextMessageContent::Ptr& object) const;
+
+	InputLocationMessageContent::Ptr parseJsonAndGetInputLocationMessageContent(const boost::property_tree::ptree& data) const;
+	std::string parseInputLocationMessageContent(const InputLocationMessageContent::Ptr& object) const;
+
+	InputVenueMessageContent::Ptr parseJsonAndGetInputVenueMessageContent(const boost::property_tree::ptree& data) const;
+	std::string parseInputVenueMessageContent(const InputVenueMessageContent::Ptr& object) const;
+
+	InputContactMessageContent::Ptr parseJsonAndGetInputContactMessageContent(const boost::property_tree::ptree& data) const;
+	std::string parseInputContactMessageContent(const InputContactMessageContent::Ptr& object) const;
 
 	inline boost::property_tree::ptree parseJson(const std::string& json) const {
 		boost::property_tree::ptree tree;
