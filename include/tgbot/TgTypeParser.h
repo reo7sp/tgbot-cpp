@@ -44,7 +44,6 @@
 #include "tgbot/types/ReplyKeyboardMarkup.h"
 #include "tgbot/types/KeyboardButton.h"
 #include "tgbot/types/ReplyKeyboardRemove.h"
-#include "tgbot/types/ReplyKeyboardHide.h"
 #include "tgbot/types/ForceReply.h"
 #include "tgbot/types/ChatMember.h"
 #include "tgbot/types/ResponseParameters.h"
@@ -133,8 +132,6 @@ public:
 	ReplyKeyboardRemove::Ptr parseJsonAndGetReplyKeyboardRemove(const boost::property_tree::ptree& data) const;
 	std::string parseReplyKeyboardRemove(const ReplyKeyboardRemove::Ptr& object) const;
 
-	ReplyKeyboardHide::Ptr parseJsonAndGetReplyKeyboardHide(const boost::property_tree::ptree& data) const;
-	std::string parseReplyKeyboardHide(const ReplyKeyboardHide::Ptr& object) const;
 	ForceReply::Ptr parseJsonAndGetForceReply(const boost::property_tree::ptree& data) const;
 	std::string parseForceReply(const ForceReply::Ptr& object) const;
 

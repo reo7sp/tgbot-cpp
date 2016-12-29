@@ -38,12 +38,12 @@ public:
     std::string id;
 
     /**
-     * Optional. Title of the result.
+     * Requred, optional or missing. See description of derived classes. Title of the result.
      */
     std::string title;
 
     /**
-	 * Optional. Caption of the file to be sent, 0-200 characters
+	 * Optional or missing. See description of derived classes. Caption of the file to be sent, 0-200 characters
 	 */
 	std::string caption;
 
@@ -53,7 +53,7 @@ public:
 	InlineKeyboardMarkup::Ptr replyMarkup;
 
 	/**
-	 * Content of the message to be sent
+	 * Requred, optional or missing. See description of derived classes. Content of the message to be sent
 	 */
 	InputMessageContent::Ptr inputMessageContent;
 };

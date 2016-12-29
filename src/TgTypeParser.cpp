@@ -517,25 +517,6 @@ std::string TgTypeParser::parseReplyKeyboardRemove(const ReplyKeyboardRemove::Pt
 	return result;
 }
 
-ReplyKeyboardHide::Ptr TgTypeParser::parseJsonAndGetReplyKeyboardHide(const boost::property_tree::ptree& data) const {
-	ReplyKeyboardHide::Ptr result(new ReplyKeyboardHide);
-	result->selective = data.get<bool>("selective");
-	return result;
-}
-
-std::string TgTypeParser::parseReplyKeyboardHide(const ReplyKeyboardHide::Ptr& object) const {
-	if (!object) {
-		return "";
-	}
-	string result;
-	result += '{';
-	appendToJson(result, "hide_keyboard", object->hideKeyboard);
-	appendToJson(result, "selective", object->selective);
-	result.erase(result.length() - 1);
-	result += '}';
-	return result;
-}
-
 ForceReply::Ptr TgTypeParser::parseJsonAndGetForceReply(const boost::property_tree::ptree& data) const {
 	ForceReply::Ptr result(new ForceReply);
 	result->selective = data.get<bool>("selective");
@@ -598,8 +579,8 @@ std::string TgTypeParser::parseResponseParameters(const ResponseParameters::Ptr&
 GenericReply::Ptr TgTypeParser::parseJsonAndGetGenericReply(const boost::property_tree::ptree& data) const {
 	if (data.find("force_reply") != data.not_found()) {
 		return static_pointer_cast<GenericReply>(parseJsonAndGetForceReply(data));
-	} else if (data.find("hide_keyboard") != data.not_found()) {
-		return static_pointer_cast<GenericReply>(parseJsonAndGetReplyKeyboardHide(data));
+	} else if (data.find("remove_keyboard") != data.not_found()) {
+		return static_pointer_cast<GenericReply>(parseJsonAndGetReplyKeyboardRemove(data));
 	} else if (data.find("keyboard") != data.not_found()) {
 		return static_pointer_cast<GenericReply>(parseJsonAndGetReplyKeyboardMarkup(data));
 	} else if (data.find("inline_keyboard") != data.not_found()) {
@@ -613,8 +594,8 @@ std::string TgTypeParser::parseGenericReply(const GenericReply::Ptr& object) con
 	}
 	if (dynamic_pointer_cast<ForceReply>(object) != nullptr) {
 		return parseForceReply(static_pointer_cast<ForceReply>(object));
-	} else if (dynamic_pointer_cast<ReplyKeyboardHide>(object) != nullptr) {
-		return parseReplyKeyboardHide(static_pointer_cast<ReplyKeyboardHide>(object));
+	} else if (dynamic_pointer_cast<ReplyKeyboardRemove>(object) != nullptr) {
+		return parseReplyKeyboardRemove(static_pointer_cast<ReplyKeyboardRemove>(object));
 	} else if (dynamic_pointer_cast<ReplyKeyboardMarkup>(object) != nullptr){
 		return parseReplyKeyboardMarkup(static_pointer_cast<ReplyKeyboardMarkup>(object));
 	} else if (dynamic_pointer_cast<InlineKeyboardMarkup>(object) != nullptr){
