@@ -86,6 +86,16 @@ public:
 	User::Ptr forwardFrom;
 
 	/**
+	 * Optional. For messages forwarded from a channel, information about the original channel
+	 */
+	Chat::Ptr forwardFromChat;
+
+	/**
+	 * Optional. For forwarded channel posts, identifier of the original message in the channel
+	 */
+	int32_t forwardFromMessageId;
+
+	/**
 	 * Optional. For forwarded messages, date the original message was sent in Unix time.
 	 */
 	int32_t forwardDate;
@@ -94,6 +104,11 @@ public:
 	 * Optional. For replies, the original message. Note that the Message object in this field will not contain further reply_to_message fields even if it itself is a reply.
 	 */
 	Message::Ptr replyToMessage;
+
+	/**
+	 * Optional. Date the message was last edited in Unix time
+	 */
+	int32_t editDate;
 
 	/**
 	 * Optional. For text messages, the actual UTF-8 text of the message.

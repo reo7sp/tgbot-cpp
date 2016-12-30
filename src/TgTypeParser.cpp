@@ -120,8 +120,11 @@ Message::Ptr TgTypeParser::parseJsonAndGetMessage(const ptree& data) const {
 	result->date = data.get<int32_t>("date");
 	result->chat = parseJsonAndGetChat(data.find("chat")->second);
 	result->forwardFrom = tryParseJson<User>(&TgTypeParser::parseJsonAndGetUser, data, "forward_from");
+	result->forwardFromChat = tryParseJson<Chat>(&TgTypeParser::parseJsonAndGetChat, data, "forward_from_chat");
+	result->forwardFromMessageId = data.get<int32_t>("forward_from_message_id", 0);
 	result->forwardDate = data.get("forward_date", 0);
 	result->replyToMessage = tryParseJson<Message>(&TgTypeParser::parseJsonAndGetMessage, data, "reply_to_message");
+	result->editDate = data.get<int32_t>("edit_date", 0);
 	result->text = data.get("text", "");
 	result->entities = parseJsonAndGetArray<MessageEntity>(&TgTypeParser::parseJsonAndGetEntity, data, "entities");
 	result->audio = tryParseJson<Audio>(&TgTypeParser::parseJsonAndGetAudio, data, "audio");
@@ -156,8 +159,11 @@ string TgTypeParser::parseMessage(const Message::Ptr& object) const {
 	appendToJson(result, "date", object->date);
 	appendToJson(result, "chat", parseChat(object->chat));
 	appendToJson(result, "forward_from", parseUser(object->forwardFrom));
+	appendToJson(result, "forward_from_chat", parseChat(object->forwardFromChat));
+	appendToJson(result, "forward_from_message_id", object->forwardFromMessageId);
 	appendToJson(result, "forward_date", object->forwardDate);
 	appendToJson(result, "reply_to_message", parseMessage(object->replyToMessage));
+	appendToJson(result, "edit_date", object->editDate);
 	appendToJson(result, "text", object->text);
 	appendToJson(result, "audio", parseAudio(object->audio));
 	appendToJson(result, "document", parseDocument(object->document));
