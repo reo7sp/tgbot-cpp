@@ -37,6 +37,7 @@
 #include "tgbot/types/Update.h"
 #include "tgbot/types/InlineQueryResult.h"
 #include "tgbot/types/Venue.h"
+#include "tgbot/types/WebhookInfo.h"
 
 namespace TgBot {
 
@@ -47,6 +48,8 @@ class Bot;
  * @ingroup general
  */
 class Api {
+
+typedef std::shared_ptr<std::vector<std::string>> StringArrayPtr;
 
 friend class Bot;
 
@@ -318,7 +321,20 @@ public:
 	 * Ports currently supported for Webhooks: 443, 80, 88, 8443.
 	 * @param url Optional. HTTPS url to send updates to. Use an empty string to remove webhook integration.
 	 */
-	void setWebhook(const std::string& url = "", const InputFile::Ptr& certificate = nullptr) const;
+	void setWebhook(const std::string& url = "", const InputFile::Ptr& certificate = nullptr, int32_t maxConnection = 40, const StringArrayPtr &allowedUpdates = nullptr) const;
+
+	/**
+	 * Use this method to remove webhook integration if you decide to switch back to getUpdates.
+	 * Returns True on success. Requires no parameters.
+	 */
+	bool deleteWebhook() const;
+
+	/**
+	 * Use this method to get current webhook status. 
+	 * Requires no parameters. On success, returns a WebhookInfo object.
+	 * If the bot is using getUpdates, will return an object with the url field empty.
+	 */
+	WebhookInfo::Ptr getWebhookInfo() const;
 
 	/**
 	 * Use this method to send answers to an inline query.

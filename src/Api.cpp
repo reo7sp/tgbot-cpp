@@ -381,14 +381,48 @@ vector<Update::Ptr> Api::getUpdates(int32_t offset, int32_t limit, int32_t timeo
 	return TgTypeParser::getInstance().parseJsonAndGetArray<Update>(&TgTypeParser::parseJsonAndGetUpdate, sendRequest("getUpdates", args));
 }
 
-void Api::setWebhook(const string& url, const InputFile::Ptr& certificate) const {
+void Api::setWebhook(const string& url, const InputFile::Ptr& certificate, int32_t maxConnection, const StringArrayPtr &allowedUpdates) const {
 	vector<HttpReqArg> args;
 	if (!url.empty())
 		args.push_back(HttpReqArg("url", url));
 	if (certificate != nullptr)
 		args.push_back(HttpReqArg("certificate", certificate->data, true, certificate->mimeType, certificate->fileName));
+	if (maxConnection!=40)
+		args.push_back(HttpReqArg("max_connections", maxConnection));
+	
+	if (allowedUpdates!=nullptr)
+	{
+		string allowedUpdatesJson = TgTypeParser::getInstance().parseArray<std::string>(
+			[](const std::string &s)->std::string {
+				return s;
+			}, *allowedUpdates);
+		args.push_back(HttpReqArg("allowed_updates", allowedUpdatesJson));
+	}
 
 	sendRequest("setWebhook", args);
+}
+
+bool Api::deleteWebhook() const
+{
+	ptree p = sendRequest("deleteWebhook");
+	return p.get<bool>("", false);
+}
+
+WebhookInfo::Ptr Api::getWebhookInfo() const
+{
+	ptree p = sendRequest("getWebhookInfo");
+
+	if (!p.get_child_optional("url"))
+		return nullptr;
+
+	if (p.get<string>("url","")!=string(""))
+	{
+		return TgTypeParser::getInstance().parseJsonAndGetWebhookInfo(p);
+	} 
+	else 
+	{
+		return nullptr;
+	}
 }
 
 void Api::answerInlineQuery(const std::string& inlineQueryId, const std::vector<InlineQueryResult::Ptr>& results,

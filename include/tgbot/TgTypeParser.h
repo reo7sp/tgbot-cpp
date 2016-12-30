@@ -260,9 +260,13 @@ public:
 	}
 
 	template<typename T>
-	std::vector<T> parseJsonAndGetArray(std::function<T(const boost::property_tree::ptree&)> parseFunc, const boost::property_tree::ptree& data) const {
+	std::vector<T> parseJsonAndGetArray(std::function<T(const boost::property_tree::ptree&)> parseFunc, const boost::property_tree::ptree& data, const std::string& keyName) const {
 		std::vector<T> result;
-		for (const std::pair<const std::string, boost::property_tree::ptree>& innerTreeItem : data) {
+		auto treeItem = data.find(keyName);
+		if (treeItem == data.not_found()) {
+			return result;
+		}
+		for (const std::pair<const std::string, boost::property_tree::ptree>& innerTreeItem : treeItem->second) {
 			result.push_back(parseFunc(innerTreeItem.second));
 		}
 		return result;
@@ -300,6 +304,8 @@ public:
 
 	template<typename T>
 	std::string parseArray(TgTypeToJsonFunc<T> parseFunc, const std::vector<std::shared_ptr<T>>& objects) const {
+		if (objects.empty())
+			return "";
 		std::string result;
 		result += '[';
 		for (const std::shared_ptr<T>& item : objects) {
@@ -313,6 +319,8 @@ public:
 
 	template<typename T>
 	std::string parseArray(std::function<T(const T&)> parseFunc, const std::vector<T>& objects) const {
+		if (objects.empty())
+			return "";
 		std::string result;
 		result += '[';
 		for (const T& item : objects) {
@@ -326,6 +334,8 @@ public:
 
 	template<typename T>
 	std::string parse2DArray(TgTypeToJsonFunc<T> parseFunc, const std::vector<std::vector<std::shared_ptr<T>>>& objects) const {
+		if (objects.empty())
+			return "";
 		std::string result;
 		result += '[';
 		for (const std::vector<std::shared_ptr<T>>& item : objects) {

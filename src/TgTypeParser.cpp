@@ -1370,7 +1370,7 @@ WebhookInfo::Ptr TgTypeParser::parseJsonAndGetWebhookInfo(const boost::property_
 		[](const boost::property_tree::ptree& innerData)->std::string {
 			return innerData.get<std::string>("");
 		}
-		, data);
+		, data, "allowed_updates");
 	return result;
 }
 
