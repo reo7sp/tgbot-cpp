@@ -410,7 +410,36 @@ UserProfilePhotos::Ptr Api::getUserProfilePhotos(int32_t userId, int32_t offset,
 	return TgTypeParser::getInstance().parseJsonAndGetUserProfilePhotos(sendRequest("getUserProfilePhotos", args));
 }
 
-vector<Update::Ptr> Api::getUpdates(int32_t offset, int32_t limit, int32_t timeout) const {
+Chat::Ptr Api::getChat(int32_t chatId) const
+{
+	vector<HttpReqArg> args;
+	args.push_back(HttpReqArg("chat_id", chatId));
+	return TgTypeParser::getInstance().parseJsonAndGetChat(sendRequest("getChat", args));
+}
+
+std::vector<ChatMember::Ptr> Api::getChatAdministrators(int32_t chatId) const
+{
+	vector<HttpReqArg> args;
+	args.push_back(HttpReqArg("chat_id", chatId));
+	return TgTypeParser::getInstance().parseJsonAndGetArray<ChatMember>(&TgTypeParser::parseJsonAndGetChatMember, sendRequest("getChatAdministrators", args));
+}
+
+int32_t Api::getChatMembersCount(int32_t chatId) const
+{
+	vector<HttpReqArg> args;
+	args.push_back(HttpReqArg("chat_id", chatId));
+	return sendRequest("getChatMembersCount", args).get<int32_t>("", 0);
+}
+
+ChatMember::Ptr Api::getChatMember(int32_t chatId, int32_t userId) const
+{
+	vector<HttpReqArg> args;
+	args.push_back(HttpReqArg("chat_id", chatId));
+	args.push_back(HttpReqArg("user_id", userId));
+	return TgTypeParser::getInstance().parseJsonAndGetChatMember(sendRequest("getChatMember", args));
+}
+
+vector<Update::Ptr> Api::getUpdates(int32_t offset, int32_t limit, int32_t timeout, const StringArrayPtr &allowedUpdates) const {
 	vector<HttpReqArg> args;
 	if (offset) {
 		args.push_back(HttpReqArg("offset", offset));
@@ -419,6 +448,13 @@ vector<Update::Ptr> Api::getUpdates(int32_t offset, int32_t limit, int32_t timeo
 	args.push_back(HttpReqArg("limit", limit));
 	if (timeout) {
 		args.push_back(HttpReqArg("timeout", timeout));
+	}
+	if (allowedUpdates!=nullptr) {
+		string allowedUpdatesJson = TgTypeParser::getInstance().parseArray<std::string>(
+			[](const std::string &s)->std::string {
+			return s;
+		}, *allowedUpdates);
+		args.push_back(HttpReqArg("allowed_updates", allowedUpdatesJson));
 	}
 	return TgTypeParser::getInstance().parseJsonAndGetArray<Update>(&TgTypeParser::parseJsonAndGetUpdate, sendRequest("getUpdates", args));
 }

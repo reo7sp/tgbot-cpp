@@ -38,6 +38,7 @@
 #include "tgbot/types/InlineQueryResult.h"
 #include "tgbot/types/Venue.h"
 #include "tgbot/types/WebhookInfo.h"
+#include "tgbot/types/ChatMember.h"
 
 namespace TgBot {
 
@@ -317,15 +318,45 @@ public:
 	UserProfilePhotos::Ptr getUserProfilePhotos(int32_t userId, int32_t offset = 0, int32_t limit = 100) const;
 
 	/**
+	 * Use this method to get up to date information about the chat (current name of the user for one-on-one conversations, current username of a user, group or channel, etc.). Returns a Chat object on success.
+	 * @param chat_id Unique identifier for the target chat or username of the target supergroup or channel (in the format @channelusername)
+	 * @return Chat object.
+	 */
+	Chat::Ptr getChat(int32_t chatId) const;
+
+	/**
+	* Use this method to get a list of administrators in a chat. On success, returns an Array of ChatMember objects that contains information about all chat administrators except other bots. If the chat is a group or a supergroup and no administrators were appointed, only the creator will be returned.
+	* @param chat_id Unique identifier for the target chat or username of the target supergroup or channel (in the format @channelusername)
+	* @return ChatMember object.
+	*/
+	std::vector<ChatMember::Ptr> getChatAdministrators(int32_t chatId) const;
+
+	/**
+	* Use this method to get the number of members in a chat. Returns Int on success.
+	* @param chat_id Unique identifier for the target chat or username of the target supergroup or channel (in the format @channelusername)
+	* @return Int.
+	*/
+	int32_t getChatMembersCount(int32_t chatId) const;
+
+	/**
+	* Use this method to get information about a member of a chat. Returns a ChatMember object on success.
+	* @param chat_id Unique identifier for the target chat or username of the target supergroup or channel (in the format @channelusername)
+	* @param user_id Unique identifier of the target user
+	* @return ChatMember object.
+	*/
+	ChatMember::Ptr getChatMember(int32_t chatId, int32_t userId) const;
+
+	/**
 	 * Use this method to receive incoming updates using long polling.
 	 * This method will not work if an outgoing webhook is set up.
 	 * In order to avoid getting duplicate updates, recalculate offset after each server response.
 	 * @param offset Optional. Identifier of the first update to be returned. Must be greater by one than the highest among the identifiers of previously received updates. By default, updates starting with the earliest unconfirmed update are returned. An update is considered confirmed as soon as getUpdates is called with an offset higher than its update_id.
 	 * @param limit Optional. Limits the number of updates to be retrieved. Values between 1—100 are accepted. Defaults to 100.
 	 * @param timeout Optional. Timeout in seconds for long polling. Defaults to 0, i.e. usual short polling.
+	 * @param allowed_updates Optional. List the types of updates you want your bot to receive. For example, specify [“message”, “edited_channel_post”, “callback_query”] to only receive updates of these types. See Update for a complete list of available update types. Specify an empty list to receive all updates regardless of type (default). If not specified, the previous setting will be used.
 	 * @return An Array of Update objects
 	 */
-	std::vector<Update::Ptr> getUpdates(int32_t offset = 0, int32_t limit = 100, int32_t timeout = 0) const;
+	std::vector<Update::Ptr> getUpdates(int32_t offset = 0, int32_t limit = 100, int32_t timeout = 0, const StringArrayPtr &allowedUpdates = nullptr) const;
 
 	/**
 	 * Use this method to specify a url and receive incoming updates via an outgoing webhook. Whenever there is an update for the bot, we will send an HTTPS POST request to the specified url, containing a JSON-serialized Update. In case of an unsuccessful request, we will give up after a reasonable amount of attempts.
