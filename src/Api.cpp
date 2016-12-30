@@ -417,28 +417,54 @@ File::Ptr Api::getFile(int32_t fileId) const
 	return TgTypeParser::getInstance().parseJsonAndGetFile(sendRequest("getFile", args));
 }
 
-Chat::Ptr Api::getChat(int32_t chatId) const
+bool Api::leaveChat(int64_t chatId) const
+{
+	vector<HttpReqArg> args;
+	args.push_back(HttpReqArg("chat_id", chatId));
+	return sendRequest("leaveChat", args).get<bool>("", false);
+}
+
+Chat::Ptr Api::getChat(int64_t chatId) const
 {
 	vector<HttpReqArg> args;
 	args.push_back(HttpReqArg("chat_id", chatId));
 	return TgTypeParser::getInstance().parseJsonAndGetChat(sendRequest("getChat", args));
 }
 
-std::vector<ChatMember::Ptr> Api::getChatAdministrators(int32_t chatId) const
+std::vector<ChatMember::Ptr> Api::getChatAdministrators(int64_t chatId) const
 {
 	vector<HttpReqArg> args;
 	args.push_back(HttpReqArg("chat_id", chatId));
 	return TgTypeParser::getInstance().parseJsonAndGetArray<ChatMember>(&TgTypeParser::parseJsonAndGetChatMember, sendRequest("getChatAdministrators", args));
 }
 
-int32_t Api::getChatMembersCount(int32_t chatId) const
+int32_t Api::getChatMembersCount(int64_t chatId) const
 {
 	vector<HttpReqArg> args;
 	args.push_back(HttpReqArg("chat_id", chatId));
 	return sendRequest("getChatMembersCount", args).get<int32_t>("", 0);
 }
 
-ChatMember::Ptr Api::getChatMember(int32_t chatId, int32_t userId) const
+bool Api::answerCallbackQuery(const std::string & callbackQueryId, const std::string & text, bool showAlert, const std::string &url, int32_t cacheTime) const
+{
+	vector<HttpReqArg> args;
+	args.push_back(HttpReqArg("callback_query_id", callbackQueryId));
+	if (!text.empty()) {
+		args.push_back(HttpReqArg("text", text));
+	}
+	if (showAlert) {
+		args.push_back(HttpReqArg("show_alert", showAlert));
+	}
+	if (!url.empty()) {
+		args.push_back(HttpReqArg("url", url));
+	}
+	if (cacheTime) {
+		args.push_back(HttpReqArg("cache_time", cacheTime));
+	}
+	return sendRequest("answerCallbackQuery", args).get<bool>("", false);
+}
+
+ChatMember::Ptr Api::getChatMember(int64_t chatId, int32_t userId) const
 {
 	vector<HttpReqArg> args;
 	args.push_back(HttpReqArg("chat_id", chatId));
@@ -516,9 +542,15 @@ void Api::answerInlineQuery(const std::string& inlineQueryId, const std::vector<
 	args.push_back(HttpReqArg("inline_query_id", inlineQueryId));
 	string resultsJson = TgTypeParser::getInstance().parseArray<InlineQueryResult>(&TgTypeParser::parseInlineQueryResult, results);
 	args.push_back(HttpReqArg("results", resultsJson));
-	args.push_back(HttpReqArg("cache_time", cacheTime));
-	args.push_back(HttpReqArg("is_personal", isPersonal));
-	args.push_back(HttpReqArg("next_offset", nextOffset));
+	if (cacheTime) {
+		args.push_back(HttpReqArg("cache_time", cacheTime));
+	}
+	if (isPersonal) {
+		args.push_back(HttpReqArg("is_personal", isPersonal));
+	}
+	if (!nextOffset.empty()) {
+		args.push_back(HttpReqArg("next_offset", nextOffset));
+	}
 	sendRequest("answerInlineQuery", args);
 }
 

@@ -326,25 +326,32 @@ public:
 	File::Ptr getFile(int32_t fileId) const;
 
 	/**
+	 * Use this method for your bot to leave a group, supergroup or channel.
+	 * @param chatId Unique identifier for the target chat or username of the target supergroup or channel (in the format @channelusername)
+	 * @return True on success
+	 */
+	bool leaveChat(int64_t chatId) const;
+
+	/**
 	 * Use this method to get up to date information about the chat (current name of the user for one-on-one conversations, current username of a user, group or channel, etc.). Returns a Chat object on success.
 	 * @param chatId Unique identifier for the target chat or username of the target supergroup or channel (in the format @channelusername)
 	 * @return Chat object.
 	 */
-	Chat::Ptr getChat(int32_t chatId) const;
+	Chat::Ptr getChat(int64_t chatId) const;
 
 	/**
 	* Use this method to get a list of administrators in a chat. On success, returns an Array of ChatMember objects that contains information about all chat administrators except other bots. If the chat is a group or a supergroup and no administrators were appointed, only the creator will be returned.
 	* @param chatId Unique identifier for the target chat or username of the target supergroup or channel (in the format @channelusername)
 	* @return ChatMember object.
 	*/
-	std::vector<ChatMember::Ptr> getChatAdministrators(int32_t chatId) const;
+	std::vector<ChatMember::Ptr> getChatAdministrators(int64_t chatId) const;
 
 	/**
 	* Use this method to get the number of members in a chat. Returns Int on success.
 	* @param chatId Unique identifier for the target chat or username of the target supergroup or channel (in the format @channelusername)
 	* @return Int.
 	*/
-	int32_t getChatMembersCount(int32_t chatId) const;
+	int32_t getChatMembersCount(int64_t chatId) const;
 
 	/**
 	* Use this method to get information about a member of a chat. Returns a ChatMember object on success.
@@ -352,7 +359,9 @@ public:
 	* @param userId Unique identifier of the target user
 	* @return ChatMember object.
 	*/
-	ChatMember::Ptr getChatMember(int32_t chatId, int32_t userId) const;
+	ChatMember::Ptr getChatMember(int64_t chatId, int32_t userId) const;
+
+	bool answerCallbackQuery(const std::string & callbackQueryId, const std::string & text="", bool showAlert=false, const std::string &url="", int32_t cacheTime=0) const;
 
 	/**
 	 * Use this method to receive incoming updates using long polling.
