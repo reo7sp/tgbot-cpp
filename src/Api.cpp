@@ -109,10 +109,13 @@ Message::Ptr Api::sendPhoto(int64_t chatId, const string& photoId, const string&
 	return TgTypeParser::getInstance().parseJsonAndGetMessage(sendRequest("sendPhoto", args));
 }
 
-Message::Ptr Api::sendAudio(int64_t chatId, const InputFile::Ptr& audio, int32_t duration, const string& performer, const string& title, int32_t replyToMessageId, const GenericReply::Ptr& replyMarkup, bool disableNotification) const {
+Message::Ptr Api::sendAudio(int64_t chatId, const InputFile::Ptr& audio, const std::string &caption, int32_t duration, const string& performer, const string& title, int32_t replyToMessageId, const GenericReply::Ptr& replyMarkup, bool disableNotification) const {
 	vector<HttpReqArg> args;
 	args.push_back(HttpReqArg("chat_id", chatId));
 	args.push_back(HttpReqArg("audio", audio->data, true, audio->mimeType, audio->fileName));
+	if (!caption.empty()) {
+		args.push_back(HttpReqArg("caption", caption));
+	}
 	if (duration) {
 		args.push_back(HttpReqArg("duration", duration));
 	}
@@ -134,10 +137,13 @@ Message::Ptr Api::sendAudio(int64_t chatId, const InputFile::Ptr& audio, int32_t
 	return TgTypeParser::getInstance().parseJsonAndGetMessage(sendRequest("sendAudio", args));
 }
 
-Message::Ptr Api::sendAudio(int64_t chatId, const string& audioId, int32_t duration, const string& performer, const string& title, int32_t replyToMessageId, const GenericReply::Ptr& replyMarkup, bool disableNotification) const {
+Message::Ptr Api::sendAudio(int64_t chatId, const string& audioId, const std::string &caption, int32_t duration, const string& performer, const string& title, int32_t replyToMessageId, const GenericReply::Ptr& replyMarkup, bool disableNotification) const {
 	vector<HttpReqArg> args;
 	args.push_back(HttpReqArg("chat_id", chatId));
 	args.push_back(HttpReqArg("audio", audioId));
+	if (!caption.empty()) {
+		args.push_back(HttpReqArg("caption", caption));
+	}
 	if (duration) {
 		args.push_back(HttpReqArg("duration", duration));
 	}
@@ -159,10 +165,13 @@ Message::Ptr Api::sendAudio(int64_t chatId, const string& audioId, int32_t durat
 	return TgTypeParser::getInstance().parseJsonAndGetMessage(sendRequest("sendAudio", args));
 }
 
-Message::Ptr Api::sendDocument(int64_t chatId, const InputFile::Ptr& document, int32_t replyToMessageId, const GenericReply::Ptr& replyMarkup, bool disableNotification) const {
+Message::Ptr Api::sendDocument(int64_t chatId, const InputFile::Ptr& document, const std::string &caption, int32_t replyToMessageId, const GenericReply::Ptr& replyMarkup, bool disableNotification) const {
 	vector<HttpReqArg> args;
 	args.push_back(HttpReqArg("chat_id", chatId));
 	args.push_back(HttpReqArg("document", document->data, true, document->mimeType, document->fileName));
+	if (!caption.empty()) {
+		args.push_back(HttpReqArg("caption", caption));
+	}
 	if (replyToMessageId) {
 		args.push_back(HttpReqArg("reply_to_message_id", replyToMessageId));
 	}
@@ -175,10 +184,13 @@ Message::Ptr Api::sendDocument(int64_t chatId, const InputFile::Ptr& document, i
 	return TgTypeParser::getInstance().parseJsonAndGetMessage(sendRequest("sendDocument", args));
 }
 
-Message::Ptr Api::sendDocument(int64_t chatId, const string& document, int32_t replyToMessageId, const GenericReply::Ptr& replyMarkup, bool disableNotification) const {
+Message::Ptr Api::sendDocument(int64_t chatId, const string& document, const std::string &caption, int32_t replyToMessageId, const GenericReply::Ptr& replyMarkup, bool disableNotification) const {
 	vector<HttpReqArg> args;
 	args.push_back(HttpReqArg("chat_id", chatId));
 	args.push_back(HttpReqArg("document", document));
+	if (!caption.empty()) {
+		args.push_back(HttpReqArg("caption", caption));
+	}
 	if (replyToMessageId) {
 		args.push_back(HttpReqArg("reply_to_message_id", replyToMessageId));
 	}
@@ -223,10 +235,22 @@ Message::Ptr Api::sendSticker(int64_t chatId, const string& stickerId, int32_t r
 	return TgTypeParser::getInstance().parseJsonAndGetMessage(sendRequest("sendSticker", args));
 }
 
-Message::Ptr Api::sendVideo(int64_t chatId, const InputFile::Ptr& video, int32_t replyToMessageId, const GenericReply::Ptr& replyMarkup, bool disableNotification) const {
+Message::Ptr Api::sendVideo(int64_t chatId, const InputFile::Ptr& video, int32_t duration, int32_t width, int32_t height, const std::string &caption, int32_t replyToMessageId, const GenericReply::Ptr& replyMarkup, bool disableNotification) const {
 	vector<HttpReqArg> args;
 	args.push_back(HttpReqArg("chat_id", chatId));
 	args.push_back(HttpReqArg("video", video->data, true, video->mimeType, video->fileName));
+	if (duration) {
+		args.push_back(HttpReqArg("duration", duration));
+	}
+	if (width) {
+		args.push_back(HttpReqArg("width", width));
+	}
+	if (height) {
+		args.push_back(HttpReqArg("height", height));
+	}
+	if (!caption.empty()) {
+		args.push_back(HttpReqArg("caption", caption));
+	}
 	if (replyToMessageId) {
 		args.push_back(HttpReqArg("reply_to_message_id", replyToMessageId));
 	}
@@ -239,10 +263,22 @@ Message::Ptr Api::sendVideo(int64_t chatId, const InputFile::Ptr& video, int32_t
 	return TgTypeParser::getInstance().parseJsonAndGetMessage(sendRequest("sendVideo", args));
 }
 
-Message::Ptr Api::sendVideo(int64_t chatId, const string& videoId, int32_t replyToMessageId, const GenericReply::Ptr& replyMarkup, bool disableNotification) const {
+Message::Ptr Api::sendVideo(int64_t chatId, const string& videoId, int32_t duration, int32_t width, int32_t height, const std::string &caption, int32_t replyToMessageId, const GenericReply::Ptr& replyMarkup, bool disableNotification) const {
 	vector<HttpReqArg> args;
 	args.push_back(HttpReqArg("chat_id", chatId));
 	args.push_back(HttpReqArg("video", videoId));
+	if (duration) {
+		args.push_back(HttpReqArg("duration", duration));
+	}
+	if (width) {
+		args.push_back(HttpReqArg("width", width));
+	}
+	if (height) {
+		args.push_back(HttpReqArg("height", height));
+	}
+	if (!caption.empty()) {
+		args.push_back(HttpReqArg("caption", caption));
+	}
 	if (replyToMessageId) {
 		args.push_back(HttpReqArg("reply_to_message_id", replyToMessageId));
 	}
@@ -255,10 +291,13 @@ Message::Ptr Api::sendVideo(int64_t chatId, const string& videoId, int32_t reply
 	return TgTypeParser::getInstance().parseJsonAndGetMessage(sendRequest("sendVideo", args));
 }
 
-Message::Ptr Api::sendVoice(int64_t chatId, const InputFile::Ptr& voice, int duration, int32_t replyToMessageId, const GenericReply::Ptr& replyMarkup, bool disableNotification) const {
+Message::Ptr Api::sendVoice(int64_t chatId, const InputFile::Ptr& voice, const std::string &caption, int duration, int32_t replyToMessageId, const GenericReply::Ptr& replyMarkup, bool disableNotification) const {
 	vector<HttpReqArg> args;
 	args.push_back(HttpReqArg("chat_id", chatId));
 	args.push_back(HttpReqArg("voice", voice->data, true, voice->mimeType, voice->fileName));
+	if (!caption.empty()) {
+		args.push_back(HttpReqArg("caption", caption));
+	}
 	if (duration){
 		args.push_back(HttpReqArg("duration", duration));
 	}
@@ -274,10 +313,13 @@ Message::Ptr Api::sendVoice(int64_t chatId, const InputFile::Ptr& voice, int dur
 	return TgTypeParser::getInstance().parseJsonAndGetMessage(sendRequest("sendVideo", args));
 }
 
-Message::Ptr Api::sendVoice(int64_t chatId, const std::string& voiceId, int duration, int32_t replyToMessageId, const GenericReply::Ptr& replyMarkup, bool disableNotification) const {
+Message::Ptr Api::sendVoice(int64_t chatId, const std::string& voiceId, const std::string &caption, int duration, int32_t replyToMessageId, const GenericReply::Ptr& replyMarkup, bool disableNotification) const {
 	vector<HttpReqArg> args;
 	args.push_back(HttpReqArg("chat_id", chatId));
 	args.push_back(HttpReqArg("voice", voiceId));
+	if (!caption.empty()) {
+		args.push_back(HttpReqArg("caption", caption));
+	}
 	if (duration){
 		args.push_back(HttpReqArg("duration", duration));
 	}

@@ -1411,13 +1411,13 @@ InputMessageContent::Ptr TgTypeParser::parseJsonAndGetInputMessageContent(const 
 	string tTitle = data.get<string>("title", "");
 	string tPnoneNumber = data.get<string>("phone_number", "");
 
-	if (tMessageText != std::string("")) {
+	if (!tMessageText.empty()) {
 		result = static_pointer_cast<InputMessageContent>(parseJsonAndGetInputTextMessageContent(data));
-	} else if (tTitle !=std::string("")) {
+	} else if (!tTitle.empty()) {
 		result = static_pointer_cast<InputMessageContent>(parseJsonAndGetInputVenueMessageContent(data));
 	} else if (tLatitude != 1000) {
 		result = static_pointer_cast<InputMessageContent>(parseJsonAndGetInputLocationMessageContent(data));
-	} else if (tPnoneNumber!= std::string("")) {
+	} else if (!tPnoneNumber.empty()) {
 		result = static_pointer_cast<InputMessageContent>(parseJsonAndGetInputContactMessageContent(data));
 	} 
 

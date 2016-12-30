@@ -115,6 +115,7 @@ public:
 	 * Use this method to send audio files, if you want Telegram clients to display the file as a playable voice message. For this to work, your audio must be in an .ogg file encoded with OPUS (other formats may be sent as Document).
 	 * @param chatId Unique identifier for the target chat.
 	 * @param audio Audio to send.
+	 * @param caption Audio caption, 0-200 characters
 	 * @param duration Duration of sent audio in seconds.
 	 * @param performer Performer
 	 * @param title Track name
@@ -123,7 +124,7 @@ public:
 	 * @param disableNotification Optional. Sends the message silenty.
 	 * @return On success, the sent message is returned.
 	 */
-	Message::Ptr sendAudio(int64_t chatId, const InputFile::Ptr& audio, int32_t duration = 0,
+	Message::Ptr sendAudio(int64_t chatId, const InputFile::Ptr& audio, const std::string &caption = "", int32_t duration = 0,
 	                       const std::string& performer = "", const std::string& title = "", int32_t replyToMessageId = 0,
 	                       const GenericReply::Ptr& replyMarkup = GenericReply::Ptr(), bool disableNotification = false) const;
 
@@ -131,6 +132,7 @@ public:
 	 * Use this method to send audio files, if you want Telegram clients to display the file as a playable voice message. For this to work, your audio must be in an .ogg file encoded with OPUS (other formats may be sent as Document).
 	 * @param chatId Unique identifier for the target chat.
 	 * @param audio Id of the audio that is already on the Telegram servers.
+	 * @param caption Audio caption, 0-200 characters
 	 * @param duration Duration of sent audio in seconds.
 	 * @param performer Performer
 	 * @param title Track name
@@ -139,7 +141,7 @@ public:
 	 * @param disableNotification Optional. Sends the message silenty.
 	 * @return On success, the sent message is returned.
 	 */
-	Message::Ptr sendAudio(int64_t chatId, const std::string& audioId, int32_t duration = 0,
+	Message::Ptr sendAudio(int64_t chatId, const std::string& audioId, const std::string &caption = "", int32_t duration = 0,
 	                       const std::string& performer = "", const std::string& title = "", int32_t replyToMessageId = 0,
 	                       const GenericReply::Ptr& replyMarkup = GenericReply::Ptr(), bool disableNotification = false) const;
 
@@ -147,24 +149,26 @@ public:
 	 * Use this method to send general files.
 	 * @param chatId Unique identifier for the target chat.
 	 * @param document Document to send.
+	 * @param caption Document caption (may also be used when resending documents by file_id), 0-200 characters
 	 * @param replyToMessageId Optional. If the message is a reply, ID of the original message.
 	 * @param replyMarkup Optional. Additional interface options. An object for a custom reply keyboard, instructions to hide keyboard or to force a reply from the user.
 	 * @param disableNotification Optional. Sends the message silenty.
 	 * @return On success, the sent message is returned.
 	 */
-	Message::Ptr sendDocument(int64_t chatId, const InputFile::Ptr& document, int32_t replyToMessageId = 0,
+	Message::Ptr sendDocument(int64_t chatId, const InputFile::Ptr& document, const std::string &caption = "", int32_t replyToMessageId = 0,
 	                          const GenericReply::Ptr& replyMarkup = GenericReply::Ptr(), bool disableNotification = false) const;
 
 	/**
 	 * Use this method to send general files.
 	 * @param chatId Unique identifier for the target chat.
 	 * @param document Id of the document that is already on the Telegram servers.
+	 * @param caption Document caption (may also be used when resending documents by file_id), 0-200 characters
 	 * @param replyToMessageId Optional. If the message is a reply, ID of the original message.
 	 * @param replyMarkup Optional. Additional interface options. An object for a custom reply keyboard, instructions to hide keyboard or to force a reply from the user.
 	 * @param disableNotification Optional. Sends the message silenty.
 	 * @return On success, the sent message is returned.
 	 */
-	Message::Ptr sendDocument(int64_t chatId, const std::string& documentId, int32_t replyToMessageId = 0,
+	Message::Ptr sendDocument(int64_t chatId, const std::string& documentId, const std::string &caption = "", int32_t replyToMessageId = 0,
 	                          const GenericReply::Ptr& replyMarkup = GenericReply::Ptr(), bool disableNotification = false) const;
 
 	/**
@@ -195,50 +199,60 @@ public:
 	 * Use this method to send video files, Telegram clients support mp4 videos (other formats may be sent as Document).
 	 * @param chatId Unique identifier for the target chat.
 	 * @param video Video to send.
+	 * @param duration Duration of sent video in seconds
+	 * @param width Video width
+	 * @param height Video height
+	 * @param caption Video caption (may also be used when resending videos by file_id), 0-200 characters
 	 * @param replyToMessageId Optional. If the message is a reply, ID of the original message.
 	 * @param replyMarkup Optional. Additional interface options. An object for a custom reply keyboard, instructions to hide keyboard or to force a reply from the user.
 	 * @param disableNotification Optional. Sends the message silenty.
 	 * @return On success, the sent message is returned.
 	 */
-	Message::Ptr sendVideo(int64_t chatId, const InputFile::Ptr& video, int32_t replyToMessageId = 0,
-	                       const GenericReply::Ptr& replyMarkup = GenericReply::Ptr(), bool disableNotification = false) const;
+	Message::Ptr sendVideo(int64_t chatId, const InputFile::Ptr& video, int32_t duration = 0, int32_t width = 0, int32_t height = 0, const std::string &caption = "",
+						   int32_t replyToMessageId = 0, const GenericReply::Ptr& replyMarkup = GenericReply::Ptr(), bool disableNotification = false) const;
 
 	/**
 	 * Use this method to send video files, Telegram clients support mp4 videos (other formats may be sent as Document).
 	 * @param chatId Unique identifier for the target chat.
 	 * @param video Id of the video that is already on the Telegram servers.
+	 * @param duration Duration of sent video in seconds
+	 * @param width Video width
+	 * @param height Video height
+	 * @param caption Video caption (may also be used when resending videos by file_id), 0-200 characters
 	 * @param replyToMessageId Optional. If the message is a reply, ID of the original message.
 	 * @param replyMarkup Optional. Additional interface options. A object for a custom reply keyboard, instructions to hide keyboard or to force a reply from the user.
 	 * @param disableNotification Optional. Sends the message silenty.
 	 * @return On success, the sent message is returned.
 	 */
-	Message::Ptr sendVideo(int64_t chatId, const std::string& videoId, int32_t replyToMessageId = 0,
-	                       const GenericReply::Ptr& replyMarkup = GenericReply::Ptr(), bool disableNotification = false) const;
+	Message::Ptr sendVideo(int64_t chatId, const std::string& videoId, int32_t duration = 0, int32_t width = 0, int32_t height = 0, const std::string &caption = "",
+						   int32_t replyToMessageId = 0, const GenericReply::Ptr& replyMarkup = GenericReply::Ptr(), bool disableNotification = false) const;
 
 	/**
 	 * Use this method to send audio files, if you want Telegram clients to display the file as a playable voice message.
 	 * @param chatId Unique identifier for the target chat.
 	 * @param voice Audio file to send.
+	 * @param caption Voice message caption, 0-200 characters
 	 * @param duration Duration of send audio in seconds.
 	 * @param replyToMessageId Optional. If the message is a reply, ID of the original message.
 	 * @param replyMarkup Optional. Additional interface options. A object for a custom reply keyboard, instructions to hide keyboard or to force a reply from the user.
 	 * @param disableNotification Optional. Sends the message silenty.
 	 * @return On success, the sent message is returned.
 	 */
-	Message::Ptr sendVoice(int64_t chatId, const InputFile::Ptr& voice, int duration = 0, int32_t replyToMessageId = 0,
+	Message::Ptr sendVoice(int64_t chatId, const InputFile::Ptr& voice, const std::string &caption = "", int duration = 0, int32_t replyToMessageId = 0,
 	                      const GenericReply::Ptr& replyMarkup = GenericReply::Ptr(), bool disableNotification = false) const;
 
 	/**
 	 * Use this method to send audio files, if you want Telegram clients to display the file as a playable voice message.
 	 * @param chatId Unique identifier for the target chat.
 	 * @param voiceId Id of the voice that is already on the Telegram servers.
+	 * @param caption Voice message caption, 0-200 characters
 	 * @param duration Duration of send audio in seconds.
 	 * @param replyToMessageId Optional. If the message is a reply, ID of the original message.
 	 * @param replyMarkup Optional. Additional interface options. A object for a custom reply keyboard, instructions to hide keyboard or to force a reply from the user.
 	 * @param disableNotification Optional. Sends the message silenty.
 	 * @return On success, the sent message is returned.
 	 */
-	Message::Ptr sendVoice(int64_t chatId, const std::string& voiceId, int duration = 0, int32_t replyToMessageId = 0,
+	Message::Ptr sendVoice(int64_t chatId, const std::string& voiceId, const std::string &caption = "", int duration = 0, int32_t replyToMessageId = 0,
 	                       const GenericReply::Ptr& replyMarkup = GenericReply::Ptr(), bool disableNotification = false) const;
 
 	/**
