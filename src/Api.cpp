@@ -410,6 +410,13 @@ UserProfilePhotos::Ptr Api::getUserProfilePhotos(int32_t userId, int32_t offset,
 	return TgTypeParser::getInstance().parseJsonAndGetUserProfilePhotos(sendRequest("getUserProfilePhotos", args));
 }
 
+File::Ptr Api::getFile(int32_t fileId) const
+{
+	vector<HttpReqArg> args;
+	args.push_back(HttpReqArg("file_id", fileId));
+	return TgTypeParser::getInstance().parseJsonAndGetFile(sendRequest("getFile", args));
+}
+
 Chat::Ptr Api::getChat(int32_t chatId) const
 {
 	vector<HttpReqArg> args;
@@ -515,18 +522,18 @@ void Api::answerInlineQuery(const std::string& inlineQueryId, const std::vector<
 	sendRequest("answerInlineQuery", args);
 }
 
-void Api::kickChatMember(int64_t chatId, int32_t userId) const {
+bool Api::kickChatMember(int64_t chatId, int32_t userId) const {
 	vector<HttpReqArg> args;
 	args.push_back(HttpReqArg("chat_id", chatId));
 	args.push_back(HttpReqArg("user_id", userId));
-	sendRequest("kickChatMember", args);
+	return sendRequest("kickChatMember", args).get<bool>("", false);
 }
 
-void Api::unbanChatMember(int64_t chatId, int32_t userId) const {
+bool Api::unbanChatMember(int64_t chatId, int32_t userId) const {
 	vector<HttpReqArg> args;
 	args.push_back(HttpReqArg("chat_id", chatId));
 	args.push_back(HttpReqArg("user_id", userId));
-	sendRequest("unbanChatMember", args);
+	return sendRequest("unbanChatMember", args).get<bool>("", false);
 }
 
 ptree Api::sendRequest(const string& method, const vector<HttpReqArg>& args) const {

@@ -39,6 +39,7 @@
 #include "tgbot/types/Venue.h"
 #include "tgbot/types/WebhookInfo.h"
 #include "tgbot/types/ChatMember.h"
+#include "tgbot/types/File.h"
 
 namespace TgBot {
 
@@ -318,30 +319,37 @@ public:
 	UserProfilePhotos::Ptr getUserProfilePhotos(int32_t userId, int32_t offset = 0, int32_t limit = 100) const;
 
 	/**
+	 * Use this method to get basic info about a file and prepare it for downloading. For the moment, bots can download files of up to 20MB in size.
+	 * @param fileId File identifier to get info about
+	 * @return A File object.
+	 */
+	File::Ptr getFile(int32_t fileId) const;
+
+	/**
 	 * Use this method to get up to date information about the chat (current name of the user for one-on-one conversations, current username of a user, group or channel, etc.). Returns a Chat object on success.
-	 * @param chat_id Unique identifier for the target chat or username of the target supergroup or channel (in the format @channelusername)
+	 * @param chatId Unique identifier for the target chat or username of the target supergroup or channel (in the format @channelusername)
 	 * @return Chat object.
 	 */
 	Chat::Ptr getChat(int32_t chatId) const;
 
 	/**
 	* Use this method to get a list of administrators in a chat. On success, returns an Array of ChatMember objects that contains information about all chat administrators except other bots. If the chat is a group or a supergroup and no administrators were appointed, only the creator will be returned.
-	* @param chat_id Unique identifier for the target chat or username of the target supergroup or channel (in the format @channelusername)
+	* @param chatId Unique identifier for the target chat or username of the target supergroup or channel (in the format @channelusername)
 	* @return ChatMember object.
 	*/
 	std::vector<ChatMember::Ptr> getChatAdministrators(int32_t chatId) const;
 
 	/**
 	* Use this method to get the number of members in a chat. Returns Int on success.
-	* @param chat_id Unique identifier for the target chat or username of the target supergroup or channel (in the format @channelusername)
+	* @param chatId Unique identifier for the target chat or username of the target supergroup or channel (in the format @channelusername)
 	* @return Int.
 	*/
 	int32_t getChatMembersCount(int32_t chatId) const;
 
 	/**
 	* Use this method to get information about a member of a chat. Returns a ChatMember object on success.
-	* @param chat_id Unique identifier for the target chat or username of the target supergroup or channel (in the format @channelusername)
-	* @param user_id Unique identifier of the target user
+	* @param chatId Unique identifier for the target chat or username of the target supergroup or channel (in the format @channelusername)
+	* @param userId Unique identifier of the target user
 	* @return ChatMember object.
 	*/
 	ChatMember::Ptr getChatMember(int32_t chatId, int32_t userId) const;
@@ -397,15 +405,17 @@ public:
 	 * Use this method to kick a user from a group or a supergroup.
 	 * @param chatId Unique identifier for the target group.
 	 * @param userId Unique identifier of the target user.
+	 * @return True on success
 	 */
-	void kickChatMember(int64_t chatId, int32_t userId) const;
+	bool kickChatMember(int64_t chatId, int32_t userId) const;
 
 	/**
 	 * Use this method to unban a previously kicked user in a supergroup.
 	 * @param chatId Unique identifier for the target group.
 	 * @param userId Unique identifier of the target user.
+	 * @return True on success
 	 */
-	void unbanChatMember(int64_t chatId, int32_t userId) const;
+	bool unbanChatMember(int64_t chatId, int32_t userId) const;
 
 private:
 	boost::property_tree::ptree sendRequest(const std::string& method, const std::vector<HttpReqArg>& args = std::vector<HttpReqArg>()) const;
