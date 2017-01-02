@@ -38,7 +38,7 @@
 #include "tgbot/types/Location.h"
 #include "tgbot/types/Message.h"
 #include "tgbot/types/PhotoSize.h"
-#include "tgbot/types/ReplyKeyboardHide.h"
+#include "tgbot/types/ReplyKeyboardRemove.h"
 #include "tgbot/types/ReplyKeyboardMarkup.h"
 #include "tgbot/types/Sticker.h"
 #include "tgbot/types/Update.h"

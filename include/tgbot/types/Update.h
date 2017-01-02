@@ -52,6 +52,21 @@ public:
 	Message::Ptr message;
 
 	/**
+	* Optional. New version of a message that is known to the bot and was edited
+	*/
+	Message::Ptr editedMessage;
+
+	/**
+	* Optional. New incoming channel post of any kind — text, photo, sticker, etc.
+	*/
+	Message::Ptr channelPost;
+
+	/**
+	* Optional. New version of a channel post that is known to the bot and was edited
+	*/
+	Message::Ptr editedChannelPost;
+
+	/**
 	 * Optional. New incoming inline query
 	 */
 	InlineQuery::Ptr inlineQuery;

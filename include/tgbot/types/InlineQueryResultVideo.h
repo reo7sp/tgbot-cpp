@@ -35,6 +35,11 @@ public:
 	std::string mimeType;
 
 	/**
+	* URL of the thumbnail (jpeg only) for the video
+	*/
+	std::string thumbUrl;
+
+	/**
 	 * Optional. Video width.
 	 */
 	int32_t videoWidth;

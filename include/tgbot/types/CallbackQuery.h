@@ -42,10 +42,19 @@ public:
 	std::string inlineMessageId;
 
 	/**
+	 * Global identifier, uniquely corresponding to the chat to which the message with the callback button was sent. Useful for high scores in games.
+	 */
+	std::string chatInstance;
+
+	/**
 	 * Data associated with the callback button. Be aware that a bad client can send arbitrary data in this field.
 	 */
 	std::string data;
 
+	/*
+	 * Optional. Short name of a Game to be returned, serves as the unique identifier for the game
+	 */
+	std::string gameShortName;
 };
 }
 

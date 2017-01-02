@@ -37,6 +37,11 @@ public:
 	 * Optional. If set, pressing the button will prompt the user to select one of their chats, open that chat and insert the bot‘s username and the specified inline query in the input field. Can be empty, in which case just the bot’s username will be inserted.
 	 */
 	std::string switchInlineQuery;
+
+	/**
+	* Optional. If set, pressing the button will insert the bot‘s username and the specified inline query in the current chat's input field. Can be empty, in which case only the bot’s username will be inserted.
+	*/
+	std::string switchInlineQueryCurrentChat;
 };
 }
 

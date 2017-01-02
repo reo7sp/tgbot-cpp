@@ -9,6 +9,7 @@
 #include <string>
 
 #include "tgbot/types/User.h"
+#include "tgbot/types/Location.h"
 
 namespace TgBot {
 
@@ -29,6 +30,11 @@ public:
      * Sender.
      */
     User::Ptr from;
+
+	/**
+	 * Optional. Sender location, only for bots that request user location
+	 */
+	Location::Ptr location;
 
     /**
      * Text of the query.

@@ -39,10 +39,9 @@ public:
 	int32_t mpeg4Height;
 
 	/**
-	 * Optional. Caption of the MPEG-4 file to be sent.
-	 */
-	std::string caption;
-
+	* URL of the static thumbnail (jpeg or gif) for the result
+	*/
+	std::string thumbUrl;
 
 };
 }

@@ -33,6 +33,11 @@ public:
      */
     std::string photoUrl;
 
+	/**
+	 * URL of the thumbnail for the photo
+	 */
+	std::string thumbUrl;
+
     /**
      * Optional. Width of the photo.
      */
@@ -47,11 +52,6 @@ public:
      * Optional. Short description of the result.
      */
     std::string description;
-
-    /**
-     * Optional. Caption of the photo to be sent.
-     */
-    std::string caption;
 };
 }
 

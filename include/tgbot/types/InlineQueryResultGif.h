@@ -44,9 +44,9 @@ public:
     int32_t gifHeight;
 
     /**
-     * Optional. Caption for the GIF file to be sent.
+     * URL of the static thumbnail for the result (jpeg or gif)
      */
-    std::string caption;
+    std::string thumbUrl;
 
 };
 }
