@@ -464,6 +464,89 @@ bool Api::answerCallbackQuery(const std::string & callbackQueryId, const std::st
 	return sendRequest("answerCallbackQuery", args).get<bool>("", false);
 }
 
+Message::Ptr Api::editMessageText(const std::string& text, int64_t chatId, int32_t messageId, const std::string& inlineMessageId,
+	const std::string& parseMode, bool disableWebPagePreview, const GenericReply::Ptr& replyMarkup) const {
+
+	vector<HttpReqArg> args;
+	args.push_back(HttpReqArg("text", text));
+	if (chatId) {
+		args.push_back(HttpReqArg("chat_id", chatId));
+	}
+	if (messageId) {
+		args.push_back(HttpReqArg("message_id", messageId));
+	}
+	if (!inlineMessageId.empty()) {
+		args.push_back(HttpReqArg("inline_message_id", inlineMessageId));
+	}
+	if (!parseMode.empty()) {
+		args.push_back(HttpReqArg("parse_mode", parseMode));
+	}
+	if (disableWebPagePreview) {
+		args.push_back(HttpReqArg("disable_web_page_preview", disableWebPagePreview));
+	}
+	if (replyMarkup) {
+		args.push_back(HttpReqArg("reply_markup", TgTypeParser::getInstance().parseGenericReply(replyMarkup)));
+	}
+	ptree p = sendRequest("editMessageText", args);
+	if (p.get_child_optional("message_id")) {
+		return TgTypeParser::getInstance().parseJsonAndGetMessage(p);
+	} else {
+		return nullptr;
+	}	
+}
+
+Message::Ptr Api::editMessageCaption(int64_t chatId, int32_t messageId, const std::string& caption,
+									 const std::string& inlineMessageId, const GenericReply::Ptr& replyMarkup) const {
+
+	vector<HttpReqArg> args;
+	if (chatId) {
+		args.push_back(HttpReqArg("chat_id", chatId));
+	}
+	if (messageId) {
+		args.push_back(HttpReqArg("message_id", messageId));
+	}
+	if (!caption.empty()) {
+		args.push_back(HttpReqArg("caption", caption));
+	}
+	if (!inlineMessageId.empty()) {
+		args.push_back(HttpReqArg("inline_message_id", inlineMessageId));
+	}
+	if (replyMarkup) {
+		args.push_back(HttpReqArg("reply_markup", TgTypeParser::getInstance().parseGenericReply(replyMarkup)));
+	}
+	ptree p = sendRequest("editMessageCaption", args);
+	if (p.get_child_optional("message_id")) {
+		return TgTypeParser::getInstance().parseJsonAndGetMessage(p);
+	} else {
+		return nullptr;
+	}
+
+}
+
+Message::Ptr Api::editMessageReplyMarkup(int64_t chatId, int32_t messageId, const std::string& inlineMessageId,
+										 const GenericReply::Ptr& replyMarkup) const {
+
+	vector<HttpReqArg> args;
+	if (chatId) {
+		args.push_back(HttpReqArg("chat_id", chatId));
+	}
+	if (messageId) {
+		args.push_back(HttpReqArg("message_id", messageId));
+	}
+	if (!inlineMessageId.empty()) {
+		args.push_back(HttpReqArg("inline_message_id", inlineMessageId));
+	}
+	if (replyMarkup) {
+		args.push_back(HttpReqArg("reply_markup", TgTypeParser::getInstance().parseGenericReply(replyMarkup)));
+	}
+	ptree p = sendRequest("editMessageReplyMarkup", args);
+	if (p.get_child_optional("message_id")) {
+		return TgTypeParser::getInstance().parseJsonAndGetMessage(p);
+	} else {
+		return nullptr;
+	}
+}
+
 ChatMember::Ptr Api::getChatMember(int64_t chatId, int32_t userId) const
 {
 	vector<HttpReqArg> args;
@@ -536,8 +619,8 @@ WebhookInfo::Ptr Api::getWebhookInfo() const
 	}
 }
 
-void Api::answerInlineQuery(const std::string& inlineQueryId, const std::vector<InlineQueryResult::Ptr>& results,
-                            int32_t cacheTime, bool isPersonal, const std::string& nextOffset) const {
+bool Api::answerInlineQuery(const std::string& inlineQueryId, const std::vector<InlineQueryResult::Ptr>& results,
+	int32_t cacheTime, bool isPersonal, const std::string& nextOffset, const std::string& switchPmText, const std::string& switchPmParameter) const {
 	vector<HttpReqArg> args;
 	args.push_back(HttpReqArg("inline_query_id", inlineQueryId));
 	string resultsJson = TgTypeParser::getInstance().parseArray<InlineQueryResult>(&TgTypeParser::parseInlineQueryResult, results);
@@ -551,7 +634,13 @@ void Api::answerInlineQuery(const std::string& inlineQueryId, const std::vector<
 	if (!nextOffset.empty()) {
 		args.push_back(HttpReqArg("next_offset", nextOffset));
 	}
-	sendRequest("answerInlineQuery", args);
+	if (!switchPmText.empty()) {
+		args.push_back(HttpReqArg("switch_pm_text", switchPmText));
+	}
+	if (!switchPmParameter.empty()) {
+		args.push_back(HttpReqArg("switch_pm_parameter", switchPmParameter));
+	}
+	return sendRequest("answerInlineQuery", args).get<bool>("", false);
 }
 
 bool Api::kickChatMember(int64_t chatId, int32_t userId) const {
