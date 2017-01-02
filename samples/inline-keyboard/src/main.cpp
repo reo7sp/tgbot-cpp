@@ -18,25 +18,25 @@ int main() {
 	Bot bot("PLACE YOUR TOKEN HERE");
 
 	// Thanks Pietro Falessi for code
-	TgBot::InlineKeyboardMarkup::Ptr Keyboard(new TgBot::InlineKeyboardMarkup);
-	std::vector<InlineKeyboardButton::Ptr> Row0;
-	TgBot::InlineKeyboardButton::Ptr CheckButton(new TgBot::InlineKeyboardButton);
-	CheckButton->text="Check";
-	CheckButton->callbackData="Check";
-	Row0.push_back(CheckButton);
-	Keyboard->inlineKeyboard.push_back(Row0);
+	InlineKeyboardMarkup::Ptr keyboard(new InlineKeyboardMarkup);
+	vector<InlineKeyboardButton::Ptr> row0;
+	InlineKeyboardButton::Ptr checkButton(new InlineKeyboardButton);
+	checkButton->text = "check";
+	checkButton->callbackData = "check";
+	row0.push_back(checkButton);
+	keyboard->inlineKeyboard.push_back(row0);
 
-	bot.getEvents().onCommand("start", [&bot, &Keyboard](Message::Ptr message) {
-		bot.getApi().sendMessage(message->chat->id, "Hi!",false,0, Keyboard);
+	bot.getEvents().onCommand("start", [&bot, &keyboard](Message::Ptr message) {
+		bot.getApi().sendMessage(message->chat->id, "Hi!", false, 0, keyboard);
 	});
-	bot.getEvents().onCommand("check", [&bot, &Keyboard](Message::Ptr message) {
-		string response = CheckCluster();
-		bot.getApi().sendMessage(message->chat->id, response, false, 0, Keyboard,"Markdown");
+	bot.getEvents().onCommand("check", [&bot, &keyboard](Message::Ptr message) {
+		string response = "ok";
+		bot.getApi().sendMessage(message->chat->id, response, false, 0, keyboard, "Markdown");
 	});
-	bot.getEvents().onCallbackQuery([&bot, &Keyboard](CallbackQuery::Ptr query) {
-		if (StringTools::startsWith(query->data, "Check")) {
-			string response = CheckCluster();
-			bot.getApi().sendMessage(query->message->chat->id, response, false, 0, Keyboard,"Markdown");
+	bot.getEvents().onCallbackQuery([&bot, &keyboard](CallbackQuery::Ptr query) {
+		if (StringTools::startsWith(query->data, "check")) {
+			string response = "ok";
+			bot.getApi().sendMessage(query->message->chat->id, response, false, 0, keyboard, "Markdown");
 		}
 	});
 
