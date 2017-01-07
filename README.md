@@ -36,10 +36,10 @@ Simple echo bot which sends everything it recieves:
 
 int main() {
     TgBot::Bot bot("PLACE YOUR TOKEN HERE");
-    bot.getEvents().onCommand("start", [&bot](Message::Ptr message) {
+    bot.getEvents().onCommand("start", [&bot](TgBot::Message::Ptr message) {
         bot.getApi().sendMessage(message->chat->id, "Hi!");
     });
-    bot.getEvents().onAnyMessage([&bot](Message::Ptr message) {
+    bot.getEvents().onAnyMessage([&bot](TgBot::Message::Ptr message) {
         printf("User wrote %s\n", message->text.c_str());
         if (StringTools::startsWith(message->text, "/start")) {
             return;
