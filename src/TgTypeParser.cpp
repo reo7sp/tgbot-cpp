@@ -467,7 +467,8 @@ std::string TgTypeParser::parseReplyKeyboardMarkup(const ReplyKeyboardMarkup::Pt
 		result.erase(result.length() - 1);
 		result += "],";
 	}
-	result.erase(result.length() - 1);
+	if (!object->keyboard.empty())
+		result.erase(result.length() - 1);
 	result += "],";
 	appendToJson(result, "resize_keyboard", object->resizeKeyboard);
 	appendToJson(result, "one_time_keyboard", object->oneTimeKeyboard);
@@ -1329,7 +1330,8 @@ std::string TgTypeParser::parseInlineKeyboardMarkup(const InlineKeyboardMarkup::
 		result.erase(result.length() - 1);
 		result += "],";
 	}
-	result.erase(result.length() - 1);
+	if (!object->inlineKeyboard.empty())
+		result.erase(result.length() - 1);
 	result += "]}";
 	return result;
 }
