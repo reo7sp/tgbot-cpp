@@ -1,8 +1,11 @@
 CMakeCache.txt
-CMakeFiles/
+CMakeFiles
 Makefile
-cmake_install.cmake
+*.cmake
 install_manifest.txt
 .idea/
 Thumbs.db
 doc/
+*.cbp
+*.a
+test/TgBot_test

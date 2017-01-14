@@ -1,0 +1,27 @@
+FROM debian:latest
+MAINTAINER Oleg Morozenkov <a@reo7sp.ru>
+
+RUN apt-get -qq update && \
+	apt-get -qq install -y g++ make binutils cmake libssl-dev libboost-system-dev libboost-iostreams-dev libboost-test-dev
+
+WORKDIR /tmp/tgbot-cpp
+COPY include include
+COPY src src
+COPY test test
+COPY samples samples
+COPY CMakeLists.txt ./
+
+RUN cmake -DENABLE_TESTS=ON . && \
+	make -j4 && \
+	make install
+
+WORKDIR /tmp/tgbot-cpp/samples/echobot
+RUN rm -rf CMakeCache.txt CMakeFiles/ && \
+    cmake . && make -j4
+
+WORKDIR /tmp/tgbot-cpp/samples/inline-keyboard
+RUN rm -rf CMakeCache.txt CMakeFiles/ && \
+    cmake . && make -j4
+
+WORKDIR /tmp/tgbot-cpp
+CMD make test

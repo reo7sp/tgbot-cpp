@@ -6,13 +6,13 @@
 
 C++ library for Telegram bot API.
 
-Documentaion is located [here](http://reo7sp.github.io/tgbot-cpp)
+Documentation is located [here](http://reo7sp.github.io/tgbot-cpp/docs)
 
 ## Compilation
 
 Firstly you need to install some dependencies such as Boost and build tools such as CMake. On Debian-based distibutives you can do it with these commands:
 ```sh
-sudo apt-get install g++ make binutils cmake libssl-dev libboost-system-dev libboost-iostreams-dev libboost-test-dev
+sudo apt-get install g++ make binutils cmake libssl-dev libboost-system-dev libboost-iostreams-dev
 ```
 
 To compile the library execute this commands:
@@ -29,7 +29,7 @@ If you want, you can also use Docker to build and run your bot. Just set the bas
 
 ## Samples
 
-Simple echo bot which sends everything it recieves:
+Simple echo bot which sends everything it receives:
 ```cpp
 #include <stdio.h>
 #include <tgbot/tgbot.h>
@@ -63,7 +63,7 @@ int main() {
 All samples are located [here](samples)
 
 ## Feedback
-Feel free to [create new issues on GitHub](https://github.com/reo7sp/tgbot-cpp/issues) or [contact me on Telegram](https://telegram.me/reo7sp)
+Feel free to [create new issues on GitHub](https://github.com/reo7sp/tgbot-cpp/issues) or [contact me on Telegram](https://t.me/reo7sp)
 
 ## Licence
 [The MIT License](http://opensource.org/licenses/MIT)

@@ -56,6 +56,8 @@ bool endsWith(const string& str1, const string& str2) {
 	string::const_iterator begin1(str1.begin());
 	string::const_iterator it2(str2.end());
 	string::const_iterator begin2(str2.begin());
+	--begin1;
+	--begin2;
 	while (it1 != begin1 && it2 != begin2) {
 		if (*it1 != *it2) {
 			return false;

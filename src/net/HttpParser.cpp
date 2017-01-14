@@ -99,7 +99,7 @@ string HttpParser::generateMultipartFormData(const vector<HttpReqArg>& args, con
 		result += item.value;
 		result += "\r\n";
 	}
-	result += "--" + bondary + "--";
+	result += "--" + bondary + "--\r\n";
 	return result;
 }
 

@@ -8,15 +8,15 @@ option(ENABLE_TESTS "Set to ON to enable building of tests" OFF)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 include_directories(include)
 set(SRC_LIST
-    src/Api.cpp
-    src/TgTypeParser.cpp
-    src/TgException.cpp
-    src/net/Url.cpp
-    src/net/HttpClient.cpp
-    src/net/HttpParser.cpp
-    src/net/TgLongPoll.cpp
-    src/tools/StringTools.cpp
-        src/types/InlineQueryResult.cpp)
+	src/Api.cpp
+	src/TgTypeParser.cpp
+	src/TgException.cpp
+	src/net/Url.cpp
+	src/net/HttpClient.cpp
+	src/net/HttpParser.cpp
+	src/net/TgLongPoll.cpp
+	src/tools/StringTools.cpp
+    src/types/InlineQueryResult.cpp)
 
 ### libs
 # threads
@@ -28,13 +28,17 @@ include_directories(${OPENSSL_INCLUDE_DIR})
 
 # boost
 set(Boost_USE_MULTITHREADED ON)
-find_package(Boost COMPONENTS system iostreams unit_test_framework REQUIRED)
+if (ENABLE_TESTS)
+	find_package(Boost COMPONENTS system iostreams unit_test_framework REQUIRED)
+else()
+	find_package(Boost COMPONENTS system iostreams REQUIRED)
+endif()
 include_directories(${Boost_INCLUDE_DIR})
 
 set(LIB_LIST
-    ${CMAKE_THREAD_LIBS_INIT}
-    ${OPENSSL_LIBRARIES}
-    ${Boost_LIBRARIES}
+	${CMAKE_THREAD_LIBS_INIT}
+	${OPENSSL_LIBRARIES}
+	${Boost_LIBRARIES}
 )
 
 ### building project
@@ -45,7 +49,7 @@ install(DIRECTORY include/ DESTINATION include)
 
 ### tests
 if (ENABLE_TESTS)
-    message(STATUS "Building of tests is enabled")
-    enable_testing()
-    add_subdirectory(test)
+	message(STATUS "Building of tests is enabled")
+	enable_testing()
+	add_subdirectory(test)
 endif()

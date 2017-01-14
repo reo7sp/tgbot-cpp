@@ -29,30 +29,8 @@
 
 #include <boost/lexical_cast.hpp>
 
-std::string diffS(const std::string& test, const std::string& expected) {
-	std::vector<std::string> v1, v2;
-	std::istringstream ss1(test);
-	std::istringstream ss2(expected);
-	std::string s1, s2;
-	bool r1, r2;
-	do {
-		r1 = std::getline(ss1, s1) ? true : false;
-		r2 = std::getline(ss2, s2) ? true : false;
-		if (r1) {
-			v1.push_back(s1);
-		}
-		if (r2) {
-			v2.push_back(s2);
-		}
-	} while (r1 || r2);
-	return "";
-	//return diff(v1, v2, [](const std::string& item) {
-		//return item;
-	//});
-}
-
 template<typename T>
-std::string diff(const T& test, const T& expected, std::string (*toStringFunc)(const typename T::value_type&)) {
+inline std::string diff(const T& test, const T& expected, std::string (*toStringFunc)(const typename T::value_type&)) {
 	std::string result;
 	result += "\n*** BEGIN ***	 Count: t=";
 	result += boost::lexical_cast<std::string>(test.size());
@@ -100,6 +78,27 @@ std::string diff(const T& test, const T& expected, std::string (*toStringFunc)(c
 
 	result += "*** END ***\n";
 	return result;
+}
+
+inline std::string diffS(const std::string& test, const std::string& expected) {
+	std::vector<std::string> v1, v2;
+	std::istringstream ss1(test);
+	std::istringstream ss2(expected);
+	std::string s1, s2;
+	bool r1, r2;
+	do {
+		r1 = std::getline(ss1, s1) ? true : false;
+		r2 = std::getline(ss2, s2) ? true : false;
+		if (r1) {
+			v1.push_back(s1);
+		}
+		if (r2) {
+			v2.push_back(s2);
+		}
+	} while (r1 || r2);
+	return diff(v1, v2, [](const std::string& item) {
+		return item;
+	});
 }
 
 #endif //TGBOT_UTILS_H

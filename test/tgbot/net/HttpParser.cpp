@@ -41,7 +41,7 @@ BOOST_AUTO_TEST_CASE(generateRequest) {
 		"Content-Type: application/x-www-form-urlencoded\r\n"
 		"Content-Length: 49\r\n"
 		"\r\n"
-		"email=test%40example.com&text=Hello%2c%20world%21";
+		"email=test%40example.com&text=Hello%2C%20world%21";
 	BOOST_CHECK_MESSAGE(t == e, diffS(t, e));
 }
 
@@ -55,17 +55,18 @@ BOOST_AUTO_TEST_CASE(generateMultipartFormData) {
 		"\r\n"
 		"test@example.com\r\n"
 		"--" + boundary + "\r\n"
-		"Content-Disposition: form-data; name=\"text\"\r\n"
+		"Content-Disposition: form-data; name=\"text\"; filename=\"\"\r\n"
 		"Content-Type: text/plain\r\n"
 		"\r\n"
-		"Hello, world!\r\n";
+		"Hello, world!\r\n"
+		"--" + boundary + "--\r\n";
 	BOOST_CHECK_MESSAGE(t == e, diffS(t, e));
 }
 
 BOOST_AUTO_TEST_CASE(generateWwwFormUrlencoded) {
 	vector<HttpReqArg> args = { HttpReqArg("email", "test@example.com"), HttpReqArg("text", "Hello, world!") };
 	string t = HttpParser::getInstance().generateWwwFormUrlencoded(args);
-	string e = "email=test%40example.com&text=Hello%2c%20world%21";
+	string e = "email=test%40example.com&text=Hello%2C%20world%21";
 	BOOST_CHECK_MESSAGE(t == e, diffS(t, e));
 }
 
