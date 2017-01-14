@@ -85,14 +85,14 @@ $(document).ready(function(){initNavTree('index.html','');});
 <div class="contents">
 <div class="textblock"><h1><a class="anchor" id="Compilation"></a>
 Compilation</h1>
-<p>Firstly you need to install some dependencies. You have to have boost library at the runtime and cmake at the compilation step to be able to use this library. On Debian-based distibutives you can do it with these commands: </p><div class="fragment"><div class="line">sudo apt-get install g++ make binutils cmake libssl-dev libboost-system-dev libboost-iostreams-dev libboost-test-dev</div></div><!-- fragment --><p>To compile the library execute this commands: </p><div class="fragment"><div class="line">cd /path/where/you/have/cloned/the/library/repository</div><div class="line">cmake .</div><div class="line">make -j4</div><div class="line">sudo make install</div></div><!-- fragment --><p>That's all. All you have to do now is just link compiled library to your project.</p>
+<p>Firstly you need to install some dependencies such as Boost and build tools such as CMake. On Debian-based distibutives you can do it with these commands: </p><div class="fragment"><div class="line">sudo apt-get install g++ make binutils cmake libssl-dev libboost-system-dev libboost-iostreams-dev</div></div><!-- fragment --><p>To compile the library execute this commands: </p><div class="fragment"><div class="line">cd /path/where/you/have/cloned/the/library/repository</div><div class="line">cmake .</div><div class="line">make -j4</div><div class="line">sudo make install</div></div><!-- fragment --><p>That's all. All you have to do now is just link compiled library to your project.</p>
 <p>If you want, you can also use Docker to build and run your bot. Just set the base image of your's Dockerfile to reo7sp/tgbot-cpp.</p>
 <h1><a class="anchor" id="Samples"></a>
 Samples</h1>
 <p>All samples are located <a href="https://github.com/reo7sp/tgbot-cpp/tree/master/samples">here</a></p>
 <h1><a class="anchor" id="Feedback"></a>
 Feedback</h1>
-<p>Feel free to <a href="https://github.com/reo7sp/tgbot-cpp/issues">create new issues on GitHub</a> or <a href="https://telegram.me/Reo_SP">contact me on Telegram</a></p>
+<p>Feel free to <a href="https://github.com/reo7sp/tgbot-cpp/issues">create new issues on GitHub</a> or <a href="https://t.me/reo7sp">contact me on Telegram</a></p>
 <h1><a class="anchor" id="Licence"></a>
 Licence</h1>
 <p><a href="http://opensource.org/licenses/MIT">The MIT License</a> </p>
@@ -101,7 +101,7 @@ Licence</h1>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Sun Jan 15 2017 02:33:17 for tgbot-cpp by
+    <li class="footer">Generated on Sun Jan 15 2017 02:46:17 for tgbot-cpp by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
   </ul>

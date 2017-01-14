@@ -74,10 +74,9 @@
  *
  * @section Compilation
  *
- * Firstly you need to install some dependencies. You have to have boost library at the runtime and cmake at the compilation step to be able to use this library.
- * On Debian-based distibutives you can do it with these commands:
+ * Firstly you need to install some dependencies such as Boost and build tools such as CMake. On Debian-based distibutives you can do it with these commands:
  * @code{.sh}
- * sudo apt-get install g++ make binutils cmake libssl-dev libboost-system-dev libboost-iostreams-dev libboost-test-dev
+ * sudo apt-get install g++ make binutils cmake libssl-dev libboost-system-dev libboost-iostreams-dev
  * @endcode
  *
  * To compile the library execute this commands:
@@ -96,7 +95,7 @@
  * All samples are located [here](https://github.com/reo7sp/tgbot-cpp/tree/master/samples)
  *
  * @section Feedback
- * Feel free to [create new issues on GitHub](https://github.com/reo7sp/tgbot-cpp/issues) or [contact me on Telegram](https://telegram.me/Reo_SP)
+ * Feel free to [create new issues on GitHub](https://github.com/reo7sp/tgbot-cpp/issues) or [contact me on Telegram](https://t.me/reo7sp)
  *
  * @section Licence
  * [The MIT License](http://opensource.org/licenses/MIT)
