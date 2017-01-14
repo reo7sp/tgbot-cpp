@@ -84,20 +84,22 @@ string generateRandomString(size_t length) {
 	return result;
 }
 
+
 string urlEncode(const string& value, const std::string& additionalLegitChars) {
-	static const string legitPunctuation = "-_.~";
-	ostringstream result;
-	result.fill('0');
-	result << hex;
-	for (const char& c : value) {
-		if (isalnum(c) || legitPunctuation.find(c) != legitPunctuation.npos || additionalLegitChars.find(c) != additionalLegitChars.npos) {
-			result << c;
+	static const string legitPunctuation = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_.-~:";
+	std::stringstream ss;
+	std::string t;
+	for (auto const &c : value) {
+		if ((legitPunctuation.find(c) == std::string::npos)
+			&& (additionalLegitChars.find(c)==std::string::npos)) {
+			ss << '%' << std::uppercase << std::setfill('0') << std::setw(2) << std::hex << (unsigned int)(unsigned char)c;
+			t = ss.str();
 		} else {
-			result << '%' << setw(2) << int((unsigned char) c);
+			ss << c;
 		}
 	}
 
-	return result.str();
+	return ss.str();
 }
 
 string urlDecode(const string& value) {

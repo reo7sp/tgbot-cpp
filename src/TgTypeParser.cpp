@@ -442,16 +442,12 @@ string TgTypeParser::parseFile(const File::Ptr& object) const {
 
 ReplyKeyboardMarkup::Ptr TgTypeParser::parseJsonAndGetReplyKeyboardMarkup(const boost::property_tree::ptree& data) const {
 	ReplyKeyboardMarkup::Ptr result(new ReplyKeyboardMarkup);
-	for (const pair<const string, ptree>& item : data.find("keyboard")->second) {
-		vector<string> array;
-		for (const pair<const string, ptree>& innerItem : item.second) {
-			array.push_back(innerItem.second.data());
-		}
-		result->keyboard.push_back(array);
+	for (const boost::property_tree::ptree::value_type& item : data.find("keyboard")->second){
+		result->keyboard.push_back(parseJsonAndGetArray<KeyboardButton>(&TgTypeParser::parseJsonAndGetKeyboardButton, item.second));
 	}
-	result->resizeKeyboard = data.get<bool>("resize_keyboard");
-	result->oneTimeKeyboard = data.get<bool>("one_time_keyboard");
-	result->selective = data.get<bool>("selective");
+	result->resizeKeyboard = data.get<bool>("resize_keyboard", false);
+	result->oneTimeKeyboard = data.get<bool>("one_time_keyboard", false);
+	result->selective = data.get<bool>("selective", false);
 	return result;
 }
 
@@ -462,17 +458,17 @@ std::string TgTypeParser::parseReplyKeyboardMarkup(const ReplyKeyboardMarkup::Pt
 	string result;
 	result += '{';
 	result += "\"keyboard\":[";
-	for (vector<string>& item : object->keyboard) {
+	for (vector<KeyboardButton::Ptr>& item : object->keyboard) {
 		result += '[';
-		for (string& innerItem : item) {
-			result += '"';
-			result += innerItem;
-			result += "\",";
+		for (KeyboardButton::Ptr& innerItem : item) {
+			result += parseKeyboardButton(innerItem);
+			result += ',';
 		}
 		result.erase(result.length() - 1);
 		result += "],";
 	}
-	result.erase(result.length() - 1);
+	if (!object->keyboard.empty())
+		result.erase(result.length() - 1);
 	result += "],";
 	appendToJson(result, "resize_keyboard", object->resizeKeyboard);
 	appendToJson(result, "one_time_keyboard", object->oneTimeKeyboard);
@@ -1334,7 +1330,8 @@ std::string TgTypeParser::parseInlineKeyboardMarkup(const InlineKeyboardMarkup::
 		result.erase(result.length() - 1);
 		result += "],";
 	}
-	result.erase(result.length() - 1);
+	if (!object->inlineKeyboard.empty())
+		result.erase(result.length() - 1);
 	result += "]}";
 	return result;
 }
