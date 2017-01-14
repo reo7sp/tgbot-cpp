@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['keyboard',['keyboard',['../class_tg_bot_1_1_reply_keyboard_markup.html#a382ab5f11a2da98f5a6480883bc8e68d',1,'TgBot::ReplyKeyboardMarkup']]]
+  ['keyboard',['keyboard',['../d2/d80/class_tg_bot_1_1_reply_keyboard_markup.html#a87d9dc41554e585b137b922fa20fd020',1,'TgBot::ReplyKeyboardMarkup']]]
 ];

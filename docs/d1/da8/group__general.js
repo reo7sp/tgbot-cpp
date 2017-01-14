@@ -1,0 +1,67 @@
+var group__general =
+[
+    [ "Api", "d9/d69/class_tg_bot_1_1_api.html", [
+      [ "Api", "d9/d69/class_tg_bot_1_1_api.html#ac0e4615a8944c07e7db3811ee84f2a94", null ],
+      [ "answerCallbackQuery", "d9/d69/class_tg_bot_1_1_api.html#a2f73414941d8bb67ff3721a674274bf8", null ],
+      [ "answerInlineQuery", "d9/d69/class_tg_bot_1_1_api.html#a430f9e036859250345d2125b7688a1f9", null ],
+      [ "deleteWebhook", "d9/d69/class_tg_bot_1_1_api.html#a8fbfde4234553c478987746c43b08e62", null ],
+      [ "editMessageCaption", "d9/d69/class_tg_bot_1_1_api.html#a7d8a296982d5c226cd2044c7cd3eff08", null ],
+      [ "editMessageReplyMarkup", "d9/d69/class_tg_bot_1_1_api.html#a1a9c38841dd135a6910f011f51f5a446", null ],
+      [ "editMessageText", "d9/d69/class_tg_bot_1_1_api.html#a4d6a7d6a90e82689de922b99ffe7b279", null ],
+      [ "forwardMessage", "d9/d69/class_tg_bot_1_1_api.html#acf5818100f3529706d8aa888f3922594", null ],
+      [ "getChat", "d9/d69/class_tg_bot_1_1_api.html#ad042b4d7f03f45eb59acb68085faaa23", null ],
+      [ "getChatAdministrators", "d9/d69/class_tg_bot_1_1_api.html#a2fd133b562c8bcad74d4b76e4fdbc5b8", null ],
+      [ "getChatMember", "d9/d69/class_tg_bot_1_1_api.html#a648190cc90ed13172bc2327344d0e7f6", null ],
+      [ "getChatMembersCount", "d9/d69/class_tg_bot_1_1_api.html#a018da546747f0d34a5fa3bdb6a715a07", null ],
+      [ "getFile", "d9/d69/class_tg_bot_1_1_api.html#abff10c92fa22a812d5bc17a068413709", null ],
+      [ "getMe", "d9/d69/class_tg_bot_1_1_api.html#a566fcf52400de18737110edd7ab01535", null ],
+      [ "getUpdates", "d9/d69/class_tg_bot_1_1_api.html#abd10abcfaf859c63cab0526b8c9179c9", null ],
+      [ "getUserProfilePhotos", "d9/d69/class_tg_bot_1_1_api.html#aa605f96bd5de1a3a432e14a160bac210", null ],
+      [ "getWebhookInfo", "d9/d69/class_tg_bot_1_1_api.html#a43bf35783ec4f9a03e46925e36fda24c", null ],
+      [ "kickChatMember", "d9/d69/class_tg_bot_1_1_api.html#a07c9bb7aa68a66bec54dd9bcf97875d7", null ],
+      [ "leaveChat", "d9/d69/class_tg_bot_1_1_api.html#a28d6bda0f615ff1c7063905eb61b5cde", null ],
+      [ "sendAudio", "d9/d69/class_tg_bot_1_1_api.html#a95c614ace41968c47ce2236cd85d5c82", null ],
+      [ "sendAudio", "d9/d69/class_tg_bot_1_1_api.html#aadb18626cc502c6b16402eb04dd624db", null ],
+      [ "sendChatAction", "d9/d69/class_tg_bot_1_1_api.html#a77fe17ad287f702bb021fc92575a0e2d", null ],
+      [ "sendContact", "d9/d69/class_tg_bot_1_1_api.html#ae40457b964cc05443c5e8aa0c5300f51", null ],
+      [ "sendDocument", "d9/d69/class_tg_bot_1_1_api.html#a771b4c3597217d5cbcdf1191693b3419", null ],
+      [ "sendDocument", "d9/d69/class_tg_bot_1_1_api.html#acffc0358fc453207694e5517a92f5580", null ],
+      [ "sendLocation", "d9/d69/class_tg_bot_1_1_api.html#a9b72378c248c11739b4a2d86a3afd485", null ],
+      [ "sendMessage", "d9/d69/class_tg_bot_1_1_api.html#a8d7ace74013fbe6803c1a4d8cda579e4", null ],
+      [ "sendPhoto", "d9/d69/class_tg_bot_1_1_api.html#aa78cb2f3053726f421d1cb8363d581f5", null ],
+      [ "sendPhoto", "d9/d69/class_tg_bot_1_1_api.html#a274bef0b2af3641c959b4ddbe03c012f", null ],
+      [ "sendSticker", "d9/d69/class_tg_bot_1_1_api.html#a334fd1983a78079b2ed3c9b107cf586f", null ],
+      [ "sendSticker", "d9/d69/class_tg_bot_1_1_api.html#aefbe8faba25015d006fcbf0c8e1c5343", null ],
+      [ "sendVenue", "d9/d69/class_tg_bot_1_1_api.html#a4f88e34dec1960cb74514a632781b193", null ],
+      [ "sendVideo", "d9/d69/class_tg_bot_1_1_api.html#ab9d31ba2b43f5e7df31c3fb023f48f95", null ],
+      [ "sendVideo", "d9/d69/class_tg_bot_1_1_api.html#a7b1158a58e0c61f54ddbfddfae915d23", null ],
+      [ "sendVoice", "d9/d69/class_tg_bot_1_1_api.html#a96b602c6d2f0b5c140e6e64436244358", null ],
+      [ "sendVoice", "d9/d69/class_tg_bot_1_1_api.html#a48be8349eed8be07e12ffbf0a2c47974", null ],
+      [ "setWebhook", "d9/d69/class_tg_bot_1_1_api.html#ad961e1b605e9d6707c362ee046b9cfda", null ],
+      [ "unbanChatMember", "d9/d69/class_tg_bot_1_1_api.html#a44ea670c4eecdf100f60be3c90911eec", null ],
+      [ "Bot", "d9/d69/class_tg_bot_1_1_api.html#afb5d57ac6b56fe83e7894e3b686c3339", null ]
+    ] ],
+    [ "Bot", "d1/dd9/class_tg_bot_1_1_bot.html", [
+      [ "Bot", "d1/dd9/class_tg_bot_1_1_bot.html#a8b644ad116aa6f79a7bc2c308e02d332", null ],
+      [ "getApi", "d1/dd9/class_tg_bot_1_1_bot.html#a99a820c47aa8f8cc0dba35bcd001cbe3", null ],
+      [ "getEventHandler", "d1/dd9/class_tg_bot_1_1_bot.html#a2f36a7774c1552d00c6e08accf495579", null ],
+      [ "getEvents", "d1/dd9/class_tg_bot_1_1_bot.html#ac7becb36b294dfbc556d534925d564ac", null ],
+      [ "getToken", "d1/dd9/class_tg_bot_1_1_bot.html#a6443b4ec5838112a4f5689ec60665e91", null ]
+    ] ],
+    [ "EventBroadcaster", "dc/db7/class_tg_bot_1_1_event_broadcaster.html", [
+      [ "CallbackQueryListener", "dc/db7/class_tg_bot_1_1_event_broadcaster.html#a1b5bf368b89d78d9c1582a1523a66b4e", null ],
+      [ "ChosenInlineResultListener", "dc/db7/class_tg_bot_1_1_event_broadcaster.html#af9b674f16ddd707748f7ca8bf7f3ef91", null ],
+      [ "InlineQueryListener", "dc/db7/class_tg_bot_1_1_event_broadcaster.html#a437f0af514141d0a5d4fb684a56fe199", null ],
+      [ "MessageListener", "dc/db7/class_tg_bot_1_1_event_broadcaster.html#a9fda4ac3089dc101be4fd3a2a104185c", null ],
+      [ "onAnyMessage", "dc/db7/class_tg_bot_1_1_event_broadcaster.html#a21adc85e9ed2a08a186423a5231342a9", null ],
+      [ "onCallbackQuery", "dc/db7/class_tg_bot_1_1_event_broadcaster.html#a3ec551ffdcf5be1b9b39ed081ea078d4", null ],
+      [ "onChosenInlineResult", "dc/db7/class_tg_bot_1_1_event_broadcaster.html#a7397520ff294c863b306142e29030482", null ],
+      [ "onCommand", "dc/db7/class_tg_bot_1_1_event_broadcaster.html#a13e4a906203fe43a950f1420b68c7583", null ],
+      [ "onInlineQuery", "dc/db7/class_tg_bot_1_1_event_broadcaster.html#a9d3f31225ea84af8cb47ab2a53186ef0", null ],
+      [ "onNonCommandMessage", "dc/db7/class_tg_bot_1_1_event_broadcaster.html#a22e70b8493ea455e70734a36968f3d55", null ],
+      [ "onUnknownCommand", "dc/db7/class_tg_bot_1_1_event_broadcaster.html#a5bed996221f047ec0469ae19e7bd00eb", null ]
+    ] ],
+    [ "TgException", "d3/deb/class_tg_bot_1_1_tg_exception.html", [
+      [ "TgException", "d3/deb/class_tg_bot_1_1_tg_exception.html#a3deeaa4d10491dd6824ef954cd0a2d15", null ]
+    ] ]
+];

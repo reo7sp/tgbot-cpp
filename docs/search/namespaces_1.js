@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['tgbot',['TgBot',['../namespace_tg_bot.html',1,'']]]
+  ['tgbot',['TgBot',['../d8/d9d/namespace_tg_bot.html',1,'']]]
 ];
