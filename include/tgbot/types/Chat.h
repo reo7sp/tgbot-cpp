@@ -35,51 +35,51 @@ namespace TgBot {
 class Chat {
 
 public:
-    typedef std::shared_ptr<Chat> Ptr;
+	typedef std::shared_ptr<Chat> Ptr;
 
-    /**
-     * Enum of possible types of a chat.
-     */
-    enum class Type {
-        Private, Group, Supergroup, Channel
-    };
+	/**
+	 * Enum of possible types of a chat.
+	 */
+	enum class Type {
+		Private, Group, Supergroup, Channel
+	};
 
-    /**
-     * Unique identifier for this chat, not exceeding 1e13 by absolute value
-     */
+	/**
+	 * Unique identifier for this chat, not exceeding 1e13 by absolute value
+	 */
 	int64_t id;
 
-    /**
-     * Type of chat: can be either "private", "group", "supergroup, or "channel".
-     */
-    Type type;
+	/**
+	 * Type of chat: can be either "private", "group", "supergroup, or "channel".
+	 */
+	Type type;
 
-    /**
-     * Optional. Title for channels and group chat
-     */
-    std::string title;
+	/**
+	 * Optional. Title for channels and group chat
+	 */
+	std::string title;
 
-    /**
-     * Optional. Username for
-     * private chats and channels
-     */
-    std::string username;
+	/**
+	 * Optional. Username for
+	 * private chats and channels
+	 */
+	std::string username;
 
-    /**
-     * Optional. First name of the
-     * other party in private chat
-     */
-    std::string firstName;
+	/**
+	 * Optional. First name of the
+	 * other party in private chat
+	 */
+	std::string firstName;
 
-    /**
-     * Optional. Last name of the
-     * other party in private chat
-     */
-    std::string lastName;
+	/**
+	 * Optional. Last name of the
+	 * other party in private chat
+	 */
+	std::string lastName;
 
 	/**
 	 * Optional. True if a group 
-	 * has ‘All Members Are Admins’ enabled.
+	 * has ï¿½All Members Are Adminsï¿½ enabled.
 	 */
 	bool allMembersAreAdministrators;
 };

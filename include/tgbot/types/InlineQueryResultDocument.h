@@ -18,23 +18,23 @@ namespace TgBot {
  */
 class InlineQueryResultDocument : public InlineQueryResult {
 public:
-    static const std::string TYPE;
+	static const std::string TYPE;
 
-    typedef std::shared_ptr<InlineQueryResultDocument> Ptr;
+	typedef std::shared_ptr<InlineQueryResultDocument> Ptr;
 
-    InlineQueryResultDocument() {
-        this->type = TYPE;
+	InlineQueryResultDocument() {
+		this->type = TYPE;
 		this->thumbHeight = 0;
 		this->thumbWidth = 0;
-    }
-
-    /**
-     * A valid URL for the file
-     */
-    std::string documentUrl;
+	}
 
 	/**
-	 * Mime type of the content of the file, either “application/pdf” or “application/zip”
+	 * A valid URL for the file
+	 */
+	std::string documentUrl;
+
+	/**
+	 * Mime type of the content of the file, either ï¿½application/pdfï¿½ or ï¿½application/zipï¿½
 	 */
 	std::string mimeType;
 

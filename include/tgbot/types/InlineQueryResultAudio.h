@@ -18,19 +18,19 @@ namespace TgBot {
  */
 class InlineQueryResultAudio : public InlineQueryResult {
 public:
-    static const std::string TYPE;
+	static const std::string TYPE;
 
-    typedef std::shared_ptr<InlineQueryResultAudio> Ptr;
+	typedef std::shared_ptr<InlineQueryResultAudio> Ptr;
 
-    InlineQueryResultAudio() {
-        this->type = TYPE;
+	InlineQueryResultAudio() {
+		this->type = TYPE;
 		this->audioDuration = 0;
-    }
+	}
 
-    /**
-     * A valid URL for the audio file
-     */
-    std::string audioUrl;
+	/**
+	 * A valid URL for the audio file
+	 */
+	std::string audioUrl;
 
 	/**
 	* Optional. Performer

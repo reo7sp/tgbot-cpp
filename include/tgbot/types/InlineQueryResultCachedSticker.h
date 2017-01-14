@@ -18,18 +18,18 @@ namespace TgBot {
  */
 class InlineQueryResultCachedSticker : public InlineQueryResult {
 public:
-    static const std::string TYPE;
+	static const std::string TYPE;
 
 	typedef std::shared_ptr<InlineQueryResultCachedSticker> Ptr;
 
 	InlineQueryResultCachedSticker() {
-        this->type = TYPE;
-    }
+		this->type = TYPE;
+	}
 
-    /**
-     * A valid file identifier of the sticker
-     */
-    std::string stickerFileId;
+	/**
+	 * A valid file identifier of the sticker
+	 */
+	std::string stickerFileId;
 };
 }
 

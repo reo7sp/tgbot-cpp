@@ -21,22 +21,22 @@ namespace TgBot {
 class File {
 
 public:
-    typedef std::shared_ptr<File> Ptr;
+	typedef std::shared_ptr<File> Ptr;
 
-    /**
-     * Unique identifier for this file
-     */
+	/**
+	 * Unique identifier for this file
+	 */
 	std::string fileId;
 
-    /**
-     * Optional. File size, if known
-     */
+	/**
+	 * Optional. File size, if known
+	 */
 	int32_t fileSize;
 
-    /**
-     * Optional. File path. 
+	/**
+	 * Optional. File path.
 	 * Use https://api.telegram.org/file/bot<token>/<file_path> to get the file.
-     */
+	 */
 	std::string filePath;
 };
 

@@ -18,18 +18,18 @@ namespace TgBot {
  */
 class InlineQueryResultGame : public InlineQueryResult {
 public:
-    static const std::string TYPE;
+	static const std::string TYPE;
 
-    typedef std::shared_ptr<InlineQueryResultGame> Ptr;
+	typedef std::shared_ptr<InlineQueryResultGame> Ptr;
 
-    InlineQueryResultGame() {
-        this->type = TYPE;
-    }
+	InlineQueryResultGame() {
+		this->type = TYPE;
+	}
 
-    /**
-     * Short name of the game
-     */
-    std::string gameShortName;
+	/**
+	 * Short name of the game
+	 */
+	std::string gameShortName;
 };
 }
 

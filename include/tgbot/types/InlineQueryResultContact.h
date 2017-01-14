@@ -18,20 +18,20 @@ namespace TgBot {
  */
 class InlineQueryResultContact : public InlineQueryResult {
 public:
-    static const std::string TYPE;
+	static const std::string TYPE;
 
-    typedef std::shared_ptr<InlineQueryResultContact> Ptr;
+	typedef std::shared_ptr<InlineQueryResultContact> Ptr;
 
-    InlineQueryResultContact() {
-        this->type = TYPE;
+	InlineQueryResultContact() {
+		this->type = TYPE;
 		this->thumbHeight = 0;
 		this->thumbWidth = 0;
-    }
+	}
 
-    /**
-     * Contact's phone number
-     */
-    std::string phoneNumber;
+	/**
+	 * Contact's phone number
+	 */
+	std::string phoneNumber;
 
 	/**
 	 * Contact's first name

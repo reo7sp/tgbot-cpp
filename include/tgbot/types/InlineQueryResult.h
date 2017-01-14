@@ -19,30 +19,30 @@ namespace TgBot {
  */
 class InlineQueryResult {
 public:
-    typedef std::shared_ptr<InlineQueryResult> Ptr;
+	typedef std::shared_ptr<InlineQueryResult> Ptr;
 
-    InlineQueryResult() {
-        
-    }
+	InlineQueryResult() {
 
-    virtual ~InlineQueryResult() { }
+	}
 
-    /**
-     * Type of the result.
-     */
-    std::string type;
+	virtual ~InlineQueryResult() { }
 
-    /**
-     * Unique identifier for this result. (1-64 bytes)
-     */
-    std::string id;
+	/**
+	 * Type of the result.
+	 */
+	std::string type;
 
-    /**
-     * Requred, optional or missing. See description of derived classes. Title of the result.
-     */
-    std::string title;
+	/**
+	 * Unique identifier for this result. (1-64 bytes)
+	 */
+	std::string id;
 
-    /**
+	/**
+	 * Requred, optional or missing. See description of derived classes. Title of the result.
+	 */
+	std::string title;
+
+	/**
 	 * Optional or missing. See description of derived classes. Caption of the file to be sent, 0-200 characters
 	 */
 	std::string caption;

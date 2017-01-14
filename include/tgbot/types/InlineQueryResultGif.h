@@ -18,35 +18,35 @@ namespace TgBot {
  */
 class InlineQueryResultGif : public InlineQueryResult {
 public:
-    static const std::string TYPE;
+	static const std::string TYPE;
 
-    typedef std::shared_ptr<InlineQueryResultGif> Ptr;
+	typedef std::shared_ptr<InlineQueryResultGif> Ptr;
 
-    InlineQueryResultGif() {
-        this->type = TYPE;
-        this->gifWidth = 0;
-        this->gifHeight = 0;
-    }
+	InlineQueryResultGif() {
+		this->type = TYPE;
+		this->gifWidth = 0;
+		this->gifHeight = 0;
+	}
 
-    /**
-     * A valid URL for the GIF file.
-     */
-    std::string gifUrl;
+	/**
+	 * A valid URL for the GIF file.
+	 */
+	std::string gifUrl;
 
-    /**
-     * Optional. Width of the GIF.
-     */
-    int32_t gifWidth;
+	/**
+	 * Optional. Width of the GIF.
+	 */
+	int32_t gifWidth;
 
-    /**
-     * Optional. Height of the GIF.
-     */
-    int32_t gifHeight;
+	/**
+	 * Optional. Height of the GIF.
+	 */
+	int32_t gifHeight;
 
-    /**
-     * URL of the static thumbnail for the result (jpeg or gif)
-     */
-    std::string thumbUrl;
+	/**
+	 * URL of the static thumbnail for the result (jpeg or gif)
+	 */
+	std::string thumbUrl;
 
 };
 }

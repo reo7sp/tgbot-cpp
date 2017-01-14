@@ -18,15 +18,15 @@ namespace TgBot {
  */
 class InlineQueryResultLocation : public InlineQueryResult {
 public:
-    static const std::string TYPE;
+	static const std::string TYPE;
 
-    typedef std::shared_ptr<InlineQueryResultLocation> Ptr;
+	typedef std::shared_ptr<InlineQueryResultLocation> Ptr;
 
-    InlineQueryResultLocation() {
+	InlineQueryResultLocation() {
 		this->type = TYPE;
-        this->thumbHeight = 0;
-        this->thumbWidth = 0;
-    }
+		this->thumbHeight = 0;
+		this->thumbWidth = 0;
+	}
 
 	/**
 	* Location latitude in degrees
@@ -43,15 +43,15 @@ public:
 	 */
 	std::string thumbUrl;
 
-    /**
-     * Optional. Thumbnail width.
-     */
-    int32_t thumbWidth;
+	/**
+	 * Optional. Thumbnail width.
+	 */
+	int32_t thumbWidth;
 
-    /**
-     * Optinal. Thumbnail height
-     */
-    int32_t thumbHeight;
+	/**
+	 * Optinal. Thumbnail height
+	 */
+	int32_t thumbHeight;
 };
 }
 

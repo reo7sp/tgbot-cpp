@@ -18,18 +18,18 @@ namespace TgBot {
  */
 class InlineQueryResultCachedGif : public InlineQueryResult {
 public:
-    static const std::string TYPE;
+	static const std::string TYPE;
 
 	typedef std::shared_ptr<InlineQueryResultCachedGif> Ptr;
 
 	InlineQueryResultCachedGif() {
-        this->type = TYPE;
-    }
+		this->type = TYPE;
+	}
 
-    /**
-     * A valid file identifier for the GIF file
-     */
-    std::string gifFileId;
+	/**
+	 * A valid file identifier for the GIF file
+	 */
+	std::string gifFileId;
 
 };
 }

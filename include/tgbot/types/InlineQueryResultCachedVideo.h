@@ -18,18 +18,18 @@ namespace TgBot {
  */
 class InlineQueryResultCachedVideo : public InlineQueryResult {
 public:
-    static const std::string TYPE;
+	static const std::string TYPE;
 
 	typedef std::shared_ptr<InlineQueryResultCachedVideo> Ptr;
 
 	InlineQueryResultCachedVideo() {
-        this->type = TYPE;
-    }
+		this->type = TYPE;
+	}
 
-    /**
-     * A valid file identifier of the video
-     */
-    std::string videoFileId;
+	/**
+	 * A valid file identifier of the video
+	 */
+	std::string videoFileId;
 
 	/**
 	* Optional. Short description of the result
