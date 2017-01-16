@@ -1,4 +1,4 @@
-FROM debian:latest
+FROM debian:stretch
 MAINTAINER Oleg Morozenkov <a@reo7sp.ru>
 
 RUN apt-get -qq update && \
