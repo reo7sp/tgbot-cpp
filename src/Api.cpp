@@ -332,7 +332,7 @@ Message::Ptr Api::sendVoice(int64_t chatId, const std::string& voiceId, const st
 	if (disableNotification){
 		args.push_back(HttpReqArg("disable_notification", disableNotification));
 	}
-	return TgTypeParser::getInstance().parseJsonAndGetMessage(sendRequest("sendVideo", args));
+	return TgTypeParser::getInstance().parseJsonAndGetMessage(sendRequest("sendVoice", args));
 }
 
 Message::Ptr Api::sendLocation(int64_t chatId, float latitude, float longitude, int32_t replyToMessageId, const GenericReply::Ptr& replyMarkup, bool disableNotification) const {
