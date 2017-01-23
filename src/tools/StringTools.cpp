@@ -80,7 +80,7 @@ string generateRandomString(size_t length) {
 	static const string chars("qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM1234567890-=[]\\;',./!@#$%^&*()_+{}|:\"<>?`~");
 	static const size_t charsLen = chars.length();
 	string result;
-	for (int i = 0; i < length; ++i) {
+	for (size_t i = 0; i < length; ++i) {
 		result += chars[rand() % charsLen];
 	}
 	return result;

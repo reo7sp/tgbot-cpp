@@ -603,6 +603,7 @@ std::string TgTypeParser::parseGenericReply(const GenericReply::Ptr& object) con
 	} else if (dynamic_pointer_cast<InlineKeyboardMarkup>(object) != nullptr){
 		return parseInlineKeyboardMarkup(static_pointer_cast<InlineKeyboardMarkup>(object));
 	}
+	return "";
 }
 
 InlineQuery::Ptr TgTypeParser::parseJsonAndGetInlineQuery(const boost::property_tree::ptree& data) const {
