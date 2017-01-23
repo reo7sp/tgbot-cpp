@@ -16,7 +16,9 @@ set(SRC_LIST
 	src/net/HttpParser.cpp
 	src/net/TgLongPoll.cpp
 	src/tools/StringTools.cpp
-    src/types/InlineQueryResult.cpp)
+	src/types/InlineQueryResult.cpp
+	src/EventHandler.cpp
+)
 
 ### libs
 # threads

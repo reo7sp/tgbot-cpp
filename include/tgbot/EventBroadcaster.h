@@ -46,10 +46,10 @@ class EventBroadcaster {
 friend EventHandler;
 
 public:
-	typedef std::function<void (const Message::Ptr&)> MessageListener;
-	typedef std::function<void (const InlineQuery::Ptr&)> InlineQueryListener;
-	typedef std::function<void (const ChosenInlineResult::Ptr&)> ChosenInlineResultListener;
-	typedef std::function<void (const CallbackQuery::Ptr&)> CallbackQueryListener;
+	typedef std::function<void (const Message::Ptr)> MessageListener;
+	typedef std::function<void (const InlineQuery::Ptr)> InlineQueryListener;
+	typedef std::function<void (const ChosenInlineResult::Ptr)> ChosenInlineResultListener;
+	typedef std::function<void (const CallbackQuery::Ptr)> CallbackQueryListener;
 
 	/**
 	 * Registers listener which receives all messages which the bot can ever receive.
@@ -106,7 +106,7 @@ public:
 
 private:
 	template<typename ListenerType, typename ObjectType>
-	inline void broadcast(const std::vector<ListenerType>& listeners, const ObjectType& object) const {
+	inline void broadcast(const std::vector<ListenerType>& listeners, const ObjectType object) const {
 		if (!object)
 			return;
 		
@@ -115,11 +115,11 @@ private:
 		}
 	}
 
-	inline void broadcastAnyMessage(const Message::Ptr& message) const {
+	inline void broadcastAnyMessage(const Message::Ptr message) const {
 		broadcast<MessageListener, Message::Ptr>(_onAnyMessageListeners, message);
 	}
 
-	inline bool broadcastCommand(const std::string command, const Message::Ptr& message) const {
+	inline bool broadcastCommand(const std::string command, const Message::Ptr message) const {
 		std::map<std::string, MessageListener>::const_iterator iter = _onCommandListeners.find(command);
 		if (iter == _onCommandListeners.end()) {
 			return false;
@@ -128,23 +128,23 @@ private:
 		return true;
 	}
 
-	inline void broadcastUnknownCommand(const Message::Ptr& message) const {
+	inline void broadcastUnknownCommand(const Message::Ptr message) const {
 		broadcast<MessageListener, Message::Ptr>(_onUnknownCommandListeners, message);
 	}
 
-	inline void broadcastNonCommandMessage(const Message::Ptr& message) const {
+	inline void broadcastNonCommandMessage(const Message::Ptr message) const {
 		broadcast<MessageListener, Message::Ptr>(_onNonCommandMessageListeners, message);
 	}
 
-	inline void broadcastInlineQuery(const InlineQuery::Ptr& query) const {
+	inline void broadcastInlineQuery(const InlineQuery::Ptr query) const {
 		broadcast<InlineQueryListener, InlineQuery::Ptr>(_onInlineQueryListeners, query);
 	}
 
-	inline void broadcastChosenInlineResult(const ChosenInlineResult::Ptr& result) const {
+	inline void broadcastChosenInlineResult(const ChosenInlineResult::Ptr result) const {
 		broadcast<ChosenInlineResultListener, ChosenInlineResult::Ptr>(_onChosenInlineResultListeners, result);
 	}
 
-	inline void broadcastCallbackQuery(const CallbackQuery::Ptr& result) const {
+	inline void broadcastCallbackQuery(const CallbackQuery::Ptr result) const {
 		broadcast<CallbackQueryListener, CallbackQuery::Ptr>(_onCallbackQueryListeners, result);
 	}
 

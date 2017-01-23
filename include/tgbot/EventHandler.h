@@ -31,50 +31,16 @@ namespace TgBot {
 
 class EventHandler {
 
-	void handleMessage(const Message::Ptr& message) const {
-		_broadcaster->broadcastAnyMessage(message);
-
-		if (StringTools::startsWith(message->text, "/")) {
-			unsigned long splitPosition;
-			unsigned long spacePosition = message->text.find(' ');
-			unsigned long atSymbolPosition = message->text.find('@');
-			if (spacePosition == message->text.npos) {
-				if (atSymbolPosition == message->text.npos) {
-					splitPosition = message->text.size();
-				} else {
-					splitPosition = atSymbolPosition;
-				}
-			} else if (atSymbolPosition == message->text.npos) {
-				splitPosition = spacePosition;
-			} else {
-				splitPosition = std::min(spacePosition, atSymbolPosition);
-			}
-			std::string command = message->text.substr(1, splitPosition - 1);
-			if (!_broadcaster->broadcastCommand(command, message)) {
-				_broadcaster->broadcastUnknownCommand(message);
-			}
-		} else {
-			_broadcaster->broadcastNonCommandMessage(message);
-		}
-	};
-
 public:
 	explicit EventHandler(const EventBroadcaster* broadcaster) : _broadcaster(broadcaster) {
 	}
 
-	inline void handleUpdate(const Update::Ptr& update) const {
-		if (update->inlineQuery != NULL)
-			_broadcaster->broadcastInlineQuery(update->inlineQuery);
-		if (update->chosenInlineResult != NULL)
-			_broadcaster->broadcastChosenInlineResult(update->chosenInlineResult);
-		if (update->callbackQuery != NULL)
-			_broadcaster->broadcastCallbackQuery(update->callbackQuery);
-		if (update->message != NULL)
-			handleMessage(update->message);
-	}
+	void handleUpdate(const Update::Ptr update) const;
 
 private:
 	const EventBroadcaster* _broadcaster;
+
+	void handleMessage(const Message::Ptr message) const;
 };
 
 }
