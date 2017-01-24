@@ -5,7 +5,7 @@ project(TgBot)
 option(ENABLE_TESTS "Set to ON to enable building of tests" OFF)
 
 ### sources
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Wall")
 include_directories(include)
 set(SRC_LIST
 	src/Api.cpp

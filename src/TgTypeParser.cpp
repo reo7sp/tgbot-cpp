@@ -588,6 +588,7 @@ GenericReply::Ptr TgTypeParser::parseJsonAndGetGenericReply(const boost::propert
 	} else if (data.find("inline_keyboard") != data.not_found()) {
 		return static_pointer_cast<GenericReply>(parseJsonAndGetInlineKeyboardMarkup(data));
 	}
+	return GenericReply::Ptr(new GenericReply);
 }
 
 std::string TgTypeParser::parseGenericReply(const GenericReply::Ptr& object) const {
