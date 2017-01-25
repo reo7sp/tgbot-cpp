@@ -32,11 +32,6 @@ using namespace TgBot;
 bool sigintGot = false;
 
 int main() {
-	signal(SIGINT, [](int s) {
-		printf("SIGINT got");
-		sigintGot = true;
-	});
-
 	Bot bot("PLACE YOUR TOKEN HERE");
 	bot.getEvents().onCommand("start", [&bot](Message::Ptr message) {
 		bot.getApi().sendMessage(message->chat->id, "Hi!");
@@ -49,6 +44,10 @@ int main() {
 		bot.getApi().sendMessage(message->chat->id, "Your message is: " + message->text);
 	});
 
+	signal(SIGINT, [](int s) {
+		printf("SIGINT got");
+		sigintGot = true;
+	});
 	try {
 		printf("Bot username: %s\n", bot.getApi().getMe()->username.c_str());
 

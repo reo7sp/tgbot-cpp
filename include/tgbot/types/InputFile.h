@@ -52,6 +52,11 @@ public:
 	 * File name.
 	 */
 	std::string fileName;
+
+	/**
+	 * Creates new InputFile::Ptr from an existing file.
+	 */
+	static InputFile::Ptr fromFile(const std::string& filePath, const std::string& mimeType);
 };
 
 }

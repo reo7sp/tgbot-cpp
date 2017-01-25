@@ -23,6 +23,10 @@ WORKDIR /tmp/tgbot-cpp/samples/inline-keyboard
 RUN rm -rf CMakeCache.txt CMakeFiles/ && \
     cmake . && make -j4
 
+WORKDIR /tmp/tgbot-cpp/samples/photo
+RUN rm -rf CMakeCache.txt CMakeFiles/ && \
+    cmake . && make -j4
+
 WORKDIR /tmp/tgbot-cpp
 ENV CTEST_OUTPUT_ON_FAILURE=1
 CMD make test

@@ -36,22 +36,23 @@ BOOST_AUTO_TEST_SUITE(tStringTools)
 
 BOOST_AUTO_TEST_CASE(startsWith) {
 	BOOST_CHECK(StringTools::startsWith("abc123", "abc"));
-    BOOST_CHECK(!StringTools::startsWith("abc123", "aac"));
-    BOOST_CHECK(!StringTools::startsWith("abc123", "Xabc"));
-    BOOST_CHECK(!StringTools::startsWith("abc123", "abcX"));
+	BOOST_CHECK(!StringTools::startsWith("abc123", "aac"));
+	BOOST_CHECK(!StringTools::startsWith("abc123", "Xabc"));
+	BOOST_CHECK(!StringTools::startsWith("abc123", "abcX"));
 	BOOST_CHECK(!StringTools::startsWith("abc", "abc123"));
 }
 
 BOOST_AUTO_TEST_CASE(endsWith) {
 	BOOST_CHECK(StringTools::endsWith("abc123", "123"));
-    BOOST_CHECK(!StringTools::endsWith("abc123", "113"));
-    BOOST_CHECK(!StringTools::endsWith("abc123", "X123"));
-    BOOST_CHECK(!StringTools::endsWith("abc123", "123X"));
+	BOOST_CHECK(!StringTools::endsWith("abc123", "113"));
+	BOOST_CHECK(!StringTools::endsWith("abc123", "X123"));
+	BOOST_CHECK(!StringTools::endsWith("abc123", "123X"));
 	BOOST_CHECK(!StringTools::endsWith("123", "abc123"));
 }
 
 BOOST_AUTO_TEST_CASE(split) {
 	BOOST_CHECK(StringTools::split("123 456 789", ' ') == vector<string>({"123", "456", "789"}));
+	BOOST_CHECK(StringTools::split("aaa", ' ') == vector<string>({"aaa"}));
 }
 
 BOOST_AUTO_TEST_CASE(urlEncode) {

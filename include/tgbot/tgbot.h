@@ -54,6 +54,7 @@
 #include "tgbot/types/InlineQueryResultVideo.h"
 #include "tgbot/types/ChosenInlineResult.h"
 #include "tgbot/tools/StringTools.h"
+#include "tgbot/tools/FileTools.h"
 #include "tgbot/net/HttpClient.h"
 #include "tgbot/net/HttpParser.h"
 #include "tgbot/net/HttpReqArg.h"

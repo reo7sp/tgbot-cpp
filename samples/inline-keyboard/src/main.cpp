@@ -10,11 +10,6 @@ using namespace TgBot;
 bool sigintGot = false;
 
 int main() {
-	signal(SIGINT, [](int s) {
-		printf("SIGINT got");
-		sigintGot = true;
-	});
-
 	Bot bot("PLACE YOUR TOKEN HERE");
 
 	// Thanks Pietro Falessi for code
@@ -40,6 +35,10 @@ int main() {
 		}
 	});
 
+	signal(SIGINT, [](int s) {
+		printf("SIGINT got");
+		sigintGot = true;
+	});
 	try {
 		printf("Bot username: %s\n", bot.getApi().getMe()->username.c_str());
 
