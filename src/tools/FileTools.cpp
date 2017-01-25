@@ -1,5 +1,5 @@
 //
-// Created by Oleg on 25.01.17.
+// Created by Oleg Morozenkov on 25.01.17.
 //
 
 #include "tgbot/tools/FileTools.h"

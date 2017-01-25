@@ -361,9 +361,6 @@ private:
 	}
 
 	void appendToJson(std::string& json, const std::string& varName, const bool& value) const {
-		if (value == 0) {
-			return;
-		}
 		json += '"';
 		json += varName;
 		json += "\":";
