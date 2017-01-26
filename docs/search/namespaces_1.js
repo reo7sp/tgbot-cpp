@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['tgbot',['TgBot',['../namespace_tg_bot.html',1,'']]]
+  ['stringtools',['StringTools',['../namespace_string_tools.html',1,'']]]
 ];

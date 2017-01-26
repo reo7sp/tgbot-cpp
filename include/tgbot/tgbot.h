@@ -72,8 +72,9 @@
  * @defgroup tools
  *
  * @mainpage
+ * [Go to GitHub](https://github.com/reo7sp)
  *
- * @section Compilation
+ * @section lib_compile Library compilation
  *
  * Firstly you need to install some dependencies such as Boost and build tools such as CMake. On Debian-based distibutives you can do it with these commands:
  * @code{.sh}
@@ -88,9 +89,16 @@
  * sudo make install
  * @endcode
  *
- * That's all. All you have to do now is just link compiled library to your project.
+ * @section bot_compile Bot compilation
+ * With CMake:
+ * [Example CMakeLists.txt](samples/echobot/CMakeLists.txt)
  *
- * If you want, you can also use Docker to build and run your bot. Just set the base image of your's Dockerfile to reo7sp/tgbot-cpp.
+ * Without CMake:
+ * @code{.sh}
+ * g++ telegram_bot.cpp -o telegram_bot --std=c++11 -I/usr/local/include -lTgBot -lboost_system -lboost_iostreams -lssl -lcrypto -lpthread
+ * @endcode
+ *
+ * You can use Docker to build and run your bot. Set the base image of your's Dockerfile to [reo7sp/tgbot-cpp](https://hub.docker.com/r/reo7sp/tgbot-cpp/).
  *
  * @section Samples
  * All samples are located [here](https://github.com/reo7sp/tgbot-cpp/tree/master/samples)

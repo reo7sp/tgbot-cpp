@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['callbackquerylistener',['CallbackQueryListener',['../class_tg_bot_1_1_event_broadcaster.html#a1b5bf368b89d78d9c1582a1523a66b4e',1,'TgBot::EventBroadcaster']]],
-  ['choseninlineresultlistener',['ChosenInlineResultListener',['../class_tg_bot_1_1_event_broadcaster.html#af9b674f16ddd707748f7ca8bf7f3ef91',1,'TgBot::EventBroadcaster']]]
+  ['callbackquerylistener',['CallbackQueryListener',['../class_tg_bot_1_1_event_broadcaster.html#a44f1bbafcca84f78f82dc0ef1801619a',1,'TgBot::EventBroadcaster']]],
+  ['choseninlineresultlistener',['ChosenInlineResultListener',['../class_tg_bot_1_1_event_broadcaster.html#a5348beecf29bdf52c7d21985668bca93',1,'TgBot::EventBroadcaster']]]
 ];

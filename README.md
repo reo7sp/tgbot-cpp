@@ -1,14 +1,20 @@
 # tgbot-cpp
 
 [![Build Status](https://travis-ci.org/reo7sp/tgbot-cpp.svg?branch=master)](https://travis-ci.org/reo7sp/tgbot-cpp)
+[![Docker pull](https://img.shields.io/docker/pulls/reo7sp/tgbot-cpp.svg)](https://hub.docker.com/r/reo7sp/tgbot-cpp/)
+[![GitHub contributors](https://img.shields.io/github/contributors/reo7sp/tgbot-cpp.svg)]()
+
+[![Contact reo7sp](https://img.shields.io/badge/telegram-contact-green.svg)](https://t.me/reo7sp)
 [![Join the chat at https://gitter.im/reo7sp/tgbot-cpp](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/reo7sp/tgbot-cpp?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-[![Donate using Yandex.Money](https://i.imgur.com/8Fi2DnS.png)](https://money.yandex.ru/to/410011554060830)
+
+[![Donate using PayPal](https://img.shields.io/badge/donate-PayPal-brightgreen.svg)](https://paypal.me/reo7sp)
+[![Donate using Yandex.Money](https://img.shields.io/badge/donate-Yandex.Money-brightgreen.svg)](https://money.yandex.ru/to/410011554060830)
 
 C++ library for Telegram bot API.
 
-Documentation is located [here](http://reo7sp.github.io/tgbot-cpp)
+Documentation is located [here](http://reo7sp.github.io/tgbot-cpp).
 
-## Compilation
+## Library compilation
 
 Firstly you need to install some dependencies such as Boost and build tools such as CMake. On Debian-based distibutives you can do it with these commands:
 ```sh
@@ -23,9 +29,17 @@ make -j4
 sudo make install
 ```
 
-That's all. All you have to do now is just link compiled library to your project.
+## Bot compilation
 
-If you want, you can also use Docker to build and run your bot. Just set the base image of your's Dockerfile to [reo7sp/tgbot-cpp](https://hub.docker.com/r/reo7sp/tgbot-cpp/).
+### With CMake
+[Example CMakeLists.txt](samples/echobot/CMakeLists.txt)
+
+### Without CMake
+```sh
+g++ telegram_bot.cpp -o telegram_bot --std=c++11 -I/usr/local/include -lTgBot -lboost_system -lboost_iostreams -lssl -lcrypto -lpthread
+```
+
+You can use Docker to build and run your bot. Set the base image of your's Dockerfile to [reo7sp/tgbot-cpp](https://hub.docker.com/r/reo7sp/tgbot-cpp/).
 
 ## Samples
 

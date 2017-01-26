@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['read',['read',['../namespace_file_tools.html#aeec0058e5af745983a1ef3e0f678348a',1,'FileTools']]],
   ['removekeyboard',['removeKeyboard',['../class_tg_bot_1_1_reply_keyboard_remove.html#a42b8b08952603a9566757bbe7d543408',1,'TgBot::ReplyKeyboardRemove']]],
   ['replykeyboardmarkup',['ReplyKeyboardMarkup',['../class_tg_bot_1_1_reply_keyboard_markup.html',1,'TgBot']]],
   ['replykeyboardmarkup_2eh',['ReplyKeyboardMarkup.h',['../_reply_keyboard_markup_8h.html',1,'']]],
