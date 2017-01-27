@@ -1,8 +1,8 @@
 # tgbot-cpp
 
 [![Build Status](https://travis-ci.org/reo7sp/tgbot-cpp.svg?branch=master)](https://travis-ci.org/reo7sp/tgbot-cpp)
-[![Docker pull](https://img.shields.io/docker/pulls/reo7sp/tgbot-cpp.svg)](https://hub.docker.com/r/reo7sp/tgbot-cpp/)
-[![GitHub contributors](https://img.shields.io/github/contributors/reo7sp/tgbot-cpp.svg)]()
+[![Docker Hub pulls](https://img.shields.io/docker/pulls/reo7sp/tgbot-cpp.svg)](https://hub.docker.com/r/reo7sp/tgbot-cpp/)
+[![GitHub contributors](https://img.shields.io/github/contributors/reo7sp/tgbot-cpp.svg)](https://github.com/reo7sp/tgbot-cpp/graphs/contributors)
 
 [![Contact reo7sp](https://img.shields.io/badge/telegram-contact-green.svg)](https://t.me/reo7sp)
 [![Join the chat at https://gitter.im/reo7sp/tgbot-cpp](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/reo7sp/tgbot-cpp?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
@@ -74,10 +74,10 @@ int main() {
 }
 ```
 
-All samples are located [here](samples)
+All samples are located [here](samples).
 
 ## Feedback
-Feel free to [create new issues on GitHub](https://github.com/reo7sp/tgbot-cpp/issues) or [contact me on Telegram](https://t.me/reo7sp)
+Feel free to [create new issues on GitHub](https://github.com/reo7sp/tgbot-cpp/issues) or [contact me on Telegram](https://t.me/reo7sp).
 
 ## Licence
-[The MIT License](http://opensource.org/licenses/MIT)
+[The MIT License](http://opensource.org/licenses/MIT).
