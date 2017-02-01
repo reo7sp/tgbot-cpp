@@ -69,6 +69,18 @@ public:
 	}
 
 	/**
+	* Registers listener which receives all messages with commands (messages with leading '/' char).
+	* @param commandsList Commands names which listener can handle.
+	* @param listener Listener.
+	*/
+	inline void onCommand(const std::initializer_list<std::string>& commandsList, const MessageListener& listener) {
+		for (const auto& command : commandsList)
+		{
+			_onCommandListeners[command] = listener;
+		}
+	}
+
+	/**
 	 * Registers listener which receives all messages with commands (messages with leading '/' char) which haven't been handled by other listeners.
 	 * @param listener Listener.
 	 */
