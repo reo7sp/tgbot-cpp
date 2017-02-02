@@ -421,7 +421,7 @@ string TgTypeParser::parseUserProfilePhotos(const UserProfilePhotos::Ptr& object
 File::Ptr TgTypeParser::parseJsonAndGetFile(const boost::property_tree::ptree& data) const {
 	File::Ptr result(new File);
 	result->fileId = data.get<string>("file_id");
-	result->filePath = data.get<int32_t>("file_size", 0);
+	result->fileSize = data.get<int32_t>("file_size", 0);
 	result->filePath = data.get<string>("file_path", "");
 	return result;
 }
