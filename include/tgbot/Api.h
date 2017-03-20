@@ -475,6 +475,8 @@ public:
 	 */
 	bool unbanChatMember(int64_t chatId, int32_t userId) const;
 
+	std::string downloadFile(const std::string& filePath, const std::vector<HttpReqArg>& args = std::vector<HttpReqArg>()) const;
+
 private:
 	boost::property_tree::ptree sendRequest(const std::string& method, const std::vector<HttpReqArg>& args = std::vector<HttpReqArg>()) const;
 

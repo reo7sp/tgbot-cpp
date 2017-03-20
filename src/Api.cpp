@@ -681,4 +681,15 @@ ptree Api::sendRequest(const string& method, const vector<HttpReqArg>& args) con
 	}
 }
 
+std::string Api::downloadFile(const std::string& filePath, const std::vector<HttpReqArg>& args) const {
+	string url = "https://api.telegram.org/file/bot";
+	url += _token;
+	url += "/";
+	url += filePath;
+
+	string serverResponse = HttpClient::getInstance().makeRequest(url, args);
+
+	return serverResponse;
+}
+
 }
