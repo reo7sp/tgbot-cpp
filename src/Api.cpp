@@ -310,7 +310,7 @@ Message::Ptr Api::sendVoice(int64_t chatId, const InputFile::Ptr voice, const st
 	if (disableNotification){
 		args.push_back(HttpReqArg("disable_notification", disableNotification));
 	}
-	return TgTypeParser::getInstance().parseJsonAndGetMessage(sendRequest("sendVideo", args));
+	return TgTypeParser::getInstance().parseJsonAndGetMessage(sendRequest("sendVoice", args));
 }
 
 Message::Ptr Api::sendVoice(int64_t chatId, const std::string& voiceId, const std::string &caption, int duration, int32_t replyToMessageId, const GenericReply::Ptr replyMarkup, bool disableNotification) const {
@@ -410,7 +410,7 @@ UserProfilePhotos::Ptr Api::getUserProfilePhotos(int32_t userId, int32_t offset,
 	return TgTypeParser::getInstance().parseJsonAndGetUserProfilePhotos(sendRequest("getUserProfilePhotos", args));
 }
 
-File::Ptr Api::getFile(int32_t fileId) const
+File::Ptr Api::getFile(const std::string &fileId) const
 {
 	vector<HttpReqArg> args;
 	args.push_back(HttpReqArg("file_id", fileId));

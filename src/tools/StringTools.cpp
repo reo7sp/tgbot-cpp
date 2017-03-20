@@ -90,12 +90,10 @@ string generateRandomString(size_t length) {
 string urlEncode(const string& value, const std::string& additionalLegitChars) {
 	static const string legitPunctuation = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_.-~:";
 	std::stringstream ss;
-	std::string t;
 	for (auto const &c : value) {
 		if ((legitPunctuation.find(c) == std::string::npos)
 			&& (additionalLegitChars.find(c)==std::string::npos)) {
 			ss << '%' << std::uppercase << std::setfill('0') << std::setw(2) << std::hex << (unsigned int)(unsigned char)c;
-			t = ss.str();
 		} else {
 			ss << c;
 		}

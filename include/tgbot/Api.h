@@ -323,7 +323,7 @@ public:
 	 * @param fileId File identifier to get info about
 	 * @return A File object.
 	 */
-	File::Ptr getFile(int32_t fileId) const;
+	File::Ptr getFile(const std::string &fileId) const;
 
 	/**
 	 * Use this method for your bot to leave a group, supergroup or channel.

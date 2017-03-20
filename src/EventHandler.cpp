@@ -3,6 +3,7 @@
 //
 
 #include "tgbot/EventHandler.h"
+#include <algorithm>
 
 namespace TgBot {
 
