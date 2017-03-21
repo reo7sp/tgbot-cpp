@@ -477,7 +477,7 @@ public:
 
 	/**
 	 * Downloads file from Telegram and saves it in memory.
-	 * @param filePath Telegram file id.
+	 * @param filePath Telegram file path.
 	 * @param args Additional api parameters.
 	 * @return File contents in a string.
 	 */
