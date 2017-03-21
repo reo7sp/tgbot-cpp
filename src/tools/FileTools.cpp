@@ -22,4 +22,14 @@ std::string read(const std::string& filePath) {
 	throw errno;
 }
 
+bool write(const std::string& content, const std::string& filePath) {
+	ofstream out(filePath, ios::out | ios::binary);
+	if (out) {
+		out << content;
+		out.close();
+		return true;
+	}
+	return false;
+}
+
 };

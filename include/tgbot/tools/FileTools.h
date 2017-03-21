@@ -19,6 +19,13 @@ namespace FileTools {
  */
 std::string read(const std::string& filePath);
 
+/**
+* Save file to disk.
+* @param filePath Path to a file
+* @return bool success
+*/
+bool write(const std::string& content, const std::string& filePath);
+
 };
 
 

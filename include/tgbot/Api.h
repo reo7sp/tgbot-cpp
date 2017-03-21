@@ -323,7 +323,7 @@ public:
 	 * @param fileId File identifier to get info about
 	 * @return A File object.
 	 */
-	File::Ptr getFile(int32_t fileId) const;
+	File::Ptr getFile(const std::string &fileId) const;
 
 	/**
 	 * Use this method for your bot to leave a group, supergroup or channel.
@@ -474,6 +474,8 @@ public:
 	 * @return True on success
 	 */
 	bool unbanChatMember(int64_t chatId, int32_t userId) const;
+
+	std::string downloadFile(const std::string& filePath, const std::vector<HttpReqArg>& args = std::vector<HttpReqArg>()) const;
 
 private:
 	boost::property_tree::ptree sendRequest(const std::string& method, const std::vector<HttpReqArg>& args = std::vector<HttpReqArg>()) const;

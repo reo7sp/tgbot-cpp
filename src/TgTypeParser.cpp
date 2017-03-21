@@ -270,7 +270,7 @@ Sticker::Ptr TgTypeParser::parseJsonAndGetSticker(const ptree& data) const {
 	result->width = data.get<int32_t>("width");
 	result->height = data.get<int32_t>("height");
 	result->thumb = tryParseJson<PhotoSize>(&TgTypeParser::parseJsonAndGetPhotoSize, data, "thumb");
-	result->emoji = data.get<string>("emoji");
+	result->emoji = data.get("emoji", "");
 	result->fileSize = data.get("file_size", 0);
 	return result;
 }
