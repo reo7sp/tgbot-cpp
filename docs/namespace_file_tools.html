@@ -90,6 +90,8 @@ $(document).ready(function(){initNavTree('namespace_file_tools.html','');});
 Functions</h2></td></tr>
 <tr class="memitem:aeec0058e5af745983a1ef3e0f678348a"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_file_tools.html#aeec0058e5af745983a1ef3e0f678348a">read</a> (const std::string &amp;filePath)</td></tr>
 <tr class="separator:aeec0058e5af745983a1ef3e0f678348a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a66bf0f3f36ad4f4fc1dcdf577c95cb92"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_file_tools.html#a66bf0f3f36ad4f4fc1dcdf577c95cb92">write</a> (const std::string &amp;content, const std::string &amp;filePath)</td></tr>
+<tr class="separator:a66bf0f3f36ad4f4fc1dcdf577c95cb92"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
 <a id="aeec0058e5af745983a1ef3e0f678348a"></a>
@@ -117,13 +119,48 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="a66bf0f3f36ad4f4fc1dcdf577c95cb92"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a66bf0f3f36ad4f4fc1dcdf577c95cb92">&#9670;&nbsp;</a></span>write()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool FileTools::write </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>content</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>filePath</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Save file to disk. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">filePath</td><td>Path to a file </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>bool success </dd></dl>
+
+</div>
+</div>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespace_file_tools.html">FileTools</a></li>
-    <li class="footer">Generated on Thu Jan 26 2017 14:29:53 for tgbot-cpp by
+    <li class="footer">Generated on Tue Mar 21 2017 19:07:24 for tgbot-cpp by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
   </ul>

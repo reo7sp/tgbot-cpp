@@ -8,6 +8,7 @@ var class_tg_bot_1_1_event_broadcaster =
     [ "onCallbackQuery", "class_tg_bot_1_1_event_broadcaster.html#a3ec551ffdcf5be1b9b39ed081ea078d4", null ],
     [ "onChosenInlineResult", "class_tg_bot_1_1_event_broadcaster.html#a7397520ff294c863b306142e29030482", null ],
     [ "onCommand", "class_tg_bot_1_1_event_broadcaster.html#a13e4a906203fe43a950f1420b68c7583", null ],
+    [ "onCommand", "class_tg_bot_1_1_event_broadcaster.html#ad8e56ab49dbe9b4960d454f8b408bf13", null ],
     [ "onInlineQuery", "class_tg_bot_1_1_event_broadcaster.html#a9d3f31225ea84af8cb47ab2a53186ef0", null ],
     [ "onNonCommandMessage", "class_tg_bot_1_1_event_broadcaster.html#a22e70b8493ea455e70734a36968f3d55", null ],
     [ "onUnknownCommand", "class_tg_bot_1_1_event_broadcaster.html#a5bed996221f047ec0469ae19e7bd00eb", null ]

@@ -1,5 +1,8 @@
 var NAVTREEINDEX2 =
 {
+"class_tg_bot_1_1_input_text_message_content.html#ab183a605903cf8dbc04b220cf1472495":[5,1,38,0],
+"class_tg_bot_1_1_input_text_message_content.html#abc5610bba9379026280ab5cf2e5d6c0c":[5,1,38,5],
+"class_tg_bot_1_1_input_text_message_content.html#af14b835e369c107071adf6e63b9e2760":[5,1,38,2],
 "class_tg_bot_1_1_input_venue_message_content.html":[5,1,39],
 "class_tg_bot_1_1_input_venue_message_content.html#a12eae6e237d0c62260a07f944fcfbdfa":[5,1,39,3],
 "class_tg_bot_1_1_input_venue_message_content.html#a25b40f55f2e1c3f08d4159e7254a2e77":[5,1,39,1],
@@ -246,8 +249,5 @@ var NAVTREEINDEX2 =
 "class_tg_bot_1_1_user_profile_photos.html":[5,1,51],
 "class_tg_bot_1_1_user_profile_photos.html#a33bfd559f54c4c8bf214698392473675":[5,1,51,2],
 "class_tg_bot_1_1_user_profile_photos.html#a66b1e0c0b5b462ab8087ce05b0311f16":[5,1,51,1],
-"class_tg_bot_1_1_user_profile_photos.html#a734352c5b115ea29e639f01462187d55":[5,1,51,0],
-"class_tg_bot_1_1_venue.html":[5,1,52],
-"class_tg_bot_1_1_venue.html#a411e85c19c38ad2b8922d60582f72459":[5,1,52,1],
-"class_tg_bot_1_1_venue.html#a9dbb9e88b790f9a938c9ec561ed773ce":[5,1,52,3]
+"class_tg_bot_1_1_user_profile_photos.html#a734352c5b115ea29e639f01462187d55":[5,1,51,0]
 };
