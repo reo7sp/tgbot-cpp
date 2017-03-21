@@ -475,6 +475,12 @@ public:
 	 */
 	bool unbanChatMember(int64_t chatId, int32_t userId) const;
 
+	/**
+	 * Downloads file from Telegram and saves it in memory.
+	 * @param filePath Telegram file id.
+	 * @param args Additional api parameters.
+	 * @return File contents in a string.
+	 */
 	std::string downloadFile(const std::string& filePath, const std::vector<HttpReqArg>& args = std::vector<HttpReqArg>()) const;
 
 private:
