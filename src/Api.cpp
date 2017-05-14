@@ -692,4 +692,8 @@ std::string Api::downloadFile(const std::string& filePath, const std::vector<Htt
 	return serverResponse;
 }
 
+void Api::deleteMessage(int64_t chatId, int32_t messageId) const {
+	sendRequest("deleteMessage", { HttpReqArg("chat_id", chatId), HttpReqArg("message_id", messageId) });
+}
+
 }
