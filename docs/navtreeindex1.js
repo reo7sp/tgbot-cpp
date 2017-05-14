@@ -1,5 +1,6 @@
 var NAVTREEINDEX1 =
 {
+"class_tg_bot_1_1_contact.html#acece1a697b1e94ba95e5a4b161f7e2d3":[5,1,5,2],
 "class_tg_bot_1_1_contact.html#ada9f5461d2dd84b547cf563db624ff28":[5,1,5,3],
 "class_tg_bot_1_1_document.html":[5,1,6],
 "class_tg_bot_1_1_document.html#a0b36f1611eb0cda45e47c989689456d6":[5,1,6,2],
@@ -248,6 +249,5 @@ var NAVTREEINDEX1 =
 "class_tg_bot_1_1_input_message_content.html#adfe3185ed78c3bfdfb82bee0546eb100":[5,1,37,1],
 "class_tg_bot_1_1_input_text_message_content.html":[5,1,38],
 "class_tg_bot_1_1_input_text_message_content.html#a34537bb0f04f312293f4717526f32ecc":[5,1,38,3],
-"class_tg_bot_1_1_input_text_message_content.html#a6926fc1a1b56159d2e2d92ed3de507e7":[5,1,38,1],
-"class_tg_bot_1_1_input_text_message_content.html#a6c7e1a9893a7c7c3be75f221f801e8e1":[5,1,38,4]
+"class_tg_bot_1_1_input_text_message_content.html#a6926fc1a1b56159d2e2d92ed3de507e7":[5,1,38,1]
 };

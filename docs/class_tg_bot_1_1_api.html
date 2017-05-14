@@ -154,6 +154,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a8663d3b183eb53d6b7ca19791e55d7d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9edd65a004e477580923216cf741af3f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_tg_bot_1_1_message.html#a3805a5dc013c6ab23ac5efc91282c11d">Message::Ptr</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tg_bot_1_1_api.html#a9edd65a004e477580923216cf741af3f">editMessageReplyMarkup</a> (int64_t chatId=0, int32_t messageId=0, const std::string &amp;inlineMessageId=&quot;&quot;, const <a class="el" href="class_tg_bot_1_1_generic_reply.html#aa7bb5f2c5484cb791e1c60c346bbb06f">GenericReply::Ptr</a> replyMarkup=<a class="el" href="class_tg_bot_1_1_generic_reply.html#aa7bb5f2c5484cb791e1c60c346bbb06f">GenericReply::Ptr</a>()) const</td></tr>
 <tr class="separator:a9edd65a004e477580923216cf741af3f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a963570ff375bced1e5b21246082365f1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tg_bot_1_1_api.html#a963570ff375bced1e5b21246082365f1">deleteMessage</a> (int64_t chatId, int32_t messageId) const</td></tr>
+<tr class="separator:a963570ff375bced1e5b21246082365f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abd10abcfaf859c63cab0526b8c9179c9"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="class_tg_bot_1_1_update.html#abace63cf3605fe7a480a3bb839a672a8">Update::Ptr</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tg_bot_1_1_api.html#abd10abcfaf859c63cab0526b8c9179c9">getUpdates</a> (int32_t offset=0, int32_t limit=100, int32_t timeout=0, const StringArrayPtr &amp;allowedUpdates=nullptr) const</td></tr>
 <tr class="separator:abd10abcfaf859c63cab0526b8c9179c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af961a33f53579fee24090059dab328ea"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tg_bot_1_1_api.html#af961a33f53579fee24090059dab328ea">setWebhook</a> (const std::string &amp;url=&quot;&quot;, const <a class="el" href="class_tg_bot_1_1_input_file.html#a9b1b7a8f913d9c4d4a389d9a4353d94f">InputFile::Ptr</a> certificate=nullptr, int32_t maxConnection=40, const StringArrayPtr &amp;allowedUpdates=nullptr) const</td></tr>
@@ -325,6 +327,41 @@ Friends</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>True on success </dd></dl>
+
+</div>
+</div>
+<a id="a963570ff375bced1e5b21246082365f1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a963570ff375bced1e5b21246082365f1">&#9670;&nbsp;</a></span>deleteMessage()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void TgBot::Api::deleteMessage </td>
+          <td>(</td>
+          <td class="paramtype">int64_t&#160;</td>
+          <td class="paramname"><em>chatId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int32_t&#160;</td>
+          <td class="paramname"><em>messageId</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Use this method to delete messages sent by bot (or by other users if bot is admin). </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">chatId</td><td>Unique identifier for the target chat. </td></tr>
+    <tr><td class="paramname">messageId</td><td>Unique identifier for the target message. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -2230,7 +2267,7 @@ Friends</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespace_tg_bot.html">TgBot</a></li><li class="navelem"><a class="el" href="class_tg_bot_1_1_api.html">Api</a></li>
-    <li class="footer">Generated on Tue Mar 21 2017 19:10:46 for tgbot-cpp by
+    <li class="footer">Generated on Mon May 15 2017 00:23:55 for tgbot-cpp by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
   </ul>

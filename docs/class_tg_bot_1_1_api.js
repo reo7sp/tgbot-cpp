@@ -3,6 +3,7 @@ var class_tg_bot_1_1_api =
     [ "Api", "class_tg_bot_1_1_api.html#ac0e4615a8944c07e7db3811ee84f2a94", null ],
     [ "answerCallbackQuery", "class_tg_bot_1_1_api.html#a2f73414941d8bb67ff3721a674274bf8", null ],
     [ "answerInlineQuery", "class_tg_bot_1_1_api.html#a430f9e036859250345d2125b7688a1f9", null ],
+    [ "deleteMessage", "class_tg_bot_1_1_api.html#a963570ff375bced1e5b21246082365f1", null ],
     [ "deleteWebhook", "class_tg_bot_1_1_api.html#a8fbfde4234553c478987746c43b08e62", null ],
     [ "downloadFile", "class_tg_bot_1_1_api.html#aa60ec06b9171d94ef717f1ac03190f07", null ],
     [ "editMessageCaption", "class_tg_bot_1_1_api.html#a8663d3b183eb53d6b7ca19791e55d7d7", null ],

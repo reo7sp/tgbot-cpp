@@ -657,6 +657,10 @@ bool Api::unbanChatMember(int64_t chatId, int32_t userId) const {
 	return sendRequest("unbanChatMember", args).get<bool>("", false);
 }
 
+void Api::deleteMessage(int64_t chatId, int32_t messageId) const {
+	sendRequest("deleteMessage", { HttpReqArg("chat_id", chatId), HttpReqArg("message_id", messageId) });
+}
+
 ptree Api::sendRequest(const string& method, const vector<HttpReqArg>& args) const {
 
 	string url = "https://api.telegram.org/bot";
@@ -690,10 +694,6 @@ std::string Api::downloadFile(const std::string& filePath, const std::vector<Htt
 	string serverResponse = HttpClient::getInstance().makeRequest(url, args);
 
 	return serverResponse;
-}
-
-void Api::deleteMessage(int64_t chatId, int32_t messageId) const {
-	sendRequest("deleteMessage", { HttpReqArg("chat_id", chatId), HttpReqArg("message_id", messageId) });
 }
 
 }
