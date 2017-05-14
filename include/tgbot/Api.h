@@ -410,6 +410,13 @@ public:
 										const GenericReply::Ptr replyMarkup = GenericReply::Ptr()) const;
 
 	/**
+	 * Use this method to delete messages sent by bot (or by other users if bot is admin).
+	 * @param chatId	Unique identifier for the target chat.
+	 * @param messageId	Unique identifier for the target message.
+	 */
+	void deleteMessage(int64_t chatId, int32_t messageId) const;
+
+	/**
 	 * Use this method to receive incoming updates using long polling.
 	 * This method will not work if an outgoing webhook is set up.
 	 * In order to avoid getting duplicate updates, recalculate offset after each server response.
