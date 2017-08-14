@@ -662,14 +662,13 @@ void Api::deleteMessage(int64_t chatId, int32_t messageId) const {
 }
 
 ptree Api::sendRequest(const string& method, const vector<HttpReqArg>& args) const {
-
 	string url = "https://api.telegram.org/bot";
 	url += _token;
 	url += "/";
 	url += method;
 
 	string serverResponse = HttpClient::getInstance().makeRequest(url, args);
-	if (serverResponse.find("<html>") != serverResponse.npos) {
+	if (!serverResponse.compare(0, 6, "<html>")) {
 		throw TgException("tgbot-cpp library have got html page instead of json response. Maybe you entered wrong bot token.");
 	}
 
