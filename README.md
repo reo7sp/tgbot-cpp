@@ -14,6 +14,10 @@ C++ library for Telegram bot API.
 
 Documentation is located [here](http://reo7sp.github.io/tgbot-cpp).
 
+## Forks
+
+The largest fork of this library is https://github.com/foxcpp/tgbot-cpp. There is a development of payment and video notes APIs and more.
+
 ## Library compilation
 
 Firstly you need to install some dependencies such as Boost and build tools such as CMake. On Debian-based distibutives you can do it with these commands:
