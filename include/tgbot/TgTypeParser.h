@@ -349,10 +349,19 @@ public:
 
 private:
 	template<typename T>
-	void appendToJson(std::string& json, const std::string& varName, const T& value) const {
-		if (value == 0) {
+	void appendToJson(std::string& json, const std::string& varName, const std::shared_ptr<T>& value) const {
+		if (value == nullptr) {
 			return;
 		}
+		json += '"';
+		json += varName;
+		json += "\":";
+		json += value;
+		json += ',';
+	}
+
+	template<typename T>
+	void appendToJson(std::string& json, const std::string& varName, const T& value) const {
 		json += '"';
 		json += varName;
 		json += "\":";
