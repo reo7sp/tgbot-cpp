@@ -9,3 +9,4 @@ doc/
 *.cbp
 *.a
 test/TgBot_test
+.vscode/

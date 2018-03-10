@@ -72,7 +72,7 @@
  * @defgroup tools
  *
  * @mainpage
- * [Go to GitHub](https://github.com/reo7sp)
+ * [Go to GitHub](https://github.com/reo7sp/tgbot-cpp)
  *
  * @section lib_compile Library compilation
  *

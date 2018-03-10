@@ -11,25 +11,25 @@ using namespace std;
 
 namespace FileTools {
 
-std::string read(const std::string& filePath) {
+string read(const string& filePath) {
 	ifstream in(filePath, ios::in | ios::binary);
-	if (in) {
-		ostringstream contents;
-		contents << in.rdbuf();
-		in.close();
-		return contents.str();
+	if (!in) {
+		throw system_error(errno, system_category());
 	}
-	throw errno;
+	ostringstream contents;
+	contents << in.rdbuf();
+	in.close();
+	return contents.str();
 }
 
-bool write(const std::string& content, const std::string& filePath) {
+bool write(const string& content, const string& filePath) {
 	ofstream out(filePath, ios::out | ios::binary);
-	if (out) {
-		out << content;
-		out.close();
-		return true;
+	if (!out) {
+		return false;
 	}
-	return false;
+	out << content;
+	out.close();
+	return true;
 }
 
 };
