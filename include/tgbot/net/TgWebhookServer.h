@@ -37,7 +37,7 @@ public:
 	TgWebhookServer(std::shared_ptr<boost::asio::basic_socket_acceptor<Protocol>> acceptor, const typename HttpServer<Protocol>::ServerHandler& handler) = delete;
 
 	TgWebhookServer(std::shared_ptr<boost::asio::basic_socket_acceptor<Protocol>> acceptor, const std::string& path, const EventHandler* eventHandler) :
-		HttpServer<Protocol>(acceptor, [this, eventHandler, &path](const std::string& data, const std::map<std::string, std::string>& headers) -> std::string {
+		HttpServer<Protocol>(acceptor, [eventHandler, &path](const std::string& data, const std::map<std::string, std::string>& headers) -> std::string {
 			if (headers.at("method") == "POST" && headers.at("path") == path) {
 				eventHandler->handleUpdate(TgTypeParser::getInstance().parseJsonAndGetUpdate(TgTypeParser::getInstance().parseJson(data)));
 			}
