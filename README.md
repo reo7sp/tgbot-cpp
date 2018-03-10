@@ -22,7 +22,7 @@ The largest fork of this library is https://github.com/foxcpp/tgbot-cpp. There i
 
 Firstly you need to install some dependencies such as Boost and build tools such as CMake. On Debian-based distibutives you can do it with these commands:
 ```sh
-sudo apt-get install g++ make binutils cmake libssl-dev libboost-system-dev libboost-iostreams-dev
+sudo apt-get install g++ make binutils cmake libssl-dev libboost-system-dev
 ```
 
 To compile the library execute this commands:
@@ -40,7 +40,7 @@ sudo make install
 
 ### Without CMake
 ```sh
-g++ telegram_bot.cpp -o telegram_bot --std=c++11 -I/usr/local/include -lTgBot -lboost_system -lboost_iostreams -lssl -lcrypto -lpthread
+g++ telegram_bot.cpp -o telegram_bot --std=c++11 -I/usr/local/include -lTgBot -lboost_system -lssl -lcrypto -lpthread
 ```
 
 You can use Docker to build and run your bot. Set the base image of your's Dockerfile to [reo7sp/tgbot-cpp](https://hub.docker.com/r/reo7sp/tgbot-cpp/).

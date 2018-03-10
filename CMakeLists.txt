@@ -33,9 +33,9 @@ include_directories(${OPENSSL_INCLUDE_DIR})
 # boost
 set(Boost_USE_MULTITHREADED ON)
 if (ENABLE_TESTS)
-	find_package(Boost 1.59.0 COMPONENTS system iostreams unit_test_framework REQUIRED)
+	find_package(Boost 1.59.0 COMPONENTS system unit_test_framework REQUIRED)
 else()
-	find_package(Boost 1.59.0 COMPONENTS system iostreams REQUIRED)
+	find_package(Boost 1.59.0 COMPONENTS system REQUIRED)
 endif()
 include_directories(${Boost_INCLUDE_DIR})
 

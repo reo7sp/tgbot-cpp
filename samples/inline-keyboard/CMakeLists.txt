@@ -6,7 +6,7 @@ set(Boost_USE_MULTITHREADED ON)
 
 find_package(Threads REQUIRED)
 find_package(OpenSSL REQUIRED)
-find_package(Boost COMPONENTS system iostreams REQUIRED)
+find_package(Boost COMPONENTS system REQUIRED)
 include_directories(/usr/local/include ${OPENSSL_INCLUDE_DIR} ${Boost_INCLUDE_DIR})
 
 add_executable(inline-keyboard src/main.cpp)
