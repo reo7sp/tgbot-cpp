@@ -24,14 +24,16 @@
 
 namespace TgBot {
 
-TgLongPoll::TgLongPoll(const Api* api, const EventHandler* eventHandler) : _api(api), _eventHandler(eventHandler) {
+TgLongPoll::TgLongPoll(const Api* api, const EventHandler* eventHandler, int32_t limit, int32_t timeout, const std::shared_ptr<std::vector<std::string>>& stringarrayptr) 
+	: _api(api), _eventHandler(eventHandler), _limit(limit), _timeout(timeout), _stringarrayptr(stringarrayptr) {
 }
 
-TgLongPoll::TgLongPoll(const Bot& bot) : TgLongPoll(&bot.getApi(), &bot.getEventHandler()) {
+TgLongPoll::TgLongPoll(const Bot& bot, int32_t limit, int32_t timeout, const std::shared_ptr<std::vector<std::string>>& stringarrayptr) :
+	TgLongPoll(&bot.getApi(), &bot.getEventHandler(), limit, timeout, stringarrayptr) {
 }
 
 void TgLongPoll::start() {
-	std::vector<Update::Ptr> updates = _api->getUpdates(_lastUpdateId, 100, 60);
+	std::vector<Update::Ptr> updates = _api->getUpdates(_lastUpdateId, _limit, _timeout, _stringarrayptr);
 	for (Update::Ptr& item : updates) {
 		if (item->updateId >= _lastUpdateId) {
 			_lastUpdateId = item->updateId + 1;
