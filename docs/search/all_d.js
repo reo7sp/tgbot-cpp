@@ -2,7 +2,7 @@ var searchData=
 [
   ['makerequest',['makeRequest',['../class_tg_bot_1_1_http_client.html#a1de1ba0e962c7446e9820337bbf6d3e5',1,'TgBot::HttpClient']]],
   ['maxconnections',['maxConnections',['../class_tg_bot_1_1_webhook_info.html#abccb7180f3a2ee8c9fe01e51464fd79b',1,'TgBot::WebhookInfo']]],
-  ['message',['Message',['../class_tg_bot_1_1_message.html',1,'TgBot::Message'],['../class_tg_bot_1_1_message.html#a1ccff5e715e303ba0352cbd0fbe8eb6b',1,'TgBot::Message::Message()'],['../class_tg_bot_1_1_callback_query.html#a4d36cf008195c0b9b95d2ad7c8561795',1,'TgBot::CallbackQuery::message()'],['../class_tg_bot_1_1_update.html#ab65136c0345978742fb3026e6855ff2c',1,'TgBot::Update::message()']]],
+  ['message',['Message',['../class_tg_bot_1_1_message.html',1,'TgBot::Message'],['../class_tg_bot_1_1_callback_query.html#a4d36cf008195c0b9b95d2ad7c8561795',1,'TgBot::CallbackQuery::message()'],['../class_tg_bot_1_1_update.html#ab65136c0345978742fb3026e6855ff2c',1,'TgBot::Update::message()'],['../class_tg_bot_1_1_message.html#a1ccff5e715e303ba0352cbd0fbe8eb6b',1,'TgBot::Message::Message()']]],
   ['message_2eh',['Message.h',['../_message_8h.html',1,'']]],
   ['messageentity',['MessageEntity',['../class_tg_bot_1_1_message_entity.html',1,'TgBot']]],
   ['messageentity_2eh',['MessageEntity.h',['../_message_entity_8h.html',1,'']]],
