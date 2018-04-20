@@ -140,7 +140,7 @@ Message::Ptr TgTypeParser::parseJsonAndGetMessage(const ptree& data) const {
 	result->newChatPhoto = parseJsonAndGetArray<PhotoSize>(&TgTypeParser::parseJsonAndGetPhotoSize, data, "new_chat_photo");
 	result->deleteChatPhoto = data.get("delete_chat_photo", false);
 	result->groupChatCreated = data.get("group_chat_created", false);
-	result->caption = data.get("caption", false);
+	result->caption = data.get("caption", "");
 	result->supergroupChatCreated = data.get("supergroup_chat_created", false);
 	result->channelChatCreated = data.get("channel_chat_created", false);
 	result->migrateToChatId = data.get<int64_t>("migrate_to_chat_id", 0);
