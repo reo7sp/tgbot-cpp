@@ -291,6 +291,50 @@ Message::Ptr Api::sendVideo(int64_t chatId, const string& videoId, int32_t durat
 	return TgTypeParser::getInstance().parseJsonAndGetMessage(sendRequest("sendVideo", args));
 }
 
+Message::Ptr Api::sendVideoNote(int64_t chatId, const InputFile::Ptr videoNote, int64_t replyToMessageId, bool disableNotification, int32_t duration, int32_t length, const GenericReply::Ptr replyMarkup) {
+    vector<HttpReqArg> args;
+    args.push_back(HttpReqArg("chat_id", chatId));
+    args.push_back(HttpReqArg("video_note", videoNote));
+    if (disableNotification) {
+        args.push_back(HttpReqArg("disable_notification", disableNotification));
+    }
+    if (duration) {
+        args.push_back(HttpReqArg("duration", duration));
+    }
+    if (length) {
+        args.push_back(HttpReqArg("length", length));
+    }
+    if (replyMarkup) {
+        args.push_back(HttpReqArg("reply_markup", TgTypeParser::getInstance().parseGenericReply(replyMarkup)));
+    }
+	if (replyToMessageId) {
+        args.push_back(HttpReqArg("reply_to_message_id", replyToMessageId));
+    }
+    return TgTypeParser::getInstance().parseJsonAndGetMessage(sendRequest("sendVoiceNote", args));
+}
+
+Message::Ptr Api::sendVideoNote(int64_t chatId, const std::string &videoNote, int64_t replyToMessageId, bool disableNotification, int32_t duration, int32_t length, const GenericReply::Ptr replyMarkup) {
+    vector<HttpReqArg> args;
+    args.push_back(HttpReqArg("chat_id", chatId));
+    args.push_back(HttpReqArg("video_note", videoNote));
+    if (disableNotification) {
+        args.push_back(HttpReqArg("disable_notification", disableNotification));
+    }
+    if (duration) {
+        args.push_back(HttpReqArg("duration", duration));
+    }
+    if (length) {
+        args.push_back(HttpReqArg("length", length));
+    }
+    if (replyMarkup) {
+        args.push_back(HttpReqArg("reply_markup", TgTypeParser::getInstance().parseGenericReply(replyMarkup)));
+    }
+	if (replyToMessageId) {
+        args.push_back(HttpReqArg("reply_to_message_id", replyToMessageId));
+    }
+    return TgTypeParser::getInstance().parseJsonAndGetMessage(sendRequest("sendVoiceNote", args));
+}
+
 Message::Ptr Api::sendVoice(int64_t chatId, const InputFile::Ptr voice, const std::string &caption, int duration, int32_t replyToMessageId, const GenericReply::Ptr replyMarkup, bool disableNotification) const {
 	vector<HttpReqArg> args;
 	args.push_back(HttpReqArg("chat_id", chatId));

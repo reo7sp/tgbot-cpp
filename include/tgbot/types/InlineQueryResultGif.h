@@ -44,6 +44,11 @@ public:
 	int32_t gifHeight;
 
 	/**
+	 * Optional. Duration of the GIF
+	 */
+	int32_t gifDuration;
+
+	/**
 	 * URL of the static thumbnail for the result (jpeg or gif)
 	 */
 	std::string thumbUrl;

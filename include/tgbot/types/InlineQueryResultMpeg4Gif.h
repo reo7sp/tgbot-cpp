@@ -39,6 +39,11 @@ public:
 	int32_t mpeg4Height;
 
 	/**
+	 * Optional. Video duration.
+	 */
+	int32_t mpeg4Duration;
+
+	/**
 	* URL of the static thumbnail (jpeg or gif) for the result
 	*/
 	std::string thumbUrl;

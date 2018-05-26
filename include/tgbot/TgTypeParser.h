@@ -36,6 +36,7 @@
 #include "tgbot/types/Document.h"
 #include "tgbot/types/Sticker.h"
 #include "tgbot/types/Video.h"
+#include "tgbot/types/VideoNote.h"
 #include "tgbot/types/Contact.h"
 #include "tgbot/types/Location.h"
 #include "tgbot/types/Update.h"
@@ -80,6 +81,14 @@
 #include "tgbot/types/InputLocationMessageContent.h"
 #include "tgbot/types/InputVenueMessageContent.h"
 #include "tgbot/types/InputContactMessageContent.h"
+#include "tgbot/types/Invoice.h"
+#include "tgbot/types/OrderInfo.h"
+#include "tgbot/types/PreCheckoutQuery.h"
+#include "tgbot/types/ShippingAddress.h"
+#include "tgbot/types/ShippingQuery.h"
+#include "tgbot/types/ShippingOption.h"
+#include "tgbot/types/SuccessfulPayment.h"
+#include "tgbot/types/LabeledPrice.h"
 
 namespace TgBot {
 
@@ -111,6 +120,8 @@ public:
 	std::string parseSticker(const Sticker::Ptr& object) const;
 	Video::Ptr parseJsonAndGetVideo(const boost::property_tree::ptree& data) const;
 	std::string parseVideo(const Video::Ptr& object) const;
+	VideoNote::Ptr parseJsonAndGetVideoNote(const boost::property_tree::ptree& data) const;
+	std::string parseVideoNote(const VideoNote::Ptr& object) const;
 	Contact::Ptr parseJsonAndGetContact(const boost::property_tree::ptree& data) const;
 	std::string parseContact(const Contact::Ptr& object) const;
 	Location::Ptr parseJsonAndGetLocation(const boost::property_tree::ptree& data) const;
@@ -233,6 +244,30 @@ public:
 
 	InputContactMessageContent::Ptr parseJsonAndGetInputContactMessageContent(const boost::property_tree::ptree& data) const;
 	std::string parseInputContactMessageContent(const InputContactMessageContent::Ptr& object) const;
+
+	Invoice::Ptr parseJsonAndGetInvoice(const boost::property_tree::ptree& data) const;
+	std::string parseInvoice(const Invoice::Ptr& object) const;
+
+	LabeledPrice::Ptr parseJsonAndGetLabeledPrice(const boost::property_tree::ptree& data) const;
+	std::string parseLabeledPrice(const LabeledPrice::Ptr& object) const;
+
+	OrderInfo::Ptr parseJsonAndGetOrderInfo(const boost::property_tree::ptree& data) const;
+	std::string parseOrderInfo(const OrderInfo::Ptr& object) const;
+
+	PreCheckoutQuery::Ptr parseJsonAndGetPreCheckoutQuery(const boost::property_tree::ptree& data) const;
+	std::string parsePreCheckoutQuery(const PreCheckoutQuery::Ptr& object) const;
+
+	ShippingAddress::Ptr parseJsonAndGetShippingAddress(const boost::property_tree::ptree& data) const;
+	std::string parseShippingAddress(const ShippingAddress::Ptr& object) const;
+
+	ShippingOption::Ptr parseJsonAndGetShippingOption(const boost::property_tree::ptree& data) const;
+	std::string parseShippingOption(const ShippingOption::Ptr& object) const;
+
+	ShippingQuery::Ptr parseJsonAndGetShippingQuery(const boost::property_tree::ptree& data) const;
+	std::string parseShippingQuery(const ShippingQuery::Ptr& object) const;
+
+	SuccessfulPayment::Ptr parseJsonAndGetSucessfulPayment(const boost::property_tree::ptree& data) const;
+	std::string parseSucessfulPayment(const SuccessfulPayment::Ptr& object) const;
 
 	inline boost::property_tree::ptree parseJson(const std::string& json) const {
 		boost::property_tree::ptree tree;

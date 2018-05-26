@@ -230,6 +230,35 @@ public:
 						   int32_t replyToMessageId = 0, const GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>(), bool disableNotification = false) const;
 
 	/**
+     * Use this method to send video messages. On success, the sent Message is returned.
+     * @param chatId Unique identifier for the target chat.
+     * @param videoNote Video note to send.
+     * @param replyToMessageId If the message is a reply, ID of the original message.
+     * @param disableNotification Sends the message silently. Users will receive a notification with no sound.
+     * @param duration Duration of sent video in seconds.
+     * @param length Video width and height.
+     * @param replyMarkup Additional interface options. A object for an inline keyboard, custom reply keyboard, instructions to remove reply keyboard or to force a reply from the user.
+     * @return On success, the sent Message is returned.
+     */
+    Message::Ptr sendVideoNote(int64_t chatId, const InputFile::Ptr videoNote, int64_t replyToMessageId = 0, bool disableNotification = false,
+                               int32_t duration = 0, int32_t length = 0, const GenericReply::Ptr replyMarkup = GenericReply::Ptr());
+
+    /**
+     * Use this method to send video messages. On success, the sent Message is returned.
+     * @param chatId Unique identifier for the target chat.
+     * @param videoNote Id of the video note that exists on the Telegram servers.
+     * @param replyToMessageId If the message is a reply, ID of the original message.
+     * @param disableNotification Sends the message silently. Users will receive a notification with no sound.
+     * @param duration Duration of sent video in seconds.
+     * @param length Video width and height.
+     * @param replyMarkup Additional interface options. A object for an inline keyboard, custom reply keyboard, instructions to remove reply keyboard or to force a reply from the user.
+     * @return On success, the sent Message is returned.
+     */
+    Message::Ptr sendVideoNote(int64_t chatId, const std::string &videoNote, int64_t replyToMessageId = 0, bool disableNotification = false,
+                               int32_t duration = 0, int32_t length = 0, const GenericReply::Ptr replyMarkup = GenericReply::Ptr());
+
+
+	/**
 	 * Use this method to send audio files, if you want Telegram clients to display the file as a playable voice message.
 	 * @param chatId Unique identifier for the target chat.
 	 * @param voice Audio file to send.

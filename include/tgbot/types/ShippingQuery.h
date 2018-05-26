@@ -1,5 +1,6 @@
 /*
  * Copyright (c) 2015 Oleg Morozenkov
+ * Copyright (c) 2017 Maks Mazurov (fox.cpp)
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,49 +21,48 @@
  * SOFTWARE.
  */
 
-#ifndef TGBOT_CPP_USER_H
-#define TGBOT_CPP_USER_H
+#ifndef TGBOT_SHIPPINGQUERY_H
+#define TGBOT_SHIPPINGQUERY_H
 
 #include <string>
 #include <memory>
+#include <vector>
+#include "tgbot/types/User.h"
+#include "tgbot/types/ShippingAddress.h"
 
 namespace TgBot {
 
 /**
- * This object represents a Telegram user or bot.
+ * @brief This object contains information about an incoming shipping query.
+ *
+ * https://core.telegram.org/bots/api#shippingquery
+ * 
  * @ingroup types
  */
-class User  {
-
+class ShippingQuery {
 public:
-	typedef std::shared_ptr<User> Ptr;
+    typedef std::shared_ptr<ShippingQuery> Ptr;
 
-	/**
-	 * Unique identifier for this user or bot.
-	 */
-	int32_t id;
+    /**
+     * @brief Unique query identifier.
+     */
+    std::string id;
 
-	/**
-	 * User‘s or bot’s first name.
-	 */
-	std::string firstName;
+    /**
+     * @brief User who sent the query.
+     */
+    User::Ptr from;
 
-	/**
-	 * Optional. User‘s or bot’s last name.
-	 */
-	std::string lastName;
+    /**
+     * @brief Bot specified invoice payload.
+     */
+    std::string invoicePayload;
 
-	/**
-	 * Optional. User‘s or bot’s username.
-	 */
-	std::string username;
-
-	/**
-	 * Optional. IETF language tag of the user's language.
-	 */
-	std::string languageCode;
+    /**
+     * @brief User specified shipping address.
+     */
+    ShippingAddress::Ptr shippingAddress;
 };
-
 }
 
-#endif //TGBOT_CPP_USER_H
+#endif //TGBOT_SHIPPINGQUERY_H

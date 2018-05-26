@@ -45,6 +45,7 @@
 #include "tgbot/types/User.h"
 #include "tgbot/types/UserProfilePhotos.h"
 #include "tgbot/types/Video.h"
+#include "tgbot/types/VideoNote.h"
 #include "tgbot/types/InlineQuery.h"
 #include "tgbot/types/InlineQueryResult.h"
 #include "tgbot/types/InlineQueryResultArticle.h"

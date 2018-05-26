@@ -1,5 +1,6 @@
 /*
  * Copyright (c) 2015 Oleg Morozenkov
+ * Copyright (c) 2017 Maks Mazurov (fox.cpp)
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,8 +21,8 @@
  * SOFTWARE.
  */
 
-#ifndef TGBOT_CPP_USER_H
-#define TGBOT_CPP_USER_H
+#ifndef TGBOT_INVOICE_H
+#define TGBOT_INVOICE_H
 
 #include <string>
 #include <memory>
@@ -29,40 +30,49 @@
 namespace TgBot {
 
 /**
- * This object represents a Telegram user or bot.
+ * @brief This object contains basic information about an invoice.
+ *
+ * https://core.telegram.org/bots/api#invoice
+ *
  * @ingroup types
  */
-class User  {
-
+class Invoice {
 public:
-	typedef std::shared_ptr<User> Ptr;
+	typedef std::shared_ptr<Invoice> Ptr;
 
 	/**
-	 * Unique identifier for this user or bot.
+	 * @brief Product name.
 	 */
-	int32_t id;
+	std::string title;
 
 	/**
-	 * User‘s or bot’s first name.
+	 * @brief Product description.
 	 */
-	std::string firstName;
+	std::string description;
 
 	/**
-	 * Optional. User‘s or bot’s last name.
+	 * @brief Unique bot deep-linking parameter that can be used to generate this invoice.
 	 */
-	std::string lastName;
+	std::string startParameter;
 
 	/**
-	 * Optional. User‘s or bot’s username.
+	 * @brief Three-letter ISO 4217 currency code.
 	 */
-	std::string username;
+	std::string currency;
 
-	/**
-	 * Optional. IETF language tag of the user's language.
+	/** 
+ 	 * @brief Total price in the smallest units of the currency (integer,
+ 	 * not float/double). 
+ 	 * 
+ 	 * For example, for a price of US$ 1.45 pass 
+ 	 * amount = 145. See the exp parameter in currencies.json, it shows
+ 	 * the number of digits past the decimal point for each currency (2
+ 	 * for the majority of currencies).
+ 	 * 
+ 	 * https://core.telegram.org/bots/payments/currencies.json
 	 */
-	std::string languageCode;
+	int32_t totalAmount;
 };
-
 }
 
-#endif //TGBOT_CPP_USER_H
+#endif //TGBOT_INVOICE_H
