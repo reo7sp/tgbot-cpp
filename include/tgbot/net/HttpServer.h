@@ -51,8 +51,8 @@ public:
 	 * Starts receiving new connections.
 	 */
 	void start() {
-		std::shared_ptr<boost::asio::basic_stream_socket<Protocol>> socket(new boost::asio::basic_stream_socket<Protocol>(_acceptor->get_io_service()));
-		std::shared_ptr<Connection> connection(new Connection(socket, _handler));
+		auto socket(std::make_shared<boost::asio::basic_stream_socket<Protocol>>(_acceptor->get_io_service()));
+		auto connection(std::make_shared<Connection>(socket, _handler));
 		_acceptor->async_accept(*connection->socket, [this, connection]() {
 			connection->start();
 			start();

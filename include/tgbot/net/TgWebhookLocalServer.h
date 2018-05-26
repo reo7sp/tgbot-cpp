@@ -39,7 +39,7 @@ public:
 	TgWebhookLocalServer(std::shared_ptr<boost::asio::basic_socket_acceptor<boost::asio::local::stream_protocol>>& acceptor, const std::string& path, EventHandler* eventHandler) = delete;
 
 	TgWebhookLocalServer(const std::string& path, const EventHandler* eventHandler) :
-		TgWebhookServer<boost::asio::local::stream_protocol>(std::shared_ptr<boost::asio::basic_socket_acceptor<boost::asio::local::stream_protocol>>(new boost::asio::local::stream_protocol::acceptor(_ioService, boost::asio::local::stream_protocol::endpoint(path))), path, eventHandler)
+		TgWebhookServer<boost::asio::local::stream_protocol>(std::make_shared<boost::asio::basic_socket_acceptor<boost::asio::local::stream_protocol>>(_ioService, boost::asio::local::stream_protocol::endpoint(path)), path, eventHandler)
 	{
 	}
 

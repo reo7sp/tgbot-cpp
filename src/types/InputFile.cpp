@@ -14,7 +14,7 @@ using namespace std;
 namespace TgBot {
 
 InputFile::Ptr InputFile::fromFile(const string& filePath, const string& mimeType) {
-	InputFile::Ptr result(new InputFile);
+	auto result(make_shared<InputFile>());
 	result->data = FileTools::read(filePath);
 	result->mimeType = mimeType;
 	result->fileName = StringTools::split(filePath, '/').back();
