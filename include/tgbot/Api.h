@@ -75,7 +75,7 @@ public:
 	 * @param disableNotification Optional. Sends the message silenty.
 	 * @return On success, the sent message is returned.
 	 */
-	Message::Ptr sendMessage(int64_t chatId, const std::string& text, bool disableWebPagePreview = false, int32_t replyToMessageId = 0, const GenericReply::Ptr replyMarkup = GenericReply::Ptr(), const std::string& parseMode = "", bool disableNotification = false) const;
+	Message::Ptr sendMessage(int64_t chatId, const std::string& text, bool disableWebPagePreview = false, int32_t replyToMessageId = 0, const GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>(), const std::string& parseMode = "", bool disableNotification = false) const;
 
 	/**
 	 * Use this method to forward messages of any kind.
@@ -98,7 +98,7 @@ public:
 	 * @return On success, the sent message is returned.
 	 */
 	Message::Ptr sendPhoto(int64_t chatId, const InputFile::Ptr photo, const std::string& caption = "", int32_t replyToMessageId = 0,
-	                       const GenericReply::Ptr replyMarkup = GenericReply::Ptr(), bool disableNotification = false) const;
+	                       const GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>(), bool disableNotification = false) const;
 
 	/**
 	 * Use this method to send photos.
@@ -111,7 +111,7 @@ public:
 	 * @return On success, the sent message is returned.
 	 */
 	Message::Ptr sendPhoto(int64_t chatId, const std::string& photoId, const std::string& caption = "", int32_t replyToMessageId = 0,
-	                       const GenericReply::Ptr replyMarkup = GenericReply::Ptr(), bool disableNotification = false) const;
+	                       const GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>(), bool disableNotification = false) const;
 
 	/**
 	 * Use this method to send audio files, if you want Telegram clients to display the file as a playable voice message. For this to work, your audio must be in an .ogg file encoded with OPUS (other formats may be sent as Document).
@@ -128,7 +128,7 @@ public:
 	 */
 	Message::Ptr sendAudio(int64_t chatId, const InputFile::Ptr audio, const std::string &caption = "", int32_t duration = 0,
 	                       const std::string& performer = "", const std::string& title = "", int32_t replyToMessageId = 0,
-	                       const GenericReply::Ptr replyMarkup = GenericReply::Ptr(), bool disableNotification = false) const;
+	                       const GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>(), bool disableNotification = false) const;
 
 	/**
 	 * Use this method to send audio files, if you want Telegram clients to display the file as a playable voice message. For this to work, your audio must be in an .ogg file encoded with OPUS (other formats may be sent as Document).
@@ -145,7 +145,7 @@ public:
 	 */
 	Message::Ptr sendAudio(int64_t chatId, const std::string& audioId, const std::string &caption = "", int32_t duration = 0,
 	                       const std::string& performer = "", const std::string& title = "", int32_t replyToMessageId = 0,
-	                       const GenericReply::Ptr replyMarkup = GenericReply::Ptr(), bool disableNotification = false) const;
+	                       const GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>(), bool disableNotification = false) const;
 
 	/**
 	 * Use this method to send general files.
@@ -158,7 +158,7 @@ public:
 	 * @return On success, the sent message is returned.
 	 */
 	Message::Ptr sendDocument(int64_t chatId, const InputFile::Ptr document, const std::string &caption = "", int32_t replyToMessageId = 0,
-	                          const GenericReply::Ptr replyMarkup = GenericReply::Ptr(), bool disableNotification = false) const;
+	                          const GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>(), bool disableNotification = false) const;
 
 	/**
 	 * Use this method to send general files.
@@ -171,7 +171,7 @@ public:
 	 * @return On success, the sent message is returned.
 	 */
 	Message::Ptr sendDocument(int64_t chatId, const std::string& documentId, const std::string &caption = "", int32_t replyToMessageId = 0,
-	                          const GenericReply::Ptr replyMarkup = GenericReply::Ptr(), bool disableNotification = false) const;
+	                          const GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>(), bool disableNotification = false) const;
 
 	/**
 	 * Use this method to send .webp stickers.
@@ -183,7 +183,7 @@ public:
 	 * @return On success, the sent message is returned.
 	 */
 	Message::Ptr sendSticker(int64_t chatId, const InputFile::Ptr sticker, int32_t replyToMessageId = 0,
-	                         const GenericReply::Ptr replyMarkup = GenericReply::Ptr(), bool disableNotification = false) const;
+	                         const GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>(), bool disableNotification = false) const;
 
 	/**
 	 * Use this method to send .webp stickers.
@@ -195,7 +195,7 @@ public:
 	 * @return On success, the sent message is returned.
 	 */
 	Message::Ptr sendSticker(int64_t chatId, const std::string& stickerId, int32_t replyToMessageId = 0,
-	                         const GenericReply::Ptr replyMarkup = GenericReply::Ptr(), bool disableNotification = false) const;
+	                         const GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>(), bool disableNotification = false) const;
 
 	/**
 	 * Use this method to send video files, Telegram clients support mp4 videos (other formats may be sent as Document).
@@ -211,7 +211,7 @@ public:
 	 * @return On success, the sent message is returned.
 	 */
 	Message::Ptr sendVideo(int64_t chatId, const InputFile::Ptr video, int32_t duration = 0, int32_t width = 0, int32_t height = 0, const std::string &caption = "",
-						   int32_t replyToMessageId = 0, const GenericReply::Ptr replyMarkup = GenericReply::Ptr(), bool disableNotification = false) const;
+						   int32_t replyToMessageId = 0, const GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>(), bool disableNotification = false) const;
 
 	/**
 	 * Use this method to send video files, Telegram clients support mp4 videos (other formats may be sent as Document).
@@ -227,7 +227,7 @@ public:
 	 * @return On success, the sent message is returned.
 	 */
 	Message::Ptr sendVideo(int64_t chatId, const std::string& videoId, int32_t duration = 0, int32_t width = 0, int32_t height = 0, const std::string &caption = "",
-						   int32_t replyToMessageId = 0, const GenericReply::Ptr replyMarkup = GenericReply::Ptr(), bool disableNotification = false) const;
+						   int32_t replyToMessageId = 0, const GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>(), bool disableNotification = false) const;
 
 	/**
 	 * Use this method to send audio files, if you want Telegram clients to display the file as a playable voice message.
@@ -241,7 +241,7 @@ public:
 	 * @return On success, the sent message is returned.
 	 */
 	Message::Ptr sendVoice(int64_t chatId, const InputFile::Ptr voice, const std::string &caption = "", int duration = 0, int32_t replyToMessageId = 0,
-	                      const GenericReply::Ptr replyMarkup = GenericReply::Ptr(), bool disableNotification = false) const;
+	                      const GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>(), bool disableNotification = false) const;
 
 	/**
 	 * Use this method to send audio files, if you want Telegram clients to display the file as a playable voice message.
@@ -255,7 +255,7 @@ public:
 	 * @return On success, the sent message is returned.
 	 */
 	Message::Ptr sendVoice(int64_t chatId, const std::string& voiceId, const std::string &caption = "", int duration = 0, int32_t replyToMessageId = 0,
-	                       const GenericReply::Ptr replyMarkup = GenericReply::Ptr(), bool disableNotification = false) const;
+	                       const GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>(), bool disableNotification = false) const;
 
 	/**
 	 * Use this method to send point on the map.
@@ -268,7 +268,7 @@ public:
 	 * @return On success, the sent message is returned.
 	 */
 	Message::Ptr sendLocation(int64_t chatId, float latitude, float longitude, int32_t replyToMessageId = 0,
-	                          const GenericReply::Ptr replyMarkup = GenericReply::Ptr(), bool disableNotification = false) const;
+	                          const GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>(), bool disableNotification = false) const;
 
 	/**
 	 * Use this method to send information about a venue. On success, the sent Message is returned.
@@ -284,7 +284,7 @@ public:
 	 * @return On success, the sent message is returned.
 	 */
 	Message::Ptr sendVenue(int64_t chatId, float latitude, float longitude, std::string title, std::string address, std::string foursquareId = "",
-	                       bool disableNotification = false, int32_t replyToMessageId = 0, const GenericReply::Ptr replyMarkup = GenericReply::Ptr()) const;
+	                       bool disableNotification = false, int32_t replyToMessageId = 0, const GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>()) const;
 
 	/**
 	 * Use this method to send phone contacts. On success, the sent Message is returned.
@@ -298,7 +298,7 @@ public:
 	 * @return On success, the sent message is returned.
 	 */
 	Message::Ptr sendContact(int64_t chatId, std::string phoneNumber, std::string firstName, std::string lastName = "", bool disableNotification = false,
-							int32_t replyToMessageId = 0, const GenericReply::Ptr replyMarkup = GenericReply::Ptr()) const;
+							int32_t replyToMessageId = 0, const GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>()) const;
 
 	/**
 	 * Use this method when you need to tell the user that something is happening on the bot's side. The status is set for 5 seconds or less (when a message arrives from your bot, Telegram clients clear its typing status).
@@ -384,7 +384,7 @@ public:
 	 * @return Message object on success, otherwise nullptr
 	 */
 	Message::Ptr editMessageText(const std::string& text, int64_t chatId=0, int32_t messageId=0, const std::string& inlineMessageId="",
-								 const std::string& parseMode = "", bool disableWebPagePreview = false, const GenericReply::Ptr replyMarkup = GenericReply::Ptr()) const;
+								 const std::string& parseMode = "", bool disableWebPagePreview = false, const GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>()) const;
 
 	/**
 	* Use this method to edit captions of messages sent by the bot or via the bot (for inline bots). 
@@ -396,7 +396,7 @@ public:
 	* @return Message object on success, otherwise nullptr
 	*/
 	Message::Ptr editMessageCaption(int64_t chatId = 0, int32_t messageId = 0, const std::string& caption = "",
-									const std::string& inlineMessageId = "", const GenericReply::Ptr replyMarkup = GenericReply::Ptr()) const;
+									const std::string& inlineMessageId = "", const GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>()) const;
 
 	/**
 	* Use this method to edit only the reply markup of messages sent by the bot or via the bot (for inline bots).
@@ -407,7 +407,7 @@ public:
 	* @return Message object on success, otherwise nullptr
 	*/
 	Message::Ptr editMessageReplyMarkup(int64_t chatId = 0, int32_t messageId = 0, const std::string& inlineMessageId = "",
-										const GenericReply::Ptr replyMarkup = GenericReply::Ptr()) const;
+										const GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>()) const;
 
 	/**
 	 * Use this method to delete messages sent by bot (or by other users if bot is admin).
