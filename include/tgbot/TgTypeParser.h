@@ -245,7 +245,7 @@ public:
 	std::shared_ptr<T> tryParseJson(JsonToTgTypeFunc<T> parseFunc, const boost::property_tree::ptree& data, const std::string& keyName) const {
 		auto treeItem = data.find(keyName);
 		if (treeItem == data.not_found()) {
-			return std::make_shared<T>();
+			return std::shared_ptr<T>();
 		}
 		return (this->*parseFunc)(treeItem->second);
 	}
