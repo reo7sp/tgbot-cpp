@@ -1,5 +1,7 @@
 /*
  * Copyright (c) 2015 Oleg Morozenkov
+ * Copyright (c) 2016 Konstantin Kukin
+ * Copyright (c) 2018 JellyBrick
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,54 +22,28 @@
  * SOFTWARE.
  */
 
-#ifndef TGBOT_CPP_USER_H
-#define TGBOT_CPP_USER_H
+#ifndef TGBOT_INPUTMEDIAPHOTO_H
+#define TGBOT_INPUTMEDIAPHOTO_H
 
-#include <string>
 #include <memory>
+#include <string>
+
+#include "tgbot/types/InputMedia.h"
 
 namespace TgBot {
 
 /**
- * This object represents a Telegram user or bot.
- * @ingroup types
- */
-class User  {
-
+* Represents a photo to be sent.
+* @ingroup types
+*/
+class InputMediaPhoto : public InputMedia {
 public:
-	typedef std::shared_ptr<User> Ptr;
+	typedef std::shared_ptr<InputMediaPhoto> Ptr;
 
-	/**
-	 * Unique identifier for this user or bot.
-	 */
-	int32_t id;
-
-	/**
-	 * True, if this user is a bot
-	 */
-	bool isBot = false;
-
-	/**
-	 * User‘s or bot’s first name.
-	 */
-	std::string firstName;
-
-	/**
-	 * Optional. User‘s or bot’s last name.
-	 */
-	std::string lastName;
-
-	/**
-	 * Optional. User‘s or bot’s username.
-	 */
-	std::string username;
-
-	/**
-	 * Optional. IETF language tag of the user's language.
-	 */
-	std::string languageCode;
+	InputMediaPhoto() {
+		this->type = TYPE::PHOTO;
+	}
 };
-
 }
 
-#endif //TGBOT_CPP_USER_H
+#endif //TGBOT_INPUTMEDIAPHOTO_H

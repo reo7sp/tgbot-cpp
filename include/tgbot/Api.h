@@ -39,7 +39,9 @@
 #include "tgbot/types/Venue.h"
 #include "tgbot/types/WebhookInfo.h"
 #include "tgbot/types/ChatMember.h"
+#include "tgbot/types/StickerSet.h"
 #include "tgbot/types/File.h"
+#include "tgbot/types/InputMedia.h"
 
 namespace TgBot {
 
@@ -188,7 +190,7 @@ public:
 	/**
 	 * Use this method to send .webp stickers.
 	 * @param chatId Unique identifier for the target chat.
-	 * @param sticker Id of the sticker that is already on the Telegram servers.
+	 * @param stickerId Id of the sticker that is already on the Telegram servers.
 	 * @param replyToMessageId Optional. If the message is a reply, ID of the original message.
 	 * @param replyMarkup Optional. Additional interface options. A object for a custom reply keyboard, instructions to hide keyboard or to force a reply from the user.
 	 * @param disableNotification Optional. Sends the message silenty.
@@ -196,6 +198,90 @@ public:
 	 */
 	Message::Ptr sendSticker(int64_t chatId, const std::string& stickerId, int32_t replyToMessageId = 0,
 	                         const GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>(), bool disableNotification = false) const;
+
+	/**
+	 * Use this method to get a sticker set.
+	 * @param chatId Name of the sticker set.
+	 * @return On success, a StickerSet object is returned.
+	 */
+	StickerSet::Ptr getStickerSet(const std::string& name) const;
+	
+	/**
+	 * Use this method to upload a .png file with a sticker for later use in createNewStickerSet and addStickerToSet methods (can be used multiple times).
+	 * @param userId User identifier of sticker file owner.
+	 * @param pngSticker Png image with the sticker, must be up to 512 kilobytes in size, dimensions must not exceed 512px, and either width or height must be exactly 512px.
+	 * @return Returns the uploaded File on success.
+	 */
+	File::Ptr uploadStickerFile(int32_t userId, const InputFile::Ptr pngSticker) const;
+
+	/**
+	 * Use this method to create new sticker set owned by a user. The bot will be able to edit the created sticker set.
+	 * @param userId User identifier of created sticker set owner.
+	 * @param name Short name of sticker set, to be used in t.me/addstickers/ URLs (e.g., animals). Can contain only english letters, digits and underscores. Must begin with a letter, can't contain consecutive underscores and must end in “_by_<bot username>”. <bot_username> is case insensitive. 1-64 characters.
+	 * @param title Sticker set title, 1-64 characters.
+	 * @param pngSticker Png image with the sticker, must be up to 512 kilobytes in size, dimensions must not exceed 512px, and either width or height must be exactly 512px.
+	 * @param emojis One or more emoji corresponding to the sticker.
+	 * @param containsMasks Optional. Pass True, if a set of mask stickers should be created.
+	 * @param maskPosition Optional. A JSON-serialized object for position where the mask should be placed on faces.
+	 * @return Returns True on success.
+	 */
+	bool createNewStickerSet(int32_t userId, const std::string& name, const std::string& title,
+							 InputFile::Ptr pngSticker, const std::string& emojis, bool containsMasks = false, MaskPosition::Ptr maskPosition = nullptr) const;
+
+	/**
+	 * Use this method to create new sticker set owned by a user. The bot will be able to edit the created sticker set.
+	 * @param userId User identifier of created sticker set owner.
+	 * @param name Short name of sticker set, to be used in t.me/addstickers/ URLs (e.g., animals). Can contain only english letters, digits and underscores. Must begin with a letter, can't contain consecutive underscores and must end in “_by_<bot username>”. <bot_username> is case insensitive. 1-64 characters.
+	 * @param title Sticker set title, 1-64 characters.
+	 * @param pngSticker Png image with the sticker, must be up to 512 kilobytes in size, dimensions must not exceed 512px, and either width or height must be exactly 512px. Pass a file_id as a String to send a file that already exists on the Telegram servers, pass an HTTP URL as a String for Telegram to get a file from the Internet. 
+	 * @param emojis One or more emoji corresponding to the sticker.
+	 * @param containsMasks Optional. Pass True, if a set of mask stickers should be created.
+	 * @param maskPosition Optional. A JSON-serialized object for position where the mask should be placed on faces.
+	 * @return Returns True on success.
+	 */
+	bool createNewStickerSet(int32_t userId, const std::string& name, const std::string& title,
+							 const std::string& pngSticker, const std::string& emojis, bool containsMasks = false, MaskPosition::Ptr maskPosition = nullptr) const;
+
+	/**
+	 * Use this method to add a new sticker to a set created by the bot. 
+	 * @param userId User identifier of created sticker set owner.
+	 * @param name Sticker set name.
+	 * @param title Sticker set title, 1-64 characters.
+	 * @param pngSticker Png image with the sticker, must be up to 512 kilobytes in size, dimensions must not exceed 512px, and either width or height must be exactly 512px.
+	 * @param emojis One or more emoji corresponding to the sticker.
+	 * @param maskPosition Optional. A JSON-serialized object for position where the mask should be placed on faces.
+	 * @return Returns True on success.
+	 */
+	bool addStickerToSet(int32_t userId, const std::string& name, const std::string& title,
+						 InputFile::Ptr pngSticker, const std::string& emojis, MaskPosition::Ptr maskPosition = nullptr) const;
+
+	/**
+	 * Use this method to add a new sticker to a set created by the bot. 
+	 * @param userId User identifier of created sticker set owner.
+	 * @param name Sticker set name.
+	 * @param title Sticker set title, 1-64 characters.
+	 * @param pngSticker Png image with the sticker, must be up to 512 kilobytes in size, dimensions must not exceed 512px, and either width or height must be exactly 512px. Pass a file_id as a String to send a file that already exists on the Telegram servers, pass an HTTP URL as a String for Telegram to get a file from the Internet.
+	 * @param emojis One or more emoji corresponding to the sticker.
+	 * @param maskPosition Optional. A JSON-serialized object for position where the mask should be placed on faces.
+	 * @return Returns True on success.
+	 */
+	bool addStickerToSet(int32_t userId, const std::string& name, const std::string& title,
+						 const std::string& pngSticker, const std::string& emojis, MaskPosition::Ptr maskPosition = nullptr) const;
+
+	/**
+	 * Use this method to move a sticker in a set created by the bot to a specific position.
+	 * @param stickers File identifier of the sticker.
+	 * @param position New sticker position in the set, zero-based.
+	 * @return Returns True on success.
+	 */
+	bool setStickerPositionInSet(const std::string& sticker, uint32_t position) const;
+
+	/**
+	 * Use this method to delete a sticker from a set created by the bot.
+	 * @param stickers File identifier of the sticker.
+	 * @return Returns True on success.
+	 */
+	bool deleteStickerPositionInSet(const std::string& sticker) const;
 
 	/**
 	 * Use this method to send video files, Telegram clients support mp4 videos (other formats may be sent as Document).
@@ -210,7 +296,7 @@ public:
 	 * @param disableNotification Optional. Sends the message silenty.
 	 * @return On success, the sent message is returned.
 	 */
-	Message::Ptr sendVideo(int64_t chatId, const InputFile::Ptr video, int32_t duration = 0, int32_t width = 0, int32_t height = 0, const std::string &caption = "",
+	Message::Ptr sendVideo(int64_t chatId, const InputFile::Ptr video, int32_t duration = 0, int32_t width = 0, int32_t height = 0, const std::string& caption = "",
 						   int32_t replyToMessageId = 0, const GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>(), bool disableNotification = false) const;
 
 	/**
@@ -226,8 +312,47 @@ public:
 	 * @param disableNotification Optional. Sends the message silenty.
 	 * @return On success, the sent message is returned.
 	 */
-	Message::Ptr sendVideo(int64_t chatId, const std::string& videoId, int32_t duration = 0, int32_t width = 0, int32_t height = 0, const std::string &caption = "",
+	Message::Ptr sendVideo(int64_t chatId, const std::string& videoId, int32_t duration = 0, int32_t width = 0, int32_t height = 0, const std::string& caption = "",
 						   int32_t replyToMessageId = 0, const GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>(), bool disableNotification = false) const;
+
+	/**
+     * Use this method to send video messages. On success, the sent Message is returned.
+     * @param chatId Unique identifier for the target chat.
+     * @param videoNote Video note to send.
+     * @param replyToMessageId If the message is a reply, ID of the original message.
+     * @param disableNotification Sends the message silently. Users will receive a notification with no sound.
+     * @param duration Duration of sent video in seconds.
+     * @param length Video width and height.
+     * @param replyMarkup Additional interface options. A object for an inline keyboard, custom reply keyboard, instructions to remove reply keyboard or to force a reply from the user.
+     * @return On success, the sent Message is returned.
+     */
+    Message::Ptr sendVideoNote(int64_t chatId, const InputFile::Ptr videoNote, int64_t replyToMessageId = 0, bool disableNotification = false,
+                               int32_t duration = 0, int32_t length = 0, const GenericReply::Ptr replyMarkup = GenericReply::Ptr());
+
+    /**
+     * Use this method to send video messages. On success, the sent Message is returned.
+     * @param chatId Unique identifier for the target chat.
+     * @param videoNote Id of the video note that exists on the Telegram servers.
+     * @param replyToMessageId If the message is a reply, ID of the original message.
+     * @param disableNotification Sends the message silently. Users will receive a notification with no sound.
+     * @param duration Duration of sent video in seconds.
+     * @param length Video width and height.
+     * @param replyMarkup Additional interface options. A object for an inline keyboard, custom reply keyboard, instructions to remove reply keyboard or to force a reply from the user.
+     * @return On success, the sent Message is returned.
+     */
+    Message::Ptr sendVideoNote(int64_t chatId, const std::string& videoNote, int64_t replyToMessageId = 0, bool disableNotification = false,
+                               int32_t duration = 0, int32_t length = 0, const GenericReply::Ptr replyMarkup = GenericReply::Ptr());
+
+	/**
+	 * Use this method to send a group of photos or videos as an album.
+	 * @param chatId Unique identifier for the target chat of the target channel.
+	 * @param media A JSON-serialized array describing photos and videos to be sent, must include 2–10 items.
+	 * @param disableNotification Optional. Sends the messages silently. Users will receive a notification with no sound.
+	 * @param replyToMessageId Optional. If the messages are a reply, ID of the original message.
+	 * @return On success, an array of the sent Messages is returned.
+	 */
+	std::vector<Message::Ptr> sendMediaGroup(int64_t chatId, const std::vector<InputMedia::Ptr>& media,
+											 bool disableNotification = false, int32_t replyToMessageId = 0) const;
 
 	/**
 	 * Use this method to send audio files, if you want Telegram clients to display the file as a playable voice message.
@@ -240,7 +365,7 @@ public:
 	 * @param disableNotification Optional. Sends the message silenty.
 	 * @return On success, the sent message is returned.
 	 */
-	Message::Ptr sendVoice(int64_t chatId, const InputFile::Ptr voice, const std::string &caption = "", int duration = 0, int32_t replyToMessageId = 0,
+	Message::Ptr sendVoice(int64_t chatId, const InputFile::Ptr voice, const std::string& caption = "", int duration = 0, int32_t replyToMessageId = 0,
 	                      const GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>(), bool disableNotification = false) const;
 
 	/**
@@ -254,7 +379,7 @@ public:
 	 * @param disableNotification Optional. Sends the message silenty.
 	 * @return On success, the sent message is returned.
 	 */
-	Message::Ptr sendVoice(int64_t chatId, const std::string& voiceId, const std::string &caption = "", int duration = 0, int32_t replyToMessageId = 0,
+	Message::Ptr sendVoice(int64_t chatId, const std::string& voiceId, const std::string& caption = "", int duration = 0, int32_t replyToMessageId = 0,
 	                       const GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>(), bool disableNotification = false) const;
 
 	/**
@@ -262,13 +387,39 @@ public:
 	 * @param chatId Unique identifier for the target chat.
 	 * @param latitude Latitude of location.
 	 * @param longitude Longitude of location.
+	 * @param livePeriod Optional. Period in seconds for which the location will be updated (see Live Locations, should be between 60 and 86400).
 	 * @param replyToMessageId Optional. If the message is a reply, ID of the original message.
 	 * @param replyMarkup Optional. Additional interface options. A object for a custom reply keyboard, instructions to hide keyboard or to force a reply from the user.
 	 * @param disableNotification Optional. Sends the message silenty.
 	 * @return On success, the sent message is returned.
 	 */
-	Message::Ptr sendLocation(int64_t chatId, float latitude, float longitude, int32_t replyToMessageId = 0,
-	                          const GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>(), bool disableNotification = false) const;
+	Message::Ptr sendLocation(int64_t chatId, float latitude, float longitude, uint32_t livePeriod = 0,
+							  int32_t replyToMessageId = 0, const GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>(), bool disableNotification = false) const;
+
+	/**
+	 * Use this method to edit live location messages sent by the bot or via the bot (for inline bots).
+	 * @param latitude Latitude of new location.
+	 * @param longitude Longitude of new location.
+	 * @param chatId Optional. Required if inlineMessageId is not specified. Unique identifier for the target chat of the target channel.
+	 * @param messageId Optional. Required if inlineMessageId is not specified. Identifier of the sent message.
+	 * @param inlineMessageId Optional. Required if chatId and messageId are not specified. Identifier of the inline message.
+	 * @param replyMarkup Optional. A JSON-serialized object for a new inline keyboard.
+	 * @return On success, if the edited message was sent by the bot, the edited Message is returned, otherwise nullptr is returned.
+	 */
+	Message::Ptr editMessageLiveLocation(float latitude, float longitude, int64_t chatId = 0, int32_t messageId = 0,
+										 int32_t inlineMessageId = 0, const InlineKeyboardMarkup::Ptr replyMarkup = std::make_shared<InlineKeyboardMarkup>()) const;
+
+	/**
+	 * Use this method to edit live location messages sent by the bot or via the bot (for inline bots).
+	 * @param chatId Optional. Required if inlineMessageId is not specified. Unique identifier for the target chat of the target channel.
+	 * @param messageId Optional. Required if inlineMessageId is not specified. Identifier of the sent message.
+	 * @param inlineMessageId Optional. Required if chatId and messageId are not specified. Identifier of the inline message.
+	 * @param replyMarkup Optional. A JSON-serialized object for a new inline keyboard.
+	 * @return On success, if the edited message was sent by the bot, the edited Message is returned, otherwise nullptr is returned.
+	 */
+	Message::Ptr stopMessageLiveLocation(int64_t chatId = 0, int32_t messageId = 0, int32_t inlineMessageId = 0,
+										 const InlineKeyboardMarkup::Ptr replyMarkup = std::make_shared<InlineKeyboardMarkup>()) const;
+
 
 	/**
 	 * Use this method to send information about a venue. On success, the sent Message is returned.
@@ -283,7 +434,7 @@ public:
 	 * @param disableNotification Optional. Sends the message silenty.
 	 * @return On success, the sent message is returned.
 	 */
-	Message::Ptr sendVenue(int64_t chatId, float latitude, float longitude, std::string title, std::string address, std::string foursquareId = "",
+	Message::Ptr sendVenue(int64_t chatId, float latitude, float longitude, const std::string& title, const std::string& address, const std::string& foursquareId = "",
 	                       bool disableNotification = false, int32_t replyToMessageId = 0, const GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>()) const;
 
 	/**
@@ -297,7 +448,7 @@ public:
 	 * @param replyMarkup Optional. Additional interface options. A object for a custom reply keyboard, instructions to hide keyboard or to force a reply from the user.
 	 * @return On success, the sent message is returned.
 	 */
-	Message::Ptr sendContact(int64_t chatId, std::string phoneNumber, std::string firstName, std::string lastName = "", bool disableNotification = false,
+	Message::Ptr sendContact(int64_t chatId, const std::string& phoneNumber, const std::string& firstName, const std::string& lastName = "", bool disableNotification = false,
 							int32_t replyToMessageId = 0, const GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>()) const;
 
 	/**
@@ -327,39 +478,55 @@ public:
 
 	/**
 	 * Use this method for your bot to leave a group, supergroup or channel.
-	 * @param chatId Unique identifier for the target chat or username of the target supergroup or channel (in the format @channelusername)
+	 * @param chatId Unique identifier for the target chat of the target supergroup or channel.
 	 * @return True on success
 	 */
 	bool leaveChat(int64_t chatId) const;
 
 	/**
 	 * Use this method to get up to date information about the chat (current name of the user for one-on-one conversations, current username of a user, group or channel, etc.). Returns a Chat object on success.
-	 * @param chatId Unique identifier for the target chat or username of the target supergroup or channel (in the format @channelusername)
+	 * @param chatId Unique identifier for the target chat of the target supergroup or channel.
 	 * @return Chat object.
 	 */
 	Chat::Ptr getChat(int64_t chatId) const;
 
 	/**
 	* Use this method to get a list of administrators in a chat. On success, returns an Array of ChatMember objects that contains information about all chat administrators except other bots. If the chat is a group or a supergroup and no administrators were appointed, only the creator will be returned.
-	* @param chatId Unique identifier for the target chat or username of the target supergroup or channel (in the format @channelusername)
+	* @param chatId Unique identifier for the target chat of the target supergroup or channel.
 	* @return ChatMember object.
 	*/
 	std::vector<ChatMember::Ptr> getChatAdministrators(int64_t chatId) const;
 
 	/**
 	* Use this method to get the number of members in a chat. Returns Int on success.
-	* @param chatId Unique identifier for the target chat or username of the target supergroup or channel (in the format @channelusername)
+	* @param chatId Unique identifier for the target chat of the target supergroup or channel.
 	* @return Int.
 	*/
 	int32_t getChatMembersCount(int64_t chatId) const;
 
 	/**
 	* Use this method to get information about a member of a chat. Returns a ChatMember object on success.
-	* @param chatId Unique identifier for the target chat or username of the target supergroup or channel (in the format @channelusername)
+	* @param chatId Unique identifier for the target chat of the target supergroup or channel.
 	* @param userId Unique identifier of the target user
 	* @return ChatMember object.
 	*/
 	ChatMember::Ptr getChatMember(int64_t chatId, int32_t userId) const;
+
+	/**
+	* Use this method to get information about a member of a chat. Returns a ChatMember object on success.
+	* @param chatId Unique identifier for the target chat of the target supergroup or channel.
+	* @param stickerSetName Name of the sticker set to be set as the group sticker set.
+	* @return Returns True on success.
+	*/
+	bool setChatStickerSet(int64_t chatId, const std::string& stickerSetName) const;
+
+	/**
+	* Use this method to get information about a member of a chat. Returns a ChatMember object on success.
+	* @param chatId Unique identifier for the target chat of the target supergroup or channel.
+	* @return Returns True on success.
+	*/
+	bool deleteChatStickerSet(int64_t chatId) const;
+
 
 	/**
 	 * Use this method to send answers to callback queries sent from inline keyboards. The answer will be displayed to the user as a notification at the top of the chat screen or as an alert.
@@ -375,7 +542,7 @@ public:
 	/**
 	 * Use this method to edit text and game messages sent by the bot or via the bot (for inline bots)
 	 * @param text New text of the message
-	 * @param chatId Optional	Required if inline_message_id is not specified. Unique identifier for the target chat or username of the target channel (in the format @channelusername)
+	 * @param chatId Optional	Required if inline_message_id is not specified. Unique identifier for the target chat of the target channel.
 	 * @param messageId Optional	Required if inline_message_id is not specified. Identifier of the sent message
 	 * @param inlineMessageId Optional	Required if chat_id and message_id are not specified. Identifier of the inline message
 	 * @param parseMode Optional	Send Markdown or HTML, if you want Telegram apps to show bold, italic, fixed-width text or inline URLs in your bot's message.
@@ -388,7 +555,7 @@ public:
 
 	/**
 	* Use this method to edit captions of messages sent by the bot or via the bot (for inline bots). 
-	* @param chatId Optional	Required if inline_message_id is not specified. Unique identifier for the target chat or username of the target channel (in the format @channelusername)
+	* @param chatId Optional	Required if inline_message_id is not specified. Unique identifier for the target chat of the target channel.
 	* @param messageId Optional	Required if inline_message_id is not specified. Identifier of the sent message
 	* @param caption Optional New caption of the message
 	* @param inlineMessageId Optional	Required if chat_id and message_id are not specified. Identifier of the inline message
@@ -400,7 +567,7 @@ public:
 
 	/**
 	* Use this method to edit only the reply markup of messages sent by the bot or via the bot (for inline bots).
-	* @param chatId Optional	Required if inline_message_id is not specified. Unique identifier for the target chat or username of the target channel (in the format @channelusername)
+	* @param chatId Optional	Required if inline_message_id is not specified. Unique identifier for the target chat of the target channel.
 	* @param messageId Optional	Required if inline_message_id is not specified. Identifier of the sent message
 	* @param inlineMessageId Optional	Required if chat_id and message_id are not specified. Identifier of the inline message
 	* @param replyMarkup Optional	A JSON-serialized object for an inline keyboard.
@@ -464,15 +631,16 @@ public:
 	 * @return True on success
 	 */
 	bool answerInlineQuery(const std::string& inlineQueryId, const std::vector<InlineQueryResult::Ptr>& results,
-							int32_t cacheTime=300, bool isPersonal=false, const std::string& nextOffset="", const std::string& switchPmText="", const std::string& switchPmParameter="") const;
+							int32_t cacheTime = 300, bool isPersonal = false, const std::string& nextOffset = "", const std::string& switchPmText = "", const std::string& switchPmParameter = "") const;
 
 	/**
 	 * Use this method to kick a user from a group or a supergroup.
 	 * @param chatId Unique identifier for the target group.
 	 * @param userId Unique identifier of the target user.
+	 * @param untilDate Optional. Date when the user will be unbanned, unix time. If user is banned for more than 366 days or less than 30 seconds from the current time they are considered to be banned forever.
 	 * @return True on success
 	 */
-	bool kickChatMember(int64_t chatId, int32_t userId) const;
+	bool kickChatMember(int64_t chatId, int32_t userId, uint64_t untilDate = 0) const;
 
 	/**
 	 * Use this method to unban a previously kicked user in a supergroup.
@@ -481,6 +649,95 @@ public:
 	 * @return True on success
 	 */
 	bool unbanChatMember(int64_t chatId, int32_t userId) const;
+
+	/**
+	 * Use this method to restrict a user in a supergroup.
+	 * @param chatId Unique identifier for the target chat of the target supergroup.
+	 * @param userId Unique identifier of the target user.
+	 * @param untilDate Optional. Date when restrictions will be lifted for the user, unix time. If user is restricted for more than 366 days or less than 30 seconds from the current time, they are considered to be restricted forever.
+	 * @param canSendMessages Optional. Pass True, if the user can send text messages, contacts, locations and venues.
+	 * @param canSendMediaMessages Optional. Pass True, if the user can send audios, documents, photos, videos, video notes and voice notes, implies can_send_messages.
+	 * @param canSendOtherMessages Optional. Pass True, if the user can send animations, games, stickers and use inline bots, implies can_send_media_messages.
+	 * @param canAddWebPagePreviews Optional. Pass True, if the user may add web page previews to their messages, implies can_send_media_messages.
+	 * @return True on success
+	 */
+	bool restrictChatMember(int64_t chatId, int32_t userId, uint64_t untilDate = 0, bool canSendMessages = false,
+							bool canSendMediaMessages = false, bool canSendOtherMessages = false, bool canAddWebPagePreviews = false) const;
+
+	/**
+	 * Use this method to promote or demote a user in a supergroup or a channel.
+	 * @param chatId Unique identifier for the target chat of the target supergroup or channal.
+	 * @param userId Unique identifier of the target user.
+	 * @param canChangeInfo Optional. Pass True, if the administrator can change chat title, photo and other settings.
+	 * @param canPostMessages Optional. Pass True, if the administrator can create channel posts, channels only.
+	 * @param canEditMessages Optional. Pass True, if the administrator can edit messages of other users and can pin messages, channels only.
+	 * @param canDeleteMessages Optional. Pass True, if the administrator can delete messages of other users.
+	 * @param canInviteUsers Optional. Pass True, if the administrator can invite new users to the chat.
+	 * @param canRestrictMembers Optional. Pass True, if the administrator can restrict, ban or unban chat members.
+	 * @param canPinMessages Optional. Pass True, if the administrator can pin messages, supergroups only.
+	 * @param canPromoteMembers Optional. Pass True, if the administrator can add new administrators with a subset of his own privileges or demote administrators that he has promoted, directly or indirectly (promoted by administrators that were appointed by him).
+	 * @return True on success
+	 */
+	bool promoteChatMember(int64_t chatId, int32_t userId, bool canChangeInfo = false, bool canPostMessages = false,
+						   bool canEditMessages = false, bool canDeleteMessages = false, bool canInviteUsers = false, bool canPinMessages = false, bool canPromoteMembers = false) const;
+
+	/**
+	 * Use this method to generate a new invite link for a chat; any previously generated link is revoked.
+	 * @param chatId Unique identifier for the target chat.
+	 * @return The new invite link as String on success.
+	 */
+	std::string exportChatInviteLink(int64_t chatId) const;
+
+	/**
+	 * Use this method to set a new profile photo for the chat.
+	 * Photos can't be changed for private chats.
+	 * @param chatId Unique identifier for the target chat.
+	 * @param photo New chat photo.
+	 * @return True on success
+	 */
+	bool setChatPhoto(int64_t chatId, const InputFile::Ptr photo) const;
+
+	/**
+	 * Use this method to delete a chat photo.
+	 * Photos can't be changed for private chats.
+	 * @param chatId Unique identifier for the target chat.
+	 * @return True on success
+	 */
+	bool deleteChatPhoto(int64_t chatId) const;
+
+	/**
+	 * Use this method to change the title of a chat. 
+	 * Titles can't be changed for private chats.
+	 * @param chatId Unique identifier for the target chat.
+	 * @param title New chat title, 1-255 characters.
+	 * @return True on success
+	 */
+	bool setChatTitle(int64_t chatId, const std::string& title) const;
+
+	/**
+	 * Use this method to change the description of a supergroup or a channel.
+	 * @param chatId Unique identifier for the target chat.
+	 * @param description New chat description, 1-255 characters.
+	 * @return True on success
+	 */
+	bool setChatDescription(int64_t chatId, const std::string& description) const;
+
+	/**
+	 * Use this method to pin a message in a supergroup or a channel.
+	 * @param chatId Unique identifier for the target chat.
+	 * @param messageId Identifier of a message to pin.
+	 * @param disableNotification Optional. Pass True, if it is not necessary to send a notification to all chat members about the new pinned message. Notifications are always disabled in channels.
+	 * @return True on success
+	 */
+	bool pinChatMessage(int64_t chatId, int32_t messageId, bool disableNotification = false) const;
+
+	/**
+	 * Use this method to unpin a message in a supergroup or a channel.
+	 * @param chatId Unique identifier for the target chat.
+	 * @return True on success
+	 */
+	bool unpinChatMessage(int64_t chatId) const;
+
 
 	/**
 	 * Downloads file from Telegram and saves it in memory.

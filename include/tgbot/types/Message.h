@@ -96,6 +96,11 @@ public:
 	int32_t forwardFromMessageId;
 
 	/**
+	 * Optional. For messages forwarded from channels, signature of the post author if present.
+	 */
+	std::string forwardSignature;
+
+	/**
 	 * Optional. For forwarded messages, date the original message was sent in Unix time.
 	 */
 	int32_t forwardDate;
@@ -106,9 +111,14 @@ public:
 	Message::Ptr replyToMessage;
 
 	/**
-	 * Optional. Date the message was last edited in Unix time
+	 * Optional. Date the message was last edited in Unix time.
 	 */
 	int32_t editDate;
+
+	/**
+	 * Optional. Signature of the post author for messages in channels.
+	 */
+	std::string authorSignature;
 
 	/**
 	 * Optional. For text messages, the actual UTF-8 text of the message.
@@ -119,6 +129,11 @@ public:
 	 * Optional. For text messages, special entities like usernames, URLs, bot commands, etc. that appear in the text.
 	 */
 	std::vector<MessageEntity::Ptr> entities;
+
+	/**
+	 * Optional. For messages with a caption, special entities like usernames, URLs, bot commands, etc. that appear in the caption
+	 */
+	std::vector<MessageEntity::Ptr> captionEntities;
 
 	/**
 	 * Optional. Message is an audio file, information about the file.
@@ -174,6 +189,11 @@ public:
 	 * Optional. A new member was added to the group, information about them (this member may be bot itself).
 	 */
 	User::Ptr newChatMember;
+
+	/**
+	 * Optional. New members that were added to the group or supergroup and information about them (the bot itself may be one of these members)
+	 */
+	std::vector<User::Ptr> newChatMembers;
 
 	/**
 	 * Optional. A member was removed from the group, information about them (this member may be bot itself).

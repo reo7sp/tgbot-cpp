@@ -1,5 +1,6 @@
 /*
  * Copyright (c) 2015 Oleg Morozenkov
+ * Copyright (c) 2018 JellyBrick
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,54 +21,45 @@
  * SOFTWARE.
  */
 
-#ifndef TGBOT_CPP_USER_H
-#define TGBOT_CPP_USER_H
+#ifndef TGBOT_STICKERSET_H
+#define TGBOT_STICKERSET_H
 
-#include <string>
 #include <memory>
+#include <string>
+#include <vector>
+
+#include "tgbot/types/Sticker.h"
 
 namespace TgBot {
 
 /**
- * This object represents a Telegram user or bot.
+ * This object represents a sticker set.
  * @ingroup types
  */
-class User  {
-
+class StickerSet {
 public:
-	typedef std::shared_ptr<User> Ptr;
+	typedef std::shared_ptr<StickerSet> Ptr;
 
 	/**
-	 * Unique identifier for this user or bot.
+	 * Sticker set name.
 	 */
-	int32_t id;
+	std::string name;
+
+    /**
+	 * Sticker set title.
+	 */
+	std::string title;
+
+    /**
+     * True, if the sticker set contains masks.
+     */
+    bool containsMasks = false;
 
 	/**
-	 * True, if this user is a bot
+	 * List of all set stickers.
 	 */
-	bool isBot = false;
-
-	/**
-	 * User‘s or bot’s first name.
-	 */
-	std::string firstName;
-
-	/**
-	 * Optional. User‘s or bot’s last name.
-	 */
-	std::string lastName;
-
-	/**
-	 * Optional. User‘s or bot’s username.
-	 */
-	std::string username;
-
-	/**
-	 * Optional. IETF language tag of the user's language.
-	 */
-	std::string languageCode;
+	std::vector<Sticker::Ptr> stickers;
 };
-
 }
 
-#endif //TGBOT_CPP_USER_H
+#endif //TGBOT_STICKERSET_H

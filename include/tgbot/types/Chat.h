@@ -26,8 +26,11 @@
 #include <string>
 #include <memory>
 
+#include "tgbot/types/ChatPhoto.h"
+
 namespace TgBot {
 
+class Message;
 /**
  * This object represents a Telegram Chat
  * @ingroup types
@@ -79,9 +82,45 @@ public:
 
 	/**
 	 * Optional. True if a group 
-	 * has �All Members Are Admins� enabled.
+	 * has ‘All Members Are Admins’ enabled.
 	 */
 	bool allMembersAreAdministrators;
+
+	/**
+	 * Optional. Chat photo.
+	 * Returned only in getChat.
+	 */
+	ChatPhoto::Ptr photo;
+
+	/**
+	 * Optional. Description, for supergroups and channel chats.
+	 * Returned only in getChat.
+	 */
+	std::string description;
+
+	/**
+	 * Optional. Chat invite link, for supergroups and channel chats.
+	 * Returned only in getChat.
+	 */
+	std::string inviteLink;
+
+	/**
+	 * Optional. Pinned message, for supergroups and channel chats.
+	 * Returned only in getChat.
+	 */
+	std::shared_ptr<Message> pinnedMessage;
+
+	/**
+	 * Optional. For supergroups, name of group sticker set. 
+	 * Returned only in getChat.
+	 */
+	std::string stickerSetName;
+
+	/**
+	 * Optional. True, if the bot can change the group sticker set.
+	 * Returned only in getChat.
+	 */
+	bool canSetStickerSet;
 };
 
 }

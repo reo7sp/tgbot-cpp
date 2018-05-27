@@ -6,6 +6,7 @@
 #define TGBOT_INPUTMESSAGECONTENT_H
 
 #include <memory>
+#include <string>
 
 namespace TgBot {
 

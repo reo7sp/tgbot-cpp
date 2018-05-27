@@ -1,5 +1,6 @@
 /*
  * Copyright (c) 2015 Oleg Morozenkov
+ * Copyright (c) 2017 Maks Mazurov (fox.cpp)
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,54 +21,46 @@
  * SOFTWARE.
  */
 
-#ifndef TGBOT_CPP_USER_H
-#define TGBOT_CPP_USER_H
+#ifndef TGBOT_ORDERINFO_H
+#define TGBOT_ORDERINFO_H
 
 #include <string>
 #include <memory>
+#include "tgbot/types/ShippingAddress.h"
 
 namespace TgBot {
 
 /**
- * This object represents a Telegram user or bot.
+ * @brief This object represents information about an order.
+ * 
+ * https://core.telegram.org/bots/api#orderinfo
+ * 
  * @ingroup types
  */
-class User  {
-
+class OrderInfo {
 public:
-	typedef std::shared_ptr<User> Ptr;
+    typedef std::shared_ptr<OrderInfo> Ptr;
 
-	/**
-	 * Unique identifier for this user or bot.
-	 */
-	int32_t id;
+    /**
+     * @brief Optional. User name.
+     */
+    std::string name;
 
-	/**
-	 * True, if this user is a bot
-	 */
-	bool isBot = false;
+    /**
+     * @brief Optional. User's phone number.
+     */
+    std::string phoneNumber;
 
-	/**
-	 * User‘s or bot’s first name.
-	 */
-	std::string firstName;
+    /**
+     * @brief Optional. User email.
+     */
+    std::string email;
 
-	/**
-	 * Optional. User‘s or bot’s last name.
-	 */
-	std::string lastName;
-
-	/**
-	 * Optional. User‘s or bot’s username.
-	 */
-	std::string username;
-
-	/**
-	 * Optional. IETF language tag of the user's language.
-	 */
-	std::string languageCode;
+    /**
+     * @brief Optional. User shipping address.
+     */
+    ShippingAddress::Ptr shippingAddress;
 };
-
 }
 
-#endif //TGBOT_CPP_USER_H
+#endif //TGBOT_ORDERINFO_H

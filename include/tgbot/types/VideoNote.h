@@ -20,54 +20,51 @@
  * SOFTWARE.
  */
 
-#ifndef TGBOT_CPP_USER_H
-#define TGBOT_CPP_USER_H
+#ifndef TGBOT_CPP_VIDEONOTE_H
+#define TGBOT_CPP_VIDEONOTE_H
 
 #include <string>
 #include <memory>
 
+#include "tgbot/types/PhotoSize.h"
+
 namespace TgBot {
 
 /**
- * This object represents a Telegram user or bot.
+ * This object represents a video message (available in Telegram apps as of v.4.0).
  * @ingroup types
  */
-class User  {
+class VideoNote {
 
 public:
-	typedef std::shared_ptr<User> Ptr;
+    typedef std::shared_ptr<VideoNote> Ptr;
 
 	/**
-	 * Unique identifier for this user or bot.
+	 * Unique identifier for this file.
 	 */
-	int32_t id;
+	std::string fileId;
 
 	/**
-	 * True, if this user is a bot
+	 * Video width and height as defined by sender.
 	 */
-	bool isBot = false;
+	int32_t length;
 
 	/**
-	 * User‘s or bot’s first name.
+	 * Duration of the video in seconds as defined by sender.
 	 */
-	std::string firstName;
+	int32_t duration;
 
 	/**
-	 * Optional. User‘s or bot’s last name.
+	 * Optional. Video thumbnail.
 	 */
-	std::string lastName;
+	PhotoSize::Ptr thumb;
 
 	/**
-	 * Optional. User‘s or bot’s username.
+	 * Optional. File size.
 	 */
-	std::string username;
-
-	/**
-	 * Optional. IETF language tag of the user's language.
-	 */
-	std::string languageCode;
+	int32_t fileSize;
 };
 
 }
 
-#endif //TGBOT_CPP_USER_H
+#endif //TGBOT_CPP_VIDEONOTE_H

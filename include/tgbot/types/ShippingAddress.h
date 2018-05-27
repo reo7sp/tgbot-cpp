@@ -1,5 +1,6 @@
 /*
  * Copyright (c) 2015 Oleg Morozenkov
+ * Copyright (c) 2017 Maks Mazurov (fox.cpp)
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,8 +21,8 @@
  * SOFTWARE.
  */
 
-#ifndef TGBOT_CPP_USER_H
-#define TGBOT_CPP_USER_H
+#ifndef TGBOT_SHIPPINGADDRESS_H
+#define TGBOT_SHIPPINGADDRESS_H
 
 #include <string>
 #include <memory>
@@ -29,45 +30,46 @@
 namespace TgBot {
 
 /**
- * This object represents a Telegram user or bot.
+ * @brief This object represents a shipping address.
+ * 
+ * https://core.telegram.org/bots/api#shippingaddress
+ * 
  * @ingroup types
  */
-class User  {
-
+class ShippingAddress {
 public:
-	typedef std::shared_ptr<User> Ptr;
+    typedef std::shared_ptr<ShippingAddress> Ptr;
 
-	/**
-	 * Unique identifier for this user or bot.
-	 */
-	int32_t id;
+    /**
+     * @brief ISO 3166-1 alpha-2 country code.
+     */
+    std::string countryCode;
 
-	/**
-	 * True, if this user is a bot
-	 */
-	bool isBot = false;
+    /**
+     * @brief State, if applicable.
+     */
+    std::string state;
 
-	/**
-	 * User‘s or bot’s first name.
-	 */
-	std::string firstName;
+    /**
+     * @brief City.
+     */
+    std::string city;
 
-	/**
-	 * Optional. User‘s or bot’s last name.
-	 */
-	std::string lastName;
+    /**
+     * @brief First line for the address.
+     */
+    std::string streetLine1;
 
-	/**
-	 * Optional. User‘s or bot’s username.
-	 */
-	std::string username;
+    /**
+     * @brief Second line for the address.
+     */
+    std::string streetLine2;
 
-	/**
-	 * Optional. IETF language tag of the user's language.
-	 */
-	std::string languageCode;
+    /**
+     * Address post code.
+     */
+    std::string postCode;
 };
-
 }
 
-#endif //TGBOT_CPP_USER_H
+#endif //TGBOT_SHIPPINGADDRESS_H

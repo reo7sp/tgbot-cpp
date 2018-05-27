@@ -1,5 +1,6 @@
 /*
  * Copyright (c) 2015 Oleg Morozenkov
+ * Copyright (c) 2018 JellyBrick
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,54 +21,42 @@
  * SOFTWARE.
  */
 
-#ifndef TGBOT_CPP_USER_H
-#define TGBOT_CPP_USER_H
+#ifndef TGBOT_MARKPOSITION_H
+#define TGBOT_MARKPOSITION_H
 
-#include <string>
 #include <memory>
+#include <string>
 
 namespace TgBot {
 
 /**
- * This object represents a Telegram user or bot.
+ * This object describes the position on faces where a mask should be placed by default.
  * @ingroup types
  */
-class User  {
-
+class MaskPosition {
 public:
-	typedef std::shared_ptr<User> Ptr;
+	typedef std::shared_ptr<MaskPosition> Ptr;
 
 	/**
-	 * Unique identifier for this user or bot.
+	 * The part of the face relative to which the mask should be placed. One of “forehead”, “eyes”, “mouth”, or “chin”.
 	 */
-	int32_t id;
+	std::string point;
 
 	/**
-	 * True, if this user is a bot
+	 * Shift by X-axis measured in widths of the mask scaled to the face size, from left to right. For example, choosing -1.0 will place mask just to the left of the default mask position.
 	 */
-	bool isBot = false;
+	float xShift;
 
-	/**
-	 * User‘s or bot’s first name.
+    /**
+	 * Shift by Y-axis measured in heights of the mask scaled to the face size, from top to bottom. For example, 1.0 will place the mask just below the default mask position.
 	 */
-	std::string firstName;
+	float yShift;
 
-	/**
-	 * Optional. User‘s or bot’s last name.
+    /**
+	 * Mask scaling coefficient. For example, 2.0 means double size.
 	 */
-	std::string lastName;
-
-	/**
-	 * Optional. User‘s or bot’s username.
-	 */
-	std::string username;
-
-	/**
-	 * Optional. IETF language tag of the user's language.
-	 */
-	std::string languageCode;
+	float scale;
 };
-
 }
 
-#endif //TGBOT_CPP_USER_H
+#endif //TGBOT_MARKPOSITION_H

@@ -27,6 +27,7 @@
 #include <memory>
 
 #include "tgbot/types/PhotoSize.h"
+#include "tgbot/types/MaskPosition.h"
 
 namespace TgBot {
 
@@ -63,6 +64,16 @@ public:
 	 * Optional. Emoji associated with the sticker
 	 */
 	std::string emoji;
+
+	/**
+	 * Optional. Name of the sticker set to which the sticker belongs.
+	 */
+	std::string setName;
+
+	/**
+	 * Optional. For mask stickers, the position where the mask should be placed.
+	 */
+	MaskPosition::Ptr maskPosition;
 
 	/**
 	 * Optional. File size.
