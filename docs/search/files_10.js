@@ -1,7 +1,10 @@
 var searchData=
 [
-  ['update_2eh',['Update.h',['../_update_8h.html',1,'']]],
-  ['url_2eh',['Url.h',['../_url_8h.html',1,'']]],
-  ['user_2eh',['User.h',['../_user_8h.html',1,'']]],
-  ['userprofilephotos_2eh',['UserProfilePhotos.h',['../_user_profile_photos_8h.html',1,'']]]
+  ['tgbot_2eh',['tgbot.h',['../tgbot_8h.html',1,'']]],
+  ['tgexception_2eh',['TgException.h',['../_tg_exception_8h.html',1,'']]],
+  ['tglongpoll_2eh',['TgLongPoll.h',['../_tg_long_poll_8h.html',1,'']]],
+  ['tgtypeparser_2eh',['TgTypeParser.h',['../_tg_type_parser_8h.html',1,'']]],
+  ['tgwebhooklocalserver_2eh',['TgWebhookLocalServer.h',['../_tg_webhook_local_server_8h.html',1,'']]],
+  ['tgwebhookserver_2eh',['TgWebhookServer.h',['../_tg_webhook_server_8h.html',1,'']]],
+  ['tgwebhooktcpserver_2eh',['TgWebhookTcpServer.h',['../_tg_webhook_tcp_server_8h.html',1,'']]]
 ];

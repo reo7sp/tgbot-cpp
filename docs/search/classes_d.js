@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['replykeyboardmarkup',['ReplyKeyboardMarkup',['../class_tg_bot_1_1_reply_keyboard_markup.html',1,'TgBot']]],
-  ['replykeyboardremove',['ReplyKeyboardRemove',['../class_tg_bot_1_1_reply_keyboard_remove.html',1,'TgBot']]],
-  ['responseparameters',['ResponseParameters',['../class_tg_bot_1_1_response_parameters.html',1,'TgBot']]]
+  ['photosize',['PhotoSize',['../class_tg_bot_1_1_photo_size.html',1,'TgBot']]],
+  ['precheckoutquery',['PreCheckoutQuery',['../class_tg_bot_1_1_pre_checkout_query.html',1,'TgBot']]]
 ];

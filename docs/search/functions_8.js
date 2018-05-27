@@ -23,6 +23,8 @@ var searchData=
   ['inlinequeryresultvoice',['InlineQueryResultVoice',['../class_tg_bot_1_1_inline_query_result_voice.html#a01f73a78827c6ec75f7b355b521efd47',1,'TgBot::InlineQueryResultVoice']]],
   ['inputcontactmessagecontent',['InputContactMessageContent',['../class_tg_bot_1_1_input_contact_message_content.html#a389b68f90eed647eafe4dc23d2754e7d',1,'TgBot::InputContactMessageContent']]],
   ['inputlocationmessagecontent',['InputLocationMessageContent',['../class_tg_bot_1_1_input_location_message_content.html#ace56f8081ed46a4729a5f37dacdcb05e',1,'TgBot::InputLocationMessageContent']]],
+  ['inputmediaphoto',['InputMediaPhoto',['../class_tg_bot_1_1_input_media_photo.html#ab064268a26729415ebfb71c5a0abf36f',1,'TgBot::InputMediaPhoto']]],
+  ['inputmediavideo',['InputMediaVideo',['../class_tg_bot_1_1_input_media_video.html#a698a73c20b1c6c10be011543ec1253ea',1,'TgBot::InputMediaVideo']]],
   ['inputmessagecontent',['InputMessageContent',['../class_tg_bot_1_1_input_message_content.html#adfe3185ed78c3bfdfb82bee0546eb100',1,'TgBot::InputMessageContent']]],
   ['inputtextmessagecontent',['InputTextMessageContent',['../class_tg_bot_1_1_input_text_message_content.html#a6926fc1a1b56159d2e2d92ed3de507e7',1,'TgBot::InputTextMessageContent']]],
   ['inputvenuemessagecontent',['InputVenueMessageContent',['../class_tg_bot_1_1_input_venue_message_content.html#a25b40f55f2e1c3f08d4159e7254a2e77',1,'TgBot::InputVenueMessageContent']]]

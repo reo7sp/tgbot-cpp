@@ -27,7 +27,11 @@ var searchData=
   ['inputcontactmessagecontent_2eh',['InputContactMessageContent.h',['../_input_contact_message_content_8h.html',1,'']]],
   ['inputfile_2eh',['InputFile.h',['../_input_file_8h.html',1,'']]],
   ['inputlocationmessagecontent_2eh',['InputLocationMessageContent.h',['../_input_location_message_content_8h.html',1,'']]],
+  ['inputmedia_2eh',['InputMedia.h',['../_input_media_8h.html',1,'']]],
+  ['inputmediaphoto_2eh',['InputMediaPhoto.h',['../_input_media_photo_8h.html',1,'']]],
+  ['inputmediavideo_2eh',['InputMediaVideo.h',['../_input_media_video_8h.html',1,'']]],
   ['inputmessagecontent_2eh',['InputMessageContent.h',['../_input_message_content_8h.html',1,'']]],
   ['inputtextmessagecontent_2eh',['InputTextMessageContent.h',['../_input_text_message_content_8h.html',1,'']]],
-  ['inputvenuemessagecontent_2eh',['InputVenueMessageContent.h',['../_input_venue_message_content_8h.html',1,'']]]
+  ['inputvenuemessagecontent_2eh',['InputVenueMessageContent.h',['../_input_venue_message_content_8h.html',1,'']]],
+  ['invoice_2eh',['Invoice.h',['../_invoice_8h.html',1,'']]]
 ];

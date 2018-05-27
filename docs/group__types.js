@@ -28,17 +28,42 @@ var group__types =
         [ "Channel", "class_tg_bot_1_1_chat.html#a939946fe3181210f9e3f3d9610edb52ea781dc97dc62331eec3ea9ec4373a3ca8", null ]
       ] ],
       [ "allMembersAreAdministrators", "class_tg_bot_1_1_chat.html#a46092ec51dcc2ab4f54716eb21c4fb68", null ],
+      [ "canSetStickerSet", "class_tg_bot_1_1_chat.html#a634c679550d78b602254cf3044f6169a", null ],
+      [ "description", "class_tg_bot_1_1_chat.html#a8f87f388215d07bb2745cdf2600ff299", null ],
       [ "firstName", "class_tg_bot_1_1_chat.html#a884c0c1c6d6f0a5453231f7b9049da29", null ],
       [ "id", "class_tg_bot_1_1_chat.html#a0cb746cc149d10ada1af86753f25f93c", null ],
+      [ "inviteLink", "class_tg_bot_1_1_chat.html#a5653ec719aa43764670c2c88055107e2", null ],
       [ "lastName", "class_tg_bot_1_1_chat.html#aea14be3f3c081d6aea387cd3613fc82e", null ],
+      [ "photo", "class_tg_bot_1_1_chat.html#acbc96ba84a02da42e5fa3c936458b735", null ],
+      [ "pinnedMessage", "class_tg_bot_1_1_chat.html#af6904afd95332cd46ce65d3c82139875", null ],
+      [ "stickerSetName", "class_tg_bot_1_1_chat.html#a056b7b53d5d81e5ab395dd555fa35c14", null ],
       [ "title", "class_tg_bot_1_1_chat.html#a15a1f1328125b45ba80ea8ee5a99aed0", null ],
       [ "type", "class_tg_bot_1_1_chat.html#a86d47a69eb66a74d7f5b294700d884cd", null ],
       [ "username", "class_tg_bot_1_1_chat.html#afce7dfa93a025025eef940447ed17990", null ]
     ] ],
     [ "ChatMember", "class_tg_bot_1_1_chat_member.html", [
       [ "Ptr", "class_tg_bot_1_1_chat_member.html#a7c14c867a129ac28396b680c79dc495d", null ],
+      [ "canAddWebPagePreviews", "class_tg_bot_1_1_chat_member.html#a1c6b3267284c33738529f21ed421f422", null ],
+      [ "canBeEdited", "class_tg_bot_1_1_chat_member.html#a384d160e04985dfc09fe75b2d41ee959", null ],
+      [ "canChangeInfo", "class_tg_bot_1_1_chat_member.html#a8f87b8e49404e2dcf10f0b7fdc0ebd2e", null ],
+      [ "canDeleteMessages", "class_tg_bot_1_1_chat_member.html#a94c6526ee858618a2de90e97b206c987", null ],
+      [ "canEditMessages", "class_tg_bot_1_1_chat_member.html#a0f785d057d0b4ad7178f54c8a366b7b7", null ],
+      [ "canInviteUsers", "class_tg_bot_1_1_chat_member.html#a8da77ae47a171bdafc72c5420293ecbc", null ],
+      [ "canPinMessages", "class_tg_bot_1_1_chat_member.html#aebb5db396b746a9cbd1a4b7fed79b0a0", null ],
+      [ "canPostMessages", "class_tg_bot_1_1_chat_member.html#a1c80bc423c534a4118ea8a4d1b7b9b2b", null ],
+      [ "canPromoteMembers", "class_tg_bot_1_1_chat_member.html#abee156a19f1a0b23e67a7424b432cb23", null ],
+      [ "canRestrictMembers", "class_tg_bot_1_1_chat_member.html#a12701701c84d3b29be86ac15fa940ed7", null ],
+      [ "canSendMediaMessages", "class_tg_bot_1_1_chat_member.html#af834543dad37d08f3496f92d7c5e9f9c", null ],
+      [ "canSendMessages", "class_tg_bot_1_1_chat_member.html#ae8c21db2c7d9dae42c40494299ae9c01", null ],
+      [ "canSendOtherMessages", "class_tg_bot_1_1_chat_member.html#acf62ee2b93c10a11a34ec12dbdca7d21", null ],
       [ "status", "class_tg_bot_1_1_chat_member.html#a373057cf2fcca9ecb49951a5e61a6666", null ],
+      [ "untilDate", "class_tg_bot_1_1_chat_member.html#ace7455f999a39f804ff559bc77f7814d", null ],
       [ "user", "class_tg_bot_1_1_chat_member.html#a1a1cefdfec4a60bd6ba1e588edad9aa1", null ]
+    ] ],
+    [ "ChatPhoto", "class_tg_bot_1_1_chat_photo.html", [
+      [ "Ptr", "class_tg_bot_1_1_chat_photo.html#a732024e5287eef199f40dfef151d5265", null ],
+      [ "bigFileId", "class_tg_bot_1_1_chat_photo.html#a6939e40e825e12b9b5dd2002d6d4d178", null ],
+      [ "smallFileId", "class_tg_bot_1_1_chat_photo.html#a57106860db152f24486aba761cb5f44e", null ]
     ] ],
     [ "ChosenInlineResult", "class_tg_bot_1_1_chosen_inline_result.html", [
       [ "Ptr", "class_tg_bot_1_1_chosen_inline_result.html#ad4b7edd30fd0d876fa99493fe19b3247", null ],
@@ -197,6 +222,7 @@ var group__types =
     [ "InlineQueryResultGif", "class_tg_bot_1_1_inline_query_result_gif.html", [
       [ "Ptr", "class_tg_bot_1_1_inline_query_result_gif.html#a470940afb4d7151f36dea3cb0b53b618", null ],
       [ "InlineQueryResultGif", "class_tg_bot_1_1_inline_query_result_gif.html#afdc37593f7f371b473a042e9dd832874", null ],
+      [ "gifDuration", "class_tg_bot_1_1_inline_query_result_gif.html#abe09430a376eb777fe7bc563ea1df5f6", null ],
       [ "gifHeight", "class_tg_bot_1_1_inline_query_result_gif.html#ac668e2b6fca9f023e5d4198acb73faae", null ],
       [ "gifUrl", "class_tg_bot_1_1_inline_query_result_gif.html#a7f38ad7e89d2e911f3b5b8e4f9209ad0", null ],
       [ "gifWidth", "class_tg_bot_1_1_inline_query_result_gif.html#a0a205b57827e2512f96f4f2e3ae62376", null ],
@@ -214,6 +240,7 @@ var group__types =
     [ "InlineQueryResultMpeg4Gif", "class_tg_bot_1_1_inline_query_result_mpeg4_gif.html", [
       [ "Ptr", "class_tg_bot_1_1_inline_query_result_mpeg4_gif.html#ad818a04396804ae76ea81d752d145e45", null ],
       [ "InlineQueryResultMpeg4Gif", "class_tg_bot_1_1_inline_query_result_mpeg4_gif.html#aee32f547953b7ea4735302fb41b7ac74", null ],
+      [ "mpeg4Duration", "class_tg_bot_1_1_inline_query_result_mpeg4_gif.html#a046e5ad4661be2e9adbe15890409584e", null ],
       [ "mpeg4Height", "class_tg_bot_1_1_inline_query_result_mpeg4_gif.html#a783d22cb41d4f8ee598cddde8d98b90c", null ],
       [ "mpeg4Url", "class_tg_bot_1_1_inline_query_result_mpeg4_gif.html#a32b8a36f73b908be5a142f58e3355069", null ],
       [ "mpeg4Width", "class_tg_bot_1_1_inline_query_result_mpeg4_gif.html#a5fe876f117ad0b850c6e0333717e431c", null ],
@@ -277,6 +304,29 @@ var group__types =
       [ "latitude", "class_tg_bot_1_1_input_location_message_content.html#a2fd689365b19b085bdd59f928e3c3e16", null ],
       [ "longitude", "class_tg_bot_1_1_input_location_message_content.html#a6dea79838b9c9f9194c1ec49d5eb8e49", null ]
     ] ],
+    [ "InputMedia", "class_tg_bot_1_1_input_media.html", [
+      [ "Ptr", "class_tg_bot_1_1_input_media.html#abdc38ae21d5213ead3720db082ef1f9c", null ],
+      [ "TYPE", "class_tg_bot_1_1_input_media.html#a15b9867f0c1834b2a4d16ac48f25fb73", [
+        [ "PHOTO", "class_tg_bot_1_1_input_media.html#a15b9867f0c1834b2a4d16ac48f25fb73ac6c7e64f7c3b7e4c031d022f232298bf", null ],
+        [ "VIDEO", "class_tg_bot_1_1_input_media.html#a15b9867f0c1834b2a4d16ac48f25fb73ae60ae31f67ab883c746bb71c7a145c18", null ]
+      ] ],
+      [ "caption", "class_tg_bot_1_1_input_media.html#a5fd875b292792f8d699d7bb678e68c90", null ],
+      [ "duration", "class_tg_bot_1_1_input_media.html#aadf7e972c4ea70c771a0da27da4aa7cd", null ],
+      [ "height", "class_tg_bot_1_1_input_media.html#aeac8eae9ef4e06fa0c67b98a8a8042f8", null ],
+      [ "media", "class_tg_bot_1_1_input_media.html#a3b06a5b4686339b58c4a95b5734b4b77", null ],
+      [ "parseMode", "class_tg_bot_1_1_input_media.html#ae2761ade0de31f96074d6760661c7edc", null ],
+      [ "supportsStreaming", "class_tg_bot_1_1_input_media.html#a0b8e0cc28a8283ca946b4aa5c5384a3b", null ],
+      [ "type", "class_tg_bot_1_1_input_media.html#a8080040900519b706a367ecfd7b28226", null ],
+      [ "width", "class_tg_bot_1_1_input_media.html#afa903b8b20fd1cf71b1f0510a4563a9a", null ]
+    ] ],
+    [ "InputMediaPhoto", "class_tg_bot_1_1_input_media_photo.html", [
+      [ "Ptr", "class_tg_bot_1_1_input_media_photo.html#a02ac033a0ebe474b02f745f4d9e8e2b3", null ],
+      [ "InputMediaPhoto", "class_tg_bot_1_1_input_media_photo.html#ab064268a26729415ebfb71c5a0abf36f", null ]
+    ] ],
+    [ "InputMediaVideo", "class_tg_bot_1_1_input_media_video.html", [
+      [ "Ptr", "class_tg_bot_1_1_input_media_video.html#a659beee71ba67a81f85892800761eb0f", null ],
+      [ "InputMediaVideo", "class_tg_bot_1_1_input_media_video.html#a698a73c20b1c6c10be011543ec1253ea", null ]
+    ] ],
     [ "InputMessageContent", "class_tg_bot_1_1_input_message_content.html", [
       [ "Ptr", "class_tg_bot_1_1_input_message_content.html#a2357dd0a36321a3b601b64a76d2d6dff", null ],
       [ "InputMessageContent", "class_tg_bot_1_1_input_message_content.html#adfe3185ed78c3bfdfb82bee0546eb100", null ],
@@ -301,22 +351,44 @@ var group__types =
       [ "longitude", "class_tg_bot_1_1_input_venue_message_content.html#ad3fb2b24df33d6eaa96243ab7a06f3f8", null ],
       [ "title", "class_tg_bot_1_1_input_venue_message_content.html#ae5c1b7d2263d1722662b7eb6fceb9038", null ]
     ] ],
+    [ "Invoice", "class_tg_bot_1_1_invoice.html", [
+      [ "Ptr", "class_tg_bot_1_1_invoice.html#a34a6d437618ea3be0a40c64400067f67", null ],
+      [ "currency", "class_tg_bot_1_1_invoice.html#a9207fea93e6b3f3aa1081c8ab9039f8a", null ],
+      [ "description", "class_tg_bot_1_1_invoice.html#ad3c1a7a4fbf8157e3fd72a2352226fbd", null ],
+      [ "startParameter", "class_tg_bot_1_1_invoice.html#a659ac0711c1be89009dddc04eea4dfb2", null ],
+      [ "title", "class_tg_bot_1_1_invoice.html#a5b53e4a6a2e3669a960d379a4147abae", null ],
+      [ "totalAmount", "class_tg_bot_1_1_invoice.html#a8008d2f948d705aa48bc0557d071e62f", null ]
+    ] ],
     [ "KeyboardButton", "class_tg_bot_1_1_keyboard_button.html", [
       [ "Ptr", "class_tg_bot_1_1_keyboard_button.html#afa66915e5a8d58dbd7276265f00b0bcd", null ],
       [ "requestContact", "class_tg_bot_1_1_keyboard_button.html#a3e8c6e40ecf3a8f739a12265a89fd381", null ],
       [ "requestLocation", "class_tg_bot_1_1_keyboard_button.html#a8948e0ca465352d04c44767c25275022", null ],
       [ "text", "class_tg_bot_1_1_keyboard_button.html#ac9ac8ddd73e27732fcbab7163ff74e2e", null ]
     ] ],
+    [ "LabeledPrice", "class_tg_bot_1_1_labeled_price.html", [
+      [ "Ptr", "class_tg_bot_1_1_labeled_price.html#a1d53775f4034427a2dfaae9ef176796c", null ],
+      [ "amount", "class_tg_bot_1_1_labeled_price.html#a09b9a91f5bebc7e889bad2d4455b243c", null ],
+      [ "label", "class_tg_bot_1_1_labeled_price.html#a035375dfc58fe01e91d07fe918847046", null ]
+    ] ],
     [ "Location", "class_tg_bot_1_1_location.html", [
       [ "Ptr", "class_tg_bot_1_1_location.html#a0854defd16651e7742f89eca2202d678", null ],
       [ "latitude", "class_tg_bot_1_1_location.html#a01c1a917a3ae8bcbc8977b1b5f0aea7b", null ],
       [ "longitude", "class_tg_bot_1_1_location.html#aac2c4c71d72f1734a2439368f3e38687", null ]
     ] ],
+    [ "MaskPosition", "class_tg_bot_1_1_mask_position.html", [
+      [ "Ptr", "class_tg_bot_1_1_mask_position.html#a37edf3eefbf231ee8ab94a29425b3fe1", null ],
+      [ "point", "class_tg_bot_1_1_mask_position.html#a8c22f087cecfcc16c6c563a6df6c9d7e", null ],
+      [ "scale", "class_tg_bot_1_1_mask_position.html#a8f78e6dcdb37975c435cfd0d9a923963", null ],
+      [ "xShift", "class_tg_bot_1_1_mask_position.html#ac4e73bf83077bce72be0ee031f2f5d83", null ],
+      [ "yShift", "class_tg_bot_1_1_mask_position.html#a56700f4f5ce4902c978df680cfd6a424", null ]
+    ] ],
     [ "Message", "class_tg_bot_1_1_message.html", [
       [ "Ptr", "class_tg_bot_1_1_message.html#a3805a5dc013c6ab23ac5efc91282c11d", null ],
       [ "Message", "class_tg_bot_1_1_message.html#a1ccff5e715e303ba0352cbd0fbe8eb6b", null ],
       [ "audio", "class_tg_bot_1_1_message.html#a5119ef820bcb4c231a1402147305ea67", null ],
+      [ "authorSignature", "class_tg_bot_1_1_message.html#a5e23abf4c637e59a51bd7f7a49339d54", null ],
       [ "caption", "class_tg_bot_1_1_message.html#a2c8eb6214270371cfb094b699c07f695", null ],
+      [ "captionEntities", "class_tg_bot_1_1_message.html#a112bce084dd4b01dc5918a1232c4cc05", null ],
       [ "channelChatCreated", "class_tg_bot_1_1_message.html#a537a751af11a7f18d92c1d70c93c9f2d", null ],
       [ "chat", "class_tg_bot_1_1_message.html#a773fa770b84fe97263a096c0ddfb096a", null ],
       [ "contact", "class_tg_bot_1_1_message.html#adb3a1a65ce014085f7231f8d356b6c4f", null ],
@@ -329,6 +401,7 @@ var group__types =
       [ "forwardFrom", "class_tg_bot_1_1_message.html#a7e4d984cb1464d0ae504d7c8ed11b508", null ],
       [ "forwardFromChat", "class_tg_bot_1_1_message.html#aeab58d33a3f4e712e8b78d65f48892e5", null ],
       [ "forwardFromMessageId", "class_tg_bot_1_1_message.html#a2149f82b01245e592cb392e2133e4667", null ],
+      [ "forwardSignature", "class_tg_bot_1_1_message.html#a70f5fe7a8e14b0ce0842fa8661492e4a", null ],
       [ "from", "class_tg_bot_1_1_message.html#a65b78a13b38ad767338cd2e9d2e69ca2", null ],
       [ "groupChatCreated", "class_tg_bot_1_1_message.html#a5bbf76e34ec52a41a6392f7d61c19035", null ],
       [ "leftChatMember", "class_tg_bot_1_1_message.html#a2291a3c7d9445a02774b4cd0e3972c29", null ],
@@ -337,6 +410,7 @@ var group__types =
       [ "migrateFromChatId", "class_tg_bot_1_1_message.html#a4eb6cf508337183adbe060baf907c0e0", null ],
       [ "migrateToChatId", "class_tg_bot_1_1_message.html#aa79eb6592094b18fdc9a330fac0b53ef", null ],
       [ "newChatMember", "class_tg_bot_1_1_message.html#a40c3d46af7bb047504b6b6e8147361c9", null ],
+      [ "newChatMembers", "class_tg_bot_1_1_message.html#aac7be66dd576e712ea37a2631670ef03", null ],
       [ "newChatPhoto", "class_tg_bot_1_1_message.html#a8f8a9c50fd30fa24476605b8efdd95ea", null ],
       [ "newChatTitle", "class_tg_bot_1_1_message.html#a34323ada99461aced73af81edb88f813", null ],
       [ "photo", "class_tg_bot_1_1_message.html#a712bfec9a6e0881d2a8f6830b6374615", null ],
@@ -357,12 +431,29 @@ var group__types =
       [ "url", "class_tg_bot_1_1_message_entity.html#a2cf6b38ee3116a4589d5f8263e53c51f", null ],
       [ "user", "class_tg_bot_1_1_message_entity.html#affef16e94f7f3382260b85c66726bc48", null ]
     ] ],
+    [ "OrderInfo", "class_tg_bot_1_1_order_info.html", [
+      [ "Ptr", "class_tg_bot_1_1_order_info.html#a546d93329dceb7bbd542a82d34e3b76a", null ],
+      [ "email", "class_tg_bot_1_1_order_info.html#a0cc4794ebb169cd832b6724782e29126", null ],
+      [ "name", "class_tg_bot_1_1_order_info.html#a02755abd496d306c649ef45356fcd71c", null ],
+      [ "phoneNumber", "class_tg_bot_1_1_order_info.html#a324841d077060a1b1b97564066bc1f16", null ],
+      [ "shippingAddress", "class_tg_bot_1_1_order_info.html#a8e9f51e6dadba48789cb4c9c9ae14f82", null ]
+    ] ],
     [ "PhotoSize", "class_tg_bot_1_1_photo_size.html", [
       [ "Ptr", "class_tg_bot_1_1_photo_size.html#a05f58e05528a02e6bc98b67a81e8ae83", null ],
       [ "fileId", "class_tg_bot_1_1_photo_size.html#af3ffb8066db943a59156eb22e976165e", null ],
       [ "fileSize", "class_tg_bot_1_1_photo_size.html#a91aae4c1b5d7c3b5e16e8677702464b4", null ],
       [ "height", "class_tg_bot_1_1_photo_size.html#a66dd9388e08330829fcae843f09e0ec6", null ],
       [ "width", "class_tg_bot_1_1_photo_size.html#a7259a178989557450d9732281d23099f", null ]
+    ] ],
+    [ "PreCheckoutQuery", "class_tg_bot_1_1_pre_checkout_query.html", [
+      [ "Ptr", "class_tg_bot_1_1_pre_checkout_query.html#aa2f66d4bc5e55b3efbaaf285bcdbe207", null ],
+      [ "currency", "class_tg_bot_1_1_pre_checkout_query.html#ac681a885c6e253c134cd659b91348182", null ],
+      [ "from", "class_tg_bot_1_1_pre_checkout_query.html#a919320034b6e6f6b586a7311925bb028", null ],
+      [ "id", "class_tg_bot_1_1_pre_checkout_query.html#afaf8a7d12af830eea0644c30f51f429e", null ],
+      [ "invoicePayload", "class_tg_bot_1_1_pre_checkout_query.html#abbc1cb2aed3ff25dde9272909455b9a0", null ],
+      [ "orderInfo", "class_tg_bot_1_1_pre_checkout_query.html#a5d21bc0c7610030e89a910029a5fb0ca", null ],
+      [ "shippingOptionId", "class_tg_bot_1_1_pre_checkout_query.html#a9cfe210488785f6980e6fb45ffb67e84", null ],
+      [ "totalAmount", "class_tg_bot_1_1_pre_checkout_query.html#a8cfd3e1f3cd74543a365f8c514693cdf", null ]
     ] ],
     [ "ReplyKeyboardMarkup", "class_tg_bot_1_1_reply_keyboard_markup.html", [
       [ "Ptr", "class_tg_bot_1_1_reply_keyboard_markup.html#af19f8402b914b603ab41305dee55f44a", null ],
@@ -381,14 +472,55 @@ var group__types =
       [ "migrateToChatId", "class_tg_bot_1_1_response_parameters.html#a37baca0cf6ae91e41a20dbf2451a225d", null ],
       [ "retryAfter", "class_tg_bot_1_1_response_parameters.html#ab65e3cad1468f5fb762f822722031990", null ]
     ] ],
+    [ "ShippingAddress", "class_tg_bot_1_1_shipping_address.html", [
+      [ "Ptr", "class_tg_bot_1_1_shipping_address.html#a92871afa1e15fa06460729711ce6641d", null ],
+      [ "city", "class_tg_bot_1_1_shipping_address.html#ac5fe3272ae0fe6e00214ca41b2888d69", null ],
+      [ "countryCode", "class_tg_bot_1_1_shipping_address.html#a5e0083ea43cd7e629b645de8e88e8ab8", null ],
+      [ "postCode", "class_tg_bot_1_1_shipping_address.html#a7c90dac349c28228c8babf63e06ce667", null ],
+      [ "state", "class_tg_bot_1_1_shipping_address.html#a7820dd5013d52b4f011b8ccb3b4644d2", null ],
+      [ "streetLine1", "class_tg_bot_1_1_shipping_address.html#ae54b22b7d2dc2feb81f9a3e05aeba338", null ],
+      [ "streetLine2", "class_tg_bot_1_1_shipping_address.html#a2acc7779ce0095c3fea1db37190b9a24", null ]
+    ] ],
+    [ "ShippingOption", "class_tg_bot_1_1_shipping_option.html", [
+      [ "Ptr", "class_tg_bot_1_1_shipping_option.html#af97bf7d55ed3bcd3090c08885f010f60", null ],
+      [ "id", "class_tg_bot_1_1_shipping_option.html#ac482c80d9eae891d1a08437fa935f48c", null ],
+      [ "prices", "class_tg_bot_1_1_shipping_option.html#a1a21641a9f85591e898798c64007d8ba", null ],
+      [ "title", "class_tg_bot_1_1_shipping_option.html#a176727e25151781f0b050c58b329ff8e", null ]
+    ] ],
+    [ "ShippingQuery", "class_tg_bot_1_1_shipping_query.html", [
+      [ "Ptr", "class_tg_bot_1_1_shipping_query.html#a952ccde4a79282a4c20f42cfed069d64", null ],
+      [ "from", "class_tg_bot_1_1_shipping_query.html#a6f10c244ff5e3323961bdc7c5eb43f31", null ],
+      [ "id", "class_tg_bot_1_1_shipping_query.html#ab3b7dedd15793e42c7efe594e38f8003", null ],
+      [ "invoicePayload", "class_tg_bot_1_1_shipping_query.html#aa62e1e79cd7f9ba961128ad89dde7899", null ],
+      [ "shippingAddress", "class_tg_bot_1_1_shipping_query.html#a3d99a04e8227422fe4349a42dd1ecd7a", null ]
+    ] ],
     [ "Sticker", "class_tg_bot_1_1_sticker.html", [
       [ "Ptr", "class_tg_bot_1_1_sticker.html#a63c460c539e3549bec82850fe30c8fff", null ],
       [ "emoji", "class_tg_bot_1_1_sticker.html#a91d598b9805292d3956b47d88febe001", null ],
       [ "fileId", "class_tg_bot_1_1_sticker.html#ace3bb46bbb491c1a9687cd14a37b25d1", null ],
       [ "fileSize", "class_tg_bot_1_1_sticker.html#a3e6951a3f8400f05dc5e4b4eb24eda1a", null ],
       [ "height", "class_tg_bot_1_1_sticker.html#a0d0e6098f8a11ab88df19ff64e5e62ce", null ],
+      [ "maskPosition", "class_tg_bot_1_1_sticker.html#a4e61ddba7363932939846585eec348e2", null ],
+      [ "setName", "class_tg_bot_1_1_sticker.html#ac9ff439183edc6a5fb2c469e29c687ba", null ],
       [ "thumb", "class_tg_bot_1_1_sticker.html#aff8374f6355156deae78e8f934f3aab3", null ],
       [ "width", "class_tg_bot_1_1_sticker.html#a059e6027de50f618ca5d454cee943fcb", null ]
+    ] ],
+    [ "StickerSet", "class_tg_bot_1_1_sticker_set.html", [
+      [ "Ptr", "class_tg_bot_1_1_sticker_set.html#ad3c58f08ddacdb946507cd96a3d54421", null ],
+      [ "containsMasks", "class_tg_bot_1_1_sticker_set.html#ab1255b8783dc35b3535c46acbe3b4ca6", null ],
+      [ "name", "class_tg_bot_1_1_sticker_set.html#a28755ab9c48ec7b667fd187976682631", null ],
+      [ "stickers", "class_tg_bot_1_1_sticker_set.html#a029bf60e037c38c991706c378d545f34", null ],
+      [ "title", "class_tg_bot_1_1_sticker_set.html#ade2402dfdb526b9826eb4db22527f0e2", null ]
+    ] ],
+    [ "SuccessfulPayment", "class_tg_bot_1_1_successful_payment.html", [
+      [ "Ptr", "class_tg_bot_1_1_successful_payment.html#a753e2643432af6f0b2561436f2b1da0d", null ],
+      [ "currency", "class_tg_bot_1_1_successful_payment.html#a7cabedcd7e557d607baf968c2fc454f3", null ],
+      [ "invoicePayload", "class_tg_bot_1_1_successful_payment.html#a260f6306836c863523054f076c9350c6", null ],
+      [ "orderInfo", "class_tg_bot_1_1_successful_payment.html#a7fd2215c7e0a0975477d8e5fff0ae829", null ],
+      [ "providerPaymentChargeId", "class_tg_bot_1_1_successful_payment.html#a06d9cb4285772b1e0aa91df415af4cf6", null ],
+      [ "shippingOptionId", "class_tg_bot_1_1_successful_payment.html#a29413281af3ef0ff5c60d3e4dac2435e", null ],
+      [ "telegramPaymentChargeId", "class_tg_bot_1_1_successful_payment.html#a42ec4a5d0de537eaf1e9d43866ac3c04", null ],
+      [ "totalAmount", "class_tg_bot_1_1_successful_payment.html#a5e2d3de9df8e9ee28b9e9c5e037cadc7", null ]
     ] ],
     [ "Update", "class_tg_bot_1_1_update.html", [
       [ "Ptr", "class_tg_bot_1_1_update.html#abace63cf3605fe7a480a3bb839a672a8", null ],
@@ -405,6 +537,8 @@ var group__types =
       [ "Ptr", "class_tg_bot_1_1_user.html#ae6ea24aef677abaaf0fd7d60adf5be79", null ],
       [ "firstName", "class_tg_bot_1_1_user.html#a7f7a9c98a98fdd7199d2c22c63dd75b0", null ],
       [ "id", "class_tg_bot_1_1_user.html#a52ed387bdcad23b2883ef86a4c1f600f", null ],
+      [ "isBot", "class_tg_bot_1_1_user.html#a9adb4af3ddf68a3a518c32a13f9415bf", null ],
+      [ "languageCode", "class_tg_bot_1_1_user.html#af5318547408383fd9c491522ca2cfbc9", null ],
       [ "lastName", "class_tg_bot_1_1_user.html#a52e3efc4237df7992eb8a698fafad9b0", null ],
       [ "username", "class_tg_bot_1_1_user.html#a3b32a26af904966eb8f961309f49eeba", null ]
     ] ],
@@ -429,6 +563,14 @@ var group__types =
       [ "mimeType", "class_tg_bot_1_1_video.html#a4162b4cc66825ce32fea222399ef3356", null ],
       [ "thumb", "class_tg_bot_1_1_video.html#ab71e1325c685af9e67ddf0af418a77a7", null ],
       [ "width", "class_tg_bot_1_1_video.html#a65ea94712e107b2e36109f5ec88b0a35", null ]
+    ] ],
+    [ "VideoNote", "class_tg_bot_1_1_video_note.html", [
+      [ "Ptr", "class_tg_bot_1_1_video_note.html#a6724ff1d3da3887d961a70eb67b42825", null ],
+      [ "duration", "class_tg_bot_1_1_video_note.html#a353b92dd7a6d3f4b370dcbea9a7f40ec", null ],
+      [ "fileId", "class_tg_bot_1_1_video_note.html#a74532c9411fce4e1f51e4745728e1763", null ],
+      [ "fileSize", "class_tg_bot_1_1_video_note.html#a2e36b1968524c2476e4d3a4a34dbab02", null ],
+      [ "length", "class_tg_bot_1_1_video_note.html#ad66d67d76de6e2124c5c2d28fc6fd51b", null ],
+      [ "thumb", "class_tg_bot_1_1_video_note.html#ac9d929d057a59bdfb1dee50819b0e06f", null ]
     ] ],
     [ "Voice", "class_tg_bot_1_1_voice.html", [
       [ "Ptr", "class_tg_bot_1_1_voice.html#a73311e993b61a62531f42583d82fed91", null ],

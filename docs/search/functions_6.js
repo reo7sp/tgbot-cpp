@@ -16,6 +16,7 @@ var searchData=
   ['getfile',['getFile',['../class_tg_bot_1_1_api.html#ac50bdd50bf0cf5a211e699925759ebc1',1,'TgBot::Api']]],
   ['getinstance',['getInstance',['../class_tg_bot_1_1_http_client.html#a284380646ddc0fe9fd06cae29ba51a77',1,'TgBot::HttpClient::getInstance()'],['../class_tg_bot_1_1_http_parser.html#a2bd36ba8b363fa3209cf472621a2a8ab',1,'TgBot::HttpParser::getInstance()'],['../class_tg_bot_1_1_tg_type_parser.html#a3e86a9ea4c29460c3be175cbc97fdd5b',1,'TgBot::TgTypeParser::getInstance()']]],
   ['getme',['getMe',['../class_tg_bot_1_1_api.html#a566fcf52400de18737110edd7ab01535',1,'TgBot::Api']]],
+  ['getstickerset',['getStickerSet',['../class_tg_bot_1_1_api.html#a270296c79f52985fca19cacf3ed75d2f',1,'TgBot::Api']]],
   ['gettoken',['getToken',['../class_tg_bot_1_1_bot.html#a6443b4ec5838112a4f5689ec60665e91',1,'TgBot::Bot']]],
   ['getupdates',['getUpdates',['../class_tg_bot_1_1_api.html#abd10abcfaf859c63cab0526b8c9179c9',1,'TgBot::Api']]],
   ['getuserprofilephotos',['getUserProfilePhotos',['../class_tg_bot_1_1_api.html#aa605f96bd5de1a3a432e14a160bac210',1,'TgBot::Api']]],

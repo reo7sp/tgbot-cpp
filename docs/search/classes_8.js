@@ -27,7 +27,11 @@ var searchData=
   ['inputcontactmessagecontent',['InputContactMessageContent',['../class_tg_bot_1_1_input_contact_message_content.html',1,'TgBot']]],
   ['inputfile',['InputFile',['../class_tg_bot_1_1_input_file.html',1,'TgBot']]],
   ['inputlocationmessagecontent',['InputLocationMessageContent',['../class_tg_bot_1_1_input_location_message_content.html',1,'TgBot']]],
+  ['inputmedia',['InputMedia',['../class_tg_bot_1_1_input_media.html',1,'TgBot']]],
+  ['inputmediaphoto',['InputMediaPhoto',['../class_tg_bot_1_1_input_media_photo.html',1,'TgBot']]],
+  ['inputmediavideo',['InputMediaVideo',['../class_tg_bot_1_1_input_media_video.html',1,'TgBot']]],
   ['inputmessagecontent',['InputMessageContent',['../class_tg_bot_1_1_input_message_content.html',1,'TgBot']]],
   ['inputtextmessagecontent',['InputTextMessageContent',['../class_tg_bot_1_1_input_text_message_content.html',1,'TgBot']]],
-  ['inputvenuemessagecontent',['InputVenueMessageContent',['../class_tg_bot_1_1_input_venue_message_content.html',1,'TgBot']]]
+  ['inputvenuemessagecontent',['InputVenueMessageContent',['../class_tg_bot_1_1_input_venue_message_content.html',1,'TgBot']]],
+  ['invoice',['Invoice',['../class_tg_bot_1_1_invoice.html',1,'TgBot']]]
 ];

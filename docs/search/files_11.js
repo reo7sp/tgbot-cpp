@@ -1,6 +1,7 @@
 var searchData=
 [
-  ['venue_2eh',['Venue.h',['../_venue_8h.html',1,'']]],
-  ['video_2eh',['Video.h',['../_video_8h.html',1,'']]],
-  ['voice_2eh',['Voice.h',['../_voice_8h.html',1,'']]]
+  ['update_2eh',['Update.h',['../_update_8h.html',1,'']]],
+  ['url_2eh',['Url.h',['../_url_8h.html',1,'']]],
+  ['user_2eh',['User.h',['../_user_8h.html',1,'']]],
+  ['userprofilephotos_2eh',['UserProfilePhotos.h',['../_user_profile_photos_8h.html',1,'']]]
 ];

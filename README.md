@@ -2,17 +2,30 @@
 
 [![Build Status](https://travis-ci.org/reo7sp/tgbot-cpp.svg?branch=master)](https://travis-ci.org/reo7sp/tgbot-cpp)
 [![Docker Hub pulls](https://img.shields.io/docker/pulls/reo7sp/tgbot-cpp.svg)](https://hub.docker.com/r/reo7sp/tgbot-cpp/)
-[![GitHub contributors](https://img.shields.io/github/contributors/reo7sp/tgbot-cpp.svg)](https://github.com/reo7sp/tgbot-cpp/graphs/contributors)
 
-[![Contact reo7sp](https://img.shields.io/badge/telegram-contact-green.svg)](https://t.me/reo7sp)
-[![Join the chat at https://gitter.im/reo7sp/tgbot-cpp](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/reo7sp/tgbot-cpp?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-
+[![Contact @reo7sp](https://img.shields.io/badge/telegram-contact-green.svg)](https://t.me/reo7sp)
 [![Donate using PayPal](https://img.shields.io/badge/donate-PayPal-brightgreen.svg)](https://paypal.me/reo7sp)
-[![Donate using Yandex.Money](https://img.shields.io/badge/donate-Yandex.Money-brightgreen.svg)](https://money.yandex.ru/to/410011554060830)
+[![Donate using Rocketbank](https://img.shields.io/badge/donate-Rocketbank-brightgreen.svg)](https://rocketbank.ru/reo7sp)
+
+---
+
+[![GitHub contributors](https://img.shields.io/github/contributors/reo7sp/tgbot-cpp.svg)](https://github.com/reo7sp/tgbot-cpp/graphs/contributors) &nbsp; 🚀🚀🚀 thanks for the contributing!
+
+---
 
 C++ library for Telegram bot API.
 
 Documentation is located [here](http://reo7sp.github.io/tgbot-cpp).
+
+## State
+
+- [x] Bot API 3.0 / **_Invoice is not implemented._** 
+- [x] Bot API 3.1
+- [x] Bot API 3.2
+- [x] Bot API 3.3
+- [x] Bot API 3.4
+- [x] Bot API 3.5 / **_Invoice is not implemented._** 
+- [ ] Bot API 3.6
 
 ## Library compilation
 

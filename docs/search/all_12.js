@@ -13,6 +13,7 @@ var searchData=
   ['resizekeyboard',['resizeKeyboard',['../class_tg_bot_1_1_reply_keyboard_markup.html#aafed175ccf3c58fe7c3a15a2300a1ff3',1,'TgBot::ReplyKeyboardMarkup']]],
   ['responseparameters',['ResponseParameters',['../class_tg_bot_1_1_response_parameters.html',1,'TgBot']]],
   ['responseparameters_2eh',['ResponseParameters.h',['../_response_parameters_8h.html',1,'']]],
+  ['restrictchatmember',['restrictChatMember',['../class_tg_bot_1_1_api.html#ad77e4687f7536606890a3db42ff5de1f',1,'TgBot::Api']]],
   ['resultid',['resultId',['../class_tg_bot_1_1_chosen_inline_result.html#a34fcb883f27cc3d3fae621a11c8f8270',1,'TgBot::ChosenInlineResult']]],
   ['retryafter',['retryAfter',['../class_tg_bot_1_1_response_parameters.html#ab65e3cad1468f5fb762f822722031990',1,'TgBot::ResponseParameters']]]
 ];
