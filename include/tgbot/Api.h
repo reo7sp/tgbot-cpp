@@ -41,6 +41,7 @@
 #include "tgbot/types/ChatMember.h"
 #include "tgbot/types/StickerSet.h"
 #include "tgbot/types/File.h"
+#include "tgbot/types/InputMedia.h"
 
 namespace TgBot {
 

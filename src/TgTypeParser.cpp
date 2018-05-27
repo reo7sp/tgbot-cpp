@@ -549,12 +549,8 @@ string TgTypeParser::parseInputMedia(const InputMedia::Ptr& object) const {
 		appendToJson(result, "type", "video");
 	}
 	appendToJson(result, "media", object->media);
-	if (object->caption) {
-		appendToJson(result, "caption", object->caption);
-	}
-	if (object->parseMode) {
-		appendToJson(result, "parse_mode", object->parseMode);
-	}
+	appendToJson(result, "caption", object->caption);
+	appendToJson(result, "parse_mode", object->parseMode);
 	if (object->width) {
 		appendToJson(result, "width", object->width);
 	}
