@@ -139,6 +139,7 @@ Message::Ptr TgTypeParser::parseJsonAndGetMessage(const ptree& data) const {
 	result->authorSignature = data.get("author_signature", "");
 	result->text = data.get("text", "");
 	result->entities = parseJsonAndGetArray<MessageEntity>(&TgTypeParser::parseJsonAndGetEntity, data, "entities");
+	result->captionEntities = parseJsonAndGetArray<MessageEntity>(&TgTypeParser::parseJsonAndGetEntity, data, "caption_entities");
 	result->audio = tryParseJson<Audio>(&TgTypeParser::parseJsonAndGetAudio, data, "audio");
 	result->document = tryParseJson<Document>(&TgTypeParser::parseJsonAndGetDocument, data, "document");
 	result->photo = parseJsonAndGetArray<PhotoSize>(&TgTypeParser::parseJsonAndGetPhotoSize, data, "photo");

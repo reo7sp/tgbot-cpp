@@ -376,13 +376,39 @@ public:
 	 * @param chatId Unique identifier for the target chat.
 	 * @param latitude Latitude of location.
 	 * @param longitude Longitude of location.
+	 * @param livePeriod Optional. Period in seconds for which the location will be updated (see Live Locations, should be between 60 and 86400).
 	 * @param replyToMessageId Optional. If the message is a reply, ID of the original message.
 	 * @param replyMarkup Optional. Additional interface options. A object for a custom reply keyboard, instructions to hide keyboard or to force a reply from the user.
 	 * @param disableNotification Optional. Sends the message silenty.
 	 * @return On success, the sent message is returned.
 	 */
-	Message::Ptr sendLocation(int64_t chatId, float latitude, float longitude, int32_t replyToMessageId = 0,
-	                          const GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>(), bool disableNotification = false) const;
+	Message::Ptr sendLocation(int64_t chatId, float latitude, float longitude, uint32_t livePeriod = 0,
+							  int32_t replyToMessageId = 0, const GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>(), bool disableNotification = false) const;
+
+	/**
+	 * Use this method to edit live location messages sent by the bot or via the bot (for inline bots).
+	 * @param latitude Latitude of new location.
+	 * @param longitude Longitude of new location.
+	 * @param chatId Optional. Required if inlineMessageId is not specified. Unique identifier for the target chat of the target channel (in the format @channelusername).
+	 * @param messageId Optional. Required if inlineMessageId is not specified. Identifier of the sent message.
+	 * @param inlineMessageId Optional. Required if chatId and messageId are not specified. Identifier of the inline message.
+	 * @param replyMarkup Optional. A JSON-serialized object for a new inline keyboard.
+	 * @return On success, if the edited message was sent by the bot, the edited Message is returned, otherwise nullptr is returned.
+	 */
+	Message::Ptr editMessageLiveLocation(float latitude, float longitude, int64_t chatId = 0, int32_t messageId = 0,
+										 int32_t inlineMessageId = 0, const InlineKeyboardMarkup::Ptr replyMarkup = std::make_shared<InlineKeyboardMarkup>()) const;
+
+	/**
+	 * Use this method to edit live location messages sent by the bot or via the bot (for inline bots).
+	 * @param chatId Optional. Required if inlineMessageId is not specified. Unique identifier for the target chat of the target channel (in the format @channelusername).
+	 * @param messageId Optional. Required if inlineMessageId is not specified. Identifier of the sent message.
+	 * @param inlineMessageId Optional. Required if chatId and messageId are not specified. Identifier of the inline message.
+	 * @param replyMarkup Optional. A JSON-serialized object for a new inline keyboard.
+	 * @return On success, if the edited message was sent by the bot, the edited Message is returned, otherwise nullptr is returned.
+	 */
+	Message::Ptr stopMessageLiveLocation(int64_t chatId = 0, int32_t messageId = 0, int32_t inlineMessageId = 0,
+										 const InlineKeyboardMarkup::Ptr replyMarkup = std::make_shared<InlineKeyboardMarkup>()) const;
+
 
 	/**
 	 * Use this method to send information about a venue. On success, the sent Message is returned.
@@ -474,6 +500,22 @@ public:
 	* @return ChatMember object.
 	*/
 	ChatMember::Ptr getChatMember(int64_t chatId, int32_t userId) const;
+
+	/**
+	* Use this method to get information about a member of a chat. Returns a ChatMember object on success.
+	* @param chatId Unique identifier for the target chat or username of the target supergroup or channel (in the format @channelusername)
+	* @param stickerSetName Name of the sticker set to be set as the group sticker set.
+	* @return Returns True on success.
+	*/
+	bool setChatStickerSet(int64_t chatId, const std::string& stickerSetName) const;
+
+	/**
+	* Use this method to get information about a member of a chat. Returns a ChatMember object on success.
+	* @param chatId Unique identifier for the target chat or username of the target supergroup or channel (in the format @channelusername)
+	* @return Returns True on success.
+	*/
+	bool deleteChatStickerSet(int64_t chatId) const;
+
 
 	/**
 	 * Use this method to send answers to callback queries sent from inline keyboards. The answer will be displayed to the user as a notification at the top of the chat screen or as an alert.

@@ -131,6 +131,11 @@ public:
 	std::vector<MessageEntity::Ptr> entities;
 
 	/**
+	 * Optional. For messages with a caption, special entities like usernames, URLs, bot commands, etc. that appear in the caption
+	 */
+	std::vector<MessageEntity::Ptr> captionEntities;
+
+	/**
 	 * Optional. Message is an audio file, information about the file.
 	 */
 	Audio::Ptr audio;

@@ -451,11 +451,14 @@ Message::Ptr Api::sendVoice(int64_t chatId, const string& voiceId, const string 
 	return TgTypeParser::getInstance().parseJsonAndGetMessage(sendRequest("sendVoice", args));
 }
 
-Message::Ptr Api::sendLocation(int64_t chatId, float latitude, float longitude, int32_t replyToMessageId, const GenericReply::Ptr replyMarkup, bool disableNotification) const {
+Message::Ptr Api::sendLocation(int64_t chatId, float latitude, float longitude, uint32_t livePeriod, int32_t replyToMessageId, const GenericReply::Ptr replyMarkup, bool disableNotification) const {
 	vector<HttpReqArg> args;
 	args.push_back(HttpReqArg("chat_id", chatId));
 	args.push_back(HttpReqArg("latitude", latitude));
 	args.push_back(HttpReqArg("longitude", longitude));
+	if (livePeriod) {
+		args.push_back(HttpReqArg("live_period", livePeriod));
+	}
 	if (replyToMessageId) {
 		args.push_back(HttpReqArg("reply_to_message_id", replyToMessageId));
 	}
@@ -466,6 +469,55 @@ Message::Ptr Api::sendLocation(int64_t chatId, float latitude, float longitude, 
 		args.push_back(HttpReqArg("disable_notification", disableNotification));
 	}
 	return TgTypeParser::getInstance().parseJsonAndGetMessage(sendRequest("sendLocation", args));
+}
+
+Message::Ptr Api::editMessageLiveLocation(float latitude, float longitude, int64_t chatId, int32_t messageId, int32_t inlineMessageId, const InlineKeyboardMarkup::Ptr replyMarkup) const {
+	vector<HttpReqArg> args;
+	args.push_back(HttpReqArg("latitude", latitude));
+	args.push_back(HttpReqArg("longitude", longitude));
+	if (chatId) {
+		args.push_back(HttpReqArg("chat_id", chatId));
+	}
+	if (messageId) {
+		args.push_back(HttpReqArg("message_id", messageId));
+	}
+	if (inlineMessageId) {
+		args.push_back(HttpReqArg("inline_message_id", inlineMessageId));
+	}
+	if (replyMarkup) {
+		args.push_back(HttpReqArg("reply_markup", TgTypeParser::getInstance().parseInlineKeyboardMarkup(replyMarkup)));
+	}
+	return TgTypeParser::getInstance().parseJsonAndGetMessage(sendRequest("editMessageLiveLocation", args));
+}
+
+Message::Ptr Api::editMessageLiveLocation(int64_t chatId, int32_t messageId, int32_t inlineMessageId, const InlineKeyboardMarkup::Ptr replyMarkup) const {
+	vector<HttpReqArg> args;
+	if (chatId) {
+		args.push_back(HttpReqArg("chat_id", chatId));
+	}
+	if (messageId) {
+		args.push_back(HttpReqArg("message_id", messageId));
+	}
+	if (inlineMessageId) {
+		args.push_back(HttpReqArg("inline_message_id", inlineMessageId));
+	}
+	if (replyMarkup) {
+		args.push_back(HttpReqArg("reply_markup", TgTypeParser::getInstance().parseInlineKeyboardMarkup(replyMarkup)));
+	}
+	return TgTypeParser::getInstance().parseJsonAndGetMessage(sendRequest("editMessageLiveLocation", args));
+}
+
+bool Api::setChatStickerSet(int64_t chatId, const string& stickerSetName) const {
+	vector<HttpReqArg> args;
+	args.push_back(HttpReqArg("chat_id", chatId));
+	args.push_back(HttpReqArg("sticker_set_name	", stickerSetName));
+	return sendRequest("setChatStickerSet", args).get<bool>("", false);
+}
+
+bool Api::deleteChatStickerSet(int64_t chatId) const {
+	vector<HttpReqArg> args;
+	args.push_back(HttpReqArg("chat_id", chatId));
+	return sendRequest("deleteChatStickerSet", args).get<bool>("", false);
 }
 
 Message::Ptr Api::sendVenue(int64_t chatId, float latitude, float longitude, const string& title, const string& address, const string& foursquareId, bool disableNotification, int32_t replyToMessageId, const GenericReply::Ptr replyMarkup) const {
