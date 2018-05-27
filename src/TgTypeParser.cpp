@@ -328,7 +328,7 @@ string TgTypeParser::parseStickerSet(const StickerSet::Ptr& object) const {
 	appendToJson(result, "name", object->name);
 	appendToJson(result, "title", object->title);
 	appendToJson(result, "contains_masks", object->containsMasks);
-	appendToJson(result, "thumb", parseArray(&TgTypeParser::parseJsonAndGetSticker, object->stickers));
+	appendToJson(result, "stickers", parseArray(&TgTypeParser::parseSticker, object->stickers));
 	result.erase(result.length() - 1);
 	result += '}';
 	return result;

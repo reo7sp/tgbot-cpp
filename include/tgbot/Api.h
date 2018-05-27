@@ -239,7 +239,7 @@ public:
 	 * @return Returns True on success.
 	 */
 	bool createNewStickerSet(int32_t userId, const std::string& name, const std::string& title,
-							 const std::string pngSticker, const std::string& emojis, bool containsMasks = false, MaskPosition::Ptr maskPosition = nullptr) const;
+							 const std::string& pngSticker, const std::string& emojis, bool containsMasks = false, MaskPosition::Ptr maskPosition = nullptr) const;
 
 	/**
 	 * Use this method to add a new sticker to a set created by the bot. 
