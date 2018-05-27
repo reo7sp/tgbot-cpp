@@ -609,7 +609,7 @@ vector<Update::Ptr> Api::getUpdates(int32_t offset, int32_t limit, int32_t timeo
 	if (timeout) {
 		args.push_back(HttpReqArg("timeout", timeout));
 	}
-	if (allowedUpdates!=nullptr) {
+	if (allowedUpdates != nullptr) {
 		string allowedUpdatesJson = TgTypeParser::getInstance().parseArray<std::string>(
 			[](const std::string &s)->std::string {
 			return s;
@@ -625,10 +625,10 @@ void Api::setWebhook(const string& url, const InputFile::Ptr certificate, int32_
 		args.push_back(HttpReqArg("url", url));
 	if (certificate != nullptr)
 		args.push_back(HttpReqArg("certificate", certificate->data, true, certificate->mimeType, certificate->fileName));
-	if (maxConnection!=40)
+	if (maxConnection != 40)
 		args.push_back(HttpReqArg("max_connections", maxConnection));
 	
-	if (allowedUpdates!=nullptr)
+	if (allowedUpdates != nullptr)
 	{
 		string allowedUpdatesJson = TgTypeParser::getInstance().parseArray<std::string>(
 			[](const std::string &s)->std::string {
@@ -653,7 +653,7 @@ WebhookInfo::Ptr Api::getWebhookInfo() const
 	if (!p.get_child_optional("url"))
 		return nullptr;
 
-	if (p.get<string>("url","")!=string(""))
+	if (p.get<string>("url","") != string(""))
 	{
 		return TgTypeParser::getInstance().parseJsonAndGetWebhookInfo(p);
 	} 
@@ -664,7 +664,7 @@ WebhookInfo::Ptr Api::getWebhookInfo() const
 }
 
 bool Api::answerInlineQuery(const std::string& inlineQueryId, const std::vector<InlineQueryResult::Ptr>& results,
-	int32_t cacheTime, bool isPersonal, const std::string& nextOffset, const std::string& switchPmText, const std::string& switchPmParameter) const {
+							int32_t cacheTime, bool isPersonal, const std::string& nextOffset, const std::string& switchPmText, const std::string& switchPmParameter) const {
 	vector<HttpReqArg> args;
 	args.push_back(HttpReqArg("inline_query_id", inlineQueryId));
 	string resultsJson = TgTypeParser::getInstance().parseArray<InlineQueryResult>(&TgTypeParser::parseInlineQueryResult, results);
@@ -687,10 +687,13 @@ bool Api::answerInlineQuery(const std::string& inlineQueryId, const std::vector<
 	return sendRequest("answerInlineQuery", args).get<bool>("", false);
 }
 
-bool Api::kickChatMember(int64_t chatId, int32_t userId) const {
+bool Api::kickChatMember(int64_t chatId, int32_t userId, uint64_t untilDate) const {
 	vector<HttpReqArg> args;
 	args.push_back(HttpReqArg("chat_id", chatId));
 	args.push_back(HttpReqArg("user_id", userId));
+	if (untilDate) {
+		args.push_back(HttpReqArg("until_date", untilDate));
+	}
 	return sendRequest("kickChatMember", args).get<bool>("", false);
 }
 
@@ -699,6 +702,107 @@ bool Api::unbanChatMember(int64_t chatId, int32_t userId) const {
 	args.push_back(HttpReqArg("chat_id", chatId));
 	args.push_back(HttpReqArg("user_id", userId));
 	return sendRequest("unbanChatMember", args).get<bool>("", false);
+}
+
+bool Api::restrictChatMember(int64_t chatId, int32_t userId, uint64_t untilDate, bool canSendMessages,
+							 bool canSendMediaMessages, bool canSendOtherMessages, bool canAddWebPagePreviews) const {
+	vector<HttpReqArg> args;
+	args.push_back(HttpReqArg("chat_id", chatId));
+	args.push_back(HttpReqArg("user_id", userId));
+	if (untilDate) {
+		args.push_back(HttpReqArg("until_date", untilDate));
+	}
+	if (canSendMessages) {
+		args.push_back(HttpReqArg("can_send_messages", canSendMessages));
+	}
+	if (canSendMediaMessages) {
+		args.push_back(HttpReqArg("can_send_media_messages", canSendMediaMessages));
+	}
+	if (canSendOtherMessages) {
+		args.push_back(HttpReqArg("can_send_other_messages", canSendOtherMessages));
+	}
+	if (canAddWebPagePreviews) {
+		args.push_back(HttpReqArg("can_add_web_page_previews", canAddWebPagePreviews));
+	}
+	return sendRequest("restrictChatMember", args).get<bool>("", false);
+}
+
+bool Api::promoteChatMember(int64_t chatId, int32_t userId, bool canChangeInfo, bool canPostMessages,
+							bool canEditMessages, bool canDeleteMessages, bool canInviteUsers, bool canPinMessages, bool canPromoteMembers) const {
+	vector<HttpReqArg> args;
+	args.push_back(HttpReqArg("chat_id", chatId));
+	args.push_back(HttpReqArg("user_id", userId));
+	if (canChangeInfo) {
+		args.push_back(HttpReqArg("can_change_info", canChangeInfo));
+	}
+	if (canPostMessages) {
+		args.push_back(HttpReqArg("can_post_messages", canPostMessages));
+	}
+	if (canEditMessages) {
+		args.push_back(HttpReqArg("can_edit_messages", canEditMessages));
+	}
+	if (canDeleteMessages) {
+		args.push_back(HttpReqArg("can_delete_messages", canDeleteMessages));
+	}
+	if (canInviteUsers) {
+		args.push_back(HttpReqArg("can_invite_users", canInviteUsers));
+	}
+	if (canPinMessages) {
+		args.push_back(HttpReqArg("can_pin_messages", canPinMessages));
+	}
+	if (canPromoteMembers) {
+		args.push_back(HttpReqArg("can_promote_members", canPromoteMembers));
+	}
+	return sendRequest("promoteChatMember", args).get<bool>("", false);
+}
+
+std::string Api::exportChatInviteLink(int64_t chatId) const {
+	vector<HttpReqArg> args;
+	args.push_back(HttpReqArg("chat_id", chatId));
+	return sendRequest("exportChatInviteLink", args).get("", "");
+}
+
+bool Api::setChatPhoto(int64_t chatId, InputFile::Ptr photo) const {
+	vector<HttpReqArg> args;
+	args.push_back(HttpReqArg("chat_id", chatId));
+	args.push_back(HttpReqArg("photo", photo->data, true, photo->mimeType, photo->fileName));
+	return sendRequest("setChatPhoto", args).get<bool>("", false);
+}
+
+bool Api::deleteChatPhoto(int64_t chatId) const {
+	vector<HttpReqArg> args;
+	args.push_back(HttpReqArg("chat_id", chatId));
+	return sendRequest("deleteChatPhoto", args).get<bool>("", false);
+}
+
+bool Api::setChatTitle(int64_t chatId, std::string title) const {
+	vector<HttpReqArg> args;
+	args.push_back(HttpReqArg("chat_id", chatId));
+	args.push_back(HttpReqArg("title", title));
+	return sendRequest("setChatTitle", args).get<bool>("", false);
+}
+
+bool Api::setChatDescription(int64_t chatId, std::string description) const {
+	vector<HttpReqArg> args;
+	args.push_back(HttpReqArg("chat_id", chatId));
+	args.push_back(HttpReqArg("description", description));
+	return sendRequest("setChatDescription", args).get<bool>("", false);
+}
+
+bool Api::pinChatMessage(int64_t chatId, int32_t messageId, bool disableNotification) const {
+	vector<HttpReqArg> args;
+	args.push_back(HttpReqArg("chat_id", chatId));
+	args.push_back(HttpReqArg("description", description));
+	if (disableNotification) {
+		args.push_back(HttpReqArg("disable_notification", disableNotification));
+	}
+	return sendRequest("pinChatMessage", args).get<bool>("", false);
+}
+
+bool Api::unpinChatMessage(int64_t chatId) const {
+	vector<HttpReqArg> args;
+	args.push_back(HttpReqArg("chat_id", chatId));
+	return sendRequest("unpinChatMessage", args).get<bool>("", false);
 }
 
 void Api::deleteMessage(int64_t chatId, int32_t messageId) const {

@@ -50,6 +50,12 @@ Chat::Ptr TgTypeParser::parseJsonAndGetChat(const ptree& data) const {
 	result->firstName = data.get<string>("first_name", "");
 	result->lastName = data.get("last_name", "");
 	result->allMembersAreAdministrators = data.get<bool>("all_members_are_administrators", false);
+	result->photo = tryParseJson<ChatPhoto>(&TgTypeParser::parseJsonAndGetChatPhoto, data, "photo");
+	result->description = data.get("description", "");
+	result->inviteLink = data.get("invite_link", "");
+	result->pinnedMessage = tryParseJson<ChatPhoto>(&TgTypeParser::parseJsonAndGetMessage, data, "pinned_message");
+	result->stickerSetName = data.get("sticker_set_name", "");
+	result->canSetStickerSet = data.get<bool>("can_set_sticker_set", false);
 
 	return result;
 }
@@ -107,10 +113,10 @@ string TgTypeParser::parseUser(const User::Ptr& object) const {
 
 MessageEntity::Ptr TgTypeParser::parseJsonAndGetEntity(const ptree& data) const{
 	auto result(make_shared<MessageEntity>());
-	result->type=data.get<string>("type");
-	result->offset=data.get<int32_t>("offset");
-	result->length=data.get<int32_t>("length");
-	result->url=data.get<string>("url", "");
+	result->type = data.get<string>("type");
+	result->offset = data.get<int32_t>("offset");
+	result->length = data.get<int32_t>("length");
+	result->url = data.get<string>("url", "");
 	result->user = tryParseJson<User>(&TgTypeParser::parseJsonAndGetUser, data, "user");
 	return result;
 }	
@@ -571,7 +577,21 @@ std::string TgTypeParser::parseForceReply(const ForceReply::Ptr& object) const {
 ChatMember::Ptr TgTypeParser::parseJsonAndGetChatMember(const boost::property_tree::ptree& data) const {
 	auto result(make_shared<ChatMember>());
 	result->user = tryParseJson<User>(&TgTypeParser::parseJsonAndGetUser, data, "user");
-	result->status = data.get<string>("status");
+	result->status = data.get("status", "");
+	result->untilDate = data.get<uint64_t>("until_date", 0);
+	result->canBeEdited = data.get<bool>("can_be_edited", false);
+	result->canChangeInfo = data.get<bool>("can_change_info", false);
+	result->canPostMessages = data.get<bool>("can_post_messages", false);
+	result->canEditMessages = data.get<bool>("can_edit_messages", false);
+	result->canDeleteMessages = data.get<bool>("can_delete_messages", false);
+	result->canInviteUsers = data.get<bool>("can_invite_users", false);
+	result->canRestrictMembers = data.get<bool>("can_restrict_members", false);
+	result->canPinMessages = data.get<bool>("can_pin_messages", false);
+	result->canPromoteMembers = data.get<bool>("can_promote_messages", false);
+	result->canSendMessages = data.get<bool>("can_send_messages", false);
+	result->canSendMediaMessages = data.get<bool>("can_send_media_messages", false);
+	result->canSendOtherMessages = data.get<bool>("can_send_other_messages", false);
+	result->canAddWebPagePreviews = data.get<bool>("can_add_web_page_previews", false);
 	return result;
 }
 
@@ -585,6 +605,13 @@ std::string TgTypeParser::parseChatMember(const ChatMember::Ptr& object) const {
 	appendToJson(result, "status", object->status);
 	result.erase(result.length() - 1);
 	result += '}';
+	return result;
+}
+
+ChatPhoto::Ptr TgTypeParser::parseJsonAndGetChatPhoto(const boost::property_tree::ptree& data) const {
+	auto result(make_shared<ChatPhoto>());
+	result->smallFileId = data.get("small_file_id", "");
+	result->bigFileId = data.get("big_file_id", "");
 	return result;
 }
 

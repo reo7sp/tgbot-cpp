@@ -493,15 +493,16 @@ public:
 	 * @return True on success
 	 */
 	bool answerInlineQuery(const std::string& inlineQueryId, const std::vector<InlineQueryResult::Ptr>& results,
-							int32_t cacheTime=300, bool isPersonal=false, const std::string& nextOffset="", const std::string& switchPmText="", const std::string& switchPmParameter="") const;
+							int32_t cacheTime = 300, bool isPersonal = false, const std::string& nextOffset = "", const std::string& switchPmText = "", const std::string& switchPmParameter = "") const;
 
 	/**
 	 * Use this method to kick a user from a group or a supergroup.
 	 * @param chatId Unique identifier for the target group.
 	 * @param userId Unique identifier of the target user.
+	 * @param untilDate Optional. Date when the user will be unbanned, unix time. If user is banned for more than 366 days or less than 30 seconds from the current time they are considered to be banned forever.
 	 * @return True on success
 	 */
-	bool kickChatMember(int64_t chatId, int32_t userId) const;
+	bool kickChatMember(int64_t chatId, int32_t userId, uint64_t untilDate = 0) const;
 
 	/**
 	 * Use this method to unban a previously kicked user in a supergroup.
@@ -510,6 +511,95 @@ public:
 	 * @return True on success
 	 */
 	bool unbanChatMember(int64_t chatId, int32_t userId) const;
+
+	/**
+	 * Use this method to restrict a user in a supergroup.
+	 * @param chatId Unique identifier for the target chat of the target supergroup.
+	 * @param userId Unique identifier of the target user.
+	 * @param untilDate Optional. Date when restrictions will be lifted for the user, unix time. If user is restricted for more than 366 days or less than 30 seconds from the current time, they are considered to be restricted forever.
+	 * @param canSendMessages Optional. Pass True, if the user can send text messages, contacts, locations and venues.
+	 * @param canSendMediaMessages Optional. Pass True, if the user can send audios, documents, photos, videos, video notes and voice notes, implies can_send_messages.
+	 * @param canSendOtherMessages Optional. Pass True, if the user can send animations, games, stickers and use inline bots, implies can_send_media_messages.
+	 * @param canAddWebPagePreviews Optional. Pass True, if the user may add web page previews to their messages, implies can_send_media_messages.
+	 * @return True on success
+	 */
+	bool restrictChatMember(int64_t chatId, int32_t userId, uint64_t untilDate = 0, bool canSendMessages = false,
+							bool canSendMediaMessages = false, bool canSendOtherMessages = false, bool canAddWebPagePreviews = false) const;
+
+	/**
+	 * Use this method to promote or demote a user in a supergroup or a channel.
+	 * @param chatId Unique identifier for the target chat of the target supergroup or channal.
+	 * @param userId Unique identifier of the target user.
+	 * @param canChangeInfo Optional. Pass True, if the administrator can change chat title, photo and other settings.
+	 * @param canPostMessages Optional. Pass True, if the administrator can create channel posts, channels only.
+	 * @param canEditMessages Optional. Pass True, if the administrator can edit messages of other users and can pin messages, channels only.
+	 * @param canDeleteMessages Optional. Pass True, if the administrator can delete messages of other users.
+	 * @param canInviteUsers Optional. Pass True, if the administrator can invite new users to the chat.
+	 * @param canRestrictMembers Optional. Pass True, if the administrator can restrict, ban or unban chat members.
+	 * @param canPinMessages Optional. Pass True, if the administrator can pin messages, supergroups only.
+	 * @param canPromoteMembers Optional. Pass True, if the administrator can add new administrators with a subset of his own privileges or demote administrators that he has promoted, directly or indirectly (promoted by administrators that were appointed by him).
+	 * @return True on success
+	 */
+	bool promoteChatMember(int64_t chatId, int32_t userId, bool canChangeInfo = false, bool canPostMessages = false,
+						   bool canEditMessages = false, bool canDeleteMessages = false, bool canInviteUsers = false, bool canPinMessages = false, bool canPromoteMembers = false) const;
+
+	/**
+	 * Use this method to generate a new invite link for a chat; any previously generated link is revoked.
+	 * @param chatId Unique identifier for the target chat.
+	 * @return The new invite link as String on success.
+	 */
+	std::string exportChatInviteLink(int64_t chatId) const;
+
+	/**
+	 * Use this method to set a new profile photo for the chat.
+	 * Photos can't be changed for private chats.
+	 * @param chatId Unique identifier for the target chat.
+	 * @param photo New chat photo.
+	 * @return True on success
+	 */
+	bool setChatPhoto(int64_t chatId, InputFile::Ptr photo) const;
+
+	/**
+	 * Use this method to delete a chat photo.
+	 * Photos can't be changed for private chats.
+	 * @param chatId Unique identifier for the target chat.
+	 * @return True on success
+	 */
+	bool deleteChatPhoto(int64_t chatId) const;
+
+	/**
+	 * Use this method to change the title of a chat. 
+	 * Titles can't be changed for private chats.
+	 * @param chatId Unique identifier for the target chat.
+	 * @param title New chat title, 1-255 characters.
+	 * @return True on success
+	 */
+	bool setChatTitle(int64_t chatId, std::string title) const;
+
+	/**
+	 * Use this method to change the description of a supergroup or a channel.
+	 * @param chatId Unique identifier for the target chat.
+	 * @param description New chat description, 1-255 characters.
+	 * @return True on success
+	 */
+	bool setChatDescription(int64_t chatId, std::string description) const;
+
+	/**
+	 * Use this method to pin a message in a supergroup or a channel.
+	 * @param chatId Unique identifier for the target chat.
+	 * @param messageId Identifier of a message to pin.
+	 * @param disableNotification Optional. Pass True, if it is not necessary to send a notification to all chat members about the new pinned message. Notifications are always disabled in channels.
+	 * @return True on success
+	 */
+	bool pinChatMessage(int64_t chatId, int32_t messageId, bool disableNotification = false) const;
+
+	/**
+	 * Use this method to unpin a message in a supergroup or a channel.
+	 * @param chatId Unique identifier for the target chat.
+	 * @return True on success
+	 */
+	bool unpinChatMessage(int64_t chatId) const;
+
 
 	/**
 	 * Downloads file from Telegram and saves it in memory.

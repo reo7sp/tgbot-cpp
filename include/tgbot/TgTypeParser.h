@@ -47,6 +47,7 @@
 #include "tgbot/types/ReplyKeyboardRemove.h"
 #include "tgbot/types/ForceReply.h"
 #include "tgbot/types/ChatMember.h"
+#include "tgbot/types/ChatPhoto.h"
 #include "tgbot/types/ResponseParameters.h"
 #include "tgbot/types/GenericReply.h"
 #include "tgbot/types/InlineQuery.h"
@@ -148,6 +149,8 @@ public:
 
 	ChatMember::Ptr parseJsonAndGetChatMember(const boost::property_tree::ptree& data) const;
 	std::string parseChatMember(const ChatMember::Ptr& object) const;
+
+	ChatPhoto::Ptr parseJsonAndGetChatPhoto(const boost::property_tree::ptree& data) const; // returned only in getChat
 
 	ResponseParameters::Ptr parseJsonAndGetResponseParameters(const boost::property_tree::ptree& data) const;
 	std::string parseResponseParameters(const ResponseParameters::Ptr& object) const;
