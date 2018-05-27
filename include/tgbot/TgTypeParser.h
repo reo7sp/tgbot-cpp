@@ -92,6 +92,9 @@
 #include "tgbot/types/ShippingOption.h"
 #include "tgbot/types/SuccessfulPayment.h"
 #include "tgbot/types/LabeledPrice.h"
+#include "tgbot/types/InputMedia.h"
+#include "tgbot/types/InputMediaPhoto.h"
+#include "tgbot/types/InputMediaVideo.h"
 
 namespace TgBot {
 
@@ -137,6 +140,8 @@ public:
 	std::string parseUpdate(const Update::Ptr& object) const;
 	UserProfilePhotos::Ptr parseJsonAndGetUserProfilePhotos(const boost::property_tree::ptree& data) const;
 	std::string parseUserProfilePhotos(const UserProfilePhotos::Ptr& object) const;
+	InputMedia::Ptr parseJsonAndGetInputMedia(const boost::property_tree::ptree& data) const;
+	std::string parseInputMedia(const InputMedia::Ptr& object) const;
 
 	File::Ptr parseJsonAndGetFile(const boost::property_tree::ptree& data) const;
 	std::string parseFile(const File::Ptr& object) const;

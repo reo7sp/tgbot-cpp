@@ -342,6 +342,16 @@ public:
     Message::Ptr sendVideoNote(int64_t chatId, const std::string& videoNote, int64_t replyToMessageId = 0, bool disableNotification = false,
                                int32_t duration = 0, int32_t length = 0, const GenericReply::Ptr replyMarkup = GenericReply::Ptr());
 
+	/**
+	 * Use this method to send a group of photos or videos as an album.
+	 * @param chatId Unique identifier for the target chat of the target channel.
+	 * @param media A JSON-serialized array describing photos and videos to be sent, must include 2–10 items.
+	 * @param disableNotification Optional. Sends the messages silently. Users will receive a notification with no sound.
+	 * @param replyToMessageId Optional. If the messages are a reply, ID of the original message.
+	 * @return On success, an array of the sent Messages is returned.
+	 */
+	std::vector<Message::Ptr> sendMediaGroup(int64_t chatId, const std::vector<InputMedia::Ptr>& media,
+											 bool disableNotification = false, int32_t replyToMessageId = 0) const;
 
 	/**
 	 * Use this method to send audio files, if you want Telegram clients to display the file as a playable voice message.
@@ -389,7 +399,7 @@ public:
 	 * Use this method to edit live location messages sent by the bot or via the bot (for inline bots).
 	 * @param latitude Latitude of new location.
 	 * @param longitude Longitude of new location.
-	 * @param chatId Optional. Required if inlineMessageId is not specified. Unique identifier for the target chat of the target channel (in the format @channelusername).
+	 * @param chatId Optional. Required if inlineMessageId is not specified. Unique identifier for the target chat of the target channel.
 	 * @param messageId Optional. Required if inlineMessageId is not specified. Identifier of the sent message.
 	 * @param inlineMessageId Optional. Required if chatId and messageId are not specified. Identifier of the inline message.
 	 * @param replyMarkup Optional. A JSON-serialized object for a new inline keyboard.
@@ -400,7 +410,7 @@ public:
 
 	/**
 	 * Use this method to edit live location messages sent by the bot or via the bot (for inline bots).
-	 * @param chatId Optional. Required if inlineMessageId is not specified. Unique identifier for the target chat of the target channel (in the format @channelusername).
+	 * @param chatId Optional. Required if inlineMessageId is not specified. Unique identifier for the target chat of the target channel.
 	 * @param messageId Optional. Required if inlineMessageId is not specified. Identifier of the sent message.
 	 * @param inlineMessageId Optional. Required if chatId and messageId are not specified. Identifier of the inline message.
 	 * @param replyMarkup Optional. A JSON-serialized object for a new inline keyboard.
@@ -467,35 +477,35 @@ public:
 
 	/**
 	 * Use this method for your bot to leave a group, supergroup or channel.
-	 * @param chatId Unique identifier for the target chat or username of the target supergroup or channel (in the format @channelusername)
+	 * @param chatId Unique identifier for the target chat of the target supergroup or channel.
 	 * @return True on success
 	 */
 	bool leaveChat(int64_t chatId) const;
 
 	/**
 	 * Use this method to get up to date information about the chat (current name of the user for one-on-one conversations, current username of a user, group or channel, etc.). Returns a Chat object on success.
-	 * @param chatId Unique identifier for the target chat or username of the target supergroup or channel (in the format @channelusername)
+	 * @param chatId Unique identifier for the target chat of the target supergroup or channel.
 	 * @return Chat object.
 	 */
 	Chat::Ptr getChat(int64_t chatId) const;
 
 	/**
 	* Use this method to get a list of administrators in a chat. On success, returns an Array of ChatMember objects that contains information about all chat administrators except other bots. If the chat is a group or a supergroup and no administrators were appointed, only the creator will be returned.
-	* @param chatId Unique identifier for the target chat or username of the target supergroup or channel (in the format @channelusername)
+	* @param chatId Unique identifier for the target chat of the target supergroup or channel.
 	* @return ChatMember object.
 	*/
 	std::vector<ChatMember::Ptr> getChatAdministrators(int64_t chatId) const;
 
 	/**
 	* Use this method to get the number of members in a chat. Returns Int on success.
-	* @param chatId Unique identifier for the target chat or username of the target supergroup or channel (in the format @channelusername)
+	* @param chatId Unique identifier for the target chat of the target supergroup or channel.
 	* @return Int.
 	*/
 	int32_t getChatMembersCount(int64_t chatId) const;
 
 	/**
 	* Use this method to get information about a member of a chat. Returns a ChatMember object on success.
-	* @param chatId Unique identifier for the target chat or username of the target supergroup or channel (in the format @channelusername)
+	* @param chatId Unique identifier for the target chat of the target supergroup or channel.
 	* @param userId Unique identifier of the target user
 	* @return ChatMember object.
 	*/
@@ -503,7 +513,7 @@ public:
 
 	/**
 	* Use this method to get information about a member of a chat. Returns a ChatMember object on success.
-	* @param chatId Unique identifier for the target chat or username of the target supergroup or channel (in the format @channelusername)
+	* @param chatId Unique identifier for the target chat of the target supergroup or channel.
 	* @param stickerSetName Name of the sticker set to be set as the group sticker set.
 	* @return Returns True on success.
 	*/
@@ -511,7 +521,7 @@ public:
 
 	/**
 	* Use this method to get information about a member of a chat. Returns a ChatMember object on success.
-	* @param chatId Unique identifier for the target chat or username of the target supergroup or channel (in the format @channelusername)
+	* @param chatId Unique identifier for the target chat of the target supergroup or channel.
 	* @return Returns True on success.
 	*/
 	bool deleteChatStickerSet(int64_t chatId) const;
@@ -531,7 +541,7 @@ public:
 	/**
 	 * Use this method to edit text and game messages sent by the bot or via the bot (for inline bots)
 	 * @param text New text of the message
-	 * @param chatId Optional	Required if inline_message_id is not specified. Unique identifier for the target chat or username of the target channel (in the format @channelusername)
+	 * @param chatId Optional	Required if inline_message_id is not specified. Unique identifier for the target chat of the target channel.
 	 * @param messageId Optional	Required if inline_message_id is not specified. Identifier of the sent message
 	 * @param inlineMessageId Optional	Required if chat_id and message_id are not specified. Identifier of the inline message
 	 * @param parseMode Optional	Send Markdown or HTML, if you want Telegram apps to show bold, italic, fixed-width text or inline URLs in your bot's message.
@@ -544,7 +554,7 @@ public:
 
 	/**
 	* Use this method to edit captions of messages sent by the bot or via the bot (for inline bots). 
-	* @param chatId Optional	Required if inline_message_id is not specified. Unique identifier for the target chat or username of the target channel (in the format @channelusername)
+	* @param chatId Optional	Required if inline_message_id is not specified. Unique identifier for the target chat of the target channel.
 	* @param messageId Optional	Required if inline_message_id is not specified. Identifier of the sent message
 	* @param caption Optional New caption of the message
 	* @param inlineMessageId Optional	Required if chat_id and message_id are not specified. Identifier of the inline message
@@ -556,7 +566,7 @@ public:
 
 	/**
 	* Use this method to edit only the reply markup of messages sent by the bot or via the bot (for inline bots).
-	* @param chatId Optional	Required if inline_message_id is not specified. Unique identifier for the target chat or username of the target channel (in the format @channelusername)
+	* @param chatId Optional	Required if inline_message_id is not specified. Unique identifier for the target chat of the target channel.
 	* @param messageId Optional	Required if inline_message_id is not specified. Identifier of the sent message
 	* @param inlineMessageId Optional	Required if chat_id and message_id are not specified. Identifier of the inline message
 	* @param replyMarkup Optional	A JSON-serialized object for an inline keyboard.

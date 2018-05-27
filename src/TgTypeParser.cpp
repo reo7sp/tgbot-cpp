@@ -511,6 +511,67 @@ string TgTypeParser::parseUserProfilePhotos(const UserProfilePhotos::Ptr& object
 	return result;
 }
 
+InputMedia::Ptr TgTypeParser::parseJsonAndGetInputMedia(const ptree& data) const {
+	string type = data.get("type", "");
+	if (type == "photo") {
+		auto result(make_shared<InputMediaPhoto>());
+		result->media = data.get("media", "");
+		result->caption = data.get("caption", "");
+		result->parseMode = data.get("parse_mode", "");
+		return result;
+	}
+	else if (type == "video") {
+		auto result(make_shared<InputMediaVideo>());
+		result->media = data.get("media", "");
+		result->caption = data.get("caption", "");
+		result->parseMode = data.get("parse_mode", "");
+		result->width = data.get<int32_t>("width", 0);
+		result->height = data.get<int32_t>("height", 0);
+		result->duration = data.get<int32_t>("duration", 0);
+		result->supportsStreaming = data.get<bool>("supports_streaming", false);
+		return result;
+	}
+	else {
+		return nullptr;
+	}
+}
+
+string TgTypeParser::parseInputMedia(const InputMedia::Ptr& object) const {
+	if (!object) {
+		return "";
+	}
+	string result;
+	result += '{';
+	if (object->type == InputMedia::TYPE::PHOTO) {
+		appendToJson(result, "type", "photo");
+	}
+	else {
+		appendToJson(result, "type", "video");
+	}
+	appendToJson(result, "media", object->media);
+	if (object->caption) {
+		appendToJson(result, "caption", object->caption);
+	}
+	if (object->parseMode) {
+		appendToJson(result, "parse_mode", object->parseMode);
+	}
+	if (object->width) {
+		appendToJson(result, "width", object->width);
+	}
+	if (object->height) {
+		appendToJson(result, "height", object->height);
+	}
+	if (object->duration) {
+		appendToJson(result, "duration", object->duration);
+	}
+	if (object->supportsStreaming) {
+		appendToJson(result, "supports_streaming", object->supportsStreaming);
+	}
+	result.erase(result.length() - 1);
+	result += '}';
+	return result;
+}
+
 File::Ptr TgTypeParser::parseJsonAndGetFile(const boost::property_tree::ptree& data) const {
 	auto result(make_shared<File>());
 	result->fileId = data.get<string>("file_id");

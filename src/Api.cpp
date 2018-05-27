@@ -407,6 +407,16 @@ Message::Ptr Api::sendVideoNote(int64_t chatId, const string &videoNote, int64_t
     return TgTypeParser::getInstance().parseJsonAndGetMessage(sendRequest("sendVoiceNote", args));
 }
 
+vector<Message::Ptr> Api::sendMediaGroup(int64_t chatId, const vector<InputMedia::Ptr>& media, bool disableNotification, int32_t replyToMessageId) const {
+	vector<HttpReqArg> args;
+    args.push_back(HttpReqArg("chat_id", chatId));
+	string mediaJson = TgTypeParser::getInstance().parseArray<InputMedia>(&TgTypeParser::parseInputMedia, media);
+	args.push_back(HttpReqArg("media", mediaJson));
+	args.push_back(HttpReqArg("disable_notification", disableNotification));
+	args.push_back(HttpReqArg("reply_to_message_id", replyToMessageId));
+	return TgTypeParser::getInstance().parseJsonAndGetArray<Message>(&TgTypeParser::parseJsonAndGetMessage, sendRequest("sendMediaGroup", args));
+}
+
 Message::Ptr Api::sendVoice(int64_t chatId, const InputFile::Ptr voice, const string &caption, int duration, int32_t replyToMessageId, const GenericReply::Ptr replyMarkup, bool disableNotification) const {
 	vector<HttpReqArg> args;
 	args.push_back(HttpReqArg("chat_id", chatId));
@@ -490,7 +500,7 @@ Message::Ptr Api::editMessageLiveLocation(float latitude, float longitude, int64
 	return TgTypeParser::getInstance().parseJsonAndGetMessage(sendRequest("editMessageLiveLocation", args));
 }
 
-Message::Ptr Api::editMessageLiveLocation(int64_t chatId, int32_t messageId, int32_t inlineMessageId, const InlineKeyboardMarkup::Ptr replyMarkup) const {
+Message::Ptr Api::stopMessageLiveLocation(int64_t chatId, int32_t messageId, int32_t inlineMessageId, const InlineKeyboardMarkup::Ptr replyMarkup) const {
 	vector<HttpReqArg> args;
 	if (chatId) {
 		args.push_back(HttpReqArg("chat_id", chatId));
@@ -599,7 +609,7 @@ Chat::Ptr Api::getChat(int64_t chatId) const
 	return TgTypeParser::getInstance().parseJsonAndGetChat(sendRequest("getChat", args));
 }
 
-std::vector<ChatMember::Ptr> Api::getChatAdministrators(int64_t chatId) const
+vector<ChatMember::Ptr> Api::getChatAdministrators(int64_t chatId) const
 {
 	vector<HttpReqArg> args;
 	args.push_back(HttpReqArg("chat_id", chatId));
