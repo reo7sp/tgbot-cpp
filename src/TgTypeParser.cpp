@@ -53,7 +53,7 @@ Chat::Ptr TgTypeParser::parseJsonAndGetChat(const ptree& data) const {
 	result->photo = tryParseJson<ChatPhoto>(&TgTypeParser::parseJsonAndGetChatPhoto, data, "photo");
 	result->description = data.get("description", "");
 	result->inviteLink = data.get("invite_link", "");
-	result->pinnedMessage = tryParseJson<ChatPhoto>(&TgTypeParser::parseJsonAndGetMessage, data, "pinned_message");
+	result->pinnedMessage = tryParseJson<Message>(&TgTypeParser::parseJsonAndGetMessage, data, "pinned_message");
 	result->stickerSetName = data.get("sticker_set_name", "");
 	result->canSetStickerSet = data.get<bool>("can_set_sticker_set", false);
 

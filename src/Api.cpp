@@ -792,7 +792,7 @@ bool Api::setChatDescription(int64_t chatId, std::string description) const {
 bool Api::pinChatMessage(int64_t chatId, int32_t messageId, bool disableNotification) const {
 	vector<HttpReqArg> args;
 	args.push_back(HttpReqArg("chat_id", chatId));
-	args.push_back(HttpReqArg("description", description));
+	args.push_back(HttpReqArg("message_id", messageId));
 	if (disableNotification) {
 		args.push_back(HttpReqArg("disable_notification", disableNotification));
 	}

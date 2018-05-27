@@ -27,10 +27,10 @@
 #include <memory>
 
 #include "tgbot/types/ChatPhoto.h"
-#include "tgbot/types/Message.h"
 
 namespace TgBot {
 
+class Message;
 /**
  * This object represents a Telegram Chat
  * @ingroup types
