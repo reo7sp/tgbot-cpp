@@ -26,9 +26,9 @@ void EventHandler::handleMessage(const Message::Ptr message) const {
     _broadcaster->broadcastAnyMessage(message);
 
     if (StringTools::startsWith(message->text, "/")) {
-        uint32_t splitPosition;
-        uint32_t spacePosition = message->text.find(' ');
-        uint32_t atSymbolPosition = message->text.find('@');
+        uint16_t splitPosition;
+        uint16_t spacePosition = message->text.find(' ');
+        uint16_t atSymbolPosition = message->text.find('@');
         if (spacePosition == message->text.npos) {
             if (atSymbolPosition == message->text.npos) {
                 splitPosition = message->text.size();
