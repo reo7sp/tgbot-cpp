@@ -35,6 +35,8 @@
 #include "tgbot/types/Audio.h"
 #include "tgbot/types/Document.h"
 #include "tgbot/types/Sticker.h"
+#include "tgbot/types/StickerSet.h"
+#include "tgbot/types/MaskPosition.h"
 #include "tgbot/types/Video.h"
 #include "tgbot/types/VideoNote.h"
 #include "tgbot/types/Contact.h"
@@ -119,6 +121,10 @@ public:
 	std::string parseDocument(const Document::Ptr& object) const;
 	Sticker::Ptr parseJsonAndGetSticker(const boost::property_tree::ptree& data) const;
 	std::string parseSticker(const Sticker::Ptr& object) const;
+	StickerSet::Ptr parseJsonAndGetStickerSet(const boost::property_tree::ptree& data) const;
+	std::string parseStickerSet(const StickerSet::Ptr& object) const;
+	MaskPosition::Ptr parseJsonAndGetMaskPosition(const boost::property_tree::ptree& data) const;
+	std::string parseMaskPosition(const MaskPosition::Ptr& object) const;
 	Video::Ptr parseJsonAndGetVideo(const boost::property_tree::ptree& data) const;
 	std::string parseVideo(const Video::Ptr& object) const;
 	VideoNote::Ptr parseJsonAndGetVideoNote(const boost::property_tree::ptree& data) const;
@@ -150,7 +156,8 @@ public:
 	ChatMember::Ptr parseJsonAndGetChatMember(const boost::property_tree::ptree& data) const;
 	std::string parseChatMember(const ChatMember::Ptr& object) const;
 
-	ChatPhoto::Ptr parseJsonAndGetChatPhoto(const boost::property_tree::ptree& data) const; // returned only in getChat
+	ChatPhoto::Ptr parseJsonAndGetChatPhoto(const boost::property_tree::ptree& data) const;
+	std::string parseChatPhoto(const ChatPhoto::Ptr& object) const;
 
 	ResponseParameters::Ptr parseJsonAndGetResponseParameters(const boost::property_tree::ptree& data) const;
 	std::string parseResponseParameters(const ResponseParameters::Ptr& object) const;

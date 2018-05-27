@@ -1,5 +1,6 @@
 /*
  * Copyright (c) 2015 Oleg Morozenkov
+ * Copyright (c) 2018 JellyBrick
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,67 +21,45 @@
  * SOFTWARE.
  */
 
-#ifndef TGBOT_CPP_STICKER_H
-#define TGBOT_CPP_STICKER_H
+#ifndef TGBOT_STICKERSET_H
+#define TGBOT_STICKERSET_H
 
-#include <string>
 #include <memory>
+#include <string>
+#include <vector>
 
-#include "tgbot/types/PhotoSize.h"
-#include "tgbot/types/MaskPosition.h"
+#include "tgbot/types/Sticker.h"
 
 namespace TgBot {
 
 /**
- * This object represents a general file (as opposed to photos and audio files).
+ * This object represents a sticker set.
  * @ingroup types
  */
-class Sticker {
-
+class StickerSet {
 public:
-	typedef std::shared_ptr<Sticker> Ptr;
+	typedef std::shared_ptr<StickerSet> Ptr;
 
 	/**
-	 * Unique file identifier.
+	 * Sticker set name.
 	 */
-	std::string fileId;
+	std::string name;
+
+    /**
+	 * Sticker set title.
+	 */
+	std::string title;
+
+    /**
+     * True, if the sticker set contains masks.
+     */
+    bool containsMasks = false;
 
 	/**
-	 * Optional. Sticker width.
+	 * List of all set stickers.
 	 */
-	int32_t width;
-
-	/**
-	 * Optional. Sticker height.
-	 */
-	int32_t height;
-
-	/**
-	 * Optional. Optional. Sticker thumbnail in .webp or .jpg format.
-	 */
-	PhotoSize::Ptr thumb;
-
-	/**
-	 * Optional. Emoji associated with the sticker
-	 */
-	std::string emoji;
-
-	/**
-	 * Optional. Name of the sticker set to which the sticker belongs.
-	 */
-	std::string setName;
-
-	/**
-	 * Optional. For mask stickers, the position where the mask should be placed.
-	 */
-	MaskPosition::Ptr maskPosition;
-
-	/**
-	 * Optional. File size.
-	 */
-	int32_t fileSize;
+	std::vector<Sticker::Ptr> stickers;
 };
-
 }
 
-#endif //TGBOT_CPP_STICKER_H
+#endif //TGBOT_STICKERSET_H

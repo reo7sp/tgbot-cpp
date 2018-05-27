@@ -39,6 +39,7 @@
 #include "tgbot/types/Venue.h"
 #include "tgbot/types/WebhookInfo.h"
 #include "tgbot/types/ChatMember.h"
+#include "tgbot/types/StickerSet.h"
 #include "tgbot/types/File.h"
 
 namespace TgBot {
@@ -188,7 +189,7 @@ public:
 	/**
 	 * Use this method to send .webp stickers.
 	 * @param chatId Unique identifier for the target chat.
-	 * @param sticker Id of the sticker that is already on the Telegram servers.
+	 * @param stickerId Id of the sticker that is already on the Telegram servers.
 	 * @param replyToMessageId Optional. If the message is a reply, ID of the original message.
 	 * @param replyMarkup Optional. Additional interface options. A object for a custom reply keyboard, instructions to hide keyboard or to force a reply from the user.
 	 * @param disableNotification Optional. Sends the message silenty.
@@ -196,6 +197,90 @@ public:
 	 */
 	Message::Ptr sendSticker(int64_t chatId, const std::string& stickerId, int32_t replyToMessageId = 0,
 	                         const GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>(), bool disableNotification = false) const;
+
+	/**
+	 * Use this method to get a sticker set.
+	 * @param chatId Name of the sticker set.
+	 * @return On success, a StickerSet object is returned.
+	 */
+	StickerSet::Ptr getStickerSet(const std::string& name) const;
+	
+	/**
+	 * Use this method to upload a .png file with a sticker for later use in createNewStickerSet and addStickerToSet methods (can be used multiple times).
+	 * @param userId User identifier of sticker file owner.
+	 * @param pngSticker Png image with the sticker, must be up to 512 kilobytes in size, dimensions must not exceed 512px, and either width or height must be exactly 512px.
+	 * @return Returns the uploaded File on success.
+	 */
+	File::Ptr uploadStickerFile(int32_t userId, const InputFile::Ptr pngSticker) const;
+
+	/**
+	 * Use this method to create new sticker set owned by a user. The bot will be able to edit the created sticker set.
+	 * @param userId User identifier of created sticker set owner.
+	 * @param name Short name of sticker set, to be used in t.me/addstickers/ URLs (e.g., animals). Can contain only english letters, digits and underscores. Must begin with a letter, can't contain consecutive underscores and must end in “_by_<bot username>”. <bot_username> is case insensitive. 1-64 characters.
+	 * @param title Sticker set title, 1-64 characters.
+	 * @param pngSticker Png image with the sticker, must be up to 512 kilobytes in size, dimensions must not exceed 512px, and either width or height must be exactly 512px.
+	 * @param emojis One or more emoji corresponding to the sticker.
+	 * @param containsMasks Optional. Pass True, if a set of mask stickers should be created.
+	 * @param maskPosition Optional. A JSON-serialized object for position where the mask should be placed on faces.
+	 * @return Returns True on success.
+	 */
+	bool createNewStickerSet(int32_t userId, const std::string& name, const std::string& title,
+							 InputFile::Ptr pngSticker, const std::string& emojis, bool containsMasks = false, MaskPosition::Ptr maskPosition = nullptr) const;
+
+	/**
+	 * Use this method to create new sticker set owned by a user. The bot will be able to edit the created sticker set.
+	 * @param userId User identifier of created sticker set owner.
+	 * @param name Short name of sticker set, to be used in t.me/addstickers/ URLs (e.g., animals). Can contain only english letters, digits and underscores. Must begin with a letter, can't contain consecutive underscores and must end in “_by_<bot username>”. <bot_username> is case insensitive. 1-64 characters.
+	 * @param title Sticker set title, 1-64 characters.
+	 * @param pngSticker Png image with the sticker, must be up to 512 kilobytes in size, dimensions must not exceed 512px, and either width or height must be exactly 512px. Pass a file_id as a String to send a file that already exists on the Telegram servers, pass an HTTP URL as a String for Telegram to get a file from the Internet. 
+	 * @param emojis One or more emoji corresponding to the sticker.
+	 * @param containsMasks Optional. Pass True, if a set of mask stickers should be created.
+	 * @param maskPosition Optional. A JSON-serialized object for position where the mask should be placed on faces.
+	 * @return Returns True on success.
+	 */
+	bool createNewStickerSet(int32_t userId, const std::string& name, const std::string& title,
+							 const std::string pngSticker, const std::string& emojis, bool containsMasks = false, MaskPosition::Ptr maskPosition = nullptr) const;
+
+	/**
+	 * Use this method to add a new sticker to a set created by the bot. 
+	 * @param userId User identifier of created sticker set owner.
+	 * @param name Sticker set name.
+	 * @param title Sticker set title, 1-64 characters.
+	 * @param pngSticker Png image with the sticker, must be up to 512 kilobytes in size, dimensions must not exceed 512px, and either width or height must be exactly 512px.
+	 * @param emojis One or more emoji corresponding to the sticker.
+	 * @param maskPosition Optional. A JSON-serialized object for position where the mask should be placed on faces.
+	 * @return Returns True on success.
+	 */
+	bool addStickerToSet(int32_t userId, const std::string& name, const std::string& title,
+						 InputFile::Ptr pngSticker, const std::string& emojis, MaskPosition::Ptr maskPosition = nullptr) const;
+
+	/**
+	 * Use this method to add a new sticker to a set created by the bot. 
+	 * @param userId User identifier of created sticker set owner.
+	 * @param name Sticker set name.
+	 * @param title Sticker set title, 1-64 characters.
+	 * @param pngSticker Png image with the sticker, must be up to 512 kilobytes in size, dimensions must not exceed 512px, and either width or height must be exactly 512px. Pass a file_id as a String to send a file that already exists on the Telegram servers, pass an HTTP URL as a String for Telegram to get a file from the Internet.
+	 * @param emojis One or more emoji corresponding to the sticker.
+	 * @param maskPosition Optional. A JSON-serialized object for position where the mask should be placed on faces.
+	 * @return Returns True on success.
+	 */
+	bool addStickerToSet(int32_t userId, const std::string& name, const std::string& title,
+						 const std::string& pngSticker, const std::string& emojis, MaskPosition::Ptr maskPosition = nullptr) const;
+
+	/**
+	 * Use this method to move a sticker in a set created by the bot to a specific position.
+	 * @param stickers File identifier of the sticker.
+	 * @param position New sticker position in the set, zero-based.
+	 * @return Returns True on success.
+	 */
+	bool setStickerPositionInSet(const std::string& sticker, uint32_t position) const;
+
+	/**
+	 * Use this method to delete a sticker from a set created by the bot.
+	 * @param stickers File identifier of the sticker.
+	 * @return Returns True on success.
+	 */
+	bool deleteStickerPositionInSet(const std::string& sticker) const;
 
 	/**
 	 * Use this method to send video files, Telegram clients support mp4 videos (other formats may be sent as Document).
@@ -210,7 +295,7 @@ public:
 	 * @param disableNotification Optional. Sends the message silenty.
 	 * @return On success, the sent message is returned.
 	 */
-	Message::Ptr sendVideo(int64_t chatId, const InputFile::Ptr video, int32_t duration = 0, int32_t width = 0, int32_t height = 0, const std::string &caption = "",
+	Message::Ptr sendVideo(int64_t chatId, const InputFile::Ptr video, int32_t duration = 0, int32_t width = 0, int32_t height = 0, const std::string& caption = "",
 						   int32_t replyToMessageId = 0, const GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>(), bool disableNotification = false) const;
 
 	/**
@@ -226,7 +311,7 @@ public:
 	 * @param disableNotification Optional. Sends the message silenty.
 	 * @return On success, the sent message is returned.
 	 */
-	Message::Ptr sendVideo(int64_t chatId, const std::string& videoId, int32_t duration = 0, int32_t width = 0, int32_t height = 0, const std::string &caption = "",
+	Message::Ptr sendVideo(int64_t chatId, const std::string& videoId, int32_t duration = 0, int32_t width = 0, int32_t height = 0, const std::string& caption = "",
 						   int32_t replyToMessageId = 0, const GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>(), bool disableNotification = false) const;
 
 	/**
@@ -254,7 +339,7 @@ public:
      * @param replyMarkup Additional interface options. A object for an inline keyboard, custom reply keyboard, instructions to remove reply keyboard or to force a reply from the user.
      * @return On success, the sent Message is returned.
      */
-    Message::Ptr sendVideoNote(int64_t chatId, const std::string &videoNote, int64_t replyToMessageId = 0, bool disableNotification = false,
+    Message::Ptr sendVideoNote(int64_t chatId, const std::string& videoNote, int64_t replyToMessageId = 0, bool disableNotification = false,
                                int32_t duration = 0, int32_t length = 0, const GenericReply::Ptr replyMarkup = GenericReply::Ptr());
 
 
@@ -269,7 +354,7 @@ public:
 	 * @param disableNotification Optional. Sends the message silenty.
 	 * @return On success, the sent message is returned.
 	 */
-	Message::Ptr sendVoice(int64_t chatId, const InputFile::Ptr voice, const std::string &caption = "", int duration = 0, int32_t replyToMessageId = 0,
+	Message::Ptr sendVoice(int64_t chatId, const InputFile::Ptr voice, const std::string& caption = "", int duration = 0, int32_t replyToMessageId = 0,
 	                      const GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>(), bool disableNotification = false) const;
 
 	/**
@@ -283,7 +368,7 @@ public:
 	 * @param disableNotification Optional. Sends the message silenty.
 	 * @return On success, the sent message is returned.
 	 */
-	Message::Ptr sendVoice(int64_t chatId, const std::string& voiceId, const std::string &caption = "", int duration = 0, int32_t replyToMessageId = 0,
+	Message::Ptr sendVoice(int64_t chatId, const std::string& voiceId, const std::string& caption = "", int duration = 0, int32_t replyToMessageId = 0,
 	                       const GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>(), bool disableNotification = false) const;
 
 	/**
@@ -312,7 +397,7 @@ public:
 	 * @param disableNotification Optional. Sends the message silenty.
 	 * @return On success, the sent message is returned.
 	 */
-	Message::Ptr sendVenue(int64_t chatId, float latitude, float longitude, std::string title, std::string address, std::string foursquareId = "",
+	Message::Ptr sendVenue(int64_t chatId, float latitude, float longitude, const std::string& title, const std::string& address, const std::string& foursquareId = "",
 	                       bool disableNotification = false, int32_t replyToMessageId = 0, const GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>()) const;
 
 	/**
@@ -326,7 +411,7 @@ public:
 	 * @param replyMarkup Optional. Additional interface options. A object for a custom reply keyboard, instructions to hide keyboard or to force a reply from the user.
 	 * @return On success, the sent message is returned.
 	 */
-	Message::Ptr sendContact(int64_t chatId, std::string phoneNumber, std::string firstName, std::string lastName = "", bool disableNotification = false,
+	Message::Ptr sendContact(int64_t chatId, const std::string& phoneNumber, const std::string& firstName, const std::string& lastName = "", bool disableNotification = false,
 							int32_t replyToMessageId = 0, const GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>()) const;
 
 	/**
@@ -557,7 +642,7 @@ public:
 	 * @param photo New chat photo.
 	 * @return True on success
 	 */
-	bool setChatPhoto(int64_t chatId, InputFile::Ptr photo) const;
+	bool setChatPhoto(int64_t chatId, const InputFile::Ptr photo) const;
 
 	/**
 	 * Use this method to delete a chat photo.
@@ -574,7 +659,7 @@ public:
 	 * @param title New chat title, 1-255 characters.
 	 * @return True on success
 	 */
-	bool setChatTitle(int64_t chatId, std::string title) const;
+	bool setChatTitle(int64_t chatId, const std::string& title) const;
 
 	/**
 	 * Use this method to change the description of a supergroup or a channel.
@@ -582,7 +667,7 @@ public:
 	 * @param description New chat description, 1-255 characters.
 	 * @return True on success
 	 */
-	bool setChatDescription(int64_t chatId, std::string description) const;
+	bool setChatDescription(int64_t chatId, const std::string& description) const;
 
 	/**
 	 * Use this method to pin a message in a supergroup or a channel.

@@ -287,6 +287,8 @@ Sticker::Ptr TgTypeParser::parseJsonAndGetSticker(const ptree& data) const {
 	result->height = data.get<int32_t>("height");
 	result->thumb = tryParseJson<PhotoSize>(&TgTypeParser::parseJsonAndGetPhotoSize, data, "thumb");
 	result->emoji = data.get("emoji", "");
+	result->setName = data.get("set_name", "");
+	result->maskPosition = tryParseJson<MaskPosition>(&TgTypeParser::parseJsonAndGetMaskPosition, data, "mask_position");
 	result->fileSize = data.get("file_size", 0);
 	return result;
 }
@@ -303,6 +305,54 @@ string TgTypeParser::parseSticker(const Sticker::Ptr& object) const {
 	appendToJson(result, "thumb", parsePhotoSize(object->thumb));
 	appendToJson(result, "emoji", object->emoji);
 	appendToJson(result, "file_size", object->fileSize);
+	result.erase(result.length() - 1);
+	result += '}';
+	return result;
+}
+
+StickerSet::Ptr TgTypeParser::parseJsonAndGetStickerSet(const ptree& data) const {
+	auto result(make_shared<StickerSet>());
+	result->name = data.get("name", "");
+	result->title = data.get("title", "");
+	result->containsMasks = data.get<bool>("contains_masks", false);
+	result->stickers = parseJsonAndGetArray<Sticker>(&TgTypeParser::parseJsonAndGetSticker, data, "stickers");
+	return result;
+}
+
+string TgTypeParser::parseStickerSet(const StickerSet::Ptr& object) const {
+	if (!object) {
+		return "";
+	}
+	string result;
+	result += '{';
+	appendToJson(result, "name", object->name);
+	appendToJson(result, "title", object->title);
+	appendToJson(result, "contains_masks", object->containsMasks);
+	appendToJson(result, "thumb", parseArray(&TgTypeParser::parseJsonAndGetSticker, object->stickers));
+	result.erase(result.length() - 1);
+	result += '}';
+	return result;
+}
+
+MaskPosition::Ptr TgTypeParser::parseJsonAndGetMaskPosition(const ptree& data) const {
+	auto result(make_shared<MaskPosition>());
+	result->point = data.get("point", "");
+	result->xShift = data.get<float>("x_shift", 0);
+	result->yShift = data.get<float>("y_shift", 0);
+	result->scale = data.get<float>("scale", 0);
+	return result;
+}
+
+string TgTypeParser::parseMaskPosition(const MaskPosition::Ptr& object) const {
+	if (!object) {
+		return "";
+	}
+	string result;
+	result += '{';
+	appendToJson(result, "point", object->point);
+	appendToJson(result, "x_shift", object->xShift);
+	appendToJson(result, "y_shift", object->yShift);
+	appendToJson(result, "scale", object->scale);
 	result.erase(result.length() - 1);
 	result += '}';
 	return result;
@@ -618,6 +668,19 @@ ChatPhoto::Ptr TgTypeParser::parseJsonAndGetChatPhoto(const boost::property_tree
 	auto result(make_shared<ChatPhoto>());
 	result->smallFileId = data.get("small_file_id", "");
 	result->bigFileId = data.get("big_file_id", "");
+	return result;
+}
+
+std::string TgTypeParser::parseChatPhoto(const ChatPhoto::Ptr& object) const {
+	if (!object) {
+		return "";
+	}
+	string result;
+	result += '{';
+	appendToJson(result, "small_file_id", object->smallFileId);
+	appendToJson(result, "big_file_id", object->bigFileId);
+	result.erase(result.length() - 1);
+	result += '}';
 	return result;
 }
 

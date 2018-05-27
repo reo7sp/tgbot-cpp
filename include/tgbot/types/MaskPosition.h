@@ -1,5 +1,6 @@
 /*
  * Copyright (c) 2015 Oleg Morozenkov
+ * Copyright (c) 2018 JellyBrick
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,67 +21,42 @@
  * SOFTWARE.
  */
 
-#ifndef TGBOT_CPP_STICKER_H
-#define TGBOT_CPP_STICKER_H
+#ifndef TGBOT_MARKPOSITION_H
+#define TGBOT_MARKPOSITION_H
 
-#include <string>
 #include <memory>
-
-#include "tgbot/types/PhotoSize.h"
-#include "tgbot/types/MaskPosition.h"
+#include <string>
 
 namespace TgBot {
 
 /**
- * This object represents a general file (as opposed to photos and audio files).
+ * This object describes the position on faces where a mask should be placed by default.
  * @ingroup types
  */
-class Sticker {
-
+class MaskPosition {
 public:
-	typedef std::shared_ptr<Sticker> Ptr;
+	typedef std::shared_ptr<MaskPosition> Ptr;
 
 	/**
-	 * Unique file identifier.
+	 * The part of the face relative to which the mask should be placed. One of “forehead”, “eyes”, “mouth”, or “chin”.
 	 */
-	std::string fileId;
+	std::string point;
 
 	/**
-	 * Optional. Sticker width.
+	 * Shift by X-axis measured in widths of the mask scaled to the face size, from left to right. For example, choosing -1.0 will place mask just to the left of the default mask position.
 	 */
-	int32_t width;
+	float xShift;
 
-	/**
-	 * Optional. Sticker height.
+    /**
+	 * Shift by Y-axis measured in heights of the mask scaled to the face size, from top to bottom. For example, 1.0 will place the mask just below the default mask position.
 	 */
-	int32_t height;
+	float yShift;
 
-	/**
-	 * Optional. Optional. Sticker thumbnail in .webp or .jpg format.
+    /**
+	 * Mask scaling coefficient. For example, 2.0 means double size.
 	 */
-	PhotoSize::Ptr thumb;
-
-	/**
-	 * Optional. Emoji associated with the sticker
-	 */
-	std::string emoji;
-
-	/**
-	 * Optional. Name of the sticker set to which the sticker belongs.
-	 */
-	std::string setName;
-
-	/**
-	 * Optional. For mask stickers, the position where the mask should be placed.
-	 */
-	MaskPosition::Ptr maskPosition;
-
-	/**
-	 * Optional. File size.
-	 */
-	int32_t fileSize;
+	float scale;
 };
-
 }
 
-#endif //TGBOT_CPP_STICKER_H
+#endif //TGBOT_MARKPOSITION_H

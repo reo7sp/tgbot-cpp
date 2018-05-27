@@ -109,7 +109,7 @@ Message::Ptr Api::sendPhoto(int64_t chatId, const string& photoId, const string&
 	return TgTypeParser::getInstance().parseJsonAndGetMessage(sendRequest("sendPhoto", args));
 }
 
-Message::Ptr Api::sendAudio(int64_t chatId, const InputFile::Ptr audio, const std::string &caption, int32_t duration, const string& performer, const string& title, int32_t replyToMessageId, const GenericReply::Ptr replyMarkup, bool disableNotification) const {
+Message::Ptr Api::sendAudio(int64_t chatId, const InputFile::Ptr audio, const string &caption, int32_t duration, const string& performer, const string& title, int32_t replyToMessageId, const GenericReply::Ptr replyMarkup, bool disableNotification) const {
 	vector<HttpReqArg> args;
 	args.push_back(HttpReqArg("chat_id", chatId));
 	args.push_back(HttpReqArg("audio", audio->data, true, audio->mimeType, audio->fileName));
@@ -137,7 +137,7 @@ Message::Ptr Api::sendAudio(int64_t chatId, const InputFile::Ptr audio, const st
 	return TgTypeParser::getInstance().parseJsonAndGetMessage(sendRequest("sendAudio", args));
 }
 
-Message::Ptr Api::sendAudio(int64_t chatId, const string& audioId, const std::string &caption, int32_t duration, const string& performer, const string& title, int32_t replyToMessageId, const GenericReply::Ptr replyMarkup, bool disableNotification) const {
+Message::Ptr Api::sendAudio(int64_t chatId, const string& audioId, const string &caption, int32_t duration, const string& performer, const string& title, int32_t replyToMessageId, const GenericReply::Ptr replyMarkup, bool disableNotification) const {
 	vector<HttpReqArg> args;
 	args.push_back(HttpReqArg("chat_id", chatId));
 	args.push_back(HttpReqArg("audio", audioId));
@@ -165,7 +165,7 @@ Message::Ptr Api::sendAudio(int64_t chatId, const string& audioId, const std::st
 	return TgTypeParser::getInstance().parseJsonAndGetMessage(sendRequest("sendAudio", args));
 }
 
-Message::Ptr Api::sendDocument(int64_t chatId, const InputFile::Ptr document, const std::string &caption, int32_t replyToMessageId, const GenericReply::Ptr replyMarkup, bool disableNotification) const {
+Message::Ptr Api::sendDocument(int64_t chatId, const InputFile::Ptr document, const string &caption, int32_t replyToMessageId, const GenericReply::Ptr replyMarkup, bool disableNotification) const {
 	vector<HttpReqArg> args;
 	args.push_back(HttpReqArg("chat_id", chatId));
 	args.push_back(HttpReqArg("document", document->data, true, document->mimeType, document->fileName));
@@ -184,7 +184,7 @@ Message::Ptr Api::sendDocument(int64_t chatId, const InputFile::Ptr document, co
 	return TgTypeParser::getInstance().parseJsonAndGetMessage(sendRequest("sendDocument", args));
 }
 
-Message::Ptr Api::sendDocument(int64_t chatId, const string& document, const std::string &caption, int32_t replyToMessageId, const GenericReply::Ptr replyMarkup, bool disableNotification) const {
+Message::Ptr Api::sendDocument(int64_t chatId, const string& document, const string &caption, int32_t replyToMessageId, const GenericReply::Ptr replyMarkup, bool disableNotification) const {
 	vector<HttpReqArg> args;
 	args.push_back(HttpReqArg("chat_id", chatId));
 	args.push_back(HttpReqArg("document", document));
@@ -235,7 +235,79 @@ Message::Ptr Api::sendSticker(int64_t chatId, const string& stickerId, int32_t r
 	return TgTypeParser::getInstance().parseJsonAndGetMessage(sendRequest("sendSticker", args));
 }
 
-Message::Ptr Api::sendVideo(int64_t chatId, const InputFile::Ptr video, int32_t duration, int32_t width, int32_t height, const std::string &caption, int32_t replyToMessageId, const GenericReply::Ptr replyMarkup, bool disableNotification) const {
+StickerSet::Ptr Api::getStickerSet(const string& name) const {
+	vector<HttpReqArg> args;
+	args.push_back(HttpReqArg("name", name));
+	return TgTypeParser::getInstance().parseJsonAndGetStickerSet(sendRequest("getStickerSet", args));
+}
+
+File::Ptr Api::uploadStickerFile(int32_t userId, const InputFile::Ptr pngSticker) const {
+	vector<HttpReqArg> args;
+	args.push_back(HttpReqArg("user_id", userId));
+	args.push_back(HttpReqArg("png_sticker", pngSticker->data, true, pngSticker->mimeType, pngSticker->fileName));
+	return TgTypeParser::getInstance().parseJsonAndGetFile(sendRequest("uploadStickerFile", args));
+}
+
+bool Api::createNewStickerSet(int32_t userId, const string& name, const string& title, InputFile::Ptr pngSticker, const string& emojis, bool containsMasks, MaskPosition::Ptr maskPosition) const {
+	vector<HttpReqArg> args;
+	args.push_back(HttpReqArg("user_id", userId));
+	args.push_back(HttpReqArg("name", name));
+	args.push_back(HttpReqArg("title", title));
+	args.push_back(HttpReqArg("png_sticker", pngSticker->data, true, pngSticker->mimeType, pngSticker->fileName));
+	args.push_back(HttpReqArg("emojis", emojis));
+	args.push_back(HttpReqArg("contains_mask", containsMasks));
+	args.push_back(HttpReqArg("mask_position", TgTypeParser::getInstance().parseMaskPosition(maskPosition)));
+	return sendRequest("createNewStickerSet", args).get<bool>("", false);
+}
+
+bool Api::createNewStickerSet(int32_t userId, const string& name, const string& title, const string& pngSticker, const string& emojis, bool containsMasks, MaskPosition::Ptr maskPosition) const {
+	vector<HttpReqArg> args;
+	args.push_back(HttpReqArg("user_id", userId));
+	args.push_back(HttpReqArg("name", name));
+	args.push_back(HttpReqArg("title", title));
+	args.push_back(HttpReqArg("png_sticker", pngSticker));
+	args.push_back(HttpReqArg("emojis", emojis));
+	args.push_back(HttpReqArg("contains_mask", containsMasks));
+	args.push_back(HttpReqArg("mask_position", TgTypeParser::getInstance().parseMaskPosition(maskPosition)));
+	return sendRequest("createNewStickerSet", args).get<bool>("", false);
+}
+
+bool Api::addStickerToSet(int32_t userId, const string& name, const string& title, InputFile::Ptr pngSticker, const string& emojis, MaskPosition::Ptr maskPosition) const {
+	vector<HttpReqArg> args;
+	args.push_back(HttpReqArg("user_id", userId));
+	args.push_back(HttpReqArg("name", name));
+	args.push_back(HttpReqArg("title", title));
+	args.push_back(HttpReqArg("png_sticker", pngSticker->data, true, pngSticker->mimeType, pngSticker->fileName));
+	args.push_back(HttpReqArg("emojis", emojis));
+	args.push_back(HttpReqArg("mask_position", TgTypeParser::getInstance().parseMaskPosition(maskPosition)));
+	return sendRequest("addStickerToSet", args).get<bool>("", false);
+}
+
+bool Api::addStickerToSet(int32_t userId, const string& name, const string& title, const string& pngSticker, const string& emojis, MaskPosition::Ptr maskPosition) const {
+	vector<HttpReqArg> args;
+	args.push_back(HttpReqArg("user_id", userId));
+	args.push_back(HttpReqArg("name", name));
+	args.push_back(HttpReqArg("title", title));
+	args.push_back(HttpReqArg("png_sticker", pngSticker));
+	args.push_back(HttpReqArg("emojis", emojis));
+	args.push_back(HttpReqArg("mask_position", TgTypeParser::getInstance().parseMaskPosition(maskPosition)));
+	return sendRequest("addStickerToSet", args).get<bool>("", false);
+}
+
+bool Api::setStickerPositionInSet(const string& sticker, uint32_t position) const {
+	vector<HttpReqArg> args;
+	args.push_back(HttpReqArg("sticker", sticker));
+	args.push_back(HttpReqArg("position", position));
+	return sendRequest("setStickerPositionInSet", args).get<bool>("", false);
+}
+
+bool Api::deleteStickerPositionInSet(const string& sticker) const {
+	vector<HttpReqArg> args;
+	args.push_back(HttpReqArg("sticker", sticker));
+	return sendRequest("setStickerPositionInSet", args).get<bool>("", false);
+}
+
+Message::Ptr Api::sendVideo(int64_t chatId, const InputFile::Ptr video, int32_t duration, int32_t width, int32_t height, const string &caption, int32_t replyToMessageId, const GenericReply::Ptr replyMarkup, bool disableNotification) const {
 	vector<HttpReqArg> args;
 	args.push_back(HttpReqArg("chat_id", chatId));
 	args.push_back(HttpReqArg("video", video->data, true, video->mimeType, video->fileName));
@@ -263,7 +335,7 @@ Message::Ptr Api::sendVideo(int64_t chatId, const InputFile::Ptr video, int32_t 
 	return TgTypeParser::getInstance().parseJsonAndGetMessage(sendRequest("sendVideo", args));
 }
 
-Message::Ptr Api::sendVideo(int64_t chatId, const string& videoId, int32_t duration, int32_t width, int32_t height, const std::string &caption, int32_t replyToMessageId, const GenericReply::Ptr replyMarkup, bool disableNotification) const {
+Message::Ptr Api::sendVideo(int64_t chatId, const string& videoId, int32_t duration, int32_t width, int32_t height, const string &caption, int32_t replyToMessageId, const GenericReply::Ptr replyMarkup, bool disableNotification) const {
 	vector<HttpReqArg> args;
 	args.push_back(HttpReqArg("chat_id", chatId));
 	args.push_back(HttpReqArg("video", videoId));
@@ -313,7 +385,7 @@ Message::Ptr Api::sendVideoNote(int64_t chatId, const InputFile::Ptr videoNote, 
     return TgTypeParser::getInstance().parseJsonAndGetMessage(sendRequest("sendVoiceNote", args));
 }
 
-Message::Ptr Api::sendVideoNote(int64_t chatId, const std::string &videoNote, int64_t replyToMessageId, bool disableNotification, int32_t duration, int32_t length, const GenericReply::Ptr replyMarkup) {
+Message::Ptr Api::sendVideoNote(int64_t chatId, const string &videoNote, int64_t replyToMessageId, bool disableNotification, int32_t duration, int32_t length, const GenericReply::Ptr replyMarkup) {
     vector<HttpReqArg> args;
     args.push_back(HttpReqArg("chat_id", chatId));
     args.push_back(HttpReqArg("video_note", videoNote));
@@ -335,7 +407,7 @@ Message::Ptr Api::sendVideoNote(int64_t chatId, const std::string &videoNote, in
     return TgTypeParser::getInstance().parseJsonAndGetMessage(sendRequest("sendVoiceNote", args));
 }
 
-Message::Ptr Api::sendVoice(int64_t chatId, const InputFile::Ptr voice, const std::string &caption, int duration, int32_t replyToMessageId, const GenericReply::Ptr replyMarkup, bool disableNotification) const {
+Message::Ptr Api::sendVoice(int64_t chatId, const InputFile::Ptr voice, const string &caption, int duration, int32_t replyToMessageId, const GenericReply::Ptr replyMarkup, bool disableNotification) const {
 	vector<HttpReqArg> args;
 	args.push_back(HttpReqArg("chat_id", chatId));
 	args.push_back(HttpReqArg("voice", voice->data, true, voice->mimeType, voice->fileName));
@@ -357,7 +429,7 @@ Message::Ptr Api::sendVoice(int64_t chatId, const InputFile::Ptr voice, const st
 	return TgTypeParser::getInstance().parseJsonAndGetMessage(sendRequest("sendVoice", args));
 }
 
-Message::Ptr Api::sendVoice(int64_t chatId, const std::string& voiceId, const std::string &caption, int duration, int32_t replyToMessageId, const GenericReply::Ptr replyMarkup, bool disableNotification) const {
+Message::Ptr Api::sendVoice(int64_t chatId, const string& voiceId, const string &caption, int duration, int32_t replyToMessageId, const GenericReply::Ptr replyMarkup, bool disableNotification) const {
 	vector<HttpReqArg> args;
 	args.push_back(HttpReqArg("chat_id", chatId));
 	args.push_back(HttpReqArg("voice", voiceId));
@@ -396,7 +468,7 @@ Message::Ptr Api::sendLocation(int64_t chatId, float latitude, float longitude, 
 	return TgTypeParser::getInstance().parseJsonAndGetMessage(sendRequest("sendLocation", args));
 }
 
-Message::Ptr Api::sendVenue(int64_t chatId, float latitude, float longitude, std::string title, std::string address, std::string foursquareId, bool disableNotification, int32_t replyToMessageId, const GenericReply::Ptr replyMarkup) const {
+Message::Ptr Api::sendVenue(int64_t chatId, float latitude, float longitude, const string& title, const string& address, const string& foursquareId, bool disableNotification, int32_t replyToMessageId, const GenericReply::Ptr replyMarkup) const {
 	vector<HttpReqArg> args;
 	args.push_back(HttpReqArg("chat_id", chatId));
 	args.push_back(HttpReqArg("latitude", latitude));
@@ -418,7 +490,7 @@ Message::Ptr Api::sendVenue(int64_t chatId, float latitude, float longitude, std
 	return TgTypeParser::getInstance().parseJsonAndGetMessage(sendRequest("sendVenue", args));
 }
 
-Message::Ptr Api::sendContact(int64_t chatId, std::string phoneNumber, std::string firstName, std::string lastName, bool disableNotification, int32_t replyToMessageId, const GenericReply::Ptr replyMarkup) const {
+Message::Ptr Api::sendContact(int64_t chatId, const string& phoneNumber, const string& firstName, const string& lastName, bool disableNotification, int32_t replyToMessageId, const GenericReply::Ptr replyMarkup) const {
 	vector<HttpReqArg> args;
 	args.push_back(HttpReqArg("chat_id", chatId));
 	args.push_back(HttpReqArg("phone_number", phoneNumber));
@@ -454,7 +526,7 @@ UserProfilePhotos::Ptr Api::getUserProfilePhotos(int32_t userId, int32_t offset,
 	return TgTypeParser::getInstance().parseJsonAndGetUserProfilePhotos(sendRequest("getUserProfilePhotos", args));
 }
 
-File::Ptr Api::getFile(const std::string &fileId) const
+File::Ptr Api::getFile(const string &fileId) const
 {
 	vector<HttpReqArg> args;
 	args.push_back(HttpReqArg("file_id", fileId));
@@ -489,7 +561,7 @@ int32_t Api::getChatMembersCount(int64_t chatId) const
 	return sendRequest("getChatMembersCount", args).get<int32_t>("", 0);
 }
 
-bool Api::answerCallbackQuery(const std::string & callbackQueryId, const std::string & text, bool showAlert, const std::string &url, int32_t cacheTime) const
+bool Api::answerCallbackQuery(const string & callbackQueryId, const string & text, bool showAlert, const string &url, int32_t cacheTime) const
 {
 	vector<HttpReqArg> args;
 	args.push_back(HttpReqArg("callback_query_id", callbackQueryId));
@@ -508,8 +580,8 @@ bool Api::answerCallbackQuery(const std::string & callbackQueryId, const std::st
 	return sendRequest("answerCallbackQuery", args).get<bool>("", false);
 }
 
-Message::Ptr Api::editMessageText(const std::string& text, int64_t chatId, int32_t messageId, const std::string& inlineMessageId,
-	const std::string& parseMode, bool disableWebPagePreview, const GenericReply::Ptr replyMarkup) const {
+Message::Ptr Api::editMessageText(const string& text, int64_t chatId, int32_t messageId, const string& inlineMessageId,
+	const string& parseMode, bool disableWebPagePreview, const GenericReply::Ptr replyMarkup) const {
 
 	vector<HttpReqArg> args;
 	args.push_back(HttpReqArg("text", text));
@@ -539,8 +611,8 @@ Message::Ptr Api::editMessageText(const std::string& text, int64_t chatId, int32
 	}	
 }
 
-Message::Ptr Api::editMessageCaption(int64_t chatId, int32_t messageId, const std::string& caption,
-									 const std::string& inlineMessageId, const GenericReply::Ptr replyMarkup) const {
+Message::Ptr Api::editMessageCaption(int64_t chatId, int32_t messageId, const string& caption,
+									 const string& inlineMessageId, const GenericReply::Ptr replyMarkup) const {
 
 	vector<HttpReqArg> args;
 	if (chatId) {
@@ -567,7 +639,7 @@ Message::Ptr Api::editMessageCaption(int64_t chatId, int32_t messageId, const st
 
 }
 
-Message::Ptr Api::editMessageReplyMarkup(int64_t chatId, int32_t messageId, const std::string& inlineMessageId,
+Message::Ptr Api::editMessageReplyMarkup(int64_t chatId, int32_t messageId, const string& inlineMessageId,
 										 const GenericReply::Ptr replyMarkup) const {
 
 	vector<HttpReqArg> args;
@@ -610,8 +682,8 @@ vector<Update::Ptr> Api::getUpdates(int32_t offset, int32_t limit, int32_t timeo
 		args.push_back(HttpReqArg("timeout", timeout));
 	}
 	if (allowedUpdates != nullptr) {
-		string allowedUpdatesJson = TgTypeParser::getInstance().parseArray<std::string>(
-			[](const std::string &s)->std::string {
+		string allowedUpdatesJson = TgTypeParser::getInstance().parseArray<string>(
+			[](const string &s)->string {
 			return s;
 		}, *allowedUpdates);
 		args.push_back(HttpReqArg("allowed_updates", allowedUpdatesJson));
@@ -630,8 +702,8 @@ void Api::setWebhook(const string& url, const InputFile::Ptr certificate, int32_
 	
 	if (allowedUpdates != nullptr)
 	{
-		string allowedUpdatesJson = TgTypeParser::getInstance().parseArray<std::string>(
-			[](const std::string &s)->std::string {
+		string allowedUpdatesJson = TgTypeParser::getInstance().parseArray<string>(
+			[](const string &s)->string {
 				return s;
 			}, *allowedUpdates);
 		args.push_back(HttpReqArg("allowed_updates", allowedUpdatesJson));
@@ -663,8 +735,8 @@ WebhookInfo::Ptr Api::getWebhookInfo() const
 	}
 }
 
-bool Api::answerInlineQuery(const std::string& inlineQueryId, const std::vector<InlineQueryResult::Ptr>& results,
-							int32_t cacheTime, bool isPersonal, const std::string& nextOffset, const std::string& switchPmText, const std::string& switchPmParameter) const {
+bool Api::answerInlineQuery(const string& inlineQueryId, const std::vector<InlineQueryResult::Ptr>& results,
+							int32_t cacheTime, bool isPersonal, const string& nextOffset, const string& switchPmText, const string& switchPmParameter) const {
 	vector<HttpReqArg> args;
 	args.push_back(HttpReqArg("inline_query_id", inlineQueryId));
 	string resultsJson = TgTypeParser::getInstance().parseArray<InlineQueryResult>(&TgTypeParser::parseInlineQueryResult, results);
@@ -756,13 +828,13 @@ bool Api::promoteChatMember(int64_t chatId, int32_t userId, bool canChangeInfo, 
 	return sendRequest("promoteChatMember", args).get<bool>("", false);
 }
 
-std::string Api::exportChatInviteLink(int64_t chatId) const {
+string Api::exportChatInviteLink(int64_t chatId) const {
 	vector<HttpReqArg> args;
 	args.push_back(HttpReqArg("chat_id", chatId));
 	return sendRequest("exportChatInviteLink", args).get("", "");
 }
 
-bool Api::setChatPhoto(int64_t chatId, InputFile::Ptr photo) const {
+bool Api::setChatPhoto(int64_t chatId, const InputFile::Ptr photo) const {
 	vector<HttpReqArg> args;
 	args.push_back(HttpReqArg("chat_id", chatId));
 	args.push_back(HttpReqArg("photo", photo->data, true, photo->mimeType, photo->fileName));
@@ -775,14 +847,14 @@ bool Api::deleteChatPhoto(int64_t chatId) const {
 	return sendRequest("deleteChatPhoto", args).get<bool>("", false);
 }
 
-bool Api::setChatTitle(int64_t chatId, std::string title) const {
+bool Api::setChatTitle(int64_t chatId, const string& title) const {
 	vector<HttpReqArg> args;
 	args.push_back(HttpReqArg("chat_id", chatId));
 	args.push_back(HttpReqArg("title", title));
 	return sendRequest("setChatTitle", args).get<bool>("", false);
 }
 
-bool Api::setChatDescription(int64_t chatId, std::string description) const {
+bool Api::setChatDescription(int64_t chatId, const string& description) const {
 	vector<HttpReqArg> args;
 	args.push_back(HttpReqArg("chat_id", chatId));
 	args.push_back(HttpReqArg("description", description));
@@ -832,7 +904,7 @@ ptree Api::sendRequest(const string& method, const vector<HttpReqArg>& args) con
 	}
 }
 
-std::string Api::downloadFile(const std::string& filePath, const std::vector<HttpReqArg>& args) const {
+string Api::downloadFile(const string& filePath, const std::vector<HttpReqArg>& args) const {
 	string url = "https://api.telegram.org/file/bot";
 	url += _token;
 	url += "/";
