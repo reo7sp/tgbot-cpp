@@ -108,7 +108,7 @@ public:
 	 * Optional. Pinned message, for supergroups and channel chats.
 	 * Returned only in getChat.
 	 */
-	Message::Ptr pinnedMessage;
+	std::shared_ptr<Message> pinnedMessage;
 
 	/**
 	 * Optional. For supergroups, name of group sticker set. 

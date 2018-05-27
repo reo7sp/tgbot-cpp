@@ -96,6 +96,11 @@ public:
 	int32_t forwardFromMessageId;
 
 	/**
+	 * Optional. For messages forwarded from channels, signature of the post author if present.
+	 */
+	std::string forwardSignature;
+
+	/**
 	 * Optional. For forwarded messages, date the original message was sent in Unix time.
 	 */
 	int32_t forwardDate;
@@ -106,9 +111,14 @@ public:
 	Message::Ptr replyToMessage;
 
 	/**
-	 * Optional. Date the message was last edited in Unix time
+	 * Optional. Date the message was last edited in Unix time.
 	 */
 	int32_t editDate;
+
+	/**
+	 * Optional. Signature of the post author for messages in channels.
+	 */
+	std::string authorSignature;
 
 	/**
 	 * Optional. For text messages, the actual UTF-8 text of the message.

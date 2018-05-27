@@ -47,7 +47,7 @@ Chat::Ptr TgTypeParser::parseJsonAndGetChat(const ptree& data) const {
 	}
 	result->title = data.get("title", "");
 	result->username = data.get("username", "");
-	result->firstName = data.get<string>("first_name", "");
+	result->firstName = data.get("first_name", "");
 	result->lastName = data.get("last_name", "");
 	result->allMembersAreAdministrators = data.get<bool>("all_members_are_administrators", false);
 	result->photo = tryParseJson<ChatPhoto>(&TgTypeParser::parseJsonAndGetChatPhoto, data, "photo");
@@ -88,6 +88,7 @@ string TgTypeParser::parseChat(const Chat::Ptr& object) const {
 User::Ptr TgTypeParser::parseJsonAndGetUser(const ptree& data) const {
 	auto result(make_shared<User>());
 	result->id = data.get<int32_t>("id");
+	result->isBot = data.get<bool>("is_bot", false);
 	result->firstName = data.get<string>("first_name");
 	result->lastName = data.get("last_name", "");
 	result->username = data.get("username", "");
@@ -102,6 +103,7 @@ string TgTypeParser::parseUser(const User::Ptr& object) const {
 	string result;
 	result += '{';
 	appendToJson(result, "id", object->id);
+	appendToJson(result, "is_bot", object->isBot);
 	appendToJson(result, "first_name", object->firstName);
 	appendToJson(result, "last_name", object->lastName);
 	appendToJson(result, "username", object->username);
@@ -130,9 +132,11 @@ Message::Ptr TgTypeParser::parseJsonAndGetMessage(const ptree& data) const {
 	result->forwardFrom = tryParseJson<User>(&TgTypeParser::parseJsonAndGetUser, data, "forward_from");
 	result->forwardFromChat = tryParseJson<Chat>(&TgTypeParser::parseJsonAndGetChat, data, "forward_from_chat");
 	result->forwardFromMessageId = data.get<int32_t>("forward_from_message_id", 0);
+	result->forwardSignature = data.get("forward_signature", "");
 	result->forwardDate = data.get("forward_date", 0);
 	result->replyToMessage = tryParseJson<Message>(&TgTypeParser::parseJsonAndGetMessage, data, "reply_to_message");
 	result->editDate = data.get<int32_t>("edit_date", 0);
+	result->authorSignature = data.get("author_signature", "");
 	result->text = data.get("text", "");
 	result->entities = parseJsonAndGetArray<MessageEntity>(&TgTypeParser::parseJsonAndGetEntity, data, "entities");
 	result->audio = tryParseJson<Audio>(&TgTypeParser::parseJsonAndGetAudio, data, "audio");
@@ -170,9 +174,11 @@ string TgTypeParser::parseMessage(const Message::Ptr& object) const {
 	appendToJson(result, "forward_from", parseUser(object->forwardFrom));
 	appendToJson(result, "forward_from_chat", parseChat(object->forwardFromChat));
 	appendToJson(result, "forward_from_message_id", object->forwardFromMessageId);
+	appendToJson(result, "forward_signature", object->forwardSignature);
 	appendToJson(result, "forward_date", object->forwardDate);
 	appendToJson(result, "reply_to_message", parseMessage(object->replyToMessage));
 	appendToJson(result, "edit_date", object->editDate);
+	appendToJson(result, "author_signature", object->authorSignature);
 	appendToJson(result, "text", object->text);
 	appendToJson(result, "audio", parseAudio(object->audio));
 	appendToJson(result, "document", parseDocument(object->document));

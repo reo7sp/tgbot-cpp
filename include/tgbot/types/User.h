@@ -43,6 +43,11 @@ public:
 	int32_t id;
 
 	/**
+	 * True, if this user is a bot
+	 */
+	bool isBot = false;
+
+	/**
 	 * User‘s or bot’s first name.
 	 */
 	std::string firstName;
