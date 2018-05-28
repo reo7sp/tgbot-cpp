@@ -24,6 +24,7 @@ var searchData=
   ['chatinstance',['chatInstance',['../class_tg_bot_1_1_callback_query.html#a1c60e74159327d5e9e686f4a1278a373',1,'TgBot::CallbackQuery']]],
   ['choseninlineresult',['chosenInlineResult',['../class_tg_bot_1_1_update.html#aa3fab72bc10111e2f8f8930c43a0ff8b',1,'TgBot::Update']]],
   ['city',['city',['../class_tg_bot_1_1_shipping_address.html#ac5fe3272ae0fe6e00214ca41b2888d69',1,'TgBot::ShippingAddress']]],
+  ['connectedwebsite',['connectedWebsite',['../class_tg_bot_1_1_message.html#a44a07b98262601eb86a5dc9ae0e3b932',1,'TgBot::Message']]],
   ['contact',['contact',['../class_tg_bot_1_1_message.html#adb3a1a65ce014085f7231f8d356b6c4f',1,'TgBot::Message']]],
   ['containsmasks',['containsMasks',['../class_tg_bot_1_1_sticker_set.html#ab1255b8783dc35b3535c46acbe3b4ca6',1,'TgBot::StickerSet']]],
   ['countrycode',['countryCode',['../class_tg_bot_1_1_shipping_address.html#a5e0083ea43cd7e629b645de8e88e8ab8',1,'TgBot::ShippingAddress']]],

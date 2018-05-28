@@ -64,7 +64,7 @@ var searchData=
   ['inputmediaphoto_2eh',['InputMediaPhoto.h',['../_input_media_photo_8h.html',1,'']]],
   ['inputmediavideo',['InputMediaVideo',['../class_tg_bot_1_1_input_media_video.html',1,'TgBot::InputMediaVideo'],['../class_tg_bot_1_1_input_media_video.html#a698a73c20b1c6c10be011543ec1253ea',1,'TgBot::InputMediaVideo::InputMediaVideo()']]],
   ['inputmediavideo_2eh',['InputMediaVideo.h',['../_input_media_video_8h.html',1,'']]],
-  ['inputmessagecontent',['InputMessageContent',['../class_tg_bot_1_1_input_message_content.html',1,'TgBot::InputMessageContent'],['../class_tg_bot_1_1_inline_query_result.html#ace9850f165c2e823696aab62391b3943',1,'TgBot::InlineQueryResult::inputMessageContent()'],['../class_tg_bot_1_1_input_message_content.html#adfe3185ed78c3bfdfb82bee0546eb100',1,'TgBot::InputMessageContent::InputMessageContent()']]],
+  ['inputmessagecontent',['InputMessageContent',['../class_tg_bot_1_1_input_message_content.html',1,'TgBot::InputMessageContent'],['../class_tg_bot_1_1_input_message_content.html#adfe3185ed78c3bfdfb82bee0546eb100',1,'TgBot::InputMessageContent::InputMessageContent()'],['../class_tg_bot_1_1_inline_query_result.html#ace9850f165c2e823696aab62391b3943',1,'TgBot::InlineQueryResult::inputMessageContent()']]],
   ['inputmessagecontent_2eh',['InputMessageContent.h',['../_input_message_content_8h.html',1,'']]],
   ['inputtextmessagecontent',['InputTextMessageContent',['../class_tg_bot_1_1_input_text_message_content.html',1,'TgBot::InputTextMessageContent'],['../class_tg_bot_1_1_input_text_message_content.html#a6926fc1a1b56159d2e2d92ed3de507e7',1,'TgBot::InputTextMessageContent::InputTextMessageContent()']]],
   ['inputtextmessagecontent_2eh',['InputTextMessageContent.h',['../_input_text_message_content_8h.html',1,'']]],

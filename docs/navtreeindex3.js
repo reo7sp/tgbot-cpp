@@ -1,5 +1,6 @@
 var NAVTREEINDEX3 =
 {
+"class_tg_bot_1_1_sticker_set.html":[5,1,61],
 "class_tg_bot_1_1_sticker_set.html#a029bf60e037c38c991706c378d545f34":[5,1,61,3],
 "class_tg_bot_1_1_sticker_set.html#a28755ab9c48ec7b667fd187976682631":[5,1,61,2],
 "class_tg_bot_1_1_sticker_set.html#ab1255b8783dc35b3535c46acbe3b4ca6":[5,1,61,1],
@@ -244,10 +245,9 @@ var NAVTREEINDEX3 =
 "dir_d44c64559bbebec7f509842c48db8b23.html":[8,0,0],
 "dir_edd914e3fbf8e89da3c33d1968dd487e.html":[8,0,0,0,2],
 "files.html":[8,0],
-"functions.html":[7,3,0],
 "functions.html":[7,3,0,0],
+"functions.html":[7,3,0],
 "functions_0x7e.html":[7,3,0,26],
 "functions_a.html":[7,3,0,1],
-"functions_b.html":[7,3,0,2],
-"functions_c.html":[7,3,0,3]
+"functions_b.html":[7,3,0,2]
 };

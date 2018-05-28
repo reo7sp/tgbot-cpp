@@ -8,6 +8,7 @@ var class_tg_bot_1_1_message =
     [ "captionEntities", "class_tg_bot_1_1_message.html#a112bce084dd4b01dc5918a1232c4cc05", null ],
     [ "channelChatCreated", "class_tg_bot_1_1_message.html#a537a751af11a7f18d92c1d70c93c9f2d", null ],
     [ "chat", "class_tg_bot_1_1_message.html#a773fa770b84fe97263a096c0ddfb096a", null ],
+    [ "connectedWebsite", "class_tg_bot_1_1_message.html#a44a07b98262601eb86a5dc9ae0e3b932", null ],
     [ "contact", "class_tg_bot_1_1_message.html#adb3a1a65ce014085f7231f8d356b6c4f", null ],
     [ "date", "class_tg_bot_1_1_message.html#ad49187c847973a024ab158103a8c87fd", null ],
     [ "deleteChatPhoto", "class_tg_bot_1_1_message.html#a35db549a420fd4b5a28b4a5a569770d5", null ],

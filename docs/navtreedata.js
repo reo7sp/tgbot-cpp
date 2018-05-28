@@ -38,8 +38,8 @@ var NAVTREEINDEX =
 "_api_8h.html",
 "class_tg_bot_1_1_api.html#af961a33f53579fee24090059dab328ea",
 "class_tg_bot_1_1_inline_query_result_gif.html#a470940afb4d7151f36dea3cb0b53b618",
-"class_tg_bot_1_1_sticker_set.html#a029bf60e037c38c991706c378d545f34",
-"functions_d.html"
+"class_tg_bot_1_1_sticker_set.html",
+"functions_c.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

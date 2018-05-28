@@ -34,6 +34,7 @@ var searchData=
   ['choseninlineresult_2eh',['ChosenInlineResult.h',['../_chosen_inline_result_8h.html',1,'']]],
   ['choseninlineresultlistener',['ChosenInlineResultListener',['../class_tg_bot_1_1_event_broadcaster.html#a5348beecf29bdf52c7d21985668bca93',1,'TgBot::EventBroadcaster']]],
   ['city',['city',['../class_tg_bot_1_1_shipping_address.html#ac5fe3272ae0fe6e00214ca41b2888d69',1,'TgBot::ShippingAddress']]],
+  ['connectedwebsite',['connectedWebsite',['../class_tg_bot_1_1_message.html#a44a07b98262601eb86a5dc9ae0e3b932',1,'TgBot::Message']]],
   ['connection',['Connection',['../class_tg_bot_1_1_http_server_1_1_connection.html',1,'TgBot::HttpServer&lt; Protocol &gt;::Connection'],['../class_tg_bot_1_1_http_server_1_1_connection.html#a91a16ce20e8d889657a7d2c982d8b1c8',1,'TgBot::HttpServer::Connection::Connection()']]],
   ['contact',['Contact',['../class_tg_bot_1_1_contact.html',1,'TgBot::Contact'],['../class_tg_bot_1_1_message.html#adb3a1a65ce014085f7231f8d356b6c4f',1,'TgBot::Message::contact()']]],
   ['contact_2eh',['Contact.h',['../_contact_8h.html',1,'']]],
