@@ -245,6 +245,10 @@ public:
 	 */
 	Message::Ptr pinnedMessage;
 
+	/**
+	 * Optional. The domain name of the website on which the user has logged in.
+	 */
+	std::string connectedWebsite;
 };
 
 }
