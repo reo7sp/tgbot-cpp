@@ -159,6 +159,8 @@ Message::Ptr TgTypeParser::parseJsonAndGetMessage(const ptree& data) const {
 	result->channelChatCreated = data.get("channel_chat_created", false);
 	result->migrateToChatId = data.get<int64_t>("migrate_to_chat_id", 0);
 	result->migrateFromChatId = data.get<int64_t>("migrate_from_chat_id", 0);
+	result->pinnedMessage = tryParseJson<Message>(&TgTypeParser::parseJsonAndGetMessage, data, "pinned_message");
+	result->connectedWebsite = data.get("connected_website", "");
 	return result;
 }
 
@@ -200,6 +202,8 @@ string TgTypeParser::parseMessage(const Message::Ptr& object) const {
 	appendToJson(result, "channel_chat_created", object->channelChatCreated);
 	appendToJson(result, "migrate_to_chat_id", object->migrateToChatId);
 	appendToJson(result, "migrate_from_chat_id", object->migrateFromChatId);
+	appendToJson(result, "pinned_message", parseMessage(object->pinnedMessage));
+	appendToJson(result, "connected_website", object->connectedWebsite);
 	result.erase(result.length() - 1);
 	result += '}';
 	return result;

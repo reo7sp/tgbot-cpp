@@ -71,7 +71,7 @@ Message::Ptr Api::forwardMessage(int64_t chatId, int64_t fromChatId, int32_t mes
 	return TgTypeParser::getInstance().parseJsonAndGetMessage(sendRequest("forwardMessage", args));
 }
 
-Message::Ptr Api::sendPhoto(int64_t chatId, const InputFile::Ptr photo, const string& caption, int32_t replyToMessageId, const GenericReply::Ptr replyMarkup, bool disableNotification) const {
+Message::Ptr Api::sendPhoto(int64_t chatId, const InputFile::Ptr photo, const string& caption, int32_t replyToMessageId, const GenericReply::Ptr replyMarkup, const string& parseMode, bool disableNotification) const {
 	vector<HttpReqArg> args;
 	args.push_back(HttpReqArg("chat_id", chatId));
 	args.push_back(HttpReqArg("photo", photo->data, true, photo->mimeType, photo->fileName));
@@ -84,13 +84,16 @@ Message::Ptr Api::sendPhoto(int64_t chatId, const InputFile::Ptr photo, const st
 	if (replyMarkup) {
 		args.push_back(HttpReqArg("reply_markup", TgTypeParser::getInstance().parseGenericReply(replyMarkup)));
 	}
+	if (!parseMode.empty()) {
+		args.push_back(HttpReqArg("parse_mode", parseMode));
+	}
 	if (disableNotification){
 		args.push_back(HttpReqArg("disable_notification", disableNotification));
 	}
 	return TgTypeParser::getInstance().parseJsonAndGetMessage(sendRequest("sendPhoto", args));
 }
 
-Message::Ptr Api::sendPhoto(int64_t chatId, const string& photoId, const string& caption, int32_t replyToMessageId, const GenericReply::Ptr replyMarkup, bool disableNotification) const {
+Message::Ptr Api::sendPhoto(int64_t chatId, const string& photoId, const string& caption, int32_t replyToMessageId, const GenericReply::Ptr replyMarkup, const string& parseMode, bool disableNotification) const {
 	vector<HttpReqArg> args;
 	args.push_back(HttpReqArg("chat_id", chatId));
 	args.push_back(HttpReqArg("photo", photoId));
@@ -103,13 +106,16 @@ Message::Ptr Api::sendPhoto(int64_t chatId, const string& photoId, const string&
 	if (replyMarkup) {
 		args.push_back(HttpReqArg("reply_markup", TgTypeParser::getInstance().parseGenericReply(replyMarkup)));
 	}
+	if (!parseMode.empty()) {
+		args.push_back(HttpReqArg("parse_mode", parseMode));
+	}
 	if (disableNotification){
 		args.push_back(HttpReqArg("disable_notification", disableNotification));
 	}
 	return TgTypeParser::getInstance().parseJsonAndGetMessage(sendRequest("sendPhoto", args));
 }
 
-Message::Ptr Api::sendAudio(int64_t chatId, const InputFile::Ptr audio, const string &caption, int32_t duration, const string& performer, const string& title, int32_t replyToMessageId, const GenericReply::Ptr replyMarkup, bool disableNotification) const {
+Message::Ptr Api::sendAudio(int64_t chatId, const InputFile::Ptr audio, const string &caption, int32_t duration, const string& performer, const string& title, int32_t replyToMessageId, const GenericReply::Ptr replyMarkup, const string& parseMode, bool disableNotification) const {
 	vector<HttpReqArg> args;
 	args.push_back(HttpReqArg("chat_id", chatId));
 	args.push_back(HttpReqArg("audio", audio->data, true, audio->mimeType, audio->fileName));
@@ -131,13 +137,16 @@ Message::Ptr Api::sendAudio(int64_t chatId, const InputFile::Ptr audio, const st
 	if (replyMarkup) {
 		args.push_back(HttpReqArg("reply_markup", TgTypeParser::getInstance().parseGenericReply(replyMarkup)));
 	}
+	if (!parseMode.empty()) {
+		args.push_back(HttpReqArg("parse_mode", parseMode));
+	}
 	if (disableNotification){
 		args.push_back(HttpReqArg("disable_notification", disableNotification));
 	}
 	return TgTypeParser::getInstance().parseJsonAndGetMessage(sendRequest("sendAudio", args));
 }
 
-Message::Ptr Api::sendAudio(int64_t chatId, const string& audioId, const string &caption, int32_t duration, const string& performer, const string& title, int32_t replyToMessageId, const GenericReply::Ptr replyMarkup, bool disableNotification) const {
+Message::Ptr Api::sendAudio(int64_t chatId, const string& audioId, const string &caption, int32_t duration, const string& performer, const string& title, int32_t replyToMessageId, const GenericReply::Ptr replyMarkup, const string& parseMode, bool disableNotification) const {
 	vector<HttpReqArg> args;
 	args.push_back(HttpReqArg("chat_id", chatId));
 	args.push_back(HttpReqArg("audio", audioId));
@@ -159,13 +168,16 @@ Message::Ptr Api::sendAudio(int64_t chatId, const string& audioId, const string 
 	if (replyMarkup) {
 		args.push_back(HttpReqArg("reply_markup", TgTypeParser::getInstance().parseGenericReply(replyMarkup)));
 	}
+	if (!parseMode.empty()) {
+		args.push_back(HttpReqArg("parse_mode", parseMode));
+	}
 	if (disableNotification){
 		args.push_back(HttpReqArg("disable_notification", disableNotification));
 	}
 	return TgTypeParser::getInstance().parseJsonAndGetMessage(sendRequest("sendAudio", args));
 }
 
-Message::Ptr Api::sendDocument(int64_t chatId, const InputFile::Ptr document, const string &caption, int32_t replyToMessageId, const GenericReply::Ptr replyMarkup, bool disableNotification) const {
+Message::Ptr Api::sendDocument(int64_t chatId, const InputFile::Ptr document, const string &caption, int32_t replyToMessageId, const GenericReply::Ptr replyMarkup, const string& parseMode, bool disableNotification) const {
 	vector<HttpReqArg> args;
 	args.push_back(HttpReqArg("chat_id", chatId));
 	args.push_back(HttpReqArg("document", document->data, true, document->mimeType, document->fileName));
@@ -178,13 +190,16 @@ Message::Ptr Api::sendDocument(int64_t chatId, const InputFile::Ptr document, co
 	if (replyMarkup) {
 		args.push_back(HttpReqArg("reply_markup", TgTypeParser::getInstance().parseGenericReply(replyMarkup)));
 	}
+	if (!parseMode.empty()) {
+		args.push_back(HttpReqArg("parse_mode", parseMode));
+	}
 	if (disableNotification){
 		args.push_back(HttpReqArg("disable_notification", disableNotification));
 	}
 	return TgTypeParser::getInstance().parseJsonAndGetMessage(sendRequest("sendDocument", args));
 }
 
-Message::Ptr Api::sendDocument(int64_t chatId, const string& document, const string &caption, int32_t replyToMessageId, const GenericReply::Ptr replyMarkup, bool disableNotification) const {
+Message::Ptr Api::sendDocument(int64_t chatId, const string& document, const string &caption, int32_t replyToMessageId, const GenericReply::Ptr replyMarkup, const string& parseMode, bool disableNotification) const {
 	vector<HttpReqArg> args;
 	args.push_back(HttpReqArg("chat_id", chatId));
 	args.push_back(HttpReqArg("document", document));
@@ -196,6 +211,9 @@ Message::Ptr Api::sendDocument(int64_t chatId, const string& document, const str
 	}
 	if (replyMarkup) {
 		args.push_back(HttpReqArg("reply_markup", TgTypeParser::getInstance().parseGenericReply(replyMarkup)));
+	}
+	if (!parseMode.empty()) {
+		args.push_back(HttpReqArg("parse_mode", parseMode));
 	}
 	if (disableNotification){
 		args.push_back(HttpReqArg("disable_notification", disableNotification));
@@ -307,10 +325,13 @@ bool Api::deleteStickerPositionInSet(const string& sticker) const {
 	return sendRequest("setStickerPositionInSet", args).get<bool>("", false);
 }
 
-Message::Ptr Api::sendVideo(int64_t chatId, const InputFile::Ptr video, int32_t duration, int32_t width, int32_t height, const string &caption, int32_t replyToMessageId, const GenericReply::Ptr replyMarkup, bool disableNotification) const {
+Message::Ptr Api::sendVideo(int64_t chatId, const InputFile::Ptr video, bool supportsStreaming, int32_t duration, int32_t width, int32_t height, const string &caption, int32_t replyToMessageId, const GenericReply::Ptr replyMarkup, const string& parseMode, bool disableNotification) const {
 	vector<HttpReqArg> args;
 	args.push_back(HttpReqArg("chat_id", chatId));
 	args.push_back(HttpReqArg("video", video->data, true, video->mimeType, video->fileName));
+	if (supportsStreaming) {
+		args.push_back(HttpReqArg("supports_streaming", supportsStreaming));
+	}
 	if (duration) {
 		args.push_back(HttpReqArg("duration", duration));
 	}
@@ -328,6 +349,9 @@ Message::Ptr Api::sendVideo(int64_t chatId, const InputFile::Ptr video, int32_t 
 	}
 	if (replyMarkup) {
 		args.push_back(HttpReqArg("reply_markup", TgTypeParser::getInstance().parseGenericReply(replyMarkup)));
+	}
+	if (!parseMode.empty()) {
+		args.push_back(HttpReqArg("parse_mode", parseMode));
 	}
 	if (disableNotification){
 		args.push_back(HttpReqArg("disable_notification", disableNotification));
@@ -335,10 +359,13 @@ Message::Ptr Api::sendVideo(int64_t chatId, const InputFile::Ptr video, int32_t 
 	return TgTypeParser::getInstance().parseJsonAndGetMessage(sendRequest("sendVideo", args));
 }
 
-Message::Ptr Api::sendVideo(int64_t chatId, const string& videoId, int32_t duration, int32_t width, int32_t height, const string &caption, int32_t replyToMessageId, const GenericReply::Ptr replyMarkup, bool disableNotification) const {
+Message::Ptr Api::sendVideo(int64_t chatId, const string& videoId, bool supportsStreaming, int32_t duration, int32_t width, int32_t height, const string &caption, int32_t replyToMessageId, const GenericReply::Ptr replyMarkup, const string& parseMode, bool disableNotification) const {
 	vector<HttpReqArg> args;
 	args.push_back(HttpReqArg("chat_id", chatId));
 	args.push_back(HttpReqArg("video", videoId));
+	if (supportsStreaming) {
+		args.push_back(HttpReqArg("supports_streaming", supportsStreaming));
+	}
 	if (duration) {
 		args.push_back(HttpReqArg("duration", duration));
 	}
@@ -356,6 +383,9 @@ Message::Ptr Api::sendVideo(int64_t chatId, const string& videoId, int32_t durat
 	}
 	if (replyMarkup) {
 		args.push_back(HttpReqArg("reply_markup", TgTypeParser::getInstance().parseGenericReply(replyMarkup)));
+	}
+	if (!parseMode.empty()) {
+		args.push_back(HttpReqArg("parse_mode", parseMode));
 	}
 	if (disableNotification){
 		args.push_back(HttpReqArg("disable_notification", disableNotification));
@@ -417,7 +447,7 @@ vector<Message::Ptr> Api::sendMediaGroup(int64_t chatId, const vector<InputMedia
 	return TgTypeParser::getInstance().parseJsonAndGetArray<Message>(&TgTypeParser::parseJsonAndGetMessage, sendRequest("sendMediaGroup", args));
 }
 
-Message::Ptr Api::sendVoice(int64_t chatId, const InputFile::Ptr voice, const string &caption, int duration, int32_t replyToMessageId, const GenericReply::Ptr replyMarkup, bool disableNotification) const {
+Message::Ptr Api::sendVoice(int64_t chatId, const InputFile::Ptr voice, const string &caption, int duration, int32_t replyToMessageId, const GenericReply::Ptr replyMarkup, const string& parseMode, bool disableNotification) const {
 	vector<HttpReqArg> args;
 	args.push_back(HttpReqArg("chat_id", chatId));
 	args.push_back(HttpReqArg("voice", voice->data, true, voice->mimeType, voice->fileName));
@@ -433,13 +463,16 @@ Message::Ptr Api::sendVoice(int64_t chatId, const InputFile::Ptr voice, const st
 	if (replyMarkup) {
 		args.push_back(HttpReqArg("reply_markup", TgTypeParser::getInstance().parseGenericReply(replyMarkup)));
 	}
+	if (!parseMode.empty()) {
+		args.push_back(HttpReqArg("parse_mode", parseMode));
+	}
 	if (disableNotification){
 		args.push_back(HttpReqArg("disable_notification", disableNotification));
 	}
 	return TgTypeParser::getInstance().parseJsonAndGetMessage(sendRequest("sendVoice", args));
 }
 
-Message::Ptr Api::sendVoice(int64_t chatId, const string& voiceId, const string &caption, int duration, int32_t replyToMessageId, const GenericReply::Ptr replyMarkup, bool disableNotification) const {
+Message::Ptr Api::sendVoice(int64_t chatId, const string& voiceId, const string &caption, int duration, int32_t replyToMessageId, const GenericReply::Ptr replyMarkup, const string& parseMode, bool disableNotification) const {
 	vector<HttpReqArg> args;
 	args.push_back(HttpReqArg("chat_id", chatId));
 	args.push_back(HttpReqArg("voice", voiceId));
@@ -454,6 +487,9 @@ Message::Ptr Api::sendVoice(int64_t chatId, const string& voiceId, const string 
 	}
 	if (replyMarkup) {
 		args.push_back(HttpReqArg("reply_markup", TgTypeParser::getInstance().parseGenericReply(replyMarkup)));
+	}
+	if (!parseMode.empty()) {
+		args.push_back(HttpReqArg("parse_mode", parseMode));
 	}
 	if (disableNotification){
 		args.push_back(HttpReqArg("disable_notification", disableNotification));
