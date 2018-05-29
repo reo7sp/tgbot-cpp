@@ -31,7 +31,8 @@
 namespace TgBot {
 
 /**
- * This object represents a video message (available in Telegram apps as of v.4.0).
+ * @brief This object represents a video message (available in Telegram apps as of v.4.0).
+ * 
  * @ingroup types
  */
 class VideoNote {
@@ -40,27 +41,27 @@ public:
     typedef std::shared_ptr<VideoNote> Ptr;
 
 	/**
-	 * Unique identifier for this file.
+	 * @brief Unique identifier for this file.
 	 */
 	std::string fileId;
 
 	/**
-	 * Video width and height as defined by sender.
+	 * @brief Video width and height as defined by sender.
 	 */
 	int32_t length;
 
 	/**
-	 * Duration of the video in seconds as defined by sender.
+	 * @brief Duration of the video in seconds as defined by sender.
 	 */
 	int32_t duration;
 
 	/**
-	 * Optional. Video thumbnail.
+	 * @brief Optional. Video thumbnail.
 	 */
 	PhotoSize::Ptr thumb;
 
 	/**
-	 * Optional. File size.
+	 * @brief Optional. File size.
 	 */
 	int32_t fileSize;
 };

@@ -13,7 +13,8 @@
 namespace TgBot {
 
 /**
- * Represents a link to an mp3 audio file.
+ * @brief Represents a link to an mp3 audio file.
+ * 
  * @ingroup types
  */
 class InlineQueryResultAudio : public InlineQueryResult {
@@ -28,17 +29,17 @@ public:
 	}
 
 	/**
-	 * A valid URL for the audio file
+	 * @brief A valid URL for the audio file
 	 */
 	std::string audioUrl;
 
 	/**
-	* Optional. Performer
+	* @brief Optional. Performer
 	*/
 	std::string performer;
 
 	/**
-	* Optional. Audio duration in seconds
+	* @brief Optional. Audio duration in seconds
 	*/
 	int32_t audioDuration;
 };

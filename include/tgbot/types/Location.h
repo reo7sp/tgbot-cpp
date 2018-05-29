@@ -28,7 +28,8 @@
 namespace TgBot {
 
 /**
- * This object represents a point on the map.
+ * @brief This object represents a point on the map.
+ * 
  * @ingroup types
  */
 class Location {
@@ -37,12 +38,12 @@ public:
 	typedef std::shared_ptr<Location> Ptr;
 
 	/**
-	 * Longitude as defined by sender.
+	 * @brief Longitude as defined by sender.
 	 */
 	float longitude;
 
 	/**
-	 * Latitude as defined by sender.
+	 * @brief Latitude as defined by sender.
 	 */
 	float latitude;
 };

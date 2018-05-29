@@ -13,7 +13,8 @@
 namespace TgBot {
 
 /**
- * Represents a link to a video animation (H.264/MPEG-4 AVC video without sound) stored on the Telegram servers.
+ * @brief Represents a link to a video animation (H.264/MPEG-4 AVC video without sound) stored on the Telegram servers.
+ * 
  * @ingroup types
  */
 class InlineQueryResultCachedMpeg4Gif : public InlineQueryResult {
@@ -27,7 +28,7 @@ public:
 	}
 
 	/**
-	 * A valid file identifier for the MP4 file
+	 * @brief A valid file identifier for the MP4 file
 	 */
 	std::string mpeg4FileId;
 

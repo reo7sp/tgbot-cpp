@@ -28,7 +28,7 @@
 namespace TgBot {
 
 /**
- * This abstract class is base of all keyboard related events.
+ * @brief This abstract class is base of all keyboard related events.
  * @ingroup types
  */
 class GenericReply {

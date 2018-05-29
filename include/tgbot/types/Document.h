@@ -31,7 +31,8 @@
 namespace TgBot {
 
 /**
- * This object represents a general file (as opposed to photos and audio files).
+ * @brief This object represents a general file (as opposed to photos and audio files).
+ * 
  * @ingroup types
  */
 class Document {
@@ -40,27 +41,27 @@ public:
 	typedef std::shared_ptr<Document> Ptr;
 
 	/**
-	 * Unique file identifier.
+	 * @brief Unique file identifier.
 	 */
 	std::string fileId;
 
 	/**
-	 * Optional. Document thumbnail as defined by sender.
+	 * @brief Optional. Document thumbnail as defined by sender.
 	 */
 	PhotoSize::Ptr thumb;
 
 	/**
-	 * Optional. Original filename as defined by sender.
+	 * @brief Optional. Original filename as defined by sender.
 	 */
 	std::string fileName;
 
 	/**
-	 * Optional. MIME type of the file as defined by sender.
+	 * @brief Optional. MIME type of the file as defined by sender.
 	 */
 	std::string mimeType;
 
 	/**
-	 * Optional. File size.
+	 * @brief Optional. File size.
 	 */
 	int32_t fileSize;
 };

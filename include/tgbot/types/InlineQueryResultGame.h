@@ -13,7 +13,8 @@
 namespace TgBot {
 
 /**
- * Represents a Game.
+ * @brief Represents a Game.
+ * 
  * @ingroup types
  */
 class InlineQueryResultGame : public InlineQueryResult {
@@ -27,7 +28,7 @@ public:
 	}
 
 	/**
-	 * Short name of the game
+	 * @brief Short name of the game
 	 */
 	std::string gameShortName;
 };

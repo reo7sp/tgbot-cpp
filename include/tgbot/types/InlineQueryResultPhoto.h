@@ -13,7 +13,8 @@
 namespace TgBot {
 
 /**
- * Represents a link to a photo.
+ * @brief Represents a link to a photo.
+ * 
  * @ingroup types
  */
 class InlineQueryResultPhoto : public InlineQueryResult {
@@ -29,27 +30,27 @@ public:
 	}
 
 	/**
-	 * A valid URL of the photo.
+	 * @brief A valid URL of the photo.
 	 */
 	std::string photoUrl;
 
 	/**
-	 * URL of the thumbnail for the photo
+	 * @brief URL of the thumbnail for the photo
 	 */
 	std::string thumbUrl;
 
 	/**
-	 * Optional. Width of the photo.
+	 * @brief Optional. Width of the photo.
 	 */
 	int32_t photoWidth;
 
 	/**
-	 * Optional. Height of the photo.
+	 * @brief Optional. Height of the photo.
 	 */
 	int32_t photoHeight;
 
 	/**
-	 * Optional. Short description of the result.
+	 * @brief Optional. Short description of the result.
 	 */
 	std::string description;
 };

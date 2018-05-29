@@ -10,9 +10,10 @@
 namespace TgBot {
 
 /**
-* Represents the content of a location message to be sent as the result of an inline query.
-* @ingroup types
-*/
+ * @brief Represents the content of a location message to be sent as the result of an inline query.
+ * 
+ * @ingroup types
+ */
 class InputLocationMessageContent : public InputMessageContent {
 public:
 	typedef std::shared_ptr<InputLocationMessageContent> Ptr;
@@ -22,13 +23,13 @@ public:
 	{}
 
 	/**
-	* Latitude of the location in degrees
-	*/
+	 * @brief Latitude of the location in degrees
+	 */
 	float latitude;
 
 	/**
-	* Longitude of the location in degrees
-	*/
+	 * @brief Longitude of the location in degrees
+	 */
 	float longitude;
 
 	virtual ~InputLocationMessageContent() { }

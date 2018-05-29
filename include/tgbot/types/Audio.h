@@ -29,7 +29,8 @@
 namespace TgBot {
 
 /**
- * This object represents an audio file (voice note).
+ * @brief This object represents an audio file (voice note).
+ * 
  * @ingroup types
  */
 class Audio {
@@ -38,34 +39,34 @@ public:
 	typedef std::shared_ptr<Audio> Ptr;
 
 	/**
-	 * Unique identifier for this file.
+	 * @brief Unique identifier for this file.
 	 */
 	std::string fileId;
 
 	/**
-	 * Duration of the audio in seconds as defined by sender.
+	 * @brief Duration of the audio in seconds as defined by sender.
 	 */
 	int32_t duration;
 
 	/**
-	 * Optional. Performer of the audio as defined by sender
+	 * @brief Optional. Performer of the audio as defined by sender
 	 * or by audio tags
 	 */
 	std::string performer;
 
 	/**
-	* Optional. Title of the audio as defined by sender or 
+	* @brief Optional. Title of the audio as defined by sender or 
 	* by audio tags
 	*/
 	std::string title;
 
 	/**
-	 * Optional. MIME type of the file as defined by sender.
+	 * @brief Optional. MIME type of the file as defined by sender.
 	 */
 	std::string mimeType;
 
 	/**
-	 * Optional. File size.
+	 * @brief Optional. File size.
 	 */
 	int32_t fileSize;
 };

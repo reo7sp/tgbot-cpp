@@ -29,7 +29,8 @@
 namespace TgBot {
 
 /**
- * This object represents one size of a photo or a file / sticker thumbnail.
+ * @brief This object represents one size of a photo or a file / sticker thumbnail.
+ * 
  * @ingroup types
  */
 class PhotoSize {
@@ -38,22 +39,22 @@ public:
 	typedef std::shared_ptr<PhotoSize> Ptr;
 
 	/**
-	 * Unique identifier for this file.
+	 * @brief Unique identifier for this file.
 	 */
 	std::string fileId;
 
 	/**
-	 * Photo width.
+	 * @brief Photo width.
 	 */
 	int32_t width;
 
 	/**
-	 * Photo height.
+	 * @brief Photo height.
 	 */
 	int32_t height;
 
 	/**
-	 * Optional. File size.
+	 * @brief Optional. File size.
 	 */
 	int32_t fileSize;
 };

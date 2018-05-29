@@ -32,7 +32,8 @@
 namespace TgBot {
 
 /**
- * This object holds other objects specific for this bot instance.
+ * @brief This object holds other objects specific for this bot instance.
+ * 
  * @ingroup general
  */
 class Bot {

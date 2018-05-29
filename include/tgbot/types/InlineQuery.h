@@ -14,7 +14,8 @@
 namespace TgBot {
 
 /**
- * This object represents an incoming inline query.
+ * @brief This object represents an incoming inline query.
+ * 
  * @ingroup types
  */
 class InlineQuery {
@@ -22,27 +23,27 @@ public:
 	typedef std::shared_ptr<InlineQuery> Ptr;
 
 	/**
-	 * Unique query identifier.
+	 * @brief Unique query identifier.
 	 */
 	std::string id;
 
 	/**
-	 * Sender.
+	 * @brief Sender.
 	 */
 	User::Ptr from;
 
 	/**
-	 * Optional. Sender location, only for bots that request user location
+	 * @brief Optional. Sender location, only for bots that request user location
 	 */
 	Location::Ptr location;
 
 	/**
-	 * Text of the query.
+	 * @brief Text of the query.
 	 */
 	std::string query;
 
 	/**
-	 * Offset of the results to be returned.
+	 * @brief Offset of the results to be returned.
 	 */
 	std::string offset;
 };

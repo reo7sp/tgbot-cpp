@@ -31,9 +31,10 @@
 namespace TgBot {
 
 /**
-* This object represents the content of a media message to be sent. 
-* @ingroup types
-*/
+ * @brief This object represents the content of a media message to be sent. 
+ * 
+ * @ingroup types
+ */
 class InputMedia {
 public:
 	typedef std::shared_ptr<InputMedia> Ptr;
@@ -44,42 +45,42 @@ public:
     };
 
     /**
-     * Type of the result, It should be one of TYPE::PHOTO/TYPE::VIDEO
+     * @brief Type of the result, It should be one of TYPE::PHOTO/TYPE::VIDEO
      */
     TYPE type;
 
     /**
-     * File to send. Pass a file_id to send a file that exists on the Telegram servers (recommended), pass an HTTP URL for Telegram to get a file from the Internet, or pass "attach://<file_attach_name>" to upload a new one using multipart/form-data under <file_attach_name> name.
+     * @brief File to send. Pass a file_id to send a file that exists on the Telegram servers (recommended), pass an HTTP URL for Telegram to get a file from the Internet, or pass "attach://<file_attach_name>" to upload a new one using multipart/form-data under <file_attach_name> name.
      */
     std::string media;
 
     /**
-     * Optional. Caption of the photo to be sent, 0-200 characters
+     * @brief Optional. Caption of the photo to be sent, 0-200 characters
      */
     std::string caption;
 
     /**
-     * Optional. Send Markdown or HTML, if you want Telegram apps to show bold, italic, fixed-width text or inline URLs in the media caption.
+     * @brief Optional. Send Markdown or HTML, if you want Telegram apps to show bold, italic, fixed-width text or inline URLs in the media caption.
      */
     std::string parseMode;
     
     /**
-     * Optional. Video width
+     * @brief Optional. Video width
      */
     int32_t width = 0;
 
     /**
-     * Optional. Video height
+     * @brief Optional. Video height
      */
     int32_t height = 0;
 
     /**
-     * Optional. Video duration
+     * @brief Optional. Video duration
      */
     int32_t duration = 0;
 
     /**
-     * Optional. Pass True, if the uploaded video is suitable for streaming
+     * @brief Optional. Pass True, if the uploaded video is suitable for streaming
      */
     bool supportsStreaming = false;
 };

@@ -30,7 +30,8 @@
 namespace TgBot {
 
 /**
- * This class handles long polling and updates parsing.
+ * @brief This class handles long polling and updates parsing.
+ * 
  * @ingroup net
  */
 class TgLongPoll {
@@ -40,7 +41,7 @@ public:
 	TgLongPoll(const Bot& bot, int32_t = 100, int32_t = 60, const std::shared_ptr<std::vector<std::string>>& = nullptr);
 
 	/**
-	 * Starts long poll. After new update will come, this method will parse it and send to EventHandler which invokes your listeners. Designed to be executed in a loop.
+	 * @brief Starts long poll. After new update will come, this method will parse it and send to EventHandler which invokes your listeners. Designed to be executed in a loop.
 	 */
 	void start();
 

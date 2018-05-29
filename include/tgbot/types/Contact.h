@@ -29,7 +29,8 @@
 namespace TgBot {
 
 /**
- * This object represents a phone contact.
+ * @brief This object represents a phone contact.
+ * 
  * @ingroup types
  */
 class Contact {
@@ -38,22 +39,22 @@ public:
 	typedef std::shared_ptr<Contact> Ptr;
 
 	/**
-	 * Contact's phone number.
+	 * @brief Contact's phone number.
 	 */
 	std::string phoneNumber;
 
 	/**
-	 * Contact's first name.
+	 * @brief Contact's first name.
 	 */
 	std::string firstName;
 
 	/**
-	 * Optional. Contact's last name.
+	 * @brief Optional. Contact's last name.
 	 */
 	std::string lastName;
 
 	/**
-	 * Optional. Contact's user identifier in Telegram.
+	 * @brief Optional. Contact's user identifier in Telegram.
 	 */
 	std::string userId;
 };

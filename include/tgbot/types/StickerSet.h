@@ -33,7 +33,8 @@
 namespace TgBot {
 
 /**
- * This object represents a sticker set.
+ * @brief This object represents a sticker set.
+ * 
  * @ingroup types
  */
 class StickerSet {
@@ -41,22 +42,22 @@ public:
 	typedef std::shared_ptr<StickerSet> Ptr;
 
 	/**
-	 * Sticker set name.
+	 * @brief Sticker set name.
 	 */
 	std::string name;
 
     /**
-	 * Sticker set title.
+	 * @brief Sticker set title.
 	 */
 	std::string title;
 
     /**
-     * True, if the sticker set contains masks.
+     * @brief True, if the sticker set contains masks.
      */
     bool containsMasks = false;
 
 	/**
-	 * List of all set stickers.
+	 * @brief List of all set stickers.
 	 */
 	std::vector<Sticker::Ptr> stickers;
 };

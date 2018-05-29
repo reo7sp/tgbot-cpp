@@ -44,7 +44,8 @@
 namespace TgBot {
 
 /**
- * This object represents a message.
+ * @brief This object represents a message.
+ * 
  * @ingroup types
  */
 class Message {
@@ -61,192 +62,192 @@ public:
 	}
 
 	/**
-	 * Unique message identifier.
+	 * @brief Unique message identifier.
 	 */
 	int32_t messageId;
 
 	/**
-	 * Optional. Sender, can be empty for messages sent to channels.
+	 * @brief Optional. Sender, can be empty for messages sent to channels.
 	 */
 	User::Ptr from;
 
 	/**
-	 * Date the message was sent in Unix time.
+	 * @brief Date the message was sent in Unix time.
 	 */
 	int32_t date;
 
 	/**
-	 * Conversation the message belongs to.
+	 * @brief Conversation the message belongs to.
 	 */
 	Chat::Ptr chat;
 
 	/**
-	 * Optional. For forwarded messages, sender of the original message.
+	 * @brief Optional. For forwarded messages, sender of the original message.
 	 */
 	User::Ptr forwardFrom;
 
 	/**
-	 * Optional. For messages forwarded from a channel, information about the original channel
+	 * @brief Optional. For messages forwarded from a channel, information about the original channel
 	 */
 	Chat::Ptr forwardFromChat;
 
 	/**
-	 * Optional. For forwarded channel posts, identifier of the original message in the channel
+	 * @brief Optional. For forwarded channel posts, identifier of the original message in the channel
 	 */
 	int32_t forwardFromMessageId;
 
 	/**
-	 * Optional. For messages forwarded from channels, signature of the post author if present.
+	 * @brief Optional. For messages forwarded from channels, signature of the post author if present.
 	 */
 	std::string forwardSignature;
 
 	/**
-	 * Optional. For forwarded messages, date the original message was sent in Unix time.
+	 * @brief Optional. For forwarded messages, date the original message was sent in Unix time.
 	 */
 	int32_t forwardDate;
 
 	/**
-	 * Optional. For replies, the original message. Note that the Message object in this field will not contain further reply_to_message fields even if it itself is a reply.
+	 * @brief Optional. For replies, the original message. Note that the Message object in this field will not contain further reply_to_message fields even if it itself is a reply.
 	 */
 	Message::Ptr replyToMessage;
 
 	/**
-	 * Optional. Date the message was last edited in Unix time.
+	 * @brief Optional. Date the message was last edited in Unix time.
 	 */
 	int32_t editDate;
 
 	/**
-	 * Optional. Signature of the post author for messages in channels.
+	 * @brief Optional. Signature of the post author for messages in channels.
 	 */
 	std::string authorSignature;
 
 	/**
-	 * Optional. For text messages, the actual UTF-8 text of the message.
+	 * @brief Optional. For text messages, the actual UTF-8 text of the message.
 	 */
 	std::string text;
 
 	/**
-	 * Optional. For text messages, special entities like usernames, URLs, bot commands, etc. that appear in the text.
+	 * @brief Optional. For text messages, special entities like usernames, URLs, bot commands, etc. that appear in the text.
 	 */
 	std::vector<MessageEntity::Ptr> entities;
 
 	/**
-	 * Optional. For messages with a caption, special entities like usernames, URLs, bot commands, etc. that appear in the caption
+	 * @brief Optional. For messages with a caption, special entities like usernames, URLs, bot commands, etc. that appear in the caption
 	 */
 	std::vector<MessageEntity::Ptr> captionEntities;
 
 	/**
-	 * Optional. Message is an audio file, information about the file.
+	 * @brief Optional. Message is an audio file, information about the file.
 	 */
 	Audio::Ptr audio;
 
 	/**
-	 * Optional. Message is a general file, information about the file.
+	 * @brief Optional. Message is a general file, information about the file.
 	 */
 	Document::Ptr document;
 
 	/**
-	 * Optional. Message is a photo, available sizes of the photo.
+	 * @brief Optional. Message is a photo, available sizes of the photo.
 	 */
 	std::vector<PhotoSize::Ptr> photo;
 
 	/**
-	 * Optional. Message is a sticker, information about the sticker.
+	 * @brief Optional. Message is a sticker, information about the sticker.
 	 */
 	Sticker::Ptr sticker;
 
 	/**
-	 * Optional. Message is a video, information about the video.
+	 * @brief Optional. Message is a video, information about the video.
 	 */
 	Video::Ptr video;
 
 	/**
-	 * Optional. Message is a voice message, information about the file.
+	 * @brief Optional. Message is a voice message, information about the file.
 	 */
 	Voice::Ptr voice;
 
 	/**
-	 * Optional. Caption for the document, photo or video, 0-200 characters.
+	 * @brief Optional. Caption for the document, photo or video, 0-200 characters.
 	 */
 	std::string caption;
 
 	/**
-	 * Optional. Message is a shared contact, information about the contact.
+	 * @brief Optional. Message is a shared contact, information about the contact.
 	 */
 	Contact::Ptr contact;
 
 	/**
-	 * Optional. Message is a shared location, information about the location.
+	 * @brief Optional. Message is a shared location, information about the location.
 	 */
 	Location::Ptr location;
 
 	/**
-	 * Optional. Message is a venue, information about the venue.
+	 * @brief Optional. Message is a venue, information about the venue.
 	 */
 	Venue::Ptr venue;
 
 	/**
-	 * Optional. A new member was added to the group, information about them (this member may be bot itself).
+	 * @brief Optional. A new member was added to the group, information about them (this member may be bot itself).
 	 */
 	User::Ptr newChatMember;
 
 	/**
-	 * Optional. New members that were added to the group or supergroup and information about them (the bot itself may be one of these members)
+	 * @brief Optional. New members that were added to the group or supergroup and information about them (the bot itself may be one of these members)
 	 */
 	std::vector<User::Ptr> newChatMembers;
 
 	/**
-	 * Optional. A member was removed from the group, information about them (this member may be bot itself).
+	 * @brief Optional. A member was removed from the group, information about them (this member may be bot itself).
 	 */
 	User::Ptr leftChatMember;
 
 	/**
-	 * Optional. A group title was changed to this value.
+	 * @brief Optional. A group title was changed to this value.
 	 */
 	std::string newChatTitle;
 
 	/**
-	 * Optional. A group photo was change to this value.
+	 * @brief Optional. A group photo was change to this value.
 	 */
 	std::vector<PhotoSize::Ptr> newChatPhoto;
 
 	/**
-	 * Optional. Informs that the group photo was deleted.
+	 * @brief Optional. Informs that the group photo was deleted.
 	 */
 	bool deleteChatPhoto;
 
 	/**
-	 * Optional. Informs that the group has been created.
+	 * @brief Optional. Informs that the group has been created.
 	 */
 	bool groupChatCreated;
 
 	/**
-	 * Optional. Service message: the supergroup has been created.
+	 * @brief Optional. Service message: the supergroup has been created.
 	 */
 	bool supergroupChatCreated;
 
 	/**
-	 * Optional. Service message: the channel has been created.
+	 * @brief Optional. Service message: the channel has been created.
 	 */
 	bool channelChatCreated;
 
 	/**
-	 * Optional. The group has been migrated to a supergroup with the specified identifier, not exceeding 1e13 by absolute value.
+	 * @brief Optional. The group has been migrated to a supergroup with the specified identifier, not exceeding 1e13 by absolute value.
 	 */
 	int64_t migrateToChatId;
 
 	/**
-	 * Optional. The supergroup has been migrated from a group with the specified identifier, not exceeding 1e13 by absolute value
+	 * @brief Optional. The supergroup has been migrated from a group with the specified identifier, not exceeding 1e13 by absolute value
 	 */
 	int64_t migrateFromChatId;
 
 	/**
-	 * Optional. Specified message was pinned. Note that the Message object in this field will not contain further reply_to_message fields even if it is itself a reply.
+	 * @brief Optional. Specified message was pinned. Note that the Message object in this field will not contain further reply_to_message fields even if it is itself a reply.
 	 */
 	Message::Ptr pinnedMessage;
 
 	/**
-	 * Optional. The domain name of the website on which the user has logged in.
+	 * @brief Optional. The domain name of the website on which the user has logged in.
 	 */
 	std::string connectedWebsite;
 };

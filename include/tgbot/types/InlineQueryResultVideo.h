@@ -8,7 +8,8 @@
 namespace TgBot {
 
 /**
- * Represents link to a page containing an embedded video player or a video file.
+ * @brief Represents link to a page containing an embedded video player or a video file.
+ * 
  * @ingroup types
  */
 class InlineQueryResultVideo : public InlineQueryResult {
@@ -25,37 +26,37 @@ public:
 	};
 
 	/**
-	 * A valid URL for the embedded video player or video file.
+	 * @brief A valid URL for the embedded video player or video file.
 	 */
 	std::string videoUrl;
 
 	/**
-	 * Mime type of the content of video url, "text/html" or "video/mp4".
+	 * @brief Mime type of the content of video url, "text/html" or "video/mp4".
 	 */
 	std::string mimeType;
 
 	/**
-	* URL of the thumbnail (jpeg only) for the video
+	* @brief URL of the thumbnail (jpeg only) for the video
 	*/
 	std::string thumbUrl;
 
 	/**
-	 * Optional. Video width.
+	 * @brief Optional. Video width.
 	 */
 	int32_t videoWidth;
 
 	/**
-	 * Optional. Video height.
+	 * @brief Optional. Video height.
 	 */
 	int32_t videoHeight;
 
 	/**
-	 * Optional. Video duration.
+	 * @brief Optional. Video duration.
 	 */
 	int32_t videoDuration;
 
 	/**
-	 * Optional. Short description of the result.
+	 * @brief Optional. Short description of the result.
 	 */
 	std::string description;
 

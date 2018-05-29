@@ -11,9 +11,9 @@
 namespace TgBot {
 
 /**
-* This object represents the content of a message to be sent as a result of an inline query.
-* @ingroup types
-*/
+ * @brief This object represents the content of a message to be sent as a result of an inline query.
+ * @ingroup types
+ */
 class InputMessageContent {
 public:
 	typedef std::shared_ptr<InputMessageContent> Ptr;

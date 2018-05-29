@@ -8,7 +8,8 @@
 namespace TgBot {
 
 /**
- * Represents a link to a video animation (H.264/MPEG-4 AVC video without sound).
+ * @brief Represents a link to a video animation (H.264/MPEG-4 AVC video without sound).
+ * 
  * @ingroup types
  */
 class InlineQueryResultMpeg4Gif : public InlineQueryResult {
@@ -24,27 +25,27 @@ public:
 	}
 
 	/**
-	 * A valid URL for the MP4 file.
+	 * @brief A valid URL for the MP4 file.
 	 */
 	std::string mpeg4Url;
 
 	/**
-	 * Optional. Video width.
+	 * @brief Optional. Video width.
 	 */
 	int32_t mpeg4Width;
 
 	/**
-	 * Optional. Video height.
+	 * @brief Optional. Video height.
 	 */
 	int32_t mpeg4Height;
 
 	/**
-	 * Optional. Video duration.
+	 * @brief Optional. Video duration.
 	 */
 	int32_t mpeg4Duration;
 
 	/**
-	* URL of the static thumbnail (jpeg or gif) for the result
+	* @brief URL of the static thumbnail (jpeg or gif) for the result
 	*/
 	std::string thumbUrl;
 

@@ -13,7 +13,8 @@
 namespace TgBot {
 
 /**
- * This object represents a venue.
+ * @brief This object represents a venue.
+ * 
  * @ingroup types
  */
 class Venue {
@@ -21,22 +22,22 @@ public:
 	typedef std::shared_ptr<Venue> Ptr;
 
 	/**
-	 * Venue location.
+	 * @brief Venue location.
 	 */
 	Location::Ptr location;
 
 	/**
-	 * Name of the venue.
+	 * @brief Name of the venue.
 	 */
 	std::string title;
 
 	/**
-	 * Address of the venue.
+	 * @brief Address of the venue.
 	 */
 	std::string address;
 
 	/**
-	 * Optional. Foursquare identifier of the venue.
+	 * @brief Optional. Foursquare identifier of the venue.
 	 */
 	std::string foursquare_id;
 };

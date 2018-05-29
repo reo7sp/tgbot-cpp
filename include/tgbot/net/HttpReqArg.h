@@ -32,7 +32,8 @@
 namespace TgBot {
 
 /**
- * This class represents argument in POST http requests.
+ * @brief This class represents argument in POST http requests.
+ * 
  * @ingroup net
  */
 class HttpReqArg {
@@ -45,27 +46,27 @@ public:
 	}
 
 	/**
-	 * Name of an argument.
+	 * @brief Name of an argument.
 	 */
 	std::string name;
 
 	/**
-	 * Value of an argument.
+	 * @brief Value of an argument.
 	 */
 	std::string value;
 
 	/**
-	 * Should be true if an argument value hold some file contents
+	 * @brief Should be true if an argument value hold some file contents
 	 */
 	bool isFile = false;
 
 	/**
-	 * Mime type of an argument value. This field makes sense only if isFile is true.
+	 * @brief Mime type of an argument value. This field makes sense only if isFile is true.
 	 */
 	std::string mimeType = "text/plain";
 
 	/**
-	 * Should be set if an argument value hold some file contents
+	 * @brief Should be set if an argument value hold some file contents
 	 */
 	std::string fileName;
 };

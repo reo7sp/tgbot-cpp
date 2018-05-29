@@ -13,7 +13,8 @@
 namespace TgBot {
 
 /**
- * Represents a link to a sticker stored on the Telegram servers.
+ * @brief Represents a link to a sticker stored on the Telegram servers.
+ *
  * @ingroup types
  */
 class InlineQueryResultCachedSticker : public InlineQueryResult {
@@ -27,7 +28,7 @@ public:
 	}
 
 	/**
-	 * A valid file identifier of the sticker
+	 * @brief A valid file identifier of the sticker
 	 */
 	std::string stickerFileId;
 };

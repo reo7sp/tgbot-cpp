@@ -32,7 +32,8 @@
 namespace TgBot {
 
 /**
- * This object represents a general file (as opposed to photos and audio files).
+ * @brief This object represents a general file (as opposed to photos and audio files).
+ * 
  * @ingroup types
  */
 class Sticker {
@@ -41,42 +42,42 @@ public:
 	typedef std::shared_ptr<Sticker> Ptr;
 
 	/**
-	 * Unique file identifier.
+	 * @brief Unique file identifier.
 	 */
 	std::string fileId;
 
 	/**
-	 * Optional. Sticker width.
+	 * @brief Optional. Sticker width.
 	 */
 	int32_t width;
 
 	/**
-	 * Optional. Sticker height.
+	 * @brief Optional. Sticker height.
 	 */
 	int32_t height;
 
 	/**
-	 * Optional. Optional. Sticker thumbnail in .webp or .jpg format.
+	 * @brief Optional. Optional. Sticker thumbnail in .webp or .jpg format.
 	 */
 	PhotoSize::Ptr thumb;
 
 	/**
-	 * Optional. Emoji associated with the sticker
+	 * @brief Optional. Emoji associated with the sticker
 	 */
 	std::string emoji;
 
 	/**
-	 * Optional. Name of the sticker set to which the sticker belongs.
+	 * @brief Optional. Name of the sticker set to which the sticker belongs.
 	 */
 	std::string setName;
 
 	/**
-	 * Optional. For mask stickers, the position where the mask should be placed.
+	 * @brief Optional. For mask stickers, the position where the mask should be placed.
 	 */
 	MaskPosition::Ptr maskPosition;
 
 	/**
-	 * Optional. File size.
+	 * @brief Optional. File size.
 	 */
 	int32_t fileSize;
 };
