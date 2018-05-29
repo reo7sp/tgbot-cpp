@@ -118,6 +118,7 @@ public:
 	User::Ptr parseJsonAndGetUser(const boost::property_tree::ptree& data) const;
 	std::string parseUser(const User::Ptr& object) const;
 	MessageEntity::Ptr parseJsonAndGetMessageEntity(const boost::property_tree::ptree& data) const;
+	std::string parseMessageEntity(const MessageEntity::Ptr& object) const;
 	Message::Ptr parseJsonAndGetMessage(const boost::property_tree::ptree& data) const;
 	std::string parseMessage(const Message::Ptr& object) const;
 	PhotoSize::Ptr parseJsonAndGetPhotoSize(const boost::property_tree::ptree& data) const;

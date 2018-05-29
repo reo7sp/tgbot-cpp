@@ -121,7 +121,23 @@ MessageEntity::Ptr TgTypeParser::parseJsonAndGetMessageEntity(const ptree& data)
 	result->url = data.get<string>("url", "");
 	result->user = tryParseJson<User>(&TgTypeParser::parseJsonAndGetUser, data, "user");
 	return result;
-}	
+}
+
+string TgTypeParser::parseMessageEntity(const MessageEntity::Ptr& object) const {
+	if (!object) {
+		return "";
+	}
+	string result;
+	result += '{';
+	appendToJson(result, "type", object->type);
+	appendToJson(result, "offset", object->offset);
+	appendToJson(result, "length", object->length);
+	appendToJson(result, "url", object->url);
+	appendToJson(result, "user", parseUser(object->user));
+	result.erase(result.length() - 1);
+	result += '}';
+	return result;
+}
 
 Message::Ptr TgTypeParser::parseJsonAndGetMessage(const ptree& data) const {
 	auto result(make_shared<Message>());
@@ -439,9 +455,9 @@ string TgTypeParser::parseGame(const Game::Ptr& object) const {
 	result += '{';
 	appendToJson(result, "title", object->title);
 	appendToJson(result, "description", object->description);
-	appendToJson(result, "photo", parseArray<PhotoSize>(&TgTypeParser::parsePhotoSize, object->photo));
+	appendToJson(result, "photo", parseArray(&TgTypeParser::parsePhotoSize, object->photo));
 	appendToJson(result, "text", object->text);
-	appendToJson(result, "text_entities", parseArray<MessageEntity>(&TgTypeParser::parseJsonAndGetMessageEntity, object->textEntities));
+	appendToJson(result, "text_entities", parseArray(&TgTypeParser::parseMessageEntity, object->textEntities));
 	appendToJson(result, "animation", parseAnimation(object->animation));
 	result.erase(result.length() - 1);
 	result += '}';

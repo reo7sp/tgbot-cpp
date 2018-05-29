@@ -993,7 +993,7 @@ bool Api::unpinChatMessage(int64_t chatId) const {
 
 Message::Ptr Api::setGameScore(int32_t userId, int32_t score, bool force, bool disableEditMessage, int64_t chatId, int32_t messageId, const std::string& inlineMessageId) const {
 	vector<HttpReqArg> args;
-	args.push_back(HttpReqArg("user_id", user_id));
+	args.push_back(HttpReqArg("user_id", userId));
 	args.push_back(HttpReqArg("score", score));
 	if (force) {
 		args.push_back(HttpReqArg("force", force));
@@ -1002,7 +1002,7 @@ Message::Ptr Api::setGameScore(int32_t userId, int32_t score, bool force, bool d
 		args.push_back(HttpReqArg("disable_edit_message", disableEditMessage));
 	}
 	if (chatId){
-		args.push_back(HttpReqArg("chat_id", chat_id));
+		args.push_back(HttpReqArg("chat_id", chatId));
 	}
 	if (messageId){
 		args.push_back(HttpReqArg("message_id", messageId));
