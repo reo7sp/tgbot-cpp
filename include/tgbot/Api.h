@@ -42,6 +42,7 @@
 #include "tgbot/types/StickerSet.h"
 #include "tgbot/types/File.h"
 #include "tgbot/types/InputMedia.h"
+#include "tgbot/types/GameHighScore.h"
 
 namespace TgBot {
 
@@ -395,6 +396,18 @@ public:
 	 */
 	Message::Ptr sendVoice(int64_t chatId, const std::string& voiceId, const std::string& caption = "", int duration = 0, int32_t replyToMessageId = 0,
 	                       const GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>(), const std::string& parseMode = "", bool disableNotification = false) const;
+
+	/**
+	 * @brief Use this method to send a game.
+	 * @param chatId Unique identifier for the target chat.
+	 * @param gameShortName Short name of the game, serves as the unique identifier for the game. Set up your games via Botfather.
+	 * @param replyToMessageId Optional. If the message is a reply, ID of the original message.
+	 * @param replyMarkup Optional. A JSON-serialized object for an inline keyboard. If empty, one ‘Play game_title’ button will be shown. If not empty, the first button must launch the game.
+	 * @param disableNotification Optional. Sends the message silenty.
+	 * @return On success, the sent message is returned.
+	 */
+	Message::Ptr sendGame(int64_t chatId, const std::string& gameShortName, int32_t replyToMessageId = 0,
+	                       const InlineKeyboardMarkup::Ptr replyMarkup = std::make_shared<InlineKeyboardMarkup>(), bool disableNotification = false) const;
 
 	/**
 	 * @brief Use this method to send point on the map.
@@ -769,6 +782,37 @@ public:
 	 * @return True on success
 	 */
 	bool unpinChatMessage(int64_t chatId) const;
+
+	/**
+	 * @brief Use this method to set the score of the specified user in a game.
+	 * 
+	 * Returns an error, if the new score is not greater than the user's current score in the chat and force is False.
+	 * 
+	 * @param userId User identifier.
+	 * @param score New score, must be non-negative.
+	 * @param force Optional. Pass True, if the high score is allowed to decrease. This can be useful when fixing mistakes or banning cheaters.
+	 * @param disableEditMessage Optional. Pass True, if the game message should not be automatically edited to include the current scoreboard.
+	 * @param chatId Optional. Required if inlineMessageId is not specified. Unique identifier for the target chat
+	 * @param messageId Optional. Required if inlineMessageId is not specified. Identifier of the sent message
+	 * @param inlineMessageId Optional. Required if chatId and messageId are not specified. Identifier of the inline message
+	 * @return On success, if the message was sent by the bot, returns the edited Message, otherwise returns nullptr.
+	 */
+	Message::Ptr setGameScore(int32_t userId, int32_t score, bool force = false, bool disableEditMessage = false,
+							  int64_t chatId = 0, int32_t messageId = 0, const std::string& inlineMessageId = "") const;
+
+	/**
+	 * @brief Use this method to get data for high score tables.
+	 * 
+	 * Will return the score of the specified user and several of his neighbors in a game.
+	 * 
+	 * @param userId User identifier.
+	 * @param chatId Optional. Required if inlineMessageId is not specified. Unique identifier for the target chat
+	 * @param messageId Optional. Required if inlineMessageId is not specified. Identifier of the sent message
+	 * @param inlineMessageId Optional. Required if chatId and messageId are not specified. Identifier of the inline message
+	 * @return On success, returns an Array of GameHighScore objects.
+	 */
+	std::vector<GameHighScore::Ptr> getGameHighScores(int32_t userId, int32_t score, bool force = false,
+													  bool disableEditMessage = false, int64_t chatId = 0, int32_t messageId = 0, const std::string& inlineMessageId = "") const;
 
 
 	/**

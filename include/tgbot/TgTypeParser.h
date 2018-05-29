@@ -75,6 +75,10 @@
 #include "tgbot/types/InlineQueryResultVideo.h"
 #include "tgbot/types/InlineQueryResultVoice.h"
 #include "tgbot/types/ChosenInlineResult.h"
+#include "tgbot/types/CallbackGame.h"
+#include "tgbot/types/Animation.h"
+#include "tgbot/types/Game.h"
+#include "tgbot/types/GameHighScore.h"
 #include "tgbot/types/CallbackQuery.h"
 #include "tgbot/types/InlineKeyboardMarkup.h"
 #include "tgbot/types/InlineKeyboardButton.h"
@@ -113,7 +117,7 @@ public:
 	std::string parseChat(const Chat::Ptr& object) const;
 	User::Ptr parseJsonAndGetUser(const boost::property_tree::ptree& data) const;
 	std::string parseUser(const User::Ptr& object) const;
-	MessageEntity::Ptr parseJsonAndGetEntity(const boost::property_tree::ptree& data) const;
+	MessageEntity::Ptr parseJsonAndGetMessageEntity(const boost::property_tree::ptree& data) const;
 	Message::Ptr parseJsonAndGetMessage(const boost::property_tree::ptree& data) const;
 	std::string parseMessage(const Message::Ptr& object) const;
 	PhotoSize::Ptr parseJsonAndGetPhotoSize(const boost::property_tree::ptree& data) const;
@@ -132,6 +136,12 @@ public:
 	std::string parseVideo(const Video::Ptr& object) const;
 	VideoNote::Ptr parseJsonAndGetVideoNote(const boost::property_tree::ptree& data) const;
 	std::string parseVideoNote(const VideoNote::Ptr& object) const;
+	Game::Ptr parseJsonAndGetGame(const boost::property_tree::ptree& data) const;
+	std::string parseGame(const Game::Ptr& object) const;
+	GameHighScore::Ptr parseJsonAndGetGameHighScore(const boost::property_tree::ptree& data) const;
+	std::string parseGameHighScore(const GameHighScore::Ptr& object) const;
+	Animation::Ptr parseJsonAndGetAnimation(const boost::property_tree::ptree& data) const;
+	std::string parseAnimation(const Animation::Ptr& object) const;
 	Contact::Ptr parseJsonAndGetContact(const boost::property_tree::ptree& data) const;
 	std::string parseContact(const Contact::Ptr& object) const;
 	Location::Ptr parseJsonAndGetLocation(const boost::property_tree::ptree& data) const;

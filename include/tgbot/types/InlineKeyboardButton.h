@@ -8,6 +8,8 @@
 #include <string>
 #include <memory>
 
+#include "tgbot/types/CallbackGame.h"
+
 namespace TgBot {
 
 /**
@@ -36,6 +38,8 @@ public:
 
 	/**
 	 * @brief Optional. If set, pressing the button will prompt the user to select one of their chats, open that chat and insert the bot‘s username and the specified inline query in the input field. Can be empty, in which case just the bot’s username will be inserted.
+	 * 
+	 * Note: This offers an easy way for users to start using your bot in inline mode when they are currently in a private chat with it. Especially useful when combined with switch_pm… actions – in this case the user will be automatically returned to the chat they switched from, skipping the chat selection screen.
 	 */
 	std::string switchInlineQuery;
 
@@ -43,6 +47,13 @@ public:
 	* @brief Optional. If set, pressing the button will insert the bot‘s username and the specified inline query in the current chat's input field. Can be empty, in which case only the bot’s username will be inserted.
 	*/
 	std::string switchInlineQueryCurrentChat;
+
+	/**
+	 * @brief Optional. Description of the game that will be launched when the user presses the button.
+	 * 
+	 * NOTE: This type of button must always be the first button in the first row.
+	 */
+	CallbackGame::Ptr callbackGame;
 };
 }
 

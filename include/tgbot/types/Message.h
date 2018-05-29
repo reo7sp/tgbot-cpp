@@ -36,6 +36,7 @@
 #include "tgbot/types/Video.h"
 #include "tgbot/types/Contact.h"
 #include "tgbot/types/Location.h"
+#include "tgbot/types/Game.h"
 #include "tgbot/types/PhotoSize.h"
 #include "tgbot/types/MessageEntity.h"
 #include "tgbot/types/Venue.h"
@@ -145,6 +146,11 @@ public:
 	 * @brief Optional. Message is a general file, information about the file.
 	 */
 	Document::Ptr document;
+
+	/**
+	 * @brief Optional. Message is a game, information about the game.
+	 */
+	Game::Ptr game;
 
 	/**
 	 * @brief Optional. Message is a photo, available sizes of the photo.
