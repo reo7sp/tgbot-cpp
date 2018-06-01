@@ -45,6 +45,20 @@ string HttpClient::makeRequest(const Url& url, const vector<HttpReqArg>& args) {
 
 	connect(socket.lowest_layer(), resolver.resolve(query));
 
+	#ifdef TGBOT_DISABLE_NAGLES_ALGORITHM
+	socket.lowest_layer().set_option(tcp::no_delay(true));
+	#endif //TGBOT_DISABLE_NAGLES_ALGORITHM
+
+	#ifdef TGBOT_CHANGE_SOCKET_BUFFER_SIZE
+	#if _WIN64 || __amd64__ || __x86_64__ || __MINGW64__ || __aarch64__ || __powerpc64__
+	socket.lowest_layer().set_option(socket_base::send_buffer_size(65536));
+	socket.lowest_layer().set_option(socket_base::receive_buffer_size(65536));
+	#else //for 32-bit
+	socket.lowest_layer().set_option(socket_base::send_buffer_size(32768));
+	socket.lowest_layer().set_option(socket_base::receive_buffer_size(32768));
+	#endif //Processor architecture
+	#endif //TGBOT_CHANGE_SOCKET_BUFFER_SIZE
+
 	socket.set_verify_mode(ssl::verify_none);
 	socket.set_verify_callback(ssl::rfc2818_verification(url.host));
 	socket.handshake(ssl::stream<tcp::socket>::client);
@@ -53,7 +67,17 @@ string HttpClient::makeRequest(const Url& url, const vector<HttpReqArg>& args) {
 	write(socket, buffer(requestText.c_str(), requestText.length()));
 
 	string response;
+
+	#ifdef TGBOT_CHANGE_READ_BUFFER_SIZE
+	#if _WIN64 || __amd64__ || __x86_64__ || __MINGW64__ || __aarch64__ || __powerpc64__
+	char buff[65536];
+	#else //for 32-bit
+	char buff[32768];
+	#endif //Processor architecture
+	#else
 	char buff[1024];
+	#endif //TGBOT_CHANGE_READ_BUFFER_SIZE
+	
 	boost::system::error_code error;
 	while (!error) {
 		size_t bytes = read(socket, buffer(buff), error);
