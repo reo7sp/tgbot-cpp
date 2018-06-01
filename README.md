@@ -52,7 +52,7 @@ sudo make install
 g++ telegram_bot.cpp -o telegram_bot --std=c++11 -I/usr/local/include -lTgBot -lboost_system -lssl -lcrypto -lpthread
 ```
 
-### Bot compile define
+### Options available when compiling bot
 
 #### With CMake
 ```
