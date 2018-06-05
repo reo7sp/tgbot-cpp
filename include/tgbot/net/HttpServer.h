@@ -32,7 +32,8 @@
 namespace TgBot {
 
 /**
- * This class handles HTTP requests from the Internet.
+ * @brief This class handles HTTP requests from the Internet.
+ * 
  * @ingroup net
  */
 template<typename Protocol>
@@ -48,7 +49,7 @@ public:
 	}
 
 	/**
-	 * Starts receiving new connections.
+	 * @brief Starts receiving new connections.
 	 */
 	void start() {
 		auto socket(std::make_shared<boost::asio::basic_stream_socket<Protocol>>(_acceptor->get_io_service()));
@@ -61,7 +62,7 @@ public:
 	}
 
 	/**
-	 * Stops receiving new connections.
+	 * @brief Stops receiving new connections.
 	 */
 	void stop() {
 		_ioService.stop();

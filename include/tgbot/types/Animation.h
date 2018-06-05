@@ -1,5 +1,6 @@
 /*
  * Copyright (c) 2015 Oleg Morozenkov
+ * Copyright (c) 2018 JellyBrick
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,52 +21,52 @@
  * SOFTWARE.
  */
 
-#ifndef TGBOT_CPP_VIDEONOTE_H
-#define TGBOT_CPP_VIDEONOTE_H
+#ifndef TGBOT_ANIMATION_H
+#define TGBOT_ANIMATION_H
 
-#include <string>
 #include <memory>
+#include <string>
 
 #include "tgbot/types/PhotoSize.h"
 
 namespace TgBot {
 
 /**
- * @brief This object represents a video message (available in Telegram apps as of v.4.0).
+ * @brief You can provide an animation for your game so that it looks stylish in chats (check out Lumberjack for an example).
+ * 
+ * This object represents an animation file to be displayed in the message containing a game.
  * 
  * @ingroup types
  */
-class VideoNote {
-
+class Animation {
 public:
-    typedef std::shared_ptr<VideoNote> Ptr;
+	typedef std::shared_ptr<Animation> Ptr;
 
 	/**
-	 * @brief Unique identifier for this file.
+	 * @brief Unique file identifier.
 	 */
 	std::string fileId;
 
 	/**
-	 * @brief Video width and height as defined by sender.
-	 */
-	int32_t length;
-
-	/**
-	 * @brief Duration of the video in seconds as defined by sender.
-	 */
-	int32_t duration;
-
-	/**
-	 * @brief Optional. Video thumbnail.
+	 * @brief Optional. Animation thumbnail as defined by sender.
 	 */
 	PhotoSize::Ptr thumb;
+
+	/**
+	 * @brief Optional. Original animation filename as defined by sender.
+	 */
+	std::string fileName;
+
+	/**
+	 * @brief Optional. MIME type of the file as defined by sender.
+	 */
+	std::string mimeType;
 
 	/**
 	 * @brief Optional. File size.
 	 */
 	int32_t fileSize;
 };
-
 }
 
-#endif //TGBOT_CPP_VIDEONOTE_H
+#endif //TGBOT_ANIMATION_H

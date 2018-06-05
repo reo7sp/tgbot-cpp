@@ -13,7 +13,8 @@
 namespace TgBot {
 
 /**
- * Represents a link to an animated GIF file stored on the Telegram servers.
+ * @brief Represents a link to an animated GIF file stored on the Telegram servers.
+ * 
  * @ingroup types
  */
 class InlineQueryResultCachedGif : public InlineQueryResult {
@@ -27,7 +28,7 @@ public:
 	}
 
 	/**
-	 * A valid file identifier for the GIF file
+	 * @brief A valid file identifier for the GIF file
 	 */
 	std::string gifFileId;
 

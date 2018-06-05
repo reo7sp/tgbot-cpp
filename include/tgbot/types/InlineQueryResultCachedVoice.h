@@ -13,7 +13,8 @@
 namespace TgBot {
 
 /**
- * Represents a link to a voice message stored on the Telegram servers.
+ * @brief Represents a link to a voice message stored on the Telegram servers.
+ * 
  * @ingroup types
  */
 class InlineQueryResultCachedVoice : public InlineQueryResult {
@@ -27,7 +28,7 @@ public:
 	}
 
 	/**
-	 * A valid file identifier of the voice message
+	 * @brief A valid file identifier of the voice message
 	 */
 	std::string voiceFileId;
 };

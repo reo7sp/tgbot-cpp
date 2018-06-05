@@ -52,6 +52,22 @@ sudo make install
 g++ telegram_bot.cpp -o telegram_bot --std=c++11 -I/usr/local/include -lTgBot -lboost_system -lssl -lcrypto -lpthread
 ```
 
+### Options available when compiling bot
+
+#### With CMake
+```
+add_definitions(-DTGBOT_DISABLE_NAGLES_ALGORITHM) # Disable 'Nagle's algorithm'
+add_definitions(-DTGBOT_CHANGE_SOCKET_BUFFER_SIZE) # Socket Buffer Size Expansion
+add_definitions(-DTGBOT_CHANGE_READ_BUFFER_SIZE) # Read Buffer Size Expansion
+```
+
+### Without CMake
+```
+-DTGBOT_DISABLE_NAGLES_ALGORITHM
+-DTGBOT_CHANGE_SOCKET_BUFFER_SIZE
+-DTGBOT_CHANGE_READ_BUFFER_SIZE
+```
+
 ### Also
 You can use Docker to build and run your bot. Set the base image of your's Dockerfile to [reo7sp/tgbot-cpp](https://hub.docker.com/r/reo7sp/tgbot-cpp/).
 

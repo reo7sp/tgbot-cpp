@@ -13,7 +13,8 @@
 namespace TgBot {
 
 /**
- * Represents a link to a file.
+ * @brief Represents a link to a file.
+ * 
  * @ingroup types
  */
 class InlineQueryResultDocument : public InlineQueryResult {
@@ -29,32 +30,32 @@ public:
 	}
 
 	/**
-	 * A valid URL for the file
+	 * @brief A valid URL for the file
 	 */
 	std::string documentUrl;
 
 	/**
-	 * Mime type of the content of the file, either �application/pdf� or �application/zip�
+	 * @brief Mime type of the content of the file, either 'application/pdf' or 'application/zip'
 	 */
 	std::string mimeType;
 
 	/**
-	 * Optional. Short description of the result
+	 * @brief Optional. Short description of the result
 	 */
 	std::string description;
 
 	/**
-	* Optional. Url of the thumbnail for the result
+	* @brief Optional. Url of the thumbnail for the result
 	*/
 	std::string thumbUrl;
 
 	/**
-	* Optional. Thumbnail width.
+	* @brief Optional. Thumbnail width.
 	*/
 	int32_t thumbWidth;
 
 	/**
-	* Optinal. Thumbnail height
+	* @brief Optinal. Thumbnail height
 	*/
 	int32_t thumbHeight;
 };

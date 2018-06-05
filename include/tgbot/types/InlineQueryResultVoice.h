@@ -8,7 +8,8 @@
 namespace TgBot {
 
 /**
- * Represents link to a page containing an embedded video player or a video file.
+ * @brief Represents link to a page containing an embedded video player or a video file.
+ * 
  * @ingroup types
  */
 class InlineQueryResultVoice : public InlineQueryResult {
@@ -23,12 +24,12 @@ public:
 	};
 
 	/**
-	 * A valid URL for the voice recording
+	 * @brief A valid URL for the voice recording
 	 */
 	std::string voiceUrl;
 
 	/**
-	 * Optional. Recording duration in seconds
+	 * @brief Optional. Recording duration in seconds
 	 */
 	int32_t voiceDuration;
 };

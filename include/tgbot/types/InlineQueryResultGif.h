@@ -13,7 +13,8 @@
 namespace TgBot {
 
 /**
- * Represents a link to an animated GIF file.
+ * @brief Represents a link to an animated GIF file.
+ * 
  * @ingroup types
  */
 class InlineQueryResultGif : public InlineQueryResult {
@@ -29,27 +30,27 @@ public:
 	}
 
 	/**
-	 * A valid URL for the GIF file.
+	 * @brief A valid URL for the GIF file.
 	 */
 	std::string gifUrl;
 
 	/**
-	 * Optional. Width of the GIF.
+	 * @brief Optional. Width of the GIF.
 	 */
 	int32_t gifWidth;
 
 	/**
-	 * Optional. Height of the GIF.
+	 * @brief Optional. Height of the GIF.
 	 */
 	int32_t gifHeight;
 
 	/**
-	 * Optional. Duration of the GIF
+	 * @brief Optional. Duration of the GIF
 	 */
 	int32_t gifDuration;
 
 	/**
-	 * URL of the static thumbnail for the result (jpeg or gif)
+	 * @brief URL of the static thumbnail for the result (jpeg or gif)
 	 */
 	std::string thumbUrl;
 

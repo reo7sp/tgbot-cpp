@@ -31,7 +31,8 @@
 namespace TgBot {
 
 /**
- * This object represents a video file.
+ * @brief This object represents a video file.
+ * 
  * @ingroup types
  */
 class Video {
@@ -40,37 +41,37 @@ public:
 	typedef std::shared_ptr<Video> Ptr;
 
 	/**
-	 * Unique identifier for this file.
+	 * @brief Unique identifier for this file.
 	 */
 	std::string fileId;
 
 	/**
-	 * Video width as defined by sender.
+	 * @brief Video width as defined by sender.
 	 */
 	int32_t width;
 
 	/**
-	 * Video height as defined by sender.
+	 * @brief Video height as defined by sender.
 	 */
 	int32_t height;
 
 	/**
-	 * Duration of the video in seconds as defined by sender.
+	 * @brief Duration of the video in seconds as defined by sender.
 	 */
 	int32_t duration;
 
 	/**
-	 * Optional. Video thumbnail.
+	 * @brief Optional. Video thumbnail.
 	 */
 	PhotoSize::Ptr thumb;
 
 	/**
-	 * Optional. Mime type of a file as defined by sender
+	 * @brief Optional. Mime type of a file as defined by sender
 	 */
 	std::string mimeType;
 
 	/**
-	 * Optional. File size.
+	 * @brief Optional. File size.
 	 */
 	int32_t fileSize;
 };

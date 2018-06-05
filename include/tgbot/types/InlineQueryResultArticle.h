@@ -13,7 +13,8 @@
 namespace TgBot {
 
 /**
- * Represents a link to an article of web page.
+ * @brief Represents a link to an article of web page.
+ * 
  * @ingroup types
  */
 class InlineQueryResultArticle : public InlineQueryResult {
@@ -30,32 +31,32 @@ public:
 	}
 
 	/**
-	 * Optional. URL of the result.
+	 * @brief Optional. URL of the result.
 	 */
 	std::string url;
 
 	/**
-	 * Optional. Pass True if you don't want the URL to be shown in the message.
+	 * @brief Optional. Pass True if you don't want the URL to be shown in the message.
 	 */
 	bool hideUrl;
 
 	/**
-	 * Optional. Short description of the result.
+	 * @brief Optional. Short description of the result.
 	 */
 	std::string description;
 
 	/**
-	 * Optional. Url of the thumbnail for the result
+	 * @brief Optional. Url of the thumbnail for the result
 	 */
 	std::string thumbUrl;
 
 	/**
-	 * Optional. Thumbnail width.
+	 * @brief Optional. Thumbnail width.
 	 */
 	int32_t thumbWidth;
 
 	/**
-	 * Optinal. Thumbnail height
+	 * @brief Optinal. Thumbnail height
 	 */
 	int32_t thumbHeight;
 };

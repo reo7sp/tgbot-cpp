@@ -14,7 +14,8 @@
 namespace TgBot {
 
 /**
- * This abstract class is base of all inline query results.
+ * @brief This abstract class is base of all inline query results.
+ * 
  * @ingroup types
  */
 class InlineQueryResult {
@@ -28,32 +29,32 @@ public:
 	virtual ~InlineQueryResult() { }
 
 	/**
-	 * Type of the result.
+	 * @brief Type of the result.
 	 */
 	std::string type;
 
 	/**
-	 * Unique identifier for this result. (1-64 bytes)
+	 * @brief Unique identifier for this result. (1-64 bytes)
 	 */
 	std::string id;
 
 	/**
-	 * Requred, optional or missing. See description of derived classes. Title of the result.
+	 * @brief Requred, optional or missing. See description of derived classes. Title of the result.
 	 */
 	std::string title;
 
 	/**
-	 * Optional or missing. See description of derived classes. Caption of the file to be sent, 0-200 characters
+	 * @brief Optional or missing. See description of derived classes. Caption of the file to be sent, 0-200 characters
 	 */
 	std::string caption;
 
 	/**
-	 * Optional. Inline keyboard attached to the message
+	 * @brief Optional. Inline keyboard attached to the message
 	 */
 	InlineKeyboardMarkup::Ptr replyMarkup;
 
 	/**
-	 * Requred, optional or missing. See description of derived classes. Content of the message to be sent
+	 * @brief Requred, optional or missing. See description of derived classes. Content of the message to be sent
 	 */
 	InputMessageContent::Ptr inputMessageContent;
 };

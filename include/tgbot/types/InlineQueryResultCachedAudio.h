@@ -13,7 +13,8 @@
 namespace TgBot {
 
 /**
- * Represents a link to an mp3 audio file stored on the Telegram servers. 
+ * @brief Represents a link to an mp3 audio file stored on the Telegram servers. 
+ * 
  * @ingroup types
  */
 class InlineQueryResultCachedAudio : public InlineQueryResult {
@@ -27,7 +28,7 @@ public:
 	}
 
 	/**
-	 * A valid file identifier for the audio file
+	 * @brief A valid file identifier for the audio file
 	 */
 	std::string audioFileId;
 

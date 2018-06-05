@@ -1,5 +1,6 @@
 /*
  * Copyright (c) 2015 Oleg Morozenkov
+ * Copyright (c) 2018 JellyBrick
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,52 +21,22 @@
  * SOFTWARE.
  */
 
-#ifndef TGBOT_CPP_VIDEONOTE_H
-#define TGBOT_CPP_VIDEONOTE_H
+#ifndef TGBOT_CALLBACKGAME_H
+#define TGBOT_CALLBACKGAME_H
 
-#include <string>
 #include <memory>
-
-#include "tgbot/types/PhotoSize.h"
 
 namespace TgBot {
 
 /**
- * @brief This object represents a video message (available in Telegram apps as of v.4.0).
+ * @brief A placeholder, currently holds no information. Use BotFather to set up your game.
  * 
  * @ingroup types
  */
-class VideoNote {
-
+class CallbackGame {
 public:
-    typedef std::shared_ptr<VideoNote> Ptr;
-
-	/**
-	 * @brief Unique identifier for this file.
-	 */
-	std::string fileId;
-
-	/**
-	 * @brief Video width and height as defined by sender.
-	 */
-	int32_t length;
-
-	/**
-	 * @brief Duration of the video in seconds as defined by sender.
-	 */
-	int32_t duration;
-
-	/**
-	 * @brief Optional. Video thumbnail.
-	 */
-	PhotoSize::Ptr thumb;
-
-	/**
-	 * @brief Optional. File size.
-	 */
-	int32_t fileSize;
+	typedef std::shared_ptr<CallbackGame> Ptr;
 };
-
 }
 
-#endif //TGBOT_CPP_VIDEONOTE_H
+#endif //TGBOT_CALLBACKGAME_H

@@ -33,9 +33,9 @@
 namespace TgBot {
 
 /**
-* Represents a photo to be sent.
-* @ingroup types
-*/
+ * @brief Represents a photo to be sent.
+ * @ingroup types
+ */
 class InputMediaPhoto : public InputMedia {
 public:
 	typedef std::shared_ptr<InputMediaPhoto> Ptr;

@@ -28,7 +28,8 @@
 namespace TgBot {
 
 /**
- * This class parses a string with the url
+ * @brief This class parses a string with the url
+ * 
  * @ingroup net
  */
 class Url {
@@ -37,27 +38,27 @@ public:
 	Url(const std::string& url);
 
 	/**
-	 * Protocol part of an url. Example: https://
+	 * @brief Protocol part of an url. Example: https://
 	 */
 	std::string protocol;
 
 	/**
-	 * Host part of an url. Example: www.example.com
+	 * @brief Host part of an url. Example: www.example.com
 	 */
 	std::string host;
 
 	/**
-	 * Path part of an url including preceding '/' char. Example: /index.html
+	 * @brief Path part of an url including preceding '/' char. Example: /index.html
 	 */
 	std::string path;
 
 	/**
-	 * Query part of an url without '?' char. Example: a=1&b=2&c=3
+	 * @brief Query part of an url without '?' char. Example: a=1&b=2&c=3
 	 */
 	std::string query;
 
 	/**
-	 * Fragment part of an url without '#' char. Example: section1
+	 * @brief Fragment part of an url without '#' char. Example: section1
 	 */
 	std::string fragment;
 };

@@ -11,9 +11,10 @@
 namespace TgBot {
 
 /**
-* Represents the content of a contact message to be sent as the result of an inline query.
-* @ingroup types
-*/
+ * @brief Represents the content of a contact message to be sent as the result of an inline query.
+ * 
+ * @ingroup types
+ */
 class InputContactMessageContent : public InputMessageContent {
 public:
 	typedef std::shared_ptr<InputContactMessageContent> Ptr;
@@ -23,18 +24,18 @@ public:
 	{}
 
 	/**
-	* Contact's phone number
-	*/
+	 * @brief Contact's phone number
+	 */
 	std::string phoneNumber;
 
 	/**
-	* Contact's first name
-	*/
+	 * @brief Contact's first name
+	 */
 	std::string firstName;
 
 	/**
-	* Optional. Contact's last name
-	*/
+	 * @brief Optional. Contact's last name
+	 */
 	std::string lastName;
 
 	virtual ~InputContactMessageContent() { }

@@ -497,6 +497,22 @@ Message::Ptr Api::sendVoice(int64_t chatId, const string& voiceId, const string 
 	return TgTypeParser::getInstance().parseJsonAndGetMessage(sendRequest("sendVoice", args));
 }
 
+Message::Ptr Api::sendGame(int64_t chatId, const std::string& gameShortName, int32_t replyToMessageId, const InlineKeyboardMarkup::Ptr replyMarkup, bool disableNotification) const {
+	vector<HttpReqArg> args;
+	args.push_back(HttpReqArg("chat_id", chatId));
+	args.push_back(HttpReqArg("game_short_name", gameShortName));
+	if (replyToMessageId) {
+		args.push_back(HttpReqArg("reply_to_message_id", replyToMessageId));
+	}
+	if (replyMarkup) {
+		args.push_back(HttpReqArg("reply_markup", TgTypeParser::getInstance().parseGenericReply(replyMarkup)));
+	}
+	if (disableNotification){
+		args.push_back(HttpReqArg("disable_notification", disableNotification));
+	}
+	return TgTypeParser::getInstance().parseJsonAndGetMessage(sendRequest("sendGame", args));
+}
+
 Message::Ptr Api::sendLocation(int64_t chatId, float latitude, float longitude, uint32_t livePeriod, int32_t replyToMessageId, const GenericReply::Ptr replyMarkup, bool disableNotification) const {
 	vector<HttpReqArg> args;
 	args.push_back(HttpReqArg("chat_id", chatId));
@@ -973,6 +989,50 @@ bool Api::unpinChatMessage(int64_t chatId) const {
 	vector<HttpReqArg> args;
 	args.push_back(HttpReqArg("chat_id", chatId));
 	return sendRequest("unpinChatMessage", args).get<bool>("", false);
+}
+
+Message::Ptr Api::setGameScore(int32_t userId, int32_t score, bool force, bool disableEditMessage, int64_t chatId, int32_t messageId, const std::string& inlineMessageId) const {
+	vector<HttpReqArg> args;
+	args.push_back(HttpReqArg("user_id", userId));
+	args.push_back(HttpReqArg("score", score));
+	if (force) {
+		args.push_back(HttpReqArg("force", force));
+	}
+	if (disableEditMessage) {
+		args.push_back(HttpReqArg("disable_edit_message", disableEditMessage));
+	}
+	if (chatId){
+		args.push_back(HttpReqArg("chat_id", chatId));
+	}
+	if (messageId){
+		args.push_back(HttpReqArg("message_id", messageId));
+	}
+	if (!inlineMessageId.empty()){
+		args.push_back(HttpReqArg("inline_message_id", inlineMessageId));
+	}
+	return TgTypeParser::getInstance().parseJsonAndGetMessage(sendRequest("setGameScore", args));
+}
+
+vector<GameHighScore::Ptr> Api::getGameHighScores(int32_t userId, int32_t score, bool force, bool disableEditMessage, int64_t chatId, int32_t messageId, const std::string& inlineMessageId) const {
+	vector<HttpReqArg> args;
+    args.push_back(HttpReqArg("user_id", userId));
+	args.push_back(HttpReqArg("score", score));
+	if (force) {
+		args.push_back(HttpReqArg("force", force));
+	}
+	if (disableEditMessage) {
+		args.push_back(HttpReqArg("disable_edit_message", disableEditMessage));
+	}
+	if (chatId) {
+		args.push_back(HttpReqArg("chat_id", chatId));
+	}
+	if (messageId) {
+		args.push_back(HttpReqArg("message_id", messageId));
+	}
+	if (!inlineMessageId.empty()){
+		args.push_back(HttpReqArg("inline_message_id", inlineMessageId));
+	}
+	return TgTypeParser::getInstance().parseJsonAndGetArray<GameHighScore>(&TgTypeParser::parseJsonAndGetGameHighScore, sendRequest("getGameHighScores", args));
 }
 
 void Api::deleteMessage(int64_t chatId, int32_t messageId) const {

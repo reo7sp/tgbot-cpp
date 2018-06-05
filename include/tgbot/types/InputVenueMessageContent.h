@@ -12,9 +12,10 @@
 namespace TgBot {
 
 /**
-* Represents the content of a venue message to be sent as the result of an inline query.
-* @ingroup types
-*/
+ * @brief Represents the content of a venue message to be sent as the result of an inline query.
+ *
+ * @ingroup types
+ */
 class InputVenueMessageContent : public InputMessageContent {
 public:
 	typedef std::shared_ptr<InputVenueMessageContent> Ptr;
@@ -24,28 +25,28 @@ public:
 	{}
 
 	/**
-	* Latitude of the location in degrees
-	*/
+	 * @brief Latitude of the location in degrees
+	 */
 	float latitude;
 
 	/**
-	* Longitude of the location in degrees
-	*/
+	 * @brief Longitude of the location in degrees
+	 */
 	float longitude;
 
 	/**
-	 * Name of the venue
+	 * @brief Name of the venue
 	 */
 	std::string title; 
 
 	/**
-	* Address of the venue
-	*/
+	 * @brief Address of the venue
+	 */
 	std::string address;
 
 	/**
-	* Optional. Foursquare identifier of the venue, if known
-	*/
+	 * @brief Optional. Foursquare identifier of the venue, if known
+	 */
 	std::string foursquareId;
 
 	virtual ~InputVenueMessageContent() { }

@@ -14,7 +14,8 @@
 namespace TgBot {
 
 /**
- * This object represents a result of an inline query that was chosen by the user and sent to their chat partner.
+ * @brief This object represents a result of an inline query that was chosen by the user and sent to their chat partner.
+ * 
  * @ingroup types
  */
 class ChosenInlineResult {
@@ -22,29 +23,30 @@ public:
 	typedef std::shared_ptr<ChosenInlineResult> Ptr;
 
 	/**
-	 * The unique identifier for the result that was chosen.
+	 * @brief The unique identifier for the result that was chosen.
 	 */
 	std::string resultId;
 
 	/**
-	 * The user that chose the result.
+	 * @brief The user that chose the result.
 	 */
 	User::Ptr from;
 
 	/**
-	* Optional. Sender location, only for bots that require user location
+	* @brief Optional. Sender location, only for bots that require user location
 	*/
 	Location::Ptr location;
 
 	/**
-	 * Optional. Identifier of the sent inline message.
+	 * @brief Optional. Identifier of the sent inline message.
+	 * 
 	 * Available only if there is an inline keyboard attached to the message.
 	 * Will be also received in callback queries and can be used to edit the message.
 	 */
 	std::string inlineMessageId;
 
 	/**
-	 * The query that was used to obtain the result.
+	 * @brief The query that was used to obtain the result.
 	 */
 	std::string query;
 };

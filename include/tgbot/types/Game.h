@@ -1,5 +1,6 @@
 /*
  * Copyright (c) 2015 Oleg Morozenkov
+ * Copyright (c) 2018 JellyBrick
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,52 +21,62 @@
  * SOFTWARE.
  */
 
-#ifndef TGBOT_CPP_VIDEONOTE_H
-#define TGBOT_CPP_VIDEONOTE_H
+#ifndef TGBOT_GAME_H
+#define TGBOT_GAME_H
 
-#include <string>
 #include <memory>
+#include <string>
+#include <vector>
 
+#include "tgbot/types/MessageEntity.h"
+#include "tgbot/types/Animation.h"
 #include "tgbot/types/PhotoSize.h"
 
 namespace TgBot {
 
 /**
- * @brief This object represents a video message (available in Telegram apps as of v.4.0).
+ * @brief This object represents a game.
+ * 
+ * Use BotFather to create and edit games, their short names will act as unique identifiers.
  * 
  * @ingroup types
  */
-class VideoNote {
-
+class Game {
 public:
-    typedef std::shared_ptr<VideoNote> Ptr;
+	typedef std::shared_ptr<Game> Ptr;
 
 	/**
-	 * @brief Unique identifier for this file.
+	 * @brief Title of the game.
 	 */
-	std::string fileId;
+	std::string title;
 
 	/**
-	 * @brief Video width and height as defined by sender.
+	 * @brief Description of the game.
 	 */
-	int32_t length;
+	std::string description;
 
 	/**
-	 * @brief Duration of the video in seconds as defined by sender.
+	 * @brief Photo that will be displayed in the game message in chats.
 	 */
-	int32_t duration;
+	std::vector<PhotoSize::Ptr> photo;
 
 	/**
-	 * @brief Optional. Video thumbnail.
+	 * @brief Optional. Brief description of the game or high scores included in the game message.
+	 * 
+	 * Can be automatically edited to include current high scores for the game when the bot calls setGameScore, or manually edited using editMessageText. 0-4096 characters.
 	 */
-	PhotoSize::Ptr thumb;
+	std::string text;
 
 	/**
-	 * @brief Optional. File size.
+	 * @brief Optional. Special entities that appear in text, such as usernames, URLs, bot commands, etc.
 	 */
-	int32_t fileSize;
+	std::vector<MessageEntity::Ptr> textEntities;
+
+	/**
+	 * @brief Optional. Animation that will be displayed in the game message in chats. Upload via BotFather.
+	 */
+	Animation::Ptr animation;
 };
-
 }
 
-#endif //TGBOT_CPP_VIDEONOTE_H
+#endif //TGBOT_GAME_H

@@ -13,7 +13,8 @@
 namespace TgBot {
 
 /**
- * Represents a location on a map. 
+ * @brief Represents a location on a map. 
+ * 
  * @ingroup types
  */
 class InlineQueryResultLocation : public InlineQueryResult {
@@ -29,27 +30,27 @@ public:
 	}
 
 	/**
-	* Location latitude in degrees
+	* @brief Location latitude in degrees
 	*/
 	float latitude;
 
 	/**
-	* Location longitude in degrees
+	* @brief Location longitude in degrees
 	*/
 	float longitude;
 
 	/**
-	 * Optional. Url of the thumbnail for the result
+	 * @brief Optional. Url of the thumbnail for the result
 	 */
 	std::string thumbUrl;
 
 	/**
-	 * Optional. Thumbnail width.
+	 * @brief Optional. Thumbnail width.
 	 */
 	int32_t thumbWidth;
 
 	/**
-	 * Optinal. Thumbnail height
+	 * @brief Optinal. Thumbnail height
 	 */
 	int32_t thumbHeight;
 };

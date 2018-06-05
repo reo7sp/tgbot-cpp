@@ -13,7 +13,8 @@
 namespace TgBot {
 
 /**
- * Represents a venue. 
+ * @brief Represents a venue. 
+ * 
  * @ingroup types
  */
 class InlineQueryResultVenue : public InlineQueryResult {
@@ -29,37 +30,37 @@ public:
 	}
 
 	/**
-	* Latitude of the venue location in degrees
+	* @brief Latitude of the venue location in degrees
 	*/
 	float latitude;
 
 	/**
-	* Longitude of the venue location in degrees
+	* @brief Longitude of the venue location in degrees
 	*/
 	float longitude;
 
 	/**
-	* Address of the venue
+	* @brief Address of the venue
 	*/
 	std::string address;
 
 	/**
-	* Optional. Foursquare identifier of the venue if known
+	* @brief Optional. Foursquare identifier of the venue if known
 	*/
 	std::string foursquareId;
 
 	/**
-	 * Optional. Url of the thumbnail for the result
+	 * @brief Optional. Url of the thumbnail for the result
 	 */
 	std::string thumbUrl;
 
 	/**
-	 * Optional. Thumbnail width.
+	 * @brief Optional. Thumbnail width.
 	 */
 	int32_t thumbWidth;
 
 	/**
-	 * Optinal. Thumbnail height
+	 * @brief Optinal. Thumbnail height
 	 */
 	int32_t thumbHeight;
 };

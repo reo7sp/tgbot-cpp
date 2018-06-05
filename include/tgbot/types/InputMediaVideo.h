@@ -33,9 +33,9 @@
 namespace TgBot {
 
 /**
-* Represents a video to be sent.
-* @ingroup types
-*/
+ * @brief Represents a video to be sent.
+ * @ingroup types
+ */
 class InputMediaVideo : public InputMedia {
 public:
 	typedef std::shared_ptr<InputMediaVideo> Ptr;

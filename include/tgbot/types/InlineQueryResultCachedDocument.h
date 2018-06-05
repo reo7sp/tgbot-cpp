@@ -13,7 +13,8 @@
 namespace TgBot {
 
 /**
- * Represents a link to a file stored on the Telegram servers.
+ * @brief Represents a link to a file stored on the Telegram servers.
+ * 
  * @ingroup types
  */
 class InlineQueryResultCachedDocument : public InlineQueryResult {
@@ -27,12 +28,12 @@ public:
 	}
 
 	/**
-	 * A valid file identifier for the file
+	 * @brief A valid file identifier for the file
 	 */
 	std::string documentFileId;
 
 	/**
-	 * Optional. Short description of the result
+	 * @brief Optional. Short description of the result
 	 */
 	std::string description;
 };

@@ -29,7 +29,8 @@
 namespace TgBot {
 
 /**
- * Exception type which is only thrown when Telegram refuses API request.
+ * @brief Exception type which is only thrown when Telegram refuses API request.
+ * 
  * @ingroup general
  */
 class TgException : public std::runtime_error {

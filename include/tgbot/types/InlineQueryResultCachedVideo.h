@@ -13,8 +13,9 @@
 namespace TgBot {
 
 /**
- * Represents a link to a video file stored on the Telegram servers. 
- * @ingroup types
+ * @brief Represents a link to a video file stored on the Telegram servers. 
+ *
+ *  @ingroup types
  */
 class InlineQueryResultCachedVideo : public InlineQueryResult {
 public:
@@ -27,12 +28,12 @@ public:
 	}
 
 	/**
-	 * A valid file identifier of the video
+	 * @brief A valid file identifier of the video
 	 */
 	std::string videoFileId;
 
 	/**
-	* Optional. Short description of the result
+	* @brief Optional. Short description of the result
 	*/
 	std::string description;
 };

@@ -31,7 +31,8 @@
 namespace TgBot {
 
 /**
- * This object represent a user's profile pictures.
+ * @brief This object represent a user's profile pictures.
+ * 
  * @ingroup types
  */
 class UserProfilePhotos {
@@ -40,12 +41,12 @@ public:
 	typedef std::shared_ptr<UserProfilePhotos> Ptr;
 
 	/**
-	 * Total number of profile pictures the target user has.
+	 * @brief Total number of profile pictures the target user has.
 	 */
 	int32_t totalCount;
 
 	/**
-	 * Requested profile pictures (in up to 4 sizes each).
+	 * @brief Requested profile pictures (in up to 4 sizes each).
 	 */
 	std::vector<std::vector<PhotoSize::Ptr>> photos;
 };

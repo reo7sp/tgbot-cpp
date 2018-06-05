@@ -13,7 +13,8 @@
 namespace TgBot {
 
 /**
- * Represents a link to a photo stored on the Telegram servers.
+ * @brief Represents a link to a photo stored on the Telegram servers.
+ * 
  * @ingroup types
  */
 class InlineQueryResultCachedPhoto : public InlineQueryResult {
@@ -27,12 +28,12 @@ public:
 	}
 
 	/**
-	 * A valid file identifier of the photo
+	 * @brief A valid file identifier of the photo
 	 */
 	std::string photoFileId;
 
 	/**
-	* Optional. Short description of the result
+	* @brief Optional. Short description of the result
 	*/
 	std::string description;
 };

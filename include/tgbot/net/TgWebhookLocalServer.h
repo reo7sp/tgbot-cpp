@@ -30,7 +30,8 @@
 namespace TgBot {
 
 /**
- * This class setups HTTP server for receiving Telegram Update objects from unix socket.
+ * @brief This class setups HTTP server for receiving Telegram Update objects from unix socket.
+ * 
  * @ingroup net
  */
 class TgWebhookLocalServer : public TgWebhookServer<boost::asio::local::stream_protocol> {

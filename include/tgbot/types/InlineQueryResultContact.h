@@ -13,7 +13,8 @@
 namespace TgBot {
 
 /**
- * Represents a contact with a phone number
+ * @brief Represents a contact with a phone number
+ * 
  * @ingroup types
  */
 class InlineQueryResultContact : public InlineQueryResult {
@@ -29,32 +30,32 @@ public:
 	}
 
 	/**
-	 * Contact's phone number
+	 * @brief Contact's phone number
 	 */
 	std::string phoneNumber;
 
 	/**
-	 * Contact's first name
+	 * @brief Contact's first name
 	 */
 	std::string firstName;
 
 	/**
-	 * Optional. Contact's last name
+	 * @brief Optional. Contact's last name
 	 */
 	std::string lastName;
 
 	/**
-	* Optional. Url of the thumbnail for the result
+	* @brief Optional. Url of the thumbnail for the result
 	*/
 	std::string thumbUrl;
 
 	/**
-	* Optional. Thumbnail width.
+	* @brief Optional. Thumbnail width.
 	*/
 	int32_t thumbWidth;
 
 	/**
-	* Optinal. Thumbnail height
+	* @brief Optinal. Thumbnail height
 	*/
 	int32_t thumbHeight;
 };

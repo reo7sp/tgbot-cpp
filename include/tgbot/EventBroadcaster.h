@@ -38,7 +38,8 @@ namespace TgBot {
 class EventHandler;
 
 /**
- * This class holds all event listeners.
+ * @brief This class holds all event listeners.
+ * 
  * @ingroup general
  */
 class EventBroadcaster {
@@ -52,7 +53,7 @@ public:
 	typedef std::function<void (const CallbackQuery::Ptr)> CallbackQueryListener;
 
 	/**
-	 * Registers listener which receives all messages which the bot can ever receive.
+	 * @brief Registers listener which receives all messages which the bot can ever receive.
 	 * @param listener Listener.
 	 */
 	inline void onAnyMessage(const MessageListener& listener) {
@@ -60,7 +61,7 @@ public:
 	}
 
 	/**
-	 * Registers listener which receives all messages with commands (messages with leading '/' char).
+	 * @brief Registers listener which receives all messages with commands (messages with leading '/' char).
 	 * @param commandName Command name which listener can handle.
 	 * @param listener Listener.
 	 */
@@ -69,7 +70,7 @@ public:
 	}
 
 	/**
-	* Registers listener which receives all messages with commands (messages with leading '/' char).
+	* @brief Registers listener which receives all messages with commands (messages with leading '/' char).
 	* @param commandsList Commands names which listener can handle.
 	* @param listener Listener.
 	*/
@@ -81,7 +82,7 @@ public:
 	}
 
 	/**
-	 * Registers listener which receives all messages with commands (messages with leading '/' char) which haven't been handled by other listeners.
+	 * @brief Registers listener which receives all messages with commands (messages with leading '/' char) which haven't been handled by other listeners.
 	 * @param listener Listener.
 	 */
 	inline void onUnknownCommand(const MessageListener& listener) {
@@ -89,7 +90,7 @@ public:
 	}
 
 	/**
-	 * Registers listener which receives all messages without commands (messages with no leading '/' char)
+	 * @brief Registers listener which receives all messages without commands (messages with no leading '/' char)
 	 * @param listener Listener.
 	 */
 	inline void onNonCommandMessage(const MessageListener& listener) {
@@ -97,7 +98,7 @@ public:
 	}
 
 	/**
-	 * Registers listener which receives all the inline query.
+	 * @brief Registers listener which receives all the inline query.
 	 * @param listener Listener.
 	 */
 	inline void onInlineQuery(const InlineQueryListener& listener) {
@@ -105,7 +106,7 @@ public:
 	}
 
 	/**
-	 * Registers listener which receives all the chosen inline result.
+	 * @brief Registers listener which receives all the chosen inline result.
 	 * @param listener Listener.
 	 */
 	inline void onChosenInlineResult(const ChosenInlineResultListener& listener){

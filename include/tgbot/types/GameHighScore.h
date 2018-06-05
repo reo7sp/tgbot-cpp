@@ -1,5 +1,6 @@
 /*
  * Copyright (c) 2015 Oleg Morozenkov
+ * Copyright (c) 2018 JellyBrick
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,52 +21,41 @@
  * SOFTWARE.
  */
 
-#ifndef TGBOT_CPP_VIDEONOTE_H
-#define TGBOT_CPP_VIDEONOTE_H
+#ifndef TGBOT_GAMEHIGHSCORE_H
+#define TGBOT_GAMEHIGHSCORE_H
 
-#include <string>
 #include <memory>
+#include <string>
 
 #include "tgbot/types/PhotoSize.h"
+#include "tgbot/types/User.h"
 
 namespace TgBot {
 
 /**
- * @brief This object represents a video message (available in Telegram apps as of v.4.0).
+ * @brief This object represents one row of the high scores table for a game.
  * 
  * @ingroup types
  */
-class VideoNote {
-
+class GameHighScore {
 public:
-    typedef std::shared_ptr<VideoNote> Ptr;
+	typedef std::shared_ptr<GameHighScore> Ptr;
 
 	/**
-	 * @brief Unique identifier for this file.
+	 * @brief Position in high score table for the game.
 	 */
-	std::string fileId;
+	std::string position;
 
 	/**
-	 * @brief Video width and height as defined by sender.
+	 * @brief User.
 	 */
-	int32_t length;
+	User::Ptr user;
 
 	/**
-	 * @brief Duration of the video in seconds as defined by sender.
+	 * @brief Score.
 	 */
-	int32_t duration;
-
-	/**
-	 * @brief Optional. Video thumbnail.
-	 */
-	PhotoSize::Ptr thumb;
-
-	/**
-	 * @brief Optional. File size.
-	 */
-	int32_t fileSize;
+	int32_t score;
 };
-
 }
 
-#endif //TGBOT_CPP_VIDEONOTE_H
+#endif //TGBOT_GAMEHIGHSCORE_H
