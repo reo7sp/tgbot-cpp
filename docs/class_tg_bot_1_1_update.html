@@ -88,6 +88,9 @@ $(document).ready(function(){initNavTree('class_tg_bot_1_1_update.html','');});
 </div><!--header-->
 <div class="contents">
 
+<p>This object represents an incoming update.  
+ <a href="class_tg_bot_1_1_update.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="_update_8h_source.html">Update.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
@@ -98,26 +101,34 @@ Public Types</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:af4d35314c4e49839f7012a9671ede097"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tg_bot_1_1_update.html#af4d35314c4e49839f7012a9671ede097">updateId</a></td></tr>
+<tr class="memdesc:af4d35314c4e49839f7012a9671ede097"><td class="mdescLeft">&#160;</td><td class="mdescRight">The update‘s unique identifier. <a class="el" href="class_tg_bot_1_1_update.html" title="This object represents an incoming update. ">Update</a> identifiers start from a certain positive number and increase sequentially. This ID becomes especially handy if you’re using Webhooks, since it allows you to ignore repeated updates or to restore the correct update sequence, should they get out of order.  <a href="#af4d35314c4e49839f7012a9671ede097">More...</a><br /></td></tr>
 <tr class="separator:af4d35314c4e49839f7012a9671ede097"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab65136c0345978742fb3026e6855ff2c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_tg_bot_1_1_message.html#a3805a5dc013c6ab23ac5efc91282c11d">Message::Ptr</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tg_bot_1_1_update.html#ab65136c0345978742fb3026e6855ff2c">message</a></td></tr>
+<tr class="memdesc:ab65136c0345978742fb3026e6855ff2c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. New incoming message of any kind — text, photo, sticker, etc.  <a href="#ab65136c0345978742fb3026e6855ff2c">More...</a><br /></td></tr>
 <tr class="separator:ab65136c0345978742fb3026e6855ff2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a188502d94515baee85ba30f58cffa1b5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_tg_bot_1_1_message.html#a3805a5dc013c6ab23ac5efc91282c11d">Message::Ptr</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tg_bot_1_1_update.html#a188502d94515baee85ba30f58cffa1b5">editedMessage</a></td></tr>
+<tr class="memdesc:a188502d94515baee85ba30f58cffa1b5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. New version of a message that is known to the bot and was edited.  <a href="#a188502d94515baee85ba30f58cffa1b5">More...</a><br /></td></tr>
 <tr class="separator:a188502d94515baee85ba30f58cffa1b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aabddc6947fe255f1763802532d34ef2b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_tg_bot_1_1_message.html#a3805a5dc013c6ab23ac5efc91282c11d">Message::Ptr</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tg_bot_1_1_update.html#aabddc6947fe255f1763802532d34ef2b">channelPost</a></td></tr>
+<tr class="memdesc:aabddc6947fe255f1763802532d34ef2b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. New incoming channel post of any kind — text, photo, sticker, etc.  <a href="#aabddc6947fe255f1763802532d34ef2b">More...</a><br /></td></tr>
 <tr class="separator:aabddc6947fe255f1763802532d34ef2b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a05588da55717387ef91434f014afff1b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_tg_bot_1_1_message.html#a3805a5dc013c6ab23ac5efc91282c11d">Message::Ptr</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tg_bot_1_1_update.html#a05588da55717387ef91434f014afff1b">editedChannelPost</a></td></tr>
+<tr class="memdesc:a05588da55717387ef91434f014afff1b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. New version of a channel post that is known to the bot and was edited.  <a href="#a05588da55717387ef91434f014afff1b">More...</a><br /></td></tr>
 <tr class="separator:a05588da55717387ef91434f014afff1b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aea03e36b9015a0fe9f1278564c5b8806"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_tg_bot_1_1_inline_query.html#a82b36b38b3587e6a721b6fa579759b0c">InlineQuery::Ptr</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tg_bot_1_1_update.html#aea03e36b9015a0fe9f1278564c5b8806">inlineQuery</a></td></tr>
+<tr class="memdesc:aea03e36b9015a0fe9f1278564c5b8806"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. New incoming inline query.  <a href="#aea03e36b9015a0fe9f1278564c5b8806">More...</a><br /></td></tr>
 <tr class="separator:aea03e36b9015a0fe9f1278564c5b8806"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa3fab72bc10111e2f8f8930c43a0ff8b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_tg_bot_1_1_chosen_inline_result.html#ad4b7edd30fd0d876fa99493fe19b3247">ChosenInlineResult::Ptr</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tg_bot_1_1_update.html#aa3fab72bc10111e2f8f8930c43a0ff8b">chosenInlineResult</a></td></tr>
+<tr class="memdesc:aa3fab72bc10111e2f8f8930c43a0ff8b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. The result of an inline query that was chosen by a user and sent to their chat partner.  <a href="#aa3fab72bc10111e2f8f8930c43a0ff8b">More...</a><br /></td></tr>
 <tr class="separator:aa3fab72bc10111e2f8f8930c43a0ff8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2c6890adcab16d6a306b3b89fd954f6f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_tg_bot_1_1_callback_query.html#a5a5e4f8368bd95ba214e68cde5d1c7c0">CallbackQuery::Ptr</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tg_bot_1_1_update.html#a2c6890adcab16d6a306b3b89fd954f6f">callbackQuery</a></td></tr>
+<tr class="memdesc:a2c6890adcab16d6a306b3b89fd954f6f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. New incoming callback query.  <a href="#a2c6890adcab16d6a306b3b89fd954f6f">More...</a><br /></td></tr>
 <tr class="separator:a2c6890adcab16d6a306b3b89fd954f6f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>This object represents an incoming update. </p>
 
-<p class="definition">Definition at line <a class="el" href="_update_8h_source.html#l00039">39</a> of file <a class="el" href="_update_8h_source.html">Update.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_update_8h_source.html#l00040">40</a> of file <a class="el" href="_update_8h_source.html">Update.h</a>.</p>
 </div><h2 class="groupheader">Member Typedef Documentation</h2>
 <a id="abace63cf3605fe7a480a3bb839a672a8"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#abace63cf3605fe7a480a3bb839a672a8">&#9670;&nbsp;</a></span>Ptr</h2>
@@ -131,7 +142,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_update_8h_source.html#l00042">42</a> of file <a class="el" href="_update_8h_source.html">Update.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_update_8h_source.html#l00043">43</a> of file <a class="el" href="_update_8h_source.html">Update.h</a>.</p>
 
 </div>
 </div>
@@ -147,9 +158,10 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
 <p>Optional. New incoming callback query. </p>
 
-<p class="definition">Definition at line <a class="el" href="_update_8h_source.html#l00082">82</a> of file <a class="el" href="_update_8h_source.html">Update.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_update_8h_source.html#l00083">83</a> of file <a class="el" href="_update_8h_source.html">Update.h</a>.</p>
 
 </div>
 </div>
@@ -164,9 +176,10 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
 <p>Optional. New incoming channel post of any kind — text, photo, sticker, etc. </p>
 
-<p class="definition">Definition at line <a class="el" href="_update_8h_source.html#l00062">62</a> of file <a class="el" href="_update_8h_source.html">Update.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_update_8h_source.html#l00063">63</a> of file <a class="el" href="_update_8h_source.html">Update.h</a>.</p>
 
 </div>
 </div>
@@ -181,9 +194,10 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
 <p>Optional. The result of an inline query that was chosen by a user and sent to their chat partner. </p>
 
-<p class="definition">Definition at line <a class="el" href="_update_8h_source.html#l00077">77</a> of file <a class="el" href="_update_8h_source.html">Update.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_update_8h_source.html#l00078">78</a> of file <a class="el" href="_update_8h_source.html">Update.h</a>.</p>
 
 </div>
 </div>
@@ -198,9 +212,10 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Optional. New version of a channel post that is known to the bot and was edited </p>
 
-<p class="definition">Definition at line <a class="el" href="_update_8h_source.html#l00067">67</a> of file <a class="el" href="_update_8h_source.html">Update.h</a>.</p>
+<p>Optional. New version of a channel post that is known to the bot and was edited. </p>
+
+<p class="definition">Definition at line <a class="el" href="_update_8h_source.html#l00068">68</a> of file <a class="el" href="_update_8h_source.html">Update.h</a>.</p>
 
 </div>
 </div>
@@ -215,9 +230,10 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Optional. New version of a message that is known to the bot and was edited </p>
 
-<p class="definition">Definition at line <a class="el" href="_update_8h_source.html#l00057">57</a> of file <a class="el" href="_update_8h_source.html">Update.h</a>.</p>
+<p>Optional. New version of a message that is known to the bot and was edited. </p>
+
+<p class="definition">Definition at line <a class="el" href="_update_8h_source.html#l00058">58</a> of file <a class="el" href="_update_8h_source.html">Update.h</a>.</p>
 
 </div>
 </div>
@@ -232,9 +248,10 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Optional. New incoming inline query </p>
 
-<p class="definition">Definition at line <a class="el" href="_update_8h_source.html#l00072">72</a> of file <a class="el" href="_update_8h_source.html">Update.h</a>.</p>
+<p>Optional. New incoming inline query. </p>
+
+<p class="definition">Definition at line <a class="el" href="_update_8h_source.html#l00073">73</a> of file <a class="el" href="_update_8h_source.html">Update.h</a>.</p>
 
 </div>
 </div>
@@ -249,9 +266,10 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
 <p>Optional. New incoming message of any kind — text, photo, sticker, etc. </p>
 
-<p class="definition">Definition at line <a class="el" href="_update_8h_source.html#l00052">52</a> of file <a class="el" href="_update_8h_source.html">Update.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_update_8h_source.html#l00053">53</a> of file <a class="el" href="_update_8h_source.html">Update.h</a>.</p>
 
 </div>
 </div>
@@ -266,9 +284,10 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>The update‘s unique identifier. <a class="el" href="class_tg_bot_1_1_update.html">Update</a> identifiers start from a certain positive number and increase sequentially. This ID becomes especially handy if you’re using Webhooks, since it allows you to ignore repeated updates or to restore the correct update sequence, should they get out of order. </p>
 
-<p class="definition">Definition at line <a class="el" href="_update_8h_source.html#l00047">47</a> of file <a class="el" href="_update_8h_source.html">Update.h</a>.</p>
+<p>The update‘s unique identifier. <a class="el" href="class_tg_bot_1_1_update.html" title="This object represents an incoming update. ">Update</a> identifiers start from a certain positive number and increase sequentially. This ID becomes especially handy if you’re using Webhooks, since it allows you to ignore repeated updates or to restore the correct update sequence, should they get out of order. </p>
+
+<p class="definition">Definition at line <a class="el" href="_update_8h_source.html#l00048">48</a> of file <a class="el" href="_update_8h_source.html">Update.h</a>.</p>
 
 </div>
 </div>
@@ -281,7 +300,7 @@ Public Attributes</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespace_tg_bot.html">TgBot</a></li><li class="navelem"><a class="el" href="class_tg_bot_1_1_update.html">Update</a></li>
-    <li class="footer">Generated on Mon May 28 2018 13:57:33 for tgbot-cpp by
+    <li class="footer">Generated on Tue Jun 5 2018 19:07:16 for tgbot-cpp by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
   </ul>

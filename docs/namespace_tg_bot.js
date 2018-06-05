@@ -1,8 +1,10 @@
 var namespace_tg_bot =
 [
+    [ "Animation", "class_tg_bot_1_1_animation.html", "class_tg_bot_1_1_animation" ],
     [ "Api", "class_tg_bot_1_1_api.html", "class_tg_bot_1_1_api" ],
     [ "Audio", "class_tg_bot_1_1_audio.html", "class_tg_bot_1_1_audio" ],
     [ "Bot", "class_tg_bot_1_1_bot.html", "class_tg_bot_1_1_bot" ],
+    [ "CallbackGame", "class_tg_bot_1_1_callback_game.html", "class_tg_bot_1_1_callback_game" ],
     [ "CallbackQuery", "class_tg_bot_1_1_callback_query.html", "class_tg_bot_1_1_callback_query" ],
     [ "Chat", "class_tg_bot_1_1_chat.html", "class_tg_bot_1_1_chat" ],
     [ "ChatMember", "class_tg_bot_1_1_chat_member.html", "class_tg_bot_1_1_chat_member" ],
@@ -14,6 +16,8 @@ var namespace_tg_bot =
     [ "EventHandler", "class_tg_bot_1_1_event_handler.html", "class_tg_bot_1_1_event_handler" ],
     [ "File", "class_tg_bot_1_1_file.html", "class_tg_bot_1_1_file" ],
     [ "ForceReply", "class_tg_bot_1_1_force_reply.html", "class_tg_bot_1_1_force_reply" ],
+    [ "Game", "class_tg_bot_1_1_game.html", "class_tg_bot_1_1_game" ],
+    [ "GameHighScore", "class_tg_bot_1_1_game_high_score.html", "class_tg_bot_1_1_game_high_score" ],
     [ "GenericReply", "class_tg_bot_1_1_generic_reply.html", "class_tg_bot_1_1_generic_reply" ],
     [ "HttpClient", "class_tg_bot_1_1_http_client.html", "class_tg_bot_1_1_http_client" ],
     [ "HttpParser", "class_tg_bot_1_1_http_parser.html", "class_tg_bot_1_1_http_parser" ],

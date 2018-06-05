@@ -88,6 +88,9 @@ $(document).ready(function(){initNavTree('class_tg_bot_1_1_response_parameters.h
 </div><!--header-->
 <div class="contents">
 
+<p>Contains information about why a request was unsuccessfull.  
+ <a href="class_tg_bot_1_1_response_parameters.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="_response_parameters_8h_source.html">ResponseParameters.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
@@ -98,14 +101,16 @@ Public Types</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:a37baca0cf6ae91e41a20dbf2451a225d"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tg_bot_1_1_response_parameters.html#a37baca0cf6ae91e41a20dbf2451a225d">migrateToChatId</a></td></tr>
+<tr class="memdesc:a37baca0cf6ae91e41a20dbf2451a225d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. The group has been migrated to a supergroup with the specified identifier.  <a href="#a37baca0cf6ae91e41a20dbf2451a225d">More...</a><br /></td></tr>
 <tr class="separator:a37baca0cf6ae91e41a20dbf2451a225d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab65e3cad1468f5fb762f822722031990"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tg_bot_1_1_response_parameters.html#ab65e3cad1468f5fb762f822722031990">retryAfter</a></td></tr>
+<tr class="memdesc:ab65e3cad1468f5fb762f822722031990"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. In case of exceeding flood control, the number of seconds left to wait before the request can be repeated.  <a href="#ab65e3cad1468f5fb762f822722031990">More...</a><br /></td></tr>
 <tr class="separator:ab65e3cad1468f5fb762f822722031990"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Contains information about why a request was unsuccessfull. </p>
 
-<p class="definition">Definition at line <a class="el" href="_response_parameters_8h_source.html#l00016">16</a> of file <a class="el" href="_response_parameters_8h_source.html">ResponseParameters.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_response_parameters_8h_source.html#l00017">17</a> of file <a class="el" href="_response_parameters_8h_source.html">ResponseParameters.h</a>.</p>
 </div><h2 class="groupheader">Member Typedef Documentation</h2>
 <a id="a345c84a4e959ed8e529b1cb6e76d0182"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a345c84a4e959ed8e529b1cb6e76d0182">&#9670;&nbsp;</a></span>Ptr</h2>
@@ -119,7 +124,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_response_parameters_8h_source.html#l00018">18</a> of file <a class="el" href="_response_parameters_8h_source.html">ResponseParameters.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_response_parameters_8h_source.html#l00019">19</a> of file <a class="el" href="_response_parameters_8h_source.html">ResponseParameters.h</a>.</p>
 
 </div>
 </div>
@@ -135,9 +140,11 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Optional. The group has been migrated to a supergroup with the specified identifier. This number may be greater than 32 bits and some programming languages may have difficulty/silent defects in interpreting it. But it is smaller than 52 bits, so a signed 64 bit integer or double-precision float type are safe for storing this identifier. </p>
 
-<p class="definition">Definition at line <a class="el" href="_response_parameters_8h_source.html#l00026">26</a> of file <a class="el" href="_response_parameters_8h_source.html">ResponseParameters.h</a>.</p>
+<p>Optional. The group has been migrated to a supergroup with the specified identifier. </p>
+<p>This number may be greater than 32 bits and some programming languages may have difficulty/silent defects in interpreting it. But it is smaller than 52 bits, so a signed 64 bit integer or double-precision float type are safe for storing this identifier. </p>
+
+<p class="definition">Definition at line <a class="el" href="_response_parameters_8h_source.html#l00028">28</a> of file <a class="el" href="_response_parameters_8h_source.html">ResponseParameters.h</a>.</p>
 
 </div>
 </div>
@@ -152,9 +159,10 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Optional. In case of exceeding flood control, the number of seconds left to wait before the request can be repeated </p>
 
-<p class="definition">Definition at line <a class="el" href="_response_parameters_8h_source.html#l00031">31</a> of file <a class="el" href="_response_parameters_8h_source.html">ResponseParameters.h</a>.</p>
+<p>Optional. In case of exceeding flood control, the number of seconds left to wait before the request can be repeated. </p>
+
+<p class="definition">Definition at line <a class="el" href="_response_parameters_8h_source.html#l00033">33</a> of file <a class="el" href="_response_parameters_8h_source.html">ResponseParameters.h</a>.</p>
 
 </div>
 </div>
@@ -167,7 +175,7 @@ Public Attributes</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespace_tg_bot.html">TgBot</a></li><li class="navelem"><a class="el" href="class_tg_bot_1_1_response_parameters.html">ResponseParameters</a></li>
-    <li class="footer">Generated on Mon May 28 2018 13:57:33 for tgbot-cpp by
+    <li class="footer">Generated on Tue Jun 5 2018 19:07:15 for tgbot-cpp by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
   </ul>

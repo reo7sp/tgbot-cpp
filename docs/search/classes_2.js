@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['callbackgame',['CallbackGame',['../class_tg_bot_1_1_callback_game.html',1,'TgBot']]],
   ['callbackquery',['CallbackQuery',['../class_tg_bot_1_1_callback_query.html',1,'TgBot']]],
   ['chat',['Chat',['../class_tg_bot_1_1_chat.html',1,'TgBot']]],
   ['chatmember',['ChatMember',['../class_tg_bot_1_1_chat_member.html',1,'TgBot']]],

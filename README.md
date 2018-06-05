@@ -61,7 +61,7 @@ add_definitions(-DTGBOT_CHANGE_SOCKET_BUFFER_SIZE) # Socket Buffer Size Expansio
 add_definitions(-DTGBOT_CHANGE_READ_BUFFER_SIZE) # Read Buffer Size Expansion
 ```
 
-### Without CMake
+#### Without CMake
 ```
 -DTGBOT_DISABLE_NAGLES_ALGORITHM
 -DTGBOT_CHANGE_SOCKET_BUFFER_SIZE

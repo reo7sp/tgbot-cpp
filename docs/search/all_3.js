@@ -1,6 +1,8 @@
 var searchData=
 [
   ['callbackdata',['callbackData',['../class_tg_bot_1_1_inline_keyboard_button.html#a25716bdfc7a0719f1c17702a8d6a8aa4',1,'TgBot::InlineKeyboardButton']]],
+  ['callbackgame',['CallbackGame',['../class_tg_bot_1_1_callback_game.html',1,'TgBot::CallbackGame'],['../class_tg_bot_1_1_inline_keyboard_button.html#a7607991eb8529b9cf0dc2734008cc579',1,'TgBot::InlineKeyboardButton::callbackGame()']]],
+  ['callbackgame_2eh',['CallbackGame.h',['../_callback_game_8h.html',1,'']]],
   ['callbackquery',['CallbackQuery',['../class_tg_bot_1_1_callback_query.html',1,'TgBot::CallbackQuery'],['../class_tg_bot_1_1_update.html#a2c6890adcab16d6a306b3b89fd954f6f',1,'TgBot::Update::callbackQuery()']]],
   ['callbackquery_2eh',['CallbackQuery.h',['../_callback_query_8h.html',1,'']]],
   ['callbackquerylistener',['CallbackQueryListener',['../class_tg_bot_1_1_event_broadcaster.html#a44f1bbafcca84f78f82dc0ef1801619a',1,'TgBot::EventBroadcaster']]],

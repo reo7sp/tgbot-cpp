@@ -1,11 +1,13 @@
 var searchData=
 [
   ['scale',['scale',['../class_tg_bot_1_1_mask_position.html#a8f78e6dcdb37975c435cfd0d9a923963',1,'TgBot::MaskPosition']]],
+  ['score',['score',['../class_tg_bot_1_1_game_high_score.html#a327a049b8df70d93d9a734ad311f130d',1,'TgBot::GameHighScore']]],
   ['selective',['selective',['../class_tg_bot_1_1_force_reply.html#afbb510a24ebda5409311ff0d385065dc',1,'TgBot::ForceReply::selective()'],['../class_tg_bot_1_1_reply_keyboard_markup.html#ac7cf30c8d98f72b81ad30f48d0789d65',1,'TgBot::ReplyKeyboardMarkup::selective()'],['../class_tg_bot_1_1_reply_keyboard_remove.html#a840a781ad230cee4c50057a7c7f82828',1,'TgBot::ReplyKeyboardRemove::selective()']]],
   ['sendaudio',['sendAudio',['../class_tg_bot_1_1_api.html#aa4024dc69467d5028f85380f92a6d5e9',1,'TgBot::Api::sendAudio(int64_t chatId, const InputFile::Ptr audio, const std::string &amp;caption=&quot;&quot;, int32_t duration=0, const std::string &amp;performer=&quot;&quot;, const std::string &amp;title=&quot;&quot;, int32_t replyToMessageId=0, const GenericReply::Ptr replyMarkup=std::make_shared&lt; GenericReply &gt;(), const std::string &amp;parseMode=&quot;&quot;, bool disableNotification=false) const'],['../class_tg_bot_1_1_api.html#a46a7d3a12ac67271c5bd2d123b6f0bb0',1,'TgBot::Api::sendAudio(int64_t chatId, const std::string &amp;audioId, const std::string &amp;caption=&quot;&quot;, int32_t duration=0, const std::string &amp;performer=&quot;&quot;, const std::string &amp;title=&quot;&quot;, int32_t replyToMessageId=0, const GenericReply::Ptr replyMarkup=std::make_shared&lt; GenericReply &gt;(), const std::string &amp;parseMode=&quot;&quot;, bool disableNotification=false) const']]],
   ['sendchataction',['sendChatAction',['../class_tg_bot_1_1_api.html#a77fe17ad287f702bb021fc92575a0e2d',1,'TgBot::Api']]],
   ['sendcontact',['sendContact',['../class_tg_bot_1_1_api.html#a29f67a91434a7ce8b017f103419f23c4',1,'TgBot::Api']]],
   ['senddocument',['sendDocument',['../class_tg_bot_1_1_api.html#a1e2aa3324a8c18532261b7b57f045caf',1,'TgBot::Api::sendDocument(int64_t chatId, const InputFile::Ptr document, const std::string &amp;caption=&quot;&quot;, int32_t replyToMessageId=0, const GenericReply::Ptr replyMarkup=std::make_shared&lt; GenericReply &gt;(), const std::string &amp;parseMode=&quot;&quot;, bool disableNotification=false) const'],['../class_tg_bot_1_1_api.html#a78026bdce1fb6c87c17979b037dc2dbb',1,'TgBot::Api::sendDocument(int64_t chatId, const std::string &amp;documentId, const std::string &amp;caption=&quot;&quot;, int32_t replyToMessageId=0, const GenericReply::Ptr replyMarkup=std::make_shared&lt; GenericReply &gt;(), const std::string &amp;parseMode=&quot;&quot;, bool disableNotification=false) const']]],
+  ['sendgame',['sendGame',['../class_tg_bot_1_1_api.html#a9d5086f523b570a9a6a973abdb15a6b0',1,'TgBot::Api']]],
   ['sendlocation',['sendLocation',['../class_tg_bot_1_1_api.html#a5479c47ebc9f7385cb78e957351234cd',1,'TgBot::Api']]],
   ['sendmediagroup',['sendMediaGroup',['../class_tg_bot_1_1_api.html#a3dad69c5211708ec8581f2bd6f3265bc',1,'TgBot::Api']]],
   ['sendmessage',['sendMessage',['../class_tg_bot_1_1_api.html#ad0f68ec32e5878a9fe4f922cd4f13b68',1,'TgBot::Api']]],
@@ -20,6 +22,7 @@ var searchData=
   ['setchatphoto',['setChatPhoto',['../class_tg_bot_1_1_api.html#a958b5a97bddd5c2ff57df30788a4385b',1,'TgBot::Api']]],
   ['setchatstickerset',['setChatStickerSet',['../class_tg_bot_1_1_api.html#aafb54206146f5b9510ef89026d0b8589',1,'TgBot::Api']]],
   ['setchattitle',['setChatTitle',['../class_tg_bot_1_1_api.html#a43c91c467f45e4207968bf6cf1cb3a6e',1,'TgBot::Api']]],
+  ['setgamescore',['setGameScore',['../class_tg_bot_1_1_api.html#a9cec040119c296aa991a53a77d3cd8c4',1,'TgBot::Api']]],
   ['setname',['setName',['../class_tg_bot_1_1_sticker.html#ac9ff439183edc6a5fb2c469e29c687ba',1,'TgBot::Sticker']]],
   ['setstickerpositioninset',['setStickerPositionInSet',['../class_tg_bot_1_1_api.html#a0b77fde611ecb916b5975a7ab9fa87f7',1,'TgBot::Api']]],
   ['setwebhook',['setWebhook',['../class_tg_bot_1_1_api.html#af961a33f53579fee24090059dab328ea',1,'TgBot::Api']]],

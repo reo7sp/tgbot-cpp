@@ -5,6 +5,8 @@ var searchData=
   ['allmembersareadministrators',['allMembersAreAdministrators',['../class_tg_bot_1_1_chat.html#a46092ec51dcc2ab4f54716eb21c4fb68',1,'TgBot::Chat']]],
   ['allowedupdates',['allowedUpdates',['../class_tg_bot_1_1_webhook_info.html#a5a145b95d4d15992ac253b6f1ef834ce',1,'TgBot::WebhookInfo']]],
   ['amount',['amount',['../class_tg_bot_1_1_labeled_price.html#a09b9a91f5bebc7e889bad2d4455b243c',1,'TgBot::LabeledPrice']]],
+  ['animation',['Animation',['../class_tg_bot_1_1_animation.html',1,'TgBot::Animation'],['../class_tg_bot_1_1_game.html#a2578e62f28ad5191e1754983a14cad4c',1,'TgBot::Game::animation()']]],
+  ['animation_2eh',['Animation.h',['../_animation_8h.html',1,'']]],
   ['answercallbackquery',['answerCallbackQuery',['../class_tg_bot_1_1_api.html#a2f73414941d8bb67ff3721a674274bf8',1,'TgBot::Api']]],
   ['answerinlinequery',['answerInlineQuery',['../class_tg_bot_1_1_api.html#a430f9e036859250345d2125b7688a1f9',1,'TgBot::Api']]],
   ['api',['Api',['../class_tg_bot_1_1_api.html',1,'TgBot::Api'],['../class_tg_bot_1_1_api.html#ac0e4615a8944c07e7db3811ee84f2a94',1,'TgBot::Api::Api()']]],

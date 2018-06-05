@@ -1,6 +1,8 @@
 var dir_edd914e3fbf8e89da3c33d1968dd487e =
 [
+    [ "Animation.h", "_animation_8h.html", null ],
     [ "Audio.h", "_audio_8h.html", null ],
+    [ "CallbackGame.h", "_callback_game_8h.html", null ],
     [ "CallbackQuery.h", "_callback_query_8h.html", null ],
     [ "Chat.h", "_chat_8h.html", null ],
     [ "ChatMember.h", "_chat_member_8h.html", null ],
@@ -10,6 +12,8 @@ var dir_edd914e3fbf8e89da3c33d1968dd487e =
     [ "Document.h", "_document_8h.html", null ],
     [ "File.h", "_file_8h.html", null ],
     [ "ForceReply.h", "_force_reply_8h.html", null ],
+    [ "Game.h", "_game_8h.html", null ],
+    [ "GameHighScore.h", "_game_high_score_8h.html", null ],
     [ "GenericReply.h", "_generic_reply_8h.html", null ],
     [ "InlineKeyboardButton.h", "_inline_keyboard_button_8h.html", null ],
     [ "InlineKeyboardMarkup.h", "_inline_keyboard_markup_8h.html", null ],

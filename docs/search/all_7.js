@@ -1,5 +1,9 @@
 var searchData=
 [
+  ['game',['Game',['../class_tg_bot_1_1_game.html',1,'TgBot::Game'],['../class_tg_bot_1_1_message.html#a64216e0a25408a6946fcebebf5b38307',1,'TgBot::Message::game()']]],
+  ['game_2eh',['Game.h',['../_game_8h.html',1,'']]],
+  ['gamehighscore',['GameHighScore',['../class_tg_bot_1_1_game_high_score.html',1,'TgBot']]],
+  ['gamehighscore_2eh',['GameHighScore.h',['../_game_high_score_8h.html',1,'']]],
   ['gameshortname',['gameShortName',['../class_tg_bot_1_1_callback_query.html#ab2547a0ea44c8a39f351354335082234',1,'TgBot::CallbackQuery::gameShortName()'],['../class_tg_bot_1_1_inline_query_result_game.html#a27eeb729c70e39bd963b99090c53e93a',1,'TgBot::InlineQueryResultGame::gameShortName()']]],
   ['general',['General',['../group__general.html',1,'']]],
   ['generatemultipartboundary',['generateMultipartBoundary',['../class_tg_bot_1_1_http_parser.html#a1950d2edd050dd933a3a06f1292ac671',1,'TgBot::HttpParser']]],
@@ -18,6 +22,7 @@ var searchData=
   ['geteventhandler',['getEventHandler',['../class_tg_bot_1_1_bot.html#a2f36a7774c1552d00c6e08accf495579',1,'TgBot::Bot']]],
   ['getevents',['getEvents',['../class_tg_bot_1_1_bot.html#ac7becb36b294dfbc556d534925d564ac',1,'TgBot::Bot']]],
   ['getfile',['getFile',['../class_tg_bot_1_1_api.html#ac50bdd50bf0cf5a211e699925759ebc1',1,'TgBot::Api']]],
+  ['getgamehighscores',['getGameHighScores',['../class_tg_bot_1_1_api.html#a39064867aa8ebfa92495df478228796a',1,'TgBot::Api']]],
   ['getinstance',['getInstance',['../class_tg_bot_1_1_http_client.html#a284380646ddc0fe9fd06cae29ba51a77',1,'TgBot::HttpClient::getInstance()'],['../class_tg_bot_1_1_http_parser.html#a2bd36ba8b363fa3209cf472621a2a8ab',1,'TgBot::HttpParser::getInstance()'],['../class_tg_bot_1_1_tg_type_parser.html#a3e86a9ea4c29460c3be175cbc97fdd5b',1,'TgBot::TgTypeParser::getInstance()']]],
   ['getme',['getMe',['../class_tg_bot_1_1_api.html#a566fcf52400de18737110edd7ab01535',1,'TgBot::Api']]],
   ['getstickerset',['getStickerSet',['../class_tg_bot_1_1_api.html#a270296c79f52985fca19cacf3ed75d2f',1,'TgBot::Api']]],

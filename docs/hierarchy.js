@@ -1,8 +1,10 @@
 var hierarchy =
 [
+    [ "TgBot::Animation", "class_tg_bot_1_1_animation.html", null ],
     [ "TgBot::Api", "class_tg_bot_1_1_api.html", null ],
     [ "TgBot::Audio", "class_tg_bot_1_1_audio.html", null ],
     [ "TgBot::Bot", "class_tg_bot_1_1_bot.html", null ],
+    [ "TgBot::CallbackGame", "class_tg_bot_1_1_callback_game.html", null ],
     [ "TgBot::CallbackQuery", "class_tg_bot_1_1_callback_query.html", null ],
     [ "TgBot::Chat", "class_tg_bot_1_1_chat.html", null ],
     [ "TgBot::ChatMember", "class_tg_bot_1_1_chat_member.html", null ],
@@ -14,6 +16,8 @@ var hierarchy =
     [ "TgBot::EventBroadcaster", "class_tg_bot_1_1_event_broadcaster.html", null ],
     [ "TgBot::EventHandler", "class_tg_bot_1_1_event_handler.html", null ],
     [ "TgBot::File", "class_tg_bot_1_1_file.html", null ],
+    [ "TgBot::Game", "class_tg_bot_1_1_game.html", null ],
+    [ "TgBot::GameHighScore", "class_tg_bot_1_1_game_high_score.html", null ],
     [ "TgBot::GenericReply", "class_tg_bot_1_1_generic_reply.html", [
       [ "TgBot::ForceReply", "class_tg_bot_1_1_force_reply.html", null ],
       [ "TgBot::InlineKeyboardMarkup", "class_tg_bot_1_1_inline_keyboard_markup.html", null ],

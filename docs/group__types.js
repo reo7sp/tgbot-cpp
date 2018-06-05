@@ -1,5 +1,13 @@
 var group__types =
 [
+    [ "Animation", "class_tg_bot_1_1_animation.html", [
+      [ "Ptr", "class_tg_bot_1_1_animation.html#afc55b2a385eeb3209e91bbbd1214c06a", null ],
+      [ "fileId", "class_tg_bot_1_1_animation.html#ad47a8d4e733fd4c89df680838ef88bf0", null ],
+      [ "fileName", "class_tg_bot_1_1_animation.html#a005529218689a10133d5c7b0482057df", null ],
+      [ "fileSize", "class_tg_bot_1_1_animation.html#a4046931b2e47deae5ec6dc06d9b231da", null ],
+      [ "mimeType", "class_tg_bot_1_1_animation.html#a112e29bf5a35ef1fc78f093cf7ecc48d", null ],
+      [ "thumb", "class_tg_bot_1_1_animation.html#ac8e9bb631206971b80674a71002ed8a5", null ]
+    ] ],
     [ "Audio", "class_tg_bot_1_1_audio.html", [
       [ "Ptr", "class_tg_bot_1_1_audio.html#a09651872832ece3b22c7505a2cfc0034", null ],
       [ "duration", "class_tg_bot_1_1_audio.html#a91867bc1857d43021c352781c8b1764d", null ],
@@ -8,6 +16,9 @@ var group__types =
       [ "mimeType", "class_tg_bot_1_1_audio.html#a0657e6fec492919e086084ab07bcf7ae", null ],
       [ "performer", "class_tg_bot_1_1_audio.html#ac91ee59f6137da2da2f7c8ad6d1e9119", null ],
       [ "title", "class_tg_bot_1_1_audio.html#a93a600b9821a425e31e51fdee027e1b4", null ]
+    ] ],
+    [ "CallbackGame", "class_tg_bot_1_1_callback_game.html", [
+      [ "Ptr", "class_tg_bot_1_1_callback_game.html#a9bf84f7624a6ad378d65dc6d84b8d624", null ]
     ] ],
     [ "CallbackQuery", "class_tg_bot_1_1_callback_query.html", [
       [ "Ptr", "class_tg_bot_1_1_callback_query.html#a5a5e4f8368bd95ba214e68cde5d1c7c0", null ],
@@ -99,6 +110,21 @@ var group__types =
       [ "forceReply", "class_tg_bot_1_1_force_reply.html#a8c4637ab74050185a86f5c058cf35de7", null ],
       [ "selective", "class_tg_bot_1_1_force_reply.html#afbb510a24ebda5409311ff0d385065dc", null ]
     ] ],
+    [ "Game", "class_tg_bot_1_1_game.html", [
+      [ "Ptr", "class_tg_bot_1_1_game.html#a6a83e8940305ff4fad66dfe67dbb348b", null ],
+      [ "animation", "class_tg_bot_1_1_game.html#a2578e62f28ad5191e1754983a14cad4c", null ],
+      [ "description", "class_tg_bot_1_1_game.html#acfd798616a7d6e8d1a0c7f6962e38893", null ],
+      [ "photo", "class_tg_bot_1_1_game.html#a38fe8bac265c3718117881a4d989f271", null ],
+      [ "text", "class_tg_bot_1_1_game.html#aa1f513d7c8058839d766f22b4090a3cb", null ],
+      [ "textEntities", "class_tg_bot_1_1_game.html#a0ed54ba6406a8cc8623ba1748c166e7f", null ],
+      [ "title", "class_tg_bot_1_1_game.html#ac0edbacabf558513040e47b81910cdec", null ]
+    ] ],
+    [ "GameHighScore", "class_tg_bot_1_1_game_high_score.html", [
+      [ "Ptr", "class_tg_bot_1_1_game_high_score.html#a25eccb9018f74176b5c0baf25db721f4", null ],
+      [ "position", "class_tg_bot_1_1_game_high_score.html#a76d2ff519f8a09b6550d78666950204f", null ],
+      [ "score", "class_tg_bot_1_1_game_high_score.html#a327a049b8df70d93d9a734ad311f130d", null ],
+      [ "user", "class_tg_bot_1_1_game_high_score.html#a8cbe4f32e28775c3f8aa0c9b78a9842b", null ]
+    ] ],
     [ "GenericReply", "class_tg_bot_1_1_generic_reply.html", [
       [ "Ptr", "class_tg_bot_1_1_generic_reply.html#aa7bb5f2c5484cb791e1c60c346bbb06f", null ],
       [ "~GenericReply", "class_tg_bot_1_1_generic_reply.html#a519019da5ab3cb27fc11bd56cc94123c", null ]
@@ -106,6 +132,7 @@ var group__types =
     [ "InlineKeyboardButton", "class_tg_bot_1_1_inline_keyboard_button.html", [
       [ "Ptr", "class_tg_bot_1_1_inline_keyboard_button.html#a27b82f178b242b6417377daae1f09983", null ],
       [ "callbackData", "class_tg_bot_1_1_inline_keyboard_button.html#a25716bdfc7a0719f1c17702a8d6a8aa4", null ],
+      [ "callbackGame", "class_tg_bot_1_1_inline_keyboard_button.html#a7607991eb8529b9cf0dc2734008cc579", null ],
       [ "switchInlineQuery", "class_tg_bot_1_1_inline_keyboard_button.html#ac04cb38b85aa31568e0acbb54202c274", null ],
       [ "switchInlineQueryCurrentChat", "class_tg_bot_1_1_inline_keyboard_button.html#a12c3bfab730b6ec9f0d8ef39957bf406", null ],
       [ "text", "class_tg_bot_1_1_inline_keyboard_button.html#aa96c745e6d2c531bc50bf344ff0fee6f", null ],
@@ -404,6 +431,7 @@ var group__types =
       [ "forwardFromMessageId", "class_tg_bot_1_1_message.html#a2149f82b01245e592cb392e2133e4667", null ],
       [ "forwardSignature", "class_tg_bot_1_1_message.html#a70f5fe7a8e14b0ce0842fa8661492e4a", null ],
       [ "from", "class_tg_bot_1_1_message.html#a65b78a13b38ad767338cd2e9d2e69ca2", null ],
+      [ "game", "class_tg_bot_1_1_message.html#a64216e0a25408a6946fcebebf5b38307", null ],
       [ "groupChatCreated", "class_tg_bot_1_1_message.html#a5bbf76e34ec52a41a6392f7d61c19035", null ],
       [ "leftChatMember", "class_tg_bot_1_1_message.html#a2291a3c7d9445a02774b4cd0e3972c29", null ],
       [ "location", "class_tg_bot_1_1_message.html#afda60437cce532170cb9b924f70e1c56", null ],

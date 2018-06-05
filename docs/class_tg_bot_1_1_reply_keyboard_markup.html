@@ -88,6 +88,9 @@ $(document).ready(function(){initNavTree('class_tg_bot_1_1_reply_keyboard_markup
 </div><!--header-->
 <div class="contents">
 
+<p>This object represents a custom keyboard with reply options.  
+ <a href="class_tg_bot_1_1_reply_keyboard_markup.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="_reply_keyboard_markup_8h_source.html">ReplyKeyboardMarkup.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for TgBot::ReplyKeyboardMarkup:</div>
@@ -95,7 +98,7 @@ Inheritance diagram for TgBot::ReplyKeyboardMarkup:</div>
  <div class="center">
   <img src="class_tg_bot_1_1_reply_keyboard_markup.png" usemap="#TgBot::ReplyKeyboardMarkup_map" alt=""/>
   <map id="TgBot::ReplyKeyboardMarkup_map" name="TgBot::ReplyKeyboardMarkup_map">
-<area href="class_tg_bot_1_1_generic_reply.html" alt="TgBot::GenericReply" shape="rect" coords="0,0,180,24"/>
+<area href="class_tg_bot_1_1_generic_reply.html" title="This abstract class is base of all keyboard related events. " alt="TgBot::GenericReply" shape="rect" coords="0,0,180,24"/>
 </map>
  </div></div>
 <table class="memberdecls">
@@ -110,12 +113,16 @@ Public Types</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:a87d9dc41554e585b137b922fa20fd020"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::vector&lt; <a class="el" href="class_tg_bot_1_1_keyboard_button.html#afa66915e5a8d58dbd7276265f00b0bcd">KeyboardButton::Ptr</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tg_bot_1_1_reply_keyboard_markup.html#a87d9dc41554e585b137b922fa20fd020">keyboard</a></td></tr>
+<tr class="memdesc:a87d9dc41554e585b137b922fa20fd020"><td class="mdescLeft">&#160;</td><td class="mdescRight">Array of button rows, each represented by an Array of <a class="el" href="class_tg_bot_1_1_keyboard_button.html" title="This object represents one button of the reply keyboard. ">KeyboardButton</a>.  <a href="#a87d9dc41554e585b137b922fa20fd020">More...</a><br /></td></tr>
 <tr class="separator:a87d9dc41554e585b137b922fa20fd020"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aafed175ccf3c58fe7c3a15a2300a1ff3"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tg_bot_1_1_reply_keyboard_markup.html#aafed175ccf3c58fe7c3a15a2300a1ff3">resizeKeyboard</a> = false</td></tr>
+<tr class="memdesc:aafed175ccf3c58fe7c3a15a2300a1ff3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. Requests clients to resize the keyboard vertically for optimal fit (e.g., make the keyboard smaller if there are just two rows of buttons). Defaults to false, in which case the custom keyboard is always of the same height as the app's standard keyboard.  <a href="#aafed175ccf3c58fe7c3a15a2300a1ff3">More...</a><br /></td></tr>
 <tr class="separator:aafed175ccf3c58fe7c3a15a2300a1ff3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a12205ba27bf676459507684be019799e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tg_bot_1_1_reply_keyboard_markup.html#a12205ba27bf676459507684be019799e">oneTimeKeyboard</a> = false</td></tr>
+<tr class="memdesc:a12205ba27bf676459507684be019799e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. Requests clients to hide the keyboard as soon as it's been used. Defaults to false.  <a href="#a12205ba27bf676459507684be019799e">More...</a><br /></td></tr>
 <tr class="separator:a12205ba27bf676459507684be019799e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac7cf30c8d98f72b81ad30f48d0789d65"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tg_bot_1_1_reply_keyboard_markup.html#ac7cf30c8d98f72b81ad30f48d0789d65">selective</a> = false</td></tr>
+<tr class="memdesc:ac7cf30c8d98f72b81ad30f48d0789d65"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. Use this parameter if you want to show the keyboard to specific users only. Targets: 1) users that are  in the text of the <a class="el" href="class_tg_bot_1_1_message.html" title="This object represents a message. ">Message</a> object; 2) if the bot's message is a reply (has reply_to_message_id), sender of the original message.  <a href="#ac7cf30c8d98f72b81ad30f48d0789d65">More...</a><br /></td></tr>
 <tr class="separator:ac7cf30c8d98f72b81ad30f48d0789d65"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
@@ -127,7 +134,7 @@ Additional Inherited Members</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>This object represents a custom keyboard with reply options. </p>
 
-<p class="definition">Definition at line <a class="el" href="_reply_keyboard_markup_8h_source.html#l00039">39</a> of file <a class="el" href="_reply_keyboard_markup_8h_source.html">ReplyKeyboardMarkup.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_reply_keyboard_markup_8h_source.html#l00040">40</a> of file <a class="el" href="_reply_keyboard_markup_8h_source.html">ReplyKeyboardMarkup.h</a>.</p>
 </div><h2 class="groupheader">Member Typedef Documentation</h2>
 <a id="af19f8402b914b603ab41305dee55f44a"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#af19f8402b914b603ab41305dee55f44a">&#9670;&nbsp;</a></span>Ptr</h2>
@@ -141,7 +148,7 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_reply_keyboard_markup_8h_source.html#l00042">42</a> of file <a class="el" href="_reply_keyboard_markup_8h_source.html">ReplyKeyboardMarkup.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_reply_keyboard_markup_8h_source.html#l00043">43</a> of file <a class="el" href="_reply_keyboard_markup_8h_source.html">ReplyKeyboardMarkup.h</a>.</p>
 
 </div>
 </div>
@@ -157,9 +164,10 @@ Additional Inherited Members</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Array of button rows, each represented by an Array of <a class="el" href="class_tg_bot_1_1_keyboard_button.html">KeyboardButton</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="_reply_keyboard_markup_8h_source.html#l00047">47</a> of file <a class="el" href="_reply_keyboard_markup_8h_source.html">ReplyKeyboardMarkup.h</a>.</p>
+<p>Array of button rows, each represented by an Array of <a class="el" href="class_tg_bot_1_1_keyboard_button.html" title="This object represents one button of the reply keyboard. ">KeyboardButton</a>. </p>
+
+<p class="definition">Definition at line <a class="el" href="_reply_keyboard_markup_8h_source.html#l00048">48</a> of file <a class="el" href="_reply_keyboard_markup_8h_source.html">ReplyKeyboardMarkup.h</a>.</p>
 
 </div>
 </div>
@@ -174,9 +182,10 @@ Additional Inherited Members</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
 <p>Optional. Requests clients to hide the keyboard as soon as it's been used. Defaults to false. </p>
 
-<p class="definition">Definition at line <a class="el" href="_reply_keyboard_markup_8h_source.html#l00057">57</a> of file <a class="el" href="_reply_keyboard_markup_8h_source.html">ReplyKeyboardMarkup.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_reply_keyboard_markup_8h_source.html#l00058">58</a> of file <a class="el" href="_reply_keyboard_markup_8h_source.html">ReplyKeyboardMarkup.h</a>.</p>
 
 </div>
 </div>
@@ -191,9 +200,10 @@ Additional Inherited Members</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
 <p>Optional. Requests clients to resize the keyboard vertically for optimal fit (e.g., make the keyboard smaller if there are just two rows of buttons). Defaults to false, in which case the custom keyboard is always of the same height as the app's standard keyboard. </p>
 
-<p class="definition">Definition at line <a class="el" href="_reply_keyboard_markup_8h_source.html#l00052">52</a> of file <a class="el" href="_reply_keyboard_markup_8h_source.html">ReplyKeyboardMarkup.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_reply_keyboard_markup_8h_source.html#l00053">53</a> of file <a class="el" href="_reply_keyboard_markup_8h_source.html">ReplyKeyboardMarkup.h</a>.</p>
 
 </div>
 </div>
@@ -208,9 +218,11 @@ Additional Inherited Members</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Optional. Use this parameter if you want to show the keyboard to specific users only. Targets: 1) users that are  in the text of the <a class="el" href="class_tg_bot_1_1_message.html">Message</a> object; 2) if the bot's message is a reply (has reply_to_message_id), sender of the original message. Example: A user requests to change the bot‘s language, bot replies to the request with a keyboard to select the new language. Other users in the group don’t see the keyboard. </p>
 
-<p class="definition">Definition at line <a class="el" href="_reply_keyboard_markup_8h_source.html#l00063">63</a> of file <a class="el" href="_reply_keyboard_markup_8h_source.html">ReplyKeyboardMarkup.h</a>.</p>
+<p>Optional. Use this parameter if you want to show the keyboard to specific users only. Targets: 1) users that are  in the text of the <a class="el" href="class_tg_bot_1_1_message.html" title="This object represents a message. ">Message</a> object; 2) if the bot's message is a reply (has reply_to_message_id), sender of the original message. </p>
+<p>Example: A user requests to change the bot‘s language, bot replies to the request with a keyboard to select the new language. Other users in the group don’t see the keyboard. </p>
+
+<p class="definition">Definition at line <a class="el" href="_reply_keyboard_markup_8h_source.html#l00065">65</a> of file <a class="el" href="_reply_keyboard_markup_8h_source.html">ReplyKeyboardMarkup.h</a>.</p>
 
 </div>
 </div>
@@ -223,7 +235,7 @@ Additional Inherited Members</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespace_tg_bot.html">TgBot</a></li><li class="navelem"><a class="el" href="class_tg_bot_1_1_reply_keyboard_markup.html">ReplyKeyboardMarkup</a></li>
-    <li class="footer">Generated on Mon May 28 2018 13:57:33 for tgbot-cpp by
+    <li class="footer">Generated on Tue Jun 5 2018 19:07:15 for tgbot-cpp by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
   </ul>

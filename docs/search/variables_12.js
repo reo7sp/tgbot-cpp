@@ -1,6 +1,7 @@
 var searchData=
 [
   ['scale',['scale',['../class_tg_bot_1_1_mask_position.html#a8f78e6dcdb37975c435cfd0d9a923963',1,'TgBot::MaskPosition']]],
+  ['score',['score',['../class_tg_bot_1_1_game_high_score.html#a327a049b8df70d93d9a734ad311f130d',1,'TgBot::GameHighScore']]],
   ['selective',['selective',['../class_tg_bot_1_1_force_reply.html#afbb510a24ebda5409311ff0d385065dc',1,'TgBot::ForceReply::selective()'],['../class_tg_bot_1_1_reply_keyboard_markup.html#ac7cf30c8d98f72b81ad30f48d0789d65',1,'TgBot::ReplyKeyboardMarkup::selective()'],['../class_tg_bot_1_1_reply_keyboard_remove.html#a840a781ad230cee4c50057a7c7f82828',1,'TgBot::ReplyKeyboardRemove::selective()']]],
   ['setname',['setName',['../class_tg_bot_1_1_sticker.html#ac9ff439183edc6a5fb2c469e29c687ba',1,'TgBot::Sticker']]],
   ['shippingaddress',['shippingAddress',['../class_tg_bot_1_1_order_info.html#a8e9f51e6dadba48789cb4c9c9ae14f82',1,'TgBot::OrderInfo::shippingAddress()'],['../class_tg_bot_1_1_shipping_query.html#a3d99a04e8227422fe4349a42dd1ecd7a',1,'TgBot::ShippingQuery::shippingAddress()']]],

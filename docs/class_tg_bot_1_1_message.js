@@ -21,6 +21,7 @@ var class_tg_bot_1_1_message =
     [ "forwardFromMessageId", "class_tg_bot_1_1_message.html#a2149f82b01245e592cb392e2133e4667", null ],
     [ "forwardSignature", "class_tg_bot_1_1_message.html#a70f5fe7a8e14b0ce0842fa8661492e4a", null ],
     [ "from", "class_tg_bot_1_1_message.html#a65b78a13b38ad767338cd2e9d2e69ca2", null ],
+    [ "game", "class_tg_bot_1_1_message.html#a64216e0a25408a6946fcebebf5b38307", null ],
     [ "groupChatCreated", "class_tg_bot_1_1_message.html#a5bbf76e34ec52a41a6392f7d61c19035", null ],
     [ "leftChatMember", "class_tg_bot_1_1_message.html#a2291a3c7d9445a02774b4cd0e3972c29", null ],
     [ "location", "class_tg_bot_1_1_message.html#afda60437cce532170cb9b924f70e1c56", null ],

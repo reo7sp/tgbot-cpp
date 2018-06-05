@@ -1,6 +1,7 @@
 var searchData=
 [
   ['callbackdata',['callbackData',['../class_tg_bot_1_1_inline_keyboard_button.html#a25716bdfc7a0719f1c17702a8d6a8aa4',1,'TgBot::InlineKeyboardButton']]],
+  ['callbackgame',['callbackGame',['../class_tg_bot_1_1_inline_keyboard_button.html#a7607991eb8529b9cf0dc2734008cc579',1,'TgBot::InlineKeyboardButton']]],
   ['callbackquery',['callbackQuery',['../class_tg_bot_1_1_update.html#a2c6890adcab16d6a306b3b89fd954f6f',1,'TgBot::Update']]],
   ['canaddwebpagepreviews',['canAddWebPagePreviews',['../class_tg_bot_1_1_chat_member.html#a1c6b3267284c33738529f21ed421f422',1,'TgBot::ChatMember']]],
   ['canbeedited',['canBeEdited',['../class_tg_bot_1_1_chat_member.html#a384d160e04985dfc09fe75b2d41ee959',1,'TgBot::ChatMember']]],

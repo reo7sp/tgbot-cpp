@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['game',['game',['../class_tg_bot_1_1_message.html#a64216e0a25408a6946fcebebf5b38307',1,'TgBot::Message']]],
   ['gameshortname',['gameShortName',['../class_tg_bot_1_1_callback_query.html#ab2547a0ea44c8a39f351354335082234',1,'TgBot::CallbackQuery::gameShortName()'],['../class_tg_bot_1_1_inline_query_result_game.html#a27eeb729c70e39bd963b99090c53e93a',1,'TgBot::InlineQueryResultGame::gameShortName()']]],
   ['gifduration',['gifDuration',['../class_tg_bot_1_1_inline_query_result_gif.html#abe09430a376eb777fe7bc563ea1df5f6',1,'TgBot::InlineQueryResultGif']]],
   ['giffileid',['gifFileId',['../class_tg_bot_1_1_inline_query_result_cached_gif.html#ad23bb77e92125e6720c55e7747a9bb6f',1,'TgBot::InlineQueryResultCachedGif']]],
