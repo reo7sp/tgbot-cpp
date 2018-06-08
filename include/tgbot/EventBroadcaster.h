@@ -26,7 +26,7 @@
 #include <string>
 #include <functional>
 #include <vector>
-#include <map>
+#include <unordered_map>
 
 #include "tgbot/types/Message.h"
 #include "tgbot/types/InlineQuery.h"
@@ -133,7 +133,7 @@ private:
 	}
 
 	inline bool broadcastCommand(const std::string command, const Message::Ptr message) const {
-		std::map<std::string, MessageListener>::const_iterator iter = _onCommandListeners.find(command);
+		std::unordered_map<std::string, MessageListener>::const_iterator iter = _onCommandListeners.find(command);
 		if (iter == _onCommandListeners.end()) {
 			return false;
 		}
@@ -162,7 +162,7 @@ private:
 	}
 
 	std::vector<MessageListener> _onAnyMessageListeners;
-	std::map<std::string, MessageListener> _onCommandListeners;
+	std::unordered_map<std::string, MessageListener> _onCommandListeners;
 	std::vector<MessageListener> _onUnknownCommandListeners;
 	std::vector<MessageListener> _onNonCommandMessageListeners;
 	std::vector<InlineQueryListener> _onInlineQueryListeners;
