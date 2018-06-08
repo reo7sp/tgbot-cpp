@@ -43,7 +43,7 @@ protected:
 	class Connection;
 
 public:
-	typedef std::function<std::string (const std::string&, const std::map<std::string, std::string>)> ServerHandler;
+	typedef std::function<std::string (const std::string&, const std::unordered_map<std::string, std::string>)> ServerHandler;
 
 	HttpServer(std::shared_ptr<boost::asio::basic_socket_acceptor<Protocol>> acceptor, const ServerHandler& handler) : _acceptor(acceptor), _handler(handler) {
 	}
@@ -80,7 +80,7 @@ protected:
 		void start() {
 			data.reserve(10240);
 			socket->async_receive(data, [this]() {
-				std::map<std::string, std::string> headers;
+				std::unordered_map<std::string, std::string> headers;
 				std::string body = HttpParser::getInstance().parseResponse(data, headers);
 				socket->async_send(_handler(body, headers));
 			});
