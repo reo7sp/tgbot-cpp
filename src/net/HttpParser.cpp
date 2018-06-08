@@ -149,7 +149,7 @@ string HttpParser::generateResponse(const string& data, const string& mimeType, 
 	return result;
 }
 
-string HttpParser::parseHttp(bool isRequest, const string& data, map<string, string>& headers) {
+string HttpParser::parseHttp(bool isRequest, const string& data, unordered_map<string, string>& headers) {
 	bool onlyNewLineChar = false;
 	size_t headerEnd = data.find("\r\n\r\n");
 	if (headerEnd == data.npos) {

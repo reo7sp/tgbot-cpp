@@ -33,8 +33,8 @@ TgLongPoll::TgLongPoll(const Bot& bot, int32_t limit, int32_t timeout, const std
 }
 
 void TgLongPoll::start() {
-	std::vector<Update::Ptr> updates = _api->getUpdates(_lastUpdateId, _limit, _timeout, _allowupdates);
-	for (Update::Ptr& item : updates) {
+	auto updates = _api->getUpdates(_lastUpdateId, _limit, _timeout, _allowupdates);
+	for (auto& item : updates) {
 		if (item->updateId >= _lastUpdateId) {
 			_lastUpdateId = item->updateId + 1;
 		}

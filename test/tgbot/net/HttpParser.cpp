@@ -91,10 +91,10 @@ BOOST_AUTO_TEST_CASE(parseRequest) {
 		"\r\n"
 		"testdata";
 
-	map<string, string> tHeaders;
+	unordered_map<string, string> tHeaders;
 	string t = HttpParser::getInstance().parseRequest(data, tHeaders);
 
-	map<string, string> eHeaders = {
+	unordered_map<string, string> eHeaders = {
 		{ "method", "POST" },
 		{ "path", "/index.html" },
 		{ "host", "example.com" },
@@ -118,10 +118,10 @@ BOOST_AUTO_TEST_CASE(parseResponse) {
 		"\r\n"
 		"testdata";
 
-	map<string, string> tHeaders;
+	unordered_map<string, string> tHeaders;
 	string t = HttpParser::getInstance().parseResponse(data, tHeaders);
 
-	map<string, string> eHeaders = {
+	unordered_map<string, string> eHeaders = {
 		{ "status", "200" },
 		{ "content-type", "text/plain" },
 		{ "content-length", "8" }

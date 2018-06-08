@@ -24,7 +24,7 @@
 #define TGBOT_HTTPPARSER_H
 
 #include <string>
-#include <map>
+#include <unordered_map>
 #include <vector>
 
 #include "tgbot/net/Url.h"
@@ -43,7 +43,7 @@ public:
 	std::string generateWwwFormUrlencoded(const std::vector<HttpReqArg>& args);
 	std::string generateResponse(const std::string& data, const std::string& mimeType = "text/plain", short unsigned statusCode = 200, const std::string& statusStr = "OK", bool isKeepAlive = false);
 
-	inline std::string parseRequest(const std::string& data, std::map<std::string, std::string>& headers) {
+	inline std::string parseRequest(const std::string& data, std::unordered_map<std::string, std::string>& headers) {
 		return parseHttp(true, data, headers);
 	}
 
@@ -51,7 +51,7 @@ public:
 		return parseHttp(true, data);
 	}
 
-	inline std::string parseResponse(const std::string& data, std::map<std::string, std::string>& headers) {
+	inline std::string parseResponse(const std::string& data, std::unordered_map<std::string, std::string>& headers) {
 		return parseHttp(false, data, headers);
 	}
 
@@ -60,7 +60,7 @@ public:
 	}
 
 private:
-	std::string parseHttp(bool isRequest, const std::string& data, std::map<std::string, std::string>& headers);
+	std::string parseHttp(bool isRequest, const std::string& data, std::unordered_map<std::string, std::string>& headers);
 	std::string parseHttp(bool isRequest, const std::string& data);
 };
 
