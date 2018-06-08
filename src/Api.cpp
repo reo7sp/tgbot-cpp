@@ -35,7 +35,7 @@ Api::Api(const string& token) : _token(token) {
 }
 
 User::Ptr Api::getMe() const {
-	return TgTypeParser::getInstance().parseJsonAndGetUser(sendRequest("getMe");
+	return TgTypeParser::getInstance().parseJsonAndGetUser(sendRequest("getMe"));
 }
 
 Message::Ptr Api::sendMessage(int64_t chatId, const string& text, bool disableWebPagePreview, int32_t replyToMessageId, const GenericReply::Ptr replyMarkup, const string& parseMode, bool disableNotification) const {
@@ -635,7 +635,7 @@ UserProfilePhotos::Ptr Api::getUserProfilePhotos(int32_t userId, int32_t offset,
 	if (offset) {
 		args.emplace_back("offset", offset);
 	}
-	limit = max(1, min(100, limit);
+	limit = max(1, min(100, limit));
 	args.emplace_back("limit", limit);
 	return TgTypeParser::getInstance().parseJsonAndGetUserProfilePhotos(sendRequest("getUserProfilePhotos", args));
 }
@@ -790,7 +790,7 @@ vector<Update::Ptr> Api::getUpdates(int32_t offset, int32_t limit, int32_t timeo
 	if (offset) {
 		args.emplace_back("offset", offset);
 	}
-	limit = max(1, min(100, limit);
+	limit = max(1, min(100, limit));
 	args.emplace_back("limit", limit);
 	if (timeout) {
 		args.emplace_back("timeout", timeout);
