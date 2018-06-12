@@ -314,6 +314,7 @@ public:
 	template<typename T>
 	std::vector<std::shared_ptr<T>> parseJsonAndGetArray(JsonToTgTypeFunc<T> parseFunc, const boost::property_tree::ptree& data) const {
 		std::vector<std::shared_ptr<T>> result;
+		result.reserve(data.size());
 		for (const std::pair<const std::string, boost::property_tree::ptree>& innerTreeItem : data) {
 			result.push_back((this->*parseFunc)(innerTreeItem.second));
 		}
@@ -327,6 +328,7 @@ public:
 		if (treeItem == data.not_found()) {
 			return result;
 		}
+		result.reserve(treeItem->second.size());
 		for (const std::pair<const std::string, boost::property_tree::ptree>& innerTreeItem : treeItem->second) {
 			result.push_back(parseFunc(innerTreeItem.second));
 		}
@@ -340,6 +342,7 @@ public:
 		if (treeItem == data.not_found()) {
 			return result;
 		}
+		result.reserve(treeItem->second.size());
 		for (const std::pair<const std::string, boost::property_tree::ptree>& innerTreeItem : treeItem->second) {
 			result.push_back((this->*parseFunc)(innerTreeItem.second));
 		}
@@ -353,6 +356,7 @@ public:
 		if (treeItem == data.not_found()) {
 			return result;
 		}
+		result.reserve(treeItem->second.size());
 		for (const std::pair<const std::string, boost::property_tree::ptree>& innerTreeItem : treeItem->second) {
 			std::vector<std::shared_ptr<T>> innerResult;
 			for (const std::pair<const std::string, boost::property_tree::ptree>& innerInnerTreeItem : innerTreeItem.second) {
