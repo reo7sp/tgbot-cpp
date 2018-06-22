@@ -229,6 +229,96 @@ Message::Ptr Api::sendDocument(int64_t chatId, const string& document, const str
 	return TgTypeParser::getInstance().parseJsonAndGetMessage(sendRequest("sendDocument", args));
 }
 
+Message::Ptr Api::sendInvoice(int64_t chatId, const std::string& title, const std::string& description, const std::string& payload,
+							 const std::string& providerToken, const std::string& startParameter, const std::string& currency, const std::vector<LabeledPrice::Ptr>& prices,
+							 const std::string& providerData, const std::string& photoUrl, int32_t photoSize,
+							 int32_t photoWidth, int32_t photoHeight, bool needName,
+							 bool needPhoneNumber, bool needEmail, bool needShippingAddress,
+							 bool sendPhoneNumberToProvider, bool sendEmailToProvider, bool isFlexible,
+							 int32_t replyToMessageId, const GenericReply::Ptr replyMarkup, bool disableNotification) const {
+	vector<HttpReqArg> args;
+	args.reserve(23);
+	args.emplace_back("chat_id", chatId);
+	args.emplace_back("title", title);
+	args.emplace_back("description", description);
+	args.emplace_back("payload", payload);
+	args.emplace_back("provider_token", providerToken);
+	args.emplace_back("start_parameter", startParameter);
+	args.emplace_back("currency", currency);
+	args.emplace_back("prices", TgTypeParser::getInstance().parseArray<LabeledPrice>(&TgTypeParser::parseLabeledPrice, prices));
+	if (!providerData.empty()) {
+		args.emplace_back("provider_data", providerData);
+	}
+	if (!photoUrl.empty()) {
+		args.emplace_back("photo_url", photoUrl);
+	}
+	if (photoSize) {
+		args.emplace_back("photo_size", photoSize);
+	}
+	if (photoWidth) {
+		args.emplace_back("photo_width", photoWidth);
+	}
+	if (photoHeight) {
+		args.emplace_back("photo_height", photoHeight);
+	}
+	if (needName) {
+		args.emplace_back("need_name", needName);
+	}
+	if (needPhoneNumber) {
+		args.emplace_back("need_phone_number", needPhoneNumber);
+	}
+	if (needEmail) {
+		args.emplace_back("need_email", needEmail);
+	}
+	if (needShippingAddress) {
+		args.emplace_back("need_shipping_address", needShippingAddress);
+	}
+	if (sendPhoneNumberToProvider) {
+		args.emplace_back("send_phone_number_to_provider", sendPhoneNumberToProvider);
+	}
+	if (sendEmailToProvider) {
+		args.emplace_back("send_email_to_provider", sendEmailToProvider);
+	}
+	if (isFlexible) {
+		args.emplace_back("is_flexible", isFlexible);
+	}
+	if (replyToMessageId) {
+		args.emplace_back("reply_to_message_id", replyToMessageId);
+	}
+	if (replyMarkup) {
+		args.emplace_back("reply_markup", TgTypeParser::getInstance().parseGenericReply(replyMarkup));
+	}
+	if (disableNotification){
+		args.emplace_back("disable_notification", disableNotification);
+	}
+	return TgTypeParser::getInstance().parseJsonAndGetMessage(sendRequest("sendInvoice", args));
+}
+
+bool Api::answerShippingQuery(const std::string& shippingQueryId, bool ok, const std::vector<ShippingOption::Ptr>& shippingOptions, const std::string& errorMessage) const {
+	vector<HttpReqArg> args;
+	args.reserve(4);
+	args.emplace_back("shipping_query_id", shippingQueryId);
+	args.emplace_back("ok", ok);
+	if (!shippingOptions.empty()) {
+		args.emplace_back("shipping_options", TgTypeParser::getInstance().parseArray<ShippingOption>(&TgTypeParser::parseShippingOption, shippingOptions));
+	}
+	if (!errorMessage.empty()) {
+		args.emplace_back("error_message", errorMessage);
+	}
+	return sendRequest("answerShippingQuery", args).get<bool>("", false);
+}
+
+bool Api::answerPreCheckoutQuery(const std::string& preCheckoutQueryId, bool ok, const std::string& errorMessage) const {
+	vector<HttpReqArg> args;
+	args.reserve(3);
+	args.emplace_back("pre_checkout_query_id", preCheckoutQueryId);
+	args.emplace_back("ok", ok);
+	if (!errorMessage.empty()) {
+		args.emplace_back("error_message", errorMessage);
+	}
+	return sendRequest("answerPreCheckoutQuery", args).get<bool>("", false);
+}
+
 Message::Ptr Api::sendSticker(int64_t chatId, const InputFile::Ptr sticker, int32_t replyToMessageId, const GenericReply::Ptr replyMarkup, bool disableNotification) const {
 	vector<HttpReqArg> args;
 	args.reserve(5);
@@ -286,8 +376,12 @@ bool Api::createNewStickerSet(int32_t userId, const string& name, const string& 
 	args.emplace_back("title", title);
 	args.emplace_back("png_sticker", pngSticker->data, true, pngSticker->mimeType, pngSticker->fileName);
 	args.emplace_back("emojis", emojis);
-	args.emplace_back("contains_mask", containsMasks);
-	args.emplace_back("mask_position", TgTypeParser::getInstance().parseMaskPosition(maskPosition));
+	if (containsMasks) {
+		args.emplace_back("contains_mask", containsMasks);
+	}
+	if (maskPosition != nullptr) {
+		args.emplace_back("mask_position", TgTypeParser::getInstance().parseMaskPosition(maskPosition));
+	}
 	return sendRequest("createNewStickerSet", args).get<bool>("", false);
 }
 
@@ -299,8 +393,12 @@ bool Api::createNewStickerSet(int32_t userId, const string& name, const string& 
 	args.emplace_back("title", title);
 	args.emplace_back("png_sticker", pngSticker);
 	args.emplace_back("emojis", emojis);
-	args.emplace_back("contains_mask", containsMasks);
-	args.emplace_back("mask_position", TgTypeParser::getInstance().parseMaskPosition(maskPosition));
+	if (containsMasks) {
+		args.emplace_back("contains_mask", containsMasks);
+	}
+	if (maskPosition != nullptr) {
+		args.emplace_back("mask_position", TgTypeParser::getInstance().parseMaskPosition(maskPosition));
+	}
 	return sendRequest("createNewStickerSet", args).get<bool>("", false);
 }
 
@@ -312,7 +410,9 @@ bool Api::addStickerToSet(int32_t userId, const string& name, const string& titl
 	args.emplace_back("title", title);
 	args.emplace_back("png_sticker", pngSticker->data, true, pngSticker->mimeType, pngSticker->fileName);
 	args.emplace_back("emojis", emojis);
-	args.emplace_back("mask_position", TgTypeParser::getInstance().parseMaskPosition(maskPosition));
+	if (maskPosition != nullptr) {
+		args.emplace_back("mask_position", TgTypeParser::getInstance().parseMaskPosition(maskPosition));
+	}
 	return sendRequest("addStickerToSet", args).get<bool>("", false);
 }
 
@@ -324,7 +424,9 @@ bool Api::addStickerToSet(int32_t userId, const string& name, const string& titl
 	args.emplace_back("title", title);
 	args.emplace_back("png_sticker", pngSticker);
 	args.emplace_back("emojis", emojis);
-	args.emplace_back("mask_position", TgTypeParser::getInstance().parseMaskPosition(maskPosition));
+	if (maskPosition != nullptr) {
+		args.emplace_back("mask_position", TgTypeParser::getInstance().parseMaskPosition(maskPosition));
+	}
 	return sendRequest("addStickerToSet", args).get<bool>("", false);
 }
 
@@ -848,16 +950,17 @@ vector<Update::Ptr> Api::getUpdates(int32_t offset, int32_t limit, int32_t timeo
 void Api::setWebhook(const string& url, const InputFile::Ptr certificate, int32_t maxConnection, const StringArrayPtr &allowedUpdates) const {
 	vector<HttpReqArg> args;
 	args.reserve(4);
-	if (!url.empty())
+	if (!url.empty()) {
 		args.emplace_back("url", url);
-	if (certificate != nullptr)
+	}
+	if (certificate != nullptr) {
 		args.emplace_back("certificate", certificate->data, true, certificate->mimeType, certificate->fileName);
-	if (maxConnection != 40)
+	}
+	if (maxConnection != 40) {
 		args.emplace_back("max_connections", maxConnection);
-	
-	if (allowedUpdates != nullptr)
-	{
-		string allowedUpdatesJson = TgTypeParser::getInstance().parseArray<string>(
+	}
+	if (allowedUpdates != nullptr) {
+		auto allowedUpdatesJson = TgTypeParser::getInstance().parseArray<string>(
 			[](const string &s)->string {
 				return s;
 			}, *allowedUpdates);
@@ -868,22 +971,19 @@ void Api::setWebhook(const string& url, const InputFile::Ptr certificate, int32_
 }
 
 bool Api::deleteWebhook() const {
-	ptree p = sendRequest("deleteWebhook");
-	return p.get<bool>("", false);
+	return sendRequest("deleteWebhook").get<bool>("", false);
 }
 
 WebhookInfo::Ptr Api::getWebhookInfo() const {
 	ptree p = sendRequest("getWebhookInfo");
 
-	if (!p.get_child_optional("url"))
+	if (!p.get_child_optional("url")) {
 		return nullptr;
-
-	if (p.get<string>("url","") != string(""))
-	{
+	}
+	if (p.get<string>("url","") != string("")) {
 		return TgTypeParser::getInstance().parseJsonAndGetWebhookInfo(p);
 	} 
-	else 
-	{
+	else {
 		return nullptr;
 	}
 }

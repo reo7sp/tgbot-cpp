@@ -91,7 +91,6 @@ var hierarchy =
     [ "TgBot::StickerSet", "class_tg_bot_1_1_sticker_set.html", null ],
     [ "TgBot::SuccessfulPayment", "class_tg_bot_1_1_successful_payment.html", null ],
     [ "TgBot::TgLongPoll", "class_tg_bot_1_1_tg_long_poll.html", null ],
-    [ "TgBot::TgTypeParser", "class_tg_bot_1_1_tg_type_parser.html", null ],
     [ "TgBot::Update", "class_tg_bot_1_1_update.html", null ],
     [ "TgBot::Url", "class_tg_bot_1_1_url.html", null ],
     [ "TgBot::User", "class_tg_bot_1_1_user.html", null ],

@@ -6,6 +6,7 @@ var searchData=
   ['inlinequery',['inlineQuery',['../class_tg_bot_1_1_update.html#aea03e36b9015a0fe9f1278564c5b8806',1,'TgBot::Update']]],
   ['inputmessagecontent',['inputMessageContent',['../class_tg_bot_1_1_inline_query_result.html#ace9850f165c2e823696aab62391b3943',1,'TgBot::InlineQueryResult']]],
   ['invitelink',['inviteLink',['../class_tg_bot_1_1_chat.html#a5653ec719aa43764670c2c88055107e2',1,'TgBot::Chat']]],
+  ['invoice',['invoice',['../class_tg_bot_1_1_message.html#ade904bacf5a1b53b09924ebb965a3832',1,'TgBot::Message']]],
   ['invoicepayload',['invoicePayload',['../class_tg_bot_1_1_pre_checkout_query.html#abbc1cb2aed3ff25dde9272909455b9a0',1,'TgBot::PreCheckoutQuery::invoicePayload()'],['../class_tg_bot_1_1_shipping_query.html#aa62e1e79cd7f9ba961128ad89dde7899',1,'TgBot::ShippingQuery::invoicePayload()'],['../class_tg_bot_1_1_successful_payment.html#a260f6306836c863523054f076c9350c6',1,'TgBot::SuccessfulPayment::invoicePayload()']]],
   ['isbot',['isBot',['../class_tg_bot_1_1_user.html#a9adb4af3ddf68a3a518c32a13f9415bf',1,'TgBot::User']]],
   ['isfile',['isFile',['../class_tg_bot_1_1_http_req_arg.html#a9e372ea4360d239037cfeb673d31d9f3',1,'TgBot::HttpReqArg']]]

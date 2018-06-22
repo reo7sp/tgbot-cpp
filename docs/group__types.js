@@ -133,6 +133,7 @@ var group__types =
       [ "Ptr", "class_tg_bot_1_1_inline_keyboard_button.html#a27b82f178b242b6417377daae1f09983", null ],
       [ "callbackData", "class_tg_bot_1_1_inline_keyboard_button.html#a25716bdfc7a0719f1c17702a8d6a8aa4", null ],
       [ "callbackGame", "class_tg_bot_1_1_inline_keyboard_button.html#a7607991eb8529b9cf0dc2734008cc579", null ],
+      [ "pay", "class_tg_bot_1_1_inline_keyboard_button.html#a4b25902fc2688c3d93d189cdee0434d2", null ],
       [ "switchInlineQuery", "class_tg_bot_1_1_inline_keyboard_button.html#ac04cb38b85aa31568e0acbb54202c274", null ],
       [ "switchInlineQueryCurrentChat", "class_tg_bot_1_1_inline_keyboard_button.html#a12c3bfab730b6ec9f0d8ef39957bf406", null ],
       [ "text", "class_tg_bot_1_1_inline_keyboard_button.html#aa96c745e6d2c531bc50bf344ff0fee6f", null ],
@@ -411,7 +412,6 @@ var group__types =
     ] ],
     [ "Message", "class_tg_bot_1_1_message.html", [
       [ "Ptr", "class_tg_bot_1_1_message.html#a3805a5dc013c6ab23ac5efc91282c11d", null ],
-      [ "Message", "class_tg_bot_1_1_message.html#a1ccff5e715e303ba0352cbd0fbe8eb6b", null ],
       [ "audio", "class_tg_bot_1_1_message.html#a5119ef820bcb4c231a1402147305ea67", null ],
       [ "authorSignature", "class_tg_bot_1_1_message.html#a5e23abf4c637e59a51bd7f7a49339d54", null ],
       [ "caption", "class_tg_bot_1_1_message.html#a2c8eb6214270371cfb094b699c07f695", null ],
@@ -433,6 +433,7 @@ var group__types =
       [ "from", "class_tg_bot_1_1_message.html#a65b78a13b38ad767338cd2e9d2e69ca2", null ],
       [ "game", "class_tg_bot_1_1_message.html#a64216e0a25408a6946fcebebf5b38307", null ],
       [ "groupChatCreated", "class_tg_bot_1_1_message.html#a5bbf76e34ec52a41a6392f7d61c19035", null ],
+      [ "invoice", "class_tg_bot_1_1_message.html#ade904bacf5a1b53b09924ebb965a3832", null ],
       [ "leftChatMember", "class_tg_bot_1_1_message.html#a2291a3c7d9445a02774b4cd0e3972c29", null ],
       [ "location", "class_tg_bot_1_1_message.html#afda60437cce532170cb9b924f70e1c56", null ],
       [ "messageId", "class_tg_bot_1_1_message.html#ad88191e75068adc70028660086928d14", null ],
@@ -446,6 +447,7 @@ var group__types =
       [ "pinnedMessage", "class_tg_bot_1_1_message.html#a92e01a2f89ce8edb5aa1c116585b19a6", null ],
       [ "replyToMessage", "class_tg_bot_1_1_message.html#a312864bfddbf624c6923cb871fd4060e", null ],
       [ "sticker", "class_tg_bot_1_1_message.html#aab21f25e3dfd5a6f2bfca8d04dda2559", null ],
+      [ "successfulPayment", "class_tg_bot_1_1_message.html#a9a29d1deca8234fbd2ab448d95f56f6a", null ],
       [ "supergroupChatCreated", "class_tg_bot_1_1_message.html#a49695ef9284f68853700ca5426fd506f", null ],
       [ "text", "class_tg_bot_1_1_message.html#af9e05110ffd8c5356c523e1501dbd108", null ],
       [ "venue", "class_tg_bot_1_1_message.html#a9739779daeda0ac90d711349e0674f6e", null ],
@@ -560,6 +562,8 @@ var group__types =
       [ "editedMessage", "class_tg_bot_1_1_update.html#a188502d94515baee85ba30f58cffa1b5", null ],
       [ "inlineQuery", "class_tg_bot_1_1_update.html#aea03e36b9015a0fe9f1278564c5b8806", null ],
       [ "message", "class_tg_bot_1_1_update.html#ab65136c0345978742fb3026e6855ff2c", null ],
+      [ "preCheckoutQuery", "class_tg_bot_1_1_update.html#a9c1dab567059da89f8529263bdc92da3", null ],
+      [ "shippingQuery", "class_tg_bot_1_1_update.html#ab36e473d65557a1fb6ab4096eadc1269", null ],
       [ "updateId", "class_tg_bot_1_1_update.html#af4d35314c4e49839f7012a9671ede097", null ]
     ] ],
     [ "User", "class_tg_bot_1_1_user.html", [

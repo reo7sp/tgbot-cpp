@@ -80,7 +80,7 @@ string TgTypeParser::parseChat(const Chat::Ptr& object) const {
 	appendToJson(result, "username", object->username);
 	appendToJson(result, "first_name", object->firstName);
 	appendToJson(result, "last_name", object->lastName);
-	result.erase(result.length() - 1);
+	removeLastComma(result);
 	result += '}';
 	return result;
 }
@@ -108,7 +108,7 @@ string TgTypeParser::parseUser(const User::Ptr& object) const {
 	appendToJson(result, "last_name", object->lastName);
 	appendToJson(result, "username", object->username);
 	appendToJson(result, "language_code", object->languageCode);
-	result.erase(result.length() - 1);
+	removeLastComma(result);
 	result += '}';
 	return result;
 }
@@ -134,7 +134,7 @@ string TgTypeParser::parseMessageEntity(const MessageEntity::Ptr& object) const 
 	appendToJson(result, "length", object->length);
 	appendToJson(result, "url", object->url);
 	appendToJson(result, "user", parseUser(object->user));
-	result.erase(result.length() - 1);
+	removeLastComma(result);
 	result += '}';
 	return result;
 }
@@ -177,6 +177,8 @@ Message::Ptr TgTypeParser::parseJsonAndGetMessage(const ptree& data) const {
 	result->migrateToChatId = data.get<int64_t>("migrate_to_chat_id", 0);
 	result->migrateFromChatId = data.get<int64_t>("migrate_from_chat_id", 0);
 	result->pinnedMessage = tryParseJson<Message>(&TgTypeParser::parseJsonAndGetMessage, data, "pinned_message");
+	result->invoice = tryParseJson<Invoice>(&TgTypeParser::parseJsonAndGetInvoice, data, "invoice");
+	result->successfulPayment = tryParseJson<SuccessfulPayment>(&TgTypeParser::parseJsonAndGetSuccessfulPayment, data, "successful_payment");
 	result->connectedWebsite = data.get("connected_website", "");
 	return result;
 }
@@ -221,7 +223,9 @@ string TgTypeParser::parseMessage(const Message::Ptr& object) const {
 	appendToJson(result, "migrate_from_chat_id", object->migrateFromChatId);
 	appendToJson(result, "pinned_message", parseMessage(object->pinnedMessage));
 	appendToJson(result, "connected_website", object->connectedWebsite);
-	result.erase(result.length() - 1);
+	appendToJson(result, "invoice", parseInvoice(object->invoice));
+	appendToJson(result, "successful_payment", parseSuccessfulPayment(object->successfulPayment));
+	removeLastComma(result);
 	result += '}';
 	return result;
 }
@@ -245,7 +249,7 @@ string TgTypeParser::parsePhotoSize(const PhotoSize::Ptr& object) const {
 	appendToJson(result, "width", object->width);
 	appendToJson(result, "height", object->height);
 	appendToJson(result, "file_size", object->fileSize);
-	result.erase(result.length() - 1);
+	removeLastComma(result);
 	result += '}';
 	return result;
 }
@@ -271,7 +275,7 @@ string TgTypeParser::parseAudio(const Audio::Ptr& object) const {
 	appendToJson(result, "duration", object->duration);
 	appendToJson(result, "mime_type", object->mimeType);
 	appendToJson(result, "file_size", object->fileSize);
-	result.erase(result.length() - 1);
+	removeLastComma(result);
 	result += '}';
 	return result;
 }
@@ -297,7 +301,7 @@ string TgTypeParser::parseDocument(const Document::Ptr& object) const {
 	appendToJson(result, "file_name", object->fileName);
 	appendToJson(result, "mime_type", object->mimeType);
 	appendToJson(result, "file_size", object->fileSize);
-	result.erase(result.length() - 1);
+	removeLastComma(result);
 	result += '}';
 	return result;
 }
@@ -327,7 +331,7 @@ string TgTypeParser::parseSticker(const Sticker::Ptr& object) const {
 	appendToJson(result, "thumb", parsePhotoSize(object->thumb));
 	appendToJson(result, "emoji", object->emoji);
 	appendToJson(result, "file_size", object->fileSize);
-	result.erase(result.length() - 1);
+	removeLastComma(result);
 	result += '}';
 	return result;
 }
@@ -351,7 +355,7 @@ string TgTypeParser::parseStickerSet(const StickerSet::Ptr& object) const {
 	appendToJson(result, "title", object->title);
 	appendToJson(result, "contains_masks", object->containsMasks);
 	appendToJson(result, "stickers", parseArray(&TgTypeParser::parseSticker, object->stickers));
-	result.erase(result.length() - 1);
+	removeLastComma(result);
 	result += '}';
 	return result;
 }
@@ -375,7 +379,7 @@ string TgTypeParser::parseMaskPosition(const MaskPosition::Ptr& object) const {
 	appendToJson(result, "x_shift", object->xShift);
 	appendToJson(result, "y_shift", object->yShift);
 	appendToJson(result, "scale", object->scale);
-	result.erase(result.length() - 1);
+	removeLastComma(result);
 	result += '}';
 	return result;
 }
@@ -405,7 +409,7 @@ string TgTypeParser::parseVideo(const Video::Ptr& object) const {
 	appendToJson(result, "thumb", parsePhotoSize(object->thumb));
 	appendToJson(result, "mime_type", object->mimeType);
 	appendToJson(result, "file_size", object->fileSize);
-	result.erase(result.length() - 1);
+	removeLastComma(result);
 	result += '}';
 	return result;
 }
@@ -459,7 +463,7 @@ string TgTypeParser::parseGame(const Game::Ptr& object) const {
 	appendToJson(result, "text", object->text);
 	appendToJson(result, "text_entities", parseArray(&TgTypeParser::parseMessageEntity, object->textEntities));
 	appendToJson(result, "animation", parseAnimation(object->animation));
-	result.erase(result.length() - 1);
+	removeLastComma(result);
 	result += '}';
 	return result;
 }
@@ -481,7 +485,7 @@ string TgTypeParser::parseGameHighScore(const GameHighScore::Ptr& object) const 
 	appendToJson(result, "position", object->position);
 	appendToJson(result, "user", parseUser(object->user));
 	appendToJson(result, "score", object->score);
-	result.erase(result.length() - 1);
+	removeLastComma(result);
 	result += '}';
 	return result;
 }
@@ -507,7 +511,7 @@ string TgTypeParser::parseAnimation(const Animation::Ptr& object) const {
 	appendToJson(result, "file_name", object->fileName);
 	appendToJson(result, "mime_type", object->mimeType);
 	appendToJson(result, "file_size", object->fileSize);
-	result.erase(result.length() - 1);
+	removeLastComma(result);
 	result += '}';
 	return result;
 }
@@ -531,7 +535,7 @@ string TgTypeParser::parseContact(const Contact::Ptr& object) const {
 	appendToJson(result, "first_name", object->firstName);
 	appendToJson(result, "last_name", object->lastName);
 	appendToJson(result, "user_id", object->userId);
-	result.erase(result.length() - 1);
+	removeLastComma(result);
 	result += '}';
 	return result;
 }
@@ -551,7 +555,7 @@ string TgTypeParser::parseLocation(const Location::Ptr& object) const {
 	result += '{';
 	appendToJson(result, "longitude", object->longitude);
 	appendToJson(result, "latitude", object->latitude);
-	result.erase(result.length() - 1);
+	removeLastComma(result);
 	result += '}';
 	return result;
 }
@@ -566,6 +570,8 @@ Update::Ptr TgTypeParser::parseJsonAndGetUpdate(const ptree& data) const {
 	result->inlineQuery = tryParseJson<InlineQuery>(&TgTypeParser::parseJsonAndGetInlineQuery, data, "inline_query");
 	result->chosenInlineResult = tryParseJson<ChosenInlineResult>(&TgTypeParser::parseJsonAndGetChosenInlineResult, data, "chosen_inline_result");
 	result->callbackQuery = tryParseJson<CallbackQuery>(&TgTypeParser::parseJsonAndGetCallbackQuery, data, "callback_query");
+	result->shippingQuery = tryParseJson<ShippingQuery>(&TgTypeParser::parseJsonAndGetShippingQuery, data, "shipping_query");
+	result->preCheckoutQuery = tryParseJson<PreCheckoutQuery>(&TgTypeParser::parseJsonAndGetPreCheckoutQuery, data, "pre_checkout_query");
 	return result;
 }
 
@@ -583,7 +589,9 @@ string TgTypeParser::parseUpdate(const Update::Ptr& object) const {
 	appendToJson(result, "inline_query", parseInlineQuery(object->inlineQuery));
 	appendToJson(result, "chosen_inline_result", parseChosenInlineResult(object->chosenInlineResult));
 	appendToJson(result, "callback_query", parseCallbackQuery(object->callbackQuery));
-	result.erase(result.length() - 1);
+	appendToJson(result, "shipping_query", parseShippingQuery(object->shippingQuery));
+	appendToJson(result, "pre_checkout_query", parsePreCheckoutQuery(object->preCheckoutQuery));
+	removeLastComma(result);
 	result += '}';
 	return result;
 }
@@ -603,7 +611,7 @@ string TgTypeParser::parseUserProfilePhotos(const UserProfilePhotos::Ptr& object
 	result += '{';
 	appendToJson(result, "total_count", object->totalCount);
 	appendToJson(result, "photos", parse2DArray(&TgTypeParser::parsePhotoSize, object->photos));
-	result.erase(result.length() - 1);
+	removeLastComma(result);
 	result += '}';
 	return result;
 }
@@ -660,7 +668,7 @@ string TgTypeParser::parseInputMedia(const InputMedia::Ptr& object) const {
 	if (object->supportsStreaming) {
 		appendToJson(result, "supports_streaming", object->supportsStreaming);
 	}
-	result.erase(result.length() - 1);
+	removeLastComma(result);
 	result += '}';
 	return result;
 }
@@ -682,14 +690,14 @@ string TgTypeParser::parseFile(const File::Ptr& object) const {
 	appendToJson(result, "file_id", object->fileId);
 	appendToJson(result, "file_size", object->fileSize);
 	appendToJson(result, "file_path", object->filePath);
-	result.erase(result.length() - 1);
+	removeLastComma(result);
 	result += '}';
 	return result;
 }
 
 ReplyKeyboardMarkup::Ptr TgTypeParser::parseJsonAndGetReplyKeyboardMarkup(const boost::property_tree::ptree& data) const {
 	auto result(make_shared<ReplyKeyboardMarkup>());
-	for (const boost::property_tree::ptree::value_type& item : data.find("keyboard")->second){
+	for (const auto& item : data.find("keyboard")->second){
 		result->keyboard.push_back(parseJsonAndGetArray<KeyboardButton>(&TgTypeParser::parseJsonAndGetKeyboardButton, item.second));
 	}
 	result->resizeKeyboard = data.get<bool>("resize_keyboard", false);
@@ -704,23 +712,23 @@ std::string TgTypeParser::parseReplyKeyboardMarkup(const ReplyKeyboardMarkup::Pt
 	}
 	string result;
 	result += '{';
-	result += "\"keyboard\":[";
-	for (vector<KeyboardButton::Ptr>& item : object->keyboard) {
+	result += R"("keyboard":[)";
+	for (const auto& item : object->keyboard) {
 		result += '[';
-		for (KeyboardButton::Ptr& innerItem : item) {
+		for (const auto& innerItem : item) {
 			result += parseKeyboardButton(innerItem);
 			result += ',';
 		}
-		result.erase(result.length() - 1);
+		removeLastComma(result);
 		result += "],";
 	}
 	if (!object->keyboard.empty())
-		result.erase(result.length() - 1);
+		removeLastComma(result);
 	result += "],";
 	appendToJson(result, "resize_keyboard", object->resizeKeyboard);
 	appendToJson(result, "one_time_keyboard", object->oneTimeKeyboard);
 	appendToJson(result, "selective", object->selective);
-	result.erase(result.length() - 1);
+	removeLastComma(result);
 	result += '}';
 	return result;
 }
@@ -742,7 +750,7 @@ std::string TgTypeParser::parseKeyboardButton(const KeyboardButton::Ptr& object)
 	appendToJson(result, "text", object->text);
 	appendToJson(result, "request_contact", object->requestContact);
 	appendToJson(result, "request_location", object->requestLocation);
-	result.erase(result.length() - 1);
+	removeLastComma(result);
 	result += '}';
 	return result;
 }
@@ -761,7 +769,7 @@ std::string TgTypeParser::parseReplyKeyboardRemove(const ReplyKeyboardRemove::Pt
 	result += '{';
 	appendToJson(result, "remove_keyboard", object->removeKeyboard);
 	appendToJson(result, "selective", object->selective);
-	result.erase(result.length() - 1);
+	removeLastComma(result);
 	result += '}';
 	return result;
 }
@@ -780,7 +788,7 @@ std::string TgTypeParser::parseForceReply(const ForceReply::Ptr& object) const {
 	result += '{';
 	appendToJson(result, "force_reply", object->forceReply);
 	appendToJson(result, "selective", object->selective);
-	result.erase(result.length() - 1);
+	removeLastComma(result);
 	result += '}';
 	return result;
 }
@@ -814,7 +822,7 @@ std::string TgTypeParser::parseChatMember(const ChatMember::Ptr& object) const {
 	result += '{';
 	appendToJson(result, "user", parseUser(object->user));
 	appendToJson(result, "status", object->status);
-	result.erase(result.length() - 1);
+	removeLastComma(result);
 	result += '}';
 	return result;
 }
@@ -834,7 +842,7 @@ std::string TgTypeParser::parseChatPhoto(const ChatPhoto::Ptr& object) const {
 	result += '{';
 	appendToJson(result, "small_file_id", object->smallFileId);
 	appendToJson(result, "big_file_id", object->bigFileId);
-	result.erase(result.length() - 1);
+	removeLastComma(result);
 	result += '}';
 	return result;
 }
@@ -854,7 +862,7 @@ std::string TgTypeParser::parseResponseParameters(const ResponseParameters::Ptr&
 	result += '{';
 	appendToJson(result, "migrate_to_chat_id", object->migrateToChatId);
 	appendToJson(result, "retry_after", object->retryAfter);
-	result.erase(result.length() - 1);
+	removeLastComma(result);
 	result += '}';
 	return result;
 }
@@ -910,7 +918,7 @@ std::string TgTypeParser::parseInlineQuery(const InlineQuery::Ptr& object) const
 	appendToJson(result, "location", parseLocation(object->location));
 	appendToJson(result, "query", object->query);
 	appendToJson(result, "offset", object->offset);
-	result.erase(result.length() - 1);
+	removeLastComma(result);
 	result += '}';
 	return result;
 }
@@ -1047,7 +1055,7 @@ std::string TgTypeParser::parseInlineQueryResult(const InlineQueryResult::Ptr& o
 		result += parseInlineQueryResultVideo(static_pointer_cast<InlineQueryResultVideo>(object));
 	}
 	
-	result.erase(result.length() - 1);
+	removeLastComma(result);
 	result += '}';
 	return result;
 }
@@ -1557,7 +1565,7 @@ std::string TgTypeParser::parseChosenInlineResult(const ChosenInlineResult::Ptr&
 	appendToJson(result, "result_id", object->resultId);
 	appendToJson(result, "from", parseUser(object->from));
 	appendToJson(result, "query", object->query);
-	result.erase(result.length() - 1);
+	removeLastComma(result);
 	result += '}';
 	return result;
 }
@@ -1588,14 +1596,14 @@ std::string TgTypeParser::parseCallbackQuery(const CallbackQuery::Ptr& object) c
 	appendToJson(result, "chat_instance", object->chatInstance);
 	appendToJson(result, "game_short_name", object->gameShortName);
 	appendToJson(result, "data", object->data);
-	result.erase(result.length() - 1);
+	removeLastComma(result);
 	result += '}';
 	return result;
 }
 
 InlineKeyboardMarkup::Ptr TgTypeParser::parseJsonAndGetInlineKeyboardMarkup(const boost::property_tree::ptree& data) const {
 	auto result(make_shared<InlineKeyboardMarkup>());
-	for (const boost::property_tree::ptree::value_type& item : data.find("inline_keyboard")->second){
+	for (const auto& item : data.find("inline_keyboard")->second){
 		result->inlineKeyboard.push_back(parseJsonAndGetArray<InlineKeyboardButton>(&TgTypeParser::parseJsonAndGetInlineKeyboardButton, item.second));
 	}
 	return result;
@@ -1607,18 +1615,18 @@ std::string TgTypeParser::parseInlineKeyboardMarkup(const InlineKeyboardMarkup::
 	}
 	string result;
 	result += '{';
-	result += "\"inline_keyboard\":[";
-	for (vector<InlineKeyboardButton::Ptr>& item : object->inlineKeyboard){
+	result += R"("inline_keyboard":[)";
+	for (const auto& item : object->inlineKeyboard){
 		result += '[';
-		for (InlineKeyboardButton::Ptr& innerItem : item){
+		for (const auto& innerItem : item){
 			result += parseInlineKeyboardButton(innerItem);
 			result += ',';
 		}
-		result.erase(result.length() - 1);
+		removeLastComma(result);
 		result += "],";
 	}
 	if (!object->inlineKeyboard.empty())
-		result.erase(result.length() - 1);
+		removeLastComma(result);
 	result += "]}";
 	return result;
 }
@@ -1631,6 +1639,7 @@ InlineKeyboardButton::Ptr TgTypeParser::parseJsonAndGetInlineKeyboardButton(cons
 	result->switchInlineQuery = data.get<string>("switch_inline_query", "");
 	result->switchInlineQueryCurrentChat = data.get<string>("switch_inline_query_current_chat", "");
 	result->callbackGame = make_shared<CallbackGame>();
+	result->pay = data.get<bool>("pay", false);
 	return result;
 }
 std::string TgTypeParser::parseInlineKeyboardButton(const InlineKeyboardButton::Ptr& object) const {
@@ -1644,7 +1653,8 @@ std::string TgTypeParser::parseInlineKeyboardButton(const InlineKeyboardButton::
 	appendToJson(result, "callback_data", object->callbackData);
 	appendToJson(result, "switch_inline_query", object->switchInlineQuery);
 	appendToJson(result, "switch_inline_query_current_chat", object->switchInlineQueryCurrentChat);
-	result.erase(result.length() - 1);
+	appendToJson(result, "pay", object->pay);
+	removeLastComma(result);
 	result += '}';
 	return result;
 }
@@ -1682,7 +1692,7 @@ std::string TgTypeParser::parseWebhookInfo(const WebhookInfo::Ptr& object) const
 			return s;
 		}
 		, object->allowedUpdates));
-	result.erase(result.length() - 1);
+	removeLastComma(result);
 	result += '}';
 	return result;
 }
@@ -1730,7 +1740,7 @@ std::string TgTypeParser::parseInputMessageContent(const InputMessageContent::Pt
 		result += parseInputContactMessageContent(static_pointer_cast<InputContactMessageContent>(object));
 	}
 
-	result.erase(result.length() - 1);
+	removeLastComma(result);
 	result += '}';
 	return result;
 }
@@ -1846,7 +1856,7 @@ std::string TgTypeParser::parseInvoice(const Invoice::Ptr& object) const {
 	appendToJson(result, "start_parameter", object->startParameter);
 	appendToJson(result, "currency", object->currency);
 	appendToJson(result, "total_amount", object->totalAmount);
-	result.erase(result.length() - 1);
+	removeLastComma(result);
 	result += '}';
 	return result;
 }
@@ -1863,7 +1873,7 @@ string TgTypeParser::parseLabeledPrice(const LabeledPrice::Ptr& object) const {
 	result += '{';
 	appendToJson(result, "label", object->label);
 	appendToJson(result, "amount", object->amount);
-	result.erase(result.length() - 1);
+	removeLastComma(result);
 	result += '}';
 	return result;
 }
@@ -1897,7 +1907,7 @@ string TgTypeParser::parseOrderInfo(const OrderInfo::Ptr& object) const {
 		result += parseShippingAddress(object->shippingAddress);
 		result += ",";
 	}
-	result.erase(result.length() - 1);
+	removeLastComma(result);
 	result += '}';
 	return result;
 }
@@ -1920,7 +1930,7 @@ string TgTypeParser::parsePreCheckoutQuery(const PreCheckoutQuery::Ptr& object) 
 	result += ",";
 	appendToJson(result, "currency", object->currency);
 	appendToJson(result, "total_amount", object->totalAmount);
-	result.erase(result.length() - 1);
+	removeLastComma(result);
 	result += '}';
 	return result;
 }
@@ -1947,7 +1957,7 @@ string TgTypeParser::parseShippingAddress(const ShippingAddress::Ptr& object) co
 	appendToJson(result, "street_line1", object->streetLine1);
 	appendToJson(result, "street_line2", object->streetLine2);
 	appendToJson(result, "post_code", object->postCode);
-	result.erase(result.length() - 1);
+	removeLastComma(result);
 	result += '}';
 	return result;
 }
@@ -1965,7 +1975,7 @@ string TgTypeParser::parseShippingOption(const ShippingOption::Ptr& object) cons
 	result += '{';
 	appendToJson(result, "id", object->id);
 	appendToJson(result, "title", object->title);
-	result.erase(result.length() - 1);
+	removeLastComma(result);
 	result += R"("prices":)";
 	result += parseArray(&TgTypeParser::parseLabeledPrice, object->prices);
 	result += '}';
@@ -1992,12 +2002,12 @@ string TgTypeParser::parseShippingQuery(const ShippingQuery::Ptr& object) const 
 	result += R"("shipping_address":)";
 	result += parseShippingAddress(object->shippingAddress);
 	result += ",";
-	result.erase(result.length() - 1);
+	removeLastComma(result);
 	result += '}';
 	return result;
 }
 
-SuccessfulPayment::Ptr TgTypeParser::parseJsonAndGetSucessfulPayment(const boost::property_tree::ptree& data) const {
+SuccessfulPayment::Ptr TgTypeParser::parseJsonAndGetSuccessfulPayment(const boost::property_tree::ptree& data) const {
 	auto result(make_shared<SuccessfulPayment>());
 	result->currency = data.get<string>("currency");
 	result->totalAmount = data.get<int32_t>("total_amount");
@@ -2007,7 +2017,7 @@ SuccessfulPayment::Ptr TgTypeParser::parseJsonAndGetSucessfulPayment(const boost
 	return result;
 }
 
-std::string TgTypeParser::parseSucessfulPayment(const SuccessfulPayment::Ptr& object) const {
+std::string TgTypeParser::parseSuccessfulPayment(const SuccessfulPayment::Ptr& object) const {
 	string result;
 	result += '{';
 	appendToJson(result, "currency", object->currency);
@@ -2017,7 +2027,7 @@ std::string TgTypeParser::parseSucessfulPayment(const SuccessfulPayment::Ptr& ob
 	result += R"("order_info":)";
 	result += parseOrderInfo(object->orderInfo);
 	result += ",";
-	result.erase(result.length() - 1);
+	removeLastComma(result);
 	result += '}';
 	return result;
 }
@@ -2029,7 +2039,7 @@ void TgTypeParser::appendToJson(string& json, const string& varName, const strin
 	}
 	json += '"';
 	json += varName;
-	json += "\":";
+	json += R"(":)";
 	if (value.front() != '{') {
 		json += '"';
 	}

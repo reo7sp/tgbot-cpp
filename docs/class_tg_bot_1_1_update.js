@@ -8,5 +8,7 @@ var class_tg_bot_1_1_update =
     [ "editedMessage", "class_tg_bot_1_1_update.html#a188502d94515baee85ba30f58cffa1b5", null ],
     [ "inlineQuery", "class_tg_bot_1_1_update.html#aea03e36b9015a0fe9f1278564c5b8806", null ],
     [ "message", "class_tg_bot_1_1_update.html#ab65136c0345978742fb3026e6855ff2c", null ],
+    [ "preCheckoutQuery", "class_tg_bot_1_1_update.html#a9c1dab567059da89f8529263bdc92da3", null ],
+    [ "shippingQuery", "class_tg_bot_1_1_update.html#ab36e473d65557a1fb6ab4096eadc1269", null ],
     [ "updateId", "class_tg_bot_1_1_update.html#af4d35314c4e49839f7012a9671ede097", null ]
 ];

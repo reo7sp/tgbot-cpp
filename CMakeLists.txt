@@ -3,6 +3,7 @@ project(TgBot)
 
 ### options
 option(ENABLE_TESTS "Set to ON to enable building of tests" OFF)
+option(BUILD_SHARED_LIBS "Build tgbot-cpp shared/static library." OFF)
 
 ### sources
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Wall")

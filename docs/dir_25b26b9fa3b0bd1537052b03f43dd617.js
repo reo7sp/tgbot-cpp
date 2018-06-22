@@ -11,7 +11,5 @@ var dir_25b26b9fa3b0bd1537052b03f43dd617 =
     ] ],
     [ "tgbot.h", "tgbot_8h.html", null ],
     [ "TgException.h", "_tg_exception_8h.html", null ],
-    [ "TgTypeParser.h", "_tg_type_parser_8h.html", [
-      [ "TgTypeParser", "class_tg_bot_1_1_tg_type_parser.html", "class_tg_bot_1_1_tg_type_parser" ]
-    ] ]
+    [ "TgTypeParser.h", "_tg_type_parser_8h.html", null ]
 ];

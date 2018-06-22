@@ -41,6 +41,8 @@
 #include "tgbot/types/MessageEntity.h"
 #include "tgbot/types/Venue.h"
 #include "tgbot/types/Voice.h"
+#include "tgbot/types/Invoice.h"
+#include "tgbot/types/SuccessfulPayment.h"
 
 namespace TgBot {
 
@@ -52,15 +54,6 @@ namespace TgBot {
 class Message {
 public:
 	typedef std::shared_ptr<Message> Ptr;
-
-	Message(){
-		deleteChatPhoto = false;
-		groupChatCreated = false;
-		supergroupChatCreated = false;
-		channelChatCreated = false;
-		migrateToChatId = 0;
-		migrateFromChatId = 0;
-	}
 
 	/**
 	 * @brief Unique message identifier.
@@ -220,37 +213,47 @@ public:
 	/**
 	 * @brief Optional. Informs that the group photo was deleted.
 	 */
-	bool deleteChatPhoto;
+	bool deleteChatPhoto = false;
 
 	/**
 	 * @brief Optional. Informs that the group has been created.
 	 */
-	bool groupChatCreated;
+	bool groupChatCreated = false;
 
 	/**
 	 * @brief Optional. Service message: the supergroup has been created.
 	 */
-	bool supergroupChatCreated;
+	bool supergroupChatCreated = false;
 
 	/**
 	 * @brief Optional. Service message: the channel has been created.
 	 */
-	bool channelChatCreated;
+	bool channelChatCreated = false;
 
 	/**
 	 * @brief Optional. The group has been migrated to a supergroup with the specified identifier, not exceeding 1e13 by absolute value.
 	 */
-	int64_t migrateToChatId;
+	int64_t migrateToChatId = 0;
 
 	/**
 	 * @brief Optional. The supergroup has been migrated from a group with the specified identifier, not exceeding 1e13 by absolute value
 	 */
-	int64_t migrateFromChatId;
+	int64_t migrateFromChatId = 0;
 
 	/**
 	 * @brief Optional. Specified message was pinned. Note that the Message object in this field will not contain further reply_to_message fields even if it is itself a reply.
 	 */
 	Message::Ptr pinnedMessage;
+
+	/**
+	 * @brief Optional. Message is an invoice for a payment, information about the invoice.
+	 */
+	Invoice::Ptr invoice;
+
+	/**
+	 * @brief Optional. Message is a service message about a successful payment, information about the payment.
+	 */
+	SuccessfulPayment::Ptr successfulPayment;
 
 	/**
 	 * @brief Optional. The domain name of the website on which the user has logged in.

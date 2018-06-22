@@ -19,7 +19,7 @@ var group__net =
         [ "data", "class_tg_bot_1_1_http_server_1_1_connection.html#a23e0644c0e4d02eb96b9dd61404a8788", null ],
         [ "socket", "class_tg_bot_1_1_http_server_1_1_connection.html#a2104f20074b0a9fb17192ebbb1846b20", null ]
       ] ],
-      [ "ServerHandler", "class_tg_bot_1_1_http_server.html#ae3b5d008d0ec0c9dd14b4a8bccdf8c0b", null ],
+      [ "ServerHandler", "class_tg_bot_1_1_http_server.html#ad8b31e813a287809453853694ee0fad0", null ],
       [ "HttpServer", "class_tg_bot_1_1_http_server.html#a8edad0dd91ffffa6cacce4d49cb60abe", null ],
       [ "start", "class_tg_bot_1_1_http_server.html#aa237b199d8a0712b983e4913970ad7f7", null ],
       [ "stop", "class_tg_bot_1_1_http_server.html#aeed8b9200cc2932126b9c27946751377", null ],

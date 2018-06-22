@@ -43,6 +43,8 @@
 #include "tgbot/types/File.h"
 #include "tgbot/types/InputMedia.h"
 #include "tgbot/types/GameHighScore.h"
+#include "tgbot/types/LabeledPrice.h"
+#include "tgbot/types/ShippingOption.h"
 
 namespace TgBot {
 
@@ -185,6 +187,67 @@ public:
 	                          const GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>(), const std::string& parseMode = "", bool disableNotification = false) const;
 
 	/**
+	 * @brief Use this method to send invoices.
+	 * @param chatId Unique identifier for the target private chat.
+	 * @param title Product name, 1-32 characters.
+	 * @param description Product description, 1-255 characters.
+	 * @param payload Bot-defined invoice payload, 1-128 bytes. This will not be displayed to the user, use for your internal processes.
+	 * @param providerToken Payments provider token, obtained via Botfather.
+	 * @param startParameter Unique deep-linking parameter that can be used to generate this invoice when used as a start parameter.
+	 * @param currency Three-letter ISO 4217 currency code.
+	 * @param prices Price breakdown, a list of components (e.g. product price, tax, discount, delivery cost, delivery tax, bonus, etc.)
+	 * @param providerData Optional. JSON-encoded data about the invoice, which will be shared with the payment provider. A detailed description of required fields should be provided by the payment provider.
+	 * @param photoUrl Optional. URL of the product photo for the invoice. Can be a photo of the goods or a marketing image for a service. People like it better when they see what they are paying for.
+	 * @param photoSize Optional. Photo size
+	 * @param photoWidth Optional. Photo width
+	 * @param photoHeight Optional. Photo height
+	 * @param needName Optional. Pass True, if you require the user's full name to complete the order.
+	 * @param needPhoneNumber Optional. Pass True, if you require the user's phone number to complete the order.
+	 * @param needEmail Optional. Pass True, if you require the user's email address to complete the order.
+	 * @param needShippingAddress Optional. Pass True, if you require the user's shipping address to complete the order.
+	 * @param sendPhoneNumberToProvider Optional. Pass True, if user's phone number should be sent to provider.
+	 * @param sendEmailToProvider Optional. Pass True, if user's email address should be sent to provider
+	 * @param isFlexible Optional. Pass True, if the final price depends on the shipping method.
+	 * @param replyToMessageId Optional. If the message is a reply, ID of the original message.
+	 * @param replyMarkup Optional. A JSON-serialized object for an inline keyboard. If empty, one 'Pay total price' button will be shown. If not empty, the first button must be a Pay button.
+	 * @param disableNotification Optional. Sends the message silently. Users will receive a notification with no sound.
+	 * @return On success, the sent Message is returned.
+	 */
+	Message::Ptr sendInvoice(int64_t chatId, const std::string& title, const std::string& description, const std::string& payload,
+							 const std::string& providerToken, const std::string& startParameter, const std::string& currency, const std::vector<LabeledPrice::Ptr>& prices,
+							 const std::string& providerData = "", const std::string& photoUrl = "", int32_t photoSize = 0,
+							 int32_t photoWidth = 0, int32_t photoHeight = 0, bool needName = false,
+							 bool needPhoneNumber = false, bool needEmail = false, bool needShippingAddress = false,
+							 bool sendPhoneNumberToProvider = false, bool sendEmailToProvider = false, bool isFlexible = false,
+							 int32_t replyToMessageId = 0, const GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>(), bool disableNotification = false) const;
+
+	/**
+	 * @brief Use this method to reply to shipping queries.
+	 *
+	 * If you sent an invoice requesting a shipping address and the parameter isFlexible was specified, the Bot API will send an Update with a shipping_query field to the bot.
+	 * 
+	 * @param shippingQueryId Unique identifier for the query to be answered.
+	 * @param ok Specify True if delivery to the specified address is possible and False if there are any problems (for example, if delivery to the specified address is not possible)
+	 * @param shippingOptions Optional. Required if ok is True. A JSON-serialized array of available shipping options.
+	 * @param errorMessage Optional. Required if ok is False. Error message in human readable form that explains why it is impossible to complete the order (e.g. "Sorry, delivery to your desired address is unavailable'). Telegram will display this message to the user.
+	 * @return On success, True is returned.
+	 */
+	bool answerShippingQuery(const std::string& shippingQueryId, bool ok, const std::vector<ShippingOption::Ptr>& shippingOptions = std::vector<ShippingOption::Ptr>(), const std::string& errorMessage = "") const;
+
+	/**
+	 * @brief Use this method to respond to such pre-checkout queries.
+	 *
+	 * Once the user has confirmed their payment and shipping details, the Bot API sends the final confirmation in the form of an Update with the field preCheckoutQuery.
+	 * Note: The Bot API must receive an answer within 10 seconds after the pre-checkout query was sent.
+	 *
+	 * @param preCheckoutQueryId Unique identifier for the query to be answered
+	 * @param ok Specify True if everything is alright (goods are available, etc.) and the bot is ready to proceed with the order. Use False if there are any problems.
+	 * @param errorMessage Required if ok is False. Error message in human readable form that explains the reason for failure to proceed with the checkout (e.g. "Sorry, somebody just bought the last of our amazing black T-shirts while you were busy filling out your payment details. Please choose a different color or garment!"). Telegram will display this message to the user.
+	 * @return On success, True is returned.
+	 */
+	bool answerPreCheckoutQuery(const std::string& preCheckoutQueryId, bool ok, const std::string& errorMessage = "") const;
+
+	/**
 	 * @brief Use this method to send .webp stickers.
 	 * @param chatId Unique identifier for the target chat.
 	 * @param sticker Sticker to send.
@@ -214,7 +277,7 @@ public:
 	 * @return On success, a StickerSet object is returned.
 	 */
 	StickerSet::Ptr getStickerSet(const std::string& name) const;
-	
+
 	/**
 	 * @brief Use this method to upload a .png file with a sticker for later use in createNewStickerSet and addStickerToSet methods (can be used multiple times).
 	 * @param userId User identifier of sticker file owner.

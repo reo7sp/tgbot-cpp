@@ -292,8 +292,8 @@ public:
 	ShippingQuery::Ptr parseJsonAndGetShippingQuery(const boost::property_tree::ptree& data) const;
 	std::string parseShippingQuery(const ShippingQuery::Ptr& object) const;
 
-	SuccessfulPayment::Ptr parseJsonAndGetSucessfulPayment(const boost::property_tree::ptree& data) const;
-	std::string parseSucessfulPayment(const SuccessfulPayment::Ptr& object) const;
+	SuccessfulPayment::Ptr parseJsonAndGetSuccessfulPayment(const boost::property_tree::ptree& data) const;
+	std::string parseSuccessfulPayment(const SuccessfulPayment::Ptr& object) const;
 
 	inline boost::property_tree::ptree parseJson(const std::string& json) const {
 		boost::property_tree::ptree tree;
@@ -413,31 +413,35 @@ public:
 	}
 
 private:
+	inline void removeLastComma(std::string& input) const {
+		input.erase(input.length() - 1);
+	}
+
 	template<typename T>
-	void appendToJson(std::string& json, const std::string& varName, const std::shared_ptr<T>& value) const {
+	inline void appendToJson(std::string& json, const std::string& varName, const std::shared_ptr<T>& value) const {
 		if (value == nullptr) {
 			return;
 		}
 		json += '"';
 		json += varName;
-		json += "\":";
+		json += R"(":)";
 		json += value;
 		json += ',';
 	}
 
 	template<typename T>
-	void appendToJson(std::string& json, const std::string& varName, const T& value) const {
+	inline void appendToJson(std::string& json, const std::string& varName, const T& value) const {
 		json += '"';
 		json += varName;
-		json += "\":";
+		json += R"(":)";
 		json += value;
 		json += ',';
 	}
 
-	void appendToJson(std::string& json, const std::string& varName, const bool& value) const {
+	inline void appendToJson(std::string& json, const std::string& varName, const bool& value) const {
 		json += '"';
 		json += varName;
-		json += "\":";
+		json += R"(":)";
 		json += (value ? "true" : "false");
 		json += ',';
 	}

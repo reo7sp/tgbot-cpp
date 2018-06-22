@@ -77,7 +77,6 @@ var namespace_tg_bot =
     [ "SuccessfulPayment", "class_tg_bot_1_1_successful_payment.html", "class_tg_bot_1_1_successful_payment" ],
     [ "TgException", "class_tg_bot_1_1_tg_exception.html", "class_tg_bot_1_1_tg_exception" ],
     [ "TgLongPoll", "class_tg_bot_1_1_tg_long_poll.html", "class_tg_bot_1_1_tg_long_poll" ],
-    [ "TgTypeParser", "class_tg_bot_1_1_tg_type_parser.html", "class_tg_bot_1_1_tg_type_parser" ],
     [ "TgWebhookServer", "class_tg_bot_1_1_tg_webhook_server.html", "class_tg_bot_1_1_tg_webhook_server" ],
     [ "TgWebhookTcpServer", "class_tg_bot_1_1_tg_webhook_tcp_server.html", "class_tg_bot_1_1_tg_webhook_tcp_server" ],
     [ "Update", "class_tg_bot_1_1_update.html", "class_tg_bot_1_1_update" ],

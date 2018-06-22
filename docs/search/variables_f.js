@@ -2,6 +2,7 @@ var searchData=
 [
   ['parsemode',['parseMode',['../class_tg_bot_1_1_input_media.html#ae2761ade0de31f96074d6760661c7edc',1,'TgBot::InputMedia::parseMode()'],['../class_tg_bot_1_1_input_text_message_content.html#abc5610bba9379026280ab5cf2e5d6c0c',1,'TgBot::InputTextMessageContent::parseMode()']]],
   ['path',['path',['../class_tg_bot_1_1_url.html#a22b43623b7de7e817699dffb85edb532',1,'TgBot::Url']]],
+  ['pay',['pay',['../class_tg_bot_1_1_inline_keyboard_button.html#a4b25902fc2688c3d93d189cdee0434d2',1,'TgBot::InlineKeyboardButton']]],
   ['pendingupdatecount',['pendingUpdateCount',['../class_tg_bot_1_1_webhook_info.html#ae709688fe3890a2e34981cf9d1470726',1,'TgBot::WebhookInfo']]],
   ['performer',['performer',['../class_tg_bot_1_1_audio.html#ac91ee59f6137da2da2f7c8ad6d1e9119',1,'TgBot::Audio::performer()'],['../class_tg_bot_1_1_inline_query_result_audio.html#aed3fcf3bc848aaae21bab04a3f840ec1',1,'TgBot::InlineQueryResultAudio::performer()']]],
   ['phonenumber',['phoneNumber',['../class_tg_bot_1_1_contact.html#ada9f5461d2dd84b547cf563db624ff28',1,'TgBot::Contact::phoneNumber()'],['../class_tg_bot_1_1_inline_query_result_contact.html#a8bf9d71688e348b69876301a4422f228',1,'TgBot::InlineQueryResultContact::phoneNumber()'],['../class_tg_bot_1_1_input_contact_message_content.html#a96fe449f5efd3f80c2dde6af364a7aa6',1,'TgBot::InputContactMessageContent::phoneNumber()'],['../class_tg_bot_1_1_order_info.html#a324841d077060a1b1b97564066bc1f16',1,'TgBot::OrderInfo::phoneNumber()']]],
@@ -15,6 +16,7 @@ var searchData=
   ['point',['point',['../class_tg_bot_1_1_mask_position.html#a8c22f087cecfcc16c6c563a6df6c9d7e',1,'TgBot::MaskPosition']]],
   ['position',['position',['../class_tg_bot_1_1_game_high_score.html#a76d2ff519f8a09b6550d78666950204f',1,'TgBot::GameHighScore']]],
   ['postcode',['postCode',['../class_tg_bot_1_1_shipping_address.html#a7c90dac349c28228c8babf63e06ce667',1,'TgBot::ShippingAddress']]],
+  ['precheckoutquery',['preCheckoutQuery',['../class_tg_bot_1_1_update.html#a9c1dab567059da89f8529263bdc92da3',1,'TgBot::Update']]],
   ['prices',['prices',['../class_tg_bot_1_1_shipping_option.html#a1a21641a9f85591e898798c64007d8ba',1,'TgBot::ShippingOption']]],
   ['protocol',['protocol',['../class_tg_bot_1_1_url.html#a36af00d44ee8fcba1d06a8d6c5c9ac49',1,'TgBot::Url']]],
   ['providerpaymentchargeid',['providerPaymentChargeId',['../class_tg_bot_1_1_successful_payment.html#a06d9cb4285772b1e0aa91df415af4cf6',1,'TgBot::SuccessfulPayment']]]
