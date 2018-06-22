@@ -230,7 +230,7 @@ Message::Ptr Api::sendDocument(int64_t chatId, const string& document, const str
 }
 
 Message::Ptr Api::sendInvoice(int64_t chatId, const std::string& title, const std::string& description, const std::string& payload,
-							 const std::string& providerToken, const std::string& startParameter, const std::string& currency, const std::vector<LabeledPrice>& prices,
+							 const std::string& providerToken, const std::string& startParameter, const std::string& currency, const std::vector<LabeledPrice::Ptr>& prices,
 							 const std::string& providerData, const std::string& photoUrl, int32_t photoSize,
 							 int32_t photoWidth, int32_t photoHeight, bool needName,
 							 bool needPhoneNumber, bool needEmail, bool needShippingAddress,
@@ -294,7 +294,7 @@ Message::Ptr Api::sendInvoice(int64_t chatId, const std::string& title, const st
 	return TgTypeParser::getInstance().parseJsonAndGetMessage(sendRequest("sendInvoice", args));
 }
 
-bool Api::answerShippingQuery(const std::string& shippingQueryId, bool ok, const std::vector<ShippingOption>& shippingOptions, const std::string& errorMessage) const {
+bool Api::answerShippingQuery(const std::string& shippingQueryId, bool ok, const std::vector<ShippingOption::Ptr>& shippingOptions, const std::string& errorMessage) const {
 	vector<HttpReqArg> args;
 	args.reserve(4);
 	args.emplace_back("shipping_query_id", shippingQueryId);
