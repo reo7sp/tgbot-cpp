@@ -229,7 +229,7 @@ Message::Ptr Api::sendDocument(int64_t chatId, const string& document, const str
 	return TgTypeParser::getInstance().parseJsonAndGetMessage(sendRequest("sendDocument", args));
 }
 
-Message::Ptr sendInvoice(int64_t chatId, const std::string& title, const std::string& description, const std::string& payload,
+Message::Ptr Api::sendInvoice(int64_t chatId, const std::string& title, const std::string& description, const std::string& payload,
 							 const std::string& providerToken, const std::string& startParameter, const std::string& currency, const std::vector<LabeledPrice>& prices,
 							 const std::string& providerData, const std::string& photoUrl, int32_t photoSize,
 							 int32_t photoWidth, int32_t photoHeight, bool needName,
@@ -294,12 +294,12 @@ Message::Ptr sendInvoice(int64_t chatId, const std::string& title, const std::st
 	return TgTypeParser::getInstance().parseJsonAndGetMessage(sendRequest("sendInvoice", args));
 }
 
-bool answerShippingQuery(const std::string& shippingQueryId, bool ok, const std::vector<ShippingOption>& shippingOptions, const std::string& errorMessage) const {
+bool Api::answerShippingQuery(const std::string& shippingQueryId, bool ok, const std::vector<ShippingOption>& shippingOptions, const std::string& errorMessage) const {
 	vector<HttpReqArg> args;
 	args.reserve(4);
 	args.emplace_back("shipping_query_id", shippingQueryId);
 	args.emplace_back("ok", ok);
-	if (ShippingOptions != nullptr) {
+	if (!shippingOptions.empty()) {
 		args.emplace_back("shipping_options", TgTypeParser::getInstance().parseArray<ShippingOption>(&TgTypeParser::parseShippingOption, shippingOptions));
 	}
 	if (!errorMessage.empty()) {
@@ -308,10 +308,10 @@ bool answerShippingQuery(const std::string& shippingQueryId, bool ok, const std:
 	return sendRequest("answerShippingQuery", args).get<bool>("", false);
 }
 
-bool answerPreCheckoutQuery(const std::string& preCheckoutQueryId, bool ok, const std::string& errorMessage) const {
+bool Api::answerPreCheckoutQuery(const std::string& preCheckoutQueryId, bool ok, const std::string& errorMessage) const {
 	vector<HttpReqArg> args;
 	args.reserve(3);
-	args.emplace_back("shipping_query_id", shippingQueryId);
+	args.emplace_back("pre_checkout_query_id", preCheckoutQueryId);
 	args.emplace_back("ok", ok);
 	if (!errorMessage.empty()) {
 		args.emplace_back("error_message", errorMessage);
