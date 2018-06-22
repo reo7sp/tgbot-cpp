@@ -413,7 +413,7 @@ public:
 	}
 
 private:
-	inline void removeLastComma(const std::string& input) const {
+	inline void removeLastComma(std::string& input) const {
 		input.erase(input.length() - 1);
 	}
 
