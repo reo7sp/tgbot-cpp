@@ -245,7 +245,7 @@ Message::Ptr Api::sendInvoice(int64_t chatId, const std::string& title, const st
 	args.emplace_back("provider_token", providerToken);
 	args.emplace_back("start_parameter", startParameter);
 	args.emplace_back("currency", currency);
-	args.emplace_back("prices", TgTypeParser::getInstance().parseArray<LabeledPrice>(&TgTypeParser::parseLabeledPrice, prices);
+	args.emplace_back("prices", TgTypeParser::getInstance().parseArray<LabeledPrice>(&TgTypeParser::parseLabeledPrice, prices));
 	if (!providerData.empty()) {
 		args.emplace_back("provider_data", providerData);
 	}
