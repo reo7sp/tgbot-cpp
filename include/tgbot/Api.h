@@ -202,7 +202,7 @@ public:
 	 * @param needName Optional. Pass True, if you require the user's full name to complete the order.
 	 * @param needPhoneNumber Optional. Pass True, if you require the user's phone number to complete the order.
 	 * @param needEmail Optional. Pass True, if you require the user's email address to complete the order.
-	 * @param needShippingAdress Optional. Pass True, if you require the user's shipping address to complete the order.
+	 * @param needShippingAddress Optional. Pass True, if you require the user's shipping address to complete the order.
 	 * @param sendPhoneNumberToProvider Optional. Pass True, if user's phone number should be sent to provider.
 	 * @param sendEmailToProvider Optional. Pass True, if user's email address should be sent to provider
 	 * @param isFlexible Optional. Pass True, if the final price depends on the shipping method.
@@ -212,17 +212,18 @@ public:
 	 * @return On success, the sent Message is returned.
 	 */
 	Message::Ptr sendInvoice(int64_t chatId, const std::string& title, const std::string& description, const std::string& payload,
-				 const std::string& providerToken, const std::string& startParameter, const std::string& currency, const std::vector<LabeledPrice>& prices,
-				 const std::string& providerData, const std::string& photoUrl = "", int32_t photoSize = 0,
-				 int32_t photoWidth = 0, int32_t photoHeight = 0, bool needName = false,
-				 bool needPhoneNumber = false, bool needEmail = false, bool needShippingAdress = false,
-				 bool sendPhoneNumberToProvider = false, bool sendEmailToProvider = false, bool isFlexible = false,
-				 int32_t replyToMessageId = 0, const GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>(), bool disableNotification = false) const;
+							 const std::string& providerToken, const std::string& startParameter, const std::string& currency, const std::vector<LabeledPrice>& prices,
+							 const std::string& providerData = "", const std::string& photoUrl = "", int32_t photoSize = 0,
+							 int32_t photoWidth = 0, int32_t photoHeight = 0, bool needName = false,
+							 bool needPhoneNumber = false, bool needEmail = false, bool needShippingAddress = false,
+							 bool sendPhoneNumberToProvider = false, bool sendEmailToProvider = false, bool isFlexible = false,
+							 int32_t replyToMessageId = 0, const GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>(), bool disableNotification = false) const;
 
 	/**
 	 * @brief Use this method to reply to shipping queries.
 	 *
 	 * If you sent an invoice requesting a shipping address and the parameter isFlexible was specified, the Bot API will send an Update with a shipping_query field to the bot.
+	 * 
 	 * @param shippingQueryId Unique identifier for the query to be answered.
 	 * @param ok Specify True if delivery to the specified address is possible and False if there are any problems (for example, if delivery to the specified address is not possible)
 	 * @param shippingOptions Optional. Required if ok is True. A JSON-serialized array of available shipping options.
