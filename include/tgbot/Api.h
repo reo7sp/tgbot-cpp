@@ -43,6 +43,8 @@
 #include "tgbot/types/File.h"
 #include "tgbot/types/InputMedia.h"
 #include "tgbot/types/GameHighScore.h"
+#include "tgbot/types/LabeledPrice.h"
+#include "tgbot/types/ShippingOption.h"
 
 namespace TgBot {
 
@@ -212,7 +214,7 @@ public:
 	 * @return On success, the sent Message is returned.
 	 */
 	Message::Ptr sendInvoice(int64_t chatId, const std::string& title, const std::string& description, const std::string& payload,
-							 const std::string& providerToken, const std::string& startParameter, const std::string& currency, const std::vector<LabeledPrice>& prices,
+							 const std::string& providerToken, const std::string& startParameter, const std::string& currency, const std::vector<LabeledPrice> prices,
 							 const std::string& providerData = "", const std::string& photoUrl = "", int32_t photoSize = 0,
 							 int32_t photoWidth = 0, int32_t photoHeight = 0, bool needName = false,
 							 bool needPhoneNumber = false, bool needEmail = false, bool needShippingAddress = false,
@@ -230,7 +232,7 @@ public:
 	 * @param errorMessage Optional. Required if ok is False. Error message in human readable form that explains why it is impossible to complete the order (e.g. "Sorry, delivery to your desired address is unavailable'). Telegram will display this message to the user.
 	 * @return On success, True is returned.
 	 */
-	bool answerShippingQuery(const std::string& shippingQueryId, bool ok, const std::vector<ShippingOption>& shippingOptions = nullptr, const std::string& errorMessage = "") const;
+	bool answerShippingQuery(const std::string& shippingQueryId, bool ok, const std::vector<ShippingOption> shippingOptions = nullptr, const std::string& errorMessage = "") const;
 
 	/**
 	 * @brief Use this method to respond to such pre-checkout queries.

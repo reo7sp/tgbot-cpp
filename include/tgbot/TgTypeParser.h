@@ -292,8 +292,8 @@ public:
 	ShippingQuery::Ptr parseJsonAndGetShippingQuery(const boost::property_tree::ptree& data) const;
 	std::string parseShippingQuery(const ShippingQuery::Ptr& object) const;
 
-	SuccessfulPayment::Ptr parseJsonAndGetSucessfulPayment(const boost::property_tree::ptree& data) const;
-	std::string parseSucessfulPayment(const SuccessfulPayment::Ptr& object) const;
+	SuccessfulPayment::Ptr parseJsonAndGetSuccessfulPayment(const boost::property_tree::ptree& data) const;
+	std::string parseSuccessfulPayment(const SuccessfulPayment::Ptr& object) const;
 
 	inline boost::property_tree::ptree parseJson(const std::string& json) const {
 		boost::property_tree::ptree tree;

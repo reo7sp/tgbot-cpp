@@ -2007,7 +2007,7 @@ string TgTypeParser::parseShippingQuery(const ShippingQuery::Ptr& object) const 
 	return result;
 }
 
-SuccessfulPayment::Ptr TgTypeParser::parseJsonAndGetSucessfulPayment(const boost::property_tree::ptree& data) const {
+SuccessfulPayment::Ptr TgTypeParser::parseJsonAndGetSuccessfulPayment(const boost::property_tree::ptree& data) const {
 	auto result(make_shared<SuccessfulPayment>());
 	result->currency = data.get<string>("currency");
 	result->totalAmount = data.get<int32_t>("total_amount");
@@ -2017,7 +2017,7 @@ SuccessfulPayment::Ptr TgTypeParser::parseJsonAndGetSucessfulPayment(const boost
 	return result;
 }
 
-std::string TgTypeParser::parseSucessfulPayment(const SuccessfulPayment::Ptr& object) const {
+std::string TgTypeParser::parseSuccessfulPayment(const SuccessfulPayment::Ptr& object) const {
 	string result;
 	result += '{';
 	appendToJson(result, "currency", object->currency);
