@@ -413,6 +413,10 @@ public:
 	}
 
 private:
+	inline void removeLastComma(std::string& input) const {
+		input.erase(input.length() - 1);
+	}
+
 	template<typename T>
 	void appendToJson(std::string& json, const std::string& varName, const std::shared_ptr<T>& value) const {
 		if (value == nullptr) {

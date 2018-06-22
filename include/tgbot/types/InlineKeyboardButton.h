@@ -44,16 +44,23 @@ public:
 	std::string switchInlineQuery;
 
 	/**
-	* @brief Optional. If set, pressing the button will insert the bot‘s username and the specified inline query in the current chat's input field. Can be empty, in which case only the bot’s username will be inserted.
-	*/
+	 * @brief Optional. If set, pressing the button will insert the bot‘s username and the specified inline query in the current chat's input field. Can be empty, in which case only the bot’s username will be inserted.
+	 */
 	std::string switchInlineQueryCurrentChat;
 
 	/**
 	 * @brief Optional. Description of the game that will be launched when the user presses the button.
 	 * 
-	 * NOTE: This type of button must always be the first button in the first row.
+	 * Note: This type of button must always be the first button in the first row.
 	 */
 	CallbackGame::Ptr callbackGame;
+
+	/**
+	 * @brief Optional. Specify True, to send a Pay button.
+	 * 
+	 * Note: This type of button must always be the first button in the first row.
+	 */
+	bool pay = false;
 };
 }
 

@@ -29,6 +29,8 @@
 #include "tgbot/types/InlineQuery.h"
 #include "tgbot/types/ChosenInlineResult.h"
 #include "tgbot/types/CallbackQuery.h"
+#include "tgbot/types/ShippingQuery.h"
+#include "tgbot/types/PreCheckoutQuery.h"
 
 namespace TgBot {
 
@@ -81,6 +83,20 @@ public:
 	 * @brief Optional. New incoming callback query.
 	 */
 	CallbackQuery::Ptr callbackQuery;
+
+	/**
+	 * @brief Optional. New incoming shipping query.
+	 *
+	 * Only for invoices with flexible price
+	 */
+	ShippingQuery::Ptr shippingQuery;
+
+	/**
+	 * @brief Optional. New incoming pre-checkout query.
+	 *
+	 * Contains full information about checkout
+	 */
+	PreCheckoutQuery::Ptr preCheckoutQuery;
 };
 
 }
