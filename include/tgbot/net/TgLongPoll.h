@@ -46,12 +46,12 @@ public:
 	void start();
 
 private:
+	const Api* _api;
+	const EventHandler* _eventHandler;
 	int32_t _lastUpdateId = 0;
 	int32_t _limit;
 	int32_t _timeout;
 	std::shared_ptr<std::vector<std::string>> _allowupdates;
-	const Api* _api;
-	const EventHandler* _eventHandler;
 };
 
 }
