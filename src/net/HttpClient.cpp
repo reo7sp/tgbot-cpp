@@ -119,13 +119,25 @@ string CurlHttpClient::makeRequest(const Url& url, const vector<HttpReqArg>& arg
     auto u = url.protocol + "://" + url.host + url.path;
     curl_easy_setopt(curl, CURLOPT_URL, u.c_str());
 
+    // disable keep-alive
+    struct curl_slist *headers = NULL;
+    headers = curl_slist_append(headers, "Connection: close");
+    curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headers);
+
     std::string data;
+    std::vector<char *> escaped;
     if (!args.empty())
     {
         for (auto &a : args)
-            data += a.name + "=" + a.value + "&";
+        {
+            escaped.push_back(curl_easy_escape(curl, a.name.c_str(), a.name.size()));
+            data += escaped.back() + std::string("=");
+            escaped.push_back(curl_easy_escape(curl, a.value.c_str(), a.value.size()));
+            data += escaped.back() + std::string("&");
+        }
         data.resize(data.size() - 1);
         curl_easy_setopt(curl, CURLOPT_POSTFIELDS, data.c_str());
+        curl_easy_setopt(curl, CURLOPT_POSTFIELDSIZE, (long)data.size());
     }
 
     std::string response;
@@ -135,7 +147,11 @@ string CurlHttpClient::makeRequest(const Url& url, const vector<HttpReqArg>& arg
     auto res = curl_easy_perform(curl);
     long http_code;
     curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, &http_code);
+    curl_slist_free_all(headers);
     curl_easy_cleanup(curl);
+
+    for (auto &e : escaped)
+        curl_free(e);
 
     if (res != CURLE_OK)
         throw std::runtime_error(std::string("curl error: ") + curl_easy_strerror(res));
