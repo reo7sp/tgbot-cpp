@@ -861,7 +861,7 @@ Message::Ptr Api::editMessageText(const string& text, int64_t chatId, int32_t me
 		return TgTypeParser::getInstance().parseJsonAndGetMessage(p);
 	} else {
 		return nullptr;
-	}	
+	}
 }
 
 Message::Ptr Api::editMessageCaption(int64_t chatId, int32_t messageId, const string& caption,
@@ -983,7 +983,7 @@ WebhookInfo::Ptr Api::getWebhookInfo() const {
 	}
 	if (p.get<string>("url","") != string("")) {
 		return TgTypeParser::getInstance().parseJsonAndGetWebhookInfo(p);
-	} 
+	}
 	else {
 		return nullptr;
 	}
@@ -1199,7 +1199,7 @@ ptree Api::sendRequest(const string& method, const vector<HttpReqArg>& args) con
 	url += "/";
 	url += method;
 
-    string serverResponse = _httpClientDriver.makeRequest(url, args);
+	string serverResponse = _httpClientDriver.makeRequest(url, args);
 	if (!serverResponse.compare(0, 6, "<html>")) {
 		throw TgException("tgbot-cpp library have got html page instead of json response. Maybe you entered wrong bot token.");
 	}
@@ -1222,7 +1222,7 @@ string Api::downloadFile(const string& filePath, const std::vector<HttpReqArg>& 
 	url += "/";
 	url += filePath;
 
-    string serverResponse = _httpClientDriver.makeRequest(url, args);
+	string serverResponse = _httpClientDriver.makeRequest(url, args);
 
 	return serverResponse;
 }

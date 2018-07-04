@@ -39,7 +39,7 @@ namespace TgBot {
 
 /**
  * @brief This class makes http requests.
- * 
+ *
  * @ingroup net
  */
 class HttpClient {
@@ -67,18 +67,18 @@ public:
 	/**
 	 * @brief Returns instance which lives during all application lifetime.
 	 */
-    static BoostHttpClient& getInstance();
+	static BoostHttpClient& getInstance();
 
 	/**
 	 * @brief Sends a request to the url.
-	 * 
+	 *
 	 * If there's no args specified, a GET request will be sent, otherwise a POST request will be sent.
 	 * If at least 1 arg is marked as file, the content type of a request will be multipart/form-data, otherwise it will be application/x-www-form-urlencoded.
 	 */
-    std::string makeRequest(const Url& url, const std::vector<HttpReqArg>& args) const override;
+	std::string makeRequest(const Url& url, const std::vector<HttpReqArg>& args) const override;
 
 private:
-    mutable boost::asio::io_service _ioService;
+	mutable boost::asio::io_service _ioService;
 };
 
 #ifdef HAVE_CURL

@@ -32,7 +32,7 @@ using namespace boost::asio::ip;
 namespace TgBot {
 
 BoostHttpClient& BoostHttpClient::getInstance() {
-    static BoostHttpClient result;
+	static BoostHttpClient result;
 	return result;
 }
 
@@ -78,7 +78,7 @@ string BoostHttpClient::makeRequest(const Url& url, const vector<HttpReqArg>& ar
 	#else
 	char buff[1024];
 	#endif //TGBOT_CHANGE_READ_BUFFER_SIZE
-	
+
 	boost::system::error_code error;
 	while (!error) {
 		size_t bytes = read(socket, buffer(buff), error);
@@ -138,7 +138,7 @@ string CurlHttpClient::makeRequest(const Url& url, const vector<HttpReqArg>& arg
     curl_easy_cleanup(curl);
 
     if (res != CURLE_OK)
-        throw std::runtime_error("curl error: "s + curl_easy_strerror(res));
+        throw std::runtime_error(std::string("curl error: ") + curl_easy_strerror(res));
     if (http_code != 200)
         throw std::runtime_error("curl request returned with code = " + std::to_string(http_code));
 

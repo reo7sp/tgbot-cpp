@@ -53,7 +53,7 @@ class Bot;
 
 /**
  * @brief This class executes telegram api methods. Telegram docs: <https://core.telegram.org/bots/api#available-methods>
- * 
+ *
  * @ingroup general
  */
 class Api {
@@ -63,7 +63,7 @@ typedef std::shared_ptr<std::vector<std::string>> StringArrayPtr;
 friend class Bot;
 
 public:
-    Api(const std::string& token, const HttpClient &httpClientDriver);
+	Api(const std::string& token, const HttpClient& httpClientDriver);
 
 	/**
 	 * @brief A simple method for testing your bot's auth token.
@@ -226,7 +226,7 @@ public:
 	 * @brief Use this method to reply to shipping queries.
 	 *
 	 * If you sent an invoice requesting a shipping address and the parameter isFlexible was specified, the Bot API will send an Update with a shipping_query field to the bot.
-	 * 
+	 *
 	 * @param shippingQueryId Unique identifier for the query to be answered.
 	 * @param ok Specify True if delivery to the specified address is possible and False if there are any problems (for example, if delivery to the specified address is not possible)
 	 * @param shippingOptions Optional. Required if ok is True. A JSON-serialized array of available shipping options.
@@ -306,7 +306,7 @@ public:
 	 * @param userId User identifier of created sticker set owner.
 	 * @param name Short name of sticker set, to be used in t.me/addstickers/ URLs (e.g., animals). Can contain only english letters, digits and underscores. Must begin with a letter, can't contain consecutive underscores and must end in “_by_<bot username>”. <bot_username> is case insensitive. 1-64 characters.
 	 * @param title Sticker set title, 1-64 characters.
-	 * @param pngSticker Png image with the sticker, must be up to 512 kilobytes in size, dimensions must not exceed 512px, and either width or height must be exactly 512px. Pass a file_id as a String to send a file that already exists on the Telegram servers, pass an HTTP URL as a String for Telegram to get a file from the Internet. 
+	 * @param pngSticker Png image with the sticker, must be up to 512 kilobytes in size, dimensions must not exceed 512px, and either width or height must be exactly 512px. Pass a file_id as a String to send a file that already exists on the Telegram servers, pass an HTTP URL as a String for Telegram to get a file from the Internet.
 	 * @param emojis One or more emoji corresponding to the sticker.
 	 * @param containsMasks Optional. Pass True, if a set of mask stickers should be created.
 	 * @param maskPosition Optional. A JSON-serialized object for position where the mask should be placed on faces.
@@ -316,7 +316,7 @@ public:
 							 const std::string& pngSticker, const std::string& emojis, bool containsMasks = false, MaskPosition::Ptr maskPosition = nullptr) const;
 
 	/**
-	 * @brief Use this method to add a new sticker to a set created by the bot. 
+	 * @brief Use this method to add a new sticker to a set created by the bot.
 	 * @param userId User identifier of created sticker set owner.
 	 * @param name Sticker set name.
 	 * @param title Sticker set title, 1-64 characters.
@@ -329,7 +329,7 @@ public:
 						 InputFile::Ptr pngSticker, const std::string& emojis, MaskPosition::Ptr maskPosition = nullptr) const;
 
 	/**
-	 * @brief Use this method to add a new sticker to a set created by the bot. 
+	 * @brief Use this method to add a new sticker to a set created by the bot.
 	 * @param userId User identifier of created sticker set owner.
 	 * @param name Sticker set name.
 	 * @param title Sticker set title, 1-64 characters.
@@ -544,10 +544,10 @@ public:
 
 	/**
 	 * @brief Use this method when you need to tell the user that something is happening on the bot's side. The status is set for 5 seconds or less (when a message arrives from your bot, Telegram clients clear its typing status).
-	 * 
+	 *
 	 * Example: The ImageBot needs some time to process a request and upload the image. Instead of sending a text message along the lines of “Retrieving image, please wait…”, the bot may use sendChatAction with action = upload_photo. The user will see a “sending photo” status for the bot.
 	 * We only recommend using this method when a response from the bot will take a noticeable amount of time to arrive.
-	 * 
+	 *
 	 * @param chatId Unique identifier for the target chat.
 	 * @param action Type of action to broadcast. Choose one, depending on what the user is about to receive: typing for text messages, upload_photo for photos, record_video or upload_video for videos, record_audio or upload_audio for audio files, upload_document for general files, find_location for location data.
 	 */
@@ -626,7 +626,7 @@ public:
 	 * @param callbackQueryId Unique identifier for the query to be answered
 	 * @param text Optional	Text of the notification. If not specified, nothing will be shown to the user, 0-200 characters
 	 * @param showAlert Optional If true, an alert will be shown by the client instead of a notification at the top of the chat screen. Defaults to false.
-	 * @param url Optional	URL that will be opened by the user's client. If you have created a Game and accepted the conditions via @Botfather, specify the URL that opens your game – note that this will only work if the query comes from a callback_game button 
+	 * @param url Optional	URL that will be opened by the user's client. If you have created a Game and accepted the conditions via @Botfather, specify the URL that opens your game – note that this will only work if the query comes from a callback_game button
 	 * @param cacheTime Optional	The maximum amount of time in seconds that the result of the callback query may be cached client-side. Telegram apps will support caching starting in version 3.14. Defaults to 0.
 	 * @return True on success
 	 */
@@ -647,7 +647,7 @@ public:
 								 const std::string& parseMode = "", bool disableWebPagePreview = false, const GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>()) const;
 
 	/**
-	* @brief Use this method to edit captions of messages sent by the bot or via the bot (for inline bots). 
+	* @brief Use this method to edit captions of messages sent by the bot or via the bot (for inline bots).
 	* @param chatId Optional	Required if inline_message_id is not specified. Unique identifier for the target chat of the target channel.
 	* @param messageId Optional	Required if inline_message_id is not specified. Identifier of the sent message
 	* @param caption Optional New caption of the message
@@ -678,10 +678,10 @@ public:
 
 	/**
 	 * @brief Use this method to receive incoming updates using long polling.
-	 * 
+	 *
 	 * This method will not work if an outgoing webhook is set up.
 	 * In order to avoid getting duplicate updates, recalculate offset after each server response.
-	 * 
+	 *
 	 * @param offset Optional. Identifier of the first update to be returned. Must be greater by one than the highest among the identifiers of previously received updates. By default, updates starting with the earliest unconfirmed update are returned. An update is considered confirmed as soon as getUpdates is called with an offset higher than its update_id.
 	 * @param limit Optional. Limits the number of updates to be retrieved. Values between 1—100 are accepted. Defaults to 100.
 	 * @param timeout Optional. Timeout in seconds for long polling. Defaults to 0, i.e. usual short polling.
@@ -692,31 +692,31 @@ public:
 
 	/**
 	 * @brief Use this method to specify a url and receive incoming updates via an outgoing webhook. Whenever there is an update for the bot, we will send an HTTPS POST request to the specified url, containing a JSON-serialized Update. In case of an unsuccessful request, we will give up after a reasonable amount of attempts.
-	 * 
+	 *
 	 * If you'd like to make sure that the Webhook request comes from Telegram, we recommend using a secret path in the URL, e.g. www.example.com/<token>. Since nobody else knows your bot‘s token, you can be pretty sure it’s us.
 	 * You will not be able to receive updates using getUpdates for as long as an outgoing webhook is set up.
 	 * We currently do not support self-signed certificates.
 	 * Ports currently supported for Webhooks: 443, 80, 88, 8443.
-	 * 
+	 *
 	 * @param url Optional. HTTPS url to send updates to. Use an empty string to remove webhook integration.
 	 */
 	void setWebhook(const std::string& url = "", const InputFile::Ptr certificate = nullptr, int32_t maxConnection = 40, const StringArrayPtr &allowedUpdates = nullptr) const;
 
 	/**
 	 * @brief Use this method to remove webhook integration if you decide to switch back to getUpdates.
-	 * 
+	 *
 	 * Requires no parameters.
-	 * 
+	 *
 	 * @return Returns True on success.
 	 */
 	bool deleteWebhook() const;
 
 	/**
 	 * @brief Use this method to get current webhook status.
-	 * 
-	 * Requires no parameters. 
+	 *
+	 * Requires no parameters.
 	 * If the bot is using getUpdates, will return an object with the url field empty.
-	 * 
+	 *
 	 * @return On success, returns a WebhookInfo object.
 	 */
 	WebhookInfo::Ptr getWebhookInfo() const;
@@ -793,9 +793,9 @@ public:
 
 	/**
 	 * @brief Use this method to set a new profile photo for the chat.
-	 * 
+	 *
 	 * Photos can't be changed for private chats.
-	 * 
+	 *
 	 * @param chatId Unique identifier for the target chat.
 	 * @param photo New chat photo.
 	 * @return True on success
@@ -804,9 +804,9 @@ public:
 
 	/**
 	 * @brief Use this method to delete a chat photo.
-	 * 
+	 *
 	 * Photos can't be changed for private chats.
-	 * 
+	 *
 	 * @param chatId Unique identifier for the target chat.
 	 * @return True on success
 	 */
@@ -814,9 +814,9 @@ public:
 
 	/**
 	 * @brief Use this method to change the title of a chat.
-	 *  
+	 *
 	 * Titles can't be changed for private chats.
-	 * 
+	 *
 	 * @param chatId Unique identifier for the target chat.
 	 * @param title New chat title, 1-255 characters.
 	 * @return True on success
@@ -849,9 +849,9 @@ public:
 
 	/**
 	 * @brief Use this method to set the score of the specified user in a game.
-	 * 
+	 *
 	 * Returns an error, if the new score is not greater than the user's current score in the chat and force is False.
-	 * 
+	 *
 	 * @param userId User identifier.
 	 * @param score New score, must be non-negative.
 	 * @param force Optional. Pass True, if the high score is allowed to decrease. This can be useful when fixing mistakes or banning cheaters.
@@ -866,9 +866,9 @@ public:
 
 	/**
 	 * @brief Use this method to get data for high score tables.
-	 * 
+	 *
 	 * Will return the score of the specified user and several of his neighbors in a game.
-	 * 
+	 *
 	 * @param userId User identifier.
 	 * @param chatId Optional. Required if inlineMessageId is not specified. Unique identifier for the target chat
 	 * @param messageId Optional. Required if inlineMessageId is not specified. Identifier of the sent message
@@ -891,7 +891,7 @@ private:
 	boost::property_tree::ptree sendRequest(const std::string& method, const std::vector<HttpReqArg>& args = std::vector<HttpReqArg>()) const;
 
 	const std::string _token;
-    const HttpClient &_httpClientDriver;
+	const HttpClient& _httpClientDriver;
 };
 
 }

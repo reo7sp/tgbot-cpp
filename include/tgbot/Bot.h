@@ -34,14 +34,14 @@ namespace TgBot {
 
 /**
  * @brief This object holds other objects specific for this bot instance.
- * 
+ *
  * @ingroup general
  */
 class Bot {
 
 public:
-    explicit Bot(const std::string& token, const HttpClient &httpClientDriver = BoostHttpClient::getInstance())
-        : _token(token), _api(token, httpClientDriver), _eventHandler(&_eventBroadcaster), _httpClientDriver(httpClientDriver) {
+	explicit Bot(const std::string& token, const HttpClient &httpClientDriver = BoostHttpClient::getInstance())
+		: _token(token), _api(token, httpClientDriver), _eventHandler(&_eventBroadcaster), _httpClientDriver(httpClientDriver) {
 	}
 
 	/**
@@ -77,7 +77,7 @@ private:
 	const Api _api;
 	EventBroadcaster _eventBroadcaster;
 	const EventHandler _eventHandler;
-    const HttpClient &_httpClientDriver;
+	const HttpClient& _httpClientDriver;
 };
 
 }
