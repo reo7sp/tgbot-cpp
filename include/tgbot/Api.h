@@ -28,7 +28,6 @@
 
 #include <boost/property_tree/ptree.hpp>
 
-#include "tgbot/net/HttpClient.h"
 #include "tgbot/net/HttpReqArg.h"
 #include "tgbot/types/User.h"
 #include "tgbot/types/Message.h"
@@ -50,6 +49,7 @@
 namespace TgBot {
 
 class Bot;
+class HttpClient;
 
 /**
  * @brief This class executes telegram api methods. Telegram docs: <https://core.telegram.org/bots/api#available-methods>
