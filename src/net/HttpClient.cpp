@@ -140,7 +140,7 @@ string CurlHttpClient::makeRequest(const Url& url, const vector<HttpReqArg>& arg
     if (res != CURLE_OK)
         throw std::runtime_error(std::string("curl error: ") + curl_easy_strerror(res));
     if (http_code != 200)
-        throw std::runtime_error("curl request returned with code = " + std::to_string(http_code));
+        throw std::runtime_error("http request returned with code = " + std::to_string(http_code));
 
     return HttpParser::getInstance().parseResponse(response);
 }
