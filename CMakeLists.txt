@@ -31,6 +31,13 @@ find_package(Threads REQUIRED)
 find_package(OpenSSL REQUIRED)
 include_directories(${OPENSSL_INCLUDE_DIR})
 
+# curl
+find_package(CURL)
+if (CURL_FOUND)
+include_directories(${CURL_INCLUDE_DIRS})
+add_definitions(-DHAVE_CURL)
+endif()
+
 # boost
 set(Boost_USE_MULTITHREADED ON)
 if (ENABLE_TESTS)
@@ -44,6 +51,7 @@ set(LIB_LIST
 	${CMAKE_THREAD_LIBS_INIT}
 	${OPENSSL_LIBRARIES}
 	${Boost_LIBRARIES}
+	${CURL_LIBRARIES}
 )
 
 ### building project

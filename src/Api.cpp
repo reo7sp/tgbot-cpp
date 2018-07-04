@@ -31,7 +31,8 @@ using namespace boost::property_tree;
 
 namespace TgBot {
 
-Api::Api(const string& token) : _token(token) {
+Api::Api(const string& token, const HttpClient &httpClientDriver)
+    : _token(token), _httpClientDriver(httpClientDriver) {
 }
 
 User::Ptr Api::getMe() const {
@@ -1198,7 +1199,7 @@ ptree Api::sendRequest(const string& method, const vector<HttpReqArg>& args) con
 	url += "/";
 	url += method;
 
-	string serverResponse = HttpClient::getInstance().makeRequest(url, args);
+    string serverResponse = _httpClientDriver.makeRequest(url, args);
 	if (!serverResponse.compare(0, 6, "<html>")) {
 		throw TgException("tgbot-cpp library have got html page instead of json response. Maybe you entered wrong bot token.");
 	}
@@ -1221,7 +1222,7 @@ string Api::downloadFile(const string& filePath, const std::vector<HttpReqArg>& 
 	url += "/";
 	url += filePath;
 
-	string serverResponse = HttpClient::getInstance().makeRequest(url, args);
+    string serverResponse = _httpClientDriver.makeRequest(url, args);
 
 	return serverResponse;
 }

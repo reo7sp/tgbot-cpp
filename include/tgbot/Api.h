@@ -28,6 +28,7 @@
 
 #include <boost/property_tree/ptree.hpp>
 
+#include "tgbot/net/HttpClient.h"
 #include "tgbot/net/HttpReqArg.h"
 #include "tgbot/types/User.h"
 #include "tgbot/types/Message.h"
@@ -62,7 +63,7 @@ typedef std::shared_ptr<std::vector<std::string>> StringArrayPtr;
 friend class Bot;
 
 public:
-	Api(const std::string& token);
+    Api(const std::string& token, const HttpClient &httpClientDriver);
 
 	/**
 	 * @brief A simple method for testing your bot's auth token.
@@ -890,6 +891,7 @@ private:
 	boost::property_tree::ptree sendRequest(const std::string& method, const std::vector<HttpReqArg>& args = std::vector<HttpReqArg>()) const;
 
 	const std::string _token;
+    const HttpClient &_httpClientDriver;
 };
 
 }

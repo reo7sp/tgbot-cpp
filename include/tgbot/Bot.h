@@ -28,6 +28,7 @@
 #include "tgbot/Api.h"
 #include "tgbot/EventBroadcaster.h"
 #include "tgbot/EventHandler.h"
+#include "tgbot/net/HttpClient.h"
 
 namespace TgBot {
 
@@ -39,7 +40,8 @@ namespace TgBot {
 class Bot {
 
 public:
-	explicit Bot(const std::string& token) : _token(token), _api(token), _eventHandler(&_eventBroadcaster) {
+    explicit Bot(const std::string& token, const HttpClient &httpClientDriver = BoostHttpClient::getInstance())
+        : _token(token), _api(token, httpClientDriver), _eventHandler(&_eventBroadcaster), _httpClientDriver(httpClientDriver) {
 	}
 
 	/**
@@ -75,6 +77,7 @@ private:
 	const Api _api;
 	EventBroadcaster _eventBroadcaster;
 	const EventHandler _eventHandler;
+    const HttpClient &_httpClientDriver;
 };
 
 }
