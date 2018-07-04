@@ -119,9 +119,9 @@ string CurlHttpClient::makeRequest(const Url& url, const vector<HttpReqArg>& arg
     auto u = url.protocol + "://" + url.host + url.path;
     curl_easy_setopt(curl, CURLOPT_URL, u.c_str());
 
+    std::string data;
     if (!args.empty())
     {
-        std::string data;
         for (auto &a : args)
             data += a.name + "=" + a.value + "&";
         data.resize(data.size() - 1);
