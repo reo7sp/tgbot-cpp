@@ -145,8 +145,6 @@ string CurlHttpClient::makeRequest(const Url& url, const vector<HttpReqArg>& arg
     curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, curl_write_string);
 
     auto res = curl_easy_perform(curl);
-    long http_code;
-    curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, &http_code);
     curl_slist_free_all(headers);
     curl_easy_cleanup(curl);
 
@@ -155,8 +153,6 @@ string CurlHttpClient::makeRequest(const Url& url, const vector<HttpReqArg>& arg
 
     if (res != CURLE_OK)
         throw std::runtime_error(std::string("curl error: ") + curl_easy_strerror(res));
-    if (http_code != 200)
-        throw std::runtime_error("http request returned with code = " + std::to_string(http_code));
 
     return HttpParser::getInstance().parseResponse(response);
 }
