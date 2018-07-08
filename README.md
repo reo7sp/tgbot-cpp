@@ -42,6 +42,10 @@ make -j4
 sudo make install
 ```
 
+### Arch Linux
+
+A PKGBUILD compiles shared library with header files is hosted on [Arch Linux User Repository](https://aur.archlinux.org/packages/libtgbot-cpp-git/).
+
 ## Bot compilation
 
 ### With CMake
