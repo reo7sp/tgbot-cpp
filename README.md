@@ -17,6 +17,7 @@ C++ library for Telegram bot API.
 
 Documentation is located [here](http://reo7sp.github.io/tgbot-cpp).
 
+
 ## State
 
 - [x] Bot API 3.0 
@@ -26,6 +27,7 @@ Documentation is located [here](http://reo7sp.github.io/tgbot-cpp).
 - [x] Bot API 3.4
 - [x] Bot API 3.5
 - [x] Bot API 3.6
+
 
 ## Library compilation
 
@@ -42,9 +44,6 @@ make -j4
 sudo make install
 ```
 
-### Arch Linux
-
-A PKGBUILD compiles shared library with header files is hosted on [Arch Linux User Repository](https://aur.archlinux.org/packages/libtgbot-cpp-git/).
 
 ## Bot compilation
 
@@ -72,8 +71,15 @@ add_definitions(-DTGBOT_CHANGE_READ_BUFFER_SIZE) # Read Buffer Size Expansion
 -DTGBOT_CHANGE_READ_BUFFER_SIZE
 ```
 
-### Also
+
+## Specific installation notes
+
+### Docker
 You can use Docker to build and run your bot. Set the base image of your's Dockerfile to [reo7sp/tgbot-cpp](https://hub.docker.com/r/reo7sp/tgbot-cpp/).
+
+### Arch Linux
+A PKGBUILD compiles shared library with header files is hosted on [Arch Linux User Repository](https://aur.archlinux.org/packages/libtgbot-cpp-git/).
+
 
 ## Samples
 
@@ -108,10 +114,12 @@ int main() {
 }
 ```
 
-All samples are located [here](samples).
+All other samples are located [here](samples).
+
 
 ## Feedback
 Feel free to [create new issues on GitHub](https://github.com/reo7sp/tgbot-cpp/issues) or [contact me on Telegram](https://t.me/reo7sp).
+
 
 ## Licence
 [The MIT License](http://opensource.org/licenses/MIT).
