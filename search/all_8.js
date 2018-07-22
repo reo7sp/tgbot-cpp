@@ -13,5 +13,6 @@ var searchData=
   ['httpreqarg_2eh',['HttpReqArg.h',['../_http_req_arg_8h.html',1,'']]],
   ['httpserver',['HttpServer',['../class_tg_bot_1_1_http_server.html',1,'TgBot::HttpServer&lt; Protocol &gt;'],['../class_tg_bot_1_1_http_server.html#a76f59ef0754327c437352aeb0b19a3f2',1,'TgBot::HttpServer::HttpServer()']]],
   ['httpserver_2eh',['HttpServer.h',['../_http_server_8h.html',1,'']]],
-  ['httpserver_3c_20boost_3a_3aasio_3a_3aip_3a_3atcp_20_3e',['HttpServer&lt; boost::asio::ip::tcp &gt;',['../class_tg_bot_1_1_http_server.html',1,'TgBot']]]
+  ['httpserver_3c_20boost_3a_3aasio_3a_3aip_3a_3atcp_20_3e',['HttpServer&lt; boost::asio::ip::tcp &gt;',['../class_tg_bot_1_1_http_server.html',1,'TgBot']]],
+  ['httpserver_3c_20boost_3a_3aasio_3a_3alocal_3a_3astream_5fprotocol_20_3e',['HttpServer&lt; boost::asio::local::stream_protocol &gt;',['../class_tg_bot_1_1_http_server.html',1,'TgBot']]]
 ];

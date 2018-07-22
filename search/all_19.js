@@ -1,6 +1,7 @@
 var searchData=
 [
   ['_7eboosthttponlysslclient',['~BoostHttpOnlySslClient',['../class_tg_bot_1_1_boost_http_only_ssl_client.html#ac66bdc78da6d4f069d63366c22ff3982',1,'TgBot::BoostHttpOnlySslClient']]],
+  ['_7ecurlhttpclient',['~CurlHttpClient',['../class_tg_bot_1_1_curl_http_client.html#aef991cad0f0113400a6dbee2f2e1c6c4',1,'TgBot::CurlHttpClient']]],
   ['_7egenericreply',['~GenericReply',['../class_tg_bot_1_1_generic_reply.html#a519019da5ab3cb27fc11bd56cc94123c',1,'TgBot::GenericReply']]],
   ['_7ehttpclient',['~HttpClient',['../class_tg_bot_1_1_http_client.html#a1593785b295457dcea0611033fbd0711',1,'TgBot::HttpClient']]],
   ['_7einlinequeryresult',['~InlineQueryResult',['../class_tg_bot_1_1_inline_query_result.html#a1adbb76a14ff772aa8e06b26f302ade0',1,'TgBot::InlineQueryResult']]],

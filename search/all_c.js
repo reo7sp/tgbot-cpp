@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['makerequest',['makeRequest',['../class_tg_bot_1_1_boost_http_only_ssl_client.html#a93b66edab6c57cea907742bcbf68ad15',1,'TgBot::BoostHttpOnlySslClient::makeRequest()'],['../class_tg_bot_1_1_http_client.html#a85275cec337ae429553e995c9d94c5ec',1,'TgBot::HttpClient::makeRequest()']]],
+  ['makerequest',['makeRequest',['../class_tg_bot_1_1_boost_http_only_ssl_client.html#a93b66edab6c57cea907742bcbf68ad15',1,'TgBot::BoostHttpOnlySslClient::makeRequest()'],['../class_tg_bot_1_1_curl_http_client.html#a6fab88353bda0e5d69c22538a242eec5',1,'TgBot::CurlHttpClient::makeRequest()'],['../class_tg_bot_1_1_http_client.html#a85275cec337ae429553e995c9d94c5ec',1,'TgBot::HttpClient::makeRequest()']]],
   ['maskposition',['MaskPosition',['../class_tg_bot_1_1_mask_position.html',1,'TgBot::MaskPosition'],['../class_tg_bot_1_1_sticker.html#a4e61ddba7363932939846585eec348e2',1,'TgBot::Sticker::maskPosition()']]],
   ['maskposition_2eh',['MaskPosition.h',['../_mask_position_8h.html',1,'']]],
   ['maxconnections',['maxConnections',['../class_tg_bot_1_1_webhook_info.html#abccb7180f3a2ee8c9fe01e51464fd79b',1,'TgBot::WebhookInfo']]],

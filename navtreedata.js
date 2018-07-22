@@ -37,8 +37,8 @@ var NAVTREEINDEX =
 [
 "_animation_8h.html",
 "class_tg_bot_1_1_api.html#a8fbfde4234553c478987746c43b08e62",
-"class_tg_bot_1_1_inline_query_result_cached_gif.html#aab9691736d261b69ca775a2cb7e130eb",
-"class_tg_bot_1_1_pre_checkout_query.html"
+"class_tg_bot_1_1_inline_query_result_cached_document.html#a9863569993d146cbba9f6b82d36982fc",
+"class_tg_bot_1_1_photo_size.html#a05f58e05528a02e6bc98b67a81e8ae83"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

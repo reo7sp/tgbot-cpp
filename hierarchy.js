@@ -27,7 +27,8 @@ var hierarchy =
       [ "TgBot::ReplyKeyboardRemove", "class_tg_bot_1_1_reply_keyboard_remove.html", null ]
     ] ],
     [ "TgBot::HttpClient", "class_tg_bot_1_1_http_client.html", [
-      [ "TgBot::BoostHttpOnlySslClient", "class_tg_bot_1_1_boost_http_only_ssl_client.html", null ]
+      [ "TgBot::BoostHttpOnlySslClient", "class_tg_bot_1_1_boost_http_only_ssl_client.html", null ],
+      [ "TgBot::CurlHttpClient", "class_tg_bot_1_1_curl_http_client.html", null ]
     ] ],
     [ "TgBot::HttpParser", "class_tg_bot_1_1_http_parser.html", null ],
     [ "TgBot::HttpReqArg", "class_tg_bot_1_1_http_req_arg.html", null ],
@@ -37,6 +38,11 @@ var hierarchy =
     [ "TgBot::HttpServer< boost::asio::ip::tcp >", "class_tg_bot_1_1_http_server.html", [
       [ "TgBot::TgWebhookServer< boost::asio::ip::tcp >", "class_tg_bot_1_1_tg_webhook_server.html", [
         [ "TgBot::TgWebhookTcpServer", "class_tg_bot_1_1_tg_webhook_tcp_server.html", null ]
+      ] ]
+    ] ],
+    [ "TgBot::HttpServer< boost::asio::local::stream_protocol >", "class_tg_bot_1_1_http_server.html", [
+      [ "TgBot::TgWebhookServer< boost::asio::local::stream_protocol >", "class_tg_bot_1_1_tg_webhook_server.html", [
+        [ "TgBot::TgWebhookLocalServer", "class_tg_bot_1_1_tg_webhook_local_server.html", null ]
       ] ]
     ] ],
     [ "TgBot::InlineKeyboardButton", "class_tg_bot_1_1_inline_keyboard_button.html", null ],

@@ -29,5 +29,6 @@ var searchData=
   ['contact',['contact',['../class_tg_bot_1_1_message.html#adb3a1a65ce014085f7231f8d356b6c4f',1,'TgBot::Message']]],
   ['containsmasks',['containsMasks',['../class_tg_bot_1_1_sticker_set.html#ab1255b8783dc35b3535c46acbe3b4ca6',1,'TgBot::StickerSet']]],
   ['countrycode',['countryCode',['../class_tg_bot_1_1_shipping_address.html#a5e0083ea43cd7e629b645de8e88e8ab8',1,'TgBot::ShippingAddress']]],
+  ['curlsettings',['curlSettings',['../class_tg_bot_1_1_curl_http_client.html#a6292647c7f41c1d16d153a0d780944ef',1,'TgBot::CurlHttpClient']]],
   ['currency',['currency',['../class_tg_bot_1_1_invoice.html#a9207fea93e6b3f3aa1081c8ab9039f8a',1,'TgBot::Invoice::currency()'],['../class_tg_bot_1_1_pre_checkout_query.html#ac681a885c6e253c134cd659b91348182',1,'TgBot::PreCheckoutQuery::currency()'],['../class_tg_bot_1_1_successful_payment.html#a7cabedcd7e557d607baf968c2fc454f3',1,'TgBot::SuccessfulPayment::currency()']]]
 ];

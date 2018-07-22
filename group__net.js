@@ -5,6 +5,12 @@ var group__net =
       [ "~BoostHttpOnlySslClient", "class_tg_bot_1_1_boost_http_only_ssl_client.html#ac66bdc78da6d4f069d63366c22ff3982", null ],
       [ "makeRequest", "class_tg_bot_1_1_boost_http_only_ssl_client.html#a93b66edab6c57cea907742bcbf68ad15", null ]
     ] ],
+    [ "CurlHttpClient", "class_tg_bot_1_1_curl_http_client.html", [
+      [ "CurlHttpClient", "class_tg_bot_1_1_curl_http_client.html#a64fa7c2a4873cea91d955e4df2175b71", null ],
+      [ "~CurlHttpClient", "class_tg_bot_1_1_curl_http_client.html#aef991cad0f0113400a6dbee2f2e1c6c4", null ],
+      [ "makeRequest", "class_tg_bot_1_1_curl_http_client.html#a6fab88353bda0e5d69c22538a242eec5", null ],
+      [ "curlSettings", "class_tg_bot_1_1_curl_http_client.html#a6292647c7f41c1d16d153a0d780944ef", null ]
+    ] ],
     [ "HttpClient", "class_tg_bot_1_1_http_client.html", [
       [ "~HttpClient", "class_tg_bot_1_1_http_client.html#a1593785b295457dcea0611033fbd0711", null ],
       [ "makeRequest", "class_tg_bot_1_1_http_client.html#a85275cec337ae429553e995c9d94c5ec", null ]
@@ -42,6 +48,10 @@ var group__net =
       [ "TgLongPoll", "class_tg_bot_1_1_tg_long_poll.html#a11a1a5880898b9cae8c95c6ee7eb8b7e", null ],
       [ "TgLongPoll", "class_tg_bot_1_1_tg_long_poll.html#a589332e04d1a4f9dbe66c92df90b6d78", null ],
       [ "start", "class_tg_bot_1_1_tg_long_poll.html#a8928ddad3b976a636a53bb066180cbaa", null ]
+    ] ],
+    [ "TgWebhookLocalServer", "class_tg_bot_1_1_tg_webhook_local_server.html", [
+      [ "TgWebhookLocalServer", "class_tg_bot_1_1_tg_webhook_local_server.html#aa3dd2084536f5f3f6c8a6fd5a441966a", null ],
+      [ "TgWebhookLocalServer", "class_tg_bot_1_1_tg_webhook_local_server.html#a330530faa3a3a163ec231352c5e2e341", null ]
     ] ],
     [ "TgWebhookTcpServer", "class_tg_bot_1_1_tg_webhook_tcp_server.html", [
       [ "TgWebhookTcpServer", "class_tg_bot_1_1_tg_webhook_tcp_server.html#a20e332c60eecb81d119bc932cf51f63b", null ],
