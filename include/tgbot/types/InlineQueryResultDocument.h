@@ -19,45 +19,45 @@ namespace TgBot {
  */
 class InlineQueryResultDocument : public InlineQueryResult {
 public:
-	static const std::string TYPE;
+    static const std::string TYPE;
 
-	typedef std::shared_ptr<InlineQueryResultDocument> Ptr;
+    typedef std::shared_ptr<InlineQueryResultDocument> Ptr;
 
-	InlineQueryResultDocument() {
-		this->type = TYPE;
-		this->thumbHeight = 0;
-		this->thumbWidth = 0;
-	}
+    InlineQueryResultDocument() {
+        this->type = TYPE;
+        this->thumbHeight = 0;
+        this->thumbWidth = 0;
+    }
 
-	/**
-	 * @brief A valid URL for the file
-	 */
-	std::string documentUrl;
+    /**
+     * @brief A valid URL for the file
+     */
+    std::string documentUrl;
 
-	/**
-	 * @brief Mime type of the content of the file, either 'application/pdf' or 'application/zip'
-	 */
-	std::string mimeType;
+    /**
+     * @brief Mime type of the content of the file, either 'application/pdf' or 'application/zip'
+     */
+    std::string mimeType;
 
-	/**
-	 * @brief Optional. Short description of the result
-	 */
-	std::string description;
+    /**
+     * @brief Optional. Short description of the result
+     */
+    std::string description;
 
-	/**
-	* @brief Optional. Url of the thumbnail for the result
-	*/
-	std::string thumbUrl;
+    /**
+    * @brief Optional. Url of the thumbnail for the result
+    */
+    std::string thumbUrl;
 
-	/**
-	* @brief Optional. Thumbnail width.
-	*/
-	int32_t thumbWidth;
+    /**
+    * @brief Optional. Thumbnail width.
+    */
+    int32_t thumbWidth;
 
-	/**
-	* @brief Optinal. Thumbnail height
-	*/
-	int32_t thumbHeight;
+    /**
+    * @brief Optinal. Thumbnail height
+    */
+    int32_t thumbHeight;
 };
 }
 

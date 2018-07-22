@@ -16,22 +16,22 @@ namespace TgBot {
  */
 class InputMessageContent {
 public:
-	typedef std::shared_ptr<InputMessageContent> Ptr;
-	
-	InputMessageContent(const std::string &tType):
-		type(tType)
-	{}
+    typedef std::shared_ptr<InputMessageContent> Ptr;
 
-	/**
-	 * May be
-	 * InputTextMessageContent
-	 * InputLocationMessageContent
-	 * InputVenueMessageContent
-	 * InputContactMessageContent
-	 */
-	std::string type;
+    InputMessageContent(const std::string &tType):
+        type(tType)
+    {}
 
-	virtual ~InputMessageContent() { }
+    /**
+     * May be
+     * InputTextMessageContent
+     * InputLocationMessageContent
+     * InputVenueMessageContent
+     * InputContactMessageContent
+     */
+    std::string type;
+
+    virtual ~InputMessageContent() { }
 };
 }
 

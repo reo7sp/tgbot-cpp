@@ -37,7 +37,7 @@ namespace TgBot {
  */
 class InputMedia {
 public:
-	typedef std::shared_ptr<InputMedia> Ptr;
+    typedef std::shared_ptr<InputMedia> Ptr;
 
     enum class TYPE : uint8_t {
         PHOTO,

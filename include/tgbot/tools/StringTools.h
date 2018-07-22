@@ -82,9 +82,9 @@ std::string urlDecode(const std::string& value);
  * @return Array of substrings
  */
 inline std::vector<std::string> split(const std::string& str, char delimiter) {
-	std::vector<std::string> result;
-	split(str, delimiter, result);
-	return result;
+    std::vector<std::string> result;
+    split(str, delimiter, result);
+    return result;
 }
 
 }

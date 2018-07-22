@@ -35,7 +35,7 @@ namespace TgBot {
  */
 class CallbackGame {
 public:
-	typedef std::shared_ptr<CallbackGame> Ptr;
+    typedef std::shared_ptr<CallbackGame> Ptr;
 };
 }
 

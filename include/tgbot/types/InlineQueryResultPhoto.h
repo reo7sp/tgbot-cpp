@@ -19,40 +19,40 @@ namespace TgBot {
  */
 class InlineQueryResultPhoto : public InlineQueryResult {
 public:
-	static const std::string TYPE;
+    static const std::string TYPE;
 
-	typedef std::shared_ptr<InlineQueryResultPhoto> Ptr;
+    typedef std::shared_ptr<InlineQueryResultPhoto> Ptr;
 
-	InlineQueryResultPhoto() {
-		this->type = TYPE;
-		this->photoWidth = 0;
-		this->photoHeight = 0;
-	}
+    InlineQueryResultPhoto() {
+        this->type = TYPE;
+        this->photoWidth = 0;
+        this->photoHeight = 0;
+    }
 
-	/**
-	 * @brief A valid URL of the photo.
-	 */
-	std::string photoUrl;
+    /**
+     * @brief A valid URL of the photo.
+     */
+    std::string photoUrl;
 
-	/**
-	 * @brief URL of the thumbnail for the photo
-	 */
-	std::string thumbUrl;
+    /**
+     * @brief URL of the thumbnail for the photo
+     */
+    std::string thumbUrl;
 
-	/**
-	 * @brief Optional. Width of the photo.
-	 */
-	int32_t photoWidth;
+    /**
+     * @brief Optional. Width of the photo.
+     */
+    int32_t photoWidth;
 
-	/**
-	 * @brief Optional. Height of the photo.
-	 */
-	int32_t photoHeight;
+    /**
+     * @brief Optional. Height of the photo.
+     */
+    int32_t photoHeight;
 
-	/**
-	 * @brief Optional. Short description of the result.
-	 */
-	std::string description;
+    /**
+     * @brief Optional. Short description of the result.
+     */
+    std::string description;
 };
 }
 

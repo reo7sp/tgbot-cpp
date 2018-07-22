@@ -42,17 +42,17 @@ namespace TgBot {
 class ForceReply : public GenericReply {
 
 public:
-	typedef std::shared_ptr<ForceReply> Ptr;
+    typedef std::shared_ptr<ForceReply> Ptr;
 
-	/**
-	 * @brief Shows reply interface to the user, as if they manually selected the bot‘s message and tapped ’Reply'
-	 */
-	const bool forceReply = true;
+    /**
+     * @brief Shows reply interface to the user, as if they manually selected the bot‘s message and tapped ’Reply'
+     */
+    const bool forceReply = true;
 
-	/**
-	 * @brief Optional. Use this parameter if you want to force reply from specific users only. Targets: 1) users that are @mentioned in the text of the Message object; 2) if the bot's message is a reply (has reply_to_message_id), sender of the original message.
-	 */
-	bool selective = false;
+    /**
+     * @brief Optional. Use this parameter if you want to force reply from specific users only. Targets: 1) users that are @mentioned in the text of the Message object; 2) if the bot's message is a reply (has reply_to_message_id), sender of the original message.
+     */
+    bool selective = false;
 };
 
 }

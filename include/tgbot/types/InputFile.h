@@ -37,27 +37,27 @@ namespace TgBot {
 class InputFile {
 
 public:
-	typedef std::shared_ptr<InputFile> Ptr;
+    typedef std::shared_ptr<InputFile> Ptr;
 
-	/**
-	 * @brief Contents of a file.
-	 */
-	std::string data;
+    /**
+     * @brief Contents of a file.
+     */
+    std::string data;
 
-	/**
-	 * @brief Mime type of a file.
-	 */
-	std::string mimeType;
+    /**
+     * @brief Mime type of a file.
+     */
+    std::string mimeType;
 
-	/**
-	 * @brief File name.
-	 */
-	std::string fileName;
+    /**
+     * @brief File name.
+     */
+    std::string fileName;
 
-	/**
-	 * @brief Creates new InputFile::Ptr from an existing file.
-	 */
-	static InputFile::Ptr fromFile(const std::string& filePath, const std::string& mimeType);
+    /**
+     * @brief Creates new InputFile::Ptr from an existing file.
+     */
+    static InputFile::Ptr fromFile(const std::string& filePath, const std::string& mimeType);
 };
 
 }

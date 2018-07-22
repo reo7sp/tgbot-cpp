@@ -36,7 +36,7 @@ namespace TgBot {
 class TgException : public std::runtime_error {
 
 public:
-	explicit TgException(const std::string description);
+    explicit TgException(const std::string description);
 };
 
 }

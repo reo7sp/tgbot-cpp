@@ -1,6 +1,0 @@
-#!/bin/bash
-
-rm -rf doc docs
-doxygen
-mv doc/html docs
-touch docs/.nojekyll

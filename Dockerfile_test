@@ -2,31 +2,40 @@ FROM debian:stretch
 MAINTAINER Oleg Morozenkov <a@reo7sp.ru>
 
 RUN apt-get -qq update && \
-	apt-get -qq install -y g++ make binutils cmake libssl-dev libboost-system-dev libboost-test-dev
+    apt-get -qq install -y g++ make binutils cmake libssl-dev libboost-system-dev libboost-test-dev libcurl4-openssl-dev
 
-WORKDIR /tmp/tgbot-cpp
+WORKDIR /usr/src/tgbot-cpp
 COPY include include
 COPY src src
 COPY test test
-COPY samples samples
 COPY CMakeLists.txt ./
 
 RUN cmake -DENABLE_TESTS=ON . && \
-	make -j4 && \
-	make install
+    make -j4 && \
+    make install
 
-WORKDIR /tmp/tgbot-cpp/samples/echobot
+COPY samples samples
+
+WORKDIR /usr/src/tgbot-cpp/samples/echobot
 RUN rm -rf CMakeCache.txt CMakeFiles/ && \
     cmake . && make -j4
 
-WORKDIR /tmp/tgbot-cpp/samples/inline-keyboard
+WORKDIR /usr/src/tgbot-cpp/samples/echobot-curl-client
 RUN rm -rf CMakeCache.txt CMakeFiles/ && \
     cmake . && make -j4
 
-WORKDIR /tmp/tgbot-cpp/samples/photo
+WORKDIR /usr/src/tgbot-cpp/samples/echobot-webhook-server
 RUN rm -rf CMakeCache.txt CMakeFiles/ && \
     cmake . && make -j4
 
-WORKDIR /tmp/tgbot-cpp
+WORKDIR /usr/src/tgbot-cpp/samples/inline-keyboard
+RUN rm -rf CMakeCache.txt CMakeFiles/ && \
+    cmake . && make -j4
+
+WORKDIR /usr/src/tgbot-cpp/samples/photo
+RUN rm -rf CMakeCache.txt CMakeFiles/ && \
+    cmake . && make -j4
+
+WORKDIR /usr/src/tgbot-cpp
 ENV CTEST_OUTPUT_ON_FAILURE=1
 CMD make test

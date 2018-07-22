@@ -18,38 +18,38 @@ namespace TgBot {
  */
 class InputVenueMessageContent : public InputMessageContent {
 public:
-	typedef std::shared_ptr<InputVenueMessageContent> Ptr;
+    typedef std::shared_ptr<InputVenueMessageContent> Ptr;
 
-	InputVenueMessageContent() :
-		InputMessageContent("InputVenueMessageContent")
-	{}
+    InputVenueMessageContent() :
+        InputMessageContent("InputVenueMessageContent")
+    {}
 
-	/**
-	 * @brief Latitude of the location in degrees
-	 */
-	float latitude;
+    /**
+     * @brief Latitude of the location in degrees
+     */
+    float latitude;
 
-	/**
-	 * @brief Longitude of the location in degrees
-	 */
-	float longitude;
+    /**
+     * @brief Longitude of the location in degrees
+     */
+    float longitude;
 
-	/**
-	 * @brief Name of the venue
-	 */
-	std::string title; 
+    /**
+     * @brief Name of the venue
+     */
+    std::string title;
 
-	/**
-	 * @brief Address of the venue
-	 */
-	std::string address;
+    /**
+     * @brief Address of the venue
+     */
+    std::string address;
 
-	/**
-	 * @brief Optional. Foursquare identifier of the venue, if known
-	 */
-	std::string foursquareId;
+    /**
+     * @brief Optional. Foursquare identifier of the venue, if known
+     */
+    std::string foursquareId;
 
-	virtual ~InputVenueMessageContent() { }
+    virtual ~InputVenueMessageContent() { }
 };
 }
 

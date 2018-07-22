@@ -3,10 +3,12 @@ CMakeFiles
 Makefile
 *.cmake
 install_manifest.txt
-.idea/
-Thumbs.db
-doc/
 *.cbp
 *.a
-test/TgBot_test
+*.so
+doc/
+Thumbs.db
+TgBot_test
+.idea/
 .vscode/
+docs/

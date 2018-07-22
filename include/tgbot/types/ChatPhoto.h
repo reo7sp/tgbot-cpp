@@ -35,17 +35,17 @@ namespace TgBot {
  */
 class ChatPhoto {
 public:
-	typedef std::shared_ptr<ChatPhoto> Ptr;
+    typedef std::shared_ptr<ChatPhoto> Ptr;
 
-	/**
-	 * @brief Unique file identifier of small (160x160) chat photo. This file_id can be used only for photo download.
-	 */
-	std::string smallFileId;
+    /**
+     * @brief Unique file identifier of small (160x160) chat photo. This file_id can be used only for photo download.
+     */
+    std::string smallFileId;
 
-	/**
-	 * @brief Unique file identifier of big (640x640) chat photo. This file_id can be used only for photo download.
-	 */
-	std::string bigFileId;
+    /**
+     * @brief Unique file identifier of big (640x640) chat photo. This file_id can be used only for photo download.
+     */
+    std::string bigFileId;
 };
 }
 

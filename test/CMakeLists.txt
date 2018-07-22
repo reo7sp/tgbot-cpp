@@ -1,8 +1,8 @@
 set(TEST_SRC_LIST
-	main.cpp
-	tgbot/net/Url.cpp
-	tgbot/net/HttpParser.cpp
-	tgbot/tools/StringTools.cpp
+    main.cpp
+    tgbot/net/Url.cpp
+    tgbot/net/HttpParser.cpp
+    tgbot/tools/StringTools.cpp
 )
 
 include_directories("${PROJECT_SOURCE_DIR}/test")

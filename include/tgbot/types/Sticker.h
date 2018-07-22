@@ -39,47 +39,47 @@ namespace TgBot {
 class Sticker {
 
 public:
-	typedef std::shared_ptr<Sticker> Ptr;
+    typedef std::shared_ptr<Sticker> Ptr;
 
-	/**
-	 * @brief Unique file identifier.
-	 */
-	std::string fileId;
+    /**
+     * @brief Unique file identifier.
+     */
+    std::string fileId;
 
-	/**
-	 * @brief Optional. Sticker width.
-	 */
-	int32_t width;
+    /**
+     * @brief Optional. Sticker width.
+     */
+    int32_t width;
 
-	/**
-	 * @brief Optional. Sticker height.
-	 */
-	int32_t height;
+    /**
+     * @brief Optional. Sticker height.
+     */
+    int32_t height;
 
-	/**
-	 * @brief Optional. Optional. Sticker thumbnail in .webp or .jpg format.
-	 */
-	PhotoSize::Ptr thumb;
+    /**
+     * @brief Optional. Optional. Sticker thumbnail in .webp or .jpg format.
+     */
+    PhotoSize::Ptr thumb;
 
-	/**
-	 * @brief Optional. Emoji associated with the sticker
-	 */
-	std::string emoji;
+    /**
+     * @brief Optional. Emoji associated with the sticker
+     */
+    std::string emoji;
 
-	/**
-	 * @brief Optional. Name of the sticker set to which the sticker belongs.
-	 */
-	std::string setName;
+    /**
+     * @brief Optional. Name of the sticker set to which the sticker belongs.
+     */
+    std::string setName;
 
-	/**
-	 * @brief Optional. For mask stickers, the position where the mask should be placed.
-	 */
-	MaskPosition::Ptr maskPosition;
+    /**
+     * @brief Optional. For mask stickers, the position where the mask should be placed.
+     */
+    MaskPosition::Ptr maskPosition;
 
-	/**
-	 * @brief Optional. File size.
-	 */
-	int32_t fileSize;
+    /**
+     * @brief Optional. File size.
+     */
+    int32_t fileSize;
 };
 
 }
