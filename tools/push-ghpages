@@ -1,12 +1,14 @@
 #!/bin/bash
-set -e -o pipefail
 
 ./generate-docs
+cd ..
 git checkout gh-pages
-find . -maxdepth 1 -not -name "docs" -not -name ".git" -print0 | xargs -0 rm -r
+find . -maxdepth 1 -not -name "docs" -not -name ".git" -not -name "tools" -print0 | xargs -0 rm -r
 mv docs/* .
 mv docs/.nojekyll .
 rmdir docs
+rm -r tools/*
 git add -A
 git commit -m "Updated docs $(date)"
 git push origin gh-pages
+git checkout master
