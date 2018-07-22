@@ -17,28 +17,28 @@ namespace TgBot {
  */
 class InputTextMessageContent : public InputMessageContent {
 public:
-	typedef std::shared_ptr<InputTextMessageContent> Ptr;
+    typedef std::shared_ptr<InputTextMessageContent> Ptr;
 
-	InputTextMessageContent():
-		InputMessageContent("InputTextMessageContent")
-	{}
+    InputTextMessageContent():
+        InputMessageContent("InputTextMessageContent")
+    {}
 
-	/**
-	 * @brief Text of the message to be sent, 1-4096 characters
-	 */
-	std::string messageText;
+    /**
+     * @brief Text of the message to be sent, 1-4096 characters
+     */
+    std::string messageText;
 
-	/**
-	 * @brief Optional. Send Markdown or HTML, if you want Telegram apps to show bold, italic, fixed-width text or inline URLs in your bot's message.
-	 */
-	std::string parseMode;
+    /**
+     * @brief Optional. Send Markdown or HTML, if you want Telegram apps to show bold, italic, fixed-width text or inline URLs in your bot's message.
+     */
+    std::string parseMode;
 
-	/**
-	 * @brief Optional. Disables link previews for links in the sent message
-	 */
-	bool disableWebPagePreview;
+    /**
+     * @brief Optional. Disables link previews for links in the sent message
+     */
+    bool disableWebPagePreview;
 
-	virtual ~InputTextMessageContent() { }
+    virtual ~InputTextMessageContent() { }
 };
 }
 

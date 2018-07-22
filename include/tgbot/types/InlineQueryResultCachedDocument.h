@@ -19,23 +19,23 @@ namespace TgBot {
  */
 class InlineQueryResultCachedDocument : public InlineQueryResult {
 public:
-	static const std::string TYPE;
+    static const std::string TYPE;
 
-	typedef std::shared_ptr<InlineQueryResultCachedDocument> Ptr;
+    typedef std::shared_ptr<InlineQueryResultCachedDocument> Ptr;
 
-	InlineQueryResultCachedDocument() {
-		this->type = TYPE;
-	}
+    InlineQueryResultCachedDocument() {
+        this->type = TYPE;
+    }
 
-	/**
-	 * @brief A valid file identifier for the file
-	 */
-	std::string documentFileId;
+    /**
+     * @brief A valid file identifier for the file
+     */
+    std::string documentFileId;
 
-	/**
-	 * @brief Optional. Short description of the result
-	 */
-	std::string description;
+    /**
+     * @brief Optional. Short description of the result
+     */
+    std::string description;
 };
 }
 

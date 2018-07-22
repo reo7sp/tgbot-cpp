@@ -40,32 +40,32 @@ namespace TgBot {
  */
 class Animation {
 public:
-	typedef std::shared_ptr<Animation> Ptr;
+    typedef std::shared_ptr<Animation> Ptr;
 
-	/**
-	 * @brief Unique file identifier.
-	 */
-	std::string fileId;
+    /**
+     * @brief Unique file identifier.
+     */
+    std::string fileId;
 
-	/**
-	 * @brief Optional. Animation thumbnail as defined by sender.
-	 */
-	PhotoSize::Ptr thumb;
+    /**
+     * @brief Optional. Animation thumbnail as defined by sender.
+     */
+    PhotoSize::Ptr thumb;
 
-	/**
-	 * @brief Optional. Original animation filename as defined by sender.
-	 */
-	std::string fileName;
+    /**
+     * @brief Optional. Original animation filename as defined by sender.
+     */
+    std::string fileName;
 
-	/**
-	 * @brief Optional. MIME type of the file as defined by sender.
-	 */
-	std::string mimeType;
+    /**
+     * @brief Optional. MIME type of the file as defined by sender.
+     */
+    std::string mimeType;
 
-	/**
-	 * @brief Optional. File size.
-	 */
-	int32_t fileSize;
+    /**
+     * @brief Optional. File size.
+     */
+    int32_t fileSize;
 };
 }
 

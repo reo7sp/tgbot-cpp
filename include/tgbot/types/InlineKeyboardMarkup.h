@@ -20,12 +20,12 @@ namespace TgBot {
  */
 class InlineKeyboardMarkup : public GenericReply {
 public:
-	typedef std::shared_ptr<InlineKeyboardMarkup> Ptr;
+    typedef std::shared_ptr<InlineKeyboardMarkup> Ptr;
 
-	/**
-	 * @brief Array of button rows, each represented by an Array of InlineKeyboardButton objects.
-	 */
-	std::vector<std::vector<InlineKeyboardButton::Ptr>> inlineKeyboard;
+    /**
+     * @brief Array of button rows, each represented by an Array of InlineKeyboardButton objects.
+     */
+    std::vector<std::vector<InlineKeyboardButton::Ptr>> inlineKeyboard;
 
 };
 }

@@ -20,8 +20,8 @@
  * SOFTWARE.
  */
 
-#ifndef TGBOT_TGWEBHOOKTCPSERVER_H
-#define TGBOT_TGWEBHOOKTCPSERVER_H
+#ifndef TGBOT_TGWEBHOOKLOCALSERVER_H
+#define TGBOT_TGWEBHOOKLOCALSERVER_H
 
 #ifdef BOOST_ASIO_HAS_LOCAL_SOCKETS
 
@@ -37,19 +37,21 @@ namespace TgBot {
 class TgWebhookLocalServer : public TgWebhookServer<boost::asio::local::stream_protocol> {
 
 public:
-	TgWebhookLocalServer(std::shared_ptr<boost::asio::basic_socket_acceptor<boost::asio::local::stream_protocol>>& acceptor, const std::string& path, EventHandler* eventHandler) = delete;
+    TgWebhookLocalServer(const std::string& unixSocketPath, const std::string& path, const EventHandler& eventHandler)
+            : TgWebhookServer<boost::asio::local::stream_protocol>(boost::asio::local::stream_protocol::endpoint(unixSocketPath),
+                                                                   path, eventHandler)
+    {
+    }
 
-	TgWebhookLocalServer(const std::string& path, const EventHandler* eventHandler) :
-		TgWebhookServer<boost::asio::local::stream_protocol>(std::make_shared<boost::asio::basic_socket_acceptor<boost::asio::local::stream_protocol>>(_ioService, boost::asio::local::stream_protocol::endpoint(path)), path, eventHandler)
-	{
-	}
-
-	TgWebhookLocalServer(const std::string& path, const Bot& bot) : TgWebhookLocalServer(path, &bot.getEventHandler()) {
-	}
+    TgWebhookLocalServer(const std::string& unixSocketPath, const Bot& bot)
+            : TgWebhookServer<boost::asio::local::stream_protocol>(boost::asio::local::stream_protocol::endpoint(unixSocketPath),
+                                                                   bot)
+    {
+    }
 };
 
 }
 
 #endif //BOOST_ASIO_HAS_LOCAL_SOCKETS
 
-#endif //TGBOT_TGWEBHOOKTCPSERVER_H
+#endif //TGBOT_TGWEBHOOKLOCALSERVER_H

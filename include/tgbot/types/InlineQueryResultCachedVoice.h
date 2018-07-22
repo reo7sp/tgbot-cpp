@@ -19,18 +19,18 @@ namespace TgBot {
  */
 class InlineQueryResultCachedVoice : public InlineQueryResult {
 public:
-	static const std::string TYPE;
+    static const std::string TYPE;
 
-	typedef std::shared_ptr<InlineQueryResultCachedVoice> Ptr;
+    typedef std::shared_ptr<InlineQueryResultCachedVoice> Ptr;
 
-	InlineQueryResultCachedVoice() {
-		this->type = TYPE;
-	}
+    InlineQueryResultCachedVoice() {
+        this->type = TYPE;
+    }
 
-	/**
-	 * @brief A valid file identifier of the voice message
-	 */
-	std::string voiceFileId;
+    /**
+     * @brief A valid file identifier of the voice message
+     */
+    std::string voiceFileId;
 };
 }
 

@@ -19,50 +19,50 @@ namespace TgBot {
  */
 class InlineQueryResultVenue : public InlineQueryResult {
 public:
-	static const std::string TYPE;
+    static const std::string TYPE;
 
-	typedef std::shared_ptr<InlineQueryResultVenue> Ptr;
+    typedef std::shared_ptr<InlineQueryResultVenue> Ptr;
 
-	InlineQueryResultVenue() {
-		this->type = TYPE;
-		this->thumbHeight = 0;
-		this->thumbWidth = 0;
-	}
+    InlineQueryResultVenue() {
+        this->type = TYPE;
+        this->thumbHeight = 0;
+        this->thumbWidth = 0;
+    }
 
-	/**
-	* @brief Latitude of the venue location in degrees
-	*/
-	float latitude;
+    /**
+    * @brief Latitude of the venue location in degrees
+    */
+    float latitude;
 
-	/**
-	* @brief Longitude of the venue location in degrees
-	*/
-	float longitude;
+    /**
+    * @brief Longitude of the venue location in degrees
+    */
+    float longitude;
 
-	/**
-	* @brief Address of the venue
-	*/
-	std::string address;
+    /**
+    * @brief Address of the venue
+    */
+    std::string address;
 
-	/**
-	* @brief Optional. Foursquare identifier of the venue if known
-	*/
-	std::string foursquareId;
+    /**
+    * @brief Optional. Foursquare identifier of the venue if known
+    */
+    std::string foursquareId;
 
-	/**
-	 * @brief Optional. Url of the thumbnail for the result
-	 */
-	std::string thumbUrl;
+    /**
+     * @brief Optional. Url of the thumbnail for the result
+     */
+    std::string thumbUrl;
 
-	/**
-	 * @brief Optional. Thumbnail width.
-	 */
-	int32_t thumbWidth;
+    /**
+     * @brief Optional. Thumbnail width.
+     */
+    int32_t thumbWidth;
 
-	/**
-	 * @brief Optinal. Thumbnail height
-	 */
-	int32_t thumbHeight;
+    /**
+     * @brief Optinal. Thumbnail height
+     */
+    int32_t thumbHeight;
 };
 }
 

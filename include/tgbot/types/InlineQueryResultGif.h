@@ -19,40 +19,40 @@ namespace TgBot {
  */
 class InlineQueryResultGif : public InlineQueryResult {
 public:
-	static const std::string TYPE;
+    static const std::string TYPE;
 
-	typedef std::shared_ptr<InlineQueryResultGif> Ptr;
+    typedef std::shared_ptr<InlineQueryResultGif> Ptr;
 
-	InlineQueryResultGif() {
-		this->type = TYPE;
-		this->gifWidth = 0;
-		this->gifHeight = 0;
-	}
+    InlineQueryResultGif() {
+        this->type = TYPE;
+        this->gifWidth = 0;
+        this->gifHeight = 0;
+    }
 
-	/**
-	 * @brief A valid URL for the GIF file.
-	 */
-	std::string gifUrl;
+    /**
+     * @brief A valid URL for the GIF file.
+     */
+    std::string gifUrl;
 
-	/**
-	 * @brief Optional. Width of the GIF.
-	 */
-	int32_t gifWidth;
+    /**
+     * @brief Optional. Width of the GIF.
+     */
+    int32_t gifWidth;
 
-	/**
-	 * @brief Optional. Height of the GIF.
-	 */
-	int32_t gifHeight;
+    /**
+     * @brief Optional. Height of the GIF.
+     */
+    int32_t gifHeight;
 
-	/**
-	 * @brief Optional. Duration of the GIF
-	 */
-	int32_t gifDuration;
+    /**
+     * @brief Optional. Duration of the GIF
+     */
+    int32_t gifDuration;
 
-	/**
-	 * @brief URL of the static thumbnail for the result (jpeg or gif)
-	 */
-	std::string thumbUrl;
+    /**
+     * @brief URL of the static thumbnail for the result (jpeg or gif)
+     */
+    std::string thumbUrl;
 
 };
 }

@@ -38,11 +38,11 @@ namespace TgBot {
  */
 class InputMediaPhoto : public InputMedia {
 public:
-	typedef std::shared_ptr<InputMediaPhoto> Ptr;
+    typedef std::shared_ptr<InputMediaPhoto> Ptr;
 
-	InputMediaPhoto() {
-		this->type = TYPE::PHOTO;
-	}
+    InputMediaPhoto() {
+        this->type = TYPE::PHOTO;
+    }
 };
 }
 

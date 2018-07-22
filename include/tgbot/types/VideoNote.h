@@ -40,30 +40,30 @@ class VideoNote {
 public:
     typedef std::shared_ptr<VideoNote> Ptr;
 
-	/**
-	 * @brief Unique identifier for this file.
-	 */
-	std::string fileId;
+    /**
+     * @brief Unique identifier for this file.
+     */
+    std::string fileId;
 
-	/**
-	 * @brief Video width and height as defined by sender.
-	 */
-	int32_t length;
+    /**
+     * @brief Video width and height as defined by sender.
+     */
+    int32_t length;
 
-	/**
-	 * @brief Duration of the video in seconds as defined by sender.
-	 */
-	int32_t duration;
+    /**
+     * @brief Duration of the video in seconds as defined by sender.
+     */
+    int32_t duration;
 
-	/**
-	 * @brief Optional. Video thumbnail.
-	 */
-	PhotoSize::Ptr thumb;
+    /**
+     * @brief Optional. Video thumbnail.
+     */
+    PhotoSize::Ptr thumb;
 
-	/**
-	 * @brief Optional. File size.
-	 */
-	int32_t fileSize;
+    /**
+     * @brief Optional. File size.
+     */
+    int32_t fileSize;
 };
 
 }

@@ -34,9 +34,9 @@ namespace TgBot {
 class GenericReply {
 
 public:
-	typedef std::shared_ptr<GenericReply> Ptr;
+    typedef std::shared_ptr<GenericReply> Ptr;
 
-	virtual ~GenericReply() { }
+    virtual ~GenericReply() { }
 };
 
 }

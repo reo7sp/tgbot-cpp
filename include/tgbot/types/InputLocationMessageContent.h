@@ -16,23 +16,23 @@ namespace TgBot {
  */
 class InputLocationMessageContent : public InputMessageContent {
 public:
-	typedef std::shared_ptr<InputLocationMessageContent> Ptr;
+    typedef std::shared_ptr<InputLocationMessageContent> Ptr;
 
-	InputLocationMessageContent() :
-		InputMessageContent("InputLocationMessageContent")
-	{}
+    InputLocationMessageContent() :
+        InputMessageContent("InputLocationMessageContent")
+    {}
 
-	/**
-	 * @brief Latitude of the location in degrees
-	 */
-	float latitude;
+    /**
+     * @brief Latitude of the location in degrees
+     */
+    float latitude;
 
-	/**
-	 * @brief Longitude of the location in degrees
-	 */
-	float longitude;
+    /**
+     * @brief Longitude of the location in degrees
+     */
+    float longitude;
 
-	virtual ~InputLocationMessageContent() { }
+    virtual ~InputLocationMessageContent() { }
 };
 }
 

@@ -19,46 +19,46 @@ namespace TgBot {
  */
 class InlineQueryResultArticle : public InlineQueryResult {
 public:
-	static const std::string TYPE;
+    static const std::string TYPE;
 
-	typedef std::shared_ptr<InlineQueryResultArticle> Ptr;
+    typedef std::shared_ptr<InlineQueryResultArticle> Ptr;
 
-	InlineQueryResultArticle() {
-		this->type = TYPE;
-		this->hideUrl = false;
-		this->thumbHeight = 0;
-		this->thumbWidth = 0;
-	}
+    InlineQueryResultArticle() {
+        this->type = TYPE;
+        this->hideUrl = false;
+        this->thumbHeight = 0;
+        this->thumbWidth = 0;
+    }
 
-	/**
-	 * @brief Optional. URL of the result.
-	 */
-	std::string url;
+    /**
+     * @brief Optional. URL of the result.
+     */
+    std::string url;
 
-	/**
-	 * @brief Optional. Pass True if you don't want the URL to be shown in the message.
-	 */
-	bool hideUrl;
+    /**
+     * @brief Optional. Pass True if you don't want the URL to be shown in the message.
+     */
+    bool hideUrl;
 
-	/**
-	 * @brief Optional. Short description of the result.
-	 */
-	std::string description;
+    /**
+     * @brief Optional. Short description of the result.
+     */
+    std::string description;
 
-	/**
-	 * @brief Optional. Url of the thumbnail for the result
-	 */
-	std::string thumbUrl;
+    /**
+     * @brief Optional. Url of the thumbnail for the result
+     */
+    std::string thumbUrl;
 
-	/**
-	 * @brief Optional. Thumbnail width.
-	 */
-	int32_t thumbWidth;
+    /**
+     * @brief Optional. Thumbnail width.
+     */
+    int32_t thumbWidth;
 
-	/**
-	 * @brief Optinal. Thumbnail height
-	 */
-	int32_t thumbHeight;
+    /**
+     * @brief Optinal. Thumbnail height
+     */
+    int32_t thumbHeight;
 };
 }
 

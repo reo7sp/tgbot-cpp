@@ -38,11 +38,11 @@ namespace TgBot {
  */
 class InputMediaVideo : public InputMedia {
 public:
-	typedef std::shared_ptr<InputMediaVideo> Ptr;
+    typedef std::shared_ptr<InputMediaVideo> Ptr;
 
-	InputMediaVideo() {
-		this->type = TYPE::VIDEO;
-	}
+    InputMediaVideo() {
+        this->type = TYPE::VIDEO;
+    }
 };
 }
 

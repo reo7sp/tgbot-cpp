@@ -34,15 +34,17 @@ namespace TgBot {
 class TgWebhookTcpServer : public TgWebhookServer<boost::asio::ip::tcp> {
 
 public:
-	TgWebhookTcpServer(std::shared_ptr<boost::asio::basic_socket_acceptor<boost::asio::ip::tcp>> acceptor, const std::string& path, EventHandler* eventHandler) = delete;
+    TgWebhookTcpServer(unsigned short port, const std::string& path, const EventHandler& eventHandler)
+            : TgWebhookServer<boost::asio::ip::tcp>(boost::asio::ip::tcp::endpoint(boost::asio::ip::tcp::v4(), port),
+                                                    path, eventHandler)
+    {
+    }
 
-	TgWebhookTcpServer(unsigned short port, const std::string& path, const EventHandler* eventHandler) :
-		TgWebhookServer(std::shared_ptr<boost::asio::basic_socket_acceptor<boost::asio::ip::tcp>>(new boost::asio::ip::tcp::acceptor(_ioService, boost::asio::ip::tcp::endpoint(boost::asio::ip::tcp::v4(), port))), path, eventHandler)
-	{
-	}
-
-	TgWebhookTcpServer(const std::string& path, const Bot& bot) : TgWebhookTcpServer(path, &bot.getEventHandler()) {
-	}
+    TgWebhookTcpServer(unsigned short port, const Bot& bot)
+            : TgWebhookServer<boost::asio::ip::tcp>(boost::asio::ip::tcp::endpoint(boost::asio::ip::tcp::v4(), port),
+                                                    bot)
+    {
+    }
 };
 
 }

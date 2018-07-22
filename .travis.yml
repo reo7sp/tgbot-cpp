@@ -4,5 +4,5 @@ services:
     - docker
 
 script:
-    - docker build -t reo7sp/tgbot-cpp -f Dockerfile_test .
-    - docker run --rm reo7sp/tgbot-cpp
+    -
+

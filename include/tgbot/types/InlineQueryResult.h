@@ -20,43 +20,41 @@ namespace TgBot {
  */
 class InlineQueryResult {
 public:
-	typedef std::shared_ptr<InlineQueryResult> Ptr;
+    typedef std::shared_ptr<InlineQueryResult> Ptr;
 
-	InlineQueryResult() {
+    InlineQueryResult() { }
 
-	}
+    virtual ~InlineQueryResult() { }
 
-	virtual ~InlineQueryResult() { }
+    /**
+     * @brief Type of the result.
+     */
+    std::string type;
 
-	/**
-	 * @brief Type of the result.
-	 */
-	std::string type;
+    /**
+     * @brief Unique identifier for this result. (1-64 bytes)
+     */
+    std::string id;
 
-	/**
-	 * @brief Unique identifier for this result. (1-64 bytes)
-	 */
-	std::string id;
+    /**
+     * @brief Requred, optional or missing. See description of derived classes. Title of the result.
+     */
+    std::string title;
 
-	/**
-	 * @brief Requred, optional or missing. See description of derived classes. Title of the result.
-	 */
-	std::string title;
+    /**
+     * @brief Optional or missing. See description of derived classes. Caption of the file to be sent, 0-200 characters
+     */
+    std::string caption;
 
-	/**
-	 * @brief Optional or missing. See description of derived classes. Caption of the file to be sent, 0-200 characters
-	 */
-	std::string caption;
+    /**
+     * @brief Optional. Inline keyboard attached to the message
+     */
+    InlineKeyboardMarkup::Ptr replyMarkup;
 
-	/**
-	 * @brief Optional. Inline keyboard attached to the message
-	 */
-	InlineKeyboardMarkup::Ptr replyMarkup;
-
-	/**
-	 * @brief Requred, optional or missing. See description of derived classes. Content of the message to be sent
-	 */
-	InputMessageContent::Ptr inputMessageContent;
+    /**
+     * @brief Requred, optional or missing. See description of derived classes. Content of the message to be sent
+     */
+    InputMessageContent::Ptr inputMessageContent;
 };
 }
 

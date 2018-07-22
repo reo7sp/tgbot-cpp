@@ -36,27 +36,27 @@ namespace TgBot {
 class PhotoSize {
 
 public:
-	typedef std::shared_ptr<PhotoSize> Ptr;
+    typedef std::shared_ptr<PhotoSize> Ptr;
 
-	/**
-	 * @brief Unique identifier for this file.
-	 */
-	std::string fileId;
+    /**
+     * @brief Unique identifier for this file.
+     */
+    std::string fileId;
 
-	/**
-	 * @brief Photo width.
-	 */
-	int32_t width;
+    /**
+     * @brief Photo width.
+     */
+    int32_t width;
 
-	/**
-	 * @brief Photo height.
-	 */
-	int32_t height;
+    /**
+     * @brief Photo height.
+     */
+    int32_t height;
 
-	/**
-	 * @brief Optional. File size.
-	 */
-	int32_t fileSize;
+    /**
+     * @brief Optional. File size.
+     */
+    int32_t fileSize;
 };
 
 }

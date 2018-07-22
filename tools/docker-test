@@ -1,0 +1,6 @@
+#!/bin/bash
+set -e
+
+cd ..
+docker build -t reo7sp/tgbot-cpp -f Dockerfile_test .
+docker run --rm -it reo7sp/tgbot-cpp

@@ -14,24 +14,24 @@ namespace TgBot {
  */
 class InlineQueryResultVoice : public InlineQueryResult {
 public:
-	static const std::string TYPE;
+    static const std::string TYPE;
 
-	typedef std::shared_ptr<InlineQueryResultVoice> Ptr;
+    typedef std::shared_ptr<InlineQueryResultVoice> Ptr;
 
-	InlineQueryResultVoice() {
-		this->type = TYPE;
-		this->voiceDuration = 0;
-	};
+    InlineQueryResultVoice() {
+        this->type = TYPE;
+        this->voiceDuration = 0;
+    };
 
-	/**
-	 * @brief A valid URL for the voice recording
-	 */
-	std::string voiceUrl;
+    /**
+     * @brief A valid URL for the voice recording
+     */
+    std::string voiceUrl;
 
-	/**
-	 * @brief Optional. Recording duration in seconds
-	 */
-	int32_t voiceDuration;
+    /**
+     * @brief Optional. Recording duration in seconds
+     */
+    int32_t voiceDuration;
 };
 }
 

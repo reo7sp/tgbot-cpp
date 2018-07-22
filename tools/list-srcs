@@ -1,0 +1,4 @@
+#!/bin/bash
+
+cd ..
+tree src -a -f --noreport -i | grep '\.cpp'

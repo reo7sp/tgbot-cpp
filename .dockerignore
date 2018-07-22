@@ -1,1 +1,6 @@
-.gitignore
+*
+!include
+!samples
+!src
+!test
+!CMakeLists.txt

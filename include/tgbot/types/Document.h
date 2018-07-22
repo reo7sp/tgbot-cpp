@@ -38,32 +38,32 @@ namespace TgBot {
 class Document {
 
 public:
-	typedef std::shared_ptr<Document> Ptr;
+    typedef std::shared_ptr<Document> Ptr;
 
-	/**
-	 * @brief Unique file identifier.
-	 */
-	std::string fileId;
+    /**
+     * @brief Unique file identifier.
+     */
+    std::string fileId;
 
-	/**
-	 * @brief Optional. Document thumbnail as defined by sender.
-	 */
-	PhotoSize::Ptr thumb;
+    /**
+     * @brief Optional. Document thumbnail as defined by sender.
+     */
+    PhotoSize::Ptr thumb;
 
-	/**
-	 * @brief Optional. Original filename as defined by sender.
-	 */
-	std::string fileName;
+    /**
+     * @brief Optional. Original filename as defined by sender.
+     */
+    std::string fileName;
 
-	/**
-	 * @brief Optional. MIME type of the file as defined by sender.
-	 */
-	std::string mimeType;
+    /**
+     * @brief Optional. MIME type of the file as defined by sender.
+     */
+    std::string mimeType;
 
-	/**
-	 * @brief Optional. File size.
-	 */
-	int32_t fileSize;
+    /**
+     * @brief Optional. File size.
+     */
+    int32_t fileSize;
 };
 
 }

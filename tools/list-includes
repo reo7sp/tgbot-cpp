@@ -1,0 +1,19 @@
+#!/bin/bash
+
+if uname -a | grep Darwin > /dev/null; then
+    is_macos=1
+else
+    is_macos=0
+fi
+if [[ $is_macos == 1 ]]; then
+    this_sed() {
+        gsed "$@"
+    }
+else
+    this_sed() {
+        sed "$@"
+    }
+fi
+
+cd ../include
+tree -a -f --noreport -i | grep '\.h' | this_sed -r 's!^\./(.+?)$!#include "\1"!'
