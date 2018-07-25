@@ -10,6 +10,6 @@ COPY src src
 COPY CMakeLists.txt ./
 
 RUN cmake . && \
-    make -j4 && \
+    make -j$(nproc) && \
     make install && \
     rm -rf /usr/src/tgbot-cpp/*
