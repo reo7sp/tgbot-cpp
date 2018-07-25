@@ -8,8 +8,6 @@
 using namespace std;
 using namespace TgBot;
 
-bool sigintGot = false;
-
 int main() {
     string token(getenv("TOKEN"));
     printf("Token: %s\n", token.c_str());
@@ -27,13 +25,15 @@ int main() {
 
     signal(SIGINT, [](int s) {
         printf("SIGINT got\n");
-        sigintGot = true;
+        exit(0);
     });
+
     try {
         printf("Bot username: %s\n", bot.getApi().getMe()->username.c_str());
+        bot.getApi().deleteWebhook();
 
         TgLongPoll longPoll(bot);
-        while (!sigintGot) {
+        while (true) {
             printf("Long poll started\n");
             longPoll.start();
         }

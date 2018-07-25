@@ -98,17 +98,21 @@ inline std::string diffS(const std::string& test, const std::string& expected) {
             v2.push_back(s2);
         }
     } while (r1 || r2);
-    return diff(v1, v2, [](const std::string& item) {
-        return item;
-    });
+
+    std::string (*toStringFunc)(const std::string&) =
+            [](const std::string& item) -> std::string { return item; };
+
+    return diff(v1, v2, toStringFunc);
 }
 
 inline std::string diffMSS(const std::unordered_map<std::string, std::string>& test, const std::unordered_map<std::string, std::string>& expected) {
     std::map<std::string, std::string> v1(test.begin(), test.end());
     std::map<std::string, std::string> v2(expected.begin(), expected.end());
-    return diff(v1, v2, [](const std::pair<const std::string, std::string>& item) {
-        return item.first + '=' + item.second;
-    });
+
+    std::string (*toStringFunc)(const std::pair<const std::string, std::string>&) =
+            [](const std::pair<const std::string, std::string>& item) -> std::string { return item.first + '=' + item.second; };
+
+    return diff(v1, v2, toStringFunc);
 }
 
 #endif //TGBOT_UTILS_H

@@ -26,6 +26,11 @@ int main() {
         bot.getApi().sendMessage(message->chat->id, "Your message is: " + message->text);
     });
 
+    signal(SIGINT, [](int s) {
+        printf("SIGINT got\n");
+        exit(0);
+    });
+
     try {
         printf("Bot username: %s\n", bot.getApi().getMe()->username.c_str());
 

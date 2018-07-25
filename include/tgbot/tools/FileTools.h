@@ -15,16 +15,17 @@ namespace FileTools {
 /**
  * Reads whole file to string.
  * @param filePath Path to a file
+ * @throws exception of type std::ifstream::failure if reading fails
  * @return string with file contents
  */
 std::string read(const std::string& filePath);
 
 /**
-* Save file to disk.
-* @param filePath Path to a file
-* @return bool success
+ * Save file to disk.
+ * @param filePath Path to a file
+ * @throws exception of type std::ifstream::failure if writing fails
 */
-bool write(const std::string& content, const std::string& filePath);
+void write(const std::string& content, const std::string& filePath);
 
 };
 
