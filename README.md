@@ -79,6 +79,14 @@ make -j4
 sudo make install
 ```
 
+## Specific library installation notes
+
+### Docker
+You can use Docker to build and run your bot. Set the base image of your's Dockerfile to [reo7sp/tgbot-cpp](https://hub.docker.com/r/reo7sp/tgbot-cpp/).
+
+### Arch Linux
+A PKGBUILD compiles shared library with header files is hosted on [Arch Linux User Repository](https://aur.archlinux.org/packages/libtgbot-cpp-git/).
+
 
 ## Bot compilation
 
@@ -105,15 +113,6 @@ add_definitions(-DTGBOT_CHANGE_READ_BUFFER_SIZE) # Read Buffer Size Expansion
 -DTGBOT_CHANGE_SOCKET_BUFFER_SIZE
 -DTGBOT_CHANGE_READ_BUFFER_SIZE
 ```
-
-
-## Specific installation notes
-
-### Docker
-You can use Docker to build and run your bot. Set the base image of your's Dockerfile to [reo7sp/tgbot-cpp](https://hub.docker.com/r/reo7sp/tgbot-cpp/).
-
-### Arch Linux
-A PKGBUILD compiles shared library with header files is hosted on [Arch Linux User Repository](https://aur.archlinux.org/packages/libtgbot-cpp-git/).
 
 
 ## Feedback
