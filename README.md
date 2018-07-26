@@ -2,10 +2,8 @@
 
 [![Build Status](https://travis-ci.org/reo7sp/tgbot-cpp.svg?branch=master)](https://travis-ci.org/reo7sp/tgbot-cpp)
 [![Docker Hub pulls](https://img.shields.io/docker/pulls/reo7sp/tgbot-cpp.svg)](https://hub.docker.com/r/reo7sp/tgbot-cpp/)
-
-[![Contact @reo7sp](https://img.shields.io/badge/telegram-contact-green.svg)](https://t.me/reo7sp)
-[![Donate using PayPal](https://img.shields.io/badge/donate-PayPal-brightgreen.svg)](https://paypal.me/reo7sp)
-[![Donate using Rocketbank](https://img.shields.io/badge/donate-Rocketbank-brightgreen.svg)](https://rocketbank.ru/reo7sp)
+[![Open documentation](https://img.shields.io/badge/open-documentation-orange.svg)](http://reo7sp.github.io/tgbot-cpp)
+[![Donate using PayPal](https://img.shields.io/badge/donate-PayPal-orange.svg)](https://paypal.me/reo7sp)
 
 ---
 
@@ -29,12 +27,49 @@ Documentation is located [here](http://reo7sp.github.io/tgbot-cpp).
 - [x] Bot API 3.6
 
 
+## Sample
+
+Simple echo bot which sends everything it receives:
+```cpp
+#include <stdio.h>
+#include <tgbot/tgbot.h>
+
+int main() {
+    TgBot::Bot bot("PLACE YOUR TOKEN HERE");
+    bot.getEvents().onCommand("start", [&bot](TgBot::Message::Ptr message) {
+        bot.getApi().sendMessage(message->chat->id, "Hi!");
+    });
+    bot.getEvents().onAnyMessage([&bot](TgBot::Message::Ptr message) {
+        printf("User wrote %s\n", message->text.c_str());
+        if (StringTools::startsWith(message->text, "/start")) {
+            return;
+        }
+        bot.getApi().sendMessage(message->chat->id, "Your message is: " + message->text);
+    });
+    try {
+        printf("Bot username: %s\n", bot.getApi().getMe()->username.c_str());
+        TgBot::TgLongPoll longPoll(bot);
+        while (true) {
+            printf("Long poll started\n");
+            longPoll.start();
+        }
+    } catch (TgBot::TgException& e) {
+        printf("error: %s\n", e.what());
+    }
+    return 0;
+}
+```
+
+All other samples are located [here](samples).
+
+
 ## Library compilation
 
 Firstly you need to install some dependencies such as Boost and build tools such as CMake. On Debian-based distibutives you can do it with these commands:
 ```sh
 sudo apt-get install g++ make binutils cmake libssl-dev libboost-system-dev
 ```
+If you want to use curl-based http client `CurlHttpClient`, you also need to install `libcurl4-openssl-dev` package.
 
 To compile the library execute this commands:
 ```sh
@@ -79,42 +114,6 @@ You can use Docker to build and run your bot. Set the base image of your's Docke
 
 ### Arch Linux
 A PKGBUILD compiles shared library with header files is hosted on [Arch Linux User Repository](https://aur.archlinux.org/packages/libtgbot-cpp-git/).
-
-
-## Samples
-
-Simple echo bot which sends everything it receives:
-```cpp
-#include <stdio.h>
-#include <tgbot/tgbot.h>
-
-int main() {
-    TgBot::Bot bot("PLACE YOUR TOKEN HERE");
-    bot.getEvents().onCommand("start", [&bot](TgBot::Message::Ptr message) {
-        bot.getApi().sendMessage(message->chat->id, "Hi!");
-    });
-    bot.getEvents().onAnyMessage([&bot](TgBot::Message::Ptr message) {
-        printf("User wrote %s\n", message->text.c_str());
-        if (StringTools::startsWith(message->text, "/start")) {
-            return;
-        }
-        bot.getApi().sendMessage(message->chat->id, "Your message is: " + message->text);
-    });
-    try {
-        printf("Bot username: %s\n", bot.getApi().getMe()->username.c_str());
-        TgBot::TgLongPoll longPoll(bot);
-        while (true) {
-            printf("Long poll started\n");
-            longPoll.start();
-        }
-    } catch (TgBot::TgException& e) {
-        printf("error: %s\n", e.what());
-    }
-    return 0;
-}
-```
-
-All other samples are located [here](samples).
 
 
 ## Feedback
