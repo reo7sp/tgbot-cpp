@@ -153,6 +153,7 @@ Message::Ptr TgTypeParser::parseJsonAndGetMessage(const ptree& data) const {
     result->captionEntities = parseJsonAndGetArray<MessageEntity>(&TgTypeParser::parseJsonAndGetMessageEntity, data, "caption_entities");
     result->audio = tryParseJson<Audio>(&TgTypeParser::parseJsonAndGetAudio, data, "audio");
     result->document = tryParseJson<Document>(&TgTypeParser::parseJsonAndGetDocument, data, "document");
+    result->animation = tryParseJson<Animation>(&TgTypeParser::parseJsonAndGetAnimation, data, "animation");
     result->game = tryParseJson<Game>(&TgTypeParser::parseJsonAndGetGame, data, "game");
     result->photo = parseJsonAndGetArray<PhotoSize>(&TgTypeParser::parseJsonAndGetPhotoSize, data, "photo");
     result->sticker = tryParseJson<Sticker>(&TgTypeParser::parseJsonAndGetSticker, data, "sticker");
@@ -199,6 +200,7 @@ string TgTypeParser::parseMessage(const Message::Ptr& object) const {
     appendToJson(result, "text", object->text);
     appendToJson(result, "audio", parseAudio(object->audio));
     appendToJson(result, "document", parseDocument(object->document));
+    appendToJson(result, "animation", parseAnimation(object->animation));
     appendToJson(result, "photo", parseArray(&TgTypeParser::parsePhotoSize, object->photo));
     appendToJson(result, "sticker", parseSticker(object->sticker));
     appendToJson(result, "video", parseVideo(object->video));
@@ -257,6 +259,7 @@ Audio::Ptr TgTypeParser::parseJsonAndGetAudio(const ptree& data) const {
     result->title = data.get<string>("title", "");
     result->mimeType = data.get("mime_type", "");
     result->fileSize = data.get("file_size", 0);
+    result->thumb = tryParseJson<PhotoSize>(&TgTypeParser::parseJsonAndGetPhotoSize, data, "thumb");
     return result;
 }
 
@@ -270,6 +273,7 @@ string TgTypeParser::parseAudio(const Audio::Ptr& object) const {
     appendToJson(result, "duration", object->duration);
     appendToJson(result, "mime_type", object->mimeType);
     appendToJson(result, "file_size", object->fileSize);
+    appendToJson(result, "thumb", parsePhotoSize(object->thumb));
     removeLastComma(result);
     result += '}';
     return result;
@@ -517,6 +521,7 @@ Contact::Ptr TgTypeParser::parseJsonAndGetContact(const ptree& data) const {
     result->firstName = data.get<string>("first_name");
     result->lastName = data.get("last_name", "");
     result->userId = data.get("user_id", "");
+    result->vcard = data.get("vcard", "");
     return result;
 }
 
@@ -530,6 +535,7 @@ string TgTypeParser::parseContact(const Contact::Ptr& object) const {
     appendToJson(result, "first_name", object->firstName);
     appendToJson(result, "last_name", object->lastName);
     appendToJson(result, "user_id", object->userId);
+    appendToJson(result, "vcard", object->vcard);
     removeLastComma(result);
     result += '}';
     return result;
@@ -1064,7 +1070,7 @@ InlineQueryResultCachedAudio::Ptr TgTypeParser::parseJsonAndGetInlineQueryResult
 
 std::string TgTypeParser::parseInlineQueryResultCachedAudio(const InlineQueryResultCachedAudio::Ptr& object) const {
     if (!object){
-        return " ";
+        return "";
     }
     // This function will be called by parseInlineQueryResult(), so I don't add
     // curly brackets to the result string.
@@ -1084,7 +1090,7 @@ InlineQueryResultCachedDocument::Ptr TgTypeParser::parseJsonAndGetInlineQueryRes
 
 std::string TgTypeParser::parseInlineQueryResultCachedDocument(const InlineQueryResultCachedDocument::Ptr& object) const {
     if (!object){
-        return " ";
+        return "";
     }
     // This function will be called by parseInlineQueryResult(), so I don't add
     // curly brackets to the result string.
@@ -1105,7 +1111,7 @@ InlineQueryResultCachedGif::Ptr TgTypeParser::parseJsonAndGetInlineQueryResultCa
 
 std::string TgTypeParser::parseInlineQueryResultCachedGif(const InlineQueryResultCachedGif::Ptr& object) const {
     if (!object){
-        return " ";
+        return "";
     }
     // This function will be called by parseInlineQueryResult(), so I don't add
     // curly brackets to the result string.
@@ -1125,7 +1131,7 @@ InlineQueryResultCachedMpeg4Gif::Ptr TgTypeParser::parseJsonAndGetInlineQueryRes
 
 std::string TgTypeParser::parseInlineQueryResultCachedMpeg4Gif(const InlineQueryResultCachedMpeg4Gif::Ptr& object) const {
     if (!object){
-        return " ";
+        return "";
     }
     // This function will be called by parseInlineQueryResult(), so I don't add
     // curly brackets to the result string.
@@ -1146,7 +1152,7 @@ InlineQueryResultCachedPhoto::Ptr TgTypeParser::parseJsonAndGetInlineQueryResult
 
 std::string TgTypeParser::parseInlineQueryResultCachedPhoto(const InlineQueryResultCachedPhoto::Ptr& object) const {
     if (!object){
-        return " ";
+        return "";
     }
     // This function will be called by parseInlineQueryResult(), so I don't add
     // curly brackets to the result string.
@@ -1167,7 +1173,7 @@ InlineQueryResultCachedSticker::Ptr TgTypeParser::parseJsonAndGetInlineQueryResu
 
 std::string TgTypeParser::parseInlineQueryResultCachedSticker(const InlineQueryResultCachedSticker::Ptr& object) const {
     if (!object){
-        return " ";
+        return "";
     }
     // This function will be called by parseInlineQueryResult(), so I don't add
     // curly brackets to the result string.
@@ -1187,7 +1193,7 @@ InlineQueryResultCachedVideo::Ptr TgTypeParser::parseJsonAndGetInlineQueryResult
 
 std::string TgTypeParser::parseInlineQueryResultCachedVideo(const InlineQueryResultCachedVideo::Ptr& object) const {
     if (!object){
-        return " ";
+        return "";
     }
     // This function will be called by parseInlineQueryResult(), so I don't add
     // curly brackets to the result string.
@@ -1208,7 +1214,7 @@ InlineQueryResultCachedVoice::Ptr TgTypeParser::parseJsonAndGetInlineQueryResult
 
 std::string TgTypeParser::parseInlineQueryResultCachedVoice(const InlineQueryResultCachedVoice::Ptr& object) const {
     if (!object){
-        return " ";
+        return "";
     }
     // This function will be called by parseInlineQueryResult(), so I don't add
     // curly brackets to the result string.
@@ -1232,7 +1238,7 @@ InlineQueryResultArticle::Ptr TgTypeParser::parseJsonAndGetInlineQueryResultArti
 
 std::string TgTypeParser::parseInlineQueryResultArticle(const InlineQueryResultArticle::Ptr& object) const {
     if (!object){
-        return " ";
+        return "";
     }
     // This function will be called by parseInlineQueryResult(), so I don't add
     // curly brackets to the result string.
@@ -1258,7 +1264,7 @@ InlineQueryResultAudio::Ptr TgTypeParser::parseJsonAndGetInlineQueryResultAudio(
 
 std::string TgTypeParser::parseInlineQueryResultAudio(const InlineQueryResultAudio::Ptr& object) const {
     if (!object){
-        return " ";
+        return "";
     }
     // This function will be called by parseInlineQueryResult(), so I don't add
     // curly brackets to the result string.
@@ -1277,6 +1283,7 @@ InlineQueryResultContact::Ptr TgTypeParser::parseJsonAndGetInlineQueryResultCont
     result->phoneNumber = data.get<string>("phone_number");
     result->firstName = data.get<string>("first_name");
     result->lastName = data.get<string>("last_name", "");
+    result->vcard = data.get<string>("vcard", "");
     result->thumbUrl = data.get<string>("thumb_url", "");
     result->thumbWidth = data.get<int32_t>("thumb_width", 0);
     result->thumbHeight = data.get<int32_t>("thumb_height", 0);
@@ -1285,7 +1292,7 @@ InlineQueryResultContact::Ptr TgTypeParser::parseJsonAndGetInlineQueryResultCont
 
 std::string TgTypeParser::parseInlineQueryResultContact(const InlineQueryResultContact::Ptr& object) const {
     if (!object){
-        return " ";
+        return "";
     }
     // This function will be called by parseInlineQueryResult(), so I don't add
     // curly brackets to the result string.
@@ -1293,6 +1300,7 @@ std::string TgTypeParser::parseInlineQueryResultContact(const InlineQueryResultC
     appendToJson(result, "phone_number", object->phoneNumber);
     appendToJson(result, "first_name", object->firstName);
     appendToJson(result, "last_name", object->lastName);
+    appendToJson(result, "vcard", object->vcard);
     appendToJson(result, "thumb_url", object->thumbUrl);
     appendToJson(result, "thumb_width", object->thumbWidth);
     appendToJson(result, "thumb_height", object->thumbHeight);
@@ -1310,7 +1318,7 @@ InlineQueryResultGame::Ptr TgTypeParser::parseJsonAndGetInlineQueryResultGame(co
 
 std::string TgTypeParser::parseInlineQueryResultGame(const InlineQueryResultGame::Ptr& object) const {
     if (!object){
-        return " ";
+        return "";
     }
     // This function will be called by parseInlineQueryResult(), so I don't add
     // curly brackets to the result string.
@@ -1334,7 +1342,7 @@ InlineQueryResultDocument::Ptr TgTypeParser::parseJsonAndGetInlineQueryResultDoc
 
 std::string TgTypeParser::parseInlineQueryResultDocument(const InlineQueryResultDocument::Ptr& object) const {
     if (!object){
-        return " ";
+        return "";
     }
     // This function will be called by parseInlineQueryResult(), so I don't add
     // curly brackets to the result string.
@@ -1362,7 +1370,7 @@ InlineQueryResultLocation::Ptr TgTypeParser::parseJsonAndGetInlineQueryResultLoc
 
 std::string TgTypeParser::parseInlineQueryResultLocation(const InlineQueryResultLocation::Ptr& object) const {
     if (!object){
-        return " ";
+        return "";
     }
     // This function will be called by parseInlineQueryResult(), so I don't add
     // curly brackets to the result string.
@@ -1384,6 +1392,7 @@ InlineQueryResultVenue::Ptr TgTypeParser::parseJsonAndGetInlineQueryResultVenue(
     result->longitude = data.get<float>("longitude");
     result->address = data.get<string>("address");
     result->foursquareId = data.get<string>("foursquare_id", "");
+    result->foursquareType = data.get<string>("foursquare_type", "");
     result->thumbUrl = data.get<string>("thumb_url", "");
     result->thumbWidth = data.get<int32_t>("thumb_width", 0);
     result->thumbHeight = data.get<int32_t>("thumb_height", 0);
@@ -1392,7 +1401,7 @@ InlineQueryResultVenue::Ptr TgTypeParser::parseJsonAndGetInlineQueryResultVenue(
 
 std::string TgTypeParser::parseInlineQueryResultVenue(const InlineQueryResultVenue::Ptr& object) const {
     if (!object){
-        return " ";
+        return "";
     }
     // This function will be called by parseInlineQueryResult(), so I don't add
     // curly brackets to the result string.
@@ -1401,6 +1410,7 @@ std::string TgTypeParser::parseInlineQueryResultVenue(const InlineQueryResultVen
     appendToJson(result, "longitude", object->longitude);
     appendToJson(result, "address", object->address);
     appendToJson(result, "foursquare_id", object->foursquareId);
+    appendToJson(result, "foursquare_type", object->foursquareType);
     appendToJson(result, "thumb_url", object->thumbUrl);
     appendToJson(result, "thumb_width", object->thumbWidth);
     appendToJson(result, "thumb_height", object->thumbHeight);
@@ -1418,7 +1428,7 @@ InlineQueryResultVoice::Ptr TgTypeParser::parseJsonAndGetInlineQueryResultVoice(
 
 std::string TgTypeParser::parseInlineQueryResultVoice(const InlineQueryResultVoice::Ptr& object) const {
     if (!object){
-        return " ";
+        return "";
     }
     // This function will be called by parseInlineQueryResult(), so I don't add
     // curly brackets to the result string.
@@ -1442,7 +1452,7 @@ InlineQueryResultPhoto::Ptr TgTypeParser::parseJsonAndGetInlineQueryResultPhoto(
 
 std::string TgTypeParser::parseInlineQueryResultPhoto(const InlineQueryResultPhoto::Ptr& object) const{
     if (!object){
-        return " ";
+        return "";
     }
     // This function will be called by parseInlineQueryResult(), so I don't add
     // curly brackets to the result string.
@@ -1468,7 +1478,7 @@ InlineQueryResultGif::Ptr TgTypeParser::parseJsonAndGetInlineQueryResultGif(cons
 }
 std::string TgTypeParser::parseInlineQueryResultGif(const InlineQueryResultGif::Ptr& object) const {
     if (!object){
-        return " ";
+        return "";
     }
     // This function will be called by parseInlineQueryResult(), so I don't add
     // curly brackets to the result string.
@@ -1495,7 +1505,7 @@ InlineQueryResultMpeg4Gif::Ptr TgTypeParser::parseJsonAndGetInlineQueryResultMpe
 
 std::string TgTypeParser::parseInlineQueryResultMpeg4Gif(const InlineQueryResultMpeg4Gif::Ptr& object) const {
     if (!object){
-        return " ";
+        return "";
     }
     // This function will be called by parseInlineQueryResult(), so I don't add
     // curly brackets to the result string.
@@ -1524,7 +1534,7 @@ InlineQueryResultVideo::Ptr TgTypeParser::parseJsonAndGetInlineQueryResultVideo(
 
 std::string TgTypeParser::parseInlineQueryResultVideo(const InlineQueryResultVideo::Ptr& object) const {
     if (!object){
-        return " ";
+        return "";
     }
     // This function will be called by parseInlineQueryResult(), so I don't add
     // curly brackets to the result string.
@@ -1751,7 +1761,7 @@ InputTextMessageContent::Ptr TgTypeParser::parseJsonAndGetInputTextMessageConten
 
 std::string TgTypeParser::parseInputTextMessageContent(const InputTextMessageContent::Ptr& object) const {
     if (!object){
-        return " ";
+        return "";
     }
     // This function will be called by parseInputMessageContent()
     string result;
@@ -1772,7 +1782,7 @@ InputLocationMessageContent::Ptr TgTypeParser::parseJsonAndGetInputLocationMessa
 
 std::string TgTypeParser::parseInputLocationMessageContent(const InputLocationMessageContent::Ptr& object) const {
     if (!object){
-        return " ";
+        return "";
     }
     // This function will be called by parseInputMessageContent()
     string result;
@@ -1790,12 +1800,13 @@ InputVenueMessageContent::Ptr TgTypeParser::parseJsonAndGetInputVenueMessageCont
     result->title = data.get<string>("title");
     result->address = data.get<string>("address");
     result->foursquareId = data.get<string>("foursquare_id", "");
+    result->foursquareType = data.get<string>("foursquare_type", "");
     return result;
 }
 
 std::string TgTypeParser::parseInputVenueMessageContent(const InputVenueMessageContent::Ptr& object) const {
     if (!object){
-        return " ";
+        return "";
     }
     // This function will be called by parseInputMessageContent()
     string result;
@@ -1814,18 +1825,20 @@ InputContactMessageContent::Ptr TgTypeParser::parseJsonAndGetInputContactMessage
     result->phoneNumber = data.get<string>("phone_number");
     result->firstName = data.get<string>("first_name");
     result->lastName = data.get<string>("last_name", "");
+    result->vcard = data.get<string>("vcard", "");
     return result;
 }
 
 std::string TgTypeParser::parseInputContactMessageContent(const InputContactMessageContent::Ptr& object) const {
     if (!object){
-        return " ";
+        return "";
     }
     // This function will be called by parseInputMessageContent()
     string result;
     appendToJson(result, "phone_number", object->phoneNumber);
     appendToJson(result, "first_name", object->firstName);
     appendToJson(result, "last_name", object->lastName);
+    appendToJson(result, "vcard", object->vcard);
     // The last comma will be erased by parseInputMessageContent().
     return result;
 }
@@ -1842,7 +1855,7 @@ Invoice::Ptr TgTypeParser::parseJsonAndGetInvoice(const boost::property_tree::pt
 
 std::string TgTypeParser::parseInvoice(const Invoice::Ptr& object) const {
     if (!object) {
-        return " ";
+        return "";
     }
     string result;
     result += '{';
@@ -1884,7 +1897,7 @@ OrderInfo::Ptr TgTypeParser::parseJsonAndGetOrderInfo(const boost::property_tree
 
 string TgTypeParser::parseOrderInfo(const OrderInfo::Ptr& object) const {
     if (!object) {
-        return " ";
+        return "";
     }
     std::string result;
     result += '{';

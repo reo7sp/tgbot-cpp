@@ -38,6 +38,11 @@ public:
      */
     std::string lastName;
 
+    /**
+     * @brief Optional. Additional data about the contact in the form of a vCard, 0-2048 bytes
+     */
+    std::string vcard;
+
     virtual ~InputContactMessageContent() { }
 };
 }

@@ -50,6 +50,11 @@ public:
     std::string foursquareId;
 
     /**
+     * @brief Optional. Foursquare type of the venue, if known. (For example, “arts_entertainment/default”, “arts_entertainment/aquarium” or “food/icecream”.)
+     */
+    std::string foursquareType;
+
+    /**
      * @brief Optional. Url of the thumbnail for the result
      */
     std::string thumbUrl;

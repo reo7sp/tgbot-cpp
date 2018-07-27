@@ -57,6 +57,11 @@ public:
      * @brief Optional. Contact's user identifier in Telegram.
      */
     std::string userId;
+
+    /**
+     * @brief Optional. Additional data about the contact in the form of a vCard.
+     */
+    std::string vcard;
 };
 
 }

@@ -517,7 +517,43 @@ Message::Ptr Api::sendVideo(int64_t chatId, const string& videoId, bool supports
     return _tgTypeParser.parseJsonAndGetMessage(sendRequest("sendVideo", args));
 }
 
-Message::Ptr Api::sendVideoNote(int64_t chatId, const InputFile::Ptr videoNote, int64_t replyToMessageId, bool disableNotification, int32_t duration, int32_t length, const GenericReply::Ptr replyMarkup) {
+Message::Ptr Api::sendAnimation(int64_t chatId, boost::variant<InputFile::Ptr, std::string> animation, int32_t duration, int32_t width, int32_t height, const string& caption, int32_t replyToMessageId, GenericReply::Ptr replyMarkup, const string& parseMode, bool disableNotification) const {
+    vector<HttpReqArg> args;
+    args.reserve(10);
+    args.emplace_back("chat_id", chatId);
+    if (animation.which() == 0 /* InputFile::Ptr */) {
+        args.emplace_back("animation", boost::get<InputFile::Ptr>(animation));
+    } else /* std::string */ {
+        args.emplace_back("animation", boost::get<std::string>(animation));
+    }
+    if (duration) {
+        args.emplace_back("duration", duration);
+    }
+    if (width) {
+        args.emplace_back("width", width);
+    }
+    if (height) {
+        args.emplace_back("height", height);
+    }
+    if (!caption.empty()) {
+        args.emplace_back("caption", caption);
+    }
+    if (replyToMessageId) {
+        args.emplace_back("reply_to_message_id", replyToMessageId);
+    }
+    if (replyMarkup) {
+        args.emplace_back("reply_markup", _tgTypeParser.parseGenericReply(replyMarkup));
+    }
+    if (!parseMode.empty()) {
+        args.emplace_back("parse_mode", parseMode);
+    }
+    if (disableNotification){
+        args.emplace_back("disable_notification", disableNotification);
+    }
+    return _tgTypeParser.parseJsonAndGetMessage(sendRequest("sendAnimation", args));
+}
+
+Message::Ptr Api::sendVideoNote(int64_t chatId, const InputFile::Ptr videoNote, int64_t replyToMessageId, bool disableNotification, int32_t duration, int32_t length, const GenericReply::Ptr replyMarkup) const {
     vector<HttpReqArg> args;
     args.reserve(7);
     args.emplace_back("chat_id", chatId);
@@ -540,7 +576,7 @@ Message::Ptr Api::sendVideoNote(int64_t chatId, const InputFile::Ptr videoNote, 
     return _tgTypeParser.parseJsonAndGetMessage(sendRequest("sendVoiceNote", args));
 }
 
-Message::Ptr Api::sendVideoNote(int64_t chatId, const string &videoNote, int64_t replyToMessageId, bool disableNotification, int32_t duration, int32_t length, const GenericReply::Ptr replyMarkup) {
+Message::Ptr Api::sendVideoNote(int64_t chatId, const string &videoNote, int64_t replyToMessageId, bool disableNotification, int32_t duration, int32_t length, const GenericReply::Ptr replyMarkup) const {
     vector<HttpReqArg> args;
     args.reserve(7);
     args.emplace_back("chat_id", chatId);
@@ -719,7 +755,7 @@ bool Api::deleteChatStickerSet(int64_t chatId) const {
 
 Message::Ptr Api::sendVenue(int64_t chatId, float latitude, float longitude, const string& title, const string& address, const string& foursquareId, bool disableNotification, int32_t replyToMessageId, const GenericReply::Ptr replyMarkup) const {
     vector<HttpReqArg> args;
-    args.reserve(9);
+    args.reserve(10);
     args.emplace_back("chat_id", chatId);
     args.emplace_back("latitude", latitude);
     args.emplace_back("longitude", longitude);
@@ -727,6 +763,9 @@ Message::Ptr Api::sendVenue(int64_t chatId, float latitude, float longitude, con
     args.emplace_back("address", address);
     if (!foursquareId.empty()) {
         args.emplace_back("foursquare_id", foursquareId);
+    }
+    if (!foursquareType.empty()) {
+        args.emplace_back("foursquare_type", foursquareType);
     }
     if (replyToMessageId) {
         args.emplace_back("reply_to_message_id", replyToMessageId);
@@ -740,13 +779,18 @@ Message::Ptr Api::sendVenue(int64_t chatId, float latitude, float longitude, con
     return _tgTypeParser.parseJsonAndGetMessage(sendRequest("sendVenue", args));
 }
 
-Message::Ptr Api::sendContact(int64_t chatId, const string& phoneNumber, const string& firstName, const string& lastName, bool disableNotification, int32_t replyToMessageId, const GenericReply::Ptr replyMarkup) const {
+Message::Ptr Api::sendContact(int64_t chatId, const string& phoneNumber, const string& firstName, const string& lastName, const string& vcard, bool disableNotification, int32_t replyToMessageId, const GenericReply::Ptr replyMarkup) const {
     vector<HttpReqArg> args;
-    args.reserve(7);
+    args.reserve(8);
     args.emplace_back("chat_id", chatId);
     args.emplace_back("phone_number", phoneNumber);
     args.emplace_back("first_name", firstName);
-    args.emplace_back("last_name", lastName);
+    if (!lastName.empty()) {
+        args.emplace_back("last_name", lastName);
+    }
+    if (!vcard.empty()) {
+        args.emplace_back("vcard", vcard);
+    }
     if (replyToMessageId) {
         args.emplace_back("reply_to_message_id", replyToMessageId);
     }

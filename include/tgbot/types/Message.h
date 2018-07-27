@@ -32,6 +32,7 @@
 #include "tgbot/types/Message.h"
 #include "tgbot/types/Audio.h"
 #include "tgbot/types/Document.h"
+#include "tgbot/types/Animation.h"
 #include "tgbot/types/Sticker.h"
 #include "tgbot/types/Video.h"
 #include "tgbot/types/Contact.h"
@@ -139,6 +140,13 @@ public:
      * @brief Optional. Message is a general file, information about the file.
      */
     Document::Ptr document;
+
+    /**
+     * @brief Optional. Message is an animation, information about the animation.
+     * 
+     * For backward compatibility, when this field is set, the document field will also be set.
+     */
+    Animation::Ptr animation;
 
     /**
      * @brief Optional. Message is a game, information about the game.

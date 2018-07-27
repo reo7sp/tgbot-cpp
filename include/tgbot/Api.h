@@ -27,6 +27,7 @@
 #include <vector>
 
 #include <boost/property_tree/ptree.hpp>
+#include <boost/variant.hpp>
 
 #include "tgbot/TgTypeParser.h"
 #include "tgbot/net/HttpClient.h"
@@ -177,7 +178,7 @@ public:
     /**
      * @brief Use this method to send general files.
      * @param chatId Unique identifier for the target chat.
-     * @param document Id of the document that is already on the Telegram servers.
+     * @param documentId of the document that is already on the Telegram servers.
      * @param caption Document caption (may also be used when resending documents by file_id), 0-200 characters
      * @param replyToMessageId Optional. If the message is a reply, ID of the original message.
      * @param replyMarkup Optional. Additional interface options. An object for a custom reply keyboard, instructions to hide keyboard or to force a reply from the user.
@@ -394,6 +395,25 @@ public:
                            int32_t replyToMessageId = 0, const GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>(), const std::string& parseMode = "", bool disableNotification = false) const;
 
     /**
+     * @brief Use this method to send animation files (GIF or H.264/MPEG-4 AVC video without sound). 
+     * 
+     * Bots can currently send animation files of up to 50 MB in size, this limit may be changed in the future.
+     * 
+     * @param chatId Unique identifier for the target chat.
+     * @param animation Animation to send. Pass a file_id as String to send an animation that exists on the Telegram servers (recommended), pass an HTTP URL as a String for Telegram to get an animation from the Internet, or upload a new animation using multipart/form-data. 
+     * @param duration Optional. Duration of sent animation in seconds.
+     * @param width Optional. Animation width.
+     * @param height Optional. Animation height.
+     * @param caption Optional. Animation caption (may also be used when resending animation by file_id), 0-200 characters
+     * @param replyToMessageId Optional. If the message is a reply, ID of the original message.
+     * @param replyMarkup Optional. Additional interface options. An object for a custom reply keyboard, instructions to hide keyboard or to force a reply from the user.
+     * @param parseMode Optional. Set it to "Markdown" or "HTML" if you want Telegram apps to show bold, italic, fixed-width text or inline URLs in your bot's message.
+     * @param disableNotification Optional. Sends the message silenty.
+     * @return On success, the sent Message is returned.
+     */
+    Message::Ptr sendAnimation(int64_t chatId, boost::variant<InputFile::Ptr, std::string> animation, int32_t duration = 0, int32_t width = 0, int32_t height = 0, const std::string &caption = "",
+                              int32_t replyToMessageId = 0, GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>(), const std::string& parseMode = "", bool disableNotification = false) const;
+    /**
      * @brief Use this method to send video messages. On success, the sent Message is returned.
      * @param chatId Unique identifier for the target chat.
      * @param videoNote Video note to send.
@@ -405,7 +425,7 @@ public:
      * @return On success, the sent Message is returned.
      */
     Message::Ptr sendVideoNote(int64_t chatId, InputFile::Ptr videoNote, int64_t replyToMessageId = 0, bool disableNotification = false,
-                               int32_t duration = 0, int32_t length = 0, GenericReply::Ptr replyMarkup = GenericReply::Ptr());
+                               int32_t duration = 0, int32_t length = 0, GenericReply::Ptr replyMarkup = GenericReply::Ptr()) const;
 
     /**
      * @brief Use this method to send video messages. On success, the sent Message is returned.
@@ -419,7 +439,7 @@ public:
      * @return On success, the sent Message is returned.
      */
     Message::Ptr sendVideoNote(int64_t chatId, const std::string& videoNote, int64_t replyToMessageId = 0, bool disableNotification = false,
-                               int32_t duration = 0, int32_t length = 0, GenericReply::Ptr replyMarkup = GenericReply::Ptr());
+                               int32_t duration = 0, int32_t length = 0, GenericReply::Ptr replyMarkup = GenericReply::Ptr()) const;
 
     /**
      * @brief Use this method to send a group of photos or videos as an album.
@@ -520,13 +540,14 @@ public:
      * @param longitude Longitude of location.
      * @param title Name of the venue.
      * @param address Address of the venue.
-     * @param foursquare_id Foursquare identifier of the venue.
+     * @param foursquareId Foursquare identifier of the venue.
+     * @param foursquareType Foursquare type of the venue, if known. (For example, “arts_entertainment/default”, “arts_entertainment/aquarium” or “food/icecream”.)
      * @param replyToMessageId Optional. If the message is a reply, ID of the original message.
      * @param replyMarkup Optional. Additional interface options. A object for a custom reply keyboard, instructions to hide keyboard or to force a reply from the user.
      * @param disableNotification Optional. Sends the message silenty.
      * @return On success, the sent message is returned.
      */
-    Message::Ptr sendVenue(int64_t chatId, float latitude, float longitude, const std::string& title, const std::string& address, const std::string& foursquareId = "",
+    Message::Ptr sendVenue(int64_t chatId, float latitude, float longitude, const std::string& title, const std::string& address, const std::string& foursquareId = "", const std::string& foursquareType = "",
                            bool disableNotification = false, int32_t replyToMessageId = 0, GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>()) const;
 
     /**
@@ -535,12 +556,13 @@ public:
      * @param phoneNumber Contact's phone number.
      * @param firstName Contact's first name.
      * @param lastName Contact's last name.
+     * @param vcard Optional. Additional data about the contact in the form of a vCard, 0-2048 bytes.
      * @param disableNotification Optional. Sends the message silenty.
      * @param replyToMessageId Optional. If the message is a reply, ID of the original message.
      * @param replyMarkup Optional. Additional interface options. A object for a custom reply keyboard, instructions to hide keyboard or to force a reply from the user.
      * @return On success, the sent message is returned.
      */
-    Message::Ptr sendContact(int64_t chatId, const std::string& phoneNumber, const std::string& firstName, const std::string& lastName = "", bool disableNotification = false,
+    Message::Ptr sendContact(int64_t chatId, const std::string& phoneNumber, const std::string& firstName, const std::string& lastName = "", const std::string& vcard = "", bool disableNotification = false,
                             int32_t replyToMessageId = 0, GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>()) const;
 
     /**
