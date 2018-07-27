@@ -15,6 +15,7 @@ var group__types =
       [ "fileSize", "class_tg_bot_1_1_audio.html#ae874fb9f864741e2df69287c57fbd035", null ],
       [ "mimeType", "class_tg_bot_1_1_audio.html#a0657e6fec492919e086084ab07bcf7ae", null ],
       [ "performer", "class_tg_bot_1_1_audio.html#ac91ee59f6137da2da2f7c8ad6d1e9119", null ],
+      [ "thumb", "class_tg_bot_1_1_audio.html#aafd12221a8d29da7783beafd1fc62d5a", null ],
       [ "title", "class_tg_bot_1_1_audio.html#a93a600b9821a425e31e51fdee027e1b4", null ]
     ] ],
     [ "CallbackGame", "class_tg_bot_1_1_callback_game.html", [
@@ -89,7 +90,8 @@ var group__types =
       [ "firstName", "class_tg_bot_1_1_contact.html#a81956d457d30f743bcb74dfbe1635bc8", null ],
       [ "lastName", "class_tg_bot_1_1_contact.html#acece1a697b1e94ba95e5a4b161f7e2d3", null ],
       [ "phoneNumber", "class_tg_bot_1_1_contact.html#ada9f5461d2dd84b547cf563db624ff28", null ],
-      [ "userId", "class_tg_bot_1_1_contact.html#a35e56ce0b16eb1119431043dccd8056b", null ]
+      [ "userId", "class_tg_bot_1_1_contact.html#a35e56ce0b16eb1119431043dccd8056b", null ],
+      [ "vcard", "class_tg_bot_1_1_contact.html#a595fe95f16dbde5cb49fa44946cf0d2b", null ]
     ] ],
     [ "Document", "class_tg_bot_1_1_document.html", [
       [ "Ptr", "class_tg_bot_1_1_document.html#af311e27c16bf2a1128ee339899face9e", null ],
@@ -230,7 +232,8 @@ var group__types =
       [ "phoneNumber", "class_tg_bot_1_1_inline_query_result_contact.html#a8bf9d71688e348b69876301a4422f228", null ],
       [ "thumbHeight", "class_tg_bot_1_1_inline_query_result_contact.html#aa75d7c816783d54170b307ce99d65e56", null ],
       [ "thumbUrl", "class_tg_bot_1_1_inline_query_result_contact.html#a27661e2e0d1e7746e92e569a023b566d", null ],
-      [ "thumbWidth", "class_tg_bot_1_1_inline_query_result_contact.html#a518e5a825d0e5a715d5bbdc08b75ecfa", null ]
+      [ "thumbWidth", "class_tg_bot_1_1_inline_query_result_contact.html#a518e5a825d0e5a715d5bbdc08b75ecfa", null ],
+      [ "vcard", "class_tg_bot_1_1_inline_query_result_contact.html#a33fe5dafe6dca0dddaf7798bd1a8ca8a", null ]
     ] ],
     [ "InlineQueryResultDocument", "class_tg_bot_1_1_inline_query_result_document.html", [
       [ "Ptr", "class_tg_bot_1_1_inline_query_result_document.html#ab80da07f964cfc6a96125a3674c90cbd", null ],
@@ -288,6 +291,7 @@ var group__types =
       [ "InlineQueryResultVenue", "class_tg_bot_1_1_inline_query_result_venue.html#a7a696bc221c372c4cff2633159a5dac1", null ],
       [ "address", "class_tg_bot_1_1_inline_query_result_venue.html#a065ae48c35a1fccad49e1dd9c143443b", null ],
       [ "foursquareId", "class_tg_bot_1_1_inline_query_result_venue.html#a046d6213f587de9c4acbe7bc2eb194d9", null ],
+      [ "foursquareType", "class_tg_bot_1_1_inline_query_result_venue.html#a06bed21fae09cabead17227f430a6445", null ],
       [ "latitude", "class_tg_bot_1_1_inline_query_result_venue.html#a842e5f5e15da3e24e81f8d68ec00ad97", null ],
       [ "longitude", "class_tg_bot_1_1_inline_query_result_venue.html#a385d6861f463a496af03accc31143a4c", null ],
       [ "thumbHeight", "class_tg_bot_1_1_inline_query_result_venue.html#a284c445f7142d1f83fe78c22681747c2", null ],
@@ -317,7 +321,8 @@ var group__types =
       [ "~InputContactMessageContent", "class_tg_bot_1_1_input_contact_message_content.html#ae6b8788ba14b203ba53373262d9a67c0", null ],
       [ "firstName", "class_tg_bot_1_1_input_contact_message_content.html#a673d5217669bf5fce75f51578cdc5c1c", null ],
       [ "lastName", "class_tg_bot_1_1_input_contact_message_content.html#a125669f026157308736f940e1400ed23", null ],
-      [ "phoneNumber", "class_tg_bot_1_1_input_contact_message_content.html#a96fe449f5efd3f80c2dde6af364a7aa6", null ]
+      [ "phoneNumber", "class_tg_bot_1_1_input_contact_message_content.html#a96fe449f5efd3f80c2dde6af364a7aa6", null ],
+      [ "vcard", "class_tg_bot_1_1_input_contact_message_content.html#acf386d75877bd190f3d845e697e03a9f", null ]
     ] ],
     [ "InputFile", "class_tg_bot_1_1_input_file.html", [
       [ "Ptr", "class_tg_bot_1_1_input_file.html#a9b1b7a8f913d9c4d4a389d9a4353d94f", null ],
@@ -336,16 +341,34 @@ var group__types =
       [ "Ptr", "class_tg_bot_1_1_input_media.html#abdc38ae21d5213ead3720db082ef1f9c", null ],
       [ "TYPE", "class_tg_bot_1_1_input_media.html#a15b9867f0c1834b2a4d16ac48f25fb73", [
         [ "PHOTO", "class_tg_bot_1_1_input_media.html#a15b9867f0c1834b2a4d16ac48f25fb73ac6c7e64f7c3b7e4c031d022f232298bf", null ],
-        [ "VIDEO", "class_tg_bot_1_1_input_media.html#a15b9867f0c1834b2a4d16ac48f25fb73ae60ae31f67ab883c746bb71c7a145c18", null ]
+        [ "VIDEO", "class_tg_bot_1_1_input_media.html#a15b9867f0c1834b2a4d16ac48f25fb73ae60ae31f67ab883c746bb71c7a145c18", null ],
+        [ "ANIMATION", "class_tg_bot_1_1_input_media.html#a15b9867f0c1834b2a4d16ac48f25fb73a28ff0af6199e0baf97bb71b4b4422057", null ],
+        [ "DOCUMENT", "class_tg_bot_1_1_input_media.html#a15b9867f0c1834b2a4d16ac48f25fb73ac231fa48df3ee393c92dccac4dba5e7d", null ],
+        [ "AUDIO", "class_tg_bot_1_1_input_media.html#a15b9867f0c1834b2a4d16ac48f25fb73ae423b8bde9bfbfd7e9409b23b23aed91", null ]
       ] ],
       [ "caption", "class_tg_bot_1_1_input_media.html#a5fd875b292792f8d699d7bb678e68c90", null ],
       [ "duration", "class_tg_bot_1_1_input_media.html#aadf7e972c4ea70c771a0da27da4aa7cd", null ],
       [ "height", "class_tg_bot_1_1_input_media.html#aeac8eae9ef4e06fa0c67b98a8a8042f8", null ],
       [ "media", "class_tg_bot_1_1_input_media.html#a3b06a5b4686339b58c4a95b5734b4b77", null ],
       [ "parseMode", "class_tg_bot_1_1_input_media.html#ae2761ade0de31f96074d6760661c7edc", null ],
+      [ "performer", "class_tg_bot_1_1_input_media.html#ab4077509620fe87cbec14ae2fd07b452", null ],
       [ "supportsStreaming", "class_tg_bot_1_1_input_media.html#a0b8e0cc28a8283ca946b4aa5c5384a3b", null ],
+      [ "thumb", "class_tg_bot_1_1_input_media.html#a2bd80b1c8832842976e28f5f5397596e", null ],
+      [ "title", "class_tg_bot_1_1_input_media.html#a96f9c769537d5e503d1139f8943025d7", null ],
       [ "type", "class_tg_bot_1_1_input_media.html#a8080040900519b706a367ecfd7b28226", null ],
       [ "width", "class_tg_bot_1_1_input_media.html#afa903b8b20fd1cf71b1f0510a4563a9a", null ]
+    ] ],
+    [ "InputMediaAnimation", "class_tg_bot_1_1_input_media_animation.html", [
+      [ "Ptr", "class_tg_bot_1_1_input_media_animation.html#a30ba6a562ee26977fe3e7efc7aad6d22", null ],
+      [ "InputMediaAnimation", "class_tg_bot_1_1_input_media_animation.html#aa9bbc275fd2c74abe6691e774f81357e", null ]
+    ] ],
+    [ "InputMediaAudio", "class_tg_bot_1_1_input_media_audio.html", [
+      [ "Ptr", "class_tg_bot_1_1_input_media_audio.html#adf635d1fc252a7058272983ad2f1ae93", null ],
+      [ "InputMediaAudio", "class_tg_bot_1_1_input_media_audio.html#a227d09539cfb2a6a38dca56b3777d4c4", null ]
+    ] ],
+    [ "InputMediaDocument", "class_tg_bot_1_1_input_media_document.html", [
+      [ "Ptr", "class_tg_bot_1_1_input_media_document.html#a8d624ad41088d1a512e4bfc5ceef7856", null ],
+      [ "InputMediaDocument", "class_tg_bot_1_1_input_media_document.html#a452614833e0cb356fb74fc26fa16dac8", null ]
     ] ],
     [ "InputMediaPhoto", "class_tg_bot_1_1_input_media_photo.html", [
       [ "Ptr", "class_tg_bot_1_1_input_media_photo.html#a02ac033a0ebe474b02f745f4d9e8e2b3", null ],
@@ -375,6 +398,7 @@ var group__types =
       [ "~InputVenueMessageContent", "class_tg_bot_1_1_input_venue_message_content.html#a3d08b7d6946538e949ec0293f72edec5", null ],
       [ "address", "class_tg_bot_1_1_input_venue_message_content.html#a12eae6e237d0c62260a07f944fcfbdfa", null ],
       [ "foursquareId", "class_tg_bot_1_1_input_venue_message_content.html#a567018a9fe54af6933dfa7815f6b4a34", null ],
+      [ "foursquareType", "class_tg_bot_1_1_input_venue_message_content.html#a5e4a82e39fc1820f49c15a10fa21f3fe", null ],
       [ "latitude", "class_tg_bot_1_1_input_venue_message_content.html#a9e367296fc30563e5694764d0fcaffcb", null ],
       [ "longitude", "class_tg_bot_1_1_input_venue_message_content.html#ad3fb2b24df33d6eaa96243ab7a06f3f8", null ],
       [ "title", "class_tg_bot_1_1_input_venue_message_content.html#ae5c1b7d2263d1722662b7eb6fceb9038", null ]
@@ -412,6 +436,7 @@ var group__types =
     ] ],
     [ "Message", "class_tg_bot_1_1_message.html", [
       [ "Ptr", "class_tg_bot_1_1_message.html#a3805a5dc013c6ab23ac5efc91282c11d", null ],
+      [ "animation", "class_tg_bot_1_1_message.html#a45f98ebfeecddc6d91fd5359aea9bbc2", null ],
       [ "audio", "class_tg_bot_1_1_message.html#a5119ef820bcb4c231a1402147305ea67", null ],
       [ "authorSignature", "class_tg_bot_1_1_message.html#a5e23abf4c637e59a51bd7f7a49339d54", null ],
       [ "caption", "class_tg_bot_1_1_message.html#a2c8eb6214270371cfb094b699c07f695", null ],
@@ -583,7 +608,8 @@ var group__types =
     [ "Venue", "class_tg_bot_1_1_venue.html", [
       [ "Ptr", "class_tg_bot_1_1_venue.html#a9f9505e1035b3aacd2ad9d68a8285a14", null ],
       [ "address", "class_tg_bot_1_1_venue.html#a411e85c19c38ad2b8922d60582f72459", null ],
-      [ "foursquare_id", "class_tg_bot_1_1_venue.html#aec6a2d5230788e85a55cc407246ad968", null ],
+      [ "foursquareId", "class_tg_bot_1_1_venue.html#a47ef50c075a870d7a4aa9f27c4181506", null ],
+      [ "foursquareType", "class_tg_bot_1_1_venue.html#a8e0d7ae114e1bb2f88ea2a10ae40438b", null ],
       [ "location", "class_tg_bot_1_1_venue.html#a9dbb9e88b790f9a938c9ec561ed773ce", null ],
       [ "title", "class_tg_bot_1_1_venue.html#afc6d630815d434ebf97a86a47f74ca50", null ]
     ] ],

@@ -7,5 +7,6 @@ var class_tg_bot_1_1_inline_query_result_contact =
     [ "phoneNumber", "class_tg_bot_1_1_inline_query_result_contact.html#a8bf9d71688e348b69876301a4422f228", null ],
     [ "thumbHeight", "class_tg_bot_1_1_inline_query_result_contact.html#aa75d7c816783d54170b307ce99d65e56", null ],
     [ "thumbUrl", "class_tg_bot_1_1_inline_query_result_contact.html#a27661e2e0d1e7746e92e569a023b566d", null ],
-    [ "thumbWidth", "class_tg_bot_1_1_inline_query_result_contact.html#a518e5a825d0e5a715d5bbdc08b75ecfa", null ]
+    [ "thumbWidth", "class_tg_bot_1_1_inline_query_result_contact.html#a518e5a825d0e5a715d5bbdc08b75ecfa", null ],
+    [ "vcard", "class_tg_bot_1_1_inline_query_result_contact.html#a33fe5dafe6dca0dddaf7798bd1a8ca8a", null ]
 ];

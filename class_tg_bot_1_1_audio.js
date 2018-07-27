@@ -6,5 +6,6 @@ var class_tg_bot_1_1_audio =
     [ "fileSize", "class_tg_bot_1_1_audio.html#ae874fb9f864741e2df69287c57fbd035", null ],
     [ "mimeType", "class_tg_bot_1_1_audio.html#a0657e6fec492919e086084ab07bcf7ae", null ],
     [ "performer", "class_tg_bot_1_1_audio.html#ac91ee59f6137da2da2f7c8ad6d1e9119", null ],
+    [ "thumb", "class_tg_bot_1_1_audio.html#aafd12221a8d29da7783beafd1fc62d5a", null ],
     [ "title", "class_tg_bot_1_1_audio.html#a93a600b9821a425e31e51fdee027e1b4", null ]
 ];
