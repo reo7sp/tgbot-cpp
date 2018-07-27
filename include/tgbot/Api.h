@@ -108,7 +108,7 @@ public:
      * @param disableNotification Optional. Sends the message silenty.
      * @return On success, the sent message is returned.
      */
-    Message::Ptr sendPhoto(int64_t chatId, boost::variant<InputFile::Ptr, std::string> photo, const std::string& caption = "", int32_t replyToMessageId = 0,
+    Message::Ptr sendPhoto(int64_t chatId, const boost::variant<InputFile::Ptr, std::string> photo, const std::string& caption = "", int32_t replyToMessageId = 0,
                            GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>(), const std::string& parseMode = "", bool disableNotification = false) const;
 
     /**
@@ -119,20 +119,22 @@ public:
      * @param duration Duration of sent audio in seconds.
      * @param performer Performer
      * @param title Track name
+     * @param thumb Thumbnail of the file sent. The thumbnail should be in JPEG format and less than 200 kB in size. A thumbnail‘s width and height should not exceed 90. Ignored if the file is not uploaded using multipart/form-data. Thumbnails can’t be reused and can be only uploaded as a new file, so you can pass “attach://<file_attach_name>” if the thumbnail was uploaded using multipart/form-data under <file_attach_name>.
      * @param replyToMessageId Optional. If the message is a reply, ID of the original message.
      * @param replyMarkup Optional. Additional interface options. An object for a custom reply keyboard, instructions to hide keyboard or to force a reply from the user.
      * @param parseMode Optional. Set it to "Markdown" or "HTML" if you want Telegram apps to show bold, italic, fixed-width text or inline URLs in your bot's message.
      * @param disableNotification Optional. Sends the message silenty.
      * @return On success, the sent message is returned.
      */
-    Message::Ptr sendAudio(int64_t chatId, boost::variant<InputFile::Ptr, std::string> audio, const std::string &caption = "", int32_t duration = 0,
-                           const std::string& performer = "", const std::string& title = "", int32_t replyToMessageId = 0,
+    Message::Ptr sendAudio(int64_t chatId, const boost::variant<InputFile::Ptr, std::string> audio, const std::string &caption = "", int32_t duration = 0,
+                           const std::string& performer = "", const std::string& title = "", const boost::variant<InputFile::Ptr, std::string> thumb = "", int32_t replyToMessageId = 0,
                            GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>(), const std::string& parseMode = "", bool disableNotification = false) const;
 
     /**
      * @brief Use this method to send general files.
      * @param chatId Unique identifier for the target chat.
      * @param document Document to send.
+     * @param thumb Thumbnail of the file sent. The thumbnail should be in JPEG format and less than 200 kB in size. A thumbnail‘s width and height should not exceed 90. Ignored if the file is not uploaded using multipart/form-data. Thumbnails can’t be reused and can be only uploaded as a new file, so you can pass “attach://<file_attach_name>” if the thumbnail was uploaded using multipart/form-data under <file_attach_name>.
      * @param caption Document caption (may also be used when resending documents by file_id), 0-200 characters
      * @param replyToMessageId Optional. If the message is a reply, ID of the original message.
      * @param replyMarkup Optional. Additional interface options. An object for a custom reply keyboard, instructions to hide keyboard or to force a reply from the user.
@@ -140,7 +142,7 @@ public:
      * @param disableNotification Optional. Sends the message silenty.
      * @return On success, the sent message is returned.
      */
-    Message::Ptr sendDocument(int64_t chatId, boost::variant<InputFile::Ptr, std::string> document, const std::string &caption = "", int32_t replyToMessageId = 0,
+    Message::Ptr sendDocument(int64_t chatId, const boost::variant<InputFile::Ptr, std::string> document, const boost::variant<InputFile::Ptr, std::string> thumb = "", const std::string &caption = "", int32_t replyToMessageId = 0,
                               GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>(), const std::string& parseMode = "", bool disableNotification = false) const;
 
     /**
@@ -213,7 +215,7 @@ public:
      * @param disableNotification Optional. Sends the message silenty.
      * @return On success, the sent message is returned.
      */
-    Message::Ptr sendSticker(int64_t chatId, boost::variant<InputFile::Ptr, std::string> sticker, int32_t replyToMessageId = 0,
+    Message::Ptr sendSticker(int64_t chatId, const boost::variant<InputFile::Ptr, std::string> sticker, int32_t replyToMessageId = 0,
                              GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>(), bool disableNotification = false) const;
 
     /**
@@ -281,6 +283,7 @@ public:
      * @param duration Optional. Duration of sent video in seconds
      * @param width Optional. Video width
      * @param height Optional. Video height
+     * @param thumb Thumbnail of the file sent. The thumbnail should be in JPEG format and less than 200 kB in size. A thumbnail‘s width and height should not exceed 90. Ignored if the file is not uploaded using multipart/form-data. Thumbnails can’t be reused and can be only uploaded as a new file, so you can pass “attach://<file_attach_name>” if the thumbnail was uploaded using multipart/form-data under <file_attach_name>.
      * @param caption Optional. Video caption (may also be used when resending videos by file_id), 0-200 characters
      * @param replyToMessageId Optional. If the message is a reply, ID of the original message.
      * @param replyMarkup Optional. Additional interface options. An object for a custom reply keyboard, instructions to hide keyboard or to force a reply from the user.
@@ -288,7 +291,7 @@ public:
      * @param disableNotification Optional. Sends the message silenty.
      * @return On success, the sent message is returned.
      */
-    Message::Ptr sendVideo(int64_t chatId, boost::variant<InputFile::Ptr, std::string> video, bool supportsStreaming = false, int32_t duration = 0, int32_t width = 0, int32_t height = 0, const std::string& caption = "",
+    Message::Ptr sendVideo(int64_t chatId, const boost::variant<InputFile::Ptr, std::string> video, bool supportsStreaming = false, int32_t duration = 0, int32_t width = 0, int32_t height = 0, const boost::variant<InputFile::Ptr, std::string> thumb = "", const std::string& caption = "",
                            int32_t replyToMessageId = 0, GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>(), const std::string& parseMode = "", bool disableNotification = false) const;
 
     /**
@@ -301,6 +304,7 @@ public:
      * @param duration Optional. Duration of sent animation in seconds.
      * @param width Optional. Animation width.
      * @param height Optional. Animation height.
+     * @param thumb Thumbnail of the file sent. The thumbnail should be in JPEG format and less than 200 kB in size. A thumbnail‘s width and height should not exceed 90. Ignored if the file is not uploaded using multipart/form-data. Thumbnails can’t be reused and can be only uploaded as a new file, so you can pass “attach://<file_attach_name>” if the thumbnail was uploaded using multipart/form-data under <file_attach_name>.
      * @param caption Optional. Animation caption (may also be used when resending animation by file_id), 0-200 characters
      * @param replyToMessageId Optional. If the message is a reply, ID of the original message.
      * @param replyMarkup Optional. Additional interface options. An object for a custom reply keyboard, instructions to hide keyboard or to force a reply from the user.
@@ -308,7 +312,7 @@ public:
      * @param disableNotification Optional. Sends the message silenty.
      * @return On success, the sent Message is returned.
      */
-    Message::Ptr sendAnimation(int64_t chatId, boost::variant<InputFile::Ptr, std::string> animation, int32_t duration = 0, int32_t width = 0, int32_t height = 0, const std::string &caption = "",
+    Message::Ptr sendAnimation(int64_t chatId, const boost::variant<InputFile::Ptr, std::string> animation, int32_t duration = 0, int32_t width = 0, int32_t height = 0, const boost::variant<InputFile::Ptr, std::string> thumb, const std::string &caption = "",
                               int32_t replyToMessageId = 0, GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>(), const std::string& parseMode = "", bool disableNotification = false) const;
     /**
      * @brief Use this method to send video messages. On success, the sent Message is returned.
@@ -318,11 +322,12 @@ public:
      * @param disableNotification Sends the message silently. Users will receive a notification with no sound.
      * @param duration Duration of sent video in seconds.
      * @param length Video width and height.
+     * @param thumb Thumbnail of the file sent. The thumbnail should be in JPEG format and less than 200 kB in size. A thumbnail‘s width and height should not exceed 90. Ignored if the file is not uploaded using multipart/form-data. Thumbnails can’t be reused and can be only uploaded as a new file, so you can pass “attach://<file_attach_name>” if the thumbnail was uploaded using multipart/form-data under <file_attach_name>.
      * @param replyMarkup Additional interface options. A object for an inline keyboard, custom reply keyboard, instructions to remove reply keyboard or to force a reply from the user.
      * @return On success, the sent Message is returned.
      */
-    Message::Ptr sendVideoNote(int64_t chatId, boost::variant<InputFile::Ptr, std::string> videoNote, int64_t replyToMessageId = 0, bool disableNotification = false,
-                               int32_t duration = 0, int32_t length = 0, GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>()) const;
+    Message::Ptr sendVideoNote(int64_t chatId, const boost::variant<InputFile::Ptr, std::string> videoNote, int64_t replyToMessageId = 0, bool disableNotification = false,
+                               int32_t duration = 0, int32_t length = 0, const boost::variant<InputFile::Ptr, std::string> thumb = "", GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>()) const;
 
     /**
      * @brief Use this method to send a group of photos or videos as an album.
@@ -347,7 +352,7 @@ public:
      * @param disableNotification Optional. Sends the message silenty.
      * @return On success, the sent message is returned.
      */
-    Message::Ptr sendVoice(int64_t chatId, boost::variant<InputFile::Ptr, std::string> voice, const std::string& caption = "", int duration = 0, int32_t replyToMessageId = 0,
+    Message::Ptr sendVoice(int64_t chatId, const boost::variant<InputFile::Ptr, std::string> voice, const std::string& caption = "", int duration = 0, int32_t replyToMessageId = 0,
                            GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>(), const std::string& parseMode = "", bool disableNotification = false) const;
 
     /**
