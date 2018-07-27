@@ -28,8 +28,6 @@
 #include <memory>
 #include <string>
 
-#include <boost/variant.hpp>
-
 namespace TgBot {
 
 /**

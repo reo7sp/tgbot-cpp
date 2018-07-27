@@ -962,7 +962,7 @@ Message::Ptr Api::editMessageReplyMarkup(int64_t chatId, int32_t messageId, cons
     }
 }
 
-Message::Ptr Message::Ptr editMessageMedia(InputMedia::Ptr media, int64_t chatId, int32_t messageId, const std::string& inlineMessageId,
+Message::Ptr editMessageMedia(InputMedia::Ptr media, int64_t chatId, int32_t messageId, const std::string& inlineMessageId,
                                   GenericReply::Ptr replyMarkup) const {
 
     vector<HttpReqArg> args;
