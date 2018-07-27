@@ -312,7 +312,7 @@ public:
      * @param disableNotification Optional. Sends the message silenty.
      * @return On success, the sent Message is returned.
      */
-    Message::Ptr sendAnimation(int64_t chatId, const boost::variant<InputFile::Ptr, std::string> animation, int32_t duration = 0, int32_t width = 0, int32_t height = 0, const boost::variant<InputFile::Ptr, std::string> thumb, const std::string &caption = "",
+    Message::Ptr sendAnimation(int64_t chatId, const boost::variant<InputFile::Ptr, std::string> animation, int32_t duration = 0, int32_t width = 0, int32_t height = 0, const boost::variant<InputFile::Ptr, std::string> thumb = "", const std::string &caption = "",
                               int32_t replyToMessageId = 0, GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>(), const std::string& parseMode = "", bool disableNotification = false) const;
     /**
      * @brief Use this method to send video messages. On success, the sent Message is returned.

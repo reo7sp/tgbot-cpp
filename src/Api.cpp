@@ -517,7 +517,7 @@ Message::Ptr Api::sendVoice(int64_t chatId, const boost::variant<InputFile::Ptr,
     args.reserve(8);
     args.emplace_back("chat_id", chatId);
     if (voice.which() == 0 /* InputFile::Ptr */) {
-        auto file = boost::get<InputFile::Ptr>(video);
+        auto file = boost::get<InputFile::Ptr>(voice);
         args.emplace_back("voice", file->data, true, file->mimeType, file->fileName);
     } else /* std::string */ {
         args.emplace_back("voice", boost::get<std::string>(voice));
