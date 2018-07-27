@@ -347,7 +347,7 @@ public:
      * @param disableNotification Optional. Sends the message silenty.
      * @return On success, the sent message is returned.
      */
-    Message::Ptr sendVoice(int64_t chatId, InputFile::Ptr voice, const std::string& caption = "", int duration = 0, int32_t replyToMessageId = 0,
+    Message::Ptr sendVoice(int64_t chatId, boost::variant<InputFile::Ptr, std::string> voice, const std::string& caption = "", int duration = 0, int32_t replyToMessageId = 0,
                            GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>(), const std::string& parseMode = "", bool disableNotification = false) const;
 
     /**

@@ -816,7 +816,7 @@ Message::Ptr editMessageMedia(InputMedia::Ptr media, int64_t chatId, int32_t mes
     if (replyMarkup) {
         args.emplace_back("reply_markup", _tgTypeParser.parseGenericReply(replyMarkup));
     }
-    ptree p = sendRequest("editMessageCaption", args);
+    ptree p = sendRequest("editMessageMedia", args);
     if (p.get_child_optional("message_id")) {
         return _tgTypeParser.parseJsonAndGetMessage(p);
     } else {
