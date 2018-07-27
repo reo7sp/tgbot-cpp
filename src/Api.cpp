@@ -753,7 +753,7 @@ bool Api::deleteChatStickerSet(int64_t chatId) const {
     return sendRequest("deleteChatStickerSet", args).get<bool>("", false);
 }
 
-Message::Ptr Api::sendVenue(int64_t chatId, float latitude, float longitude, const string& title, const string& address, const string& foursquareId, bool disableNotification, int32_t replyToMessageId, const GenericReply::Ptr replyMarkup) const {
+Message::Ptr Api::sendVenue(int64_t chatId, float latitude, float longitude, const string& title, const string& address, const string& foursquareId, const string& foursquareType, bool disableNotification, int32_t replyToMessageId, const GenericReply::Ptr replyMarkup) const {
     vector<HttpReqArg> args;
     args.reserve(10);
     args.emplace_back("chat_id", chatId);
@@ -955,6 +955,32 @@ Message::Ptr Api::editMessageReplyMarkup(int64_t chatId, int32_t messageId, cons
         args.emplace_back("reply_markup", _tgTypeParser.parseGenericReply(replyMarkup));
     }
     ptree p = sendRequest("editMessageReplyMarkup", args);
+    if (p.get_child_optional("message_id")) {
+        return _tgTypeParser.parseJsonAndGetMessage(p);
+    } else {
+        return nullptr;
+    }
+}
+
+Message::Ptr Message::Ptr editMessageMedia(InputMedia::Ptr media, int64_t chatId, int32_t messageId, const std::string& inlineMessageId,
+                                  GenericReply::Ptr replyMarkup) const {
+
+    vector<HttpReqArg> args;
+    args.reserve(5);
+    args.emplace_back("media", _tgTypeParser.parseInputMedia(media));
+    if (chatId) {
+        args.emplace_back("chat_id", chatId);
+    }
+    if (messageId) {
+        args.emplace_back("message_id", messageId);
+    }
+    if (!inlineMessageId.empty()) {
+        args.emplace_back("inline_message_id", inlineMessageId);
+    }
+    if (replyMarkup) {
+        args.emplace_back("reply_markup", _tgTypeParser.parseGenericReply(replyMarkup));
+    }
+    ptree p = sendRequest("editMessageCaption", args);
     if (p.get_child_optional("message_id")) {
         return _tgTypeParser.parseJsonAndGetMessage(p);
     } else {

@@ -682,6 +682,24 @@ public:
                                     const std::string& inlineMessageId = "", GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>()) const;
 
     /**
+     * @brief Use this method to edit audio, document, photo, or video messages.
+     * 
+     * 
+     * If a message is a part of a message album, then it can be edited only to a photo or a video.
+     * Otherwise, message type can be changed arbitrarily. When inline message is edited, new file can't be uploaded.
+     * Use previously uploaded file via its file_id or specify a URL.
+     * 
+     * @param media A JSON-serialized object for a new media content of the message.
+     * @param chatId Optional	Required if inline_message_id is not specified. Unique identifier for the target chat of the target channel.
+     * @param messageId Optional	Required if inline_message_id is not specified. Identifier of the sent message
+     * @param inlineMessageId Optional	Required if chat_id and message_id are not specified. Identifier of the inline message
+     * @param replyMarkup Optional	A JSON-serialized object for an inline keyboard.
+     * @return On success, if the edited message was sent by the bot, the edited Message is returned, otherwise nullptr is returned.
+     */
+    Message::Ptr editMessageMedia(InputMedia::Ptr media, int64_t chatId = 0, int32_t messageId = 0, const std::string& inlineMessageId = "",
+                                  GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>()) const;
+
+    /**
     * @brief Use this method to edit only the reply markup of messages sent by the bot or via the bot (for inline bots).
     * @param chatId Optional	Required if inline_message_id is not specified. Unique identifier for the target chat of the target channel.
     * @param messageId Optional	Required if inline_message_id is not specified. Identifier of the sent message

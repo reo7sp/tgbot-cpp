@@ -28,6 +28,8 @@
 #include <memory>
 #include <string>
 
+#include <boost/variant.hpp>
+
 namespace TgBot {
 
 /**
@@ -41,11 +43,14 @@ public:
 
     enum class TYPE : uint8_t {
         PHOTO,
-        VIDEO
+        VIDEO,
+        ANIMATION,
+        DOCUMENT,
+        AUDIO
     };
 
     /**
-     * @brief Type of the result, It should be one of TYPE::PHOTO/TYPE::VIDEO
+     * @brief Type of the result, It should be one of TYPE::*
      */
     TYPE type;
 
@@ -55,7 +60,14 @@ public:
     std::string media;
 
     /**
-     * @brief Optional. Caption of the photo to be sent, 0-200 characters
+     * @brief Optional. Thumbnail of the file sent.
+     * 
+     * The thumbnail should be in JPEG format and less than 200 kB in size. A thumbnail‘s width and height should not exceed 90. Ignored if the file is not uploaded using multipart/form-data. Thumbnails can’t be reused and can be only uploaded as a new file, so you can pass “attach://<file_attach_name>” if the thumbnail was uploaded using multipart/form-data under <file_attach_name>.
+     */
+    std::string thumb;
+
+    /**
+     * @brief Optional. Caption of the media to be sent, 0-200 characters
      */
     std::string caption;
 
@@ -65,19 +77,29 @@ public:
     std::string parseMode;
     
     /**
-     * @brief Optional. Video width
+     * @brief Optional. Media width
      */
     int32_t width = 0;
 
     /**
-     * @brief Optional. Video height
+     * @brief Optional. Media height
      */
     int32_t height = 0;
 
     /**
-     * @brief Optional. Video duration
+     * @brief Optional. Media duration
      */
     int32_t duration = 0;
+
+    /**
+     * @brief Optional. Performer of the audio.
+     */
+    int32_t performer = 0;
+
+    /**
+     * @brief Optional. Title of the audio.
+     */
+    int32_t title = 0;
 
     /**
      * @brief Optional. Pass True, if the uploaded video is suitable for streaming

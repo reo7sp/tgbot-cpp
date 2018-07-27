@@ -624,6 +624,7 @@ InputMedia::Ptr TgTypeParser::parseJsonAndGetInputMedia(const ptree& data) const
         result->media = data.get("media", "");
         result->caption = data.get("caption", "");
         result->parseMode = data.get("parse_mode", "");
+        result->thumb = data.get("thumb", "");
         return result;
     }
     else if (type == "video") {
@@ -631,11 +632,39 @@ InputMedia::Ptr TgTypeParser::parseJsonAndGetInputMedia(const ptree& data) const
         result->media = data.get("media", "");
         result->caption = data.get("caption", "");
         result->parseMode = data.get("parse_mode", "");
+        result->thumb = data.get("thumb", "");
         result->width = data.get<int32_t>("width", 0);
         result->height = data.get<int32_t>("height", 0);
         result->duration = data.get<int32_t>("duration", 0);
         result->supportsStreaming = data.get<bool>("supports_streaming", false);
         return result;
+    }
+    else if (type == "animation") {
+        auto result(make_shared<InputMediaAnimation>());
+        result->media = data.get("media", "");
+        result->caption = data.get("caption", "");
+        result->parseMode = data.get("parse_mode", "");
+        result->thumb = data.get("thumb", "");
+        result->width = data.get<int32_t>("width", 0);
+        result->height = data.get<int32_t>("height", 0);
+        result->duration = data.get<int32_t>("duration", 0);
+        return result;
+    } else if (type == "document") {
+        auto result(make_shared<InputMediaDocument>());
+        result->media = data.get("media", "");
+        result->caption = data.get("caption", "");
+        result->parseMode = data.get("parse_mode", "");
+        result->thumb = data.get("thumb", "");
+        return result;
+    } else if (type == "audio") {
+        auto result(make_shared<InputMediaAudio>());
+        result->media = data.get("media", "");
+        result->caption = data.get("caption", "");
+        result->parseMode = data.get("parse_mode", "");
+        result->thumb = data.get("thumb", "");
+        result->duration = data.get<int32_t>("duration", 0);
+        result->title = data.get<int32_t>("title", 0);
+        result->performer = data.get<int32_t>("performer", 0);
     }
     else {
         return nullptr;
@@ -648,15 +677,27 @@ string TgTypeParser::parseInputMedia(const InputMedia::Ptr& object) const {
     }
     string result;
     result += '{';
-    if (object->type == InputMedia::TYPE::PHOTO) {
-        appendToJson(result, "type", "photo");
-    }
-    else {
-        appendToJson(result, "type", "video");
+    switch(object->type) {
+        case InputMedia::TYPE::PHOTO:
+            appendToJson(result, "type", "photo");
+        break;
+        case InputMedia::TYPE::VIDEO:
+            appendToJson(result, "type", "video");
+        break;
+        case InputMedia::TYPE::ANIMATION:
+            appendToJson(result, "type", "animation");
+        break;
+        case InputMedia::TYPE::DOCUMENT:
+            appendToJson(result, "type", "document");
+        break;
+        case InputMedia::TYPE::AUDIO:
+            appendToJson(result, "type", "audio");
+        break;
     }
     appendToJson(result, "media", object->media);
     appendToJson(result, "caption", object->caption);
     appendToJson(result, "parse_mode", object->parseMode);
+    args.emplace_back("thumb", boost::get<std::string>(object->thumb));
     if (object->width) {
         appendToJson(result, "width", object->width);
     }
@@ -665,6 +706,9 @@ string TgTypeParser::parseInputMedia(const InputMedia::Ptr& object) const {
     }
     if (object->duration) {
         appendToJson(result, "duration", object->duration);
+    }
+    if (object->performer) {
+        appendToJson(result, "performer", object->performer);
     }
     if (object->supportsStreaming) {
         appendToJson(result, "supports_streaming", object->supportsStreaming);
