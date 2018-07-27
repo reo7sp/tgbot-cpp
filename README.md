@@ -18,13 +18,8 @@ Documentation is located [here](http://reo7sp.github.io/tgbot-cpp).
 
 ## State
 
-- [x] Bot API 3.0 
-- [x] Bot API 3.1
-- [x] Bot API 3.2
-- [x] Bot API 3.3
-- [x] Bot API 3.4
-- [x] Bot API 3.5
-- [x] Bot API 3.6
+- [x] Bot API 3.0 ~ 3.6
+- [x] Bot API 4.0 (Implemented all APIs except 'Telegram Passport')
 
 
 ## Sample

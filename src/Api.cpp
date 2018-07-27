@@ -75,11 +75,16 @@ Message::Ptr Api::forwardMessage(int64_t chatId, int64_t fromChatId, int32_t mes
     return _tgTypeParser.parseJsonAndGetMessage(sendRequest("forwardMessage", args));
 }
 
-Message::Ptr Api::sendPhoto(int64_t chatId, const InputFile::Ptr photo, const string& caption, int32_t replyToMessageId, const GenericReply::Ptr replyMarkup, const string& parseMode, bool disableNotification) const {
+Message::Ptr Api::sendPhoto(int64_t chatId, boost::variant<InputFile::Ptr, std::string> photo, const string& caption, int32_t replyToMessageId, const GenericReply::Ptr replyMarkup, const string& parseMode, bool disableNotification) const {
     vector<HttpReqArg> args;
     args.reserve(7);
     args.emplace_back("chat_id", chatId);
-    args.emplace_back("photo", photo->data, true, photo->mimeType, photo->fileName);
+    if (photo.which() == 0 /* InputFile::Ptr */) {
+        auto file = boost::get<InputFile::Ptr>(photo);
+        args.emplace_back("photo", file->data, true, file->mimeType, file->fileName);
+    } else /* std::string */ {
+        args.emplace_back("photo", boost::get<std::string>(photo));
+    }
     if (!caption.empty()) {
         args.emplace_back("caption", caption);
     }
@@ -98,34 +103,16 @@ Message::Ptr Api::sendPhoto(int64_t chatId, const InputFile::Ptr photo, const st
     return _tgTypeParser.parseJsonAndGetMessage(sendRequest("sendPhoto", args));
 }
 
-Message::Ptr Api::sendPhoto(int64_t chatId, const string& photoId, const string& caption, int32_t replyToMessageId, const GenericReply::Ptr replyMarkup, const string& parseMode, bool disableNotification) const {
-    vector<HttpReqArg> args;
-    args.reserve(7);
-    args.emplace_back("chat_id", chatId);
-    args.emplace_back("photo", photoId);
-    if (!caption.empty()) {
-        args.emplace_back("caption", caption);
-    }
-    if (replyToMessageId) {
-        args.emplace_back("reply_to_message_id", replyToMessageId);
-    }
-    if (replyMarkup) {
-        args.emplace_back("reply_markup", _tgTypeParser.parseGenericReply(replyMarkup));
-    }
-    if (!parseMode.empty()) {
-        args.emplace_back("parse_mode", parseMode);
-    }
-    if (disableNotification){
-        args.emplace_back("disable_notification", disableNotification);
-    }
-    return _tgTypeParser.parseJsonAndGetMessage(sendRequest("sendPhoto", args));
-}
-
-Message::Ptr Api::sendAudio(int64_t chatId, const InputFile::Ptr audio, const string &caption, int32_t duration, const string& performer, const string& title, int32_t replyToMessageId, const GenericReply::Ptr replyMarkup, const string& parseMode, bool disableNotification) const {
+Message::Ptr Api::sendAudio(int64_t chatId, boost::variant<InputFile::Ptr, std::string> audio, const string &caption, int32_t duration, const string& performer, const string& title, int32_t replyToMessageId, const GenericReply::Ptr replyMarkup, const string& parseMode, bool disableNotification) const {
     vector<HttpReqArg> args;
     args.reserve(10);
     args.emplace_back("chat_id", chatId);
-    args.emplace_back("audio", audio->data, true, audio->mimeType, audio->fileName);
+    if (audio.which() == 0 /* InputFile::Ptr */) {
+        auto file = boost::get<InputFile::Ptr>(audio);
+        args.emplace_back("audio", file->data, true, file->mimeType, file->fileName);
+    } else /* std::string */ {
+        args.emplace_back("audio", boost::get<std::string>(audio));
+    }
     if (!caption.empty()) {
         args.emplace_back("caption", caption);
     }
@@ -153,66 +140,16 @@ Message::Ptr Api::sendAudio(int64_t chatId, const InputFile::Ptr audio, const st
     return _tgTypeParser.parseJsonAndGetMessage(sendRequest("sendAudio", args));
 }
 
-Message::Ptr Api::sendAudio(int64_t chatId, const string& audioId, const string &caption, int32_t duration, const string& performer, const string& title, int32_t replyToMessageId, const GenericReply::Ptr replyMarkup, const string& parseMode, bool disableNotification) const {
-    vector<HttpReqArg> args;
-    args.reserve(10);
-    args.emplace_back("chat_id", chatId);
-    args.emplace_back("audio", audioId);
-    if (!caption.empty()) {
-        args.emplace_back("caption", caption);
-    }
-    if (duration) {
-        args.emplace_back("duration", duration);
-    }
-    if (!performer.empty()){
-        args.emplace_back("performer", performer);
-    }
-    if (!title.empty()){
-        args.emplace_back("title", title);
-    }
-    if (replyToMessageId) {
-        args.emplace_back("reply_to_message_id", replyToMessageId);
-    }
-    if (replyMarkup) {
-        args.emplace_back("reply_markup", _tgTypeParser.parseGenericReply(replyMarkup));
-    }
-    if (!parseMode.empty()) {
-        args.emplace_back("parse_mode", parseMode);
-    }
-    if (disableNotification){
-        args.emplace_back("disable_notification", disableNotification);
-    }
-    return _tgTypeParser.parseJsonAndGetMessage(sendRequest("sendAudio", args));
-}
-
-Message::Ptr Api::sendDocument(int64_t chatId, const InputFile::Ptr document, const string &caption, int32_t replyToMessageId, const GenericReply::Ptr replyMarkup, const string& parseMode, bool disableNotification) const {
+Message::Ptr Api::sendDocument(int64_t chatId, boost::variant<InputFile::Ptr, std::string> document, const string &caption, int32_t replyToMessageId, const GenericReply::Ptr replyMarkup, const string& parseMode, bool disableNotification) const {
     vector<HttpReqArg> args;
     args.reserve(7);
     args.emplace_back("chat_id", chatId);
-    args.emplace_back("document", document->data, true, document->mimeType, document->fileName);
-    if (!caption.empty()) {
-        args.emplace_back("caption", caption);
+    if (document.which() == 0 /* InputFile::Ptr */) {
+        auto file = boost::get<InputFile::Ptr>(document);
+        args.emplace_back("document", file->data, true, file->mimeType, file->fileName);
+    } else /* std::string */ {
+        args.emplace_back("document", boost::get<std::string>(document));
     }
-    if (replyToMessageId) {
-        args.emplace_back("reply_to_message_id", replyToMessageId);
-    }
-    if (replyMarkup) {
-        args.emplace_back("reply_markup", _tgTypeParser.parseGenericReply(replyMarkup));
-    }
-    if (!parseMode.empty()) {
-        args.emplace_back("parse_mode", parseMode);
-    }
-    if (disableNotification){
-        args.emplace_back("disable_notification", disableNotification);
-    }
-    return _tgTypeParser.parseJsonAndGetMessage(sendRequest("sendDocument", args));
-}
-
-Message::Ptr Api::sendDocument(int64_t chatId, const string& document, const string &caption, int32_t replyToMessageId, const GenericReply::Ptr replyMarkup, const string& parseMode, bool disableNotification) const {
-    vector<HttpReqArg> args;
-    args.reserve(7);
-    args.emplace_back("chat_id", chatId);
-    args.emplace_back("document", document);
     if (!caption.empty()) {
         args.emplace_back("caption", caption);
     }
@@ -321,28 +258,16 @@ bool Api::answerPreCheckoutQuery(const std::string& preCheckoutQueryId, bool ok,
     return sendRequest("answerPreCheckoutQuery", args).get<bool>("", false);
 }
 
-Message::Ptr Api::sendSticker(int64_t chatId, const InputFile::Ptr sticker, int32_t replyToMessageId, const GenericReply::Ptr replyMarkup, bool disableNotification) const {
+Message::Ptr Api::sendSticker(int64_t chatId, boost::variant<InputFile::Ptr, std::string> sticker, int32_t replyToMessageId, const GenericReply::Ptr replyMarkup, bool disableNotification) const {
     vector<HttpReqArg> args;
     args.reserve(5);
     args.emplace_back("chat_id", chatId);
-    args.emplace_back("sticker", sticker->data, true, sticker->mimeType, sticker->fileName);
-    if (replyToMessageId) {
-        args.emplace_back("reply_to_message_id", replyToMessageId);
+    if (sticker.which() == 0 /* InputFile::Ptr */) {
+        auto file = boost::get<InputFile::Ptr>(sticker);
+        args.emplace_back("sticker", file->data, true, file->mimeType, file->fileName);
+    } else /* std::string */ {
+        args.emplace_back("sticker", boost::get<std::string>(sticker));
     }
-    if (replyMarkup) {
-        args.emplace_back("reply_markup", _tgTypeParser.parseGenericReply(replyMarkup));
-    }
-    if (disableNotification){
-        args.emplace_back("disable_notification", disableNotification);
-    }
-    return _tgTypeParser.parseJsonAndGetMessage(sendRequest("sendSticker", args));
-}
-
-Message::Ptr Api::sendSticker(int64_t chatId, const string& stickerId, int32_t replyToMessageId, const GenericReply::Ptr replyMarkup, bool disableNotification) const {
-    vector<HttpReqArg> args;
-    args.reserve(5);
-    args.emplace_back("chat_id", chatId);
-    args.emplace_back("sticker", stickerId);
     if (replyToMessageId) {
         args.emplace_back("reply_to_message_id", replyToMessageId);
     }
@@ -370,13 +295,18 @@ File::Ptr Api::uploadStickerFile(int32_t userId, const InputFile::Ptr pngSticker
     return _tgTypeParser.parseJsonAndGetFile(sendRequest("uploadStickerFile", args));
 }
 
-bool Api::createNewStickerSet(int32_t userId, const string& name, const string& title, InputFile::Ptr pngSticker, const string& emojis, bool containsMasks, MaskPosition::Ptr maskPosition) const {
+bool Api::createNewStickerSet(int32_t userId, const string& name, const string& title, boost::variant<InputFile::Ptr, std::string> pngSticker, const string& emojis, bool containsMasks, MaskPosition::Ptr maskPosition) const {
     vector<HttpReqArg> args;
     args.reserve(7);
     args.emplace_back("user_id", userId);
     args.emplace_back("name", name);
     args.emplace_back("title", title);
-    args.emplace_back("png_sticker", pngSticker->data, true, pngSticker->mimeType, pngSticker->fileName);
+    if (pngSticker.which() == 0 /* InputFile::Ptr */) {
+        auto file = boost::get<InputFile::Ptr>(pngSticker);
+        args.emplace_back("png_sticker", file->data, true, file->mimeType, file->fileName);
+    } else /* std::string */ {
+        args.emplace_back("png_sticker", boost::get<std::string>(pngSticker));
+    }
     args.emplace_back("emojis", emojis);
     if (containsMasks) {
         args.emplace_back("contains_mask", containsMasks);
@@ -387,44 +317,18 @@ bool Api::createNewStickerSet(int32_t userId, const string& name, const string& 
     return sendRequest("createNewStickerSet", args).get<bool>("", false);
 }
 
-bool Api::createNewStickerSet(int32_t userId, const string& name, const string& title, const string& pngSticker, const string& emojis, bool containsMasks, MaskPosition::Ptr maskPosition) const {
-    vector<HttpReqArg> args;
-    args.reserve(7);
-    args.emplace_back("user_id", userId);
-    args.emplace_back("name", name);
-    args.emplace_back("title", title);
-    args.emplace_back("png_sticker", pngSticker);
-    args.emplace_back("emojis", emojis);
-    if (containsMasks) {
-        args.emplace_back("contains_mask", containsMasks);
-    }
-    if (maskPosition != nullptr) {
-        args.emplace_back("mask_position", _tgTypeParser.parseMaskPosition(maskPosition));
-    }
-    return sendRequest("createNewStickerSet", args).get<bool>("", false);
-}
-
-bool Api::addStickerToSet(int32_t userId, const string& name, const string& title, InputFile::Ptr pngSticker, const string& emojis, MaskPosition::Ptr maskPosition) const {
+bool Api::addStickerToSet(int32_t userId, const string& name, const string& title, boost::variant<InputFile::Ptr, std::string> pngSticker, const string& emojis, MaskPosition::Ptr maskPosition) const {
     vector<HttpReqArg> args;
     args.reserve(6);
     args.emplace_back("user_id", userId);
     args.emplace_back("name", name);
     args.emplace_back("title", title);
-    args.emplace_back("png_sticker", pngSticker->data, true, pngSticker->mimeType, pngSticker->fileName);
-    args.emplace_back("emojis", emojis);
-    if (maskPosition != nullptr) {
-        args.emplace_back("mask_position", _tgTypeParser.parseMaskPosition(maskPosition));
+    if (pngSticker.which() == 0 /* InputFile::Ptr */) {
+        auto file = boost::get<InputFile::Ptr>(pngSticker);
+        args.emplace_back("png_sticker", file->data, true, file->mimeType, file->fileName);
+    } else /* std::string */ {
+        args.emplace_back("png_sticker", boost::get<std::string>(pngSticker));
     }
-    return sendRequest("addStickerToSet", args).get<bool>("", false);
-}
-
-bool Api::addStickerToSet(int32_t userId, const string& name, const string& title, const string& pngSticker, const string& emojis, MaskPosition::Ptr maskPosition) const {
-    vector<HttpReqArg> args;
-    args.reserve(6);
-    args.emplace_back("user_id", userId);
-    args.emplace_back("name", name);
-    args.emplace_back("title", title);
-    args.emplace_back("png_sticker", pngSticker);
     args.emplace_back("emojis", emojis);
     if (maskPosition != nullptr) {
         args.emplace_back("mask_position", _tgTypeParser.parseMaskPosition(maskPosition));
@@ -447,46 +351,16 @@ bool Api::deleteStickerPositionInSet(const string& sticker) const {
     return sendRequest("setStickerPositionInSet", args).get<bool>("", false);
 }
 
-Message::Ptr Api::sendVideo(int64_t chatId, const InputFile::Ptr video, bool supportsStreaming, int32_t duration, int32_t width, int32_t height, const string &caption, int32_t replyToMessageId, const GenericReply::Ptr replyMarkup, const string& parseMode, bool disableNotification) const {
+Message::Ptr Api::sendVideo(int64_t chatId, boost::variant<InputFile::Ptr, std::string> video, bool supportsStreaming, int32_t duration, int32_t width, int32_t height, const string &caption, int32_t replyToMessageId, const GenericReply::Ptr replyMarkup, const string& parseMode, bool disableNotification) const {
     vector<HttpReqArg> args;
     args.reserve(11);
     args.emplace_back("chat_id", chatId);
-    args.emplace_back("video", video->data, true, video->mimeType, video->fileName);
-    if (supportsStreaming) {
-        args.emplace_back("supports_streaming", supportsStreaming);
+    if (video.which() == 0 /* InputFile::Ptr */) {
+        auto file = boost::get<InputFile::Ptr>(video);
+        args.emplace_back("video", file->data, true, file->mimeType, file->fileName);
+    } else /* std::string */ {
+        args.emplace_back("video", boost::get<std::string>(video));
     }
-    if (duration) {
-        args.emplace_back("duration", duration);
-    }
-    if (width) {
-        args.emplace_back("width", width);
-    }
-    if (height) {
-        args.emplace_back("height", height);
-    }
-    if (!caption.empty()) {
-        args.emplace_back("caption", caption);
-    }
-    if (replyToMessageId) {
-        args.emplace_back("reply_to_message_id", replyToMessageId);
-    }
-    if (replyMarkup) {
-        args.emplace_back("reply_markup", _tgTypeParser.parseGenericReply(replyMarkup));
-    }
-    if (!parseMode.empty()) {
-        args.emplace_back("parse_mode", parseMode);
-    }
-    if (disableNotification){
-        args.emplace_back("disable_notification", disableNotification);
-    }
-    return _tgTypeParser.parseJsonAndGetMessage(sendRequest("sendVideo", args));
-}
-
-Message::Ptr Api::sendVideo(int64_t chatId, const string& videoId, bool supportsStreaming, int32_t duration, int32_t width, int32_t height, const string &caption, int32_t replyToMessageId, const GenericReply::Ptr replyMarkup, const string& parseMode, bool disableNotification) const {
-    vector<HttpReqArg> args;
-    args.reserve(11);
-    args.emplace_back("chat_id", chatId);
-    args.emplace_back("video", videoId);
     if (supportsStreaming) {
         args.emplace_back("supports_streaming", supportsStreaming);
     }
@@ -522,7 +396,8 @@ Message::Ptr Api::sendAnimation(int64_t chatId, boost::variant<InputFile::Ptr, s
     args.reserve(10);
     args.emplace_back("chat_id", chatId);
     if (animation.which() == 0 /* InputFile::Ptr */) {
-        args.emplace_back("animation", boost::get<InputFile::Ptr>(animation));
+        auto file = boost::get<InputFile::Ptr>(animation);
+        args.emplace_back("animation", file->data, true, file->mimeType, file->fileName);
     } else /* std::string */ {
         args.emplace_back("animation", boost::get<std::string>(animation));
     }
@@ -553,34 +428,16 @@ Message::Ptr Api::sendAnimation(int64_t chatId, boost::variant<InputFile::Ptr, s
     return _tgTypeParser.parseJsonAndGetMessage(sendRequest("sendAnimation", args));
 }
 
-Message::Ptr Api::sendVideoNote(int64_t chatId, const InputFile::Ptr videoNote, int64_t replyToMessageId, bool disableNotification, int32_t duration, int32_t length, const GenericReply::Ptr replyMarkup) const {
+Message::Ptr Api::sendVideoNote(int64_t chatId, const boost::variant<InputFile::Ptr, std::string> videoNote, int64_t replyToMessageId, bool disableNotification, int32_t duration, int32_t length, const GenericReply::Ptr replyMarkup) const {
     vector<HttpReqArg> args;
     args.reserve(7);
     args.emplace_back("chat_id", chatId);
-    args.emplace_back("video_note", videoNote);
-    if (disableNotification) {
-        args.emplace_back("disable_notification", disableNotification);
+    if (videoNote.which() == 0 /* InputFile::Ptr */) {
+        auto file = boost::get<InputFile::Ptr>(videoNote);
+        args.emplace_back("video_note", file->data, true, file->mimeType, file->fileName);
+    } else /* std::string */ {
+        args.emplace_back("video_note", boost::get<std::string>(videoNote));
     }
-    if (duration) {
-        args.emplace_back("duration", duration);
-    }
-    if (length) {
-        args.emplace_back("length", length);
-    }
-    if (replyMarkup) {
-        args.emplace_back("reply_markup", _tgTypeParser.parseGenericReply(replyMarkup));
-    }
-    if (replyToMessageId) {
-        args.emplace_back("reply_to_message_id", replyToMessageId);
-    }
-    return _tgTypeParser.parseJsonAndGetMessage(sendRequest("sendVoiceNote", args));
-}
-
-Message::Ptr Api::sendVideoNote(int64_t chatId, const string &videoNote, int64_t replyToMessageId, bool disableNotification, int32_t duration, int32_t length, const GenericReply::Ptr replyMarkup) const {
-    vector<HttpReqArg> args;
-    args.reserve(7);
-    args.emplace_back("chat_id", chatId);
-    args.emplace_back("video_note", videoNote);
     if (disableNotification) {
         args.emplace_back("disable_notification", disableNotification);
     }
@@ -610,37 +467,16 @@ vector<Message::Ptr> Api::sendMediaGroup(int64_t chatId, const vector<InputMedia
     return _tgTypeParser.parseJsonAndGetArray<Message>(&TgTypeParser::parseJsonAndGetMessage, sendRequest("sendMediaGroup", args));
 }
 
-Message::Ptr Api::sendVoice(int64_t chatId, const InputFile::Ptr voice, const string &caption, int duration, int32_t replyToMessageId, const GenericReply::Ptr replyMarkup, const string& parseMode, bool disableNotification) const {
+Message::Ptr Api::sendVoice(int64_t chatId, const boost::variant<InputFile::Ptr, std::string> voice, const string &caption, int duration, int32_t replyToMessageId, const GenericReply::Ptr replyMarkup, const string& parseMode, bool disableNotification) const {
     vector<HttpReqArg> args;
     args.reserve(8);
     args.emplace_back("chat_id", chatId);
-    args.emplace_back("voice", voice->data, true, voice->mimeType, voice->fileName);
-    if (!caption.empty()) {
-        args.emplace_back("caption", caption);
+    if (voice.which() == 0 /* InputFile::Ptr */) {
+        auto file = boost::get<InputFile::Ptr>(videoNote);
+        args.emplace_back("voice", file->data, true, file->mimeType, file->fileName);
+    } else /* std::string */ {
+        args.emplace_back("voice", boost::get<std::string>(voice));
     }
-    if (duration){
-        args.emplace_back("duration", duration);
-    }
-    if (replyToMessageId) {
-        args.emplace_back("reply_to_message_id", replyToMessageId);
-    }
-    if (replyMarkup) {
-        args.emplace_back("reply_markup", _tgTypeParser.parseGenericReply(replyMarkup));
-    }
-    if (!parseMode.empty()) {
-        args.emplace_back("parse_mode", parseMode);
-    }
-    if (disableNotification){
-        args.emplace_back("disable_notification", disableNotification);
-    }
-    return _tgTypeParser.parseJsonAndGetMessage(sendRequest("sendVoice", args));
-}
-
-Message::Ptr Api::sendVoice(int64_t chatId, const string& voiceId, const string &caption, int duration, int32_t replyToMessageId, const GenericReply::Ptr replyMarkup, const string& parseMode, bool disableNotification) const {
-    vector<HttpReqArg> args;
-    args.reserve(8);
-    args.emplace_back("chat_id", chatId);
-    args.emplace_back("voice", voiceId);
     if (!caption.empty()) {
         args.emplace_back("caption", caption);
     }

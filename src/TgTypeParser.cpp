@@ -693,11 +693,10 @@ string TgTypeParser::parseInputMedia(const InputMedia::Ptr& object) const {
         case InputMedia::TYPE::AUDIO:
             appendToJson(result, "type", "audio");
         break;
-    }
+    }   
     appendToJson(result, "media", object->media);
     appendToJson(result, "caption", object->caption);
     appendToJson(result, "parse_mode", object->parseMode);
-    args.emplace_back("thumb", boost::get<std::string>(object->thumb));
     if (object->width) {
         appendToJson(result, "width", object->width);
     }
