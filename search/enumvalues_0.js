@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['channel',['Channel',['../class_tg_bot_1_1_chat.html#a939946fe3181210f9e3f3d9610edb52ea781dc97dc62331eec3ea9ec4373a3ca8',1,'TgBot::Chat']]]
+  ['animation',['ANIMATION',['../class_tg_bot_1_1_input_media.html#a15b9867f0c1834b2a4d16ac48f25fb73a28ff0af6199e0baf97bb71b4b4422057',1,'TgBot::InputMedia']]],
+  ['audio',['AUDIO',['../class_tg_bot_1_1_input_media.html#a15b9867f0c1834b2a4d16ac48f25fb73ae423b8bde9bfbfd7e9409b23b23aed91',1,'TgBot::InputMedia']]]
 ];

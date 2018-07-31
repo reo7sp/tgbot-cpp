@@ -1,11 +1,13 @@
 var searchData=
 [
   ['makerequest',['makeRequest',['../class_tg_bot_1_1_boost_http_only_ssl_client.html#a93b66edab6c57cea907742bcbf68ad15',1,'TgBot::BoostHttpOnlySslClient::makeRequest()'],['../class_tg_bot_1_1_curl_http_client.html#a6fab88353bda0e5d69c22538a242eec5',1,'TgBot::CurlHttpClient::makeRequest()'],['../class_tg_bot_1_1_http_client.html#a85275cec337ae429553e995c9d94c5ec',1,'TgBot::HttpClient::makeRequest()']]],
-  ['maskposition',['MaskPosition',['../class_tg_bot_1_1_mask_position.html',1,'TgBot::MaskPosition'],['../class_tg_bot_1_1_sticker.html#a4e61ddba7363932939846585eec348e2',1,'TgBot::Sticker::maskPosition()']]],
+  ['maskposition',['maskPosition',['../class_tg_bot_1_1_sticker.html#a4e61ddba7363932939846585eec348e2',1,'TgBot::Sticker']]],
+  ['maskposition',['MaskPosition',['../class_tg_bot_1_1_mask_position.html',1,'TgBot']]],
   ['maskposition_2eh',['MaskPosition.h',['../_mask_position_8h.html',1,'']]],
   ['maxconnections',['maxConnections',['../class_tg_bot_1_1_webhook_info.html#abccb7180f3a2ee8c9fe01e51464fd79b',1,'TgBot::WebhookInfo']]],
   ['media',['media',['../class_tg_bot_1_1_input_media.html#a3b06a5b4686339b58c4a95b5734b4b77',1,'TgBot::InputMedia']]],
-  ['message',['Message',['../class_tg_bot_1_1_message.html',1,'TgBot::Message'],['../class_tg_bot_1_1_callback_query.html#a4d36cf008195c0b9b95d2ad7c8561795',1,'TgBot::CallbackQuery::message()'],['../class_tg_bot_1_1_update.html#ab65136c0345978742fb3026e6855ff2c',1,'TgBot::Update::message()']]],
+  ['message',['Message',['../class_tg_bot_1_1_message.html',1,'TgBot']]],
+  ['message',['message',['../class_tg_bot_1_1_callback_query.html#a4d36cf008195c0b9b95d2ad7c8561795',1,'TgBot::CallbackQuery::message()'],['../class_tg_bot_1_1_update.html#ab65136c0345978742fb3026e6855ff2c',1,'TgBot::Update::message()']]],
   ['message_2eh',['Message.h',['../_message_8h.html',1,'']]],
   ['messageentity',['MessageEntity',['../class_tg_bot_1_1_message_entity.html',1,'TgBot']]],
   ['messageentity_2eh',['MessageEntity.h',['../_message_entity_8h.html',1,'']]],

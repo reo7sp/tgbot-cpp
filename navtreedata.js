@@ -36,9 +36,10 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "_animation_8h.html",
-"class_tg_bot_1_1_api.html#a8fbfde4234553c478987746c43b08e62",
-"class_tg_bot_1_1_inline_query_result_cached_document.html#a9863569993d146cbba9f6b82d36982fc",
-"class_tg_bot_1_1_photo_size.html#a05f58e05528a02e6bc98b67a81e8ae83"
+"class_tg_bot_1_1_api.html#a94406ae7424f316cc9209b643af527ea",
+"class_tg_bot_1_1_inline_query_result_cached_document.html",
+"class_tg_bot_1_1_message.html#ad49187c847973a024ab158103a8c87fd",
+"index.html#Samples"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

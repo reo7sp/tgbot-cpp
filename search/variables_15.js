@@ -1,6 +1,7 @@
 var searchData=
 [
   ['value',['value',['../class_tg_bot_1_1_http_req_arg.html#ae854084229a093b6819953d0055844eb',1,'TgBot::HttpReqArg']]],
+  ['vcard',['vcard',['../class_tg_bot_1_1_contact.html#a595fe95f16dbde5cb49fa44946cf0d2b',1,'TgBot::Contact::vcard()'],['../class_tg_bot_1_1_inline_query_result_contact.html#a33fe5dafe6dca0dddaf7798bd1a8ca8a',1,'TgBot::InlineQueryResultContact::vcard()'],['../class_tg_bot_1_1_input_contact_message_content.html#acf386d75877bd190f3d845e697e03a9f',1,'TgBot::InputContactMessageContent::vcard()']]],
   ['venue',['venue',['../class_tg_bot_1_1_message.html#a9739779daeda0ac90d711349e0674f6e',1,'TgBot::Message']]],
   ['video',['video',['../class_tg_bot_1_1_message.html#abd645f5273f4cd142979beab925ff16f',1,'TgBot::Message']]],
   ['videoduration',['videoDuration',['../class_tg_bot_1_1_inline_query_result_video.html#a80c3c9b52a29c93ea2899fdfa12ebfa4',1,'TgBot::InlineQueryResultVideo']]],

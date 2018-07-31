@@ -71,6 +71,9 @@ var hierarchy =
     ] ],
     [ "TgBot::InputFile", "class_tg_bot_1_1_input_file.html", null ],
     [ "TgBot::InputMedia", "class_tg_bot_1_1_input_media.html", [
+      [ "TgBot::InputMediaAnimation", "class_tg_bot_1_1_input_media_animation.html", null ],
+      [ "TgBot::InputMediaAudio", "class_tg_bot_1_1_input_media_audio.html", null ],
+      [ "TgBot::InputMediaDocument", "class_tg_bot_1_1_input_media_document.html", null ],
       [ "TgBot::InputMediaPhoto", "class_tg_bot_1_1_input_media_photo.html", null ],
       [ "TgBot::InputMediaVideo", "class_tg_bot_1_1_input_media_video.html", null ]
     ] ],

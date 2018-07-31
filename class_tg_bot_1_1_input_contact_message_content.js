@@ -5,5 +5,6 @@ var class_tg_bot_1_1_input_contact_message_content =
     [ "~InputContactMessageContent", "class_tg_bot_1_1_input_contact_message_content.html#ae6b8788ba14b203ba53373262d9a67c0", null ],
     [ "firstName", "class_tg_bot_1_1_input_contact_message_content.html#a673d5217669bf5fce75f51578cdc5c1c", null ],
     [ "lastName", "class_tg_bot_1_1_input_contact_message_content.html#a125669f026157308736f940e1400ed23", null ],
-    [ "phoneNumber", "class_tg_bot_1_1_input_contact_message_content.html#a96fe449f5efd3f80c2dde6af364a7aa6", null ]
+    [ "phoneNumber", "class_tg_bot_1_1_input_contact_message_content.html#a96fe449f5efd3f80c2dde6af364a7aa6", null ],
+    [ "vcard", "class_tg_bot_1_1_input_contact_message_content.html#acf386d75877bd190f3d845e697e03a9f", null ]
 ];
