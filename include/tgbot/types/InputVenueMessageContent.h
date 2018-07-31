@@ -48,6 +48,15 @@ public:
      * @brief Optional. Foursquare identifier of the venue, if known
      */
     std::string foursquareId;
+    
+    /**
+     * @brief Optional. Foursquare type of the venue, if known. (For example, “arts_entertainment/default”, “arts_entertainment/aquarium” or “food/icecream”.)
+     */
+    std::string foursquareType;
+
+    /**
+     * @brief Optional. Foursquare type of the venue, if known. (For example, “arts_entertainment/default”, “arts_entertainment/aquarium” or “food/icecream”.)
+     */
 
     virtual ~InputVenueMessageContent() { }
 };

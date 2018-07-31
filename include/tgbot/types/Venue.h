@@ -39,7 +39,12 @@ public:
     /**
      * @brief Optional. Foursquare identifier of the venue.
      */
-    std::string foursquare_id;
+    std::string foursquareId;
+
+    /**
+     * @brief Optional. Foursquare type of the venue. (For example, “arts_entertainment/default”, “arts_entertainment/aquarium” or “food/icecream”.)
+     */
+    std::string foursquareType;
 };
 }
 

@@ -99,6 +99,9 @@
 #include "tgbot/types/InputMedia.h"
 #include "tgbot/types/InputMediaPhoto.h"
 #include "tgbot/types/InputMediaVideo.h"
+#include "tgbot/types/InputMediaAudio.h"
+#include "tgbot/types/InputMediaDocument.h"
+#include "tgbot/types/InputMediaAnimation.h"
 
 namespace TgBot {
 

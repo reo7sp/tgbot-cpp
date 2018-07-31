@@ -1,5 +1,7 @@
 /*
  * Copyright (c) 2015 Oleg Morozenkov
+ * Copyright (c) 2016 Konstantin Kukin
+ * Copyright (c) 2018 JellyBrick
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,50 +22,28 @@
  * SOFTWARE.
  */
 
-#ifndef TGBOT_CPP_CONTACT_H
-#define TGBOT_CPP_CONTACT_H
+#ifndef TGBOT_INPUTMEDIAAUDIO_H
+#define TGBOT_INPUTMEDIAAUDIO_H
 
-#include <string>
 #include <memory>
+#include <string>
+
+#include "tgbot/types/InputMedia.h"
 
 namespace TgBot {
 
 /**
- * @brief This object represents a phone contact.
- * 
+ * @brief Represents a video to be sent.
  * @ingroup types
  */
-class Contact {
-
+class InputMediaAudio : public InputMedia {
 public:
-    typedef std::shared_ptr<Contact> Ptr;
+    typedef std::shared_ptr<InputMediaAudio> Ptr;
 
-    /**
-     * @brief Contact's phone number.
-     */
-    std::string phoneNumber;
-
-    /**
-     * @brief Contact's first name.
-     */
-    std::string firstName;
-
-    /**
-     * @brief Optional. Contact's last name.
-     */
-    std::string lastName;
-
-    /**
-     * @brief Optional. Contact's user identifier in Telegram.
-     */
-    std::string userId;
-
-    /**
-     * @brief Optional. Additional data about the contact in the form of a vCard.
-     */
-    std::string vcard;
+    InputMediaAudio() {
+        this->type = TYPE::AUDIO;
+    }
 };
-
 }
 
-#endif //TGBOT_CPP_CONTACT_H
+#endif //TGBOT_INPUTMEDIAAUDIO_H

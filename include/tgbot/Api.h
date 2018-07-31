@@ -27,6 +27,7 @@
 #include <vector>
 
 #include <boost/property_tree/ptree.hpp>
+#include <boost/variant.hpp>
 
 #include "tgbot/TgTypeParser.h"
 #include "tgbot/net/HttpClient.h"
@@ -107,21 +108,7 @@ public:
      * @param disableNotification Optional. Sends the message silenty.
      * @return On success, the sent message is returned.
      */
-    Message::Ptr sendPhoto(int64_t chatId, InputFile::Ptr photo, const std::string& caption = "", int32_t replyToMessageId = 0,
-                           GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>(), const std::string& parseMode = "", bool disableNotification = false) const;
-
-    /**
-     * @brief Use this method to send photos.
-     * @param chatId Unique identifier for the target chat.
-     * @param photo Photo to send. Id of the photo that is already on the Telegram servers.
-     * @param caption Optional. Photo caption.
-     * @param replyToMessageId Optional. If the message is a reply, ID of the original message.
-     * @param replyMarkup Optional. Additional interface options. An object for a custom reply keyboard, instructions to hide keyboard or to force a reply from the user.
-     * @param parseMode Optional. Set it to "Markdown" or "HTML" if you want Telegram apps to show bold, italic, fixed-width text or inline URLs in your bot's message.
-     * @param disableNotification Optional. Sends the message silenty.
-     * @return On success, the sent message is returned.
-     */
-    Message::Ptr sendPhoto(int64_t chatId, const std::string& photoId, const std::string& caption = "", int32_t replyToMessageId = 0,
+    Message::Ptr sendPhoto(int64_t chatId, const boost::variant<InputFile::Ptr, std::string> photo, const std::string& caption = "", int32_t replyToMessageId = 0,
                            GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>(), const std::string& parseMode = "", bool disableNotification = false) const;
 
     /**
@@ -132,38 +119,22 @@ public:
      * @param duration Duration of sent audio in seconds.
      * @param performer Performer
      * @param title Track name
+     * @param thumb Thumbnail of the file sent. The thumbnail should be in JPEG format and less than 200 kB in size. A thumbnail‘s width and height should not exceed 90. Ignored if the file is not uploaded using multipart/form-data. Thumbnails can’t be reused and can be only uploaded as a new file, so you can pass “attach://<file_attach_name>” if the thumbnail was uploaded using multipart/form-data under <file_attach_name>.
      * @param replyToMessageId Optional. If the message is a reply, ID of the original message.
      * @param replyMarkup Optional. Additional interface options. An object for a custom reply keyboard, instructions to hide keyboard or to force a reply from the user.
      * @param parseMode Optional. Set it to "Markdown" or "HTML" if you want Telegram apps to show bold, italic, fixed-width text or inline URLs in your bot's message.
      * @param disableNotification Optional. Sends the message silenty.
      * @return On success, the sent message is returned.
      */
-    Message::Ptr sendAudio(int64_t chatId, InputFile::Ptr audio, const std::string &caption = "", int32_t duration = 0,
-                           const std::string& performer = "", const std::string& title = "", int32_t replyToMessageId = 0,
-                           GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>(), const std::string& parseMode = "", bool disableNotification = false) const;
-
-    /**
-     * @brief Use this method to send audio files, if you want Telegram clients to display the file as a playable voice message. For this to work, your audio must be in an .ogg file encoded with OPUS (other formats may be sent as Document).
-     * @param chatId Unique identifier for the target chat.
-     * @param audio Id of the audio that is already on the Telegram servers.
-     * @param caption Audio caption, 0-200 characters
-     * @param duration Duration of sent audio in seconds.
-     * @param performer Performer
-     * @param title Track name
-     * @param replyToMessageId Optional. If the message is a reply, ID of the original message.
-     * @param replyMarkup Optional. Additional interface options. An object for a custom reply keyboard, instructions to hide keyboard or to force a reply from the user.
-     * @param parseMode Optional. Set it to "Markdown" or "HTML" if you want Telegram apps to show bold, italic, fixed-width text or inline URLs in your bot's message.
-     * @param disableNotification Optional. Sends the message silenty.
-     * @return On success, the sent message is returned.
-     */
-    Message::Ptr sendAudio(int64_t chatId, const std::string& audioId, const std::string &caption = "", int32_t duration = 0,
-                           const std::string& performer = "", const std::string& title = "", int32_t replyToMessageId = 0,
+    Message::Ptr sendAudio(int64_t chatId, const boost::variant<InputFile::Ptr, std::string> audio, const std::string &caption = "", int32_t duration = 0,
+                           const std::string& performer = "", const std::string& title = "", const boost::variant<InputFile::Ptr, std::string> thumb = "", int32_t replyToMessageId = 0,
                            GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>(), const std::string& parseMode = "", bool disableNotification = false) const;
 
     /**
      * @brief Use this method to send general files.
      * @param chatId Unique identifier for the target chat.
      * @param document Document to send.
+     * @param thumb Thumbnail of the file sent. The thumbnail should be in JPEG format and less than 200 kB in size. A thumbnail‘s width and height should not exceed 90. Ignored if the file is not uploaded using multipart/form-data. Thumbnails can’t be reused and can be only uploaded as a new file, so you can pass “attach://<file_attach_name>” if the thumbnail was uploaded using multipart/form-data under <file_attach_name>.
      * @param caption Document caption (may also be used when resending documents by file_id), 0-200 characters
      * @param replyToMessageId Optional. If the message is a reply, ID of the original message.
      * @param replyMarkup Optional. Additional interface options. An object for a custom reply keyboard, instructions to hide keyboard or to force a reply from the user.
@@ -171,21 +142,7 @@ public:
      * @param disableNotification Optional. Sends the message silenty.
      * @return On success, the sent message is returned.
      */
-    Message::Ptr sendDocument(int64_t chatId, InputFile::Ptr document, const std::string &caption = "", int32_t replyToMessageId = 0,
-                              GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>(), const std::string& parseMode = "", bool disableNotification = false) const;
-
-    /**
-     * @brief Use this method to send general files.
-     * @param chatId Unique identifier for the target chat.
-     * @param document Id of the document that is already on the Telegram servers.
-     * @param caption Document caption (may also be used when resending documents by file_id), 0-200 characters
-     * @param replyToMessageId Optional. If the message is a reply, ID of the original message.
-     * @param replyMarkup Optional. Additional interface options. An object for a custom reply keyboard, instructions to hide keyboard or to force a reply from the user.
-     * @param parseMode Optional. Set it to "Markdown" or "HTML" if you want Telegram apps to show bold, italic, fixed-width text or inline URLs in your bot's message.
-     * @param disableNotification Optional. Sends the message silenty.
-     * @return On success, the sent message is returned.
-     */
-    Message::Ptr sendDocument(int64_t chatId, const std::string& documentId, const std::string &caption = "", int32_t replyToMessageId = 0,
+    Message::Ptr sendDocument(int64_t chatId, const boost::variant<InputFile::Ptr, std::string> document, const boost::variant<InputFile::Ptr, std::string> thumb = "", const std::string &caption = "", int32_t replyToMessageId = 0,
                               GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>(), const std::string& parseMode = "", bool disableNotification = false) const;
 
     /**
@@ -258,19 +215,7 @@ public:
      * @param disableNotification Optional. Sends the message silenty.
      * @return On success, the sent message is returned.
      */
-    Message::Ptr sendSticker(int64_t chatId, InputFile::Ptr sticker, int32_t replyToMessageId = 0,
-                             GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>(), bool disableNotification = false) const;
-
-    /**
-     * @brief Use this method to send .webp stickers.
-     * @param chatId Unique identifier for the target chat.
-     * @param stickerId Id of the sticker that is already on the Telegram servers.
-     * @param replyToMessageId Optional. If the message is a reply, ID of the original message.
-     * @param replyMarkup Optional. Additional interface options. A object for a custom reply keyboard, instructions to hide keyboard or to force a reply from the user.
-     * @param disableNotification Optional. Sends the message silenty.
-     * @return On success, the sent message is returned.
-     */
-    Message::Ptr sendSticker(int64_t chatId, const std::string& stickerId, int32_t replyToMessageId = 0,
+    Message::Ptr sendSticker(int64_t chatId, const boost::variant<InputFile::Ptr, std::string> sticker, int32_t replyToMessageId = 0,
                              GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>(), bool disableNotification = false) const;
 
     /**
@@ -300,21 +245,7 @@ public:
      * @return Returns True on success.
      */
     bool createNewStickerSet(int32_t userId, const std::string& name, const std::string& title,
-                             InputFile::Ptr pngSticker, const std::string& emojis, bool containsMasks = false, MaskPosition::Ptr maskPosition = nullptr) const;
-
-    /**
-     * @brief Use this method to create new sticker set owned by a user. The bot will be able to edit the created sticker set.
-     * @param userId User identifier of created sticker set owner.
-     * @param name Short name of sticker set, to be used in t.me/addstickers/ URLs (e.g., animals). Can contain only english letters, digits and underscores. Must begin with a letter, can't contain consecutive underscores and must end in “_by_<bot username>”. <bot_username> is case insensitive. 1-64 characters.
-     * @param title Sticker set title, 1-64 characters.
-     * @param pngSticker Png image with the sticker, must be up to 512 kilobytes in size, dimensions must not exceed 512px, and either width or height must be exactly 512px. Pass a file_id as a String to send a file that already exists on the Telegram servers, pass an HTTP URL as a String for Telegram to get a file from the Internet.
-     * @param emojis One or more emoji corresponding to the sticker.
-     * @param containsMasks Optional. Pass True, if a set of mask stickers should be created.
-     * @param maskPosition Optional. A JSON-serialized object for position where the mask should be placed on faces.
-     * @return Returns True on success.
-     */
-    bool createNewStickerSet(int32_t userId, const std::string& name, const std::string& title,
-                             const std::string& pngSticker, const std::string& emojis, bool containsMasks = false, MaskPosition::Ptr maskPosition = nullptr) const;
+                             boost::variant<InputFile::Ptr, std::string> pngSticker, const std::string& emojis, bool containsMasks = false, MaskPosition::Ptr maskPosition = nullptr) const;
 
     /**
      * @brief Use this method to add a new sticker to a set created by the bot.
@@ -327,20 +258,7 @@ public:
      * @return Returns True on success.
      */
     bool addStickerToSet(int32_t userId, const std::string& name, const std::string& title,
-                         InputFile::Ptr pngSticker, const std::string& emojis, MaskPosition::Ptr maskPosition = nullptr) const;
-
-    /**
-     * @brief Use this method to add a new sticker to a set created by the bot.
-     * @param userId User identifier of created sticker set owner.
-     * @param name Sticker set name.
-     * @param title Sticker set title, 1-64 characters.
-     * @param pngSticker Png image with the sticker, must be up to 512 kilobytes in size, dimensions must not exceed 512px, and either width or height must be exactly 512px. Pass a file_id as a String to send a file that already exists on the Telegram servers, pass an HTTP URL as a String for Telegram to get a file from the Internet.
-     * @param emojis One or more emoji corresponding to the sticker.
-     * @param maskPosition Optional. A JSON-serialized object for position where the mask should be placed on faces.
-     * @return Returns True on success.
-     */
-    bool addStickerToSet(int32_t userId, const std::string& name, const std::string& title,
-                         const std::string& pngSticker, const std::string& emojis, MaskPosition::Ptr maskPosition = nullptr) const;
+                         boost::variant<InputFile::Ptr, std::string> pngSticker, const std::string& emojis, MaskPosition::Ptr maskPosition = nullptr) const;
 
     /**
      * @brief Use this method to move a sticker in a set created by the bot to a specific position.
@@ -365,6 +283,7 @@ public:
      * @param duration Optional. Duration of sent video in seconds
      * @param width Optional. Video width
      * @param height Optional. Video height
+     * @param thumb Thumbnail of the file sent. The thumbnail should be in JPEG format and less than 200 kB in size. A thumbnail‘s width and height should not exceed 90. Ignored if the file is not uploaded using multipart/form-data. Thumbnails can’t be reused and can be only uploaded as a new file, so you can pass “attach://<file_attach_name>” if the thumbnail was uploaded using multipart/form-data under <file_attach_name>.
      * @param caption Optional. Video caption (may also be used when resending videos by file_id), 0-200 characters
      * @param replyToMessageId Optional. If the message is a reply, ID of the original message.
      * @param replyMarkup Optional. Additional interface options. An object for a custom reply keyboard, instructions to hide keyboard or to force a reply from the user.
@@ -372,27 +291,29 @@ public:
      * @param disableNotification Optional. Sends the message silenty.
      * @return On success, the sent message is returned.
      */
-    Message::Ptr sendVideo(int64_t chatId, InputFile::Ptr video, bool supportsStreaming = false, int32_t duration = 0, int32_t width = 0, int32_t height = 0, const std::string& caption = "",
+    Message::Ptr sendVideo(int64_t chatId, const boost::variant<InputFile::Ptr, std::string> video, bool supportsStreaming = false, int32_t duration = 0, int32_t width = 0, int32_t height = 0, const boost::variant<InputFile::Ptr, std::string> thumb = "", const std::string& caption = "",
                            int32_t replyToMessageId = 0, GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>(), const std::string& parseMode = "", bool disableNotification = false) const;
 
     /**
-     * @brief Use this method to send video files, Telegram clients support mp4 videos (other formats may be sent as Document).
+     * @brief Use this method to send animation files (GIF or H.264/MPEG-4 AVC video without sound). 
+     * 
+     * Bots can currently send animation files of up to 50 MB in size, this limit may be changed in the future.
+     * 
      * @param chatId Unique identifier for the target chat.
-     * @param videoId Id of the video that is already on the Telegram servers.
-     * @param supportsStreaming Optional. Pass True, if the uploaded video is suitable for streaming.
-     * @param duration Optional. Duration of sent video in seconds
-     * @param width Optional. Video width
-     * @param height Optional. Video height
-     * @param caption Optional. Video caption (may also be used when resending videos by file_id), 0-200 characters
+     * @param animation Animation to send. Pass a file_id as String to send an animation that exists on the Telegram servers (recommended), pass an HTTP URL as a String for Telegram to get an animation from the Internet, or upload a new animation using multipart/form-data. 
+     * @param duration Optional. Duration of sent animation in seconds.
+     * @param width Optional. Animation width.
+     * @param height Optional. Animation height.
+     * @param thumb Thumbnail of the file sent. The thumbnail should be in JPEG format and less than 200 kB in size. A thumbnail‘s width and height should not exceed 90. Ignored if the file is not uploaded using multipart/form-data. Thumbnails can’t be reused and can be only uploaded as a new file, so you can pass “attach://<file_attach_name>” if the thumbnail was uploaded using multipart/form-data under <file_attach_name>.
+     * @param caption Optional. Animation caption (may also be used when resending animation by file_id), 0-200 characters
      * @param replyToMessageId Optional. If the message is a reply, ID of the original message.
-     * @param replyMarkup Optional. Additional interface options. A object for a custom reply keyboard, instructions to hide keyboard or to force a reply from the user.
+     * @param replyMarkup Optional. Additional interface options. An object for a custom reply keyboard, instructions to hide keyboard or to force a reply from the user.
      * @param parseMode Optional. Set it to "Markdown" or "HTML" if you want Telegram apps to show bold, italic, fixed-width text or inline URLs in your bot's message.
      * @param disableNotification Optional. Sends the message silenty.
-     * @return On success, the sent message is returned.
+     * @return On success, the sent Message is returned.
      */
-    Message::Ptr sendVideo(int64_t chatId, const std::string& videoId, bool supportsStreaming = false, int32_t duration = 0, int32_t width = 0, int32_t height = 0, const std::string& caption = "",
-                           int32_t replyToMessageId = 0, const GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>(), const std::string& parseMode = "", bool disableNotification = false) const;
-
+    Message::Ptr sendAnimation(int64_t chatId, const boost::variant<InputFile::Ptr, std::string> animation, int32_t duration = 0, int32_t width = 0, int32_t height = 0, const boost::variant<InputFile::Ptr, std::string> thumb = "", const std::string &caption = "",
+                              int32_t replyToMessageId = 0, GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>(), const std::string& parseMode = "", bool disableNotification = false) const;
     /**
      * @brief Use this method to send video messages. On success, the sent Message is returned.
      * @param chatId Unique identifier for the target chat.
@@ -401,25 +322,12 @@ public:
      * @param disableNotification Sends the message silently. Users will receive a notification with no sound.
      * @param duration Duration of sent video in seconds.
      * @param length Video width and height.
+     * @param thumb Thumbnail of the file sent. The thumbnail should be in JPEG format and less than 200 kB in size. A thumbnail‘s width and height should not exceed 90. Ignored if the file is not uploaded using multipart/form-data. Thumbnails can’t be reused and can be only uploaded as a new file, so you can pass “attach://<file_attach_name>” if the thumbnail was uploaded using multipart/form-data under <file_attach_name>.
      * @param replyMarkup Additional interface options. A object for an inline keyboard, custom reply keyboard, instructions to remove reply keyboard or to force a reply from the user.
      * @return On success, the sent Message is returned.
      */
-    Message::Ptr sendVideoNote(int64_t chatId, InputFile::Ptr videoNote, int64_t replyToMessageId = 0, bool disableNotification = false,
-                               int32_t duration = 0, int32_t length = 0, GenericReply::Ptr replyMarkup = GenericReply::Ptr());
-
-    /**
-     * @brief Use this method to send video messages. On success, the sent Message is returned.
-     * @param chatId Unique identifier for the target chat.
-     * @param videoNote Id of the video note that exists on the Telegram servers.
-     * @param replyToMessageId If the message is a reply, ID of the original message.
-     * @param disableNotification Sends the message silently. Users will receive a notification with no sound.
-     * @param duration Duration of sent video in seconds.
-     * @param length Video width and height.
-     * @param replyMarkup Additional interface options. A object for an inline keyboard, custom reply keyboard, instructions to remove reply keyboard or to force a reply from the user.
-     * @return On success, the sent Message is returned.
-     */
-    Message::Ptr sendVideoNote(int64_t chatId, const std::string& videoNote, int64_t replyToMessageId = 0, bool disableNotification = false,
-                               int32_t duration = 0, int32_t length = 0, GenericReply::Ptr replyMarkup = GenericReply::Ptr());
+    Message::Ptr sendVideoNote(int64_t chatId, const boost::variant<InputFile::Ptr, std::string> videoNote, int64_t replyToMessageId = 0, bool disableNotification = false,
+                               int32_t duration = 0, int32_t length = 0, const boost::variant<InputFile::Ptr, std::string> thumb = "", GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>()) const;
 
     /**
      * @brief Use this method to send a group of photos or videos as an album.
@@ -444,22 +352,7 @@ public:
      * @param disableNotification Optional. Sends the message silenty.
      * @return On success, the sent message is returned.
      */
-    Message::Ptr sendVoice(int64_t chatId, InputFile::Ptr voice, const std::string& caption = "", int duration = 0, int32_t replyToMessageId = 0,
-                           GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>(), const std::string& parseMode = "", bool disableNotification = false) const;
-
-    /**
-     * @brief Use this method to send audio files, if you want Telegram clients to display the file as a playable voice message.
-     * @param chatId Unique identifier for the target chat.
-     * @param voiceId Id of the voice that is already on the Telegram servers.
-     * @param caption Voice message caption, 0-200 characters
-     * @param duration Duration of send audio in seconds.
-     * @param replyToMessageId Optional. If the message is a reply, ID of the original message.
-     * @param replyMarkup Optional. Additional interface options. A object for a custom reply keyboard, instructions to hide keyboard or to force a reply from the user.
-     * @param parseMode Optional. Set it to "Markdown" or "HTML" if you want Telegram apps to show bold, italic, fixed-width text or inline URLs in your bot's message.
-     * @param disableNotification Optional. Sends the message silenty.
-     * @return On success, the sent message is returned.
-     */
-    Message::Ptr sendVoice(int64_t chatId, const std::string& voiceId, const std::string& caption = "", int duration = 0, int32_t replyToMessageId = 0,
+    Message::Ptr sendVoice(int64_t chatId, const boost::variant<InputFile::Ptr, std::string> voice, const std::string& caption = "", int duration = 0, int32_t replyToMessageId = 0,
                            GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>(), const std::string& parseMode = "", bool disableNotification = false) const;
 
     /**
@@ -520,13 +413,14 @@ public:
      * @param longitude Longitude of location.
      * @param title Name of the venue.
      * @param address Address of the venue.
-     * @param foursquare_id Foursquare identifier of the venue.
+     * @param foursquareId Foursquare identifier of the venue.
+     * @param foursquareType Foursquare type of the venue, if known. (For example, “arts_entertainment/default”, “arts_entertainment/aquarium” or “food/icecream”.)
      * @param replyToMessageId Optional. If the message is a reply, ID of the original message.
      * @param replyMarkup Optional. Additional interface options. A object for a custom reply keyboard, instructions to hide keyboard or to force a reply from the user.
      * @param disableNotification Optional. Sends the message silenty.
      * @return On success, the sent message is returned.
      */
-    Message::Ptr sendVenue(int64_t chatId, float latitude, float longitude, const std::string& title, const std::string& address, const std::string& foursquareId = "",
+    Message::Ptr sendVenue(int64_t chatId, float latitude, float longitude, const std::string& title, const std::string& address, const std::string& foursquareId = "", const std::string& foursquareType = "",
                            bool disableNotification = false, int32_t replyToMessageId = 0, GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>()) const;
 
     /**
@@ -535,12 +429,13 @@ public:
      * @param phoneNumber Contact's phone number.
      * @param firstName Contact's first name.
      * @param lastName Contact's last name.
+     * @param vcard Optional. Additional data about the contact in the form of a vCard, 0-2048 bytes.
      * @param disableNotification Optional. Sends the message silenty.
      * @param replyToMessageId Optional. If the message is a reply, ID of the original message.
      * @param replyMarkup Optional. Additional interface options. A object for a custom reply keyboard, instructions to hide keyboard or to force a reply from the user.
      * @return On success, the sent message is returned.
      */
-    Message::Ptr sendContact(int64_t chatId, const std::string& phoneNumber, const std::string& firstName, const std::string& lastName = "", bool disableNotification = false,
+    Message::Ptr sendContact(int64_t chatId, const std::string& phoneNumber, const std::string& firstName, const std::string& lastName = "", const std::string& vcard = "", bool disableNotification = false,
                             int32_t replyToMessageId = 0, GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>()) const;
 
     /**
@@ -658,6 +553,24 @@ public:
     */
     Message::Ptr editMessageCaption(int64_t chatId = 0, int32_t messageId = 0, const std::string& caption = "",
                                     const std::string& inlineMessageId = "", GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>()) const;
+
+    /**
+     * @brief Use this method to edit audio, document, photo, or video messages.
+     * 
+     * 
+     * If a message is a part of a message album, then it can be edited only to a photo or a video.
+     * Otherwise, message type can be changed arbitrarily. When inline message is edited, new file can't be uploaded.
+     * Use previously uploaded file via its file_id or specify a URL.
+     * 
+     * @param media A JSON-serialized object for a new media content of the message.
+     * @param chatId Optional	Required if inline_message_id is not specified. Unique identifier for the target chat of the target channel.
+     * @param messageId Optional	Required if inline_message_id is not specified. Identifier of the sent message
+     * @param inlineMessageId Optional	Required if chat_id and message_id are not specified. Identifier of the inline message
+     * @param replyMarkup Optional	A JSON-serialized object for an inline keyboard.
+     * @return On success, if the edited message was sent by the bot, the edited Message is returned, otherwise nullptr is returned.
+     */
+    Message::Ptr editMessageMedia(InputMedia::Ptr media, int64_t chatId = 0, int32_t messageId = 0, const std::string& inlineMessageId = "",
+                                  GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>()) const;
 
     /**
     * @brief Use this method to edit only the reply markup of messages sent by the bot or via the bot (for inline bots).

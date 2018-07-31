@@ -26,6 +26,8 @@
 #include <string>
 #include <memory>
 
+#include "tgbot/types/PhotoSize.h"
+
 namespace TgBot {
 
 /**
@@ -69,6 +71,11 @@ public:
      * @brief Optional. File size.
      */
     int32_t fileSize;
+
+    /**
+     * @brief Optional. Thumbnail of the album cover to which the music file belongs
+     */
+    PhotoSize::Ptr thumb;
 };
 
 }
