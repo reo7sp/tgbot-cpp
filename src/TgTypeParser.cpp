@@ -665,6 +665,7 @@ InputMedia::Ptr TgTypeParser::parseJsonAndGetInputMedia(const ptree& data) const
         result->duration = data.get<int32_t>("duration", 0);
         result->title = data.get<int32_t>("title", 0);
         result->performer = data.get<int32_t>("performer", 0);
+        return result;
     }
     else {
         return nullptr;
