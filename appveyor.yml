@@ -4,11 +4,11 @@ build: false
 environment:
     PYTHON: "C:\\Python37"
 
-    CONAN_USERNAME: "conan"
-    CONAN_LOGIN_USERNAME: "conanbot"
+    CONAN_USERNAME: "reo7sp"
+    CONAN_LOGIN_USERNAME: "reo7sp"
     CONAN_CHANNEL: "testing"
     VS150COMNTOOLS: "C:\\Program Files (x86)\\Microsoft Visual Studio\\2017\\Community\\Common7\\Tools\\"
-    CONAN_UPLOAD: "https://api.bintray.com/conan/conan-community/conan"
+    CONAN_UPLOAD: "https://api.bintray.com/conan/reo7sp/conan-packages"
     CONAN_STABLE_BRANCH_PATTERN: "release/*"
     CONAN_UPLOAD_ONLY_WHEN_STABLE: 1 # Will only upload when the branch matches "release/*"
 
