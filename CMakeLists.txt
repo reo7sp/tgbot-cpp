@@ -1,6 +1,11 @@
 cmake_minimum_required(VERSION 2.8.4)
 project(TgBot)
 
+if (${CONAN_EXPORTED})
+    include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
+    conan_basic_setup()
+endif()
+
 # options
 option(ENABLE_TESTS "Set to ON to enable building of tests" OFF)
 option(BUILD_SHARED_LIBS "Build tgbot-cpp shared/static library." OFF)
