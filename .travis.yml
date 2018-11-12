@@ -1,7 +1,7 @@
 env:
    global:
      - CONAN_USERNAME: "reo7sp"
-     - CONAN_LOGIN_USERNAME: "reo7sp"
+     - CONAN_LOGIN_USERNAME: "jgsogo"
      - CONAN_CHANNEL: "testing"
      - CONAN_UPLOAD: "https://api.bintray.com/conan/reo7sp/conan-packages"
      - CONAN_STABLE_BRANCH_PATTERN: "release/*"

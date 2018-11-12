@@ -5,7 +5,7 @@ environment:
     PYTHON: "C:\\Python37"
 
     CONAN_USERNAME: "reo7sp"
-    CONAN_LOGIN_USERNAME: "reo7sp"
+    CONAN_LOGIN_USERNAME: "jgsogo"
     CONAN_CHANNEL: "testing"
     VS150COMNTOOLS: "C:\\Program Files (x86)\\Microsoft Visual Studio\\2017\\Community\\Common7\\Tools\\"
     CONAN_UPLOAD: "https://api.bintray.com/conan/reo7sp/conan-packages"
