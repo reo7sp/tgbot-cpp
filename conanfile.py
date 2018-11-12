@@ -15,13 +15,12 @@ class TgbotConan(ConanFile):
     homepage = "http://reo7sp.github.io/tgbot-cpp"
     license = "MIT"
 
-    exports_sources = ["src/*", "CMakeLists.txt", "include/*", "LICENSE", ]
-    generators = "cmake", "cmake_paths"
+    exports_sources = ["LICENSE", ]
     scm = {"type": "git",
            "url": "auto",
            "revision": "auto"}
 
-    # Options may need to change depending on the packaged library.
+    generators = "cmake"
     settings = "os", "arch", "compiler", "build_type"
     options = {"fPIC": [True, False],
                "shared": [True, False]}
