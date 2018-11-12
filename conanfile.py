@@ -10,14 +10,12 @@ import shutil
 class TgbotConan(ConanFile):
     name = "tgbot_cpp"
     version = "b35438d"
-
     description = "C++ library for Telegram bot API"
     url = "https://github.com/reo7sp/tgbot-cpp"
     homepage = "http://reo7sp.github.io/tgbot-cpp"
     license = "MIT"
 
-    exports = ["LICENSE"]
-    exports_sources = ["src/*", "CMakeLists.txt", "include/*"]
+    exports_sources = ["src/*", "CMakeLists.txt", "include/*", "LICENSE", ]
     generators = "cmake", "cmake_paths"
     scm = {"type": "git",
            "url": "auto",
