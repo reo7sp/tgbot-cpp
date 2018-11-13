@@ -27,6 +27,7 @@ stages:
 jobs:
    include:
       - stage: unittest
+        name: unittest
         services:
           - docker
         sudo: required
