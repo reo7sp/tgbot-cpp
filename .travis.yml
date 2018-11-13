@@ -19,8 +19,21 @@ osx: &osx
    os: osx
    language: generic
 
+stages:
+  - unittest
+  - conan-linux
+  - conan-osx
+
 jobs:
    include:
+      - stage: unittest
+        services:
+          - docker
+        sudo: required
+        script:
+          - docker build -t reo7sp/tgbot-cpp -f Dockerfile .
+          - docker build -t reo7sp/tgbot-cpp-test -f Dockerfile_test .
+          - docker run --rm reo7sp/tgbot-cpp-test
       - <<: *linux
         stage: conan-linux
         env: CONAN_GCC_VERSIONS=4.8 CONAN_DOCKER_IMAGE=conanio/gcc48 CONAN_ARCHS=x86_64
