@@ -26,10 +26,9 @@ stages:
 
 jobs:
    include:
-      - stage: unittest
+      - <<: *linux
+        stage: unittest
         name: unittest
-        services:
-          - docker
         sudo: required
         script:
           - docker build -t reo7sp/tgbot-cpp -f Dockerfile .
