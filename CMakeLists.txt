@@ -33,6 +33,9 @@ set(SRC_LIST
 ## threads
 find_package(Threads REQUIRED)
 
+# zlib
+find_package(ZLIB REQUIRED)
+
 ## openssl
 find_package(OpenSSL REQUIRED)
 include_directories(${OPENSSL_INCLUDE_DIR})
