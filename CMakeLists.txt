@@ -58,6 +58,7 @@ include_directories(${Boost_INCLUDE_DIR})
 
 set(LIB_LIST
     ${CMAKE_THREAD_LIBS_INIT}
+    ${ZLIB_LIBRARIES}
     ${OPENSSL_LIBRARIES}
     ${Boost_LIBRARIES}
     ${CURL_LIBRARIES}

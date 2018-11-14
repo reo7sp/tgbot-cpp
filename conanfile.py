@@ -39,8 +39,6 @@ class TgbotConan(ConanFile):
                               "find_package(Boost 1.59.0 COMPONENTS system REQUIRED)",
                               "find_package(Boost {} COMPONENTS system REQUIRED)".format(
                                   self.boost_version))
-        tools.replace_in_file(os.path.join(self.source_folder, "CMakeLists.txt"),
-                              "set(LIB_LIST", "set(LIB_LIST z")
 
     def config_options(self):
         if self.settings.os == "Windows":
