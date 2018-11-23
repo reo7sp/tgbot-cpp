@@ -2,8 +2,10 @@ FROM ubuntu:14.04
 MAINTAINER Oleg Morozenkov <a@reo7sp.ru>
 
 RUN apt-get -qq update && \
-    apt-get -qq install -y g++ make binutils cmake libssl-dev libcurl4-openssl-dev \
-                           wget build-essential python-dev autotools-dev libicu-dev libbz2-dev
+    apt-get -qq install -y g++ make binutils cmake libssl-dev libcurl4-openssl-dev
+
+RUN apt-get -qq update && \
+    apt-get -qq install -y wget build-essential python-dev autotools-dev libicu-dev libbz2-dev zlib1g-dev
 
 WORKDIR /usr/src/boost
 RUN wget -q -O boost_1_59_0.tar.gz https://sourceforge.net/projects/boost/files/boost/1.59.0/boost_1_59_0.tar.gz/download && \
