@@ -13,6 +13,48 @@ environment:
     CONAN_UPLOAD_ONLY_WHEN_STABLE: 1 # Will only upload when the branch matches "release/*"
 
     matrix:
+        - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
+          CONAN_VISUAL_VERSIONS: 12
+          CONAN_ARCHS: x86
+          CONAN_BUILD_TYPES: Release
+          CONAN_VISUAL_RUNTIMES: MT
+        - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
+          CONAN_VISUAL_VERSIONS: 12
+          CONAN_ARCHS: x86_64
+          CONAN_BUILD_TYPES: Release
+          CONAN_VISUAL_RUNTIMES: MT
+        - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
+          CONAN_VISUAL_VERSIONS: 12
+          CONAN_ARCHS: x86
+          CONAN_BUILD_TYPES: Release
+          CONAN_VISUAL_RUNTIMES: MD
+        - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
+          CONAN_VISUAL_VERSIONS: 12
+          CONAN_ARCHS: x86_64
+          CONAN_BUILD_TYPES: Release
+          CONAN_VISUAL_RUNTIMES: MD
+
+        - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
+          CONAN_VISUAL_VERSIONS: 14
+          CONAN_ARCHS: x86
+          CONAN_BUILD_TYPES: Release
+          CONAN_VISUAL_RUNTIMES: MT
+        - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
+          CONAN_VISUAL_VERSIONS: 14
+          CONAN_ARCHS: x86_64
+          CONAN_BUILD_TYPES: Release
+          CONAN_VISUAL_RUNTIMES: MT
+        - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
+          CONAN_VISUAL_VERSIONS: 14
+          CONAN_ARCHS: x86
+          CONAN_BUILD_TYPES: Release
+          CONAN_VISUAL_RUNTIMES: MD
+        - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
+          CONAN_VISUAL_VERSIONS: 14
+          CONAN_ARCHS: x86_64
+          CONAN_BUILD_TYPES: Release
+          CONAN_VISUAL_RUNTIMES: MD
+
         - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
           CONAN_VISUAL_VERSIONS: 15
           CONAN_ARCHS: x86
