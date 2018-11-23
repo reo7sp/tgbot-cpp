@@ -76,11 +76,6 @@ environment:
           CONAN_BUILD_TYPES: Release
           CONAN_VISUAL_RUNTIMES: MD
 
-        - MINGW_CONFIGURATIONS: "4.9@x86_64@seh@posix"
-        - MINGW_CONFIGURATIONS: "5@x86_64@seh@posix"
-        - MINGW_CONFIGURATIONS: "6@x86_64@seh@posix"
-        - MINGW_CONFIGURATIONS: "7@x86_64@seh@posix"
-
 install:
   - set PATH=%PATH%;%PYTHON%/Scripts/
   - pip.exe install conan --upgrade
