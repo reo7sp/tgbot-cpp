@@ -57,6 +57,7 @@ set(LIB_LIST
 
 # building project
 add_library(${PROJECT_NAME} ${SRC_LIST})
+target_include_directories(${PROJECT_NAME} PUBLIC include)
 target_link_libraries(${PROJECT_NAME} ${LIB_LIST})
 install(TARGETS ${PROJECT_NAME} DESTINATION lib)
 install(DIRECTORY include/ DESTINATION include)

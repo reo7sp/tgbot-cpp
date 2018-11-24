@@ -58,7 +58,7 @@ int main() {
 All other samples are located [here](samples).
 
 
-## Library compilation
+## Dependencies
 
 Firstly you need to install some dependencies such as Boost and build tools such as CMake. On Debian-based distibutives you can do it with these commands:
 ```sh
@@ -66,13 +66,19 @@ sudo apt-get install g++ make binutils cmake libssl-dev libboost-system-dev
 ```
 If you want to use curl-based http client `CurlHttpClient`, you also need to install `libcurl4-openssl-dev` package.
 
-To compile the library execute this commands:
+## Library installation
+
+If you want to install the library system-wide:
+
 ```sh
-cd /path/where/you/have/cloned/the/library/repository
+git clone https://github.com/reo7sp/tgbot-cpp
+cd tgbot-cpp
 cmake .
 make -j4
 sudo make install
 ```
+
+Or you can treat this repository as a submodule of your project, for example, see [echobot-submodule](samples/echobot/CMakeLists.txt)
 
 ## Specific library installation notes
 
