@@ -69,7 +69,6 @@ If you want to use curl-based http client `CurlHttpClient`, you also need to ins
 ## Library installation
 
 If you want to install the library system-wide:
-
 ```sh
 git clone https://github.com/reo7sp/tgbot-cpp
 cd tgbot-cpp
@@ -78,7 +77,7 @@ make -j4
 sudo make install
 ```
 
-Or you can treat this repository as a submodule of your project, for example, see [echobot-submodule](samples/echobot/CMakeLists.txt)
+Or you can treat this repository as a submodule of your project, for example, see [echobot-submodule](samples/echobot-submodule/CMakeLists.txt)
 
 ## Specific library installation notes
 
