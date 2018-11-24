@@ -1,12 +1,24 @@
 cmake_minimum_required(VERSION 2.8.4)
 project(TgBot)
 
+if (${CONAN_EXPORTED})
+    include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
+    conan_basic_setup()
+endif()
+
+set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)
+
 # options
 option(ENABLE_TESTS "Set to ON to enable building of tests" OFF)
 option(BUILD_SHARED_LIBS "Build tgbot-cpp shared/static library." OFF)
 
 # sources
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Wall")
+if(WIN32)
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")  # Do not activate all warnings in VS (too much output for Appveyor)
+else()
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Wall")
+endif()
+
 include_directories(include)
 set(SRC_LIST
     src/Api.cpp
@@ -27,6 +39,9 @@ set(SRC_LIST
 # libs
 ## threads
 find_package(Threads REQUIRED)
+
+# zlib
+find_package(ZLIB REQUIRED)
 
 ## openssl
 find_package(OpenSSL REQUIRED)
@@ -50,6 +65,7 @@ include_directories(${Boost_INCLUDE_DIR})
 
 set(LIB_LIST
     ${CMAKE_THREAD_LIBS_INIT}
+    ${ZLIB_LIBRARIES}
     ${OPENSSL_LIBRARIES}
     ${Boost_LIBRARIES}
     ${CURL_LIBRARIES}
@@ -58,7 +74,10 @@ set(LIB_LIST
 # building project
 add_library(${PROJECT_NAME} ${SRC_LIST})
 target_link_libraries(${PROJECT_NAME} ${LIB_LIST})
-install(TARGETS ${PROJECT_NAME} DESTINATION lib)
+install(TARGETS ${PROJECT_NAME}
+        RUNTIME DESTINATION bin
+        LIBRARY DESTINATION lib
+        ARCHIVE DESTINATION lib)
 install(DIRECTORY include/ DESTINATION include)
 
 # tests
