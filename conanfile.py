@@ -2,9 +2,9 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from conans import ConanFile, CMake, tools
 import os
-import shutil
+
+from conans import ConanFile, CMake, tools
 
 
 class TgbotConan(ConanFile):
@@ -26,18 +26,17 @@ class TgbotConan(ConanFile):
                "shared": [True, False]}
     default_options = {"fPIC": True, "shared": True}
 
-    boost_version = "1.68.0"
     requires = (
-        "boost/{}@conan/stable".format(boost_version),
-        "OpenSSL/[>=1.0,<1.1]@conan/stable",
+        "boost/1.68.0@conan/stable",
+        "OpenSSL/1.1.1a@conan/stable",
         "libcurl/7.61.1@bincrafters/stable"
     )
 
     def source(self):
+        boost_version = self.deps_cpp_info['boost'].version
         tools.replace_in_file(os.path.join(self.source_folder, "CMakeLists.txt"),
                               "find_package(Boost 1.59.0 COMPONENTS system REQUIRED)",
-                              "find_package(Boost {} COMPONENTS system REQUIRED)".format(
-                                  self.boost_version))
+                              "find_package(Boost {} COMPONENTS system REQUIRED)".format(boost_version))
 
     def config_options(self):
         if self.settings.os == "Windows":
