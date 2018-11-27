@@ -30,7 +30,7 @@ class TgbotConan(ConanFile):
     requires = (
         "boost/{}@conan/stable".format(boost_version),
         "OpenSSL/[>=1.0,<1.1]@conan/stable",
-        "libcurl/7.56.1@bincrafters/stable"
+        "libcurl/7.61.1@bincrafters/stable"
     )
 
     def source(self):
