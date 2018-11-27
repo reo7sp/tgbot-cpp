@@ -28,7 +28,7 @@ class TgbotConan(ConanFile):
 
     requires = (
         "boost/1.68.0@conan/stable",
-        "OpenSSL/1.1.1a@conan/stable",
+        "OpenSSL/1.0.2q@conan/stable",
         "libcurl/7.61.1@bincrafters/stable"
     )
 
