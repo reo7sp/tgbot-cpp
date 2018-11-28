@@ -34,9 +34,7 @@ jobs:
           - docker build -t reo7sp/tgbot-cpp -f Dockerfile .
           - docker build -t reo7sp/tgbot-cpp-test -f Dockerfile_test .
           - docker run --rm reo7sp/tgbot-cpp-test
-      #- <<: *linux
-      #  stage: conan-linux
-      #  env: CONAN_GCC_VERSIONS=4.8 CONAN_DOCKER_IMAGE=conanio/gcc48 CONAN_ARCHS=x86_64
+
       - <<: *linux
         stage: conan-linux
         env: CONAN_GCC_VERSIONS=4.9 CONAN_DOCKER_IMAGE=conanio/gcc49
@@ -52,9 +50,7 @@ jobs:
       - <<: *linux
         stage: conan-linux
         env: CONAN_GCC_VERSIONS=8 CONAN_DOCKER_IMAGE=conanio/gcc8
-      #- <<: *linux
-      #  stage: conan-linux
-      #  env: CONAN_CLANG_VERSIONS=3.9 CONAN_DOCKER_IMAGE=conanio/clang39
+
       - <<: *linux
         stage: conan-linux
         env: CONAN_CLANG_VERSIONS=4.0 CONAN_DOCKER_IMAGE=conanio/clang40
@@ -66,7 +62,8 @@ jobs:
         env: CONAN_CLANG_VERSIONS=6.0 CONAN_DOCKER_IMAGE=conanio/clang60
       - <<: *linux
         stage: conan-linux
-        env: CONAN_CLANG_VERSIONS=7.0 CONAN_DOCKER_IMAGE=conanio/clang7
+        env: CONAN_CLANG_VERSIONS=7.0 CONAN_DOCKER_IMAGE=conanio/clang7 CONAN_BUILD_POLICY=missing
+
       - <<: *osx
         stage: conan-osx
         osx_image: xcode7.3
