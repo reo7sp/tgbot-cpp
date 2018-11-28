@@ -67,11 +67,11 @@ jobs:
       - <<: *osx
         stage: conan-osx
         osx_image: xcode7.3
-        env: CONAN_APPLE_CLANG_VERSIONS=7.3
+        env: CONAN_APPLE_CLANG_VERSIONS=7.3 CONAN_BUILD_POLICY=missing
       - <<: *osx
         stage: conan-osx
         osx_image: xcode8.3
-        env: CONAN_APPLE_CLANG_VERSIONS=8.1
+        env: CONAN_APPLE_CLANG_VERSIONS=8.1 CONAN_BUILD_POLICY=missing
       - <<: *osx
         stage: conan-osx
         osx_image: xcode9
