@@ -1,10 +1,84 @@
-sudo: required
+linux: &linux
+   os: linux
+   dist: xenial
+   language: python
+   python: "3.7"
+   services:
+     - docker
+osx: &osx
+   os: osx
+   language: generic
 
-services:
-    - docker
+stages:
+  - unittest
+  - conan-linux
+  - conan-osx
+
+jobs:
+   include:
+      - <<: *linux
+        stage: unittest
+        name: unittest
+        sudo: required
+        script:
+          - docker build -t reo7sp/tgbot-cpp -f Dockerfile .
+          - docker build -t reo7sp/tgbot-cpp-test -f Dockerfile_test .
+          - docker run --rm reo7sp/tgbot-cpp-test
+
+      - <<: *linux
+        stage: conan-linux
+        env: CONAN_GCC_VERSIONS=4.9 CONAN_DOCKER_IMAGE=conanio/gcc49
+      - <<: *linux
+        stage: conan-linux
+        env: CONAN_GCC_VERSIONS=5 CONAN_DOCKER_IMAGE=conanio/gcc5
+      - <<: *linux
+        stage: conan-linux
+        env: CONAN_GCC_VERSIONS=6 CONAN_DOCKER_IMAGE=conanio/gcc6
+      - <<: *linux
+        stage: conan-linux
+        env: CONAN_GCC_VERSIONS=7 CONAN_DOCKER_IMAGE=conanio/gcc7
+      - <<: *linux
+        stage: conan-linux
+        env: CONAN_GCC_VERSIONS=8 CONAN_DOCKER_IMAGE=conanio/gcc8
+
+      - <<: *linux
+        stage: conan-linux
+        env: CONAN_CLANG_VERSIONS=4.0 CONAN_DOCKER_IMAGE=conanio/clang40
+      - <<: *linux
+        stage: conan-linux
+        env: CONAN_CLANG_VERSIONS=5.0 CONAN_DOCKER_IMAGE=conanio/clang50
+      - <<: *linux
+        stage: conan-linux
+        env: CONAN_CLANG_VERSIONS=6.0 CONAN_DOCKER_IMAGE=conanio/clang60
+      - <<: *linux
+        stage: conan-linux
+        env: CONAN_CLANG_VERSIONS=7.0 CONAN_DOCKER_IMAGE=conanio/clang7 CONAN_BUILD_POLICY=missing
+
+      - <<: *osx
+        stage: conan-osx
+        osx_image: xcode7.3
+        env: CONAN_APPLE_CLANG_VERSIONS=7.3 CONAN_BUILD_POLICY=missing
+      - <<: *osx
+        stage: conan-osx
+        osx_image: xcode8.3
+        env: CONAN_APPLE_CLANG_VERSIONS=8.1 CONAN_BUILD_POLICY=missing
+      - <<: *osx
+        stage: conan-osx
+        osx_image: xcode9
+        env: CONAN_APPLE_CLANG_VERSIONS=9.0
+      - <<: *osx
+        stage: conan-osx
+        osx_image: xcode9.4
+        env: CONAN_APPLE_CLANG_VERSIONS=9.1
+      - <<: *osx
+        stage: conan-osx
+        osx_image: xcode10
+        env: CONAN_APPLE_CLANG_VERSIONS=10.0
+
+install:
+  - chmod +x .travis/install.sh
+  - ./.travis/install.sh
 
 script:
-     - docker build -t reo7sp/tgbot-cpp -f Dockerfile .
-     - docker build -t reo7sp/tgbot-cpp-test -f Dockerfile_test .
-     - docker run --rm reo7sp/tgbot-cpp-test
-
+  - chmod +x .travis/run.sh
+  - ./.travis/run.sh
