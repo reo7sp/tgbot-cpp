@@ -37,10 +37,8 @@ CurlHttpClient::~CurlHttpClient() {
 }
 
 static size_t curlWriteString(char* ptr, size_t size, size_t nmemb, void* userdata) {
-    std::string &s = *(std::string *)userdata;
-    auto read = size * nmemb;
-    s.append(ptr, ptr + read);
-    return read;
+    static_cast<std::string *>(userdata)->append(ptr, size * nmemb);
+    return size * nmemb;
 };
 
 std::string CurlHttpClient::makeRequest(const Url& url, const std::vector<HttpReqArg>& args) const {
@@ -56,18 +54,21 @@ std::string CurlHttpClient::makeRequest(const Url& url, const std::vector<HttpRe
     headers = curl_slist_append(headers, "Connection: close");
     curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headers);
 
-    std::string data;
-    std::vector<char*> escaped;
+    curl_mime *mime;
+    curl_mimepart *part;
+    mime = curl_mime_init(curl);
     if (!args.empty()) {
         for (const HttpReqArg& a : args) {
-            escaped.push_back(curl_easy_escape(curl, a.name.c_str(), a.name.size()));
-            data += escaped.back() + std::string("=");
-            escaped.push_back(curl_easy_escape(curl, a.value.c_str(), a.value.size()));
-            data += escaped.back() + std::string("&");
+            part = curl_mime_addpart(mime);
+
+            curl_mime_data(part, a.value.c_str(), a.value.size());
+            curl_mime_type(part, a.mimeType.c_str());
+            curl_mime_name(part, a.name.c_str());
+            if (a.isFile) {
+                curl_mime_filename(part, a.fileName.c_str());
+            }
         }
-        data.resize(data.size() - 1);
-        curl_easy_setopt(curl, CURLOPT_POSTFIELDS, data.c_str());
-        curl_easy_setopt(curl, CURLOPT_POSTFIELDSIZE, (long)data.size());
+        curl_easy_setopt(curl, CURLOPT_MIMEPOST, mime);
     }
 
     std::string response;
@@ -77,10 +78,7 @@ std::string CurlHttpClient::makeRequest(const Url& url, const std::vector<HttpRe
     auto res = curl_easy_perform(curl);
     curl_slist_free_all(headers);
     curl_easy_cleanup(curl);
-
-    for (auto& e : escaped) {
-        curl_free(e);
-    }
+    curl_mime_free(mime);
 
     if (res != CURLE_OK) {
         throw std::runtime_error(std::string("curl error: ") + curl_easy_strerror(res));
