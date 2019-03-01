@@ -38,6 +38,7 @@
 #include "tgbot/types/StickerSet.h"
 #include "tgbot/types/MaskPosition.h"
 #include "tgbot/types/Video.h"
+#include "tgbot/types/Voice.h"
 #include "tgbot/types/VideoNote.h"
 #include "tgbot/types/Contact.h"
 #include "tgbot/types/Location.h"
@@ -146,6 +147,9 @@ public:
 
     Video::Ptr parseJsonAndGetVideo(const boost::property_tree::ptree& data) const;
     std::string parseVideo(const Video::Ptr& object) const;
+
+    Voice::Ptr parseJsonAndGetVoice(const boost::property_tree::ptree& data) const;
+    std::string parseVoice(const Voice::Ptr& object) const;
 
     VideoNote::Ptr parseJsonAndGetVideoNote(const boost::property_tree::ptree& data) const;
     std::string parseVideoNote(const VideoNote::Ptr& object) const;

@@ -158,6 +158,7 @@ Message::Ptr TgTypeParser::parseJsonAndGetMessage(const ptree& data) const {
     result->photo = parseJsonAndGetArray<PhotoSize>(&TgTypeParser::parseJsonAndGetPhotoSize, data, "photo");
     result->sticker = tryParseJson<Sticker>(&TgTypeParser::parseJsonAndGetSticker, data, "sticker");
     result->video = tryParseJson<Video>(&TgTypeParser::parseJsonAndGetVideo, data, "video");
+    result->voice = tryParseJson<Voice>(&TgTypeParser::parseJsonAndGetVoice, data, "voice");
     result->contact = tryParseJson<Contact>(&TgTypeParser::parseJsonAndGetContact, data, "contact");
     result->location = tryParseJson<Location>(&TgTypeParser::parseJsonAndGetLocation, data, "location");
     result->newChatMember = tryParseJson<User>(&TgTypeParser::parseJsonAndGetUser, data, "new_chat_participant");
@@ -204,6 +205,7 @@ string TgTypeParser::parseMessage(const Message::Ptr& object) const {
     appendToJson(result, "photo", parseArray(&TgTypeParser::parsePhotoSize, object->photo));
     appendToJson(result, "sticker", parseSticker(object->sticker));
     appendToJson(result, "video", parseVideo(object->video));
+    appendToJson(result, "voice", parseVoice(object->voice));
     appendToJson(result, "contact", parseContact(object->contact));
     appendToJson(result, "location", parseLocation(object->location));
     appendToJson(result, "new_chat_member", parseUser(object->newChatMember));
@@ -406,6 +408,30 @@ string TgTypeParser::parseVideo(const Video::Ptr& object) const {
     appendToJson(result, "height", object->height);
     appendToJson(result, "duration", object->duration);
     appendToJson(result, "thumb", parsePhotoSize(object->thumb));
+    appendToJson(result, "mime_type", object->mimeType);
+    appendToJson(result, "file_size", object->fileSize);
+    removeLastComma(result);
+    result += '}';
+    return result;
+}
+
+Voice::Ptr TgTypeParser::parseJsonAndGetVoice(const ptree& data) const {
+    auto result(make_shared<Voice>());
+    result->fileId = data.get<string>("file_id");
+    result->duration = data.get<int32_t>("duration");
+    result->mimeType = data.get("mime_type", "");
+    result->fileSize = data.get("file_size", 0);
+    return result;
+}
+
+string TgTypeParser::parseVoice(const Voice::Ptr& object) const {
+    if (!object) {
+        return "";
+    }
+    string result;
+    result += '{';
+    appendToJson(result, "file_id", object->fileId);
+    appendToJson(result, "duration", object->duration);
     appendToJson(result, "mime_type", object->mimeType);
     appendToJson(result, "file_size", object->fileSize);
     removeLastComma(result);
