@@ -22,7 +22,7 @@ public:
     /**
      * @brief Unique identifier for this file.
      */
-    std::string file_id;
+    std::string fileId;
 
     /**
      * @brief Duration of the audio in seconds as defined by sender.
@@ -32,12 +32,12 @@ public:
     /**
      * @brief Optional. MIME type of the file as defined by sender;
      */
-    std::string mime_type;
+    std::string mimeType;
 
     /**
      * @brief Optional. File size.
      */
-    int32_t file_size;
+    int32_t fileSize;
 };
 }
 
