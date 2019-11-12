@@ -273,7 +273,7 @@ public:
      * @param stickers File identifier of the sticker.
      * @return Returns True on success.
      */
-    bool deleteStickerPositionInSet(const std::string& sticker) const;
+    bool deleteStickerFromSet(const std::string& sticker) const;
 
     /**
      * @brief Use this method to send video files, Telegram clients support mp4 videos (other formats may be sent as Document).
