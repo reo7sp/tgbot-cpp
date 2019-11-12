@@ -335,12 +335,11 @@ bool Api::createNewStickerSet(int32_t userId, const string& name, const string& 
     return sendRequest("createNewStickerSet", args).get<bool>("", false);
 }
 
-bool Api::addStickerToSet(int32_t userId, const string& name, const string& title, const boost::variant<InputFile::Ptr, std::string> pngSticker, const string& emojis, MaskPosition::Ptr maskPosition) const {
+bool Api::addStickerToSet(int32_t userId, const string& name, const boost::variant<InputFile::Ptr, std::string> pngSticker, const string& emojis, MaskPosition::Ptr maskPosition) const {
     vector<HttpReqArg> args;
     args.reserve(6);
     args.emplace_back("user_id", userId);
     args.emplace_back("name", name);
-    args.emplace_back("title", title);
     if (pngSticker.which() == 0 /* InputFile::Ptr */) {
         auto file = boost::get<InputFile::Ptr>(pngSticker);
         args.emplace_back("png_sticker", file->data, true, file->mimeType, file->fileName);

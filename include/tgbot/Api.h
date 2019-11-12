@@ -251,13 +251,12 @@ public:
      * @brief Use this method to add a new sticker to a set created by the bot.
      * @param userId User identifier of created sticker set owner.
      * @param name Sticker set name.
-     * @param title Sticker set title, 1-64 characters.
      * @param pngSticker Png image with the sticker, must be up to 512 kilobytes in size, dimensions must not exceed 512px, and either width or height must be exactly 512px.
      * @param emojis One or more emoji corresponding to the sticker.
      * @param maskPosition Optional. A JSON-serialized object for position where the mask should be placed on faces.
      * @return Returns True on success.
      */
-    bool addStickerToSet(int32_t userId, const std::string& name, const std::string& title,
+    bool addStickerToSet(int32_t userId, const std::string& name,
                          boost::variant<InputFile::Ptr, std::string> pngSticker, const std::string& emojis, MaskPosition::Ptr maskPosition = nullptr) const;
 
     /**
