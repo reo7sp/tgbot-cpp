@@ -25,14 +25,14 @@
 
 using namespace TgBot;
 
-const std::string InlineQueryResultCachedAudio::TYPE = "cached_audio";
-const std::string InlineQueryResultCachedDocument::TYPE = "cached_document";
-const std::string InlineQueryResultCachedGif::TYPE = "cached_gif";
-const std::string InlineQueryResultCachedMpeg4Gif::TYPE = "cached_mpeg4gif";
-const std::string InlineQueryResultCachedPhoto::TYPE = "cached_photo";
-const std::string InlineQueryResultCachedSticker::TYPE = "cached_sticker";
-const std::string InlineQueryResultCachedVideo::TYPE = "cached_video";
-const std::string InlineQueryResultCachedVoice::TYPE = "cached_voice";
+const std::string InlineQueryResultCachedAudio::TYPE = "audio";
+const std::string InlineQueryResultCachedDocument::TYPE = "document";
+const std::string InlineQueryResultCachedGif::TYPE = "gif";
+const std::string InlineQueryResultCachedMpeg4Gif::TYPE = "mpeg4_gif";
+const std::string InlineQueryResultCachedPhoto::TYPE = "photo";
+const std::string InlineQueryResultCachedSticker::TYPE = "sticker";
+const std::string InlineQueryResultCachedVideo::TYPE = "video";
+const std::string InlineQueryResultCachedVoice::TYPE = "voice";
 
 const std::string InlineQueryResultArticle::TYPE = "article";
 const std::string InlineQueryResultAudio::TYPE = "audio";
