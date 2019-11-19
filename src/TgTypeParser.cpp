@@ -179,6 +179,7 @@ Message::Ptr TgTypeParser::parseJsonAndGetMessage(const ptree& data) const {
     result->invoice = tryParseJson<Invoice>(&TgTypeParser::parseJsonAndGetInvoice, data, "invoice");
     result->successfulPayment = tryParseJson<SuccessfulPayment>(&TgTypeParser::parseJsonAndGetSuccessfulPayment, data, "successful_payment");
     result->connectedWebsite = data.get("connected_website", "");
+    result->replyMarkup = tryParseJson<InlineKeyboardMarkup>(&TgTypeParser::parseJsonAndGetInlineKeyboardMarkup, data, "reply_markup");
     return result;
 }
 
@@ -228,6 +229,7 @@ string TgTypeParser::parseMessage(const Message::Ptr& object) const {
     appendToJson(result, "connected_website", object->connectedWebsite);
     appendToJson(result, "invoice", parseInvoice(object->invoice));
     appendToJson(result, "successful_payment", parseSuccessfulPayment(object->successfulPayment));
+    appendToJson(result, "reply_markup", parseReplyKeyboardMarkup(object->replyMarkup));
     removeLastComma(result);
     result += '}';
     return result;
@@ -1759,6 +1761,7 @@ InlineKeyboardButton::Ptr TgTypeParser::parseJsonAndGetInlineKeyboardButton(cons
     auto result(make_shared<InlineKeyboardButton>());
     result->text = data.get<string>("text");
     result->url = data.get<string>("url", "");
+    result->loginUrl = make_shared<LoginUrl>();
     result->callbackData = data.get<string>("callback_data", "");
     result->switchInlineQuery = data.get<string>("switch_inline_query", "");
     result->switchInlineQueryCurrentChat = data.get<string>("switch_inline_query_current_chat", "");

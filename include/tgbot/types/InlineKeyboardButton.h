@@ -9,6 +9,7 @@
 #include <memory>
 
 #include "tgbot/types/CallbackGame.h"
+#include "tgbot/types/LoginUrl.h"
 
 namespace TgBot {
 
@@ -30,6 +31,11 @@ public:
      * @brief Optional. HTTP url to be opened when button is pressed.
      */
     std::string url;
+
+    /**
+ * @brief Optional. An HTTP URL used to automatically authorize the user.
+ */
+    LoginUrl::Ptr loginUrl;
 
     /**
      * @brief Optional. Data to be sent in a callback query to the bot when button is pressed.

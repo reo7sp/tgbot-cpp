@@ -45,6 +45,7 @@
 #include "tgbot/types/Voice.h"
 #include "tgbot/types/Invoice.h"
 #include "tgbot/types/SuccessfulPayment.h"
+#include "tgbot/types/InlineKeyboardMarkup.h"
 
 namespace TgBot {
 
@@ -278,6 +279,11 @@ public:
      * @brief Optional. The domain name of the website on which the user has logged in.
      */
     std::string connectedWebsite;
+
+    /**
+     * @brief Optional. Inline keyboard attached to the message. login_url buttons are represented as ordinary url buttons.
+     */
+    InlineKeyboardMarkup::Ptr replyMarkup;
 };
 
 }
