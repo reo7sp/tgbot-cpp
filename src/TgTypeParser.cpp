@@ -229,7 +229,7 @@ string TgTypeParser::parseMessage(const Message::Ptr& object) const {
     appendToJson(result, "connected_website", object->connectedWebsite);
     appendToJson(result, "invoice", parseInvoice(object->invoice));
     appendToJson(result, "successful_payment", parseSuccessfulPayment(object->successfulPayment));
-    appendToJson(result, "reply_markup", parseReplyKeyboardMarkup(object->replyMarkup));
+    appendToJson(result, "reply_markup", parseInlineKeyboardMarkup(object->replyMarkup));
     removeLastComma(result);
     result += '}';
     return result;
