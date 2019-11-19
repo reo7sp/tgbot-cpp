@@ -291,6 +291,7 @@ public:
      * @param disableNotification Optional. Sends the message silenty.
      * @return On success, the sent message is returned.
      */
+
     Message::Ptr sendVideo(int64_t chatId, const boost::variant<InputFile::Ptr, std::string> video, bool supportsStreaming = false, int32_t duration = 0, int32_t width = 0, int32_t height = 0, const boost::variant<InputFile::Ptr, std::string> thumb = "", const std::string& caption = "",
                            int32_t replyToMessageId = 0, GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>(), const std::string& parseMode = "", bool disableNotification = false) const;
 
@@ -585,7 +586,7 @@ public:
 
     /**
      * @brief Use this method to delete messages sent by bot (or by other users if bot is admin).
-     * @param chatId	Unique identifier for the target chat.
+     * @param chatId	Unique identifier for the target chat or username of the target channel.
      * @param messageId	Unique identifier for the target message.
      */
     void deleteMessage(int64_t chatId, int32_t messageId) const;
@@ -746,8 +747,8 @@ public:
     bool setChatDescription(int64_t chatId, const std::string& description) const;
 
     /**
-     * @brief Use this method to pin a message in a supergroup or a channel.
-     * @param chatId Unique identifier for the target chat.
+     * @brief Use this method to pin a message in a group, a supergroup, or a channel.
+     * @param chatId Unique identifier for the target chat or username of the target channel.
      * @param messageId Identifier of a message to pin.
      * @param disableNotification Optional. Pass True, if it is not necessary to send a notification to all chat members about the new pinned message. Notifications are always disabled in channels.
      * @return True on success
@@ -755,8 +756,8 @@ public:
     bool pinChatMessage(int64_t chatId, int32_t messageId, bool disableNotification = false) const;
 
     /**
-     * @brief Use this method to unpin a message in a supergroup or a channel.
-     * @param chatId Unique identifier for the target chat.
+     * @brief Use this method to unpin a message in a group, a supergroup, or a channel.
+     * @param chatId Unique identifier for the target chat or username of the target channel.
      * @return True on success
      */
     bool unpinChatMessage(int64_t chatId) const;
@@ -792,7 +793,6 @@ public:
     std::vector<GameHighScore::Ptr> getGameHighScores(int32_t userId, int32_t score, bool force = false,
                                                       bool disableEditMessage = false, int64_t chatId = 0, int32_t messageId = 0, const std::string& inlineMessageId = "") const;
 
-
     /**
      * @brief Downloads file from Telegram and saves it in memory.
      * @param filePath Telegram file path.
@@ -800,6 +800,33 @@ public:
      * @return File contents in a string.
      */
     std::string downloadFile(const std::string& filePath, const std::vector<HttpReqArg>& args = std::vector<HttpReqArg>()) const;
+
+    /**
+    * @brief Use this method to send a poll.
+    * @param chatId Unique identifier for the target chat or username of the target channel.
+    * @param question Poll question, 1-255 characters.
+    * @param options List of answer options, 2-10 strings 1-100 characters each.
+    * @param disable_notification Optional. Sends the message silenty.
+    * @param reply_to_message_id Optional. If the message is a reply, ID of the original message.
+    * @param reply_markup Optional. Additional interface options. An object for a custom reply keyboard, instructions to hide keyboard or to force a reply from the user.
+    *
+    * @return On success, the sent message is returned.
+    */
+    Message::Ptr sendPoll(int64_t chatId, std::string question, std::vector<std::string> options, bool disable_notification=false, int32_t reply_to_message_id=0,GenericReply::Ptr reply_markup = std::make_shared<GenericReply>()) const;
+
+    /**
+    * @brief Use this method to stop a poll which was sent by the bot. On success, the stopped Poll with the final results is returned..
+    * @param chatId Unique identifier for the target chat or username of the target channel.
+    * @param question Poll question, 1-255 characters.
+    * @param options List of answer options, 2-10 strings 1-100 characters each.
+    * @param disable_notification Optional. Sends the message silenty.
+    * @param reply_to_message_id Optional. If the message is a reply, ID of the original message.
+    * @param reply_markup Optional. Additional interface options. An object for a custom reply keyboard, instructions to hide keyboard or to force a reply from the user.
+    *
+    * @return On success, the sent message is returned.
+    */
+
+    Poll::Ptr stopPoll(int64_t chatId, int64_t messageId, InlineKeyboardMarkup::Ptr replyMarkup = std::make_shared<InlineKeyboardMarkup>()) const;
 
 private:
     boost::property_tree::ptree sendRequest(const std::string& method, const std::vector<HttpReqArg>& args = std::vector<HttpReqArg>()) const;

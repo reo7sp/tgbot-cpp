@@ -144,6 +144,7 @@ Message::Ptr TgTypeParser::parseJsonAndGetMessage(const ptree& data) const {
     result->forwardFromChat = tryParseJson<Chat>(&TgTypeParser::parseJsonAndGetChat, data, "forward_from_chat");
     result->forwardFromMessageId = data.get<int32_t>("forward_from_message_id", 0);
     result->forwardSignature = data.get("forward_signature", "");
+    result->forwardSenderName = data.get("forward_sender_name", "");
     result->forwardDate = data.get("forward_date", 0);
     result->replyToMessage = tryParseJson<Message>(&TgTypeParser::parseJsonAndGetMessage, data, "reply_to_message");
     result->editDate = data.get<int32_t>("edit_date", 0);
@@ -161,6 +162,7 @@ Message::Ptr TgTypeParser::parseJsonAndGetMessage(const ptree& data) const {
     result->voice = tryParseJson<Voice>(&TgTypeParser::parseJsonAndGetVoice, data, "voice");
     result->contact = tryParseJson<Contact>(&TgTypeParser::parseJsonAndGetContact, data, "contact");
     result->location = tryParseJson<Location>(&TgTypeParser::parseJsonAndGetLocation, data, "location");
+    result->poll = tryParseJson<Poll>(&TgTypeParser::parseJsonAndGetPoll, data, "poll");
     result->newChatMember = tryParseJson<User>(&TgTypeParser::parseJsonAndGetUser, data, "new_chat_participant");
     result->newChatMembers = parseJsonAndGetArray<User>(&TgTypeParser::parseJsonAndGetUser, data, "new_chat_members");
     result->leftChatMember = tryParseJson<User>(&TgTypeParser::parseJsonAndGetUser, data, "left_chat_participant");
@@ -194,6 +196,7 @@ string TgTypeParser::parseMessage(const Message::Ptr& object) const {
     appendToJson(result, "forward_from_chat", parseChat(object->forwardFromChat));
     appendToJson(result, "forward_from_message_id", object->forwardFromMessageId);
     appendToJson(result, "forward_signature", object->forwardSignature);
+    appendToJson(result, "forward_sender_name", object->forwardSenderName);
     appendToJson(result, "forward_date", object->forwardDate);
     appendToJson(result, "reply_to_message", parseMessage(object->replyToMessage));
     appendToJson(result, "edit_date", object->editDate);
@@ -208,6 +211,7 @@ string TgTypeParser::parseMessage(const Message::Ptr& object) const {
     appendToJson(result, "voice", parseVoice(object->voice));
     appendToJson(result, "contact", parseContact(object->contact));
     appendToJson(result, "location", parseLocation(object->location));
+    appendToJson(result, "poll", parsePoll(object->poll));
     appendToJson(result, "new_chat_member", parseUser(object->newChatMember));
     appendToJson(result, "new_chat_members", parseArray(&TgTypeParser::parseUser, object->newChatMembers));
     appendToJson(result, "left_chat_member", parseUser(object->leftChatMember));
@@ -380,6 +384,50 @@ string TgTypeParser::parseMaskPosition(const MaskPosition::Ptr& object) const {
     appendToJson(result, "x_shift", object->xShift);
     appendToJson(result, "y_shift", object->yShift);
     appendToJson(result, "scale", object->scale);
+    removeLastComma(result);
+    result += '}';
+    return result;
+}
+
+Poll::Ptr TgTypeParser::parseJsonAndGetPoll(const ptree& data) const {
+    auto result(make_shared<Poll>());
+    result->id = data.get("id", 0);
+    result->question = data.get("question", "");
+    result->options = tryParseJson<PollOption>(&TgTypeParser::parseJsonAndGetPollOption, data, "options");
+    result->is_closed = data.get<bool>("is_closed");
+    return result;
+}
+
+string TgTypeParser::parsePoll(const Poll::Ptr& object) const {
+    if (!object) {
+        return "";
+    }
+    string result;
+    result += '{';
+    appendToJson(result, "id", object->id);
+    appendToJson(result, "question", object->question);
+    appendToJson(result, "options", parsePollOption(object->options));
+    appendToJson(result, "is_closed", object->is_closed);
+    removeLastComma(result);
+    result += '}';
+    return result;
+}
+
+    PollOption::Ptr TgTypeParser::parseJsonAndGetPollOption(const ptree& data) const {
+        auto result(make_shared<PollOption>());
+        result->text = data.get("text", "");
+        result->voter_count = data.get("voter_count", 0);
+        return result;
+}
+
+string TgTypeParser::parsePollOption(const PollOption::Ptr& object) const {
+    if (!object) {
+        return "";
+    }
+    string result;
+    result += '{';
+    appendToJson(result, "text", object->text);
+    appendToJson(result, "voter_count", object->voter_count);
     removeLastComma(result);
     result += '}';
     return result;
@@ -877,6 +925,7 @@ ChatMember::Ptr TgTypeParser::parseJsonAndGetChatMember(const boost::property_tr
     result->canInviteUsers = data.get<bool>("can_invite_users", false);
     result->canRestrictMembers = data.get<bool>("can_restrict_members", false);
     result->canPinMessages = data.get<bool>("can_pin_messages", false);
+    result->isMember = data.get<bool>("is_member", false);
     result->canPromoteMembers = data.get<bool>("can_promote_messages", false);
     result->canSendMessages = data.get<bool>("can_send_messages", false);
     result->canSendMediaMessages = data.get<bool>("can_send_media_messages", false);
@@ -2127,5 +2176,4 @@ void TgTypeParser::appendToJson(string& json, const string& varName, const strin
     }
     json += ',';
 }
-
 }

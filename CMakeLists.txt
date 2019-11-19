@@ -34,7 +34,7 @@ set(SRC_LIST
     src/tools/StringTools.cpp
     src/types/InlineQueryResult.cpp
     src/types/InputFile.cpp
-)
+        include/tgbot/types/Poll.h include/tgbot/types/PollOption.h)
 
 # libs
 ## threads

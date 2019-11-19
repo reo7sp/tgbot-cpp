@@ -276,6 +276,7 @@ bool Api::answerPreCheckoutQuery(const std::string& preCheckoutQueryId, bool ok,
     return sendRequest("answerPreCheckoutQuery", args).get<bool>("", false);
 }
 
+
 Message::Ptr Api::sendSticker(int64_t chatId, const boost::variant<InputFile::Ptr, std::string> sticker, int32_t replyToMessageId, const GenericReply::Ptr replyMarkup, bool disableNotification) const {
     vector<HttpReqArg> args;
     args.reserve(5);
@@ -1141,6 +1142,43 @@ vector<GameHighScore::Ptr> Api::getGameHighScores(int32_t userId, int32_t score,
 
 void Api::deleteMessage(int64_t chatId, int32_t messageId) const {
     sendRequest("deleteMessage", { HttpReqArg("chat_id", chatId), HttpReqArg("message_id", messageId) });
+}
+
+Message::Ptr Api::sendPoll(int64_t chat_id, std::string question, std::vector<std::string> options, bool disable_notification, int32_t reply_to_message_id,GenericReply::Ptr reply_markup) const {
+    vector<HttpReqArg> args;
+    args.reserve(6);
+    args.emplace_back("chat_id", chat_id);
+    args.emplace_back("question", question);
+    std::string json_array;
+    json_array = "[";
+    for(const auto &arr : options){
+        json_array += "\"" + arr + "\"" + ",";
+    }
+    json_array.pop_back();
+    json_array += "]";
+    args.emplace_back("options", json_array);
+
+    if (disable_notification){
+        args.emplace_back("disable_notification", disable_notification);
+    }
+    if (reply_to_message_id!=0){
+        args.emplace_back("reply_to_message_id", reply_to_message_id);
+    }
+    if (reply_markup){
+        args.emplace_back("reply_markup", _tgTypeParser.parseGenericReply(reply_markup));
+    }
+    return _tgTypeParser.parseJsonAndGetMessage(sendRequest("sendPoll", args));
+}
+
+Poll::Ptr Api::stopPoll(int64_t chatId, int64_t messageId, const InlineKeyboardMarkup::Ptr replyMarkup) const {
+    vector<HttpReqArg> args;
+    args.reserve(3);
+    args.emplace_back("chat_id", chatId);
+    args.emplace_back("message_id", messageId);
+    if (replyMarkup){
+        args.emplace_back("reply_markup", _tgTypeParser.parseGenericReply(replyMarkup));
+    }
+    return _tgTypeParser.parseJsonAndGetPoll(sendRequest("stopPoll", args));
 }
 
 ptree Api::sendRequest(const string& method, const vector<HttpReqArg>& args) const {
