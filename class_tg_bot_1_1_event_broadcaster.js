@@ -1,9 +1,9 @@
 var class_tg_bot_1_1_event_broadcaster =
 [
-    [ "CallbackQueryListener", "class_tg_bot_1_1_event_broadcaster.html#a44f1bbafcca84f78f82dc0ef1801619a", null ],
-    [ "ChosenInlineResultListener", "class_tg_bot_1_1_event_broadcaster.html#a5348beecf29bdf52c7d21985668bca93", null ],
-    [ "InlineQueryListener", "class_tg_bot_1_1_event_broadcaster.html#a2c0338bc5cc3c1654d0e3f0dac0ab8a6", null ],
-    [ "MessageListener", "class_tg_bot_1_1_event_broadcaster.html#a95899d82f77288a43a28dd24d0fa687a", null ],
+    [ "CallbackQueryListener", "class_tg_bot_1_1_event_broadcaster.html#a58b9140d48fdc9d1fcde47aaecb448ec", null ],
+    [ "ChosenInlineResultListener", "class_tg_bot_1_1_event_broadcaster.html#a25a02d0c8c39364cb3ae9809f5cbb2e9", null ],
+    [ "InlineQueryListener", "class_tg_bot_1_1_event_broadcaster.html#ace029f81dd389176c753386ddf5c0f07", null ],
+    [ "MessageListener", "class_tg_bot_1_1_event_broadcaster.html#a53043508c8238a3d2c4181ae2d8a3e66", null ],
     [ "onAnyMessage", "class_tg_bot_1_1_event_broadcaster.html#a21adc85e9ed2a08a186423a5231342a9", null ],
     [ "onCallbackQuery", "class_tg_bot_1_1_event_broadcaster.html#a3ec551ffdcf5be1b9b39ed081ea078d4", null ],
     [ "onChosenInlineResult", "class_tg_bot_1_1_event_broadcaster.html#a7397520ff294c863b306142e29030482", null ],

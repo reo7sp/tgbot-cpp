@@ -14,6 +14,7 @@ var class_tg_bot_1_1_chat =
     [ "id", "class_tg_bot_1_1_chat.html#a0cb746cc149d10ada1af86753f25f93c", null ],
     [ "inviteLink", "class_tg_bot_1_1_chat.html#a5653ec719aa43764670c2c88055107e2", null ],
     [ "lastName", "class_tg_bot_1_1_chat.html#aea14be3f3c081d6aea387cd3613fc82e", null ],
+    [ "permissions", "class_tg_bot_1_1_chat.html#ad5ac6cb3ffaede7feee6d3795793599b", null ],
     [ "photo", "class_tg_bot_1_1_chat.html#acbc96ba84a02da42e5fa3c936458b735", null ],
     [ "pinnedMessage", "class_tg_bot_1_1_chat.html#af6904afd95332cd46ce65d3c82139875", null ],
     [ "stickerSetName", "class_tg_bot_1_1_chat.html#a056b7b53d5d81e5ab395dd555fa35c14", null ],

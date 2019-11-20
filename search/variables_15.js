@@ -12,5 +12,6 @@ var searchData=
   ['voice',['voice',['../class_tg_bot_1_1_message.html#a45147e56a0cb9b7dee926da7a11a0093',1,'TgBot::Message']]],
   ['voiceduration',['voiceDuration',['../class_tg_bot_1_1_inline_query_result_voice.html#a628636c93a2dbf8440cb3989ba1aaceb',1,'TgBot::InlineQueryResultVoice']]],
   ['voicefileid',['voiceFileId',['../class_tg_bot_1_1_inline_query_result_cached_voice.html#ab3810efdb799663c6fa106b3d28fb759',1,'TgBot::InlineQueryResultCachedVoice']]],
-  ['voiceurl',['voiceUrl',['../class_tg_bot_1_1_inline_query_result_voice.html#afc09fe61b4fcdce1644d55ec488ecda9',1,'TgBot::InlineQueryResultVoice']]]
+  ['voiceurl',['voiceUrl',['../class_tg_bot_1_1_inline_query_result_voice.html#afc09fe61b4fcdce1644d55ec488ecda9',1,'TgBot::InlineQueryResultVoice']]],
+  ['voter_5fcount',['voter_count',['../class_poll_option.html#a95f79aa80c1addb787a58a8f4b71bae2',1,'PollOption']]]
 ];
