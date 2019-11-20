@@ -27,6 +27,7 @@
 #include <memory>
 
 #include "tgbot/types/ChatPhoto.h"
+#include "tgbot/types/ChatPermissions.h"
 
 namespace TgBot {
 
@@ -109,6 +110,12 @@ public:
      * Returned only in getChat.
      */
     std::shared_ptr<Message> pinnedMessage;
+
+    /**
+     * @brief Optional. Default chat member permissions, for groups and supergroups.
+     * Returned only in getChat.
+     */
+    ChatPermissions::Ptr permissions;
 
     /**
      * @brief Optional. For supergroups, name of group sticker set.

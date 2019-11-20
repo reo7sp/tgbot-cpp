@@ -679,8 +679,7 @@ public:
      * @param canAddWebPagePreviews Optional. Pass True, if the user may add web page previews to their messages, implies can_send_media_messages.
      * @return True on success
      */
-    bool restrictChatMember(int64_t chatId, int32_t userId, uint64_t untilDate = 0, bool canSendMessages = false,
-                            bool canSendMediaMessages = false, bool canSendOtherMessages = false, bool canAddWebPagePreviews = false) const;
+    bool restrictChatMember(int64_t chatId, int32_t userId, ChatPermissions::Ptr permissions, uint64_t untilDate = 0) const;
 
     /**
      * @brief Use this method to promote or demote a user in a supergroup or a channel.
@@ -698,6 +697,14 @@ public:
      */
     bool promoteChatMember(int64_t chatId, int32_t userId, bool canChangeInfo = false, bool canPostMessages = false,
                            bool canEditMessages = false, bool canDeleteMessages = false, bool canInviteUsers = false, bool canPinMessages = false, bool canPromoteMembers = false) const;
+
+    /**
+  * @brief Use this method to set default chat permissions for all members. The bot must be an administrator in the group or a supergroup for this to work and must have the can_restrict_members admin rights. Returns True on success.
+  * @param chatId Unique identifier for the target chat of the target supergroup.
+  * @param permissions New default chat permissions.
+  * @return True on success
+  */
+    bool setChatPermissions(int64_t chatId, ChatPermissions::Ptr permissions) const;
 
     /**
      * @brief Use this method to generate a new invite link for a chat; any previously generated link is revoked.

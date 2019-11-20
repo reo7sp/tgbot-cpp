@@ -57,6 +57,11 @@ public:
     int32_t height;
 
     /**
+ * @brief True, if the sticker is animated.
+    */
+    bool isAnimated = false;
+
+    /**
      * @brief Optional. Optional. Sticker thumbnail in .webp or .jpg format.
      */
     PhotoSize::Ptr thumb;

@@ -38,6 +38,7 @@
 #include "tgbot/types/StickerSet.h"
 #include "tgbot/types/Poll.h"
 #include "tgbot/types/PollOption.h"
+#include "tgbot/types/ChatPermissions.h"
 #include "tgbot/types/MaskPosition.h"
 #include "tgbot/types/Video.h"
 #include "tgbot/types/Voice.h"
@@ -152,6 +153,9 @@ namespace TgBot {
 
         PollOption::Ptr parseJsonAndGetPollOption(const boost::property_tree::ptree& data) const;
         std::string parsePollOption(const PollOption::Ptr& object) const;
+
+        ChatPermissions::Ptr parseJsonAndGetChatPermissions(const boost::property_tree::ptree& data) const;
+        std::string parseChatPermissions(const ChatPermissions::Ptr& object) const;
 
         Video::Ptr parseJsonAndGetVideo(const boost::property_tree::ptree& data) const;
         std::string parseVideo(const Video::Ptr& object) const;

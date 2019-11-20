@@ -318,6 +318,7 @@ Sticker::Ptr TgTypeParser::parseJsonAndGetSticker(const ptree& data) const {
     result->fileId = data.get<string>("file_id");
     result->width = data.get<int32_t>("width");
     result->height = data.get<int32_t>("height");
+    result->isAnimated = data.get<bool>("is_animated", false);
     result->thumb = tryParseJson<PhotoSize>(&TgTypeParser::parseJsonAndGetPhotoSize, data, "thumb");
     result->emoji = data.get("emoji", "");
     result->setName = data.get("set_name", "");
@@ -335,6 +336,7 @@ string TgTypeParser::parseSticker(const Sticker::Ptr& object) const {
     appendToJson(result, "file_id", object->fileId);
     appendToJson(result, "width", object->width);
     appendToJson(result, "height", object->height);
+    appendToJson(result, "is_animated", object->isAnimated);
     appendToJson(result, "thumb", parsePhotoSize(object->thumb));
     appendToJson(result, "emoji", object->emoji);
     appendToJson(result, "file_size", object->fileSize);
@@ -348,6 +350,7 @@ StickerSet::Ptr TgTypeParser::parseJsonAndGetStickerSet(const ptree& data) const
     result->name = data.get("name", "");
     result->title = data.get("title", "");
     result->containsMasks = data.get<bool>("contains_masks", false);
+    result->isAnimated = data.get<bool>("is_animated", false);
     result->stickers = parseJsonAndGetArray<Sticker>(&TgTypeParser::parseJsonAndGetSticker, data, "stickers");
     return result;
 }
@@ -360,6 +363,7 @@ string TgTypeParser::parseStickerSet(const StickerSet::Ptr& object) const {
     result += '{';
     appendToJson(result, "name", object->name);
     appendToJson(result, "title", object->title);
+    appendToJson(result, "is_animated", object->isAnimated);
     appendToJson(result, "contains_masks", object->containsMasks);
     appendToJson(result, "stickers", parseArray(&TgTypeParser::parseSticker, object->stickers));
     removeLastComma(result);
@@ -415,11 +419,11 @@ string TgTypeParser::parsePoll(const Poll::Ptr& object) const {
     return result;
 }
 
-    PollOption::Ptr TgTypeParser::parseJsonAndGetPollOption(const ptree& data) const {
-        auto result(make_shared<PollOption>());
-        result->text = data.get("text", "");
-        result->voter_count = data.get("voter_count", 0);
-        return result;
+PollOption::Ptr TgTypeParser::parseJsonAndGetPollOption(const ptree& data) const {
+    auto result(make_shared<PollOption>());
+    result->text = data.get("text", "");
+    result->voter_count = data.get("voter_count", 0);
+    return result;
 }
 
 string TgTypeParser::parsePollOption(const PollOption::Ptr& object) const {
@@ -430,6 +434,38 @@ string TgTypeParser::parsePollOption(const PollOption::Ptr& object) const {
     result += '{';
     appendToJson(result, "text", object->text);
     appendToJson(result, "voter_count", object->voter_count);
+    removeLastComma(result);
+    result += '}';
+    return result;
+}
+
+ChatPermissions::Ptr TgTypeParser::parseJsonAndGetChatPermissions(const ptree& data) const {
+    auto result(make_shared<ChatPermissions>());
+    result->canSendMessages = data.get<bool>("can_send_messages");
+    result->canSendMediaMessages = data.get<bool>("can_send_media_messages");
+    result->canSendPolls = data.get<bool>("can_send_polls");
+    result->canSendOtherMessages = data.get<bool>("can_send_other_messages");
+    result->canAddWebPagePreviews = data.get<bool>("can_add_web_page_previews");
+    result->canChangeInfo = data.get<bool>("can_change_info");
+    result->canInviteUsers = data.get<bool>("can_invite_users");
+    result->canPinMessages = data.get<bool>("can_pin_messages");
+    return result;
+}
+
+string TgTypeParser::parseChatPermissions(const ChatPermissions::Ptr& object) const {
+    if (!object) {
+        return "";
+    }
+    string result;
+    result += '{';
+    appendToJson(result, "can_send_messages", object->canSendMessages);
+    appendToJson(result, "can_send_media_messages", object->canSendMediaMessages);
+    appendToJson(result, "can_send_polls", object->canSendPolls);
+    appendToJson(result, "can_send_other_messages", object->canSendOtherMessages);
+    appendToJson(result, "can_add_web_page_previews", object->canAddWebPagePreviews);
+    appendToJson(result, "can_change_info", object->canChangeInfo);
+    appendToJson(result, "can_invite_users", object->canInviteUsers);
+    appendToJson(result, "can_pin_messages", object->canPinMessages);
     removeLastComma(result);
     result += '}';
     return result;

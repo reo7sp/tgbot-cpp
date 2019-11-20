@@ -20,7 +20,7 @@ Documentation is located [here](http://reo7sp.github.io/tgbot-cpp).
 ## State
 
 - [x] Bot API 3.0 ~ 3.6
-- [x] Bot API 4.0 ~ 4.3 (Implemented all APIs except 'Telegram Passport')
+- [x] Bot API 4.0 ~ 4.4 (Implemented all APIs except 'Telegram Passport')
 
 
 ## Sample

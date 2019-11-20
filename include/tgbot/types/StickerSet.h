@@ -52,6 +52,11 @@ public:
     std::string title;
 
     /**
+ * @brief True, if the sticker set contains animated stickers.
+    */
+    bool isAnimated = false;
+
+    /**
      * @brief True, if the sticker set contains masks.
      */
     bool containsMasks = false;

@@ -102,6 +102,11 @@ public:
     bool canSendOtherMessages = false;
 
     /**
+     * @brief Optional. Restricted only. True, if the user can send animations, games, stickers and use inline bots, implies can_send_media_messages.
+     */
+    bool canSendPolls = false;
+
+    /**
      * @brief Optional. Restricted only. True, if user may add web page previews to his messages, implies can_send_media_messages.
      */
     bool canAddWebPagePreviews = false;

@@ -983,28 +983,17 @@ bool Api::unbanChatMember(int64_t chatId, int32_t userId) const {
     args.emplace_back("user_id", userId);
     return sendRequest("unbanChatMember", args).get<bool>("", false);
 }
-
-bool Api::restrictChatMember(int64_t chatId, int32_t userId, uint64_t untilDate, bool canSendMessages,
-                             bool canSendMediaMessages, bool canSendOtherMessages, bool canAddWebPagePreviews) const {
+bool Api::restrictChatMember(int64_t chatId, int32_t userId, TgBot::ChatPermissions::Ptr permissions,
+                             uint64_t untilDate) const {
     vector<HttpReqArg> args;
-    args.reserve(7);
+    args.reserve(4);
     args.emplace_back("chat_id", chatId);
     args.emplace_back("user_id", userId);
+    args.emplace_back("permissions", _tgTypeParser.parseChatPermissions(permissions));
     if (untilDate) {
         args.emplace_back("until_date", untilDate);
     }
-    if (canSendMessages) {
-        args.emplace_back("can_send_messages", canSendMessages);
-    }
-    if (canSendMediaMessages) {
-        args.emplace_back("can_send_media_messages", canSendMediaMessages);
-    }
-    if (canSendOtherMessages) {
-        args.emplace_back("can_send_other_messages", canSendOtherMessages);
-    }
-    if (canAddWebPagePreviews) {
-        args.emplace_back("can_add_web_page_previews", canAddWebPagePreviews);
-    }
+
     return sendRequest("restrictChatMember", args).get<bool>("", false);
 }
 
@@ -1036,6 +1025,14 @@ bool Api::promoteChatMember(int64_t chatId, int32_t userId, bool canChangeInfo, 
         args.emplace_back("can_promote_members", canPromoteMembers);
     }
     return sendRequest("promoteChatMember", args).get<bool>("", false);
+}
+
+bool Api::setChatPermissions(int64_t chatId, ChatPermissions::Ptr permissions) const{
+    vector<HttpReqArg> args;
+    args.reserve(2);
+    args.emplace_back("chat_id", chatId);
+    args.emplace_back("permissions", _tgTypeParser.parseChatPermissions(permissions));
+    return sendRequest("setChatPermissions", args).get<bool>("", false);
 }
 
 string Api::exportChatInviteLink(int64_t chatId) const {
