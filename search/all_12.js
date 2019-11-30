@@ -20,7 +20,7 @@ var searchData=
   ['sendvideo',['sendVideo',['../class_tg_bot_1_1_api.html#a796fb3cd938732fd36488c8916170a57',1,'TgBot::Api']]],
   ['sendvideonote',['sendVideoNote',['../class_tg_bot_1_1_api.html#a5e839e1459107a88211e71733e34639b',1,'TgBot::Api']]],
   ['sendvoice',['sendVoice',['../class_tg_bot_1_1_api.html#aacb4e44c3ba2fbcdf0a8d103fc625d8a',1,'TgBot::Api']]],
-  ['serverhandler',['ServerHandler',['../class_tg_bot_1_1_http_server.html#a444b1af5b07c6ed61a67ad52d84f01e3',1,'TgBot::HttpServer']]],
+  ['serverhandler',['ServerHandler',['../class_tg_bot_1_1_http_server.html#a0e8b3bf131f8a5d34df8870ca89bfe24',1,'TgBot::HttpServer']]],
   ['setchatdescription',['setChatDescription',['../class_tg_bot_1_1_api.html#aa9a0592b9a6c3ffe0d05005292b90250',1,'TgBot::Api']]],
   ['setchatpermissions',['setChatPermissions',['../class_tg_bot_1_1_api.html#abe3154bc76a9a09c4bf1579af44d7e06',1,'TgBot::Api']]],
   ['setchatphoto',['setChatPhoto',['../class_tg_bot_1_1_api.html#a14f58efe7645549fd225c1f5b1d75e89',1,'TgBot::Api']]],
