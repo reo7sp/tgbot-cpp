@@ -1,7 +1,3 @@
-//
-// Created by Andrea Giove on 17/04/16.
-//
-
 #ifndef TGBOT_INLINEKEYBOARDMARKUP_H
 #define TGBOT_INLINEKEYBOARDMARKUP_H
 
@@ -15,7 +11,7 @@ namespace TgBot {
 
 /**
  * @brief This object represents an inline keyboard that appears right next to the message it belongs to.
- * 
+ *
  * @ingroup types
  */
 class InlineKeyboardMarkup : public GenericReply {

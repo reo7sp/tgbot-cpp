@@ -1,7 +1,3 @@
-//
-// Created by Konstantin Kukin on 27/12/16
-//
-
 #ifndef TGBOT_INLINEQUERYRESULTAUDIO_H
 #define TGBOT_INLINEQUERYRESULTAUDIO_H
 
@@ -14,7 +10,7 @@ namespace TgBot {
 
 /**
  * @brief Represents a link to an mp3 audio file.
- * 
+ *
  * @ingroup types
  */
 class InlineQueryResultAudio : public InlineQueryResult {

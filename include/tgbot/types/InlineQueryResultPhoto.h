@@ -1,7 +1,3 @@
-//
-// Created by Andrea Giove on 26/03/16.
-//
-
 #ifndef TGBOT_INLINEQUERYRESULTPHOTO_H
 #define TGBOT_INLINEQUERYRESULTPHOTO_H
 
@@ -14,7 +10,7 @@ namespace TgBot {
 
 /**
  * @brief Represents a link to a photo.
- * 
+ *
  * @ingroup types
  */
 class InlineQueryResultPhoto : public InlineQueryResult {

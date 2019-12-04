@@ -1,25 +1,3 @@
-/*
- * Copyright (c) 2015 Oleg Morozenkov
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- * SOFTWARE.
- */
-
 #ifndef TGBOT_CPP_API_H
 #define TGBOT_CPP_API_H
 
@@ -295,12 +273,12 @@ public:
                            int32_t replyToMessageId = 0, GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>(), const std::string& parseMode = "", bool disableNotification = false) const;
 
     /**
-     * @brief Use this method to send animation files (GIF or H.264/MPEG-4 AVC video without sound). 
-     * 
+     * @brief Use this method to send animation files (GIF or H.264/MPEG-4 AVC video without sound).
+     *
      * Bots can currently send animation files of up to 50 MB in size, this limit may be changed in the future.
-     * 
+     *
      * @param chatId Unique identifier for the target chat.
-     * @param animation Animation to send. Pass a file_id as String to send an animation that exists on the Telegram servers (recommended), pass an HTTP URL as a String for Telegram to get an animation from the Internet, or upload a new animation using multipart/form-data. 
+     * @param animation Animation to send. Pass a file_id as String to send an animation that exists on the Telegram servers (recommended), pass an HTTP URL as a String for Telegram to get an animation from the Internet, or upload a new animation using multipart/form-data.
      * @param duration Optional. Duration of sent animation in seconds.
      * @param width Optional. Animation width.
      * @param height Optional. Animation height.
@@ -556,12 +534,12 @@ public:
 
     /**
      * @brief Use this method to edit audio, document, photo, or video messages.
-     * 
-     * 
+     *
+     *
      * If a message is a part of a message album, then it can be edited only to a photo or a video.
      * Otherwise, message type can be changed arbitrarily. When inline message is edited, new file can't be uploaded.
      * Use previously uploaded file via its file_id or specify a URL.
-     * 
+     *
      * @param media A JSON-serialized object for a new media content of the message.
      * @param chatId Optional	Required if inline_message_id is not specified. Unique identifier for the target chat of the target channel.
      * @param messageId Optional	Required if inline_message_id is not specified. Identifier of the sent message

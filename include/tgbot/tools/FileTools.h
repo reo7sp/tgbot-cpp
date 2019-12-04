@@ -1,7 +1,3 @@
-//
-// Created by Oleg Morozenkov on 25.01.17.
-//
-
 #ifndef TGBOT_FILETOOLS_H
 #define TGBOT_FILETOOLS_H
 

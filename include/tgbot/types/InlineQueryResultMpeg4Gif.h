@@ -1,7 +1,3 @@
-//
-// Created by Andrea Giove on 27/03/16.
-//
-
 #ifndef TGBOT_INLINEQUERYRESULTMPEG4GIF_H
 #define TGBOT_INLINEQUERYRESULTMPEG4GIF_H
 
@@ -9,7 +5,7 @@ namespace TgBot {
 
 /**
  * @brief Represents a link to a video animation (H.264/MPEG-4 AVC video without sound).
- * 
+ *
  * @ingroup types
  */
 class InlineQueryResultMpeg4Gif : public InlineQueryResult {

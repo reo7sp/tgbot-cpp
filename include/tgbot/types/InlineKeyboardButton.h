@@ -1,7 +1,3 @@
-//
-// Created by Andrea Giove on 17/04/16.
-//
-
 #ifndef TGBOT_INLINEKEYBOARDBUTTON_H
 #define TGBOT_INLINEKEYBOARDBUTTON_H
 
@@ -15,7 +11,7 @@ namespace TgBot {
 
 /**
  * @brief This object represents one button of an inline keyboard. You must use exactly one of the optional fields.
- * 
+ *
  * @ingroup types
  */
 class InlineKeyboardButton {

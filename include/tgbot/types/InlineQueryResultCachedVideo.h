@@ -1,7 +1,3 @@
-//
-// Created by Konstantin Kukin on 27/12/16.
-//
-
 #ifndef TGBOT_INLINEQUERYRESULTCACHEDVIDEO_H
 #define TGBOT_INLINEQUERYRESULTCACHEDVIDEO_H
 
@@ -13,7 +9,7 @@
 namespace TgBot {
 
 /**
- * @brief Represents a link to a video file stored on the Telegram servers. 
+ * @brief Represents a link to a video file stored on the Telegram servers.
  *
  *  @ingroup types
  */

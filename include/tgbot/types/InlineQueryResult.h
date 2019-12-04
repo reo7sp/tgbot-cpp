@@ -1,7 +1,3 @@
-//
-// Created by Andrea Giove on 26/03/16.
-//
-
 #ifndef TGBOT_INLINEQUERYRESULT_H
 #define TGBOT_INLINEQUERYRESULT_H
 
@@ -15,7 +11,7 @@ namespace TgBot {
 
 /**
  * @brief This abstract class is base of all inline query results.
- * 
+ *
  * @ingroup types
  */
 class InlineQueryResult {

@@ -1,7 +1,3 @@
-//
-// Created by Konstantin Kukin on 26/12/16.
-//
-
 #ifndef TGBOT_RESPONSEPARAMETERS_H
 #define TGBOT_RESPONSEPARAMETERS_H
 
@@ -11,7 +7,7 @@ namespace TgBot {
 
 /**
  * @brief Contains information about why a request was unsuccessfull.
- * 
+ *
  * @ingroup types
  */
 class ResponseParameters {

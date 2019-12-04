@@ -1,7 +1,3 @@
-//
-// Created by Andrea Giove on 27/03/16.
-//
-
 #include "tgbot/types/InlineQueryResultCachedAudio.h"
 #include "tgbot/types/InlineQueryResultCachedDocument.h"
 #include "tgbot/types/InlineQueryResultCachedGif.h"

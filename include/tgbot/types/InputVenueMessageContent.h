@@ -1,8 +1,3 @@
-//
-// Created by Konstantin Kukin on 26/12/16.
-//
-
-
 #ifndef TGBOT_INPUTVENUEMESSAGECONTENT_H
 #define TGBOT_INPUTVENUEMESSAGECONTENT_H
 
@@ -48,7 +43,7 @@ public:
      * @brief Optional. Foursquare identifier of the venue, if known
      */
     std::string foursquareId;
-    
+
     /**
      * @brief Optional. Foursquare type of the venue, if known. (For example, “arts_entertainment/default”, “arts_entertainment/aquarium” or “food/icecream”.)
      */

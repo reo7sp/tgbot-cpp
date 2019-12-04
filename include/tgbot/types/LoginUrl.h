@@ -1,7 +1,3 @@
-//
-// Created by alexandrumarcel on 19.11.2019.
-//
-
 #ifndef TGBOT_CPP_LOGINURL_H
 #define TGBOT_CPP_LOGINURL_H
 

@@ -1,7 +1,3 @@
-//
-// Created by Konstantin Kukin on 27/12/16.
-//
-
 #ifndef TGBOT_INLINEQUERYRESULTCACHEDAUDIO_H
 #define TGBOT_INLINEQUERYRESULTCACHEDAUDIO_H
 
@@ -13,8 +9,8 @@
 namespace TgBot {
 
 /**
- * @brief Represents a link to an mp3 audio file stored on the Telegram servers. 
- * 
+ * @brief Represents a link to an mp3 audio file stored on the Telegram servers.
+ *
  * @ingroup types
  */
 class InlineQueryResultCachedAudio : public InlineQueryResult {

@@ -1,7 +1,3 @@
-//
-// Created by Konstantin Kukin on 27/12/16
-//
-
 #ifndef TGBOT_INLINEQUERYRESULTDOCUMENT_H
 #define TGBOT_INLINEQUERYRESULTDOCUMENT_H
 
@@ -14,7 +10,7 @@ namespace TgBot {
 
 /**
  * @brief Represents a link to a file.
- * 
+ *
  * @ingroup types
  */
 class InlineQueryResultDocument : public InlineQueryResult {

@@ -1,7 +1,3 @@
-//
-// Created by Konstantin Kukin on 26/12/16.
-//
-
 #ifndef TGBOT_INPUTMESSAGECONTENT_H
 #define TGBOT_INPUTMESSAGECONTENT_H
 

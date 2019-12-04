@@ -1,7 +1,3 @@
-//
-// Created by Andrea Giove on 17/04/16.
-//
-
 #ifndef TGBOT_VOICE_H
 #define TGBOT_VOICE_H
 
@@ -12,7 +8,7 @@ namespace TgBot {
 
 /**
  * @brief This object represents a voice note.
- * 
+ *
  * @ingroup types
  */
 class Voice {

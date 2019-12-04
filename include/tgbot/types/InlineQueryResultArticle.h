@@ -1,7 +1,3 @@
-//
-// Created by Andrea Giove on 26/03/16.
-//
-
 #ifndef TGBOT_INLINEQUERYRESULTARTICLE_H
 #define TGBOT_INLINEQUERYRESULTARTICLE_H
 
@@ -14,7 +10,7 @@ namespace TgBot {
 
 /**
  * @brief Represents a link to an article of web page.
- * 
+ *
  * @ingroup types
  */
 class InlineQueryResultArticle : public InlineQueryResult {

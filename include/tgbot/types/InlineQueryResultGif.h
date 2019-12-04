@@ -1,7 +1,3 @@
-//
-// Created by Andrea Giove on 27/03/16.
-//
-
 #ifndef TGBOT_INLINEQUERYRESULTGIF_H
 #define TGBOT_INLINEQUERYRESULTGIF_H
 
@@ -14,7 +10,7 @@ namespace TgBot {
 
 /**
  * @brief Represents a link to an animated GIF file.
- * 
+ *
  * @ingroup types
  */
 class InlineQueryResultGif : public InlineQueryResult {

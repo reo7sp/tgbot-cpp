@@ -1,19 +1,22 @@
-FROM debian:stretch
+FROM ubuntu:18.04
 MAINTAINER Oleg Morozenkov <a@reo7sp.ru>
 
 RUN apt-get -qq update && \
-    apt-get -qq install -y g++ make binutils cmake libssl-dev libcurl4-openssl-dev wget build-essential python-dev autotools-dev libicu-dev libbz2-dev zlib1g-dev
-
-WORKDIR /usr/src/boost
-RUN wget -q -O boost_1_59_0.tar.gz https://sourceforge.net/projects/boost/files/boost/1.59.0/boost_1_59_0.tar.gz/download && \
-    tar xzf boost_1_59_0.tar.gz && \
-    rm boost_1_59_0.tar.gz && \
-    cd boost_1_59_0 && \
-    ./bootstrap.sh --prefix=/usr/ --with-libraries=system,test && \
-    ./b2 -j $(nproc) -d0 && \
-    ./b2 install && \
-    cd .. && \
-    rm -r boost_1_59_0
+    apt-get -qq install -y \
+        autotools-dev \
+        binutils \
+        build-essential \
+        cmake \
+        g++ \
+        libboost-all-dev \
+        libbz2-dev \
+        libcurl4-openssl-dev \
+        libicu-dev \
+        libssl-dev \
+        make \
+        python-dev \
+        wget \
+        zlib1g-dev
 
 
 WORKDIR /usr/src/tgbot-cpp

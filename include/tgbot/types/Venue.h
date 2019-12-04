@@ -1,7 +1,3 @@
-//
-// Created by Andrea Giove on 17/04/16.
-//
-
 #ifndef TGBOT_VENUE_H
 #define TGBOT_VENUE_H
 
@@ -14,7 +10,7 @@ namespace TgBot {
 
 /**
  * @brief This object represents a venue.
- * 
+ *
  * @ingroup types
  */
 class Venue {

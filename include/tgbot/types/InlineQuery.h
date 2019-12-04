@@ -1,7 +1,3 @@
-//
-// Created by Andrea Giove on 26/03/16.
-//
-
 #ifndef TGBOT_INLINEQUERY_H
 #define TGBOT_INLINEQUERY_H
 
@@ -15,7 +11,7 @@ namespace TgBot {
 
 /**
  * @brief This object represents an incoming inline query.
- * 
+ *
  * @ingroup types
  */
 class InlineQuery {

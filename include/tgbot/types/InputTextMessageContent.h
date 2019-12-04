@@ -1,7 +1,3 @@
-//
-// Created by Konstantin Kukin on 26/12/16.
-//
-
 #ifndef TGBOT_INPUTTEXTMESSAGECONTENT_H
 #define TGBOT_INPUTTEXTMESSAGECONTENT_H
 
@@ -12,7 +8,7 @@ namespace TgBot {
 
 /**
  * @brief Represents the content of a text message to be sent as the result of an inline query.
- * 
+ *
  * @ingroup types
  */
 class InputTextMessageContent : public InputMessageContent {

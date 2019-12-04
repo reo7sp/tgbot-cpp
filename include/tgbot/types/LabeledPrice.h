@@ -1,7 +1,3 @@
-//
-// Created by Maks Mazurov (fox.cpp) on 21.05.17.
-//
-
 #ifndef TGBOT_LABELEDPRICE_H
 #define TGBOT_LABELEDPRICE_H
 

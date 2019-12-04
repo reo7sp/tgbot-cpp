@@ -1,7 +1,3 @@
-//
-// Created by Andrea Giove on 27/03/16.
-//
-
 #ifndef TGBOT_CHOSENINLINERESULT_H
 #define TGBOT_CHOSENINLINERESULT_H
 
@@ -15,7 +11,7 @@ namespace TgBot {
 
 /**
  * @brief This object represents a result of an inline query that was chosen by the user and sent to their chat partner.
- * 
+ *
  * @ingroup types
  */
 class ChosenInlineResult {

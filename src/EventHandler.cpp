@@ -1,7 +1,3 @@
-//
-// Created by Oleg Morozenkov on 23.01.17.
-//
-
 #include "tgbot/EventHandler.h"
 #include <algorithm>
 

@@ -1,7 +1,3 @@
-//
-// Created by Konstantin Kukin on 26/12/16.
-//
-
 #ifndef TGBOT_WEBHOOKINFO_H
 #define TGBOT_WEBHOOKINFO_H
 
@@ -13,7 +9,7 @@ namespace TgBot {
 
 /**
  * @brief Contains information about the current status of a webhook.
- * 
+ *
  * @ingroup types
  */
 class WebhookInfo {

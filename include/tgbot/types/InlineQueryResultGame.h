@@ -1,7 +1,3 @@
-//
-// Created by Konstantin Kukin on 27/12/16
-//
-
 #ifndef TGBOT_INLINEQUERYRESULTGAME_H
 #define TGBOT_INLINEQUERYRESULTGAME_H
 
@@ -14,7 +10,7 @@ namespace TgBot {
 
 /**
  * @brief Represents a Game.
- * 
+ *
  * @ingroup types
  */
 class InlineQueryResultGame : public InlineQueryResult {

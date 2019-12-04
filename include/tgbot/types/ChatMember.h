@@ -1,8 +1,3 @@
-//
-// Created by Konstantin Kukin on 26/12/16.
-// Edit by JellyBrick on 27/05/18.
-//
-
 #ifndef TGBOT_CHATMEMBER_H
 #define TGBOT_CHATMEMBER_H
 

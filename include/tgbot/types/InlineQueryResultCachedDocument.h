@@ -1,7 +1,3 @@
-//
-// Created by Konstantin Kukin on 27/12/16.
-//
-
 #ifndef TGBOT_INLINEQUERYRESULTCACHEDDOCUMENT_H
 #define TGBOT_INLINEQUERYRESULTCACHEDDOCUMENT_H
 
@@ -14,7 +10,7 @@ namespace TgBot {
 
 /**
  * @brief Represents a link to a file stored on the Telegram servers.
- * 
+ *
  * @ingroup types
  */
 class InlineQueryResultCachedDocument : public InlineQueryResult {

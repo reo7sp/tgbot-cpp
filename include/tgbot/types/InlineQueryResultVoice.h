@@ -1,7 +1,3 @@
-//
-// Created by Konstantin Kukin on 27/12/16
-//
-
 #ifndef TGBOT_INLINEQUERYRESULTVOICE_H
 #define TGBOT_INLINEQUERYRESULTVOICE_H
 
@@ -9,7 +5,7 @@ namespace TgBot {
 
 /**
  * @brief Represents link to a page containing an embedded video player or a video file.
- * 
+ *
  * @ingroup types
  */
 class InlineQueryResultVoice : public InlineQueryResult {

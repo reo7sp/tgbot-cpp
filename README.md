@@ -2,7 +2,6 @@
 
 [![Travis build Status](https://travis-ci.org/reo7sp/tgbot-cpp.svg?branch=master)](https://travis-ci.org/reo7sp/tgbot-cpp)
 [![GitHub contributors](https://img.shields.io/github/contributors/reo7sp/tgbot-cpp.svg)](https://github.com/reo7sp/tgbot-cpp/graphs/contributors)
-[![Open documentation](https://img.shields.io/badge/open-documentation-orange.svg)](http://reo7sp.github.io/tgbot-cpp)
 
 C++ library for Telegram bot API.
 
@@ -106,4 +105,4 @@ add_definitions(-DTGBOT_CHANGE_READ_BUFFER_SIZE) # Read Buffer Size Expansion
 
 
 ## Licence
-[The MIT License](http://opensource.org/licenses/MIT).
+[The MIT License](https://github.com/reo7sp/tgbot-cpp/blob/master/LICENSE).

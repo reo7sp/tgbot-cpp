@@ -1,7 +1,3 @@
-//
-// Created by Konstantin Kukin on 26/12/16.
-//
-
 #ifndef TGBOT_CPP_KEYBOARDBUTTON_H
 #define TGBOT_CPP_KEYBOARDBUTTON_H
 
@@ -12,10 +8,10 @@ namespace TgBot {
 
 /**
  * @brief This object represents one button of the reply keyboard.
- *  
+ *
  * For simple text buttons String can be used instead of this
- * object to specify text of the button. Optional fields are mutually exclusive. 
- * 
+ * object to specify text of the button. Optional fields are mutually exclusive.
+ *
  * @ingroup types
  */
 class KeyboardButton {
@@ -36,7 +32,7 @@ public:
     bool requestContact = false;
 
     /**
-     * @brief Optional. If True, the user's current location will be sent when the button is pressed. Available in private chats only. 
+     * @brief Optional. If True, the user's current location will be sent when the button is pressed. Available in private chats only.
      */
     bool requestLocation = false;
 };

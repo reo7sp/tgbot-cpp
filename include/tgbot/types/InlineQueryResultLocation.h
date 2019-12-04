@@ -1,7 +1,3 @@
-//
-// Created by Konstantin Kukin on 27/12/16
-//
-
 #ifndef TGBOT_INLINEQUERYRESULTLOCATION_H
 #define TGBOT_INLINEQUERYRESULTLOCATION_H
 
@@ -13,8 +9,8 @@
 namespace TgBot {
 
 /**
- * @brief Represents a location on a map. 
- * 
+ * @brief Represents a location on a map.
+ *
  * @ingroup types
  */
 class InlineQueryResultLocation : public InlineQueryResult {

@@ -1,7 +1,3 @@
-//
-// Created by Andrea Giove on 17/04/16.
-//
-
 #ifndef TGBOT_CALLBACKQUERY_H
 #define TGBOT_CALLBACKQUERY_H
 

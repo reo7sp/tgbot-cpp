@@ -1,7 +1,3 @@
-//
-// Created by Oleg Morozenkov on 25.01.17.
-//
-
 #include "tgbot/types/InputFile.h"
 
 #include <fstream>

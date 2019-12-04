@@ -1,7 +1,3 @@
-//
-// Created by Konstantin Kukin on 27/12/16
-//
-
 #ifndef TGBOT_INLINEQUERYRESULTCONTACT_H
 #define TGBOT_INLINEQUERYRESULTCONTACT_H
 
@@ -14,7 +10,7 @@ namespace TgBot {
 
 /**
  * @brief Represents a contact with a phone number
- * 
+ *
  * @ingroup types
  */
 class InlineQueryResultContact : public InlineQueryResult {

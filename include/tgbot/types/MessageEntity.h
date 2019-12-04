@@ -1,7 +1,3 @@
-//
-// Created by Andrea Giove on 17/04/16.
-//
-
 #ifndef TGBOT_MESSAGEENTITY_H
 #define TGBOT_MESSAGEENTITY_H
 
@@ -13,7 +9,7 @@ namespace TgBot {
 
 /**
  * @brief This object represents one special entity in a text message. For example, hashtags, usernames, URLs, etc.
- * 
+ *
  * @ingroup types
  */
 class MessageEntity {
@@ -22,7 +18,7 @@ public:
 
     /**
      * @brief Type of the entity.
-     * 
+     *
      * Can be mention (@username), hashtag, cashtag, bot_command, url, email, phone_number, bold (bold text), italic (italic text), code (monowidth string), pre (monowidth block), text_link (for clickable text URLs), text_mention (for users without usernames)
      */
     std::string type;

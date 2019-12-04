@@ -1,7 +1,3 @@
-//
-// Created by Konstantin Kukin on 27/12/16
-//
-
 #ifndef TGBOT_INLINEQUERYRESULTVENUE_H
 #define TGBOT_INLINEQUERYRESULTVENUE_H
 
@@ -13,8 +9,8 @@
 namespace TgBot {
 
 /**
- * @brief Represents a venue. 
- * 
+ * @brief Represents a venue.
+ *
  * @ingroup types
  */
 class InlineQueryResultVenue : public InlineQueryResult {
