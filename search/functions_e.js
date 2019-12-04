@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['parseheader',['parseHeader',['../class_tg_bot_1_1_http_parser.html#a696b19c9c3516f7cff18952db40755ef',1,'TgBot::HttpParser']]],
-  ['pinchatmessage',['pinChatMessage',['../class_tg_bot_1_1_api.html#a79fe90a632c8f2579ec8e371a42cb607',1,'TgBot::Api']]],
-  ['promotechatmember',['promoteChatMember',['../class_tg_bot_1_1_api.html#a1938236a7e5fb80b60061d2edcbcbabc',1,'TgBot::Api']]]
+  ['parseheader_834',['parseHeader',['../class_tg_bot_1_1_http_parser.html#ab3a46cada17af6939283e2545dbe913b',1,'TgBot::HttpParser']]],
+  ['pinchatmessage_835',['pinChatMessage',['../class_tg_bot_1_1_api.html#a84538c3c1ab19dc262b471edb361ad8d',1,'TgBot::Api']]],
+  ['promotechatmember_836',['promoteChatMember',['../class_tg_bot_1_1_api.html#a4a701223b6a834b594e216a80695d300',1,'TgBot::Api']]]
 ];

@@ -14,6 +14,8 @@ var class_tg_bot_1_1_chat_member =
     [ "canSendMediaMessages", "class_tg_bot_1_1_chat_member.html#af834543dad37d08f3496f92d7c5e9f9c", null ],
     [ "canSendMessages", "class_tg_bot_1_1_chat_member.html#ae8c21db2c7d9dae42c40494299ae9c01", null ],
     [ "canSendOtherMessages", "class_tg_bot_1_1_chat_member.html#acf62ee2b93c10a11a34ec12dbdca7d21", null ],
+    [ "canSendPolls", "class_tg_bot_1_1_chat_member.html#aff778e687cd73fd162ad0241086e9fa5", null ],
+    [ "isMember", "class_tg_bot_1_1_chat_member.html#a772454ef06adf1d00c1067959a6ec026", null ],
     [ "status", "class_tg_bot_1_1_chat_member.html#a373057cf2fcca9ecb49951a5e61a6666", null ],
     [ "untilDate", "class_tg_bot_1_1_chat_member.html#ace7455f999a39f804ff559bc77f7814d", null ],
     [ "user", "class_tg_bot_1_1_chat_member.html#a1a1cefdfec4a60bd6ba1e588edad9aa1", null ]

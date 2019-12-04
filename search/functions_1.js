@@ -1,9 +1,9 @@
 var searchData=
 [
-  ['addstickertoset',['addStickerToSet',['../class_tg_bot_1_1_api.html#adbfc039d0ce9d7971d76dbdd2de3d339',1,'TgBot::Api']]],
-  ['answercallbackquery',['answerCallbackQuery',['../class_tg_bot_1_1_api.html#a9f1cbc18cfd16def2bd4d4b816e87cfa',1,'TgBot::Api']]],
-  ['answerinlinequery',['answerInlineQuery',['../class_tg_bot_1_1_api.html#af1191f022ce6029cc4889ceebc7189af',1,'TgBot::Api']]],
-  ['answerprecheckoutquery',['answerPreCheckoutQuery',['../class_tg_bot_1_1_api.html#a9b7cea0c518d27095803b1be9e769f7c',1,'TgBot::Api']]],
-  ['answershippingquery',['answerShippingQuery',['../class_tg_bot_1_1_api.html#a2638761a2ac9a220fd6bb47185cfeff8',1,'TgBot::Api']]],
-  ['api',['Api',['../class_tg_bot_1_1_api.html#ae2af6bb8ff51e260894872dedbbb80c8',1,'TgBot::Api']]]
+  ['addstickertoset_741',['addStickerToSet',['../class_tg_bot_1_1_api.html#a205995f8c8f935d315e8236a41fef56f',1,'TgBot::Api']]],
+  ['answercallbackquery_742',['answerCallbackQuery',['../class_tg_bot_1_1_api.html#a2f73414941d8bb67ff3721a674274bf8',1,'TgBot::Api']]],
+  ['answerinlinequery_743',['answerInlineQuery',['../class_tg_bot_1_1_api.html#a430f9e036859250345d2125b7688a1f9',1,'TgBot::Api']]],
+  ['answerprecheckoutquery_744',['answerPreCheckoutQuery',['../class_tg_bot_1_1_api.html#ab64843611ce63196850a51735bd6e47c',1,'TgBot::Api']]],
+  ['answershippingquery_745',['answerShippingQuery',['../class_tg_bot_1_1_api.html#a26a2405aa782bcccc55c93f95cf82b07',1,'TgBot::Api']]],
+  ['api_746',['Api',['../class_tg_bot_1_1_api.html#ae2af6bb8ff51e260894872dedbbb80c8',1,'TgBot::Api']]]
 ];
