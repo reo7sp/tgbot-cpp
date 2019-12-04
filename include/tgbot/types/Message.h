@@ -34,6 +34,7 @@
 #include "tgbot/types/Document.h"
 #include "tgbot/types/Animation.h"
 #include "tgbot/types/Sticker.h"
+#include "tgbot/types/Poll.h"
 #include "tgbot/types/Video.h"
 #include "tgbot/types/Contact.h"
 #include "tgbot/types/Location.h"
@@ -44,6 +45,7 @@
 #include "tgbot/types/Voice.h"
 #include "tgbot/types/Invoice.h"
 #include "tgbot/types/SuccessfulPayment.h"
+#include "tgbot/types/InlineKeyboardMarkup.h"
 
 namespace TgBot {
 
@@ -95,6 +97,11 @@ public:
      * @brief Optional. For messages forwarded from channels, signature of the post author if present.
      */
     std::string forwardSignature;
+
+    /**
+     * @brief Optional. Sender's name for messages forwarded from users who disallow adding a link to their account in forwarded messages.
+     */
+    std::string forwardSenderName;
 
     /**
      * @brief Optional. For forwarded messages, date the original message was sent in Unix time.
@@ -194,6 +201,11 @@ public:
     Venue::Ptr venue;
 
     /**
+     * @brief Optional. Message is a poll, information about the poll.
+     */
+    Poll::Ptr poll;
+
+    /**
      * @brief Optional. A new member was added to the group, information about them (this member may be bot itself).
      */
     User::Ptr newChatMember;
@@ -267,6 +279,11 @@ public:
      * @brief Optional. The domain name of the website on which the user has logged in.
      */
     std::string connectedWebsite;
+
+    /**
+     * @brief Optional. Inline keyboard attached to the message. login_url buttons are represented as ordinary url buttons.
+     */
+    InlineKeyboardMarkup::Ptr replyMarkup;
 };
 
 }

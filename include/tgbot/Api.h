@@ -290,6 +290,7 @@ public:
      * @param disableNotification Optional. Sends the message silenty.
      * @return On success, the sent message is returned.
      */
+
     Message::Ptr sendVideo(int64_t chatId, const boost::variant<InputFile::Ptr, std::string> video, bool supportsStreaming = false, int32_t duration = 0, int32_t width = 0, int32_t height = 0, const boost::variant<InputFile::Ptr, std::string> thumb = "", const std::string& caption = "",
                            int32_t replyToMessageId = 0, GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>(), const std::string& parseMode = "", bool disableNotification = false) const;
 
@@ -584,7 +585,7 @@ public:
 
     /**
      * @brief Use this method to delete messages sent by bot (or by other users if bot is admin).
-     * @param chatId	Unique identifier for the target chat.
+     * @param chatId	Unique identifier for the target chat or username of the target channel.
      * @param messageId	Unique identifier for the target message.
      */
     void deleteMessage(int64_t chatId, int32_t messageId) const;
@@ -677,8 +678,7 @@ public:
      * @param canAddWebPagePreviews Optional. Pass True, if the user may add web page previews to their messages, implies can_send_media_messages.
      * @return True on success
      */
-    bool restrictChatMember(int64_t chatId, int32_t userId, uint64_t untilDate = 0, bool canSendMessages = false,
-                            bool canSendMediaMessages = false, bool canSendOtherMessages = false, bool canAddWebPagePreviews = false) const;
+    bool restrictChatMember(int64_t chatId, int32_t userId, ChatPermissions::Ptr permissions, uint64_t untilDate = 0) const;
 
     /**
      * @brief Use this method to promote or demote a user in a supergroup or a channel.
@@ -696,6 +696,14 @@ public:
      */
     bool promoteChatMember(int64_t chatId, int32_t userId, bool canChangeInfo = false, bool canPostMessages = false,
                            bool canEditMessages = false, bool canDeleteMessages = false, bool canInviteUsers = false, bool canPinMessages = false, bool canPromoteMembers = false) const;
+
+    /**
+  * @brief Use this method to set default chat permissions for all members. The bot must be an administrator in the group or a supergroup for this to work and must have the can_restrict_members admin rights. Returns True on success.
+  * @param chatId Unique identifier for the target chat of the target supergroup.
+  * @param permissions New default chat permissions.
+  * @return True on success
+  */
+    bool setChatPermissions(int64_t chatId, ChatPermissions::Ptr permissions) const;
 
     /**
      * @brief Use this method to generate a new invite link for a chat; any previously generated link is revoked.
@@ -745,8 +753,8 @@ public:
     bool setChatDescription(int64_t chatId, const std::string& description) const;
 
     /**
-     * @brief Use this method to pin a message in a supergroup or a channel.
-     * @param chatId Unique identifier for the target chat.
+     * @brief Use this method to pin a message in a group, a supergroup, or a channel.
+     * @param chatId Unique identifier for the target chat or username of the target channel.
      * @param messageId Identifier of a message to pin.
      * @param disableNotification Optional. Pass True, if it is not necessary to send a notification to all chat members about the new pinned message. Notifications are always disabled in channels.
      * @return True on success
@@ -754,8 +762,8 @@ public:
     bool pinChatMessage(int64_t chatId, int32_t messageId, bool disableNotification = false) const;
 
     /**
-     * @brief Use this method to unpin a message in a supergroup or a channel.
-     * @param chatId Unique identifier for the target chat.
+     * @brief Use this method to unpin a message in a group, a supergroup, or a channel.
+     * @param chatId Unique identifier for the target chat or username of the target channel.
      * @return True on success
      */
     bool unpinChatMessage(int64_t chatId) const;
@@ -791,7 +799,6 @@ public:
     std::vector<GameHighScore::Ptr> getGameHighScores(int32_t userId, int32_t score, bool force = false,
                                                       bool disableEditMessage = false, int64_t chatId = 0, int32_t messageId = 0, const std::string& inlineMessageId = "") const;
 
-
     /**
      * @brief Downloads file from Telegram and saves it in memory.
      * @param filePath Telegram file path.
@@ -799,6 +806,33 @@ public:
      * @return File contents in a string.
      */
     std::string downloadFile(const std::string& filePath, const std::vector<HttpReqArg>& args = std::vector<HttpReqArg>()) const;
+
+    /**
+    * @brief Use this method to send a poll.
+    * @param chatId Unique identifier for the target chat or username of the target channel.
+    * @param question Poll question, 1-255 characters.
+    * @param options List of answer options, 2-10 strings 1-100 characters each.
+    * @param disable_notification Optional. Sends the message silenty.
+    * @param reply_to_message_id Optional. If the message is a reply, ID of the original message.
+    * @param reply_markup Optional. Additional interface options. An object for a custom reply keyboard, instructions to hide keyboard or to force a reply from the user.
+    *
+    * @return On success, the sent message is returned.
+    */
+    Message::Ptr sendPoll(int64_t chatId, std::string question, std::vector<std::string> options, bool disable_notification=false, int32_t reply_to_message_id=0,GenericReply::Ptr reply_markup = std::make_shared<GenericReply>()) const;
+
+    /**
+    * @brief Use this method to stop a poll which was sent by the bot. On success, the stopped Poll with the final results is returned..
+    * @param chatId Unique identifier for the target chat or username of the target channel.
+    * @param question Poll question, 1-255 characters.
+    * @param options List of answer options, 2-10 strings 1-100 characters each.
+    * @param disable_notification Optional. Sends the message silenty.
+    * @param reply_to_message_id Optional. If the message is a reply, ID of the original message.
+    * @param reply_markup Optional. Additional interface options. An object for a custom reply keyboard, instructions to hide keyboard or to force a reply from the user.
+    *
+    * @return On success, the sent message is returned.
+    */
+
+    Poll::Ptr stopPoll(int64_t chatId, int64_t messageId, InlineKeyboardMarkup::Ptr replyMarkup = std::make_shared<InlineKeyboardMarkup>()) const;
 
 private:
     boost::property_tree::ptree sendRequest(const std::string& method, const std::vector<HttpReqArg>& args = std::vector<HttpReqArg>()) const;

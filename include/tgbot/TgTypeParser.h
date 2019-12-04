@@ -36,6 +36,9 @@
 #include "tgbot/types/Document.h"
 #include "tgbot/types/Sticker.h"
 #include "tgbot/types/StickerSet.h"
+#include "tgbot/types/Poll.h"
+#include "tgbot/types/PollOption.h"
+#include "tgbot/types/ChatPermissions.h"
 #include "tgbot/types/MaskPosition.h"
 #include "tgbot/types/Video.h"
 #include "tgbot/types/Voice.h"
@@ -144,6 +147,15 @@ public:
 
     MaskPosition::Ptr parseJsonAndGetMaskPosition(const boost::property_tree::ptree& data) const;
     std::string parseMaskPosition(const MaskPosition::Ptr& object) const;
+
+    Poll::Ptr parseJsonAndGetPoll(const boost::property_tree::ptree& data) const;
+    std::string parsePoll(const Poll::Ptr& object) const;
+
+    PollOption::Ptr parseJsonAndGetPollOption(const boost::property_tree::ptree& data) const;
+    std::string parsePollOption(const PollOption::Ptr& object) const;
+
+    ChatPermissions::Ptr parseJsonAndGetChatPermissions(const boost::property_tree::ptree& data) const;
+    std::string parseChatPermissions(const ChatPermissions::Ptr& object) const;
 
     Video::Ptr parseJsonAndGetVideo(const boost::property_tree::ptree& data) const;
     std::string parseVideo(const Video::Ptr& object) const;
@@ -476,6 +488,7 @@ private:
         json += std::to_string(value);
         json += ',';
     }
+
     inline void appendToJson(std::string &json, const std::string &varName, const int &value) const { appendToJsonNumber(json, varName, value); }
     inline void appendToJson(std::string &json, const std::string &varName, const long &value) const { appendToJsonNumber(json, varName, value); }
     inline void appendToJson(std::string &json, const std::string &varName, const long long &value) const { appendToJsonNumber(json, varName, value); }

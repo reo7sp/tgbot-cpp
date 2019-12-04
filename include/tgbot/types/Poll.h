@@ -1,6 +1,5 @@
 /*
- * Copyright (c) 2015 Oleg Morozenkov
- * Copyright (c) 2018 JellyBrick
+ * Copyright (c) 2019 Nitan Alexandru Marcel
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -21,51 +20,44 @@
  * SOFTWARE.
  */
 
-#ifndef TGBOT_STICKERSET_H
-#define TGBOT_STICKERSET_H
+#ifndef TGBOT_POLL_H
+#define TGBOT_POLL_H
 
 #include <memory>
 #include <string>
 #include <vector>
-
-#include "tgbot/types/Sticker.h"
+#include "tgbot/types/PollOption.h"
 
 namespace TgBot {
-
-/**
- * @brief This object represents a sticker set.
- * 
- * @ingroup types
- */
-class StickerSet {
-public:
-    typedef std::shared_ptr<StickerSet> Ptr;
-
     /**
-     * @brief Sticker set name.
+     * @brief This object represents a Poll.
+     *
+     * @ingroup types
      */
-    std::string name;
+    class Poll {
+    public:
+        typedef std::shared_ptr<Poll> Ptr;
 
-    /**
-     * @brief Sticker set title.
-     */
-    std::string title;
+        /**
+         * @brief Unique poll identifier.
+         */
+        int64_t id;
 
-    /**
- * @brief True, if the sticker set contains animated stickers.
-    */
-    bool isAnimated = false;
+        /**
+         * @brief Poll question, 1-255 characters.
+         */
+         std::string question;
 
-    /**
-     * @brief True, if the sticker set contains masks.
-     */
-    bool containsMasks = false;
+        /**
+         * @brief List of poll options.
+         */
+        PollOption::Ptr options;
 
-    /**
-     * @brief List of all set stickers.
-     */
-    std::vector<Sticker::Ptr> stickers;
-};
+        /**
+         * @brief True, if the poll is closed.
+         */
+         bool is_closed;
+    };
 }
 
-#endif //TGBOT_STICKERSET_H
+#endif //TGBOT_POLL_H

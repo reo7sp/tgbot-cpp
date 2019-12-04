@@ -1,6 +1,5 @@
 /*
- * Copyright (c) 2015 Oleg Morozenkov
- * Copyright (c) 2018 JellyBrick
+ * Copyright (c) 2019 Nitan Alexandru Marcel
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -21,51 +20,31 @@
  * SOFTWARE.
  */
 
-#ifndef TGBOT_STICKERSET_H
-#define TGBOT_STICKERSET_H
-
 #include <memory>
 #include <string>
 #include <vector>
 
-#include "tgbot/types/Sticker.h"
+#ifndef TGBOT_POLLOPTION_H
+#define TGBOT_POLLOPTION_H
 
 namespace TgBot {
 
-/**
- * @brief This object represents a sticker set.
- * 
- * @ingroup types
- */
-class StickerSet {
+class PollOption {
+
 public:
-    typedef std::shared_ptr<StickerSet> Ptr;
+    typedef std::shared_ptr<PollOption> Ptr;
 
     /**
-     * @brief Sticker set name.
+     * @brief Option text, 1-100 characters.
      */
-    std::string name;
+    std::string text;
 
     /**
-     * @brief Sticker set title.
+     * @brief Number of users that voted for this option.
      */
-    std::string title;
-
-    /**
- * @brief True, if the sticker set contains animated stickers.
-    */
-    bool isAnimated = false;
-
-    /**
-     * @brief True, if the sticker set contains masks.
-     */
-    bool containsMasks = false;
-
-    /**
-     * @brief List of all set stickers.
-     */
-    std::vector<Sticker::Ptr> stickers;
+    int64_t voter_count;
 };
+
 }
 
-#endif //TGBOT_STICKERSET_H
+#endif //TGBOT_POLLOPTION_H
