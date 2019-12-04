@@ -1,15 +1,14 @@
 cmake_minimum_required(VERSION 2.8.4)
 project(TgBot)
 
-set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)
-
 # options
 option(ENABLE_TESTS "Set to ON to enable building of tests" OFF)
 option(BUILD_SHARED_LIBS "Build tgbot-cpp shared/static library." OFF)
 
 # sources
 if(WIN32)
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")  # Do not activate all warnings in VS (too much output for Appveyor)
+    set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 else()
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Wall")
 endif()
@@ -34,7 +33,7 @@ set(SRC_LIST
 ## threads
 find_package(Threads REQUIRED)
 
-# zlib
+## zlib
 find_package(ZLIB REQUIRED)
 
 ## openssl
