@@ -468,6 +468,24 @@ private:
         json += ',';
     }
 
+    template<typename T>
+    inline void appendToJsonNumber(std::string& json, const std::string& varName, const T& value) const {
+        json += '"';
+        json += varName;
+        json += R"(":)";
+        json += std::to_string(value);
+        json += ',';
+    }
+    inline void appendToJson(std::string &json, const std::string &varName, const int &value) const { appendToJsonNumber(json, varName, value); }
+    inline void appendToJson(std::string &json, const std::string &varName, const long &value) const { appendToJsonNumber(json, varName, value); }
+    inline void appendToJson(std::string &json, const std::string &varName, const long long &value) const { appendToJsonNumber(json, varName, value); }
+    inline void appendToJson(std::string &json, const std::string &varName, const unsigned &value) const { appendToJsonNumber(json, varName, value); }
+    inline void appendToJson(std::string &json, const std::string &varName, const unsigned long &value) const { appendToJsonNumber(json, varName, value); }
+    inline void appendToJson(std::string &json, const std::string &varName, const unsigned long long &value) const { appendToJsonNumber(json, varName, value); }
+    inline void appendToJson(std::string &json, const std::string &varName, const float &value) const { appendToJsonNumber(json, varName, value); }
+    inline void appendToJson(std::string &json, const std::string &varName, const double &value) const { appendToJsonNumber(json, varName, value); }
+    inline void appendToJson(std::string &json, const std::string &varName, const long double &value) const { appendToJsonNumber(json, varName, value); }
+
     inline void appendToJson(std::string& json, const std::string& varName, const bool& value) const {
         json += '"';
         json += varName;

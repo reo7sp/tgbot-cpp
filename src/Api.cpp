@@ -335,12 +335,11 @@ bool Api::createNewStickerSet(int32_t userId, const string& name, const string& 
     return sendRequest("createNewStickerSet", args).get<bool>("", false);
 }
 
-bool Api::addStickerToSet(int32_t userId, const string& name, const string& title, const boost::variant<InputFile::Ptr, std::string> pngSticker, const string& emojis, MaskPosition::Ptr maskPosition) const {
+bool Api::addStickerToSet(int32_t userId, const string& name, const boost::variant<InputFile::Ptr, std::string> pngSticker, const string& emojis, MaskPosition::Ptr maskPosition) const {
     vector<HttpReqArg> args;
     args.reserve(6);
     args.emplace_back("user_id", userId);
     args.emplace_back("name", name);
-    args.emplace_back("title", title);
     if (pngSticker.which() == 0 /* InputFile::Ptr */) {
         auto file = boost::get<InputFile::Ptr>(pngSticker);
         args.emplace_back("png_sticker", file->data, true, file->mimeType, file->fileName);
@@ -362,11 +361,11 @@ bool Api::setStickerPositionInSet(const string& sticker, uint32_t position) cons
     return sendRequest("setStickerPositionInSet", args).get<bool>("", false);
 }
 
-bool Api::deleteStickerPositionInSet(const string& sticker) const {
+bool Api::deleteStickerFromSet(const string& sticker) const {
     vector<HttpReqArg> args;
     args.reserve(1);
     args.emplace_back("sticker", sticker);
-    return sendRequest("setStickerPositionInSet", args).get<bool>("", false);
+    return sendRequest("deleteStickerFromSet", args).get<bool>("", false);
 }
 
 Message::Ptr Api::sendVideo(int64_t chatId, const boost::variant<InputFile::Ptr, std::string> video, bool supportsStreaming, int32_t duration, int32_t width, int32_t height, const boost::variant<InputFile::Ptr, std::string> thumb, const string &caption, int32_t replyToMessageId, const GenericReply::Ptr replyMarkup, const string& parseMode, bool disableNotification) const {
