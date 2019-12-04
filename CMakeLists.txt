@@ -1,11 +1,6 @@
 cmake_minimum_required(VERSION 2.8.4)
 project(TgBot)
 
-if (${CONAN_EXPORTED})
-    include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
-    conan_basic_setup()
-endif()
-
 set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)
 
 # options
