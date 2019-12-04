@@ -1811,12 +1811,13 @@ std::string TgTypeParser::parseInlineKeyboardButton(const InlineKeyboardButton::
     }
     string result;
     result += '{';
+    if(object->pay)
+        appendToJson(result, "pay", object->pay);
     appendToJson(result, "text", object->text);
     appendToJson(result, "url", object->url);
     appendToJson(result, "callback_data", object->callbackData);
     appendToJson(result, "switch_inline_query", object->switchInlineQuery);
     appendToJson(result, "switch_inline_query_current_chat", object->switchInlineQueryCurrentChat);
-    appendToJson(result, "pay", object->pay);
     removeLastComma(result);
     result += '}';
     return result;

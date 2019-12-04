@@ -1,11 +1,6 @@
 cmake_minimum_required(VERSION 2.8.4)
 project(TgBot)
 
-if (${CONAN_EXPORTED})
-    include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
-    conan_basic_setup()
-endif()
-
 set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)
 
 # options
@@ -47,7 +42,7 @@ find_package(OpenSSL REQUIRED)
 include_directories(${OPENSSL_INCLUDE_DIR})
 
 ## curl
-find_package(CURL)
+find_package(CURL 7.56.0)
 if (CURL_FOUND)
     include_directories(${CURL_INCLUDE_DIRS})
     add_definitions(-DHAVE_CURL)
