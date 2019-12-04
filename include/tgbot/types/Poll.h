@@ -28,13 +28,13 @@
 #include <vector>
 #include "tgbot/types/PollOption.h"
 
-namespace TgBot{
+namespace TgBot {
     /**
      * @brief This object represents a Poll.
      *
      * @ingroup types
      */
-    class Poll{
+    class Poll {
     public:
         typedef std::shared_ptr<Poll> Ptr;
 

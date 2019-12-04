@@ -33,8 +33,8 @@ public:
     std::string url;
 
     /**
- * @brief Optional. An HTTP URL used to automatically authorize the user.
- */
+     * @brief Optional. An HTTP URL used to automatically authorize the user.
+     */
     LoginUrl::Ptr loginUrl;
 
     /**

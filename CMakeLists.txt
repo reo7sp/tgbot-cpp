@@ -33,8 +33,7 @@ set(SRC_LIST
     src/tools/FileTools.cpp
     src/tools/StringTools.cpp
     src/types/InlineQueryResult.cpp
-    src/types/InputFile.cpp
-        include/tgbot/types/Poll.h include/tgbot/types/PollOption.h include/tgbot/types/LoginUrl.h include/tgbot/types/ChatPermissions.h)
+    src/types/InputFile.cpp)
 
 # libs
 ## threads

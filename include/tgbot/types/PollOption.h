@@ -27,6 +27,8 @@
 #ifndef TGBOT_POLLOPTION_H
 #define TGBOT_POLLOPTION_H
 
+namespace TgBot {
+
 class PollOption {
 
 public:
@@ -42,5 +44,7 @@ public:
      */
     int64_t voter_count;
 };
+
+}
 
 #endif //TGBOT_POLLOPTION_H
