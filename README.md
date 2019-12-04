@@ -69,11 +69,8 @@ make -j4
 sudo make install
 ```
 
-Or you can treat this repository as a submodule of your project, for example, see [echobot-submodule](samples/echobot-submodule/CMakeLists.txt)
+You can treat this repository as a submodule of your project, for example, see [echobot-submodule](samples/echobot-submodule/CMakeLists.txt)
 
-## Specific library installation notes
-
-### Docker
 You can use Docker to build and run your bot. Set the base image of your's Dockerfile to [reo7sp/tgbot-cpp](https://hub.docker.com/r/reo7sp/tgbot-cpp/).
 
 
@@ -87,20 +84,11 @@ You can use Docker to build and run your bot. Set the base image of your's Docke
 g++ telegram_bot.cpp -o telegram_bot --std=c++11 -I/usr/local/include -lTgBot -lboost_system -lssl -lcrypto -lpthread
 ```
 
-### Options available when compiling bot
-
-#### With CMake
+### Build options
 ```
-add_definitions(-DTGBOT_DISABLE_NAGLES_ALGORITHM) # Disable 'Nagle's algorithm'
-add_definitions(-DTGBOT_CHANGE_SOCKET_BUFFER_SIZE) # Socket Buffer Size Expansion
-add_definitions(-DTGBOT_CHANGE_READ_BUFFER_SIZE) # Read Buffer Size Expansion
-```
-
-#### Without CMake
-```
--DTGBOT_DISABLE_NAGLES_ALGORITHM
--DTGBOT_CHANGE_SOCKET_BUFFER_SIZE
--DTGBOT_CHANGE_READ_BUFFER_SIZE
+-DTGBOT_DISABLE_NAGLES_ALGORITHM   # Disable 'Nagle's algorithm'
+-DTGBOT_CHANGE_SOCKET_BUFFER_SIZE  # Socket Buffer Size Expansion
+-DTGBOT_CHANGE_READ_BUFFER_SIZE    # Read Buffer Size Expansion
 ```
 
 
