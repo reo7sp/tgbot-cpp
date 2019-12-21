@@ -63,7 +63,7 @@ OUTPUT_DIRECTORY       = doc
 # If the CREATE_SUBDIRS tag is set to YES then doxygen will create 4096 sub-
 # directories (in 2 levels) under the output directory of each output format and
 # will distribute the generated files over these directories. Enabling this
-# options can be useful when feeding doxygen a huge amount of source files, where
+# option can be useful when feeding doxygen a huge amount of source files, where
 # putting all generated files in the same directory would otherwise causes
 # performance problems for the file system.
 # The default value is: NO.
@@ -330,7 +330,7 @@ AUTOLINK_SUPPORT       = YES
 
 BUILTIN_STL_SUPPORT    = NO
 
-# If you use Microsoft's C++/CLI language, you should set this options to YES to
+# If you use Microsoft's C++/CLI language, you should set this option to YES to
 # enable parsing support.
 # The default value is: NO.
 
@@ -345,11 +345,11 @@ CPP_CLI_SUPPORT        = NO
 SIP_SUPPORT            = NO
 
 # For Microsoft's IDL there are propget and propput attributes to indicate
-# getter and setter methods for a property. Setting this options to YES will make
+# getter and setter methods for a property. Setting this option to YES will make
 # doxygen to replace the get and set methods by a property in the documentation.
 # This will only work if the methods are indeed getting or setting a simple
 # type. If this is not the case, or you want to show the methods anyway, you
-# should set this options to NO.
+# should set this option to NO.
 # The default value is: YES.
 
 IDL_PROPERTY_SUPPORT   = YES
@@ -362,8 +362,8 @@ IDL_PROPERTY_SUPPORT   = YES
 
 DISTRIBUTE_GROUP_DOC   = NO
 
-# If one adds a struct or class to a group and this options is enabled, then also
-# any nested class or struct is added to the same group. By default this options
+# If one adds a struct or class to a group and this option is enabled, then also
+# any nested class or struct is added to the same group. By default this option
 # is disabled and one has to add nested compounds explicitly via \ingroup.
 # The default value is: NO.
 
@@ -483,14 +483,14 @@ EXTRACT_ANON_NSPACES   = NO
 # If the HIDE_UNDOC_MEMBERS tag is set to YES, doxygen will hide all
 # undocumented members inside documented classes or files. If set to NO these
 # members will be included in the various overviews, but no documentation
-# section is generated. This options has no effect if EXTRACT_ALL is enabled.
+# section is generated. This option has no effect if EXTRACT_ALL is enabled.
 # The default value is: NO.
 
 HIDE_UNDOC_MEMBERS     = NO
 
 # If the HIDE_UNDOC_CLASSES tag is set to YES, doxygen will hide all
 # undocumented classes that are normally visible in the class hierarchy. If set
-# to NO, these classes will be included in the various overviews. This options
+# to NO, these classes will be included in the various overviews. This option
 # has no effect if EXTRACT_ALL is enabled.
 # The default value is: NO.
 
@@ -521,7 +521,7 @@ INTERNAL_DOCS          = NO
 # names in lower-case letters. If set to YES, upper-case letters are also
 # allowed. This is useful if you have classes or files whose names only differ
 # in case and if your file system supports case sensitive file names. Windows
-# and Mac users are advised to set this options to NO.
+# and Mac users are advised to set this option to NO.
 # The default value is: system dependent.
 
 CASE_SENSE_NAMES       = NO
@@ -584,9 +584,9 @@ SORT_BRIEF_DOCS        = NO
 # (brief and detailed) documentation of class members so that constructors and
 # destructors are listed first. If set to NO the constructors will appear in the
 # respective orders defined by SORT_BRIEF_DOCS and SORT_MEMBER_DOCS.
-# Note: If SORT_BRIEF_DOCS is set to NO this options is ignored for sorting brief
+# Note: If SORT_BRIEF_DOCS is set to NO this option is ignored for sorting brief
 # member documentation.
-# Note: If SORT_MEMBER_DOCS is set to NO this options is ignored for sorting
+# Note: If SORT_MEMBER_DOCS is set to NO this option is ignored for sorting
 # detailed member documentation.
 # The default value is: NO.
 
@@ -602,14 +602,14 @@ SORT_GROUP_NAMES       = NO
 # If the SORT_BY_SCOPE_NAME tag is set to YES, the class list will be sorted by
 # fully-qualified names, including namespaces. If set to NO, the class list will
 # be sorted only by class name, not including the namespace part.
-# Note: This options is not very useful if HIDE_SCOPE_NAMES is set to YES.
-# Note: This options applies only to the class list, not to the alphabetical
+# Note: This option is not very useful if HIDE_SCOPE_NAMES is set to YES.
+# Note: This option applies only to the class list, not to the alphabetical
 # list.
 # The default value is: NO.
 
 SORT_BY_SCOPE_NAME     = NO
 
-# If the STRICT_PROTO_MATCHING options is enabled and doxygen fails to do proper
+# If the STRICT_PROTO_MATCHING option is enabled and doxygen fails to do proper
 # type resolution of all parameters of a function it will reject a match between
 # the prototype and the implementation of a member function even if there is
 # only one candidate or it is obvious which candidate to choose by doing a
@@ -695,8 +695,8 @@ FILE_VERSION_FILTER    =
 # The LAYOUT_FILE tag can be used to specify a layout file which will be parsed
 # by doxygen. The layout file controls the global structure of the generated
 # output files in an output format independent way. To create the layout file
-# that represents doxygen's defaults, run doxygen with the -l options. You can
-# optionally specify a file name after the options, if omitted DoxygenLayout.xml
+# that represents doxygen's defaults, run doxygen with the -l option. You can
+# optionally specify a file name after the option, if omitted DoxygenLayout.xml
 # will be used as the name of the layout file.
 #
 # Note that if you run doxygen from a directory containing a file called
@@ -750,7 +750,7 @@ WARN_IF_UNDOCUMENTED   = YES
 
 WARN_IF_DOC_ERROR      = YES
 
-# This WARN_NO_PARAMDOC options can be enabled to get warnings for functions that
+# This WARN_NO_PARAMDOC option can be enabled to get warnings for functions that
 # are documented, but have no documentation for their parameters or return
 # value. If set to NO, doxygen will only warn about wrong or incomplete
 # parameter documentation, but not about the absence of documentation.
@@ -1036,8 +1036,8 @@ VERBATIM_HEADERS       = YES
 # cost of reduced performance. This can be particularly helpful with template
 # rich C++ code for which doxygen's built-in parser lacks the necessary type
 # information.
-# Note: The availability of this options depends on whether or not doxygen was
-# generated with the -Duse-libclang=ON options for CMake.
+# Note: The availability of this option depends on whether or not doxygen was
+# generated with the -Duse-libclang=ON option for CMake.
 # The default value is: NO.
 
 CLANG_ASSISTED_PARSING = NO
@@ -1144,7 +1144,7 @@ HTML_STYLESHEET        =
 
 # The HTML_EXTRA_STYLESHEET tag can be used to specify additional user-defined
 # cascading style sheets that are included after the standard style sheets
-# created by doxygen. Using this options one can overrule certain style aspects.
+# created by doxygen. Using this option one can overrule certain style aspects.
 # This is preferred over using HTML_STYLESHEET since it does not replace the
 # standard style sheet and is therefore more robust against future updates.
 # Doxygen will copy the style sheet files to the output directory.
@@ -1418,7 +1418,7 @@ ECLIPSE_DOC_ID         = org.doxygen.Project
 # DISABLE_INDEX tag can be used to turn on/off the condensed index (tabs) at top
 # of each HTML page. A value of NO enables the index and the value YES disables
 # it. Since the tabs in the index contain the same information as the navigation
-# tree, you can set this options to YES if you also set GENERATE_TREEVIEW to YES.
+# tree, you can set this option to YES if you also set GENERATE_TREEVIEW to YES.
 # The default value is: NO.
 # This tag requires that the tag GENERATE_HTML is set to YES.
 
@@ -1435,7 +1435,7 @@ DISABLE_INDEX          = NO
 # sheet generated by doxygen has an example that shows how to put an image at
 # the root of the tree instead of the PROJECT_NAME. Since the tree basically has
 # the same information as the tab index, you could consider setting
-# DISABLE_INDEX to YES when enabling this options.
+# DISABLE_INDEX to YES when enabling this option.
 # The default value is: NO.
 # This tag requires that the tag GENERATE_HTML is set to YES.
 
@@ -1458,7 +1458,7 @@ ENUM_VALUES_PER_LINE   = 4
 
 TREEVIEW_WIDTH         = 250
 
-# If the EXT_LINKS_IN_WINDOW options is set to YES, doxygen will open links to
+# If the EXT_LINKS_IN_WINDOW option is set to YES, doxygen will open links to
 # external symbols imported via tag files in a separate window.
 # The default value is: NO.
 # This tag requires that the tag GENERATE_HTML is set to YES.
@@ -1478,19 +1478,19 @@ FORMULA_FONTSIZE       = 10
 # generated for formulas are transparent PNGs. Transparent PNGs are not
 # supported properly for IE 6.0, but are supported on all modern browsers.
 #
-# Note that when changing this options you need to delete any form_*.png files in
+# Note that when changing this option you need to delete any form_*.png files in
 # the HTML output directory before the changes have effect.
 # The default value is: YES.
 # This tag requires that the tag GENERATE_HTML is set to YES.
 
 FORMULA_TRANSPARENT    = YES
 
-# Enable the USE_MATHJAX options to render LaTeX formulas using MathJax (see
+# Enable the USE_MATHJAX option to render LaTeX formulas using MathJax (see
 # http://www.mathjax.org) which uses client side Javascript for the rendering
 # instead of using pre-rendered bitmaps. Use this if you do not have LaTeX
 # installed or if you want to formulas look prettier in the HTML output. When
 # enabled you may also need to install MathJax separately and configure the path
-# to it using the MATHJAX_RELPATH options.
+# to it using the MATHJAX_RELPATH option.
 # The default value is: NO.
 # This tag requires that the tag GENERATE_HTML is set to YES.
 
@@ -1507,7 +1507,7 @@ USE_MATHJAX            = NO
 MATHJAX_FORMAT         = HTML-CSS
 
 # When MathJax is enabled you need to specify the location relative to the HTML
-# output directory using the MATHJAX_RELPATH options. The destination directory
+# output directory using the MATHJAX_RELPATH option. The destination directory
 # should contain the MathJax.js script. For instance, if the mathjax directory
 # is located at the same level as the HTML output directory, then
 # MATHJAX_RELPATH should be ../mathjax. The default value points to the MathJax
@@ -1570,7 +1570,7 @@ SERVER_BASED_SEARCH    = NO
 # When EXTERNAL_SEARCH tag is enabled doxygen will no longer generate the PHP
 # script for searching. Instead the search results are written to an XML file
 # which needs to be processed by an external indexer. Doxygen will invoke an
-# external search engine pointed to by the SEARCHENGINE_URL options to obtain the
+# external search engine pointed to by the SEARCHENGINE_URL option to obtain the
 # search results.
 #
 # Doxygen ships with an example indexer (doxyindexer) and search engine
@@ -1640,7 +1640,7 @@ LATEX_OUTPUT           = latex
 # The LATEX_CMD_NAME tag can be used to specify the LaTeX command name to be
 # invoked.
 #
-# Note that when enabling USE_PDFLATEX this options is only used for generating
+# Note that when enabling USE_PDFLATEX this option is only used for generating
 # bitmaps for formulas in the HTML output, but not in the Makefile that is
 # written to the output directory.
 # The default file is: latex.
@@ -1677,7 +1677,7 @@ PAPER_TYPE             = a4
 # by its name or with the correct syntax as to be used with the LaTeX
 # \usepackage command. To get the times font for instance you can specify :
 # EXTRA_PACKAGES=times or EXTRA_PACKAGES={times}
-# To use the options intlimits with the amsmath package you can specify:
+# To use the option intlimits with the amsmath package you can specify:
 # EXTRA_PACKAGES=[intlimits]{amsmath}
 # If left blank no extra packages will be included.
 # This tag requires that the tag GENERATE_LATEX is set to YES.
@@ -1713,7 +1713,7 @@ LATEX_FOOTER           =
 
 # The LATEX_EXTRA_STYLESHEET tag can be used to specify additional user-defined
 # LaTeX style sheets that are included after the standard style sheets created
-# by doxygen. Using this options one can overrule certain style aspects. Doxygen
+# by doxygen. Using this option one can overrule certain style aspects. Doxygen
 # will copy the style sheet files to the output directory.
 # Note: The order of the extra style sheet files is of importance (e.g. the last
 # style sheet in the list overrules the setting of the previous ones in the
@@ -1740,7 +1740,7 @@ LATEX_EXTRA_FILES      =
 PDF_HYPERLINKS         = YES
 
 # If the USE_PDFLATEX tag is set to YES, doxygen will use pdflatex to generate
-# the PDF file directly from the LaTeX files. Set this options to YES, to get a
+# the PDF file directly from the LaTeX files. Set this option to YES, to get a
 # higher quality PDF documentation.
 # The default value is: YES.
 # This tag requires that the tag GENERATE_LATEX is set to YES.
@@ -1749,7 +1749,7 @@ USE_PDFLATEX           = YES
 
 # If the LATEX_BATCHMODE tag is set to YES, doxygen will add the \batchmode
 # command to the generated LaTeX files. This will instruct LaTeX to keep running
-# if errors occur, instead of asking the user for help. This options is also used
+# if errors occur, instead of asking the user for help. This option is also used
 # when generating formulas in HTML.
 # The default value is: NO.
 # This tag requires that the tag GENERATE_LATEX is set to YES.
@@ -2139,7 +2139,7 @@ PERL_PATH              = /usr/bin/perl
 
 # If the CLASS_DIAGRAMS tag is set to YES, doxygen will generate a class diagram
 # (in HTML and LaTeX) for classes with base or super classes. Setting the tag to
-# NO turns the diagrams off. Note that this options also works with HAVE_DOT
+# NO turns the diagrams off. Note that this option also works with HAVE_DOT
 # disabled, but it is recommended to install and use dot, since it yields more
 # powerful graphs.
 # The default value is: YES.
@@ -2171,7 +2171,7 @@ HIDE_UNDOC_RELATIONS   = YES
 # If you set the HAVE_DOT tag to YES then doxygen will assume the dot tool is
 # available from the path. This tool is part of Graphviz (see:
 # http://www.graphviz.org/), a graph visualization toolkit from AT&T and Lucent
-# Bell Labs. The other options in this section have no effect if this options is
+# Bell Labs. The other options in this section have no effect if this option is
 # set to NO
 # The default value is: NO.
 
@@ -2285,7 +2285,7 @@ INCLUDED_BY_GRAPH      = YES
 # If the CALL_GRAPH tag is set to YES then doxygen will generate a call
 # dependency graph for every global function or class method.
 #
-# Note that enabling this options will significantly increase the time of a run.
+# Note that enabling this option will significantly increase the time of a run.
 # So in most cases it will be better to enable call graphs for selected
 # functions only using the \callgraph command. Disabling a call graph can be
 # accomplished by means of the command \hidecallgraph.
@@ -2297,7 +2297,7 @@ CALL_GRAPH             = NO
 # If the CALLER_GRAPH tag is set to YES then doxygen will generate a caller
 # dependency graph for every global function or class method.
 #
-# Note that enabling this options will significantly increase the time of a run.
+# Note that enabling this option will significantly increase the time of a run.
 # So in most cases it will be better to enable caller graphs for selected
 # functions only using the \callergraph command. Disabling a caller graph can be
 # accomplished by means of the command \hidecallergraph.
@@ -2337,7 +2337,7 @@ DIRECTORY_GRAPH        = YES
 
 DOT_IMAGE_FORMAT       = png
 
-# If DOT_IMAGE_FORMAT is set to svg, then this options can be set to YES to
+# If DOT_IMAGE_FORMAT is set to svg, then this option can be set to YES to
 # enable generation of interactive SVG images that allow zooming and panning.
 #
 # Note that this requires a modern browser other than Internet Explorer. Tested
@@ -2407,7 +2407,7 @@ DOT_GRAPH_MAX_NODES    = 50
 # The MAX_DOT_GRAPH_DEPTH tag can be used to set the maximum depth of the graphs
 # generated by dot. A depth value of 3 means that only nodes reachable from the
 # root by following a path via at most 3 edges will be shown. Nodes that lay
-# further from the root node will be omitted. Note that setting this options to 1
+# further from the root node will be omitted. Note that setting this option to 1
 # or 2 may greatly reduce the computation time needed for large code bases. Also
 # note that the size of a graph can be further restricted by
 # DOT_GRAPH_MAX_NODES. Using a depth of 0 means no depth restriction.
@@ -2420,7 +2420,7 @@ MAX_DOT_GRAPH_DEPTH    = 0
 # background. This is disabled by default, because dot on Windows does not seem
 # to support this out of the box.
 #
-# Warning: Depending on the platform used, enabling this options may lead to
+# Warning: Depending on the platform used, enabling this option may lead to
 # badly anti-aliased labels on the edges of a graph (i.e. they become hard to
 # read).
 # The default value is: NO.
