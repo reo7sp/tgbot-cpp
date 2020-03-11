@@ -75,6 +75,9 @@ install(TARGETS ${PROJECT_NAME}
 install(DIRECTORY include/ DESTINATION include)
 set_property(TARGET ${PROJECT_NAME} PROPERTY POSITION_INDEPENDENT_CODE ON)
 
+# ABI version
+set_property(TARGET ${PROJECT_NAME} PROPERTY SOVERSION 1)
+
 # tests
 if (ENABLE_TESTS)
     message(STATUS "Building of tests is enabled")
