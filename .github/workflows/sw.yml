@@ -1,13 +1,14 @@
-name: windows
+name: sw
 
-on: [push]
+on: [push, pull-request]
 
 jobs:
   build:
     runs-on: ${{ matrix.os }}
     strategy:
+      fail-fast: false
       matrix:
-        os: [windows-latest]
+        os: [windows-latest, ubuntu-latest, macOS-latest]
 
     steps:
     - uses: actions/checkout@v1
@@ -33,3 +34,6 @@ jobs:
 
     - name: build
       run: ./sw build
+
+    - name: test
+      run: ./sw test
