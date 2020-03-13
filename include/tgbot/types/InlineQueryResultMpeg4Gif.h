@@ -1,6 +1,10 @@
 #ifndef TGBOT_INLINEQUERYRESULTMPEG4GIF_H
 #define TGBOT_INLINEQUERYRESULTMPEG4GIF_H
 
+#include <cstdint>
+#include <memory>
+#include <string>
+
 namespace TgBot {
 
 /**
@@ -28,17 +32,17 @@ public:
     /**
      * @brief Optional. Video width.
      */
-    int32_t mpeg4Width;
+    std::int32_t mpeg4Width;
 
     /**
      * @brief Optional. Video height.
      */
-    int32_t mpeg4Height;
+    std::int32_t mpeg4Height;
 
     /**
      * @brief Optional. Video duration.
      */
-    int32_t mpeg4Duration;
+    std::int32_t mpeg4Duration;
 
     /**
     * @brief URL of the static thumbnail (jpeg or gif) for the result

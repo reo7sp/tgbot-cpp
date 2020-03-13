@@ -1,6 +1,7 @@
 #ifndef TGBOT_CPP_FILE_H
 #define TGBOT_CPP_FILE_H
 
+#include <cstdint>
 #include <string>
 #include <memory>
 
@@ -29,7 +30,7 @@ public:
     /**
      * @brief Optional. File size, if known
      */
-    int32_t fileSize;
+    std::int32_t fileSize;
 
     /**
      * @brief Optional. File path.

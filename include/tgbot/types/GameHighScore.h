@@ -1,6 +1,7 @@
 #ifndef TGBOT_GAMEHIGHSCORE_H
 #define TGBOT_GAMEHIGHSCORE_H
 
+#include <cstdint>
 #include <memory>
 #include <string>
 
@@ -31,7 +32,7 @@ public:
     /**
      * @brief Score.
      */
-    int32_t score;
+    std::int32_t score;
 };
 }
 

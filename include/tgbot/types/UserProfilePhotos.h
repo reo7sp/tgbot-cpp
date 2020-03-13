@@ -1,6 +1,7 @@
 #ifndef TGBOT_CPP_USERPROFILEPHOTOS_H
 #define TGBOT_CPP_USERPROFILEPHOTOS_H
 
+#include <cstdint>
 #include <vector>
 #include <memory>
 
@@ -21,7 +22,7 @@ public:
     /**
      * @brief Total number of profile pictures the target user has.
      */
-    int32_t totalCount;
+    std::int32_t totalCount;
 
     /**
      * @brief Requested profile pictures (in up to 4 sizes each).

@@ -1,12 +1,14 @@
 #include "tgbot/net/TgLongPoll.h"
 
+#include <cstdint>
+
 namespace TgBot {
 
-TgLongPoll::TgLongPoll(const Api* api, const EventHandler* eventHandler, int32_t limit, int32_t timeout, const std::shared_ptr<std::vector<std::string>>& allowupdates)
+TgLongPoll::TgLongPoll(const Api* api, const EventHandler* eventHandler, std::int32_t limit, std::int32_t timeout, const std::shared_ptr<std::vector<std::string>>& allowupdates)
     : _api(api), _eventHandler(eventHandler), _limit(limit), _timeout(timeout), _allowupdates(allowupdates) {
 }
 
-TgLongPoll::TgLongPoll(const Bot& bot, int32_t limit, int32_t timeout, const std::shared_ptr<std::vector<std::string>>& allowupdates) :
+TgLongPoll::TgLongPoll(const Bot& bot, std::int32_t limit, std::int32_t timeout, const std::shared_ptr<std::vector<std::string>>& allowupdates) :
     TgLongPoll(&bot.getApi(), &bot.getEventHandler(), limit, timeout, allowupdates) {
 }
 

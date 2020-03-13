@@ -1,6 +1,7 @@
 #ifndef TGBOT_POLL_H
 #define TGBOT_POLL_H
 
+#include <cstdint>
 #include <memory>
 #include <string>
 #include <vector>
@@ -19,7 +20,7 @@ namespace TgBot {
         /**
          * @brief Unique poll identifier.
          */
-        int64_t id;
+        std::int64_t id;
 
         /**
          * @brief Poll question, 1-255 characters.

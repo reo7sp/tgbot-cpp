@@ -1,6 +1,7 @@
 #ifndef TGBOT_PRECHECKOUTQUERY_H
 #define TGBOT_PRECHECKOUTQUERY_H
 
+#include <cstdint>
 #include <string>
 #include <memory>
 #include <vector>
@@ -46,7 +47,7 @@ public:
      *
      * https://core.telegram.org/bots/payments/currencies.json
      */
-    int32_t totalAmount;
+    std::int32_t totalAmount;
 
     /**
      * @brief Bot specified invoice payload.

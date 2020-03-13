@@ -1,6 +1,7 @@
 #ifndef TGBOT_CPP_STICKER_H
 #define TGBOT_CPP_STICKER_H
 
+#include <cstdint>
 #include <string>
 #include <memory>
 
@@ -27,12 +28,12 @@ public:
     /**
      * @brief Optional. Sticker width.
      */
-    int32_t width;
+    std::int32_t width;
 
     /**
      * @brief Optional. Sticker height.
      */
-    int32_t height;
+    std::int32_t height;
 
     /**
  * @brief True, if the sticker is animated.
@@ -62,7 +63,7 @@ public:
     /**
      * @brief Optional. File size.
      */
-    int32_t fileSize;
+    std::int32_t fileSize;
 };
 
 }

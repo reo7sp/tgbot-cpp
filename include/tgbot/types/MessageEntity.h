@@ -1,6 +1,7 @@
 #ifndef TGBOT_MESSAGEENTITY_H
 #define TGBOT_MESSAGEENTITY_H
 
+#include <cstdint>
 #include <memory>
 #include <string>
 #include "tgbot/types/User.h"
@@ -26,12 +27,12 @@ public:
     /**
      * @brief Offset in UTF-16 code units to the start of the entity.
      */
-    int32_t offset;
+    std::int32_t offset;
 
     /**
      * @brief Length of the entity in UTF-16 code units
      */
-    int32_t length;
+    std::int32_t length;
 
     /**
      * @brief Optional. For “text_link” only, url that will be opened after user taps on the text

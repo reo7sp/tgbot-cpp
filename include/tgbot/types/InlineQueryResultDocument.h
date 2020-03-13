@@ -1,6 +1,7 @@
 #ifndef TGBOT_INLINEQUERYRESULTDOCUMENT_H
 #define TGBOT_INLINEQUERYRESULTDOCUMENT_H
 
+#include <cstdint>
 #include <string>
 #include <memory>
 
@@ -48,12 +49,12 @@ public:
     /**
     * @brief Optional. Thumbnail width.
     */
-    int32_t thumbWidth;
+    std::int32_t thumbWidth;
 
     /**
     * @brief Optinal. Thumbnail height
     */
-    int32_t thumbHeight;
+    std::int32_t thumbHeight;
 };
 }
 

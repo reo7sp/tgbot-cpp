@@ -1,6 +1,10 @@
 #ifndef TGBOT_INLINEQUERYRESULTVOICE_H
 #define TGBOT_INLINEQUERYRESULTVOICE_H
 
+#include <cstdint>
+#include <memory>
+#include <string>
+
 namespace TgBot {
 
 /**
@@ -27,7 +31,7 @@ public:
     /**
      * @brief Optional. Recording duration in seconds
      */
-    int32_t voiceDuration;
+    std::int32_t voiceDuration;
 };
 }
 

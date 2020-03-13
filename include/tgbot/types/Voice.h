@@ -1,6 +1,7 @@
 #ifndef TGBOT_VOICE_H
 #define TGBOT_VOICE_H
 
+#include <cstdint>
 #include <memory>
 #include <string>
 
@@ -23,7 +24,7 @@ public:
     /**
      * @brief Duration of the audio in seconds as defined by sender.
      */
-    int32_t duration;
+    std::int32_t duration;
 
     /**
      * @brief Optional. MIME type of the file as defined by sender;
@@ -33,7 +34,7 @@ public:
     /**
      * @brief Optional. File size.
      */
-    int32_t fileSize;
+    std::int32_t fileSize;
 };
 }
 

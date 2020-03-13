@@ -1,6 +1,7 @@
 #ifndef TGBOT_LABELEDPRICE_H
 #define TGBOT_LABELEDPRICE_H
 
+#include <cstdint>
 #include <string>
 #include <memory>
 
@@ -31,7 +32,7 @@ public:
      *
      * https://core.telegram.org/bots/payments/currencies.json
      */
-    int32_t amount;
+    std::int32_t amount;
 };
 }
 

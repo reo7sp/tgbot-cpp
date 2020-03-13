@@ -1,5 +1,7 @@
 #include "tgbot/net/BoostHttpOnlySslClient.h"
 
+#include <cstddef>
+
 #include <boost/asio/ssl.hpp>
 
 using namespace std;
@@ -59,7 +61,7 @@ string BoostHttpOnlySslClient::makeRequest(const Url& url, const vector<HttpReqA
 
     boost::system::error_code error;
     while (!error) {
-        size_t bytes = read(socket, buffer(buff), error);
+        std::size_t bytes = read(socket, buffer(buff), error);
         response += string(buff, bytes);
     }
 

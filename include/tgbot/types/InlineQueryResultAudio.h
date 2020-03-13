@@ -1,6 +1,7 @@
 #ifndef TGBOT_INLINEQUERYRESULTAUDIO_H
 #define TGBOT_INLINEQUERYRESULTAUDIO_H
 
+#include <cstdint>
 #include <string>
 #include <memory>
 
@@ -37,7 +38,7 @@ public:
     /**
     * @brief Optional. Audio duration in seconds
     */
-    int32_t audioDuration;
+    std::int32_t audioDuration;
 };
 }
 

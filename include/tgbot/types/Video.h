@@ -1,6 +1,7 @@
 #ifndef TGBOT_CPP_VIDEO_H
 #define TGBOT_CPP_VIDEO_H
 
+#include <cstdint>
 #include <string>
 #include <memory>
 
@@ -26,17 +27,17 @@ public:
     /**
      * @brief Video width as defined by sender.
      */
-    int32_t width;
+    std::int32_t width;
 
     /**
      * @brief Video height as defined by sender.
      */
-    int32_t height;
+    std::int32_t height;
 
     /**
      * @brief Duration of the video in seconds as defined by sender.
      */
-    int32_t duration;
+    std::int32_t duration;
 
     /**
      * @brief Optional. Video thumbnail.
@@ -51,7 +52,7 @@ public:
     /**
      * @brief Optional. File size.
      */
-    int32_t fileSize;
+    std::int32_t fileSize;
 };
 
 }

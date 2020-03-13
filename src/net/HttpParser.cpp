@@ -1,5 +1,8 @@
 #include "tgbot/net/HttpParser.h"
 
+#include <cstddef>
+#include <cstdint>
+
 #include <boost/algorithm/string.hpp>
 
 #include "tgbot/tools/StringTools.h"
@@ -78,7 +81,7 @@ string HttpParser::generateMultipartFormData(const vector<HttpReqArg>& args, con
 
 string HttpParser::generateMultipartBoundary(const vector<HttpReqArg>& args) const {
     string result;
-    srand((uint32_t) time(nullptr));
+    srand((std::uint32_t) time(nullptr));
     for (const HttpReqArg& item : args) {
         if (item.isFile) {
             while (result.empty() || item.value.find(result) != string::npos) {
@@ -131,10 +134,10 @@ string HttpParser::generateResponse(const string& data, const string& mimeType, 
 unordered_map<string, string> HttpParser::parseHeader(const string& data, bool isRequest) const {
     unordered_map<string, string> headers;
 
-    size_t lineStart = 0;
-    size_t lineEnd = 0;
-    size_t lineSepPos = 0;
-    size_t lastLineEnd = string::npos;
+    std::size_t lineStart = 0;
+    std::size_t lineEnd = 0;
+    std::size_t lineSepPos = 0;
+    std::size_t lastLineEnd = string::npos;
     while (lastLineEnd != lineEnd) {
         lastLineEnd = lineEnd;
         bool isFirstLine = lineEnd == 0;
@@ -165,7 +168,7 @@ unordered_map<string, string> HttpParser::parseHeader(const string& data, bool i
 }
 
 string HttpParser::extractBody(const string& data) const {
-    size_t headerEnd = data.find("\r\n\r\n");
+    std::size_t headerEnd = data.find("\r\n\r\n");
     if (headerEnd == string::npos) {
         return data;
     }

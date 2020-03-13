@@ -1,5 +1,7 @@
 #include "tgbot/EventHandler.h"
+
 #include <algorithm>
+#include <cstddef>
 
 using namespace std;
 
@@ -24,9 +26,9 @@ void EventHandler::handleMessage(Message::Ptr message) const {
     _broadcaster.broadcastAnyMessage(message);
 
     if (StringTools::startsWith(message->text, "/")) {
-        size_t splitPosition;
-        size_t spacePosition = message->text.find(' ');
-        size_t atSymbolPosition = message->text.find('@');
+        std::size_t splitPosition;
+        std::size_t spacePosition = message->text.find(' ');
+        std::size_t atSymbolPosition = message->text.find('@');
         if (spacePosition == string::npos) {
             if (atSymbolPosition == string::npos) {
                 splitPosition = message->text.size();

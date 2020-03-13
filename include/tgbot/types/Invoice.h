@@ -1,6 +1,7 @@
 #ifndef TGBOT_INVOICE_H
 #define TGBOT_INVOICE_H
 
+#include <cstdint>
 #include <string>
 #include <memory>
 
@@ -48,7 +49,7 @@ public:
      *
      * https://core.telegram.org/bots/payments/currencies.json
      */
-    int32_t totalAmount;
+    std::int32_t totalAmount;
 };
 }
 
