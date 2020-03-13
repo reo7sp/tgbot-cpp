@@ -1,7 +1,7 @@
 void build(Solution &s)
 {
-    auto &tgbot = s.addLibrary("reo7sp.tgbot", "1.2.1");
-    tgbot += Git("https://github.com/reo7sp/tgbot-cpp", "v{M}.{m}");
+    auto &tgbot = s.addLibrary("reo7sp.tgbot", "1.2.2");
+    tgbot += Git("https://github.com/reo7sp/tgbot-cpp", "v{M}.{m}{po}");
     {
         tgbot += cpp11;
 
