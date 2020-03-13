@@ -1,6 +1,8 @@
 #ifndef TGBOT_TGEXCEPTION_H
 #define TGBOT_TGEXCEPTION_H
 
+#include "tgbot/export.h"
+
 #include <string>
 #include <stdexcept>
 
@@ -11,7 +13,7 @@ namespace TgBot {
  *
  * @ingroup general
  */
-class TgException : public std::runtime_error {
+class TGBOT_API TgException : public std::runtime_error {
 
 public:
     explicit TgException(const std::string description);

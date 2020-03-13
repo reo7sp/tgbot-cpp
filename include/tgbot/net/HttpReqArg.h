@@ -1,6 +1,8 @@
 #ifndef TGBOT_HTTPPARAMETER_H
 #define TGBOT_HTTPPARAMETER_H
 
+#include "tgbot/export.h"
+
 #include <string>
 #include <utility>
 #include <vector>
@@ -15,7 +17,7 @@ namespace TgBot {
  *
  * @ingroup net
  */
-class HttpReqArg {
+class TGBOT_API HttpReqArg {
 
 public:
     template<typename T>

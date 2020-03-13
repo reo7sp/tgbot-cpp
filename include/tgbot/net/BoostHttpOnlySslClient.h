@@ -17,7 +17,7 @@ namespace TgBot {
  *
  * @ingroup net
  */
-class BoostHttpOnlySslClient : public HttpClient {
+class TGBOT_API BoostHttpOnlySslClient : public HttpClient {
 
 public:
     BoostHttpOnlySslClient();

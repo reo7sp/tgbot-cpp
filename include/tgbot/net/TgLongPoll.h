@@ -14,7 +14,7 @@ namespace TgBot {
  *
  * @ingroup net
  */
-class TgLongPoll {
+class TGBOT_API TgLongPoll {
 
 public:
     TgLongPoll(const Api* api, const EventHandler* eventHandler, std::int32_t, std::int32_t, const std::shared_ptr<std::vector<std::string>>&);

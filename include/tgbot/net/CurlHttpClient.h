@@ -19,7 +19,7 @@ namespace TgBot {
  *
  * @ingroup net
  */
-class CurlHttpClient : public HttpClient {
+class TGBOT_API CurlHttpClient : public HttpClient {
 
 public:
     CurlHttpClient();

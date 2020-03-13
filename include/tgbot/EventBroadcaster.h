@@ -6,6 +6,7 @@
 #include <vector>
 #include <unordered_map>
 
+#include "tgbot/export.h"
 #include "tgbot/types/Message.h"
 #include "tgbot/types/InlineQuery.h"
 #include "tgbot/types/ChosenInlineResult.h"
@@ -20,7 +21,7 @@ class EventHandler;
  *
  * @ingroup general
  */
-class EventBroadcaster {
+class TGBOT_API EventBroadcaster {
 
 friend EventHandler;
 

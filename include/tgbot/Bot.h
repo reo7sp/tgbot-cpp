@@ -16,7 +16,7 @@ namespace TgBot {
  *
  * @ingroup general
  */
-class Bot {
+class TGBOT_API Bot {
 
 public:
     explicit Bot(std::string token, const HttpClient& httpClient = _getDefaultHttpClient())

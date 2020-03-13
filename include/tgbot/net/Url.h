@@ -1,6 +1,8 @@
 #ifndef TGBOT_CPP_URL_H
 #define TGBOT_CPP_URL_H
 
+#include "tgbot/export.h"
+
 #include <string>
 
 namespace TgBot {
@@ -10,7 +12,7 @@ namespace TgBot {
  *
  * @ingroup net
  */
-class Url {
+class TGBOT_API Url {
 
 public:
     Url(const std::string& url);

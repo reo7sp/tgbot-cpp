@@ -7,7 +7,7 @@
 
 namespace TgBot {
 
-class EventHandler {
+class TGBOT_API EventHandler {
 
 public:
     explicit EventHandler(const EventBroadcaster& broadcaster) : _broadcaster(broadcaster) {

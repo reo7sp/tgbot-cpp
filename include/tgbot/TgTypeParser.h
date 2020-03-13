@@ -6,6 +6,7 @@
 #include <boost/property_tree/ptree.hpp>
 #include <boost/property_tree/json_parser.hpp>
 
+#include "tgbot/export.h"
 #include "tgbot/types/User.h"
 #include "tgbot/types/Chat.h"
 #include "tgbot/types/Message.h"
@@ -87,7 +88,7 @@
 
 namespace TgBot {
 
-class TgTypeParser {
+class TGBOT_API TgTypeParser {
 
 public:
     template<typename T>

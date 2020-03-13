@@ -37,7 +37,7 @@ class Bot;
  *
  * @ingroup general
  */
-class Api {
+class TGBOT_API Api {
 
 typedef std::shared_ptr<std::vector<std::string>> StringArrayPtr;
 

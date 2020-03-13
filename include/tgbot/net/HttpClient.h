@@ -13,7 +13,7 @@ namespace TgBot {
  *
  * @ingroup net
  */
-class HttpClient {
+class TGBOT_API HttpClient {
 
 public:
     virtual ~HttpClient() = default;
