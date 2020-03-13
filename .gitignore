@@ -6,6 +6,7 @@ install_manifest.txt
 *.cbp
 *.a
 *.so
+*.lnk
 .sw
 doc/
 Thumbs.db
