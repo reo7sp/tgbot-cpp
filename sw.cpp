@@ -17,6 +17,7 @@ void build(Solution &s)
     auto &t = tgbot.addExecutable("test");
     {
         t.Scope = TargetScope::Test;
+        t += cpp11;
         t += "test/.*"_rr;
         t += "test"_idir;
         t += "SW_BUILD"_def;
