@@ -4,6 +4,8 @@ void build(Solution &s)
     {
         tgbot += Git("https://github.com/reo7sp/tgbot-cpp", "v{M}.{m}");
 
+        tgbot += cpp11;
+
         tgbot.Public += "org.sw.demo.boost.property_tree"_dep;
         tgbot.Public += "org.sw.demo.openssl.ssl"_dep;
         tgbot.Public += "org.sw.demo.boost.system"_dep;
