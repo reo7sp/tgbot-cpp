@@ -2,6 +2,8 @@ void build(Solution &s)
 {
     auto &tgbot = s.addTarget<StaticLibraryTarget>("reo7sp.tgbot", "1.2.0");
     tgbot += Git("https://github.com/reo7sp/tgbot-cpp", "v{M}.{m}");
+    
+    tgbot += cpp11;
 
     tgbot.Public += "org.sw.demo.boost.property_tree"_dep;
     tgbot.Public += "org.sw.demo.openssl.ssl"_dep;
