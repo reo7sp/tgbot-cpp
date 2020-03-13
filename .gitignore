@@ -6,6 +6,7 @@ install_manifest.txt
 *.cbp
 *.a
 *.so
+.sw
 doc/
 Thumbs.db
 TgBot_test
