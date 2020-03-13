@@ -1,9 +1,10 @@
+#ifndef TGBOT_POLLOPTION_H
+#define TGBOT_POLLOPTION_H
+
+#include <cstdint>
 #include <memory>
 #include <string>
 #include <vector>
-
-#ifndef TGBOT_POLLOPTION_H
-#define TGBOT_POLLOPTION_H
 
 namespace TgBot {
 
@@ -20,7 +21,7 @@ public:
     /**
      * @brief Number of users that voted for this option.
      */
-    int64_t voter_count;
+    std::int64_t voter_count;
 };
 
 }

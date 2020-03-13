@@ -1,5 +1,7 @@
 #include "tgbot/net/HttpParser.h"
 
+#include <cstdint>
+
 #include <boost/algorithm/string.hpp>
 
 #include "tgbot/tools/StringTools.h"
@@ -78,7 +80,7 @@ string HttpParser::generateMultipartFormData(const vector<HttpReqArg>& args, con
 
 string HttpParser::generateMultipartBoundary(const vector<HttpReqArg>& args) const {
     string result;
-    srand((uint32_t) time(nullptr));
+    srand((std::uint32_t) time(nullptr));
     for (const HttpReqArg& item : args) {
         if (item.isFile) {
             while (result.empty() || item.value.find(result) != string::npos) {

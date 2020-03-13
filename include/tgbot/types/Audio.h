@@ -1,6 +1,7 @@
 #ifndef TGBOT_CPP_AUDIO_H
 #define TGBOT_CPP_AUDIO_H
 
+#include <cstdint>
 #include <string>
 #include <memory>
 
@@ -26,7 +27,7 @@ public:
     /**
      * @brief Duration of the audio in seconds as defined by sender.
      */
-    int32_t duration;
+    std::int32_t duration;
 
     /**
      * @brief Optional. Performer of the audio as defined by sender
@@ -48,7 +49,7 @@ public:
     /**
      * @brief Optional. File size.
      */
-    int32_t fileSize;
+    std::int32_t fileSize;
 
     /**
      * @brief Optional. Thumbnail of the album cover to which the music file belongs

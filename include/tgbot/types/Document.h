@@ -1,6 +1,7 @@
 #ifndef TGBOT_CPP_DOCUMENT_H
 #define TGBOT_CPP_DOCUMENT_H
 
+#include <cstdint>
 #include <string>
 #include <memory>
 
@@ -41,7 +42,7 @@ public:
     /**
      * @brief Optional. File size.
      */
-    int32_t fileSize;
+    std::int32_t fileSize;
 };
 
 }

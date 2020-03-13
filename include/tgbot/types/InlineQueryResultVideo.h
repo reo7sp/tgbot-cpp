@@ -1,6 +1,10 @@
 #ifndef TGBOT_INLINEQUERYRESULTVIDEO_H
 #define TGBOT_INLINEQUERYRESULTVIDEO_H
 
+#include <cstdint>
+#include <memory>
+#include <string>
+
 namespace TgBot {
 
 /**
@@ -39,17 +43,17 @@ public:
     /**
      * @brief Optional. Video width.
      */
-    int32_t videoWidth;
+    std::int32_t videoWidth;
 
     /**
      * @brief Optional. Video height.
      */
-    int32_t videoHeight;
+    std::int32_t videoHeight;
 
     /**
      * @brief Optional. Video duration.
      */
-    int32_t videoDuration;
+    std::int32_t videoDuration;
 
     /**
      * @brief Optional. Short description of the result.

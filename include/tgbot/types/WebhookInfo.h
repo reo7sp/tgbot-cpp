@@ -1,6 +1,7 @@
 #ifndef TGBOT_WEBHOOKINFO_H
 #define TGBOT_WEBHOOKINFO_H
 
+#include <cstdint>
 #include <string>
 #include <vector>
 #include <memory>
@@ -29,12 +30,12 @@ public:
     /**
      * @brief Number of updates awaiting delivery
      */
-    int32_t pendingUpdateCount;
+    std::int32_t pendingUpdateCount;
 
     /**
      * @brief Optional. Unix time for the most recent error that happened when trying to deliver an update via webhook
      */
-    int32_t lastErrorDate;
+    std::int32_t lastErrorDate;
 
     /**
      * @brief Optional. Error message in human - readable format for the most recent error that happened when trying to deliver an update via webhook
@@ -44,7 +45,7 @@ public:
     /**
      * @brief Optional. Maximum allowed number of simultaneous HTTPS connections to the webhook for update delivery
      */
-    int32_t maxConnections;
+    std::int32_t maxConnections;
 
     /**
      * @brief Optional. A list of update types the bot is subscribed to. Defaults to all update types

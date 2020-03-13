@@ -1,6 +1,7 @@
 #ifndef TGBOT_CHATMEMBER_H
 #define TGBOT_CHATMEMBER_H
 
+#include <cstdint>
 #include <memory>
 #include <string>
 
@@ -29,7 +30,7 @@ public:
     /**
      * @brief Optional. Restricted and kicked only. Date when restrictions will be lifted for this user, unix time.
      */
-    uint64_t untilDate;
+    std::uint64_t untilDate;
 
     /**
      * @brief Optional. Administrators only. True, if the bot is allowed to edit administrator privileges of that user.

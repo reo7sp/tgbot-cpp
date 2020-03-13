@@ -1,6 +1,7 @@
 #ifndef TGBOT_CPP_API_H
 #define TGBOT_CPP_API_H
 
+#include <cstdint>
 #include <string>
 #include <vector>
 
@@ -62,7 +63,7 @@ public:
      * @param disableNotification Optional. Sends the message silenty.
      * @return On success, the sent message is returned.
      */
-    Message::Ptr sendMessage(int64_t chatId, const std::string& text, bool disableWebPagePreview = false, int32_t replyToMessageId = 0,
+    Message::Ptr sendMessage(std::int64_t chatId, const std::string& text, bool disableWebPagePreview = false, std::int32_t replyToMessageId = 0,
                              GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>(), const std::string& parseMode = "", bool disableNotification = false) const;
 
     /**
@@ -73,7 +74,7 @@ public:
      * @param disableNotification Optional. Sends the message silenty.
      * @return On success, the sent message is returned.
      */
-    Message::Ptr forwardMessage(int64_t chatId, int64_t fromChatId, int32_t messageId, bool disableNotification = false) const;
+    Message::Ptr forwardMessage(std::int64_t chatId, std::int64_t fromChatId, std::int32_t messageId, bool disableNotification = false) const;
 
     /**
      * @brief Use this method to send photos.
@@ -86,7 +87,7 @@ public:
      * @param disableNotification Optional. Sends the message silenty.
      * @return On success, the sent message is returned.
      */
-    Message::Ptr sendPhoto(int64_t chatId, const boost::variant<InputFile::Ptr, std::string> photo, const std::string& caption = "", int32_t replyToMessageId = 0,
+    Message::Ptr sendPhoto(std::int64_t chatId, const boost::variant<InputFile::Ptr, std::string> photo, const std::string& caption = "", std::int32_t replyToMessageId = 0,
                            GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>(), const std::string& parseMode = "", bool disableNotification = false) const;
 
     /**
@@ -104,8 +105,8 @@ public:
      * @param disableNotification Optional. Sends the message silenty.
      * @return On success, the sent message is returned.
      */
-    Message::Ptr sendAudio(int64_t chatId, const boost::variant<InputFile::Ptr, std::string> audio, const std::string &caption = "", int32_t duration = 0,
-                           const std::string& performer = "", const std::string& title = "", const boost::variant<InputFile::Ptr, std::string> thumb = "", int32_t replyToMessageId = 0,
+    Message::Ptr sendAudio(std::int64_t chatId, const boost::variant<InputFile::Ptr, std::string> audio, const std::string &caption = "", std::int32_t duration = 0,
+                           const std::string& performer = "", const std::string& title = "", const boost::variant<InputFile::Ptr, std::string> thumb = "", std::int32_t replyToMessageId = 0,
                            GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>(), const std::string& parseMode = "", bool disableNotification = false) const;
 
     /**
@@ -120,7 +121,7 @@ public:
      * @param disableNotification Optional. Sends the message silenty.
      * @return On success, the sent message is returned.
      */
-    Message::Ptr sendDocument(int64_t chatId, const boost::variant<InputFile::Ptr, std::string> document, const boost::variant<InputFile::Ptr, std::string> thumb = "", const std::string &caption = "", int32_t replyToMessageId = 0,
+    Message::Ptr sendDocument(std::int64_t chatId, const boost::variant<InputFile::Ptr, std::string> document, const boost::variant<InputFile::Ptr, std::string> thumb = "", const std::string &caption = "", std::int32_t replyToMessageId = 0,
                               GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>(), const std::string& parseMode = "", bool disableNotification = false) const;
 
     /**
@@ -150,13 +151,13 @@ public:
      * @param disableNotification Optional. Sends the message silently. Users will receive a notification with no sound.
      * @return On success, the sent Message is returned.
      */
-    Message::Ptr sendInvoice(int64_t chatId, const std::string& title, const std::string& description, const std::string& payload,
+    Message::Ptr sendInvoice(std::int64_t chatId, const std::string& title, const std::string& description, const std::string& payload,
                              const std::string& providerToken, const std::string& startParameter, const std::string& currency, const std::vector<LabeledPrice::Ptr>& prices,
-                             const std::string& providerData = "", const std::string& photoUrl = "", int32_t photoSize = 0,
-                             int32_t photoWidth = 0, int32_t photoHeight = 0, bool needName = false,
+                             const std::string& providerData = "", const std::string& photoUrl = "", std::int32_t photoSize = 0,
+                             std::int32_t photoWidth = 0, std::int32_t photoHeight = 0, bool needName = false,
                              bool needPhoneNumber = false, bool needEmail = false, bool needShippingAddress = false,
                              bool sendPhoneNumberToProvider = false, bool sendEmailToProvider = false, bool isFlexible = false,
-                             int32_t replyToMessageId = 0, GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>(), bool disableNotification = false) const;
+                             std::int32_t replyToMessageId = 0, GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>(), bool disableNotification = false) const;
 
     /**
      * @brief Use this method to reply to shipping queries.
@@ -193,7 +194,7 @@ public:
      * @param disableNotification Optional. Sends the message silenty.
      * @return On success, the sent message is returned.
      */
-    Message::Ptr sendSticker(int64_t chatId, const boost::variant<InputFile::Ptr, std::string> sticker, int32_t replyToMessageId = 0,
+    Message::Ptr sendSticker(std::int64_t chatId, const boost::variant<InputFile::Ptr, std::string> sticker, std::int32_t replyToMessageId = 0,
                              GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>(), bool disableNotification = false) const;
 
     /**
@@ -209,7 +210,7 @@ public:
      * @param pngSticker Png image with the sticker, must be up to 512 kilobytes in size, dimensions must not exceed 512px, and either width or height must be exactly 512px.
      * @return Returns the uploaded File on success.
      */
-    File::Ptr uploadStickerFile(int32_t userId, InputFile::Ptr pngSticker) const;
+    File::Ptr uploadStickerFile(std::int32_t userId, InputFile::Ptr pngSticker) const;
 
     /**
      * @brief Use this method to create new sticker set owned by a user. The bot will be able to edit the created sticker set.
@@ -222,7 +223,7 @@ public:
      * @param maskPosition Optional. A JSON-serialized object for position where the mask should be placed on faces.
      * @return Returns True on success.
      */
-    bool createNewStickerSet(int32_t userId, const std::string& name, const std::string& title,
+    bool createNewStickerSet(std::int32_t userId, const std::string& name, const std::string& title,
                              boost::variant<InputFile::Ptr, std::string> pngSticker, const std::string& emojis, bool containsMasks = false, MaskPosition::Ptr maskPosition = nullptr) const;
 
     /**
@@ -234,7 +235,7 @@ public:
      * @param maskPosition Optional. A JSON-serialized object for position where the mask should be placed on faces.
      * @return Returns True on success.
      */
-    bool addStickerToSet(int32_t userId, const std::string& name,
+    bool addStickerToSet(std::int32_t userId, const std::string& name,
                          boost::variant<InputFile::Ptr, std::string> pngSticker, const std::string& emojis, MaskPosition::Ptr maskPosition = nullptr) const;
 
     /**
@@ -243,7 +244,7 @@ public:
      * @param position New sticker position in the set, zero-based.
      * @return Returns True on success.
      */
-    bool setStickerPositionInSet(const std::string& sticker, uint32_t position) const;
+    bool setStickerPositionInSet(const std::string& sticker, std::uint32_t position) const;
 
     /**
      * @brief Use this method to delete a sticker from a set created by the bot.
@@ -269,8 +270,8 @@ public:
      * @return On success, the sent message is returned.
      */
 
-    Message::Ptr sendVideo(int64_t chatId, const boost::variant<InputFile::Ptr, std::string> video, bool supportsStreaming = false, int32_t duration = 0, int32_t width = 0, int32_t height = 0, const boost::variant<InputFile::Ptr, std::string> thumb = "", const std::string& caption = "",
-                           int32_t replyToMessageId = 0, GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>(), const std::string& parseMode = "", bool disableNotification = false) const;
+    Message::Ptr sendVideo(std::int64_t chatId, const boost::variant<InputFile::Ptr, std::string> video, bool supportsStreaming = false, std::int32_t duration = 0, std::int32_t width = 0, std::int32_t height = 0, const boost::variant<InputFile::Ptr, std::string> thumb = "", const std::string& caption = "",
+                           std::int32_t replyToMessageId = 0, GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>(), const std::string& parseMode = "", bool disableNotification = false) const;
 
     /**
      * @brief Use this method to send animation files (GIF or H.264/MPEG-4 AVC video without sound).
@@ -290,8 +291,8 @@ public:
      * @param disableNotification Optional. Sends the message silenty.
      * @return On success, the sent Message is returned.
      */
-    Message::Ptr sendAnimation(int64_t chatId, const boost::variant<InputFile::Ptr, std::string> animation, int32_t duration = 0, int32_t width = 0, int32_t height = 0, const boost::variant<InputFile::Ptr, std::string> thumb = "", const std::string &caption = "",
-                              int32_t replyToMessageId = 0, GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>(), const std::string& parseMode = "", bool disableNotification = false) const;
+    Message::Ptr sendAnimation(std::int64_t chatId, const boost::variant<InputFile::Ptr, std::string> animation, std::int32_t duration = 0, std::int32_t width = 0, std::int32_t height = 0, const boost::variant<InputFile::Ptr, std::string> thumb = "", const std::string &caption = "",
+                              std::int32_t replyToMessageId = 0, GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>(), const std::string& parseMode = "", bool disableNotification = false) const;
     /**
      * @brief Use this method to send video messages. On success, the sent Message is returned.
      * @param chatId Unique identifier for the target chat.
@@ -304,8 +305,8 @@ public:
      * @param replyMarkup Additional interface options. A object for an inline keyboard, custom reply keyboard, instructions to remove reply keyboard or to force a reply from the user.
      * @return On success, the sent Message is returned.
      */
-    Message::Ptr sendVideoNote(int64_t chatId, const boost::variant<InputFile::Ptr, std::string> videoNote, int64_t replyToMessageId = 0, bool disableNotification = false,
-                               int32_t duration = 0, int32_t length = 0, const boost::variant<InputFile::Ptr, std::string> thumb = "", GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>()) const;
+    Message::Ptr sendVideoNote(std::int64_t chatId, const boost::variant<InputFile::Ptr, std::string> videoNote, std::int64_t replyToMessageId = 0, bool disableNotification = false,
+                               std::int32_t duration = 0, std::int32_t length = 0, const boost::variant<InputFile::Ptr, std::string> thumb = "", GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>()) const;
 
     /**
      * @brief Use this method to send a group of photos or videos as an album.
@@ -315,8 +316,8 @@ public:
      * @param replyToMessageId Optional. If the messages are a reply, ID of the original message.
      * @return On success, an array of the sent Messages is returned.
      */
-    std::vector<Message::Ptr> sendMediaGroup(int64_t chatId, const std::vector<InputMedia::Ptr>& media,
-                                             bool disableNotification = false, int32_t replyToMessageId = 0) const;
+    std::vector<Message::Ptr> sendMediaGroup(std::int64_t chatId, const std::vector<InputMedia::Ptr>& media,
+                                             bool disableNotification = false, std::int32_t replyToMessageId = 0) const;
 
     /**
      * @brief Use this method to send audio files, if you want Telegram clients to display the file as a playable voice message.
@@ -330,7 +331,7 @@ public:
      * @param disableNotification Optional. Sends the message silenty.
      * @return On success, the sent message is returned.
      */
-    Message::Ptr sendVoice(int64_t chatId, const boost::variant<InputFile::Ptr, std::string> voice, const std::string& caption = "", int duration = 0, int32_t replyToMessageId = 0,
+    Message::Ptr sendVoice(std::int64_t chatId, const boost::variant<InputFile::Ptr, std::string> voice, const std::string& caption = "", int duration = 0, std::int32_t replyToMessageId = 0,
                            GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>(), const std::string& parseMode = "", bool disableNotification = false) const;
 
     /**
@@ -342,7 +343,7 @@ public:
      * @param disableNotification Optional. Sends the message silenty.
      * @return On success, the sent message is returned.
      */
-    Message::Ptr sendGame(int64_t chatId, const std::string& gameShortName, int32_t replyToMessageId = 0,
+    Message::Ptr sendGame(std::int64_t chatId, const std::string& gameShortName, std::int32_t replyToMessageId = 0,
                           InlineKeyboardMarkup::Ptr replyMarkup = std::make_shared<InlineKeyboardMarkup>(), bool disableNotification = false) const;
 
     /**
@@ -356,8 +357,8 @@ public:
      * @param disableNotification Optional. Sends the message silenty.
      * @return On success, the sent message is returned.
      */
-    Message::Ptr sendLocation(int64_t chatId, float latitude, float longitude, uint32_t livePeriod = 0,
-                              int32_t replyToMessageId = 0, GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>(), bool disableNotification = false) const;
+    Message::Ptr sendLocation(std::int64_t chatId, float latitude, float longitude, std::uint32_t livePeriod = 0,
+                              std::int32_t replyToMessageId = 0, GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>(), bool disableNotification = false) const;
 
     /**
      * @brief Use this method to edit live location messages sent by the bot or via the bot (for inline bots).
@@ -369,8 +370,8 @@ public:
      * @param replyMarkup Optional. A JSON-serialized object for a new inline keyboard.
      * @return On success, if the edited message was sent by the bot, the edited Message is returned, otherwise nullptr is returned.
      */
-    Message::Ptr editMessageLiveLocation(float latitude, float longitude, int64_t chatId = 0, int32_t messageId = 0,
-                                         int32_t inlineMessageId = 0, InlineKeyboardMarkup::Ptr replyMarkup = std::make_shared<InlineKeyboardMarkup>()) const;
+    Message::Ptr editMessageLiveLocation(float latitude, float longitude, std::int64_t chatId = 0, std::int32_t messageId = 0,
+                                         std::int32_t inlineMessageId = 0, InlineKeyboardMarkup::Ptr replyMarkup = std::make_shared<InlineKeyboardMarkup>()) const;
 
     /**
      * @brief Use this method to edit live location messages sent by the bot or via the bot (for inline bots).
@@ -380,7 +381,7 @@ public:
      * @param replyMarkup Optional. A JSON-serialized object for a new inline keyboard.
      * @return On success, if the edited message was sent by the bot, the edited Message is returned, otherwise nullptr is returned.
      */
-    Message::Ptr stopMessageLiveLocation(int64_t chatId = 0, int32_t messageId = 0, int32_t inlineMessageId = 0,
+    Message::Ptr stopMessageLiveLocation(std::int64_t chatId = 0, std::int32_t messageId = 0, std::int32_t inlineMessageId = 0,
                                          InlineKeyboardMarkup::Ptr replyMarkup = std::make_shared<InlineKeyboardMarkup>()) const;
 
 
@@ -398,8 +399,8 @@ public:
      * @param disableNotification Optional. Sends the message silenty.
      * @return On success, the sent message is returned.
      */
-    Message::Ptr sendVenue(int64_t chatId, float latitude, float longitude, const std::string& title, const std::string& address, const std::string& foursquareId = "", const std::string& foursquareType = "",
-                           bool disableNotification = false, int32_t replyToMessageId = 0, GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>()) const;
+    Message::Ptr sendVenue(std::int64_t chatId, float latitude, float longitude, const std::string& title, const std::string& address, const std::string& foursquareId = "", const std::string& foursquareType = "",
+                           bool disableNotification = false, std::int32_t replyToMessageId = 0, GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>()) const;
 
     /**
      * @brief Use this method to send phone contacts. On success, the sent Message is returned.
@@ -413,8 +414,8 @@ public:
      * @param replyMarkup Optional. Additional interface options. A object for a custom reply keyboard, instructions to hide keyboard or to force a reply from the user.
      * @return On success, the sent message is returned.
      */
-    Message::Ptr sendContact(int64_t chatId, const std::string& phoneNumber, const std::string& firstName, const std::string& lastName = "", const std::string& vcard = "", bool disableNotification = false,
-                            int32_t replyToMessageId = 0, GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>()) const;
+    Message::Ptr sendContact(std::int64_t chatId, const std::string& phoneNumber, const std::string& firstName, const std::string& lastName = "", const std::string& vcard = "", bool disableNotification = false,
+                            std::int32_t replyToMessageId = 0, GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>()) const;
 
     /**
      * @brief Use this method when you need to tell the user that something is happening on the bot's side. The status is set for 5 seconds or less (when a message arrives from your bot, Telegram clients clear its typing status).
@@ -425,7 +426,7 @@ public:
      * @param chatId Unique identifier for the target chat.
      * @param action Type of action to broadcast. Choose one, depending on what the user is about to receive: typing for text messages, upload_photo for photos, record_video or upload_video for videos, record_audio or upload_audio for audio files, upload_document for general files, find_location for location data.
      */
-    void sendChatAction(int64_t chatId, const std::string& action) const;
+    void sendChatAction(std::int64_t chatId, const std::string& action) const;
 
     /**
      * @brief Use this method to get a list of profile pictures for a user.
@@ -434,7 +435,7 @@ public:
      * @param limit Optional. Limits the number of photos to be retrieved. Values between 1—100 are accepted. Defaults to 100.
      * @return A UserProfilePhotos object.
      */
-    UserProfilePhotos::Ptr getUserProfilePhotos(int32_t userId, int32_t offset = 0, int32_t limit = 100) const;
+    UserProfilePhotos::Ptr getUserProfilePhotos(std::int32_t userId, std::int32_t offset = 0, std::int32_t limit = 100) const;
 
     /**
      * @brief Use this method to get basic info about a file and prepare it for downloading. For the moment, bots can download files of up to 20MB in size.
@@ -448,28 +449,28 @@ public:
      * @param chatId Unique identifier for the target chat of the target supergroup or channel.
      * @return True on success
      */
-    bool leaveChat(int64_t chatId) const;
+    bool leaveChat(std::int64_t chatId) const;
 
     /**
      * @brief Use this method to get up to date information about the chat (current name of the user for one-on-one conversations, current username of a user, group or channel, etc.). Returns a Chat object on success.
      * @param chatId Unique identifier for the target chat of the target supergroup or channel.
      * @return Chat object.
      */
-    Chat::Ptr getChat(int64_t chatId) const;
+    Chat::Ptr getChat(std::int64_t chatId) const;
 
     /**
     * @brief Use this method to get a list of administrators in a chat. On success, returns an Array of ChatMember objects that contains information about all chat administrators except other bots. If the chat is a group or a supergroup and no administrators were appointed, only the creator will be returned.
     * @param chatId Unique identifier for the target chat of the target supergroup or channel.
     * @return ChatMember object.
     */
-    std::vector<ChatMember::Ptr> getChatAdministrators(int64_t chatId) const;
+    std::vector<ChatMember::Ptr> getChatAdministrators(std::int64_t chatId) const;
 
     /**
     * @brief Use this method to get the number of members in a chat. Returns Int on success.
     * @param chatId Unique identifier for the target chat of the target supergroup or channel.
     * @return Int.
     */
-    int32_t getChatMembersCount(int64_t chatId) const;
+    std::int32_t getChatMembersCount(std::int64_t chatId) const;
 
     /**
     * @brief Use this method to get information about a member of a chat. Returns a ChatMember object on success.
@@ -477,7 +478,7 @@ public:
     * @param userId Unique identifier of the target user
     * @return ChatMember object.
     */
-    ChatMember::Ptr getChatMember(int64_t chatId, int32_t userId) const;
+    ChatMember::Ptr getChatMember(std::int64_t chatId, std::int32_t userId) const;
 
     /**
     * @brief Use this method to get information about a member of a chat. Returns a ChatMember object on success.
@@ -485,14 +486,14 @@ public:
     * @param stickerSetName Name of the sticker set to be set as the group sticker set.
     * @return Returns True on success.
     */
-    bool setChatStickerSet(int64_t chatId, const std::string& stickerSetName) const;
+    bool setChatStickerSet(std::int64_t chatId, const std::string& stickerSetName) const;
 
     /**
     * @brief Use this method to get information about a member of a chat. Returns a ChatMember object on success.
     * @param chatId Unique identifier for the target chat of the target supergroup or channel.
     * @return Returns True on success.
     */
-    bool deleteChatStickerSet(int64_t chatId) const;
+    bool deleteChatStickerSet(std::int64_t chatId) const;
 
 
     /**
@@ -504,7 +505,7 @@ public:
      * @param cacheTime Optional	The maximum amount of time in seconds that the result of the callback query may be cached client-side. Telegram apps will support caching starting in version 3.14. Defaults to 0.
      * @return True on success
      */
-    bool answerCallbackQuery(const std::string & callbackQueryId, const std::string & text="", bool showAlert=false, const std::string &url="", int32_t cacheTime=0) const;
+    bool answerCallbackQuery(const std::string & callbackQueryId, const std::string & text="", bool showAlert=false, const std::string &url="", std::int32_t cacheTime=0) const;
 
     /**
      * @brief Use this method to edit text and game messages sent by the bot or via the bot (for inline bots)
@@ -517,7 +518,7 @@ public:
      * @param replyMarkup Optional	A JSON-serialized object for an inline keyboard.
      * @return Message object on success, otherwise nullptr
      */
-    Message::Ptr editMessageText(const std::string& text, int64_t chatId=0, int32_t messageId=0, const std::string& inlineMessageId="",
+    Message::Ptr editMessageText(const std::string& text, std::int64_t chatId=0, std::int32_t messageId=0, const std::string& inlineMessageId="",
                                  const std::string& parseMode = "", bool disableWebPagePreview = false, GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>()) const;
 
     /**
@@ -529,7 +530,7 @@ public:
     * @param replyMarkup Optional	A JSON-serialized object for an inline keyboard.
     * @return Message object on success, otherwise nullptr
     */
-    Message::Ptr editMessageCaption(int64_t chatId = 0, int32_t messageId = 0, const std::string& caption = "",
+    Message::Ptr editMessageCaption(std::int64_t chatId = 0, std::int32_t messageId = 0, const std::string& caption = "",
                                     const std::string& inlineMessageId = "", GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>()) const;
 
     /**
@@ -547,7 +548,7 @@ public:
      * @param replyMarkup Optional	A JSON-serialized object for an inline keyboard.
      * @return On success, if the edited message was sent by the bot, the edited Message is returned, otherwise nullptr is returned.
      */
-    Message::Ptr editMessageMedia(InputMedia::Ptr media, int64_t chatId = 0, int32_t messageId = 0, const std::string& inlineMessageId = "",
+    Message::Ptr editMessageMedia(InputMedia::Ptr media, std::int64_t chatId = 0, std::int32_t messageId = 0, const std::string& inlineMessageId = "",
                                   GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>()) const;
 
     /**
@@ -558,7 +559,7 @@ public:
     * @param replyMarkup Optional	A JSON-serialized object for an inline keyboard.
     * @return Message object on success, otherwise nullptr
     */
-    Message::Ptr editMessageReplyMarkup(int64_t chatId = 0, int32_t messageId = 0, const std::string& inlineMessageId = "",
+    Message::Ptr editMessageReplyMarkup(std::int64_t chatId = 0, std::int32_t messageId = 0, const std::string& inlineMessageId = "",
                                         const GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>()) const;
 
     /**
@@ -566,7 +567,7 @@ public:
      * @param chatId	Unique identifier for the target chat or username of the target channel.
      * @param messageId	Unique identifier for the target message.
      */
-    void deleteMessage(int64_t chatId, int32_t messageId) const;
+    void deleteMessage(std::int64_t chatId, std::int32_t messageId) const;
 
     /**
      * @brief Use this method to receive incoming updates using long polling.
@@ -580,7 +581,7 @@ public:
      * @param allowed_updates Optional. List the types of updates you want your bot to receive. For example, specify [“message”, “edited_channel_post”, “callback_query”] to only receive updates of these types. See Update for a complete list of available update types. Specify an empty list to receive all updates regardless of type (default). If not specified, the previous setting will be used.
      * @return An Array of Update objects
      */
-    std::vector<Update::Ptr> getUpdates(int32_t offset = 0, int32_t limit = 100, int32_t timeout = 0, const StringArrayPtr &allowedUpdates = nullptr) const;
+    std::vector<Update::Ptr> getUpdates(std::int32_t offset = 0, std::int32_t limit = 100, std::int32_t timeout = 0, const StringArrayPtr &allowedUpdates = nullptr) const;
 
     /**
      * @brief Use this method to specify a url and receive incoming updates via an outgoing webhook. Whenever there is an update for the bot, we will send an HTTPS POST request to the specified url, containing a JSON-serialized Update. In case of an unsuccessful request, we will give up after a reasonable amount of attempts.
@@ -592,7 +593,7 @@ public:
      *
      * @param url Optional. HTTPS url to send updates to. Use an empty string to remove webhook integration.
      */
-    void setWebhook(const std::string& url = "", InputFile::Ptr certificate = nullptr, int32_t maxConnection = 40, const StringArrayPtr &allowedUpdates = nullptr) const;
+    void setWebhook(const std::string& url = "", InputFile::Ptr certificate = nullptr, std::int32_t maxConnection = 40, const StringArrayPtr &allowedUpdates = nullptr) const;
 
     /**
      * @brief Use this method to remove webhook integration if you decide to switch back to getUpdates.
@@ -626,7 +627,7 @@ public:
      * @return True on success
      */
     bool answerInlineQuery(const std::string& inlineQueryId, const std::vector<InlineQueryResult::Ptr>& results,
-                            int32_t cacheTime = 300, bool isPersonal = false, const std::string& nextOffset = "", const std::string& switchPmText = "", const std::string& switchPmParameter = "") const;
+                            std::int32_t cacheTime = 300, bool isPersonal = false, const std::string& nextOffset = "", const std::string& switchPmText = "", const std::string& switchPmParameter = "") const;
 
     /**
      * @brief Use this method to kick a user from a group or a supergroup.
@@ -635,7 +636,7 @@ public:
      * @param untilDate Optional. Date when the user will be unbanned, unix time. If user is banned for more than 366 days or less than 30 seconds from the current time they are considered to be banned forever.
      * @return True on success
      */
-    bool kickChatMember(int64_t chatId, int32_t userId, uint64_t untilDate = 0) const;
+    bool kickChatMember(std::int64_t chatId, std::int32_t userId, std::uint64_t untilDate = 0) const;
 
     /**
      * @brief Use this method to unban a previously kicked user in a supergroup.
@@ -643,7 +644,7 @@ public:
      * @param userId Unique identifier of the target user.
      * @return True on success
      */
-    bool unbanChatMember(int64_t chatId, int32_t userId) const;
+    bool unbanChatMember(std::int64_t chatId, std::int32_t userId) const;
 
     /**
      * @brief Use this method to restrict a user in a supergroup.
@@ -656,7 +657,7 @@ public:
      * @param canAddWebPagePreviews Optional. Pass True, if the user may add web page previews to their messages, implies can_send_media_messages.
      * @return True on success
      */
-    bool restrictChatMember(int64_t chatId, int32_t userId, ChatPermissions::Ptr permissions, uint64_t untilDate = 0) const;
+    bool restrictChatMember(std::int64_t chatId, std::int32_t userId, ChatPermissions::Ptr permissions, std::uint64_t untilDate = 0) const;
 
     /**
      * @brief Use this method to promote or demote a user in a supergroup or a channel.
@@ -672,7 +673,7 @@ public:
      * @param canPromoteMembers Optional. Pass True, if the administrator can add new administrators with a subset of his own privileges or demote administrators that he has promoted, directly or indirectly (promoted by administrators that were appointed by him).
      * @return True on success
      */
-    bool promoteChatMember(int64_t chatId, int32_t userId, bool canChangeInfo = false, bool canPostMessages = false,
+    bool promoteChatMember(std::int64_t chatId, std::int32_t userId, bool canChangeInfo = false, bool canPostMessages = false,
                            bool canEditMessages = false, bool canDeleteMessages = false, bool canInviteUsers = false, bool canPinMessages = false, bool canPromoteMembers = false) const;
 
     /**
@@ -681,14 +682,14 @@ public:
   * @param permissions New default chat permissions.
   * @return True on success
   */
-    bool setChatPermissions(int64_t chatId, ChatPermissions::Ptr permissions) const;
+    bool setChatPermissions(std::int64_t chatId, ChatPermissions::Ptr permissions) const;
 
     /**
      * @brief Use this method to generate a new invite link for a chat; any previously generated link is revoked.
      * @param chatId Unique identifier for the target chat.
      * @return The new invite link as String on success.
      */
-    std::string exportChatInviteLink(int64_t chatId) const;
+    std::string exportChatInviteLink(std::int64_t chatId) const;
 
     /**
      * @brief Use this method to set a new profile photo for the chat.
@@ -699,7 +700,7 @@ public:
      * @param photo New chat photo.
      * @return True on success
      */
-    bool setChatPhoto(int64_t chatId, InputFile::Ptr photo) const;
+    bool setChatPhoto(std::int64_t chatId, InputFile::Ptr photo) const;
 
     /**
      * @brief Use this method to delete a chat photo.
@@ -709,7 +710,7 @@ public:
      * @param chatId Unique identifier for the target chat.
      * @return True on success
      */
-    bool deleteChatPhoto(int64_t chatId) const;
+    bool deleteChatPhoto(std::int64_t chatId) const;
 
     /**
      * @brief Use this method to change the title of a chat.
@@ -720,7 +721,7 @@ public:
      * @param title New chat title, 1-255 characters.
      * @return True on success
      */
-    bool setChatTitle(int64_t chatId, const std::string& title) const;
+    bool setChatTitle(std::int64_t chatId, const std::string& title) const;
 
     /**
      * @brief Use this method to change the description of a supergroup or a channel.
@@ -728,7 +729,7 @@ public:
      * @param description New chat description, 1-255 characters.
      * @return True on success
      */
-    bool setChatDescription(int64_t chatId, const std::string& description) const;
+    bool setChatDescription(std::int64_t chatId, const std::string& description) const;
 
     /**
      * @brief Use this method to pin a message in a group, a supergroup, or a channel.
@@ -737,14 +738,14 @@ public:
      * @param disableNotification Optional. Pass True, if it is not necessary to send a notification to all chat members about the new pinned message. Notifications are always disabled in channels.
      * @return True on success
      */
-    bool pinChatMessage(int64_t chatId, int32_t messageId, bool disableNotification = false) const;
+    bool pinChatMessage(std::int64_t chatId, std::int32_t messageId, bool disableNotification = false) const;
 
     /**
      * @brief Use this method to unpin a message in a group, a supergroup, or a channel.
      * @param chatId Unique identifier for the target chat or username of the target channel.
      * @return True on success
      */
-    bool unpinChatMessage(int64_t chatId) const;
+    bool unpinChatMessage(std::int64_t chatId) const;
 
     /**
      * @brief Use this method to set the score of the specified user in a game.
@@ -760,8 +761,8 @@ public:
      * @param inlineMessageId Optional. Required if chatId and messageId are not specified. Identifier of the inline message
      * @return On success, if the message was sent by the bot, returns the edited Message, otherwise returns nullptr.
      */
-    Message::Ptr setGameScore(int32_t userId, int32_t score, bool force = false, bool disableEditMessage = false,
-                              int64_t chatId = 0, int32_t messageId = 0, const std::string& inlineMessageId = "") const;
+    Message::Ptr setGameScore(std::int32_t userId, std::int32_t score, bool force = false, bool disableEditMessage = false,
+                              std::int64_t chatId = 0, std::int32_t messageId = 0, const std::string& inlineMessageId = "") const;
 
     /**
      * @brief Use this method to get data for high score tables.
@@ -774,8 +775,8 @@ public:
      * @param inlineMessageId Optional. Required if chatId and messageId are not specified. Identifier of the inline message
      * @return On success, returns an Array of GameHighScore objects.
      */
-    std::vector<GameHighScore::Ptr> getGameHighScores(int32_t userId, int32_t score, bool force = false,
-                                                      bool disableEditMessage = false, int64_t chatId = 0, int32_t messageId = 0, const std::string& inlineMessageId = "") const;
+    std::vector<GameHighScore::Ptr> getGameHighScores(std::int32_t userId, std::int32_t score, bool force = false,
+                                                      bool disableEditMessage = false, std::int64_t chatId = 0, std::int32_t messageId = 0, const std::string& inlineMessageId = "") const;
 
     /**
      * @brief Downloads file from Telegram and saves it in memory.
@@ -796,7 +797,7 @@ public:
     *
     * @return On success, the sent message is returned.
     */
-    Message::Ptr sendPoll(int64_t chatId, std::string question, std::vector<std::string> options, bool disable_notification=false, int32_t reply_to_message_id=0,GenericReply::Ptr reply_markup = std::make_shared<GenericReply>()) const;
+    Message::Ptr sendPoll(std::int64_t chatId, std::string question, std::vector<std::string> options, bool disable_notification=false, std::int32_t reply_to_message_id=0,GenericReply::Ptr reply_markup = std::make_shared<GenericReply>()) const;
 
     /**
     * @brief Use this method to stop a poll which was sent by the bot. On success, the stopped Poll with the final results is returned..
@@ -810,7 +811,7 @@ public:
     * @return On success, the sent message is returned.
     */
 
-    Poll::Ptr stopPoll(int64_t chatId, int64_t messageId, InlineKeyboardMarkup::Ptr replyMarkup = std::make_shared<InlineKeyboardMarkup>()) const;
+    Poll::Ptr stopPoll(std::int64_t chatId, std::int64_t messageId, InlineKeyboardMarkup::Ptr replyMarkup = std::make_shared<InlineKeyboardMarkup>()) const;
 
 private:
     boost::property_tree::ptree sendRequest(const std::string& method, const std::vector<HttpReqArg>& args = std::vector<HttpReqArg>()) const;

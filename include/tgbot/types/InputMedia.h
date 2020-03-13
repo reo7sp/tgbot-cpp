@@ -1,6 +1,7 @@
 #ifndef TGBOT_INPUTMEDIA_H
 #define TGBOT_INPUTMEDIA_H
 
+#include <cstdint>
 #include <memory>
 #include <string>
 
@@ -15,7 +16,7 @@ class InputMedia {
 public:
     typedef std::shared_ptr<InputMedia> Ptr;
 
-    enum class TYPE : uint8_t {
+    enum class TYPE : std::uint8_t {
         PHOTO,
         VIDEO,
         ANIMATION,
@@ -53,27 +54,27 @@ public:
     /**
      * @brief Optional. Media width
      */
-    int32_t width = 0;
+    std::int32_t width = 0;
 
     /**
      * @brief Optional. Media height
      */
-    int32_t height = 0;
+    std::int32_t height = 0;
 
     /**
      * @brief Optional. Media duration
      */
-    int32_t duration = 0;
+    std::int32_t duration = 0;
 
     /**
      * @brief Optional. Performer of the audio.
      */
-    int32_t performer = 0;
+    std::int32_t performer = 0;
 
     /**
      * @brief Optional. Title of the audio.
      */
-    int32_t title = 0;
+    std::int32_t title = 0;
 
     /**
      * @brief Optional. Pass True, if the uploaded video is suitable for streaming

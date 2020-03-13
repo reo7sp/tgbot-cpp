@@ -1,6 +1,7 @@
 #ifndef TGBOT_CPP_MESSAGE_H
 #define TGBOT_CPP_MESSAGE_H
 
+#include <cstdint>
 #include <string>
 #include <vector>
 #include <memory>
@@ -39,7 +40,7 @@ public:
     /**
      * @brief Unique message identifier.
      */
-    int32_t messageId;
+    std::int32_t messageId;
 
     /**
      * @brief Optional. Sender, can be empty for messages sent to channels.
@@ -49,7 +50,7 @@ public:
     /**
      * @brief Date the message was sent in Unix time.
      */
-    int32_t date;
+    std::int32_t date;
 
     /**
      * @brief Conversation the message belongs to.
@@ -69,7 +70,7 @@ public:
     /**
      * @brief Optional. For forwarded channel posts, identifier of the original message in the channel
      */
-    int32_t forwardFromMessageId;
+    std::int32_t forwardFromMessageId;
 
     /**
      * @brief Optional. For messages forwarded from channels, signature of the post author if present.
@@ -84,7 +85,7 @@ public:
     /**
      * @brief Optional. For forwarded messages, date the original message was sent in Unix time.
      */
-    int32_t forwardDate;
+    std::int32_t forwardDate;
 
     /**
      * @brief Optional. For replies, the original message. Note that the Message object in this field will not contain further reply_to_message fields even if it itself is a reply.
@@ -94,7 +95,7 @@ public:
     /**
      * @brief Optional. Date the message was last edited in Unix time.
      */
-    int32_t editDate;
+    std::int32_t editDate;
 
     /**
      * @brief Optional. Signature of the post author for messages in channels.
@@ -231,12 +232,12 @@ public:
     /**
      * @brief Optional. The group has been migrated to a supergroup with the specified identifier, not exceeding 1e13 by absolute value.
      */
-    int64_t migrateToChatId = 0;
+    std::int64_t migrateToChatId = 0;
 
     /**
      * @brief Optional. The supergroup has been migrated from a group with the specified identifier, not exceeding 1e13 by absolute value
      */
-    int64_t migrateFromChatId = 0;
+    std::int64_t migrateFromChatId = 0;
 
     /**
      * @brief Optional. Specified message was pinned. Note that the Message object in this field will not contain further reply_to_message fields even if it is itself a reply.

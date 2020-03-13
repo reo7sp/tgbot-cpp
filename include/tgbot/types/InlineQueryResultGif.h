@@ -1,6 +1,7 @@
 #ifndef TGBOT_INLINEQUERYRESULTGIF_H
 #define TGBOT_INLINEQUERYRESULTGIF_H
 
+#include <cstdint>
 #include <string>
 #include <memory>
 
@@ -33,17 +34,17 @@ public:
     /**
      * @brief Optional. Width of the GIF.
      */
-    int32_t gifWidth;
+    std::int32_t gifWidth;
 
     /**
      * @brief Optional. Height of the GIF.
      */
-    int32_t gifHeight;
+    std::int32_t gifHeight;
 
     /**
      * @brief Optional. Duration of the GIF
      */
-    int32_t gifDuration;
+    std::int32_t gifDuration;
 
     /**
      * @brief URL of the static thumbnail for the result (jpeg or gif)

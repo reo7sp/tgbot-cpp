@@ -1,6 +1,7 @@
 #ifndef TGBOT_ANIMATION_H
 #define TGBOT_ANIMATION_H
 
+#include <cstdint>
 #include <memory>
 #include <string>
 
@@ -42,7 +43,7 @@ public:
     /**
      * @brief Optional. File size.
      */
-    int32_t fileSize;
+    std::int32_t fileSize;
 };
 }
 

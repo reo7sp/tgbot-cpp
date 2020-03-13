@@ -1,6 +1,7 @@
 #ifndef TGBOT_INLINEQUERYRESULTPHOTO_H
 #define TGBOT_INLINEQUERYRESULTPHOTO_H
 
+#include <cstdint>
 #include <string>
 #include <memory>
 
@@ -38,12 +39,12 @@ public:
     /**
      * @brief Optional. Width of the photo.
      */
-    int32_t photoWidth;
+    std::int32_t photoWidth;
 
     /**
      * @brief Optional. Height of the photo.
      */
-    int32_t photoHeight;
+    std::int32_t photoHeight;
 
     /**
      * @brief Optional. Short description of the result.

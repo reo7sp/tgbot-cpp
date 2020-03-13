@@ -1,6 +1,7 @@
 #ifndef TGBOT_CPP_USER_H
 #define TGBOT_CPP_USER_H
 
+#include <cstdint>
 #include <string>
 #include <memory>
 
@@ -19,7 +20,7 @@ public:
     /**
      * @brief Unique identifier for this user or bot.
      */
-    int32_t id;
+    std::int32_t id;
 
     /**
      * @brief True, if this user is a bot

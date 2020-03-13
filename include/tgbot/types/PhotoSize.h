@@ -1,6 +1,7 @@
 #ifndef TGBOT_CPP_PHOTOSIZE_H
 #define TGBOT_CPP_PHOTOSIZE_H
 
+#include <cstdint>
 #include <string>
 #include <memory>
 
@@ -24,17 +25,17 @@ public:
     /**
      * @brief Photo width.
      */
-    int32_t width;
+    std::int32_t width;
 
     /**
      * @brief Photo height.
      */
-    int32_t height;
+    std::int32_t height;
 
     /**
      * @brief Optional. File size.
      */
-    int32_t fileSize;
+    std::int32_t fileSize;
 };
 
 }

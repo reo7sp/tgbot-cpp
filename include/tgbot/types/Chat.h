@@ -1,6 +1,7 @@
 #ifndef TGBOT_CPP_CHAT_H
 #define TGBOT_CPP_CHAT_H
 
+#include <cstdint>
 #include <string>
 #include <memory>
 
@@ -29,7 +30,7 @@ public:
     /**
      * @brief Unique identifier for this chat, not exceeding 1e13 by absolute value
      */
-    int64_t id;
+    std::int64_t id;
 
     /**
      * @brief Type of chat: can be either "private", "group", "supergroup, or "channel".
