@@ -54,11 +54,11 @@ void split(const string& str, char delimiter, vector<string>& dest) {
     }
 }
 
-string generateRandomString(size_t length) {
+string generateRandomString(std::size_t length) {
     static const string chars("qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM1234567890-=[]\\;',./!@#$%^&*()_+{}|:\"<>?`~");
-    static const size_t charsLen = chars.length();
+    static const std::size_t charsLen = chars.length();
     string result;
-    for (size_t i = 0; i < length; ++i) {
+    for (std::size_t i = 0; i < length; ++i) {
         result += chars[rand() % charsLen];
     }
     return result;
@@ -81,7 +81,7 @@ string urlEncode(const string& value, const std::string& additionalLegitChars) {
 
 string urlDecode(const string& value) {
     string result;
-    for (size_t i = 0, count = value.length(); i < count; ++i) {
+    for (std::size_t i = 0, count = value.length(); i < count; ++i) {
         const char c = value[i];
         if (c == '%') {
             int t = 0;

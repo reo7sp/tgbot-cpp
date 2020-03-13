@@ -1,6 +1,7 @@
 #ifndef TGBOT_CPP_STRINGTOOLS_H
 #define TGBOT_CPP_STRINGTOOLS_H
 
+#include <cstddef>
 #include <vector>
 #include <string>
 #include <sstream>
@@ -36,7 +37,7 @@ void split(const std::string& str, char delimiter, std::vector<std::string>& des
  * Generates pseudo random string. It's recommended to call srand before this method.
  * @param length Length of resulting string.
  */
-std::string generateRandomString(size_t length);
+std::string generateRandomString(std::size_t length);
 
 /**
  * Performs url encode.

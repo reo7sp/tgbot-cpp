@@ -1,6 +1,7 @@
 #ifndef TGBOT_HTTPSERVER_H
 #define TGBOT_HTTPSERVER_H
 
+#include <cstddef>
 #include <iostream>
 #include <string>
 #include <utility>
@@ -73,7 +74,7 @@ protected:
                     _socket,
                     *data,
                     "\r\n\r\n",
-                    [self, data](const boost::system::error_code& e, size_t n) {
+                    [self, data](const boost::system::error_code& e, std::size_t n) {
                 if (e) {
                     std::cout << "error in HttpServer::Connection#_readHeader: " << e << std::endl;
                     return;
@@ -97,7 +98,7 @@ protected:
                     boost::asio::async_write(
                             self->_socket,
                             boost::asio::buffer(answer),
-                            [](const boost::system::error_code& e, size_t n) { });
+                            [](const boost::system::error_code& e, std::size_t n) { });
                     return;
                 }
 
@@ -114,7 +115,7 @@ protected:
             boost::asio::async_read(_socket,
                                     *data,
                                     boost::asio::transfer_exactly(size - data->size()),
-                                    [self, data, size, headers](const boost::system::error_code& e, size_t n) {
+                                    [self, data, size, headers](const boost::system::error_code& e, std::size_t n) {
                 if (e) {
                     std::cout << "error in HttpServer::Connection#_readBody: " << e << std::endl;
                     return;
@@ -133,7 +134,7 @@ protected:
                 boost::asio::async_write(
                         self->_socket,
                         boost::asio::buffer(answer),
-                        [](const boost::system::error_code& e, size_t n) { });
+                        [](const boost::system::error_code& e, std::size_t n) { });
 
                 self->_socket.close();
             });

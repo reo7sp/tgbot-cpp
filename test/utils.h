@@ -24,7 +24,7 @@ inline std::string diff(const T& test, const T& expected, std::string (*toString
     typename T::const_iterator end2 = expected.end();
     bool r1, r2;
     std::string s1, s2;
-    size_t i = 0;
+    std::size_t i = 0;
     do {
         r1 = iter1 != end1;
         r2 = iter2 != end2;
