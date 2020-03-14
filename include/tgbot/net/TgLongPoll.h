@@ -1,6 +1,8 @@
 #ifndef TGBOT_TGLONGPOLL_H
 #define TGBOT_TGLONGPOLL_H
 
+#include "tgbot/export.h"
+
 #include <cstdint>
 #include <memory>
 #include <string>
