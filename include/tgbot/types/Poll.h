@@ -25,17 +25,17 @@ namespace TgBot {
         /**
          * @brief Poll question, 1-255 characters.
          */
-         std::string question;
+        std::string question;
 
         /**
          * @brief List of poll options.
          */
-        PollOption::Ptr options;
+        std::vector<PollOption::Ptr> options;
 
         /**
          * @brief True, if the poll is closed.
          */
-         bool is_closed;
+        bool isClosed;
     };
 }
 

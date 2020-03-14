@@ -16,7 +16,7 @@ namespace TgBot {
 class TGBOT_API TgException : public std::runtime_error {
 
 public:
-    explicit TgException(const std::string description);
+    explicit TgException(const std::string& description);
 };
 
 }

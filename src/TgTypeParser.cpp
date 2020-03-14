@@ -377,8 +377,8 @@ Poll::Ptr TgTypeParser::parseJsonAndGetPoll(const ptree& data) const {
     auto result(make_shared<Poll>());
     result->id = data.get("id", 0);
     result->question = data.get("question", "");
-    result->options = tryParseJson<PollOption>(&TgTypeParser::parseJsonAndGetPollOption, data, "options");
-    result->is_closed = data.get<bool>("is_closed");
+    result->options = parseJsonAndGetArray<PollOption>(&TgTypeParser::parseJsonAndGetPollOption, data, "options");
+    result->isClosed = data.get<bool>("is_closed");
     return result;
 }
 
@@ -390,8 +390,8 @@ string TgTypeParser::parsePoll(const Poll::Ptr& object) const {
     result += '{';
     appendToJson(result, "id", object->id);
     appendToJson(result, "question", object->question);
-    appendToJson(result, "options", parsePollOption(object->options));
-    appendToJson(result, "is_closed", object->is_closed);
+    appendToJson(result, "options", parseArray(&TgTypeParser::parsePollOption, object->options));
+    appendToJson(result, "is_closed", object->isClosed);
     removeLastComma(result);
     result += '}';
     return result;
@@ -400,7 +400,7 @@ string TgTypeParser::parsePoll(const Poll::Ptr& object) const {
 PollOption::Ptr TgTypeParser::parseJsonAndGetPollOption(const ptree& data) const {
     auto result(make_shared<PollOption>());
     result->text = data.get("text", "");
-    result->voter_count = data.get("voter_count", 0);
+    result->voterCount = data.get("voter_count", 0);
     return result;
 }
 
@@ -411,7 +411,7 @@ string TgTypeParser::parsePollOption(const PollOption::Ptr& object) const {
     string result;
     result += '{';
     appendToJson(result, "text", object->text);
-    appendToJson(result, "voter_count", object->voter_count);
+    appendToJson(result, "voter_count", object->voterCount);
     removeLastComma(result);
     result += '}';
     return result;

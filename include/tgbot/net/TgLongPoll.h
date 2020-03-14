@@ -17,7 +17,7 @@ namespace TgBot {
 class TGBOT_API TgLongPoll {
 
 public:
-    TgLongPoll(const Api* api, const EventHandler* eventHandler, std::int32_t, std::int32_t, const std::shared_ptr<std::vector<std::string>>&);
+    TgLongPoll(const Api* api, const EventHandler* eventHandler, std::int32_t, std::int32_t, std::shared_ptr<std::vector<std::string>>);
     TgLongPoll(const Bot& bot, std::int32_t = 100, std::int32_t = 10, const std::shared_ptr<std::vector<std::string>>& = nullptr);
 
     /**
@@ -31,7 +31,7 @@ private:
     std::int32_t _lastUpdateId = 0;
     std::int32_t _limit;
     std::int32_t _timeout;
-    std::shared_ptr<std::vector<std::string>> _allowupdates;
+    std::shared_ptr<std::vector<std::string>> _allowUpdates;
 };
 
 }

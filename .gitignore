@@ -14,3 +14,4 @@ TgBot_test
 .idea/
 .vscode/
 docs/
+cmake-build-*

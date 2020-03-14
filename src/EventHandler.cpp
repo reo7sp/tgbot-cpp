@@ -7,7 +7,7 @@ using namespace std;
 
 namespace TgBot {
 
-void EventHandler::handleUpdate(Update::Ptr update) const {
+void EventHandler::handleUpdate(const Update::Ptr& update) const {
     if (update->inlineQuery != nullptr) {
         _broadcaster.broadcastInlineQuery(update->inlineQuery);
     }
@@ -22,7 +22,7 @@ void EventHandler::handleUpdate(Update::Ptr update) const {
     }
 }
 
-void EventHandler::handleMessage(Message::Ptr message) const {
+void EventHandler::handleMessage(const Message::Ptr& message) const {
     _broadcaster.broadcastAnyMessage(message);
 
     if (StringTools::startsWith(message->text, "/")) {

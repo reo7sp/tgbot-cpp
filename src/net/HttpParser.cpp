@@ -81,7 +81,6 @@ string HttpParser::generateMultipartFormData(const vector<HttpReqArg>& args, con
 
 string HttpParser::generateMultipartBoundary(const vector<HttpReqArg>& args) const {
     string result;
-    srand((std::uint32_t) time(nullptr));
     for (const HttpReqArg& item : args) {
         if (item.isFile) {
             while (result.empty() || item.value.find(result) != string::npos) {

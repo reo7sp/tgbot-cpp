@@ -23,4 +23,4 @@ void write(const string& content, const string& filePath) {
     out.close();
 }
 
-};
+}

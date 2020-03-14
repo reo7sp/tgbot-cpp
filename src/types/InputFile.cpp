@@ -1,7 +1,4 @@
 #include "tgbot/types/InputFile.h"
-
-#include <fstream>
-
 #include "tgbot/tools/StringTools.h"
 #include "tgbot/tools/FileTools.h"
 
@@ -17,4 +14,4 @@ InputFile::Ptr InputFile::fromFile(const string& filePath, const string& mimeTyp
     return result;
 }
 
-};
+}
