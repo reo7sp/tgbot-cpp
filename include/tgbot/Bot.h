@@ -2,7 +2,6 @@
 #define TGBOT_CPP_BOT_H
 
 #include "tgbot/Api.h"
-#include "tgbot/EventBroadcaster.h"
 #include "tgbot/EventHandler.h"
 #include "tgbot/net/HttpClient.h"
 #include "tgbot/net/BoostHttpOnlySslClient.h"
@@ -13,6 +12,8 @@
 
 namespace TgBot {
 
+class EventBroadcaster;
+
 /**
  * @brief This object holds other objects specific for this bot instance.
  *
@@ -21,12 +22,7 @@ namespace TgBot {
 class TGBOT_API Bot {
 
 public:
-    explicit Bot(std::string token, const HttpClient& httpClient = _getDefaultHttpClient())
-        : _token(std::move(token))
-        , _api(_token, httpClient)
-        , _eventBroadcaster(std::make_unique<EventBroadcaster>())
-        , _eventHandler(getEvents()) {
-    }
+    explicit Bot(std::string token, const HttpClient &httpClient = _getDefaultHttpClient());
 
     /**
      * @return Token for accessing api.
