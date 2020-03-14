@@ -2,12 +2,15 @@
 #define TGBOT_TGLONGPOLL_H
 
 #include <cstdint>
-
-#include "tgbot/Bot.h"
-#include "tgbot/Api.h"
-#include "tgbot/EventHandler.h"
+#include <memory>
+#include <string>
+#include <vector>
 
 namespace TgBot {
+
+class Api;
+class Bot;
+class EventHandler;
 
 /**
  * @brief This class handles long polling and updates parsing.

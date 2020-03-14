@@ -1,14 +1,15 @@
 #ifndef TGBOT_CPP_BOT_H
 #define TGBOT_CPP_BOT_H
 
-#include <memory>
-#include <string>
-#include <utility>
 #include "tgbot/Api.h"
 #include "tgbot/EventBroadcaster.h"
 #include "tgbot/EventHandler.h"
 #include "tgbot/net/HttpClient.h"
 #include "tgbot/net/BoostHttpOnlySslClient.h"
+
+#include <memory>
+#include <string>
+#include <utility>
 
 namespace TgBot {
 

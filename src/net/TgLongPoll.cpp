@@ -1,5 +1,9 @@
 #include "tgbot/net/TgLongPoll.h"
 
+#include "tgbot/Api.h"
+#include "tgbot/Bot.h"
+#include "tgbot/EventHandler.h"
+
 #include <cstdint>
 #include <utility>
 
