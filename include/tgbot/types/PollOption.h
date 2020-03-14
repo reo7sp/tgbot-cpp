@@ -21,7 +21,7 @@ public:
     /**
      * @brief Number of users that voted for this option.
      */
-    std::int64_t voter_count;
+    std::int64_t voterCount;
 };
 
 }

@@ -2,7 +2,7 @@
 
 namespace TgBot {
 
-TgBot::TgException::TgException(const std::string description) : runtime_error(description) {
+TgBot::TgException::TgException(const std::string& description) : runtime_error(description) {
 }
 
 }

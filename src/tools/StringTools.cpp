@@ -3,6 +3,7 @@
 #include <cstdlib>
 #include <iomanip>
 #include <cstdio>
+#include <random>
 
 using namespace std;
 
@@ -58,8 +59,13 @@ string generateRandomString(std::size_t length) {
     static const string chars("qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM1234567890-=[]\\;',./!@#$%^&*()_+{}|:\"<>?`~");
     static const std::size_t charsLen = chars.length();
     string result;
+
+    random_device randomDevice;
+    mt19937 randomSeed(randomDevice());
+    uniform_int_distribution<int> generator(0, charsLen - 1);
+
     for (std::size_t i = 0; i < length; ++i) {
-        result += chars[rand() % charsLen];
+        result += chars[generator(randomSeed)];
     }
     return result;
 }
@@ -84,8 +90,7 @@ string urlDecode(const string& value) {
     for (std::size_t i = 0, count = value.length(); i < count; ++i) {
         const char c = value[i];
         if (c == '%') {
-            int t = 0;
-            sscanf(value.substr(i + 1, 2).c_str(), "%x", &t);
+            int t = stoi(value.substr(i + 1, 2), nullptr, 16);
             result += (char) t;
             i += 2;
         } else {

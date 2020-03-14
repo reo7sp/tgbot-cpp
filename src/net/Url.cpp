@@ -2,8 +2,6 @@
 
 #include <cstddef>
 
-#include "tgbot/tools/StringTools.h"
-
 using namespace std;
 
 namespace TgBot {

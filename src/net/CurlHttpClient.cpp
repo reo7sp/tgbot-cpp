@@ -17,9 +17,9 @@ CurlHttpClient::~CurlHttpClient() {
 }
 
 static std::size_t curlWriteString(char* ptr, std::size_t size, std::size_t nmemb, void* userdata) {
-    static_cast<std::string *>(userdata)->append(ptr, size * nmemb);
+    static_cast<std::string*>(userdata)->append(ptr, size * nmemb);
     return size * nmemb;
-};
+}
 
 std::string CurlHttpClient::makeRequest(const Url& url, const std::vector<HttpReqArg>& args) const {
     // Copy settings for each call because we change CURLOPT_URL and other stuff.
@@ -34,8 +34,8 @@ std::string CurlHttpClient::makeRequest(const Url& url, const std::vector<HttpRe
     headers = curl_slist_append(headers, "Connection: close");
     curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headers);
 
-    curl_mime *mime;
-    curl_mimepart *part;
+    curl_mime* mime;
+    curl_mimepart* part;
     mime = curl_mime_init(curl);
     if (!args.empty()) {
         for (const HttpReqArg& a : args) {

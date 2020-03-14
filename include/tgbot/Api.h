@@ -87,7 +87,7 @@ public:
      * @param disableNotification Optional. Sends the message silenty.
      * @return On success, the sent message is returned.
      */
-    Message::Ptr sendPhoto(std::int64_t chatId, const boost::variant<InputFile::Ptr, std::string> photo, const std::string& caption = "", std::int32_t replyToMessageId = 0,
+    Message::Ptr sendPhoto(std::int64_t chatId, boost::variant<InputFile::Ptr, std::string> photo, const std::string& caption = "", std::int32_t replyToMessageId = 0,
                            GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>(), const std::string& parseMode = "", bool disableNotification = false) const;
 
     /**
@@ -105,8 +105,8 @@ public:
      * @param disableNotification Optional. Sends the message silenty.
      * @return On success, the sent message is returned.
      */
-    Message::Ptr sendAudio(std::int64_t chatId, const boost::variant<InputFile::Ptr, std::string> audio, const std::string &caption = "", std::int32_t duration = 0,
-                           const std::string& performer = "", const std::string& title = "", const boost::variant<InputFile::Ptr, std::string> thumb = "", std::int32_t replyToMessageId = 0,
+    Message::Ptr sendAudio(std::int64_t chatId, boost::variant<InputFile::Ptr, std::string> audio, const std::string &caption = "", std::int32_t duration = 0,
+                           const std::string& performer = "", const std::string& title = "", boost::variant<InputFile::Ptr, std::string> thumb = "", std::int32_t replyToMessageId = 0,
                            GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>(), const std::string& parseMode = "", bool disableNotification = false) const;
 
     /**
@@ -121,7 +121,7 @@ public:
      * @param disableNotification Optional. Sends the message silenty.
      * @return On success, the sent message is returned.
      */
-    Message::Ptr sendDocument(std::int64_t chatId, const boost::variant<InputFile::Ptr, std::string> document, const boost::variant<InputFile::Ptr, std::string> thumb = "", const std::string &caption = "", std::int32_t replyToMessageId = 0,
+    Message::Ptr sendDocument(std::int64_t chatId, boost::variant<InputFile::Ptr, std::string> document, boost::variant<InputFile::Ptr, std::string> thumb = "", const std::string &caption = "", std::int32_t replyToMessageId = 0,
                               GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>(), const std::string& parseMode = "", bool disableNotification = false) const;
 
     /**
@@ -194,7 +194,7 @@ public:
      * @param disableNotification Optional. Sends the message silenty.
      * @return On success, the sent message is returned.
      */
-    Message::Ptr sendSticker(std::int64_t chatId, const boost::variant<InputFile::Ptr, std::string> sticker, std::int32_t replyToMessageId = 0,
+    Message::Ptr sendSticker(std::int64_t chatId, boost::variant<InputFile::Ptr, std::string> sticker, std::int32_t replyToMessageId = 0,
                              GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>(), bool disableNotification = false) const;
 
     /**
@@ -270,7 +270,7 @@ public:
      * @return On success, the sent message is returned.
      */
 
-    Message::Ptr sendVideo(std::int64_t chatId, const boost::variant<InputFile::Ptr, std::string> video, bool supportsStreaming = false, std::int32_t duration = 0, std::int32_t width = 0, std::int32_t height = 0, const boost::variant<InputFile::Ptr, std::string> thumb = "", const std::string& caption = "",
+    Message::Ptr sendVideo(std::int64_t chatId, boost::variant<InputFile::Ptr, std::string> video, bool supportsStreaming = false, std::int32_t duration = 0, std::int32_t width = 0, std::int32_t height = 0, boost::variant<InputFile::Ptr, std::string> thumb = "", const std::string& caption = "",
                            std::int32_t replyToMessageId = 0, GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>(), const std::string& parseMode = "", bool disableNotification = false) const;
 
     /**
@@ -291,7 +291,7 @@ public:
      * @param disableNotification Optional. Sends the message silenty.
      * @return On success, the sent Message is returned.
      */
-    Message::Ptr sendAnimation(std::int64_t chatId, const boost::variant<InputFile::Ptr, std::string> animation, std::int32_t duration = 0, std::int32_t width = 0, std::int32_t height = 0, const boost::variant<InputFile::Ptr, std::string> thumb = "", const std::string &caption = "",
+    Message::Ptr sendAnimation(std::int64_t chatId, boost::variant<InputFile::Ptr, std::string> animation, std::int32_t duration = 0, std::int32_t width = 0, std::int32_t height = 0, boost::variant<InputFile::Ptr, std::string> thumb = "", const std::string &caption = "",
                               std::int32_t replyToMessageId = 0, GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>(), const std::string& parseMode = "", bool disableNotification = false) const;
     /**
      * @brief Use this method to send video messages. On success, the sent Message is returned.
@@ -305,8 +305,8 @@ public:
      * @param replyMarkup Additional interface options. A object for an inline keyboard, custom reply keyboard, instructions to remove reply keyboard or to force a reply from the user.
      * @return On success, the sent Message is returned.
      */
-    Message::Ptr sendVideoNote(std::int64_t chatId, const boost::variant<InputFile::Ptr, std::string> videoNote, std::int64_t replyToMessageId = 0, bool disableNotification = false,
-                               std::int32_t duration = 0, std::int32_t length = 0, const boost::variant<InputFile::Ptr, std::string> thumb = "", GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>()) const;
+    Message::Ptr sendVideoNote(std::int64_t chatId, boost::variant<InputFile::Ptr, std::string> videoNote, std::int64_t replyToMessageId = 0, bool disableNotification = false,
+                               std::int32_t duration = 0, std::int32_t length = 0, boost::variant<InputFile::Ptr, std::string> thumb = "", GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>()) const;
 
     /**
      * @brief Use this method to send a group of photos or videos as an album.
@@ -331,7 +331,7 @@ public:
      * @param disableNotification Optional. Sends the message silenty.
      * @return On success, the sent message is returned.
      */
-    Message::Ptr sendVoice(std::int64_t chatId, const boost::variant<InputFile::Ptr, std::string> voice, const std::string& caption = "", int duration = 0, std::int32_t replyToMessageId = 0,
+    Message::Ptr sendVoice(std::int64_t chatId, boost::variant<InputFile::Ptr, std::string> voice, const std::string& caption = "", int duration = 0, std::int32_t replyToMessageId = 0,
                            GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>(), const std::string& parseMode = "", bool disableNotification = false) const;
 
     /**
@@ -560,7 +560,7 @@ public:
     * @return Message object on success, otherwise nullptr
     */
     Message::Ptr editMessageReplyMarkup(std::int64_t chatId = 0, std::int32_t messageId = 0, const std::string& inlineMessageId = "",
-                                        const GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>()) const;
+                                        GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>()) const;
 
     /**
      * @brief Use this method to delete messages sent by bot (or by other users if bot is admin).
@@ -787,29 +787,26 @@ public:
     std::string downloadFile(const std::string& filePath, const std::vector<HttpReqArg>& args = std::vector<HttpReqArg>()) const;
 
     /**
-    * @brief Use this method to send a poll.
-    * @param chatId Unique identifier for the target chat or username of the target channel.
-    * @param question Poll question, 1-255 characters.
-    * @param options List of answer options, 2-10 strings 1-100 characters each.
-    * @param disable_notification Optional. Sends the message silenty.
-    * @param reply_to_message_id Optional. If the message is a reply, ID of the original message.
-    * @param reply_markup Optional. Additional interface options. An object for a custom reply keyboard, instructions to hide keyboard or to force a reply from the user.
-    *
-    * @return On success, the sent message is returned.
-    */
-    Message::Ptr sendPoll(std::int64_t chatId, std::string question, std::vector<std::string> options, bool disable_notification=false, std::int32_t reply_to_message_id=0,GenericReply::Ptr reply_markup = std::make_shared<GenericReply>()) const;
+     * @brief Use this method to send a poll.
+     * @param chatId Unique identifier for the target chat or username of the target channel.
+     * @param question Poll question, 1-255 characters.
+     * @param options List of answer options, 2-10 strings 1-100 characters each.
+     * @param disableNotification Optional. Sends the message silenty.
+     * @param replyToMessageId Optional. If the message is a reply, ID of the original message.
+     * @param replyMarkup Optional. Additional interface options. An object for a custom reply keyboard, instructions to hide keyboard or to force a reply from the user.
+     *
+     * @return On success, the sent message is returned.
+     */
+    Message::Ptr sendPoll(std::int64_t chatId, const std::string& question, const std::vector<std::string>& options, bool disableNotification = false, std::int32_t replyToMessageId = 0, GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>()) const;
 
     /**
-    * @brief Use this method to stop a poll which was sent by the bot. On success, the stopped Poll with the final results is returned..
-    * @param chatId Unique identifier for the target chat or username of the target channel.
-    * @param question Poll question, 1-255 characters.
-    * @param options List of answer options, 2-10 strings 1-100 characters each.
-    * @param disable_notification Optional. Sends the message silenty.
-    * @param reply_to_message_id Optional. If the message is a reply, ID of the original message.
-    * @param reply_markup Optional. Additional interface options. An object for a custom reply keyboard, instructions to hide keyboard or to force a reply from the user.
-    *
-    * @return On success, the sent message is returned.
-    */
+     * @brief Use this method to stop a poll which was sent by the bot.
+     * @param chatId Unique identifier for the target chat or username of the target channel.
+     * @param messageId Identifier of the original message with the poll.
+     * @param replyMarkup Optional. A JSON-serialized object for a new message inline keyboard.
+     *
+     * @return On success, the stopped Poll with the final results is returned.
+     */
 
     Poll::Ptr stopPoll(std::int64_t chatId, std::int64_t messageId, InlineKeyboardMarkup::Ptr replyMarkup = std::make_shared<InlineKeyboardMarkup>()) const;
 
