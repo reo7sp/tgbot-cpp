@@ -1,6 +1,8 @@
 # tgbot-cpp
 
 [![Travis build Status](https://travis-ci.org/reo7sp/tgbot-cpp.svg?branch=master)](https://travis-ci.org/reo7sp/tgbot-cpp)
+![Build status](https://github.com/reo7sp/tgbot-cpp/workflows/sw/badge.svg)
+<br>
 [![GitHub contributors](https://img.shields.io/github/contributors/reo7sp/tgbot-cpp.svg)](https://github.com/reo7sp/tgbot-cpp/graphs/contributors)
 
 C++ library for Telegram bot API.
