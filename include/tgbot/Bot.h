@@ -20,7 +20,10 @@ class TGBOT_API Bot {
 
 public:
     explicit Bot(std::string token, const HttpClient& httpClient = _getDefaultHttpClient())
-        : _token(std::move(token)), _api(_token, httpClient), _eventHandler(_eventBroadcaster) {
+        : _token(std::move(token))
+        , _api(_token, httpClient)
+        , _eventBroadcaster(std::make_unique<EventBroadcaster>())
+        , _eventHandler(getEvents()) {
     }
 
     /**
@@ -41,7 +44,7 @@ public:
      * @return Object which holds all event listeners.
      */
     inline EventBroadcaster& getEvents() {
-        return _eventBroadcaster;
+        return *_eventBroadcaster;
     }
 
     /**
@@ -59,7 +62,7 @@ private:
 
     const std::string _token;
     const Api _api;
-    EventBroadcaster _eventBroadcaster;
+    std::unique_ptr<EventBroadcaster> _eventBroadcaster;
     const EventHandler _eventHandler;
 };
 
