@@ -3,7 +3,7 @@ void build(Solution &s)
     auto &tgbot = s.addLibrary("reo7sp.tgbot", "1.2.2");
     tgbot += Git("https://github.com/reo7sp/tgbot-cpp", "v{M}.{m}{po}");
     {
-        tgbot += cpp11;
+        tgbot += cpp14;
 
         tgbot.ApiName = "TGBOT_API";
 
@@ -21,7 +21,7 @@ void build(Solution &s)
     auto &t = tgbot.addExecutable("test");
     {
         t.Scope = TargetScope::Test;
-        t += cpp11;
+        t += cpp14;
         t += "test/.*"_rr;
         t += "test"_idir;
         t += "SW_BUILD"_def;

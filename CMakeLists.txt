@@ -6,11 +6,11 @@ option(ENABLE_TESTS "Set to ON to enable building of tests" OFF)
 option(BUILD_SHARED_LIBS "Build tgbot-cpp shared/static library." OFF)
 
 # sources
+set(CMAKE_CXX_STANDARD 14)
 if(WIN32)
     set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 else()
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Wall")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall")
 endif()
 
 include_directories(include)
