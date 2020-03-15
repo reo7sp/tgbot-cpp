@@ -6,6 +6,10 @@ void build(Solution &s)
         tgbot += cpp11;
 
         tgbot.ApiName = "TGBOT_API";
+
+        if (tgbot.getCompilerType() == CompilerType::MSVC)
+            tgbot.CompileOptions.push_back("/Zc:__cplusplus");
+
         tgbot.Public += "org.sw.demo.boost.property_tree"_dep;
         tgbot.Public += "org.sw.demo.openssl.ssl"_dep;
         tgbot.Public += "org.sw.demo.boost.system"_dep;
