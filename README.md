@@ -83,7 +83,7 @@ You can use Docker to build and run your bot. Set the base image of your's Docke
 
 ### Without CMake
 ```sh
-g++ telegram_bot.cpp -o telegram_bot --std=c++11 -I/usr/local/include -lTgBot -lboost_system -lssl -lcrypto -lpthread
+g++ telegram_bot.cpp -o telegram_bot --std=c++14 -I/usr/local/include -lTgBot -lboost_system -lssl -lcrypto -lpthread
 ```
 
 ### Build options
