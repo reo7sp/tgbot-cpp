@@ -7,6 +7,8 @@ option(BUILD_SHARED_LIBS "Build tgbot-cpp shared/static library." OFF)
 
 # sources
 set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
 if(WIN32)
     set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)
 else()
