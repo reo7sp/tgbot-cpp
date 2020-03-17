@@ -2,6 +2,7 @@
 #define TGBOT_CPP_API_H
 
 #include <cstdint>
+#include <memory>
 #include <string>
 #include <vector>
 

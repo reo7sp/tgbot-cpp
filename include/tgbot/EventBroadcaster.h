@@ -1,6 +1,7 @@
 #ifndef TGBOT_EVENTBROADCASTER_H
 #define TGBOT_EVENTBROADCASTER_H
 
+#include <initializer_list>
 #include <string>
 #include <functional>
 #include <vector>

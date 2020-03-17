@@ -1,6 +1,8 @@
 #ifndef TGBOT_TGHTTPSERVER_H
 #define TGBOT_TGHTTPSERVER_H
 
+#include <string>
+#include <unordered_map>
 #include <utility>
 
 #include "tgbot/Bot.h"

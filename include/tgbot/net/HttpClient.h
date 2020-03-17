@@ -2,6 +2,7 @@
 #define TGBOT_HTTPCLIENT_H
 
 #include <string>
+#include <vector>
 
 #include "tgbot/net/Url.h"
 #include "tgbot/net/HttpReqArg.h"

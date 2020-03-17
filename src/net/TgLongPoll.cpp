@@ -5,6 +5,8 @@
 #include "tgbot/EventHandler.h"
 
 #include <cstdint>
+#include <memory>
+#include <vector>
 #include <utility>
 
 namespace TgBot {

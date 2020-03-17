@@ -2,6 +2,7 @@
 #include <cstdio>
 #include <cstdlib>
 #include <exception>
+#include <string>
 
 #include <tgbot/tgbot.h>
 

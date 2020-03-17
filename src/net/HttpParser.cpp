@@ -1,7 +1,9 @@
 #include "tgbot/net/HttpParser.h"
 
 #include <cstddef>
-#include <cstdint>
+#include <string>
+#include <vector>
+#include <unordered_map>
 
 #include <boost/algorithm/string.hpp>
 

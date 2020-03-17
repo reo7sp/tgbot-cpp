@@ -1,6 +1,8 @@
 #ifndef TGBOT_TGWEBHOOKTCPSERVER_H
 #define TGBOT_TGWEBHOOKTCPSERVER_H
 
+#include <string>
+
 #include "tgbot/net/TgWebhookServer.h"
 
 namespace TgBot {

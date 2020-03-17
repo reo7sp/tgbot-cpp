@@ -4,6 +4,7 @@
 #ifdef HAVE_CURL
 
 #include <string>
+#include <vector>
 
 #include <curl/curl.h>
 

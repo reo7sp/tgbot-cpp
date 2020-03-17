@@ -2,6 +2,7 @@
 #define TGBOT_BOOSTHTTPCLIENT_H
 
 #include <string>
+#include <vector>
 
 #include <boost/asio.hpp>
 

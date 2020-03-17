@@ -1,7 +1,11 @@
 #ifndef TGBOT_CPP_TGTYPEPARSER_H
 #define TGBOT_CPP_TGTYPEPARSER_H
 
+#include <memory>
+#include <sstream>
 #include <string>
+#include <vector>
+#include <utility>
 
 #include <boost/property_tree/ptree.hpp>
 #include <boost/property_tree/json_parser.hpp>

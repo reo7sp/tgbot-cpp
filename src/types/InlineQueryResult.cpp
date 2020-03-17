@@ -19,6 +19,8 @@
 #include "tgbot/types/InlineQueryResultPhoto.h"
 #include "tgbot/types/InlineQueryResultVideo.h"
 
+#include <string>
+
 using namespace TgBot;
 
 const std::string InlineQueryResultCachedAudio::TYPE = "audio";

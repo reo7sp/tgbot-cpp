@@ -1,8 +1,11 @@
 #include "tgbot/Api.h"
 
 #include <cstdint>
-#include <tgbot/tools/StringTools.h>
+#include <string>
+#include <vector>
 #include <utility>
+
+#include "tgbot/tools/StringTools.h"
 
 #include "tgbot/TgException.h"
 #include "tgbot/TgTypeParser.h"

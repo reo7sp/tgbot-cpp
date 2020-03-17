@@ -3,6 +3,8 @@
 
 #ifdef BOOST_ASIO_HAS_LOCAL_SOCKETS
 
+#include <string>
+
 #include "tgbot/net/TgWebhookServer.h"
 
 namespace TgBot {

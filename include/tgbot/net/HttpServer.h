@@ -2,8 +2,12 @@
 #define TGBOT_HTTPSERVER_H
 
 #include <cstddef>
+#include <exception>
+#include <functional>
 #include <iostream>
+#include <memory>
 #include <string>
+#include <unordered_map>
 #include <utility>
 
 #include <boost/asio.hpp>

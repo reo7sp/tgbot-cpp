@@ -1,6 +1,7 @@
 #include "tgbot/net/BoostHttpOnlySslClient.h"
 
 #include <cstddef>
+#include <vector>
 
 #include <boost/asio/ssl.hpp>
 

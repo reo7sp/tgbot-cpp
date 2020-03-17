@@ -3,8 +3,7 @@
 #include "tgbot/net/CurlHttpClient.h"
 
 #include <cstddef>
-
-#include <boost/asio/ssl.hpp>
+#include <string>
 
 namespace TgBot {
 

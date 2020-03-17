@@ -2,6 +2,9 @@
 
 #include "tgbot/EventBroadcaster.h"
 
+#include <memory>
+#include <string>
+
 namespace TgBot {
 
 Bot::Bot(std::string token, const HttpClient& httpClient)

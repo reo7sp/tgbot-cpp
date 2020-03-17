@@ -2,6 +2,9 @@
 #include "tgbot/tools/StringTools.h"
 #include "tgbot/tools/FileTools.h"
 
+#include <memory>
+#include <string>
+
 using namespace std;
 
 namespace TgBot {
