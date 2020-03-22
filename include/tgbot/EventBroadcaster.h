@@ -7,6 +7,7 @@
 #include "tgbot/types/ChosenInlineResult.h"
 #include "tgbot/types/CallbackQuery.h"
 
+#include <initializer_list>
 #include <string>
 #include <functional>
 #include <vector>

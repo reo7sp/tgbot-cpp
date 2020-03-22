@@ -1,5 +1,8 @@
 #include "tgbot/TgTypeParser.h"
 
+#include <memory>
+#include <string>
+
 using namespace std;
 using namespace boost::property_tree;
 

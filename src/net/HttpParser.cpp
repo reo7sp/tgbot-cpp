@@ -5,7 +5,9 @@
 #include <boost/algorithm/string.hpp>
 
 #include <cstddef>
-#include <cstdint>
+#include <string>
+#include <vector>
+#include <unordered_map>
 
 using namespace std;
 using namespace boost;

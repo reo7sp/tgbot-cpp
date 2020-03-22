@@ -2,6 +2,7 @@
 
 #include <algorithm>
 #include <cstddef>
+#include <string>
 
 using namespace std;
 

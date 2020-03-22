@@ -9,6 +9,7 @@
 #include <boost/asio.hpp>
 
 #include <string>
+#include <vector>
 
 namespace TgBot {
 

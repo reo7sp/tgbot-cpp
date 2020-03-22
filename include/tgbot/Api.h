@@ -25,6 +25,7 @@
 #include <boost/variant.hpp>
 
 #include <cstdint>
+#include <memory>
 #include <string>
 #include <vector>
 

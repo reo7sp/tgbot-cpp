@@ -6,6 +6,8 @@
 #include "tgbot/TgTypeParser.h"
 #include "tgbot/net/HttpServer.h"
 
+#include <string>
+#include <unordered_map>
 #include <utility>
 
 namespace TgBot {

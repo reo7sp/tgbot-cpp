@@ -3,6 +3,7 @@
 #include <boost/asio/ssl.hpp>
 
 #include <cstddef>
+#include <vector>
 
 using namespace std;
 using namespace boost::asio;

@@ -5,6 +5,7 @@
 #include <boost/asio/ssl.hpp>
 
 #include <cstddef>
+#include <string>
 
 namespace TgBot {
 

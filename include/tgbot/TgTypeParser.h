@@ -84,7 +84,11 @@
 #include <boost/property_tree/ptree.hpp>
 #include <boost/property_tree/json_parser.hpp>
 
+#include <memory>
+#include <sstream>
 #include <string>
+#include <vector>
+#include <utility>
 
 namespace TgBot {
 

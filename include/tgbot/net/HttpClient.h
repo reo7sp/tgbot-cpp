@@ -5,6 +5,7 @@
 #include "tgbot/net/HttpReqArg.h"
 
 #include <string>
+#include <vector>
 
 namespace TgBot {
 

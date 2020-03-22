@@ -5,6 +5,8 @@
 
 #include "tgbot/net/TgWebhookServer.h"
 
+#include <string>
+
 namespace TgBot {
 
 /**

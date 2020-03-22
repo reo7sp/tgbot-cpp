@@ -1,6 +1,7 @@
 #include "tgbot/net/Url.h"
 
 #include <cstddef>
+#include <string>
 
 using namespace std;
 

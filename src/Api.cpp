@@ -1,10 +1,13 @@
 #include "tgbot/Api.h"
 
-#include <tgbot/tools/StringTools.h>
+#include "tgbot/tools/StringTools.h"
+
 #include "tgbot/TgException.h"
 #include "tgbot/TgTypeParser.h"
 
 #include <cstdint>
+#include <string>
+#include <vector>
 #include <utility>
 
 using namespace std;
