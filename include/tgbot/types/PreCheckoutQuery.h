@@ -1,12 +1,13 @@
 #ifndef TGBOT_PRECHECKOUTQUERY_H
 #define TGBOT_PRECHECKOUTQUERY_H
 
+#include "tgbot/types/User.h"
+#include "tgbot/types/OrderInfo.h"
+
 #include <cstdint>
 #include <string>
 #include <memory>
 #include <vector>
-#include "tgbot/types/User.h"
-#include "tgbot/types/OrderInfo.h"
 
 namespace TgBot {
 

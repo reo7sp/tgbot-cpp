@@ -1,13 +1,13 @@
 #ifndef TGBOT_GAME_H
 #define TGBOT_GAME_H
 
-#include <memory>
-#include <string>
-#include <vector>
-
 #include "tgbot/types/MessageEntity.h"
 #include "tgbot/types/Animation.h"
 #include "tgbot/types/PhotoSize.h"
+
+#include <memory>
+#include <string>
+#include <vector>
 
 namespace TgBot {
 

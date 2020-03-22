@@ -1,10 +1,10 @@
 #ifndef TGBOT_INLINEQUERYRESULTCACHEDGIF_H
 #define TGBOT_INLINEQUERYRESULTCACHEDGIF_H
 
+#include "tgbot/types/InlineQueryResult.h"
+
 #include <string>
 #include <memory>
-
-#include "tgbot/types/InlineQueryResult.h"
 
 namespace TgBot {
 

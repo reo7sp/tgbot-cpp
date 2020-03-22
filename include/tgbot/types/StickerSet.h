@@ -1,11 +1,11 @@
 #ifndef TGBOT_STICKERSET_H
 #define TGBOT_STICKERSET_H
 
+#include "tgbot/types/Sticker.h"
+
 #include <memory>
 #include <string>
 #include <vector>
-
-#include "tgbot/types/Sticker.h"
 
 namespace TgBot {
 

@@ -1,11 +1,11 @@
 #ifndef TGBOT_INLINEQUERY_H
 #define TGBOT_INLINEQUERY_H
 
-#include <memory>
-#include <string>
-
 #include "tgbot/types/User.h"
 #include "tgbot/types/Location.h"
+
+#include <memory>
+#include <string>
 
 namespace TgBot {
 

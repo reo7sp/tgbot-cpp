@@ -1,11 +1,11 @@
 #ifndef TGBOT_INLINEQUERYRESULTDOCUMENT_H
 #define TGBOT_INLINEQUERYRESULTDOCUMENT_H
 
+#include "tgbot/types/InlineQueryResult.h"
+
 #include <cstdint>
 #include <string>
 #include <memory>
-
-#include "tgbot/types/InlineQueryResult.h"
 
 namespace TgBot {
 

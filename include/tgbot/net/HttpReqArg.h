@@ -3,12 +3,12 @@
 
 #include "tgbot/export.h"
 
+#include <boost/lexical_cast.hpp>
+
 #include <string>
 #include <utility>
 #include <vector>
 #include <functional>
-
-#include <boost/lexical_cast.hpp>
 
 namespace TgBot {
 

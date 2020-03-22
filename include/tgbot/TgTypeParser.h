@@ -1,11 +1,6 @@
 #ifndef TGBOT_CPP_TGTYPEPARSER_H
 #define TGBOT_CPP_TGTYPEPARSER_H
 
-#include <string>
-
-#include <boost/property_tree/ptree.hpp>
-#include <boost/property_tree/json_parser.hpp>
-
 #include "tgbot/export.h"
 #include "tgbot/types/User.h"
 #include "tgbot/types/Chat.h"
@@ -85,6 +80,11 @@
 #include "tgbot/types/InputMediaAudio.h"
 #include "tgbot/types/InputMediaDocument.h"
 #include "tgbot/types/InputMediaAnimation.h"
+
+#include <boost/property_tree/ptree.hpp>
+#include <boost/property_tree/json_parser.hpp>
+
+#include <string>
 
 namespace TgBot {
 

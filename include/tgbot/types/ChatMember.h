@@ -1,11 +1,11 @@
 #ifndef TGBOT_CHATMEMBER_H
 #define TGBOT_CHATMEMBER_H
 
+#include "tgbot/types/User.h"
+
 #include <cstdint>
 #include <memory>
 #include <string>
-
-#include "tgbot/types/User.h"
 
 namespace TgBot {
 

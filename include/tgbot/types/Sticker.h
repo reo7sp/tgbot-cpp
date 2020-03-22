@@ -1,12 +1,12 @@
 #ifndef TGBOT_CPP_STICKER_H
 #define TGBOT_CPP_STICKER_H
 
+#include "tgbot/types/PhotoSize.h"
+#include "tgbot/types/MaskPosition.h"
+
 #include <cstdint>
 #include <string>
 #include <memory>
-
-#include "tgbot/types/PhotoSize.h"
-#include "tgbot/types/MaskPosition.h"
 
 namespace TgBot {
 

@@ -1,10 +1,11 @@
 #ifndef TGBOT_MESSAGEENTITY_H
 #define TGBOT_MESSAGEENTITY_H
 
+#include "tgbot/types/User.h"
+
 #include <cstdint>
 #include <memory>
 #include <string>
-#include "tgbot/types/User.h"
 
 namespace TgBot {
 

@@ -1,9 +1,9 @@
 #ifndef TGBOT_CPP_FORCEREPLY_H
 #define TGBOT_CPP_FORCEREPLY_H
 
-#include <memory>
-
 #include "tgbot/types/GenericReply.h"
+
+#include <memory>
 
 namespace TgBot {
 

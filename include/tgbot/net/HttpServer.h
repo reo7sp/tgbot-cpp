@@ -1,14 +1,14 @@
 #ifndef TGBOT_HTTPSERVER_H
 #define TGBOT_HTTPSERVER_H
 
+#include "tgbot/net/HttpParser.h"
+
+#include <boost/asio.hpp>
+
 #include <cstddef>
 #include <iostream>
 #include <string>
 #include <utility>
-
-#include <boost/asio.hpp>
-
-#include "tgbot/net/HttpParser.h"
 
 namespace TgBot {
 

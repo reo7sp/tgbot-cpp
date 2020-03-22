@@ -1,11 +1,11 @@
 #ifndef TGBOT_INLINEKEYBOARDBUTTON_H
 #define TGBOT_INLINEKEYBOARDBUTTON_H
 
-#include <string>
-#include <memory>
-
 #include "tgbot/types/CallbackGame.h"
 #include "tgbot/types/LoginUrl.h"
+
+#include <string>
+#include <memory>
 
 namespace TgBot {
 

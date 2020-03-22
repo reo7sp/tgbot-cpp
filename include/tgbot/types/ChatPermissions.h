@@ -4,7 +4,6 @@
 #include <memory>
 #include <string>
 
-
 namespace TgBot {
 
     /**

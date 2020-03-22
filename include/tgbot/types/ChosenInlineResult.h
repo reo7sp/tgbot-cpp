@@ -1,11 +1,11 @@
 #ifndef TGBOT_CHOSENINLINERESULT_H
 #define TGBOT_CHOSENINLINERESULT_H
 
-#include <string>
-#include <memory>
-
 #include "tgbot/types/User.h"
 #include "tgbot/types/Location.h"
+
+#include <string>
+#include <memory>
 
 namespace TgBot {
 

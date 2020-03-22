@@ -1,10 +1,11 @@
 #ifndef TGBOT_SHIPPINGOPTION_H
 #define TGBOT_SHIPPINGOPTION_H
 
+#include "tgbot/types/LabeledPrice.h"
+
 #include <string>
 #include <memory>
 #include <vector>
-#include "tgbot/types/LabeledPrice.h"
 
 namespace TgBot {
 

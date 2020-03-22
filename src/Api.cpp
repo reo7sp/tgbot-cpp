@@ -1,11 +1,11 @@
 #include "tgbot/Api.h"
 
-#include <cstdint>
 #include <tgbot/tools/StringTools.h>
-#include <utility>
-
 #include "tgbot/TgException.h"
 #include "tgbot/TgTypeParser.h"
+
+#include <cstdint>
+#include <utility>
 
 using namespace std;
 using namespace boost::property_tree;

@@ -1,12 +1,12 @@
 #ifndef TGBOT_CPP_CHAT_H
 #define TGBOT_CPP_CHAT_H
 
+#include "tgbot/types/ChatPhoto.h"
+#include "tgbot/types/ChatPermissions.h"
+
 #include <cstdint>
 #include <string>
 #include <memory>
-
-#include "tgbot/types/ChatPhoto.h"
-#include "tgbot/types/ChatPermissions.h"
 
 namespace TgBot {
 

@@ -3,14 +3,14 @@
 
 #ifdef HAVE_CURL
 
-#include <string>
-
-#include <curl/curl.h>
-
 #include "tgbot/net/HttpClient.h"
 #include "tgbot/net/Url.h"
 #include "tgbot/net/HttpReqArg.h"
 #include "tgbot/net/HttpParser.h"
+
+#include <curl/curl.h>
+
+#include <string>
 
 namespace TgBot {
 

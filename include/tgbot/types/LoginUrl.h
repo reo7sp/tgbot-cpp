@@ -5,8 +5,8 @@
 #include <string>
 #include <vector>
 
+namespace TgBot {
 
-namespace TgBot{
     /**
      * @brief This object represents a Poll.
      *
@@ -36,6 +36,7 @@ namespace TgBot{
          */
         bool request_write_access;
     };
+
 }
 
 #endif //TGBOT_CPP_LOGINURL_H

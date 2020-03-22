@@ -1,11 +1,11 @@
 #ifndef TGBOT_CPP_USERPROFILEPHOTOS_H
 #define TGBOT_CPP_USERPROFILEPHOTOS_H
 
+#include "tgbot/types/PhotoSize.h"
+
 #include <cstdint>
 #include <vector>
 #include <memory>
-
-#include "tgbot/types/PhotoSize.h"
 
 namespace TgBot {
 

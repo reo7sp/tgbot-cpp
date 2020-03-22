@@ -1,11 +1,12 @@
 #ifndef TGBOT_POLL_H
 #define TGBOT_POLL_H
 
+#include "tgbot/types/PollOption.h"
+
 #include <cstdint>
 #include <memory>
 #include <string>
 #include <vector>
-#include "tgbot/types/PollOption.h"
 
 namespace TgBot {
     /**

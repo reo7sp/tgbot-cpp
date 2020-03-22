@@ -1,16 +1,16 @@
 #ifndef TGBOT_EVENTBROADCASTER_H
 #define TGBOT_EVENTBROADCASTER_H
 
-#include <string>
-#include <functional>
-#include <vector>
-#include <unordered_map>
-
 #include "tgbot/export.h"
 #include "tgbot/types/Message.h"
 #include "tgbot/types/InlineQuery.h"
 #include "tgbot/types/ChosenInlineResult.h"
 #include "tgbot/types/CallbackQuery.h"
+
+#include <string>
+#include <functional>
+#include <vector>
+#include <unordered_map>
 
 namespace TgBot {
 

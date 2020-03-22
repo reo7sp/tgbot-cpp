@@ -1,11 +1,11 @@
 #ifndef TGBOT_INLINEQUERYRESULT_H
 #define TGBOT_INLINEQUERYRESULT_H
 
-#include <memory>
-#include <string>
-
 #include "tgbot/types/InlineKeyboardMarkup.h"
 #include "tgbot/types/InputMessageContent.h"
+
+#include <memory>
+#include <string>
 
 namespace TgBot {
 

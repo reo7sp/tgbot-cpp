@@ -1,11 +1,11 @@
 #ifndef TGBOT_CPP_VIDEO_H
 #define TGBOT_CPP_VIDEO_H
 
+#include "tgbot/types/PhotoSize.h"
+
 #include <cstdint>
 #include <string>
 #include <memory>
-
-#include "tgbot/types/PhotoSize.h"
 
 namespace TgBot {
 

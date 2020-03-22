@@ -1,13 +1,6 @@
 #ifndef TGBOT_CPP_API_H
 #define TGBOT_CPP_API_H
 
-#include <cstdint>
-#include <string>
-#include <vector>
-
-#include <boost/property_tree/ptree.hpp>
-#include <boost/variant.hpp>
-
 #include "tgbot/TgTypeParser.h"
 #include "tgbot/net/HttpClient.h"
 #include "tgbot/net/HttpReqArg.h"
@@ -27,6 +20,13 @@
 #include "tgbot/types/GameHighScore.h"
 #include "tgbot/types/LabeledPrice.h"
 #include "tgbot/types/ShippingOption.h"
+
+#include <boost/property_tree/ptree.hpp>
+#include <boost/variant.hpp>
+
+#include <cstdint>
+#include <string>
+#include <vector>
 
 namespace TgBot {
 

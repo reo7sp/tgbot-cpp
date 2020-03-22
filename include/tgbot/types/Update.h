@@ -1,15 +1,15 @@
 #ifndef TGBOT_CPP_UPDATE_H
 #define TGBOT_CPP_UPDATE_H
 
-#include <cstdint>
-#include <memory>
-
 #include "tgbot/types/Message.h"
 #include "tgbot/types/InlineQuery.h"
 #include "tgbot/types/ChosenInlineResult.h"
 #include "tgbot/types/CallbackQuery.h"
 #include "tgbot/types/ShippingQuery.h"
 #include "tgbot/types/PreCheckoutQuery.h"
+
+#include <cstdint>
+#include <memory>
 
 namespace TgBot {
 

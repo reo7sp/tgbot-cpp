@@ -1,12 +1,12 @@
 #ifndef TGBOT_GAMEHIGHSCORE_H
 #define TGBOT_GAMEHIGHSCORE_H
 
+#include "tgbot/types/PhotoSize.h"
+#include "tgbot/types/User.h"
+
 #include <cstdint>
 #include <memory>
 #include <string>
-
-#include "tgbot/types/PhotoSize.h"
-#include "tgbot/types/User.h"
 
 namespace TgBot {
 

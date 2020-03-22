@@ -1,11 +1,6 @@
 #ifndef TGBOT_CPP_MESSAGE_H
 #define TGBOT_CPP_MESSAGE_H
 
-#include <cstdint>
-#include <string>
-#include <vector>
-#include <memory>
-
 #include "tgbot/types/Chat.h"
 #include "tgbot/types/User.h"
 #include "tgbot/types/Message.h"
@@ -25,6 +20,11 @@
 #include "tgbot/types/Invoice.h"
 #include "tgbot/types/SuccessfulPayment.h"
 #include "tgbot/types/InlineKeyboardMarkup.h"
+
+#include <cstdint>
+#include <string>
+#include <vector>
+#include <memory>
 
 namespace TgBot {
 

@@ -1,10 +1,10 @@
 #ifndef TGBOT_HTTPCLIENT_H
 #define TGBOT_HTTPCLIENT_H
 
-#include <string>
-
 #include "tgbot/net/Url.h"
 #include "tgbot/net/HttpReqArg.h"
+
+#include <string>
 
 namespace TgBot {
 

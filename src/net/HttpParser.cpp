@@ -1,11 +1,11 @@
 #include "tgbot/net/HttpParser.h"
 
-#include <cstddef>
-#include <cstdint>
+#include "tgbot/tools/StringTools.h"
 
 #include <boost/algorithm/string.hpp>
 
-#include "tgbot/tools/StringTools.h"
+#include <cstddef>
+#include <cstdint>
 
 using namespace std;
 using namespace boost;

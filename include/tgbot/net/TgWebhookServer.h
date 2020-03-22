@@ -1,12 +1,12 @@
 #ifndef TGBOT_TGHTTPSERVER_H
 #define TGBOT_TGHTTPSERVER_H
 
-#include <utility>
-
 #include "tgbot/Bot.h"
 #include "tgbot/EventHandler.h"
 #include "tgbot/TgTypeParser.h"
 #include "tgbot/net/HttpServer.h"
+
+#include <utility>
 
 namespace TgBot {
 

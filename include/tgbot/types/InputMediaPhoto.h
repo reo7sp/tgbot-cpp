@@ -1,10 +1,10 @@
 #ifndef TGBOT_INPUTMEDIAPHOTO_H
 #define TGBOT_INPUTMEDIAPHOTO_H
 
+#include "tgbot/types/InputMedia.h"
+
 #include <memory>
 #include <string>
-
-#include "tgbot/types/InputMedia.h"
 
 namespace TgBot {
 

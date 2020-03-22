@@ -1,12 +1,12 @@
 #ifndef TGBOT_CPP_REPLYKEYBOARDMARKUP_H
 #define TGBOT_CPP_REPLYKEYBOARDMARKUP_H
 
+#include "tgbot/types/GenericReply.h"
+#include "tgbot/types/KeyboardButton.h"
+
 #include <string>
 #include <vector>
 #include <memory>
-
-#include "tgbot/types/GenericReply.h"
-#include "tgbot/types/KeyboardButton.h"
 
 namespace TgBot {
 

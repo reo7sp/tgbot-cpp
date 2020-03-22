@@ -1,10 +1,10 @@
 #ifndef TGBOT_VENUE_H
 #define TGBOT_VENUE_H
 
+#include "tgbot/types/Location.h"
+
 #include <memory>
 #include <string>
-
-#include "tgbot/types/Location.h"
 
 namespace TgBot {
 

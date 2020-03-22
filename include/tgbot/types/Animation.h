@@ -1,11 +1,11 @@
 #ifndef TGBOT_ANIMATION_H
 #define TGBOT_ANIMATION_H
 
+#include "tgbot/types/PhotoSize.h"
+
 #include <cstdint>
 #include <memory>
 #include <string>
-
-#include "tgbot/types/PhotoSize.h"
 
 namespace TgBot {
 
