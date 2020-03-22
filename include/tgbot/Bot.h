@@ -3,8 +3,6 @@
 
 #include "tgbot/Api.h"
 #include "tgbot/EventHandler.h"
-#include "tgbot/net/HttpClient.h"
-#include "tgbot/net/BoostHttpOnlySslClient.h"
 
 #include <memory>
 #include <string>
@@ -13,6 +11,7 @@
 namespace TgBot {
 
 class EventBroadcaster;
+class HttpClient;
 
 /**
  * @brief This object holds other objects specific for this bot instance.
@@ -53,10 +52,7 @@ public:
     }
 
 private:
-    static HttpClient& _getDefaultHttpClient() {
-        static BoostHttpOnlySslClient instance;
-        return instance;
-    }
+    static HttpClient &_getDefaultHttpClient();
 
     const std::string _token;
     const Api _api;
