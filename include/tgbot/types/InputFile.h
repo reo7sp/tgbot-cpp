@@ -1,9 +1,8 @@
 #ifndef TGBOT_CPP_INPUTFILE_H
 #define TGBOT_CPP_INPUTFILE_H
 
-#include <string>
 #include <memory>
-#include <utility>
+#include <string>
 
 namespace TgBot {
 
