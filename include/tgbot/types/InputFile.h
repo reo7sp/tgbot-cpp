@@ -11,7 +11,7 @@ namespace TgBot {
  *
  * @ingroup types
  */
-class InputFile {
+class TGBOT_API InputFile {
 
 public:
     typedef std::shared_ptr<InputFile> Ptr;
