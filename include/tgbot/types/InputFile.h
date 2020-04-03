@@ -1,6 +1,8 @@
 #ifndef TGBOT_CPP_INPUTFILE_H
 #define TGBOT_CPP_INPUTFILE_H
 
+#include "tgbot/export.h"
+
 #include <memory>
 #include <string>
 
