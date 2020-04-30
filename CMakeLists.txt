@@ -102,6 +102,6 @@ if(BUILD_DOCUMENTATION)
 		install(DIRECTORY  ${CMAKE_CURRENT_SOURCE_DIR}/doc/html/ TYPE DOC)
 endif()
 
-if(MSVC AND BUILD_SHARED_LIBS)
+if(BUILD_SHARED_LIBS)
     add_definitions(-DTGBOT_DLL)
 endif()
