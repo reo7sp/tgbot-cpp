@@ -58,6 +58,7 @@ else()
     find_package(Boost 1.59.0 COMPONENTS system REQUIRED)
 endif()
 include_directories(${Boost_INCLUDE_DIR})
+link_directories(${Boost_LIBRARY_DIR_RELEASE})
 
 set(LIB_LIST
     ${CMAKE_THREAD_LIBS_INIT}
