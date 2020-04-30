@@ -4,6 +4,7 @@ project(TgBot)
 # options
 option(ENABLE_TESTS "Set to ON to enable building of tests" OFF)
 option(BUILD_SHARED_LIBS "Build tgbot-cpp shared/static library." OFF)
+option(BUILD_DOCUMENTATION "Build doxygen API documentation." OFF)
 
 # sources
 set(CMAKE_CXX_STANDARD 14)
@@ -88,6 +89,17 @@ if (ENABLE_TESTS)
     message(STATUS "Building of tests is enabled")
     enable_testing()
     add_subdirectory(test)
+endif()
+
+# Documentation
+if(BUILD_DOCUMENTATION)
+    find_package(Doxygen REQUIRED)
+    add_custom_target(doc_doxygen ALL
+        COMMAND ${DOXYGEN_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Doxyfile
+        WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+        COMMENT "Generating API documentation with Doxygen"
+        VERBATIM)
+		install(DIRECTORY  ${CMAKE_CURRENT_SOURCE_DIR}/doc/html/ TYPE DOC)
 endif()
 
 if(MSVC AND BUILD_SHARED_LIBS)
