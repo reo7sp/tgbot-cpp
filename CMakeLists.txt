@@ -60,6 +60,9 @@ else()
 endif()
 include_directories(${Boost_INCLUDE_DIR})
 link_directories(${Boost_LIBRARY_DIR_RELEASE})
+if(NOT Boost_USE_STATIC_LIBS)
+	add_definitions(-DBOOST_ALL_DYN_LINK)
+endif()
 
 set(LIB_LIST
     ${CMAKE_THREAD_LIBS_INIT}
