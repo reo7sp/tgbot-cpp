@@ -88,3 +88,7 @@ if (ENABLE_TESTS)
     enable_testing()
     add_subdirectory(test)
 endif()
+
+if(MSVC AND BUILD_SHARED_LIBS)
+    add_definitions(-DTGBOT_DLL)
+endif()
