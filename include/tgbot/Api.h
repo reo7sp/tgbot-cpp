@@ -20,6 +20,7 @@
 #include "tgbot/types/GameHighScore.h"
 #include "tgbot/types/LabeledPrice.h"
 #include "tgbot/types/ShippingOption.h"
+#include "tgbot/types/BotCommand.h"
 
 #include <boost/property_tree/ptree.hpp>
 #include <boost/variant.hpp>
@@ -810,6 +811,11 @@ public:
      */
 
     Poll::Ptr stopPoll(std::int64_t chatId, std::int64_t messageId, InlineKeyboardMarkup::Ptr replyMarkup = std::make_shared<InlineKeyboardMarkup>()) const;
+
+
+    bool setMyCommands(const std::vector<BotCommand::Ptr>& commands) const;
+
+    std::vector<BotCommand::Ptr> getMyCommands() const;
 
 private:
     boost::property_tree::ptree sendRequest(const std::string& method, const std::vector<HttpReqArg>& args = std::vector<HttpReqArg>()) const;

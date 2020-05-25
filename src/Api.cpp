@@ -1155,6 +1155,22 @@ Poll::Ptr Api::stopPoll(std::int64_t chatId, std::int64_t messageId, const Inlin
     return _tgTypeParser.parseJsonAndGetPoll(sendRequest("stopPoll", args));
 }
 
+bool Api::setMyCommands(const std::vector<BotCommand::Ptr>& commands) const {
+
+    vector<HttpReqArg> args;
+    args.reserve(5);
+
+    string commandsJson = _tgTypeParser.parseArray<BotCommand>(&TgTypeParser::parseBotCommand, commands);
+    args.emplace_back("commands", commandsJson);
+
+    return sendRequest("setMyCommands",args).get<bool>("",false);
+}
+
+std::vector<BotCommand::Ptr> Api::getMyCommands() const
+{
+    return _tgTypeParser.parseJsonAndGetArray<BotCommand>(&TgTypeParser::parseJsonAndGetBotCommand, sendRequest("getMyCommands"));
+}
+
 ptree Api::sendRequest(const string& method, const vector<HttpReqArg>& args) const {
     string url = "https://api.telegram.org/bot";
     url += _token;
@@ -1188,5 +1204,7 @@ string Api::downloadFile(const string& filePath, const std::vector<HttpReqArg>& 
 
     return serverResponse;
 }
+
+
 
 }
