@@ -718,6 +718,7 @@ InputMedia::Ptr TgTypeParser::parseJsonAndGetInputMedia(const ptree& data) const
         result->caption = data.get("caption", "");
         result->parseMode = data.get("parse_mode", "");
         result->thumb = data.get("thumb", "");
+        result->duration = data.get<int32_t>("duration", 0);
         return result;
     }
     else if (type == "video") {
