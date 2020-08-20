@@ -2026,6 +2026,23 @@ string TgTypeParser::parseLabeledPrice(const LabeledPrice::Ptr& object) const {
     return result;
 }
 
+BotCommand::Ptr TgTypeParser::parseJsonAndGetBotCommand(const boost::property_tree::ptree& data) const {
+    auto result(make_shared<BotCommand>());
+    result->command = data.get("command", "");
+    result->description = data.get("description","");
+    return result;
+}
+
+string TgTypeParser::parseBotCommand(const BotCommand::Ptr& object) const {
+    std::string result;
+    result += '{';
+    appendToJson(result, "command", object->command);
+    appendToJson(result, "description", object->description);
+    removeLastComma(result);
+    result += '}';
+    return result;
+}
+
 OrderInfo::Ptr TgTypeParser::parseJsonAndGetOrderInfo(const boost::property_tree::ptree& data) const {
     auto result(make_shared<OrderInfo>());
     result->name = data.get<string>("name", "");

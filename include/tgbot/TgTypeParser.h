@@ -74,6 +74,7 @@
 #include "tgbot/types/ShippingOption.h"
 #include "tgbot/types/SuccessfulPayment.h"
 #include "tgbot/types/LabeledPrice.h"
+#include "tgbot/types/BotCommand.h"
 #include "tgbot/types/InputMedia.h"
 #include "tgbot/types/InputMediaPhoto.h"
 #include "tgbot/types/InputMediaVideo.h"
@@ -301,6 +302,9 @@ public:
 
     LabeledPrice::Ptr parseJsonAndGetLabeledPrice(const boost::property_tree::ptree& data) const;
     std::string parseLabeledPrice(const LabeledPrice::Ptr& object) const;
+
+    BotCommand::Ptr parseJsonAndGetBotCommand(const boost::property_tree::ptree& data) const;
+    std::string parseBotCommand(const BotCommand::Ptr& object) const;
 
     OrderInfo::Ptr parseJsonAndGetOrderInfo(const boost::property_tree::ptree& data) const;
     std::string parseOrderInfo(const OrderInfo::Ptr& object) const;

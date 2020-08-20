@@ -96,6 +96,8 @@
 #include "tgbot/types/VideoNote.h"
 #include "tgbot/types/Voice.h"
 #include "tgbot/types/WebhookInfo.h"
+#include "tgbot/types/BotCommand.h"
+
 
 /**
  * @defgroup general
