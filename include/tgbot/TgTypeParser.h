@@ -494,6 +494,8 @@ private:
         json += ',';
     }
 
+    inline void appendToJson(std::string& json, const std::string& varName, const char *value) const { appendToJson(json, varName, std::string(value)); }
+
     void appendToJson(std::string& json, const std::string& varName, const std::string& value) const;
 };
 
