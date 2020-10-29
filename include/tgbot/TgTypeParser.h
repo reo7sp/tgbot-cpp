@@ -495,9 +495,9 @@ private:
     }
 
     inline void appendToJson(std::string& json, const std::string& varName, const char* value) const {
-        if(value!=nullptr){
-            std::string strvalue(value);
-            appendToJson(json,varName,strvalue);
+        if (value != nullptr){
+            std::string strValue(value);
+            appendToJson(json, varName, strValue);
         }
     }
 
