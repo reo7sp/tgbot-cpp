@@ -46,7 +46,7 @@ typedef std::shared_ptr<std::vector<std::string>> StringArrayPtr;
 friend class Bot;
 
 public:
-    Api(std::string token, const HttpClient& httpClient);
+    Api(std::string token, const HttpClient& httpClient, const std::string& url);
 
     /**
      * @brief A simple method for testing your bot's auth token.
@@ -823,6 +823,7 @@ private:
     const std::string _token;
     const HttpClient& _httpClient;
     const TgTypeParser _tgTypeParser;
+    const std::string _url;
 };
 
 }

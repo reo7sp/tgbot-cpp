@@ -15,8 +15,8 @@ using namespace boost::property_tree;
 
 namespace TgBot {
 
-Api::Api(string token, const HttpClient& httpClient)
-    : _token(std::move(token)), _httpClient(httpClient), _tgTypeParser() {
+Api::Api(string token, const HttpClient& httpClient, const std::string& url)
+    : _token(std::move(token)), _httpClient(httpClient), _tgTypeParser(), _url(url) {
 }
 
 User::Ptr Api::getMe() const {
@@ -1172,7 +1172,8 @@ std::vector<BotCommand::Ptr> Api::getMyCommands() const
 }
 
 ptree Api::sendRequest(const string& method, const vector<HttpReqArg>& args) const {
-    string url = "https://api.telegram.org/bot";
+    string url(_url);
+    url += "/bot";
     url += _token;
     url += "/";
     url += method;
@@ -1195,7 +1196,8 @@ ptree Api::sendRequest(const string& method, const vector<HttpReqArg>& args) con
 }
 
 string Api::downloadFile(const string& filePath, const std::vector<HttpReqArg>& args) const {
-    string url = "https://api.telegram.org/file/bot";
+    string url(_url);
+    url += "/file/bot";
     url += _token;
     url += "/";
     url += filePath;
