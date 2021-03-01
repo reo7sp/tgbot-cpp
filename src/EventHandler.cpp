@@ -21,6 +21,9 @@ void EventHandler::handleUpdate(const Update::Ptr& update) const {
     if (update->message != nullptr) {
         handleMessage(update->message);
     }
+    if (update->channelPost != nullptr) {
+        handleMessage(update->channelPost);
+    }
 }
 
 void EventHandler::handleMessage(const Message::Ptr& message) const {
