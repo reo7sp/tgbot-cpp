@@ -56,7 +56,8 @@ void split(const string& str, char delimiter, vector<string>& dest) {
 }
 
 string generateRandomString(std::size_t length) {
-    static const string chars("qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM1234567890-=[]\\;',./!@#$%^&*()_+{}|:\"<>?`~");
+    static const string chars("qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM1234567890-=[]\\',./!@#$%^&*()_+{}|:\"<>?`~");
+       
     static const std::size_t charsLen = chars.length();
     string result;
 
