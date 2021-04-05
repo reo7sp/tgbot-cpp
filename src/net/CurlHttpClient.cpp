@@ -11,6 +11,9 @@ namespace TgBot {
 
 CurlHttpClient::CurlHttpClient() : _httpParser() {
     curlSettings = curl_easy_init();
+    
+    curl_easy_setopt(curlSettings, CURLOPT_CONNECTTIMEOUT, 20);
+    curl_easy_setopt(curlSettings, CURLOPT_TIMEOUT, 25); 
 }
 
 CurlHttpClient::~CurlHttpClient() {
