@@ -48,6 +48,32 @@ string BoostHttpOnlySslClient::makeRequest(const Url& url, const vector<HttpReqA
     string requestText = _httpParser.generateRequest(url, args, false);
     write(socket, buffer(requestText.c_str(), requestText.length()));
 
+    fd_set fileDescriptorSet;
+    struct timeval timeStruct;
+    
+    // set the timeout to 20 seconds
+    timeStruct.tv_sec = 20;
+    timeStruct.tv_usec = 0;
+    FD_ZERO(&fileDescriptorSet);
+    
+    // We'll need to get the underlying native socket for this select call, in order
+    // to add a simple timeout on the read:
+    
+    int nativeSocket = socket.lowest_layer().native_handle();
+    
+    FD_SET(nativeSocket,&fileDescriptorSet);        
+    select(nativeSocket+1,&fileDescriptorSet,NULL,NULL,&timeStruct);
+    
+    if(!FD_ISSET(nativeSocket,&fileDescriptorSet)){ // timeout
+        
+        std::string sMsg("TIMEOUT on read client data. Client IP: ");
+        
+        sMsg.append(socket.next_layer().remote_endpoint().address().to_string());
+        _ioService.reset();
+        
+        throw std::exception();
+    }      
+    
     string response;
 
     #ifdef TGBOT_CHANGE_READ_BUFFER_SIZE
