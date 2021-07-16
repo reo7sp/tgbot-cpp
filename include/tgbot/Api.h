@@ -67,6 +67,9 @@ public:
      */
     Message::Ptr sendMessage(std::int64_t chatId, const std::string& text, bool disableWebPagePreview = false, std::int32_t replyToMessageId = 0,
                              GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>(), const std::string& parseMode = "", bool disableNotification = false) const;
+    
+    Message::Ptr sendMessage(const std::string& chatId, const std::string& text, bool disableWebPagePreview = false, std::int32_t replyToMessageId = 0,
+                            GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>(), const std::string& parseMode = "", bool disableNotification = false) const;
 
     /**
      * @brief Use this method to forward messages of any kind.
