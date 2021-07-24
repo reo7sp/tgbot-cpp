@@ -10,6 +10,8 @@
 #include <unordered_map>
 #include <utility>
 
+#pragma GCC diagnostic ignored "-Wreorder"
+
 namespace TgBot {
 
 template<typename Protocol>
