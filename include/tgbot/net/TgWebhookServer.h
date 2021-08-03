@@ -38,8 +38,8 @@ private:
         return HttpServer<Protocol>::_httpParser.generateResponse("", "text/plain", 200, "OK", false);
     }
 
-    const EventHandler& _eventHandler;
     const std::string _path;
+    const EventHandler& _eventHandler;
     const TgTypeParser _tgTypeParser;
 };
 
