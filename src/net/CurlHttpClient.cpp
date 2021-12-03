@@ -2,8 +2,6 @@
 
 #include "tgbot/net/CurlHttpClient.h"
 
-#include <boost/asio/ssl.hpp>
-
 #include <cstddef>
 #include <string>
 
