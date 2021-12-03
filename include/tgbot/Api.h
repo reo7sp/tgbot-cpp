@@ -215,7 +215,7 @@ public:
      * @param pngSticker Png image with the sticker, must be up to 512 kilobytes in size, dimensions must not exceed 512px, and either width or height must be exactly 512px.
      * @return Returns the uploaded File on success.
      */
-    File::Ptr uploadStickerFile(std::int32_t userId, InputFile::Ptr pngSticker) const;
+    File::Ptr uploadStickerFile(std::int64_t userId, InputFile::Ptr pngSticker) const;
 
     /**
      * @brief Use this method to create new sticker set owned by a user. The bot will be able to edit the created sticker set.
@@ -228,7 +228,7 @@ public:
      * @param maskPosition Optional. A JSON-serialized object for position where the mask should be placed on faces.
      * @return Returns True on success.
      */
-    bool createNewStickerSet(std::int32_t userId, const std::string& name, const std::string& title,
+    bool createNewStickerSet(std::int64_t userId, const std::string& name, const std::string& title,
                              boost::variant<InputFile::Ptr, std::string> pngSticker, const std::string& emojis, bool containsMasks = false, MaskPosition::Ptr maskPosition = nullptr) const;
 
     /**
@@ -240,7 +240,7 @@ public:
      * @param maskPosition Optional. A JSON-serialized object for position where the mask should be placed on faces.
      * @return Returns True on success.
      */
-    bool addStickerToSet(std::int32_t userId, const std::string& name,
+    bool addStickerToSet(std::int64_t userId, const std::string& name,
                          boost::variant<InputFile::Ptr, std::string> pngSticker, const std::string& emojis, MaskPosition::Ptr maskPosition = nullptr) const;
 
     /**
@@ -440,7 +440,7 @@ public:
      * @param limit Optional. Limits the number of photos to be retrieved. Values between 1—100 are accepted. Defaults to 100.
      * @return A UserProfilePhotos object.
      */
-    UserProfilePhotos::Ptr getUserProfilePhotos(std::int32_t userId, std::int32_t offset = 0, std::int32_t limit = 100) const;
+    UserProfilePhotos::Ptr getUserProfilePhotos(std::int64_t userId, std::int32_t offset = 0, std::int32_t limit = 100) const;
 
     /**
      * @brief Use this method to get basic info about a file and prepare it for downloading. For the moment, bots can download files of up to 20MB in size.
@@ -483,7 +483,7 @@ public:
     * @param userId Unique identifier of the target user
     * @return ChatMember object.
     */
-    ChatMember::Ptr getChatMember(std::int64_t chatId, std::int32_t userId) const;
+    ChatMember::Ptr getChatMember(std::int64_t chatId, std::int64_t userId) const;
 
     /**
     * @brief Use this method to get information about a member of a chat. Returns a ChatMember object on success.
@@ -641,7 +641,7 @@ public:
      * @param untilDate Optional. Date when the user will be unbanned, unix time. If user is banned for more than 366 days or less than 30 seconds from the current time they are considered to be banned forever.
      * @return True on success
      */
-    bool kickChatMember(std::int64_t chatId, std::int32_t userId, std::uint64_t untilDate = 0) const;
+    bool kickChatMember(std::int64_t chatId, std::int64_t userId, std::uint64_t untilDate = 0) const;
 
     /**
      * @brief Use this method to unban a previously kicked user in a supergroup.
@@ -649,7 +649,7 @@ public:
      * @param userId Unique identifier of the target user.
      * @return True on success
      */
-    bool unbanChatMember(std::int64_t chatId, std::int32_t userId) const;
+    bool unbanChatMember(std::int64_t chatId, std::int64_t userId) const;
 
     /**
      * @brief Use this method to restrict a user in a supergroup.
@@ -662,7 +662,7 @@ public:
      * @param canAddWebPagePreviews Optional. Pass True, if the user may add web page previews to their messages, implies can_send_media_messages.
      * @return True on success
      */
-    bool restrictChatMember(std::int64_t chatId, std::int32_t userId, ChatPermissions::Ptr permissions, std::uint64_t untilDate = 0) const;
+    bool restrictChatMember(std::int64_t chatId, std::int64_t userId, ChatPermissions::Ptr permissions, std::uint64_t untilDate = 0) const;
 
     /**
      * @brief Use this method to promote or demote a user in a supergroup or a channel.
@@ -678,7 +678,7 @@ public:
      * @param canPromoteMembers Optional. Pass True, if the administrator can add new administrators with a subset of his own privileges or demote administrators that he has promoted, directly or indirectly (promoted by administrators that were appointed by him).
      * @return True on success
      */
-    bool promoteChatMember(std::int64_t chatId, std::int32_t userId, bool canChangeInfo = false, bool canPostMessages = false,
+    bool promoteChatMember(std::int64_t chatId, std::int64_t userId, bool canChangeInfo = false, bool canPostMessages = false,
                            bool canEditMessages = false, bool canDeleteMessages = false, bool canInviteUsers = false, bool canPinMessages = false, bool canPromoteMembers = false) const;
 
     /**
@@ -766,7 +766,7 @@ public:
      * @param inlineMessageId Optional. Required if chatId and messageId are not specified. Identifier of the inline message
      * @return On success, if the message was sent by the bot, returns the edited Message, otherwise returns nullptr.
      */
-    Message::Ptr setGameScore(std::int32_t userId, std::int32_t score, bool force = false, bool disableEditMessage = false,
+    Message::Ptr setGameScore(std::int64_t userId, std::int32_t score, bool force = false, bool disableEditMessage = false,
                               std::int64_t chatId = 0, std::int32_t messageId = 0, const std::string& inlineMessageId = "") const;
 
     /**
@@ -780,7 +780,7 @@ public:
      * @param inlineMessageId Optional. Required if chatId and messageId are not specified. Identifier of the inline message
      * @return On success, returns an Array of GameHighScore objects.
      */
-    std::vector<GameHighScore::Ptr> getGameHighScores(std::int32_t userId, std::int32_t score, bool force = false,
+    std::vector<GameHighScore::Ptr> getGameHighScores(std::int64_t userId, std::int32_t score, bool force = false,
                                                       bool disableEditMessage = false, std::int64_t chatId = 0, std::int32_t messageId = 0, const std::string& inlineMessageId = "") const;
 
     /**
