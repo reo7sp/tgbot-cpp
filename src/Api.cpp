@@ -312,7 +312,7 @@ StickerSet::Ptr Api::getStickerSet(const string& name) const {
     return _tgTypeParser.parseJsonAndGetStickerSet(sendRequest("getStickerSet", args));
 }
 
-File::Ptr Api::uploadStickerFile(std::int32_t userId, const InputFile::Ptr pngSticker) const {
+File::Ptr Api::uploadStickerFile(std::int64_t userId, const InputFile::Ptr pngSticker) const {
     vector<HttpReqArg> args;
     args.reserve(2);
     args.emplace_back("user_id", userId);
@@ -320,7 +320,7 @@ File::Ptr Api::uploadStickerFile(std::int32_t userId, const InputFile::Ptr pngSt
     return _tgTypeParser.parseJsonAndGetFile(sendRequest("uploadStickerFile", args));
 }
 
-bool Api::createNewStickerSet(std::int32_t userId, const string& name, const string& title, boost::variant<InputFile::Ptr, std::string> pngSticker, const string& emojis, bool containsMasks, MaskPosition::Ptr maskPosition) const {
+bool Api::createNewStickerSet(std::int64_t userId, const string& name, const string& title, boost::variant<InputFile::Ptr, std::string> pngSticker, const string& emojis, bool containsMasks, MaskPosition::Ptr maskPosition) const {
     vector<HttpReqArg> args;
     args.reserve(7);
     args.emplace_back("user_id", userId);
@@ -342,7 +342,7 @@ bool Api::createNewStickerSet(std::int32_t userId, const string& name, const str
     return sendRequest("createNewStickerSet", args).get<bool>("", false);
 }
 
-bool Api::addStickerToSet(std::int32_t userId, const string& name, boost::variant<InputFile::Ptr, std::string> pngSticker, const string& emojis, MaskPosition::Ptr maskPosition) const {
+bool Api::addStickerToSet(std::int64_t userId, const string& name, boost::variant<InputFile::Ptr, std::string> pngSticker, const string& emojis, MaskPosition::Ptr maskPosition) const {
     vector<HttpReqArg> args;
     args.reserve(6);
     args.emplace_back("user_id", userId);
@@ -698,7 +698,7 @@ void Api::sendChatAction(std::int64_t chatId, const string& action) const {
     sendRequest("sendChatAction", args);
 }
 
-UserProfilePhotos::Ptr Api::getUserProfilePhotos(std::int32_t userId, std::int32_t offset, std::int32_t limit) const {
+UserProfilePhotos::Ptr Api::getUserProfilePhotos(std::int64_t userId, std::int32_t offset, std::int32_t limit) const {
     vector<HttpReqArg> args;
     args.reserve(3);
     args.emplace_back("user_id", userId);
@@ -875,7 +875,7 @@ Message::Ptr Api::editMessageMedia(InputMedia::Ptr media, std::int64_t chatId, s
     }
 }
 
-ChatMember::Ptr Api::getChatMember(std::int64_t chatId, std::int32_t userId) const {
+ChatMember::Ptr Api::getChatMember(std::int64_t chatId, std::int64_t userId) const {
     vector<HttpReqArg> args;
     args.reserve(2);
     args.emplace_back("chat_id", chatId);
@@ -970,7 +970,7 @@ bool Api::answerInlineQuery(const string& inlineQueryId, const std::vector<Inlin
     return sendRequest("answerInlineQuery", args).get<bool>("", false);
 }
 
-bool Api::kickChatMember(std::int64_t chatId, std::int32_t userId, std::uint64_t untilDate) const {
+bool Api::kickChatMember(std::int64_t chatId, std::int64_t userId, std::uint64_t untilDate) const {
     vector<HttpReqArg> args;
     args.reserve(3);
     args.emplace_back("chat_id", chatId);
@@ -981,14 +981,14 @@ bool Api::kickChatMember(std::int64_t chatId, std::int32_t userId, std::uint64_t
     return sendRequest("kickChatMember", args).get<bool>("", false);
 }
 
-bool Api::unbanChatMember(std::int64_t chatId, std::int32_t userId) const {
+bool Api::unbanChatMember(std::int64_t chatId, std::int64_t userId) const {
     vector<HttpReqArg> args;
     args.reserve(2);
     args.emplace_back("chat_id", chatId);
     args.emplace_back("user_id", userId);
     return sendRequest("unbanChatMember", args).get<bool>("", false);
 }
-bool Api::restrictChatMember(std::int64_t chatId, std::int32_t userId, TgBot::ChatPermissions::Ptr permissions,
+bool Api::restrictChatMember(std::int64_t chatId, std::int64_t userId, TgBot::ChatPermissions::Ptr permissions,
                              std::uint64_t untilDate) const {
     vector<HttpReqArg> args;
     args.reserve(4);
@@ -1002,7 +1002,7 @@ bool Api::restrictChatMember(std::int64_t chatId, std::int32_t userId, TgBot::Ch
     return sendRequest("restrictChatMember", args).get<bool>("", false);
 }
 
-bool Api::promoteChatMember(std::int64_t chatId, std::int32_t userId, bool canChangeInfo, bool canPostMessages,
+bool Api::promoteChatMember(std::int64_t chatId, std::int64_t userId, bool canChangeInfo, bool canPostMessages,
                             bool canEditMessages, bool canDeleteMessages, bool canInviteUsers, bool canPinMessages, bool canPromoteMembers) const {
     vector<HttpReqArg> args;
     args.reserve(9);
@@ -1096,7 +1096,7 @@ bool Api::unpinChatMessage(std::int64_t chatId) const {
     return sendRequest("unpinChatMessage", args).get<bool>("", false);
 }
 
-Message::Ptr Api::setGameScore(std::int32_t userId, std::int32_t score, bool force, bool disableEditMessage, std::int64_t chatId, std::int32_t messageId, const std::string& inlineMessageId) const {
+Message::Ptr Api::setGameScore(std::int64_t userId, std::int32_t score, bool force, bool disableEditMessage, std::int64_t chatId, std::int32_t messageId, const std::string& inlineMessageId) const {
     vector<HttpReqArg> args;
     args.reserve(7);
     args.emplace_back("user_id", userId);
@@ -1119,7 +1119,7 @@ Message::Ptr Api::setGameScore(std::int32_t userId, std::int32_t score, bool for
     return _tgTypeParser.parseJsonAndGetMessage(sendRequest("setGameScore", args));
 }
 
-vector<GameHighScore::Ptr> Api::getGameHighScores(std::int32_t userId, std::int32_t score, bool force, bool disableEditMessage, std::int64_t chatId, std::int32_t messageId, const std::string& inlineMessageId) const {
+vector<GameHighScore::Ptr> Api::getGameHighScores(std::int64_t userId, std::int32_t score, bool force, bool disableEditMessage, std::int64_t chatId, std::int32_t messageId, const std::string& inlineMessageId) const {
     vector<HttpReqArg> args;
     args.reserve(7);
     args.emplace_back("user_id", userId);

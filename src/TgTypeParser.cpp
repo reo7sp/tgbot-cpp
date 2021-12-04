@@ -63,7 +63,7 @@ string TgTypeParser::parseChat(const Chat::Ptr& object) const {
 
 User::Ptr TgTypeParser::parseJsonAndGetUser(const ptree& data) const {
     auto result(make_shared<User>());
-    result->id = data.get<int32_t>("id");
+    result->id = data.get<int64_t>("id");
     result->isBot = data.get<bool>("is_bot", false);
     result->firstName = data.get<string>("first_name");
     result->lastName = data.get("last_name", "");
@@ -613,7 +613,7 @@ Contact::Ptr TgTypeParser::parseJsonAndGetContact(const ptree& data) const {
     result->phoneNumber = data.get<string>("phone_number");
     result->firstName = data.get<string>("first_name");
     result->lastName = data.get("last_name", "");
-    result->userId = data.get("user_id", "");
+    result->userId = data.get("user_id", 0);
     result->vcard = data.get("vcard", "");
     return result;
 }
@@ -988,7 +988,7 @@ std::string TgTypeParser::parseChatPhoto(const ChatPhoto::Ptr& object) const {
 
 ResponseParameters::Ptr TgTypeParser::parseJsonAndGetResponseParameters(const boost::property_tree::ptree& data) const {
     auto result(make_shared<ResponseParameters>());
-    result->migrateToChatId = data.get<int32_t>("migrate_to_chat_id", 0);
+    result->migrateToChatId = data.get<int64_t>("migrate_to_chat_id", 0);
     result->retryAfter = data.get<int32_t>("retry_after", 0);
     return result;
 }

@@ -57,11 +57,11 @@ string HttpParser::generateRequest(const Url& url, const vector<HttpReqArg>& arg
     return result;
 }
 
-string HttpParser::generateMultipartFormData(const vector<HttpReqArg>& args, const string& bondary) const {
+string HttpParser::generateMultipartFormData(const vector<HttpReqArg>& args, const string& boundary) const {
     string result;
     for (const HttpReqArg& item : args) {
         result += "--";
-        result += bondary;
+        result += boundary;
         result += "\r\nContent-Disposition: form-data; name=\"";
         result += item.name;
         if (item.isFile) {
@@ -77,7 +77,7 @@ string HttpParser::generateMultipartFormData(const vector<HttpReqArg>& args, con
         result += item.value;
         result += "\r\n";
     }
-    result += "--" + bondary + "--\r\n";
+    result += "--" + boundary + "--\r\n";
     return result;
 }
 

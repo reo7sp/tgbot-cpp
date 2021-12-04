@@ -20,7 +20,7 @@ public:
     /**
      * @brief Unique identifier for this user or bot.
      */
-    std::int32_t id;
+    std::int64_t id;
 
     /**
      * @brief True, if this user is a bot
