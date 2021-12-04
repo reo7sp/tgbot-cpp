@@ -1,5 +1,5 @@
 FROM ubuntu:18.04
-MAINTAINER Oleg Morozenkov <a@reo7sp.ru>
+MAINTAINER Oleg Morozenkov <m@oleg.rocks>
 
 RUN apt-get -qq update && \
     apt-get -qq install -y \

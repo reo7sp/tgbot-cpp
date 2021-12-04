@@ -1,5 +1,5 @@
 FROM debian:stretch
-MAINTAINER Oleg Morozenkov <a@reo7sp.ru>
+MAINTAINER Oleg Morozenkov <m@oleg.rocks>
 
 RUN apt-get -qq update && \
     apt-get -qq install -y g++ make binutils cmake libssl-dev libboost-system-dev libcurl4-openssl-dev zlib1g-dev

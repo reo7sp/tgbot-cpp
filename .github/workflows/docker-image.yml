@@ -12,9 +12,9 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: Build the docker image
+    - name: Build docker image
       run: docker build -t reo7sp/tgbot-cpp -f Dockerfile .
-    - name: Build the docker image with unit tests
+    - name: Build docker image with examples and unit tests
       run: docker build -t reo7sp/tgbot-cpp-test -f Dockerfile_test .
     - name: Run unit tests
       run: docker run --rm reo7sp/tgbot-cpp-test
