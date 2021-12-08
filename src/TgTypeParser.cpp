@@ -161,6 +161,7 @@ Message::Ptr TgTypeParser::parseJsonAndGetMessage(const ptree& data) const {
     result->successfulPayment = tryParseJson<SuccessfulPayment>(&TgTypeParser::parseJsonAndGetSuccessfulPayment, data, "successful_payment");
     result->connectedWebsite = data.get("connected_website", "");
     result->replyMarkup = tryParseJson<InlineKeyboardMarkup>(&TgTypeParser::parseJsonAndGetInlineKeyboardMarkup, data, "reply_markup");
+    result->automaticForward = data.get("is_automatic_forward", false);
     return result;
 }
 
