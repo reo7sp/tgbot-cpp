@@ -263,6 +263,11 @@ public:
      * @brief Optional. Inline keyboard attached to the message. login_url buttons are represented as ordinary url buttons.
      */
     InlineKeyboardMarkup::Ptr replyMarkup;
+
+    /**
+     * @brief Optional. Message is automatically forwarded from bounded channel.
+     */
+    bool automaticForward = false;
 };
 
 }
