@@ -102,7 +102,7 @@ protected:
                     boost::asio::async_write(
                             self->_socket,
                             boost::asio::buffer(answer),
-                            [](const boost::system::error_code& e, std::size_t n) { });
+                            [](const boost::system::error_code&, std::size_t) { });
                     return;
                 }
 
@@ -119,7 +119,7 @@ protected:
             boost::asio::async_read(_socket,
                                     *data,
                                     boost::asio::transfer_exactly(size - data->size()),
-                                    [self, data, size, headers](const boost::system::error_code& e, std::size_t n) {
+                                    [self, data, size, headers](const boost::system::error_code& e, std::size_t) {
                 if (e) {
                     std::cout << "error in HttpServer::Connection#_readBody: " << e << std::endl;
                     return;
@@ -138,7 +138,7 @@ protected:
                 boost::asio::async_write(
                         self->_socket,
                         boost::asio::buffer(answer),
-                        [](const boost::system::error_code& e, std::size_t n) { });
+                        [](const boost::system::error_code&, std::size_t) { });
 
                 self->_socket.close();
             });
