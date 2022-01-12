@@ -4,6 +4,7 @@ var hierarchy =
     [ "TgBot::Api", "class_tg_bot_1_1_api.html", null ],
     [ "TgBot::Audio", "class_tg_bot_1_1_audio.html", null ],
     [ "TgBot::Bot", "class_tg_bot_1_1_bot.html", null ],
+    [ "TgBot::BotCommand", "class_tg_bot_1_1_bot_command.html", null ],
     [ "TgBot::CallbackGame", "class_tg_bot_1_1_callback_game.html", null ],
     [ "TgBot::CallbackQuery", "class_tg_bot_1_1_callback_query.html", null ],
     [ "TgBot::Chat", "class_tg_bot_1_1_chat.html", null ],
@@ -13,7 +14,7 @@ var hierarchy =
     [ "TgBot::ChosenInlineResult", "class_tg_bot_1_1_chosen_inline_result.html", null ],
     [ "TgBot::Contact", "class_tg_bot_1_1_contact.html", null ],
     [ "TgBot::Document", "class_tg_bot_1_1_document.html", null ],
-    [ "enable_shared_from_this", null, [
+    [ "std::enable_shared_from_this", null, [
       [ "TgBot::HttpServer< Protocol >::Connection", "class_tg_bot_1_1_http_server_1_1_connection.html", null ]
     ] ],
     [ "TgBot::EventBroadcaster", "class_tg_bot_1_1_event_broadcaster.html", null ],
@@ -98,7 +99,7 @@ var hierarchy =
     [ "TgBot::PollOption", "class_tg_bot_1_1_poll_option.html", null ],
     [ "TgBot::PreCheckoutQuery", "class_tg_bot_1_1_pre_checkout_query.html", null ],
     [ "TgBot::ResponseParameters", "class_tg_bot_1_1_response_parameters.html", null ],
-    [ "runtime_error", null, [
+    [ "std::runtime_error", null, [
       [ "TgBot::TgException", "class_tg_bot_1_1_tg_exception.html", null ]
     ] ],
     [ "TgBot::ShippingAddress", "class_tg_bot_1_1_shipping_address.html", null ],

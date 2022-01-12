@@ -1,9 +1,9 @@
 var searchData=
 [
-  ['deletechatphoto_752',['deleteChatPhoto',['../class_tg_bot_1_1_api.html#a61fa540a7db9597618b7fb15fe5095a0',1,'TgBot::Api']]],
-  ['deletechatstickerset_753',['deleteChatStickerSet',['../class_tg_bot_1_1_api.html#a885e70f75a1def9b953290aea2991c42',1,'TgBot::Api']]],
-  ['deletemessage_754',['deleteMessage',['../class_tg_bot_1_1_api.html#a963570ff375bced1e5b21246082365f1',1,'TgBot::Api']]],
-  ['deletestickerfromset_755',['deleteStickerFromSet',['../class_tg_bot_1_1_api.html#a940093052e4bb98381c3336627bbb59d',1,'TgBot::Api']]],
-  ['deletewebhook_756',['deleteWebhook',['../class_tg_bot_1_1_api.html#a8fbfde4234553c478987746c43b08e62',1,'TgBot::Api']]],
-  ['downloadfile_757',['downloadFile',['../class_tg_bot_1_1_api.html#aa60ec06b9171d94ef717f1ac03190f07',1,'TgBot::Api']]]
+  ['deletechatphoto_0',['deleteChatPhoto',['../class_tg_bot_1_1_api.html#a7739b14d30a2a5e573dc498e21c308ad',1,'TgBot::Api']]],
+  ['deletechatstickerset_1',['deleteChatStickerSet',['../class_tg_bot_1_1_api.html#a00791a45f2146080c9ed73da731cea03',1,'TgBot::Api']]],
+  ['deletemessage_2',['deleteMessage',['../class_tg_bot_1_1_api.html#a4a99450a0b7719458611c0977599d2bf',1,'TgBot::Api']]],
+  ['deletestickerfromset_3',['deleteStickerFromSet',['../class_tg_bot_1_1_api.html#a940093052e4bb98381c3336627bbb59d',1,'TgBot::Api']]],
+  ['deletewebhook_4',['deleteWebhook',['../class_tg_bot_1_1_api.html#a8fbfde4234553c478987746c43b08e62',1,'TgBot::Api']]],
+  ['downloadfile_5',['downloadFile',['../class_tg_bot_1_1_api.html#aa60ec06b9171d94ef717f1ac03190f07',1,'TgBot::Api']]]
 ];

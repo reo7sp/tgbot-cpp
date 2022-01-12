@@ -7,7 +7,7 @@ var class_tg_bot_1_1_inline_query_result_venue =
     [ "foursquareType", "class_tg_bot_1_1_inline_query_result_venue.html#a06bed21fae09cabead17227f430a6445", null ],
     [ "latitude", "class_tg_bot_1_1_inline_query_result_venue.html#a842e5f5e15da3e24e81f8d68ec00ad97", null ],
     [ "longitude", "class_tg_bot_1_1_inline_query_result_venue.html#a385d6861f463a496af03accc31143a4c", null ],
-    [ "thumbHeight", "class_tg_bot_1_1_inline_query_result_venue.html#a284c445f7142d1f83fe78c22681747c2", null ],
+    [ "thumbHeight", "class_tg_bot_1_1_inline_query_result_venue.html#aebfea7a9ce3f4beaa58c9c8b544a1b44", null ],
     [ "thumbUrl", "class_tg_bot_1_1_inline_query_result_venue.html#a7c54d597c7b13147109ca777364abf90", null ],
-    [ "thumbWidth", "class_tg_bot_1_1_inline_query_result_venue.html#a88471f6acad35d4d45641572e4730517", null ]
+    [ "thumbWidth", "class_tg_bot_1_1_inline_query_result_venue.html#a160e77299b7274410e7bfc0e9987ab76", null ]
 ];

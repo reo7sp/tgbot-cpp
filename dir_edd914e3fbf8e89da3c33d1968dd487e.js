@@ -2,6 +2,7 @@ var dir_edd914e3fbf8e89da3c33d1968dd487e =
 [
     [ "Animation.h", "_animation_8h.html", null ],
     [ "Audio.h", "_audio_8h.html", null ],
+    [ "BotCommand.h", "_bot_command_8h.html", null ],
     [ "CallbackGame.h", "_callback_game_8h.html", null ],
     [ "CallbackQuery.h", "_callback_query_8h.html", null ],
     [ "Chat.h", "_chat_8h.html", null ],
@@ -64,7 +65,7 @@ var dir_edd914e3fbf8e89da3c33d1968dd487e =
     [ "PhotoSize.h", "_photo_size_8h.html", null ],
     [ "Poll.h", "_poll_8h.html", null ],
     [ "PollOption.h", "_poll_option_8h.html", [
-      [ "PollOption", "class_tg_bot_1_1_poll_option.html", "class_tg_bot_1_1_poll_option" ]
+      [ "TgBot::PollOption", "class_tg_bot_1_1_poll_option.html", "class_tg_bot_1_1_poll_option" ]
     ] ],
     [ "PreCheckoutQuery.h", "_pre_checkout_query_8h.html", null ],
     [ "ReplyKeyboardMarkup.h", "_reply_keyboard_markup_8h.html", null ],

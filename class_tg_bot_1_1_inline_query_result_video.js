@@ -5,8 +5,8 @@ var class_tg_bot_1_1_inline_query_result_video =
     [ "description", "class_tg_bot_1_1_inline_query_result_video.html#a43bbb53cf78b8ea8f40590d014e23eec", null ],
     [ "mimeType", "class_tg_bot_1_1_inline_query_result_video.html#a6eb48f1bc3089f4caef133c8c6644baf", null ],
     [ "thumbUrl", "class_tg_bot_1_1_inline_query_result_video.html#aa03003971380ecfaef6466f2cbb3e721", null ],
-    [ "videoDuration", "class_tg_bot_1_1_inline_query_result_video.html#a80c3c9b52a29c93ea2899fdfa12ebfa4", null ],
-    [ "videoHeight", "class_tg_bot_1_1_inline_query_result_video.html#a309ec0df18900ecaf458d6373b9aa49e", null ],
+    [ "videoDuration", "class_tg_bot_1_1_inline_query_result_video.html#a1bc60b0ecd1aa215e164702157836da1", null ],
+    [ "videoHeight", "class_tg_bot_1_1_inline_query_result_video.html#a4ed6271bba4be5be43675119c9ad1146", null ],
     [ "videoUrl", "class_tg_bot_1_1_inline_query_result_video.html#ace4b498ad92fd17782fbd8e40564f287", null ],
-    [ "videoWidth", "class_tg_bot_1_1_inline_query_result_video.html#ac8b569e1eb960afc51ef894a553750a3", null ]
+    [ "videoWidth", "class_tg_bot_1_1_inline_query_result_video.html#aad2faf4965b3f4cc04b4247c1662e505", null ]
 ];

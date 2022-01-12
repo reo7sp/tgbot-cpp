@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['kickchatmember_824',['kickChatMember',['../class_tg_bot_1_1_api.html#a3b85e962cd7ed5df9f4204b8424aabef',1,'TgBot::Api']]]
+  ['kickchatmember_0',['kickChatMember',['../class_tg_bot_1_1_api.html#a9a36bd8d872da7d72b2bd751fc4d5542',1,'TgBot::Api']]]
 ];

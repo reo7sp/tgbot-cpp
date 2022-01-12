@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['read_837',['read',['../namespace_file_tools.html#aeec0058e5af745983a1ef3e0f678348a',1,'FileTools']]],
-  ['restrictchatmember_838',['restrictChatMember',['../class_tg_bot_1_1_api.html#aad80b933b65950c866a6a2ff255a5cb5',1,'TgBot::Api']]]
+  ['read_0',['read',['../namespace_file_tools.html#a0dbf1894e634a9872e43da157418daa0',1,'FileTools']]],
+  ['restrictchatmember_1',['restrictChatMember',['../class_tg_bot_1_1_api.html#a48a53b97b837e05a20a9dea1aaabb9bc',1,'TgBot::Api']]]
 ];

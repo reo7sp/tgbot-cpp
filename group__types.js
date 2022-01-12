@@ -1,27 +1,34 @@
 var group__types =
 [
-    [ "Animation", "class_tg_bot_1_1_animation.html", [
+    [ "TgBot::Animation", "class_tg_bot_1_1_animation.html", [
       [ "Ptr", "class_tg_bot_1_1_animation.html#afc55b2a385eeb3209e91bbbd1214c06a", null ],
       [ "fileId", "class_tg_bot_1_1_animation.html#ad47a8d4e733fd4c89df680838ef88bf0", null ],
       [ "fileName", "class_tg_bot_1_1_animation.html#a005529218689a10133d5c7b0482057df", null ],
-      [ "fileSize", "class_tg_bot_1_1_animation.html#a4046931b2e47deae5ec6dc06d9b231da", null ],
+      [ "fileSize", "class_tg_bot_1_1_animation.html#a343ddd59c1b70b4a2fe68d50ff5b6e6c", null ],
       [ "mimeType", "class_tg_bot_1_1_animation.html#a112e29bf5a35ef1fc78f093cf7ecc48d", null ],
       [ "thumb", "class_tg_bot_1_1_animation.html#ac8e9bb631206971b80674a71002ed8a5", null ]
     ] ],
-    [ "Audio", "class_tg_bot_1_1_audio.html", [
+    [ "TgBot::Audio", "class_tg_bot_1_1_audio.html", [
       [ "Ptr", "class_tg_bot_1_1_audio.html#a09651872832ece3b22c7505a2cfc0034", null ],
-      [ "duration", "class_tg_bot_1_1_audio.html#a91867bc1857d43021c352781c8b1764d", null ],
+      [ "duration", "class_tg_bot_1_1_audio.html#a34fee1211b2e86a69dc79e713ad42ea1", null ],
       [ "fileId", "class_tg_bot_1_1_audio.html#accecab325a61cce4c4260923d21e2726", null ],
-      [ "fileSize", "class_tg_bot_1_1_audio.html#ae874fb9f864741e2df69287c57fbd035", null ],
+      [ "fileSize", "class_tg_bot_1_1_audio.html#aad20edc427d6a9bc022d76b74e448afa", null ],
       [ "mimeType", "class_tg_bot_1_1_audio.html#a0657e6fec492919e086084ab07bcf7ae", null ],
       [ "performer", "class_tg_bot_1_1_audio.html#ac91ee59f6137da2da2f7c8ad6d1e9119", null ],
       [ "thumb", "class_tg_bot_1_1_audio.html#aafd12221a8d29da7783beafd1fc62d5a", null ],
       [ "title", "class_tg_bot_1_1_audio.html#a93a600b9821a425e31e51fdee027e1b4", null ]
     ] ],
-    [ "CallbackGame", "class_tg_bot_1_1_callback_game.html", [
+    [ "TgBot::BotCommand", "class_tg_bot_1_1_bot_command.html", [
+      [ "Ptr", "class_tg_bot_1_1_bot_command.html#a213b909895dffb361056043dd84962a2", null ],
+      [ "BotCommand", "class_tg_bot_1_1_bot_command.html#a9e36a1194ec50369d839b5c4c5b73285", null ],
+      [ "~BotCommand", "class_tg_bot_1_1_bot_command.html#ac77b10461986d6b8bde38ca81d87cf08", null ],
+      [ "command", "class_tg_bot_1_1_bot_command.html#a552f644edc9aebec5f274eb552202e6f", null ],
+      [ "description", "class_tg_bot_1_1_bot_command.html#aefae2db896565637bb1667c3d507047c", null ]
+    ] ],
+    [ "TgBot::CallbackGame", "class_tg_bot_1_1_callback_game.html", [
       [ "Ptr", "class_tg_bot_1_1_callback_game.html#a9bf84f7624a6ad378d65dc6d84b8d624", null ]
     ] ],
-    [ "CallbackQuery", "class_tg_bot_1_1_callback_query.html", [
+    [ "TgBot::CallbackQuery", "class_tg_bot_1_1_callback_query.html", [
       [ "Ptr", "class_tg_bot_1_1_callback_query.html#a5a5e4f8368bd95ba214e68cde5d1c7c0", null ],
       [ "chatInstance", "class_tg_bot_1_1_callback_query.html#a1c60e74159327d5e9e686f4a1278a373", null ],
       [ "data", "class_tg_bot_1_1_callback_query.html#a9247402a210f4df79cf044683fb66734", null ],
@@ -31,7 +38,7 @@ var group__types =
       [ "inlineMessageId", "class_tg_bot_1_1_callback_query.html#a1565d380d5aa70d2304f572e5b56a24e", null ],
       [ "message", "class_tg_bot_1_1_callback_query.html#a4d36cf008195c0b9b95d2ad7c8561795", null ]
     ] ],
-    [ "Chat", "class_tg_bot_1_1_chat.html", [
+    [ "TgBot::Chat", "class_tg_bot_1_1_chat.html", [
       [ "Ptr", "class_tg_bot_1_1_chat.html#a9818e295b599a08b77abefb38de75e48", null ],
       [ "Type", "class_tg_bot_1_1_chat.html#a939946fe3181210f9e3f3d9610edb52e", [
         [ "Private", "class_tg_bot_1_1_chat.html#a939946fe3181210f9e3f3d9610edb52ea47f9082fc380ca62d531096aa1d110f1", null ],
@@ -43,7 +50,7 @@ var group__types =
       [ "canSetStickerSet", "class_tg_bot_1_1_chat.html#a634c679550d78b602254cf3044f6169a", null ],
       [ "description", "class_tg_bot_1_1_chat.html#a8f87f388215d07bb2745cdf2600ff299", null ],
       [ "firstName", "class_tg_bot_1_1_chat.html#a884c0c1c6d6f0a5453231f7b9049da29", null ],
-      [ "id", "class_tg_bot_1_1_chat.html#a0cb746cc149d10ada1af86753f25f93c", null ],
+      [ "id", "class_tg_bot_1_1_chat.html#a40a34b9c7545ff69d0a8dc1ff8208fa7", null ],
       [ "inviteLink", "class_tg_bot_1_1_chat.html#a5653ec719aa43764670c2c88055107e2", null ],
       [ "lastName", "class_tg_bot_1_1_chat.html#aea14be3f3c081d6aea387cd3613fc82e", null ],
       [ "permissions", "class_tg_bot_1_1_chat.html#ad5ac6cb3ffaede7feee6d3795793599b", null ],
@@ -54,7 +61,7 @@ var group__types =
       [ "type", "class_tg_bot_1_1_chat.html#a86d47a69eb66a74d7f5b294700d884cd", null ],
       [ "username", "class_tg_bot_1_1_chat.html#afce7dfa93a025025eef940447ed17990", null ]
     ] ],
-    [ "ChatMember", "class_tg_bot_1_1_chat_member.html", [
+    [ "TgBot::ChatMember", "class_tg_bot_1_1_chat_member.html", [
       [ "Ptr", "class_tg_bot_1_1_chat_member.html#a7c14c867a129ac28396b680c79dc495d", null ],
       [ "canAddWebPagePreviews", "class_tg_bot_1_1_chat_member.html#a1c6b3267284c33738529f21ed421f422", null ],
       [ "canBeEdited", "class_tg_bot_1_1_chat_member.html#a384d160e04985dfc09fe75b2d41ee959", null ],
@@ -72,10 +79,10 @@ var group__types =
       [ "canSendPolls", "class_tg_bot_1_1_chat_member.html#aff778e687cd73fd162ad0241086e9fa5", null ],
       [ "isMember", "class_tg_bot_1_1_chat_member.html#a772454ef06adf1d00c1067959a6ec026", null ],
       [ "status", "class_tg_bot_1_1_chat_member.html#a373057cf2fcca9ecb49951a5e61a6666", null ],
-      [ "untilDate", "class_tg_bot_1_1_chat_member.html#ace7455f999a39f804ff559bc77f7814d", null ],
+      [ "untilDate", "class_tg_bot_1_1_chat_member.html#a56de601ff44c75912dc82ef4487be885", null ],
       [ "user", "class_tg_bot_1_1_chat_member.html#a1a1cefdfec4a60bd6ba1e588edad9aa1", null ]
     ] ],
-    [ "ChatPermissions", "class_tg_bot_1_1_chat_permissions.html", [
+    [ "TgBot::ChatPermissions", "class_tg_bot_1_1_chat_permissions.html", [
       [ "Ptr", "class_tg_bot_1_1_chat_permissions.html#a2483eba25a23b37a08e907b31d9f6944", null ],
       [ "canAddWebPagePreviews", "class_tg_bot_1_1_chat_permissions.html#a2a1ee73a743e512edad914352479a308", null ],
       [ "canChangeInfo", "class_tg_bot_1_1_chat_permissions.html#a24346f33b8852720ceba76cf0fa7b6c5", null ],
@@ -86,12 +93,12 @@ var group__types =
       [ "canSendOtherMessages", "class_tg_bot_1_1_chat_permissions.html#a67bd4eafe69a718339804c43f823ea44", null ],
       [ "canSendPolls", "class_tg_bot_1_1_chat_permissions.html#a8d2e84c98f006b84646f27d7de5d0904", null ]
     ] ],
-    [ "ChatPhoto", "class_tg_bot_1_1_chat_photo.html", [
+    [ "TgBot::ChatPhoto", "class_tg_bot_1_1_chat_photo.html", [
       [ "Ptr", "class_tg_bot_1_1_chat_photo.html#a732024e5287eef199f40dfef151d5265", null ],
       [ "bigFileId", "class_tg_bot_1_1_chat_photo.html#a6939e40e825e12b9b5dd2002d6d4d178", null ],
       [ "smallFileId", "class_tg_bot_1_1_chat_photo.html#a57106860db152f24486aba761cb5f44e", null ]
     ] ],
-    [ "ChosenInlineResult", "class_tg_bot_1_1_chosen_inline_result.html", [
+    [ "TgBot::ChosenInlineResult", "class_tg_bot_1_1_chosen_inline_result.html", [
       [ "Ptr", "class_tg_bot_1_1_chosen_inline_result.html#ad4b7edd30fd0d876fa99493fe19b3247", null ],
       [ "from", "class_tg_bot_1_1_chosen_inline_result.html#ab35d35a8968b0d943a415a23feed48cd", null ],
       [ "inlineMessageId", "class_tg_bot_1_1_chosen_inline_result.html#ab61cb2aadbf6ab78e334cbc49076514c", null ],
@@ -99,34 +106,34 @@ var group__types =
       [ "query", "class_tg_bot_1_1_chosen_inline_result.html#a0fa803cc7dc0df4f5f35ce1db26d4c6d", null ],
       [ "resultId", "class_tg_bot_1_1_chosen_inline_result.html#a34fcb883f27cc3d3fae621a11c8f8270", null ]
     ] ],
-    [ "Contact", "class_tg_bot_1_1_contact.html", [
+    [ "TgBot::Contact", "class_tg_bot_1_1_contact.html", [
       [ "Ptr", "class_tg_bot_1_1_contact.html#a43915fd39dc9ef11a5f8684512ce5e7b", null ],
       [ "firstName", "class_tg_bot_1_1_contact.html#a81956d457d30f743bcb74dfbe1635bc8", null ],
       [ "lastName", "class_tg_bot_1_1_contact.html#acece1a697b1e94ba95e5a4b161f7e2d3", null ],
       [ "phoneNumber", "class_tg_bot_1_1_contact.html#ada9f5461d2dd84b547cf563db624ff28", null ],
-      [ "userId", "class_tg_bot_1_1_contact.html#a35e56ce0b16eb1119431043dccd8056b", null ],
+      [ "userId", "class_tg_bot_1_1_contact.html#a49ee49ca62c1ff9b6246ed87bf13ae33", null ],
       [ "vcard", "class_tg_bot_1_1_contact.html#a595fe95f16dbde5cb49fa44946cf0d2b", null ]
     ] ],
-    [ "Document", "class_tg_bot_1_1_document.html", [
+    [ "TgBot::Document", "class_tg_bot_1_1_document.html", [
       [ "Ptr", "class_tg_bot_1_1_document.html#af311e27c16bf2a1128ee339899face9e", null ],
       [ "fileId", "class_tg_bot_1_1_document.html#aa67870c6320092c13154abde7dcdf94c", null ],
       [ "fileName", "class_tg_bot_1_1_document.html#a0b36f1611eb0cda45e47c989689456d6", null ],
-      [ "fileSize", "class_tg_bot_1_1_document.html#a3c9b2dca38059ddd219abab398694bc9", null ],
+      [ "fileSize", "class_tg_bot_1_1_document.html#a4a12e4d3bd15da85b8e2f17d3148dcef", null ],
       [ "mimeType", "class_tg_bot_1_1_document.html#ac95f48d00ace3b28c97c4bfc1e3e592b", null ],
       [ "thumb", "class_tg_bot_1_1_document.html#a21a156d86da82dcb636fba01a3ef351f", null ]
     ] ],
-    [ "File", "class_tg_bot_1_1_file.html", [
+    [ "TgBot::File", "class_tg_bot_1_1_file.html", [
       [ "Ptr", "class_tg_bot_1_1_file.html#ac47e9c73b9d762eef2322c0932c5a934", null ],
       [ "fileId", "class_tg_bot_1_1_file.html#a0e64b7f89b84e674ea890399ea27dd6e", null ],
       [ "filePath", "class_tg_bot_1_1_file.html#ad1abfaf438998878eee537fc82b4bb6e", null ],
-      [ "fileSize", "class_tg_bot_1_1_file.html#a1c4a6f8d51e846ec75d15ffa2c5d1445", null ]
+      [ "fileSize", "class_tg_bot_1_1_file.html#a8e24cdf620a91ee996fa2a91e0890ef1", null ]
     ] ],
-    [ "ForceReply", "class_tg_bot_1_1_force_reply.html", [
+    [ "TgBot::ForceReply", "class_tg_bot_1_1_force_reply.html", [
       [ "Ptr", "class_tg_bot_1_1_force_reply.html#a3d17d51e17dfdfd22d263bdeaf603b66", null ],
       [ "forceReply", "class_tg_bot_1_1_force_reply.html#a8c4637ab74050185a86f5c058cf35de7", null ],
       [ "selective", "class_tg_bot_1_1_force_reply.html#afbb510a24ebda5409311ff0d385065dc", null ]
     ] ],
-    [ "Game", "class_tg_bot_1_1_game.html", [
+    [ "TgBot::Game", "class_tg_bot_1_1_game.html", [
       [ "Ptr", "class_tg_bot_1_1_game.html#a6a83e8940305ff4fad66dfe67dbb348b", null ],
       [ "animation", "class_tg_bot_1_1_game.html#a2578e62f28ad5191e1754983a14cad4c", null ],
       [ "description", "class_tg_bot_1_1_game.html#acfd798616a7d6e8d1a0c7f6962e38893", null ],
@@ -135,17 +142,17 @@ var group__types =
       [ "textEntities", "class_tg_bot_1_1_game.html#a0ed54ba6406a8cc8623ba1748c166e7f", null ],
       [ "title", "class_tg_bot_1_1_game.html#ac0edbacabf558513040e47b81910cdec", null ]
     ] ],
-    [ "GameHighScore", "class_tg_bot_1_1_game_high_score.html", [
+    [ "TgBot::GameHighScore", "class_tg_bot_1_1_game_high_score.html", [
       [ "Ptr", "class_tg_bot_1_1_game_high_score.html#a25eccb9018f74176b5c0baf25db721f4", null ],
       [ "position", "class_tg_bot_1_1_game_high_score.html#a76d2ff519f8a09b6550d78666950204f", null ],
-      [ "score", "class_tg_bot_1_1_game_high_score.html#a327a049b8df70d93d9a734ad311f130d", null ],
+      [ "score", "class_tg_bot_1_1_game_high_score.html#acf9985416cffef1b7e0a9735a61d278d", null ],
       [ "user", "class_tg_bot_1_1_game_high_score.html#a8cbe4f32e28775c3f8aa0c9b78a9842b", null ]
     ] ],
-    [ "GenericReply", "class_tg_bot_1_1_generic_reply.html", [
+    [ "TgBot::GenericReply", "class_tg_bot_1_1_generic_reply.html", [
       [ "Ptr", "class_tg_bot_1_1_generic_reply.html#aa7bb5f2c5484cb791e1c60c346bbb06f", null ],
       [ "~GenericReply", "class_tg_bot_1_1_generic_reply.html#a519019da5ab3cb27fc11bd56cc94123c", null ]
     ] ],
-    [ "InlineKeyboardButton", "class_tg_bot_1_1_inline_keyboard_button.html", [
+    [ "TgBot::InlineKeyboardButton", "class_tg_bot_1_1_inline_keyboard_button.html", [
       [ "Ptr", "class_tg_bot_1_1_inline_keyboard_button.html#a27b82f178b242b6417377daae1f09983", null ],
       [ "callbackData", "class_tg_bot_1_1_inline_keyboard_button.html#a25716bdfc7a0719f1c17702a8d6a8aa4", null ],
       [ "callbackGame", "class_tg_bot_1_1_inline_keyboard_button.html#a7607991eb8529b9cf0dc2734008cc579", null ],
@@ -156,11 +163,11 @@ var group__types =
       [ "text", "class_tg_bot_1_1_inline_keyboard_button.html#aa96c745e6d2c531bc50bf344ff0fee6f", null ],
       [ "url", "class_tg_bot_1_1_inline_keyboard_button.html#ab9b5e02f10e2cd937a3d3794d26e6bf3", null ]
     ] ],
-    [ "InlineKeyboardMarkup", "class_tg_bot_1_1_inline_keyboard_markup.html", [
+    [ "TgBot::InlineKeyboardMarkup", "class_tg_bot_1_1_inline_keyboard_markup.html", [
       [ "Ptr", "class_tg_bot_1_1_inline_keyboard_markup.html#a596873291582fb23cfbe6b62e20df8e7", null ],
       [ "inlineKeyboard", "class_tg_bot_1_1_inline_keyboard_markup.html#a7ff086034bc62f1a791f2e872e652b4b", null ]
     ] ],
-    [ "InlineQuery", "class_tg_bot_1_1_inline_query.html", [
+    [ "TgBot::InlineQuery", "class_tg_bot_1_1_inline_query.html", [
       [ "Ptr", "class_tg_bot_1_1_inline_query.html#a82b36b38b3587e6a721b6fa579759b0c", null ],
       [ "from", "class_tg_bot_1_1_inline_query.html#a95db52178399e81913eec2b615ef8e04", null ],
       [ "id", "class_tg_bot_1_1_inline_query.html#a8787b5e72cbfc95c3e938143ba7f6ee7", null ],
@@ -168,7 +175,7 @@ var group__types =
       [ "offset", "class_tg_bot_1_1_inline_query.html#a02b19f8ececa0f1091ea52a17c3c8589", null ],
       [ "query", "class_tg_bot_1_1_inline_query.html#ab82e5c7e1033a89af639cb105413568c", null ]
     ] ],
-    [ "InlineQueryResult", "class_tg_bot_1_1_inline_query_result.html", [
+    [ "TgBot::InlineQueryResult", "class_tg_bot_1_1_inline_query_result.html", [
       [ "Ptr", "class_tg_bot_1_1_inline_query_result.html#af567dd95c4dae7c4a895e561a97ed4c5", null ],
       [ "InlineQueryResult", "class_tg_bot_1_1_inline_query_result.html#a3d521bee0ec085b4d59d99435ec5d282", null ],
       [ "~InlineQueryResult", "class_tg_bot_1_1_inline_query_result.html#a1adbb76a14ff772aa8e06b26f302ade0", null ],
@@ -179,129 +186,129 @@ var group__types =
       [ "title", "class_tg_bot_1_1_inline_query_result.html#a1d94f4380732940843c30408fa85f994", null ],
       [ "type", "class_tg_bot_1_1_inline_query_result.html#a264821cb9ed371fc04809effb2ec9bf0", null ]
     ] ],
-    [ "InlineQueryResultArticle", "class_tg_bot_1_1_inline_query_result_article.html", [
+    [ "TgBot::InlineQueryResultArticle", "class_tg_bot_1_1_inline_query_result_article.html", [
       [ "Ptr", "class_tg_bot_1_1_inline_query_result_article.html#abde520162c5e38947c32dd0c11c00c69", null ],
       [ "InlineQueryResultArticle", "class_tg_bot_1_1_inline_query_result_article.html#a5d70803e8c68ea279c0d620f73623b90", null ],
       [ "description", "class_tg_bot_1_1_inline_query_result_article.html#adb17d53fd713e3203b6e3ebf4947d404", null ],
       [ "hideUrl", "class_tg_bot_1_1_inline_query_result_article.html#a4f2858334ee45a2e409e82cdb5be0256", null ],
-      [ "thumbHeight", "class_tg_bot_1_1_inline_query_result_article.html#aff3b505e37177d9e7e6e2983c0aedcba", null ],
+      [ "thumbHeight", "class_tg_bot_1_1_inline_query_result_article.html#ad22dc596c9c33b0f7e38d8ab89787761", null ],
       [ "thumbUrl", "class_tg_bot_1_1_inline_query_result_article.html#a842471f67e9ae13cbe79e1a1bb43b21e", null ],
-      [ "thumbWidth", "class_tg_bot_1_1_inline_query_result_article.html#a20bcfc41429b0b8f77339ffa45ebf42d", null ],
+      [ "thumbWidth", "class_tg_bot_1_1_inline_query_result_article.html#af7fffa93162e42a9345f055c53d60f2a", null ],
       [ "url", "class_tg_bot_1_1_inline_query_result_article.html#a772fc689e3813a8025eb3c0d69e6a109", null ]
     ] ],
-    [ "InlineQueryResultAudio", "class_tg_bot_1_1_inline_query_result_audio.html", [
+    [ "TgBot::InlineQueryResultAudio", "class_tg_bot_1_1_inline_query_result_audio.html", [
       [ "Ptr", "class_tg_bot_1_1_inline_query_result_audio.html#a7803831a6a91a6e927fef4d2f102601f", null ],
       [ "InlineQueryResultAudio", "class_tg_bot_1_1_inline_query_result_audio.html#a566b685dd3a4334a1bd15c53f5abf6ca", null ],
-      [ "audioDuration", "class_tg_bot_1_1_inline_query_result_audio.html#a18d053fc3cfc83d5e8a769002a12ad01", null ],
+      [ "audioDuration", "class_tg_bot_1_1_inline_query_result_audio.html#a94aae7962ec4291fa9566ac627ea3993", null ],
       [ "audioUrl", "class_tg_bot_1_1_inline_query_result_audio.html#a32196651921816a857b75a7e0163ed40", null ],
       [ "performer", "class_tg_bot_1_1_inline_query_result_audio.html#aed3fcf3bc848aaae21bab04a3f840ec1", null ]
     ] ],
-    [ "InlineQueryResultCachedAudio", "class_tg_bot_1_1_inline_query_result_cached_audio.html", [
+    [ "TgBot::InlineQueryResultCachedAudio", "class_tg_bot_1_1_inline_query_result_cached_audio.html", [
       [ "Ptr", "class_tg_bot_1_1_inline_query_result_cached_audio.html#a8c75f3fe19c25570a15ad20e11b059ec", null ],
       [ "InlineQueryResultCachedAudio", "class_tg_bot_1_1_inline_query_result_cached_audio.html#aa4e782d6b42aebab1d50584b00f1dbaa", null ],
       [ "audioFileId", "class_tg_bot_1_1_inline_query_result_cached_audio.html#a318af9a876c7785d9b70a1df30284a39", null ]
     ] ],
-    [ "InlineQueryResultCachedDocument", "class_tg_bot_1_1_inline_query_result_cached_document.html", [
+    [ "TgBot::InlineQueryResultCachedDocument", "class_tg_bot_1_1_inline_query_result_cached_document.html", [
       [ "Ptr", "class_tg_bot_1_1_inline_query_result_cached_document.html#ae306464c59510f2757fc6f919e33581f", null ],
       [ "InlineQueryResultCachedDocument", "class_tg_bot_1_1_inline_query_result_cached_document.html#a9863569993d146cbba9f6b82d36982fc", null ],
       [ "description", "class_tg_bot_1_1_inline_query_result_cached_document.html#adbd95fa3dd4f9d2efce22f79efff5650", null ],
       [ "documentFileId", "class_tg_bot_1_1_inline_query_result_cached_document.html#adc8dec6c94ecd3948a02123010fc9454", null ]
     ] ],
-    [ "InlineQueryResultCachedGif", "class_tg_bot_1_1_inline_query_result_cached_gif.html", [
+    [ "TgBot::InlineQueryResultCachedGif", "class_tg_bot_1_1_inline_query_result_cached_gif.html", [
       [ "Ptr", "class_tg_bot_1_1_inline_query_result_cached_gif.html#aab9691736d261b69ca775a2cb7e130eb", null ],
       [ "InlineQueryResultCachedGif", "class_tg_bot_1_1_inline_query_result_cached_gif.html#ac990c0bdfcfc50e823cdc932b4b62ce9", null ],
       [ "gifFileId", "class_tg_bot_1_1_inline_query_result_cached_gif.html#ad23bb77e92125e6720c55e7747a9bb6f", null ]
     ] ],
-    [ "InlineQueryResultCachedMpeg4Gif", "class_tg_bot_1_1_inline_query_result_cached_mpeg4_gif.html", [
+    [ "TgBot::InlineQueryResultCachedMpeg4Gif", "class_tg_bot_1_1_inline_query_result_cached_mpeg4_gif.html", [
       [ "Ptr", "class_tg_bot_1_1_inline_query_result_cached_mpeg4_gif.html#af229f5bd8982f0967e228194ce3345ed", null ],
       [ "InlineQueryResultCachedMpeg4Gif", "class_tg_bot_1_1_inline_query_result_cached_mpeg4_gif.html#a254f37e1825c60c400ce0a7842d87dd1", null ],
       [ "mpeg4FileId", "class_tg_bot_1_1_inline_query_result_cached_mpeg4_gif.html#a22d408fa2322cf94ac758fdec28796f8", null ]
     ] ],
-    [ "InlineQueryResultCachedPhoto", "class_tg_bot_1_1_inline_query_result_cached_photo.html", [
+    [ "TgBot::InlineQueryResultCachedPhoto", "class_tg_bot_1_1_inline_query_result_cached_photo.html", [
       [ "Ptr", "class_tg_bot_1_1_inline_query_result_cached_photo.html#a1c592e3dea0aae88ccd8244f70b2e8d8", null ],
       [ "InlineQueryResultCachedPhoto", "class_tg_bot_1_1_inline_query_result_cached_photo.html#afcb0d2106b2d57b2e0f77679258adbe7", null ],
       [ "description", "class_tg_bot_1_1_inline_query_result_cached_photo.html#ae3ee1094fb0d586145265557a4967472", null ],
       [ "photoFileId", "class_tg_bot_1_1_inline_query_result_cached_photo.html#ab565bf88ec7ebb111aa0d628e20031ac", null ]
     ] ],
-    [ "InlineQueryResultCachedSticker", "class_tg_bot_1_1_inline_query_result_cached_sticker.html", [
+    [ "TgBot::InlineQueryResultCachedSticker", "class_tg_bot_1_1_inline_query_result_cached_sticker.html", [
       [ "Ptr", "class_tg_bot_1_1_inline_query_result_cached_sticker.html#a5b4730538d2f7fc2ba4ebbd244922d60", null ],
       [ "InlineQueryResultCachedSticker", "class_tg_bot_1_1_inline_query_result_cached_sticker.html#a5058676da96b77c58d6abb1979b0783e", null ],
       [ "stickerFileId", "class_tg_bot_1_1_inline_query_result_cached_sticker.html#a64bd220c343ee8165afc4e079bcb52fb", null ]
     ] ],
-    [ "InlineQueryResultCachedVideo", "class_tg_bot_1_1_inline_query_result_cached_video.html", [
+    [ "TgBot::InlineQueryResultCachedVideo", "class_tg_bot_1_1_inline_query_result_cached_video.html", [
       [ "Ptr", "class_tg_bot_1_1_inline_query_result_cached_video.html#a91d532c7ec70a7362c3c5b94b1eef563", null ],
       [ "InlineQueryResultCachedVideo", "class_tg_bot_1_1_inline_query_result_cached_video.html#ab67710f0343f80f75efc8d090e8e76c7", null ],
       [ "description", "class_tg_bot_1_1_inline_query_result_cached_video.html#a9e8cec9c88eaa986929575dda800f833", null ],
       [ "videoFileId", "class_tg_bot_1_1_inline_query_result_cached_video.html#abea4deca4249a41cb3fbe999ed820fa0", null ]
     ] ],
-    [ "InlineQueryResultCachedVoice", "class_tg_bot_1_1_inline_query_result_cached_voice.html", [
+    [ "TgBot::InlineQueryResultCachedVoice", "class_tg_bot_1_1_inline_query_result_cached_voice.html", [
       [ "Ptr", "class_tg_bot_1_1_inline_query_result_cached_voice.html#a4b6ab1c49f87861ed9eb94a267210a38", null ],
       [ "InlineQueryResultCachedVoice", "class_tg_bot_1_1_inline_query_result_cached_voice.html#a461c71f3ef391bc8676a20e31540bf88", null ],
       [ "voiceFileId", "class_tg_bot_1_1_inline_query_result_cached_voice.html#ab3810efdb799663c6fa106b3d28fb759", null ]
     ] ],
-    [ "InlineQueryResultContact", "class_tg_bot_1_1_inline_query_result_contact.html", [
+    [ "TgBot::InlineQueryResultContact", "class_tg_bot_1_1_inline_query_result_contact.html", [
       [ "Ptr", "class_tg_bot_1_1_inline_query_result_contact.html#a217ad7763724144bd22c09270b2a308c", null ],
       [ "InlineQueryResultContact", "class_tg_bot_1_1_inline_query_result_contact.html#a17bc65a6ab9f48a3490d1d9f1357bc48", null ],
       [ "firstName", "class_tg_bot_1_1_inline_query_result_contact.html#a70df19e3e75c6b798a72cfb3057da235", null ],
       [ "lastName", "class_tg_bot_1_1_inline_query_result_contact.html#a5ee952bdd68e0006d377398221c6e003", null ],
       [ "phoneNumber", "class_tg_bot_1_1_inline_query_result_contact.html#a8bf9d71688e348b69876301a4422f228", null ],
-      [ "thumbHeight", "class_tg_bot_1_1_inline_query_result_contact.html#aa75d7c816783d54170b307ce99d65e56", null ],
+      [ "thumbHeight", "class_tg_bot_1_1_inline_query_result_contact.html#af0826f3c054781cc33e5020cab2bc307", null ],
       [ "thumbUrl", "class_tg_bot_1_1_inline_query_result_contact.html#a27661e2e0d1e7746e92e569a023b566d", null ],
-      [ "thumbWidth", "class_tg_bot_1_1_inline_query_result_contact.html#a518e5a825d0e5a715d5bbdc08b75ecfa", null ],
+      [ "thumbWidth", "class_tg_bot_1_1_inline_query_result_contact.html#a0efc1307b3edfba2921679559ed4f50c", null ],
       [ "vcard", "class_tg_bot_1_1_inline_query_result_contact.html#a33fe5dafe6dca0dddaf7798bd1a8ca8a", null ]
     ] ],
-    [ "InlineQueryResultDocument", "class_tg_bot_1_1_inline_query_result_document.html", [
+    [ "TgBot::InlineQueryResultDocument", "class_tg_bot_1_1_inline_query_result_document.html", [
       [ "Ptr", "class_tg_bot_1_1_inline_query_result_document.html#ab80da07f964cfc6a96125a3674c90cbd", null ],
       [ "InlineQueryResultDocument", "class_tg_bot_1_1_inline_query_result_document.html#ad92da531239a23a1badfee324d6cd03f", null ],
       [ "description", "class_tg_bot_1_1_inline_query_result_document.html#a1a8cb4000b1a15091a03196d3304b363", null ],
       [ "documentUrl", "class_tg_bot_1_1_inline_query_result_document.html#ad100723d377947665ed69b77bc3a7746", null ],
       [ "mimeType", "class_tg_bot_1_1_inline_query_result_document.html#a77536770d42b1df1879519ee99e7a182", null ],
-      [ "thumbHeight", "class_tg_bot_1_1_inline_query_result_document.html#a02c137d775ab621a206e12268491392f", null ],
+      [ "thumbHeight", "class_tg_bot_1_1_inline_query_result_document.html#aea207b9130ff7d2ba596d1bd71377b27", null ],
       [ "thumbUrl", "class_tg_bot_1_1_inline_query_result_document.html#a7d119b843296c1f51392f05b7dc221df", null ],
-      [ "thumbWidth", "class_tg_bot_1_1_inline_query_result_document.html#a5b795d9e5cc5bac980c68d44fca1e6ce", null ]
+      [ "thumbWidth", "class_tg_bot_1_1_inline_query_result_document.html#a7ee6c2411b744244226d64deeb848a2c", null ]
     ] ],
-    [ "InlineQueryResultGame", "class_tg_bot_1_1_inline_query_result_game.html", [
+    [ "TgBot::InlineQueryResultGame", "class_tg_bot_1_1_inline_query_result_game.html", [
       [ "Ptr", "class_tg_bot_1_1_inline_query_result_game.html#ae929b7f837f1fb20fd5cda2004d7f84d", null ],
       [ "InlineQueryResultGame", "class_tg_bot_1_1_inline_query_result_game.html#adb22300e3e1fedc1b0ff50826d6035f8", null ],
       [ "gameShortName", "class_tg_bot_1_1_inline_query_result_game.html#a27eeb729c70e39bd963b99090c53e93a", null ]
     ] ],
-    [ "InlineQueryResultGif", "class_tg_bot_1_1_inline_query_result_gif.html", [
+    [ "TgBot::InlineQueryResultGif", "class_tg_bot_1_1_inline_query_result_gif.html", [
       [ "Ptr", "class_tg_bot_1_1_inline_query_result_gif.html#a470940afb4d7151f36dea3cb0b53b618", null ],
       [ "InlineQueryResultGif", "class_tg_bot_1_1_inline_query_result_gif.html#afdc37593f7f371b473a042e9dd832874", null ],
-      [ "gifDuration", "class_tg_bot_1_1_inline_query_result_gif.html#abe09430a376eb777fe7bc563ea1df5f6", null ],
-      [ "gifHeight", "class_tg_bot_1_1_inline_query_result_gif.html#ac668e2b6fca9f023e5d4198acb73faae", null ],
+      [ "gifDuration", "class_tg_bot_1_1_inline_query_result_gif.html#a94915e6661de26588e869ca4776ee04a", null ],
+      [ "gifHeight", "class_tg_bot_1_1_inline_query_result_gif.html#a91988e5d118d7d3e04168be74f2f8832", null ],
       [ "gifUrl", "class_tg_bot_1_1_inline_query_result_gif.html#a7f38ad7e89d2e911f3b5b8e4f9209ad0", null ],
-      [ "gifWidth", "class_tg_bot_1_1_inline_query_result_gif.html#a0a205b57827e2512f96f4f2e3ae62376", null ],
+      [ "gifWidth", "class_tg_bot_1_1_inline_query_result_gif.html#ad047eebfcd4f62060a99e95fc7a4a6ce", null ],
       [ "thumbUrl", "class_tg_bot_1_1_inline_query_result_gif.html#a0872ef8aa09cbf3b1fba851dd37e49a3", null ]
     ] ],
-    [ "InlineQueryResultLocation", "class_tg_bot_1_1_inline_query_result_location.html", [
+    [ "TgBot::InlineQueryResultLocation", "class_tg_bot_1_1_inline_query_result_location.html", [
       [ "Ptr", "class_tg_bot_1_1_inline_query_result_location.html#abe4f762145a16a14ef2c3d9f590392fc", null ],
       [ "InlineQueryResultLocation", "class_tg_bot_1_1_inline_query_result_location.html#ad5211e1bb511b3311161bbe5a5ae794d", null ],
       [ "latitude", "class_tg_bot_1_1_inline_query_result_location.html#aedb605f7593c1772185cbb66bb63019b", null ],
       [ "longitude", "class_tg_bot_1_1_inline_query_result_location.html#a7561bd9c6447a72a2a45a7fe966dbfb7", null ],
-      [ "thumbHeight", "class_tg_bot_1_1_inline_query_result_location.html#a5a62d2f1ab0003c08cea5f66cc8fbaf2", null ],
+      [ "thumbHeight", "class_tg_bot_1_1_inline_query_result_location.html#a873264b38895940c8769a86f04f9760d", null ],
       [ "thumbUrl", "class_tg_bot_1_1_inline_query_result_location.html#ae18d6b73278913416e3cbc1b23dc88a4", null ],
-      [ "thumbWidth", "class_tg_bot_1_1_inline_query_result_location.html#a486129a565c022620721f78f6b546442", null ]
+      [ "thumbWidth", "class_tg_bot_1_1_inline_query_result_location.html#ac302fbbf2de3056bb84dfcdc554d263c", null ]
     ] ],
-    [ "InlineQueryResultMpeg4Gif", "class_tg_bot_1_1_inline_query_result_mpeg4_gif.html", [
+    [ "TgBot::InlineQueryResultMpeg4Gif", "class_tg_bot_1_1_inline_query_result_mpeg4_gif.html", [
       [ "Ptr", "class_tg_bot_1_1_inline_query_result_mpeg4_gif.html#ad818a04396804ae76ea81d752d145e45", null ],
       [ "InlineQueryResultMpeg4Gif", "class_tg_bot_1_1_inline_query_result_mpeg4_gif.html#aee32f547953b7ea4735302fb41b7ac74", null ],
-      [ "mpeg4Duration", "class_tg_bot_1_1_inline_query_result_mpeg4_gif.html#a046e5ad4661be2e9adbe15890409584e", null ],
-      [ "mpeg4Height", "class_tg_bot_1_1_inline_query_result_mpeg4_gif.html#a783d22cb41d4f8ee598cddde8d98b90c", null ],
+      [ "mpeg4Duration", "class_tg_bot_1_1_inline_query_result_mpeg4_gif.html#ab65a73193d9aaa530cbcb4a30684d04d", null ],
+      [ "mpeg4Height", "class_tg_bot_1_1_inline_query_result_mpeg4_gif.html#aee37d1353b144fc20cc0d18f56cc74ac", null ],
       [ "mpeg4Url", "class_tg_bot_1_1_inline_query_result_mpeg4_gif.html#a32b8a36f73b908be5a142f58e3355069", null ],
-      [ "mpeg4Width", "class_tg_bot_1_1_inline_query_result_mpeg4_gif.html#a5fe876f117ad0b850c6e0333717e431c", null ],
+      [ "mpeg4Width", "class_tg_bot_1_1_inline_query_result_mpeg4_gif.html#af5b5b1cc7dd9cd4299e19b23a5e60fce", null ],
       [ "thumbUrl", "class_tg_bot_1_1_inline_query_result_mpeg4_gif.html#ac90d65262a4481d149f90153bcf621e5", null ]
     ] ],
-    [ "InlineQueryResultPhoto", "class_tg_bot_1_1_inline_query_result_photo.html", [
+    [ "TgBot::InlineQueryResultPhoto", "class_tg_bot_1_1_inline_query_result_photo.html", [
       [ "Ptr", "class_tg_bot_1_1_inline_query_result_photo.html#a7f4fb7963109c5e3e49b87e331cea12c", null ],
       [ "InlineQueryResultPhoto", "class_tg_bot_1_1_inline_query_result_photo.html#a3a81f1e745b332f7152376de4b700e54", null ],
       [ "description", "class_tg_bot_1_1_inline_query_result_photo.html#a3bc4bf8bfdadeff170be433b537d445a", null ],
-      [ "photoHeight", "class_tg_bot_1_1_inline_query_result_photo.html#ae82fef29603bd4667558ea7aeb7d73f7", null ],
+      [ "photoHeight", "class_tg_bot_1_1_inline_query_result_photo.html#a1ad9297232c3e965599ebfc3eaf49c0c", null ],
       [ "photoUrl", "class_tg_bot_1_1_inline_query_result_photo.html#a0ad0da22b0a217208453aea34ed9a2c2", null ],
-      [ "photoWidth", "class_tg_bot_1_1_inline_query_result_photo.html#a13c4e25b5f0709aa32d25b01ecb44cc8", null ],
+      [ "photoWidth", "class_tg_bot_1_1_inline_query_result_photo.html#aca919115c3245e6625a1694305ef58fd", null ],
       [ "thumbUrl", "class_tg_bot_1_1_inline_query_result_photo.html#aca6ea097fce7827241ae1628c44a5893", null ]
     ] ],
-    [ "InlineQueryResultVenue", "class_tg_bot_1_1_inline_query_result_venue.html", [
+    [ "TgBot::InlineQueryResultVenue", "class_tg_bot_1_1_inline_query_result_venue.html", [
       [ "Ptr", "class_tg_bot_1_1_inline_query_result_venue.html#a216e83019cb0df61e4bc74f4499e0eb5", null ],
       [ "InlineQueryResultVenue", "class_tg_bot_1_1_inline_query_result_venue.html#a7a696bc221c372c4cff2633159a5dac1", null ],
       [ "address", "class_tg_bot_1_1_inline_query_result_venue.html#a065ae48c35a1fccad49e1dd9c143443b", null ],
@@ -309,28 +316,28 @@ var group__types =
       [ "foursquareType", "class_tg_bot_1_1_inline_query_result_venue.html#a06bed21fae09cabead17227f430a6445", null ],
       [ "latitude", "class_tg_bot_1_1_inline_query_result_venue.html#a842e5f5e15da3e24e81f8d68ec00ad97", null ],
       [ "longitude", "class_tg_bot_1_1_inline_query_result_venue.html#a385d6861f463a496af03accc31143a4c", null ],
-      [ "thumbHeight", "class_tg_bot_1_1_inline_query_result_venue.html#a284c445f7142d1f83fe78c22681747c2", null ],
+      [ "thumbHeight", "class_tg_bot_1_1_inline_query_result_venue.html#aebfea7a9ce3f4beaa58c9c8b544a1b44", null ],
       [ "thumbUrl", "class_tg_bot_1_1_inline_query_result_venue.html#a7c54d597c7b13147109ca777364abf90", null ],
-      [ "thumbWidth", "class_tg_bot_1_1_inline_query_result_venue.html#a88471f6acad35d4d45641572e4730517", null ]
+      [ "thumbWidth", "class_tg_bot_1_1_inline_query_result_venue.html#a160e77299b7274410e7bfc0e9987ab76", null ]
     ] ],
-    [ "InlineQueryResultVideo", "class_tg_bot_1_1_inline_query_result_video.html", [
+    [ "TgBot::InlineQueryResultVideo", "class_tg_bot_1_1_inline_query_result_video.html", [
       [ "Ptr", "class_tg_bot_1_1_inline_query_result_video.html#a08cf746fbd9637ddeb172aa3871941e8", null ],
       [ "InlineQueryResultVideo", "class_tg_bot_1_1_inline_query_result_video.html#a028d74e67867e8f59ac9dfb07709da46", null ],
       [ "description", "class_tg_bot_1_1_inline_query_result_video.html#a43bbb53cf78b8ea8f40590d014e23eec", null ],
       [ "mimeType", "class_tg_bot_1_1_inline_query_result_video.html#a6eb48f1bc3089f4caef133c8c6644baf", null ],
       [ "thumbUrl", "class_tg_bot_1_1_inline_query_result_video.html#aa03003971380ecfaef6466f2cbb3e721", null ],
-      [ "videoDuration", "class_tg_bot_1_1_inline_query_result_video.html#a80c3c9b52a29c93ea2899fdfa12ebfa4", null ],
-      [ "videoHeight", "class_tg_bot_1_1_inline_query_result_video.html#a309ec0df18900ecaf458d6373b9aa49e", null ],
+      [ "videoDuration", "class_tg_bot_1_1_inline_query_result_video.html#a1bc60b0ecd1aa215e164702157836da1", null ],
+      [ "videoHeight", "class_tg_bot_1_1_inline_query_result_video.html#a4ed6271bba4be5be43675119c9ad1146", null ],
       [ "videoUrl", "class_tg_bot_1_1_inline_query_result_video.html#ace4b498ad92fd17782fbd8e40564f287", null ],
-      [ "videoWidth", "class_tg_bot_1_1_inline_query_result_video.html#ac8b569e1eb960afc51ef894a553750a3", null ]
+      [ "videoWidth", "class_tg_bot_1_1_inline_query_result_video.html#aad2faf4965b3f4cc04b4247c1662e505", null ]
     ] ],
-    [ "InlineQueryResultVoice", "class_tg_bot_1_1_inline_query_result_voice.html", [
+    [ "TgBot::InlineQueryResultVoice", "class_tg_bot_1_1_inline_query_result_voice.html", [
       [ "Ptr", "class_tg_bot_1_1_inline_query_result_voice.html#a4cf1aa18aaec542598e39ee7416c7df9", null ],
       [ "InlineQueryResultVoice", "class_tg_bot_1_1_inline_query_result_voice.html#a01f73a78827c6ec75f7b355b521efd47", null ],
-      [ "voiceDuration", "class_tg_bot_1_1_inline_query_result_voice.html#a628636c93a2dbf8440cb3989ba1aaceb", null ],
+      [ "voiceDuration", "class_tg_bot_1_1_inline_query_result_voice.html#a596d823683ff426d8f358e8c8b83c989", null ],
       [ "voiceUrl", "class_tg_bot_1_1_inline_query_result_voice.html#afc09fe61b4fcdce1644d55ec488ecda9", null ]
     ] ],
-    [ "InputContactMessageContent", "class_tg_bot_1_1_input_contact_message_content.html", [
+    [ "TgBot::InputContactMessageContent", "class_tg_bot_1_1_input_contact_message_content.html", [
       [ "Ptr", "class_tg_bot_1_1_input_contact_message_content.html#ad552a44374583a3ea339380338e87e99", null ],
       [ "InputContactMessageContent", "class_tg_bot_1_1_input_contact_message_content.html#a389b68f90eed647eafe4dc23d2754e7d", null ],
       [ "~InputContactMessageContent", "class_tg_bot_1_1_input_contact_message_content.html#ae6b8788ba14b203ba53373262d9a67c0", null ],
@@ -339,67 +346,67 @@ var group__types =
       [ "phoneNumber", "class_tg_bot_1_1_input_contact_message_content.html#a96fe449f5efd3f80c2dde6af364a7aa6", null ],
       [ "vcard", "class_tg_bot_1_1_input_contact_message_content.html#acf386d75877bd190f3d845e697e03a9f", null ]
     ] ],
-    [ "InputFile", "class_tg_bot_1_1_input_file.html", [
+    [ "TgBot::InputFile", "class_tg_bot_1_1_input_file.html", [
       [ "Ptr", "class_tg_bot_1_1_input_file.html#a9b1b7a8f913d9c4d4a389d9a4353d94f", null ],
       [ "data", "class_tg_bot_1_1_input_file.html#a1633c8f4a40274f53ee6aed3ecd42ef7", null ],
       [ "fileName", "class_tg_bot_1_1_input_file.html#a47c113dd1cb4678d7ab14f1f033a5b1d", null ],
       [ "mimeType", "class_tg_bot_1_1_input_file.html#a02575330b4deaa9d2cab5ebd8d8e2e5e", null ]
     ] ],
-    [ "InputLocationMessageContent", "class_tg_bot_1_1_input_location_message_content.html", [
+    [ "TgBot::InputLocationMessageContent", "class_tg_bot_1_1_input_location_message_content.html", [
       [ "Ptr", "class_tg_bot_1_1_input_location_message_content.html#a80ef24779acdb726590e8aaa87c52840", null ],
       [ "InputLocationMessageContent", "class_tg_bot_1_1_input_location_message_content.html#ace56f8081ed46a4729a5f37dacdcb05e", null ],
       [ "~InputLocationMessageContent", "class_tg_bot_1_1_input_location_message_content.html#acbcd463ae944168b265e789509e6de55", null ],
       [ "latitude", "class_tg_bot_1_1_input_location_message_content.html#a2fd689365b19b085bdd59f928e3c3e16", null ],
       [ "longitude", "class_tg_bot_1_1_input_location_message_content.html#a6dea79838b9c9f9194c1ec49d5eb8e49", null ]
     ] ],
-    [ "InputMedia", "class_tg_bot_1_1_input_media.html", [
+    [ "TgBot::InputMedia", "class_tg_bot_1_1_input_media.html", [
       [ "Ptr", "class_tg_bot_1_1_input_media.html#abdc38ae21d5213ead3720db082ef1f9c", null ],
-      [ "TYPE", "class_tg_bot_1_1_input_media.html#a15b9867f0c1834b2a4d16ac48f25fb73", [
-        [ "PHOTO", "class_tg_bot_1_1_input_media.html#a15b9867f0c1834b2a4d16ac48f25fb73ac6c7e64f7c3b7e4c031d022f232298bf", null ],
-        [ "VIDEO", "class_tg_bot_1_1_input_media.html#a15b9867f0c1834b2a4d16ac48f25fb73ae60ae31f67ab883c746bb71c7a145c18", null ],
-        [ "ANIMATION", "class_tg_bot_1_1_input_media.html#a15b9867f0c1834b2a4d16ac48f25fb73a28ff0af6199e0baf97bb71b4b4422057", null ],
-        [ "DOCUMENT", "class_tg_bot_1_1_input_media.html#a15b9867f0c1834b2a4d16ac48f25fb73ac231fa48df3ee393c92dccac4dba5e7d", null ],
-        [ "AUDIO", "class_tg_bot_1_1_input_media.html#a15b9867f0c1834b2a4d16ac48f25fb73ae423b8bde9bfbfd7e9409b23b23aed91", null ]
+      [ "TYPE", "class_tg_bot_1_1_input_media.html#a3537755c5e821d45ef848c363d1483b7", [
+        [ "PHOTO", "class_tg_bot_1_1_input_media.html#a3537755c5e821d45ef848c363d1483b7ac6c7e64f7c3b7e4c031d022f232298bf", null ],
+        [ "VIDEO", "class_tg_bot_1_1_input_media.html#a3537755c5e821d45ef848c363d1483b7ae60ae31f67ab883c746bb71c7a145c18", null ],
+        [ "ANIMATION", "class_tg_bot_1_1_input_media.html#a3537755c5e821d45ef848c363d1483b7a28ff0af6199e0baf97bb71b4b4422057", null ],
+        [ "DOCUMENT", "class_tg_bot_1_1_input_media.html#a3537755c5e821d45ef848c363d1483b7ac231fa48df3ee393c92dccac4dba5e7d", null ],
+        [ "AUDIO", "class_tg_bot_1_1_input_media.html#a3537755c5e821d45ef848c363d1483b7ae423b8bde9bfbfd7e9409b23b23aed91", null ]
       ] ],
       [ "caption", "class_tg_bot_1_1_input_media.html#a5fd875b292792f8d699d7bb678e68c90", null ],
-      [ "duration", "class_tg_bot_1_1_input_media.html#aadf7e972c4ea70c771a0da27da4aa7cd", null ],
-      [ "height", "class_tg_bot_1_1_input_media.html#aeac8eae9ef4e06fa0c67b98a8a8042f8", null ],
+      [ "duration", "class_tg_bot_1_1_input_media.html#a297d7f0b118499c965d3037b0e8583b7", null ],
+      [ "height", "class_tg_bot_1_1_input_media.html#a4a5adfac77488c3c65440c6d116953ec", null ],
       [ "media", "class_tg_bot_1_1_input_media.html#a3b06a5b4686339b58c4a95b5734b4b77", null ],
       [ "parseMode", "class_tg_bot_1_1_input_media.html#ae2761ade0de31f96074d6760661c7edc", null ],
-      [ "performer", "class_tg_bot_1_1_input_media.html#ab4077509620fe87cbec14ae2fd07b452", null ],
+      [ "performer", "class_tg_bot_1_1_input_media.html#a06c5331f1884e0b6047f7f12cd1403e2", null ],
       [ "supportsStreaming", "class_tg_bot_1_1_input_media.html#a0b8e0cc28a8283ca946b4aa5c5384a3b", null ],
       [ "thumb", "class_tg_bot_1_1_input_media.html#a2bd80b1c8832842976e28f5f5397596e", null ],
-      [ "title", "class_tg_bot_1_1_input_media.html#a96f9c769537d5e503d1139f8943025d7", null ],
+      [ "title", "class_tg_bot_1_1_input_media.html#a509ce8292a6e2170ea2b20ca51c919ed", null ],
       [ "type", "class_tg_bot_1_1_input_media.html#a8080040900519b706a367ecfd7b28226", null ],
-      [ "width", "class_tg_bot_1_1_input_media.html#afa903b8b20fd1cf71b1f0510a4563a9a", null ]
+      [ "width", "class_tg_bot_1_1_input_media.html#a6f9047eea1884617247215a512a0a042", null ]
     ] ],
-    [ "InputMediaAnimation", "class_tg_bot_1_1_input_media_animation.html", [
+    [ "TgBot::InputMediaAnimation", "class_tg_bot_1_1_input_media_animation.html", [
       [ "Ptr", "class_tg_bot_1_1_input_media_animation.html#a30ba6a562ee26977fe3e7efc7aad6d22", null ],
       [ "InputMediaAnimation", "class_tg_bot_1_1_input_media_animation.html#aa9bbc275fd2c74abe6691e774f81357e", null ]
     ] ],
-    [ "InputMediaAudio", "class_tg_bot_1_1_input_media_audio.html", [
+    [ "TgBot::InputMediaAudio", "class_tg_bot_1_1_input_media_audio.html", [
       [ "Ptr", "class_tg_bot_1_1_input_media_audio.html#adf635d1fc252a7058272983ad2f1ae93", null ],
       [ "InputMediaAudio", "class_tg_bot_1_1_input_media_audio.html#a227d09539cfb2a6a38dca56b3777d4c4", null ]
     ] ],
-    [ "InputMediaDocument", "class_tg_bot_1_1_input_media_document.html", [
+    [ "TgBot::InputMediaDocument", "class_tg_bot_1_1_input_media_document.html", [
       [ "Ptr", "class_tg_bot_1_1_input_media_document.html#a8d624ad41088d1a512e4bfc5ceef7856", null ],
       [ "InputMediaDocument", "class_tg_bot_1_1_input_media_document.html#a452614833e0cb356fb74fc26fa16dac8", null ]
     ] ],
-    [ "InputMediaPhoto", "class_tg_bot_1_1_input_media_photo.html", [
+    [ "TgBot::InputMediaPhoto", "class_tg_bot_1_1_input_media_photo.html", [
       [ "Ptr", "class_tg_bot_1_1_input_media_photo.html#a02ac033a0ebe474b02f745f4d9e8e2b3", null ],
       [ "InputMediaPhoto", "class_tg_bot_1_1_input_media_photo.html#ab064268a26729415ebfb71c5a0abf36f", null ]
     ] ],
-    [ "InputMediaVideo", "class_tg_bot_1_1_input_media_video.html", [
+    [ "TgBot::InputMediaVideo", "class_tg_bot_1_1_input_media_video.html", [
       [ "Ptr", "class_tg_bot_1_1_input_media_video.html#a659beee71ba67a81f85892800761eb0f", null ],
       [ "InputMediaVideo", "class_tg_bot_1_1_input_media_video.html#a698a73c20b1c6c10be011543ec1253ea", null ]
     ] ],
-    [ "InputMessageContent", "class_tg_bot_1_1_input_message_content.html", [
+    [ "TgBot::InputMessageContent", "class_tg_bot_1_1_input_message_content.html", [
       [ "Ptr", "class_tg_bot_1_1_input_message_content.html#a2357dd0a36321a3b601b64a76d2d6dff", null ],
       [ "InputMessageContent", "class_tg_bot_1_1_input_message_content.html#adfe3185ed78c3bfdfb82bee0546eb100", null ],
       [ "~InputMessageContent", "class_tg_bot_1_1_input_message_content.html#a102a0b7456c22110a7cf751f0273ee7d", null ],
       [ "type", "class_tg_bot_1_1_input_message_content.html#ad9bc101393caa3296bdae0fe01f4e033", null ]
     ] ],
-    [ "InputTextMessageContent", "class_tg_bot_1_1_input_text_message_content.html", [
+    [ "TgBot::InputTextMessageContent", "class_tg_bot_1_1_input_text_message_content.html", [
       [ "Ptr", "class_tg_bot_1_1_input_text_message_content.html#ab183a605903cf8dbc04b220cf1472495", null ],
       [ "InputTextMessageContent", "class_tg_bot_1_1_input_text_message_content.html#a6926fc1a1b56159d2e2d92ed3de507e7", null ],
       [ "~InputTextMessageContent", "class_tg_bot_1_1_input_text_message_content.html#af14b835e369c107071adf6e63b9e2760", null ],
@@ -407,7 +414,7 @@ var group__types =
       [ "messageText", "class_tg_bot_1_1_input_text_message_content.html#a6c7e1a9893a7c7c3be75f221f801e8e1", null ],
       [ "parseMode", "class_tg_bot_1_1_input_text_message_content.html#abc5610bba9379026280ab5cf2e5d6c0c", null ]
     ] ],
-    [ "InputVenueMessageContent", "class_tg_bot_1_1_input_venue_message_content.html", [
+    [ "TgBot::InputVenueMessageContent", "class_tg_bot_1_1_input_venue_message_content.html", [
       [ "Ptr", "class_tg_bot_1_1_input_venue_message_content.html#a48a9d369812ca327da77766140d22100", null ],
       [ "InputVenueMessageContent", "class_tg_bot_1_1_input_venue_message_content.html#a25b40f55f2e1c3f08d4159e7254a2e77", null ],
       [ "~InputVenueMessageContent", "class_tg_bot_1_1_input_venue_message_content.html#a3d08b7d6946538e949ec0293f72edec5", null ],
@@ -418,64 +425,65 @@ var group__types =
       [ "longitude", "class_tg_bot_1_1_input_venue_message_content.html#ad3fb2b24df33d6eaa96243ab7a06f3f8", null ],
       [ "title", "class_tg_bot_1_1_input_venue_message_content.html#ae5c1b7d2263d1722662b7eb6fceb9038", null ]
     ] ],
-    [ "Invoice", "class_tg_bot_1_1_invoice.html", [
+    [ "TgBot::Invoice", "class_tg_bot_1_1_invoice.html", [
       [ "Ptr", "class_tg_bot_1_1_invoice.html#a34a6d437618ea3be0a40c64400067f67", null ],
       [ "currency", "class_tg_bot_1_1_invoice.html#a9207fea93e6b3f3aa1081c8ab9039f8a", null ],
       [ "description", "class_tg_bot_1_1_invoice.html#ad3c1a7a4fbf8157e3fd72a2352226fbd", null ],
       [ "startParameter", "class_tg_bot_1_1_invoice.html#a659ac0711c1be89009dddc04eea4dfb2", null ],
       [ "title", "class_tg_bot_1_1_invoice.html#a5b53e4a6a2e3669a960d379a4147abae", null ],
-      [ "totalAmount", "class_tg_bot_1_1_invoice.html#a8008d2f948d705aa48bc0557d071e62f", null ]
+      [ "totalAmount", "class_tg_bot_1_1_invoice.html#adc9e2bad716d861ba67cb55bc9460391", null ]
     ] ],
-    [ "KeyboardButton", "class_tg_bot_1_1_keyboard_button.html", [
+    [ "TgBot::KeyboardButton", "class_tg_bot_1_1_keyboard_button.html", [
       [ "Ptr", "class_tg_bot_1_1_keyboard_button.html#afa66915e5a8d58dbd7276265f00b0bcd", null ],
       [ "requestContact", "class_tg_bot_1_1_keyboard_button.html#a3e8c6e40ecf3a8f739a12265a89fd381", null ],
       [ "requestLocation", "class_tg_bot_1_1_keyboard_button.html#a8948e0ca465352d04c44767c25275022", null ],
       [ "text", "class_tg_bot_1_1_keyboard_button.html#ac9ac8ddd73e27732fcbab7163ff74e2e", null ]
     ] ],
-    [ "LabeledPrice", "class_tg_bot_1_1_labeled_price.html", [
+    [ "TgBot::LabeledPrice", "class_tg_bot_1_1_labeled_price.html", [
       [ "Ptr", "class_tg_bot_1_1_labeled_price.html#a1d53775f4034427a2dfaae9ef176796c", null ],
-      [ "amount", "class_tg_bot_1_1_labeled_price.html#a09b9a91f5bebc7e889bad2d4455b243c", null ],
+      [ "amount", "class_tg_bot_1_1_labeled_price.html#ad030867d66a09c99f41fe5a2b71bfc94", null ],
       [ "label", "class_tg_bot_1_1_labeled_price.html#a035375dfc58fe01e91d07fe918847046", null ]
     ] ],
-    [ "Location", "class_tg_bot_1_1_location.html", [
+    [ "TgBot::Location", "class_tg_bot_1_1_location.html", [
       [ "Ptr", "class_tg_bot_1_1_location.html#a0854defd16651e7742f89eca2202d678", null ],
       [ "latitude", "class_tg_bot_1_1_location.html#a01c1a917a3ae8bcbc8977b1b5f0aea7b", null ],
       [ "longitude", "class_tg_bot_1_1_location.html#aac2c4c71d72f1734a2439368f3e38687", null ]
     ] ],
-    [ "LoginUrl", "class_tg_bot_1_1_login_url.html", [
+    [ "TgBot::LoginUrl", "class_tg_bot_1_1_login_url.html", [
       [ "Ptr", "class_tg_bot_1_1_login_url.html#a28fbcbe771118826004cc4822cded28d", null ],
       [ "bot_username", "class_tg_bot_1_1_login_url.html#a3740a08b9b2cc66900551a6640e464b2", null ],
       [ "forward_text", "class_tg_bot_1_1_login_url.html#a59ba4c8e8003e9f7c59035d180c8d5aa", null ],
       [ "request_write_access", "class_tg_bot_1_1_login_url.html#a3b55d63bcc0ef29984490f2ed89f09ab", null ],
       [ "url", "class_tg_bot_1_1_login_url.html#ab6bb8981b1e68bafb2d571844dab8c2d", null ]
     ] ],
-    [ "MaskPosition", "class_tg_bot_1_1_mask_position.html", [
+    [ "TgBot::MaskPosition", "class_tg_bot_1_1_mask_position.html", [
       [ "Ptr", "class_tg_bot_1_1_mask_position.html#a37edf3eefbf231ee8ab94a29425b3fe1", null ],
       [ "point", "class_tg_bot_1_1_mask_position.html#a8c22f087cecfcc16c6c563a6df6c9d7e", null ],
       [ "scale", "class_tg_bot_1_1_mask_position.html#a8f78e6dcdb37975c435cfd0d9a923963", null ],
       [ "xShift", "class_tg_bot_1_1_mask_position.html#ac4e73bf83077bce72be0ee031f2f5d83", null ],
       [ "yShift", "class_tg_bot_1_1_mask_position.html#a56700f4f5ce4902c978df680cfd6a424", null ]
     ] ],
-    [ "Message", "class_tg_bot_1_1_message.html", [
+    [ "TgBot::Message", "class_tg_bot_1_1_message.html", [
       [ "Ptr", "class_tg_bot_1_1_message.html#a3805a5dc013c6ab23ac5efc91282c11d", null ],
       [ "animation", "class_tg_bot_1_1_message.html#a45f98ebfeecddc6d91fd5359aea9bbc2", null ],
       [ "audio", "class_tg_bot_1_1_message.html#a5119ef820bcb4c231a1402147305ea67", null ],
       [ "authorSignature", "class_tg_bot_1_1_message.html#a5e23abf4c637e59a51bd7f7a49339d54", null ],
+      [ "automaticForward", "class_tg_bot_1_1_message.html#a6988c0535e29b74fb4a30b104b702d4d", null ],
       [ "caption", "class_tg_bot_1_1_message.html#a2c8eb6214270371cfb094b699c07f695", null ],
       [ "captionEntities", "class_tg_bot_1_1_message.html#a112bce084dd4b01dc5918a1232c4cc05", null ],
       [ "channelChatCreated", "class_tg_bot_1_1_message.html#a537a751af11a7f18d92c1d70c93c9f2d", null ],
       [ "chat", "class_tg_bot_1_1_message.html#a773fa770b84fe97263a096c0ddfb096a", null ],
       [ "connectedWebsite", "class_tg_bot_1_1_message.html#a44a07b98262601eb86a5dc9ae0e3b932", null ],
       [ "contact", "class_tg_bot_1_1_message.html#adb3a1a65ce014085f7231f8d356b6c4f", null ],
-      [ "date", "class_tg_bot_1_1_message.html#ad49187c847973a024ab158103a8c87fd", null ],
+      [ "date", "class_tg_bot_1_1_message.html#a732e4e14c9c5845e713441bc09610eee", null ],
       [ "deleteChatPhoto", "class_tg_bot_1_1_message.html#a35db549a420fd4b5a28b4a5a569770d5", null ],
       [ "document", "class_tg_bot_1_1_message.html#a9d4520b321f421425803aa5c5a414e72", null ],
-      [ "editDate", "class_tg_bot_1_1_message.html#a5e47295516df0a7ceb9fbb8119c8ab0a", null ],
+      [ "editDate", "class_tg_bot_1_1_message.html#a57ae9cfe48d6de764083c9253469188c", null ],
       [ "entities", "class_tg_bot_1_1_message.html#a53c199056538ebe72c65e409deaf7a8e", null ],
-      [ "forwardDate", "class_tg_bot_1_1_message.html#aca1eca2a8a31a45a0b85ba472bfe991d", null ],
+      [ "forwardDate", "class_tg_bot_1_1_message.html#a94e9d1e38a8cb12932f5718dd5d7fdbc", null ],
       [ "forwardFrom", "class_tg_bot_1_1_message.html#a7e4d984cb1464d0ae504d7c8ed11b508", null ],
       [ "forwardFromChat", "class_tg_bot_1_1_message.html#aeab58d33a3f4e712e8b78d65f48892e5", null ],
-      [ "forwardFromMessageId", "class_tg_bot_1_1_message.html#a2149f82b01245e592cb392e2133e4667", null ],
+      [ "forwardFromMessageId", "class_tg_bot_1_1_message.html#a05b949c759fc42382631257ac3fed64a", null ],
       [ "forwardSenderName", "class_tg_bot_1_1_message.html#a4fc86142877a3cd3aaf126d467d496e6", null ],
       [ "forwardSignature", "class_tg_bot_1_1_message.html#a70f5fe7a8e14b0ce0842fa8661492e4a", null ],
       [ "from", "class_tg_bot_1_1_message.html#a65b78a13b38ad767338cd2e9d2e69ca2", null ],
@@ -484,9 +492,9 @@ var group__types =
       [ "invoice", "class_tg_bot_1_1_message.html#ade904bacf5a1b53b09924ebb965a3832", null ],
       [ "leftChatMember", "class_tg_bot_1_1_message.html#a2291a3c7d9445a02774b4cd0e3972c29", null ],
       [ "location", "class_tg_bot_1_1_message.html#afda60437cce532170cb9b924f70e1c56", null ],
-      [ "messageId", "class_tg_bot_1_1_message.html#ad88191e75068adc70028660086928d14", null ],
-      [ "migrateFromChatId", "class_tg_bot_1_1_message.html#a4eb6cf508337183adbe060baf907c0e0", null ],
-      [ "migrateToChatId", "class_tg_bot_1_1_message.html#aa79eb6592094b18fdc9a330fac0b53ef", null ],
+      [ "messageId", "class_tg_bot_1_1_message.html#a42996e2efd886ff6b3365039ccb02a28", null ],
+      [ "migrateFromChatId", "class_tg_bot_1_1_message.html#a815730cbb92da6db84e4ed81dadb192b", null ],
+      [ "migrateToChatId", "class_tg_bot_1_1_message.html#a294aef83f99fd9290e63c479e93208e2", null ],
       [ "newChatMember", "class_tg_bot_1_1_message.html#a40c3d46af7bb047504b6b6e8147361c9", null ],
       [ "newChatMembers", "class_tg_bot_1_1_message.html#aac7be66dd576e712ea37a2631670ef03", null ],
       [ "newChatPhoto", "class_tg_bot_1_1_message.html#a8f8a9c50fd30fa24476605b8efdd95ea", null ],
@@ -504,36 +512,36 @@ var group__types =
       [ "video", "class_tg_bot_1_1_message.html#abd645f5273f4cd142979beab925ff16f", null ],
       [ "voice", "class_tg_bot_1_1_message.html#a45147e56a0cb9b7dee926da7a11a0093", null ]
     ] ],
-    [ "MessageEntity", "class_tg_bot_1_1_message_entity.html", [
+    [ "TgBot::MessageEntity", "class_tg_bot_1_1_message_entity.html", [
       [ "Ptr", "class_tg_bot_1_1_message_entity.html#a6710ffdbafba909633df7bcd8c488da0", null ],
-      [ "length", "class_tg_bot_1_1_message_entity.html#a3f41be5fd732173bd84093df20a58e38", null ],
-      [ "offset", "class_tg_bot_1_1_message_entity.html#aad8da7260ae4360536a0a461e6c5b628", null ],
+      [ "length", "class_tg_bot_1_1_message_entity.html#aeda0401744ef1b22b2059124fe940492", null ],
+      [ "offset", "class_tg_bot_1_1_message_entity.html#a48d29c9fd3496b26e349d4d3049bad0d", null ],
       [ "type", "class_tg_bot_1_1_message_entity.html#adec4d61f5859cb0384e84dbe18988d78", null ],
       [ "url", "class_tg_bot_1_1_message_entity.html#a2cf6b38ee3116a4589d5f8263e53c51f", null ],
       [ "user", "class_tg_bot_1_1_message_entity.html#affef16e94f7f3382260b85c66726bc48", null ]
     ] ],
-    [ "OrderInfo", "class_tg_bot_1_1_order_info.html", [
+    [ "TgBot::OrderInfo", "class_tg_bot_1_1_order_info.html", [
       [ "Ptr", "class_tg_bot_1_1_order_info.html#a546d93329dceb7bbd542a82d34e3b76a", null ],
       [ "email", "class_tg_bot_1_1_order_info.html#a0cc4794ebb169cd832b6724782e29126", null ],
       [ "name", "class_tg_bot_1_1_order_info.html#a02755abd496d306c649ef45356fcd71c", null ],
       [ "phoneNumber", "class_tg_bot_1_1_order_info.html#a324841d077060a1b1b97564066bc1f16", null ],
       [ "shippingAddress", "class_tg_bot_1_1_order_info.html#a8e9f51e6dadba48789cb4c9c9ae14f82", null ]
     ] ],
-    [ "PhotoSize", "class_tg_bot_1_1_photo_size.html", [
+    [ "TgBot::PhotoSize", "class_tg_bot_1_1_photo_size.html", [
       [ "Ptr", "class_tg_bot_1_1_photo_size.html#a05f58e05528a02e6bc98b67a81e8ae83", null ],
       [ "fileId", "class_tg_bot_1_1_photo_size.html#af3ffb8066db943a59156eb22e976165e", null ],
-      [ "fileSize", "class_tg_bot_1_1_photo_size.html#a91aae4c1b5d7c3b5e16e8677702464b4", null ],
-      [ "height", "class_tg_bot_1_1_photo_size.html#a66dd9388e08330829fcae843f09e0ec6", null ],
-      [ "width", "class_tg_bot_1_1_photo_size.html#a7259a178989557450d9732281d23099f", null ]
+      [ "fileSize", "class_tg_bot_1_1_photo_size.html#ad8090a3ea0432e9ef9cfc9a6120f8789", null ],
+      [ "height", "class_tg_bot_1_1_photo_size.html#a19ae17eb8674aa3efc481dbdb6d5603b", null ],
+      [ "width", "class_tg_bot_1_1_photo_size.html#a16df78bbeb13cf4969031b42691c9b77", null ]
     ] ],
-    [ "Poll", "class_tg_bot_1_1_poll.html", [
+    [ "TgBot::Poll", "class_tg_bot_1_1_poll.html", [
       [ "Ptr", "class_tg_bot_1_1_poll.html#a87289008166e0d6ebe74d61873913a36", null ],
-      [ "id", "class_tg_bot_1_1_poll.html#a555a06f2d8a6db32283b0e8a7cae81ec", null ],
-      [ "is_closed", "class_tg_bot_1_1_poll.html#a320a5189bbce621d7753330bb274e214", null ],
-      [ "options", "class_tg_bot_1_1_poll.html#a5b2a308133d3c79c9ec4fc46e4e17a8f", null ],
+      [ "id", "class_tg_bot_1_1_poll.html#a478dff8a51d8f73d128c5a88d26bbabf", null ],
+      [ "isClosed", "class_tg_bot_1_1_poll.html#a3f202c8542a0ba6478b63b55e412638a", null ],
+      [ "options", "class_tg_bot_1_1_poll.html#a2cb145335b7f8ea5a274288dd671ee03", null ],
       [ "question", "class_tg_bot_1_1_poll.html#aef1e91693da78e9a4c0d5bbb6e83ba3e", null ]
     ] ],
-    [ "PreCheckoutQuery", "class_tg_bot_1_1_pre_checkout_query.html", [
+    [ "TgBot::PreCheckoutQuery", "class_tg_bot_1_1_pre_checkout_query.html", [
       [ "Ptr", "class_tg_bot_1_1_pre_checkout_query.html#aa2f66d4bc5e55b3efbaaf285bcdbe207", null ],
       [ "currency", "class_tg_bot_1_1_pre_checkout_query.html#ac681a885c6e253c134cd659b91348182", null ],
       [ "from", "class_tg_bot_1_1_pre_checkout_query.html#a919320034b6e6f6b586a7311925bb028", null ],
@@ -541,26 +549,26 @@ var group__types =
       [ "invoicePayload", "class_tg_bot_1_1_pre_checkout_query.html#abbc1cb2aed3ff25dde9272909455b9a0", null ],
       [ "orderInfo", "class_tg_bot_1_1_pre_checkout_query.html#a5d21bc0c7610030e89a910029a5fb0ca", null ],
       [ "shippingOptionId", "class_tg_bot_1_1_pre_checkout_query.html#a9cfe210488785f6980e6fb45ffb67e84", null ],
-      [ "totalAmount", "class_tg_bot_1_1_pre_checkout_query.html#a8cfd3e1f3cd74543a365f8c514693cdf", null ]
+      [ "totalAmount", "class_tg_bot_1_1_pre_checkout_query.html#a02b9ed49670c68da6530ac95d9325624", null ]
     ] ],
-    [ "ReplyKeyboardMarkup", "class_tg_bot_1_1_reply_keyboard_markup.html", [
+    [ "TgBot::ReplyKeyboardMarkup", "class_tg_bot_1_1_reply_keyboard_markup.html", [
       [ "Ptr", "class_tg_bot_1_1_reply_keyboard_markup.html#af19f8402b914b603ab41305dee55f44a", null ],
       [ "keyboard", "class_tg_bot_1_1_reply_keyboard_markup.html#a87d9dc41554e585b137b922fa20fd020", null ],
       [ "oneTimeKeyboard", "class_tg_bot_1_1_reply_keyboard_markup.html#a12205ba27bf676459507684be019799e", null ],
       [ "resizeKeyboard", "class_tg_bot_1_1_reply_keyboard_markup.html#aafed175ccf3c58fe7c3a15a2300a1ff3", null ],
       [ "selective", "class_tg_bot_1_1_reply_keyboard_markup.html#ac7cf30c8d98f72b81ad30f48d0789d65", null ]
     ] ],
-    [ "ReplyKeyboardRemove", "class_tg_bot_1_1_reply_keyboard_remove.html", [
+    [ "TgBot::ReplyKeyboardRemove", "class_tg_bot_1_1_reply_keyboard_remove.html", [
       [ "Ptr", "class_tg_bot_1_1_reply_keyboard_remove.html#aaa58ef7c177db3a3f46530bfb5fc0148", null ],
       [ "removeKeyboard", "class_tg_bot_1_1_reply_keyboard_remove.html#a42b8b08952603a9566757bbe7d543408", null ],
       [ "selective", "class_tg_bot_1_1_reply_keyboard_remove.html#a840a781ad230cee4c50057a7c7f82828", null ]
     ] ],
-    [ "ResponseParameters", "class_tg_bot_1_1_response_parameters.html", [
+    [ "TgBot::ResponseParameters", "class_tg_bot_1_1_response_parameters.html", [
       [ "Ptr", "class_tg_bot_1_1_response_parameters.html#a345c84a4e959ed8e529b1cb6e76d0182", null ],
-      [ "migrateToChatId", "class_tg_bot_1_1_response_parameters.html#a37baca0cf6ae91e41a20dbf2451a225d", null ],
-      [ "retryAfter", "class_tg_bot_1_1_response_parameters.html#ab65e3cad1468f5fb762f822722031990", null ]
+      [ "migrateToChatId", "class_tg_bot_1_1_response_parameters.html#a0d2ddb604155e8725dd71d24aead7fbc", null ],
+      [ "retryAfter", "class_tg_bot_1_1_response_parameters.html#ad93541264f02358d49d414734319cb1e", null ]
     ] ],
-    [ "ShippingAddress", "class_tg_bot_1_1_shipping_address.html", [
+    [ "TgBot::ShippingAddress", "class_tg_bot_1_1_shipping_address.html", [
       [ "Ptr", "class_tg_bot_1_1_shipping_address.html#a92871afa1e15fa06460729711ce6641d", null ],
       [ "city", "class_tg_bot_1_1_shipping_address.html#ac5fe3272ae0fe6e00214ca41b2888d69", null ],
       [ "countryCode", "class_tg_bot_1_1_shipping_address.html#a5e0083ea43cd7e629b645de8e88e8ab8", null ],
@@ -569,32 +577,32 @@ var group__types =
       [ "streetLine1", "class_tg_bot_1_1_shipping_address.html#ae54b22b7d2dc2feb81f9a3e05aeba338", null ],
       [ "streetLine2", "class_tg_bot_1_1_shipping_address.html#a2acc7779ce0095c3fea1db37190b9a24", null ]
     ] ],
-    [ "ShippingOption", "class_tg_bot_1_1_shipping_option.html", [
+    [ "TgBot::ShippingOption", "class_tg_bot_1_1_shipping_option.html", [
       [ "Ptr", "class_tg_bot_1_1_shipping_option.html#af97bf7d55ed3bcd3090c08885f010f60", null ],
       [ "id", "class_tg_bot_1_1_shipping_option.html#ac482c80d9eae891d1a08437fa935f48c", null ],
       [ "prices", "class_tg_bot_1_1_shipping_option.html#a1a21641a9f85591e898798c64007d8ba", null ],
       [ "title", "class_tg_bot_1_1_shipping_option.html#a176727e25151781f0b050c58b329ff8e", null ]
     ] ],
-    [ "ShippingQuery", "class_tg_bot_1_1_shipping_query.html", [
+    [ "TgBot::ShippingQuery", "class_tg_bot_1_1_shipping_query.html", [
       [ "Ptr", "class_tg_bot_1_1_shipping_query.html#a952ccde4a79282a4c20f42cfed069d64", null ],
       [ "from", "class_tg_bot_1_1_shipping_query.html#a6f10c244ff5e3323961bdc7c5eb43f31", null ],
       [ "id", "class_tg_bot_1_1_shipping_query.html#ab3b7dedd15793e42c7efe594e38f8003", null ],
       [ "invoicePayload", "class_tg_bot_1_1_shipping_query.html#aa62e1e79cd7f9ba961128ad89dde7899", null ],
       [ "shippingAddress", "class_tg_bot_1_1_shipping_query.html#a3d99a04e8227422fe4349a42dd1ecd7a", null ]
     ] ],
-    [ "Sticker", "class_tg_bot_1_1_sticker.html", [
+    [ "TgBot::Sticker", "class_tg_bot_1_1_sticker.html", [
       [ "Ptr", "class_tg_bot_1_1_sticker.html#a63c460c539e3549bec82850fe30c8fff", null ],
       [ "emoji", "class_tg_bot_1_1_sticker.html#a91d598b9805292d3956b47d88febe001", null ],
       [ "fileId", "class_tg_bot_1_1_sticker.html#ace3bb46bbb491c1a9687cd14a37b25d1", null ],
-      [ "fileSize", "class_tg_bot_1_1_sticker.html#a3e6951a3f8400f05dc5e4b4eb24eda1a", null ],
-      [ "height", "class_tg_bot_1_1_sticker.html#a0d0e6098f8a11ab88df19ff64e5e62ce", null ],
+      [ "fileSize", "class_tg_bot_1_1_sticker.html#a376e3a36013c4679fad6fd643eaf28db", null ],
+      [ "height", "class_tg_bot_1_1_sticker.html#a738abffed8a0d6612ae93921fad044ac", null ],
       [ "isAnimated", "class_tg_bot_1_1_sticker.html#a98d7ea2d2917d544ecc2eddd02ca3a94", null ],
       [ "maskPosition", "class_tg_bot_1_1_sticker.html#a4e61ddba7363932939846585eec348e2", null ],
       [ "setName", "class_tg_bot_1_1_sticker.html#ac9ff439183edc6a5fb2c469e29c687ba", null ],
       [ "thumb", "class_tg_bot_1_1_sticker.html#aff8374f6355156deae78e8f934f3aab3", null ],
-      [ "width", "class_tg_bot_1_1_sticker.html#a059e6027de50f618ca5d454cee943fcb", null ]
+      [ "width", "class_tg_bot_1_1_sticker.html#a5293cffae2125fdd6fc37a93b7a73f32", null ]
     ] ],
-    [ "StickerSet", "class_tg_bot_1_1_sticker_set.html", [
+    [ "TgBot::StickerSet", "class_tg_bot_1_1_sticker_set.html", [
       [ "Ptr", "class_tg_bot_1_1_sticker_set.html#ad3c58f08ddacdb946507cd96a3d54421", null ],
       [ "containsMasks", "class_tg_bot_1_1_sticker_set.html#ab1255b8783dc35b3535c46acbe3b4ca6", null ],
       [ "isAnimated", "class_tg_bot_1_1_sticker_set.html#a42adf2c3363ea458cbcf3d68bccc18c3", null ],
@@ -602,7 +610,7 @@ var group__types =
       [ "stickers", "class_tg_bot_1_1_sticker_set.html#a029bf60e037c38c991706c378d545f34", null ],
       [ "title", "class_tg_bot_1_1_sticker_set.html#ade2402dfdb526b9826eb4db22527f0e2", null ]
     ] ],
-    [ "SuccessfulPayment", "class_tg_bot_1_1_successful_payment.html", [
+    [ "TgBot::SuccessfulPayment", "class_tg_bot_1_1_successful_payment.html", [
       [ "Ptr", "class_tg_bot_1_1_successful_payment.html#a753e2643432af6f0b2561436f2b1da0d", null ],
       [ "currency", "class_tg_bot_1_1_successful_payment.html#a7cabedcd7e557d607baf968c2fc454f3", null ],
       [ "invoicePayload", "class_tg_bot_1_1_successful_payment.html#a260f6306836c863523054f076c9350c6", null ],
@@ -610,9 +618,9 @@ var group__types =
       [ "providerPaymentChargeId", "class_tg_bot_1_1_successful_payment.html#a06d9cb4285772b1e0aa91df415af4cf6", null ],
       [ "shippingOptionId", "class_tg_bot_1_1_successful_payment.html#a29413281af3ef0ff5c60d3e4dac2435e", null ],
       [ "telegramPaymentChargeId", "class_tg_bot_1_1_successful_payment.html#a42ec4a5d0de537eaf1e9d43866ac3c04", null ],
-      [ "totalAmount", "class_tg_bot_1_1_successful_payment.html#a5e2d3de9df8e9ee28b9e9c5e037cadc7", null ]
+      [ "totalAmount", "class_tg_bot_1_1_successful_payment.html#a457b4d9fc8be91352149a6a80fac65b3", null ]
     ] ],
-    [ "Update", "class_tg_bot_1_1_update.html", [
+    [ "TgBot::Update", "class_tg_bot_1_1_update.html", [
       [ "Ptr", "class_tg_bot_1_1_update.html#abace63cf3605fe7a480a3bb839a672a8", null ],
       [ "callbackQuery", "class_tg_bot_1_1_update.html#a2c6890adcab16d6a306b3b89fd954f6f", null ],
       [ "channelPost", "class_tg_bot_1_1_update.html#aabddc6947fe255f1763802532d34ef2b", null ],
@@ -623,23 +631,23 @@ var group__types =
       [ "message", "class_tg_bot_1_1_update.html#ab65136c0345978742fb3026e6855ff2c", null ],
       [ "preCheckoutQuery", "class_tg_bot_1_1_update.html#a9c1dab567059da89f8529263bdc92da3", null ],
       [ "shippingQuery", "class_tg_bot_1_1_update.html#ab36e473d65557a1fb6ab4096eadc1269", null ],
-      [ "updateId", "class_tg_bot_1_1_update.html#af4d35314c4e49839f7012a9671ede097", null ]
+      [ "updateId", "class_tg_bot_1_1_update.html#aa1f17980cc04fa62367620f922ff9fcb", null ]
     ] ],
-    [ "User", "class_tg_bot_1_1_user.html", [
+    [ "TgBot::User", "class_tg_bot_1_1_user.html", [
       [ "Ptr", "class_tg_bot_1_1_user.html#ae6ea24aef677abaaf0fd7d60adf5be79", null ],
       [ "firstName", "class_tg_bot_1_1_user.html#a7f7a9c98a98fdd7199d2c22c63dd75b0", null ],
-      [ "id", "class_tg_bot_1_1_user.html#a52ed387bdcad23b2883ef86a4c1f600f", null ],
+      [ "id", "class_tg_bot_1_1_user.html#a13f239816528f24ccbd49f64decc4662", null ],
       [ "isBot", "class_tg_bot_1_1_user.html#a9adb4af3ddf68a3a518c32a13f9415bf", null ],
       [ "languageCode", "class_tg_bot_1_1_user.html#af5318547408383fd9c491522ca2cfbc9", null ],
       [ "lastName", "class_tg_bot_1_1_user.html#a52e3efc4237df7992eb8a698fafad9b0", null ],
       [ "username", "class_tg_bot_1_1_user.html#a3b32a26af904966eb8f961309f49eeba", null ]
     ] ],
-    [ "UserProfilePhotos", "class_tg_bot_1_1_user_profile_photos.html", [
+    [ "TgBot::UserProfilePhotos", "class_tg_bot_1_1_user_profile_photos.html", [
       [ "Ptr", "class_tg_bot_1_1_user_profile_photos.html#a734352c5b115ea29e639f01462187d55", null ],
       [ "photos", "class_tg_bot_1_1_user_profile_photos.html#a66b1e0c0b5b462ab8087ce05b0311f16", null ],
-      [ "totalCount", "class_tg_bot_1_1_user_profile_photos.html#a33bfd559f54c4c8bf214698392473675", null ]
+      [ "totalCount", "class_tg_bot_1_1_user_profile_photos.html#a69aacb7963dabce9cacb3a7f3ff225d5", null ]
     ] ],
-    [ "Venue", "class_tg_bot_1_1_venue.html", [
+    [ "TgBot::Venue", "class_tg_bot_1_1_venue.html", [
       [ "Ptr", "class_tg_bot_1_1_venue.html#a9f9505e1035b3aacd2ad9d68a8285a14", null ],
       [ "address", "class_tg_bot_1_1_venue.html#a411e85c19c38ad2b8922d60582f72459", null ],
       [ "foursquareId", "class_tg_bot_1_1_venue.html#a47ef50c075a870d7a4aa9f27c4181506", null ],
@@ -647,39 +655,39 @@ var group__types =
       [ "location", "class_tg_bot_1_1_venue.html#a9dbb9e88b790f9a938c9ec561ed773ce", null ],
       [ "title", "class_tg_bot_1_1_venue.html#afc6d630815d434ebf97a86a47f74ca50", null ]
     ] ],
-    [ "Video", "class_tg_bot_1_1_video.html", [
+    [ "TgBot::Video", "class_tg_bot_1_1_video.html", [
       [ "Ptr", "class_tg_bot_1_1_video.html#a0005786d327b3e363cb13c18e9ee0593", null ],
-      [ "duration", "class_tg_bot_1_1_video.html#a93c71de6b8a012b185618a896c4c5e5a", null ],
+      [ "duration", "class_tg_bot_1_1_video.html#a92885043c8e987c8a378ecb9d09819c3", null ],
       [ "fileId", "class_tg_bot_1_1_video.html#a588d9dab172e6828c1aea49c169bb289", null ],
-      [ "fileSize", "class_tg_bot_1_1_video.html#aebbdeaf632d9438f050797bd84ab6c8f", null ],
-      [ "height", "class_tg_bot_1_1_video.html#a0aea87cd20a804a8e8410858b6d40968", null ],
+      [ "fileSize", "class_tg_bot_1_1_video.html#a0ea16e631398602a104cee3d082b656e", null ],
+      [ "height", "class_tg_bot_1_1_video.html#aaac001ebb35b733cc21e4a24cb3667ba", null ],
       [ "mimeType", "class_tg_bot_1_1_video.html#a4162b4cc66825ce32fea222399ef3356", null ],
       [ "thumb", "class_tg_bot_1_1_video.html#ab71e1325c685af9e67ddf0af418a77a7", null ],
-      [ "width", "class_tg_bot_1_1_video.html#a65ea94712e107b2e36109f5ec88b0a35", null ]
+      [ "width", "class_tg_bot_1_1_video.html#a758db27186352b4f8dd471455937e624", null ]
     ] ],
-    [ "VideoNote", "class_tg_bot_1_1_video_note.html", [
+    [ "TgBot::VideoNote", "class_tg_bot_1_1_video_note.html", [
       [ "Ptr", "class_tg_bot_1_1_video_note.html#a6724ff1d3da3887d961a70eb67b42825", null ],
-      [ "duration", "class_tg_bot_1_1_video_note.html#a353b92dd7a6d3f4b370dcbea9a7f40ec", null ],
+      [ "duration", "class_tg_bot_1_1_video_note.html#a435af0274c4f41a2f3105b0bb1a4e5f7", null ],
       [ "fileId", "class_tg_bot_1_1_video_note.html#a74532c9411fce4e1f51e4745728e1763", null ],
-      [ "fileSize", "class_tg_bot_1_1_video_note.html#a2e36b1968524c2476e4d3a4a34dbab02", null ],
-      [ "length", "class_tg_bot_1_1_video_note.html#ad66d67d76de6e2124c5c2d28fc6fd51b", null ],
+      [ "fileSize", "class_tg_bot_1_1_video_note.html#ac7c8199417a15f6f4b9e7f9f395477d0", null ],
+      [ "length", "class_tg_bot_1_1_video_note.html#ae18cab7bc286ea51f3f11b7b384c55d7", null ],
       [ "thumb", "class_tg_bot_1_1_video_note.html#ac9d929d057a59bdfb1dee50819b0e06f", null ]
     ] ],
-    [ "Voice", "class_tg_bot_1_1_voice.html", [
+    [ "TgBot::Voice", "class_tg_bot_1_1_voice.html", [
       [ "Ptr", "class_tg_bot_1_1_voice.html#a73311e993b61a62531f42583d82fed91", null ],
-      [ "duration", "class_tg_bot_1_1_voice.html#a65629e696801e0c68e7822a82df13679", null ],
+      [ "duration", "class_tg_bot_1_1_voice.html#aa8a9cde3331d45ef1a334741095a19ef", null ],
       [ "fileId", "class_tg_bot_1_1_voice.html#a226e44f8e22b4b05b071f8144e5e37c5", null ],
-      [ "fileSize", "class_tg_bot_1_1_voice.html#aa351e4a3d57903a35196a50384ac8375", null ],
+      [ "fileSize", "class_tg_bot_1_1_voice.html#a94e33a72b42d7fab3e9d3c767fb68bb6", null ],
       [ "mimeType", "class_tg_bot_1_1_voice.html#ac291b9dc1f9cc8cafdc74b1302341b43", null ]
     ] ],
-    [ "WebhookInfo", "class_tg_bot_1_1_webhook_info.html", [
+    [ "TgBot::WebhookInfo", "class_tg_bot_1_1_webhook_info.html", [
       [ "Ptr", "class_tg_bot_1_1_webhook_info.html#a2280093713d1304207d8bba2204648d6", null ],
       [ "allowedUpdates", "class_tg_bot_1_1_webhook_info.html#a5a145b95d4d15992ac253b6f1ef834ce", null ],
       [ "hasCustomCertificate", "class_tg_bot_1_1_webhook_info.html#acf1dda44e0f4bf867cad1fd5b0099fca", null ],
-      [ "lastErrorDate", "class_tg_bot_1_1_webhook_info.html#a6c9cb25b5867db8988e45c53a6f36ab5", null ],
+      [ "lastErrorDate", "class_tg_bot_1_1_webhook_info.html#a501ca8677989011b8760619bba6ef488", null ],
       [ "lastErrorMessage", "class_tg_bot_1_1_webhook_info.html#a480255d4d60fd3d669463ef86c31f4e4", null ],
-      [ "maxConnections", "class_tg_bot_1_1_webhook_info.html#abccb7180f3a2ee8c9fe01e51464fd79b", null ],
-      [ "pendingUpdateCount", "class_tg_bot_1_1_webhook_info.html#ae709688fe3890a2e34981cf9d1470726", null ],
+      [ "maxConnections", "class_tg_bot_1_1_webhook_info.html#a0ea5bcf6df4abab2e2c9bf8cc0b988b0", null ],
+      [ "pendingUpdateCount", "class_tg_bot_1_1_webhook_info.html#a61e3f91f8047af3b5293038ab05f0577", null ],
       [ "url", "class_tg_bot_1_1_webhook_info.html#a4f1f6efd16518a24e8c153f5e126a36f", null ]
     ] ]
 ];

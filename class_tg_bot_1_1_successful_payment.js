@@ -7,5 +7,5 @@ var class_tg_bot_1_1_successful_payment =
     [ "providerPaymentChargeId", "class_tg_bot_1_1_successful_payment.html#a06d9cb4285772b1e0aa91df415af4cf6", null ],
     [ "shippingOptionId", "class_tg_bot_1_1_successful_payment.html#a29413281af3ef0ff5c60d3e4dac2435e", null ],
     [ "telegramPaymentChargeId", "class_tg_bot_1_1_successful_payment.html#a42ec4a5d0de537eaf1e9d43866ac3c04", null ],
-    [ "totalAmount", "class_tg_bot_1_1_successful_payment.html#a5e2d3de9df8e9ee28b9e9c5e037cadc7", null ]
+    [ "totalAmount", "class_tg_bot_1_1_successful_payment.html#a457b4d9fc8be91352149a6a80fac65b3", null ]
 ];

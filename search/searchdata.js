@@ -10,7 +10,8 @@ var indexSectionsWithContent =
   7: "t",
   8: "acdgpsv",
   9: "b",
-  10: "gnt"
+  10: "gnt",
+  11: "t"
 };
 
 var indexSectionNames =
@@ -25,7 +26,8 @@ var indexSectionNames =
   7: "enums",
   8: "enumvalues",
   9: "related",
-  10: "groups"
+  10: "groups",
+  11: "pages"
 };
 
 var indexSectionLabels =
@@ -40,6 +42,7 @@ var indexSectionLabels =
   7: "Enumerations",
   8: "Enumerator",
   9: "Friends",
-  10: "Modules"
+  10: "Modules",
+  11: "Pages"
 };
 

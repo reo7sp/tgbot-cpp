@@ -5,6 +5,7 @@ var namespace_tg_bot =
     [ "Audio", "class_tg_bot_1_1_audio.html", "class_tg_bot_1_1_audio" ],
     [ "BoostHttpOnlySslClient", "class_tg_bot_1_1_boost_http_only_ssl_client.html", "class_tg_bot_1_1_boost_http_only_ssl_client" ],
     [ "Bot", "class_tg_bot_1_1_bot.html", "class_tg_bot_1_1_bot" ],
+    [ "BotCommand", "class_tg_bot_1_1_bot_command.html", "class_tg_bot_1_1_bot_command" ],
     [ "CallbackGame", "class_tg_bot_1_1_callback_game.html", "class_tg_bot_1_1_callback_game" ],
     [ "CallbackQuery", "class_tg_bot_1_1_callback_query.html", "class_tg_bot_1_1_callback_query" ],
     [ "Chat", "class_tg_bot_1_1_chat.html", "class_tg_bot_1_1_chat" ],

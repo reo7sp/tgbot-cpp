@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['leavechat_825',['leaveChat',['../class_tg_bot_1_1_api.html#a28d6bda0f615ff1c7063905eb61b5cde',1,'TgBot::Api']]]
+  ['leavechat_0',['leaveChat',['../class_tg_bot_1_1_api.html#a1af908ab6d2d66e763d61b5d3c9467b5',1,'TgBot::Api']]]
 ];

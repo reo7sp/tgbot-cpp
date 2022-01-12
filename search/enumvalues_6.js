@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['video_1137',['VIDEO',['../class_tg_bot_1_1_input_media.html#a15b9867f0c1834b2a4d16ac48f25fb73ae60ae31f67ab883c746bb71c7a145c18',1,'TgBot::InputMedia']]]
+  ['video_0',['VIDEO',['../class_tg_bot_1_1_input_media.html#a3537755c5e821d45ef848c363d1483b7ae60ae31f67ab883c746bb71c7a145c18',1,'TgBot::InputMedia']]]
 ];
