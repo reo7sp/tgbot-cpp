@@ -27,7 +27,7 @@ std::string read(const std::string& filePath);
 TGBOT_API
 void write(const std::string& content, const std::string& filePath);
 
-};
+}
 
 
 #endif //TGBOT_FILETOOLS_H
