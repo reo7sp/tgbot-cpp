@@ -52,6 +52,9 @@ WORKDIR /usr/src/tgbot-cpp/samples/photo
 RUN rm -rf CMakeCache.txt CMakeFiles/ && \
     cmake . && make -j$(nproc)
 
+WORKDIR /usr/src/tgbot-cpp/samples/received-text-processing
+RUN rm -rf CMakeCache.txt CMakeFiles/ && \
+    cmake . && make -j$(nproc)
 
 WORKDIR /usr/src/tgbot-cpp
 ENV CTEST_OUTPUT_ON_FAILURE=1
