@@ -15,3 +15,6 @@ TgBot_test
 .vscode/
 docs/
 cmake-build-*
+
+# MacOS dependecies
+.DS_Store
