@@ -70,6 +70,10 @@ make -j4
 sudo make install
 ```
 
+##Dependencies for MacOS system
+Instead of libssl-dev you need to install openssl library ```brew install openssl```
+Instead of zlib1g-dev install zlib
+
 You can treat this repository as a submodule of your project, for example, see [echobot-submodule](samples/echobot-submodule/CMakeLists.txt)
 
 You can use Docker to build and run your bot. Set the base image of your's Dockerfile to [reo7sp/tgbot-cpp](https://hub.docker.com/r/reo7sp/tgbot-cpp/).
