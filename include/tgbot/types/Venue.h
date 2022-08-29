@@ -18,22 +18,22 @@ public:
     typedef std::shared_ptr<Venue> Ptr;
 
     /**
-     * @brief Venue location.
+     * @brief Venue location
      */
     Location::Ptr location;
 
     /**
-     * @brief Name of the venue.
+     * @brief Name of the venue
      */
     std::string title;
 
     /**
-     * @brief Address of the venue.
+     * @brief Address of the venue
      */
     std::string address;
 
     /**
-     * @brief Optional. Foursquare identifier of the venue.
+     * @brief Optional. Foursquare identifier of the venue
      */
     std::string foursquareId;
 

@@ -148,6 +148,7 @@ Message::Ptr TgTypeParser::parseJsonAndGetMessage(const ptree& data) const {
     result->forwardDate = data.get("forward_date", 0);
     result->replyToMessage = tryParseJson<Message>(&TgTypeParser::parseJsonAndGetMessage, data, "reply_to_message");
     result->editDate = data.get<int32_t>("edit_date", 0);
+    result->mediaGroupId = data.get("media_group_id", "");
     result->authorSignature = data.get("author_signature", "");
     result->text = data.get("text", "");
     result->entities = parseJsonAndGetArray<MessageEntity>(&TgTypeParser::parseJsonAndGetMessageEntity, data, "entities");
@@ -160,17 +161,20 @@ Message::Ptr TgTypeParser::parseJsonAndGetMessage(const ptree& data) const {
     result->sticker = tryParseJson<Sticker>(&TgTypeParser::parseJsonAndGetSticker, data, "sticker");
     result->video = tryParseJson<Video>(&TgTypeParser::parseJsonAndGetVideo, data, "video");
     result->voice = tryParseJson<Voice>(&TgTypeParser::parseJsonAndGetVoice, data, "voice");
+    result->videoNote = tryParseJson<VideoNote>(&TgTypeParser::parseJsonAndGetVideoNote, data, "video_note");
+    result->caption = data.get("caption", "");
     result->contact = tryParseJson<Contact>(&TgTypeParser::parseJsonAndGetContact, data, "contact");
     result->location = tryParseJson<Location>(&TgTypeParser::parseJsonAndGetLocation, data, "location");
+    result->venue = tryParseJson<Venue>(&TgTypeParser::parseJsonAndGetVenue, data, "venue");
     result->poll = tryParseJson<Poll>(&TgTypeParser::parseJsonAndGetPoll, data, "poll");
-    result->newChatMember = tryParseJson<User>(&TgTypeParser::parseJsonAndGetUser, data, "new_chat_participant");
+    result->dice = tryParseJson<Dice>(&TgTypeParser::parseJsonAndGetDice, data, "dice");
+    result->newChatMember = tryParseJson<User>(&TgTypeParser::parseJsonAndGetUser, data, "new_chat_member");
     result->newChatMembers = parseJsonAndGetArray<User>(&TgTypeParser::parseJsonAndGetUser, data, "new_chat_members");
-    result->leftChatMember = tryParseJson<User>(&TgTypeParser::parseJsonAndGetUser, data, "left_chat_participant");
+    result->leftChatMember = tryParseJson<User>(&TgTypeParser::parseJsonAndGetUser, data, "left_chat_member");
     result->newChatTitle = data.get("new_chat_title", "");
     result->newChatPhoto = parseJsonAndGetArray<PhotoSize>(&TgTypeParser::parseJsonAndGetPhotoSize, data, "new_chat_photo");
     result->deleteChatPhoto = data.get("delete_chat_photo", false);
     result->groupChatCreated = data.get("group_chat_created", false);
-    result->caption = data.get("caption", "");
     result->supergroupChatCreated = data.get("supergroup_chat_created", false);
     result->channelChatCreated = data.get("channel_chat_created", false);
     result->migrateToChatId = data.get<int64_t>("migrate_to_chat_id", 0);
@@ -179,8 +183,10 @@ Message::Ptr TgTypeParser::parseJsonAndGetMessage(const ptree& data) const {
     result->invoice = tryParseJson<Invoice>(&TgTypeParser::parseJsonAndGetInvoice, data, "invoice");
     result->successfulPayment = tryParseJson<SuccessfulPayment>(&TgTypeParser::parseJsonAndGetSuccessfulPayment, data, "successful_payment");
     result->connectedWebsite = data.get("connected_website", "");
+    // result->passportData = tryParseJson<PassportData>(&TgTypeParser::parseJsonAndGetPassportData, data, "passport_data");
     result->replyMarkup = tryParseJson<InlineKeyboardMarkup>(&TgTypeParser::parseJsonAndGetInlineKeyboardMarkup, data, "reply_markup");
     result->automaticForward = data.get("is_automatic_forward", false);
+    
     return result;
 }
 
@@ -202,18 +208,26 @@ string TgTypeParser::parseMessage(const Message::Ptr& object) const {
     appendToJson(result, "forward_date", object->forwardDate);
     appendToJson(result, "reply_to_message", parseMessage(object->replyToMessage));
     appendToJson(result, "edit_date", object->editDate);
+    appendToJson(result, "media_group_id", object->mediaGroupId);
     appendToJson(result, "author_signature", object->authorSignature);
     appendToJson(result, "text", object->text);
+    appendToJson(result, "entities", parseArray(&TgTypeParser::parseMessageEntity, object->entities));
+    appendToJson(result, "caption_entities", parseArray(&TgTypeParser::parseMessageEntity, object->captionEntities));
     appendToJson(result, "audio", parseAudio(object->audio));
     appendToJson(result, "document", parseDocument(object->document));
     appendToJson(result, "animation", parseAnimation(object->animation));
+    appendToJson(result, "game", parseGame(object->game));
     appendToJson(result, "photo", parseArray(&TgTypeParser::parsePhotoSize, object->photo));
     appendToJson(result, "sticker", parseSticker(object->sticker));
     appendToJson(result, "video", parseVideo(object->video));
     appendToJson(result, "voice", parseVoice(object->voice));
+    appendToJson(result, "video_note", parseVideoNote(object->videoNote));
+    appendToJson(result, "caption", object->caption);
     appendToJson(result, "contact", parseContact(object->contact));
     appendToJson(result, "location", parseLocation(object->location));
+    appendToJson(result, "venue", parseVenue(object->venue));
     appendToJson(result, "poll", parsePoll(object->poll));
+    appendToJson(result, "dice", parseDice(object->dice));
     appendToJson(result, "new_chat_member", parseUser(object->newChatMember));
     appendToJson(result, "new_chat_members", parseArray(&TgTypeParser::parseUser, object->newChatMembers));
     appendToJson(result, "left_chat_member", parseUser(object->leftChatMember));
@@ -221,15 +235,15 @@ string TgTypeParser::parseMessage(const Message::Ptr& object) const {
     appendToJson(result, "new_chat_photo", parseArray(&TgTypeParser::parsePhotoSize, object->newChatPhoto));
     appendToJson(result, "delete_chat_photo", object->deleteChatPhoto);
     appendToJson(result, "group_chat_created", object->groupChatCreated);
-    appendToJson(result, "caption", object->caption);
     appendToJson(result, "supergroup_chat_created", object->supergroupChatCreated);
     appendToJson(result, "channel_chat_created", object->channelChatCreated);
     appendToJson(result, "migrate_to_chat_id", object->migrateToChatId);
     appendToJson(result, "migrate_from_chat_id", object->migrateFromChatId);
     appendToJson(result, "pinned_message", parseMessage(object->pinnedMessage));
-    appendToJson(result, "connected_website", object->connectedWebsite);
     appendToJson(result, "invoice", parseInvoice(object->invoice));
     appendToJson(result, "successful_payment", parseSuccessfulPayment(object->successfulPayment));
+    appendToJson(result, "connected_website", object->connectedWebsite);
+    // appendToJson(result, "passport_data", parsePassportData(object->passportData));
     appendToJson(result, "reply_markup", parseInlineKeyboardMarkup(object->replyMarkup));
     removeLastComma(result);
     result += '}';
@@ -362,9 +376,10 @@ StickerSet::Ptr TgTypeParser::parseJsonAndGetStickerSet(const ptree& data) const
     auto result(make_shared<StickerSet>());
     result->name = data.get("name", "");
     result->title = data.get("title", "");
-    result->containsMasks = data.get<bool>("contains_masks", false);
     result->isAnimated = data.get<bool>("is_animated", false);
+    result->containsMasks = data.get<bool>("contains_masks", false);
     result->stickers = parseJsonAndGetArray<Sticker>(&TgTypeParser::parseJsonAndGetSticker, data, "stickers");
+    result->thumb = tryParseJson<PhotoSize>(&TgTypeParser::parseJsonAndGetPhotoSize, data, "thumb");
     return result;
 }
 
@@ -379,6 +394,7 @@ string TgTypeParser::parseStickerSet(const StickerSet::Ptr& object) const {
     appendToJson(result, "is_animated", object->isAnimated);
     appendToJson(result, "contains_masks", object->containsMasks);
     appendToJson(result, "stickers", parseArray(&TgTypeParser::parseSticker, object->stickers));
+    appendToJson(result, "thumb", parsePhotoSize(object->thumb));
     removeLastComma(result);
     result += '}';
     return result;
@@ -437,6 +453,24 @@ string TgTypeParser::parsePoll(const Poll::Ptr& object) const {
     appendToJson(result, "type", object->type);
     appendToJson(result, "allows_multiple_answers", object->allowsMultipleAnswers);
     appendToJson(result, "correct_option_id", object->correctOptionId);
+    removeLastComma(result);
+    result += '}';
+    return result;
+}
+
+Dice::Ptr TgTypeParser::parseJsonAndGetDice(const ptree& data) const {
+    auto result(make_shared<Dice>());
+    result->value = data.get("value", 0);
+    return result;
+}
+
+string TgTypeParser::parseDice(const Dice::Ptr& object) const {
+    if (!object) {
+        return "";
+    }
+    string result;
+    result += '{';
+    appendToJson(result, "value", object->value);
     removeLastComma(result);
     result += '}';
     return result;
@@ -732,6 +766,33 @@ string TgTypeParser::parseLocation(const Location::Ptr& object) const {
     result += '{';
     appendToJson(result, "longitude", object->longitude);
     appendToJson(result, "latitude", object->latitude);
+    removeLastComma(result);
+    result += '}';
+    return result;
+}
+
+Venue::Ptr TgTypeParser::parseJsonAndGetVenue(const ptree& data) const {
+    auto result(make_shared<Venue>());
+    result->location = tryParseJson<Location>(&TgTypeParser::parseJsonAndGetLocation, data, "location");
+    result->title = data.get<string>("title", "");
+    result->address = data.get<string>("address", "");
+    result->foursquareId = data.get<string>("foursquare_id", "");
+    result->foursquareType = data.get<string>("foursquare_type", "");
+
+    return result;
+}
+
+string TgTypeParser::parseVenue(const Venue::Ptr& object) const {
+    if (!object) {
+        return "";
+    }
+    string result;
+    result += '{';
+    appendToJson(result, "location", parseLocation(object->location));
+    appendToJson(result, "title", object->title);
+    appendToJson(result, "address", object->address);
+    appendToJson(result, "foursquare_id", object->foursquareId);
+    appendToJson(result, "foursquare_type", object->foursquareType);
     removeLastComma(result);
     result += '}';
     return result;

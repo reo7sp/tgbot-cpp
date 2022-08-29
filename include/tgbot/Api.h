@@ -218,30 +218,34 @@ public:
     File::Ptr uploadStickerFile(std::int64_t userId, InputFile::Ptr pngSticker) const;
 
     /**
-     * @brief Use this method to create new sticker set owned by a user. The bot will be able to edit the created sticker set.
-     * @param userId User identifier of created sticker set owner.
+     * @brief Use this method to create a new sticker set owned by a user. The bot will be able to edit the sticker set thus created. You must use exactly one of the fields pngSticker or tgsSticker.
+     * @param userId User identifier of created sticker set owner
      * @param name Short name of sticker set, to be used in t.me/addstickers/ URLs (e.g., animals). Can contain only english letters, digits and underscores. Must begin with a letter, can't contain consecutive underscores and must end in “_by_<bot username>”. <bot_username> is case insensitive. 1-64 characters.
-     * @param title Sticker set title, 1-64 characters.
-     * @param pngSticker Png image with the sticker, must be up to 512 kilobytes in size, dimensions must not exceed 512px, and either width or height must be exactly 512px.
-     * @param emojis One or more emoji corresponding to the sticker.
-     * @param containsMasks Optional. Pass True, if a set of mask stickers should be created.
-     * @param maskPosition Optional. A JSON-serialized object for position where the mask should be placed on faces.
+     * @param title Sticker set title, 1-64 characters
+     * @param emojis One or more emoji corresponding to the sticker
+     * @param pngSticker Optional. PNG image with the sticker, must be up to 512 kilobytes in size, dimensions must not exceed 512px, and either width or height must be exactly 512px. Pass a file_id as a String to send a file that already exists on the Telegram servers, pass an HTTP URL as a String for Telegram to get a file from the Internet, or upload a new one using multipart/form-data.
+     * @param tgsSticker Optional. TGS animation with the sticker, uploaded using multipart/form-data. See https://core.telegram.org/animated_stickers#technical-requirements for technical requirements
+     * @param containsMasks Optional. Pass True, if a set of mask stickers should be created
+     * @param maskPosition Optional. A JSON-serialized object for position where the mask should be placed on faces
      * @return Returns True on success.
      */
-    bool createNewStickerSet(std::int64_t userId, const std::string& name, const std::string& title,
-                             boost::variant<InputFile::Ptr, std::string> pngSticker, const std::string& emojis, bool containsMasks = false, MaskPosition::Ptr maskPosition = nullptr) const;
+    bool createNewStickerSet(std::int64_t userId, const std::string& name, const std::string& title, const std::string& emojis,
+                             boost::variant<InputFile::Ptr, std::string> pngSticker = "", boost::variant<InputFile::Ptr, std::string> tgsSticker = "",
+                             bool containsMasks = false, MaskPosition::Ptr maskPosition = nullptr) const;
 
     /**
-     * @brief Use this method to add a new sticker to a set created by the bot.
-     * @param userId User identifier of created sticker set owner.
-     * @param name Sticker set name.
-     * @param pngSticker Png image with the sticker, must be up to 512 kilobytes in size, dimensions must not exceed 512px, and either width or height must be exactly 512px.
-     * @param emojis One or more emoji corresponding to the sticker.
-     * @param maskPosition Optional. A JSON-serialized object for position where the mask should be placed on faces.
+     * @brief Use this method to add a new sticker to a set created by the bot. You must use exactly one of the fields png_sticker or tgs_sticker. Animated stickers can be added to animated sticker sets and only to them. Animated sticker sets can have up to 50 stickers. Static sticker sets can have up to 120 stickers.
+     * @param userId User identifier of sticker set owner
+     * @param name Sticker set name
+     * @param emojis One or more emoji corresponding to the sticker
+     * @param pngSticker Optional. PNG image with the sticker, must be up to 512 kilobytes in size, dimensions must not exceed 512px, and either width or height must be exactly 512px. Pass a file_id as a String to send a file that already exists on the Telegram servers, pass an HTTP URL as a String for Telegram to get a file from the Internet, or upload a new one using multipart/form-data.
+     * @param tgsSticker Optional. TGS animation with the sticker, uploaded using multipart/form-data. See https://core.telegram.org/animated_stickers#technical-requirements for technical requirements
+     * @param maskPosition Optional. A JSON-serialized object for position where the mask should be placed on faces
      * @return Returns True on success.
      */
-    bool addStickerToSet(std::int64_t userId, const std::string& name,
-                         boost::variant<InputFile::Ptr, std::string> pngSticker, const std::string& emojis, MaskPosition::Ptr maskPosition = nullptr) const;
+    bool addStickerToSet(std::int64_t userId, const std::string& name, const std::string& emojis,
+                         boost::variant<InputFile::Ptr, std::string> pngSticker = "", boost::variant<InputFile::Ptr, std::string> tgsSticker = "",
+                         MaskPosition::Ptr maskPosition = nullptr) const;
 
     /**
      * @brief Use this method to move a sticker in a set created by the bot to a specific position.
@@ -257,6 +261,15 @@ public:
      * @return Returns True on success.
      */
     bool deleteStickerFromSet(const std::string& sticker) const;
+
+    /**
+     * @brief Use this method to set the thumbnail of a sticker set. Animated thumbnails can be set for animated sticker sets only.
+     * @param name Sticker set name
+     * @param userId User identifier of the sticker set owner
+     * @param thumb Optional. A PNG image with the thumbnail, must be up to 128 kilobytes in size and have width and height exactly 100px, or a TGS animation with the thumbnail up to 32 kilobytes in size; see https://core.telegram.org/animated_stickers#technical-requirements for animated sticker technical requirements. Pass a file_id as a String to send a file that already exists on the Telegram servers, pass an HTTP URL as a String for Telegram to get a file from the Internet, or upload a new one using multipart/form-data. Animated sticker set thumbnail can't be uploaded via HTTP URL.
+     * @return Returns True on success.
+     */
+    bool setStickerSetThumb(const std::string& name, std::int64_t userId, boost::variant<InputFile::Ptr, std::string> thumb = "") const;
 
     /**
      * @brief Use this method to send video files, Telegram clients support mp4 videos (other formats may be sent as Document).
@@ -818,6 +831,16 @@ public:
     Message::Ptr sendPoll(std::int64_t chatId, const std::string& question, const std::vector<std::string>& options, bool disableNotification = false, std::int32_t replyToMessageId = 0,
                           GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>(), bool isAnonymous = true, const std::string& type = "", bool allowsMultipleAnswers = false,
                           std::int32_t correctOptionId = 0, bool isClosed = false) const;
+
+    /**
+     * @brief Use this method to send a dice, which will have a random value from 1 to 6.
+     * @param chatId Unique identifier for the target chat or username of the target channel (in the format @channelusername)
+     * @param disableNotification Optional. Sends the message silently. Users will receive a notification with no sound.
+     * @param replyToMessageId Optional. If the message is a reply, ID of the original message
+     * @param replyMarkup Optional. Additional interface options. A JSON-serialized object for an inline keyboard, custom reply keyboard, instructions to remove reply keyboard or to force a reply from the user.
+     * @return On success, the sent message is returned.
+     */
+    Message::Ptr sendDice(std::int64_t chatId, bool disableNotification = false, std::int32_t replyToMessageId = 0, GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>()) const;
 
     /**
      * @brief Use this method to stop a poll which was sent by the bot.

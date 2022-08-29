@@ -62,7 +62,7 @@ public:
     std::string lastName;
 
     /**
-     * @brief Deprecated since API 4.4. New bots should use the permissions field instead.
+     * @brief Deprecated since Bot API 4.4. New bots should use the permissions field instead.
      *
      * Optional. True if a group has ‘All Members Are Admins’ enabled.
      */

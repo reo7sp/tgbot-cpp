@@ -11,6 +11,7 @@
 #include "tgbot/types/Sticker.h"
 #include "tgbot/types/StickerSet.h"
 #include "tgbot/types/Poll.h"
+#include "tgbot/types/Dice.h"
 #include "tgbot/types/PollAnswer.h"
 #include "tgbot/types/PollOption.h"
 #include "tgbot/types/ChatPermissions.h"
@@ -137,6 +138,9 @@ public:
     Poll::Ptr parseJsonAndGetPoll(const boost::property_tree::ptree& data) const;
     std::string parsePoll(const Poll::Ptr& object) const;
 
+    Dice::Ptr parseJsonAndGetDice(const boost::property_tree::ptree& data) const;
+    std::string parseDice(const Dice::Ptr& object) const;
+
     PollAnswer::Ptr parseJsonAndGetPollAnswer(const boost::property_tree::ptree& data) const;
     std::string parsePollAnswer(const PollAnswer::Ptr& object) const;
 
@@ -169,6 +173,9 @@ public:
 
     Location::Ptr parseJsonAndGetLocation(const boost::property_tree::ptree& data) const;
     std::string parseLocation(const Location::Ptr& object) const;
+
+    Venue::Ptr parseJsonAndGetVenue(const boost::property_tree::ptree& data) const;
+    std::string parseVenue(const Venue::Ptr& object) const;
 
     Update::Ptr parseJsonAndGetUpdate(const boost::property_tree::ptree& data) const;
     std::string parseUpdate(const Update::Ptr& object) const;
