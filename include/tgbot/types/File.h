@@ -23,9 +23,16 @@ public:
     typedef std::shared_ptr<File> Ptr;
 
     /**
-     * @brief Unique identifier for this file
+     * @brief Identifier for this file, which can be used to download or reuse the file
      */
     std::string fileId;
+
+    /**
+     * @brief Unique identifier for this file, which is supposed to be the same over time and for different bots.
+     *
+     * Can't be used to download or reuse the file.
+     */
+    std::string fileUniqueId;
 
     /**
      * @brief Optional. File size, if known
@@ -39,7 +46,6 @@ public:
      */
     std::string filePath;
 };
-
 }
 
 #endif //TGBOT_CPP_FILE_H

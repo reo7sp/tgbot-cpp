@@ -20,31 +20,37 @@ public:
     typedef std::shared_ptr<VideoNote> Ptr;
 
     /**
-     * @brief Unique identifier for this file.
+     * @brief Identifier for this file, which can be used to download or reuse the file
      */
     std::string fileId;
 
     /**
-     * @brief Video width and height as defined by sender.
+     * @brief Unique identifier for this file, which is supposed to be the same over time and for different bots.
+     *
+     * Can't be used to download or reuse the file.
+     */
+    std::string fileUniqueId;
+
+    /**
+     * @brief Video width and height (diameter of the video message) as defined by sender
      */
     std::int32_t length;
 
     /**
-     * @brief Duration of the video in seconds as defined by sender.
+     * @brief Duration of the video in seconds as defined by sender
      */
     std::int32_t duration;
 
     /**
-     * @brief Optional. Video thumbnail.
+     * @brief Optional. Video thumbnail
      */
     PhotoSize::Ptr thumb;
 
     /**
-     * @brief Optional. File size.
+     * @brief Optional. File size
      */
     std::int32_t fileSize;
 };
-
 }
 
 #endif //TGBOT_CPP_VIDEONOTE_H

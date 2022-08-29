@@ -16,5 +16,9 @@ TgBot_test
 docs/
 cmake-build-*
 
+# Visual Studio
+/.vs/
+/out/
+
 # MacOS dependecies
 .DS_Store

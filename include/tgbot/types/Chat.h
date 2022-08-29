@@ -12,7 +12,8 @@ namespace TgBot {
 
 class Message;
 /**
- * @brief This object represents a Telegram Chat
+ * @brief This object represents a chat.
+ *
  * @ingroup types
  */
 class Chat {
@@ -28,87 +29,102 @@ public:
     };
 
     /**
-     * @brief Unique identifier for this chat, not exceeding 1e13 by absolute value
+     * @brief Unique identifier for this chat.
+     *
+     * This number may be greater than 32 bits and some programming languages may have difficulty/silent defects in interpreting it.
+     * But it is smaller than 52 bits, so a signed 64 bit integer or double-precision float type are safe for storing this identifier.
      */
     std::int64_t id;
 
     /**
-     * @brief Type of chat: can be either "private", "group", "supergroup, or "channel".
+     * @brief Type of chat, can be either “private”, “group”, “supergroup” or “channel”
      */
     Type type;
 
     /**
-     * @brief Optional. Title for channels and group chat
+     * @brief Optional. Title, for supergroups, channels and group chats
      */
     std::string title;
 
     /**
-     * @brief Optional. Username for
-     * private chats and channels
+     * @brief Optional. Username, for private chats, supergroups and channels if available
      */
     std::string username;
 
     /**
-     * @brief Optional. First name of the
-     * other party in private chat
+     * @brief Optional. First name of the other party in a private chat
      */
     std::string firstName;
 
     /**
-     * @brief Optional. Last name of the
-     * other party in private chat
+     * @brief Optional. Last name of the other party in a private chat
      */
     std::string lastName;
 
     /**
-     * @brief Optional. True if a group
-     * has ‘All Members Are Admins’ enabled.
+     * @brief Deprecated since API 4.4. New bots should use the permissions field instead.
+     *
+     * Optional. True if a group has ‘All Members Are Admins’ enabled.
      */
     bool allMembersAreAdministrators;
 
     /**
      * @brief Optional. Chat photo.
+     *
      * Returned only in getChat.
      */
     ChatPhoto::Ptr photo;
 
     /**
-     * @brief Optional. Description, for supergroups and channel chats.
+     * @brief Optional. Description, for groups, supergroups and channel chats.
+     *
      * Returned only in getChat.
      */
     std::string description;
 
     /**
-     * @brief Optional. Chat invite link, for supergroups and channel chats.
+     * @brief Optional. Chat invite link, for groups, supergroups and channel chats.
+     *
+     * Each administrator in a chat generates their own invite links, so the bot must first generate the link using exportChatInviteLink.
      * Returned only in getChat.
      */
     std::string inviteLink;
 
     /**
-     * @brief Optional. Pinned message, for supergroups and channel chats.
+     * @brief Optional. Pinned message, for groups, supergroups and channels.
+     *
      * Returned only in getChat.
      */
     std::shared_ptr<Message> pinnedMessage;
 
     /**
      * @brief Optional. Default chat member permissions, for groups and supergroups.
+     *
      * Returned only in getChat.
      */
     ChatPermissions::Ptr permissions;
 
     /**
+     * @brief Optional. For supergroups, the minimum allowed delay between consecutive messages sent by each unpriviledged user.
+     *
+     * Returned only in getChat.
+     */
+    std::int32_t slowModeDelay;
+
+    /**
      * @brief Optional. For supergroups, name of group sticker set.
+     *
      * Returned only in getChat.
      */
     std::string stickerSetName;
 
     /**
      * @brief Optional. True, if the bot can change the group sticker set.
+     *
      * Returned only in getChat.
      */
     bool canSetStickerSet;
 };
-
 }
 
 #endif //TGBOT_CPP_CHAT_H

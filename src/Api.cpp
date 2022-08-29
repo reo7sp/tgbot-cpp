@@ -45,7 +45,7 @@ Message::Ptr Api::sendMessage(std::int64_t chatId, const string& text, bool disa
     }
     return _tgTypeParser.parseJsonAndGetMessage(sendRequest("sendMessage", args));
 }
-    
+
 Message::Ptr Api::sendMessage(const std::string &chatId, const string& text, bool disableWebPagePreview, std::int32_t replyToMessageId, const GenericReply::Ptr replyMarkup, const string& parseMode, bool disableNotification) const {
     vector<HttpReqArg> args;
     args.reserve(7);
@@ -67,7 +67,7 @@ Message::Ptr Api::sendMessage(const std::string &chatId, const string& text, boo
         args.emplace_back("parse_mode", parseMode);
     }
     return _tgTypeParser.parseJsonAndGetMessage(sendRequest("sendMessage", args));
-}    
+}
 
 Message::Ptr Api::forwardMessage(std::int64_t chatId, std::int64_t fromChatId, std::int32_t messageId, bool disableNotification) const {
     vector<HttpReqArg> args;
@@ -1030,6 +1030,15 @@ bool Api::promoteChatMember(std::int64_t chatId, std::int64_t userId, bool canCh
         args.emplace_back("can_promote_members", canPromoteMembers);
     }
     return sendRequest("promoteChatMember", args).get<bool>("", false);
+}
+
+bool Api::setChatAdministratorCustomTitle(std::int64_t chatId, std::int64_t userId, const std::string& customTitle) const {
+    vector<HttpReqArg> args;
+    args.reserve(3);
+    args.emplace_back("chat_id", chatId);
+    args.emplace_back("user_id", userId);
+    args.emplace_back("custom_title", customTitle);
+    return sendRequest("setChatAdministratorCustomTitle", args).get<bool>("", false);
 }
 
 bool Api::setChatPermissions(std::int64_t chatId, ChatPermissions::Ptr permissions) const{

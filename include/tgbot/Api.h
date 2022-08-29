@@ -67,7 +67,7 @@ public:
      */
     Message::Ptr sendMessage(std::int64_t chatId, const std::string& text, bool disableWebPagePreview = false, std::int32_t replyToMessageId = 0,
                              GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>(), const std::string& parseMode = "", bool disableNotification = false) const;
-    
+
     Message::Ptr sendMessage(const std::string& chatId, const std::string& text, bool disableWebPagePreview = false, std::int32_t replyToMessageId = 0,
                             GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>(), const std::string& parseMode = "", bool disableNotification = false) const;
 
@@ -682,11 +682,20 @@ public:
                            bool canEditMessages = false, bool canDeleteMessages = false, bool canInviteUsers = false, bool canPinMessages = false, bool canPromoteMembers = false) const;
 
     /**
-  * @brief Use this method to set default chat permissions for all members. The bot must be an administrator in the group or a supergroup for this to work and must have the can_restrict_members admin rights. Returns True on success.
-  * @param chatId Unique identifier for the target chat of the target supergroup.
-  * @param permissions New default chat permissions.
-  * @return True on success
-  */
+     * @brief Use this method to set a custom title for an administrator in a supergroup promoted by the bot.
+     * @param chatId Unique identifier for the target chat or username of the target supergroup (in the format @supergroupusername)
+     * @param userId Unique identifier of the target user
+     * @param customTitle New custom title for the administrator; 0-16 characters, emoji are not allowed
+     * @return True on success
+     */
+    bool setChatAdministratorCustomTitle(std::int64_t chatId, std::int64_t userId, const std::string& customTitle) const;
+
+    /**
+     * @brief Use this method to set default chat permissions for all members. The bot must be an administrator in the group or a supergroup for this to work and must have the can_restrict_members admin rights. Returns True on success.
+     * @param chatId Unique identifier for the target chat of the target supergroup.
+     * @param permissions New default chat permissions.
+     * @return True on success
+     */
     bool setChatPermissions(std::int64_t chatId, ChatPermissions::Ptr permissions) const;
 
     /**

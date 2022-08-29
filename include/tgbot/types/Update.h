@@ -7,6 +7,7 @@
 #include "tgbot/types/CallbackQuery.h"
 #include "tgbot/types/ShippingQuery.h"
 #include "tgbot/types/PreCheckoutQuery.h"
+#include "tgbot/types/Poll.h"
 
 #include <cstdint>
 #include <memory>
@@ -14,7 +15,7 @@
 namespace TgBot {
 
 /**
- * @brief This object represents an incoming update.
+ * @brief This object represents an incoming update. At most one of the optional parameters can be present in any given update.
  *
  * @ingroup types
  */
@@ -76,6 +77,13 @@ public:
      * Contains full information about checkout
      */
     PreCheckoutQuery::Ptr preCheckoutQuery;
+
+    /**
+     * @brief Optional. New poll state.
+     *
+     * Bots receive only updates about stopped polls and polls, which are sent by the bot
+     */
+    Poll::Ptr poll;
 };
 
 }
