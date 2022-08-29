@@ -11,9 +11,11 @@ namespace TgBot {
 
 /**
  * @brief This object contains information about one member of the chat.
+ *
  * @ingroup types
  */
 class ChatMember {
+
 public:
     typedef std::shared_ptr<ChatMember> Ptr;
 
@@ -26,6 +28,11 @@ public:
      * @brief The member's status in the chat. Can be “creator”, “administrator”, “member”, “restricted”, “left” or “kicked”
      */
     std::string status;
+
+    /**
+     * @brief Optional. Owner and administrators only. Custom title for this user
+     */
+    std::string customTitle;
 
     /**
      * @brief Optional. Restricted and kicked only. Date when restrictions will be lifted for this user, unix time.

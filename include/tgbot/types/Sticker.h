@@ -11,7 +11,7 @@
 namespace TgBot {
 
 /**
- * @brief This object represents a general file (as opposed to photos and audio files).
+ * @brief This object represents a sticker.
  *
  * @ingroup types
  */
@@ -21,27 +21,34 @@ public:
     typedef std::shared_ptr<Sticker> Ptr;
 
     /**
-     * @brief Unique file identifier.
+     * @brief Identifier for this file, which can be used to download or reuse the file
      */
     std::string fileId;
 
     /**
-     * @brief Optional. Sticker width.
+     * @brief Unique identifier for this file, which is supposed to be the same over time and for different bots.
+     *
+     * Can't be used to download or reuse the file.
+     */
+    std::string fileUniqueId;
+
+    /**
+     * @brief Sticker width
      */
     std::int32_t width;
 
     /**
-     * @brief Optional. Sticker height.
+     * @brief Sticker height
      */
     std::int32_t height;
 
     /**
- * @brief True, if the sticker is animated.
-    */
+     * @brief True, if the sticker is animated
+     */
     bool isAnimated = false;
 
     /**
-     * @brief Optional. Optional. Sticker thumbnail in .webp or .jpg format.
+     * @brief Optional. Sticker thumbnail in the .webp or .jpg format
      */
     PhotoSize::Ptr thumb;
 
@@ -51,21 +58,20 @@ public:
     std::string emoji;
 
     /**
-     * @brief Optional. Name of the sticker set to which the sticker belongs.
+     * @brief Optional. Name of the sticker set to which the sticker belongs
      */
     std::string setName;
 
     /**
-     * @brief Optional. For mask stickers, the position where the mask should be placed.
+     * @brief Optional. For mask stickers, the position where the mask should be placed
      */
     MaskPosition::Ptr maskPosition;
 
     /**
-     * @brief Optional. File size.
+     * @brief Optional. File size
      */
     std::int32_t fileSize;
 };
-
 }
 
 #endif //TGBOT_CPP_STICKER_H

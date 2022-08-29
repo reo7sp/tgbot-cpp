@@ -20,27 +20,34 @@ public:
     typedef std::shared_ptr<Video> Ptr;
 
     /**
-     * @brief Unique identifier for this file.
+     * @brief Identifier for this file, which can be used to download or reuse the file
      */
     std::string fileId;
 
     /**
-     * @brief Video width as defined by sender.
+     * @brief Unique identifier for this file, which is supposed to be the same over time and for different bots.
+     *
+     * Can't be used to download or reuse the file.
+     */
+    std::string fileUniqueId;
+
+    /**
+     * @brief Video width as defined by sender
      */
     std::int32_t width;
 
     /**
-     * @brief Video height as defined by sender.
+     * @brief Video height as defined by sender
      */
     std::int32_t height;
 
     /**
-     * @brief Duration of the video in seconds as defined by sender.
+     * @brief Duration of the video in seconds as defined by sender
      */
     std::int32_t duration;
 
     /**
-     * @brief Optional. Video thumbnail.
+     * @brief Optional. Video thumbnail
      */
     PhotoSize::Ptr thumb;
 
@@ -50,11 +57,10 @@ public:
     std::string mimeType;
 
     /**
-     * @brief Optional. File size.
+     * @brief Optional. File size
      */
     std::int32_t fileSize;
 };
-
 }
 
 #endif //TGBOT_CPP_VIDEO_H

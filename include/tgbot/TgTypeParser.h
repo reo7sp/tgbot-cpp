@@ -11,6 +11,8 @@
 #include "tgbot/types/Sticker.h"
 #include "tgbot/types/StickerSet.h"
 #include "tgbot/types/Poll.h"
+#include "tgbot/types/Dice.h"
+#include "tgbot/types/PollAnswer.h"
 #include "tgbot/types/PollOption.h"
 #include "tgbot/types/ChatPermissions.h"
 #include "tgbot/types/MaskPosition.h"
@@ -24,6 +26,7 @@
 #include "tgbot/types/File.h"
 #include "tgbot/types/ReplyKeyboardMarkup.h"
 #include "tgbot/types/KeyboardButton.h"
+#include "tgbot/types/KeyboardButtonPollType.h"
 #include "tgbot/types/ReplyKeyboardRemove.h"
 #include "tgbot/types/ForceReply.h"
 #include "tgbot/types/ChatMember.h"
@@ -135,6 +138,12 @@ public:
     Poll::Ptr parseJsonAndGetPoll(const boost::property_tree::ptree& data) const;
     std::string parsePoll(const Poll::Ptr& object) const;
 
+    Dice::Ptr parseJsonAndGetDice(const boost::property_tree::ptree& data) const;
+    std::string parseDice(const Dice::Ptr& object) const;
+
+    PollAnswer::Ptr parseJsonAndGetPollAnswer(const boost::property_tree::ptree& data) const;
+    std::string parsePollAnswer(const PollAnswer::Ptr& object) const;
+
     PollOption::Ptr parseJsonAndGetPollOption(const boost::property_tree::ptree& data) const;
     std::string parsePollOption(const PollOption::Ptr& object) const;
 
@@ -165,6 +174,9 @@ public:
     Location::Ptr parseJsonAndGetLocation(const boost::property_tree::ptree& data) const;
     std::string parseLocation(const Location::Ptr& object) const;
 
+    Venue::Ptr parseJsonAndGetVenue(const boost::property_tree::ptree& data) const;
+    std::string parseVenue(const Venue::Ptr& object) const;
+
     Update::Ptr parseJsonAndGetUpdate(const boost::property_tree::ptree& data) const;
     std::string parseUpdate(const Update::Ptr& object) const;
 
@@ -182,6 +194,9 @@ public:
 
     KeyboardButton::Ptr parseJsonAndGetKeyboardButton(const boost::property_tree::ptree& data) const;
     std::string parseKeyboardButton(const KeyboardButton::Ptr& object) const;
+
+    KeyboardButtonPollType::Ptr parseJsonAndGetKeyboardButtonPollType(const boost::property_tree::ptree& data) const;
+    std::string parseKeyboardButtonPollType(const KeyboardButtonPollType::Ptr& object) const;
 
     ReplyKeyboardRemove::Ptr parseJsonAndGetReplyKeyboardRemove(const boost::property_tree::ptree& data) const;
     std::string parseReplyKeyboardRemove(const ReplyKeyboardRemove::Ptr& object) const;

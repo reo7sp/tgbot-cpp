@@ -17,22 +17,29 @@ public:
     typedef std::shared_ptr<Voice> Ptr;
 
     /**
-     * @brief Unique identifier for this file.
+     * @brief Identifier for this file, which can be used to download or reuse the file
      */
     std::string fileId;
 
     /**
-     * @brief Duration of the audio in seconds as defined by sender.
+     * @brief Unique identifier for this file, which is supposed to be the same over time and for different bots.
+     *
+     * Can't be used to download or reuse the file.
+     */
+    std::string fileUniqueId;
+
+    /**
+     * @brief Duration of the audio in seconds as defined by sender
      */
     std::int32_t duration;
 
     /**
-     * @brief Optional. MIME type of the file as defined by sender;
+     * @brief Optional. MIME type of the file as defined by sender
      */
     std::string mimeType;
 
     /**
-     * @brief Optional. File size.
+     * @brief Optional. File size
      */
     std::int32_t fileSize;
 };
