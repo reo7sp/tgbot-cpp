@@ -1155,24 +1155,42 @@ void Api::deleteMessage(std::int64_t chatId, std::int32_t messageId) const {
     sendRequest("deleteMessage", { HttpReqArg("chat_id", chatId), HttpReqArg("message_id", messageId) });
 }
 
-Message::Ptr Api::sendPoll(std::int64_t chatId, const std::string& question, const std::vector<std::string>& options, bool disableNotification, std::int32_t replyToMessageId, const GenericReply::Ptr replyMarkup) const {
+Message::Ptr Api::sendPoll(std::int64_t chatId, const std::string& question, const std::vector<std::string>& options, bool disableNotification, std::int32_t replyToMessageId, 
+                           const GenericReply::Ptr replyMarkup, bool isAnonymous, const std::string& type, bool allowsMultipleAnswers,
+                           std::int32_t correctOptionId, bool isClosed) const {
     vector<HttpReqArg> args;
-    args.reserve(6);
+    args.reserve(11);
     args.emplace_back("chat_id", chatId);
     args.emplace_back("question", question);
     args.emplace_back("options", _tgTypeParser.parseArray<std::string>([] (const std::string& option) -> std::string {
         return StringTools::urlEncode(option);
     }, options));
 
-    if (disableNotification){
+    if (!isAnonymous) {
+        args.emplace_back("is_anonymous", isAnonymous);
+    }
+    if (!type.empty()) {
+        args.emplace_back("type", type);
+    }
+    if (allowsMultipleAnswers) {
+        args.emplace_back("allows_multiple_answers", allowsMultipleAnswers);
+    }
+    if (correctOptionId != 0) {
+        args.emplace_back("correct_option_id", correctOptionId);
+    }
+    if (isClosed) {
+        args.emplace_back("is_closed", isClosed);
+    }
+    if (disableNotification) {
         args.emplace_back("disable_notification", disableNotification);
     }
-    if (replyToMessageId != 0){
+    if (replyToMessageId != 0) {
         args.emplace_back("reply_to_message_id", replyToMessageId);
     }
-    if (replyMarkup){
+    if (replyMarkup) {
         args.emplace_back("reply_markup", _tgTypeParser.parseGenericReply(replyMarkup));
     }
+
     return _tgTypeParser.parseJsonAndGetMessage(sendRequest("sendPoll", args));
 }
 

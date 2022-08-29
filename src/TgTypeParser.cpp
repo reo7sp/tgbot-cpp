@@ -80,6 +80,9 @@ User::Ptr TgTypeParser::parseJsonAndGetUser(const ptree& data) const {
     result->lastName = data.get("last_name", "");
     result->username = data.get("username", "");
     result->languageCode = data.get("language_code", "");
+    result->canJoinGroups = data.get<bool>("can_join_groups", false);
+    result->canReadAllGroupMessages = data.get<bool>("can_read_all_group_messages", false);
+    result->supportsInlineQueries = data.get<bool>("supports_inline_queries", false);
     return result;
 }
 
@@ -95,6 +98,9 @@ string TgTypeParser::parseUser(const User::Ptr& object) const {
     appendToJson(result, "last_name", object->lastName);
     appendToJson(result, "username", object->username);
     appendToJson(result, "language_code", object->languageCode);
+    appendToJson(result, "can_join_groups", object->canJoinGroups);
+    appendToJson(result, "can_read_all_group_messages", object->canReadAllGroupMessages);
+    appendToJson(result, "supports_inline_queries", object->supportsInlineQueries);
     removeLastComma(result);
     result += '}';
     return result;
@@ -107,6 +113,7 @@ MessageEntity::Ptr TgTypeParser::parseJsonAndGetMessageEntity(const ptree& data)
     result->length = data.get<int32_t>("length");
     result->url = data.get<string>("url", "");
     result->user = tryParseJson<User>(&TgTypeParser::parseJsonAndGetUser, data, "user");
+    result->language = data.get<string>("language", "");
     return result;
 }
 
@@ -121,6 +128,7 @@ string TgTypeParser::parseMessageEntity(const MessageEntity::Ptr& object) const 
     appendToJson(result, "length", object->length);
     appendToJson(result, "url", object->url);
     appendToJson(result, "user", parseUser(object->user));
+    appendToJson(result, "language", object->url);
     removeLastComma(result);
     result += '}';
     return result;
@@ -405,7 +413,12 @@ Poll::Ptr TgTypeParser::parseJsonAndGetPoll(const ptree& data) const {
     result->id = data.get("id", 0);
     result->question = data.get("question", "");
     result->options = parseJsonAndGetArray<PollOption>(&TgTypeParser::parseJsonAndGetPollOption, data, "options");
+    result->totalVoterCount = data.get("total_voter_count", 0);
     result->isClosed = data.get<bool>("is_closed");
+    result->isAnonymous = data.get<bool>("is_anonymous");
+    result->type = data.get("type", "");
+    result->allowsMultipleAnswers = data.get<bool>("allows_multiple_answers");
+    result->correctOptionId = data.get("correct_option_id", 0);
     return result;
 }
 
@@ -418,7 +431,39 @@ string TgTypeParser::parsePoll(const Poll::Ptr& object) const {
     appendToJson(result, "id", object->id);
     appendToJson(result, "question", object->question);
     appendToJson(result, "options", parseArray(&TgTypeParser::parsePollOption, object->options));
+    appendToJson(result, "total_voter_count", object->totalVoterCount);
     appendToJson(result, "is_closed", object->isClosed);
+    appendToJson(result, "is_anonymous", object->isAnonymous);
+    appendToJson(result, "type", object->type);
+    appendToJson(result, "allows_multiple_answers", object->allowsMultipleAnswers);
+    appendToJson(result, "correct_option_id", object->correctOptionId);
+    removeLastComma(result);
+    result += '}';
+    return result;
+}
+
+PollAnswer::Ptr TgTypeParser::parseJsonAndGetPollAnswer(const ptree& data) const {
+    auto result(make_shared<PollAnswer>());
+    result->pollId = data.get("poll_id", "");
+    result->user = tryParseJson<User>(&TgTypeParser::parseJsonAndGetUser, data, "user");
+    result->optionIds = parseJsonAndGetArray<std::int32_t>([] (const ptree& innerData)->std::int32_t {
+        return innerData.get<std::int32_t>(0);
+    }, data, "option_ids");
+
+    return result;
+}
+
+string TgTypeParser::parsePollAnswer(const PollAnswer::Ptr& object) const {
+    if (!object) {
+        return "";
+    }
+    string result;
+    result += '{';
+    appendToJson(result, "poll_id", object->pollId);
+    appendToJson(result, "user", parseUser(object->user));
+    appendToJson(result, "option_ids", parseArray<std::int32_t>([] (std::int32_t i)->std::int32_t {
+        return i;
+    }, object->optionIds));
     removeLastComma(result);
     result += '}';
     return result;
@@ -705,6 +750,7 @@ Update::Ptr TgTypeParser::parseJsonAndGetUpdate(const ptree& data) const {
     result->shippingQuery = tryParseJson<ShippingQuery>(&TgTypeParser::parseJsonAndGetShippingQuery, data, "shipping_query");
     result->preCheckoutQuery = tryParseJson<PreCheckoutQuery>(&TgTypeParser::parseJsonAndGetPreCheckoutQuery, data, "pre_checkout_query");
     result->poll = tryParseJson<Poll>(&TgTypeParser::parseJsonAndGetPoll, data, "poll");
+    result->pollAnswer = tryParseJson<PollAnswer>(&TgTypeParser::parseJsonAndGetPollAnswer, data, "poll_answer");
     return result;
 }
 
@@ -725,6 +771,7 @@ string TgTypeParser::parseUpdate(const Update::Ptr& object) const {
     appendToJson(result, "shipping_query", parseShippingQuery(object->shippingQuery));
     appendToJson(result, "pre_checkout_query", parsePreCheckoutQuery(object->preCheckoutQuery));
     appendToJson(result, "poll", parsePoll(object->poll));
+    appendToJson(result, "poll_answer", parsePollAnswer(object->pollAnswer));
     removeLastComma(result);
     result += '}';
     return result;
@@ -920,6 +967,8 @@ KeyboardButton::Ptr TgTypeParser::parseJsonAndGetKeyboardButton(const boost::pro
     result->text = data.get<string>("text");
     result->requestContact = data.get<bool>("request_contact", false);
     result->requestLocation = data.get<bool>("request_location", false);
+    result->requestPoll = tryParseJson<KeyboardButtonPollType>(&TgTypeParser::parseJsonAndGetKeyboardButtonPollType, data, "request_poll");
+
     return result;
 }
 
@@ -932,6 +981,25 @@ std::string TgTypeParser::parseKeyboardButton(const KeyboardButton::Ptr& object)
     appendToJson(result, "text", object->text);
     appendToJson(result, "request_contact", object->requestContact);
     appendToJson(result, "request_location", object->requestLocation);
+    appendToJson(result, "request_poll", parseKeyboardButtonPollType(object->requestPoll));
+    removeLastComma(result);
+    result += '}';
+    return result;
+}
+
+KeyboardButtonPollType::Ptr TgTypeParser::parseJsonAndGetKeyboardButtonPollType(const ptree& data) const {
+    auto result(make_shared<KeyboardButtonPollType>());
+    result->type = data.get<string>("type");
+    return result;
+}
+
+string TgTypeParser::parseKeyboardButtonPollType(const KeyboardButtonPollType::Ptr& object) const {
+    if (!object) {
+        return "";
+    }
+    string result;
+    result += '{';
+    appendToJson(result, "type", object->type);
     removeLastComma(result);
     result += '}';
     return result;

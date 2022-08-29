@@ -801,17 +801,23 @@ public:
     std::string downloadFile(const std::string& filePath, const std::vector<HttpReqArg>& args = std::vector<HttpReqArg>()) const;
 
     /**
-     * @brief Use this method to send a poll.
-     * @param chatId Unique identifier for the target chat or username of the target channel.
-     * @param question Poll question, 1-255 characters.
-     * @param options List of answer options, 2-10 strings 1-100 characters each.
-     * @param disableNotification Optional. Sends the message silenty.
-     * @param replyToMessageId Optional. If the message is a reply, ID of the original message.
-     * @param replyMarkup Optional. Additional interface options. An object for a custom reply keyboard, instructions to hide keyboard or to force a reply from the user.
-     *
+     * @brief Use this method to send a native poll.
+     * @param chatId Unique identifier for the target chat or username of the target channel (in the format @channelusername)
+     * @param question Poll question, 1-255 characters
+     * @param options A JSON-serialized list of answer options, 2-10 strings 1-100 characters each
+     * @param disableNotification Optional. Sends the message silently. Users will receive a notification with no sound.
+     * @param replyToMessageId Optional. If the message is a reply, ID of the original message
+     * @param replyMarkup Optional. Additional interface options. A JSON-serialized object for an inline keyboard, custom reply keyboard, instructions to remove reply keyboard or to force a reply from the user.
+     * @param isAnonymous Optional. True, if the poll needs to be anonymous, defaults to True
+     * @param type Optional. Poll type, “quiz” or “regular”, defaults to “regular”
+     * @param allowsMultipleAnswers Optional. True, if the poll allows multiple answers, ignored for polls in quiz mode, defaults to False
+     * @param correctOptionId Optional. 0-based identifier of the correct answer option, required for polls in quiz mode
+     * @param isClosed Optional. Pass True, if the poll needs to be immediately closed. This can be useful for poll preview.
      * @return On success, the sent message is returned.
      */
-    Message::Ptr sendPoll(std::int64_t chatId, const std::string& question, const std::vector<std::string>& options, bool disableNotification = false, std::int32_t replyToMessageId = 0, GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>()) const;
+    Message::Ptr sendPoll(std::int64_t chatId, const std::string& question, const std::vector<std::string>& options, bool disableNotification = false, std::int32_t replyToMessageId = 0,
+                          GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>(), bool isAnonymous = true, const std::string& type = "", bool allowsMultipleAnswers = false,
+                          std::int32_t correctOptionId = 0, bool isClosed = false) const;
 
     /**
      * @brief Use this method to stop a poll which was sent by the bot.

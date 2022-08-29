@@ -44,6 +44,11 @@ public:
      * @brief Optional. For “text_mention” only, the mentioned user
      */
     User::Ptr user;
+
+    /**
+     * @brief Optional. For “pre” only, the programming language of the entity text
+     */
+    std::string language;
 };
 }
 
