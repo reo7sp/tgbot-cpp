@@ -6,7 +6,7 @@
 namespace TgBot {
 
 /**
- * @brief This object represents a dice with random value from 1 to 6.
+ * @brief This object represents a dice with a random value from 1 to 6 for currently supported base emoji.
  *
  * @ingroup types
  */
@@ -16,7 +16,12 @@ public:
     typedef std::shared_ptr<Dice> Ptr;
 
     /**
-     * @brief Value of the dice, 1-6
+     * @brief Emoji on which the dice throw animation is based
+     */
+    std::string emoji;
+
+    /**
+     * @brief Value of the dice, 1-6 for currently supported base emoji
      */
     std::int8_t value;
 };

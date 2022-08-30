@@ -533,10 +533,11 @@ Message::Ptr Api::sendContact(std::int64_t chatId, const string& phoneNumber, co
 
 Message::Ptr Api::sendPoll(std::int64_t chatId, const std::string& question, const std::vector<std::string>& options,
                            bool isAnonymous, const std::string& type, bool allowsMultipleAnswers,
-                           std::int32_t correctOptionId, bool isClosed, bool disableNotification,
-                           std::int32_t replyToMessageId, GenericReply::Ptr replyMarkup) const {
+                           std::int32_t correctOptionId, const std::string& explanation, const std::string& explanationParseMode,
+                           std::int32_t openPeriod, std::int64_t closeDate, bool isClosed,
+                           bool disableNotification, std::int32_t replyToMessageId, GenericReply::Ptr replyMarkup) const {
     vector<HttpReqArg> args;
-    args.reserve(11);
+    args.reserve(15);
 
     args.emplace_back("chat_id", chatId);
     args.emplace_back("question", question);
@@ -554,6 +555,18 @@ Message::Ptr Api::sendPoll(std::int64_t chatId, const std::string& question, con
     }
     if (correctOptionId != 0) {
         args.emplace_back("correct_option_id", correctOptionId);
+    }
+    if (!explanation.empty()) {
+        args.emplace_back("explanation", explanation);
+    }
+    if (!explanationParseMode.empty()) {
+        args.emplace_back("explanation_parse_mode", explanationParseMode);
+    }
+    if (openPeriod != 0) {
+        args.emplace_back("open_period", openPeriod);
+    }
+    if (closeDate != 0) {
+        args.emplace_back("close_date", closeDate);
     }
     if (isClosed) {
         args.emplace_back("is_closed", isClosed);
@@ -574,17 +587,20 @@ Message::Ptr Api::sendPoll(std::int64_t chatId, const std::string& question, con
 Message::Ptr Api::sendPoll(std::int64_t chatId, const std::string& question, const std::vector<std::string>& options,
                            bool disableNotification, std::int32_t replyToMessageId, GenericReply::Ptr replyMarkup) const {
 
-    return sendPoll(chatId, question, options, true, "", false, 0, false, disableNotification, replyToMessageId, replyMarkup);
+    return sendPoll(chatId, question, options, true, "", false, 0, "", "", 0, 0, false, false, 0);
 }
 
-Message::Ptr Api::sendDice(std::int64_t chatId, bool disableNotification, std::int32_t replyToMessageId,
-                           GenericReply::Ptr replyMarkup) const {
+Message::Ptr Api::sendDice(std::int64_t chatId, const std::string& emoji, bool disableNotification,
+                           std::int32_t replyToMessageId, GenericReply::Ptr replyMarkup) const {
     vector<HttpReqArg> args;
-    args.reserve(4);
+    args.reserve(5);
 
     args.emplace_back("chat_id", chatId);
     if (disableNotification) {
         args.emplace_back("disable_notification", disableNotification);
+    }
+    if (!emoji.empty()) {
+        args.emplace_back("emoji", emoji);
     }
     if (replyToMessageId != 0) {
         args.emplace_back("reply_to_message_id", replyToMessageId);

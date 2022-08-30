@@ -430,6 +430,10 @@ Poll::Ptr TgTypeParser::parseJsonAndGetPoll(const ptree& data) const {
     result->type = data.get<string>("type", "");
     result->allowsMultipleAnswers = data.get<bool>("allows_multiple_answers", false);
     result->correctOptionId = data.get<int32_t>("correct_option_id", 0);
+    result->explanation = data.get<string>("explanation", "");
+    result->explanationEntities = parseJsonAndGetArray<MessageEntity>(&TgTypeParser::parseJsonAndGetMessageEntity, data, "explanation_entities");
+    result->openPeriod = data.get<int32_t>("open_period", 0);
+    result->closeDate = data.get<int64_t>("close_date", 0);
     return result;
 }
 
@@ -448,6 +452,10 @@ string TgTypeParser::parsePoll(const Poll::Ptr& object) const {
     appendToJson(result, "type", object->type);
     appendToJson(result, "allows_multiple_answers", object->allowsMultipleAnswers);
     appendToJson(result, "correct_option_id", object->correctOptionId);
+    appendToJson(result, "explanation", object->correctOptionId);
+    appendToJson(result, "explanation_entities", parseArray(&TgTypeParser::parseMessageEntity, object->explanationEntities));
+    appendToJson(result, "open_period", object->openPeriod);
+    appendToJson(result, "close_date", object->closeDate);
     removeLastComma(result);
     result += '}';
     return result;
@@ -455,6 +463,7 @@ string TgTypeParser::parsePoll(const Poll::Ptr& object) const {
 
 Dice::Ptr TgTypeParser::parseJsonAndGetDice(const ptree& data) const {
     auto result(make_shared<Dice>());
+    result->emoji = data.get<string>("emoji", "");
     result->value = data.get<int8_t>("value", 0);
     return result;
 }
@@ -465,6 +474,7 @@ string TgTypeParser::parseDice(const Dice::Ptr& object) const {
     }
     string result;
     result += '{';
+    appendToJson(result, "emoji", object->emoji);
     appendToJson(result, "value", object->value);
     removeLastComma(result);
     result += '}';

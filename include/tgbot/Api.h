@@ -350,6 +350,10 @@ public:
      * @param type Optional. Poll type, “quiz” or “regular”, defaults to “regular”
      * @param allowsMultipleAnswers Optional. True, if the poll allows multiple answers, ignored for polls in quiz mode, defaults to False
      * @param correctOptionId Optional. 0-based identifier of the correct answer option, required for polls in quiz mode
+     * @param explanation Optional. Text that is shown when a user chooses an incorrect answer or taps on the lamp icon in a quiz-style poll, 0-200 characters with at most 2 line feeds after entities parsing
+     * @param explanationParseMode Optional. Mode for parsing entities in the explanation. See https://core.telegram.org/bots/api#formatting-options for more details.
+     * @param openPeriod Optional. Amount of time in seconds the poll will be active after creation, 5-600. Can't be used together with close_date.
+     * @param closeDate Optional. Point in time (Unix timestamp) when the poll will be automatically closed. Must be at least 5 and no more than 600 seconds in the future. Can't be used together with open_period.
      * @param isClosed Optional. Pass True, if the poll needs to be immediately closed. This can be useful for poll preview.
      * @param disableNotification Optional. Sends the message silently. Users will receive a notification with no sound.
      * @param replyToMessageId Optional. If the message is a reply, ID of the original message
@@ -359,8 +363,9 @@ public:
      */
     Message::Ptr sendPoll(std::int64_t chatId, const std::string& question, const std::vector<std::string>& options,
                           bool isAnonymous = true, const std::string& type = "", bool allowsMultipleAnswers = false,
-                          std::int32_t correctOptionId = 0, bool isClosed = false, bool disableNotification = false,
-                          std::int32_t replyToMessageId = 0, GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>()) const;
+                          std::int32_t correctOptionId = 0, const std::string& explanation = "", const std::string& explanationParseMode = "",
+                          std::int32_t openPeriod = 0, std::int64_t closeDate = 0, bool isClosed = false,
+                          bool disableNotification = false, std::int32_t replyToMessageId = 0, GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>()) const;
 
     /**
      * @brief Deprecated. Use @ref Api::sendPoll
@@ -373,14 +378,15 @@ public:
      * @brief Use this method to send a dice, which will have a random value from 1 to 6.
      *
      * @param chatId Unique identifier for the target chat or username of the target channel (in the format @channelusername)
+     * @param emoji Optional. Emoji on which the dice throw animation is based. Currently, must be one of “🎲” or “🎯”. Defauts to “🎲”
      * @param disableNotification Optional. Sends the message silently. Users will receive a notification with no sound.
      * @param replyToMessageId Optional. If the message is a reply, ID of the original message
      * @param replyMarkup Optional. Additional interface options. A JSON-serialized object for an inline keyboard, custom reply keyboard, instructions to remove reply keyboard or to force a reply from the user.
      *
      * @return On success, the sent @ref Message is returned.
      */
-    Message::Ptr sendDice(std::int64_t chatId, bool disableNotification = false, std::int32_t replyToMessageId = 0,
-                          GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>()) const;
+    Message::Ptr sendDice(std::int64_t chatId, const std::string& emoji = "", bool disableNotification = false,
+                          std::int32_t replyToMessageId = 0, GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>()) const;
 
     /**
      * @brief Use this method when you need to tell the user that something is happening on the bot's side. The status is set for 5 seconds or less (when a message arrives from your bot, Telegram clients clear its typing status).
