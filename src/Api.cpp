@@ -84,9 +84,9 @@ User::Ptr Api::getMe() const {
     return _tgTypeParser.parseJsonAndGetUser(sendRequest("getMe"));
 }
 
-Message::Ptr Api::sendMessage(boost::variant<std::int64_t, const std::string&> chatId, const std::string& text, const std::string& parseMode,
-                              bool disableWebPagePreview, bool disableNotification, std::int32_t replyToMessageId,
-                              GenericReply::Ptr replyMarkup) const {
+Message::Ptr Api::sendMessage(boost::variant<std::int64_t, const std::string&> chatId, const std::string& text, bool disableWebPagePreview,
+                              std::int32_t replyToMessageId, GenericReply::Ptr replyMarkup, const std::string& parseMode,
+                              bool disableNotification) const {
     vector<HttpReqArg> args;
     args.reserve(7);
 
@@ -109,20 +109,6 @@ Message::Ptr Api::sendMessage(boost::variant<std::int64_t, const std::string&> c
     }
 
     return _tgTypeParser.parseJsonAndGetMessage(sendRequest("sendMessage", args));
-}
-
-Message::Ptr Api::sendMessage(const std::string& chatId, const std::string& text, bool disableWebPagePreview,
-                              std::int32_t replyToMessageId, GenericReply::Ptr replyMarkup, const std::string& parseMode,
-                              bool disableNotification) const {
-
-    return sendMessage(chatId, text, parseMode, disableWebPagePreview, disableNotification, replyToMessageId, replyMarkup);
-}
-
-Message::Ptr Api::sendMessage(std::int64_t chatId, const std::string& text, bool disableWebPagePreview,
-                              std::int32_t replyToMessageId, GenericReply::Ptr replyMarkup, const std::string& parseMode,
-                              bool disableNotification) const {
-
-    return sendMessage(chatId, text, parseMode, disableWebPagePreview, disableNotification, replyToMessageId, replyMarkup);
 }
 
 Message::Ptr Api::forwardMessage(std::int64_t chatId, std::int64_t fromChatId, std::int32_t messageId, bool disableNotification) const {

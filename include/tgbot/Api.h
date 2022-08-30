@@ -104,30 +104,15 @@ public:
      *
      * @param chatId Unique identifier for the target chat or username of the target channel (in the format @channelusername)
      * @param text Text of the message to be sent
-     * @param parseMode Optional. Send Markdown or HTML, if you want Telegram apps to show bold, italic, fixed-width text or inline URLs in your bot's message.
      * @param disableWebPagePreview Optional. Disables link previews for links in this message
-     * @param disableNotification Optional. Sends the message silently. Users will receive a notification with no sound.
      * @param replyToMessageId Optional. If the message is a reply, ID of the original message
      * @param replyMarkup Optional. Additional interface options. A JSON-serialized object for an inline keyboard, custom reply keyboard, instructions to remove reply keyboard or to force a reply from the user.
-     *
+     * @param parseMode Optional. Send Markdown or HTML, if you want Telegram apps to show bold, italic, fixed-width text or inline URLs in your bot's message.
+     * @param disableNotification Optional. Sends the message silently. Users will receive a notification with no sound.
+     * 
      * @return On success, the sent @ref Message is returned.
      */
-    Message::Ptr sendMessage(boost::variant<std::int64_t, const std::string&> chatId, const std::string& text, const std::string& parseMode = "",
-                             bool disableWebPagePreview = false, bool disableNotification = false, std::int32_t replyToMessageId = 0,
-                             GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>()) const;
-
-    /**
-     * @brief Deprecated. Use @ref Api::sendMessage
-     * @deprecated since Bot API 4.5. This remains unchanged for backward compatibility.
-     */
-    Message::Ptr sendMessage(const std::string& chatId, const std::string& text, bool disableWebPagePreview = false,
-                             std::int32_t replyToMessageId = 0, GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>(), const std::string& parseMode = "",
-                             bool disableNotification = false) const;
-    /**
-     * @brief Deprecated. Use @ref Api::sendMessage
-     * @deprecated since Bot API 4.5. This remains unchanged for backward compatibility.
-     */
-    Message::Ptr sendMessage(std::int64_t chatId, const std::string& text, bool disableWebPagePreview = false,
+    Message::Ptr sendMessage(boost::variant<std::int64_t, const std::string&> chatId, const std::string& text, bool disableWebPagePreview = false,
                              std::int32_t replyToMessageId = 0, GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>(), const std::string& parseMode = "",
                              bool disableNotification = false) const;
 
