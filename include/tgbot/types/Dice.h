@@ -6,7 +6,7 @@
 namespace TgBot {
 
 /**
- * @brief This object represents a dice with a random value from 1 to 6 for currently supported base emoji.
+ * @brief This object represents an animated emoji that displays a random value.
  *
  * @ingroup types
  */
@@ -21,7 +21,7 @@ public:
     std::string emoji;
 
     /**
-     * @brief Value of the dice, 1-6 for currently supported base emoji
+     * @brief Value of the dice, 1-6 for “🎲” and “🎯” base emoji, 1-5 for “🏀” base emoji
      */
     std::int8_t value;
 };

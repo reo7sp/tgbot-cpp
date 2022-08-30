@@ -144,6 +144,7 @@ Message::Ptr TgTypeParser::parseJsonAndGetMessage(const ptree& data) const {
     result->forwardSenderName = data.get<string>("forward_sender_name", "");
     result->forwardDate = data.get<int32_t>("forward_date", 0);
     result->replyToMessage = tryParseJson<Message>(&TgTypeParser::parseJsonAndGetMessage, data, "reply_to_message");
+    result->viaBot = tryParseJson<User>(&TgTypeParser::parseJsonAndGetUser, data, "via_bot");
     result->editDate = data.get<int32_t>("edit_date", 0);
     result->mediaGroupId = data.get<string>("media_group_id", "");
     result->authorSignature = data.get<string>("author_signature", "");
@@ -202,6 +203,7 @@ string TgTypeParser::parseMessage(const Message::Ptr& object) const {
     appendToJson(result, "forward_sender_name", object->forwardSenderName);
     appendToJson(result, "forward_date", object->forwardDate);
     appendToJson(result, "reply_to_message", parseMessage(object->replyToMessage));
+    appendToJson(result, "via_bot", parseUser(object->viaBot));
     appendToJson(result, "edit_date", object->editDate);
     appendToJson(result, "media_group_id", object->mediaGroupId);
     appendToJson(result, "author_signature", object->authorSignature);
@@ -1260,8 +1262,8 @@ std::string TgTypeParser::parseInlineQuery(const InlineQuery::Ptr& object) const
     return result;
 }
 
-InlineQueryResult::Ptr TgTypeParser::parseJsonAndGetInlineQueryResult(const boost::property_tree::ptree& data) const {
-    string type = data.get<string>("type");
+InlineQueryResult::Ptr TgTypeParser::parseJsonAndGetInlineQueryResult(const ptree& data) const {
+    string type = data.get<string>("type", "");
     InlineQueryResult::Ptr result;
 
     if (type == InlineQueryResultCachedAudio::TYPE) {
@@ -1308,26 +1310,27 @@ InlineQueryResult::Ptr TgTypeParser::parseJsonAndGetInlineQueryResult(const boos
         result = make_shared<InlineQueryResult>();
     }
 
-    result->id = data.get<string>("id");
+    result->id = data.get<string>("id", "");
     result->title = data.get<string>("title", "");
     result->caption = data.get<string>("caption", "");
+    result->parseMode = data.get<string>("parse_mode", "");
     result->replyMarkup = tryParseJson<InlineKeyboardMarkup>(&TgTypeParser::parseJsonAndGetInlineKeyboardMarkup, data, "reply_markup");
     result->inputMessageContent = tryParseJson<InputMessageContent>(&TgTypeParser::parseJsonAndGetInputMessageContent, data, "input_message_content");
 
     return result;
 }
 
-std::string TgTypeParser::parseInlineQueryResult(const InlineQueryResult::Ptr& object) const {
+string TgTypeParser::parseInlineQueryResult(const InlineQueryResult::Ptr& object) const {
     if (!object){
         return "";
     }
-
     string result;
     result += '{';
     appendToJson(result, "id", object->id);
     appendToJson(result, "type", object->type);
     appendToJson(result, "title", object->title);
     appendToJson(result, "caption", object->caption);
+    appendToJson(result, "parse_mode", object->parseMode);
     appendToJson(result, "reply_markup", parseInlineKeyboardMarkup(object->replyMarkup));
     appendToJson(result, "input_message_content", parseInputMessageContent(object->inputMessageContent));
 
@@ -1398,7 +1401,7 @@ std::string TgTypeParser::parseInlineQueryResult(const InlineQueryResult::Ptr& o
 }
 
 InlineQueryResultCachedAudio::Ptr TgTypeParser::parseJsonAndGetInlineQueryResultCachedAudio(const boost::property_tree::ptree& data) const {
-    // NOTE: This function will be called by parseJsonAndGgetInlineQueryResult().
+    // NOTE: This function will be called by parseJsonAndGetInlineQueryResult().
     auto result(make_shared<InlineQueryResultCachedAudio>());
     result->audioFileId = data.get<string>("audio_file_id");
     return result;
@@ -1417,7 +1420,7 @@ std::string TgTypeParser::parseInlineQueryResultCachedAudio(const InlineQueryRes
 }
 
 InlineQueryResultCachedDocument::Ptr TgTypeParser::parseJsonAndGetInlineQueryResultCachedDocument(const boost::property_tree::ptree& data) const {
-    // NOTE: This function will be called by parseJsonAndGgetInlineQueryResult().
+    // NOTE: This function will be called by parseJsonAndGetInlineQueryResult().
     auto result(make_shared<InlineQueryResultCachedDocument>());
     result->documentFileId = data.get<string>("document_file_id");
     result->description = data.get<string>("description", "");
@@ -1439,7 +1442,7 @@ std::string TgTypeParser::parseInlineQueryResultCachedDocument(const InlineQuery
 
 
 InlineQueryResultCachedGif::Ptr TgTypeParser::parseJsonAndGetInlineQueryResultCachedGif(const boost::property_tree::ptree& data) const {
-    // NOTE: This function will be called by parseJsonAndGgetInlineQueryResult().
+    // NOTE: This function will be called by parseJsonAndGetInlineQueryResult().
     auto result(make_shared<InlineQueryResultCachedGif>());
     result->gifFileId = data.get<string>("gif_file_id");
     return result;
@@ -1459,7 +1462,7 @@ std::string TgTypeParser::parseInlineQueryResultCachedGif(const InlineQueryResul
 
 
 InlineQueryResultCachedMpeg4Gif::Ptr TgTypeParser::parseJsonAndGetInlineQueryResultCachedMpeg4Gif(const boost::property_tree::ptree& data) const {
-    // NOTE: This function will be called by parseJsonAndGgetInlineQueryResult().
+    // NOTE: This function will be called by parseJsonAndGetInlineQueryResult().
     auto result(make_shared<InlineQueryResultCachedMpeg4Gif>());
     result->mpeg4FileId = data.get<string>("mpeg4_file_id");
     return result;
@@ -1479,7 +1482,7 @@ std::string TgTypeParser::parseInlineQueryResultCachedMpeg4Gif(const InlineQuery
 
 
 InlineQueryResultCachedPhoto::Ptr TgTypeParser::parseJsonAndGetInlineQueryResultCachedPhoto(const boost::property_tree::ptree& data) const {
-    // NOTE: This function will be called by parseJsonAndGgetInlineQueryResult().
+    // NOTE: This function will be called by parseJsonAndGetInlineQueryResult().
     auto result(make_shared<InlineQueryResultCachedPhoto>());
     result->photoFileId = data.get<string>("photo_file_id");
     result->description = data.get<string>("description", "");
@@ -1501,7 +1504,7 @@ std::string TgTypeParser::parseInlineQueryResultCachedPhoto(const InlineQueryRes
 
 
 InlineQueryResultCachedSticker::Ptr TgTypeParser::parseJsonAndGetInlineQueryResultCachedSticker(const boost::property_tree::ptree& data) const {
-    // NOTE: This function will be called by parseJsonAndGgetInlineQueryResult().
+    // NOTE: This function will be called by parseJsonAndGetInlineQueryResult().
     auto result(make_shared<InlineQueryResultCachedSticker>());
     result->stickerFileId = data.get<string>("sticker_file_id");
     return result;
@@ -1520,7 +1523,7 @@ std::string TgTypeParser::parseInlineQueryResultCachedSticker(const InlineQueryR
 }
 
 InlineQueryResultCachedVideo::Ptr TgTypeParser::parseJsonAndGetInlineQueryResultCachedVideo(const boost::property_tree::ptree& data) const {
-    // NOTE: This function will be called by parseJsonAndGgetInlineQueryResult().
+    // NOTE: This function will be called by parseJsonAndGetInlineQueryResult().
     auto result(make_shared<InlineQueryResultCachedVideo>());
     result->videoFileId = data.get<string>("video_file_id");
     result->description = data.get<string>("description", "");
@@ -1542,7 +1545,7 @@ std::string TgTypeParser::parseInlineQueryResultCachedVideo(const InlineQueryRes
 
 
 InlineQueryResultCachedVoice::Ptr TgTypeParser::parseJsonAndGetInlineQueryResultCachedVoice(const boost::property_tree::ptree& data) const {
-    // NOTE: This function will be called by parseJsonAndGgetInlineQueryResult().
+    // NOTE: This function will be called by parseJsonAndGetInlineQueryResult().
     auto result(make_shared<InlineQueryResultCachedVoice>());
     result->voiceFileId = data.get<string>("voice_file_id");
     return result;
@@ -1561,7 +1564,7 @@ std::string TgTypeParser::parseInlineQueryResultCachedVoice(const InlineQueryRes
 }
 
 InlineQueryResultArticle::Ptr TgTypeParser::parseJsonAndGetInlineQueryResultArticle(const boost::property_tree::ptree& data) const {
-    // NOTE: This function will be called by parseJsonAndGgetInlineQueryResult().
+    // NOTE: This function will be called by parseJsonAndGetInlineQueryResult().
     auto result(make_shared<InlineQueryResultArticle>());
     result->url = data.get<string>("url", "");
     result->hideUrl = data.get("hide_url", false);
@@ -1590,7 +1593,7 @@ std::string TgTypeParser::parseInlineQueryResultArticle(const InlineQueryResultA
 }
 
 InlineQueryResultAudio::Ptr TgTypeParser::parseJsonAndGetInlineQueryResultAudio(const boost::property_tree::ptree& data) const {
-    // NOTE: This function will be called by parseJsonAndGgetInlineQueryResult().
+    // NOTE: This function will be called by parseJsonAndGetInlineQueryResult().
     auto result(make_shared<InlineQueryResultAudio>());
     result->audioUrl = data.get<string>("audio_url");
     result->performer = data.get<string>("performer", "");
@@ -1614,7 +1617,7 @@ std::string TgTypeParser::parseInlineQueryResultAudio(const InlineQueryResultAud
 
 
 InlineQueryResultContact::Ptr TgTypeParser::parseJsonAndGetInlineQueryResultContact(const boost::property_tree::ptree& data) const {
-    // NOTE: This function will be called by parseJsonAndGgetInlineQueryResult().
+    // NOTE: This function will be called by parseJsonAndGetInlineQueryResult().
     auto result(make_shared<InlineQueryResultContact>());
     result->phoneNumber = data.get<string>("phone_number");
     result->firstName = data.get<string>("first_name");
@@ -1646,7 +1649,7 @@ std::string TgTypeParser::parseInlineQueryResultContact(const InlineQueryResultC
 
 
 InlineQueryResultGame::Ptr TgTypeParser::parseJsonAndGetInlineQueryResultGame(const boost::property_tree::ptree& data) const {
-    // NOTE: This function will be called by parseJsonAndGgetInlineQueryResult().
+    // NOTE: This function will be called by parseJsonAndGetInlineQueryResult().
     auto result(make_shared<InlineQueryResultGame>());
     result->gameShortName = data.get<string>("game_short_name");
     return result;
@@ -1665,7 +1668,7 @@ std::string TgTypeParser::parseInlineQueryResultGame(const InlineQueryResultGame
 }
 
 InlineQueryResultDocument::Ptr TgTypeParser::parseJsonAndGetInlineQueryResultDocument(const boost::property_tree::ptree& data) const {
-    // NOTE: This function will be called by parseJsonAndGgetInlineQueryResult().
+    // NOTE: This function will be called by parseJsonAndGetInlineQueryResult().
     auto result(make_shared<InlineQueryResultDocument>());
     result->documentUrl = data.get<string>("document_url");
     result->mimeType = data.get<string>("mime_type");
@@ -1694,7 +1697,7 @@ std::string TgTypeParser::parseInlineQueryResultDocument(const InlineQueryResult
 }
 
 InlineQueryResultLocation::Ptr TgTypeParser::parseJsonAndGetInlineQueryResultLocation(const boost::property_tree::ptree& data) const {
-    // NOTE: This function will be called by parseJsonAndGgetInlineQueryResult().
+    // NOTE: This function will be called by parseJsonAndGetInlineQueryResult().
     auto result(make_shared<InlineQueryResultLocation>());
     result->latitude = data.get<float>("latitude");
     result->longitude = data.get<float>("longitude");
@@ -1722,7 +1725,7 @@ std::string TgTypeParser::parseInlineQueryResultLocation(const InlineQueryResult
 
 
 InlineQueryResultVenue::Ptr TgTypeParser::parseJsonAndGetInlineQueryResultVenue(const boost::property_tree::ptree& data) const {
-    // NOTE: This function will be called by parseJsonAndGgetInlineQueryResult().
+    // NOTE: This function will be called by parseJsonAndGetInlineQueryResult().
     auto result(make_shared<InlineQueryResultVenue>());
     result->latitude = data.get<float>("latitude");
     result->longitude = data.get<float>("longitude");
@@ -1755,7 +1758,7 @@ std::string TgTypeParser::parseInlineQueryResultVenue(const InlineQueryResultVen
 }
 
 InlineQueryResultVoice::Ptr TgTypeParser::parseJsonAndGetInlineQueryResultVoice(const boost::property_tree::ptree& data) const {
-    // NOTE: This function will be called by parseJsonAndGgetInlineQueryResult().
+    // NOTE: This function will be called by parseJsonAndGetInlineQueryResult().
     auto result(make_shared<InlineQueryResultVoice>());
     result->voiceUrl = data.get<string>("voice_url");
     result->voiceDuration = data.get<int32_t>("voice_duration", 0);
@@ -1776,7 +1779,7 @@ std::string TgTypeParser::parseInlineQueryResultVoice(const InlineQueryResultVoi
 }
 
 InlineQueryResultPhoto::Ptr TgTypeParser::parseJsonAndGetInlineQueryResultPhoto(const boost::property_tree::ptree& data) const {
-    // NOTE: This function will be called by parseJsonAndGgetInlineQueryResult().
+    // NOTE: This function will be called by parseJsonAndGetInlineQueryResult().
     auto result(make_shared<InlineQueryResultPhoto>());
     result->photoUrl = data.get<string>("photo_url", "");
     result->thumbUrl = data.get<string>("thumb_url");
@@ -1802,17 +1805,19 @@ std::string TgTypeParser::parseInlineQueryResultPhoto(const InlineQueryResultPho
     return result;
 }
 
-InlineQueryResultGif::Ptr TgTypeParser::parseJsonAndGetInlineQueryResultGif(const boost::property_tree::ptree& data) const {
-    // NOTE: This function will be called by parseJsonAndGgetInlineQueryResult().
+InlineQueryResultGif::Ptr TgTypeParser::parseJsonAndGetInlineQueryResultGif(const ptree& data) const {
+    // NOTE: This function will be called by parseJsonAndGetInlineQueryResult().
     auto result(make_shared<InlineQueryResultGif>());
     result->gifUrl = data.get<string>("gif_url", "");
-    result->gifWidth = data.get("gif_width", 0);
-    result->gifHeight = data.get("gif_height", 0);
-    result->gifDuration = data.get("gif_duration", 0);
-    result->thumbUrl = data.get<string>("thumb_url");
+    result->gifWidth = data.get<int32_t>("gif_width", 0);
+    result->gifHeight = data.get<int32_t>("gif_height", 0);
+    result->gifDuration = data.get<int32_t>("gif_duration", 0);
+    result->thumbUrl = data.get<string>("thumb_url", "");
+    result->thumbMimeType = data.get<string>("thumb_mime_type", "");
     return result;
 }
-std::string TgTypeParser::parseInlineQueryResultGif(const InlineQueryResultGif::Ptr& object) const {
+
+string TgTypeParser::parseInlineQueryResultGif(const InlineQueryResultGif::Ptr& object) const {
     if (!object){
         return "";
     }
@@ -1824,18 +1829,20 @@ std::string TgTypeParser::parseInlineQueryResultGif(const InlineQueryResultGif::
     appendToJson(result, "gif_height", object->gifHeight);
     appendToJson(result, "gif_duration", object->gifDuration);
     appendToJson(result, "thumb_url", object->thumbUrl);
+    appendToJson(result, "thumb_mime_type", object->thumbMimeType);
     // The last comma will be erased by parseInlineQueryResult().
     return result;
 }
 
-InlineQueryResultMpeg4Gif::Ptr TgTypeParser::parseJsonAndGetInlineQueryResultMpeg4Gif(const boost::property_tree::ptree& data) const {
-    // NOTE: This function will be called by parseJsonAndGgetInlineQueryResult().
+InlineQueryResultMpeg4Gif::Ptr TgTypeParser::parseJsonAndGetInlineQueryResultMpeg4Gif(const ptree& data) const {
+    // NOTE: This function will be called by parseJsonAndGetInlineQueryResult().
     auto result(make_shared<InlineQueryResultMpeg4Gif>());
-    result->mpeg4Url = data.get<string>("mpeg4_url");
-    result->mpeg4Width = data.get("mpeg4_width", 0);
-    result->mpeg4Height = data.get("mpeg4_height", 0);
-    result->mpeg4Duration = data.get("mpeg4_duration", 0);
-    result->thumbUrl = data.get<string>("thumb_url");
+    result->mpeg4Url = data.get<string>("mpeg4_url", "");
+    result->mpeg4Width = data.get<int32_t>("mpeg4_width", 0);
+    result->mpeg4Height = data.get<int32_t>("mpeg4_height", 0);
+    result->mpeg4Duration = data.get<int32_t>("mpeg4_duration", 0);
+    result->thumbUrl = data.get<string>("thumb_url", "");
+    result->thumbMimeType = data.get<string>("thumb_mime_type", "");
     return result;
 }
 
@@ -1851,12 +1858,13 @@ std::string TgTypeParser::parseInlineQueryResultMpeg4Gif(const InlineQueryResult
     appendToJson(result, "mpeg4_height", object->mpeg4Height);
     appendToJson(result, "mpeg4_duration", object->mpeg4Duration);
     appendToJson(result, "thumb_url", object->thumbUrl);
+    appendToJson(result, "thumb_mime_type", object->thumbMimeType);
     // The last comma will be erased by parseInlineQueryResult().
     return result;
 }
 
 InlineQueryResultVideo::Ptr TgTypeParser::parseJsonAndGetInlineQueryResultVideo(const boost::property_tree::ptree& data) const {
-    // NOTE: This function will be called by parseJsonAndGgetInlineQueryResult().
+    // NOTE: This function will be called by parseJsonAndGetInlineQueryResult().
     auto result(make_shared<InlineQueryResultVideo>());
     result->videoUrl = data.get<string>("video_url");
     result->mimeType = data.get<string>("mime_type");

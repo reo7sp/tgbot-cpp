@@ -96,6 +96,11 @@ public:
     Message::Ptr replyToMessage;
 
     /**
+     * @brief Optional. Bot through which the message was sent
+     */
+    User::Ptr viaBot;
+
+    /**
      * @brief Optional. Date the message was last edited in Unix time
      */
     std::int32_t editDate;
