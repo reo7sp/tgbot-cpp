@@ -32,12 +32,12 @@ public:
     /**
      * @brief True, if the sticker set contains animated stickers
      */
-    bool isAnimated = false;
+    bool isAnimated;
 
     /**
      * @brief True, if the sticker set contains masks
      */
-    bool containsMasks = false;
+    bool containsMasks;
 
     /**
      * @brief List of all set stickers

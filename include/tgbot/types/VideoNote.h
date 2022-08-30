@@ -10,7 +10,7 @@
 namespace TgBot {
 
 /**
- * @brief This object represents a video message (available in Telegram apps as of v.4.0).
+ * @brief This object represents a video message.
  *
  * @ingroup types
  */
@@ -26,7 +26,6 @@ public:
 
     /**
      * @brief Unique identifier for this file, which is supposed to be the same over time and for different bots.
-     *
      * Can't be used to download or reuse the file.
      */
     std::string fileUniqueId;

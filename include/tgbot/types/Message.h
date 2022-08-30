@@ -91,8 +91,7 @@ public:
 
     /**
      * @brief Optional. For replies, the original message.
-     *
-     * Note that the Message object in this field will not contain further reply_to_message fields even if it itself is a reply.
+     * Note that the Message object in this field will not contain further @ref Message::replyToMessage fields even if it itself is a reply.
      */
     Message::Ptr replyToMessage;
 
@@ -138,7 +137,6 @@ public:
 
     /**
      * @brief Optional. Message is an animation, information about the animation.
-     *
      * For backward compatibility, when this field is set, the document field will also be set
      */
     Animation::Ptr animation;
@@ -204,13 +202,6 @@ public:
     Dice::Ptr dice;
 
     /**
-     * @brief Deprecated since Bot API 3.0. The field is replaced with newChatMembers.
-     *
-     * Optional. A new member was added to the group, information about them (this member may be the bot itself)
-     */
-    User::Ptr newChatMember;
-
-    /**
      * @brief Optional. New members that were added to the group or supergroup and information about them (the bot itself may be one of these members)
      */
     std::vector<User::Ptr> newChatMembers;
@@ -233,41 +224,42 @@ public:
     /**
      * @brief Optional. Service message: the chat photo was deleted
      */
-    bool deleteChatPhoto = false;
+    bool deleteChatPhoto;
 
     /**
      * @brief Optional. Service message: the group has been created
      */
-    bool groupChatCreated = false;
+    bool groupChatCreated;
 
     /**
      * @brief Optional. Service message: the supergroup has been created
      */
-    bool supergroupChatCreated = false;
+    bool supergroupChatCreated;
 
     /**
      * @brief Optional. Service message: the channel has been created
      */
-    bool channelChatCreated = false;
+    bool channelChatCreated;
 
     /**
      * @brief Optional. The group has been migrated to a supergroup with the specified identifier.
      *
-     * This number may be greater than 32 bits and some programming languages may have difficulty/silent defects in interpreting it. But it is smaller than 52 bits, so a signed 64 bit integer or double-precision float type are safe for storing this identifier.
+     * This number may be greater than 32 bits and some programming languages may have difficulty/silent defects in interpreting it.
+     * But it is smaller than 52 bits, so a signed 64 bit integer or double-precision float type are safe for storing this identifier.
      */
-    std::int64_t migrateToChatId = 0;
+    std::int64_t migrateToChatId;
 
     /**
      * @brief Optional. The supergroup has been migrated from a group with the specified identifier.
      *
-     * This number may be greater than 32 bits and some programming languages may have difficulty/silent defects in interpreting it. But it is smaller than 52 bits, so a signed 64 bit integer or double-precision float type are safe for storing this identifier.
+     * This number may be greater than 32 bits and some programming languages may have difficulty/silent defects in interpreting it.
+     * But it is smaller than 52 bits, so a signed 64 bit integer or double-precision float type are safe for storing this identifier.
      */
-    std::int64_t migrateFromChatId = 0;
+    std::int64_t migrateFromChatId;
 
     /**
      * @brief Optional. Specified message was pinned.
-     *
-     * Note that the Message object in this field will not contain further reply_to_message fields even if it is itself a reply.
+     * Note that the Message object in this field will not contain further @ref Message::replyToMessage fields even if it is itself a reply.
      */
     Message::Ptr pinnedMessage;
 
@@ -292,7 +284,8 @@ public:
     // TODO PassportData::Ptr passportData;
 
     /**
-     * @brief Optional. Inline keyboard attached to the message. login_url buttons are represented as ordinary url buttons.
+     * @brief Optional. Inline keyboard attached to the message.
+     * @ref InlineKeyboardButton::loginUrl buttons are represented as ordinary @ref InlineKeyboardButton::url buttons.
      */
     InlineKeyboardMarkup::Ptr replyMarkup;
 
@@ -301,7 +294,7 @@ public:
      *
      * Note: Added with Bot API 5.5
      */
-    bool automaticForward = false;
+    bool automaticForward;
 };
 }
 

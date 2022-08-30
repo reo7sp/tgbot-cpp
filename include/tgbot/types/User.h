@@ -25,7 +25,7 @@ public:
     /**
      * @brief True, if this user is a bot
      */
-    bool isBot = false;
+    bool isBot;
 
     /**
      * @brief User‘s or bot’s first name
@@ -48,21 +48,23 @@ public:
     std::string languageCode;
 
     /**
-     * @brief Optional. True, if the bot can be invited to groups. Returned only in getMe.
+     * @brief Optional. True, if the bot can be invited to groups.
+     * Returned only in @ref Api::getMe.
      */
     bool canJoinGroups;
 
     /**
-     * @brief Optional. True, if privacy mode is disabled for the bot. Returned only in getMe.
+     * @brief Optional. True, if privacy mode is disabled for the bot.
+     * Returned only in @ref Api::getMe.
      */
     bool canReadAllGroupMessages;
 
     /**
-     * @brief Optional. True, if the bot supports inline queries. Returned only in getMe.
+     * @brief Optional. True, if the bot supports inline queries.
+     * Returned only in @ref Api::getMe.
      */
     bool supportsInlineQueries;
 };
-
 }
 
 #endif //TGBOT_CPP_USER_H
