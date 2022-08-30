@@ -528,7 +528,7 @@ Message::Ptr Api::sendPoll(std::int64_t chatId, const std::string& question, con
     args.emplace_back("chat_id", chatId);
     args.emplace_back("question", question);
     args.emplace_back("options", _tgTypeParser.parseArray<std::string>([] (const std::string& option) -> std::string {
-        return StringTools::urlEncode(option);
+        return "\"" + StringTools::urlEncode(option) + "\"";
     }, options));
     if (!isAnonymous) {
         args.emplace_back("is_anonymous", isAnonymous);
