@@ -23,24 +23,32 @@ public:
     virtual ~InlineQueryResult() { }
 
     /**
-     * @brief Type of the result.
+     * @brief Type of the result
      */
     std::string type;
 
     /**
-     * @brief Unique identifier for this result. (1-64 bytes)
+     * @brief Unique identifier for this result, 1-64 bytes
      */
     std::string id;
 
     /**
-     * @brief Requred, optional or missing. See description of derived classes. Title of the result.
+     * @brief Requred, optional or missing. See description of derived classes.
+     * Title for the result
      */
     std::string title;
 
     /**
-     * @brief Optional or missing. See description of derived classes. Caption of the file to be sent, 0-200 characters
+     * @brief Optional or missing. See description of derived classes.
+     * Caption of the file to be sent, 0-1024 characters after entities parsing
      */
     std::string caption;
+
+    /**
+     * @brief Optional or missing. See description of derived classes.
+     * Mode for parsing entities in the caption. 
+     */
+    std::string parseMode;
 
     /**
      * @brief Optional. Inline keyboard attached to the message
@@ -48,7 +56,8 @@ public:
     InlineKeyboardMarkup::Ptr replyMarkup;
 
     /**
-     * @brief Requred, optional or missing. See description of derived classes. Content of the message to be sent
+     * @brief Requred, optional or missing. See description of derived classes.
+     * Content of the message to be sent
      */
     InputMessageContent::Ptr inputMessageContent;
 };

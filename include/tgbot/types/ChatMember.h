@@ -25,7 +25,8 @@ public:
     User::Ptr user;
 
     /**
-     * @brief The member's status in the chat. Can be “creator”, “administrator”, “member”, “restricted”, “left” or “kicked”
+     * @brief The member's status in the chat.
+     * Can be “creator”, “administrator”, “member”, “restricted”, “left” or “kicked”
      */
     std::string status;
 
@@ -35,84 +36,84 @@ public:
     std::string customTitle;
 
     /**
-     * @brief Optional. Restricted and kicked only. Date when restrictions will be lifted for this user, unix time.
+     * @brief Optional. Restricted and kicked only. Date when restrictions will be lifted for this user; unix time
      */
     std::uint64_t untilDate;
 
     /**
-     * @brief Optional. Administrators only. True, if the bot is allowed to edit administrator privileges of that user.
+     * @brief Optional. Administrators only. True, if the bot is allowed to edit administrator privileges of that user
      */
-    bool canBeEdited = false;
+    bool canBeEdited;
 
     /**
-     * @brief Optional. Administrators only. True, if the administrator can change the chat title, photo and other settings.
+     * @brief Optional. Administrators only. True, if the administrator can post in the channel; channels only
      */
-    bool canChangeInfo = false;
+    bool canPostMessages;
 
     /**
-     * @brief Optional. Administrators only. True, if the administrator can post in the channel, channels only.
+     * @brief Optional. Administrators only. True, if the administrator can edit messages of other users and can pin messages; channels only
      */
-    bool canPostMessages = false;
+    bool canEditMessages;
 
     /**
-     * @brief Optional. Administrators only. True, if the administrator can edit messages of other users and can pin messages, channels only.
+     * @brief Optional. Administrators only. True, if the administrator can delete messages of other users
      */
-    bool canEditMessages = false;
+    bool canDeleteMessages;
 
     /**
-     * @brief Optional. Administrators only. True, if the administrator can delete messages of other users.
+     * @brief Optional. Administrators only. True, if the administrator can restrict, ban or unban chat members
      */
-    bool canDeleteMessages = false;
+    bool canRestrictMembers;
 
     /**
-     * @brief Optional. Administrators only. True, if the administrator can invite new users to the chat.
+     * @brief Optional. Administrators only. True, if the administrator can add new administrators with a subset of his own privileges or demote administrators that he has promoted, directly or indirectly (promoted by administrators that were appointed by the user)
      */
-    bool canInviteUsers = false;
+    bool canPromoteMembers;
 
     /**
-     * @brief Optional. Administrators only. True, if the administrator can restrict, ban or unban chat members.
+     * @brief Optional. Administrators and restricted only. True, if the user is allowed to change the chat title, photo and other settings
      */
-    bool canRestrictMembers = false;
+    bool canChangeInfo;
 
     /**
-     * @brief Optional. Administrators only. True, if the administrator can pin messages, supergroups only.
+     * @brief Optional. Administrators and restricted only. True, if the user is allowed to invite new users to the chat
      */
-    bool canPinMessages = false;
+    bool canInviteUsers;
 
     /**
-     * @brief Optional. Restricted only. True, if the user is a member of the chat at the moment of the request.
+     * @brief Optional. Administrators and restricted only. True, if the user is allowed to pin messages; groups and supergroups only
      */
-    bool isMember = false;
+    bool canPinMessages;
 
     /**
-     * @brief Optional. Administrators only. True, if the administrator can add new administrators with a subset of his own privileges or demote administrators that he has promoted, directly or indirectly (promoted by administrators that were appointed by the user).
+     * @brief Optional. Restricted only. True, if the user is a member of the chat at the moment of the request
      */
-    bool canPromoteMembers = false;
+    bool isMember;
 
     /**
-     * @brief Optional. Restricted only. True, if the user can send text messages, contacts, locations and venues.
+     * @brief Optional. Restricted only. True, if the user is allowed to send text messages, contacts, locations and venues
      */
-    bool canSendMessages = false;
+    bool canSendMessages;
 
     /**
-     * @brief Optional. Restricted only. True, if the user can send audios, documents, photos, videos, video notes and voice notes, implies can_send_messages.
+     * @brief Optional. Restricted only. True, if the user is allowed to send audios, documents, photos, videos, video notes and voice notes
      */
-    bool canSendMediaMessages = false;
+    bool canSendMediaMessages;
 
     /**
-     * @brief Optional. Restricted only. True, if the user can send animations, games, stickers and use inline bots, implies can_send_media_messages.
+     * @brief Optional. Restricted only. True, if the user is allowed to send polls
      */
-    bool canSendOtherMessages = false;
+    bool canSendPolls;
 
     /**
-     * @brief Optional. Restricted only. True, if the user can send animations, games, stickers and use inline bots, implies can_send_media_messages.
+     * @brief Optional. Restricted only. True, if the user is allowed to send animations, games, stickers and use inline bots
      */
-    bool canSendPolls = false;
+    bool canSendOtherMessages;
 
     /**
-     * @brief Optional. Restricted only. True, if user may add web page previews to his messages, implies can_send_media_messages.
+     * @brief Optional. Restricted only. True, if the user is allowed to add web page previews to their messages
      */
-    bool canAddWebPagePreviews = false;
+    bool canAddWebPagePreviews;
 };
 }
 

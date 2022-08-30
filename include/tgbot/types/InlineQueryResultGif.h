@@ -11,6 +11,8 @@ namespace TgBot {
 
 /**
  * @brief Represents a link to an animated GIF file.
+ * By default, this animated GIF file will be sent by the user with optional caption.
+ * Alternatively, you can use @ref InlineQueryResult::inputMessageContent to send a message with the specified content instead of the animation.
  *
  * @ingroup types
  */
@@ -27,17 +29,17 @@ public:
     }
 
     /**
-     * @brief A valid URL for the GIF file.
+     * @brief A valid URL for the GIF file. File size must not exceed 1MB
      */
     std::string gifUrl;
 
     /**
-     * @brief Optional. Width of the GIF.
+     * @brief Optional. Width of the GIF
      */
     std::int32_t gifWidth;
 
     /**
-     * @brief Optional. Height of the GIF.
+     * @brief Optional. Height of the GIF
      */
     std::int32_t gifHeight;
 
@@ -47,10 +49,15 @@ public:
     std::int32_t gifDuration;
 
     /**
-     * @brief URL of the static thumbnail for the result (jpeg or gif)
+     * @brief URL of the static (JPEG or GIF) or animated (MPEG4) thumbnail for the result
      */
     std::string thumbUrl;
 
+    /**
+     * @brief Optional. MIME type of the thumbnail, must be one of “image/jpeg”, “image/gif”, or “video/mp4”.
+     * Defaults to “image/jpeg”
+     */
+    std::string thumbMimeType;
 };
 }
 

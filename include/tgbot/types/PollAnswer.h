@@ -30,7 +30,8 @@ public:
     User::Ptr user;
 
     /**
-     * @brief 0-based identifiers of answer options, chosen by the user. May be empty if the user retracted their vote.
+     * @brief 0-based identifiers of answer options, chosen by the user.
+     * May be empty if the user retracted their vote.
      */
     std::vector<std::int32_t> optionIds;
 };
