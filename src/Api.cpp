@@ -528,7 +528,7 @@ Message::Ptr Api::sendPoll(std::int64_t chatId, const std::string& question, con
     args.emplace_back("chat_id", chatId);
     args.emplace_back("question", question);
     args.emplace_back("options", _tgTypeParser.parseArray<std::string>([] (const std::string& option) -> std::string {
-        return StringTools::urlEncode(option);
+        return "\"" + StringTools::urlEncode(option) + "\"";
     }, options));
     if (!isAnonymous) {
         args.emplace_back("is_anonymous", isAnonymous);
@@ -568,12 +568,6 @@ Message::Ptr Api::sendPoll(std::int64_t chatId, const std::string& question, con
     }
 
     return _tgTypeParser.parseJsonAndGetMessage(sendRequest("sendPoll", args));
-}
-
-Message::Ptr Api::sendPoll(std::int64_t chatId, const std::string& question, const std::vector<std::string>& options,
-                           bool disableNotification, std::int32_t replyToMessageId, GenericReply::Ptr replyMarkup) const {
-
-    return sendPoll(chatId, question, options, true, "", false, 0, "", "", 0, 0, false, false, 0);
 }
 
 Message::Ptr Api::sendDice(std::int64_t chatId, const std::string& emoji, bool disableNotification,
@@ -1053,13 +1047,6 @@ bool Api::createNewStickerSet(std::int64_t userId, const std::string& name, cons
     return sendRequest("createNewStickerSet", args).get<bool>("", false);
 }
 
-bool Api::createNewStickerSet(std::int64_t userId, const std::string& name, const std::string& title,
-                              boost::variant<InputFile::Ptr, std::string> pngSticker, const std::string& emojis, bool containsMasks,
-                              MaskPosition::Ptr maskPosition) const {
-
-    return createNewStickerSet(userId, name, title, emojis, pngSticker, "", containsMasks, maskPosition);
-}
-
 bool Api::addStickerToSet(std::int64_t userId, const std::string& name, const std::string& emojis,
                           boost::variant<InputFile::Ptr, std::string> pngSticker, boost::variant<InputFile::Ptr, std::string> tgsSticker, MaskPosition::Ptr maskPosition) const {
     vector<HttpReqArg> args;
@@ -1085,12 +1072,6 @@ bool Api::addStickerToSet(std::int64_t userId, const std::string& name, const st
     }
 
     return sendRequest("addStickerToSet", args).get<bool>("", false);
-}
-
-bool Api::addStickerToSet(std::int64_t userId, const std::string& name, boost::variant<InputFile::Ptr, std::string> pngSticker,
-                          const std::string& emojis, MaskPosition::Ptr maskPosition) const {
-
-    return addStickerToSet(userId, name, emojis, pngSticker, "", maskPosition);
 }
 
 bool Api::setStickerPositionInSet(const string& sticker, std::uint32_t position) const {
@@ -1237,6 +1218,16 @@ bool Api::answerPreCheckoutQuery(const std::string& preCheckoutQueryId, bool ok,
         args.emplace_back("error_message", errorMessage);
     }
     return sendRequest("answerPreCheckoutQuery", args).get<bool>("", false);
+}
+
+bool Api::setPassportDataErrors(std::int64_t userId, const std::vector<PassportElementError::Ptr>& errors) const {
+    vector<HttpReqArg> args;
+    args.reserve(2);
+
+    args.emplace_back("user_id", userId);
+    args.emplace_back("errors", _tgTypeParser.parseArray<PassportElementError>(&TgTypeParser::parsePassportElementError, errors));
+
+    return sendRequest("setPassportDataErrors", args).get<bool>("", false);
 }
 
 Message::Ptr Api::sendGame(std::int64_t chatId, const std::string& gameShortName, std::int32_t replyToMessageId, const InlineKeyboardMarkup::Ptr replyMarkup, bool disableNotification) const {

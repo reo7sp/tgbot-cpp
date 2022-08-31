@@ -180,7 +180,7 @@ Message::Ptr TgTypeParser::parseJsonAndGetMessage(const ptree& data) const {
     result->invoice = tryParseJson<Invoice>(&TgTypeParser::parseJsonAndGetInvoice, data, "invoice");
     result->successfulPayment = tryParseJson<SuccessfulPayment>(&TgTypeParser::parseJsonAndGetSuccessfulPayment, data, "successful_payment");
     result->connectedWebsite = data.get<string>("connected_website", "");
-    // result->passportData = tryParseJson<PassportData>(&TgTypeParser::parseJsonAndGetPassportData, data, "passport_data");
+    result->passportData = tryParseJson<PassportData>(&TgTypeParser::parseJsonAndGetPassportData, data, "passport_data");
     result->replyMarkup = tryParseJson<InlineKeyboardMarkup>(&TgTypeParser::parseJsonAndGetInlineKeyboardMarkup, data, "reply_markup");
     result->automaticForward = data.get<bool>("is_automatic_forward", false);
     return result;
@@ -239,7 +239,7 @@ string TgTypeParser::parseMessage(const Message::Ptr& object) const {
     appendToJson(result, "invoice", parseInvoice(object->invoice));
     appendToJson(result, "successful_payment", parseSuccessfulPayment(object->successfulPayment));
     appendToJson(result, "connected_website", object->connectedWebsite);
-    // appendToJson(result, "passport_data", parsePassportData(object->passportData));
+    appendToJson(result, "passport_data", parsePassportData(object->passportData));
     appendToJson(result, "reply_markup", parseInlineKeyboardMarkup(object->replyMarkup));
     appendToJson(result, "is_automatic_forward", object->automaticForward);
     removeLastComma(result);
@@ -2400,6 +2400,361 @@ std::string TgTypeParser::parseSuccessfulPayment(const SuccessfulPayment::Ptr& o
     result += ",";
     removeLastComma(result);
     result += '}';
+    return result;
+}
+
+PassportData::Ptr TgTypeParser::parseJsonAndGetPassportData(const ptree& data) const {
+    auto result(make_shared<PassportData>());
+    result->data = parseJsonAndGetArray<EncryptedPassportElement>(&TgTypeParser::parseJsonAndGetEncryptedPassportElement, data, "data");
+    result->credentials = tryParseJson(&TgTypeParser::parseJsonAndGetEncryptedCredentials, data, "credentials");
+    return result;
+}
+
+string TgTypeParser::parsePassportData(const PassportData::Ptr& object) const {
+    if (!object) {
+        return "";
+    }
+    string result;
+    result += '{';
+    appendToJson(result, "data", parseArray(&TgTypeParser::parseEncryptedPassportElement, object->data));
+    appendToJson(result, "credentials", parseEncryptedCredentials(object->credentials));
+    removeLastComma(result);
+    result += '}';
+    return result;
+}
+
+PassportFile::Ptr TgTypeParser::parseJsonAndGetPassportFile(const ptree& data) const {
+    auto result(make_shared<PassportFile>());
+    result->fileId = data.get<string>("file_id", "");
+    result->fileUniqueId = data.get<string>("file_unique_id", "");
+    result->fileSize = data.get<int32_t>("file_size", 0);
+    result->fileDate = data.get<int32_t>("file_date", 0);
+    return result;
+}
+
+string TgTypeParser::parsePassportFile(const PassportFile::Ptr& object) const {
+    if (!object) {
+        return "";
+    }
+    string result;
+    result += '{';
+    appendToJson(result, "file_id", object->fileId);
+    appendToJson(result, "file_unique_id", object->fileUniqueId);
+    appendToJson(result, "file_size", object->fileSize);
+    appendToJson(result, "file_date", object->fileDate);
+    removeLastComma(result);
+    result += '}';
+    return result;
+}
+
+EncryptedPassportElement::Ptr TgTypeParser::parseJsonAndGetEncryptedPassportElement(const ptree& data) const {
+    auto result(make_shared<EncryptedPassportElement>());
+    result->type = data.get<string>("type", "");
+    result->data = data.get<string>("data", "");
+    result->phoneNumber = data.get<string>("phone_number", "");
+    result->email = data.get<string>("email", "");
+    result->files = parseJsonAndGetArray<PassportFile>(&TgTypeParser::parseJsonAndGetPassportFile, data, "files");
+    result->frontSide = tryParseJson(&TgTypeParser::parseJsonAndGetPassportFile, data, "front_side");
+    result->reverseSide = tryParseJson(&TgTypeParser::parseJsonAndGetPassportFile, data, "reverse_side");
+    result->selfie = tryParseJson(&TgTypeParser::parseJsonAndGetPassportFile, data, "selfie");
+    result->translation = parseJsonAndGetArray<PassportFile>(&TgTypeParser::parseJsonAndGetPassportFile, data, "translation");
+    result->hash = data.get<string>("hash", "");
+    return result;
+}
+
+string TgTypeParser::parseEncryptedPassportElement(const EncryptedPassportElement::Ptr& object) const {
+    if (!object) {
+        return "";
+    }
+    string result;
+    result += '{';
+    appendToJson(result, "type", object->type);
+    appendToJson(result, "data", object->data);
+    appendToJson(result, "phone_number", object->phoneNumber);
+    appendToJson(result, "email", object->email);
+    appendToJson(result, "files", parseArray(&TgTypeParser::parsePassportFile, object->files));
+    appendToJson(result, "front_side", parsePassportFile(object->frontSide));
+    appendToJson(result, "reverse_side", parsePassportFile(object->reverseSide));
+    appendToJson(result, "selfie", parsePassportFile(object->selfie));
+    appendToJson(result, "translation", parseArray(&TgTypeParser::parsePassportFile, object->translation));
+    appendToJson(result, "hash", object->hash);
+    removeLastComma(result);
+    result += '}';
+    return result;
+}
+
+EncryptedCredentials::Ptr TgTypeParser::parseJsonAndGetEncryptedCredentials(const ptree& data) const {
+    auto result(make_shared<EncryptedCredentials>());
+    result->data = data.get<string>("data", "");
+    result->hash = data.get<string>("hash", "");
+    result->secret = data.get<string>("secret", "");
+    return result;
+}
+
+string TgTypeParser::parseEncryptedCredentials(const EncryptedCredentials::Ptr& object) const {
+    if (!object) {
+        return "";
+    }
+    string result;
+    result += '{';
+    appendToJson(result, "data", object->data);
+    appendToJson(result, "hash", object->hash);
+    appendToJson(result, "secret", object->secret);
+    removeLastComma(result);
+    result += '}';
+    return result;
+}
+
+PassportElementError::Ptr TgTypeParser::parseJsonAndGetPassportElementError(const ptree& data) const {
+    string source = data.get<string>("source", "");
+    PassportElementError::Ptr result;
+
+    if (source == PassportElementErrorDataField::SOURCE) {
+        result = static_pointer_cast<PassportElementError>(parseJsonAndGetPassportElementErrorDataField(data));
+    } else if (source == PassportElementErrorFrontSide::SOURCE) {
+        result = static_pointer_cast<PassportElementError>(parseJsonAndGetPassportElementErrorFrontSide(data));
+    } else if (source == PassportElementErrorReverseSide::SOURCE) {
+        result = static_pointer_cast<PassportElementError>(parseJsonAndGetPassportElementErrorReverseSide(data));
+    } else if (source == PassportElementErrorSelfie::SOURCE) {
+        result = static_pointer_cast<PassportElementError>(parseJsonAndGetPassportElementErrorSelfie(data));
+    } else if (source == PassportElementErrorFile::SOURCE) {
+        result = static_pointer_cast<PassportElementError>(parseJsonAndGetPassportElementErrorFile(data));
+    } else if (source == PassportElementErrorFiles::SOURCE) {
+        result = static_pointer_cast<PassportElementError>(parseJsonAndGetPassportElementErrorFiles(data));
+    } else if (source == PassportElementErrorTranslationFile::SOURCE) {
+        result = static_pointer_cast<PassportElementError>(parseJsonAndGetPassportElementErrorTranslationFile(data));
+    } else if (source == PassportElementErrorTranslationFiles::SOURCE) {
+        result = static_pointer_cast<PassportElementError>(parseJsonAndGetPassportElementErrorTranslationFiles(data));
+    } else if (source == PassportElementErrorUnspecified::SOURCE) {
+        result = static_pointer_cast<PassportElementError>(parseJsonAndGetPassportElementErrorUnspecified(data));
+    } else {
+        result = make_shared<PassportElementError>();
+    }
+
+    result->source = data.get<string>("source", "");
+    result->type = data.get<string>("type", "");
+    result->message = data.get<string>("message", "");
+
+    return result;
+}
+
+string TgTypeParser::parsePassportElementError(const PassportElementError::Ptr& object) const {
+    if (!object) {
+        return "";
+    }
+    string result;
+    result += '{';
+    appendToJson(result, "source", object->source);
+    appendToJson(result, "type", object->type);
+    appendToJson(result, "message", object->message);
+
+    if (object->source == PassportElementErrorDataField::SOURCE) {
+        result += parsePassportElementErrorDataField(static_pointer_cast<PassportElementErrorDataField>(object));
+    } else if (object->source == PassportElementErrorFrontSide::SOURCE) {
+        result += parsePassportElementErrorFrontSide(static_pointer_cast<PassportElementErrorFrontSide>(object));
+    } else if (object->source == PassportElementErrorReverseSide::SOURCE) {
+        result += parsePassportElementErrorReverseSide(static_pointer_cast<PassportElementErrorReverseSide>(object));
+    } else if (object->source == PassportElementErrorSelfie::SOURCE) {
+        result += parsePassportElementErrorSelfie(static_pointer_cast<PassportElementErrorSelfie>(object));
+    } else if (object->source == PassportElementErrorFile::SOURCE) {
+        result += parsePassportElementErrorFile(static_pointer_cast<PassportElementErrorFile>(object));
+    } else if (object->source == PassportElementErrorFiles::SOURCE) {
+        result += parsePassportElementErrorFiles(static_pointer_cast<PassportElementErrorFiles>(object));
+    } else if (object->source == PassportElementErrorTranslationFile::SOURCE) {
+        result += parsePassportElementErrorTranslationFile(static_pointer_cast<PassportElementErrorTranslationFile>(object));
+    } else if (object->source == PassportElementErrorTranslationFiles::SOURCE) {
+        result += parsePassportElementErrorTranslationFiles(static_pointer_cast<PassportElementErrorTranslationFiles>(object));
+    } else if (object->source == PassportElementErrorUnspecified::SOURCE) {
+        result += parsePassportElementErrorUnspecified(static_pointer_cast<PassportElementErrorUnspecified>(object));
+    }
+
+    removeLastComma(result);
+    result += '}';
+    return result;
+}
+
+PassportElementErrorDataField::Ptr TgTypeParser::parseJsonAndGetPassportElementErrorDataField(const ptree& data) const {
+    // NOTE: This function will be called by parseJsonAndGetPassportElementError().
+    auto result(make_shared<PassportElementErrorDataField>());
+    result->fieldName = data.get<string>("field_name", "");
+    result->dataHash = data.get<string>("data_hash", "");
+    return result;
+}
+
+string TgTypeParser::parsePassportElementErrorDataField(const PassportElementErrorDataField::Ptr& object) const {
+    if (!object) {
+        return "";
+    }
+    // This function will be called by parsePassportElementError(), so I don't add
+    // curly brackets to the result string.
+    string result;
+    appendToJson(result, "field_name", object->fieldName);
+    appendToJson(result, "data_hash", object->dataHash);
+    // The last comma will be erased by parsePassportElementError().
+    return result;
+}
+
+PassportElementErrorFrontSide::Ptr TgTypeParser::parseJsonAndGetPassportElementErrorFrontSide(const ptree& data) const {
+    // NOTE: This function will be called by parseJsonAndGetPassportElementError().
+    auto result(make_shared<PassportElementErrorFrontSide>());
+    result->fileHash = data.get<string>("file_hash", "");
+    return result;
+}
+
+string TgTypeParser::parsePassportElementErrorFrontSide(const PassportElementErrorFrontSide::Ptr& object) const {
+    if (!object) {
+        return "";
+    }
+    // This function will be called by parsePassportElementError(), so I don't add
+    // curly brackets to the result string.
+    string result;
+    appendToJson(result, "file_hash", object->fileHash);
+    // The last comma will be erased by parsePassportElementError().
+    return result;
+}
+
+PassportElementErrorReverseSide::Ptr TgTypeParser::parseJsonAndGetPassportElementErrorReverseSide(const ptree& data) const {
+    // NOTE: This function will be called by parseJsonAndGetPassportElementError().
+    auto result(make_shared<PassportElementErrorReverseSide>());
+    result->fileHash = data.get<string>("file_hash", "");
+    return result;
+}
+
+string TgTypeParser::parsePassportElementErrorReverseSide(const PassportElementErrorReverseSide::Ptr& object) const {
+    if (!object) {
+        return "";
+    }
+    // This function will be called by parsePassportElementError(), so I don't add
+    // curly brackets to the result string.
+    string result;
+    appendToJson(result, "file_hash", object->fileHash);
+    // The last comma will be erased by parsePassportElementError().
+    return result;
+}
+
+PassportElementErrorSelfie::Ptr TgTypeParser::parseJsonAndGetPassportElementErrorSelfie(const ptree& data) const {
+    // NOTE: This function will be called by parseJsonAndGetPassportElementError().
+    auto result(make_shared<PassportElementErrorSelfie>());
+    result->fileHash = data.get<string>("file_hash", "");
+    return result;
+}
+
+string TgTypeParser::parsePassportElementErrorSelfie(const PassportElementErrorSelfie::Ptr& object) const {
+    if (!object) {
+        return "";
+    }
+    // This function will be called by parsePassportElementError(), so I don't add
+    // curly brackets to the result string.
+    string result;
+    appendToJson(result, "file_hash", object->fileHash);
+    // The last comma will be erased by parsePassportElementError().
+    return result;
+}
+
+PassportElementErrorFile::Ptr TgTypeParser::parseJsonAndGetPassportElementErrorFile(const ptree& data) const {
+    // NOTE: This function will be called by parseJsonAndGetPassportElementError().
+    auto result(make_shared<PassportElementErrorFile>());
+    result->fileHash = data.get<string>("file_hash", "");
+    return result;
+}
+
+string TgTypeParser::parsePassportElementErrorFile(const PassportElementErrorFile::Ptr& object) const {
+    if (!object) {
+        return "";
+    }
+    // This function will be called by parsePassportElementError(), so I don't add
+    // curly brackets to the result string.
+    string result;
+    appendToJson(result, "file_hash", object->fileHash);
+    // The last comma will be erased by parsePassportElementError().
+    return result;
+}
+
+PassportElementErrorFiles::Ptr TgTypeParser::parseJsonAndGetPassportElementErrorFiles(const ptree& data) const {
+    // NOTE: This function will be called by parseJsonAndGetPassportElementError().
+    auto result(make_shared<PassportElementErrorFiles>());
+    result->fileHashes = parseJsonAndGetArray<std::string>(
+        [] (const ptree& innerData)->std::string {
+        return innerData.get<std::string>("");
+    }, data, "file_hashes");
+    return result;
+}
+
+string TgTypeParser::parsePassportElementErrorFiles(const PassportElementErrorFiles::Ptr& object) const {
+    if (!object) {
+        return "";
+    }
+    // This function will be called by parsePassportElementError(), so I don't add
+    // curly brackets to the result string.
+    string result;
+    appendToJson(result, "file_hashes",
+                 parseArray<std::string>([] (const std::string& s)->std::string {
+        return s;
+    }, object->fileHashes));
+    // The last comma will be erased by parsePassportElementError().
+    return result;
+}
+
+PassportElementErrorTranslationFile::Ptr TgTypeParser::parseJsonAndGetPassportElementErrorTranslationFile(const ptree& data) const {
+    // NOTE: This function will be called by parseJsonAndGetPassportElementError().
+    auto result(make_shared<PassportElementErrorTranslationFile>());
+    result->fileHash = data.get<string>("file_hash", "");
+    return result;
+}
+
+string TgTypeParser::parsePassportElementErrorTranslationFile(const PassportElementErrorTranslationFile::Ptr& object) const {
+    if (!object) {
+        return "";
+    }
+    // This function will be called by parsePassportElementError(), so I don't add
+    // curly brackets to the result string.
+    string result;
+    appendToJson(result, "file_hash", object->fileHash);
+    // The last comma will be erased by parsePassportElementError().
+    return result;
+}
+
+PassportElementErrorTranslationFiles::Ptr TgTypeParser::parseJsonAndGetPassportElementErrorTranslationFiles(const ptree& data) const {
+    // NOTE: This function will be called by parseJsonAndGetPassportElementError().
+    auto result(make_shared<PassportElementErrorTranslationFiles>());
+    result->fileHashes = parseJsonAndGetArray<std::string>(
+        [] (const ptree& innerData)->std::string {
+        return innerData.get<std::string>("");
+    }, data, "file_hashes");
+    return result;
+}
+
+string TgTypeParser::parsePassportElementErrorTranslationFiles(const PassportElementErrorTranslationFiles::Ptr& object) const {
+    if (!object) {
+        return "";
+    }
+    // This function will be called by parsePassportElementError(), so I don't add
+    // curly brackets to the result string.
+    string result;
+    appendToJson(result, "file_hashes",
+                 parseArray<std::string>([] (const std::string& s)->std::string {
+        return s;
+    }, object->fileHashes));
+    // The last comma will be erased by parsePassportElementError().
+    return result;
+}
+
+PassportElementErrorUnspecified::Ptr TgTypeParser::parseJsonAndGetPassportElementErrorUnspecified(const ptree& data) const {
+    // NOTE: This function will be called by parseJsonAndGetPassportElementError().
+    auto result(make_shared<PassportElementErrorUnspecified>());
+    result->elementHash = data.get<string>("element_hash", "");
+    return result;
+}
+
+string TgTypeParser::parsePassportElementErrorUnspecified(const PassportElementErrorUnspecified::Ptr& object) const {
+    if (!object) {
+        return "";
+    }
+    // This function will be called by parsePassportElementError(), so I don't add
+    // curly brackets to the result string.
+    string result;
+    appendToJson(result, "element_hash", object->elementHash);
+    // The last comma will be erased by parsePassportElementError().
     return result;
 }
 
