@@ -84,6 +84,18 @@
 #include "tgbot/types/InputMediaAudio.h"
 #include "tgbot/types/InputMediaDocument.h"
 #include "tgbot/types/InputMediaAnimation.h"
+#include "tgbot/types/PassportData.h"
+#include "tgbot/types/PassportFile.h"
+#include "tgbot/types/PassportElementError.h"
+#include "tgbot/types/PassportElementErrorDataField.h"
+#include "tgbot/types/PassportElementErrorFrontSide.h"
+#include "tgbot/types/PassportElementErrorReverseSide.h"
+#include "tgbot/types/PassportElementErrorSelfie.h"
+#include "tgbot/types/PassportElementErrorFile.h"
+#include "tgbot/types/PassportElementErrorFiles.h"
+#include "tgbot/types/PassportElementErrorTranslationFile.h"
+#include "tgbot/types/PassportElementErrorTranslationFiles.h"
+#include "tgbot/types/PassportElementErrorUnspecified.h"
 
 #include <boost/property_tree/ptree.hpp>
 #include <boost/property_tree/json_parser.hpp>
@@ -338,6 +350,48 @@ public:
 
     SuccessfulPayment::Ptr parseJsonAndGetSuccessfulPayment(const boost::property_tree::ptree& data) const;
     std::string parseSuccessfulPayment(const SuccessfulPayment::Ptr& object) const;
+
+    PassportData::Ptr parseJsonAndGetPassportData(const boost::property_tree::ptree& data) const;
+    std::string parsePassportData(const PassportData::Ptr& object) const;
+
+    PassportFile::Ptr parseJsonAndGetPassportFile(const boost::property_tree::ptree& data) const;
+    std::string parsePassportFile(const PassportFile::Ptr& object) const;
+
+    EncryptedPassportElement::Ptr parseJsonAndGetEncryptedPassportElement(const boost::property_tree::ptree& data) const;
+    std::string parseEncryptedPassportElement(const EncryptedPassportElement::Ptr& object) const;
+
+    EncryptedCredentials::Ptr parseJsonAndGetEncryptedCredentials(const boost::property_tree::ptree& data) const;
+    std::string parseEncryptedCredentials(const EncryptedCredentials::Ptr& object) const;
+
+    PassportElementError::Ptr parseJsonAndGetPassportElementError(const boost::property_tree::ptree& data) const;
+    std::string parsePassportElementError(const PassportElementError::Ptr& object) const;
+
+    PassportElementErrorDataField::Ptr parseJsonAndGetPassportElementErrorDataField(const boost::property_tree::ptree& data) const;
+    std::string parsePassportElementErrorDataField(const PassportElementErrorDataField::Ptr& object) const;
+
+    PassportElementErrorFrontSide::Ptr parseJsonAndGetPassportElementErrorFrontSide(const boost::property_tree::ptree& data) const;
+    std::string parsePassportElementErrorFrontSide(const PassportElementErrorFrontSide::Ptr& object) const;
+
+    PassportElementErrorReverseSide::Ptr parseJsonAndGetPassportElementErrorReverseSide(const boost::property_tree::ptree& data) const;
+    std::string parsePassportElementErrorReverseSide(const PassportElementErrorReverseSide::Ptr& object) const;
+
+    PassportElementErrorSelfie::Ptr parseJsonAndGetPassportElementErrorSelfie(const boost::property_tree::ptree& data) const;
+    std::string parsePassportElementErrorSelfie(const PassportElementErrorSelfie::Ptr& object) const;
+
+    PassportElementErrorFile::Ptr parseJsonAndGetPassportElementErrorFile(const boost::property_tree::ptree& data) const;
+    std::string parsePassportElementErrorFile(const PassportElementErrorFile::Ptr& object) const;
+
+    PassportElementErrorFiles::Ptr parseJsonAndGetPassportElementErrorFiles(const boost::property_tree::ptree& data) const;
+    std::string parsePassportElementErrorFiles(const PassportElementErrorFiles::Ptr& object) const;
+
+    PassportElementErrorTranslationFile::Ptr parseJsonAndGetPassportElementErrorTranslationFile(const boost::property_tree::ptree& data) const;
+    std::string parsePassportElementErrorTranslationFile(const PassportElementErrorTranslationFile::Ptr& object) const;
+
+    PassportElementErrorTranslationFiles::Ptr parseJsonAndGetPassportElementErrorTranslationFiles(const boost::property_tree::ptree& data) const;
+    std::string parsePassportElementErrorTranslationFiles(const PassportElementErrorTranslationFiles::Ptr& object) const;
+
+    PassportElementErrorUnspecified::Ptr parseJsonAndGetPassportElementErrorUnspecified(const boost::property_tree::ptree& data) const;
+    std::string parsePassportElementErrorUnspecified(const PassportElementErrorUnspecified::Ptr& object) const;
 
     inline boost::property_tree::ptree parseJson(const std::string& json) const {
         boost::property_tree::ptree tree;

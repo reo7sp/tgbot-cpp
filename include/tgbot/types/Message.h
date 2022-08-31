@@ -21,6 +21,7 @@
 #include "tgbot/types/VideoNote.h"
 #include "tgbot/types/Invoice.h"
 #include "tgbot/types/SuccessfulPayment.h"
+#include "tgbot/types/PassportData.h"
 #include "tgbot/types/InlineKeyboardMarkup.h"
 
 #include <cstdint>
@@ -286,7 +287,7 @@ public:
     /**
      * @brief Optional. Telegram Passport data
      */
-    // TODO PassportData::Ptr passportData;
+    PassportData::Ptr passportData;
 
     /**
      * @brief Optional. Inline keyboard attached to the message.

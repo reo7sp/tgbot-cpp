@@ -353,13 +353,6 @@ public:
                           bool disableNotification = false, std::int32_t replyToMessageId = 0, GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>()) const;
 
     /**
-     * @brief Deprecated. Use @ref Api::sendPoll
-     * @deprecated since Bot API 4.6. This remains unchanged for backward compatibility.
-     */
-    Message::Ptr sendPoll(std::int64_t chatId, const std::string& question, const std::vector<std::string>& options,
-                          bool disableNotification = false, std::int32_t replyToMessageId = 0, GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>()) const;
-
-    /**
      * @brief Use this method to send a dice, which will have a random value from 1 to 6.
      *
      * @param chatId Unique identifier for the target chat or username of the target channel (in the format @channelusername)
@@ -731,13 +724,6 @@ public:
                              bool containsMasks = false, MaskPosition::Ptr maskPosition = nullptr) const;
 
     /**
-     * @brief Deprecated. Use @ref Api::createNewStickerSet
-     * @deprecated since Bot API 4.7. This remains unchanged for backward compatibility.
-     */
-    bool createNewStickerSet(std::int64_t userId, const std::string& name, const std::string& title,
-                             boost::variant<InputFile::Ptr, std::string> pngSticker, const std::string& emojis, bool containsMasks = false, MaskPosition::Ptr maskPosition = nullptr) const;
-
-    /**
      * @brief Use this method to add a new sticker to a set created by the bot. You must use exactly one of the fields png_sticker or tgs_sticker. Animated stickers can be added to animated sticker sets and only to them. Animated sticker sets can have up to 50 stickers. Static sticker sets can have up to 120 stickers.
      *
      * @param userId User identifier of sticker set owner
@@ -751,13 +737,6 @@ public:
      */
     bool addStickerToSet(std::int64_t userId, const std::string& name, const std::string& emojis,
                          boost::variant<InputFile::Ptr, std::string> pngSticker = "", boost::variant<InputFile::Ptr, std::string> tgsSticker = "", MaskPosition::Ptr maskPosition = nullptr) const;
-
-    /**
-     * @brief Deprecated. Use @ref Api::addStickerToSet
-     * @deprecated since Bot API 4.7. This remains unchanged for backward compatibility.
-     */
-    bool addStickerToSet(std::int64_t userId, const std::string& name, boost::variant<InputFile::Ptr, std::string> pngSticker,
-                         const std::string& emojis, MaskPosition::Ptr maskPosition = nullptr) const;
 
     /**
      * @brief Use this method to move a sticker in a set created by the bot to a specific position.
@@ -860,6 +839,21 @@ public:
      * @return On success, True is returned.
      */
     bool answerPreCheckoutQuery(const std::string& preCheckoutQueryId, bool ok, const std::string& errorMessage = "") const;
+
+    /**
+     * @brief Informs a user that some of the Telegram Passport elements they provided contains errors.
+     * 
+     * The user will not be able to re-submit their Passport to you until the errors are fixed (the contents of the field for which you returned the error must change).
+     * Use this if the data submitted by the user doesn't satisfy the standards your service requires for any reason.
+     * For example, if a birthday date seems invalid, a submitted document is blurry, a scan shows evidence of tampering, etc.
+     * Supply some details in the error message to make sure the user knows how to correct the issues.
+     *
+     * @param userId User identifier
+     * @param errors A JSON-serialized array describing the errors
+     * 
+     * @return True on success.
+     */
+    bool setPassportDataErrors(std::int64_t userId, const std::vector<PassportElementError::Ptr>& errors) const;
 
     /**
      * @brief Use this method to send a game.
