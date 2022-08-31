@@ -31,7 +31,8 @@ set(SRC_LIST
     src/tools/FileTools.cpp
     src/tools/StringTools.cpp
     src/types/InlineQueryResult.cpp
-    src/types/InputFile.cpp)
+    src/types/InputFile.cpp
+    src/types/PassportElementError.cpp)
 
 # libs
 ## threads
