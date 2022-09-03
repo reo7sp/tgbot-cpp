@@ -36,9 +36,9 @@ public:
     std::string customTitle;
 
     /**
-     * @brief Optional. Restricted and kicked only. Date when restrictions will be lifted for this user; unix time
+     * @brief Optional. Owner and administrators only. True, if the user's presence in the chat is hidden
      */
-    std::uint64_t untilDate;
+    bool isAnonymous;
 
     /**
      * @brief Optional. Administrators only. True, if the bot is allowed to edit administrator privileges of that user
@@ -114,6 +114,11 @@ public:
      * @brief Optional. Restricted only. True, if the user is allowed to add web page previews to their messages
      */
     bool canAddWebPagePreviews;
+
+    /**
+     * @brief Optional. Restricted and kicked only. Date when restrictions will be lifted for this user; unix time
+     */
+    std::uint64_t untilDate;
 };
 }
 

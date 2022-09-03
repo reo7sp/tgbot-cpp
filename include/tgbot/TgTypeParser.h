@@ -5,6 +5,7 @@
 #include "tgbot/types/User.h"
 #include "tgbot/types/Chat.h"
 #include "tgbot/types/Message.h"
+#include "tgbot/types/MessageId.h"
 #include "tgbot/types/PhotoSize.h"
 #include "tgbot/types/Audio.h"
 #include "tgbot/types/Document.h"
@@ -15,12 +16,14 @@
 #include "tgbot/types/PollAnswer.h"
 #include "tgbot/types/PollOption.h"
 #include "tgbot/types/ChatPermissions.h"
+#include "tgbot/types/ChatLocation.h"
 #include "tgbot/types/MaskPosition.h"
 #include "tgbot/types/Video.h"
 #include "tgbot/types/Voice.h"
 #include "tgbot/types/VideoNote.h"
 #include "tgbot/types/Contact.h"
 #include "tgbot/types/Location.h"
+#include "tgbot/types/ProximityAlertTriggered.h"
 #include "tgbot/types/Update.h"
 #include "tgbot/types/UserProfilePhotos.h"
 #include "tgbot/types/File.h"
@@ -129,6 +132,9 @@ public:
     Message::Ptr parseJsonAndGetMessage(const boost::property_tree::ptree& data) const;
     std::string parseMessage(const Message::Ptr& object) const;
 
+    MessageId::Ptr parseJsonAndGetMessageId(const boost::property_tree::ptree& data) const;
+    std::string parseMessageId(const MessageId::Ptr& object) const;
+
     PhotoSize::Ptr parseJsonAndGetPhotoSize(const boost::property_tree::ptree& data) const;
     std::string parsePhotoSize(const PhotoSize::Ptr& object) const;
 
@@ -162,6 +168,9 @@ public:
     ChatPermissions::Ptr parseJsonAndGetChatPermissions(const boost::property_tree::ptree& data) const;
     std::string parseChatPermissions(const ChatPermissions::Ptr& object) const;
 
+    ChatLocation::Ptr parseJsonAndGetChatLocation(const boost::property_tree::ptree& data) const;
+    std::string parseChatLocation(const ChatLocation::Ptr& object) const;
+
     Video::Ptr parseJsonAndGetVideo(const boost::property_tree::ptree& data) const;
     std::string parseVideo(const Video::Ptr& object) const;
 
@@ -189,6 +198,9 @@ public:
     Venue::Ptr parseJsonAndGetVenue(const boost::property_tree::ptree& data) const;
     std::string parseVenue(const Venue::Ptr& object) const;
 
+    ProximityAlertTriggered::Ptr parseJsonAndGetProximityAlertTriggered(const boost::property_tree::ptree& data) const;
+    std::string parseProximityAlertTriggered(const ProximityAlertTriggered::Ptr& object) const;
+
     Update::Ptr parseJsonAndGetUpdate(const boost::property_tree::ptree& data) const;
     std::string parseUpdate(const Update::Ptr& object) const;
 
@@ -197,6 +209,21 @@ public:
 
     InputMedia::Ptr parseJsonAndGetInputMedia(const boost::property_tree::ptree& data) const;
     std::string parseInputMedia(const InputMedia::Ptr& object) const;
+
+    InputMediaPhoto::Ptr parseJsonAndGetInputMediaPhoto(const boost::property_tree::ptree& data) const;
+    std::string parseInputMediaPhoto(const InputMediaPhoto::Ptr& object) const;
+
+    InputMediaVideo::Ptr parseJsonAndGetInputMediaVideo(const boost::property_tree::ptree& data) const;
+    std::string parseInputMediaVideo(const InputMediaVideo::Ptr& object) const;
+
+    InputMediaAnimation::Ptr parseJsonAndGetInputMediaAnimation(const boost::property_tree::ptree& data) const;
+    std::string parseInputMediaAnimation(const InputMediaAnimation::Ptr& object) const;
+
+    InputMediaAudio::Ptr parseJsonAndGetInputMediaAudio(const boost::property_tree::ptree& data) const;
+    std::string parseInputMediaAudio(const InputMediaAudio::Ptr& object) const;
+
+    InputMediaDocument::Ptr parseJsonAndGetInputMediaDocument(const boost::property_tree::ptree& data) const;
+    std::string parseInputMediaDocument(const InputMediaDocument::Ptr& object) const;
 
     File::Ptr parseJsonAndGetFile(const boost::property_tree::ptree& data) const;
     std::string parseFile(const File::Ptr& object) const;

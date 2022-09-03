@@ -22,6 +22,7 @@
 #include "tgbot/types/Invoice.h"
 #include "tgbot/types/SuccessfulPayment.h"
 #include "tgbot/types/PassportData.h"
+#include "tgbot/types/ProximityAlertTriggered.h"
 #include "tgbot/types/InlineKeyboardMarkup.h"
 
 #include <cstdint>
@@ -49,6 +50,14 @@ public:
      * @brief Optional. Sender, empty for messages sent to channels
      */
     User::Ptr from;
+
+    /**
+     * @brief Optional. Sender of the message, sent on behalf of a chat.
+     * The channel itself for channel messages.
+     * The supergroup itself for messages from anonymous group administrators.
+     * The linked channel for messages automatically forwarded to the discussion group
+     */
+    Chat::Ptr senderChat;
 
     /**
      * @brief Date the message was sent in Unix time
@@ -112,7 +121,7 @@ public:
     std::string mediaGroupId;
     
     /**
-     * @brief Optional. Signature of the post author for messages in channels
+     * @brief Optional. Signature of the post author for messages in channels, or the custom title of an anonymous group administrator
      */
     std::string authorSignature;
 
@@ -127,9 +136,10 @@ public:
     std::vector<MessageEntity::Ptr> entities;
 
     /**
-     * @brief Optional. For messages with a caption, special entities like usernames, URLs, bot commands, etc. that appear in the caption
+     * @brief Optional. Message is an animation, information about the animation.
+     * For backward compatibility, when this field is set, the document field will also be set
      */
-    std::vector<MessageEntity::Ptr> captionEntities;
+    Animation::Ptr animation;
 
     /**
      * @brief Optional. Message is an audio file, information about the file
@@ -140,17 +150,6 @@ public:
      * @brief Optional. Message is a general file, information about the file
      */
     Document::Ptr document;
-
-    /**
-     * @brief Optional. Message is an animation, information about the animation.
-     * For backward compatibility, when this field is set, the document field will also be set
-     */
-    Animation::Ptr animation;
-
-    /**
-     * @brief Optional. Message is a game, information about the game
-     */
-    Game::Ptr game;
 
     /**
      * @brief Optional. Message is a photo, available sizes of the photo
@@ -168,19 +167,24 @@ public:
     Video::Ptr video;
 
     /**
-     * @brief Optional. Message is a voice message, information about the file
-     */
-    Voice::Ptr voice;
-
-    /**
      * @brief Optional. Message is a video note, information about the video message
      */
     VideoNote::Ptr videoNote;
 
     /**
+     * @brief Optional. Message is a voice message, information about the file
+     */
+    Voice::Ptr voice;
+
+    /**
      * @brief Optional. Caption for the animation, audio, document, photo, video or voice, 0-1024 characters
      */
     std::string caption;
+    
+    /**
+     * @brief Optional. For messages with a caption, special entities like usernames, URLs, bot commands, etc. that appear in the caption
+     */
+    std::vector<MessageEntity::Ptr> captionEntities;
 
     /**
      * @brief Optional. Message is a shared contact, information about the contact
@@ -188,14 +192,14 @@ public:
     Contact::Ptr contact;
 
     /**
-     * @brief Optional. Message is a shared location, information about the location
+     * @brief Optional. Message is a dice with random value from 1 to 6
      */
-    Location::Ptr location;
+    Dice::Ptr dice;
 
     /**
-     * @brief Optional. Message is a venue, information about the venue
+     * @brief Optional. Message is a game, information about the game
      */
-    Venue::Ptr venue;
+    Game::Ptr game;
 
     /**
      * @brief Optional. Message is a native poll, information about the poll
@@ -203,9 +207,14 @@ public:
     Poll::Ptr poll;
 
     /**
-     * @brief Optional. Message is a dice with random value from 1 to 6
+     * @brief Optional. Message is a venue, information about the venue
      */
-    Dice::Ptr dice;
+    Venue::Ptr venue;
+
+    /**
+     * @brief Optional. Message is a shared location, information about the location
+     */
+    Location::Ptr location;
 
     /**
      * @brief Optional. New members that were added to the group or supergroup and information about them (the bot itself may be one of these members)
@@ -288,6 +297,12 @@ public:
      * @brief Optional. Telegram Passport data
      */
     PassportData::Ptr passportData;
+
+    /**
+     * @brief Optional. Service message.
+     * A user in the chat triggered another user's proximity alert while sharing Live Location.
+     */
+    ProximityAlertTriggered::Ptr proximityAlertTriggered;
 
     /**
      * @brief Optional. Inline keyboard attached to the message.

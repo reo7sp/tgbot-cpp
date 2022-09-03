@@ -51,6 +51,11 @@ public:
     PhotoSize::Ptr thumb;
 
     /**
+     * @brief Optional. Original filename as defined by sender
+     */
+    std::string fileName;
+
+    /**
      * @brief Optional. Mime type of a file as defined by sender
      */
     std::string mimeType;

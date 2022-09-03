@@ -46,6 +46,11 @@ public:
     std::string title;
 
     /**
+     * @brief Optional. Original filename as defined by sender
+     */
+    std::string fileName;
+
+    /**
      * @brief Optional. MIME type of the file as defined by sender
      */
     std::string mimeType;

@@ -1,6 +1,8 @@
 #ifndef TGBOT_INPUTCONTACTMESSAGECONTENT_H
 #define TGBOT_INPUTCONTACTMESSAGECONTENT_H
 
+#include "tgbot/types/InputMessageContent.h"
+
 #include <memory>
 #include <string>
 
@@ -13,11 +15,13 @@ namespace TgBot {
  */
 class InputContactMessageContent : public InputMessageContent {
 public:
+    static const std::string TYPE;
+
     typedef std::shared_ptr<InputContactMessageContent> Ptr;
 
-    InputContactMessageContent() :
-        InputMessageContent("InputContactMessageContent")
-    {}
+    InputContactMessageContent() {
+        this->type = TYPE;
+    }
 
     /**
      * @brief Contact's phone number
@@ -38,8 +42,6 @@ public:
      * @brief Optional. Additional data about the contact in the form of a vCard, 0-2048 bytes
      */
     std::string vcard;
-
-    virtual ~InputContactMessageContent() { }
 };
 }
 

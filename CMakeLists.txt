@@ -32,6 +32,8 @@ set(SRC_LIST
     src/tools/StringTools.cpp
     src/types/InlineQueryResult.cpp
     src/types/InputFile.cpp
+    src/types/InputMedia.cpp 
+    src/types/InputMessageContent.cpp
     src/types/PassportElementError.cpp)
 
 # libs

@@ -7,27 +7,24 @@
 namespace TgBot {
 
 /**
- * @brief This object represents the content of a message to be sent as a result of an inline query.
+ * @brief This abstract class is base of all message contents.
+ * 
+ * This object represents the content of a message to be sent as a result of an inline query.
+ * 
  * @ingroup types
  */
 class InputMessageContent {
 public:
     typedef std::shared_ptr<InputMessageContent> Ptr;
 
-    InputMessageContent(const std::string &tType):
-        type(tType)
-    {}
+    InputMessageContent() {}
+
+    virtual ~InputMessageContent() {}
 
     /**
-     * May be
-     * InputTextMessageContent
-     * InputLocationMessageContent
-     * InputVenueMessageContent
-     * InputContactMessageContent
+     * @brief Type of the content
      */
     std::string type;
-
-    virtual ~InputMessageContent() { }
 };
 }
 

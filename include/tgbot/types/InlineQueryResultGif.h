@@ -2,17 +2,20 @@
 #define TGBOT_INLINEQUERYRESULTGIF_H
 
 #include "tgbot/types/InlineQueryResult.h"
+#include "tgbot/types/MessageEntity.h"
+#include "tgbot/types/InputMessageContent.h"
 
 #include <cstdint>
 #include <string>
 #include <memory>
+#include <vector>
 
 namespace TgBot {
 
 /**
  * @brief Represents a link to an animated GIF file.
  * By default, this animated GIF file will be sent by the user with optional caption.
- * Alternatively, you can use @ref InlineQueryResult::inputMessageContent to send a message with the specified content instead of the animation.
+ * Alternatively, you can use inputMessageContent to send a message with the specified content instead of the animation.
  *
  * @ingroup types
  */
@@ -24,12 +27,11 @@ public:
 
     InlineQueryResultGif() {
         this->type = TYPE;
-        this->gifWidth = 0;
-        this->gifHeight = 0;
     }
 
     /**
-     * @brief A valid URL for the GIF file. File size must not exceed 1MB
+     * @brief A valid URL for the GIF file.
+     * File size must not exceed 1MB
      */
     std::string gifUrl;
 
@@ -58,6 +60,32 @@ public:
      * Defaults to “image/jpeg”
      */
     std::string thumbMimeType;
+
+    /**
+     * @brief Optional. Title for the result
+     */
+    std::string title;
+
+    /**
+     * @brief Optional. Caption of the GIF file to be sent, 0-1024 characters after entities parsing
+     */
+    std::string caption;
+
+    /**
+     * @brief Optional. Mode for parsing entities in the caption.
+     * See https://core.telegram.org/bots/api#formatting-options for more details.
+     */
+    std::string parseMode;
+
+    /**
+     * @brief Optional. List of special entities that appear in the caption, which can be specified instead of parseMode
+     */
+    std::vector<MessageEntity::Ptr> captionEntities;
+
+    /**
+     * @brief Optional. Content of the message to be sent instead of the GIF animation
+     */
+    InputMessageContent::Ptr inputMessageContent;
 };
 }
 

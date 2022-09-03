@@ -18,7 +18,7 @@ public:
     typedef std::shared_ptr<Venue> Ptr;
 
     /**
-     * @brief Venue location
+     * @brief Venue location. Can't be a live location
      */
     Location::Ptr location;
 
@@ -42,6 +42,17 @@ public:
      * (For example, “arts_entertainment/default”, “arts_entertainment/aquarium” or “food/icecream”.)
      */
     std::string foursquareType;
+
+    /**
+     * @brief Optional. Google Places identifier of the venue
+     */
+    std::string googlePlaceId;
+
+    /**
+     * @brief Optional. Google Places type of the venue.
+     * (See https://developers.google.com/places/web-service/supported_types)
+     */
+    std::string googlePlaceType;
 };
 }
 
