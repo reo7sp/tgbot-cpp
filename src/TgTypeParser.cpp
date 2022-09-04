@@ -24,11 +24,14 @@ Chat::Ptr TgTypeParser::parseJsonAndGetChat(const boost::property_tree::ptree& d
     result->lastName = data.get<std::string>("last_name", "");
     result->photo = tryParseJson<ChatPhoto>(&TgTypeParser::parseJsonAndGetChatPhoto, data, "photo");
     result->bio = data.get<std::string>("bio", "");
+    result->hasPrivateForwards = data.get<bool>("has_private_forwards", false);
     result->description = data.get<std::string>("description", "");
     result->inviteLink = data.get<std::string>("invite_link", "");
     result->pinnedMessage = tryParseJson<Message>(&TgTypeParser::parseJsonAndGetMessage, data, "pinned_message");
     result->permissions = tryParseJson<ChatPermissions>(&TgTypeParser::parseJsonAndGetChatPermissions, data, "permissions");
     result->slowModeDelay = data.get<std::int32_t>("slow_mode_delay", 0);
+    result->messageAutoDeleteTime = data.get<std::int32_t>("message_auto_delete_time", 0);
+    result->hasProtectedContent = data.get<bool>("has_protected_content", false);
     result->stickerSetName = data.get<std::string>("sticker_set_name", "");
     result->canSetStickerSet = data.get<bool>("can_set_sticker_set", false);
     result->linkedChatId = data.get<std::int64_t>("linked_chat_id", 0);
@@ -58,11 +61,14 @@ std::string TgTypeParser::parseChat(const Chat::Ptr& object) const {
     appendToJson(result, "last_name", object->lastName);
     appendToJson(result, "photo", parseChatPhoto(object->photo));
     appendToJson(result, "bio", object->bio);
+    appendToJson(result, "has_private_forwards", object->hasPrivateForwards);
     appendToJson(result, "description", object->description);
     appendToJson(result, "invite_link", object->inviteLink);
     appendToJson(result, "pinned_message", parseMessage(object->pinnedMessage));
     appendToJson(result, "permissions", parseChatPermissions(object->permissions));
     appendToJson(result, "slow_mode_delay", object->slowModeDelay);
+    appendToJson(result, "message_auto_delete_time", object->messageAutoDeleteTime);
+    appendToJson(result, "has_protected_content", object->hasProtectedContent);
     appendToJson(result, "sticker_set_name", object->stickerSetName);
     appendToJson(result, "can_set_sticker_set", object->canSetStickerSet);
     appendToJson(result, "linked_chat_id", object->linkedChatId);
@@ -147,9 +153,11 @@ Message::Ptr TgTypeParser::parseJsonAndGetMessage(const boost::property_tree::pt
     result->forwardSignature = data.get<std::string>("forward_signature", "");
     result->forwardSenderName = data.get<std::string>("forward_sender_name", "");
     result->forwardDate = data.get<std::int32_t>("forward_date", 0);
+    result->isAutomaticForward = data.get<bool>("is_automatic_forward", false);
     result->replyToMessage = tryParseJson<Message>(&TgTypeParser::parseJsonAndGetMessage, data, "reply_to_message");
     result->viaBot = tryParseJson<User>(&TgTypeParser::parseJsonAndGetUser, data, "via_bot");
     result->editDate = data.get<std::int32_t>("edit_date", 0);
+    result->hasProtectedContent = data.get<bool>("has_protected_content", false);
     result->mediaGroupId = data.get<std::string>("media_group_id", "");
     result->authorSignature = data.get<std::string>("author_signature", "");
     result->text = data.get<std::string>("text", "");
@@ -193,7 +201,6 @@ Message::Ptr TgTypeParser::parseJsonAndGetMessage(const boost::property_tree::pt
     result->voiceChatEnded = tryParseJson<VoiceChatEnded>(&TgTypeParser::parseJsonAndGetVoiceChatEnded, data, "voice_chat_ended");
     result->voiceChatParticipantsInvited = tryParseJson<VoiceChatParticipantsInvited>(&TgTypeParser::parseJsonAndGetVoiceChatParticipantsInvited, data, "voice_chat_participants_invited");
     result->replyMarkup = tryParseJson<InlineKeyboardMarkup>(&TgTypeParser::parseJsonAndGetInlineKeyboardMarkup, data, "reply_markup");
-    result->automaticForward = data.get<bool>("is_automatic_forward", false);
     return result;
 }
 
@@ -214,9 +221,11 @@ std::string TgTypeParser::parseMessage(const Message::Ptr& object) const {
     appendToJson(result, "forward_signature", object->forwardSignature);
     appendToJson(result, "forward_sender_name", object->forwardSenderName);
     appendToJson(result, "forward_date", object->forwardDate);
+    appendToJson(result, "is_automatic_forward", object->isAutomaticForward);
     appendToJson(result, "reply_to_message", parseMessage(object->replyToMessage));
     appendToJson(result, "via_bot", parseUser(object->viaBot));
     appendToJson(result, "edit_date", object->editDate);
+    appendToJson(result, "has_protected_content", object->hasProtectedContent);
     appendToJson(result, "media_group_id", object->mediaGroupId);
     appendToJson(result, "author_signature", object->authorSignature);
     appendToJson(result, "text", object->text);
@@ -259,7 +268,6 @@ std::string TgTypeParser::parseMessage(const Message::Ptr& object) const {
     appendToJson(result, "voice_chat_ended", parseVoiceChatEnded(object->voiceChatEnded));
     appendToJson(result, "voice_chat_participants_invited", parseVoiceChatParticipantsInvited(object->voiceChatParticipantsInvited));
     appendToJson(result, "reply_markup", parseInlineKeyboardMarkup(object->replyMarkup));
-    appendToJson(result, "is_automatic_forward", object->automaticForward);
     removeLastComma(result);
     result += '}';
     return result;

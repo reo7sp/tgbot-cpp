@@ -1041,6 +1041,28 @@ bool Api::setChatAdministratorCustomTitle(std::int64_t chatId, std::int64_t user
     return sendRequest("setChatAdministratorCustomTitle", args).get<bool>("", false);
 }
 
+bool Api::banChatSenderChat(std::int64_t chatId,
+                       std::int64_t senderChatId) const {
+    vector<HttpReqArg> args;
+    args.reserve(2);
+
+    args.emplace_back("chat_id", chatId);
+    args.emplace_back("sender_chat_id", senderChatId);
+
+    return sendRequest("banChatSenderChat", args).get<bool>("", false);
+}
+
+bool Api::unbanChatSenderChat(std::int64_t chatId,
+                              std::int64_t senderChatId) const {
+    vector<HttpReqArg> args;
+    args.reserve(2);
+
+    args.emplace_back("chat_id", chatId);
+    args.emplace_back("sender_chat_id", senderChatId);
+
+    return sendRequest("unbanChatSenderChat", args).get<bool>("", false);
+}
+
 bool Api::setChatPermissions(std::int64_t chatId, ChatPermissions::Ptr permissions) const {
     vector<HttpReqArg> args;
     args.reserve(2);

@@ -741,6 +741,31 @@ public:
     bool setChatAdministratorCustomTitle(std::int64_t chatId, std::int64_t userId, const std::string& customTitle) const;
 
     /**
+     * @brief Use this method to ban a channel chat in a supergroup or a channel.
+     * Until the chat is unbanned, the owner of the banned chat won't be able to send messages on behalf of any of their channels.
+     * The bot must be an administrator in the supergroup or channel for this to work and must have the appropriate administrator rights.
+     *
+     * @param chatId Unique identifier for the target chat or username of the target channel (in the format @channelusername)
+     * @param senderChatId Unique identifier of the target sender chat
+     *
+     * @return True on success.
+     */
+    bool banChatSenderChat(std::int64_t chatId,
+                           std::int64_t senderChatId) const;
+
+    /**
+     * @brief Use this method to unban a previously banned channel chat in a supergroup or channel.
+     * The bot must be an administrator for this to work and must have the appropriate administrator rights.
+     *
+     * @param chatId Unique identifier for the target chat or username of the target channel (in the format @channelusername)
+     * @param senderChatId Unique identifier of the target sender chat
+     *
+     * @return Returns True on success.
+     */
+    bool unbanChatSenderChat(std::int64_t chatId,
+                             std::int64_t senderChatId) const;
+
+    /**
      * @brief Use this method to set default chat permissions for all members. The bot must be an administrator in the group or a supergroup for this to work and must have the can_restrict_members admin rights. Returns True on success.
      * @param chatId Unique identifier for the target chat of the target supergroup.
      * @param permissions New default chat permissions.

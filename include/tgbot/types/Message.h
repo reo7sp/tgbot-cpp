@@ -52,15 +52,15 @@ public:
     std::int32_t messageId;
 
     /**
-     * @brief Optional. Sender, empty for messages sent to channels
+     * @brief Optional. Sender of the message; empty for messages sent to channels.
+     * For backward compatibility, the field contains a fake sender user in non-channel chats, if the message was sent on behalf of a chat.
      */
     User::Ptr from;
 
     /**
      * @brief Optional. Sender of the message, sent on behalf of a chat.
-     * The channel itself for channel messages.
-     * The supergroup itself for messages from anonymous group administrators.
-     * The linked channel for messages automatically forwarded to the discussion group
+     * For example, the channel itself for channel posts, the supergroup itself for messages from anonymous group administrators, the linked channel for messages automatically forwarded to the discussion group.
+     * For backward compatibility, the field from contains a fake sender user in non-channel chats, if the message was sent on behalf of a chat.
      */
     Chat::Ptr senderChat;
 
@@ -105,6 +105,11 @@ public:
     std::int32_t forwardDate;
 
     /**
+     * @brief Optional. True, if the message is a channel post that was automatically forwarded to the connected discussion group
+     */
+    bool isAutomaticForward;
+
+    /**
      * @brief Optional. For replies, the original message.
      * Note that the Message object in this field will not contain further replyToMessage fields even if it itself is a reply.
      */
@@ -119,6 +124,11 @@ public:
      * @brief Optional. Date the message was last edited in Unix time
      */
     std::int32_t editDate;
+
+    /**
+     * @brief Optional. True, if the message can't be forwarded
+     */
+    bool hasProtectedContent;
 
     /**
      * @brief Optional. The unique identifier of a media message group this message belongs to
@@ -347,13 +357,6 @@ public:
      * loginUrl buttons are represented as ordinary url buttons.
      */
     InlineKeyboardMarkup::Ptr replyMarkup;
-
-    /**
-     * @brief Optional. True, if the message is a channel post that was automatically forwarded to the connected discussion group
-     *
-     * Note: Added with Bot API 5.5
-     */
-    bool automaticForward;
 };
 }
 

@@ -75,6 +75,12 @@ public:
     std::string bio;
 
     /**
+     * @brief Optional. True, if privacy settings of the other party in the private chat allows to use tg://user?id=<user_id> links only in chats with the user.
+     * Returned only in Api::getChat.
+     */
+    bool hasPrivateForwards;
+
+    /**
      * @brief Optional. Description, for groups, supergroups and channel chats.
      * Returned only in Api::getChat.
      */
@@ -104,6 +110,18 @@ public:
      * Returned only in Api::getChat.
      */
     std::int32_t slowModeDelay;
+
+    /**
+     * @brief Optional. The time after which all messages sent to the chat will be automatically deleted; in seconds. 
+     * Returned only in Api::getChat.
+     */
+    std::int32_t messageAutoDeleteTime;
+
+    /**
+     * @brief Optional. True, if messages from the chat can't be forwarded to other chats.
+     * Returned only in Api::getChat.
+     */
+    bool hasProtectedContent;
 
     /**
      * @brief Optional. For supergroups, name of group sticker set.
