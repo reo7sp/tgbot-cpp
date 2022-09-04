@@ -30,6 +30,8 @@ set(SRC_LIST
     src/net/Url.cpp
     src/tools/FileTools.cpp
     src/tools/StringTools.cpp
+    src/types/BotCommandScope.cpp
+    src/types/ChatMember.cpp
     src/types/InlineQueryResult.cpp
     src/types/InputFile.cpp
     src/types/InputMedia.cpp 

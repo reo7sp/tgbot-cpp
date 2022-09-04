@@ -655,10 +655,10 @@ public:
      * 
      * @return True on success.
      */
-    bool kickChatMember(std::int64_t chatId,
-                        std::int64_t userId,
-                        std::uint64_t untilDate = 0,
-                        bool revokeMessages = true) const;
+    bool banChatMember(std::int64_t chatId,
+                       std::int64_t userId,
+                       std::uint64_t untilDate = 0,
+                       bool revokeMessages = true) const;
 
     /**
      * @brief Use this method to unban a previously kicked user in a supergroup or channel.
@@ -893,11 +893,13 @@ public:
     std::vector<ChatMember::Ptr> getChatAdministrators(std::int64_t chatId) const;
 
     /**
-    * @brief Use this method to get the number of members in a chat. Returns Int on success.
-    * @param chatId Unique identifier for the target chat of the target supergroup or channel.
-    * @return Int.
+    * @brief Use this method to get the number of members in a chat.
+    * 
+    * @param chatId Unique identifier for the target chat or username of the target supergroup or channel (in the format @channelusername)
+    * 
+    * @return Int on success.
     */
-    std::int32_t getChatMembersCount(std::int64_t chatId) const;
+    std::int32_t getChatMemberCount(std::int64_t chatId) const;
 
     /**
     * @brief Use this method to get information about a member of a chat. Returns a ChatMember object on success.
@@ -935,16 +937,40 @@ public:
 
     /**
      * @brief Use this method to change the list of the bot's commands.
+     * See https://core.telegram.org/bots#commands for more details about bot commands.
+     * 
      * @param commands A JSON-serialized list of bot commands to be set as the list of the bot's commands. At most 100 commands can be specified.
+     * @param scope Optional. A JSON-serialized object, describing scope of users for which the commands are relevant. Defaults to BotCommandScopeDefault.
+     * @param languageCode Optional. A two-letter ISO 639-1 language code. If empty, commands will be applied to all users from the given scope, for whose language there are no dedicated commands
+     * 
      * @return True on success.
      */
-    bool setMyCommands(const std::vector<BotCommand::Ptr>& commands) const;
+    bool setMyCommands(const std::vector<BotCommand::Ptr>& commands,
+                       BotCommandScope::Ptr scope = nullptr,
+                       const std::string& languageCode = "") const;
 
     /**
-     * @brief Use this method to get the current list of the bot's commands.
-     * @return Array of @ref BotCommand on success.
+     * @brief Use this method to delete the list of the bot's commands for the given scope and user language.
+     * After deletion, higher level commands will be shown to affected users.
+     *
+     * @param scope Optional. A JSON-serialized object, describing scope of users for which the commands are relevant. Defaults to BotCommandScopeDefault.
+     * @param languageCode Optional. A two-letter ISO 639-1 language code. If empty, commands will be applied to all users from the given scope, for whose language there are no dedicated commands
+     *
+     * @return True on success.
      */
-    std::vector<BotCommand::Ptr> getMyCommands() const;
+    bool deleteMyCommands(BotCommandScope::Ptr scope = nullptr,
+                          const std::string& languageCode = "") const;
+
+    /**
+     * @brief Use this method to get the current list of the bot's commands for the given scope and user language.
+     * 
+     * @param scope Optional. A JSON-serialized object, describing scope of users. Defaults to BotCommandScopeDefault.
+     * @param languageCode Optional. A two-letter ISO 639-1 language code or an empty string
+     * 
+     * @return Array of BotCommand on success. If commands aren't set, an empty list is returned.
+     */
+    std::vector<BotCommand::Ptr> getMyCommands(BotCommandScope::Ptr scope = nullptr,
+                                               const std::string& languageCode = "") const;
 
     /**
      * @brief Use this method to edit text and game messages.

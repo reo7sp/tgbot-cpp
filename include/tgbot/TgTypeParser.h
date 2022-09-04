@@ -38,6 +38,12 @@
 #include "tgbot/types/ReplyKeyboardRemove.h"
 #include "tgbot/types/ForceReply.h"
 #include "tgbot/types/ChatMember.h"
+#include "tgbot/types/ChatMemberOwner.h"
+#include "tgbot/types/ChatMemberAdministrator.h"
+#include "tgbot/types/ChatMemberMember.h"
+#include "tgbot/types/ChatMemberRestricted.h"
+#include "tgbot/types/ChatMemberLeft.h"
+#include "tgbot/types/ChatMemberBanned.h"
 #include "tgbot/types/ChatMemberUpdated.h"
 #include "tgbot/types/ChatPhoto.h"
 #include "tgbot/types/ResponseParameters.h"
@@ -88,6 +94,14 @@
 #include "tgbot/types/SuccessfulPayment.h"
 #include "tgbot/types/LabeledPrice.h"
 #include "tgbot/types/BotCommand.h"
+#include "tgbot/types/BotCommandScope.h"
+#include "tgbot/types/BotCommandScopeDefault.h"
+#include "tgbot/types/BotCommandScopeAllPrivateChats.h"
+#include "tgbot/types/BotCommandScopeAllGroupChats.h"
+#include "tgbot/types/BotCommandScopeAllChatAdministrators.h"
+#include "tgbot/types/BotCommandScopeChat.h"
+#include "tgbot/types/BotCommandScopeChatAdministrators.h"
+#include "tgbot/types/BotCommandScopeChatMember.h"
 #include "tgbot/types/InputMedia.h"
 #include "tgbot/types/InputMediaPhoto.h"
 #include "tgbot/types/InputMediaVideo.h"
@@ -268,6 +282,24 @@ public:
     ChatMember::Ptr parseJsonAndGetChatMember(const boost::property_tree::ptree& data) const;
     std::string parseChatMember(const ChatMember::Ptr& object) const;
 
+    ChatMemberOwner::Ptr parseJsonAndGetChatMemberOwner(const boost::property_tree::ptree& data) const;
+    std::string parseChatMemberOwner(const ChatMemberOwner::Ptr& object) const;
+
+    ChatMemberAdministrator::Ptr parseJsonAndGetChatMemberAdministrator(const boost::property_tree::ptree& data) const;
+    std::string parseChatMemberAdministrator(const ChatMemberAdministrator::Ptr& object) const;
+
+    ChatMemberMember::Ptr parseJsonAndGetChatMemberMember(const boost::property_tree::ptree& data) const;
+    std::string parseChatMemberMember(const ChatMemberMember::Ptr& object) const;
+
+    ChatMemberRestricted::Ptr parseJsonAndGetChatMemberRestricted(const boost::property_tree::ptree& data) const;
+    std::string parseChatMemberRestricted(const ChatMemberRestricted::Ptr& object) const;
+
+    ChatMemberLeft::Ptr parseJsonAndGetChatMemberLeft(const boost::property_tree::ptree& data) const;
+    std::string parseChatMemberLeft(const ChatMemberLeft::Ptr& object) const;
+
+    ChatMemberBanned::Ptr parseJsonAndGetChatMemberBanned(const boost::property_tree::ptree& data) const;
+    std::string parseChatMemberBanned(const ChatMemberBanned::Ptr& object) const;
+
     ChatMemberUpdated::Ptr parseJsonAndGetChatMemberUpdated(const boost::property_tree::ptree& data) const;
     std::string parseChatMemberUpdated(const ChatMemberUpdated::Ptr& object) const;
 
@@ -390,6 +422,30 @@ public:
 
     BotCommand::Ptr parseJsonAndGetBotCommand(const boost::property_tree::ptree& data) const;
     std::string parseBotCommand(const BotCommand::Ptr& object) const;
+
+    BotCommandScope::Ptr parseJsonAndGetBotCommandScope(const boost::property_tree::ptree& data) const;
+    std::string parseBotCommandScope(const BotCommandScope::Ptr& object) const;
+
+    BotCommandScopeDefault::Ptr parseJsonAndGetBotCommandScopeDefault(const boost::property_tree::ptree& data) const;
+    std::string parseBotCommandScopeDefault(const BotCommandScopeDefault::Ptr& object) const;
+
+    BotCommandScopeAllPrivateChats::Ptr parseJsonAndGetBotCommandScopeAllPrivateChats(const boost::property_tree::ptree& data) const;
+    std::string parseBotCommandScopeAllPrivateChats(const BotCommandScopeAllPrivateChats::Ptr& object) const;
+
+    BotCommandScopeAllGroupChats::Ptr parseJsonAndGetBotCommandScopeAllGroupChats(const boost::property_tree::ptree& data) const;
+    std::string parseBotCommandScopeAllGroupChats(const BotCommandScopeAllGroupChats::Ptr& object) const;
+
+    BotCommandScopeAllChatAdministrators::Ptr parseJsonAndGetBotCommandScopeAllChatAdministrators(const boost::property_tree::ptree& data) const;
+    std::string parseBotCommandScopeAllChatAdministrators(const BotCommandScopeAllChatAdministrators::Ptr& object) const;
+
+    BotCommandScopeChat::Ptr parseJsonAndGetBotCommandScopeChat(const boost::property_tree::ptree& data) const;
+    std::string parseBotCommandScopeChat(const BotCommandScopeChat::Ptr& object) const;
+
+    BotCommandScopeChatAdministrators::Ptr parseJsonAndGetBotCommandScopeChatAdministrators(const boost::property_tree::ptree& data) const;
+    std::string parseBotCommandScopeChatAdministrators(const BotCommandScopeChatAdministrators::Ptr& object) const;
+
+    BotCommandScopeChatMember::Ptr parseJsonAndGetBotCommandScopeChatMember(const boost::property_tree::ptree& data) const;
+    std::string parseBotCommandScopeChatMember(const BotCommandScopeChatMember::Ptr& object) const;
 
     OrderInfo::Ptr parseJsonAndGetOrderInfo(const boost::property_tree::ptree& data) const;
     std::string parseOrderInfo(const OrderInfo::Ptr& object) const;

@@ -1247,6 +1247,7 @@ ReplyKeyboardMarkup::Ptr TgTypeParser::parseJsonAndGetReplyKeyboardMarkup(const 
     }
     result->resizeKeyboard = data.get<bool>("resize_keyboard", false);
     result->oneTimeKeyboard = data.get<bool>("one_time_keyboard", false);
+    result->inputFieldPlaceholder = data.get<std::string>("input_field_placeholder", "");
     result->selective = data.get<bool>("selective", false);
     return result;
 }
@@ -1272,6 +1273,7 @@ std::string TgTypeParser::parseReplyKeyboardMarkup(const ReplyKeyboardMarkup::Pt
     result += "],";
     appendToJson(result, "resize_keyboard", object->resizeKeyboard);
     appendToJson(result, "one_time_keyboard", object->oneTimeKeyboard);
+    appendToJson(result, "input_field_placeholder", object->inputFieldPlaceholder);
     appendToJson(result, "selective", object->selective);
     removeLastComma(result);
     result += '}';
@@ -1341,7 +1343,8 @@ std::string TgTypeParser::parseReplyKeyboardRemove(const ReplyKeyboardRemove::Pt
 
 ForceReply::Ptr TgTypeParser::parseJsonAndGetForceReply(const boost::property_tree::ptree& data) const {
     auto result(std::make_shared<ForceReply>());
-    result->selective = data.get<bool>("selective");
+    result->inputFieldPlaceholder = data.get<std::string>("input_field_placeholder", "");
+    result->selective = data.get<bool>("selective", false);
     return result;
 }
 
@@ -1352,6 +1355,7 @@ std::string TgTypeParser::parseForceReply(const ForceReply::Ptr& object) const {
     std::string result;
     result += '{';
     appendToJson(result, "force_reply", object->forceReply);
+    appendToJson(result, "input_field_placeholder", object->inputFieldPlaceholder);
     appendToJson(result, "selective", object->selective);
     removeLastComma(result);
     result += '}';
@@ -1359,12 +1363,86 @@ std::string TgTypeParser::parseForceReply(const ForceReply::Ptr& object) const {
 }
 
 ChatMember::Ptr TgTypeParser::parseJsonAndGetChatMember(const boost::property_tree::ptree& data) const {
-    auto result(std::make_shared<ChatMember>());
+    std::string status = data.get<std::string>("status", "");
+    ChatMember::Ptr result;
+
+    if (status == ChatMemberOwner::STATUS) {
+        result = std::static_pointer_cast<ChatMember>(parseJsonAndGetChatMemberOwner(data));
+    } else if (status == ChatMemberAdministrator::STATUS) {
+        result = std::static_pointer_cast<ChatMember>(parseJsonAndGetChatMemberAdministrator(data));
+    } else if (status == ChatMemberMember::STATUS) {
+        result = std::static_pointer_cast<ChatMember>(parseJsonAndGetChatMemberMember(data));
+    } else if (status == ChatMemberRestricted::STATUS) {
+        result = std::static_pointer_cast<ChatMember>(parseJsonAndGetChatMemberRestricted(data));
+    } else if (status == ChatMemberLeft::STATUS) {
+        result = std::static_pointer_cast<ChatMember>(parseJsonAndGetChatMemberLeft(data));
+    } else if (status == ChatMemberBanned::STATUS) {
+        result = std::static_pointer_cast<ChatMember>(parseJsonAndGetChatMemberBanned(data));
+    } else {
+        result = std::make_shared<ChatMember>();
+    }
+
+    result->status = status;
     result->user = tryParseJson<User>(&TgTypeParser::parseJsonAndGetUser, data, "user");
-    result->status = data.get<std::string>("status", "");
+
+    return result;
+}
+
+std::string TgTypeParser::parseChatMember(const ChatMember::Ptr& object) const {
+    if (!object) {
+        return "";
+    }
+    std::string result;
+    result += '{';
+    appendToJson(result, "status", object->status);
+    appendToJson(result, "user", parseUser(object->user));
+
+    if (object->status == ChatMemberOwner::STATUS) {
+        result += parseChatMemberOwner(std::static_pointer_cast<ChatMemberOwner>(object));
+    } else if (object->status == ChatMemberAdministrator::STATUS) {
+        result += parseChatMemberAdministrator(std::static_pointer_cast<ChatMemberAdministrator>(object));
+    } else if (object->status == ChatMemberMember::STATUS) {
+        result += parseChatMemberMember(std::static_pointer_cast<ChatMemberMember>(object));
+    } else if (object->status == ChatMemberRestricted::STATUS) {
+        result += parseChatMemberRestricted(std::static_pointer_cast<ChatMemberRestricted>(object));
+    } else if (object->status == ChatMemberLeft::STATUS) {
+        result += parseChatMemberLeft(std::static_pointer_cast<ChatMemberLeft>(object));
+    } else if (object->status == ChatMemberBanned::STATUS) {
+        result += parseChatMemberBanned(std::static_pointer_cast<ChatMemberBanned>(object));
+    }
+
+    removeLastComma(result);
+    result += '}';
+    return result;
+}
+
+ChatMemberOwner::Ptr TgTypeParser::parseJsonAndGetChatMemberOwner(const boost::property_tree::ptree& data) const {
+    // NOTE: This function will be called by parseJsonAndGetChatMember().
+    auto result(std::make_shared<ChatMemberOwner>());
     result->customTitle = data.get<std::string>("custom_title", "");
     result->isAnonymous = data.get<bool>("is_anonymous", false);
+    return result;
+}
+
+std::string TgTypeParser::parseChatMemberOwner(const ChatMemberOwner::Ptr& object) const {
+    if (!object) {
+        return "";
+    }
+    // This function will be called by parseChatMember(), so I don't add
+    // curly brackets to the result std::string.
+    std::string result;
+    appendToJson(result, "custom_title", object->customTitle);
+    appendToJson(result, "is_anonymous", object->isAnonymous);
+    // The last comma will be erased by parseChatMember().
+    return result;
+}
+
+ChatMemberAdministrator::Ptr TgTypeParser::parseJsonAndGetChatMemberAdministrator(const boost::property_tree::ptree& data) const {
+    // NOTE: This function will be called by parseJsonAndGetChatMember().
+    auto result(std::make_shared<ChatMemberAdministrator>());
     result->canBeEdited = data.get<bool>("can_be_edited", false);
+    result->customTitle = data.get<std::string>("custom_title", "");
+    result->isAnonymous = data.get<bool>("is_anonymous", false);
     result->canManageChat = data.get<bool>("can_manage_chat", false);
     result->canPostMessages = data.get<bool>("can_post_messages", false);
     result->canEditMessages = data.get<bool>("can_edit_messages", false);
@@ -1375,27 +1453,19 @@ ChatMember::Ptr TgTypeParser::parseJsonAndGetChatMember(const boost::property_tr
     result->canChangeInfo = data.get<bool>("can_change_info", false);
     result->canInviteUsers = data.get<bool>("can_invite_users", false);
     result->canPinMessages = data.get<bool>("can_pin_messages", false);
-    result->isMember = data.get<bool>("is_member", false);
-    result->canSendMessages = data.get<bool>("can_send_messages", false);
-    result->canSendMediaMessages = data.get<bool>("can_send_media_messages", false);
-    result->canSendPolls = data.get<bool>("can_send_polls", false);
-    result->canSendOtherMessages = data.get<bool>("can_send_other_messages", false);
-    result->canAddWebPagePreviews = data.get<bool>("can_add_web_page_previews", false);
-    result->untilDate = data.get<uint64_t>("until_date", 0);
     return result;
 }
 
-std::string TgTypeParser::parseChatMember(const ChatMember::Ptr& object) const {
+std::string TgTypeParser::parseChatMemberAdministrator(const ChatMemberAdministrator::Ptr& object) const {
     if (!object) {
         return "";
     }
+    // This function will be called by parseChatMember(), so I don't add
+    // curly brackets to the result std::string.
     std::string result;
-    result += '{';
-    appendToJson(result, "user", parseUser(object->user));
-    appendToJson(result, "status", object->status);
+    appendToJson(result, "can_be_edited", object->canBeEdited);
     appendToJson(result, "custom_title", object->customTitle);
     appendToJson(result, "is_anonymous", object->isAnonymous);
-    appendToJson(result, "can_be_edited", object->canBeEdited);
     appendToJson(result, "can_manage_chat", object->canManageChat);
     appendToJson(result, "can_post_messages", object->canPostMessages);
     appendToJson(result, "can_edit_messages", object->canEditMessages);
@@ -1406,15 +1476,97 @@ std::string TgTypeParser::parseChatMember(const ChatMember::Ptr& object) const {
     appendToJson(result, "can_change_info", object->canChangeInfo);
     appendToJson(result, "can_invite_users", object->canInviteUsers);
     appendToJson(result, "can_pin_messages", object->canPinMessages);
+    // The last comma will be erased by parseChatMember().
+    return result;
+}
+
+ChatMemberMember::Ptr TgTypeParser::parseJsonAndGetChatMemberMember(const boost::property_tree::ptree& data) const {
+    // NOTE: This function will be called by parseJsonAndGetChatMember().
+    auto result(std::make_shared<ChatMemberMember>());
+    return result;
+}
+
+std::string TgTypeParser::parseChatMemberMember(const ChatMemberMember::Ptr& object) const {
+    if (!object) {
+        return "";
+    }
+    // This function will be called by parseChatMember(), so I don't add
+    // curly brackets to the result std::string.
+    std::string result;
+    // The last comma will be erased by parseChatMember().
+    return result;
+}
+
+ChatMemberRestricted::Ptr TgTypeParser::parseJsonAndGetChatMemberRestricted(const boost::property_tree::ptree& data) const {
+    // NOTE: This function will be called by parseJsonAndGetChatMember().
+    auto result(std::make_shared<ChatMemberRestricted>());
+    result->isMember = data.get<bool>("is_member", false);
+    result->canChangeInfo = data.get<bool>("can_change_info", false);
+    result->canInviteUsers = data.get<bool>("can_invite_users", false);
+    result->canPinMessages = data.get<bool>("can_pin_messages", false);
+    result->canSendMessages = data.get<bool>("can_send_messages", false);
+    result->canSendMediaMessages = data.get<bool>("can_send_media_messages", false);
+    result->canSendPolls = data.get<bool>("can_send_polls", false);
+    result->canSendOtherMessages = data.get<bool>("can_send_other_messages", false);
+    result->canAddWebPagePreviews = data.get<bool>("can_add_web_page_previews", false);
+    result->untilDate = data.get<uint32_t>("until_date", 0);
+    return result;
+}
+
+std::string TgTypeParser::parseChatMemberRestricted(const ChatMemberRestricted::Ptr& object) const {
+    if (!object) {
+        return "";
+    }
+    // This function will be called by parseChatMember(), so I don't add
+    // curly brackets to the result std::string.
+    std::string result;
     appendToJson(result, "is_member", object->isMember);
+    appendToJson(result, "can_change_info", object->canChangeInfo);
+    appendToJson(result, "can_invite_users", object->canInviteUsers);
+    appendToJson(result, "can_pin_messages", object->canPinMessages);
     appendToJson(result, "can_send_messages", object->canSendMessages);
     appendToJson(result, "can_send_media_messages", object->canSendMediaMessages);
     appendToJson(result, "can_send_polls", object->canSendPolls);
     appendToJson(result, "can_send_other_messages", object->canSendOtherMessages);
     appendToJson(result, "can_add_web_page_previews", object->canAddWebPagePreviews);
     appendToJson(result, "until_date", object->untilDate);
-    removeLastComma(result);
-    result += '}';
+    // The last comma will be erased by parseChatMember().
+    return result;
+}
+
+ChatMemberLeft::Ptr TgTypeParser::parseJsonAndGetChatMemberLeft(const boost::property_tree::ptree& data) const {
+    // NOTE: This function will be called by parseJsonAndGetChatMember().
+    auto result(std::make_shared<ChatMemberLeft>());
+    return result;
+}
+
+std::string TgTypeParser::parseChatMemberLeft(const ChatMemberLeft::Ptr& object) const {
+    if (!object) {
+        return "";
+    }
+    // This function will be called by parseChatMember(), so I don't add
+    // curly brackets to the result std::string.
+    std::string result;
+    // The last comma will be erased by parseChatMember().
+    return result;
+}
+
+ChatMemberBanned::Ptr TgTypeParser::parseJsonAndGetChatMemberBanned(const boost::property_tree::ptree& data) const {
+    // NOTE: This function will be called by parseJsonAndGetChatMember().
+    auto result(std::make_shared<ChatMemberBanned>());
+    result->untilDate = data.get<uint32_t>("until_date", 0);
+    return result;
+}
+
+std::string TgTypeParser::parseChatMemberBanned(const ChatMemberBanned::Ptr& object) const {
+    if (!object) {
+        return "";
+    }
+    // This function will be called by parseChatMember(), so I don't add
+    // curly brackets to the result std::string.
+    std::string result;
+    appendToJson(result, "until_date", object->untilDate);
+    // The last comma will be erased by parseChatMember().
     return result;
 }
 
@@ -2790,6 +2942,189 @@ std::string TgTypeParser::parseBotCommand(const BotCommand::Ptr& object) const {
     appendToJson(result, "description", object->description);
     removeLastComma(result);
     result += '}';
+    return result;
+}
+
+BotCommandScope::Ptr TgTypeParser::parseJsonAndGetBotCommandScope(const boost::property_tree::ptree& data) const {
+    std::string type = data.get<std::string>("type", "");
+    BotCommandScope::Ptr result;
+
+    if (type == BotCommandScopeDefault::TYPE) {
+        result = std::static_pointer_cast<BotCommandScope>(parseJsonAndGetBotCommandScopeDefault(data));
+    } else if (type == BotCommandScopeAllPrivateChats::TYPE) {
+        result = std::static_pointer_cast<BotCommandScope>(parseJsonAndGetBotCommandScopeAllPrivateChats(data));
+    } else if (type == BotCommandScopeAllGroupChats::TYPE) {
+        result = std::static_pointer_cast<BotCommandScope>(parseJsonAndGetBotCommandScopeAllGroupChats(data));
+    } else if (type == BotCommandScopeAllChatAdministrators::TYPE) {
+        result = std::static_pointer_cast<BotCommandScope>(parseJsonAndGetBotCommandScopeAllChatAdministrators(data));
+    } else if (type == BotCommandScopeChat::TYPE) {
+        result = std::static_pointer_cast<BotCommandScope>(parseJsonAndGetBotCommandScopeChat(data));
+    } else if (type == BotCommandScopeChatAdministrators::TYPE) {
+        result = std::static_pointer_cast<BotCommandScope>(parseJsonAndGetBotCommandScopeChatAdministrators(data));
+    } else if (type == BotCommandScopeChatMember::TYPE) {
+        result = std::static_pointer_cast<BotCommandScope>(parseJsonAndGetBotCommandScopeChatMember(data));
+    } else {
+        result = std::make_shared<BotCommandScope>();
+    }
+
+    result->type = type;
+
+    return result;
+}
+
+std::string TgTypeParser::parseBotCommandScope(const BotCommandScope::Ptr& object) const {
+    if (!object) {
+        return "";
+    }
+    std::string result;
+    result += '{';
+    appendToJson(result, "type", object->type);
+
+    if (object->type == BotCommandScopeDefault::TYPE) {
+        result += parseBotCommandScopeDefault(std::static_pointer_cast<BotCommandScopeDefault>(object));
+    } else if (object->type == BotCommandScopeAllPrivateChats::TYPE) {
+        result += parseBotCommandScopeAllPrivateChats(std::static_pointer_cast<BotCommandScopeAllPrivateChats>(object));
+    } else if (object->type == BotCommandScopeAllGroupChats::TYPE) {
+        result += parseBotCommandScopeAllGroupChats(std::static_pointer_cast<BotCommandScopeAllGroupChats>(object));
+    } else if (object->type == BotCommandScopeAllChatAdministrators::TYPE) {
+        result += parseBotCommandScopeAllChatAdministrators(std::static_pointer_cast<BotCommandScopeAllChatAdministrators>(object));
+    } else if (object->type == BotCommandScopeChat::TYPE) {
+        result += parseBotCommandScopeChat(std::static_pointer_cast<BotCommandScopeChat>(object));
+    } else if (object->type == BotCommandScopeChatAdministrators::TYPE) {
+        result += parseBotCommandScopeChatAdministrators(std::static_pointer_cast<BotCommandScopeChatAdministrators>(object));
+    } else if (object->type == BotCommandScopeChatMember::TYPE) {
+        result += parseBotCommandScopeChatMember(std::static_pointer_cast<BotCommandScopeChatMember>(object));
+    }
+
+    removeLastComma(result);
+    result += '}';
+    return result;
+}
+
+BotCommandScopeDefault::Ptr TgTypeParser::parseJsonAndGetBotCommandScopeDefault(const boost::property_tree::ptree& data) const {
+    // NOTE: This function will be called by parseJsonAndGetBotCommandScope().
+    auto result(std::make_shared<BotCommandScopeDefault>());
+    return result;
+}
+
+std::string TgTypeParser::parseBotCommandScopeDefault(const BotCommandScopeDefault::Ptr& object) const {
+    if (!object) {
+        return "";
+    }
+    // This function will be called by parseBotCommandScope(), so I don't add
+    // curly brackets to the result std::string.
+    std::string result;
+    // The last comma will be erased by parseBotCommandScope().
+    return result;
+}
+
+BotCommandScopeAllPrivateChats::Ptr TgTypeParser::parseJsonAndGetBotCommandScopeAllPrivateChats(const boost::property_tree::ptree& data) const {
+    // NOTE: This function will be called by parseJsonAndGetBotCommandScope().
+    auto result(std::make_shared<BotCommandScopeAllPrivateChats>());
+    return result;
+}
+
+std::string TgTypeParser::parseBotCommandScopeAllPrivateChats(const BotCommandScopeAllPrivateChats::Ptr& object) const {
+    if (!object) {
+        return "";
+    }
+    // This function will be called by parseBotCommandScope(), so I don't add
+    // curly brackets to the result std::string.
+    std::string result;
+    // The last comma will be erased by parseBotCommandScope().
+    return result;
+}
+
+BotCommandScopeAllGroupChats::Ptr TgTypeParser::parseJsonAndGetBotCommandScopeAllGroupChats(const boost::property_tree::ptree& data) const {
+    // NOTE: This function will be called by parseJsonAndGetBotCommandScope().
+    auto result(std::make_shared<BotCommandScopeAllGroupChats>());
+    return result;
+}
+
+std::string TgTypeParser::parseBotCommandScopeAllGroupChats(const BotCommandScopeAllGroupChats::Ptr& object) const {
+    if (!object) {
+        return "";
+    }
+    // This function will be called by parseBotCommandScope(), so I don't add
+    // curly brackets to the result std::string.
+    std::string result;
+    // The last comma will be erased by parseBotCommandScope().
+    return result;
+}
+
+BotCommandScopeAllChatAdministrators::Ptr TgTypeParser::parseJsonAndGetBotCommandScopeAllChatAdministrators(const boost::property_tree::ptree& data) const {
+    // NOTE: This function will be called by parseJsonAndGetBotCommandScope().
+    auto result(std::make_shared<BotCommandScopeAllChatAdministrators>());
+    return result;
+}
+
+std::string TgTypeParser::parseBotCommandScopeAllChatAdministrators(const BotCommandScopeAllChatAdministrators::Ptr& object) const {
+    if (!object) {
+        return "";
+    }
+    // This function will be called by parseBotCommandScope(), so I don't add
+    // curly brackets to the result std::string.
+    std::string result;
+    // The last comma will be erased by parseBotCommandScope().
+    return result;
+}
+
+BotCommandScopeChat::Ptr TgTypeParser::parseJsonAndGetBotCommandScopeChat(const boost::property_tree::ptree& data) const {
+    // NOTE: This function will be called by parseJsonAndGetBotCommandScope().
+    auto result(std::make_shared<BotCommandScopeChat>());
+    result->chatId = data.get<std::int64_t>("chat_id", 0);
+    return result;
+}
+
+std::string TgTypeParser::parseBotCommandScopeChat(const BotCommandScopeChat::Ptr& object) const {
+    if (!object) {
+        return "";
+    }
+    // This function will be called by parseBotCommandScope(), so I don't add
+    // curly brackets to the result std::string.
+    std::string result;
+    appendToJson(result, "chat_id", object->chatId);
+    // The last comma will be erased by parseBotCommandScope().
+    return result;
+}
+
+BotCommandScopeChatAdministrators::Ptr TgTypeParser::parseJsonAndGetBotCommandScopeChatAdministrators(const boost::property_tree::ptree& data) const {
+    // NOTE: This function will be called by parseJsonAndGetBotCommandScope().
+    auto result(std::make_shared<BotCommandScopeChatAdministrators>());
+    result->chatId = data.get<std::int64_t>("chat_id", 0);
+    return result;
+}
+
+std::string TgTypeParser::parseBotCommandScopeChatAdministrators(const BotCommandScopeChatAdministrators::Ptr& object) const {
+    if (!object) {
+        return "";
+    }
+    // This function will be called by parseBotCommandScope(), so I don't add
+    // curly brackets to the result std::string.
+    std::string result;
+    appendToJson(result, "chat_id", object->chatId);
+    // The last comma will be erased by parseBotCommandScope().
+    return result;
+}
+
+BotCommandScopeChatMember::Ptr TgTypeParser::parseJsonAndGetBotCommandScopeChatMember(const boost::property_tree::ptree& data) const {
+    // NOTE: This function will be called by parseJsonAndGetBotCommandScope().
+    auto result(std::make_shared<BotCommandScopeChatMember>());
+    result->chatId = data.get<std::int64_t>("chat_id", 0);
+    result->userId = data.get<std::int64_t>("user_id", 0);
+    return result;
+}
+
+std::string TgTypeParser::parseBotCommandScopeChatMember(const BotCommandScopeChatMember::Ptr& object) const {
+    if (!object) {
+        return "";
+    }
+    // This function will be called by parseBotCommandScope(), so I don't add
+    // curly brackets to the result std::string.
+    std::string result;
+    appendToJson(result, "chat_id", object->chatId);
+    appendToJson(result, "user_id", object->userId);
+    // The last comma will be erased by parseBotCommandScope().
     return result;
 }
 

@@ -935,10 +935,10 @@ string Api::downloadFile(const string& filePath, const std::vector<HttpReqArg>& 
     return serverResponse;
 }
 
-bool Api::kickChatMember(std::int64_t chatId,
-                         std::int64_t userId,
-                         std::uint64_t untilDate,
-                         bool revokeMessages) const {
+bool Api::banChatMember(std::int64_t chatId,
+                        std::int64_t userId,
+                        std::uint64_t untilDate,
+                        bool revokeMessages) const {
     vector<HttpReqArg> args;
     args.reserve(4);
 
@@ -947,7 +947,7 @@ bool Api::kickChatMember(std::int64_t chatId,
     args.emplace_back("until_date", untilDate);
     args.emplace_back("revoke_messages", revokeMessages);
 
-    return sendRequest("kickChatMember", args).get<bool>("", false);
+    return sendRequest("banChatMember", args).get<bool>("", false);
 }
 
 bool Api::unbanChatMember(std::int64_t chatId, std::int64_t userId, bool onlyIfBanned) const {
@@ -1187,11 +1187,13 @@ vector<ChatMember::Ptr> Api::getChatAdministrators(std::int64_t chatId) const {
     return _tgTypeParser.parseJsonAndGetArray<ChatMember>(&TgTypeParser::parseJsonAndGetChatMember, sendRequest("getChatAdministrators", args));
 }
 
-int32_t Api::getChatMembersCount(std::int64_t chatId) const {
+int32_t Api::getChatMemberCount(std::int64_t chatId) const {
     vector<HttpReqArg> args;
     args.reserve(1);
+
     args.emplace_back("chat_id", chatId);
-    return sendRequest("getChatMembersCount", args).get<int32_t>("", 0);
+
+    return sendRequest("getChatMemberCount", args).get<int32_t>("", 0);
 }
 
 ChatMember::Ptr Api::getChatMember(std::int64_t chatId, std::int64_t userId) const {
@@ -1236,18 +1238,51 @@ bool Api::answerCallbackQuery(const string& callbackQueryId, const string& text,
     return sendRequest("answerCallbackQuery", args).get<bool>("", false);
 }
 
-bool Api::setMyCommands(const std::vector<BotCommand::Ptr>& commands) const {
+bool Api::setMyCommands(const std::vector<BotCommand::Ptr>& commands,
+                        BotCommandScope::Ptr scope,
+                        const std::string& languageCode) const {
     vector<HttpReqArg> args;
-    args.reserve(5);
+    args.reserve(3);
 
-    string commandsJson = _tgTypeParser.parseArray<BotCommand>(&TgTypeParser::parseBotCommand, commands);
-    args.emplace_back("commands", commandsJson);
+    args.emplace_back("commands", _tgTypeParser.parseArray<BotCommand>(&TgTypeParser::parseBotCommand, commands));
+    if (scope != nullptr) {
+        args.emplace_back("scope", _tgTypeParser.parseBotCommandScope(scope));
+    }
+    if (!languageCode.empty()) {
+        args.emplace_back("language_code", languageCode);
+    }
 
     return sendRequest("setMyCommands", args).get<bool>("", false);
 }
 
-std::vector<BotCommand::Ptr> Api::getMyCommands() const {
-    return _tgTypeParser.parseJsonAndGetArray<BotCommand>(&TgTypeParser::parseJsonAndGetBotCommand, sendRequest("getMyCommands"));
+bool Api::deleteMyCommands(BotCommandScope::Ptr scope,
+                      const std::string& languageCode) const {
+    vector<HttpReqArg> args;
+    args.reserve(2);
+
+    if (scope != nullptr) {
+        args.emplace_back("scope", _tgTypeParser.parseBotCommandScope(scope));
+    }
+    if (!languageCode.empty()) {
+        args.emplace_back("language_code", languageCode);
+    }
+
+    return sendRequest("deleteMyCommands", args).get<bool>("", false);
+}
+
+std::vector<BotCommand::Ptr> Api::getMyCommands(BotCommandScope::Ptr scope,
+                                                const std::string& languageCode) const {
+    vector<HttpReqArg> args;
+    args.reserve(2);
+;
+    if (scope != nullptr) {
+        args.emplace_back("scope", _tgTypeParser.parseBotCommandScope(scope));
+    }
+    if (!languageCode.empty()) {
+        args.emplace_back("language_code", languageCode);
+    }
+
+    return _tgTypeParser.parseJsonAndGetArray<BotCommand>(&TgTypeParser::parseJsonAndGetBotCommand, sendRequest("getMyCommands", args));
 }
 
 Message::Ptr Api::editMessageText(const std::string& text,
