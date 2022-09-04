@@ -25,6 +25,7 @@
 #include "tgbot/types/Location.h"
 #include "tgbot/types/ProximityAlertTriggered.h"
 #include "tgbot/types/MessageAutoDeleteTimerChanged.h"
+#include "tgbot/types/VoiceChatScheduled.h"
 #include "tgbot/types/VoiceChatStarted.h"
 #include "tgbot/types/VoiceChatEnded.h"
 #include "tgbot/types/VoiceChatParticipantsInvited.h"
@@ -77,6 +78,7 @@
 #include "tgbot/types/InputLocationMessageContent.h"
 #include "tgbot/types/InputVenueMessageContent.h"
 #include "tgbot/types/InputContactMessageContent.h"
+#include "tgbot/types/InputInvoiceMessageContent.h"
 #include "tgbot/types/Invoice.h"
 #include "tgbot/types/OrderInfo.h"
 #include "tgbot/types/PreCheckoutQuery.h"
@@ -208,6 +210,9 @@ public:
 
     MessageAutoDeleteTimerChanged::Ptr parseJsonAndGetMessageAutoDeleteTimerChanged(const boost::property_tree::ptree& data) const;
     std::string parseMessageAutoDeleteTimerChanged(const MessageAutoDeleteTimerChanged::Ptr& object) const;
+
+    VoiceChatScheduled::Ptr parseJsonAndGetVoiceChatScheduled(const boost::property_tree::ptree& data) const;
+    std::string parseVoiceChatScheduled(const VoiceChatScheduled::Ptr& object) const;
 
     VoiceChatStarted::Ptr parseJsonAndGetVoiceChatStarted(const boost::property_tree::ptree& data) const;
     std::string parseVoiceChatStarted(const VoiceChatStarted::Ptr& object) const;
@@ -373,6 +378,9 @@ public:
 
     InputContactMessageContent::Ptr parseJsonAndGetInputContactMessageContent(const boost::property_tree::ptree& data) const;
     std::string parseInputContactMessageContent(const InputContactMessageContent::Ptr& object) const;
+
+    InputInvoiceMessageContent::Ptr parseJsonAndGetInputInvoiceMessageContent(const boost::property_tree::ptree& data) const;
+    std::string parseInputInvoiceMessageContent(const InputInvoiceMessageContent::Ptr& object) const;
 
     Invoice::Ptr parseJsonAndGetInvoice(const boost::property_tree::ptree& data) const;
     std::string parseInvoice(const Invoice::Ptr& object) const;

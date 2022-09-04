@@ -188,6 +188,7 @@ Message::Ptr TgTypeParser::parseJsonAndGetMessage(const boost::property_tree::pt
     result->passportData = tryParseJson<PassportData>(&TgTypeParser::parseJsonAndGetPassportData, data, "passport_data");
     result->passportData = tryParseJson<PassportData>(&TgTypeParser::parseJsonAndGetPassportData, data, "passport_data");
     result->proximityAlertTriggered = tryParseJson<ProximityAlertTriggered>(&TgTypeParser::parseJsonAndGetProximityAlertTriggered, data, "proximity_alert_triggered");
+    result->voiceChatScheduled = tryParseJson<VoiceChatScheduled>(&TgTypeParser::parseJsonAndGetVoiceChatScheduled, data, "voice_chat_scheduled");
     result->voiceChatStarted = tryParseJson<VoiceChatStarted>(&TgTypeParser::parseJsonAndGetVoiceChatStarted, data, "voice_chat_started");
     result->voiceChatEnded = tryParseJson<VoiceChatEnded>(&TgTypeParser::parseJsonAndGetVoiceChatEnded, data, "voice_chat_ended");
     result->voiceChatParticipantsInvited = tryParseJson<VoiceChatParticipantsInvited>(&TgTypeParser::parseJsonAndGetVoiceChatParticipantsInvited, data, "voice_chat_participants_invited");
@@ -253,6 +254,7 @@ std::string TgTypeParser::parseMessage(const Message::Ptr& object) const {
     appendToJson(result, "connected_website", object->connectedWebsite);
     appendToJson(result, "passport_data", parsePassportData(object->passportData));
     appendToJson(result, "proximity_alert_triggered", parseProximityAlertTriggered(object->proximityAlertTriggered));
+    appendToJson(result, "voice_chat_scheduled", parseVoiceChatScheduled(object->voiceChatScheduled));
     appendToJson(result, "voice_chat_started", parseVoiceChatStarted(object->voiceChatStarted));
     appendToJson(result, "voice_chat_ended", parseVoiceChatEnded(object->voiceChatEnded));
     appendToJson(result, "voice_chat_participants_invited", parseVoiceChatParticipantsInvited(object->voiceChatParticipantsInvited));
@@ -913,6 +915,24 @@ std::string TgTypeParser::parseMessageAutoDeleteTimerChanged(const MessageAutoDe
     return result;
 }
 
+VoiceChatScheduled::Ptr TgTypeParser::parseJsonAndGetVoiceChatScheduled(const boost::property_tree::ptree& data) const {
+    auto result(std::make_shared<VoiceChatScheduled>());
+    result->startDate = data.get<std::int32_t>("start_date", 0);
+    return result;
+}
+
+std::string TgTypeParser::parseVoiceChatScheduled(const VoiceChatScheduled::Ptr& object) const {
+    if (!object) {
+        return "";
+    }
+    std::string result;
+    result += '{';
+    appendToJson(result, "start_date", object->startDate);
+    removeLastComma(result);
+    result += '}';
+    return result;
+}
+
 VoiceChatStarted::Ptr TgTypeParser::parseJsonAndGetVoiceChatStarted(const boost::property_tree::ptree& data) const {
     auto result(std::make_shared<VoiceChatStarted>());
     return result;
@@ -1529,12 +1549,12 @@ std::string TgTypeParser::parseGenericReply(const GenericReply::Ptr& object) con
 
 InlineQuery::Ptr TgTypeParser::parseJsonAndGetInlineQuery(const boost::property_tree::ptree& data) const {
     auto result(std::make_shared<InlineQuery>());
-    result->id = data.get<std::string>("id");
+    result->id = data.get<std::string>("id", "");
     result->from = tryParseJson<User>(&TgTypeParser::parseJsonAndGetUser, data, "from");
+    result->query = data.get<std::string>("query", "");
+    result->offset = data.get<std::string>("offset", "");
+    result->chatType = data.get<std::string>("chat_type", "");
     result->location = tryParseJson<Location>(&TgTypeParser::parseJsonAndGetLocation, data, "location");
-    result->query = data.get<std::string>("query");
-    result->offset = data.get<std::string>("offset");
-
     return result;
 }
 
@@ -1546,9 +1566,10 @@ std::string TgTypeParser::parseInlineQuery(const InlineQuery::Ptr& object) const
     result += '{';
     appendToJson(result, "id", object->id);
     appendToJson(result, "from", parseUser(object->from));
-    appendToJson(result, "location", parseLocation(object->location));
     appendToJson(result, "query", object->query);
     appendToJson(result, "offset", object->offset);
+    appendToJson(result, "chat_type", object->chatType);
+    appendToJson(result, "location", parseLocation(object->location));
     removeLastComma(result);
     result += '}';
     return result;
@@ -2499,17 +2520,20 @@ InputMessageContent::Ptr TgTypeParser::parseJsonAndGetInputMessageContent(const 
 
     std::string messageText = data.get<std::string>("message_text", "");
     float latitude = data.get<float>("latitude", 1000); // latitude belong (-90,90)
-    std::string title = data.get<std::string>("title", "");
+    std::string address = data.get<std::string>("address", "");
     std::string phoneNumber = data.get<std::string>("phone_number", "");
+    std::string description = data.get<std::string>("description", "");
 
     if (!messageText.empty()) {
         result = std::static_pointer_cast<InputMessageContent>(parseJsonAndGetInputTextMessageContent(data));
-    } else if (!title.empty()) {
+    } else if (!address.empty()) {
         result = std::static_pointer_cast<InputMessageContent>(parseJsonAndGetInputVenueMessageContent(data));
     } else if (latitude != 1000) {
         result = std::static_pointer_cast<InputMessageContent>(parseJsonAndGetInputLocationMessageContent(data));
     } else if (!phoneNumber.empty()) {
         result = std::static_pointer_cast<InputMessageContent>(parseJsonAndGetInputContactMessageContent(data));
+    } else if (!description.empty()) {
+        result = std::static_pointer_cast<InputMessageContent>(parseJsonAndGetInputInvoiceMessageContent(data));
     } else {
         result = std::make_shared<InputMessageContent>();
     }
@@ -2526,15 +2550,14 @@ std::string TgTypeParser::parseInputMessageContent(const InputMessageContent::Pt
 
     if (object->type == InputTextMessageContent::TYPE) {
         result += parseInputTextMessageContent(std::static_pointer_cast<InputTextMessageContent>(object));
-    }
-    else if (object->type == InputLocationMessageContent::TYPE) {
+    } else if (object->type == InputLocationMessageContent::TYPE) {
         result += parseInputLocationMessageContent(std::static_pointer_cast<InputLocationMessageContent>(object));
-    }
-    else if (object->type == InputVenueMessageContent::TYPE) {
+    } else if (object->type == InputVenueMessageContent::TYPE) {
         result += parseInputVenueMessageContent(std::static_pointer_cast<InputVenueMessageContent>(object));
-    }
-    else if (object->type == InputContactMessageContent::TYPE) {
+    } else if (object->type == InputContactMessageContent::TYPE) {
         result += parseInputContactMessageContent(std::static_pointer_cast<InputContactMessageContent>(object));
+    } else if (object->type == InputInvoiceMessageContent::TYPE) {
+        result += parseInputInvoiceMessageContent(std::static_pointer_cast<InputInvoiceMessageContent>(object));
     }
 
     removeLastComma(result);
@@ -2646,6 +2669,66 @@ std::string TgTypeParser::parseInputContactMessageContent(const InputContactMess
     appendToJson(result, "first_name", object->firstName);
     appendToJson(result, "last_name", object->lastName);
     appendToJson(result, "vcard", object->vcard);
+    // The last comma will be erased by parseInputMessageContent().
+    return result;
+}
+
+InputInvoiceMessageContent::Ptr TgTypeParser::parseJsonAndGetInputInvoiceMessageContent(const boost::property_tree::ptree& data) const {
+    // NOTE: This function will be called by parseJsonAndGetInputMessageContent().
+    auto result(std::make_shared<InputInvoiceMessageContent>());
+    result->title = data.get<std::string>("title", "");
+    result->description = data.get<std::string>("description", "");
+    result->payload = data.get<std::string>("payload", "");
+    result->providerToken = data.get<std::string>("provider_token", "");
+    result->currency = data.get<std::string>("currency", "");
+    result->prices = parseJsonAndGetArray<LabeledPrice>(&TgTypeParser::parseJsonAndGetLabeledPrice, data, "prices");
+    result->maxTipAmount = data.get<std::int32_t>("max_tip_amount", 0);
+    result->suggestedTipAmounts = parseJsonAndGetArray<std::int32_t>([] (const boost::property_tree::ptree& innerData)->std::int32_t {
+        return innerData.get<std::int32_t>(0);
+    }, data, "suggested_tip_amounts");
+    result->providerData = data.get<std::string>("provider_data", "");
+    result->photoUrl = data.get<std::string>("photo_url", "");
+    result->photoSize = data.get<std::int32_t>("photo_size", 0);
+    result->photoWidth = data.get<std::int32_t>("photo_width", 0);
+    result->photoHeight = data.get<std::int32_t>("photo_height", 0);
+    result->needName = data.get<bool>("need_name", false);
+    result->needPhoneNumber = data.get<bool>("need_phone_number", false);
+    result->needEmail = data.get<bool>("need_email", false);
+    result->needShippingAddress = data.get<bool>("need_shipping_address", false);
+    result->sendPhoneNumberToProvider = data.get<bool>("send_phone_number_to_provider", false);
+    result->sendEmailToProvider = data.get<bool>("send_email_to_provider", false);
+    result->isFlexible = data.get<bool>("is_flexible", false);
+    return result;
+}
+
+std::string TgTypeParser::parseInputInvoiceMessageContent(const InputInvoiceMessageContent::Ptr& object) const {
+    if (!object) {
+        return "";
+    }
+    // This function will be called by parseInputMessageContent()
+    std::string result;
+    appendToJson(result, "title", object->title);
+    appendToJson(result, "description", object->description);
+    appendToJson(result, "payload", object->payload);
+    appendToJson(result, "provider_token", object->providerToken);
+    appendToJson(result, "currency", object->currency);
+    appendToJson(result, "prices", parseArray(&TgTypeParser::parseLabeledPrice, object->prices));
+    appendToJson(result, "max_tip_amount", object->maxTipAmount);
+    appendToJson(result, "suggested_tip_amounts", parseArray<std::int32_t>([] (std::int32_t i)->std::int32_t {
+        return i;
+    }, object->suggestedTipAmounts));
+    appendToJson(result, "provider_data", object->providerData);
+    appendToJson(result, "photo_url", object->photoUrl);
+    appendToJson(result, "photo_size", object->photoSize);
+    appendToJson(result, "photo_width", object->photoWidth);
+    appendToJson(result, "photo_height", object->photoHeight);
+    appendToJson(result, "need_name", object->needName);
+    appendToJson(result, "need_phone_number", object->needPhoneNumber);
+    appendToJson(result, "need_email", object->needEmail);
+    appendToJson(result, "need_shipping_address", object->needShippingAddress);
+    appendToJson(result, "send_phone_number_to_provider", object->sendPhoneNumberToProvider);
+    appendToJson(result, "send_email_to_provider", object->sendEmailToProvider);
+    appendToJson(result, "is_flexible", object->isFlexible);
     // The last comma will be erased by parseInputMessageContent().
     return result;
 }

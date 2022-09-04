@@ -602,15 +602,22 @@ public:
                           bool allowSendingWithoutReply = false) const;
 
     /**
-     * @brief Use this method when you need to tell the user that something is happening on the bot's side. The status is set for 5 seconds or less (when a message arrives from your bot, Telegram clients clear its typing status).
+     * @brief Use this method when you need to tell the user that something is happening on the bot's side.
+     * The status is set for 5 seconds or less (when a message arrives from your bot, Telegram clients clear its typing status).
      *
-     * Example: The ImageBot needs some time to process a request and upload the image. Instead of sending a text message along the lines of “Retrieving image, please wait…”, the bot may use sendChatAction with action = upload_photo. The user will see a “sending photo” status for the bot.
+     * Example: The ImageBot needs some time to process a request and upload the image.
+     * Instead of sending a text message along the lines of “Retrieving image, please wait…”, the bot may use sendChatAction with action = upload_photo.
+     * The user will see a “sending photo” status for the bot.
+     * 
      * We only recommend using this method when a response from the bot will take a noticeable amount of time to arrive.
      *
-     * @param chatId Unique identifier for the target chat.
-     * @param action Type of action to broadcast. Choose one, depending on what the user is about to receive: typing for text messages, upload_photo for photos, record_video or upload_video for videos, record_audio or upload_audio for audio files, upload_document for general files, find_location for location data.
+     * @param chatId Unique identifier for the target chat or username of the target channel (in the format @channelusername)
+     * @param action Type of action to broadcast. Choose one, depending on what the user is about to receive: typing for text messages, upload_photo for photos, record_video or upload_video for videos, record_voice or upload_voice for voice notes, upload_document for general files, find_location for location data, record_video_note or upload_video_note for video notes.
+     * 
+     * @return True on success.
      */
-    void sendChatAction(std::int64_t chatId, const std::string& action) const;
+    bool sendChatAction(std::int64_t chatId,
+                        const std::string& action) const;
 
     /**
      * @brief Use this method to get a list of profile pictures for a user.
@@ -1157,12 +1164,11 @@ public:
     /**
      * @brief Use this method to send invoices.
      * 
-     * @param chatId Unique identifier for the target private chat
+     * @param chatId Unique identifier for the target chat or username of the target channel (in the format @channelusername)
      * @param title Product name, 1-32 characters
      * @param description Product description, 1-255 characters
      * @param payload Bot-defined invoice payload, 1-128 bytes. This will not be displayed to the user, use for your internal processes.
      * @param providerToken Payments provider token, obtained via Botfather
-     * @param startParameter Unique deep-linking parameter that can be used to generate this invoice when used as a start parameter
      * @param currency Three-letter ISO 4217 currency code, see https://core.telegram.org/bots/payments#supported-currencies
      * @param prices Price breakdown, a JSON-serialized list of components (e.g. product price, tax, discount, delivery cost, delivery tax, bonus, etc.)
      * @param providerData Optional. A JSON-serialized data about the invoice, which will be shared with the payment provider. A detailed description of required fields should be provided by the payment provider.
@@ -1181,6 +1187,9 @@ public:
      * @param replyMarkup Optional. A JSON-serialized object for an inline keyboard. If empty, one 'Pay total price' button will be shown. If not empty, the first button must be a Pay button.
      * @param disableNotification Optional. Sends the message silently. Users will receive a notification with no sound.
      * @param allowSendingWithoutReply Optional. Pass True, if the message should be sent even if the specified replied-to message is not found
+     * @param maxTipAmount Optional. The maximum accepted amount for tips in the smallest units of the currency (integer, not float/double). For example, for a maximum tip of US$ 1.45 pass max_tip_amount = 145. See the exp parameter in https://core.telegram.org/bots/payments/currencies.json, it shows the number of digits past the decimal point for each currency (2 for the majority of currencies). Defaults to 0
+     * @param suggestedTipAmounts Optional. A JSON-serialized array of suggested amounts of tips in the smallest units of the currency (integer, not float/double). At most 4 suggested tip amounts can be specified. The suggested tip amounts must be positive, passed in a strictly increased order and must not exceed maxTipAmount.
+     * @param startParameter Optional. Unique deep-linking parameter. If left empty, forwarded copies of the sent message will have a Pay button, allowing multiple users to pay directly from the forwarded message, using the same invoice. If non-empty, forwarded copies of the sent message will have a URL button with a deep link to the bot (instead of a Pay button), with the value used as the start parameter
      * 
      * @return On success, the sent Message is returned.
      */
@@ -1189,7 +1198,6 @@ public:
                              const std::string& description,
                              const std::string& payload,
                              const std::string& providerToken,
-                             const std::string& startParameter,
                              const std::string& currency,
                              const std::vector<LabeledPrice::Ptr>& prices,
                              const std::string& providerData = "",
@@ -1207,7 +1215,10 @@ public:
                              std::int32_t replyToMessageId = 0,
                              GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>(),
                              bool disableNotification = false,
-                             bool allowSendingWithoutReply = false) const;
+                             bool allowSendingWithoutReply = false,
+                             std::int32_t maxTipAmount = 0,
+                             const std::vector<std::int32_t>& suggestedTipAmounts = std::vector<std::int32_t>(),
+                             const std::string& startParameter = "") const;
 
     /**
      * @brief Use this method to reply to shipping queries.

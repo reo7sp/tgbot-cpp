@@ -893,12 +893,15 @@ Message::Ptr Api::sendDice(std::int64_t chatId,
     return _tgTypeParser.parseJsonAndGetMessage(sendRequest("sendDice", args));
 }
 
-void Api::sendChatAction(std::int64_t chatId, const string& action) const {
+bool Api::sendChatAction(std::int64_t chatId,
+                         const std::string& action) const {
     vector<HttpReqArg> args;
     args.reserve(2);
+
     args.emplace_back("chat_id", chatId);
     args.emplace_back("action", action);
-    sendRequest("sendChatAction", args);
+
+    return sendRequest("sendChatAction", args).get<bool>("", false);
 }
 
 UserProfilePhotos::Ptr Api::getUserProfilePhotos(std::int64_t userId, std::int32_t offset, std::int32_t limit) const {
@@ -1573,7 +1576,6 @@ Message::Ptr Api::sendInvoice(std::int64_t chatId,
                               const std::string& description,
                               const std::string& payload,
                               const std::string& providerToken,
-                              const std::string& startParameter,
                               const std::string& currency,
                               const std::vector<LabeledPrice::Ptr>& prices,
                               const std::string& providerData,
@@ -1591,18 +1593,29 @@ Message::Ptr Api::sendInvoice(std::int64_t chatId,
                               std::int32_t replyToMessageId,
                               GenericReply::Ptr replyMarkup,
                               bool disableNotification,
-                              bool allowSendingWithoutReply) const {
+                              bool allowSendingWithoutReply,
+                              std::int32_t maxTipAmount,
+                              const std::vector<std::int32_t>& suggestedTipAmounts,
+                              const std::string& startParameter) const {
     vector<HttpReqArg> args;
-    args.reserve(24);
+    args.reserve(26);
 
     args.emplace_back("chat_id", chatId);
     args.emplace_back("title", title);
     args.emplace_back("description", description);
     args.emplace_back("payload", payload);
     args.emplace_back("provider_token", providerToken);
-    args.emplace_back("start_parameter", startParameter);
     args.emplace_back("currency", currency);
     args.emplace_back("prices", _tgTypeParser.parseArray<LabeledPrice>(&TgTypeParser::parseLabeledPrice, prices));
+    args.emplace_back("max_tip_amount", maxTipAmount);
+    if (!suggestedTipAmounts.empty()) {
+        args.emplace_back("suggested_tip_amounts", _tgTypeParser.parseArray<std::int32_t>([] (const std::int32_t& option) -> std::int32_t {
+            return option;
+        }, suggestedTipAmounts));
+    }
+    if (!startParameter.empty()) {
+        args.emplace_back("start_parameter", startParameter);
+    }
     if (!providerData.empty()) {
         args.emplace_back("provider_data", providerData);
     }

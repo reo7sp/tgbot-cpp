@@ -24,6 +24,7 @@
 #include "tgbot/types/SuccessfulPayment.h"
 #include "tgbot/types/PassportData.h"
 #include "tgbot/types/ProximityAlertTriggered.h"
+#include "tgbot/types/VoiceChatScheduled.h"
 #include "tgbot/types/VoiceChatStarted.h"
 #include "tgbot/types/VoiceChatEnded.h"
 #include "tgbot/types/VoiceChatParticipantsInvited.h"
@@ -320,6 +321,11 @@ public:
      * A user in the chat triggered another user's proximity alert while sharing Live Location.
      */
     ProximityAlertTriggered::Ptr proximityAlertTriggered;
+
+    /**
+     * @brief Optional. Service message: voice chat scheduled
+     */
+    VoiceChatScheduled::Ptr voiceChatScheduled;
 
     /**
      * @brief Optional. Service message: voice chat started
