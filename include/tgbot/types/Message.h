@@ -19,10 +19,14 @@
 #include "tgbot/types/Venue.h"
 #include "tgbot/types/Voice.h"
 #include "tgbot/types/VideoNote.h"
+#include "tgbot/types/MessageAutoDeleteTimerChanged.h"
 #include "tgbot/types/Invoice.h"
 #include "tgbot/types/SuccessfulPayment.h"
 #include "tgbot/types/PassportData.h"
 #include "tgbot/types/ProximityAlertTriggered.h"
+#include "tgbot/types/VoiceChatStarted.h"
+#include "tgbot/types/VoiceChatEnded.h"
+#include "tgbot/types/VoiceChatParticipantsInvited.h"
 #include "tgbot/types/InlineKeyboardMarkup.h"
 
 #include <cstdint>
@@ -75,7 +79,7 @@ public:
     User::Ptr forwardFrom;
 
     /**
-     * @brief Optional. For messages forwarded from channels, information about the original channel
+     * @brief Optional. For messages forwarded from channels or from anonymous administrators, information about the original sender chat
      */
     Chat::Ptr forwardFromChat;
 
@@ -101,7 +105,7 @@ public:
 
     /**
      * @brief Optional. For replies, the original message.
-     * Note that the Message object in this field will not contain further @ref Message::replyToMessage fields even if it itself is a reply.
+     * Note that the Message object in this field will not contain further replyToMessage fields even if it itself is a reply.
      */
     Message::Ptr replyToMessage;
 
@@ -192,7 +196,7 @@ public:
     Contact::Ptr contact;
 
     /**
-     * @brief Optional. Message is a dice with random value from 1 to 6
+     * @brief Optional. Message is a dice with random value
      */
     Dice::Ptr dice;
 
@@ -207,7 +211,8 @@ public:
     Poll::Ptr poll;
 
     /**
-     * @brief Optional. Message is a venue, information about the venue
+     * @brief Optional. Message is a venue, information about the venue.
+     * For backward compatibility, when this field is set, the location field will also be set
      */
     Venue::Ptr venue;
 
@@ -217,7 +222,7 @@ public:
     Location::Ptr location;
 
     /**
-     * @brief Optional. New members that were added to the group or supergroup and information about them (the bot itself may be one of these members)
+     * @brief Optional. Optional. New members that were added to the group or supergroup and information about them (the bot itself may be one of these members)
      */
     std::vector<User::Ptr> newChatMembers;
 
@@ -247,14 +252,23 @@ public:
     bool groupChatCreated;
 
     /**
-     * @brief Optional. Service message: the supergroup has been created
+     * @brief Optional. Service message: the supergroup has been created.
+     * This field can't be received in a message coming through updates, because bot can't be a member of a supergroup when it is created.
+     * It can only be found in replyToMessage if someone replies to a very first message in a directly created supergroup.
      */
     bool supergroupChatCreated;
 
     /**
-     * @brief Optional. Service message: the channel has been created
+     * @brief Optional. Service message: the channel has been created.
+     * This field can't be received in a message coming through updates, because bot can't be a member of a channel when it is created.
+     * It can only be found in replyToMessage if someone replies to a very first message in a channel.
      */
     bool channelChatCreated;
+
+    /**
+     * @brief Optional. Service message: auto-delete timer settings changed in the chat
+     */
+    MessageAutoDeleteTimerChanged::Ptr messageAutoDeleteTimerChanged;
 
     /**
      * @brief Optional. The group has been migrated to a supergroup with the specified identifier.
@@ -274,22 +288,25 @@ public:
 
     /**
      * @brief Optional. Specified message was pinned.
-     * Note that the Message object in this field will not contain further @ref Message::replyToMessage fields even if it is itself a reply.
+     * Note that the Message object in this field will not contain further replyToMessage fields even if it is itself a reply.
      */
     Message::Ptr pinnedMessage;
 
     /**
-     * @brief Optional. Message is an invoice for a payment, information about the invoice
+     * @brief Optional. Message is an invoice for a payment, information about the invoice.
+     * https://core.telegram.org/bots/api#payments
      */
     Invoice::Ptr invoice;
 
     /**
      * @brief Optional. Message is a service message about a successful payment, information about the payment
+     * https://core.telegram.org/bots/api#payments
      */
     SuccessfulPayment::Ptr successfulPayment;
 
     /**
-     * @brief Optional. The domain name of the website on which the user has logged in
+     * @brief Optional. The domain name of the website on which the user has logged in.
+     * https://core.telegram.org/widgets/login
      */
     std::string connectedWebsite;
 
@@ -305,8 +322,23 @@ public:
     ProximityAlertTriggered::Ptr proximityAlertTriggered;
 
     /**
+     * @brief Optional. Service message: voice chat started
+     */
+    VoiceChatStarted::Ptr voiceChatStarted;
+
+    /**
+     * @brief Optional. Service message: voice chat ended
+     */
+    VoiceChatEnded::Ptr voiceChatEnded;
+
+    /**
+     * @brief Optional. Service message: new participants invited to a voice chat
+     */
+    VoiceChatParticipantsInvited::Ptr voiceChatParticipantsInvited;
+
+    /**
      * @brief Optional. Inline keyboard attached to the message.
-     * @ref InlineKeyboardButton::loginUrl buttons are represented as ordinary @ref InlineKeyboardButton::url buttons.
+     * loginUrl buttons are represented as ordinary url buttons.
      */
     InlineKeyboardMarkup::Ptr replyMarkup;
 

@@ -9,6 +9,7 @@
 #include "tgbot/types/PreCheckoutQuery.h"
 #include "tgbot/types/Poll.h"
 #include "tgbot/types/PollAnswer.h"
+#include "tgbot/types/ChatMemberUpdated.h"
 
 #include <cstdint>
 #include <memory>
@@ -61,7 +62,7 @@ public:
 
     /**
      * @brief Optional. The result of an inline query that was chosen by a user and sent to their chat partner.
-     * Please see the documentation on the feedback collecting for details on how to enable these updates for your bot. (https://core.telegram.org/bots/inline#collecting-feedback)
+     * Please see https://core.telegram.org/bots/inline#collecting-feedback for details on how to enable these updates for your bot. (https://core.telegram.org/bots/inline#collecting-feedback)
      */
     ChosenInlineResult::Ptr chosenInlineResult;
 
@@ -93,6 +94,18 @@ public:
      * Bots receive new votes only in polls that were sent by the bot itself.
      */
     PollAnswer::Ptr pollAnswer;
+
+    /**
+     * @brief Optional. The bot's chat member status was updated in a chat.
+     * For private chats, this update is received only when the bot is blocked or unblocked by the user.
+     */
+    ChatMemberUpdated::Ptr myChatMember;
+
+    /**
+     * @brief Optional. A chat member's status was updated in a chat.
+     * The bot must be an administrator in the chat and must explicitly specify “chatMember” in the list of allowedUpdates to receive these updates.
+     */
+    ChatMemberUpdated::Ptr chatMember;
 };
 }
 

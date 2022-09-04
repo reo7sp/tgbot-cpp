@@ -24,6 +24,10 @@
 #include "tgbot/types/Contact.h"
 #include "tgbot/types/Location.h"
 #include "tgbot/types/ProximityAlertTriggered.h"
+#include "tgbot/types/MessageAutoDeleteTimerChanged.h"
+#include "tgbot/types/VoiceChatStarted.h"
+#include "tgbot/types/VoiceChatEnded.h"
+#include "tgbot/types/VoiceChatParticipantsInvited.h"
 #include "tgbot/types/Update.h"
 #include "tgbot/types/UserProfilePhotos.h"
 #include "tgbot/types/File.h"
@@ -33,6 +37,7 @@
 #include "tgbot/types/ReplyKeyboardRemove.h"
 #include "tgbot/types/ForceReply.h"
 #include "tgbot/types/ChatMember.h"
+#include "tgbot/types/ChatMemberUpdated.h"
 #include "tgbot/types/ChatPhoto.h"
 #include "tgbot/types/ResponseParameters.h"
 #include "tgbot/types/GenericReply.h"
@@ -201,6 +206,18 @@ public:
     ProximityAlertTriggered::Ptr parseJsonAndGetProximityAlertTriggered(const boost::property_tree::ptree& data) const;
     std::string parseProximityAlertTriggered(const ProximityAlertTriggered::Ptr& object) const;
 
+    MessageAutoDeleteTimerChanged::Ptr parseJsonAndGetMessageAutoDeleteTimerChanged(const boost::property_tree::ptree& data) const;
+    std::string parseMessageAutoDeleteTimerChanged(const MessageAutoDeleteTimerChanged::Ptr& object) const;
+
+    VoiceChatStarted::Ptr parseJsonAndGetVoiceChatStarted(const boost::property_tree::ptree& data) const;
+    std::string parseVoiceChatStarted(const VoiceChatStarted::Ptr& object) const;
+
+    VoiceChatEnded::Ptr parseJsonAndGetVoiceChatEnded(const boost::property_tree::ptree& data) const;
+    std::string parseVoiceChatEnded(const VoiceChatEnded::Ptr& object) const;
+
+    VoiceChatParticipantsInvited::Ptr parseJsonAndGetVoiceChatParticipantsInvited(const boost::property_tree::ptree& data) const;
+    std::string parseVoiceChatParticipantsInvited(const VoiceChatParticipantsInvited::Ptr& object) const;
+
     Update::Ptr parseJsonAndGetUpdate(const boost::property_tree::ptree& data) const;
     std::string parseUpdate(const Update::Ptr& object) const;
 
@@ -246,8 +263,14 @@ public:
     ChatMember::Ptr parseJsonAndGetChatMember(const boost::property_tree::ptree& data) const;
     std::string parseChatMember(const ChatMember::Ptr& object) const;
 
+    ChatMemberUpdated::Ptr parseJsonAndGetChatMemberUpdated(const boost::property_tree::ptree& data) const;
+    std::string parseChatMemberUpdated(const ChatMemberUpdated::Ptr& object) const;
+
     ChatPhoto::Ptr parseJsonAndGetChatPhoto(const boost::property_tree::ptree& data) const;
     std::string parseChatPhoto(const ChatPhoto::Ptr& object) const;
+
+    ChatInviteLink::Ptr parseJsonAndGetChatInviteLink(const boost::property_tree::ptree& data) const;
+    std::string parseChatInviteLink(const ChatInviteLink::Ptr& object) const;
 
     ResponseParameters::Ptr parseJsonAndGetResponseParameters(const boost::property_tree::ptree& data) const;
     std::string parseResponseParameters(const ResponseParameters::Ptr& object) const;

@@ -46,6 +46,12 @@ public:
     bool canBeEdited;
 
     /**
+     * @brief Optional. Administrators only. True, if the administrator can access the chat event log, chat statistics, message statistics in channels, see channel members, see anonymous administrators in supergroups and ignore slow mode.
+     * Implied by any other administrator privilege
+     */
+    bool canManageChat;
+
+    /**
      * @brief Optional. Administrators only. True, if the administrator can post in the channel; channels only
      */
     bool canPostMessages;
@@ -59,6 +65,11 @@ public:
      * @brief Optional. Administrators only. True, if the administrator can delete messages of other users
      */
     bool canDeleteMessages;
+
+    /**
+     * @brief Optional. Administrators only. True, if the administrator can manage voice chats
+     */
+    bool canManageVoiceChats;
 
     /**
      * @brief Optional. Administrators only. True, if the administrator can restrict, ban or unban chat members

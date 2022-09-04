@@ -560,7 +560,7 @@ public:
      * @brief Use this method to send an animated emoji that will display a random value.
      *
      * @param chatId Unique identifier for the target chat or username of the target channel (in the format @channelusername)
-     * @param emoji Optional. Emoji on which the dice throw animation is based. Currently, must be one of “🎲”, “🎯”, “🏀”, “⚽”, or “🎰”. Dice can have values 1-6 for “🎲” and “🎯”, values 1-5 for “🏀” and “⚽”, and values 1-64 for “🎰”. Defaults to “🎲”
+     * @param emoji Optional. Emoji on which the dice throw animation is based. Currently, must be one of “🎲”, “🎯”, “🏀”, “⚽”, “🎳”, or “🎰”. Dice can have values 1-6 for “🎲”, “🎯” and “🎳”, values 1-5 for “🏀” and “⚽”, and values 1-64 for “🎰”. Defaults to “🎲”
      * @param disableNotification Optional. Sends the message silently. Users will receive a notification with no sound.
      * @param replyToMessageId Optional. If the message is a reply, ID of the original message
      * @param allowSendingWithoutReply Optional. Pass True, if the message should be sent even if the specified replied-to message is not found
@@ -611,13 +611,21 @@ public:
     std::string downloadFile(const std::string& filePath, const std::vector<HttpReqArg>& args = std::vector<HttpReqArg>()) const;
 
     /**
-     * @brief Use this method to kick a user from a group or a supergroup.
-     * @param chatId Unique identifier for the target group.
-     * @param userId Unique identifier of the target user.
-     * @param untilDate Optional. Date when the user will be unbanned, unix time. If user is banned for more than 366 days or less than 30 seconds from the current time they are considered to be banned forever.
-     * @return True on success
+     * @brief Use this method to kick a user from a group, a supergroup or a channel.
+     * In the case of supergroups and channels, the user will not be able to return to the chat on their own using invite links, etc., unless unbanned first.
+     * The bot must be an administrator in the chat for this to work and must have the appropriate admin rights.
+     * 
+     * @param chatId Unique identifier for the target group or username of the target supergroup or channel (in the format @channelusername)
+     * @param userId Unique identifier of the target user
+     * @param untilDate Optional. Date when the user will be unbanned, unix time. If user is banned for more than 366 days or less than 30 seconds from the current time they are considered to be banned forever. Applied for supergroups and channels only.
+     * @param revokeMessages Optional. Pass True to delete all messages from the chat for the user that is being removed. If False, the user will be able to see messages in the group that were sent before the user was removed. Always True for supergroups and channels.
+     * 
+     * @return True on success.
      */
-    bool kickChatMember(std::int64_t chatId, std::int64_t userId, std::uint64_t untilDate = 0) const;
+    bool kickChatMember(std::int64_t chatId,
+                        std::int64_t userId,
+                        std::uint64_t untilDate = 0,
+                        bool revokeMessages = true) const;
 
     /**
      * @brief Use this method to unban a previously kicked user in a supergroup or channel.
@@ -657,21 +665,32 @@ public:
      * @param chatId Unique identifier for the target chat or username of the target channel (in the format @channelusername)
      * @param userId Unique identifier of the target user
      * @param isAnonymous Optional. Pass True, if the administrator's presence in the chat is hidden
-     * @param canChangeInfo Optional. Pass True, if the administrator can change chat title, photo and other settings
+     * @param canManageChat Optional. Pass True, if the administrator can access the chat event log, chat statistics, message statistics in channels, see channel members, see anonymous administrators in supergroups and ignore slow mode. Implied by any other administrator privilege
      * @param canPostMessages Optional. Pass True, if the administrator can create channel posts, channels only
-     * @param canEditMessages Optional. Pass True, if the administrator can edit messages of other users and can pin messages, channels only
+     * @param canEditMessages Optional. Pass True, if the administrator can edit messages of other users and can pin messages, channels only 
      * @param canDeleteMessages Optional. Pass True, if the administrator can delete messages of other users
-     * @param canInviteUsers Optional. Pass True, if the administrator can invite new users to the chat
+     * @param canManageVoiceChats Optional. Pass True, if the administrator can manage voice chats, supergroups only
      * @param canRestrictMembers Optional. Pass True, if the administrator can restrict, ban or unban chat members
-     * @param canPinMessages Optional. Pass True, if the administrator can pin messages, supergroups only
      * @param canPromoteMembers Optional. Pass True, if the administrator can add new administrators with a subset of their own privileges or demote administrators that he has promoted, directly or indirectly (promoted by administrators that were appointed by him)
+     * @param canChangeInfo Optional. Pass True, if the administrator can change chat title, photo and other settings
+     * @param canInviteUsers Optional. Pass True, if the administrator can invite new users to the chat
+     * @param canPinMessages Optional. Pass True, if the administrator can pin messages, supergroups only
      * 
      * @return True on success.
      */
-    bool promoteChatMember(std::int64_t chatId, std::int64_t userId, bool isAnonymous = false,
-                           bool canChangeInfo = false, bool canPostMessages = false, bool canEditMessages = false,
-                           bool canDeleteMessages = false, bool canInviteUsers = false, bool canRestrictMembers = false,
-                           bool canPinMessages = false, bool canPromoteMembers = false) const;
+    bool promoteChatMember(std::int64_t chatId,
+                           std::int64_t userId,
+                           bool isAnonymous = false,
+                           bool canManageChat = false,
+                           bool canPostMessages = false,
+                           bool canEditMessages = false,
+                           bool canDeleteMessages = false,
+                           bool canManageVoiceChats = false,
+                           bool canRestrictMembers = false,
+                           bool canPromoteMembers = false,
+                           bool canChangeInfo = false,
+                           bool canInviteUsers = false,
+                           bool canPinMessages = false) const;
 
     /**
      * @brief Use this method to set a custom title for an administrator in a supergroup promoted by the bot.
@@ -698,6 +717,50 @@ public:
      * @return The new invite link as String on success.
      */
     std::string exportChatInviteLink(std::int64_t chatId) const;
+
+    /**
+     * @brief Use this method to create an additional invite link for a chat.
+     * The bot must be an administrator in the chat for this to work and must have the appropriate admin rights.
+     * The link can be revoked using the method Api::revokeChatInviteLink.
+     * 
+     * @param chatId Unique identifier for the target chat or username of the target channel (in the format @channelusername)
+     * @param expireDate Optional. Point in time (Unix timestamp) when the link will expire
+     * @param memberLimit Optional. Maximum number of users that can be members of the chat simultaneously after joining the chat via this invite link; 1-99999
+     * 
+     * @return the new invite link as ChatInviteLink object.
+     */
+    ChatInviteLink::Ptr createChatInviteLink(std::int64_t chatId,
+                                             std::int32_t expireDate = 0,
+                                             std::int32_t memberLimit = 0) const;
+
+    /**
+     * @brief Use this method to edit a non-primary invite link created by the bot.
+     * The bot must be an administrator in the chat for this to work and must have the appropriate admin rights.
+     *
+     * @param chatId Unique identifier for the target chat or username of the target channel (in the format @channelusername)
+     * @param inviteLink The invite link to edit
+     * @param expireDate Optional. Point in time (Unix timestamp) when the link will expire
+     * @param memberLimit Optional. Maximum number of users that can be members of the chat simultaneously after joining the chat via this invite link; 1-99999
+     *
+     * @return the edited invite link as a ChatInviteLink object.
+     */
+    ChatInviteLink::Ptr editChatInviteLink(std::int64_t chatId,
+                                           std::string inviteLink,
+                                           std::int32_t expireDate = 0,
+                                           std::int32_t memberLimit = 0) const;
+
+    /**
+     * @brief Use this method to revoke an invite link created by the bot.
+     * If the primary link is revoked, a new link is automatically generated.
+     * The bot must be an administrator in the chat for this to work and must have the appropriate admin rights.
+     *
+     * @param chatId Unique identifier for the target chat or username of the target channel (in the format @channelusername)
+     * @param inviteLink The invite link to revoke
+     *
+     * @return the revoked invite link as ChatInviteLink object.
+     */
+    ChatInviteLink::Ptr revokeChatInviteLink(std::int64_t chatId,
+                                             std::string inviteLink) const;
 
     /**
      * @brief Use this method to set a new profile photo for the chat.

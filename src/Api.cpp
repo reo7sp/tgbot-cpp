@@ -852,15 +852,11 @@ Message::Ptr Api::sendDice(std::int64_t chatId,
     if (!emoji.empty()) {
         args.emplace_back("emoji", emoji);
     }
-    if (disableNotification) {
-        args.emplace_back("disable_notification", disableNotification);
-    }
+    args.emplace_back("disable_notification", disableNotification);
     if (replyToMessageId != 0) {
         args.emplace_back("reply_to_message_id", replyToMessageId);
     }
-    if (allowSendingWithoutReply) {
-        args.emplace_back("allow_sending_without_reply", allowSendingWithoutReply);
-    }
+    args.emplace_back("allow_sending_without_reply", allowSendingWithoutReply);
     if (replyMarkup) {
         args.emplace_back("reply_markup", _tgTypeParser.parseGenericReply(replyMarkup));
     }
@@ -907,14 +903,18 @@ string Api::downloadFile(const string& filePath, const std::vector<HttpReqArg>& 
     return serverResponse;
 }
 
-bool Api::kickChatMember(std::int64_t chatId, std::int64_t userId, std::uint64_t untilDate) const {
+bool Api::kickChatMember(std::int64_t chatId,
+                         std::int64_t userId,
+                         std::uint64_t untilDate,
+                         bool revokeMessages) const {
     vector<HttpReqArg> args;
-    args.reserve(3);
+    args.reserve(4);
+
     args.emplace_back("chat_id", chatId);
     args.emplace_back("user_id", userId);
-    if (untilDate) {
-        args.emplace_back("until_date", untilDate);
-    }
+    args.emplace_back("until_date", untilDate);
+    args.emplace_back("revoke_messages", revokeMessages);
+
     return sendRequest("kickChatMember", args).get<bool>("", false);
 }
 
@@ -943,20 +943,29 @@ bool Api::restrictChatMember(std::int64_t chatId, std::int64_t userId, TgBot::Ch
     return sendRequest("restrictChatMember", args).get<bool>("", false);
 }
 
-bool Api::promoteChatMember(std::int64_t chatId, std::int64_t userId, bool isAnonymous,
-                            bool canChangeInfo, bool canPostMessages, bool canEditMessages,
-                            bool canDeleteMessages, bool canInviteUsers, bool canRestrictMembers,
-                            bool canPinMessages, bool canPromoteMembers) const {
+bool Api::promoteChatMember(std::int64_t chatId,
+                            std::int64_t userId,
+                            bool isAnonymous,
+                            bool canManageChat,
+                            bool canPostMessages,
+                            bool canEditMessages,
+                            bool canDeleteMessages,
+                            bool canManageVoiceChats,
+                            bool canRestrictMembers,
+                            bool canPromoteMembers,
+                            bool canChangeInfo,
+                            bool canInviteUsers,
+                            bool canPinMessages) const {
     vector<HttpReqArg> args;
-    args.reserve(11);
+    args.reserve(13);
 
     args.emplace_back("chat_id", chatId);
     args.emplace_back("user_id", userId);
     if (isAnonymous) {
         args.emplace_back("is_anonymous", isAnonymous);
     }
-    if (canChangeInfo) {
-        args.emplace_back("can_change_info", canChangeInfo);
+    if (canManageChat) {
+        args.emplace_back("can_manage_chat", canManageChat);
     }
     if (canPostMessages) {
         args.emplace_back("can_post_messages", canPostMessages);
@@ -967,17 +976,23 @@ bool Api::promoteChatMember(std::int64_t chatId, std::int64_t userId, bool isAno
     if (canDeleteMessages) {
         args.emplace_back("can_delete_messages", canDeleteMessages);
     }
-    if (canInviteUsers) {
-        args.emplace_back("can_invite_users", canInviteUsers);
+    if (canManageVoiceChats) {
+        args.emplace_back("can_manage_voice_chats", canManageVoiceChats);
     }
     if (canRestrictMembers) {
         args.emplace_back("can_restrict_members", canRestrictMembers);
     }
-    if (canPinMessages) {
-        args.emplace_back("can_pin_messages", canPinMessages);
-    }
     if (canPromoteMembers) {
         args.emplace_back("can_promote_members", canPromoteMembers);
+    }
+    if (canChangeInfo) {
+        args.emplace_back("can_change_info", canChangeInfo);
+    }
+    if (canInviteUsers) {
+        args.emplace_back("can_invite_users", canInviteUsers);
+    }
+    if (canPinMessages) {
+        args.emplace_back("can_pin_messages", canPinMessages);
     }
 
     return sendRequest("promoteChatMember", args).get<bool>("", false);
@@ -1007,6 +1022,53 @@ string Api::exportChatInviteLink(std::int64_t chatId) const {
     args.reserve(1);
     args.emplace_back("chat_id", chatId);
     return sendRequest("exportChatInviteLink", args).get("", "");
+}
+
+ChatInviteLink::Ptr Api::createChatInviteLink(std::int64_t chatId,
+                                              std::int32_t expireDate,
+                                              std::int32_t memberLimit) const {
+    vector<HttpReqArg> args;
+    args.reserve(3);
+
+    args.emplace_back("chat_id", chatId);
+    if (expireDate != 0) {
+        args.emplace_back("expire_date", expireDate);
+    }
+    if (memberLimit != 0) {
+        args.emplace_back("member_limit", memberLimit);
+    }
+
+    return _tgTypeParser.parseJsonAndGetChatInviteLink(sendRequest("createChatInviteLink", args));
+}
+
+ChatInviteLink::Ptr Api::editChatInviteLink(std::int64_t chatId,
+                                       std::string inviteLink,
+                                       std::int32_t expireDate,
+                                       std::int32_t memberLimit) const {
+    vector<HttpReqArg> args;
+    args.reserve(4);
+
+    args.emplace_back("chat_id", chatId);
+    args.emplace_back("invite_link", inviteLink);
+    if (expireDate != 0) {
+        args.emplace_back("expire_date", expireDate);
+    }
+    if (memberLimit != 0) {
+        args.emplace_back("member_limit", memberLimit);
+    }
+
+    return _tgTypeParser.parseJsonAndGetChatInviteLink(sendRequest("editChatInviteLink", args));
+}
+
+ChatInviteLink::Ptr Api::revokeChatInviteLink(std::int64_t chatId,
+                                              std::string inviteLink) const {
+    vector<HttpReqArg> args;
+    args.reserve(2);
+
+    args.emplace_back("chat_id", chatId);
+    args.emplace_back("invite_link", inviteLink);
+
+    return _tgTypeParser.parseJsonAndGetChatInviteLink(sendRequest("revokeChatInviteLink", args));
 }
 
 bool Api::setChatPhoto(std::int64_t chatId, const InputFile::Ptr photo) const {
