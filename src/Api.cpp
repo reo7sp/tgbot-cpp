@@ -40,8 +40,12 @@ vector<Update::Ptr> Api::getUpdates(std::int32_t offset, std::int32_t limit, std
     return _tgTypeParser.parseJsonAndGetArray<Update>(&TgTypeParser::parseJsonAndGetUpdate, sendRequest("getUpdates", args));
 }
 
-bool Api::setWebhook(const std::string& url, InputFile::Ptr certificate, const std::string& ipAddress,
-                     std::int32_t maxConnection, const StringArrayPtr& allowedUpdates, bool dropPendingUpdates) const {
+bool Api::setWebhook(const std::string& url,
+                     InputFile::Ptr certificate,
+                     std::int32_t maxConnection,
+                     const StringArrayPtr& allowedUpdates,
+                     const std::string& ipAddress,
+                     bool dropPendingUpdates) const {
     vector<HttpReqArg> args;
     args.reserve(6);
 
@@ -97,9 +101,15 @@ User::Ptr Api::getMe() const {
     return _tgTypeParser.parseJsonAndGetUser(sendRequest("getMe"));
 }
 
-Message::Ptr Api::sendMessage(boost::variant<std::int64_t, const std::string&> chatId, const std::string& text, const std::string& parseMode,
-                              const std::vector<MessageEntity::Ptr>& entities, bool disableWebPagePreview, bool disableNotification,
-                              std::int32_t replyToMessageId, bool allowSendingWithoutReply, GenericReply::Ptr replyMarkup) const {
+Message::Ptr Api::sendMessage(boost::variant<std::int64_t, const std::string&> chatId,
+                              const std::string& text,
+                              bool disableWebPagePreview,
+                              std::int32_t replyToMessageId,
+                              GenericReply::Ptr replyMarkup,
+                              const std::string& parseMode,
+                              bool disableNotification,
+                              const std::vector<MessageEntity::Ptr>& entities,
+                              bool allowSendingWithoutReply) const {
     vector<HttpReqArg> args;
     args.reserve(9);
 
@@ -177,9 +187,15 @@ MessageId::Ptr Api::copyMessage(std::int64_t chatId, std::int64_t fromChatId, st
     return _tgTypeParser.parseJsonAndGetMessageId(sendRequest("copyMessage", args));
 }
 
-Message::Ptr Api::sendPhoto(std::int64_t chatId, boost::variant<InputFile::Ptr, std::string> photo, const std::string& caption,
-                            const std::string& parseMode, const std::vector<MessageEntity::Ptr>& captionEntities, bool disableNotification,
-                            std::int32_t replyToMessageId, bool allowSendingWithoutReply, GenericReply::Ptr replyMarkup) const {
+Message::Ptr Api::sendPhoto(std::int64_t chatId,
+                            boost::variant<InputFile::Ptr, std::string> photo,
+                            const std::string& caption,
+                            std::int32_t replyToMessageId,
+                            GenericReply::Ptr replyMarkup,
+                            const std::string& parseMode,
+                            bool disableNotification,
+                            const std::vector<MessageEntity::Ptr>& captionEntities,
+                            bool allowSendingWithoutReply) const {
     vector<HttpReqArg> args;
     args.reserve(9);
 
@@ -218,16 +234,16 @@ Message::Ptr Api::sendPhoto(std::int64_t chatId, boost::variant<InputFile::Ptr, 
 Message::Ptr Api::sendAudio(std::int64_t chatId,
                             boost::variant<InputFile::Ptr, std::string> audio,
                             const std::string& caption,
-                            const std::string& parseMode,
-                            const std::vector<MessageEntity::Ptr>& captionEntities,
                             std::int32_t duration,
                             const std::string& performer,
                             const std::string& title,
                             boost::variant<InputFile::Ptr, std::string> thumb,
-                            bool disableNotification,
                             std::int32_t replyToMessageId,
-                            bool allowSendingWithoutReply,
-                            GenericReply::Ptr replyMarkup) const {
+                            GenericReply::Ptr replyMarkup,
+                            const std::string& parseMode,
+                            bool disableNotification,
+                            const std::vector<MessageEntity::Ptr>& captionEntities,
+                            bool allowSendingWithoutReply) const {
     vector<HttpReqArg> args;
     args.reserve(13);
 
@@ -285,13 +301,13 @@ Message::Ptr Api::sendDocument(std::int64_t chatId,
                                boost::variant<InputFile::Ptr, std::string> document,
                                boost::variant<InputFile::Ptr, std::string> thumb,
                                const std::string& caption,
+                               std::int32_t replyToMessageId,
+                               GenericReply::Ptr replyMarkup,
                                const std::string& parseMode,
+                               bool disableNotification,
                                const std::vector<MessageEntity::Ptr>& captionEntities,
                                bool disableContentTypeDetection,
-                               bool disableNotification,
-                               std::int32_t replyToMessageId,
-                               bool allowSendingWithoutReply,
-                               GenericReply::Ptr replyMarkup) const {
+                               bool allowSendingWithoutReply) const {
     vector<HttpReqArg> args;
     args.reserve(11);
 
@@ -341,18 +357,18 @@ Message::Ptr Api::sendDocument(std::int64_t chatId,
 
 Message::Ptr Api::sendVideo(std::int64_t chatId,
                             boost::variant<InputFile::Ptr, std::string> video,
+                            bool supportsStreaming,
                             std::int32_t duration,
                             std::int32_t width,
                             std::int32_t height,
                             boost::variant<InputFile::Ptr, std::string> thumb,
                             const std::string& caption,
-                            const std::string& parseMode,
-                            const std::vector<MessageEntity::Ptr>& captionEntities,
-                            bool supportsStreaming,
-                            bool disableNotification,
                             std::int32_t replyToMessageId,
-                            bool allowSendingWithoutReply,
-                            GenericReply::Ptr replyMarkup) const {
+                            GenericReply::Ptr replyMarkup,
+                            const std::string& parseMode,
+                            bool disableNotification,
+                            const std::vector<MessageEntity::Ptr>& captionEntities,
+                            bool allowSendingWithoutReply) const {
     vector<HttpReqArg> args;
     args.reserve(14);
 
@@ -416,12 +432,12 @@ Message::Ptr Api::sendAnimation(std::int64_t chatId,
                                 std::int32_t height,
                                 boost::variant<InputFile::Ptr, std::string> thumb,
                                 const std::string& caption,
-                                const std::string& parseMode,
-                                const std::vector<MessageEntity::Ptr>& captionEntities,
-                                bool disableNotification,
                                 std::int32_t replyToMessageId,
-                                bool allowSendingWithoutReply,
-                                GenericReply::Ptr replyMarkup) const {
+                                GenericReply::Ptr replyMarkup,
+                                const std::string& parseMode,
+                                bool disableNotification,
+                                const std::vector<MessageEntity::Ptr>& captionEntities,
+                                bool allowSendingWithoutReply) const {
     vector<HttpReqArg> args;
     args.reserve(13);
 
@@ -478,13 +494,13 @@ Message::Ptr Api::sendAnimation(std::int64_t chatId,
 Message::Ptr Api::sendVoice(std::int64_t chatId,
                             boost::variant<InputFile::Ptr, std::string> voice,
                             const std::string& caption,
-                            const std::string& parseMode,
-                            const std::vector<MessageEntity::Ptr>& captionEntities,
                             std::int32_t duration,
-                            bool disableNotification,
                             std::int32_t replyToMessageId,
-                            bool allowSendingWithoutReply,
-                            GenericReply::Ptr replyMarkup) const {
+                            GenericReply::Ptr replyMarkup,
+                            const std::string& parseMode,
+                            bool disableNotification,
+                            const std::vector<MessageEntity::Ptr>& captionEntities,
+                            bool allowSendingWithoutReply) const {
     vector<HttpReqArg> args;
     args.reserve(10);
 
@@ -525,13 +541,13 @@ Message::Ptr Api::sendVoice(std::int64_t chatId,
 
 Message::Ptr Api::sendVideoNote(std::int64_t chatId,
                                 boost::variant<InputFile::Ptr, std::string> videoNote,
+                                std::int64_t replyToMessageId,
+                                bool disableNotification,
                                 std::int32_t duration,
                                 std::int32_t length,
                                 boost::variant<InputFile::Ptr, std::string> thumb,
-                                bool disableNotification,
-                                std::int32_t replyToMessageId,
-                                bool allowSendingWithoutReply,
-                                GenericReply::Ptr replyMarkup) const {
+                                GenericReply::Ptr replyMarkup,
+                                bool allowSendingWithoutReply) const {
     vector<HttpReqArg> args;
     args.reserve(9);
 
@@ -593,10 +609,17 @@ vector<Message::Ptr> Api::sendMediaGroup(std::int64_t chatId, const std::vector<
     return _tgTypeParser.parseJsonAndGetArray<Message>(&TgTypeParser::parseJsonAndGetMessage, sendRequest("sendMediaGroup", args));
 }
 
-Message::Ptr Api::sendLocation(std::int64_t chatId, float latitude, float longitude,
-                               float horizontalAccuracy, std::uint32_t livePeriod, std::uint32_t heading,
-                               std::uint32_t proximityAlertRadius, bool disableNotification, std::int32_t replyToMessageId,
-                               bool allowSendingWithoutReply, GenericReply::Ptr replyMarkup) const {
+Message::Ptr Api::sendLocation(std::int64_t chatId,
+                               float latitude,
+                               float longitude,
+                               std::uint32_t livePeriod,
+                               std::int32_t replyToMessageId,
+                               GenericReply::Ptr replyMarkup,
+                               bool disableNotification,
+                               float horizontalAccuracy,
+                               std::uint32_t heading,
+                               std::uint32_t proximityAlertRadius,
+                               bool allowSendingWithoutReply) const {
     vector<HttpReqArg> args;
     args.reserve(11);
 
@@ -631,9 +654,15 @@ Message::Ptr Api::sendLocation(std::int64_t chatId, float latitude, float longit
     return _tgTypeParser.parseJsonAndGetMessage(sendRequest("sendLocation", args));
 }
 
-Message::Ptr Api::editMessageLiveLocation(float latitude, float longitude, std::int64_t chatId,
-                                          std::int32_t messageId, std::int32_t inlineMessageId, float horizontalAccuracy,
-                                          std::int32_t heading, std::int32_t proximityAlertRadius, InlineKeyboardMarkup::Ptr replyMarkup) const {
+Message::Ptr Api::editMessageLiveLocation(float latitude,
+                                          float longitude,
+                                          std::int64_t chatId,
+                                          std::int32_t messageId,
+                                          std::int32_t inlineMessageId,
+                                          InlineKeyboardMarkup::Ptr replyMarkup,
+                                          float horizontalAccuracy,
+                                          std::int32_t heading,
+                                          std::int32_t proximityAlertRadius) const {
     vector<HttpReqArg> args;
     args.reserve(9);
 
@@ -689,12 +718,12 @@ Message::Ptr Api::sendVenue(std::int64_t chatId,
                             const std::string& address,
                             const std::string& foursquareId,
                             const std::string& foursquareType,
-                            const std::string& googlePlaceId,
-                            const std::string& googlePlaceType,
                             bool disableNotification,
                             std::int32_t replyToMessageId,
-                            bool allowSendingWithoutReply,
-                            GenericReply::Ptr replyMarkup) const {
+                            GenericReply::Ptr replyMarkup,
+                            const std::string& googlePlaceId,
+                            const std::string& googlePlaceType,
+                            bool allowSendingWithoutReply) const {
     vector<HttpReqArg> args;
     args.reserve(13);
 
@@ -738,8 +767,8 @@ Message::Ptr Api::sendContact(std::int64_t chatId,
                               const std::string& vcard,
                               bool disableNotification,
                               std::int32_t replyToMessageId,
-                              bool allowSendingWithoutReply,
-                              GenericReply::Ptr replyMarkup) const {
+                              GenericReply::Ptr replyMarkup,
+                              bool allowSendingWithoutReply) const {
     vector<HttpReqArg> args;
     args.reserve(9);
 
@@ -771,6 +800,9 @@ Message::Ptr Api::sendContact(std::int64_t chatId,
 Message::Ptr Api::sendPoll(std::int64_t chatId,
                            const std::string& question,
                            const std::vector<std::string>& options,
+                           bool disableNotification,
+                           std::int32_t replyToMessageId,
+                           GenericReply::Ptr replyMarkup,
                            bool isAnonymous,
                            const std::string& type,
                            bool allowsMultipleAnswers,
@@ -781,10 +813,7 @@ Message::Ptr Api::sendPoll(std::int64_t chatId,
                            std::int32_t openPeriod,
                            std::int32_t closeDate,
                            bool isClosed,
-                           bool disableNotification,
-                           std::int32_t replyToMessageId,
-                           bool allowSendingWithoutReply,
-                           GenericReply::Ptr replyMarkup) const {
+                           bool allowSendingWithoutReply) const {
     vector<HttpReqArg> args;
     args.reserve(17);
 
@@ -840,11 +869,11 @@ Message::Ptr Api::sendPoll(std::int64_t chatId,
 }
 
 Message::Ptr Api::sendDice(std::int64_t chatId,
-                           const std::string& emoji,
                            bool disableNotification,
                            std::int32_t replyToMessageId,
-                           bool allowSendingWithoutReply,
-                           GenericReply::Ptr replyMarkup) const {
+                           GenericReply::Ptr replyMarkup,
+                           const std::string& emoji,
+                           bool allowSendingWithoutReply) const {
     vector<HttpReqArg> args;
     args.reserve(6);
 
@@ -945,17 +974,17 @@ bool Api::restrictChatMember(std::int64_t chatId, std::int64_t userId, TgBot::Ch
 
 bool Api::promoteChatMember(std::int64_t chatId,
                             std::int64_t userId,
-                            bool isAnonymous,
-                            bool canManageChat,
+                            bool canChangeInfo,
                             bool canPostMessages,
                             bool canEditMessages,
                             bool canDeleteMessages,
-                            bool canManageVoiceChats,
-                            bool canRestrictMembers,
-                            bool canPromoteMembers,
-                            bool canChangeInfo,
                             bool canInviteUsers,
-                            bool canPinMessages) const {
+                            bool canPinMessages,
+                            bool canPromoteMembers,
+                            bool isAnonymous,
+                            bool canManageChat,
+                            bool canManageVoiceChats,
+                            bool canRestrictMembers) const {
     vector<HttpReqArg> args;
     args.reserve(13);
 
@@ -1223,9 +1252,9 @@ Message::Ptr Api::editMessageText(const std::string& text,
                                   std::int32_t messageId,
                                   const std::string& inlineMessageId,
                                   const std::string& parseMode,
-                                  const std::vector<MessageEntity::Ptr>& entities,
                                   bool disableWebPagePreview,
-                                  GenericReply::Ptr replyMarkup) const {
+                                  GenericReply::Ptr replyMarkup,
+                                  const std::vector<MessageEntity::Ptr>& entities) const {
     vector<HttpReqArg> args;
     args.reserve(8);
 
@@ -1262,11 +1291,11 @@ Message::Ptr Api::editMessageText(const std::string& text,
 
 Message::Ptr Api::editMessageCaption(std::int64_t chatId,
                                      std::int32_t messageId,
-                                     const std::string& inlineMessageId,
                                      const std::string& caption,
+                                     const std::string& inlineMessageId,
+                                     GenericReply::Ptr replyMarkup,
                                      const std::string& parseMode,
-                                     const std::vector<MessageEntity::Ptr>& captionEntities,
-                                     GenericReply::Ptr replyMarkup) const {
+                                     const std::vector<MessageEntity::Ptr>& captionEntities) const {
     vector<HttpReqArg> args;
     args.reserve(7);
 
@@ -1368,10 +1397,10 @@ void Api::deleteMessage(std::int64_t chatId, std::int32_t messageId) const {
 
 Message::Ptr Api::sendSticker(std::int64_t chatId,
                               boost::variant<InputFile::Ptr, std::string> sticker,
-                              bool disableNotification,
                               std::int32_t replyToMessageId,
-                              bool allowSendingWithoutReply,
-                              GenericReply::Ptr replyMarkup) const {
+                              GenericReply::Ptr replyMarkup,
+                              bool disableNotification,
+                              bool allowSendingWithoutReply) const {
     vector<HttpReqArg> args;
     args.reserve(6);
 
@@ -1401,7 +1430,9 @@ Message::Ptr Api::sendSticker(std::int64_t chatId,
 StickerSet::Ptr Api::getStickerSet(const string& name) const {
     vector<HttpReqArg> args;
     args.reserve(1);
+
     args.emplace_back("name", name);
+
     return _tgTypeParser.parseJsonAndGetStickerSet(sendRequest("getStickerSet", args));
 }
 
@@ -1413,9 +1444,14 @@ File::Ptr Api::uploadStickerFile(std::int64_t userId, const InputFile::Ptr pngSt
     return _tgTypeParser.parseJsonAndGetFile(sendRequest("uploadStickerFile", args));
 }
 
-bool Api::createNewStickerSet(std::int64_t userId, const std::string& name, const std::string& title,
-                              const std::string& emojis, boost::variant<InputFile::Ptr, std::string> pngSticker, boost::variant<InputFile::Ptr, std::string> tgsSticker,
-                              bool containsMasks, MaskPosition::Ptr maskPosition) const {
+bool Api::createNewStickerSet(std::int64_t userId,
+                              const std::string& name,
+                              const std::string& title,
+                              const std::string& emojis,
+                              bool containsMasks,
+                              MaskPosition::Ptr maskPosition,
+                              boost::variant<InputFile::Ptr, std::string> pngSticker,
+                              boost::variant<InputFile::Ptr, std::string> tgsSticker) const {
     vector<HttpReqArg> args;
     args.reserve(8);
 
@@ -1445,8 +1481,12 @@ bool Api::createNewStickerSet(std::int64_t userId, const std::string& name, cons
     return sendRequest("createNewStickerSet", args).get<bool>("", false);
 }
 
-bool Api::addStickerToSet(std::int64_t userId, const std::string& name, const std::string& emojis,
-                          boost::variant<InputFile::Ptr, std::string> pngSticker, boost::variant<InputFile::Ptr, std::string> tgsSticker, MaskPosition::Ptr maskPosition) const {
+bool Api::addStickerToSet(std::int64_t userId,
+                          const std::string& name,
+                          const std::string& emojis,
+                          MaskPosition::Ptr maskPosition,
+                          boost::variant<InputFile::Ptr, std::string> pngSticker,
+                          boost::variant<InputFile::Ptr, std::string> tgsSticker) const {
     vector<HttpReqArg> args;
     args.reserve(6);
 
@@ -1548,10 +1588,10 @@ Message::Ptr Api::sendInvoice(std::int64_t chatId,
                               bool sendPhoneNumberToProvider,
                               bool sendEmailToProvider,
                               bool isFlexible,
-                              bool disableNotification,
                               std::int32_t replyToMessageId,
-                              bool allowSendingWithoutReply,
-                              GenericReply::Ptr replyMarkup) const {
+                              GenericReply::Ptr replyMarkup,
+                              bool disableNotification,
+                              bool allowSendingWithoutReply) const {
     vector<HttpReqArg> args;
     args.reserve(24);
 
@@ -1652,10 +1692,10 @@ bool Api::setPassportDataErrors(std::int64_t userId, const std::vector<PassportE
 
 Message::Ptr Api::sendGame(std::int64_t chatId,
                            const std::string& gameShortName,
-                           bool disableNotification,
                            std::int32_t replyToMessageId,
-                           bool allowSendingWithoutReply,
-                           InlineKeyboardMarkup::Ptr replyMarkup) const {
+                           InlineKeyboardMarkup::Ptr replyMarkup,
+                           bool disableNotification,
+                           bool allowSendingWithoutReply) const {
     vector<HttpReqArg> args;
     args.reserve(6);
 
@@ -1700,17 +1740,14 @@ Message::Ptr Api::setGameScore(std::int64_t userId, std::int32_t score, bool for
     return _tgTypeParser.parseJsonAndGetMessage(sendRequest("setGameScore", args));
 }
 
-vector<GameHighScore::Ptr> Api::getGameHighScores(std::int64_t userId, std::int32_t score, bool force, bool disableEditMessage, std::int64_t chatId, std::int32_t messageId, const std::string& inlineMessageId) const {
+vector<GameHighScore::Ptr> Api::getGameHighScores(std::int64_t userId,
+                                                  std::int64_t chatId,
+                                                  std::int32_t messageId,
+                                                  const std::string& inlineMessageId) const {
     vector<HttpReqArg> args;
-    args.reserve(7);
+    args.reserve(4);
+
     args.emplace_back("user_id", userId);
-    args.emplace_back("score", score);
-    if (force) {
-        args.emplace_back("force", force);
-    }
-    if (disableEditMessage) {
-        args.emplace_back("disable_edit_message", disableEditMessage);
-    }
     if (chatId) {
         args.emplace_back("chat_id", chatId);
     }
@@ -1720,6 +1757,7 @@ vector<GameHighScore::Ptr> Api::getGameHighScores(std::int64_t userId, std::int3
     if (!inlineMessageId.empty()) {
         args.emplace_back("inline_message_id", inlineMessageId);
     }
+
     return _tgTypeParser.parseJsonAndGetArray<GameHighScore>(&TgTypeParser::parseJsonAndGetGameHighScore, sendRequest("getGameHighScores", args));
 }
 
