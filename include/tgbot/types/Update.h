@@ -10,6 +10,7 @@
 #include "tgbot/types/Poll.h"
 #include "tgbot/types/PollAnswer.h"
 #include "tgbot/types/ChatMemberUpdated.h"
+#include "tgbot/types/ChatJoinRequest.h"
 
 #include <cstdint>
 #include <memory>
@@ -106,6 +107,12 @@ public:
      * The bot must be an administrator in the chat and must explicitly specify “chatMember” in the list of allowedUpdates to receive these updates.
      */
     ChatMemberUpdated::Ptr chatMember;
+
+    /**
+     * @brief Optional. A request to join the chat has been sent.
+     * The bot must have the canInviteUsers administrator right in the chat to receive these updates.
+     */
+    ChatJoinRequest::Ptr chatJoinRequest;
 };
 }
 

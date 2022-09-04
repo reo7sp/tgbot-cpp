@@ -612,7 +612,7 @@ public:
      * We only recommend using this method when a response from the bot will take a noticeable amount of time to arrive.
      *
      * @param chatId Unique identifier for the target chat or username of the target channel (in the format @channelusername)
-     * @param action Type of action to broadcast. Choose one, depending on what the user is about to receive: typing for text messages, upload_photo for photos, record_video or upload_video for videos, record_voice or upload_voice for voice notes, upload_document for general files, find_location for location data, record_video_note or upload_video_note for video notes.
+     * @param action Type of action to broadcast. Choose one, depending on what the user is about to receive: typing for text messages, upload_photo for photos, record_video or upload_video for videos, record_voice or upload_voice for voice notes, upload_document for general files, choose_sticker for stickers, find_location for location data, record_video_note or upload_video_note for video notes.
      * 
      * @return True on success.
      */
@@ -763,12 +763,16 @@ public:
      * @param chatId Unique identifier for the target chat or username of the target channel (in the format @channelusername)
      * @param expireDate Optional. Point in time (Unix timestamp) when the link will expire
      * @param memberLimit Optional. Maximum number of users that can be members of the chat simultaneously after joining the chat via this invite link; 1-99999
+     * @param name Optional. Invite link name; 0-32 characters
+     * @param createsJoinRequest Optional. True, if users joining the chat via the link need to be approved by chat administrators. If True, memberLimit can't be specified
      * 
      * @return the new invite link as ChatInviteLink object.
      */
     ChatInviteLink::Ptr createChatInviteLink(std::int64_t chatId,
                                              std::int32_t expireDate = 0,
-                                             std::int32_t memberLimit = 0) const;
+                                             std::int32_t memberLimit = 0,
+                                             const std::string& name = "",
+                                             bool createsJoinRequest = false) const;
 
     /**
      * @brief Use this method to edit a non-primary invite link created by the bot.
@@ -778,13 +782,17 @@ public:
      * @param inviteLink The invite link to edit
      * @param expireDate Optional. Point in time (Unix timestamp) when the link will expire
      * @param memberLimit Optional. Maximum number of users that can be members of the chat simultaneously after joining the chat via this invite link; 1-99999
+     * @param name Optional. Invite link name; 0-32 characters
+     * @param createsJoinRequest Optional. True, if users joining the chat via the link need to be approved by chat administrators. If True, memberLimit can't be specified
      *
      * @return the edited invite link as a ChatInviteLink object.
      */
     ChatInviteLink::Ptr editChatInviteLink(std::int64_t chatId,
                                            std::string inviteLink,
                                            std::int32_t expireDate = 0,
-                                           std::int32_t memberLimit = 0) const;
+                                           std::int32_t memberLimit = 0,
+                                           const std::string& name = "",
+                                           bool createsJoinRequest = false) const;
 
     /**
      * @brief Use this method to revoke an invite link created by the bot.
@@ -798,6 +806,30 @@ public:
      */
     ChatInviteLink::Ptr revokeChatInviteLink(std::int64_t chatId,
                                              std::string inviteLink) const;
+
+    /**
+     * @brief Use this method to approve a chat join request.
+     * The bot must be an administrator in the chat for this to work and must have the canInviteUsers administrator right.
+     *
+     * @param chatId Unique identifier for the target chat or username of the target channel (in the format @channelusername)
+     * @param userId Unique identifier of the target user
+     *
+     * @return True on success.
+     */
+    bool approveChatJoinRequest(std::int64_t chatId,
+                                std::int64_t userId) const;
+
+    /**
+     * @brief Use this method to decline a chat join request.
+     * The bot must be an administrator in the chat for this to work and must have the canInviteUsers administrator right.
+     *
+     * @param chatId Unique identifier for the target chat or username of the target channel (in the format @channelusername)
+     * @param userId Unique identifier of the target user
+     *
+     * @return True on success.
+     */
+    bool declineChatJoinRequest(std::int64_t chatId,
+                                std::int64_t userId) const;
 
     /**
      * @brief Use this method to set a new profile photo for the chat.

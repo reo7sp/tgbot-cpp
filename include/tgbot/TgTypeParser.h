@@ -45,6 +45,7 @@
 #include "tgbot/types/ChatMemberLeft.h"
 #include "tgbot/types/ChatMemberBanned.h"
 #include "tgbot/types/ChatMemberUpdated.h"
+#include "tgbot/types/ChatJoinRequest.h"
 #include "tgbot/types/ChatPhoto.h"
 #include "tgbot/types/ResponseParameters.h"
 #include "tgbot/types/GenericReply.h"
@@ -302,6 +303,9 @@ public:
 
     ChatMemberUpdated::Ptr parseJsonAndGetChatMemberUpdated(const boost::property_tree::ptree& data) const;
     std::string parseChatMemberUpdated(const ChatMemberUpdated::Ptr& object) const;
+
+    ChatJoinRequest::Ptr parseJsonAndGetChatJoinRequest(const boost::property_tree::ptree& data) const;
+    std::string parseChatJoinRequest(const ChatJoinRequest::Ptr& object) const;
 
     ChatPhoto::Ptr parseJsonAndGetChatPhoto(const boost::property_tree::ptree& data) const;
     std::string parseChatPhoto(const ChatPhoto::Ptr& object) const;

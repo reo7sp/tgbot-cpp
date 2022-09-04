@@ -1058,35 +1058,51 @@ string Api::exportChatInviteLink(std::int64_t chatId) const {
 
 ChatInviteLink::Ptr Api::createChatInviteLink(std::int64_t chatId,
                                               std::int32_t expireDate,
-                                              std::int32_t memberLimit) const {
+                                              std::int32_t memberLimit,
+                                              const std::string& name,
+                                              bool createsJoinRequest) const {
     vector<HttpReqArg> args;
-    args.reserve(3);
+    args.reserve(5);
 
     args.emplace_back("chat_id", chatId);
+    if (!name.empty()) {
+        args.emplace_back("name", name);
+    }
     if (expireDate != 0) {
         args.emplace_back("expire_date", expireDate);
     }
     if (memberLimit != 0) {
         args.emplace_back("member_limit", memberLimit);
+    }
+    if (createsJoinRequest) {
+        args.emplace_back("createsJoinRequest", createsJoinRequest);
     }
 
     return _tgTypeParser.parseJsonAndGetChatInviteLink(sendRequest("createChatInviteLink", args));
 }
 
 ChatInviteLink::Ptr Api::editChatInviteLink(std::int64_t chatId,
-                                       std::string inviteLink,
-                                       std::int32_t expireDate,
-                                       std::int32_t memberLimit) const {
+                                            std::string inviteLink,
+                                            std::int32_t expireDate,
+                                            std::int32_t memberLimit,
+                                            const std::string& name,
+                                            bool createsJoinRequest) const {
     vector<HttpReqArg> args;
-    args.reserve(4);
+    args.reserve(6);
 
     args.emplace_back("chat_id", chatId);
     args.emplace_back("invite_link", inviteLink);
+    if (!name.empty()) {
+        args.emplace_back("name", name);
+    }
     if (expireDate != 0) {
         args.emplace_back("expire_date", expireDate);
     }
     if (memberLimit != 0) {
         args.emplace_back("member_limit", memberLimit);
+    }
+    if (createsJoinRequest) {
+        args.emplace_back("createsJoinRequest", createsJoinRequest);
     }
 
     return _tgTypeParser.parseJsonAndGetChatInviteLink(sendRequest("editChatInviteLink", args));
@@ -1101,6 +1117,28 @@ ChatInviteLink::Ptr Api::revokeChatInviteLink(std::int64_t chatId,
     args.emplace_back("invite_link", inviteLink);
 
     return _tgTypeParser.parseJsonAndGetChatInviteLink(sendRequest("revokeChatInviteLink", args));
+}
+
+bool Api::approveChatJoinRequest(std::int64_t chatId,
+                                 std::int64_t userId) const {
+    vector<HttpReqArg> args;
+    args.reserve(2);
+
+    args.emplace_back("chat_id", chatId);
+    args.emplace_back("user_id", userId);
+
+    return sendRequest("approveChatJoinRequest", args).get<bool>("", false);
+}
+
+bool Api::declineChatJoinRequest(std::int64_t chatId,
+                                 std::int64_t userId) const {
+    vector<HttpReqArg> args;
+    args.reserve(2);
+
+    args.emplace_back("chat_id", chatId);
+    args.emplace_back("user_id", userId);
+
+    return sendRequest("declineChatJoinRequest", args).get<bool>("", false);
 }
 
 bool Api::setChatPhoto(std::int64_t chatId, const InputFile::Ptr photo) const {

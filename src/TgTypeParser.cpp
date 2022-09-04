@@ -997,6 +997,7 @@ Update::Ptr TgTypeParser::parseJsonAndGetUpdate(const boost::property_tree::ptre
     result->pollAnswer = tryParseJson<PollAnswer>(&TgTypeParser::parseJsonAndGetPollAnswer, data, "poll_answer");
     result->myChatMember = tryParseJson<ChatMemberUpdated>(&TgTypeParser::parseJsonAndGetChatMemberUpdated, data, "my_chat_member");
     result->chatMember = tryParseJson<ChatMemberUpdated>(&TgTypeParser::parseJsonAndGetChatMemberUpdated, data, "chat_member");
+    result->chatJoinRequest = tryParseJson<ChatJoinRequest>(&TgTypeParser::parseJsonAndGetChatJoinRequest, data, "chat_join_request");
     return result;
 }
 
@@ -1020,6 +1021,7 @@ std::string TgTypeParser::parseUpdate(const Update::Ptr& object) const {
     appendToJson(result, "poll_answer", parsePollAnswer(object->pollAnswer));
     appendToJson(result, "my_chat_member", parseChatMemberUpdated(object->myChatMember));
     appendToJson(result, "chat_member", parseChatMemberUpdated(object->chatMember));
+    appendToJson(result, "chat_join_request", parseChatJoinRequest(object->chatJoinRequest));
     removeLastComma(result);
     result += '}';
     return result;
@@ -1598,6 +1600,32 @@ std::string TgTypeParser::parseChatMemberUpdated(const ChatMemberUpdated::Ptr& o
     return result;
 }
 
+ChatJoinRequest::Ptr TgTypeParser::parseJsonAndGetChatJoinRequest(const boost::property_tree::ptree& data) const {
+    auto result(std::make_shared<ChatJoinRequest>());
+    result->chat = tryParseJson<Chat>(&TgTypeParser::parseJsonAndGetChat, data, "chat");
+    result->from = tryParseJson<User>(&TgTypeParser::parseJsonAndGetUser, data, "from");
+    result->date = data.get<std::int32_t>("date", 0);
+    result->bio = data.get<std::string>("bio", "");
+    result->inviteLink = tryParseJson<ChatInviteLink>(&TgTypeParser::parseJsonAndGetChatInviteLink, data, "invite_link");
+    return result;
+}
+
+std::string TgTypeParser::parseChatJoinRequest(const ChatJoinRequest::Ptr& object) const {
+    if (!object) {
+        return "";
+    }
+    std::string result;
+    result += '{';
+    appendToJson(result, "chat", parseChat(object->chat));
+    appendToJson(result, "from", parseUser(object->from));
+    appendToJson(result, "date", object->date);
+    appendToJson(result, "bio", object->bio);
+    appendToJson(result, "invite_link", parseChatInviteLink(object->inviteLink));
+    removeLastComma(result);
+    result += '}';
+    return result;
+}
+
 ChatPhoto::Ptr TgTypeParser::parseJsonAndGetChatPhoto(const boost::property_tree::ptree& data) const {
     auto result(std::make_shared<ChatPhoto>());
     result->smallFileId = data.get<std::string>("small_file_id", "");
@@ -1626,10 +1654,13 @@ ChatInviteLink::Ptr TgTypeParser::parseJsonAndGetChatInviteLink(const boost::pro
     auto result(std::make_shared<ChatInviteLink>());
     result->inviteLink = data.get<std::string>("invite_link", "");
     result->creator = tryParseJson<User>(&TgTypeParser::parseJsonAndGetUser, data, "creator");
+    result->createsJoinRequest = data.get<bool>("creates_join_request", false);
     result->isPrimary = data.get<bool>("is_primary", false);
     result->isRevoked = data.get<bool>("is_revoked", false);
+    result->name = data.get<std::string>("name", "");
     result->expireDate = data.get<std::int32_t>("expire_date", 0);
     result->memberLimit = data.get<std::int32_t>("member_limit", 0);
+    result->pendingJoinRequestCount = data.get<std::int32_t>("pending_join_request_count", 0);
     return result;
 }
 
@@ -1641,10 +1672,13 @@ std::string TgTypeParser::parseChatInviteLink(const ChatInviteLink::Ptr& object)
     result += '{';
     appendToJson(result, "invite_link", object->inviteLink);
     appendToJson(result, "creator", parseUser(object->creator));
+    appendToJson(result, "creates_join_request", object->createsJoinRequest);
     appendToJson(result, "is_primary", object->isPrimary);
     appendToJson(result, "is_revoked", object->isRevoked);
+    appendToJson(result, "name", object->name);
     appendToJson(result, "expire_date", object->expireDate);
     appendToJson(result, "member_limit", object->memberLimit);
+    appendToJson(result, "pending_join_request_count", object->pendingJoinRequestCount);
     removeLastComma(result);
     result += '}';
     return result;
