@@ -1,21 +1,6 @@
 The MIT License (MIT)
 
-Copyright (c) 2015      Oleg Morozenkov
-Copyright (c) 2015-2020 GitHub contributors https://github.com/reo7sp/tgbot-cpp/graphs/contributors
-Copyright (c) 2015      ray-pixar
-Copyright (c) 2015-2016 Florian Scheibner
-Copyright (c) 2015      naveenvhegde
-Copyright (c) 2016      Andrea Giove
-Copyright (c) 2016-2017 Konstantin Kukin
-Copyright (c) 2017      ymuv
-Copyright (c) 2017      Maks Mazurov
-Copyright (c) 2017-2019 YJBeetle
-Copyright (c) 2017      Moskalenko Yurii
-Copyright (c) 2017-2018 JellyBrick
-Copyright (c) 2018-2020 Egor Pugin
-Copyright (c) 2018      Javier G. Sogo
-Copyright (c) 2019      Marcel Alexandru
-Copyright (c) 2020      Alexander Zaitsev
+Copyright (c) 2015-2022 GitHub contributors https://github.com/reo7sp/tgbot-cpp/graphs/contributors
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -34,4 +19,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-
