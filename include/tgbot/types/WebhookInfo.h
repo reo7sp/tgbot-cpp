@@ -18,7 +18,7 @@ public:
     typedef std::shared_ptr<WebhookInfo> Ptr;
 
     /**
-     * @brief Webhook URL, may be empty if webhook is not set up.
+     * @brief Webhook URL, may be empty if webhook is not set up
      */
     std::string url;
 
@@ -33,12 +33,17 @@ public:
     std::int32_t pendingUpdateCount;
 
     /**
+     * @brief Optional. Currently used webhook IP address
+     */
+    std::string ipAddress;
+
+    /**
      * @brief Optional. Unix time for the most recent error that happened when trying to deliver an update via webhook
      */
     std::int32_t lastErrorDate;
 
     /**
-     * @brief Optional. Error message in human - readable format for the most recent error that happened when trying to deliver an update via webhook
+     * @brief Optional. Error message in human-readable format for the most recent error that happened when trying to deliver an update via webhook
      */
     std::string lastErrorMessage;
 

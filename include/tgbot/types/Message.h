@@ -19,9 +19,15 @@
 #include "tgbot/types/Venue.h"
 #include "tgbot/types/Voice.h"
 #include "tgbot/types/VideoNote.h"
+#include "tgbot/types/MessageAutoDeleteTimerChanged.h"
 #include "tgbot/types/Invoice.h"
 #include "tgbot/types/SuccessfulPayment.h"
 #include "tgbot/types/PassportData.h"
+#include "tgbot/types/ProximityAlertTriggered.h"
+#include "tgbot/types/VoiceChatScheduled.h"
+#include "tgbot/types/VoiceChatStarted.h"
+#include "tgbot/types/VoiceChatEnded.h"
+#include "tgbot/types/VoiceChatParticipantsInvited.h"
 #include "tgbot/types/InlineKeyboardMarkup.h"
 
 #include <cstdint>
@@ -46,9 +52,17 @@ public:
     std::int32_t messageId;
 
     /**
-     * @brief Optional. Sender, empty for messages sent to channels
+     * @brief Optional. Sender of the message; empty for messages sent to channels.
+     * For backward compatibility, the field contains a fake sender user in non-channel chats, if the message was sent on behalf of a chat.
      */
     User::Ptr from;
+
+    /**
+     * @brief Optional. Sender of the message, sent on behalf of a chat.
+     * For example, the channel itself for channel posts, the supergroup itself for messages from anonymous group administrators, the linked channel for messages automatically forwarded to the discussion group.
+     * For backward compatibility, the field from contains a fake sender user in non-channel chats, if the message was sent on behalf of a chat.
+     */
+    Chat::Ptr senderChat;
 
     /**
      * @brief Date the message was sent in Unix time
@@ -66,7 +80,7 @@ public:
     User::Ptr forwardFrom;
 
     /**
-     * @brief Optional. For messages forwarded from channels, information about the original channel
+     * @brief Optional. For messages forwarded from channels or from anonymous administrators, information about the original sender chat
      */
     Chat::Ptr forwardFromChat;
 
@@ -91,8 +105,13 @@ public:
     std::int32_t forwardDate;
 
     /**
+     * @brief Optional. True, if the message is a channel post that was automatically forwarded to the connected discussion group
+     */
+    bool isAutomaticForward;
+
+    /**
      * @brief Optional. For replies, the original message.
-     * Note that the Message object in this field will not contain further @ref Message::replyToMessage fields even if it itself is a reply.
+     * Note that the Message object in this field will not contain further replyToMessage fields even if it itself is a reply.
      */
     Message::Ptr replyToMessage;
 
@@ -107,12 +126,17 @@ public:
     std::int32_t editDate;
 
     /**
+     * @brief Optional. True, if the message can't be forwarded
+     */
+    bool hasProtectedContent;
+
+    /**
      * @brief Optional. The unique identifier of a media message group this message belongs to
      */
     std::string mediaGroupId;
     
     /**
-     * @brief Optional. Signature of the post author for messages in channels
+     * @brief Optional. Signature of the post author for messages in channels, or the custom title of an anonymous group administrator
      */
     std::string authorSignature;
 
@@ -127,9 +151,10 @@ public:
     std::vector<MessageEntity::Ptr> entities;
 
     /**
-     * @brief Optional. For messages with a caption, special entities like usernames, URLs, bot commands, etc. that appear in the caption
+     * @brief Optional. Message is an animation, information about the animation.
+     * For backward compatibility, when this field is set, the document field will also be set
      */
-    std::vector<MessageEntity::Ptr> captionEntities;
+    Animation::Ptr animation;
 
     /**
      * @brief Optional. Message is an audio file, information about the file
@@ -140,17 +165,6 @@ public:
      * @brief Optional. Message is a general file, information about the file
      */
     Document::Ptr document;
-
-    /**
-     * @brief Optional. Message is an animation, information about the animation.
-     * For backward compatibility, when this field is set, the document field will also be set
-     */
-    Animation::Ptr animation;
-
-    /**
-     * @brief Optional. Message is a game, information about the game
-     */
-    Game::Ptr game;
 
     /**
      * @brief Optional. Message is a photo, available sizes of the photo
@@ -168,19 +182,24 @@ public:
     Video::Ptr video;
 
     /**
-     * @brief Optional. Message is a voice message, information about the file
-     */
-    Voice::Ptr voice;
-
-    /**
      * @brief Optional. Message is a video note, information about the video message
      */
     VideoNote::Ptr videoNote;
 
     /**
+     * @brief Optional. Message is a voice message, information about the file
+     */
+    Voice::Ptr voice;
+
+    /**
      * @brief Optional. Caption for the animation, audio, document, photo, video or voice, 0-1024 characters
      */
     std::string caption;
+    
+    /**
+     * @brief Optional. For messages with a caption, special entities like usernames, URLs, bot commands, etc. that appear in the caption
+     */
+    std::vector<MessageEntity::Ptr> captionEntities;
 
     /**
      * @brief Optional. Message is a shared contact, information about the contact
@@ -188,14 +207,14 @@ public:
     Contact::Ptr contact;
 
     /**
-     * @brief Optional. Message is a shared location, information about the location
+     * @brief Optional. Message is a dice with random value
      */
-    Location::Ptr location;
+    Dice::Ptr dice;
 
     /**
-     * @brief Optional. Message is a venue, information about the venue
+     * @brief Optional. Message is a game, information about the game
      */
-    Venue::Ptr venue;
+    Game::Ptr game;
 
     /**
      * @brief Optional. Message is a native poll, information about the poll
@@ -203,12 +222,18 @@ public:
     Poll::Ptr poll;
 
     /**
-     * @brief Optional. Message is a dice with random value from 1 to 6
+     * @brief Optional. Message is a venue, information about the venue.
+     * For backward compatibility, when this field is set, the location field will also be set
      */
-    Dice::Ptr dice;
+    Venue::Ptr venue;
 
     /**
-     * @brief Optional. New members that were added to the group or supergroup and information about them (the bot itself may be one of these members)
+     * @brief Optional. Message is a shared location, information about the location
+     */
+    Location::Ptr location;
+
+    /**
+     * @brief Optional. Optional. New members that were added to the group or supergroup and information about them (the bot itself may be one of these members)
      */
     std::vector<User::Ptr> newChatMembers;
 
@@ -238,14 +263,23 @@ public:
     bool groupChatCreated;
 
     /**
-     * @brief Optional. Service message: the supergroup has been created
+     * @brief Optional. Service message: the supergroup has been created.
+     * This field can't be received in a message coming through updates, because bot can't be a member of a supergroup when it is created.
+     * It can only be found in replyToMessage if someone replies to a very first message in a directly created supergroup.
      */
     bool supergroupChatCreated;
 
     /**
-     * @brief Optional. Service message: the channel has been created
+     * @brief Optional. Service message: the channel has been created.
+     * This field can't be received in a message coming through updates, because bot can't be a member of a channel when it is created.
+     * It can only be found in replyToMessage if someone replies to a very first message in a channel.
      */
     bool channelChatCreated;
+
+    /**
+     * @brief Optional. Service message: auto-delete timer settings changed in the chat
+     */
+    MessageAutoDeleteTimerChanged::Ptr messageAutoDeleteTimerChanged;
 
     /**
      * @brief Optional. The group has been migrated to a supergroup with the specified identifier.
@@ -265,22 +299,25 @@ public:
 
     /**
      * @brief Optional. Specified message was pinned.
-     * Note that the Message object in this field will not contain further @ref Message::replyToMessage fields even if it is itself a reply.
+     * Note that the Message object in this field will not contain further replyToMessage fields even if it is itself a reply.
      */
     Message::Ptr pinnedMessage;
 
     /**
-     * @brief Optional. Message is an invoice for a payment, information about the invoice
+     * @brief Optional. Message is an invoice for a payment, information about the invoice.
+     * https://core.telegram.org/bots/api#payments
      */
     Invoice::Ptr invoice;
 
     /**
      * @brief Optional. Message is a service message about a successful payment, information about the payment
+     * https://core.telegram.org/bots/api#payments
      */
     SuccessfulPayment::Ptr successfulPayment;
 
     /**
-     * @brief Optional. The domain name of the website on which the user has logged in
+     * @brief Optional. The domain name of the website on which the user has logged in.
+     * https://core.telegram.org/widgets/login
      */
     std::string connectedWebsite;
 
@@ -290,17 +327,36 @@ public:
     PassportData::Ptr passportData;
 
     /**
-     * @brief Optional. Inline keyboard attached to the message.
-     * @ref InlineKeyboardButton::loginUrl buttons are represented as ordinary @ref InlineKeyboardButton::url buttons.
+     * @brief Optional. Service message.
+     * A user in the chat triggered another user's proximity alert while sharing Live Location.
      */
-    InlineKeyboardMarkup::Ptr replyMarkup;
+    ProximityAlertTriggered::Ptr proximityAlertTriggered;
 
     /**
-     * @brief Optional. True, if the message is a channel post that was automatically forwarded to the connected discussion group
-     *
-     * Note: Added with Bot API 5.5
+     * @brief Optional. Service message: voice chat scheduled
      */
-    bool automaticForward;
+    VoiceChatScheduled::Ptr voiceChatScheduled;
+
+    /**
+     * @brief Optional. Service message: voice chat started
+     */
+    VoiceChatStarted::Ptr voiceChatStarted;
+
+    /**
+     * @brief Optional. Service message: voice chat ended
+     */
+    VoiceChatEnded::Ptr voiceChatEnded;
+
+    /**
+     * @brief Optional. Service message: new participants invited to a voice chat
+     */
+    VoiceChatParticipantsInvited::Ptr voiceChatParticipantsInvited;
+
+    /**
+     * @brief Optional. Inline keyboard attached to the message.
+     * loginUrl buttons are represented as ordinary url buttons.
+     */
+    InlineKeyboardMarkup::Ptr replyMarkup;
 };
 }
 

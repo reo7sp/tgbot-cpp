@@ -21,9 +21,9 @@ public:
     std::string emoji;
 
     /**
-     * @brief Value of the dice, 1-6 for “🎲” and “🎯” base emoji, 1-5 for “🏀” base emoji
+     * @brief Value of the dice, 1-6 for “🎲”, “🎯” and “🎳” base emoji, 1-5 for “🏀” and “⚽” base emoji, 1-64 for “🎰” base emoji
      */
-    std::int8_t value;
+    std::int32_t value;
 };
 }
 

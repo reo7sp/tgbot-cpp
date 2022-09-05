@@ -8,7 +8,7 @@
 namespace TgBot {
 
 /**
- * @brief This object represents one size of a photo or a @ref File / @ref Sticker thumbnail.
+ * @brief This object represents one size of a photo or a file / sticker thumbnail.
  *
  * @ingroup types
  */

@@ -2,6 +2,7 @@
 #define TGBOT_INLINEQUERYRESULTCONTACT_H
 
 #include "tgbot/types/InlineQueryResult.h"
+#include "tgbot/types/InputMessageContent.h"
 
 #include <cstdint>
 #include <string>
@@ -10,7 +11,9 @@
 namespace TgBot {
 
 /**
- * @brief Represents a contact with a phone number
+ * @brief Represents a contact with a phone number.
+ * By default, this contact will be sent by the user.
+ * Alternatively, you can use inputMessageContent to send a message with the specified content instead of the contact.
  *
  * @ingroup types
  */
@@ -22,8 +25,6 @@ public:
 
     InlineQueryResultContact() {
         this->type = TYPE;
-        this->thumbHeight = 0;
-        this->thumbWidth = 0;
     }
 
     /**
@@ -47,12 +48,17 @@ public:
     std::string vcard;
 
     /**
+     * @brief Optional. Content of the message to be sent instead of the contact
+     */
+    InputMessageContent::Ptr inputMessageContent;
+
+    /**
     * @brief Optional. Url of the thumbnail for the result
     */
     std::string thumbUrl;
 
     /**
-    * @brief Optional. Thumbnail width.
+    * @brief Optional. Thumbnail width
     */
     std::int32_t thumbWidth;
 
