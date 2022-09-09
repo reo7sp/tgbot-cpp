@@ -57,13 +57,27 @@ std::string CurlHttpClient::makeRequest(const Url& url, const std::vector<HttpRe
     curl_easy_setopt(curl, CURLOPT_WRITEDATA, &response);
     curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, curlWriteString);
 
+    char errbuf[CURL_ERROR_SIZE] {};
+    curl_easy_setopt(curl, CURLOPT_ERRORBUFFER, errbuf);
+
     auto res = curl_easy_perform(curl);
     curl_slist_free_all(headers);
     curl_easy_cleanup(curl);
     curl_mime_free(mime);
 
+    // If the request did not complete correctly, show the error
+    // information. If no detailed error information was written to errbuf
+    // show the more generic information from curl_easy_strerror instead.
     if (res != CURLE_OK) {
-        throw std::runtime_error(std::string("curl error: ") + curl_easy_strerror(res));
+        size_t len = strlen(errbuf);
+        std::string errmsg;
+        if (len) {
+            errmsg = std::string(errbuf) + ((errbuf[len - 1] != '\n') ? "\n" : "");
+        }
+        else {
+            errmsg = curl_easy_strerror(res);
+        }
+        throw std::runtime_error(std::string("curl error: ") + errmsg);
     }
 
     return _httpParser.extractBody(response);
