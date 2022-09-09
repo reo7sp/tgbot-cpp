@@ -1519,7 +1519,7 @@ ChatMemberRestricted::Ptr TgTypeParser::parseJsonAndGetChatMemberRestricted(cons
     result->canSendPolls = data.get<bool>("can_send_polls", false);
     result->canSendOtherMessages = data.get<bool>("can_send_other_messages", false);
     result->canAddWebPagePreviews = data.get<bool>("can_add_web_page_previews", false);
-    result->untilDate = data.get<uint32_t>("until_date", 0);
+    result->untilDate = data.get<std::uint32_t>("until_date", 0);
     return result;
 }
 
@@ -1666,9 +1666,9 @@ ChatInviteLink::Ptr TgTypeParser::parseJsonAndGetChatInviteLink(const boost::pro
     result->isPrimary = data.get<bool>("is_primary", false);
     result->isRevoked = data.get<bool>("is_revoked", false);
     result->name = data.get<std::string>("name", "");
-    result->expireDate = data.get<std::int32_t>("expire_date", 0);
-    result->memberLimit = data.get<std::int32_t>("member_limit", 0);
-    result->pendingJoinRequestCount = data.get<std::int32_t>("pending_join_request_count", 0);
+    result->expireDate = data.get<std::uint32_t>("expire_date", 0);
+    result->memberLimit = data.get<std::uint32_t>("member_limit", 0);
+    result->pendingJoinRequestCount = data.get<std::uint32_t>("pending_join_request_count", 0);
     return result;
 }
 
