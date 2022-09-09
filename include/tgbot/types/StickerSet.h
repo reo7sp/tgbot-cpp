@@ -35,6 +35,11 @@ public:
     bool isAnimated;
 
     /**
+     * @brief True, if the sticker set contains video stickers
+     */
+    bool isVideo;
+
+    /**
      * @brief True, if the sticker set contains masks
      */
     bool containsMasks;
@@ -45,7 +50,7 @@ public:
     std::vector<Sticker::Ptr> stickers;
 
     /**
-     * @brief Optional. Sticker set thumbnail in the .WEBP or .TGS format
+     * @brief Optional. Sticker set thumbnail in the .WEBP, .TGS, or .WEBM format
      */
     PhotoSize::Ptr thumb;
 };

@@ -1634,27 +1634,28 @@ bool Api::createNewStickerSet(std::int64_t userId,
                               const std::string& emojis,
                               bool containsMasks,
                               MaskPosition::Ptr maskPosition,
-                              boost::variant<InputFile::Ptr, std::string> pngSticker,
-                              boost::variant<InputFile::Ptr, std::string> tgsSticker) const {
+                              boost::variant<InputFile::Ptr, const std::string&> pngSticker,
+                              InputFile::Ptr tgsSticker,
+                              InputFile::Ptr webmSticker) const {
     vector<HttpReqArg> args;
-    args.reserve(8);
+    args.reserve(9);
 
     args.emplace_back("user_id", userId);
     args.emplace_back("name", name);
     args.emplace_back("title", title);
-    args.emplace_back("emojis", emojis);
-    if (pngSticker.which() == 0 /* InputFile::Ptr */) {
+    if (pngSticker.which() == 0) {  // InputFile::Ptr
         auto file = boost::get<InputFile::Ptr>(pngSticker);
         args.emplace_back("png_sticker", file->data, true, file->mimeType, file->fileName);
-    } else /* std::string */ {
-        args.emplace_back("png_sticker", boost::get<std::string>(pngSticker));
+    } else {    // const std::string&
+        args.emplace_back("png_sticker", boost::get<const std::string&>(pngSticker));
     }
-    if (tgsSticker.which() == 0 /* InputFile::Ptr */) {
-        auto file = boost::get<InputFile::Ptr>(tgsSticker);
-        args.emplace_back("tgs_sticker", file->data, true, file->mimeType, file->fileName);
-    } else /* std::string */ {
-        args.emplace_back("tgs_sticker", boost::get<std::string>(tgsSticker));
+    if (tgsSticker != nullptr) {
+        args.emplace_back("tgs_sticker", tgsSticker->data, true, tgsSticker->mimeType, tgsSticker->fileName);
     }
+    if (webmSticker != nullptr) {
+        args.emplace_back("webm_sticker", webmSticker->data, true, webmSticker->mimeType, webmSticker->fileName);
+    }
+    args.emplace_back("emojis", emojis);
     if (containsMasks) {
         args.emplace_back("contains_mask", containsMasks);
     }
@@ -1666,29 +1667,31 @@ bool Api::createNewStickerSet(std::int64_t userId,
 }
 
 bool Api::addStickerToSet(std::int64_t userId,
-                          const std::string& name,
-                          const std::string& emojis,
-                          MaskPosition::Ptr maskPosition,
-                          boost::variant<InputFile::Ptr, std::string> pngSticker,
-                          boost::variant<InputFile::Ptr, std::string> tgsSticker) const {
+                         const std::string& name,
+                         const std::string& emojis,
+                         MaskPosition::Ptr maskPosition,
+                         boost::variant<InputFile::Ptr, const std::string&> pngSticker,
+                         InputFile::Ptr tgsSticker,
+                         InputFile::Ptr webmSticker) const {
     vector<HttpReqArg> args;
-    args.reserve(6);
+    args.reserve(7);
 
     args.emplace_back("user_id", userId);
     args.emplace_back("name", name);
-    args.emplace_back("emojis", emojis);
-    if (pngSticker.which() == 0 /* InputFile::Ptr */) {
+    
+    if (pngSticker.which() == 0) {  // InputFile::Ptr
         auto file = boost::get<InputFile::Ptr>(pngSticker);
         args.emplace_back("png_sticker", file->data, true, file->mimeType, file->fileName);
-    } else /* std::string */ {
-        args.emplace_back("png_sticker", boost::get<std::string>(pngSticker));
+    } else {    // const std::string&
+        args.emplace_back("png_sticker", boost::get<const std::string&>(pngSticker));
     }
-    if (tgsSticker.which() == 0 /* InputFile::Ptr */) {
-        auto file = boost::get<InputFile::Ptr>(tgsSticker);
-        args.emplace_back("tgs_sticker", file->data, true, file->mimeType, file->fileName);
-    } else /* std::string */ {
-        args.emplace_back("tgs_sticker", boost::get<std::string>(tgsSticker));
+    if (tgsSticker != nullptr) {
+        args.emplace_back("tgs_sticker", tgsSticker->data, true, tgsSticker->mimeType, tgsSticker->fileName);
     }
+    if (webmSticker != nullptr) {
+        args.emplace_back("webm_sticker", webmSticker->data, true, webmSticker->mimeType, webmSticker->fileName);
+    }
+    args.emplace_back("emojis", emojis);
     if (maskPosition != nullptr) {
         args.emplace_back("mask_position", _tgTypeParser.parseMaskPosition(maskPosition));
     }

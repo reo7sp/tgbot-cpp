@@ -47,7 +47,12 @@ public:
     bool isAnimated;
 
     /**
-     * @brief Optional. Sticker thumbnail in the .webp or .jpg format
+     * @brief True, if the sticker is a video sticker
+     */
+    bool isVideo;
+
+    /**
+     * @brief Optional. Sticker thumbnail in the .WEBP or .JPG format
      */
     PhotoSize::Ptr thumb;
 
@@ -67,7 +72,7 @@ public:
     MaskPosition::Ptr maskPosition;
 
     /**
-     * @brief Optional. File size
+     * @brief Optional. File size in bytes
      */
     std::int32_t fileSize;
 };

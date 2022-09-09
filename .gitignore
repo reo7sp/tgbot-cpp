@@ -12,12 +12,13 @@ doc/
 Thumbs.db
 TgBot_test
 .idea/
-.vscode/
 docs/
 cmake-build-*
 
 # Visual Studio
 /.vs/
+.vscode/
+/build/
 /out/
 
 # MacOS dependecies

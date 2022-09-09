@@ -386,6 +386,7 @@ Sticker::Ptr TgTypeParser::parseJsonAndGetSticker(const boost::property_tree::pt
     result->width = data.get<std::int32_t>("width", 0);
     result->height = data.get<std::int32_t>("height", 0);
     result->isAnimated = data.get<bool>("is_animated", false);
+    result->isVideo = data.get<bool>("is_video", false);
     result->thumb = tryParseJson<PhotoSize>(&TgTypeParser::parseJsonAndGetPhotoSize, data, "thumb");
     result->emoji = data.get<std::string>("emoji", "");
     result->setName = data.get<std::string>("set_name", "");
@@ -405,6 +406,7 @@ std::string TgTypeParser::parseSticker(const Sticker::Ptr& object) const {
     appendToJson(result, "width", object->width);
     appendToJson(result, "height", object->height);
     appendToJson(result, "is_animated", object->isAnimated);
+    appendToJson(result, "is_video", object->isVideo);
     appendToJson(result, "thumb", parsePhotoSize(object->thumb));
     appendToJson(result, "emoji", object->emoji);
     appendToJson(result, "set_name", object->setName);
@@ -420,6 +422,7 @@ StickerSet::Ptr TgTypeParser::parseJsonAndGetStickerSet(const boost::property_tr
     result->name = data.get<std::string>("name", "");
     result->title = data.get<std::string>("title", "");
     result->isAnimated = data.get<bool>("is_animated", false);
+    result->isVideo = data.get<bool>("is_video", false);
     result->containsMasks = data.get<bool>("contains_masks", false);
     result->stickers = parseJsonAndGetArray<Sticker>(&TgTypeParser::parseJsonAndGetSticker, data, "stickers");
     result->thumb = tryParseJson<PhotoSize>(&TgTypeParser::parseJsonAndGetPhotoSize, data, "thumb");
@@ -435,6 +438,7 @@ std::string TgTypeParser::parseStickerSet(const StickerSet::Ptr& object) const {
     appendToJson(result, "name", object->name);
     appendToJson(result, "title", object->title);
     appendToJson(result, "is_animated", object->isAnimated);
+    appendToJson(result, "is_video", object->isVideo);
     appendToJson(result, "contains_masks", object->containsMasks);
     appendToJson(result, "stickers", parseArray(&TgTypeParser::parseSticker, object->stickers));
     appendToJson(result, "thumb", parsePhotoSize(object->thumb));

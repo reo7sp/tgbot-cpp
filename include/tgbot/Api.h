@@ -1214,7 +1214,10 @@ public:
     File::Ptr uploadStickerFile(std::int64_t userId, InputFile::Ptr pngSticker) const;
 
     /**
-     * @brief Use this method to create a new sticker set owned by a user. The bot will be able to edit the sticker set thus created. You must use exactly one of the fields pngSticker or tgsSticker.
+     * @brief Use this method to create a new sticker set owned by a user.
+     * 
+     * The bot will be able to edit the sticker set thus created.
+     * You must use exactly one of the fields pngSticker, tgsSticker, or webmSticker.
      *
      * @param userId User identifier of created sticker set owner
      * @param name Short name of sticker set, to be used in t.me/addstickers/ URLs (e.g., animals). Can contain only english letters, digits and underscores. Must begin with a letter, can't contain consecutive underscores and must end in “_by_<bot username>”. <bot_username> is case insensitive. 1-64 characters.
@@ -1222,8 +1225,9 @@ public:
      * @param emojis One or more emoji corresponding to the sticker
      * @param containsMasks Optional. Pass True, if a set of mask stickers should be created
      * @param maskPosition Optional. A JSON-serialized object for position where the mask should be placed on faces
-     * @param pngSticker Optional. PNG image with the sticker, must be up to 512 kilobytes in size, dimensions must not exceed 512px, and either width or height must be exactly 512px. Pass a fileId as a String to send a file that already exists on the Telegram servers, pass an HTTP URL as a String for Telegram to get a file from the Internet, or upload a new one using multipart/form-data.
-     * @param tgsSticker Optional. TGS animation with the sticker, uploaded using multipart/form-data. See https://core.telegram.org/animated_stickers#technical-requirements for technical requirements
+     * @param pngSticker Optional. PNG image with the sticker, must be up to 512 kilobytes in size, dimensions must not exceed 512px, and either width or height must be exactly 512px. Pass a fileId as a String to send a file that already exists on the Telegram servers, pass an HTTP URL as a String for Telegram to get a file from the Internet, or upload a new one using multipart/form-data. https://core.telegram.org/bots/api#sending-files
+     * @param tgsSticker Optional. TGS animation with the sticker, uploaded using multipart/form-data. See https://core.telegram.org/stickers#animated-sticker-requirements for technical requirements
+     * @param webmSticker Optional. WEBM video with the sticker, uploaded using multipart/form-data. See https://core.telegram.org/stickers#video-sticker-requirements for technical requirements
      *
      * @return Returns True on success.
      */
@@ -1233,18 +1237,25 @@ public:
                              const std::string& emojis,
                              bool containsMasks = false,
                              MaskPosition::Ptr maskPosition = nullptr,
-                             boost::variant<InputFile::Ptr, std::string> pngSticker = "",
-                             boost::variant<InputFile::Ptr, std::string> tgsSticker = "") const;
+                             boost::variant<InputFile::Ptr, const std::string&> pngSticker = "",
+                             InputFile::Ptr tgsSticker = nullptr,
+                             InputFile::Ptr webmSticker = nullptr) const;
 
     /**
-     * @brief Use this method to add a new sticker to a set created by the bot. You must use exactly one of the fields png_sticker or tgs_sticker. Animated stickers can be added to animated sticker sets and only to them. Animated sticker sets can have up to 50 stickers. Static sticker sets can have up to 120 stickers.
+     * @brief Use this method to add a new sticker to a set created by the bot.
+     * 
+     * You must use exactly one of the fields png_sticker, tgs_sticker, or webm_sticker.
+     * Animated stickers can be added to animated sticker sets and only to them.
+     * Animated sticker sets can have up to 50 stickers.
+     * Static sticker sets can have up to 120 stickers.
      *
      * @param userId User identifier of sticker set owner
      * @param name Sticker set name
      * @param emojis One or more emoji corresponding to the sticker
      * @param maskPosition Optional. A JSON-serialized object for position where the mask should be placed on faces
-     * @param pngSticker Optional. PNG image with the sticker, must be up to 512 kilobytes in size, dimensions must not exceed 512px, and either width or height must be exactly 512px. Pass a fileId as a String to send a file that already exists on the Telegram servers, pass an HTTP URL as a String for Telegram to get a file from the Internet, or upload a new one using multipart/form-data.
-     * @param tgsSticker Optional. TGS animation with the sticker, uploaded using multipart/form-data. See https://core.telegram.org/animated_stickers#technical-requirements for technical requirements
+     * @param pngSticker Optional. PNG image with the sticker, must be up to 512 kilobytes in size, dimensions must not exceed 512px, and either width or height must be exactly 512px. Pass a fileId as a String to send a file that already exists on the Telegram servers, pass an HTTP URL as a String for Telegram to get a file from the Internet, or upload a new one using multipart/form-data. https://core.telegram.org/bots/api#sending-files
+     * @param tgsSticker Optional. TGS animation with the sticker, uploaded using multipart/form-data. See https://core.telegram.org/stickers#animated-sticker-requirements for technical requirements
+     * @param webmSticker Optional. WEBM video with the sticker, uploaded using multipart/form-data. See https://core.telegram.org/stickers#video-sticker-requirements for technical requirements
      *
      * @return Returns True on success.
      */
@@ -1252,8 +1263,9 @@ public:
                          const std::string& name,
                          const std::string& emojis,
                          MaskPosition::Ptr maskPosition = nullptr,
-                         boost::variant<InputFile::Ptr, std::string> pngSticker = "",
-                         boost::variant<InputFile::Ptr, std::string> tgsSticker = "") const;
+                         boost::variant<InputFile::Ptr, const std::string&> pngSticker = "",
+                         InputFile::Ptr tgsSticker = nullptr,
+                         InputFile::Ptr webmSticker = nullptr) const;
 
     /**
      * @brief Use this method to move a sticker in a set created by the bot to a specific position.
