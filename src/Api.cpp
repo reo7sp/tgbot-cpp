@@ -45,9 +45,10 @@ bool Api::setWebhook(const std::string& url,
                      std::int32_t maxConnection,
                      const StringArrayPtr& allowedUpdates,
                      const std::string& ipAddress,
-                     bool dropPendingUpdates) const {
+                     bool dropPendingUpdates,
+                     const std::string& secretToken) const {
     vector<HttpReqArg> args;
-    args.reserve(6);
+    args.reserve(7);
 
     args.emplace_back("url", url);
     if (certificate != nullptr) {
@@ -68,6 +69,9 @@ bool Api::setWebhook(const std::string& url,
     }
     if (dropPendingUpdates) {
         args.emplace_back("drop_pending_updates", dropPendingUpdates);
+    }
+    if (!secretToken.empty()) {
+        args.emplace_back("secret_token", secretToken);
     }
 
     return sendRequest("setWebhook").get<bool>("", false);
@@ -1917,6 +1921,81 @@ Message::Ptr Api::sendInvoice(boost::variant<std::int64_t, const std::string&> c
     }
     
     return _tgTypeParser.parseJsonAndGetMessage(sendRequest("sendInvoice", args));
+}
+
+std::string Api::createInvoiceLink(const std::string& title,
+                                   const std::string& description,
+                                   const std::string& payload,
+                                   const std::string& providerToken,
+                                   const std::string& currency,
+                                   const std::vector<LabeledPrice::Ptr>& prices,
+                                   std::int32_t maxTipAmount,
+                                   const std::vector<std::int32_t>& suggestedTipAmounts,
+                                   const std::string& providerData,
+                                   const std::string& photoUrl,
+                                   std::int32_t photoSize,
+                                   std::int32_t photoWidth,
+                                   std::int32_t photoHeight,
+                                   bool needName,
+                                   bool needPhoneNumber,
+                                   bool needEmail,
+                                   bool needShippingAddress,
+                                   bool sendPhoneNumberToProvider,
+                                   bool sendEmailToProvider,
+                                   bool isFlexible) const {
+    vector<HttpReqArg> args;
+    args.reserve(20);
+
+    args.emplace_back("title", title);
+    args.emplace_back("description", description);
+    args.emplace_back("payload", payload);
+    args.emplace_back("provider_token", providerToken);
+    args.emplace_back("currency", currency);
+    args.emplace_back("prices", _tgTypeParser.parseArray<LabeledPrice>(&TgTypeParser::parseLabeledPrice, prices));
+    args.emplace_back("max_tip_amount", maxTipAmount);
+    if (!suggestedTipAmounts.empty()) {
+        args.emplace_back("suggested_tip_amounts", _tgTypeParser.parseArray<std::int32_t>([] (const std::int32_t& option) -> std::int32_t {
+            return option;
+        }, suggestedTipAmounts));
+    }
+    if (!providerData.empty()) {
+        args.emplace_back("provider_data", providerData);
+    }
+    if (!photoUrl.empty()) {
+        args.emplace_back("photo_url", photoUrl);
+    }
+    if (photoSize) {
+        args.emplace_back("photo_size", photoSize);
+    }
+    if (photoWidth) {
+        args.emplace_back("photo_width", photoWidth);
+    }
+    if (photoHeight) {
+        args.emplace_back("photo_height", photoHeight);
+    }
+    if (needName) {
+        args.emplace_back("need_name", needName);
+    }
+    if (needPhoneNumber) {
+        args.emplace_back("need_phone_number", needPhoneNumber);
+    }
+    if (needEmail) {
+        args.emplace_back("need_email", needEmail);
+    }
+    if (needShippingAddress) {
+        args.emplace_back("need_shipping_address", needShippingAddress);
+    }
+    if (sendPhoneNumberToProvider) {
+        args.emplace_back("send_phone_number_to_provider", sendPhoneNumberToProvider);
+    }
+    if (sendEmailToProvider) {
+        args.emplace_back("send_email_to_provider", sendEmailToProvider);
+    }
+    if (isFlexible) {
+        args.emplace_back("is_flexible", isFlexible);
+    }
+
+    return sendRequest("createInvoiceLink", args).get<std::string>("", "");
 }
 
 bool Api::answerShippingQuery(const std::string& shippingQueryId, bool ok, const std::vector<ShippingOption::Ptr>& shippingOptions, const std::string& errorMessage) const {

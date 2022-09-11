@@ -1,17 +1,18 @@
-#ifndef TGBOT_CPP_CHAT_H
-#define TGBOT_CPP_CHAT_H
+#ifndef TGBOT_CHAT_H
+#define TGBOT_CHAT_H
 
 #include "tgbot/types/ChatPhoto.h"
 #include "tgbot/types/ChatPermissions.h"
 #include "tgbot/types/ChatLocation.h"
 
 #include <cstdint>
-#include <string>
 #include <memory>
+#include <string>
 
 namespace TgBot {
 
 class Message;
+
 /**
  * @brief This object represents a chat.
  *
@@ -81,20 +82,31 @@ public:
     bool hasPrivateForwards;
 
     /**
+     * @brief Optional. True, if users need to join the supergroup before they can send messages.
+     * Returned only in Api::getChat.
+     */
+    bool joinToSendMessages;
+
+    /**
+     * @brief Optional. True, if all users directly joining the supergroup need to be approved by supergroup administrators.
+     * Returned only in Api::getChat.
+     */
+    bool joinByRequest;
+
+    /**
      * @brief Optional. Description, for groups, supergroups and channel chats.
      * Returned only in Api::getChat.
      */
     std::string description;
 
     /**
-     * @brief Optional. Chat invite link, for groups, supergroups and channel chats.
-     * Each administrator in a chat generates their own invite links, so the bot must first generate the link using Api::exportChatInviteLink.
+     * @brief Optional. Primary invite link, for groups, supergroups and channel chats.
      * Returned only in Api::getChat.
      */
     std::string inviteLink;
 
     /**
-     * @brief Optional. Pinned message, for groups, supergroups and channels.
+     * @brief Optional. The most recent pinned message (by sending date).
      * Returned only in Api::getChat.
      */
     std::shared_ptr<Message> pinnedMessage;
@@ -106,13 +118,13 @@ public:
     ChatPermissions::Ptr permissions;
 
     /**
-     * @brief Optional. For supergroups, the minimum allowed delay between consecutive messages sent by each unpriviledged user.
+     * @brief Optional. For supergroups, the minimum allowed delay between consecutive messages sent by each unpriviledged user; in seconds.
      * Returned only in Api::getChat.
      */
     std::int32_t slowModeDelay;
 
     /**
-     * @brief Optional. The time after which all messages sent to the chat will be automatically deleted; in seconds. 
+     * @brief Optional. The time after which all messages sent to the chat will be automatically deleted; in seconds.
      * Returned only in Api::getChat.
      */
     std::int32_t messageAutoDeleteTime;
@@ -137,21 +149,19 @@ public:
 
     /**
      * @brief Optional. Unique identifier for the linked chat, i.e. the discussion group identifier for a channel and vice versa; for supergroups and channel chats.
+     * Returned only in Api::getChat.
      * 
      * This identifier may be greater than 32 bits and some programming languages may have difficulty/silent defects in interpreting it.
      * But it is smaller than 52 bits, so a signed 64 bit integer or double-precision float type are safe for storing this identifier.
-     * 
-     * Returned only in Api::getChat.
      */
     std::int64_t linkedChatId;
 
     /**
      * @brief Optional. For supergroups, the location to which the supergroup is connected.
-     *
      * Returned only in Api::getChat.
      */
     ChatLocation::Ptr location;
 };
 }
 
-#endif //TGBOT_CPP_CHAT_H
+#endif //TGBOT_CHAT_H

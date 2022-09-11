@@ -13,7 +13,7 @@ Documentation is located [here](http://reo7sp.github.io/tgbot-cpp).
 
 - [x] Bot API 3.0 ~ 4.9
 - [x] Bot API 5.0 ~ 5.7 (Implemented all APIs except 'Run Your Own Bot API Server')
-- [x] Bot API 6.0
+- [x] Bot API 6.0 ~ 6.1
 
 
 ## Sample

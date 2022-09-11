@@ -1,12 +1,13 @@
-#ifndef TGBOT_CPP_STICKER_H
-#define TGBOT_CPP_STICKER_H
+#ifndef TGBOT_STICKER_H
+#define TGBOT_STICKER_H
 
 #include "tgbot/types/PhotoSize.h"
+#include "tgbot/types/File.h"
 #include "tgbot/types/MaskPosition.h"
 
 #include <cstdint>
-#include <string>
 #include <memory>
+#include <string>
 
 namespace TgBot {
 
@@ -67,6 +68,11 @@ public:
     std::string setName;
 
     /**
+     * @brief Optional. Premium animation for the sticker, if the sticker is premium
+     */
+    File::Ptr premiumAnimation;
+
+    /**
      * @brief Optional. For mask stickers, the position where the mask should be placed
      */
     MaskPosition::Ptr maskPosition;
@@ -78,4 +84,4 @@ public:
 };
 }
 
-#endif //TGBOT_CPP_STICKER_H
+#endif //TGBOT_STICKER_H

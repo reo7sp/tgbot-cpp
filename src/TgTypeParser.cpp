@@ -25,6 +25,8 @@ Chat::Ptr TgTypeParser::parseJsonAndGetChat(const boost::property_tree::ptree& d
     result->photo = tryParseJson<ChatPhoto>(&TgTypeParser::parseJsonAndGetChatPhoto, data, "photo");
     result->bio = data.get<std::string>("bio", "");
     result->hasPrivateForwards = data.get<bool>("has_private_forwards", false);
+    result->joinToSendMessages = data.get<bool>("join_to_send_messages", false);
+    result->joinByRequest = data.get<bool>("join_by_request", false);
     result->description = data.get<std::string>("description", "");
     result->inviteLink = data.get<std::string>("invite_link", "");
     result->pinnedMessage = tryParseJson<Message>(&TgTypeParser::parseJsonAndGetMessage, data, "pinned_message");
@@ -62,6 +64,8 @@ std::string TgTypeParser::parseChat(const Chat::Ptr& object) const {
     appendToJson(result, "photo", parseChatPhoto(object->photo));
     appendToJson(result, "bio", object->bio);
     appendToJson(result, "has_private_forwards", object->hasPrivateForwards);
+    appendToJson(result, "join_to_send_messages", object->joinToSendMessages);
+    appendToJson(result, "join_by_request", object->joinByRequest);
     appendToJson(result, "description", object->description);
     appendToJson(result, "invite_link", object->inviteLink);
     appendToJson(result, "pinned_message", parseMessage(object->pinnedMessage));
@@ -86,6 +90,8 @@ User::Ptr TgTypeParser::parseJsonAndGetUser(const boost::property_tree::ptree& d
     result->lastName = data.get<std::string>("last_name", "");
     result->username = data.get<std::string>("username", "");
     result->languageCode = data.get<std::string>("language_code", "");
+    result->isPremium = data.get<bool>("is_premium", false);
+    result->addedToAttachmentMenu = data.get<bool>("added_to_attachment_menu", false);
     result->canJoinGroups = data.get<bool>("can_join_groups", false);
     result->canReadAllGroupMessages = data.get<bool>("can_read_all_group_messages", false);
     result->supportsInlineQueries = data.get<bool>("supports_inline_queries", false);
@@ -104,6 +110,8 @@ std::string TgTypeParser::parseUser(const User::Ptr& object) const {
     appendToJson(result, "last_name", object->lastName);
     appendToJson(result, "username", object->username);
     appendToJson(result, "language_code", object->languageCode);
+    appendToJson(result, "is_premium", object->isPremium);
+    appendToJson(result, "added_to_attachment_menu", object->addedToAttachmentMenu);
     appendToJson(result, "can_join_groups", object->canJoinGroups);
     appendToJson(result, "can_read_all_group_messages", object->canReadAllGroupMessages);
     appendToJson(result, "supports_inline_queries", object->supportsInlineQueries);
@@ -328,7 +336,7 @@ Audio::Ptr TgTypeParser::parseJsonAndGetAudio(const boost::property_tree::ptree&
     result->title = data.get<std::string>("title", "");
     result->fileName = data.get<std::string>("file_name", "");
     result->mimeType = data.get<std::string>("mime_type", "");
-    result->fileSize = data.get<std::int32_t>("file_size", 0);
+    result->fileSize = data.get<std::int64_t>("file_size", 0);
     result->thumb = tryParseJson<PhotoSize>(&TgTypeParser::parseJsonAndGetPhotoSize, data, "thumb");
     return result;
 }
@@ -360,7 +368,7 @@ Document::Ptr TgTypeParser::parseJsonAndGetDocument(const boost::property_tree::
     result->thumb = tryParseJson<PhotoSize>(&TgTypeParser::parseJsonAndGetPhotoSize, data, "thumb");
     result->fileName = data.get<std::string>("file_name", "");
     result->mimeType = data.get<std::string>("mime_type", "");
-    result->fileSize = data.get<std::int32_t>("file_size", 0);
+    result->fileSize = data.get<std::int64_t>("file_size", 0);
     return result;
 }
 
@@ -392,6 +400,7 @@ Sticker::Ptr TgTypeParser::parseJsonAndGetSticker(const boost::property_tree::pt
     result->thumb = tryParseJson<PhotoSize>(&TgTypeParser::parseJsonAndGetPhotoSize, data, "thumb");
     result->emoji = data.get<std::string>("emoji", "");
     result->setName = data.get<std::string>("set_name", "");
+    result->premiumAnimation = tryParseJson<File>(&TgTypeParser::parseJsonAndGetFile, data, "premium_animation");
     result->maskPosition = tryParseJson<MaskPosition>(&TgTypeParser::parseJsonAndGetMaskPosition, data, "mask_position");
     result->fileSize = data.get<std::int32_t>("file_size", 0);
     return result;
@@ -412,6 +421,7 @@ std::string TgTypeParser::parseSticker(const Sticker::Ptr& object) const {
     appendToJson(result, "thumb", parsePhotoSize(object->thumb));
     appendToJson(result, "emoji", object->emoji);
     appendToJson(result, "set_name", object->setName);
+    appendToJson(result, "premium_animation", parseFile(object->premiumAnimation));
     appendToJson(result, "mask_position", parseMaskPosition(object->maskPosition));
     appendToJson(result, "file_size", object->fileSize);
     removeLastComma(result);
@@ -643,7 +653,7 @@ Video::Ptr TgTypeParser::parseJsonAndGetVideo(const boost::property_tree::ptree&
     result->thumb = tryParseJson<PhotoSize>(&TgTypeParser::parseJsonAndGetPhotoSize, data, "thumb");
     result->fileName = data.get<std::string>("file_name", "");
     result->mimeType = data.get<std::string>("mime_type", "");
-    result->fileSize = data.get<std::int32_t>("file_size", 0);
+    result->fileSize = data.get<std::int64_t>("file_size", 0);
     return result;
 }
 
@@ -673,7 +683,7 @@ Voice::Ptr TgTypeParser::parseJsonAndGetVoice(const boost::property_tree::ptree&
     result->fileUniqueId = data.get<std::string>("file_unique_id", "");
     result->duration = data.get<std::int32_t>("duration", 0);
     result->mimeType = data.get<std::string>("mime_type", "");
-    result->fileSize = data.get<std::int32_t>("file_size", 0);
+    result->fileSize = data.get<std::int64_t>("file_size", 0);
     return result;
 }
 
@@ -796,7 +806,7 @@ Animation::Ptr TgTypeParser::parseJsonAndGetAnimation(const boost::property_tree
     result->thumb = tryParseJson<PhotoSize>(&TgTypeParser::parseJsonAndGetPhotoSize, data, "thumb");
     result->fileName = data.get<std::string>("file_name", "");
     result->mimeType = data.get<std::string>("mime_type", "");
-    result->fileSize = data.get<std::int32_t>("file_size", 0);
+    result->fileSize = data.get<std::int64_t>("file_size", 0);
     return result;
 }
 
@@ -1274,7 +1284,7 @@ File::Ptr TgTypeParser::parseJsonAndGetFile(const boost::property_tree::ptree& d
     auto result(std::make_shared<File>());
     result->fileId = data.get<std::string>("file_id", "");
     result->fileUniqueId = data.get<std::string>("file_unique_id", "");
-    result->fileSize = data.get<std::int32_t>("file_size", 0);
+    result->fileSize = data.get<std::int64_t>("file_size", 0);
     result->filePath = data.get<std::string>("file_path", "");
     return result;
 }

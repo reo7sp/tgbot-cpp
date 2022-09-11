@@ -1,18 +1,19 @@
-#ifndef TGBOT_CPP_FILE_H
-#define TGBOT_CPP_FILE_H
+#ifndef TGBOT_FILE_H
+#define TGBOT_FILE_H
 
 #include <cstdint>
-#include <string>
 #include <memory>
+#include <string>
 
 namespace TgBot {
 
 /**
  * @brief This object represents a file ready to be downloaded.
- * The file can be downloaded via @ref Api::downloadFile.
- * It is guaranteed that the @ref File::filePath will be valid for at least 1 hour.
- * When the @ref File::filePath expires, a new one can be requested by calling @ref Api::getFile.
- * Maximum file size to download is 20 MB
+ * The file can be downloaded via Api::downloadFile.
+ * It is guaranteed that the File::filePath will be valid for at least 1 hour.
+ * When the File::filePath expires, a new one can be requested by calling Api::getFile.
+ * 
+ * The maximum file size to download is 20 MB
  *
  * @ingroup types
  */
@@ -33,16 +34,19 @@ public:
     std::string fileUniqueId;
 
     /**
-     * @brief Optional. File size, if known
+     * @brief Optional. File size in bytes.
+     * 
+     * It can be bigger than 2^31 and some programming languages may have difficulty/silent defects in interpreting it.
+     * But it has at most 52 significant bits, so a signed 64-bit integer or double-precision float type are safe for storing this value.
      */
-    std::int32_t fileSize;
+    std::int64_t fileSize;
 
     /**
      * @brief Optional. File path.
-     * Use @ref Api::downloadFile to get the file.
+     * Use Api::downloadFile to get the file.
      */
     std::string filePath;
 };
 }
 
-#endif //TGBOT_CPP_FILE_H
+#endif //TGBOT_FILE_H

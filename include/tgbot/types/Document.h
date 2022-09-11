@@ -1,11 +1,11 @@
-#ifndef TGBOT_CPP_DOCUMENT_H
-#define TGBOT_CPP_DOCUMENT_H
+#ifndef TGBOT_DOCUMENT_H
+#define TGBOT_DOCUMENT_H
 
 #include "tgbot/types/PhotoSize.h"
 
 #include <cstdint>
-#include <string>
 #include <memory>
+#include <string>
 
 namespace TgBot {
 
@@ -46,10 +46,13 @@ public:
     std::string mimeType;
 
     /**
-     * @brief Optional. File size
+     * @brief Optional. File size in bytes.
+     * 
+     * It can be bigger than 2^31 and some programming languages may have difficulty/silent defects in interpreting it.
+     * But it has at most 52 significant bits, so a signed 64-bit integer or double-precision float type are safe for storing this value.
      */
-    std::int32_t fileSize;
+    std::int64_t fileSize;
 };
 }
 
-#endif //TGBOT_CPP_DOCUMENT_H
+#endif //TGBOT_DOCUMENT_H

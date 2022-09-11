@@ -69,37 +69,40 @@ public:
                                         const StringArrayPtr& allowedUpdates = nullptr) const;
 
     /**
-     * @brief Use this method to specify a url and receive incoming updates via an outgoing webhook.
-     * Whenever there is an update for the bot, we will send an HTTPS POST request to the specified url, containing a JSON-serialized @ref Update.
+     * @brief Use this method to specify a URL and receive incoming updates via an outgoing webhook.
+     * 
+     * Whenever there is an update for the bot, we will send an HTTPS POST request to the specified URL, containing a JSON-serialized Update.
      * In case of an unsuccessful request, we will give up after a reasonable amount of attempts.
      *
-     * If you'd like to make sure that the Webhook request comes from Telegram, we recommend using a secret path in the URL, e.g. https://www.example.com/<token>.
-     * Since nobody else knows your bot's token, you can be pretty sure it's us.
+     * If you'd like to make sure that the webhook was set by you, you can specify secret data in the parameter secretToken.
+     * If specified, the request will contain a header “X-Telegram-Bot-Api-Secret-Token” with the secret token as content.
      * 
-     * You will not be able to receive updates using @ref Api::getUpdates for as long as an outgoing webhook is set up.
+     * You will not be able to receive updates using Api::getUpdates for as long as an outgoing webhook is set up.
      * 
      * To use a self-signed certificate, you need to upload your public key certificate using certificate parameter.
      * Please upload as InputFile, sending a String will not work.
      * 
-     * Ports currently supported for Webhooks: 443, 80, 88, 8443.
+     * Ports currently supported for webhooks: 443, 80, 88, 8443.
      * 
      * If you're having any trouble setting up webhooks, please check out https://core.telegram.org/bots/webhooks.
      *
-     * @param url HTTPS url to send updates to. Use an empty string to remove webhook integration
+     * @param url HTTPS URL to send updates to. Use an empty string to remove webhook integration
      * @param certificate Optional. Upload your public key certificate so that the root certificate in use can be checked. See https://core.telegram.org/bots/self-signed for details.
-     * @param maxConnection Optional. Maximum allowed number of simultaneous HTTPS connections to the webhook for update delivery, 1-100. Use lower values to limit the load on your bot's server, and higher values to increase your bot's throughput.
-     * @param allowedUpdates Optional. A JSON-serialized list of the update types you want your bot to receive. For example, specify [“message”, “edited_channel_post”, “callback_query”] to only receive updates of these types. See Update for a complete list of available update types. Specify an empty list to receive all updates regardless of type (default). If not specified, the previous setting will be used. Please note that this parameter doesn't affect updates created before the call to the setWebhook, so unwanted updates may be received for a short period of time.
+     * @param maxConnection Optional. The maximum allowed number of simultaneous HTTPS connections to the webhook for update delivery, 1-100. Defaults to 40. Use lower values to limit the load on your bot's server, and higher values to increase your bot's throughput.
+     * @param allowedUpdates Optional. A JSON-serialized list of the update types you want your bot to receive. For example, specify [“message”, “edited_channel_post”, “callback_query”] to only receive updates of these types. See Update for a complete list of available update types. Specify an empty list to receive all update types except chatMember (default). If not specified, the previous setting will be used. Please note that this parameter doesn't affect updates created before the call to the setWebhook, so unwanted updates may be received for a short period of time.
      * @param ipAddress Optional. The fixed IP address which will be used to send webhook requests instead of the IP address resolved through DNS
      * @param dropPendingUpdates Optional. Pass True to drop all pending updates
+     * @param secretToken Optional. A secret token to be sent in a header “X-Telegram-Bot-Api-Secret-Token” in every webhook request, 1-256 characters. Only characters A-Z, a-z, 0-9, _ and - are allowed. The header is useful to ensure that the request comes from a webhook set by you.
      * 
-     * @return True on success.
+     * @return Returns True on success.
      */
     bool setWebhook(const std::string& url,
                     InputFile::Ptr certificate = nullptr,
                     std::int32_t maxConnection = 40,
                     const StringArrayPtr& allowedUpdates = nullptr,
                     const std::string& ipAddress = "",
-                    bool dropPendingUpdates = false) const;
+                    bool dropPendingUpdates = false,
+                    const std::string& secretToken = "") const;
 
     /**
      * @brief Use this method to remove webhook integration if you decide to switch back to @ref Api::getUpdates.
@@ -1428,6 +1431,53 @@ public:
                              const std::vector<std::int32_t>& suggestedTipAmounts = std::vector<std::int32_t>(),
                              const std::string& startParameter = "",
                              bool protectContent = false) const;
+
+    /**
+     * @brief Use this method to create a link for an invoice.
+     *
+     * @param title Product name, 1-32 characters
+     * @param description Product description, 1-255 characters
+     * @param payload Bot-defined invoice payload, 1-128 bytes. This will not be displayed to the user, use for your internal processes.
+     * @param providerToken Payment provider token, obtained via BotFather
+     * @param currency Three-letter ISO 4217 currency code, see https://core.telegram.org/bots/payments#supported-currencies
+     * @param prices Price breakdown, a JSON-serialized list of components (e.g. product price, tax, discount, delivery cost, delivery tax, bonus, etc.)
+     * @param maxTipAmount Optional. The maximum accepted amount for tips in the smallest units of the currency (integer, not float/double). For example, for a maximum tip of US$ 1.45 pass maxTipAmount = 145. See the exp parameter in https://core.telegram.org/bots/payments/currencies.json, it shows the number of digits past the decimal point for each currency (2 for the majority of currencies). Defaults to 0
+     * @param suggestedTipAmounts Optional. A JSON-serialized array of suggested amounts of tips in the smallest units of the currency (integer, not float/double). At most 4 suggested tip amounts can be specified. The suggested tip amounts must be positive, passed in a strictly increased order and must not exceed maxTipAmount.
+     * @param providerData Optional. JSON-serialized data about the invoice, which will be shared with the payment provider. A detailed description of required fields should be provided by the payment provider.
+     * @param photoUrl Optional. URL of the product photo for the invoice. Can be a photo of the goods or a marketing image for a service.
+     * @param photoSize Optional. Photo size in bytes
+     * @param photoWidth Optional. Photo width
+     * @param photoHeight Optional. Photo height
+     * @param needName Optional. Pass True, if you require the user's full name to complete the order
+     * @param needPhoneNumber Optional. Pass True, if you require the user's phone number to complete the order
+     * @param needEmail Optional. Pass True, if you require the user's email address to complete the order
+     * @param needShippingAddress Optional. Pass True, if you require the user's shipping address to complete the order
+     * @param sendPhoneNumberToProvider Optional. Pass True, if the user's phone number should be sent to the provider
+     * @param sendEmailToProvider Optional. Pass True, if the user's email address should be sent to the provider
+     * @param isFlexible Optional. Pass True, if the final price depends on the shipping method
+     *
+     * @return Returns the created invoice link as String on success.
+     */
+    std::string createInvoiceLink(const std::string& title,
+                                  const std::string& description,
+                                  const std::string& payload,
+                                  const std::string& providerToken,
+                                  const std::string& currency,
+                                  const std::vector<LabeledPrice::Ptr>& prices,
+                                  std::int32_t maxTipAmount = 0,
+                                  const std::vector<std::int32_t>& suggestedTipAmounts = std::vector<std::int32_t>(),
+                                  const std::string& providerData = "",
+                                  const std::string& photoUrl = "",
+                                  std::int32_t photoSize = 0,
+                                  std::int32_t photoWidth = 0,
+                                  std::int32_t photoHeight = 0,
+                                  bool needName = false,
+                                  bool needPhoneNumber = false,
+                                  bool needEmail = false,
+                                  bool needShippingAddress = false,
+                                  bool sendPhoneNumberToProvider = false,
+                                  bool sendEmailToProvider = false,
+                                  bool isFlexible = false) const;
 
     /**
      * @brief Use this method to reply to shipping queries.
