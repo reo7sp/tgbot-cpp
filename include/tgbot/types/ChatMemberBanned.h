@@ -26,7 +26,7 @@ public:
     /**
      * @brief Date when restrictions will be lifted for this user; unix time
      */
-    std::int32_t untilDate;
+    std::uint32_t untilDate;
 };
 }
 

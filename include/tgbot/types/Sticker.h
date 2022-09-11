@@ -1,12 +1,13 @@
-#ifndef TGBOT_CPP_STICKER_H
-#define TGBOT_CPP_STICKER_H
+#ifndef TGBOT_STICKER_H
+#define TGBOT_STICKER_H
 
 #include "tgbot/types/PhotoSize.h"
+#include "tgbot/types/File.h"
 #include "tgbot/types/MaskPosition.h"
 
 #include <cstdint>
-#include <string>
 #include <memory>
+#include <string>
 
 namespace TgBot {
 
@@ -21,6 +22,13 @@ public:
     typedef std::shared_ptr<Sticker> Ptr;
 
     /**
+     * @brief Enum of possible types of a sticker.
+     */
+    enum class Type {
+        Regular, Mask, CustomEmoji
+    };
+
+    /**
      * @brief Identifier for this file, which can be used to download or reuse the file
      */
     std::string fileId;
@@ -30,6 +38,12 @@ public:
      * Can't be used to download or reuse the file.
      */
     std::string fileUniqueId;
+
+    /**
+     * @brief Type of the sticker, currently one of “regular”, “mask”, “custom_emoji”.
+     * The type of the sticker is independent from its format, which is determined by the fields isAnimated and isVideo.
+     */
+    Type type;
 
     /**
      * @brief Sticker width
@@ -47,7 +61,12 @@ public:
     bool isAnimated;
 
     /**
-     * @brief Optional. Sticker thumbnail in the .webp or .jpg format
+     * @brief True, if the sticker is a video sticker
+     */
+    bool isVideo;
+
+    /**
+     * @brief Optional. Sticker thumbnail in the .WEBP or .JPG format
      */
     PhotoSize::Ptr thumb;
 
@@ -62,15 +81,25 @@ public:
     std::string setName;
 
     /**
+     * @brief Optional. For premium regular stickers, premium animation for the sticker
+     */
+    File::Ptr premiumAnimation;
+
+    /**
      * @brief Optional. For mask stickers, the position where the mask should be placed
      */
     MaskPosition::Ptr maskPosition;
 
     /**
-     * @brief Optional. File size
+     * @brief Optional. For custom emoji stickers, unique identifier of the custom emoji
+     */
+    std::string customEmojiId;
+
+    /**
+     * @brief Optional. File size in bytes
      */
     std::int32_t fileSize;
 };
 }
 
-#endif //TGBOT_CPP_STICKER_H
+#endif //TGBOT_STICKER_H

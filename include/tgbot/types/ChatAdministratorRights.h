@@ -1,32 +1,18 @@
-#ifndef TGBOT_CHATMEMBERADMINISTRATOR_H
-#define TGBOT_CHATMEMBERADMINISTRATOR_H
-
-#include "tgbot/types/ChatMember.h"
+#ifndef TGBOT_CHATADMINISTRATORRIGHTS_H
+#define TGBOT_CHATADMINISTRATORRIGHTS_H
 
 #include <memory>
-#include <string>
 
 namespace TgBot {
 
 /**
- * @brief Represents a chat member that has some additional privileges.
+ * @brief Represents the rights of an administrator in a chat.
  *
  * @ingroup types
  */
-class ChatMemberAdministrator : public ChatMember {
+class ChatAdministratorRights {
 public:
-    static const std::string STATUS;
-
-    typedef std::shared_ptr<ChatMemberAdministrator> Ptr;
-
-    ChatMemberAdministrator() {
-        this->status = STATUS;
-    }
-
-    /**
-     * @brief True, if the bot is allowed to edit administrator privileges of that user
-     */
-    bool canBeEdited;
+    typedef std::shared_ptr<ChatAdministratorRights> Ptr;
 
     /**
      * @brief True, if the user's presence in the chat is hidden
@@ -45,7 +31,7 @@ public:
     bool canDeleteMessages;
 
     /**
-     * @brief rue, if the administrator can manage video chats
+     * @brief True, if the administrator can manage video chats
      */
     bool canManageVideoChats;
 
@@ -83,12 +69,7 @@ public:
      * @brief Optional. True, if the user is allowed to pin messages; groups and supergroups only
      */
     bool canPinMessages;
-
-    /**
-     * @brief Optional. Custom title for this user
-     */
-    std::string customTitle;
 };
 }
 
-#endif //TGBOT_CHATMEMBERADMINISTRATOR_H
+#endif //TGBOT_CHATADMINISTRATORRIGHTS_H

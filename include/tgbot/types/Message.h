@@ -1,33 +1,34 @@
-#ifndef TGBOT_CPP_MESSAGE_H
-#define TGBOT_CPP_MESSAGE_H
+#ifndef TGBOT_MESSAGE_H
+#define TGBOT_MESSAGE_H
 
-#include "tgbot/types/Chat.h"
 #include "tgbot/types/User.h"
+#include "tgbot/types/Chat.h"
 #include "tgbot/types/Message.h"
+#include "tgbot/types/MessageEntity.h"
+#include "tgbot/types/Animation.h"
 #include "tgbot/types/Audio.h"
 #include "tgbot/types/Document.h"
-#include "tgbot/types/Animation.h"
-#include "tgbot/types/Sticker.h"
-#include "tgbot/types/Poll.h"
-#include "tgbot/types/Dice.h"
-#include "tgbot/types/Video.h"
-#include "tgbot/types/Contact.h"
-#include "tgbot/types/Location.h"
-#include "tgbot/types/Game.h"
 #include "tgbot/types/PhotoSize.h"
-#include "tgbot/types/MessageEntity.h"
-#include "tgbot/types/Venue.h"
-#include "tgbot/types/Voice.h"
+#include "tgbot/types/Sticker.h"
+#include "tgbot/types/Video.h"
 #include "tgbot/types/VideoNote.h"
+#include "tgbot/types/Voice.h"
+#include "tgbot/types/Contact.h"
+#include "tgbot/types/Dice.h"
+#include "tgbot/types/Game.h"
+#include "tgbot/types/Poll.h"
+#include "tgbot/types/Venue.h"
+#include "tgbot/types/Location.h"
 #include "tgbot/types/MessageAutoDeleteTimerChanged.h"
 #include "tgbot/types/Invoice.h"
 #include "tgbot/types/SuccessfulPayment.h"
 #include "tgbot/types/PassportData.h"
 #include "tgbot/types/ProximityAlertTriggered.h"
-#include "tgbot/types/VoiceChatScheduled.h"
-#include "tgbot/types/VoiceChatStarted.h"
-#include "tgbot/types/VoiceChatEnded.h"
-#include "tgbot/types/VoiceChatParticipantsInvited.h"
+#include "tgbot/types/VideoChatScheduled.h"
+#include "tgbot/types/VideoChatStarted.h"
+#include "tgbot/types/VideoChatEnded.h"
+#include "tgbot/types/VideoChatParticipantsInvited.h"
+#include "tgbot/types/WebAppData.h"
 #include "tgbot/types/InlineKeyboardMarkup.h"
 
 #include <cstdint>
@@ -333,24 +334,29 @@ public:
     ProximityAlertTriggered::Ptr proximityAlertTriggered;
 
     /**
-     * @brief Optional. Service message: voice chat scheduled
+     * @brief Optional. Service message: video chat scheduled
      */
-    VoiceChatScheduled::Ptr voiceChatScheduled;
+    VideoChatScheduled::Ptr videoChatScheduled;
 
     /**
-     * @brief Optional. Service message: voice chat started
+     * @brief Optional. Service message: video chat started
      */
-    VoiceChatStarted::Ptr voiceChatStarted;
+    VideoChatStarted::Ptr videoChatStarted;
 
     /**
-     * @brief Optional. Service message: voice chat ended
+     * @brief Optional. Service message: video chat ended
      */
-    VoiceChatEnded::Ptr voiceChatEnded;
+    VideoChatEnded::Ptr videoChatEnded;
 
     /**
-     * @brief Optional. Service message: new participants invited to a voice chat
+     * @brief Optional. Service message: new participants invited to a video chat
      */
-    VoiceChatParticipantsInvited::Ptr voiceChatParticipantsInvited;
+    VideoChatParticipantsInvited::Ptr videoChatParticipantsInvited;
+
+    /**
+     * @brief Optional. Service message: data sent by a Web App
+     */
+    WebAppData::Ptr webAppData;
 
     /**
      * @brief Optional. Inline keyboard attached to the message.
@@ -360,4 +366,4 @@ public:
 };
 }
 
-#endif //TGBOT_CPP_MESSAGE_H
+#endif //TGBOT_MESSAGE_H

@@ -10,7 +10,8 @@
 namespace TgBot {
 
 /**
- * @brief This object represents one special entity in a text message. For example, hashtags, usernames, URLs, etc.
+ * @brief This object represents one special entity in a text message.
+ * For example, hashtags, usernames, URLs, etc.
  *
  * @ingroup types
  */
@@ -19,10 +20,17 @@ public:
     typedef std::shared_ptr<MessageEntity> Ptr;
 
     /**
-     * @brief Type of the entity.
-     * Can be “mention” (@username), “hashtag” (#hashtag), “cashtag” ($USD), “bot_command” (/start@jobs_bot), “url” (https://telegram.org), “email” (do-not-reply@telegram.org), “phone_number” (+1-212-555-0123), “bold” (bold text), “italic” (italic text), “underline” (underlined text), “strikethrough” (strikethrough text), “code” (monowidth string), “pre” (monowidth block), “text_link” (for clickable text URLs), “text_mention” (for users without usernames)
+     * @brief Enum of possible types.
      */
-    std::string type;
+    enum class Type {
+        Mention, Hashtag, Cashtag, BotCommand, Url, Email, PhoneNumber, Bold, Italic, Underline, Strikethrough, Spoiler, Code, Pre, TextLink, TextMention, CustomEmoji
+    };
+
+    /**
+     * @brief Type of the entity.
+     * Currently, can be “mention” (@username), “hashtag” (#hashtag), “cashtag” ($USD), “bot_command” (/start@jobs_bot), “url” (https://telegram.org), “email” (do-not-reply@telegram.org), “phone_number” (+1-212-555-0123), “bold” (bold text), “italic” (italic text), “underline” (underlined text), “strikethrough” (strikethrough text), “spoiler” (spoiler message), “code” (monowidth string), “pre” (monowidth block), “text_link” (for clickable text URLs), “text_mention” (for users without usernames), “custom_emoji” (for inline custom emoji stickers)
+     */
+    Type type;
 
     /**
      * @brief Offset in UTF-16 code units to the start of the entity
@@ -35,7 +43,7 @@ public:
     std::int32_t length;
 
     /**
-     * @brief Optional. For “text_link” only, url that will be opened after user taps on the text
+     * @brief Optional. For “text_link” only, URL that will be opened after user taps on the text
      */
     std::string url;
 
@@ -48,6 +56,12 @@ public:
      * @brief Optional. For “pre” only, the programming language of the entity text
      */
     std::string language;
+
+    /**
+     * @brief Optional. For “custom_emoji” only, unique identifier of the custom emoji.
+     * Use Api::getCustomEmojiStickers to get full information about the sticker
+     */
+    std::string customEmojiId;
 };
 }
 

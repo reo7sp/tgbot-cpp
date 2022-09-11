@@ -1,5 +1,5 @@
-#ifndef TGBOT_CPP_USER_H
-#define TGBOT_CPP_USER_H
+#ifndef TGBOT_USER_H
+#define TGBOT_USER_H
 
 #include <cstdint>
 #include <string>
@@ -18,7 +18,10 @@ public:
     typedef std::shared_ptr<User> Ptr;
 
     /**
-     * @brief Unique identifier for this user or bot
+     * @brief Unique identifier for this user or bot.
+     * 
+     * This number may have more than 32 significant bits and some programming languages may have difficulty/silent defects in interpreting it.
+     * But it has at most 52 significant bits, so a 64-bit integer or double-precision float type are safe for storing this identifier.
      */
     std::int64_t id;
 
@@ -28,17 +31,17 @@ public:
     bool isBot;
 
     /**
-     * @brief User‘s or bot’s first name
+     * @brief User's or bot's first name
      */
     std::string firstName;
 
     /**
-     * @brief Optional. User‘s or bot’s last name
+     * @brief Optional. User's or bot's last name
      */
     std::string lastName;
 
     /**
-     * @brief Optional. User‘s or bot’s username
+     * @brief Optional. User's or bot's username
      */
     std::string username;
 
@@ -48,23 +51,33 @@ public:
     std::string languageCode;
 
     /**
+     * @brief Optional. True, if this user is a Telegram Premium user
+     */
+    bool isPremium;
+
+    /**
+     * @brief Optional. True, if this user added the bot to the attachment menu
+     */
+    bool addedToAttachmentMenu;
+
+    /**
      * @brief Optional. True, if the bot can be invited to groups.
-     * Returned only in @ref Api::getMe.
+     * Returned only in Api::getMe.
      */
     bool canJoinGroups;
 
     /**
      * @brief Optional. True, if privacy mode is disabled for the bot.
-     * Returned only in @ref Api::getMe.
+     * Returned only in Api::getMe.
      */
     bool canReadAllGroupMessages;
 
     /**
      * @brief Optional. True, if the bot supports inline queries.
-     * Returned only in @ref Api::getMe.
+     * Returned only in Api::getMe.
      */
     bool supportsInlineQueries;
 };
 }
 
-#endif //TGBOT_CPP_USER_H
+#endif //TGBOT_USER_H

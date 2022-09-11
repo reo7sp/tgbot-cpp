@@ -1,11 +1,11 @@
-#ifndef TGBOT_CPP_AUDIO_H
-#define TGBOT_CPP_AUDIO_H
+#ifndef TGBOT_AUDIO_H
+#define TGBOT_AUDIO_H
 
 #include "tgbot/types/PhotoSize.h"
 
 #include <cstdint>
-#include <string>
 #include <memory>
+#include <string>
 
 namespace TgBot {
 
@@ -56,9 +56,12 @@ public:
     std::string mimeType;
 
     /**
-     * @brief Optional. File size
+     * @brief Optional. File size in bytes.
+     * 
+     * It can be bigger than 2^31 and some programming languages may have difficulty/silent defects in interpreting it.
+     * But it has at most 52 significant bits, so a signed 64-bit integer or double-precision float type are safe for storing this value.
      */
-    std::int32_t fileSize;
+    std::int64_t fileSize;
 
     /**
      * @brief Optional. Thumbnail of the album cover to which the music file belongs
@@ -67,4 +70,4 @@ public:
 };
 }
 
-#endif //TGBOT_CPP_AUDIO_H
+#endif //TGBOT_AUDIO_H

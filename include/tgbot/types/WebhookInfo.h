@@ -2,9 +2,9 @@
 #define TGBOT_WEBHOOKINFO_H
 
 #include <cstdint>
+#include <memory>
 #include <string>
 #include <vector>
-#include <memory>
 
 namespace TgBot {
 
@@ -48,12 +48,17 @@ public:
     std::string lastErrorMessage;
 
     /**
+     * @brief Optional. Unix time of the most recent error that happened when trying to synchronize available updates with Telegram datacenters
+     */
+    std::int32_t lastSynchronizationErrorDate;
+
+    /**
      * @brief Optional. Maximum allowed number of simultaneous HTTPS connections to the webhook for update delivery
      */
     std::int32_t maxConnections;
 
     /**
-     * @brief Optional. A list of update types the bot is subscribed to. Defaults to all update types
+     * @brief Optional. A list of update types the bot is subscribed to. Defaults to all update types except chatMember
      */
     std::vector<std::string> allowedUpdates;
 };
