@@ -1,5 +1,5 @@
-#ifndef TGBOT_CPP_API_H
-#define TGBOT_CPP_API_H
+#ifndef TGBOT_API_H
+#define TGBOT_API_H
 
 #include "tgbot/TgTypeParser.h"
 #include "tgbot/net/HttpClient.h"
@@ -19,6 +19,7 @@
 #include "tgbot/types/File.h"
 #include "tgbot/types/InputMedia.h"
 #include "tgbot/types/GameHighScore.h"
+#include "tgbot/types/SentWebAppMessage.h"
 #include "tgbot/types/LabeledPrice.h"
 #include "tgbot/types/ShippingOption.h"
 #include "tgbot/types/BotCommand.h"
@@ -751,26 +752,27 @@ public:
 
     /**
      * @brief Use this method to promote or demote a user in a supergroup or a channel.
-     * The bot must be an administrator in the chat for this to work and must have the appropriate admin rights.
+     * 
+     * The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights.
      * Pass False for all boolean parameters to demote a user.
      * 
      * @param chatId Unique identifier for the target chat or username of the target channel (in the format @channelusername)
      * @param userId Unique identifier of the target user
      * @param canChangeInfo Optional. Pass True, if the administrator can change chat title, photo and other settings
      * @param canPostMessages Optional. Pass True, if the administrator can create channel posts, channels only
-     * @param canEditMessages Optional. Pass True, if the administrator can edit messages of other users and can pin messages, channels only 
+     * @param canEditMessages Optional. Pass True, if the administrator can edit messages of other users and can pin messages, channels only
      * @param canDeleteMessages Optional. Pass True, if the administrator can delete messages of other users
      * @param canInviteUsers Optional. Pass True, if the administrator can invite new users to the chat
      * @param canPinMessages Optional. Pass True, if the administrator can pin messages, supergroups only
      * @param canPromoteMembers Optional. Pass True, if the administrator can add new administrators with a subset of their own privileges or demote administrators that he has promoted, directly or indirectly (promoted by administrators that were appointed by him)
      * @param isAnonymous Optional. Pass True, if the administrator's presence in the chat is hidden
      * @param canManageChat Optional. Pass True, if the administrator can access the chat event log, chat statistics, message statistics in channels, see channel members, see anonymous administrators in supergroups and ignore slow mode. Implied by any other administrator privilege
-     * @param canManageVoiceChats Optional. Pass True, if the administrator can manage voice chats, supergroups only
+     * @param canManageVideoChats Optional. Pass True, if the administrator can manage video chats
      * @param canRestrictMembers Optional. Pass True, if the administrator can restrict, ban or unban chat members
      * 
-     * @return True on success.
+     * @return Returns True on success.
      */
-    bool promoteChatMember(std::int64_t chatId,
+    bool promoteChatMember(boost::variant<std::int64_t, const std::string&> chatId,
                            std::int64_t userId,
                            bool canChangeInfo = false,
                            bool canPostMessages = false,
@@ -781,7 +783,7 @@ public:
                            bool canPromoteMembers = false,
                            bool isAnonymous = false,
                            bool canManageChat = false,
-                           bool canManageVoiceChats = false,
+                           bool canManageVideoChats = false,
                            bool canRestrictMembers = false) const;
 
     /**
@@ -1085,6 +1087,48 @@ public:
                                                const std::string& languageCode = "") const;
 
     /**
+     * @brief Use this method to change the bot's menu button in a private chat, or the default menu button.
+     * 
+     * @param chatId Optional. Unique identifier for the target private chat. If not specified, default bot's menu button will be changed
+     * @param menuButton Optional. A JSON-serialized object for the new bot's menu button. Defaults to MenuButtonDefault
+     * 
+     * @return Returns True on success.
+     */
+    bool setChatMenuButton(std::int64_t chatId = 0,
+                           MenuButton::Ptr menuButton = nullptr) const;
+
+    /**
+     * @brief Use this method to get the current value of the bot's menu button in a private chat, or the default menu button.
+     * 
+     * @param chatId Optional. Unique identifier for the target private chat. If not specified, default bot's menu button will be returned
+     * 
+     * @return Returns MenuButton on success.
+     */
+    MenuButton::Ptr getChatMenuButton(std::int64_t chatId = 0) const;
+
+    /**
+     * @brief Use this method to change the default administrator rights requested by the bot when it's added as an administrator to groups or channels.
+     * 
+     * These rights will be suggested to users, but they are are free to modify the list before adding the bot.
+     *
+     * @param rights Optional. A JSON-serialized object describing new default administrator rights. If not specified, the default administrator rights will be cleared.
+     * @param forChannels Optional. Pass True to change the default administrator rights of the bot in channels. Otherwise, the default administrator rights of the bot for groups and supergroups will be changed.
+     *
+     * @return Returns True on success.
+     */
+    bool setMyDefaultAdministratorRights(ChatAdministratorRights::Ptr rights = nullptr,
+                                         bool forChannels = false) const;
+
+    /**
+     * @brief Use this method to get the current default administrator rights of the bot.
+     *
+     * @param forChannels Optional. Pass True to get default administrator rights of the bot in channels. Otherwise, default administrator rights of the bot for groups and supergroups will be returned.
+     *
+     * @return Returns ChatAdministratorRights on success.
+     */
+    ChatAdministratorRights::Ptr getMyDefaultAdministratorRights(bool forChannels = false) const;
+
+    /**
      * @brief Use this method to edit text and game messages.
      * 
      * @param text New text of the message, 1-4096 characters after entities parsing
@@ -1314,6 +1358,17 @@ public:
                            std::int32_t cacheTime = 300, bool isPersonal = false, const std::string& nextOffset = "", const std::string& switchPmText = "", const std::string& switchPmParameter = "") const;
 
     /**
+     * @brief Use this method to set the result of an interaction with a Web App and send a corresponding message on behalf of the user to the chat from which the query originated.
+     * 
+     * @param webAppQueryId Unique identifier for the query to be answered
+     * @param result A JSON-serialized object describing the message to be sent
+     * 
+     * @return On success, a SentWebAppMessage object is returned.
+     */
+    SentWebAppMessage::Ptr answerWebAppQuery(const std::string& webAppQueryId,
+                                             InlineQueryResult::Ptr result) const;
+
+    /**
      * @brief Use this method to send invoices.
      * 
      * @param chatId Unique identifier for the target chat or username of the target channel (in the format @channelusername)
@@ -1483,4 +1538,4 @@ private:
 };
 }
 
-#endif //TGBOT_CPP_API_H
+#endif //TGBOT_API_H

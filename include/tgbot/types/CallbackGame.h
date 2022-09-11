@@ -6,7 +6,8 @@
 namespace TgBot {
 
 /**
- * @brief A placeholder, currently holds no information. Use BotFather to set up your game.
+ * @brief A placeholder, currently holds no information.
+ * Use BotFather to set up your game.
  *
  * @ingroup types
  */

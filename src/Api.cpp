@@ -1057,7 +1057,7 @@ bool Api::restrictChatMember(std::int64_t chatId, std::int64_t userId, TgBot::Ch
     return sendRequest("restrictChatMember", args).get<bool>("", false);
 }
 
-bool Api::promoteChatMember(std::int64_t chatId,
+bool Api::promoteChatMember(boost::variant<std::int64_t, const std::string&> chatId,
                             std::int64_t userId,
                             bool canChangeInfo,
                             bool canPostMessages,
@@ -1068,7 +1068,7 @@ bool Api::promoteChatMember(std::int64_t chatId,
                             bool canPromoteMembers,
                             bool isAnonymous,
                             bool canManageChat,
-                            bool canManageVoiceChats,
+                            bool canManageVideoChats,
                             bool canRestrictMembers) const {
     vector<HttpReqArg> args;
     args.reserve(13);
@@ -1090,8 +1090,8 @@ bool Api::promoteChatMember(std::int64_t chatId,
     if (canDeleteMessages) {
         args.emplace_back("can_delete_messages", canDeleteMessages);
     }
-    if (canManageVoiceChats) {
-        args.emplace_back("can_manage_voice_chats", canManageVoiceChats);
+    if (canManageVideoChats) {
+        args.emplace_back("can_manage_video_chats", canManageVideoChats);
     }
     if (canRestrictMembers) {
         args.emplace_back("can_restrict_members", canRestrictMembers);
@@ -1427,6 +1427,58 @@ std::vector<BotCommand::Ptr> Api::getMyCommands(BotCommandScope::Ptr scope,
     return _tgTypeParser.parseJsonAndGetArray<BotCommand>(&TgTypeParser::parseJsonAndGetBotCommand, sendRequest("getMyCommands", args));
 }
 
+bool Api::setChatMenuButton(std::int64_t chatId,
+                            MenuButton::Ptr menuButton) const {
+    vector<HttpReqArg> args;
+    args.reserve(2);
+
+    if (chatId != 0) {
+        args.emplace_back("chat_id", chatId);
+    }
+    if (menuButton != nullptr) {
+        args.emplace_back("menu_button", _tgTypeParser.parseMenuButton(menuButton));
+    }
+
+    return sendRequest("setChatMenuButton", args).get<bool>("", false);
+}
+
+MenuButton::Ptr Api::getChatMenuButton(std::int64_t chatId) const {
+    vector<HttpReqArg> args;
+    args.reserve(1);
+
+    if (chatId != 0) {
+        args.emplace_back("chat_id", chatId);
+    }
+
+    return _tgTypeParser.parseJsonAndGetMenuButton(sendRequest("getChatMenuButton", args));
+}
+
+bool Api::setMyDefaultAdministratorRights(ChatAdministratorRights::Ptr rights,
+                                     bool forChannels) const {
+    vector<HttpReqArg> args;
+    args.reserve(2);
+
+    if (rights != nullptr) {
+        args.emplace_back("rights", _tgTypeParser.parseChatAdministratorRights(rights));
+    }
+    if (forChannels) {
+        args.emplace_back("for_channels", forChannels);
+    }
+
+    return sendRequest("setMyDefaultAdministratorRights", args).get<bool>("", false);
+}
+
+ChatAdministratorRights::Ptr Api::getMyDefaultAdministratorRights(bool forChannels) const {
+    vector<HttpReqArg> args;
+    args.reserve(1);
+
+    if (forChannels) {
+        args.emplace_back("for_channels", forChannels);
+    }
+
+    return _tgTypeParser.parseJsonAndGetChatAdministratorRights(sendRequest("getMyDefaultAdministratorRights", args));
+}
+
 Message::Ptr Api::editMessageText(const std::string& text,
                                   std::int64_t chatId,
                                   std::int32_t messageId,
@@ -1753,6 +1805,17 @@ bool Api::answerInlineQuery(const string& inlineQueryId, const std::vector<Inlin
         args.emplace_back("switch_pm_parameter", switchPmParameter);
     }
     return sendRequest("answerInlineQuery", args).get<bool>("", false);
+}
+
+SentWebAppMessage::Ptr Api::answerWebAppQuery(const std::string& webAppQueryId,
+                                              InlineQueryResult::Ptr result) const {
+    vector<HttpReqArg> args;
+    args.reserve(2);
+
+    args.emplace_back("web_app_query_id", webAppQueryId);
+    args.emplace_back("result", _tgTypeParser.parseInlineQueryResult(result));
+
+    return _tgTypeParser.parseJsonAndGetSentWebAppMessage(sendRequest("answerWebAppQuery", args));
 }
 
 Message::Ptr Api::sendInvoice(boost::variant<std::int64_t, const std::string&> chatId,

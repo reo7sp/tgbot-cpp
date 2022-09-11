@@ -36,6 +36,7 @@ set(SRC_LIST
     src/types/InputFile.cpp
     src/types/InputMedia.cpp 
     src/types/InputMessageContent.cpp
+    src/types/MenuButton.cpp
     src/types/PassportElementError.cpp)
 
 # libs
@@ -66,7 +67,7 @@ endif()
 include_directories(${Boost_INCLUDE_DIR})
 link_directories(${Boost_LIBRARY_DIR_RELEASE})
 if(NOT Boost_USE_STATIC_LIBS)
-	add_definitions(-DBOOST_ALL_DYN_LINK)
+    add_definitions(-DBOOST_ALL_DYN_LINK)
 endif()
 
 set(LIB_LIST
@@ -107,7 +108,7 @@ if(BUILD_DOCUMENTATION)
         WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
         COMMENT "Generating API documentation with Doxygen"
         VERBATIM)
-		install(DIRECTORY  ${CMAKE_CURRENT_SOURCE_DIR}/doc/html/ TYPE DOC)
+        install(DIRECTORY  ${CMAKE_CURRENT_SOURCE_DIR}/doc/html/ TYPE DOC)
 endif()
 
 if(BUILD_SHARED_LIBS)

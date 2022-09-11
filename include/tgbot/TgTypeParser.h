@@ -1,5 +1,5 @@
-#ifndef TGBOT_CPP_TGTYPEPARSER_H
-#define TGBOT_CPP_TGTYPEPARSER_H
+#ifndef TGBOT_TGTYPEPARSER_H
+#define TGBOT_TGTYPEPARSER_H
 
 #include "tgbot/export.h"
 #include "tgbot/types/User.h"
@@ -23,15 +23,17 @@
 #include "tgbot/types/VideoNote.h"
 #include "tgbot/types/Contact.h"
 #include "tgbot/types/Location.h"
+#include "tgbot/types/WebAppData.h"
 #include "tgbot/types/ProximityAlertTriggered.h"
 #include "tgbot/types/MessageAutoDeleteTimerChanged.h"
-#include "tgbot/types/VoiceChatScheduled.h"
-#include "tgbot/types/VoiceChatStarted.h"
-#include "tgbot/types/VoiceChatEnded.h"
-#include "tgbot/types/VoiceChatParticipantsInvited.h"
+#include "tgbot/types/VideoChatScheduled.h"
+#include "tgbot/types/VideoChatStarted.h"
+#include "tgbot/types/VideoChatEnded.h"
+#include "tgbot/types/VideoChatParticipantsInvited.h"
 #include "tgbot/types/Update.h"
 #include "tgbot/types/UserProfilePhotos.h"
 #include "tgbot/types/File.h"
+#include "tgbot/types/WebAppInfo.h"
 #include "tgbot/types/ReplyKeyboardMarkup.h"
 #include "tgbot/types/KeyboardButton.h"
 #include "tgbot/types/KeyboardButtonPollType.h"
@@ -47,6 +49,7 @@
 #include "tgbot/types/ChatMemberUpdated.h"
 #include "tgbot/types/ChatJoinRequest.h"
 #include "tgbot/types/ChatPhoto.h"
+#include "tgbot/types/ChatAdministratorRights.h"
 #include "tgbot/types/ResponseParameters.h"
 #include "tgbot/types/GenericReply.h"
 #include "tgbot/types/InlineQuery.h"
@@ -72,13 +75,15 @@
 #include "tgbot/types/InlineQueryResultVideo.h"
 #include "tgbot/types/InlineQueryResultVoice.h"
 #include "tgbot/types/ChosenInlineResult.h"
-#include "tgbot/types/CallbackGame.h"
+#include "tgbot/types/SentWebAppMessage.h"
 #include "tgbot/types/Animation.h"
 #include "tgbot/types/Game.h"
+#include "tgbot/types/CallbackGame.h"
 #include "tgbot/types/GameHighScore.h"
 #include "tgbot/types/CallbackQuery.h"
 #include "tgbot/types/InlineKeyboardMarkup.h"
 #include "tgbot/types/InlineKeyboardButton.h"
+#include "tgbot/types/LoginUrl.h"
 #include "tgbot/types/WebhookInfo.h"
 #include "tgbot/types/InputMessageContent.h"
 #include "tgbot/types/InputTextMessageContent.h"
@@ -103,6 +108,10 @@
 #include "tgbot/types/BotCommandScopeChat.h"
 #include "tgbot/types/BotCommandScopeChatAdministrators.h"
 #include "tgbot/types/BotCommandScopeChatMember.h"
+#include "tgbot/types/MenuButton.h"
+#include "tgbot/types/MenuButtonCommands.h"
+#include "tgbot/types/MenuButtonWebApp.h"
+#include "tgbot/types/MenuButtonDefault.h"
 #include "tgbot/types/InputMedia.h"
 #include "tgbot/types/InputMediaPhoto.h"
 #include "tgbot/types/InputMediaVideo.h"
@@ -205,6 +214,9 @@ public:
     Game::Ptr parseJsonAndGetGame(const boost::property_tree::ptree& data) const;
     std::string parseGame(const Game::Ptr& object) const;
 
+    CallbackGame::Ptr parseJsonAndGetCallbackGame(const boost::property_tree::ptree& data) const;
+    std::string parseCallbackGame(const CallbackGame::Ptr& object) const;
+
     GameHighScore::Ptr parseJsonAndGetGameHighScore(const boost::property_tree::ptree& data) const;
     std::string parseGameHighScore(const GameHighScore::Ptr& object) const;
 
@@ -220,23 +232,26 @@ public:
     Venue::Ptr parseJsonAndGetVenue(const boost::property_tree::ptree& data) const;
     std::string parseVenue(const Venue::Ptr& object) const;
 
+    WebAppData::Ptr parseJsonAndGetWebAppData(const boost::property_tree::ptree& data) const;
+    std::string parseWebAppData(const WebAppData::Ptr& object) const;
+
     ProximityAlertTriggered::Ptr parseJsonAndGetProximityAlertTriggered(const boost::property_tree::ptree& data) const;
     std::string parseProximityAlertTriggered(const ProximityAlertTriggered::Ptr& object) const;
 
     MessageAutoDeleteTimerChanged::Ptr parseJsonAndGetMessageAutoDeleteTimerChanged(const boost::property_tree::ptree& data) const;
     std::string parseMessageAutoDeleteTimerChanged(const MessageAutoDeleteTimerChanged::Ptr& object) const;
 
-    VoiceChatScheduled::Ptr parseJsonAndGetVoiceChatScheduled(const boost::property_tree::ptree& data) const;
-    std::string parseVoiceChatScheduled(const VoiceChatScheduled::Ptr& object) const;
+    VideoChatScheduled::Ptr parseJsonAndGetVideoChatScheduled(const boost::property_tree::ptree& data) const;
+    std::string parseVideoChatScheduled(const VideoChatScheduled::Ptr& object) const;
 
-    VoiceChatStarted::Ptr parseJsonAndGetVoiceChatStarted(const boost::property_tree::ptree& data) const;
-    std::string parseVoiceChatStarted(const VoiceChatStarted::Ptr& object) const;
+    VideoChatStarted::Ptr parseJsonAndGetVideoChatStarted(const boost::property_tree::ptree& data) const;
+    std::string parseVideoChatStarted(const VideoChatStarted::Ptr& object) const;
 
-    VoiceChatEnded::Ptr parseJsonAndGetVoiceChatEnded(const boost::property_tree::ptree& data) const;
-    std::string parseVoiceChatEnded(const VoiceChatEnded::Ptr& object) const;
+    VideoChatEnded::Ptr parseJsonAndGetVideoChatEnded(const boost::property_tree::ptree& data) const;
+    std::string parseVideoChatEnded(const VideoChatEnded::Ptr& object) const;
 
-    VoiceChatParticipantsInvited::Ptr parseJsonAndGetVoiceChatParticipantsInvited(const boost::property_tree::ptree& data) const;
-    std::string parseVoiceChatParticipantsInvited(const VoiceChatParticipantsInvited::Ptr& object) const;
+    VideoChatParticipantsInvited::Ptr parseJsonAndGetVideoChatParticipantsInvited(const boost::property_tree::ptree& data) const;
+    std::string parseVideoChatParticipantsInvited(const VideoChatParticipantsInvited::Ptr& object) const;
 
     Update::Ptr parseJsonAndGetUpdate(const boost::property_tree::ptree& data) const;
     std::string parseUpdate(const Update::Ptr& object) const;
@@ -264,6 +279,9 @@ public:
 
     File::Ptr parseJsonAndGetFile(const boost::property_tree::ptree& data) const;
     std::string parseFile(const File::Ptr& object) const;
+
+    WebAppInfo::Ptr parseJsonAndGetWebAppInfo(const boost::property_tree::ptree& data) const;
+    std::string parseWebAppInfo(const WebAppInfo::Ptr& object) const;
 
     ReplyKeyboardMarkup::Ptr parseJsonAndGetReplyKeyboardMarkup(const boost::property_tree::ptree& data) const;
     std::string parseReplyKeyboardMarkup(const ReplyKeyboardMarkup::Ptr& object) const;
@@ -312,6 +330,9 @@ public:
 
     ChatInviteLink::Ptr parseJsonAndGetChatInviteLink(const boost::property_tree::ptree& data) const;
     std::string parseChatInviteLink(const ChatInviteLink::Ptr& object) const;
+
+    ChatAdministratorRights::Ptr parseJsonAndGetChatAdministratorRights(const boost::property_tree::ptree& data) const;
+    std::string parseChatAdministratorRights(const ChatAdministratorRights::Ptr& object) const;
 
     ResponseParameters::Ptr parseJsonAndGetResponseParameters(const boost::property_tree::ptree& data) const;
     std::string parseResponseParameters(const ResponseParameters::Ptr& object) const;
@@ -388,6 +409,9 @@ public:
     ChosenInlineResult::Ptr parseJsonAndGetChosenInlineResult(const boost::property_tree::ptree& data) const;
     std::string parseChosenInlineResult(const ChosenInlineResult::Ptr& object) const;
 
+    SentWebAppMessage::Ptr parseJsonAndGetSentWebAppMessage(const boost::property_tree::ptree& data) const;
+    std::string parseSentWebAppMessage(const SentWebAppMessage::Ptr& object) const;
+
     CallbackQuery::Ptr parseJsonAndGetCallbackQuery(const boost::property_tree::ptree& data) const;
     std::string parseCallbackQuery(const CallbackQuery::Ptr& object) const;
 
@@ -396,6 +420,9 @@ public:
 
     InlineKeyboardButton::Ptr parseJsonAndGetInlineKeyboardButton(const boost::property_tree::ptree& data) const;
     std::string parseInlineKeyboardButton(const InlineKeyboardButton::Ptr& object) const;
+
+    LoginUrl::Ptr parseJsonAndGetLoginUrl(const boost::property_tree::ptree& data) const;
+    std::string parseLoginUrl(const LoginUrl::Ptr& object) const;
 
     WebhookInfo::Ptr parseJsonAndGetWebhookInfo(const boost::property_tree::ptree& data) const;
     std::string parseWebhookInfo(const WebhookInfo::Ptr& object) const;
@@ -450,6 +477,18 @@ public:
 
     BotCommandScopeChatMember::Ptr parseJsonAndGetBotCommandScopeChatMember(const boost::property_tree::ptree& data) const;
     std::string parseBotCommandScopeChatMember(const BotCommandScopeChatMember::Ptr& object) const;
+
+    MenuButton::Ptr parseJsonAndGetMenuButton(const boost::property_tree::ptree& data) const;
+    std::string parseMenuButton(const MenuButton::Ptr& object) const;
+
+    MenuButtonCommands::Ptr parseJsonAndGetMenuButtonCommands(const boost::property_tree::ptree& data) const;
+    std::string parseMenuButtonCommands(const MenuButtonCommands::Ptr& object) const;
+
+    MenuButtonWebApp::Ptr parseJsonAndGetMenuButtonWebApp(const boost::property_tree::ptree& data) const;
+    std::string parseMenuButtonWebApp(const MenuButtonWebApp::Ptr& object) const;
+
+    MenuButtonDefault::Ptr parseJsonAndGetMenuButtonDefault(const boost::property_tree::ptree& data) const;
+    std::string parseMenuButtonDefault(const MenuButtonDefault::Ptr& object) const;
 
     OrderInfo::Ptr parseJsonAndGetOrderInfo(const boost::property_tree::ptree& data) const;
     std::string parseOrderInfo(const OrderInfo::Ptr& object) const;
@@ -694,4 +733,4 @@ private:
 
 }
 
-#endif //TGBOT_CPP_TGTYPEPARSER_H
+#endif //TGBOT_TGTYPEPARSER_H

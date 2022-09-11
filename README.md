@@ -11,9 +11,9 @@ Documentation is located [here](http://reo7sp.github.io/tgbot-cpp).
 
 ## State
 
-- [x] Bot API 3.0 ~ 3.6
-- [x] Bot API 4.0 ~ 4.9
+- [x] Bot API 3.0 ~ 4.9
 - [x] Bot API 5.0 ~ 5.7 (Implemented all APIs except 'Run Your Own Bot API Server')
+- [x] Bot API 6.0
 
 
 ## Sample
