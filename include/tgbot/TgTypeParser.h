@@ -727,10 +727,8 @@ private:
         }
     }
 
-
     void appendToJson(std::string& json, const std::string& varName, const std::string& value) const;
 };
-
 }
 
 #endif //TGBOT_TGTYPEPARSER_H

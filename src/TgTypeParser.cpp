@@ -25,6 +25,7 @@ Chat::Ptr TgTypeParser::parseJsonAndGetChat(const boost::property_tree::ptree& d
     result->photo = tryParseJson<ChatPhoto>(&TgTypeParser::parseJsonAndGetChatPhoto, data, "photo");
     result->bio = data.get<std::string>("bio", "");
     result->hasPrivateForwards = data.get<bool>("has_private_forwards", false);
+    result->hasRestrictedVoiceAndVideoMessages = data.get<bool>("has_restricted_voice_and_video_messages", false);
     result->joinToSendMessages = data.get<bool>("join_to_send_messages", false);
     result->joinByRequest = data.get<bool>("join_by_request", false);
     result->description = data.get<std::string>("description", "");
@@ -64,6 +65,7 @@ std::string TgTypeParser::parseChat(const Chat::Ptr& object) const {
     appendToJson(result, "photo", parseChatPhoto(object->photo));
     appendToJson(result, "bio", object->bio);
     appendToJson(result, "has_private_forwards", object->hasPrivateForwards);
+    appendToJson(result, "has_restricted_voice_and_video_messages", object->hasRestrictedVoiceAndVideoMessages);
     appendToJson(result, "join_to_send_messages", object->joinToSendMessages);
     appendToJson(result, "join_by_request", object->joinByRequest);
     appendToJson(result, "description", object->description);
@@ -122,12 +124,48 @@ std::string TgTypeParser::parseUser(const User::Ptr& object) const {
 
 MessageEntity::Ptr TgTypeParser::parseJsonAndGetMessageEntity(const boost::property_tree::ptree& data) const{
     auto result(std::make_shared<MessageEntity>());
-    result->type = data.get<std::string>("type", "");
+    std::string type = data.get<std::string>("type", "");
+    if (type == "mention") {
+        result->type = MessageEntity::Type::Mention;
+    } else if (type == "hashtag") {
+        result->type = MessageEntity::Type::Hashtag;
+    } else if (type == "cashtag") {
+        result->type = MessageEntity::Type::Cashtag;
+    } else if (type == "bot_command") {
+        result->type = MessageEntity::Type::BotCommand;
+    } else if (type == "url") {
+        result->type = MessageEntity::Type::Url;
+    } else if (type == "email") {
+        result->type = MessageEntity::Type::Email;
+    } else if (type == "phone_number") {
+        result->type = MessageEntity::Type::PhoneNumber;
+    } else if (type == "bold") {
+        result->type = MessageEntity::Type::Bold;
+    } else if (type == "italic") {
+        result->type = MessageEntity::Type::Italic;
+    } else if (type == "underline") {
+        result->type = MessageEntity::Type::Underline;
+    } else if (type == "strikethrough") {
+        result->type = MessageEntity::Type::Strikethrough;
+    } else if (type == "spoiler") {
+        result->type = MessageEntity::Type::Spoiler;
+    } else if (type == "code") {
+        result->type = MessageEntity::Type::Code;
+    } else if (type == "pre") {
+        result->type = MessageEntity::Type::Pre;
+    } else if (type == "text_link") {
+        result->type = MessageEntity::Type::TextLink;
+    } else if (type == "text_mention") {
+        result->type = MessageEntity::Type::TextMention;
+    } else if (type == "custom_emoji") {
+        result->type = MessageEntity::Type::CustomEmoji;
+    }
     result->offset = data.get<std::int32_t>("offset", 0);
     result->length = data.get<std::int32_t>("length", 0);
     result->url = data.get<std::string>("url", "");
     result->user = tryParseJson<User>(&TgTypeParser::parseJsonAndGetUser, data, "user");
     result->language = data.get<std::string>("language", "");
+    result->customEmojiId = data.get<std::string>("custom_emoji_id", "");
     return result;
 }
 
@@ -137,12 +175,47 @@ std::string TgTypeParser::parseMessageEntity(const MessageEntity::Ptr& object) c
     }
     std::string result;
     result += '{';
-    appendToJson(result, "type", object->type);
+    if (object->type == MessageEntity::Type::Mention) {
+        appendToJson(result, "type", "mention");
+    } else if (object->type == MessageEntity::Type::Hashtag) {
+        appendToJson(result, "type", "hashtag");
+    } else if (object->type == MessageEntity::Type::Cashtag) {
+        appendToJson(result, "type", "cashtag");
+    } else if (object->type == MessageEntity::Type::BotCommand) {
+        appendToJson(result, "type", "bot_command");
+    } else if (object->type == MessageEntity::Type::Url) {
+        appendToJson(result, "type", "url");
+    } else if (object->type == MessageEntity::Type::Email) {
+        appendToJson(result, "type", "email");
+    } else if (object->type == MessageEntity::Type::PhoneNumber) {
+        appendToJson(result, "type", "phone_number");
+    } else if (object->type == MessageEntity::Type::Bold) {
+        appendToJson(result, "type", "bold");
+    } else if (object->type == MessageEntity::Type::Italic) {
+        appendToJson(result, "type", "italic");
+    } else if (object->type == MessageEntity::Type::Underline) {
+        appendToJson(result, "type", "underline");
+    } else if (object->type == MessageEntity::Type::Strikethrough) {
+        appendToJson(result, "type", "strikethrough");
+    } else if (object->type == MessageEntity::Type::Spoiler) {
+        appendToJson(result, "type", "spoiler");
+    } else if (object->type == MessageEntity::Type::Code) {
+        appendToJson(result, "type", "code");
+    } else if (object->type == MessageEntity::Type::Pre) {
+        appendToJson(result, "type", "pre");
+    } else if (object->type == MessageEntity::Type::TextLink) {
+        appendToJson(result, "type", "text_link");
+    } else if (object->type == MessageEntity::Type::TextMention) {
+        appendToJson(result, "type", "text_mention");
+    } else if (object->type == MessageEntity::Type::CustomEmoji) {
+        appendToJson(result, "type", "custom_emoji");
+    }
     appendToJson(result, "offset", object->offset);
     appendToJson(result, "length", object->length);
     appendToJson(result, "url", object->url);
     appendToJson(result, "user", parseUser(object->user));
-    appendToJson(result, "language", object->url);
+    appendToJson(result, "language", object->language);
+    appendToJson(result, "custom_emoji_id", object->customEmojiId);
     removeLastComma(result);
     result += '}';
     return result;
@@ -393,6 +466,14 @@ Sticker::Ptr TgTypeParser::parseJsonAndGetSticker(const boost::property_tree::pt
     auto result(std::make_shared<Sticker>());
     result->fileId = data.get<std::string>("file_id", "");
     result->fileUniqueId = data.get<std::string>("file_unique_id", "");
+    std::string type = data.get<std::string>("type", "");
+    if (type == "regular") {
+        result->type = Sticker::Type::Regular;
+    } else if (type == "mask") {
+        result->type = Sticker::Type::Mask;
+    } else if (type == "custom_emoji") {
+        result->type = Sticker::Type::CustomEmoji;
+    }
     result->width = data.get<std::int32_t>("width", 0);
     result->height = data.get<std::int32_t>("height", 0);
     result->isAnimated = data.get<bool>("is_animated", false);
@@ -402,6 +483,7 @@ Sticker::Ptr TgTypeParser::parseJsonAndGetSticker(const boost::property_tree::pt
     result->setName = data.get<std::string>("set_name", "");
     result->premiumAnimation = tryParseJson<File>(&TgTypeParser::parseJsonAndGetFile, data, "premium_animation");
     result->maskPosition = tryParseJson<MaskPosition>(&TgTypeParser::parseJsonAndGetMaskPosition, data, "mask_position");
+    result->customEmojiId = data.get<std::string>("custom_emoji_id", "");
     result->fileSize = data.get<std::int32_t>("file_size", 0);
     return result;
 }
@@ -414,6 +496,13 @@ std::string TgTypeParser::parseSticker(const Sticker::Ptr& object) const {
     result += '{';
     appendToJson(result, "file_id", object->fileId);
     appendToJson(result, "file_unique_id", object->fileUniqueId);
+    if (object->type == Sticker::Type::Regular) {
+        appendToJson(result, "type", "regular");
+    } else if (object->type == Sticker::Type::Mask) {
+        appendToJson(result, "type", "mask");
+    } else if (object->type == Sticker::Type::CustomEmoji) {
+        appendToJson(result, "type", "custom_emoji");
+    }
     appendToJson(result, "width", object->width);
     appendToJson(result, "height", object->height);
     appendToJson(result, "is_animated", object->isAnimated);
@@ -423,6 +512,7 @@ std::string TgTypeParser::parseSticker(const Sticker::Ptr& object) const {
     appendToJson(result, "set_name", object->setName);
     appendToJson(result, "premium_animation", parseFile(object->premiumAnimation));
     appendToJson(result, "mask_position", parseMaskPosition(object->maskPosition));
+    appendToJson(result, "custom_emoji_id", object->customEmojiId);
     appendToJson(result, "file_size", object->fileSize);
     removeLastComma(result);
     result += '}';
@@ -433,9 +523,16 @@ StickerSet::Ptr TgTypeParser::parseJsonAndGetStickerSet(const boost::property_tr
     auto result(std::make_shared<StickerSet>());
     result->name = data.get<std::string>("name", "");
     result->title = data.get<std::string>("title", "");
+    std::string type = data.get<std::string>("type", "");
+    if (type == "regular") {
+        result->type = StickerSet::Type::Regular;
+    } else if (type == "mask") {
+        result->type = StickerSet::Type::Mask;
+    } else if (type == "custom_emoji") {
+        result->type = StickerSet::Type::CustomEmoji;
+    }
     result->isAnimated = data.get<bool>("is_animated", false);
     result->isVideo = data.get<bool>("is_video", false);
-    result->containsMasks = data.get<bool>("contains_masks", false);
     result->stickers = parseJsonAndGetArray<Sticker>(&TgTypeParser::parseJsonAndGetSticker, data, "stickers");
     result->thumb = tryParseJson<PhotoSize>(&TgTypeParser::parseJsonAndGetPhotoSize, data, "thumb");
     return result;
@@ -449,9 +546,15 @@ std::string TgTypeParser::parseStickerSet(const StickerSet::Ptr& object) const {
     result += '{';
     appendToJson(result, "name", object->name);
     appendToJson(result, "title", object->title);
+    if (object->type == StickerSet::Type::Regular) {
+        appendToJson(result, "type", "regular");
+    } else if (object->type == StickerSet::Type::Mask) {
+        appendToJson(result, "type", "mask");
+    } else if (object->type == StickerSet::Type::CustomEmoji) {
+        appendToJson(result, "type", "custom_emoji");
+    }
     appendToJson(result, "is_animated", object->isAnimated);
     appendToJson(result, "is_video", object->isVideo);
-    appendToJson(result, "contains_masks", object->containsMasks);
     appendToJson(result, "stickers", parseArray(&TgTypeParser::parseSticker, object->stickers));
     appendToJson(result, "thumb", parsePhotoSize(object->thumb));
     removeLastComma(result);

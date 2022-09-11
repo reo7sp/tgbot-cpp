@@ -1676,6 +1676,17 @@ StickerSet::Ptr Api::getStickerSet(const string& name) const {
     return _tgTypeParser.parseJsonAndGetStickerSet(sendRequest("getStickerSet", args));
 }
 
+std::vector<Sticker::Ptr> Api::getCustomEmojiStickers(const std::vector<std::string>& customEmojiIds) const {
+    vector<HttpReqArg> args;
+    args.reserve(1);
+
+    args.emplace_back("custom_emoji_ids", _tgTypeParser.parseArray<std::string>([] (const std::string& customEmojiId) -> std::string {
+        return "\"" + StringTools::urlEncode(customEmojiId) + "\"";
+    }, customEmojiIds));
+
+    return _tgTypeParser.parseJsonAndGetArray<Sticker>(&TgTypeParser::parseJsonAndGetSticker, sendRequest("getCustomEmojiStickers", args));
+}
+
 File::Ptr Api::uploadStickerFile(std::int64_t userId, const InputFile::Ptr pngSticker) const {
     vector<HttpReqArg> args;
     args.reserve(2);
@@ -1688,13 +1699,13 @@ bool Api::createNewStickerSet(std::int64_t userId,
                               const std::string& name,
                               const std::string& title,
                               const std::string& emojis,
-                              bool containsMasks,
                               MaskPosition::Ptr maskPosition,
                               boost::variant<InputFile::Ptr, const std::string&> pngSticker,
                               InputFile::Ptr tgsSticker,
-                              InputFile::Ptr webmSticker) const {
+                              InputFile::Ptr webmSticker,
+                              const std::string& stickerType) const {
     vector<HttpReqArg> args;
-    args.reserve(9);
+    args.reserve(10);
 
     args.emplace_back("user_id", userId);
     args.emplace_back("name", name);
@@ -1711,10 +1722,10 @@ bool Api::createNewStickerSet(std::int64_t userId,
     if (webmSticker != nullptr) {
         args.emplace_back("webm_sticker", webmSticker->data, true, webmSticker->mimeType, webmSticker->fileName);
     }
-    args.emplace_back("emojis", emojis);
-    if (containsMasks) {
-        args.emplace_back("contains_mask", containsMasks);
+    if (!stickerType.empty()) {
+        args.emplace_back("sticker_type", stickerType);
     }
+    args.emplace_back("emojis", emojis);
     if (maskPosition != nullptr) {
         args.emplace_back("mask_position", _tgTypeParser.parseMaskPosition(maskPosition));
     }

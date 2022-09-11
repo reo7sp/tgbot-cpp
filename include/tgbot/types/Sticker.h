@@ -22,6 +22,13 @@ public:
     typedef std::shared_ptr<Sticker> Ptr;
 
     /**
+     * @brief Enum of possible types of a sticker.
+     */
+    enum class Type {
+        Regular, Mask, CustomEmoji
+    };
+
+    /**
      * @brief Identifier for this file, which can be used to download or reuse the file
      */
     std::string fileId;
@@ -31,6 +38,12 @@ public:
      * Can't be used to download or reuse the file.
      */
     std::string fileUniqueId;
+
+    /**
+     * @brief Type of the sticker, currently one of “regular”, “mask”, “custom_emoji”.
+     * The type of the sticker is independent from its format, which is determined by the fields isAnimated and isVideo.
+     */
+    Type type;
 
     /**
      * @brief Sticker width
@@ -68,7 +81,7 @@ public:
     std::string setName;
 
     /**
-     * @brief Optional. Premium animation for the sticker, if the sticker is premium
+     * @brief Optional. For premium regular stickers, premium animation for the sticker
      */
     File::Ptr premiumAnimation;
 
@@ -76,6 +89,11 @@ public:
      * @brief Optional. For mask stickers, the position where the mask should be placed
      */
     MaskPosition::Ptr maskPosition;
+
+    /**
+     * @brief Optional. For custom emoji stickers, unique identifier of the custom emoji
+     */
+    std::string customEmojiId;
 
     /**
      * @brief Optional. File size in bytes

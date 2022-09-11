@@ -20,6 +20,13 @@ public:
     typedef std::shared_ptr<StickerSet> Ptr;
 
     /**
+     * @brief Enum of possible types of a sticker.
+     */
+    enum class Type {
+        Regular, Mask, CustomEmoji
+    };
+
+    /**
      * @brief Sticker set name
      */
     std::string name;
@@ -30,6 +37,11 @@ public:
     std::string title;
 
     /**
+     * @brief Type of stickers in the set, currently one of “regular”, “mask”, “custom_emoji”
+     */
+    Type type;
+
+    /**
      * @brief True, if the sticker set contains animated stickers
      */
     bool isAnimated;
@@ -38,11 +50,6 @@ public:
      * @brief True, if the sticker set contains video stickers
      */
     bool isVideo;
-
-    /**
-     * @brief True, if the sticker set contains masks
-     */
-    bool containsMasks;
 
     /**
      * @brief List of all set stickers

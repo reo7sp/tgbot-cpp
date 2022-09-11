@@ -82,6 +82,12 @@ public:
     bool hasPrivateForwards;
 
     /**
+     * @brief Optional. True, if the privacy settings of the other party restrict sending voice and video note messages in the private chat.
+     * Returned only in Api::getChat.
+     */
+    bool hasRestrictedVoiceAndVideoMessages;
+
+    /**
      * @brief Optional. True, if users need to join the supergroup before they can send messages.
      * Returned only in Api::getChat.
      */

@@ -1253,6 +1253,15 @@ public:
     StickerSet::Ptr getStickerSet(const std::string& name) const;
 
     /**
+     * @brief Use this method to get information about custom emoji stickers by their identifiers.
+     *
+     * @param customEmojiIds List of custom emoji identifiers. At most 200 custom emoji identifiers can be specified.
+     *
+     * @return Returns an Array of Sticker objects.
+     */
+    std::vector<Sticker::Ptr> getCustomEmojiStickers(const std::vector<std::string>& customEmojiIds) const;
+
+    /**
      * @brief Use this method to upload a .png file with a sticker for later use in createNewStickerSet and addStickerToSet methods (can be used multiple times).
      * @param userId User identifier of sticker file owner.
      * @param pngSticker Png image with the sticker, must be up to 512 kilobytes in size, dimensions must not exceed 512px, and either width or height must be exactly 512px.
@@ -1267,14 +1276,14 @@ public:
      * You must use exactly one of the fields pngSticker, tgsSticker, or webmSticker.
      *
      * @param userId User identifier of created sticker set owner
-     * @param name Short name of sticker set, to be used in t.me/addstickers/ URLs (e.g., animals). Can contain only english letters, digits and underscores. Must begin with a letter, can't contain consecutive underscores and must end in “_by_<bot username>”. <bot_username> is case insensitive. 1-64 characters.
+     * @param name Short name of sticker set, to be used in t.me/addstickers/ URLs (e.g., animals). Can contain only English letters, digits and underscores. Must begin with a letter, can't contain consecutive underscores and must end in "_by_<bot_username>". <bot_username> is case insensitive. 1-64 characters.
      * @param title Sticker set title, 1-64 characters
      * @param emojis One or more emoji corresponding to the sticker
-     * @param containsMasks Optional. Pass True, if a set of mask stickers should be created
      * @param maskPosition Optional. A JSON-serialized object for position where the mask should be placed on faces
      * @param pngSticker Optional. PNG image with the sticker, must be up to 512 kilobytes in size, dimensions must not exceed 512px, and either width or height must be exactly 512px. Pass a fileId as a String to send a file that already exists on the Telegram servers, pass an HTTP URL as a String for Telegram to get a file from the Internet, or upload a new one using multipart/form-data. https://core.telegram.org/bots/api#sending-files
      * @param tgsSticker Optional. TGS animation with the sticker, uploaded using multipart/form-data. See https://core.telegram.org/stickers#animated-sticker-requirements for technical requirements
      * @param webmSticker Optional. WEBM video with the sticker, uploaded using multipart/form-data. See https://core.telegram.org/stickers#video-sticker-requirements for technical requirements
+     * @param stickerType Optional. Type of stickers in the set, pass “regular” or “mask”. Custom emoji sticker sets can't be created via the Bot API at the moment. By default, a regular sticker set is created.
      *
      * @return Returns True on success.
      */
@@ -1282,11 +1291,11 @@ public:
                              const std::string& name,
                              const std::string& title,
                              const std::string& emojis,
-                             bool containsMasks = false,
                              MaskPosition::Ptr maskPosition = nullptr,
                              boost::variant<InputFile::Ptr, const std::string&> pngSticker = "",
                              InputFile::Ptr tgsSticker = nullptr,
-                             InputFile::Ptr webmSticker = nullptr) const;
+                             InputFile::Ptr webmSticker = nullptr,
+                             const std::string& stickerType = "") const;
 
     /**
      * @brief Use this method to add a new sticker to a set created by the bot.
