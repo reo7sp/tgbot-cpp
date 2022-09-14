@@ -1,5 +1,6 @@
 CMakeCache.txt
 CMakeFiles
+CMakeSettings.json
 Makefile
 *.cmake
 install_manifest.txt
