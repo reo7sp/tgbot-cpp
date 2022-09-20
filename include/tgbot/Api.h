@@ -122,7 +122,7 @@ public:
      * Requires no parameters.
      * If the bot is using Api::getUpdates, will return an object with the url field empty.
      *
-     * @return On success, returns a WebhookInfo object.
+     * @return On success, returns a WebhookInfo object. If the bot is using getUpdates, will return a nullptr.
      */
     WebhookInfo::Ptr getWebhookInfo() const;
 
@@ -806,7 +806,7 @@ public:
     bool restrictChatMember(boost::variant<std::int64_t, const std::string&> chatId,
                             std::int64_t userId,
                             ChatPermissions::Ptr permissions,
-                            std::uint64_t untilDate = 0) const;
+                            std::int64_t untilDate = 0) const;
 
     /**
      * @brief Use this method to promote or demote a user in a supergroup or a channel.
@@ -923,7 +923,7 @@ public:
      * @param expireDate Optional. Point in time (Unix timestamp) when the link will expire
      * @param memberLimit Optional. The maximum number of users that can be members of the chat simultaneously after joining the chat via this invite link; 1-99999
      * @param name Optional. Invite link name; 0-32 characters
-     * @param createsJoinRequest Optional. True, if users joining the chat via the link need to be approved by chat administrators. If True, member_limit can't be specified
+     * @param createsJoinRequest Optional. True, if users joining the chat via the link need to be approved by chat administrators. If True, memberLimit can't be specified
      * 
      * @return Returns the new invite link as ChatInviteLink object.
      */
@@ -956,31 +956,34 @@ public:
 
     /**
      * @brief Use this method to revoke an invite link created by the bot.
+     * 
      * If the primary link is revoked, a new link is automatically generated.
-     * The bot must be an administrator in the chat for this to work and must have the appropriate admin rights.
+     * The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights.
      *
-     * @param chatId Unique identifier for the target chat or username of the target channel (in the format @channelusername)
+     * @param chatId Unique identifier of the target chat or username of the target channel (in the format @channelusername)
      * @param inviteLink The invite link to revoke
      *
-     * @return the revoked invite link as ChatInviteLink object.
+     * @return Returns the revoked invite link as ChatInviteLink object.
      */
-    ChatInviteLink::Ptr revokeChatInviteLink(std::int64_t chatId,
+    ChatInviteLink::Ptr revokeChatInviteLink(boost::variant<std::int64_t, const std::string&> chatId,
                                              const std::string& inviteLink) const;
 
     /**
      * @brief Use this method to approve a chat join request.
+     * 
      * The bot must be an administrator in the chat for this to work and must have the canInviteUsers administrator right.
      *
      * @param chatId Unique identifier for the target chat or username of the target channel (in the format @channelusername)
      * @param userId Unique identifier of the target user
      *
-     * @return True on success.
+     * @return Returns True on success.
      */
-    bool approveChatJoinRequest(std::int64_t chatId,
+    bool approveChatJoinRequest(boost::variant<std::int64_t, const std::string&> chatId,
                                 std::int64_t userId) const;
 
     /**
      * @brief Use this method to decline a chat join request.
+     * 
      * The bot must be an administrator in the chat for this to work and must have the canInviteUsers administrator right.
      *
      * @param chatId Unique identifier for the target chat or username of the target channel (in the format @channelusername)
@@ -988,154 +991,207 @@ public:
      *
      * @return True on success.
      */
-    bool declineChatJoinRequest(std::int64_t chatId,
+    bool declineChatJoinRequest(boost::variant<std::int64_t, const std::string&> chatId,
                                 std::int64_t userId) const;
 
     /**
      * @brief Use this method to set a new profile photo for the chat.
      *
      * Photos can't be changed for private chats.
+     * The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights.
      *
-     * @param chatId Unique identifier for the target chat.
-     * @param photo New chat photo.
-     * @return True on success
+     * @param chatId Unique identifier for the target chat or username of the target channel (in the format @channelusername)
+     * @param photo New chat photo, uploaded using multipart/form-data
+     * 
+     * @return Returns True on success.
      */
-    bool setChatPhoto(std::int64_t chatId, InputFile::Ptr photo) const;
+    bool setChatPhoto(boost::variant<std::int64_t, const std::string&> chatId,
+                      InputFile::Ptr photo) const;
 
     /**
      * @brief Use this method to delete a chat photo.
      *
      * Photos can't be changed for private chats.
+     * The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights.
      *
-     * @param chatId Unique identifier for the target chat.
-     * @return True on success
+     * @param chatId Unique identifier for the target chat or username of the target channel (in the format @channelusername)
+     * 
+     * @return Returns True on success.
      */
-    bool deleteChatPhoto(std::int64_t chatId) const;
+    bool deleteChatPhoto(boost::variant<std::int64_t, const std::string&> chatId) const;
 
     /**
      * @brief Use this method to change the title of a chat.
      *
      * Titles can't be changed for private chats.
+     * The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights.
      *
-     * @param chatId Unique identifier for the target chat.
-     * @param title New chat title, 1-255 characters.
-     * @return True on success
+     * @param chatId Unique identifier for the target chat or username of the target channel (in the format @channelusername)
+     * @param title New chat title, 1-255 characters
+     * 
+     * @return Returns True on success.
      */
-    bool setChatTitle(std::int64_t chatId, const std::string& title) const;
+    bool setChatTitle(boost::variant<std::int64_t, const std::string&> chatId,
+                      const std::string& title) const;
 
     /**
-     * @brief Use this method to change the description of a supergroup or a channel.
-     * @param chatId Unique identifier for the target chat.
-     * @param description New chat description, 1-255 characters.
-     * @return True on success
+     * @brief Use this method to change the description of a group, a supergroup or a channel.
+     * 
+     * The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights.
+     * 
+     * @param chatId Unique identifier for the target chat or username of the target channel (in the format @channelusername)
+     * @param description New chat description, 0-255 characters
+     * 
+     * @return Returns True on success.
      */
-    bool setChatDescription(std::int64_t chatId, const std::string& description) const;
+    bool setChatDescription(boost::variant<std::int64_t, const std::string&> chatId,
+                            const std::string& description = "") const;
 
     /**
-     * @brief Use this method to pin a message in a group, a supergroup, or a channel.
-     * @param chatId Unique identifier for the target chat or username of the target channel.
-     * @param messageId Identifier of a message to pin.
-     * @param disableNotification Optional. Pass True, if it is not necessary to send a notification to all chat members about the new pinned message. Notifications are always disabled in channels.
-     * @return True on success
+     * @brief Use this method to add a message to the list of pinned messages in a chat.
+     * 
+     * If the chat is not a private chat, the bot must be an administrator in the chat for this to work and must have the 'canPinMessages' administrator right in a supergroup or 'canEditMessages' administrator right in a channel.
+     * 
+     * @param chatId Unique identifier for the target chat or username of the target channel (in the format @channelusername)
+     * @param messageId Identifier of a message to pin
+     * @param disableNotification Optional. Pass True if it is not necessary to send a notification to all chat members about the new pinned message. Notifications are always disabled in channels and private chats.
+     * 
+     * @return Returns True on success.
      */
-    bool pinChatMessage(std::int64_t chatId, std::int32_t messageId, bool disableNotification = false) const;
+    bool pinChatMessage(boost::variant<std::int64_t, const std::string&> chatId,
+                        std::int32_t messageId,
+                        bool disableNotification = false) const;
 
     /**
      * @brief Use this method to remove a message from the list of pinned messages in a chat.
-     * If the chat is not a private chat, the bot must be an administrator in the chat for this to work and must have the 'can_pin_messages' admin right in a supergroup or 'can_edit_messages' admin right in a channel.
+     * 
+     * If the chat is not a private chat, the bot must be an administrator in the chat for this to work and must have the 'canPinMessages' administrator right in a supergroup or 'canEditMessages' administrator right in a channel.
      * 
      * @param chatId Unique identifier for the target chat or username of the target channel (in the format @channelusername)
      * @param messageId Optional. Identifier of a message to unpin. If not specified, the most recent pinned message (by sending date) will be unpinned.
      * 
-     * @return True on success.
+     * @return Returns True on success.
      */
-    bool unpinChatMessage(std::int64_t chatId, std::int32_t messageId = 0) const;
+    bool unpinChatMessage(boost::variant<std::int64_t, const std::string&> chatId,
+                          std::int32_t messageId = 0) const;
 
     /**
      * @brief Use this method to clear the list of pinned messages in a chat.
-     * If the chat is not a private chat, the bot must be an administrator in the chat for this to work and must have the 'can_pin_messages' admin right in a supergroup or 'can_edit_messages' admin right in a channel.
+     * 
+     * If the chat is not a private chat, the bot must be an administrator in the chat for this to work and must have the 'canPinMessages' administrator right in a supergroup or 'canEditMessages' administrator right in a channel.
      *
      * @param chatId Unique identifier for the target chat or username of the target channel (in the format @channelusername)
      *
-     * @return True on success.
+     * @return Returns True on success.
      */
-    bool unpinAllChatMessages(std::int64_t chatId) const;
+    bool unpinAllChatMessages(boost::variant<std::int64_t, const std::string&> chatId) const;
 
     /**
      * @brief Use this method for your bot to leave a group, supergroup or channel.
-     * @param chatId Unique identifier for the target chat of the target supergroup or channel.
-     * @return True on success
+     * 
+     * @param chatId Unique identifier for the target chat or username of the target supergroup or channel (in the format @channelusername)
+     * 
+     * @return Returns True on success.
      */
-    bool leaveChat(std::int64_t chatId) const;
+    bool leaveChat(boost::variant<std::int64_t, const std::string&> chatId) const;
 
     /**
      * @brief Use this method to get up to date information about the chat (current name of the user for one-on-one conversations, current username of a user, group or channel, etc.).
      * 
      * @param chatId Unique identifier for the target chat or username of the target supergroup or channel (in the format @channelusername)
      * 
-     * @return @ref Chat object on success.
+     * @return Returns a Chat object on success.
      */
-    Chat::Ptr getChat(std::int64_t chatId) const;
+    Chat::Ptr getChat(boost::variant<std::int64_t, const std::string&> chatId) const;
 
     /**
-    * @brief Use this method to get a list of administrators in a chat. On success, returns an Array of ChatMember objects that contains information about all chat administrators except other bots. If the chat is a group or a supergroup and no administrators were appointed, only the creator will be returned.
-    * @param chatId Unique identifier for the target chat of the target supergroup or channel.
-    * @return ChatMember object.
+    * @brief Use this method to get a list of administrators in a chat, which aren't bots.
+    * 
+    * @param chatId Unique identifier for the target chat or username of the target supergroup or channel (in the format @channelusername)
+    * 
+    * @return Returns an Array of ChatMember objects.
     */
-    std::vector<ChatMember::Ptr> getChatAdministrators(std::int64_t chatId) const;
+    std::vector<ChatMember::Ptr> getChatAdministrators(boost::variant<std::int64_t, const std::string&> chatId) const;
 
     /**
     * @brief Use this method to get the number of members in a chat.
     * 
     * @param chatId Unique identifier for the target chat or username of the target supergroup or channel (in the format @channelusername)
     * 
-    * @return Int on success.
+    * @return Returns Int on success.
     */
-    std::int32_t getChatMemberCount(std::int64_t chatId) const;
+    std::int32_t getChatMemberCount(boost::variant<std::int64_t, const std::string&> chatId) const;
 
     /**
-    * @brief Use this method to get information about a member of a chat. Returns a ChatMember object on success.
-    * @param chatId Unique identifier for the target chat of the target supergroup or channel.
+    * @brief Use this method to get information about a member of a chat.
+    * 
+    * @param chatId Unique identifier for the target chat or username of the target supergroup or channel (in the format @channelusername)
     * @param userId Unique identifier of the target user
-    * @return ChatMember object.
+    * 
+    * @return Returns a ChatMember object on success.
     */
-    ChatMember::Ptr getChatMember(std::int64_t chatId, std::int64_t userId) const;
+    ChatMember::Ptr getChatMember(boost::variant<std::int64_t, const std::string&> chatId,
+                                  std::int64_t userId) const;
 
     /**
-    * @brief Use this method to get information about a member of a chat. Returns a ChatMember object on success.
-    * @param chatId Unique identifier for the target chat of the target supergroup or channel.
-    * @param stickerSetName Name of the sticker set to be set as the group sticker set.
+    * @brief Use this method to set a new group sticker set for a supergroup.
+    * 
+    * The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights.
+    * Use the field canSetStickerSet optionally returned in Api::getChat requests to check if the bot can use this method.
+    * 
+    * @param chatId Unique identifier for the target chat or username of the target supergroup (in the format @supergroupusername)
+    * @param stickerSetName Name of the sticker set to be set as the group sticker set
+    * 
     * @return Returns True on success.
     */
-    bool setChatStickerSet(std::int64_t chatId, const std::string& stickerSetName) const;
+    bool setChatStickerSet(boost::variant<std::int64_t, const std::string&> chatId,
+                           const std::string& stickerSetName) const;
 
     /**
-    * @brief Use this method to get information about a member of a chat. Returns a ChatMember object on success.
-    * @param chatId Unique identifier for the target chat of the target supergroup or channel.
+    * @brief Use this method to delete a group sticker set from a supergroup.
+    * 
+    * The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights.
+    * Use the field canSetSticker_set optionally returned in Api::getChat requests to check if the bot can use this method.
+    * 
+    * @param chatId Unique identifier for the target chat or username of the target supergroup (in the format @supergroupusername)
+    * 
     * @return Returns True on success.
     */
-    bool deleteChatStickerSet(std::int64_t chatId) const;
+    bool deleteChatStickerSet(boost::variant<std::int64_t, const std::string&> chatId) const;
 
     /**
-     * @brief Use this method to send answers to callback queries sent from inline keyboards. The answer will be displayed to the user as a notification at the top of the chat screen or as an alert.
+     * @brief Use this method to send answers to callback queries sent from inline keyboards.
+     * 
+     * The answer will be displayed to the user as a notification at the top of the chat screen or as an alert.
+     * 
+     * Alternatively, the user can be redirected to the specified Game URL.
+     * For this option to work, you must first create a game for your bot via @BotFather and accept the terms.
+     * Otherwise, you may use links like t.me/your_bot?start=XXXX that open your bot with a parameter.
+     * 
      * @param callbackQueryId Unique identifier for the query to be answered
-     * @param text Optional	Text of the notification. If not specified, nothing will be shown to the user, 0-200 characters
-     * @param showAlert Optional If true, an alert will be shown by the client instead of a notification at the top of the chat screen. Defaults to false.
-     * @param url Optional	URL that will be opened by the user's client. If you have created a Game and accepted the conditions via @Botfather, specify the URL that opens your game – note that this will only work if the query comes from a callback_game button
-     * @param cacheTime Optional	The maximum amount of time in seconds that the result of the callback query may be cached client-side. Telegram apps will support caching starting in version 3.14. Defaults to 0.
-     * @return True on success
+     * @param text Optional. Text of the notification. If not specified, nothing will be shown to the user, 0-200 characters
+     * @param showAlert Optional. If True, an alert will be shown by the client instead of a notification at the top of the chat screen. Defaults to false.
+     * @param url Optional. URL that will be opened by the user's client. If you have created a Game and accepted the conditions via @BotFather, specify the URL that opens your game - note that this will only work if the query comes from an InlineKeyboardButton button.
+     * @param cacheTime Optional. The maximum amount of time in seconds that the result of the callback query may be cached client-side. Telegram apps will support caching starting in version 3.14. Defaults to 0.
+     * 
+     * @return On success, True is returned.
      */
-    bool answerCallbackQuery(const std::string& callbackQueryId, const std::string& text = "", bool showAlert = false, const std::string& url = "", std::int32_t cacheTime = 0) const;
+    bool answerCallbackQuery(const std::string& callbackQueryId,
+                             const std::string& text = "",
+                             bool showAlert = false,
+                             const std::string& url = "",
+                             std::int32_t cacheTime = 0) const;
 
     /**
      * @brief Use this method to change the list of the bot's commands.
+     * 
      * See https://core.telegram.org/bots#commands for more details about bot commands.
      * 
      * @param commands A JSON-serialized list of bot commands to be set as the list of the bot's commands. At most 100 commands can be specified.
      * @param scope Optional. A JSON-serialized object, describing scope of users for which the commands are relevant. Defaults to BotCommandScopeDefault.
      * @param languageCode Optional. A two-letter ISO 639-1 language code. If empty, commands will be applied to all users from the given scope, for whose language there are no dedicated commands
      * 
-     * @return True on success.
+     * @return Returns True on success.
      */
     bool setMyCommands(const std::vector<BotCommand::Ptr>& commands,
                        BotCommandScope::Ptr scope = nullptr,
@@ -1143,12 +1199,13 @@ public:
 
     /**
      * @brief Use this method to delete the list of the bot's commands for the given scope and user language.
+     * 
      * After deletion, higher level commands will be shown to affected users.
      *
      * @param scope Optional. A JSON-serialized object, describing scope of users for which the commands are relevant. Defaults to BotCommandScopeDefault.
      * @param languageCode Optional. A two-letter ISO 639-1 language code. If empty, commands will be applied to all users from the given scope, for whose language there are no dedicated commands
      *
-     * @return True on success.
+     * @return Returns True on success.
      */
     bool deleteMyCommands(BotCommandScope::Ptr scope = nullptr,
                           const std::string& languageCode = "") const;
@@ -1159,7 +1216,7 @@ public:
      * @param scope Optional. A JSON-serialized object, describing scope of users. Defaults to BotCommandScopeDefault.
      * @param languageCode Optional. A two-letter ISO 639-1 language code or an empty string
      * 
-     * @return Array of BotCommand on success. If commands aren't set, an empty list is returned.
+     * @return Returns an Array of BotCommand objects. If commands aren't set, an empty list is returned.
      */
     std::vector<BotCommand::Ptr> getMyCommands(BotCommandScope::Ptr scope = nullptr,
                                                const std::string& languageCode = "") const;
@@ -1168,7 +1225,7 @@ public:
      * @brief Use this method to change the bot's menu button in a private chat, or the default menu button.
      * 
      * @param chatId Optional. Unique identifier for the target private chat. If not specified, default bot's menu button will be changed
-     * @param menuButton Optional. A JSON-serialized object for the new bot's menu button. Defaults to MenuButtonDefault
+     * @param menuButton Optional. A JSON-serialized object for the bot's new menu button. Defaults to MenuButtonDefault
      * 
      * @return Returns True on success.
      */
@@ -1218,10 +1275,10 @@ public:
      * @param replyMarkup Optional. A JSON-serialized object for an inline keyboard.
      * @param entities Optional. List of special entities that appear in message text, which can be specified instead of parseMode
      * 
-     * @return On success, the edited Message is returned.
+     * @return On success, if the edited message is not an inline message, the edited Message is returned, otherwise nullptr is returned.
      */
     Message::Ptr editMessageText(const std::string& text,
-                                 std::int64_t chatId = 0,
+                                 boost::variant<std::int64_t, const std::string&> chatId = 0,
                                  std::int32_t messageId = 0,
                                  const std::string& inlineMessageId = "",
                                  const std::string& parseMode = "",
@@ -1240,9 +1297,9 @@ public:
      * @param parseMode Optional. Mode for parsing entities in the message caption. See https://core.telegram.org/bots/api#formatting-options for more details.
      * @param captionEntities Optional. List of special entities that appear in the caption, which can be specified instead of parseMode
      * 
-     * @return On success, the edited Message is returned.
+     * @return On success, if the edited message is not an inline message, the edited Message is returned, otherwise nullptr is returned.
      */
-    Message::Ptr editMessageCaption(std::int64_t chatId = 0,
+    Message::Ptr editMessageCaption(boost::variant<std::int64_t, const std::string&> chatId = 0,
                                     std::int32_t messageId = 0,
                                     const std::string& caption = "",
                                     const std::string& inlineMessageId = "",
@@ -1251,61 +1308,81 @@ public:
                                     const std::vector<MessageEntity::Ptr>& captionEntities = std::vector<MessageEntity::Ptr>()) const;
 
     /**
-     * @brief Use this method to edit audio, document, photo, or video messages.
+     * @brief Use this method to edit animation, audio, document, photo, or video messages.
      *
+     * If a message is part of a message album, then it can be edited only to an audio for audio albums, only to a document for document albums and to a photo or a video otherwise.
+     * When an inline message is edited, a new file can't be uploaded; use a previously uploaded file via its fileId or specify a URL.
      *
-     * If a message is a part of a message album, then it can be edited only to a photo or a video.
-     * Otherwise, message type can be changed arbitrarily. When inline message is edited, new file can't be uploaded.
-     * Use previously uploaded file via its fileId or specify a URL.
-     *
-     * @param media A JSON-serialized object for a new media content of the message.
-     * @param chatId Optional	Required if inline_message_id is not specified. Unique identifier for the target chat of the target channel.
-     * @param messageId Optional	Required if inline_message_id is not specified. Identifier of the sent message
-     * @param inlineMessageId Optional	Required if chat_id and message_id are not specified. Identifier of the inline message
-     * @param replyMarkup Optional	A JSON-serialized object for an inline keyboard.
-     * @return On success, if the edited message was sent by the bot, the edited Message is returned, otherwise nullptr is returned.
+     * @param media A JSON-serialized object for a new media content of the message
+     * @param chatId Optional. Required if inlineMessageId is not specified. Unique identifier for the target chat or username of the target channel (in the format @channelusername)
+     * @param messageId Optional. Required if inlineMessageId is not specified. Identifier of the message to edit
+     * @param inlineMessageId Optional. Required if chatId and messageId are not specified. Identifier of the inline message
+     * @param replyMarkup Optional. A JSON-serialized object for a new inline keyboard.
+     * 
+     * @return On success, if the edited message is not an inline message, the edited Message is returned, otherwise nullptr is returned.
      */
-    Message::Ptr editMessageMedia(InputMedia::Ptr media, std::int64_t chatId = 0, std::int32_t messageId = 0, const std::string& inlineMessageId = "",
+    Message::Ptr editMessageMedia(InputMedia::Ptr media,
+                                  boost::variant<std::int64_t, const std::string&> chatId = 0,
+                                  std::int32_t messageId = 0,
+                                  const std::string& inlineMessageId = "",
                                   GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>()) const;
 
     /**
-    * @brief Use this method to edit only the reply markup of messages sent by the bot or via the bot (for inline bots).
-    * @param chatId Optional	Required if inline_message_id is not specified. Unique identifier for the target chat of the target channel.
-    * @param messageId Optional	Required if inline_message_id is not specified. Identifier of the sent message
-    * @param inlineMessageId Optional	Required if chat_id and message_id are not specified. Identifier of the inline message
-    * @param replyMarkup Optional	A JSON-serialized object for an inline keyboard.
-    * @return Message object on success, otherwise nullptr
+    * @brief Use this method to edit only the reply markup of messages.
+    * 
+    * @param chatId Optional. Required if inlineMessageId is not specified. Unique identifier for the target chat or username of the target channel (in the format @channelusername)
+    * @param messageId Optional. Required if inlineMessageId is not specified. Identifier of the message to edit
+    * @param inlineMessageId Optional. Required if chatId and messageId are not specified. Identifier of the inline message
+    * @param replyMarkup Optional. A JSON-serialized object for an inline keyboard.
+    * 
+    * @return On success, if the edited message is not an inline message, the edited Message is returned, otherwise nullptr is returned.
     */
-    Message::Ptr editMessageReplyMarkup(std::int64_t chatId = 0, std::int32_t messageId = 0, const std::string& inlineMessageId = "",
+    Message::Ptr editMessageReplyMarkup(boost::variant<std::int64_t, const std::string&> chatId = 0,
+                                        std::int32_t messageId = 0,
+                                        const std::string& inlineMessageId = "",
                                         GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>()) const;
 
     /**
      * @brief Use this method to stop a poll which was sent by the bot.
-     * @param chatId Unique identifier for the target chat or username of the target channel.
-     * @param messageId Identifier of the original message with the poll.
+     * 
+     * @param chatId Unique identifier for the target chat or username of the target channel (in the format @channelusername)
+     * @param messageId Identifier of the original message with the poll
      * @param replyMarkup Optional. A JSON-serialized object for a new message inline keyboard.
      *
-     * @return On success, the stopped Poll with the final results is returned.
+     * @return On success, the stopped Poll is returned.
      */
-
-    Poll::Ptr stopPoll(std::int64_t chatId, std::int64_t messageId, InlineKeyboardMarkup::Ptr replyMarkup = std::make_shared<InlineKeyboardMarkup>()) const;
+    Poll::Ptr stopPoll(boost::variant<std::int64_t, const std::string&> chatId,
+                       std::int64_t messageId,
+                       InlineKeyboardMarkup::Ptr replyMarkup = std::make_shared<InlineKeyboardMarkup>()) const;
 
     /**
-     * @brief Use this method to delete messages sent by bot (or by other users if bot is admin).
-     * @param chatId	Unique identifier for the target chat or username of the target channel.
-     * @param messageId	Unique identifier for the target message.
+     * @brief Use this method to delete a message, including service messages, with the following limitations:
+     * 
+     * - A message can only be deleted if it was sent less than 48 hours ago.
+     * - A dice message in a private chat can only be deleted if it was sent more than 24 hours ago.
+     * - Bots can delete outgoing messages in private chats, groups, and supergroups.
+     * - Bots can delete incoming messages in private chats.
+     * - Bots granted canPostMessages permissions can delete outgoing messages in channels.
+     * - If the bot is an administrator of a group, it can delete any message there.
+     * - If the bot has canDeleteMessages permission in a supergroup or a channel, it can delete any message there.
+     * 
+     * @param chatId Unique identifier for the target chat or username of the target channel (in the format @channelusername)
+     * @param messageId Identifier of the message to delete
+     * 
+     * @return Returns True on success.
      */
-    void deleteMessage(std::int64_t chatId, std::int32_t messageId) const;
+    bool deleteMessage(boost::variant<std::int64_t, const std::string&> chatId,
+                       std::int32_t messageId) const;
 
     /**
-     * @brief Use this method to send static .WEBP or animated .TGS stickers.
+     * @brief Use this method to send static .WEBP, animated .TGS, or video .WEBM stickers.
      * 
      * @param chatId Unique identifier for the target chat or username of the target channel (in the format @channelusername)
      * @param sticker Sticker to send. Pass a fileId as String to send a file that exists on the Telegram servers (recommended), pass an HTTP URL as a String for Telegram to get a .WEBP file from the Internet, or upload a new one using multipart/form-data. https://core.telegram.org/bots/api#sending-files
      * @param replyToMessageId Optional. If the message is a reply, ID of the original message
      * @param replyMarkup Optional. Additional interface options. A JSON-serialized object for an inline keyboard, custom reply keyboard, instructions to remove reply keyboard or to force a reply from the user.
      * @param disableNotification Optional. Sends the message silently. Users will receive a notification with no sound.
-     * @param allowSendingWithoutReply Optional. Pass True, if the message should be sent even if the specified replied-to message is not found
+     * @param allowSendingWithoutReply Optional. Pass True if the message should be sent even if the specified replied-to message is not found
      * @param protectContent Optional. Protects the contents of the sent message from forwarding and saving
      * 
      * @return On success, the sent Message is returned.
@@ -1337,12 +1414,15 @@ public:
     std::vector<Sticker::Ptr> getCustomEmojiStickers(const StringArrayPtr& customEmojiIds) const;
 
     /**
-     * @brief Use this method to upload a .png file with a sticker for later use in createNewStickerSet and addStickerToSet methods (can be used multiple times).
-     * @param userId User identifier of sticker file owner.
-     * @param pngSticker Png image with the sticker, must be up to 512 kilobytes in size, dimensions must not exceed 512px, and either width or height must be exactly 512px.
+     * @brief Use this method to upload a .PNG file with a sticker for later use in Api::createNewStickerSet and Api::addStickerToSet methods (can be used multiple times).
+     * 
+     * @param userId User identifier of sticker file owner
+     * @param pngSticker PNG image with the sticker, must be up to 512 kilobytes in size, dimensions must not exceed 512px, and either width or height must be exactly 512px. https://core.telegram.org/bots/api#sending-files
+     * 
      * @return Returns the uploaded File on success.
      */
-    File::Ptr uploadStickerFile(std::int64_t userId, InputFile::Ptr pngSticker) const;
+    File::Ptr uploadStickerFile(std::int64_t userId,
+                                InputFile::Ptr pngSticker) const;
 
     /**
      * @brief Use this method to create a new sticker set owned by a user.
@@ -1375,7 +1455,7 @@ public:
     /**
      * @brief Use this method to add a new sticker to a set created by the bot.
      * 
-     * You must use exactly one of the fields png_sticker, tgs_sticker, or webm_sticker.
+     * You must use exactly one of the fields pngSticker, tgsSticker, or webmSticker.
      * Animated stickers can be added to animated sticker sets and only to them.
      * Animated sticker sets can have up to 50 stickers.
      * Static sticker sets can have up to 120 stickers.
@@ -1404,45 +1484,58 @@ public:
      * @param sticker File identifier of the sticker
      * @param position New sticker position in the set, zero-based
      * 
-     * @return True on success.
+     * @return Returns True on success.
      */
     bool setStickerPositionInSet(const std::string& sticker,
-                                 std::uint32_t position) const;
+                                 std::int32_t position) const;
 
     /**
      * @brief Use this method to delete a sticker from a set created by the bot.
      * 
      * @param sticker File identifier of the sticker
      * 
-     * @return True on success.
+     * @return Returns True on success.
      */
     bool deleteStickerFromSet(const std::string& sticker) const;
 
     /**
-     * @brief Use this method to set the thumbnail of a sticker set. Animated thumbnails can be set for animated sticker sets only.
+     * @brief Use this method to set the thumbnail of a sticker set.
+     * 
+     * Animated thumbnails can be set for animated sticker sets only.
+     * Video thumbnails can be set only for video sticker sets only.
      *
      * @param name Sticker set name
      * @param userId User identifier of the sticker set owner
-     * @param thumb Optional. A PNG image with the thumbnail, must be up to 128 kilobytes in size and have width and height exactly 100px, or a TGS animation with the thumbnail up to 32 kilobytes in size; see https://core.telegram.org/animated_stickers#technical-requirements for animated sticker technical requirements. Pass a fileId as a String to send a file that already exists on the Telegram servers, pass an HTTP URL as a String for Telegram to get a file from the Internet, or upload a new one using multipart/form-data. Animated sticker set thumbnail can't be uploaded via HTTP URL.
+     * @param thumb Optional. A PNG image with the thumbnail, must be up to 128 kilobytes in size and have width and height exactly 100px, or a TGS animation with the thumbnail up to 32 kilobytes in size; see https://core.telegram.org/stickers#animated-sticker-requirements for animated sticker technical requirements, or a WEBM video with the thumbnail up to 32 kilobytes in size; see https://core.telegram.org/stickers#video-sticker-requirements for video sticker technical requirements. Pass a fileId as a String to send a file that already exists on the Telegram servers, pass an HTTP URL as a String for Telegram to get a file from the Internet, or upload a new one using multipart/form-data. https://core.telegram.org/bots/api#sending-files. Animated sticker set thumbnails can't be uploaded via HTTP URL.
      *
      * @return Returns True on success.
      */
-    bool setStickerSetThumb(const std::string& name, std::int64_t userId, boost::variant<InputFile::Ptr, std::string> thumb = "") const;
+    bool setStickerSetThumb(const std::string& name,
+                            std::int64_t userId,
+                            boost::variant<InputFile::Ptr, const std::string&> thumb = "") const;
 
     /**
      * @brief Use this method to send answers to an inline query.
-     * No mode that 50 results per query are allowed.
-     * @param inlineQueryId Unique identifier for the answered query.
-     * @param results Array of results for the inline query.
-     * @param cacheTime The maximum amount of time in seconds that the result of the inline query may be cached on the server. Defaults to 300.
-     * @param isPersonal Pass True, if results may be cached on the server side only for the user that sent the query. By default, results may be returned to any user who sends the same query.
-     * @param nextOffset Pass the offset that a client should send in the next query with the same text to receive more results. Pass an empty string if there are no more results or if you don‘t support pagination. Offset length can’t exceed 64 bytes.
-     * @param switchPmText If passed, clients will display a button with specified text that switches the user to a private chat with the bot and sends the bot a start message with the parameter switch_pm_parameter
-     * @param switchPmParameter Parameter for the start message sent to the bot when user presses the switch button
-     * @return True on success
+     * 
+     * No more than 50 results per query are allowed.
+     * 
+     * @param inlineQueryId Unique identifier for the answered query
+     * @param results A JSON-serialized array of results for the inline query
+     * @param cacheTime Optional. The maximum amount of time in seconds that the result of the inline query may be cached on the server. Defaults to 300.
+     * @param isPersonal Optional. Pass True if results may be cached on the server side only for the user that sent the query. By default, results may be returned to any user who sends the same query
+     * @param nextOffset Optional. Pass the offset that a client should send in the next query with the same text to receive more results. Pass an empty string if there are no more results or if you don't support pagination. Offset length can't exceed 64 bytes.
+     * @param switchPmText Optional. If passed, clients will display a button with specified text that switches the user to a private chat with the bot and sends the bot a start message with the parameter switchPmParameter
+     * @param switchPmParameter Optional. Deep-linking parameter for the /start message sent to the bot when user presses the switch button. 1-64 characters, only A-Z, a-z, 0-9, _ and - are allowed. Example: An inline bot that sends YouTube videos can ask the user to connect the bot to their YouTube account to adapt search results accordingly. To do this, it displays a 'Connect your YouTube account' button above the results, or even before showing any. The user presses the button, switches to a private chat with the bot and, in doing so, passes a start parameter that instructs the bot to return an OAuth link. Once done, the bot can offer an InlineKeyboardMarkup button so that the user can easily return to the chat where they wanted to use the bot's inline capabilities.
+     * 
+     * @return On success, True is returned.
      */
-    bool answerInlineQuery(const std::string& inlineQueryId, const std::vector<InlineQueryResult::Ptr>& results,
-                           std::int32_t cacheTime = 300, bool isPersonal = false, const std::string& nextOffset = "", const std::string& switchPmText = "", const std::string& switchPmParameter = "") const;
+    bool answerInlineQuery(const std::string& inlineQueryId,
+                           const std::vector<InlineQueryResult::Ptr>& results,
+                           std::int32_t cacheTime = 300,
+                           bool isPersonal = false,
+                           const std::string& nextOffset = "",
+                           const std::string& switchPmText = "",
+                           const std::string& switchPmParameter = "") const;
 
     /**
      * @brief Use this method to set the result of an interaction with a Web App and send a corresponding message on behalf of the user to the chat from which the query originated.
@@ -1566,15 +1659,19 @@ public:
     /**
      * @brief Use this method to reply to shipping queries.
      *
-     * If you sent an invoice requesting a shipping address and the parameter isFlexible was specified, the Bot API will send an Update with a shipping_query field to the bot.
+     * If you sent an invoice requesting a shipping address and the parameter isFlexible was specified, the Bot API will send an Update with a shippingQuery field to the bot.
      *
-     * @param shippingQueryId Unique identifier for the query to be answered.
-     * @param ok Specify True if delivery to the specified address is possible and False if there are any problems (for example, if delivery to the specified address is not possible)
+     * @param shippingQueryId Unique identifier for the query to be answered
+     * @param ok Pass True if delivery to the specified address is possible and False if there are any problems (for example, if delivery to the specified address is not possible)
      * @param shippingOptions Optional. Required if ok is True. A JSON-serialized array of available shipping options.
      * @param errorMessage Optional. Required if ok is False. Error message in human readable form that explains why it is impossible to complete the order (e.g. "Sorry, delivery to your desired address is unavailable'). Telegram will display this message to the user.
+     * 
      * @return On success, True is returned.
      */
-    bool answerShippingQuery(const std::string& shippingQueryId, bool ok, const std::vector<ShippingOption::Ptr>& shippingOptions = std::vector<ShippingOption::Ptr>(), const std::string& errorMessage = "") const;
+    bool answerShippingQuery(const std::string& shippingQueryId,
+                             bool ok,
+                             const std::vector<ShippingOption::Ptr>& shippingOptions = std::vector<ShippingOption::Ptr>(),
+                             const std::string& errorMessage = "") const;
 
     /**
      * @brief Use this method to respond to such pre-checkout queries.
@@ -1585,9 +1682,12 @@ public:
      * @param preCheckoutQueryId Unique identifier for the query to be answered
      * @param ok Specify True if everything is alright (goods are available, etc.) and the bot is ready to proceed with the order. Use False if there are any problems.
      * @param errorMessage Required if ok is False. Error message in human readable form that explains the reason for failure to proceed with the checkout (e.g. "Sorry, somebody just bought the last of our amazing black T-shirts while you were busy filling out your payment details. Please choose a different color or garment!"). Telegram will display this message to the user.
+     * 
      * @return On success, True is returned.
      */
-    bool answerPreCheckoutQuery(const std::string& preCheckoutQueryId, bool ok, const std::string& errorMessage = "") const;
+    bool answerPreCheckoutQuery(const std::string& preCheckoutQueryId,
+                                bool ok,
+                                const std::string& errorMessage = "") const;
 
     /**
      * @brief Informs a user that some of the Telegram Passport elements they provided contains errors.
@@ -1600,19 +1700,20 @@ public:
      * @param userId User identifier
      * @param errors A JSON-serialized array describing the errors
      * 
-     * @return True on success.
+     * @return Returns True on success.
      */
-    bool setPassportDataErrors(std::int64_t userId, const std::vector<PassportElementError::Ptr>& errors) const;
+    bool setPassportDataErrors(std::int64_t userId,
+                               const std::vector<PassportElementError::Ptr>& errors) const;
 
     /**
      * @brief Use this method to send a game.
      * 
      * @param chatId Unique identifier for the target chat
-     * @param gameShortName Short name of the game, serves as the unique identifier for the game. Set up your games via Botfather.
+     * @param gameShortName Short name of the game, serves as the unique identifier for the game. Set up your games via @BotFather.
      * @param replyToMessageId Optional. If the message is a reply, ID of the original message
      * @param replyMarkup Optional. A JSON-serialized object for an inline keyboard. If empty, one 'Play gameTitle' button will be shown. If not empty, the first button must launch the game.
      * @param disableNotification Optional. Sends the message silently. Users will receive a notification with no sound.
-     * @param allowSendingWithoutReply Optional. Pass True, if the message should be sent even if the specified replied-to message is not found
+     * @param allowSendingWithoutReply Optional. Pass True if the message should be sent even if the specified replied-to message is not found
      * @param protectContent Optional. Protects the contents of the sent message from forwarding and saving
      * 
      * @return On success, the sent Message is returned.
@@ -1626,28 +1727,35 @@ public:
                           bool protectContent = false) const;
 
     /**
-     * @brief Use this method to set the score of the specified user in a game.
+     * @brief Use this method to set the score of the specified user in a game message.
      *
      * Returns an error, if the new score is not greater than the user's current score in the chat and force is False.
      *
-     * @param userId User identifier.
-     * @param score New score, must be non-negative.
-     * @param force Optional. Pass True, if the high score is allowed to decrease. This can be useful when fixing mistakes or banning cheaters.
-     * @param disableEditMessage Optional. Pass True, if the game message should not be automatically edited to include the current scoreboard.
+     * @param userId User identifier
+     * @param score New score, must be non-negative
+     * @param force Optional. Pass True if the high score is allowed to decrease. This can be useful when fixing mistakes or banning cheaters
+     * @param disableEditMessage Optional. Pass True if the game message should not be automatically edited to include the current scoreboard
      * @param chatId Optional. Required if inlineMessageId is not specified. Unique identifier for the target chat
      * @param messageId Optional. Required if inlineMessageId is not specified. Identifier of the sent message
      * @param inlineMessageId Optional. Required if chatId and messageId are not specified. Identifier of the inline message
-     * @return On success, if the message was sent by the bot, returns the edited Message, otherwise returns nullptr.
+     * 
+     * @return On success, if the message is not an inline message, the Message is returned, otherwise nullptr is returned.
      */
-    Message::Ptr setGameScore(std::int64_t userId, std::int32_t score, bool force = false, bool disableEditMessage = false,
-                              std::int64_t chatId = 0, std::int32_t messageId = 0, const std::string& inlineMessageId = "") const;
+    Message::Ptr setGameScore(std::int64_t userId,
+                              std::int32_t score,
+                              bool force = false,
+                              bool disableEditMessage = false,
+                              std::int64_t chatId = 0,
+                              std::int32_t messageId = 0,
+                              const std::string& inlineMessageId = "") const;
 
     /**
      * @brief Use this method to get data for high score tables.
+     * 
      * Will return the score of the specified user and several of their neighbors in a game.
      *
      * This method will currently return scores for the target user, plus two of their closest neighbors on each side.
-     * Will also return the top three users if the user and his neighbors are not among them. 
+     * Will also return the top three users if the user and their neighbors are not among them.
      * Please note that this behavior is subject to change.
      * 
      * @param userId Target user id
@@ -1655,7 +1763,7 @@ public:
      * @param messageId Optional. Required if inlineMessageId is not specified. Identifier of the sent message
      * @param inlineMessageId Optional. Required if chatId and messageId are not specified. Identifier of the inline message
      * 
-     * @return On success, returns an Array of GameHighScore objects.
+     * @return Returns an Array of GameHighScore objects.
      */
     std::vector<GameHighScore::Ptr> getGameHighScores(std::int64_t userId,
                                                       std::int64_t chatId = 0,
