@@ -558,7 +558,7 @@ public:
      * 
      * @param chatId Optional. Required if inlineMessageId is not specified. Unique identifier for the target chat or username of the target channel (in the format @channelusername)
      * @param messageId Optional. Required if inlineMessageId is not specified. Identifier of the message with live location to stop
-     * @param inlineMessageId Optional. Required if chatId and message_id are not specified. Identifier of the inline message
+     * @param inlineMessageId Optional. Required if chatId and messageId are not specified. Identifier of the inline message
      * @param replyMarkup Optional. A JSON-serialized object for a new inline keyboard.
      * 
      * @return On success, the edited Message is returned.
@@ -741,17 +741,6 @@ public:
      * @return On success, a File object is returned.
      */
     File::Ptr getFile(const std::string& fileId) const;
-
-    /**
-     * @brief Download a file from Telegram and save it in memory.
-     * 
-     * @param filePath Telegram file path from Api::getFile
-     * @param args Additional api parameters
-     * 
-     * @return File content in a string.
-     */
-    std::string downloadFile(const std::string& filePath,
-                             const std::vector<HttpReqArg>& args = std::vector<HttpReqArg>()) const;
 
     /**
      * @brief Use this method to ban a user in a group, a supergroup or a channel.
@@ -1769,6 +1758,26 @@ public:
                                                       std::int64_t chatId = 0,
                                                       std::int32_t messageId = 0,
                                                       const std::string& inlineMessageId = "") const;
+
+    /**
+     * @brief Download a file from Telegram and save it in memory.
+     *
+     * @param filePath Telegram file path from Api::getFile
+     * @param args Additional api parameters
+     *
+     * @return File content in a string.
+     */
+    std::string downloadFile(const std::string& filePath,
+                             const std::vector<HttpReqArg>& args = std::vector<HttpReqArg>()) const;
+
+    /**
+     * @brief Check if user has blocked the bot
+     *
+     * @param chatId Unique identifier for the target chat
+     *
+     * @return Returns True if bot is blocked by user
+     */
+    bool blockedByUser(std::int64_t chatId) const;
     
 private:
     boost::property_tree::ptree sendRequest(const std::string& method, const std::vector<HttpReqArg>& args = std::vector<HttpReqArg>()) const;

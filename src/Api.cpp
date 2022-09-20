@@ -1024,17 +1024,6 @@ File::Ptr Api::getFile(const std::string& fileId) const {
     return _tgTypeParser.parseJsonAndGetFile(sendRequest("getFile", args));
 }
 
-std::string Api::downloadFile(const std::string& filePath,
-                              const std::vector<HttpReqArg>& args) const {
-    std::string url(_url);
-    url += "/file/bot";
-    url += _token;
-    url += "/";
-    url += filePath;
-
-    return _httpClient.makeRequest(url, args);
-}
-
 bool Api::banChatMember(boost::variant<std::int64_t, const std::string&> chatId,
                         std::int64_t userId,
                         std::int32_t untilDate,
@@ -2241,6 +2230,34 @@ std::vector<GameHighScore::Ptr> Api::getGameHighScores(std::int64_t userId,
     }
 
     return _tgTypeParser.parseJsonAndGetArray<GameHighScore>(&TgTypeParser::parseJsonAndGetGameHighScore, sendRequest("getGameHighScores", args));
+}
+
+std::string Api::downloadFile(const std::string& filePath,
+                              const std::vector<HttpReqArg>& args) const {
+    std::string url(_url);
+    url += "/file/bot";
+    url += _token;
+    url += "/";
+    url += filePath;
+
+    return _httpClient.makeRequest(url, args);
+}
+
+bool Api::blockedByUser(std::int64_t chatId) const {
+    bool isBotBlocked = false;
+
+    try {
+        sendChatAction(chatId, "typing");
+
+    } catch (std::exception& e) {
+        std::string error = e.what();
+
+        if (error.compare("Forbidden: bot was blocked by the user") == 0) {
+            isBotBlocked = true;
+        }
+    }
+
+    return isBotBlocked;
 }
 
 boost::property_tree::ptree Api::sendRequest(const std::string& method, const std::vector<HttpReqArg>& args) const {
