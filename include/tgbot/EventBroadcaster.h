@@ -43,21 +43,30 @@ public:
     /**
      * @brief Registers listener which receives all messages with commands (messages with leading '/' char).
      * @param commandName Command name which listener can handle.
-     * @param listener Listener.
+     * @param listener Listener. Pass nullptr to remove listener of command
      */
     inline void onCommand(const std::string& commandName, const MessageListener& listener) {
-        _onCommandListeners[commandName] = listener;
+        if (listener) {
+            _onCommandListeners[commandName] = listener;
+        } else {
+            _onCommandListeners.erase(commandName);
+        }
     }
 
     /**
     * @brief Registers listener which receives all messages with commands (messages with leading '/' char).
     * @param commandsList Commands names which listener can handle.
-    * @param listener Listener.
+    * @param listener Listener. Pass nullptr to remove listener of commands
     */
     inline void onCommand(const std::initializer_list<std::string>& commandsList, const MessageListener& listener) {
-        for (const auto& command : commandsList)
-        {
-            _onCommandListeners[command] = listener;
+        if (listener) {
+            for (const auto& command : commandsList) {
+                _onCommandListeners[command] = listener;
+            }
+        } else {
+            for (const auto& command : commandsList) {
+                _onCommandListeners.erase(command);
+            }
         }
     }
 
@@ -93,6 +102,10 @@ public:
         _onChosenInlineResultListeners.push_back(listener);
     }
 
+    /**
+     * @brief Registers listener which receives all the callback query.
+     * @param listener Listener.
+     */
     inline void onCallbackQuery(const CallbackQueryListener& listener){
         _onCallbackQueryListeners.push_back(listener);
     }
