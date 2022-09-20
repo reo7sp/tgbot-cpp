@@ -880,7 +880,7 @@ Message::Ptr Api::sendContact(boost::variant<std::int64_t, const std::string&> c
 
 Message::Ptr Api::sendPoll(boost::variant<std::int64_t, const std::string&> chatId,
                            const std::string& question,
-                           const StringArrayPtr& options,
+                           const std::vector<std::string>& options,
                            bool disableNotification,
                            std::int32_t replyToMessageId,
                            GenericReply::Ptr replyMarkup,
@@ -903,8 +903,8 @@ Message::Ptr Api::sendPoll(boost::variant<std::int64_t, const std::string&> chat
     args.emplace_back("question", question);
     args.emplace_back("options", _tgTypeParser.parseArray<std::string>(
         [](const std::string& option)->std::string {
-        return "\"" + StringTools::urlEncode(option) + "\"";
-    }, *options));
+        return "\"" + option + "\"";
+    }, options));
     if (!isAnonymous) {
         args.emplace_back("is_anonymous", isAnonymous);
     }
@@ -1755,13 +1755,13 @@ StickerSet::Ptr Api::getStickerSet(const std::string& name) const {
     return _tgTypeParser.parseJsonAndGetStickerSet(sendRequest("getStickerSet", args));
 }
 
-std::vector<Sticker::Ptr> Api::getCustomEmojiStickers(const StringArrayPtr& customEmojiIds) const {
+std::vector<Sticker::Ptr> Api::getCustomEmojiStickers(const std::vector<std::string>& customEmojiIds) const {
     std::vector<HttpReqArg> args;
     args.reserve(1);
 
     args.emplace_back("custom_emoji_ids", _tgTypeParser.parseArray<std::string>([] (const std::string& customEmojiId) -> std::string {
-        return "\"" + StringTools::urlEncode(customEmojiId) + "\"";
-    }, *customEmojiIds));
+        return "\"" + customEmojiId + "\"";
+    }, customEmojiIds));
 
     return _tgTypeParser.parseJsonAndGetArray<Sticker>(&TgTypeParser::parseJsonAndGetSticker, sendRequest("getCustomEmojiStickers", args));
 }

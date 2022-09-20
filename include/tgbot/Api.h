@@ -656,7 +656,7 @@ public:
      */
     Message::Ptr sendPoll(boost::variant<std::int64_t, const std::string&> chatId,
                           const std::string& question,
-                          const StringArrayPtr& options,
+                          const std::vector<std::string>& options,
                           bool disableNotification = false,
                           std::int32_t replyToMessageId = 0,
                           GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>(),
@@ -1400,7 +1400,7 @@ public:
      *
      * @return Returns an Array of Sticker objects.
      */
-    std::vector<Sticker::Ptr> getCustomEmojiStickers(const StringArrayPtr& customEmojiIds) const;
+    std::vector<Sticker::Ptr> getCustomEmojiStickers(const std::vector<std::string>& customEmojiIds) const;
 
     /**
      * @brief Use this method to upload a .PNG file with a sticker for later use in Api::createNewStickerSet and Api::addStickerToSet methods (can be used multiple times).
