@@ -73,6 +73,57 @@ You can treat this repository as a submodule of your project, for example, see [
 
 You can use Docker to build and run your bot. Set the base image of your's Dockerfile to [reo7sp/tgbot-cpp](https://hub.docker.com/r/reo7sp/tgbot-cpp/).
 
+## Installation Windows
+
+### Download vcpkg and tgbot-cpp
+
+Taken from [Vcpkg - Quick Start: Windows](https://github.com/Microsoft/vcpkg/#quick-start-windows):
+
+Prerequisites:
+- Windows 7 or newer
+- Git
+- Visual Studio 2015 Update 3 or greater with the English language pack
+
+First, download and bootstrap vcpkg itself; it can be installed anywhere,
+but generally we recommend using vcpkg as a submodule for CMake projects,
+and installing it globally for Visual Studio projects.
+We recommend somewhere like `C:\src\vcpkg` or `C:\dev\vcpkg`,
+since otherwise you may run into path issues for some port build systems.
+
+```cmd
+> git clone https://github.com/microsoft/vcpkg
+> .\vcpkg\bootstrap-vcpkg.bat
+```
+
+In order to use vcpkg with Visual Studio,
+run the following command (may require administrator elevation):
+
+```cmd
+> .\vcpkg\vcpkg integrate install
+```
+
+To install the libraries for Windows x64, run:
+
+```cmd
+> .\vcpkg\vcpkg install tgbot-cpp:x64-windows
+```
+
+To install for Windows x86, run:
+
+```cmd
+> .\vcpkg\vcpkg install tgbot-cpp
+```
+
+The library will now be installed and Visual Studio should be able to find the vcpkg installation.
+
+### Setup project with CMakeLists
+
+Use the [example CMakeLists.txt](samples/echobot/CMakeLists.txt) with changes:
+
+Remove `/usr/local/include`
+
+Change `/usr/local/lib/libTgBot.a` to `C:/src/vcpkg/installed/x64-windows/lib/TgBot.lib` or something simmilar according to your own installation path.
+
 
 ## Bot compilation
 
