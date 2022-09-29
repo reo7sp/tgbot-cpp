@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['kickchatmember_0',['kickChatMember',['../class_tg_bot_1_1_api.html#a9a36bd8d872da7d72b2bd751fc4d5542',1,'TgBot::Api']]]
+  ['leavechat_0',['leaveChat',['../class_tg_bot_1_1_api.html#a328ac23cad5d41a8bcfa4bea457b1c5b',1,'TgBot::Api']]],
+  ['logout_1',['logOut',['../class_tg_bot_1_1_api.html#a7e61e13d06a8b9a1861ce3e13e662ffc',1,'TgBot::Api']]]
 ];

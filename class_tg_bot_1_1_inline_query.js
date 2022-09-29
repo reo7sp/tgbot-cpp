@@ -1,6 +1,7 @@
 var class_tg_bot_1_1_inline_query =
 [
     [ "Ptr", "class_tg_bot_1_1_inline_query.html#a82b36b38b3587e6a721b6fa579759b0c", null ],
+    [ "chatType", "class_tg_bot_1_1_inline_query.html#a87bac20c393ee8637b2a0dd6bff26f06", null ],
     [ "from", "class_tg_bot_1_1_inline_query.html#a95db52178399e81913eec2b615ef8e04", null ],
     [ "id", "class_tg_bot_1_1_inline_query.html#a8787b5e72cbfc95c3e938143ba7f6ee7", null ],
     [ "location", "class_tg_bot_1_1_inline_query.html#aeee09d6d167fb08ed2edd266befa8f8a", null ],

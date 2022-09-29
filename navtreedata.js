@@ -43,7 +43,7 @@ var NAVTREE =
       [ "Class Hierarchy", "hierarchy.html", "hierarchy" ],
       [ "Class Members", "functions.html", [
         [ "All", "functions.html", "functions_dup" ],
-        [ "Functions", "functions_func.html", null ],
+        [ "Functions", "functions_func.html", "functions_func" ],
         [ "Variables", "functions_vars.html", "functions_vars" ],
         [ "Typedefs", "functions_type.html", null ],
         [ "Enumerations", "functions_enum.html", null ],
@@ -59,10 +59,12 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "_animation_8h.html",
-"class_tg_bot_1_1_api.html#a7008ec555e2dfd6af567a3a2316a95be",
-"class_tg_bot_1_1_inline_keyboard_button.html#a25716bdfc7a0719f1c17702a8d6a8aa4",
-"class_tg_bot_1_1_location.html",
-"class_tg_bot_1_1_webhook_info.html#a4f1f6efd16518a24e8c153f5e126a36f"
+"_sent_web_app_message_8h.html",
+"class_tg_bot_1_1_chat.html#a86d47a69eb66a74d7f5b294700d884cd",
+"class_tg_bot_1_1_http_server.html#a1a48cb5e272aae75d3ee1b51fca445d5",
+"class_tg_bot_1_1_inline_query_result_video.html#aaf1d613bc343fd6c8e63dd1bd9ba3a1e",
+"class_tg_bot_1_1_message_entity.html#a6cb87a43b52a982682c1e592fbc1f2c9a677befbff0d2028b6eaf673212273a56",
+"class_tg_bot_1_1_url.html#abed0138e57cc2d003b61b319f34c4fcd"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

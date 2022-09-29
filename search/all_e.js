@@ -1,16 +1,13 @@
 var searchData=
 [
-  ['offset_0',['offset',['../class_tg_bot_1_1_inline_query.html#a02b19f8ececa0f1091ea52a17c3c8589',1,'TgBot::InlineQuery::offset()'],['../class_tg_bot_1_1_message_entity.html#a48d29c9fd3496b26e349d4d3049bad0d',1,'TgBot::MessageEntity::offset()']]],
-  ['onanymessage_1',['onAnyMessage',['../class_tg_bot_1_1_event_broadcaster.html#a21adc85e9ed2a08a186423a5231342a9',1,'TgBot::EventBroadcaster']]],
-  ['oncallbackquery_2',['onCallbackQuery',['../class_tg_bot_1_1_event_broadcaster.html#a3ec551ffdcf5be1b9b39ed081ea078d4',1,'TgBot::EventBroadcaster']]],
-  ['onchoseninlineresult_3',['onChosenInlineResult',['../class_tg_bot_1_1_event_broadcaster.html#a7397520ff294c863b306142e29030482',1,'TgBot::EventBroadcaster']]],
-  ['oncommand_4',['onCommand',['../class_tg_bot_1_1_event_broadcaster.html#a13e4a906203fe43a950f1420b68c7583',1,'TgBot::EventBroadcaster::onCommand(const std::string &amp;commandName, const MessageListener &amp;listener)'],['../class_tg_bot_1_1_event_broadcaster.html#ad8e56ab49dbe9b4960d454f8b408bf13',1,'TgBot::EventBroadcaster::onCommand(const std::initializer_list&lt; std::string &gt; &amp;commandsList, const MessageListener &amp;listener)']]],
-  ['onetimekeyboard_5',['oneTimeKeyboard',['../class_tg_bot_1_1_reply_keyboard_markup.html#a12205ba27bf676459507684be019799e',1,'TgBot::ReplyKeyboardMarkup']]],
-  ['oninlinequery_6',['onInlineQuery',['../class_tg_bot_1_1_event_broadcaster.html#a9d3f31225ea84af8cb47ab2a53186ef0',1,'TgBot::EventBroadcaster']]],
-  ['onnoncommandmessage_7',['onNonCommandMessage',['../class_tg_bot_1_1_event_broadcaster.html#a22e70b8493ea455e70734a36968f3d55',1,'TgBot::EventBroadcaster']]],
-  ['onunknowncommand_8',['onUnknownCommand',['../class_tg_bot_1_1_event_broadcaster.html#a5bed996221f047ec0469ae19e7bd00eb',1,'TgBot::EventBroadcaster']]],
-  ['options_9',['options',['../class_tg_bot_1_1_poll.html#a2cb145335b7f8ea5a274288dd671ee03',1,'TgBot::Poll']]],
-  ['orderinfo_10',['orderInfo',['../class_tg_bot_1_1_pre_checkout_query.html#a5d21bc0c7610030e89a910029a5fb0ca',1,'TgBot::PreCheckoutQuery::orderInfo()'],['../class_tg_bot_1_1_successful_payment.html#a7fd2215c7e0a0975477d8e5fff0ae829',1,'TgBot::SuccessfulPayment::orderInfo()']]],
-  ['orderinfo_11',['OrderInfo',['../class_tg_bot_1_1_order_info.html',1,'TgBot']]],
-  ['orderinfo_2eh_12',['OrderInfo.h',['../_order_info_8h.html',1,'']]]
+  ['name_0',['name',['../class_tg_bot_1_1_http_req_arg.html#a9772f0982d33fdebe587106d0b4f921d',1,'TgBot::HttpReqArg::name()'],['../class_tg_bot_1_1_chat_invite_link.html#a38ef66ddedfc2e6b689f5082349061b4',1,'TgBot::ChatInviteLink::name()'],['../class_tg_bot_1_1_order_info.html#a02755abd496d306c649ef45356fcd71c',1,'TgBot::OrderInfo::name()'],['../class_tg_bot_1_1_sticker_set.html#a28755ab9c48ec7b667fd187976682631',1,'TgBot::StickerSet::name()']]],
+  ['needemail_1',['needEmail',['../class_tg_bot_1_1_input_invoice_message_content.html#a108799064f50ada39abea25ca9e64043',1,'TgBot::InputInvoiceMessageContent']]],
+  ['needname_2',['needName',['../class_tg_bot_1_1_input_invoice_message_content.html#a93991ec3a4cfa01897967e8f8bfc5dfa',1,'TgBot::InputInvoiceMessageContent']]],
+  ['needphonenumber_3',['needPhoneNumber',['../class_tg_bot_1_1_input_invoice_message_content.html#a19dc0ed9f3e83754b0ebcabc124c87a1',1,'TgBot::InputInvoiceMessageContent']]],
+  ['needshippingaddress_4',['needShippingAddress',['../class_tg_bot_1_1_input_invoice_message_content.html#a8b6908a0e6044e7f951e2008caf0abf6',1,'TgBot::InputInvoiceMessageContent']]],
+  ['net_5',['Net',['../group__net.html',1,'']]],
+  ['newchatmember_6',['newChatMember',['../class_tg_bot_1_1_chat_member_updated.html#a2415b4aebc2c3ef58057f14e2a1dd4d9',1,'TgBot::ChatMemberUpdated']]],
+  ['newchatmembers_7',['newChatMembers',['../class_tg_bot_1_1_message.html#aac7be66dd576e712ea37a2631670ef03',1,'TgBot::Message']]],
+  ['newchatphoto_8',['newChatPhoto',['../class_tg_bot_1_1_message.html#a8f8a9c50fd30fa24476605b8efdd95ea',1,'TgBot::Message']]],
+  ['newchattitle_9',['newChatTitle',['../class_tg_bot_1_1_message.html#a34323ada99461aced73af81edb88f813',1,'TgBot::Message']]]
 ];

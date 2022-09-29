@@ -1,4 +1,10 @@
 var searchData=
 [
-  ['makerequest_0',['makeRequest',['../class_tg_bot_1_1_boost_http_only_ssl_client.html#a93b66edab6c57cea907742bcbf68ad15',1,'TgBot::BoostHttpOnlySslClient::makeRequest()'],['../class_tg_bot_1_1_curl_http_client.html#a6fab88353bda0e5d69c22538a242eec5',1,'TgBot::CurlHttpClient::makeRequest()'],['../class_tg_bot_1_1_http_client.html#a85275cec337ae429553e995c9d94c5ec',1,'TgBot::HttpClient::makeRequest()']]]
+  ['onanymessage_0',['onAnyMessage',['../class_tg_bot_1_1_event_broadcaster.html#a21adc85e9ed2a08a186423a5231342a9',1,'TgBot::EventBroadcaster']]],
+  ['oncallbackquery_1',['onCallbackQuery',['../class_tg_bot_1_1_event_broadcaster.html#a3ec551ffdcf5be1b9b39ed081ea078d4',1,'TgBot::EventBroadcaster']]],
+  ['onchoseninlineresult_2',['onChosenInlineResult',['../class_tg_bot_1_1_event_broadcaster.html#a7397520ff294c863b306142e29030482',1,'TgBot::EventBroadcaster']]],
+  ['oncommand_3',['onCommand',['../class_tg_bot_1_1_event_broadcaster.html#a13e4a906203fe43a950f1420b68c7583',1,'TgBot::EventBroadcaster::onCommand(const std::string &amp;commandName, const MessageListener &amp;listener)'],['../class_tg_bot_1_1_event_broadcaster.html#ad8e56ab49dbe9b4960d454f8b408bf13',1,'TgBot::EventBroadcaster::onCommand(const std::initializer_list&lt; std::string &gt; &amp;commandsList, const MessageListener &amp;listener)']]],
+  ['oninlinequery_4',['onInlineQuery',['../class_tg_bot_1_1_event_broadcaster.html#a9d3f31225ea84af8cb47ab2a53186ef0',1,'TgBot::EventBroadcaster']]],
+  ['onnoncommandmessage_5',['onNonCommandMessage',['../class_tg_bot_1_1_event_broadcaster.html#a22e70b8493ea455e70734a36968f3d55',1,'TgBot::EventBroadcaster']]],
+  ['onunknowncommand_6',['onUnknownCommand',['../class_tg_bot_1_1_event_broadcaster.html#a5bed996221f047ec0469ae19e7bd00eb',1,'TgBot::EventBroadcaster']]]
 ];

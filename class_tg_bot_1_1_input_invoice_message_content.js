@@ -1,0 +1,25 @@
+var class_tg_bot_1_1_input_invoice_message_content =
+[
+    [ "Ptr", "class_tg_bot_1_1_input_invoice_message_content.html#a776b7689e793b3ce36bd36e02ac0c3e6", null ],
+    [ "InputInvoiceMessageContent", "class_tg_bot_1_1_input_invoice_message_content.html#adb5f82c2703fd5b555fcd9af05086534", null ],
+    [ "currency", "class_tg_bot_1_1_input_invoice_message_content.html#a942932dfb9ab40f7af9e5e8c811d4617", null ],
+    [ "description", "class_tg_bot_1_1_input_invoice_message_content.html#afdd8f16a3080ddc85c0a9d4ca1cb7bd6", null ],
+    [ "isFlexible", "class_tg_bot_1_1_input_invoice_message_content.html#a485ad6f965692a3f2061d6edb01846d5", null ],
+    [ "maxTipAmount", "class_tg_bot_1_1_input_invoice_message_content.html#aff3adc0ad9417a37dc9ddd1e6acfae3b", null ],
+    [ "needEmail", "class_tg_bot_1_1_input_invoice_message_content.html#a108799064f50ada39abea25ca9e64043", null ],
+    [ "needName", "class_tg_bot_1_1_input_invoice_message_content.html#a93991ec3a4cfa01897967e8f8bfc5dfa", null ],
+    [ "needPhoneNumber", "class_tg_bot_1_1_input_invoice_message_content.html#a19dc0ed9f3e83754b0ebcabc124c87a1", null ],
+    [ "needShippingAddress", "class_tg_bot_1_1_input_invoice_message_content.html#a8b6908a0e6044e7f951e2008caf0abf6", null ],
+    [ "payload", "class_tg_bot_1_1_input_invoice_message_content.html#ab3d5d1e634059a759f65acc03dd2fe85", null ],
+    [ "photoHeight", "class_tg_bot_1_1_input_invoice_message_content.html#a3bb698767526e7c006a6f098838f013f", null ],
+    [ "photoSize", "class_tg_bot_1_1_input_invoice_message_content.html#af0f7ae89e94b2d16b22ad1ec28afd5ca", null ],
+    [ "photoUrl", "class_tg_bot_1_1_input_invoice_message_content.html#a2f6d768c5385cd9a73d39485d44e64ef", null ],
+    [ "photoWidth", "class_tg_bot_1_1_input_invoice_message_content.html#ac62a95b7deabf13930ce03657c59c1c5", null ],
+    [ "prices", "class_tg_bot_1_1_input_invoice_message_content.html#aff955d3ea652b5153f3d2753b2817347", null ],
+    [ "providerData", "class_tg_bot_1_1_input_invoice_message_content.html#a3ec765ac51872316280f4f95feb90379", null ],
+    [ "providerToken", "class_tg_bot_1_1_input_invoice_message_content.html#a893d3f8e0dd1cfbb18b4981841fa8670", null ],
+    [ "sendEmailToProvider", "class_tg_bot_1_1_input_invoice_message_content.html#a195c420a85cdcf234e0e30382252dbb4", null ],
+    [ "sendPhoneNumberToProvider", "class_tg_bot_1_1_input_invoice_message_content.html#aa293de79fac2a002f9eae7771f1ff62c", null ],
+    [ "suggestedTipAmounts", "class_tg_bot_1_1_input_invoice_message_content.html#a6ab2d54e8db4682063e2902bdb27f4a2", null ],
+    [ "title", "class_tg_bot_1_1_input_invoice_message_content.html#a6c749f1c50ba88cca48f3f9f2bd72a58", null ]
+];
