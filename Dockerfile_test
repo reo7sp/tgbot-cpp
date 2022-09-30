@@ -46,7 +46,9 @@ RUN rm -rf CMakeCache.txt CMakeFiles/ && \
 
 WORKDIR /usr/src/tgbot-cpp/samples/echobot-submodule
 RUN rm -rf tgbot-cpp/
-COPY ../../../ ./
+COPY ../../include* tgbot-cpp/include/
+COPY ../../src* tgbot-cpp/src/
+COPY ../../CMakeLists.txt tgbot-cpp/CMakeLists.txt
 RUN rm -rf CMakeCache.txt CMakeFiles/ && \
     cmake . && make -j$(nproc)
 
