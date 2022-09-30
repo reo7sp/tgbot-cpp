@@ -40,6 +40,14 @@ WORKDIR /usr/src/tgbot-cpp/samples/echobot-curl-client
 RUN rm -rf CMakeCache.txt CMakeFiles/ && \
     cmake . && make -j$(nproc)
 
+WORKDIR /usr/src/tgbot-cpp/samples/echobot-setmycommands
+RUN rm -rf CMakeCache.txt CMakeFiles/ && \
+    cmake . && make -j$(nproc)
+
+WORKDIR /usr/src/tgbot-cpp/samples/echobot-submodule
+RUN rm -rf CMakeCache.txt CMakeFiles/ && \
+    cmake . && make -j$(nproc)
+
 WORKDIR /usr/src/tgbot-cpp/samples/echobot-webhook-server
 RUN rm -rf CMakeCache.txt CMakeFiles/ && \
     cmake . && make -j$(nproc)
@@ -56,7 +64,10 @@ WORKDIR /usr/src/tgbot-cpp/samples/received-text-processing
 RUN rm -rf CMakeCache.txt CMakeFiles/ && \
     cmake . && make -j$(nproc)
 
+WORKDIR /usr/src/tgbot-cpp/samples/reply-keyboard
+RUN rm -rf CMakeCache.txt CMakeFiles/ && \
+    cmake . && make -j$(nproc)
+
 WORKDIR /usr/src/tgbot-cpp
 ENV CTEST_OUTPUT_ON_FAILURE=1
 CMD make test
-

@@ -1,4 +1,4 @@
-FROM debian:stretch
+FROM debian:buster
 MAINTAINER Oleg Morozenkov <m@oleg.rocks>
 
 RUN apt-get -qq update && \
