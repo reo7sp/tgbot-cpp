@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.13.4)
+cmake_minimum_required(VERSION 3.10.2)
 project(TgBot)
 
 # options
@@ -51,7 +51,7 @@ find_package(OpenSSL REQUIRED)
 include_directories(${OPENSSL_INCLUDE_DIR})
 
 ## curl
-find_package(CURL 7.64.0)
+find_package(CURL 7.58.0)
 if (CURL_FOUND)
     include_directories(${CURL_INCLUDE_DIRS})
     add_definitions(-DHAVE_CURL)
@@ -60,9 +60,9 @@ endif()
 ## boost
 set(Boost_USE_MULTITHREADED ON)
 if (ENABLE_TESTS)
-    find_package(Boost 1.67.0 COMPONENTS system unit_test_framework REQUIRED)
+    find_package(Boost 1.65.1 COMPONENTS system unit_test_framework REQUIRED)
 else()
-    find_package(Boost 1.67.0 COMPONENTS system REQUIRED)
+    find_package(Boost 1.65.1 COMPONENTS system REQUIRED)
 endif()
 include_directories(${Boost_INCLUDE_DIR})
 link_directories(${Boost_LIBRARY_DIR_RELEASE})

@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.13.4)
+cmake_minimum_required(VERSION 3.10.2)
 project(echobot-submodule)
 
 set(CMAKE_CXX_STANDARD 14)

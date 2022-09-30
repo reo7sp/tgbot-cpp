@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.13.4)
+cmake_minimum_required(VERSION 3.10.2)
 project(inline-keyboard)
 
 set(CMAKE_CXX_STANDARD 14)
