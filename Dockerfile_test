@@ -44,11 +44,13 @@ WORKDIR /usr/src/tgbot-cpp/samples/echobot-setmycommands
 RUN rm -rf CMakeCache.txt CMakeFiles/ && \
     cmake . && make -j$(nproc)
 
+WORKDIR /usr/src/tgbot-cpp
+RUN rm -rf samples/echobot-submodule/tgbot-cpp/
+COPY include samples/echobot-submodule/tgbot-cpp/include
+COPY src samples/echobot-submodule/tgbot-cpp/src
+COPY CMakeLists.txt samples/echobot-submodule/tgbot-cpp/
+
 WORKDIR /usr/src/tgbot-cpp/samples/echobot-submodule
-RUN rm -rf tgbot-cpp/
-COPY ../../include* tgbot-cpp/include/
-COPY ../../src* tgbot-cpp/src/
-COPY ../../CMakeLists.txt tgbot-cpp/CMakeLists.txt
 RUN rm -rf CMakeCache.txt CMakeFiles/ && \
     cmake . && make -j$(nproc)
 
