@@ -914,7 +914,7 @@ Message::Ptr Api::sendPoll(boost::variant<std::int64_t, const std::string&> chat
     if (allowsMultipleAnswers) {
         args.emplace_back("allows_multiple_answers", allowsMultipleAnswers);
     }
-    if (correctOptionId != 0) {
+    if (correctOptionId != -1) {
         args.emplace_back("correct_option_id", correctOptionId);
     }
     if (!explanation.empty()) {

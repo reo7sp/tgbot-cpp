@@ -663,7 +663,7 @@ public:
                           bool isAnonymous = true,
                           const std::string& type = "",
                           bool allowsMultipleAnswers = false,
-                          std::int32_t correctOptionId = 0,
+                          std::int32_t correctOptionId = -1,
                           const std::string& explanation = "",
                           const std::string& explanationParseMode = "",
                           const std::vector<MessageEntity::Ptr>& explanationEntities = std::vector<MessageEntity::Ptr>(),
