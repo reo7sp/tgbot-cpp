@@ -903,7 +903,7 @@ Message::Ptr Api::sendPoll(boost::variant<std::int64_t, const std::string&> chat
     args.emplace_back("question", question);
     args.emplace_back("options", _tgTypeParser.parseArray<std::string>(
         [](const std::string& option)->std::string {
-        return "\"" + option + "\"";
+        return "\"" + StringTools::escapeJsonString(option) + "\"";
     }, options));
     if (!isAnonymous) {
         args.emplace_back("is_anonymous", isAnonymous);
@@ -1760,7 +1760,7 @@ std::vector<Sticker::Ptr> Api::getCustomEmojiStickers(const std::vector<std::str
     args.reserve(1);
 
     args.emplace_back("custom_emoji_ids", _tgTypeParser.parseArray<std::string>([] (const std::string& customEmojiId) -> std::string {
-        return "\"" + customEmojiId + "\"";
+        return "\"" + StringTools::escapeJsonString(customEmojiId) + "\"";
     }, customEmojiIds));
 
     return _tgTypeParser.parseJsonAndGetArray<Sticker>(&TgTypeParser::parseJsonAndGetSticker, sendRequest("getCustomEmojiStickers", args));

@@ -63,6 +63,15 @@ TGBOT_API
 std::string urlDecode(const std::string& value);
 
 /**
+ * Escapes a string with illegal characters ("\/) for json
+ * 
+ * @param value input string
+ * 
+ * @return An encoded string
+ */
+std::string escapeJsonString(const std::string& value);
+
+/**
  * Splits string to smaller substrings which have between them a delimiter. Resulting substrings won't have delimiter.
  * @param str Source string
  * @param delimiter Delimiter
