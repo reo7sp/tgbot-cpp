@@ -5,6 +5,10 @@
 #include "tgbot/types/Update.h"
 #include "tgbot/tools/StringTools.h"
 
+#include <algorithm>
+#include <cstddef>
+#include <string>
+
 namespace TgBot {
 
 class TGBOT_API EventHandler {
