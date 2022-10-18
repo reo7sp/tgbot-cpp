@@ -739,8 +739,9 @@ PollAnswer::Ptr TgTypeParser::parseJsonAndGetPollAnswer(const boost::property_tr
     auto result(std::make_shared<PollAnswer>());
     result->pollId = data.get<std::string>("poll_id", "");
     result->user = tryParseJson<User>(&TgTypeParser::parseJsonAndGetUser, data, "user");
-    result->optionIds = parseJsonAndGetArray<std::int32_t>([] (const boost::property_tree::ptree& innerData)->std::int32_t {
-        return innerData.get<std::int32_t>(0);
+    result->optionIds = parseJsonAndGetArray<std::int32_t>(
+        [] (const boost::property_tree::ptree& innerData)->std::int32_t {
+        return innerData.get<std::int32_t>("");
     }, data, "option_ids");
     return result;
 }
@@ -3271,8 +3272,9 @@ InputInvoiceMessageContent::Ptr TgTypeParser::parseJsonAndGetInputInvoiceMessage
     result->currency = data.get<std::string>("currency", "");
     result->prices = parseJsonAndGetArray<LabeledPrice>(&TgTypeParser::parseJsonAndGetLabeledPrice, data, "prices");
     result->maxTipAmount = data.get<std::int32_t>("max_tip_amount", 0);
-    result->suggestedTipAmounts = parseJsonAndGetArray<std::int32_t>([] (const boost::property_tree::ptree& innerData)->std::int32_t {
-        return innerData.get<std::int32_t>(0);
+    result->suggestedTipAmounts = parseJsonAndGetArray<std::int32_t>(
+        [] (const boost::property_tree::ptree& innerData)->std::int32_t {
+        return innerData.get<std::int32_t>("");
     }, data, "suggested_tip_amounts");
     result->providerData = data.get<std::string>("provider_data", "");
     result->photoUrl = data.get<std::string>("photo_url", "");
