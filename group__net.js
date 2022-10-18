@@ -1,21 +1,21 @@
 var group__net =
 [
-    [ "TgBot::BoostHttpOnlySslClient", "class_tg_bot_1_1_boost_http_only_ssl_client.html", [
+    [ "BoostHttpOnlySslClient", "class_tg_bot_1_1_boost_http_only_ssl_client.html", [
       [ "BoostHttpOnlySslClient", "class_tg_bot_1_1_boost_http_only_ssl_client.html#aab0aaadbc02d6cda1442850916593205", null ],
       [ "~BoostHttpOnlySslClient", "class_tg_bot_1_1_boost_http_only_ssl_client.html#ac66bdc78da6d4f069d63366c22ff3982", null ],
       [ "makeRequest", "class_tg_bot_1_1_boost_http_only_ssl_client.html#a93b66edab6c57cea907742bcbf68ad15", null ]
     ] ],
-    [ "TgBot::CurlHttpClient", "class_tg_bot_1_1_curl_http_client.html", [
+    [ "CurlHttpClient", "class_tg_bot_1_1_curl_http_client.html", [
       [ "CurlHttpClient", "class_tg_bot_1_1_curl_http_client.html#a64fa7c2a4873cea91d955e4df2175b71", null ],
       [ "~CurlHttpClient", "class_tg_bot_1_1_curl_http_client.html#aef991cad0f0113400a6dbee2f2e1c6c4", null ],
       [ "makeRequest", "class_tg_bot_1_1_curl_http_client.html#a6fab88353bda0e5d69c22538a242eec5", null ],
       [ "curlSettings", "class_tg_bot_1_1_curl_http_client.html#a6292647c7f41c1d16d153a0d780944ef", null ]
     ] ],
-    [ "TgBot::HttpClient", "class_tg_bot_1_1_http_client.html", [
+    [ "HttpClient", "class_tg_bot_1_1_http_client.html", [
       [ "~HttpClient", "class_tg_bot_1_1_http_client.html#a1593785b295457dcea0611033fbd0711", null ],
       [ "makeRequest", "class_tg_bot_1_1_http_client.html#a85275cec337ae429553e995c9d94c5ec", null ]
     ] ],
-    [ "TgBot::HttpReqArg", "class_tg_bot_1_1_http_req_arg.html", [
+    [ "HttpReqArg", "class_tg_bot_1_1_http_req_arg.html", [
       [ "HttpReqArg", "class_tg_bot_1_1_http_req_arg.html#ae35b41eef8671854b31be6a5682dc6b8", null ],
       [ "fileName", "class_tg_bot_1_1_http_req_arg.html#af75b0592fd96d9dcc31f7f5dc95425dc", null ],
       [ "isFile", "class_tg_bot_1_1_http_req_arg.html#a9e372ea4360d239037cfeb673d31d9f3", null ],
@@ -23,10 +23,10 @@ var group__net =
       [ "name", "class_tg_bot_1_1_http_req_arg.html#a9772f0982d33fdebe587106d0b4f921d", null ],
       [ "value", "class_tg_bot_1_1_http_req_arg.html#ae854084229a093b6819953d0055844eb", null ]
     ] ],
-    [ "TgBot::HttpServer< Protocol >", "class_tg_bot_1_1_http_server.html", [
+    [ "HttpServer", "class_tg_bot_1_1_http_server.html", [
       [ "Connection", "class_tg_bot_1_1_http_server_1_1_connection.html", [
         [ "Connection", "class_tg_bot_1_1_http_server_1_1_connection.html#a5983b463e05a4a5ecd421f3e53b49af0", null ],
-        [ "_readBody", "class_tg_bot_1_1_http_server_1_1_connection.html#af0b89120c9d55f683f1a9e202392f77c", null ],
+        [ "_readBody", "class_tg_bot_1_1_http_server_1_1_connection.html#a3325931cbc335235d95ec89cfee33051", null ],
         [ "_readHeader", "class_tg_bot_1_1_http_server_1_1_connection.html#ae0eaa05e9efdb533a5ec68d5717908a3", null ],
         [ "start", "class_tg_bot_1_1_http_server_1_1_connection.html#a8cecda345ca78c8dc43c39423511af4d", null ],
         [ "_handler", "class_tg_bot_1_1_http_server_1_1_connection.html#ab630576fda90c3a33e563e44cd5a08dd", null ],
@@ -44,20 +44,20 @@ var group__net =
       [ "_ioService", "class_tg_bot_1_1_http_server.html#a68812914f5c398331ee3ef8e77fe39b7", null ],
       [ "_socket", "class_tg_bot_1_1_http_server.html#a5bfd257760ccfc19ceecd0067c0b3df4", null ]
     ] ],
-    [ "TgBot::TgLongPoll", "class_tg_bot_1_1_tg_long_poll.html", [
-      [ "TgLongPoll", "class_tg_bot_1_1_tg_long_poll.html#a6d70d6fbc6fa839a575ebbabacec695e", null ],
-      [ "TgLongPoll", "class_tg_bot_1_1_tg_long_poll.html#a7788eb8b8a466d41dcd6fab9c2171d82", null ],
+    [ "TgLongPoll", "class_tg_bot_1_1_tg_long_poll.html", [
+      [ "TgLongPoll", "class_tg_bot_1_1_tg_long_poll.html#a5aff0451dc302c243f5056c9b34c2a1d", null ],
+      [ "TgLongPoll", "class_tg_bot_1_1_tg_long_poll.html#a5379d156066857e55a69e978bedbeb7d", null ],
       [ "start", "class_tg_bot_1_1_tg_long_poll.html#a8928ddad3b976a636a53bb066180cbaa", null ]
     ] ],
-    [ "TgBot::TgWebhookLocalServer", "class_tg_bot_1_1_tg_webhook_local_server.html", [
+    [ "TgWebhookLocalServer", "class_tg_bot_1_1_tg_webhook_local_server.html", [
       [ "TgWebhookLocalServer", "class_tg_bot_1_1_tg_webhook_local_server.html#aa3dd2084536f5f3f6c8a6fd5a441966a", null ],
       [ "TgWebhookLocalServer", "class_tg_bot_1_1_tg_webhook_local_server.html#a330530faa3a3a163ec231352c5e2e341", null ]
     ] ],
-    [ "TgBot::TgWebhookTcpServer", "class_tg_bot_1_1_tg_webhook_tcp_server.html", [
+    [ "TgWebhookTcpServer", "class_tg_bot_1_1_tg_webhook_tcp_server.html", [
       [ "TgWebhookTcpServer", "class_tg_bot_1_1_tg_webhook_tcp_server.html#a20e332c60eecb81d119bc932cf51f63b", null ],
       [ "TgWebhookTcpServer", "class_tg_bot_1_1_tg_webhook_tcp_server.html#a4c58bd36ffc5d5dd1c888271c04918d5", null ]
     ] ],
-    [ "TgBot::Url", "class_tg_bot_1_1_url.html", [
+    [ "Url", "class_tg_bot_1_1_url.html", [
       [ "Url", "class_tg_bot_1_1_url.html#a5c3add4bb050af6ad7b5444b9ad0a0a3", null ],
       [ "fragment", "class_tg_bot_1_1_url.html#abed0138e57cc2d003b61b319f34c4fcd", null ],
       [ "host", "class_tg_bot_1_1_url.html#aa3536ad7ecd12e04db434e7566ae53e7", null ],

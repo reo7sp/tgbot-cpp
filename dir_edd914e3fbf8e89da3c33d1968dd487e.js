@@ -107,7 +107,9 @@ var dir_edd914e3fbf8e89da3c33d1968dd487e =
     [ "PhotoSize.h", "_photo_size_8h.html", null ],
     [ "Poll.h", "_poll_8h.html", null ],
     [ "PollAnswer.h", "_poll_answer_8h.html", null ],
-    [ "PollOption.h", "_poll_option_8h.html", "_poll_option_8h" ],
+    [ "PollOption.h", "_poll_option_8h.html", [
+      [ "PollOption", "class_tg_bot_1_1_poll_option.html", "class_tg_bot_1_1_poll_option" ]
+    ] ],
     [ "PreCheckoutQuery.h", "_pre_checkout_query_8h.html", null ],
     [ "ProximityAlertTriggered.h", "_proximity_alert_triggered_8h.html", null ],
     [ "ReplyKeyboardMarkup.h", "_reply_keyboard_markup_8h.html", null ],

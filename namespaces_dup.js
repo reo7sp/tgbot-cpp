@@ -6,8 +6,9 @@ var namespaces_dup =
     ] ],
     [ "StringTools", "namespace_string_tools.html", [
       [ "endsWith", "namespace_string_tools.html#a729d3647c39da48546065e17a182e4d6", null ],
+      [ "escapeJsonString", "namespace_string_tools.html#afdaf7cd1c254e70b9a4fd15fe39bb03c", null ],
       [ "generateRandomString", "namespace_string_tools.html#a0f9c6845125656b2ff321d8f80b582a7", null ],
-      [ "split", "namespace_string_tools.html#a46a68045f7b5b2077af2e3d639a42200", null ],
+      [ "split", "namespace_string_tools.html#abca17ac29bcc3e047459f3250497bd26", null ],
       [ "split", "namespace_string_tools.html#ab20b53a15c499d9499d9ef5cb052f493", null ],
       [ "startsWith", "namespace_string_tools.html#a4536e012d2314f80313f62c5fff99c09", null ],
       [ "urlDecode", "namespace_string_tools.html#a6cc0b327a4167d33154fdf9bcbc58ee8", null ],

@@ -1,8 +1,8 @@
 var class_tg_bot_1_1_bot =
 [
     [ "Bot", "class_tg_bot_1_1_bot.html#aad9ae2e4f1117361c928b1d5ea69b51e", null ],
-    [ "getApi", "class_tg_bot_1_1_bot.html#a2432163a22e5a95197785afd5518a8f0", null ],
-    [ "getEventHandler", "class_tg_bot_1_1_bot.html#ab4d01abdf6bbeec03ede589037e09195", null ],
-    [ "getEvents", "class_tg_bot_1_1_bot.html#a6eff97ca5023423e01c88ff0387c3efe", null ],
-    [ "getToken", "class_tg_bot_1_1_bot.html#a791871aa800310f6263c5a29c8a09418", null ]
+    [ "getApi", "class_tg_bot_1_1_bot.html#a99a820c47aa8f8cc0dba35bcd001cbe3", null ],
+    [ "getEventHandler", "class_tg_bot_1_1_bot.html#a2f36a7774c1552d00c6e08accf495579", null ],
+    [ "getEvents", "class_tg_bot_1_1_bot.html#ac7becb36b294dfbc556d534925d564ac", null ],
+    [ "getToken", "class_tg_bot_1_1_bot.html#a6443b4ec5838112a4f5689ec60665e91", null ]
 ];

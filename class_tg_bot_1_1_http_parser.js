@@ -6,5 +6,5 @@ var class_tg_bot_1_1_http_parser =
     [ "generateRequest", "class_tg_bot_1_1_http_parser.html#a47e29bb10e6c6eb27c906be0ab916a6a", null ],
     [ "generateResponse", "class_tg_bot_1_1_http_parser.html#a96650c74932e8662f73a90ebd49139e6", null ],
     [ "generateWwwFormUrlencoded", "class_tg_bot_1_1_http_parser.html#ac6b9daf4b0f198367f7e45242a36a3b9", null ],
-    [ "parseHeader", "class_tg_bot_1_1_http_parser.html#a0baefd6caf0d8b33bf1a82530564ee40", null ]
+    [ "parseHeader", "class_tg_bot_1_1_http_parser.html#ab3a46cada17af6939283e2545dbe913b", null ]
 ];

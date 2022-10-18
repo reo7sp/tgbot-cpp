@@ -6,7 +6,9 @@ var dir_25b26b9fa3b0bd1537052b03f43dd617 =
     [ "Api.h", "_api_8h.html", null ],
     [ "Bot.h", "_bot_8h.html", null ],
     [ "EventBroadcaster.h", "_event_broadcaster_8h.html", null ],
-    [ "EventHandler.h", "_event_handler_8h.html", "_event_handler_8h" ],
+    [ "EventHandler.h", "_event_handler_8h.html", [
+      [ "EventHandler", "class_tg_bot_1_1_event_handler.html", "class_tg_bot_1_1_event_handler" ]
+    ] ],
     [ "export.h", "export_8h.html", null ],
     [ "tgbot.h", "tgbot_8h.html", null ],
     [ "TgException.h", "_tg_exception_8h.html", null ],

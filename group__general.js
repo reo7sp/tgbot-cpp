@@ -1,6 +1,6 @@
 var group__general =
 [
-    [ "TgBot::Api", "class_tg_bot_1_1_api.html", [
+    [ "Api", "class_tg_bot_1_1_api.html", [
       [ "Api", "class_tg_bot_1_1_api.html#aa7918747eb1d24eb1794e5b8a1abc000", null ],
       [ "addStickerToSet", "class_tg_bot_1_1_api.html#af946419587d6f345061f500463991b68", null ],
       [ "answerCallbackQuery", "class_tg_bot_1_1_api.html#ae1876967bc75494654910684954936a8", null ],
@@ -34,18 +34,18 @@ var group__general =
       [ "exportChatInviteLink", "class_tg_bot_1_1_api.html#ab0ac53a1389612d10cd432a47398c926", null ],
       [ "forwardMessage", "class_tg_bot_1_1_api.html#ab6f3cdf45f31c1adbdd0e2deae9b4253", null ],
       [ "getChat", "class_tg_bot_1_1_api.html#a1e7bcea76feae3260d61460053b9c946", null ],
-      [ "getChatAdministrators", "class_tg_bot_1_1_api.html#a6e77795fc6399aa32029903613d4dbe0", null ],
+      [ "getChatAdministrators", "class_tg_bot_1_1_api.html#a182dc7e406ea5326755da853c5d09cc2", null ],
       [ "getChatMember", "class_tg_bot_1_1_api.html#a6b3e4fe90a6402f8af31f4455f5d69ba", null ],
       [ "getChatMemberCount", "class_tg_bot_1_1_api.html#a4fb314b871079bb29a72801b4ae13336", null ],
       [ "getChatMenuButton", "class_tg_bot_1_1_api.html#a558eabe1cb1953f22975a4578a979d42", null ],
-      [ "getCustomEmojiStickers", "class_tg_bot_1_1_api.html#ab6704d5f5154c43b507d6d48b4a1f872", null ],
+      [ "getCustomEmojiStickers", "class_tg_bot_1_1_api.html#a000596e569111addfd90abf9a9ef9129", null ],
       [ "getFile", "class_tg_bot_1_1_api.html#ac50bdd50bf0cf5a211e699925759ebc1", null ],
-      [ "getGameHighScores", "class_tg_bot_1_1_api.html#a428c2fc5cad41b81f2fddbcb89ca184a", null ],
+      [ "getGameHighScores", "class_tg_bot_1_1_api.html#a57839bf6050f1fab7478b0ae28e4ae56", null ],
       [ "getMe", "class_tg_bot_1_1_api.html#a566fcf52400de18737110edd7ab01535", null ],
-      [ "getMyCommands", "class_tg_bot_1_1_api.html#a6da52ef11be86a7c7bc21afef5049360", null ],
+      [ "getMyCommands", "class_tg_bot_1_1_api.html#a1f7acb6762f9117981e1334f0ebc2de1", null ],
       [ "getMyDefaultAdministratorRights", "class_tg_bot_1_1_api.html#ab994d460aa6d5fbfdd3984da45092d79", null ],
       [ "getStickerSet", "class_tg_bot_1_1_api.html#a270296c79f52985fca19cacf3ed75d2f", null ],
-      [ "getUpdates", "class_tg_bot_1_1_api.html#a79187c21ea38f8a81a21c2a78ae217bd", null ],
+      [ "getUpdates", "class_tg_bot_1_1_api.html#a1d2ba6bca91338e269171282d502d215", null ],
       [ "getUserProfilePhotos", "class_tg_bot_1_1_api.html#a94be048e47bb355ba5946081ad649ef2", null ],
       [ "getWebhookInfo", "class_tg_bot_1_1_api.html#a43bf35783ec4f9a03e46925e36fda24c", null ],
       [ "leaveChat", "class_tg_bot_1_1_api.html#a328ac23cad5d41a8bcfa4bea457b1c5b", null ],
@@ -63,10 +63,10 @@ var group__general =
       [ "sendGame", "class_tg_bot_1_1_api.html#a5b61e271839c051b972e8ee0baf16b3d", null ],
       [ "sendInvoice", "class_tg_bot_1_1_api.html#a2d6bbd218591c41d84cbab5e8193c100", null ],
       [ "sendLocation", "class_tg_bot_1_1_api.html#ad317082c21efa85bd791572cca69bec4", null ],
-      [ "sendMediaGroup", "class_tg_bot_1_1_api.html#adab1b3ff8a6b3f639557ebefbb923c17", null ],
+      [ "sendMediaGroup", "class_tg_bot_1_1_api.html#acd59366a13fa4a4bf454491ebfa902ac", null ],
       [ "sendMessage", "class_tg_bot_1_1_api.html#ae3f80eeb3394e8d0e0583d0307373e03", null ],
       [ "sendPhoto", "class_tg_bot_1_1_api.html#ad2767109dfd5e0687cb48a7bb946e76e", null ],
-      [ "sendPoll", "class_tg_bot_1_1_api.html#a57875dfa22c1a35580d13625091db312", null ],
+      [ "sendPoll", "class_tg_bot_1_1_api.html#aee7549a46b5087d0757ce78e18a939ac", null ],
       [ "sendSticker", "class_tg_bot_1_1_api.html#a489490b13747cd94594f8273e6645e12", null ],
       [ "sendVenue", "class_tg_bot_1_1_api.html#a19559c53584e3cd751c80bea9b562a95", null ],
       [ "sendVideo", "class_tg_bot_1_1_api.html#a73cd46787410f9f35f726280b80ec4e2", null ],
@@ -95,28 +95,42 @@ var group__general =
       [ "uploadStickerFile", "class_tg_bot_1_1_api.html#a944e5b87816bd7cb0c9747d3c1a27a45", null ],
       [ "Bot", "class_tg_bot_1_1_api.html#afb5d57ac6b56fe83e7894e3b686c3339", null ]
     ] ],
-    [ "TgBot::Bot", "class_tg_bot_1_1_bot.html", [
+    [ "Bot", "class_tg_bot_1_1_bot.html", [
       [ "Bot", "class_tg_bot_1_1_bot.html#aad9ae2e4f1117361c928b1d5ea69b51e", null ],
-      [ "getApi", "class_tg_bot_1_1_bot.html#a2432163a22e5a95197785afd5518a8f0", null ],
-      [ "getEventHandler", "class_tg_bot_1_1_bot.html#ab4d01abdf6bbeec03ede589037e09195", null ],
-      [ "getEvents", "class_tg_bot_1_1_bot.html#a6eff97ca5023423e01c88ff0387c3efe", null ],
-      [ "getToken", "class_tg_bot_1_1_bot.html#a791871aa800310f6263c5a29c8a09418", null ]
+      [ "getApi", "class_tg_bot_1_1_bot.html#a99a820c47aa8f8cc0dba35bcd001cbe3", null ],
+      [ "getEventHandler", "class_tg_bot_1_1_bot.html#a2f36a7774c1552d00c6e08accf495579", null ],
+      [ "getEvents", "class_tg_bot_1_1_bot.html#ac7becb36b294dfbc556d534925d564ac", null ],
+      [ "getToken", "class_tg_bot_1_1_bot.html#a6443b4ec5838112a4f5689ec60665e91", null ]
     ] ],
-    [ "TgBot::EventBroadcaster", "class_tg_bot_1_1_event_broadcaster.html", [
+    [ "EventBroadcaster", "class_tg_bot_1_1_event_broadcaster.html", [
       [ "CallbackQueryListener", "class_tg_bot_1_1_event_broadcaster.html#a44f1bbafcca84f78f82dc0ef1801619a", null ],
+      [ "ChatJoinRequestListener", "class_tg_bot_1_1_event_broadcaster.html#a347c3cbf4bcf5afcbca7dc8a6c5702ff", null ],
+      [ "ChatMemberUpdatedListener", "class_tg_bot_1_1_event_broadcaster.html#a29ebfb5a8748d687f7582c23a83dd1e8", null ],
       [ "ChosenInlineResultListener", "class_tg_bot_1_1_event_broadcaster.html#a5348beecf29bdf52c7d21985668bca93", null ],
       [ "InlineQueryListener", "class_tg_bot_1_1_event_broadcaster.html#a2c0338bc5cc3c1654d0e3f0dac0ab8a6", null ],
       [ "MessageListener", "class_tg_bot_1_1_event_broadcaster.html#a95899d82f77288a43a28dd24d0fa687a", null ],
+      [ "PollAnswerListener", "class_tg_bot_1_1_event_broadcaster.html#aa2c8755af687e2f7f080d1fc0e3cfb29", null ],
+      [ "PollListener", "class_tg_bot_1_1_event_broadcaster.html#a3a27dc2a18bfaa0983ee4651657aaf98", null ],
+      [ "PreCheckoutQueryListener", "class_tg_bot_1_1_event_broadcaster.html#a22b41f2b1eb992e31783b13d16c3c206", null ],
+      [ "ShippingQueryListener", "class_tg_bot_1_1_event_broadcaster.html#a4438effd856f94aa814652eb2d230e55", null ],
       [ "onAnyMessage", "class_tg_bot_1_1_event_broadcaster.html#a21adc85e9ed2a08a186423a5231342a9", null ],
       [ "onCallbackQuery", "class_tg_bot_1_1_event_broadcaster.html#a3ec551ffdcf5be1b9b39ed081ea078d4", null ],
+      [ "onChatJoinRequest", "class_tg_bot_1_1_event_broadcaster.html#a98dc2b9c40515adb956b913bf4957a23", null ],
+      [ "onChatMember", "class_tg_bot_1_1_event_broadcaster.html#a0eebe4f770c54e43a942f9d7bd1e4925", null ],
       [ "onChosenInlineResult", "class_tg_bot_1_1_event_broadcaster.html#a7397520ff294c863b306142e29030482", null ],
       [ "onCommand", "class_tg_bot_1_1_event_broadcaster.html#ad8e56ab49dbe9b4960d454f8b408bf13", null ],
       [ "onCommand", "class_tg_bot_1_1_event_broadcaster.html#a13e4a906203fe43a950f1420b68c7583", null ],
+      [ "onEditedMessage", "class_tg_bot_1_1_event_broadcaster.html#a76d485af06fe47ab56c9da264f355eac", null ],
       [ "onInlineQuery", "class_tg_bot_1_1_event_broadcaster.html#a9d3f31225ea84af8cb47ab2a53186ef0", null ],
+      [ "onMyChatMember", "class_tg_bot_1_1_event_broadcaster.html#a9d69b41590dc65b4c2eae33f87ef34ce", null ],
       [ "onNonCommandMessage", "class_tg_bot_1_1_event_broadcaster.html#a22e70b8493ea455e70734a36968f3d55", null ],
+      [ "onPoll", "class_tg_bot_1_1_event_broadcaster.html#a2c6cfe304bd79c7d6432863cd7b399c3", null ],
+      [ "onPollAnswer", "class_tg_bot_1_1_event_broadcaster.html#a47966cd0aefa177879b728dfff994e41", null ],
+      [ "onPreCheckoutQuery", "class_tg_bot_1_1_event_broadcaster.html#acf68ccdb336430d9b4405cac65d4fce9", null ],
+      [ "onShippingQuery", "class_tg_bot_1_1_event_broadcaster.html#a1b45b331ec44806de82f12d06ed65106", null ],
       [ "onUnknownCommand", "class_tg_bot_1_1_event_broadcaster.html#a5bed996221f047ec0469ae19e7bd00eb", null ]
     ] ],
-    [ "TgBot::TgException", "class_tg_bot_1_1_tg_exception.html", [
+    [ "TgException", "class_tg_bot_1_1_tg_exception.html", [
       [ "TgException", "class_tg_bot_1_1_tg_exception.html#a372244063ddbde6a604bd785c966f11b", null ]
     ] ]
 ];

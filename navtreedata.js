@@ -60,11 +60,11 @@ var NAVTREEINDEX =
 [
 "_animation_8h.html",
 "_sent_web_app_message_8h.html",
-"class_tg_bot_1_1_chat.html#a86d47a69eb66a74d7f5b294700d884cd",
-"class_tg_bot_1_1_http_server.html#a1a48cb5e272aae75d3ee1b51fca445d5",
-"class_tg_bot_1_1_inline_query_result_video.html#aaf1d613bc343fd6c8e63dd1bd9ba3a1e",
-"class_tg_bot_1_1_message_entity.html#a6cb87a43b52a982682c1e592fbc1f2c9a677befbff0d2028b6eaf673212273a56",
-"class_tg_bot_1_1_url.html#abed0138e57cc2d003b61b319f34c4fcd"
+"class_tg_bot_1_1_chat.html#a6e749f4fe47340a468301899a3c9c616",
+"class_tg_bot_1_1_http_req_arg.html#ae854084229a093b6819953d0055844eb",
+"class_tg_bot_1_1_inline_query_result_video.html#a6eb48f1bc3089f4caef133c8c6644baf",
+"class_tg_bot_1_1_message_entity.html#a6cb87a43b52a982682c1e592fbc1f2c9a1d874710ccdcd46b95397049d2e7500c",
+"class_tg_bot_1_1_user.html#a3b32a26af904966eb8f961309f49eeba"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';
