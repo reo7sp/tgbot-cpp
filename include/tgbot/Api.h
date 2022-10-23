@@ -174,7 +174,7 @@ public:
      * @return On success, the sent Message is returned.
      */
 
-    Message::Ptr sendMessage(boost::variant<std::int64_t, const std::string&> chatId,
+    Message::Ptr sendMessage(boost::variant<std::int64_t, std::string> chatId,
                              const std::string& text,
                              bool disableWebPagePreview = false,
                              std::int32_t replyToMessageId = 0,
@@ -198,8 +198,8 @@ public:
      * 
      * @return On success, the sent Message is returned.
      */
-    Message::Ptr forwardMessage(boost::variant<std::int64_t, const std::string&> chatId,
-                                boost::variant<std::int64_t, const std::string&> fromChatId,
+    Message::Ptr forwardMessage(boost::variant<std::int64_t, std::string> chatId,
+                                boost::variant<std::int64_t, std::string> fromChatId,
                                 std::int32_t messageId,
                                 bool disableNotification = false,
                                 bool protectContent = false) const;
@@ -225,8 +225,8 @@ public:
      * 
      * @return Returns the MessageId of the sent message on success.
      */
-    MessageId::Ptr copyMessage(boost::variant<std::int64_t, const std::string&> chatId,
-                               boost::variant<std::int64_t, const std::string&> fromChatId,
+    MessageId::Ptr copyMessage(boost::variant<std::int64_t, std::string> chatId,
+                               boost::variant<std::int64_t, std::string> fromChatId,
                                std::int32_t messageId,
                                const std::string& caption = "",
                                const std::string& parseMode = "",
@@ -253,8 +253,8 @@ public:
      * 
      * @return On success, the sent Message is returned.
      */
-    Message::Ptr sendPhoto(boost::variant<std::int64_t, const std::string&> chatId,
-                           boost::variant<InputFile::Ptr, const std::string&> photo,
+    Message::Ptr sendPhoto(boost::variant<std::int64_t, std::string> chatId,
+                           boost::variant<InputFile::Ptr, std::string> photo,
                            const std::string& caption = "",
                            std::int32_t replyToMessageId = 0,
                            GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>(),
@@ -289,13 +289,13 @@ public:
      * 
      * @return On success, the sent Message is returned.
      */
-    Message::Ptr sendAudio(boost::variant<std::int64_t, const std::string&> chatId,
-                           boost::variant<InputFile::Ptr, const std::string&> audio,
+    Message::Ptr sendAudio(boost::variant<std::int64_t, std::string> chatId,
+                           boost::variant<InputFile::Ptr, std::string> audio,
                            const std::string& caption = "",
                            std::int32_t duration = 0,
                            const std::string& performer = "",
                            const std::string& title = "",
-                           boost::variant<InputFile::Ptr, const std::string&> thumb = "",
+                           boost::variant<InputFile::Ptr, std::string> thumb = "",
                            std::int32_t replyToMessageId = 0,
                            GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>(),
                            const std::string& parseMode = "",
@@ -324,9 +324,9 @@ public:
      * 
      * @return On success, the sent Message is returned.
      */
-    Message::Ptr sendDocument(boost::variant<std::int64_t, const std::string&> chatId,
-                              boost::variant<InputFile::Ptr, const std::string&> document,
-                              boost::variant<InputFile::Ptr, const std::string&> thumb = "",
+    Message::Ptr sendDocument(boost::variant<std::int64_t, std::string> chatId,
+                              boost::variant<InputFile::Ptr, std::string> document,
+                              boost::variant<InputFile::Ptr, std::string> thumb = "",
                               const std::string& caption = "",
                               std::int32_t replyToMessageId = 0,
                               GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>(),
@@ -360,13 +360,13 @@ public:
      * 
      * @return On success, the sent Message is returned.
      */
-    Message::Ptr sendVideo(boost::variant<std::int64_t, const std::string&> chatId,
-                           boost::variant<InputFile::Ptr, const std::string&> video,
+    Message::Ptr sendVideo(boost::variant<std::int64_t, std::string> chatId,
+                           boost::variant<InputFile::Ptr, std::string> video,
                            bool supportsStreaming = false,
                            std::int32_t duration = 0,
                            std::int32_t width = 0,
                            std::int32_t height = 0,
-                           boost::variant<InputFile::Ptr, const std::string&> thumb = "",
+                           boost::variant<InputFile::Ptr, std::string> thumb = "",
                            const std::string& caption = "",
                            std::int32_t replyToMessageId = 0,
                            GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>(),
@@ -398,12 +398,12 @@ public:
      * 
      * @return On success, the sent Message is returned.
      */
-    Message::Ptr sendAnimation(boost::variant<std::int64_t, const std::string&> chatId,
-                               boost::variant<InputFile::Ptr, const std::string&> animation,
+    Message::Ptr sendAnimation(boost::variant<std::int64_t, std::string> chatId,
+                               boost::variant<InputFile::Ptr, std::string> animation,
                                std::int32_t duration = 0,
                                std::int32_t width = 0,
                                std::int32_t height = 0,
-                               boost::variant<InputFile::Ptr, const std::string&> thumb = "",
+                               boost::variant<InputFile::Ptr, std::string> thumb = "",
                                const std::string& caption = "",
                                std::int32_t replyToMessageId = 0,
                                GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>(),
@@ -433,8 +433,8 @@ public:
      * 
      * @return On success, the sent Message is returned.
      */
-    Message::Ptr sendVoice(boost::variant<std::int64_t, const std::string&> chatId,
-                           boost::variant<InputFile::Ptr, const std::string&> voice,
+    Message::Ptr sendVoice(boost::variant<std::int64_t, std::string> chatId,
+                           boost::variant<InputFile::Ptr, std::string> voice,
                            const std::string& caption = "",
                            std::int32_t duration = 0,
                            std::int32_t replyToMessageId = 0,
@@ -463,13 +463,13 @@ public:
      * 
      * @return On success, the sent Message is returned.
      */
-    Message::Ptr sendVideoNote(boost::variant<std::int64_t, const std::string&> chatId,
-                               boost::variant<InputFile::Ptr, const std::string&> videoNote,
+    Message::Ptr sendVideoNote(boost::variant<std::int64_t, std::string> chatId,
+                               boost::variant<InputFile::Ptr, std::string> videoNote,
                                std::int64_t replyToMessageId = 0,
                                bool disableNotification = false,
                                std::int32_t duration = 0,
                                std::int32_t length = 0,
-                               boost::variant<InputFile::Ptr, const std::string&> thumb = "",
+                               boost::variant<InputFile::Ptr, std::string> thumb = "",
                                GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>(),
                                bool allowSendingWithoutReply = false,
                                bool protectContent = false) const;
@@ -488,7 +488,7 @@ public:
      * 
      * @return On success, an array of Messages that were sent is returned.
      */
-    std::vector<Message::Ptr> sendMediaGroup(boost::variant<std::int64_t, const std::string&> chatId,
+    std::vector<Message::Ptr> sendMediaGroup(boost::variant<std::int64_t, std::string> chatId,
                                              const std::vector<InputMedia::Ptr>& media,
                                              bool disableNotification = false,
                                              std::int32_t replyToMessageId = 0,
@@ -513,7 +513,7 @@ public:
      * 
      * @return On success, the sent Message is returned.
      */
-    Message::Ptr sendLocation(boost::variant<std::int64_t, const std::string&> chatId,
+    Message::Ptr sendLocation(boost::variant<std::int64_t, std::string> chatId,
                               float latitude,
                               float longitude,
                               std::int32_t livePeriod = 0,
@@ -545,7 +545,7 @@ public:
      */
     Message::Ptr editMessageLiveLocation(float latitude,
                                          float longitude,
-                                         boost::variant<std::int64_t, const std::string&> chatId = "",
+                                         boost::variant<std::int64_t, std::string> chatId = "",
                                          std::int32_t messageId = 0,
                                          const std::string& inlineMessageId = "",
                                          InlineKeyboardMarkup::Ptr replyMarkup = std::make_shared<InlineKeyboardMarkup>(),
@@ -563,7 +563,7 @@ public:
      * 
      * @return On success, the edited Message is returned.
      */
-    Message::Ptr stopMessageLiveLocation(boost::variant<std::int64_t, const std::string&> chatId = "",
+    Message::Ptr stopMessageLiveLocation(boost::variant<std::int64_t, std::string> chatId = "",
                                          std::int32_t messageId = 0,
                                          const std::string& inlineMessageId = "",
                                          InlineKeyboardMarkup::Ptr replyMarkup = std::make_shared<InlineKeyboardMarkup>()) const;
@@ -588,7 +588,7 @@ public:
      * 
      * @return On success, the sent Message is returned.
      */
-    Message::Ptr sendVenue(boost::variant<std::int64_t, const std::string&> chatId,
+    Message::Ptr sendVenue(boost::variant<std::int64_t, std::string> chatId,
                            float latitude,
                            float longitude,
                            const std::string& title,
@@ -619,7 +619,7 @@ public:
      * 
      * @return On success, the sent Message is returned.
      */
-    Message::Ptr sendContact(boost::variant<std::int64_t, const std::string&> chatId,
+    Message::Ptr sendContact(boost::variant<std::int64_t, std::string> chatId,
                              const std::string& phoneNumber,
                              const std::string& firstName,
                              const std::string& lastName = "",
@@ -654,7 +654,7 @@ public:
      *
      * @return On success, the sent Message is returned.
      */
-    Message::Ptr sendPoll(boost::variant<std::int64_t, const std::string&> chatId,
+    Message::Ptr sendPoll(boost::variant<std::int64_t, std::string> chatId,
                           const std::string& question,
                           const std::vector<std::string>& options,
                           bool disableNotification = false,
@@ -686,7 +686,7 @@ public:
      *
      * @return On success, the sent Message is returned.
      */
-    Message::Ptr sendDice(boost::variant<std::int64_t, const std::string&> chatId,
+    Message::Ptr sendDice(boost::variant<std::int64_t, std::string> chatId,
                           bool disableNotification = false,
                           std::int32_t replyToMessageId = 0,
                           GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>(),
@@ -755,7 +755,7 @@ public:
      * 
      * @return Returns True on success.
      */
-    bool banChatMember(boost::variant<std::int64_t, const std::string&> chatId,
+    bool banChatMember(boost::variant<std::int64_t, std::string> chatId,
                        std::int64_t userId,
                        std::int32_t untilDate = 0,
                        bool revokeMessages = true) const;
@@ -775,7 +775,7 @@ public:
      * 
      * @return Returns True on success.
      */
-    bool unbanChatMember(boost::variant<std::int64_t, const std::string&> chatId,
+    bool unbanChatMember(boost::variant<std::int64_t, std::string> chatId,
                          std::int64_t userId,
                          bool onlyIfBanned = false) const;
 
@@ -792,7 +792,7 @@ public:
      * 
      * @return Returns True on success.
      */
-    bool restrictChatMember(boost::variant<std::int64_t, const std::string&> chatId,
+    bool restrictChatMember(boost::variant<std::int64_t, std::string> chatId,
                             std::int64_t userId,
                             ChatPermissions::Ptr permissions,
                             std::int64_t untilDate = 0) const;
@@ -819,7 +819,7 @@ public:
      * 
      * @return Returns True on success.
      */
-    bool promoteChatMember(boost::variant<std::int64_t, const std::string&> chatId,
+    bool promoteChatMember(boost::variant<std::int64_t, std::string> chatId,
                            std::int64_t userId,
                            bool canChangeInfo = false,
                            bool canPostMessages = false,
@@ -842,7 +842,7 @@ public:
      *
      * @return Returns True on success.
      */
-    bool setChatAdministratorCustomTitle(boost::variant<std::int64_t, const std::string&> chatId,
+    bool setChatAdministratorCustomTitle(boost::variant<std::int64_t, std::string> chatId,
                                          std::int64_t userId,
                                          const std::string& customTitle) const;
 
@@ -857,7 +857,7 @@ public:
      *
      * @return Returns True on success.
      */
-    bool banChatSenderChat(boost::variant<std::int64_t, const std::string&> chatId,
+    bool banChatSenderChat(boost::variant<std::int64_t, std::string> chatId,
                            std::int64_t senderChatId) const;
 
     /**
@@ -870,7 +870,7 @@ public:
      *
      * @return Returns True on success.
      */
-    bool unbanChatSenderChat(boost::variant<std::int64_t, const std::string&> chatId,
+    bool unbanChatSenderChat(boost::variant<std::int64_t, std::string> chatId,
                              std::int64_t senderChatId) const;
 
     /**
@@ -883,7 +883,7 @@ public:
      * 
      * @return Returns True on success.
      */
-    bool setChatPermissions(boost::variant<std::int64_t, const std::string&> chatId,
+    bool setChatPermissions(boost::variant<std::int64_t, std::string> chatId,
                             ChatPermissions::Ptr permissions) const;
 
     /**
@@ -900,7 +900,7 @@ public:
      * 
      * @return Returns the new invite link as String on success.
      */
-    std::string exportChatInviteLink(boost::variant<std::int64_t, const std::string&> chatId) const;
+    std::string exportChatInviteLink(boost::variant<std::int64_t, std::string> chatId) const;
 
     /**
      * @brief Use this method to create an additional invite link for a chat.
@@ -916,7 +916,7 @@ public:
      * 
      * @return Returns the new invite link as ChatInviteLink object.
      */
-    ChatInviteLink::Ptr createChatInviteLink(boost::variant<std::int64_t, const std::string&> chatId,
+    ChatInviteLink::Ptr createChatInviteLink(boost::variant<std::int64_t, std::string> chatId,
                                              std::int32_t expireDate = 0,
                                              std::int32_t memberLimit = 0,
                                              const std::string& name = "",
@@ -936,7 +936,7 @@ public:
      *
      * @return Returns the edited invite link as a ChatInviteLink object.
      */
-    ChatInviteLink::Ptr editChatInviteLink(boost::variant<std::int64_t, const std::string&> chatId,
+    ChatInviteLink::Ptr editChatInviteLink(boost::variant<std::int64_t, std::string> chatId,
                                            const std::string& inviteLink,
                                            std::int32_t expireDate = 0,
                                            std::int32_t memberLimit = 0,
@@ -954,7 +954,7 @@ public:
      *
      * @return Returns the revoked invite link as ChatInviteLink object.
      */
-    ChatInviteLink::Ptr revokeChatInviteLink(boost::variant<std::int64_t, const std::string&> chatId,
+    ChatInviteLink::Ptr revokeChatInviteLink(boost::variant<std::int64_t, std::string> chatId,
                                              const std::string& inviteLink) const;
 
     /**
@@ -967,7 +967,7 @@ public:
      *
      * @return Returns True on success.
      */
-    bool approveChatJoinRequest(boost::variant<std::int64_t, const std::string&> chatId,
+    bool approveChatJoinRequest(boost::variant<std::int64_t, std::string> chatId,
                                 std::int64_t userId) const;
 
     /**
@@ -980,7 +980,7 @@ public:
      *
      * @return True on success.
      */
-    bool declineChatJoinRequest(boost::variant<std::int64_t, const std::string&> chatId,
+    bool declineChatJoinRequest(boost::variant<std::int64_t, std::string> chatId,
                                 std::int64_t userId) const;
 
     /**
@@ -994,7 +994,7 @@ public:
      * 
      * @return Returns True on success.
      */
-    bool setChatPhoto(boost::variant<std::int64_t, const std::string&> chatId,
+    bool setChatPhoto(boost::variant<std::int64_t, std::string> chatId,
                       InputFile::Ptr photo) const;
 
     /**
@@ -1007,7 +1007,7 @@ public:
      * 
      * @return Returns True on success.
      */
-    bool deleteChatPhoto(boost::variant<std::int64_t, const std::string&> chatId) const;
+    bool deleteChatPhoto(boost::variant<std::int64_t, std::string> chatId) const;
 
     /**
      * @brief Use this method to change the title of a chat.
@@ -1020,7 +1020,7 @@ public:
      * 
      * @return Returns True on success.
      */
-    bool setChatTitle(boost::variant<std::int64_t, const std::string&> chatId,
+    bool setChatTitle(boost::variant<std::int64_t, std::string> chatId,
                       const std::string& title) const;
 
     /**
@@ -1033,7 +1033,7 @@ public:
      * 
      * @return Returns True on success.
      */
-    bool setChatDescription(boost::variant<std::int64_t, const std::string&> chatId,
+    bool setChatDescription(boost::variant<std::int64_t, std::string> chatId,
                             const std::string& description = "") const;
 
     /**
@@ -1047,7 +1047,7 @@ public:
      * 
      * @return Returns True on success.
      */
-    bool pinChatMessage(boost::variant<std::int64_t, const std::string&> chatId,
+    bool pinChatMessage(boost::variant<std::int64_t, std::string> chatId,
                         std::int32_t messageId,
                         bool disableNotification = false) const;
 
@@ -1061,7 +1061,7 @@ public:
      * 
      * @return Returns True on success.
      */
-    bool unpinChatMessage(boost::variant<std::int64_t, const std::string&> chatId,
+    bool unpinChatMessage(boost::variant<std::int64_t, std::string> chatId,
                           std::int32_t messageId = 0) const;
 
     /**
@@ -1073,7 +1073,7 @@ public:
      *
      * @return Returns True on success.
      */
-    bool unpinAllChatMessages(boost::variant<std::int64_t, const std::string&> chatId) const;
+    bool unpinAllChatMessages(boost::variant<std::int64_t, std::string> chatId) const;
 
     /**
      * @brief Use this method for your bot to leave a group, supergroup or channel.
@@ -1082,7 +1082,7 @@ public:
      * 
      * @return Returns True on success.
      */
-    bool leaveChat(boost::variant<std::int64_t, const std::string&> chatId) const;
+    bool leaveChat(boost::variant<std::int64_t, std::string> chatId) const;
 
     /**
      * @brief Use this method to get up to date information about the chat (current name of the user for one-on-one conversations, current username of a user, group or channel, etc.).
@@ -1091,7 +1091,7 @@ public:
      * 
      * @return Returns a Chat object on success.
      */
-    Chat::Ptr getChat(boost::variant<std::int64_t, const std::string&> chatId) const;
+    Chat::Ptr getChat(boost::variant<std::int64_t, std::string> chatId) const;
 
     /**
     * @brief Use this method to get a list of administrators in a chat, which aren't bots.
@@ -1100,7 +1100,7 @@ public:
     * 
     * @return Returns an Array of ChatMember objects.
     */
-    std::vector<ChatMember::Ptr> getChatAdministrators(boost::variant<std::int64_t, const std::string&> chatId) const;
+    std::vector<ChatMember::Ptr> getChatAdministrators(boost::variant<std::int64_t, std::string> chatId) const;
 
     /**
     * @brief Use this method to get the number of members in a chat.
@@ -1109,7 +1109,7 @@ public:
     * 
     * @return Returns Int on success.
     */
-    std::int32_t getChatMemberCount(boost::variant<std::int64_t, const std::string&> chatId) const;
+    std::int32_t getChatMemberCount(boost::variant<std::int64_t, std::string> chatId) const;
 
     /**
     * @brief Use this method to get information about a member of a chat.
@@ -1119,7 +1119,7 @@ public:
     * 
     * @return Returns a ChatMember object on success.
     */
-    ChatMember::Ptr getChatMember(boost::variant<std::int64_t, const std::string&> chatId,
+    ChatMember::Ptr getChatMember(boost::variant<std::int64_t, std::string> chatId,
                                   std::int64_t userId) const;
 
     /**
@@ -1133,7 +1133,7 @@ public:
     * 
     * @return Returns True on success.
     */
-    bool setChatStickerSet(boost::variant<std::int64_t, const std::string&> chatId,
+    bool setChatStickerSet(boost::variant<std::int64_t, std::string> chatId,
                            const std::string& stickerSetName) const;
 
     /**
@@ -1146,7 +1146,7 @@ public:
     * 
     * @return Returns True on success.
     */
-    bool deleteChatStickerSet(boost::variant<std::int64_t, const std::string&> chatId) const;
+    bool deleteChatStickerSet(boost::variant<std::int64_t, std::string> chatId) const;
 
     /**
      * @brief Use this method to send answers to callback queries sent from inline keyboards.
@@ -1267,7 +1267,7 @@ public:
      * @return On success, if the edited message is not an inline message, the edited Message is returned, otherwise nullptr is returned.
      */
     Message::Ptr editMessageText(const std::string& text,
-                                 boost::variant<std::int64_t, const std::string&> chatId = 0,
+                                 boost::variant<std::int64_t, std::string> chatId = 0,
                                  std::int32_t messageId = 0,
                                  const std::string& inlineMessageId = "",
                                  const std::string& parseMode = "",
@@ -1288,7 +1288,7 @@ public:
      * 
      * @return On success, if the edited message is not an inline message, the edited Message is returned, otherwise nullptr is returned.
      */
-    Message::Ptr editMessageCaption(boost::variant<std::int64_t, const std::string&> chatId = 0,
+    Message::Ptr editMessageCaption(boost::variant<std::int64_t, std::string> chatId = 0,
                                     std::int32_t messageId = 0,
                                     const std::string& caption = "",
                                     const std::string& inlineMessageId = "",
@@ -1311,7 +1311,7 @@ public:
      * @return On success, if the edited message is not an inline message, the edited Message is returned, otherwise nullptr is returned.
      */
     Message::Ptr editMessageMedia(InputMedia::Ptr media,
-                                  boost::variant<std::int64_t, const std::string&> chatId = 0,
+                                  boost::variant<std::int64_t, std::string> chatId = 0,
                                   std::int32_t messageId = 0,
                                   const std::string& inlineMessageId = "",
                                   GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>()) const;
@@ -1326,7 +1326,7 @@ public:
     * 
     * @return On success, if the edited message is not an inline message, the edited Message is returned, otherwise nullptr is returned.
     */
-    Message::Ptr editMessageReplyMarkup(boost::variant<std::int64_t, const std::string&> chatId = 0,
+    Message::Ptr editMessageReplyMarkup(boost::variant<std::int64_t, std::string> chatId = 0,
                                         std::int32_t messageId = 0,
                                         const std::string& inlineMessageId = "",
                                         GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>()) const;
@@ -1340,7 +1340,7 @@ public:
      *
      * @return On success, the stopped Poll is returned.
      */
-    Poll::Ptr stopPoll(boost::variant<std::int64_t, const std::string&> chatId,
+    Poll::Ptr stopPoll(boost::variant<std::int64_t, std::string> chatId,
                        std::int64_t messageId,
                        InlineKeyboardMarkup::Ptr replyMarkup = std::make_shared<InlineKeyboardMarkup>()) const;
 
@@ -1360,7 +1360,7 @@ public:
      * 
      * @return Returns True on success.
      */
-    bool deleteMessage(boost::variant<std::int64_t, const std::string&> chatId,
+    bool deleteMessage(boost::variant<std::int64_t, std::string> chatId,
                        std::int32_t messageId) const;
 
     /**
@@ -1376,8 +1376,8 @@ public:
      * 
      * @return On success, the sent Message is returned.
      */
-    Message::Ptr sendSticker(boost::variant<std::int64_t, const std::string&> chatId,
-                             boost::variant<InputFile::Ptr, const std::string&> sticker,
+    Message::Ptr sendSticker(boost::variant<std::int64_t, std::string> chatId,
+                             boost::variant<InputFile::Ptr, std::string> sticker,
                              std::int32_t replyToMessageId = 0,
                              GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>(),
                              bool disableNotification = false,
@@ -1436,7 +1436,7 @@ public:
                              const std::string& title,
                              const std::string& emojis,
                              MaskPosition::Ptr maskPosition = nullptr,
-                             boost::variant<InputFile::Ptr, const std::string&> pngSticker = "",
+                             boost::variant<InputFile::Ptr, std::string> pngSticker = "",
                              InputFile::Ptr tgsSticker = nullptr,
                              InputFile::Ptr webmSticker = nullptr,
                              const std::string& stickerType = "") const;
@@ -1463,7 +1463,7 @@ public:
                          const std::string& name,
                          const std::string& emojis,
                          MaskPosition::Ptr maskPosition = nullptr,
-                         boost::variant<InputFile::Ptr, const std::string&> pngSticker = "",
+                         boost::variant<InputFile::Ptr, std::string> pngSticker = "",
                          InputFile::Ptr tgsSticker = nullptr,
                          InputFile::Ptr webmSticker = nullptr) const;
 
@@ -1501,7 +1501,7 @@ public:
      */
     bool setStickerSetThumb(const std::string& name,
                             std::int64_t userId,
-                            boost::variant<InputFile::Ptr, const std::string&> thumb = "") const;
+                            boost::variant<InputFile::Ptr, std::string> thumb = "") const;
 
     /**
      * @brief Use this method to send answers to an inline query.
@@ -1570,7 +1570,7 @@ public:
      * 
      * @return On success, the sent Message is returned.
      */
-    Message::Ptr sendInvoice(boost::variant<std::int64_t, const std::string&> chatId,
+    Message::Ptr sendInvoice(boost::variant<std::int64_t, std::string> chatId,
                              const std::string& title,
                              const std::string& description,
                              const std::string& payload,
