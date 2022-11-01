@@ -143,7 +143,7 @@ Use the [example CMakeLists.txt](samples/echobot/CMakeLists.txt) with changes:
 
 [Example CMakeLists.txt](samples/echobot/CMakeLists.txt)
 
-Also, you can treat this repository as a submodule of your project, for example, see [echobot-submodule](samples/echobot-submodule/CMakeLists.txt)
+Also, you can treat this repository as a submodule of your project, for example, see [echobot-submodule](samples/echobot-submodule/CMakeLists.txt).
 
 ### Without CMake
 
