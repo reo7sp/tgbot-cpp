@@ -101,4 +101,22 @@ string urlDecode(const string& value) {
     return result;
 }
 
+std::string escapeJsonString(const std::string& value) {
+    string result;
+
+    for (const char& c : value) {
+        switch (c) {
+        case '"':
+        case '\\':
+        case '/':
+            result += '\\';
+            break;
+        }
+
+        result += c;
+    }
+
+    return result;
+}
+
 }

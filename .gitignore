@@ -1,5 +1,6 @@
 CMakeCache.txt
 CMakeFiles
+CMakeSettings.json
 Makefile
 *.cmake
 install_manifest.txt
@@ -16,10 +17,10 @@ docs/
 cmake-build-*
 
 # Visual Studio
-/.vs/
+.vs/
 .vscode/
-/build/
-/out/
+build/
+out/
 
 # MacOS dependecies
 .DS_Store
