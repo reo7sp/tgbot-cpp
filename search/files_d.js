@@ -1,7 +1,21 @@
 var searchData=
 [
-  ['photosize_2eh_0',['PhotoSize.h',['../_photo_size_8h.html',1,'']]],
-  ['poll_2eh_1',['Poll.h',['../_poll_8h.html',1,'']]],
-  ['polloption_2eh_2',['PollOption.h',['../_poll_option_8h.html',1,'']]],
-  ['precheckoutquery_2eh_3',['PreCheckoutQuery.h',['../_pre_checkout_query_8h.html',1,'']]]
+  ['passportdata_2eh_0',['PassportData.h',['../_passport_data_8h.html',1,'']]],
+  ['passportelementerror_2eh_1',['PassportElementError.h',['../_passport_element_error_8h.html',1,'']]],
+  ['passportelementerrordatafield_2eh_2',['PassportElementErrorDataField.h',['../_passport_element_error_data_field_8h.html',1,'']]],
+  ['passportelementerrorfile_2eh_3',['PassportElementErrorFile.h',['../_passport_element_error_file_8h.html',1,'']]],
+  ['passportelementerrorfiles_2eh_4',['PassportElementErrorFiles.h',['../_passport_element_error_files_8h.html',1,'']]],
+  ['passportelementerrorfrontside_2eh_5',['PassportElementErrorFrontSide.h',['../_passport_element_error_front_side_8h.html',1,'']]],
+  ['passportelementerrorreverseside_2eh_6',['PassportElementErrorReverseSide.h',['../_passport_element_error_reverse_side_8h.html',1,'']]],
+  ['passportelementerrorselfie_2eh_7',['PassportElementErrorSelfie.h',['../_passport_element_error_selfie_8h.html',1,'']]],
+  ['passportelementerrortranslationfile_2eh_8',['PassportElementErrorTranslationFile.h',['../_passport_element_error_translation_file_8h.html',1,'']]],
+  ['passportelementerrortranslationfiles_2eh_9',['PassportElementErrorTranslationFiles.h',['../_passport_element_error_translation_files_8h.html',1,'']]],
+  ['passportelementerrorunspecified_2eh_10',['PassportElementErrorUnspecified.h',['../_passport_element_error_unspecified_8h.html',1,'']]],
+  ['passportfile_2eh_11',['PassportFile.h',['../_passport_file_8h.html',1,'']]],
+  ['photosize_2eh_12',['PhotoSize.h',['../_photo_size_8h.html',1,'']]],
+  ['poll_2eh_13',['Poll.h',['../_poll_8h.html',1,'']]],
+  ['pollanswer_2eh_14',['PollAnswer.h',['../_poll_answer_8h.html',1,'']]],
+  ['polloption_2eh_15',['PollOption.h',['../_poll_option_8h.html',1,'']]],
+  ['precheckoutquery_2eh_16',['PreCheckoutQuery.h',['../_pre_checkout_query_8h.html',1,'']]],
+  ['proximityalerttriggered_2eh_17',['ProximityAlertTriggered.h',['../_proximity_alert_triggered_8h.html',1,'']]]
 ];

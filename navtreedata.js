@@ -25,10 +25,6 @@
 var NAVTREE =
 [
   [ "tgbot-cpp", "index.html", [
-    [ "Library compilation", "index.html#lib_compile", null ],
-    [ "Bot compilation", "index.html#bot_compile", null ],
-    [ "Samples", "index.html#Samples", null ],
-    [ "Licence", "index.html#Licence", null ],
     [ "Modules", "modules.html", "modules" ],
     [ "Namespaces", "namespaces.html", [
       [ "Namespace List", "namespaces.html", "namespaces_dup" ],
@@ -43,7 +39,7 @@ var NAVTREE =
       [ "Class Hierarchy", "hierarchy.html", "hierarchy" ],
       [ "Class Members", "functions.html", [
         [ "All", "functions.html", "functions_dup" ],
-        [ "Functions", "functions_func.html", null ],
+        [ "Functions", "functions_func.html", "functions_func" ],
         [ "Variables", "functions_vars.html", "functions_vars" ],
         [ "Typedefs", "functions_type.html", null ],
         [ "Enumerations", "functions_enum.html", null ],
@@ -59,10 +55,12 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "_animation_8h.html",
-"class_tg_bot_1_1_api.html#a7008ec555e2dfd6af567a3a2316a95be",
-"class_tg_bot_1_1_inline_keyboard_button.html#a25716bdfc7a0719f1c17702a8d6a8aa4",
-"class_tg_bot_1_1_location.html",
-"class_tg_bot_1_1_webhook_info.html#a4f1f6efd16518a24e8c153f5e126a36f"
+"_sent_web_app_message_8h.html",
+"class_tg_bot_1_1_chat.html#a6e749f4fe47340a468301899a3c9c616",
+"class_tg_bot_1_1_http_parser.html#a96650c74932e8662f73a90ebd49139e6",
+"class_tg_bot_1_1_inline_query_result_venue.html#ad9374428a9aa1ba20af79cc601ece351",
+"class_tg_bot_1_1_message.html#afda60437cce532170cb9b924f70e1c56",
+"class_tg_bot_1_1_update.html#a9c1dab567059da89f8529263bdc92da3"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['keyboard_0',['keyboard',['../class_tg_bot_1_1_reply_keyboard_markup.html#a87d9dc41554e585b137b922fa20fd020',1,'TgBot::ReplyKeyboardMarkup']]]
+  ['joinbyrequest_0',['joinByRequest',['../class_tg_bot_1_1_chat.html#a51ee1668a3588e049a06ee0fe3f921f6',1,'TgBot::Chat']]],
+  ['jointosendmessages_1',['joinToSendMessages',['../class_tg_bot_1_1_chat.html#a9dd910e24aaa60eb2b5420a29fdfa128',1,'TgBot::Chat']]]
 ];

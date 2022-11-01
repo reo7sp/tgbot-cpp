@@ -5,18 +5,42 @@ var hierarchy =
     [ "TgBot::Audio", "class_tg_bot_1_1_audio.html", null ],
     [ "TgBot::Bot", "class_tg_bot_1_1_bot.html", null ],
     [ "TgBot::BotCommand", "class_tg_bot_1_1_bot_command.html", null ],
+    [ "TgBot::BotCommandScope", "class_tg_bot_1_1_bot_command_scope.html", [
+      [ "TgBot::BotCommandScopeAllChatAdministrators", "class_tg_bot_1_1_bot_command_scope_all_chat_administrators.html", null ],
+      [ "TgBot::BotCommandScopeAllGroupChats", "class_tg_bot_1_1_bot_command_scope_all_group_chats.html", null ],
+      [ "TgBot::BotCommandScopeAllPrivateChats", "class_tg_bot_1_1_bot_command_scope_all_private_chats.html", null ],
+      [ "TgBot::BotCommandScopeChat", "class_tg_bot_1_1_bot_command_scope_chat.html", null ],
+      [ "TgBot::BotCommandScopeChatAdministrators", "class_tg_bot_1_1_bot_command_scope_chat_administrators.html", null ],
+      [ "TgBot::BotCommandScopeChatMember", "class_tg_bot_1_1_bot_command_scope_chat_member.html", null ],
+      [ "TgBot::BotCommandScopeDefault", "class_tg_bot_1_1_bot_command_scope_default.html", null ]
+    ] ],
     [ "TgBot::CallbackGame", "class_tg_bot_1_1_callback_game.html", null ],
     [ "TgBot::CallbackQuery", "class_tg_bot_1_1_callback_query.html", null ],
     [ "TgBot::Chat", "class_tg_bot_1_1_chat.html", null ],
-    [ "TgBot::ChatMember", "class_tg_bot_1_1_chat_member.html", null ],
+    [ "TgBot::ChatAdministratorRights", "class_tg_bot_1_1_chat_administrator_rights.html", null ],
+    [ "TgBot::ChatInviteLink", "class_tg_bot_1_1_chat_invite_link.html", null ],
+    [ "TgBot::ChatJoinRequest", "class_tg_bot_1_1_chat_join_request.html", null ],
+    [ "TgBot::ChatLocation", "class_tg_bot_1_1_chat_location.html", null ],
+    [ "TgBot::ChatMember", "class_tg_bot_1_1_chat_member.html", [
+      [ "TgBot::ChatMemberAdministrator", "class_tg_bot_1_1_chat_member_administrator.html", null ],
+      [ "TgBot::ChatMemberBanned", "class_tg_bot_1_1_chat_member_banned.html", null ],
+      [ "TgBot::ChatMemberLeft", "class_tg_bot_1_1_chat_member_left.html", null ],
+      [ "TgBot::ChatMemberMember", "class_tg_bot_1_1_chat_member_member.html", null ],
+      [ "TgBot::ChatMemberOwner", "class_tg_bot_1_1_chat_member_owner.html", null ],
+      [ "TgBot::ChatMemberRestricted", "class_tg_bot_1_1_chat_member_restricted.html", null ]
+    ] ],
+    [ "TgBot::ChatMemberUpdated", "class_tg_bot_1_1_chat_member_updated.html", null ],
     [ "TgBot::ChatPermissions", "class_tg_bot_1_1_chat_permissions.html", null ],
     [ "TgBot::ChatPhoto", "class_tg_bot_1_1_chat_photo.html", null ],
     [ "TgBot::ChosenInlineResult", "class_tg_bot_1_1_chosen_inline_result.html", null ],
     [ "TgBot::Contact", "class_tg_bot_1_1_contact.html", null ],
+    [ "TgBot::Dice", "class_tg_bot_1_1_dice.html", null ],
     [ "TgBot::Document", "class_tg_bot_1_1_document.html", null ],
     [ "std::enable_shared_from_this", null, [
       [ "TgBot::HttpServer< Protocol >::Connection", "class_tg_bot_1_1_http_server_1_1_connection.html", null ]
     ] ],
+    [ "TgBot::EncryptedCredentials", "class_tg_bot_1_1_encrypted_credentials.html", null ],
+    [ "TgBot::EncryptedPassportElement", "class_tg_bot_1_1_encrypted_passport_element.html", null ],
     [ "TgBot::EventBroadcaster", "class_tg_bot_1_1_event_broadcaster.html", null ],
     [ "TgBot::EventHandler", "class_tg_bot_1_1_event_handler.html", null ],
     [ "TgBot::File", "class_tg_bot_1_1_file.html", null ],
@@ -35,18 +59,16 @@ var hierarchy =
     [ "TgBot::HttpParser", "class_tg_bot_1_1_http_parser.html", null ],
     [ "TgBot::HttpReqArg", "class_tg_bot_1_1_http_req_arg.html", null ],
     [ "TgBot::HttpServer< Protocol >", "class_tg_bot_1_1_http_server.html", [
-      [ "TgBot::TgWebhookServer< Protocol >", "class_tg_bot_1_1_tg_webhook_server.html", null ]
-    ] ],
-    [ "TgBot::HttpServer< boost::asio::ip::tcp >", "class_tg_bot_1_1_http_server.html", [
-      [ "TgBot::TgWebhookServer< boost::asio::ip::tcp >", "class_tg_bot_1_1_tg_webhook_server.html", [
-        [ "TgBot::TgWebhookTcpServer", "class_tg_bot_1_1_tg_webhook_tcp_server.html", null ]
-      ] ]
-    ] ],
-    [ "TgBot::HttpServer< boost::asio::local::stream_protocol >", "class_tg_bot_1_1_http_server.html", [
       [ "TgBot::TgWebhookServer< boost::asio::local::stream_protocol >", "class_tg_bot_1_1_tg_webhook_server.html", [
         [ "TgBot::TgWebhookLocalServer", "class_tg_bot_1_1_tg_webhook_local_server.html", null ]
-      ] ]
+      ] ],
+      [ "TgBot::TgWebhookServer< boost::asio::ip::tcp >", "class_tg_bot_1_1_tg_webhook_server.html", [
+        [ "TgBot::TgWebhookTcpServer", "class_tg_bot_1_1_tg_webhook_tcp_server.html", null ]
+      ] ],
+      [ "TgBot::TgWebhookServer< Protocol >", "class_tg_bot_1_1_tg_webhook_server.html", null ]
     ] ],
+    [ "TgBot::HttpServer< boost::asio::ip::tcp >", "class_tg_bot_1_1_http_server.html", null ],
+    [ "TgBot::HttpServer< boost::asio::local::stream_protocol >", "class_tg_bot_1_1_http_server.html", null ],
     [ "TgBot::InlineKeyboardButton", "class_tg_bot_1_1_inline_keyboard_button.html", null ],
     [ "TgBot::InlineQuery", "class_tg_bot_1_1_inline_query.html", null ],
     [ "TgBot::InlineQueryResult", "class_tg_bot_1_1_inline_query_result.html", [
@@ -81,27 +103,52 @@ var hierarchy =
     ] ],
     [ "TgBot::InputMessageContent", "class_tg_bot_1_1_input_message_content.html", [
       [ "TgBot::InputContactMessageContent", "class_tg_bot_1_1_input_contact_message_content.html", null ],
+      [ "TgBot::InputInvoiceMessageContent", "class_tg_bot_1_1_input_invoice_message_content.html", null ],
       [ "TgBot::InputLocationMessageContent", "class_tg_bot_1_1_input_location_message_content.html", null ],
       [ "TgBot::InputTextMessageContent", "class_tg_bot_1_1_input_text_message_content.html", null ],
       [ "TgBot::InputVenueMessageContent", "class_tg_bot_1_1_input_venue_message_content.html", null ]
     ] ],
     [ "TgBot::Invoice", "class_tg_bot_1_1_invoice.html", null ],
     [ "TgBot::KeyboardButton", "class_tg_bot_1_1_keyboard_button.html", null ],
+    [ "TgBot::KeyboardButtonPollType", "class_tg_bot_1_1_keyboard_button_poll_type.html", null ],
     [ "TgBot::LabeledPrice", "class_tg_bot_1_1_labeled_price.html", null ],
     [ "TgBot::Location", "class_tg_bot_1_1_location.html", null ],
     [ "TgBot::LoginUrl", "class_tg_bot_1_1_login_url.html", null ],
     [ "TgBot::MaskPosition", "class_tg_bot_1_1_mask_position.html", null ],
+    [ "TgBot::MenuButton", "class_tg_bot_1_1_menu_button.html", [
+      [ "TgBot::MenuButtonCommands", "class_tg_bot_1_1_menu_button_commands.html", null ],
+      [ "TgBot::MenuButtonDefault", "class_tg_bot_1_1_menu_button_default.html", null ],
+      [ "TgBot::MenuButtonWebApp", "class_tg_bot_1_1_menu_button_web_app.html", null ]
+    ] ],
     [ "TgBot::Message", "class_tg_bot_1_1_message.html", null ],
+    [ "TgBot::MessageAutoDeleteTimerChanged", "class_tg_bot_1_1_message_auto_delete_timer_changed.html", null ],
     [ "TgBot::MessageEntity", "class_tg_bot_1_1_message_entity.html", null ],
+    [ "TgBot::MessageId", "class_tg_bot_1_1_message_id.html", null ],
     [ "TgBot::OrderInfo", "class_tg_bot_1_1_order_info.html", null ],
+    [ "TgBot::PassportData", "class_tg_bot_1_1_passport_data.html", null ],
+    [ "TgBot::PassportElementError", "class_tg_bot_1_1_passport_element_error.html", [
+      [ "TgBot::PassportElementErrorDataField", "class_tg_bot_1_1_passport_element_error_data_field.html", null ],
+      [ "TgBot::PassportElementErrorFile", "class_tg_bot_1_1_passport_element_error_file.html", null ],
+      [ "TgBot::PassportElementErrorFiles", "class_tg_bot_1_1_passport_element_error_files.html", null ],
+      [ "TgBot::PassportElementErrorFrontSide", "class_tg_bot_1_1_passport_element_error_front_side.html", null ],
+      [ "TgBot::PassportElementErrorReverseSide", "class_tg_bot_1_1_passport_element_error_reverse_side.html", null ],
+      [ "TgBot::PassportElementErrorSelfie", "class_tg_bot_1_1_passport_element_error_selfie.html", null ],
+      [ "TgBot::PassportElementErrorTranslationFile", "class_tg_bot_1_1_passport_element_error_translation_file.html", null ],
+      [ "TgBot::PassportElementErrorTranslationFiles", "class_tg_bot_1_1_passport_element_error_translation_files.html", null ],
+      [ "TgBot::PassportElementErrorUnspecified", "class_tg_bot_1_1_passport_element_error_unspecified.html", null ]
+    ] ],
+    [ "TgBot::PassportFile", "class_tg_bot_1_1_passport_file.html", null ],
     [ "TgBot::PhotoSize", "class_tg_bot_1_1_photo_size.html", null ],
     [ "TgBot::Poll", "class_tg_bot_1_1_poll.html", null ],
+    [ "TgBot::PollAnswer", "class_tg_bot_1_1_poll_answer.html", null ],
     [ "TgBot::PollOption", "class_tg_bot_1_1_poll_option.html", null ],
     [ "TgBot::PreCheckoutQuery", "class_tg_bot_1_1_pre_checkout_query.html", null ],
+    [ "TgBot::ProximityAlertTriggered", "class_tg_bot_1_1_proximity_alert_triggered.html", null ],
     [ "TgBot::ResponseParameters", "class_tg_bot_1_1_response_parameters.html", null ],
     [ "std::runtime_error", null, [
       [ "TgBot::TgException", "class_tg_bot_1_1_tg_exception.html", null ]
     ] ],
+    [ "TgBot::SentWebAppMessage", "class_tg_bot_1_1_sent_web_app_message.html", null ],
     [ "TgBot::ShippingAddress", "class_tg_bot_1_1_shipping_address.html", null ],
     [ "TgBot::ShippingOption", "class_tg_bot_1_1_shipping_option.html", null ],
     [ "TgBot::ShippingQuery", "class_tg_bot_1_1_shipping_query.html", null ],
@@ -115,7 +162,13 @@ var hierarchy =
     [ "TgBot::UserProfilePhotos", "class_tg_bot_1_1_user_profile_photos.html", null ],
     [ "TgBot::Venue", "class_tg_bot_1_1_venue.html", null ],
     [ "TgBot::Video", "class_tg_bot_1_1_video.html", null ],
+    [ "TgBot::VideoChatEnded", "class_tg_bot_1_1_video_chat_ended.html", null ],
+    [ "TgBot::VideoChatParticipantsInvited", "class_tg_bot_1_1_video_chat_participants_invited.html", null ],
+    [ "TgBot::VideoChatScheduled", "class_tg_bot_1_1_video_chat_scheduled.html", null ],
+    [ "TgBot::VideoChatStarted", "class_tg_bot_1_1_video_chat_started.html", null ],
     [ "TgBot::VideoNote", "class_tg_bot_1_1_video_note.html", null ],
     [ "TgBot::Voice", "class_tg_bot_1_1_voice.html", null ],
+    [ "TgBot::WebAppData", "class_tg_bot_1_1_web_app_data.html", null ],
+    [ "TgBot::WebAppInfo", "class_tg_bot_1_1_web_app_info.html", null ],
     [ "TgBot::WebhookInfo", "class_tg_bot_1_1_webhook_info.html", null ]
 ];
