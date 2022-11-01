@@ -1,10 +1,8 @@
 # tgbot-cpp
 
-[![Travis build Status](https://travis-ci.org/reo7sp/tgbot-cpp.svg?branch=master)](https://travis-ci.org/reo7sp/tgbot-cpp)
-<br>
 [![GitHub contributors](https://img.shields.io/github/contributors/reo7sp/tgbot-cpp.svg)](https://github.com/reo7sp/tgbot-cpp/graphs/contributors)
 
-C++14 library for Telegram bot API.
+C++ library for Telegram bot API.
 
 Documentation is located [here](http://reo7sp.github.io/tgbot-cpp).
 
@@ -17,6 +15,7 @@ Documentation is located [here](http://reo7sp.github.io/tgbot-cpp).
 ## Sample
 
 Simple echo bot which sends everything it receives:
+
 ```cpp
 #include <stdio.h>
 #include <tgbot/tgbot.h>
@@ -52,15 +51,24 @@ All other samples are located [here](samples).
 
 ## Dependencies
 
-Firstly you need to install some dependencies such as Boost and build tools such as CMake. On Debian-based distibutives you can do it with these commands:
+Dependencies:
+- CMake
+- Boost
+- OpenSSL
+- ZLib
+- Libcurl (optional unless you want to use curl-based http client `CurlHttpClient`).
+
+
+## Library installation on Linux
+
+You can install dependencies on Debian-based distibutives with these commands:
+
 ```sh
-sudo apt-get install g++ make binutils cmake libssl-dev libboost-system-dev zlib1g-dev
+sudo apt-get install g++ make binutils cmake libssl-dev libboost-system-dev zlib1g-dev libcurl4-openssl-dev
 ```
-If you want to use curl-based http client `CurlHttpClient`, you also need to install `libcurl4-openssl-dev` package.
 
-## Library installation
+You can compile and install the library with these commands:
 
-If you want to install the library system-wide:
 ```sh
 git clone https://github.com/reo7sp/tgbot-cpp
 cd tgbot-cpp
@@ -69,34 +77,39 @@ make -j4
 sudo make install
 ```
 
-You can treat this repository as a submodule of your project, for example, see [echobot-submodule](samples/echobot-submodule/CMakeLists.txt)
+Alternatively, you can use Docker to build and run your bot. Set the base image of your's Dockerfile to [reo7sp/tgbot-cpp](https://hub.docker.com/r/reo7sp/tgbot-cpp/).
 
-You can use Docker to build and run your bot. Set the base image of your's Dockerfile to [reo7sp/tgbot-cpp](https://hub.docker.com/r/reo7sp/tgbot-cpp/).
 
-## Installation Windows
+## Library installation on MacOS
+
+You can install dependencies with these commands:
+
+```sh
+brew install openssl zlib
+```
+
+You can compile and install the library like Linux instructions.
+
+
+## Library installation on Windows
 
 ### Download vcpkg and tgbot-cpp
 
-Taken from [Vcpkg - Quick Start: Windows](https://github.com/Microsoft/vcpkg/#quick-start-windows):
+Taken from [Vcpkg - Quick Start: Windows](https://github.com/Microsoft/vcpkg/#quick-start-windows).
 
 Prerequisites:
 - Windows 7 or newer
 - Git
 - Visual Studio 2015 Update 3 or greater with the English language pack
 
-First, download and bootstrap vcpkg itself; it can be installed anywhere,
-but generally we recommend using vcpkg as a submodule for CMake projects,
-and installing it globally for Visual Studio projects.
-We recommend somewhere like `C:\src\vcpkg` or `C:\dev\vcpkg`,
-since otherwise you may run into path issues for some port build systems.
+First, download and bootstrap vcpkg itself; it can be installed anywhere, but generally we recommend using vcpkg as a submodule for CMake projects, and installing it globally for Visual Studio projects. We recommend somewhere like `C:\src\vcpkg` or `C:\dev\vcpkg`, since otherwise you may run into path issues for some port build systems.
 
 ```cmd
 > git clone https://github.com/microsoft/vcpkg
 > .\vcpkg\bootstrap-vcpkg.bat
 ```
 
-In order to use vcpkg with Visual Studio,
-run the following command (may require administrator elevation):
+In order to use vcpkg with Visual Studio, run the following command (may require administrator elevation):
 
 ```cmd
 > .\vcpkg\vcpkg integrate install
@@ -120,22 +133,26 @@ The library will now be installed and Visual Studio should be able to find the v
 
 Use the [example CMakeLists.txt](samples/echobot/CMakeLists.txt) with changes:
 
-Remove `/usr/local/include`
-
-Change `/usr/local/lib/libTgBot.a` to `C:/src/vcpkg/installed/x64-windows/lib/TgBot.lib` or something simmilar according to your own installation path.
+1. Remove `/usr/local/include`
+2. Change `/usr/local/lib/libTgBot.a` to `C:/src/vcpkg/installed/x64-windows/lib/TgBot.lib` or something simmilar according to your own installation path.
 
 
 ## Bot compilation
 
 ### With CMake
+
 [Example CMakeLists.txt](samples/echobot/CMakeLists.txt)
 
+Also, you can treat this repository as a submodule of your project, for example, see [echobot-submodule](samples/echobot-submodule/CMakeLists.txt)
+
 ### Without CMake
+
 ```sh
 g++ telegram_bot.cpp -o telegram_bot --std=c++14 -I/usr/local/include -lTgBot -lboost_system -lssl -lcrypto -lpthread
 ```
 
 ### Build options
+
 ```
 -DTGBOT_DISABLE_NAGLES_ALGORITHM   # Disable 'Nagle's algorithm'
 -DTGBOT_CHANGE_SOCKET_BUFFER_SIZE  # Socket Buffer Size Expansion
