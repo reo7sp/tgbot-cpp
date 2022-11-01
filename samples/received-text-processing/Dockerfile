@@ -1,5 +1,5 @@
 FROM reo7sp/tgbot-cpp
-MAINTAINER Oleg Morozenkov <a@reo7sp.ru>
+MAINTAINER Oleg Morozenkov <m@oleg.rocks>
 
 WORKDIR /usr/src/received-text-processing
 COPY . .
