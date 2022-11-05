@@ -35,6 +35,7 @@ public:
 
     /**
      * @brief True, if the administrator can access the chat event log, chat statistics, message statistics in channels, see channel members, see anonymous administrators in supergroups and ignore slow mode.
+     * 
      * Implied by any other administrator privilege
      */
     bool canManageChat;
@@ -45,7 +46,7 @@ public:
     bool canDeleteMessages;
 
     /**
-     * @brief rue, if the administrator can manage video chats
+     * @brief True, if the administrator can manage video chats
      */
     bool canManageVideoChats;
 
@@ -83,6 +84,11 @@ public:
      * @brief Optional. True, if the user is allowed to pin messages; groups and supergroups only
      */
     bool canPinMessages;
+
+    /**
+     * @brief Optional. True, if the user is allowed to create, rename, close, and reopen forum topics; supergroups only
+     */
+    bool canManageTopics;
 
     /**
      * @brief Optional. Custom title for this user

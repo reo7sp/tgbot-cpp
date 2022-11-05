@@ -25,6 +25,7 @@
 #include "tgbot/types/LabeledPrice.h"
 #include "tgbot/types/ShippingOption.h"
 #include "tgbot/types/BotCommand.h"
+#include "tgbot/types/ForumTopic.h"
 
 #include <boost/property_tree/ptree.hpp>
 #include <boost/variant.hpp>
@@ -170,6 +171,7 @@ public:
      * @param entities Optional. A JSON-serialized list of special entities that appear in message text, which can be specified instead of parseMode
      * @param allowSendingWithoutReply Optional. Pass True if the message should be sent even if the specified replied-to message is not found
      * @param protectContent Optional. Protects the contents of the sent message from forwarding and saving
+     * @param messageThreadId Optional. Unique identifier for the target message thread (topic) of the forum; for forum supergroups only
      * 
      * @return On success, the sent Message is returned.
      */
@@ -183,7 +185,8 @@ public:
                              bool disableNotification = false,
                              const std::vector<MessageEntity::Ptr>& entities = std::vector<MessageEntity::Ptr>(),
                              bool allowSendingWithoutReply = false,
-                             bool protectContent = false) const;
+                             bool protectContent = false,
+                             std::int32_t messageThreadId = 0) const;
 
     /**
      * @brief Use this method to forward messages of any kind.
@@ -195,6 +198,7 @@ public:
      * @param messageId Message identifier in the chat specified in fromChatId
      * @param disableNotification Optional. Sends the message silently. Users will receive a notification with no sound.
      * @param protectContent Optional. Protects the contents of the forwarded message from forwarding and saving
+     * @param messageThreadId Optional. Unique identifier for the target message thread (topic) of the forum; for forum supergroups only
      * 
      * @return On success, the sent Message is returned.
      */
@@ -202,7 +206,8 @@ public:
                                 boost::variant<std::int64_t, std::string> fromChatId,
                                 std::int32_t messageId,
                                 bool disableNotification = false,
-                                bool protectContent = false) const;
+                                bool protectContent = false,
+                                std::int32_t messageThreadId = 0) const;
 
     /**
      * @brief Use this method to copy messages of any kind.
@@ -222,6 +227,7 @@ public:
      * @param allowSendingWithoutReply Optional. Pass True if the message should be sent even if the specified replied-to message is not found
      * @param replyMarkup Optional. Additional interface options. A JSON-serialized object for an inline keyboard, custom reply keyboard, instructions to remove reply keyboard or to force a reply from the user.
      * @param protectContent Optional. Protects the contents of the sent message from forwarding and saving
+     * @param messageThreadId Optional. Unique identifier for the target message thread (topic) of the forum; for forum supergroups only
      * 
      * @return Returns the MessageId of the sent message on success.
      */
@@ -235,7 +241,8 @@ public:
                                std::int32_t replyToMessageId = 0,
                                bool allowSendingWithoutReply = false,
                                GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>(),
-                               bool protectContent = false) const;
+                               bool protectContent = false,
+                               std::int32_t messageThreadId = 0) const;
 
     /**
      * @brief Use this method to send photos.
@@ -250,6 +257,7 @@ public:
      * @param captionEntities Optional. A JSON-serialized list of special entities that appear in the caption, which can be specified instead of parseMode
      * @param allowSendingWithoutReply Optional. Pass True if the message should be sent even if the specified replied-to message is not found
      * @param protectContent Optional. Protects the contents of the sent message from forwarding and saving
+     * @param messageThreadId Optional. Unique identifier for the target message thread (topic) of the forum; for forum supergroups only
      * 
      * @return On success, the sent Message is returned.
      */
@@ -262,7 +270,8 @@ public:
                            bool disableNotification = false,
                            const std::vector<MessageEntity::Ptr>& captionEntities = std::vector<MessageEntity::Ptr>(),
                            bool allowSendingWithoutReply = false,
-                           bool protectContent = false) const;
+                           bool protectContent = false,
+                           std::int32_t messageThreadId = 0) const;
 
     /**
      * @brief Use this method to send audio files, if you want Telegram clients to display them in the music player.
@@ -286,6 +295,7 @@ public:
      * @param captionEntities Optional. A JSON-serialized list of special entities that appear in the caption, which can be specified instead of parseMode
      * @param allowSendingWithoutReply Optional. Pass True if the message should be sent even if the specified replied-to message is not found
      * @param protectContent Optional. Protects the contents of the sent message from forwarding and saving
+     * @param messageThreadId Optional. Unique identifier for the target message thread (topic) of the forum; for forum supergroups only
      * 
      * @return On success, the sent Message is returned.
      */
@@ -302,7 +312,8 @@ public:
                            bool disableNotification = false,
                            const std::vector<MessageEntity::Ptr>& captionEntities = std::vector<MessageEntity::Ptr>(),
                            bool allowSendingWithoutReply = false,
-                           bool protectContent = false) const;
+                           bool protectContent = false,
+                           std::int32_t messageThreadId = 0) const;
 
     /**
      * @brief Use this method to send general files.
@@ -321,6 +332,7 @@ public:
      * @param disableContentTypeDetection Optional. Disables automatic server-side content type detection for files uploaded using multipart/form-data
      * @param allowSendingWithoutReply Optional. Pass True if the message should be sent even if the specified replied-to message is not found
      * @param protectContent Optional. Protects the contents of the sent message from forwarding and saving
+     * @param messageThreadId Optional. Unique identifier for the target message thread (topic) of the forum; for forum supergroups only
      * 
      * @return On success, the sent Message is returned.
      */
@@ -335,7 +347,8 @@ public:
                               const std::vector<MessageEntity::Ptr>& captionEntities = std::vector<MessageEntity::Ptr>(),
                               bool disableContentTypeDetection = false,
                               bool allowSendingWithoutReply = false,
-                              bool protectContent = false) const;
+                              bool protectContent = false,
+                              std::int32_t messageThreadId = 0) const;
 
     /**
      * @brief Use this method to send video files, Telegram clients support MPEG4 videos (other formats may be sent as Document).
@@ -357,6 +370,7 @@ public:
      * @param captionEntities Optional. A JSON-serialized list of special entities that appear in the caption, which can be specified instead of parseMode
      * @param allowSendingWithoutReply Optional. Pass True if the message should be sent even if the specified replied-to message is not found
      * @param protectContent Optional. Protects the contents of the sent message from forwarding and saving
+     * @param messageThreadId Optional. Unique identifier for the target message thread (topic) of the forum; for forum supergroups only
      * 
      * @return On success, the sent Message is returned.
      */
@@ -374,7 +388,8 @@ public:
                            bool disableNotification = false,
                            const std::vector<MessageEntity::Ptr>& captionEntities = std::vector<MessageEntity::Ptr>(),
                            bool allowSendingWithoutReply = false,
-                           bool protectContent = false) const;
+                           bool protectContent = false,
+                           std::int32_t messageThreadId = 0) const;
 
     /**
      * @brief Use this method to send animation files (GIF or H.264/MPEG-4 AVC video without sound).
@@ -395,6 +410,7 @@ public:
      * @param captionEntities Optional. A JSON-serialized list of special entities that appear in the caption, which can be specified instead of parseMode
      * @param allowSendingWithoutReply Optional. Pass True if the message should be sent even if the specified replied-to message is not found
      * @param protectContent Optional. Protects the contents of the sent message from forwarding and saving
+     * @param messageThreadId Optional. Unique identifier for the target message thread (topic) of the forum; for forum supergroups only
      * 
      * @return On success, the sent Message is returned.
      */
@@ -411,7 +427,8 @@ public:
                                bool disableNotification = false,
                                const std::vector<MessageEntity::Ptr>& captionEntities = std::vector<MessageEntity::Ptr>(),
                                bool allowSendingWithoutReply = false,
-                               bool protectContent = false) const;
+                               bool protectContent = false,
+                               std::int32_t messageThreadId = 0) const;
 
     /**
      * @brief Use this method to send audio files, if you want Telegram clients to display the file as a playable voice message.
@@ -430,6 +447,7 @@ public:
      * @param captionEntities Optional. A JSON-serialized list of special entities that appear in the caption, which can be specified instead of parseMode
      * @param allowSendingWithoutReply Optional. Pass True if the message should be sent even if the specified replied-to message is not found
      * @param protectContent Optional. Protects the contents of the sent message from forwarding and saving
+     * @param messageThreadId Optional. Unique identifier for the target message thread (topic) of the forum; for forum supergroups only
      * 
      * @return On success, the sent Message is returned.
      */
@@ -443,7 +461,8 @@ public:
                            bool disableNotification = false,
                            const std::vector<MessageEntity::Ptr>& captionEntities = std::vector<MessageEntity::Ptr>(),
                            bool allowSendingWithoutReply = false,
-                           bool protectContent = false) const;
+                           bool protectContent = false,
+                           std::int32_t messageThreadId = 0) const;
 
     /**
      * @brief Use this method to send video messages.
@@ -460,6 +479,7 @@ public:
      * @param replyMarkup Optional. Additional interface options. A JSON-serialized object for an inline keyboard, custom reply keyboard, instructions to remove reply keyboard or to force a reply from the user.
      * @param allowSendingWithoutReply Optional. Pass True if the message should be sent even if the specified replied-to message is not found
      * @param protectContent Optional. Protects the contents of the sent message from forwarding and saving
+     * @param messageThreadId Optional. Unique identifier for the target message thread (topic) of the forum; for forum supergroups only
      * 
      * @return On success, the sent Message is returned.
      */
@@ -472,7 +492,8 @@ public:
                                boost::variant<InputFile::Ptr, std::string> thumb = "",
                                GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>(),
                                bool allowSendingWithoutReply = false,
-                               bool protectContent = false) const;
+                               bool protectContent = false,
+                               std::int32_t messageThreadId = 0) const;
 
     /**
      * @brief Use this method to send a group of photos, videos, documents or audios as an album.
@@ -485,6 +506,7 @@ public:
      * @param replyToMessageId Optional. If the messages are a reply, ID of the original message
      * @param allowSendingWithoutReply Optional. Pass True if the message should be sent even if the specified replied-to message is not found
      * @param protectContent Optional. Protects the contents of the sent messages from forwarding and saving
+     * @param messageThreadId Optional. Unique identifier for the target message thread (topic) of the forum; for forum supergroups only
      * 
      * @return On success, an array of Messages that were sent is returned.
      */
@@ -493,7 +515,8 @@ public:
                                              bool disableNotification = false,
                                              std::int32_t replyToMessageId = 0,
                                              bool allowSendingWithoutReply = false,
-                                             bool protectContent = false) const;
+                                             bool protectContent = false,
+                                             std::int32_t messageThreadId = 0) const;
 
     /**
      * @brief Use this method to send point on the map.
@@ -510,6 +533,7 @@ public:
      * @param proximityAlertRadius Optional. For live locations, a maximum distance for proximity alerts about approaching another chat member, in meters. Must be between 1 and 100000 if specified.
      * @param allowSendingWithoutReply Optional. Pass True if the message should be sent even if the specified replied-to message is not found
      * @param protectContent Optional. Protects the contents of the sent message from forwarding and saving
+     * @param messageThreadId Optional. Unique identifier for the target message thread (topic) of the forum; for forum supergroups only
      * 
      * @return On success, the sent Message is returned.
      */
@@ -524,7 +548,8 @@ public:
                               std::int32_t heading = 0,
                               std::int32_t proximityAlertRadius = 0,
                               bool allowSendingWithoutReply = false,
-                              bool protectContent = false) const;
+                              bool protectContent = false,
+                              std::int32_t messageThreadId = 0) const;
 
     /**
      * @brief Use this method to edit live location messages.
@@ -585,6 +610,7 @@ public:
      * @param googlePlaceType Optional. Google Places type of the venue. (See https://developers.google.com/places/web-service/supported_types)
      * @param allowSendingWithoutReply Optional. Pass True if the message should be sent even if the specified replied-to message is not found
      * @param protectContent Optional. Protects the contents of the sent message from forwarding and saving
+     * @param messageThreadId Optional. Unique identifier for the target message thread (topic) of the forum; for forum supergroups only
      * 
      * @return On success, the sent Message is returned.
      */
@@ -601,7 +627,8 @@ public:
                            const std::string& googlePlaceId = "",
                            const std::string& googlePlaceType = "",
                            bool allowSendingWithoutReply = false,
-                           bool protectContent = false) const;
+                           bool protectContent = false,
+                           std::int32_t messageThreadId = 0) const;
 
     /**
      * @brief Use this method to send phone contacts.
@@ -616,6 +643,7 @@ public:
      * @param replyMarkup Optional. Additional interface options. A JSON-serialized object for an inline keyboard, custom reply keyboard, instructions to remove keyboard or to force a reply from the user.
      * @param allowSendingWithoutReply Optional. Pass True if the message should be sent even if the specified replied-to message is not found
      * @param protectContent Optional. Protects the contents of the sent message from forwarding and saving
+     * @param messageThreadId Optional. Unique identifier for the target message thread (topic) of the forum; for forum supergroups only
      * 
      * @return On success, the sent Message is returned.
      */
@@ -628,7 +656,8 @@ public:
                              std::int32_t replyToMessageId = 0,
                              GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>(),
                              bool allowSendingWithoutReply = false,
-                             bool protectContent = false) const;
+                             bool protectContent = false,
+                             std::int32_t messageThreadId = 0) const;
 
     /**
      * @brief Use this method to send a native poll.
@@ -651,6 +680,7 @@ public:
      * @param isClosed Optional. Pass True, if the poll needs to be immediately closed. This can be useful for poll preview.
      * @param allowSendingWithoutReply Optional. Pass True if the message should be sent even if the specified replied-to message is not found
      * @param protectContent Optional. Protects the contents of the sent message from forwarding and saving
+     * @param messageThreadId Optional. Unique identifier for the target message thread (topic) of the forum; for forum supergroups only
      *
      * @return On success, the sent Message is returned.
      */
@@ -671,7 +701,8 @@ public:
                           std::int32_t closeDate = 0,
                           bool isClosed = false,
                           bool allowSendingWithoutReply = false,
-                          bool protectContent = false) const;
+                          bool protectContent = false,
+                          std::int32_t messageThreadId = 0) const;
 
     /**
      * @brief Use this method to send an animated emoji that will display a random value.
@@ -683,6 +714,7 @@ public:
      * @param emoji Optional. Emoji on which the dice throw animation is based. Currently, must be one of “🎲”, “🎯”, “🏀”, “⚽”, “🎳”, or “🎰”. Dice can have values 1-6 for “🎲”, “🎯” and “🎳”, values 1-5 for “🏀” and “⚽”, and values 1-64 for “🎰”. Defaults to “🎲”
      * @param allowSendingWithoutReply Optional. Pass True if the message should be sent even if the specified replied-to message is not found
      * @param protectContent Optional. Protects the contents of the sent message from forwarding
+     * @param messageThreadId Optional. Unique identifier for the target message thread (topic) of the forum; for forum supergroups only
      *
      * @return On success, the sent Message is returned.
      */
@@ -692,7 +724,8 @@ public:
                           GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>(),
                           const std::string& emoji = "",
                           bool allowSendingWithoutReply = false,
-                          bool protectContent = false) const;
+                          bool protectContent = false,
+                          std::int32_t messageThreadId = 0) const;
 
     /**
      * @brief Use this method when you need to tell the user that something is happening on the bot's side.
@@ -805,17 +838,18 @@ public:
      * 
      * @param chatId Unique identifier for the target chat or username of the target channel (in the format @channelusername)
      * @param userId Unique identifier of the target user
-     * @param canChangeInfo Optional. Pass True, if the administrator can change chat title, photo and other settings
-     * @param canPostMessages Optional. Pass True, if the administrator can create channel posts, channels only
-     * @param canEditMessages Optional. Pass True, if the administrator can edit messages of other users and can pin messages, channels only
-     * @param canDeleteMessages Optional. Pass True, if the administrator can delete messages of other users
-     * @param canInviteUsers Optional. Pass True, if the administrator can invite new users to the chat
-     * @param canPinMessages Optional. Pass True, if the administrator can pin messages, supergroups only
-     * @param canPromoteMembers Optional. Pass True, if the administrator can add new administrators with a subset of their own privileges or demote administrators that he has promoted, directly or indirectly (promoted by administrators that were appointed by him)
-     * @param isAnonymous Optional. Pass True, if the administrator's presence in the chat is hidden
-     * @param canManageChat Optional. Pass True, if the administrator can access the chat event log, chat statistics, message statistics in channels, see channel members, see anonymous administrators in supergroups and ignore slow mode. Implied by any other administrator privilege
-     * @param canManageVideoChats Optional. Pass True, if the administrator can manage video chats
-     * @param canRestrictMembers Optional. Pass True, if the administrator can restrict, ban or unban chat members
+     * @param canChangeInfo Optional. Pass True if the administrator can change chat title, photo and other settings
+     * @param canPostMessages Optional. Pass True if the administrator can create channel posts, channels only
+     * @param canEditMessages Optional. Pass True if the administrator can edit messages of other users and can pin messages, channels only
+     * @param canDeleteMessages Optional. Pass True if the administrator can delete messages of other users
+     * @param canInviteUsers Optional. Pass True if the administrator can invite new users to the chat
+     * @param canPinMessages Optional. Pass True if the administrator can pin messages, supergroups only
+     * @param canPromoteMembers Optional. Pass True if the administrator can add new administrators with a subset of their own privileges or demote administrators that he has promoted, directly or indirectly (promoted by administrators that were appointed by him)
+     * @param isAnonymous Optional. Pass True if the administrator's presence in the chat is hidden
+     * @param canManageChat Optional. Pass True if the administrator can access the chat event log, chat statistics, message statistics in channels, see channel members, see anonymous administrators in supergroups and ignore slow mode. Implied by any other administrator privilege
+     * @param canManageVideoChats Optional. Pass True if the administrator can manage video chats
+     * @param canRestrictMembers Optional. Pass True if the administrator can restrict, ban or unban chat members
+     * @param canManageTopics Optional. Pass True if the user is allowed to create, rename, close, and reopen forum topics, supergroups only
      * 
      * @return Returns True on success.
      */
@@ -831,7 +865,8 @@ public:
                            bool isAnonymous = false,
                            bool canManageChat = false,
                            bool canManageVideoChats = false,
-                           bool canRestrictMembers = false) const;
+                           bool canRestrictMembers = false,
+                           bool canManageTopics = false) const;
 
     /**
      * @brief Use this method to set a custom title for an administrator in a supergroup promoted by the bot.
@@ -1094,59 +1129,152 @@ public:
     Chat::Ptr getChat(boost::variant<std::int64_t, std::string> chatId) const;
 
     /**
-    * @brief Use this method to get a list of administrators in a chat, which aren't bots.
-    * 
-    * @param chatId Unique identifier for the target chat or username of the target supergroup or channel (in the format @channelusername)
-    * 
-    * @return Returns an Array of ChatMember objects.
-    */
+     * @brief Use this method to get a list of administrators in a chat, which aren't bots.
+     * 
+     * @param chatId Unique identifier for the target chat or username of the target supergroup or channel (in the format @channelusername)
+     * 
+     * @return Returns an Array of ChatMember objects.
+     */
     std::vector<ChatMember::Ptr> getChatAdministrators(boost::variant<std::int64_t, std::string> chatId) const;
 
     /**
-    * @brief Use this method to get the number of members in a chat.
-    * 
-    * @param chatId Unique identifier for the target chat or username of the target supergroup or channel (in the format @channelusername)
-    * 
-    * @return Returns Int on success.
-    */
+     * @brief Use this method to get the number of members in a chat.
+     * 
+     * @param chatId Unique identifier for the target chat or username of the target supergroup or channel (in the format @channelusername)
+     * 
+     * @return Returns Int on success.
+     */
     std::int32_t getChatMemberCount(boost::variant<std::int64_t, std::string> chatId) const;
 
     /**
-    * @brief Use this method to get information about a member of a chat.
-    * 
-    * @param chatId Unique identifier for the target chat or username of the target supergroup or channel (in the format @channelusername)
-    * @param userId Unique identifier of the target user
-    * 
-    * @return Returns a ChatMember object on success.
-    */
+     * @brief Use this method to get information about a member of a chat.
+     * 
+     * @param chatId Unique identifier for the target chat or username of the target supergroup or channel (in the format @channelusername)
+     * @param userId Unique identifier of the target user
+     * 
+     * @return Returns a ChatMember object on success.
+     */
     ChatMember::Ptr getChatMember(boost::variant<std::int64_t, std::string> chatId,
                                   std::int64_t userId) const;
 
     /**
-    * @brief Use this method to set a new group sticker set for a supergroup.
-    * 
-    * The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights.
-    * Use the field canSetStickerSet optionally returned in Api::getChat requests to check if the bot can use this method.
-    * 
-    * @param chatId Unique identifier for the target chat or username of the target supergroup (in the format @supergroupusername)
-    * @param stickerSetName Name of the sticker set to be set as the group sticker set
-    * 
-    * @return Returns True on success.
-    */
+     * @brief Use this method to set a new group sticker set for a supergroup.
+     * 
+     * The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights.
+     * Use the field canSetStickerSet optionally returned in Api::getChat requests to check if the bot can use this method.
+     * 
+     * @param chatId Unique identifier for the target chat or username of the target supergroup (in the format @supergroupusername)
+     * @param stickerSetName Name of the sticker set to be set as the group sticker set
+     * 
+     * @return Returns True on success.
+     */
     bool setChatStickerSet(boost::variant<std::int64_t, std::string> chatId,
                            const std::string& stickerSetName) const;
 
     /**
-    * @brief Use this method to delete a group sticker set from a supergroup.
-    * 
-    * The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights.
-    * Use the field canSetSticker_set optionally returned in Api::getChat requests to check if the bot can use this method.
-    * 
-    * @param chatId Unique identifier for the target chat or username of the target supergroup (in the format @supergroupusername)
-    * 
-    * @return Returns True on success.
-    */
+     * @brief Use this method to delete a group sticker set from a supergroup.
+     * 
+     * The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights.
+     * Use the field canSetSticker_set optionally returned in Api::getChat requests to check if the bot can use this method.
+     * 
+     * @param chatId Unique identifier for the target chat or username of the target supergroup (in the format @supergroupusername)
+     * 
+     * @return Returns True on success.
+     */
     bool deleteChatStickerSet(boost::variant<std::int64_t, std::string> chatId) const;
+
+    /**
+     * @brief Use this method to get custom emoji stickers, which can be used as a forum topic icon by any user.
+     * 
+     * @return Returns an Array of Sticker objects.
+     */
+    std::vector<Sticker::Ptr> getForumTopicIconStickers() const;
+
+    /**
+     * @brief Use this method to create a topic in a forum supergroup chat.
+     * 
+     * The bot must be an administrator in the chat for this to work and must have the canManageTopics administrator rights.
+     * 
+     * @param chatId Unique identifier for the target chat or username of the target supergroup (in the format @supergroupusername)
+     * @param name Topic name, 1-128 characters
+     * @param iconColor Optional. Color of the topic icon in RGB format. Currently, must be one of 0x6FB9F0, 0xFFD67E, 0xCB86DB, 0x8EEE98, 0xFF93B2, or 0xFB6F5F
+     * @param iconCustomEmojiId Optional. Unique identifier of the custom emoji shown as the topic icon. Use Api::getForumTopicIconStickers to get all allowed custom emoji identifiers.
+     * 
+     * @return Returns information about the created topic as a ForumTopic object.
+     */
+    ForumTopic::Ptr createForumTopic(boost::variant<std::int64_t, std::string> chatId,
+                                     const std::string& name,
+                                     std::int32_t iconColor = 0,
+                                     const std::string& iconCustomEmojiId = "") const;
+
+    /**
+     * @brief Use this method to edit name and icon of a topic in a forum supergroup chat.
+     * 
+     * The bot must be an administrator in the chat for this to work and must have canManageTopics administrator rights, unless it is the creator of the topic.
+     * 
+     * @param chatId Unique identifier for the target chat or username of the target supergroup (in the format @supergroupusername)
+     * @param messageThreadId Unique identifier for the target message thread of the forum topic
+     * @param name New topic name, 1-128 characters
+     * @param iconCustomEmojiId New unique identifier of the custom emoji shown as the topic icon. Use Api::getForumTopicIconStickers to get all allowed custom emoji identifiers
+     * 
+     * @return Returns True on success.
+     */
+    bool editForumTopic(boost::variant<std::int64_t, std::string> chatId,
+                        std::int32_t messageThreadId,
+                        const std::string& name,
+                        const std::string& iconCustomEmojiId) const;
+
+    /**
+     * @brief Use this method to close an open topic in a forum supergroup chat.
+     * 
+     * The bot must be an administrator in the chat for this to work and must have the canManageTopics administrator rights, unless it is the creator of the topic.
+     * 
+     * @param chatId Unique identifier for the target chat or username of the target supergroup (in the format @supergroupusername)
+     * @param messageThreadId Unique identifier for the target message thread of the forum topic
+     * 
+     * @return Returns True on success.
+     */
+    bool closeForumTopic(boost::variant<std::int64_t, std::string> chatId,
+                         std::int32_t messageThreadId) const;
+
+    /**
+     * @brief Use this method to reopen a closed topic in a forum supergroup chat.
+     * 
+     * The bot must be an administrator in the chat for this to work and must have the canManageTopics administrator rights, unless it is the creator of the topic.
+     * 
+     * @param chatId Unique identifier for the target chat or username of the target supergroup (in the format @supergroupusername)
+     * @param messageThreadId Unique identifier for the target message thread of the forum topic
+     * 
+     * @return Returns True on success.
+     */
+    bool reopenForumTopic(boost::variant<std::int64_t, std::string> chatId,
+                          std::int32_t messageThreadId) const;
+
+    /**
+     * @brief Use this method to delete a forum topic along with all its messages in a forum supergroup chat.
+     * 
+     * The bot must be an administrator in the chat for this to work and must have the canDeleteMessages administrator rights.
+     * 
+     * @param chatId Unique identifier for the target chat or username of the target supergroup (in the format @supergroupusername)
+     * @param messageThreadId Unique identifier for the target message thread of the forum topic
+     * 
+     * @return Returns True on success.
+     */
+    bool deleteForumTopic(boost::variant<std::int64_t, std::string> chatId,
+                          std::int32_t messageThreadId) const;
+
+    /**
+     * @brief Use this method to clear the list of pinned messages in a forum topic.
+     * 
+     * The bot must be an administrator in the chat for this to work and must have the canPinMessages administrator right in the supergroup.
+     * 
+     * @param chatId Unique identifier for the target chat or username of the target supergroup (in the format @supergroupusername)
+     * @param messageThreadId Unique identifier for the target message thread of the forum topic
+     * 
+     * @return Returns True on success.
+     */
+    bool unpinAllForumTopicMessages(boost::variant<std::int64_t, std::string> chatId,
+                                    std::int32_t messageThreadId) const;
 
     /**
      * @brief Use this method to send answers to callback queries sent from inline keyboards.
@@ -1317,15 +1445,15 @@ public:
                                   GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>()) const;
 
     /**
-    * @brief Use this method to edit only the reply markup of messages.
-    * 
-    * @param chatId Optional. Required if inlineMessageId is not specified. Unique identifier for the target chat or username of the target channel (in the format @channelusername)
-    * @param messageId Optional. Required if inlineMessageId is not specified. Identifier of the message to edit
-    * @param inlineMessageId Optional. Required if chatId and messageId are not specified. Identifier of the inline message
-    * @param replyMarkup Optional. A JSON-serialized object for an inline keyboard.
-    * 
-    * @return On success, if the edited message is not an inline message, the edited Message is returned, otherwise nullptr is returned.
-    */
+     * @brief Use this method to edit only the reply markup of messages.
+     * 
+     * @param chatId Optional. Required if inlineMessageId is not specified. Unique identifier for the target chat or username of the target channel (in the format @channelusername)
+     * @param messageId Optional. Required if inlineMessageId is not specified. Identifier of the message to edit
+     * @param inlineMessageId Optional. Required if chatId and messageId are not specified. Identifier of the inline message
+     * @param replyMarkup Optional. A JSON-serialized object for an inline keyboard.
+     * 
+     * @return On success, if the edited message is not an inline message, the edited Message is returned, otherwise nullptr is returned.
+     */
     Message::Ptr editMessageReplyMarkup(boost::variant<std::int64_t, std::string> chatId = 0,
                                         std::int32_t messageId = 0,
                                         const std::string& inlineMessageId = "",
@@ -1348,6 +1476,7 @@ public:
      * @brief Use this method to delete a message, including service messages, with the following limitations:
      * 
      * - A message can only be deleted if it was sent less than 48 hours ago.
+     * - Service messages about a supergroup, channel, or forum topic creation can't be deleted.
      * - A dice message in a private chat can only be deleted if it was sent more than 24 hours ago.
      * - Bots can delete outgoing messages in private chats, groups, and supergroups.
      * - Bots can delete incoming messages in private chats.
@@ -1373,6 +1502,7 @@ public:
      * @param disableNotification Optional. Sends the message silently. Users will receive a notification with no sound.
      * @param allowSendingWithoutReply Optional. Pass True if the message should be sent even if the specified replied-to message is not found
      * @param protectContent Optional. Protects the contents of the sent message from forwarding and saving
+     * @param messageThreadId Optional. Unique identifier for the target message thread (topic) of the forum; for forum supergroups only
      * 
      * @return On success, the sent Message is returned.
      */
@@ -1382,7 +1512,8 @@ public:
                              GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>(),
                              bool disableNotification = false,
                              bool allowSendingWithoutReply = false,
-                             bool protectContent = false) const;
+                             bool protectContent = false,
+                             std::int32_t messageThreadId = 0) const;
 
     /**
      * @brief Use this method to get a sticker set.
@@ -1567,6 +1698,7 @@ public:
      * @param suggestedTipAmounts Optional. A JSON-serialized array of suggested amounts of tips in the smallest units of the currency (integer, not float/double). At most 4 suggested tip amounts can be specified. The suggested tip amounts must be positive, passed in a strictly increased order and must not exceed maxTipAmount.
      * @param startParameter Optional. Unique deep-linking parameter. If left empty, forwarded copies of the sent message will have a Pay button, allowing multiple users to pay directly from the forwarded message, using the same invoice. If non-empty, forwarded copies of the sent message will have a URL button with a deep link to the bot (instead of a Pay button), with the value used as the start parameter
      * @param protectContent Optional. Protects the contents of the sent message from forwarding and saving
+     * @param messageThreadId Optional. Unique identifier for the target message thread (topic) of the forum; for forum supergroups only
      * 
      * @return On success, the sent Message is returned.
      */
@@ -1596,7 +1728,8 @@ public:
                              std::int32_t maxTipAmount = 0,
                              const std::vector<std::int32_t>& suggestedTipAmounts = std::vector<std::int32_t>(),
                              const std::string& startParameter = "",
-                             bool protectContent = false) const;
+                             bool protectContent = false,
+                             std::int32_t messageThreadId = 0) const;
 
     /**
      * @brief Use this method to create a link for an invoice.
@@ -1704,6 +1837,7 @@ public:
      * @param disableNotification Optional. Sends the message silently. Users will receive a notification with no sound.
      * @param allowSendingWithoutReply Optional. Pass True if the message should be sent even if the specified replied-to message is not found
      * @param protectContent Optional. Protects the contents of the sent message from forwarding and saving
+     * @param messageThreadId Optional. Unique identifier for the target message thread (topic) of the forum; for forum supergroups only
      * 
      * @return On success, the sent Message is returned.
      */
@@ -1713,7 +1847,8 @@ public:
                           InlineKeyboardMarkup::Ptr replyMarkup = std::make_shared<InlineKeyboardMarkup>(),
                           bool disableNotification = false,
                           bool allowSendingWithoutReply = false,
-                          bool protectContent = false) const;
+                          bool protectContent = false,
+                          std::int32_t messageThreadId = 0) const;
 
     /**
      * @brief Use this method to set the score of the specified user in a game message.

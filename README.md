@@ -9,7 +9,7 @@ Documentation is located [here](http://reo7sp.github.io/tgbot-cpp).
 
 ## State
 
-- [x] Bot API 3.0 ~ 6.2
+- [x] Bot API 3.0 ~ 6.3
 
 
 ## Sample
