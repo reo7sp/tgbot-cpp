@@ -64,7 +64,7 @@ Dependencies:
 You can install dependencies on Debian-based distibutives with these commands:
 
 ```sh
-sudo apt-get install g++ make binutils cmake libssl-dev libboost-system-dev zlib1g-dev libcurl4-openssl-dev
+sudo apt-get install g++ make binutils cmake libboost-system-dev libssl-dev zlib1g-dev libcurl4-openssl-dev
 ```
 
 You can compile and install the library with these commands:
@@ -85,7 +85,7 @@ Alternatively, you can use Docker to build and run your bot. Set the base image 
 You can install dependencies with these commands:
 
 ```sh
-brew install openssl zlib
+brew install boost openssl zlib curl
 ```
 
 You can compile and install the library like Linux instructions.
