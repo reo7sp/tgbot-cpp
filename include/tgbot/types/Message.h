@@ -24,6 +24,9 @@
 #include "tgbot/types/SuccessfulPayment.h"
 #include "tgbot/types/PassportData.h"
 #include "tgbot/types/ProximityAlertTriggered.h"
+#include "tgbot/types/ForumTopicCreated.h"
+#include "tgbot/types/ForumTopicClosed.h"
+#include "tgbot/types/ForumTopicReopened.h"
 #include "tgbot/types/VideoChatScheduled.h"
 #include "tgbot/types/VideoChatStarted.h"
 #include "tgbot/types/VideoChatEnded.h"
@@ -53,13 +56,20 @@ public:
     std::int32_t messageId;
 
     /**
+     * @brief Optional. Unique identifier of a message thread to which the message belongs; for supergroups only
+     */
+    std::int32_t messageThreadId;
+
+    /**
      * @brief Optional. Sender of the message; empty for messages sent to channels.
+     * 
      * For backward compatibility, the field contains a fake sender user in non-channel chats, if the message was sent on behalf of a chat.
      */
     User::Ptr from;
 
     /**
      * @brief Optional. Sender of the message, sent on behalf of a chat.
+     * 
      * For example, the channel itself for channel posts, the supergroup itself for messages from anonymous group administrators, the linked channel for messages automatically forwarded to the discussion group.
      * For backward compatibility, the field from contains a fake sender user in non-channel chats, if the message was sent on behalf of a chat.
      */
@@ -91,7 +101,7 @@ public:
     std::int32_t forwardFromMessageId;
 
     /**
-     * @brief Optional. For messages forwarded from channels, signature of the post author if present
+     * @brief Optional. For forwarded messages that were originally sent in channels or by an anonymous chat administrator, signature of the message sender if present
      */
     std::string forwardSignature;
 
@@ -106,12 +116,18 @@ public:
     std::int32_t forwardDate;
 
     /**
+     * @brief Optional. True, if the message is sent to a forum topic
+     */
+    bool isTopicMessage;
+
+    /**
      * @brief Optional. True, if the message is a channel post that was automatically forwarded to the connected discussion group
      */
     bool isAutomaticForward;
 
     /**
      * @brief Optional. For replies, the original message.
+     * 
      * Note that the Message object in this field will not contain further replyToMessage fields even if it itself is a reply.
      */
     Message::Ptr replyToMessage;
@@ -142,7 +158,7 @@ public:
     std::string authorSignature;
 
     /**
-     * @brief Optional. For text messages, the actual UTF-8 text of the message, 0-4096 characters
+     * @brief Optional. For text messages, the actual UTF-8 text of the message
      */
     std::string text;
 
@@ -153,6 +169,7 @@ public:
 
     /**
      * @brief Optional. Message is an animation, information about the animation.
+     * 
      * For backward compatibility, when this field is set, the document field will also be set
      */
     Animation::Ptr animation;
@@ -193,7 +210,7 @@ public:
     Voice::Ptr voice;
 
     /**
-     * @brief Optional. Caption for the animation, audio, document, photo, video or voice, 0-1024 characters
+     * @brief Optional. Caption for the animation, audio, document, photo, video or voice
      */
     std::string caption;
     
@@ -213,7 +230,7 @@ public:
     Dice::Ptr dice;
 
     /**
-     * @brief Optional. Message is a game, information about the game
+     * @brief Optional. Message is a game, information about the game. https://core.telegram.org/bots/api#games
      */
     Game::Ptr game;
 
@@ -224,6 +241,7 @@ public:
 
     /**
      * @brief Optional. Message is a venue, information about the venue.
+     * 
      * For backward compatibility, when this field is set, the location field will also be set
      */
     Venue::Ptr venue;
@@ -234,7 +252,7 @@ public:
     Location::Ptr location;
 
     /**
-     * @brief Optional. Optional. New members that were added to the group or supergroup and information about them (the bot itself may be one of these members)
+     * @brief Optional. New members that were added to the group or supergroup and information about them (the bot itself may be one of these members)
      */
     std::vector<User::Ptr> newChatMembers;
 
@@ -265,6 +283,7 @@ public:
 
     /**
      * @brief Optional. Service message: the supergroup has been created.
+     * 
      * This field can't be received in a message coming through updates, because bot can't be a member of a supergroup when it is created.
      * It can only be found in replyToMessage if someone replies to a very first message in a directly created supergroup.
      */
@@ -272,6 +291,7 @@ public:
 
     /**
      * @brief Optional. Service message: the channel has been created.
+     * 
      * This field can't be received in a message coming through updates, because bot can't be a member of a channel when it is created.
      * It can only be found in replyToMessage if someone replies to a very first message in a channel.
      */
@@ -285,39 +305,43 @@ public:
     /**
      * @brief Optional. The group has been migrated to a supergroup with the specified identifier.
      *
-     * This number may be greater than 32 bits and some programming languages may have difficulty/silent defects in interpreting it.
-     * But it is smaller than 52 bits, so a signed 64 bit integer or double-precision float type are safe for storing this identifier.
+     * This number may have more than 32 significant bits and some programming languages may have difficulty/silent defects in interpreting it.
+     * But it has at most 52 significant bits, so a signed 64-bit integer or double-precision float type are safe for storing this identifier.
      */
     std::int64_t migrateToChatId;
 
     /**
      * @brief Optional. The supergroup has been migrated from a group with the specified identifier.
      *
-     * This number may be greater than 32 bits and some programming languages may have difficulty/silent defects in interpreting it.
-     * But it is smaller than 52 bits, so a signed 64 bit integer or double-precision float type are safe for storing this identifier.
+     * This number may have more than 32 significant bits and some programming languages may have difficulty/silent defects in interpreting it.
+     * But it has at most 52 significant bits, so a signed 64-bit integer or double-precision float type are safe for storing this identifier.
      */
     std::int64_t migrateFromChatId;
 
     /**
      * @brief Optional. Specified message was pinned.
+     * 
      * Note that the Message object in this field will not contain further replyToMessage fields even if it is itself a reply.
      */
     Message::Ptr pinnedMessage;
 
     /**
      * @brief Optional. Message is an invoice for a payment, information about the invoice.
+     * 
      * https://core.telegram.org/bots/api#payments
      */
     Invoice::Ptr invoice;
 
     /**
-     * @brief Optional. Message is a service message about a successful payment, information about the payment
+     * @brief Optional. Message is a service message about a successful payment, information about the payment.
+     * 
      * https://core.telegram.org/bots/api#payments
      */
     SuccessfulPayment::Ptr successfulPayment;
 
     /**
      * @brief Optional. The domain name of the website on which the user has logged in.
+     * 
      * https://core.telegram.org/widgets/login
      */
     std::string connectedWebsite;
@@ -329,9 +353,25 @@ public:
 
     /**
      * @brief Optional. Service message.
+     * 
      * A user in the chat triggered another user's proximity alert while sharing Live Location.
      */
     ProximityAlertTriggered::Ptr proximityAlertTriggered;
+
+    /**
+     * @brief Optional. Service message: forum topic created
+     */
+    ForumTopicCreated::Ptr forumTopicCreated;
+
+    /**
+     * @brief Optional. Service message: forum topic closed
+     */
+    ForumTopicClosed::Ptr forumTopicClosed;
+
+    /**
+     * @brief Optional. Service message: forum topic reopened
+     */
+    ForumTopicReopened::Ptr forumTopicReopened;
 
     /**
      * @brief Optional. Service message: video chat scheduled
@@ -360,6 +400,7 @@ public:
 
     /**
      * @brief Optional. Inline keyboard attached to the message.
+     * 
      * loginUrl buttons are represented as ordinary url buttons.
      */
     InlineKeyboardMarkup::Ptr replyMarkup;

@@ -10,6 +10,7 @@ namespace TgBot {
 
 /**
  * @brief Represents a chat member that is under certain restrictions in the chat.
+ * 
  * Supergroups only.
  *
  * @ingroup types
@@ -40,9 +41,14 @@ public:
     bool canInviteUsers;
 
     /**
-     * @brief True, if the user is allowed to pin messages; groups and supergroups only
+     * @brief True, if the user is allowed to pin messages
      */
     bool canPinMessages;
+
+    /**
+     * @brief True, if the user is allowed to create forum topics
+     */
+    bool canManageTopics;
 
     /**
      * @brief True, if the user is allowed to send text messages, contacts, locations and venues
@@ -70,7 +76,9 @@ public:
     bool canAddWebPagePreviews;
 
     /**
-     * @brief Date when restrictions will be lifted for this user; unix time
+     * @brief Date when restrictions will be lifted for this user; unix time.
+     * 
+     * If 0, then the user is restricted forever
      */
     std::uint32_t untilDate;
 };

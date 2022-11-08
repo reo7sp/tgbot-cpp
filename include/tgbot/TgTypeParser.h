@@ -26,6 +26,9 @@
 #include "tgbot/types/WebAppData.h"
 #include "tgbot/types/ProximityAlertTriggered.h"
 #include "tgbot/types/MessageAutoDeleteTimerChanged.h"
+#include "tgbot/types/ForumTopicCreated.h"
+#include "tgbot/types/ForumTopicClosed.h"
+#include "tgbot/types/ForumTopicReopened.h"
 #include "tgbot/types/VideoChatScheduled.h"
 #include "tgbot/types/VideoChatStarted.h"
 #include "tgbot/types/VideoChatEnded.h"
@@ -56,6 +59,7 @@
 #include "tgbot/types/ChatJoinRequest.h"
 #include "tgbot/types/ChatPermissions.h"
 #include "tgbot/types/ChatLocation.h"
+#include "tgbot/types/ForumTopic.h"
 #include "tgbot/types/BotCommand.h"
 #include "tgbot/types/BotCommandScope.h"
 #include "tgbot/types/BotCommandScopeDefault.h"
@@ -226,6 +230,15 @@ public:
     MessageAutoDeleteTimerChanged::Ptr parseJsonAndGetMessageAutoDeleteTimerChanged(const boost::property_tree::ptree& data) const;
     std::string parseMessageAutoDeleteTimerChanged(const MessageAutoDeleteTimerChanged::Ptr& object) const;
 
+    ForumTopicCreated::Ptr parseJsonAndGetForumTopicCreated(const boost::property_tree::ptree& data) const;
+    std::string parseForumTopicCreated(const ForumTopicCreated::Ptr& object) const;
+
+    ForumTopicClosed::Ptr parseJsonAndGetForumTopicClosed(const boost::property_tree::ptree& data) const;
+    std::string parseForumTopicClosed(const ForumTopicClosed::Ptr& object) const;
+
+    ForumTopicReopened::Ptr parseJsonAndGetForumTopicReopened(const boost::property_tree::ptree& data) const;
+    std::string parseForumTopicReopened(const ForumTopicReopened::Ptr& object) const;
+
     VideoChatScheduled::Ptr parseJsonAndGetVideoChatScheduled(const boost::property_tree::ptree& data) const;
     std::string parseVideoChatScheduled(const VideoChatScheduled::Ptr& object) const;
 
@@ -315,6 +328,9 @@ public:
 
     ChatLocation::Ptr parseJsonAndGetChatLocation(const boost::property_tree::ptree& data) const;
     std::string parseChatLocation(const ChatLocation::Ptr& object) const;
+
+    ForumTopic::Ptr parseJsonAndGetForumTopic(const boost::property_tree::ptree& data) const;
+    std::string parseForumTopic(const ForumTopic::Ptr& object) const;
 
     BotCommand::Ptr parseJsonAndGetBotCommand(const boost::property_tree::ptree& data) const;
     std::string parseBotCommand(const BotCommand::Ptr& object) const;

@@ -145,7 +145,13 @@ Chat::Ptr TgTypeParser::parseJsonAndGetChat(const boost::property_tree::ptree& d
     result->username = data.get<std::string>("username", "");
     result->firstName = data.get<std::string>("first_name", "");
     result->lastName = data.get<std::string>("last_name", "");
+    result->isForum = data.get<bool>("is_forum", false);
     result->photo = tryParseJson<ChatPhoto>(&TgTypeParser::parseJsonAndGetChatPhoto, data, "photo");
+    result->activeUsernames = parseJsonAndGetArray<std::string>(
+        [] (const boost::property_tree::ptree& innerData)->std::string {
+        return innerData.get<std::string>("");
+    }, data, "active_usernames");
+    result->emojiStatusCustomEmojiId = data.get<std::string>("emoji_status_custom_emoji_id", "");
     result->bio = data.get<std::string>("bio", "");
     result->hasPrivateForwards = data.get<bool>("has_private_forwards", false);
     result->hasRestrictedVoiceAndVideoMessages = data.get<bool>("has_restricted_voice_and_video_messages", false);
@@ -185,7 +191,13 @@ std::string TgTypeParser::parseChat(const Chat::Ptr& object) const {
     appendToJson(result, "username", object->username);
     appendToJson(result, "first_name", object->firstName);
     appendToJson(result, "last_name", object->lastName);
+    appendToJson(result, "is_forum", object->isForum);
     appendToJson(result, "photo", parseChatPhoto(object->photo));
+    appendToJson(result, "active_usernames",
+                 parseArray<std::string>([] (const std::string& s)->std::string {
+        return s;
+    }, object->activeUsernames));
+    appendToJson(result, "emoji_status_custom_emoji_id", object->emojiStatusCustomEmojiId);
     appendToJson(result, "bio", object->bio);
     appendToJson(result, "has_private_forwards", object->hasPrivateForwards);
     appendToJson(result, "has_restricted_voice_and_video_messages", object->hasRestrictedVoiceAndVideoMessages);
@@ -210,6 +222,7 @@ std::string TgTypeParser::parseChat(const Chat::Ptr& object) const {
 Message::Ptr TgTypeParser::parseJsonAndGetMessage(const boost::property_tree::ptree& data) const {
     auto result(std::make_shared<Message>());
     result->messageId = data.get<std::int32_t>("message_id", 0);
+    result->messageThreadId = data.get<std::int32_t>("message_thread_id", 0);
     result->from = tryParseJson<User>(&TgTypeParser::parseJsonAndGetUser, data, "from");
     result->senderChat = tryParseJson<Chat>(&TgTypeParser::parseJsonAndGetChat, data, "sender_chat");
     result->date = data.get<std::int32_t>("date", 0);
@@ -220,6 +233,7 @@ Message::Ptr TgTypeParser::parseJsonAndGetMessage(const boost::property_tree::pt
     result->forwardSignature = data.get<std::string>("forward_signature", "");
     result->forwardSenderName = data.get<std::string>("forward_sender_name", "");
     result->forwardDate = data.get<std::int32_t>("forward_date", 0);
+    result->isTopicMessage = data.get<bool>("is_topic_message", false);
     result->isAutomaticForward = data.get<bool>("is_automatic_forward", false);
     result->replyToMessage = tryParseJson<Message>(&TgTypeParser::parseJsonAndGetMessage, data, "reply_to_message");
     result->viaBot = tryParseJson<User>(&TgTypeParser::parseJsonAndGetUser, data, "via_bot");
@@ -261,8 +275,10 @@ Message::Ptr TgTypeParser::parseJsonAndGetMessage(const boost::property_tree::pt
     result->successfulPayment = tryParseJson<SuccessfulPayment>(&TgTypeParser::parseJsonAndGetSuccessfulPayment, data, "successful_payment");
     result->connectedWebsite = data.get<std::string>("connected_website", "");
     result->passportData = tryParseJson<PassportData>(&TgTypeParser::parseJsonAndGetPassportData, data, "passport_data");
-    result->passportData = tryParseJson<PassportData>(&TgTypeParser::parseJsonAndGetPassportData, data, "passport_data");
     result->proximityAlertTriggered = tryParseJson<ProximityAlertTriggered>(&TgTypeParser::parseJsonAndGetProximityAlertTriggered, data, "proximity_alert_triggered");
+    result->forumTopicCreated = tryParseJson<ForumTopicCreated>(&TgTypeParser::parseJsonAndGetForumTopicCreated, data, "forum_topic_created");
+    result->forumTopicClosed = tryParseJson<ForumTopicClosed>(&TgTypeParser::parseJsonAndGetForumTopicClosed, data, "forum_topic_closed");
+    result->forumTopicReopened = tryParseJson<ForumTopicReopened>(&TgTypeParser::parseJsonAndGetForumTopicReopened, data, "forum_topic_reopened");
     result->videoChatScheduled = tryParseJson<VideoChatScheduled>(&TgTypeParser::parseJsonAndGetVideoChatScheduled, data, "video_chat_scheduled");
     result->videoChatStarted = tryParseJson<VideoChatStarted>(&TgTypeParser::parseJsonAndGetVideoChatStarted, data, "video_chat_started");
     result->videoChatEnded = tryParseJson<VideoChatEnded>(&TgTypeParser::parseJsonAndGetVideoChatEnded, data, "video_chat_ended");
@@ -279,6 +295,7 @@ std::string TgTypeParser::parseMessage(const Message::Ptr& object) const {
     std::string result;
     result += '{';
     appendToJson(result, "message_id", object->messageId);
+    appendToJson(result, "message_thread_id", object->messageThreadId);
     appendToJson(result, "from", parseUser(object->from));
     appendToJson(result, "sender_chat", parseChat(object->senderChat));
     appendToJson(result, "date", object->date);
@@ -289,6 +306,7 @@ std::string TgTypeParser::parseMessage(const Message::Ptr& object) const {
     appendToJson(result, "forward_signature", object->forwardSignature);
     appendToJson(result, "forward_sender_name", object->forwardSenderName);
     appendToJson(result, "forward_date", object->forwardDate);
+    appendToJson(result, "is_topic_message", object->isTopicMessage);
     appendToJson(result, "is_automatic_forward", object->isAutomaticForward);
     appendToJson(result, "reply_to_message", parseMessage(object->replyToMessage));
     appendToJson(result, "via_bot", parseUser(object->viaBot));
@@ -331,6 +349,9 @@ std::string TgTypeParser::parseMessage(const Message::Ptr& object) const {
     appendToJson(result, "connected_website", object->connectedWebsite);
     appendToJson(result, "passport_data", parsePassportData(object->passportData));
     appendToJson(result, "proximity_alert_triggered", parseProximityAlertTriggered(object->proximityAlertTriggered));
+    appendToJson(result, "forum_topic_created", parseForumTopicCreated(object->forumTopicCreated));
+    appendToJson(result, "forum_topic_closed", parseForumTopicClosed(object->forumTopicClosed));
+    appendToJson(result, "forum_topic_reopened", parseForumTopicReopened(object->forumTopicReopened));
     appendToJson(result, "video_chat_scheduled", parseVideoChatScheduled(object->videoChatScheduled));
     appendToJson(result, "video_chat_started", parseVideoChatStarted(object->videoChatStarted));
     appendToJson(result, "video_chat_ended", parseVideoChatEnded(object->videoChatEnded));
@@ -922,6 +943,60 @@ std::string TgTypeParser::parseMessageAutoDeleteTimerChanged(const MessageAutoDe
     return result;
 }
 
+ForumTopicCreated::Ptr TgTypeParser::parseJsonAndGetForumTopicCreated(const boost::property_tree::ptree& data) const {
+    auto result(std::make_shared<ForumTopicCreated>());
+    result->name = data.get<std::string>("name", "");
+    result->iconColor = data.get<std::int32_t>("icon_color", 0);
+    result->iconCustomEmojiId = data.get<std::string>("icon_custom_emoji_id", "");
+    return result;
+}
+
+std::string TgTypeParser::parseForumTopicCreated(const ForumTopicCreated::Ptr& object) const {
+    if (!object) {
+        return "";
+    }
+    std::string result;
+    result += '{';
+    appendToJson(result, "name", object->name);
+    appendToJson(result, "icon_color", object->iconColor);
+    appendToJson(result, "icon_custom_emoji_id", object->iconCustomEmojiId);
+    removeLastComma(result);
+    result += '}';
+    return result;
+}
+
+ForumTopicClosed::Ptr TgTypeParser::parseJsonAndGetForumTopicClosed(const boost::property_tree::ptree& data) const {
+    auto result(std::make_shared<ForumTopicClosed>());
+    return result;
+}
+
+std::string TgTypeParser::parseForumTopicClosed(const ForumTopicClosed::Ptr& object) const {
+    if (!object) {
+        return "";
+    }
+    std::string result;
+    result += '{';
+    //removeLastComma(result);
+    result += '}';
+    return result;
+}
+
+ForumTopicReopened::Ptr TgTypeParser::parseJsonAndGetForumTopicReopened(const boost::property_tree::ptree& data) const {
+    auto result(std::make_shared<ForumTopicReopened>());
+    return result;
+}
+
+std::string TgTypeParser::parseForumTopicReopened(const ForumTopicReopened::Ptr& object) const {
+    if (!object) {
+        return "";
+    }
+    std::string result;
+    result += '{';
+    //removeLastComma(result);
+    result += '}';
+    return result;
+}
+
 VideoChatScheduled::Ptr TgTypeParser::parseJsonAndGetVideoChatScheduled(const boost::property_tree::ptree& data) const {
     auto result(std::make_shared<VideoChatScheduled>());
     result->startDate = data.get<std::int32_t>("start_date", 0);
@@ -1363,6 +1438,7 @@ ChatAdministratorRights::Ptr TgTypeParser::parseJsonAndGetChatAdministratorRight
     result->canPostMessages = data.get<bool>("can_post_messages", false);
     result->canEditMessages = data.get<bool>("can_edit_messages", false);
     result->canPinMessages = data.get<bool>("can_pin_messages", false);
+    result->canManageTopics = data.get<bool>("can_manage_topics", false);
     return result;
 }
 
@@ -1383,6 +1459,7 @@ std::string TgTypeParser::parseChatAdministratorRights(const ChatAdministratorRi
     appendToJson(result, "can_post_messages", object->canPostMessages);
     appendToJson(result, "can_edit_messages", object->canEditMessages);
     appendToJson(result, "can_pin_messages", object->canPinMessages);
+    appendToJson(result, "can_manage_topics", object->canManageTopics);
     removeLastComma(result);
     result += '}';
     return result;
@@ -1478,6 +1555,7 @@ ChatMemberAdministrator::Ptr TgTypeParser::parseJsonAndGetChatMemberAdministrato
     result->canPostMessages = data.get<bool>("can_post_messages", false);
     result->canEditMessages = data.get<bool>("can_edit_messages", false);
     result->canPinMessages = data.get<bool>("can_pin_messages", false);
+    result->canManageTopics = data.get<bool>("can_manage_topics", false);
     result->customTitle = data.get<std::string>("custom_title", "");
     return result;
 }
@@ -1501,6 +1579,7 @@ std::string TgTypeParser::parseChatMemberAdministrator(const ChatMemberAdministr
     appendToJson(result, "can_post_messages", object->canPostMessages);
     appendToJson(result, "can_edit_messages", object->canEditMessages);
     appendToJson(result, "can_pin_messages", object->canPinMessages);
+    appendToJson(result, "can_manage_topics", object->canManageTopics);
     appendToJson(result, "custom_title", object->customTitle);
     // The last comma will be erased by parseChatMember().
     return result;
@@ -1530,6 +1609,7 @@ ChatMemberRestricted::Ptr TgTypeParser::parseJsonAndGetChatMemberRestricted(cons
     result->canChangeInfo = data.get<bool>("can_change_info", false);
     result->canInviteUsers = data.get<bool>("can_invite_users", false);
     result->canPinMessages = data.get<bool>("can_pin_messages", false);
+    result->canManageTopics = data.get<bool>("can_manage_topics", false);
     result->canSendMessages = data.get<bool>("can_send_messages", false);
     result->canSendMediaMessages = data.get<bool>("can_send_media_messages", false);
     result->canSendPolls = data.get<bool>("can_send_polls", false);
@@ -1550,6 +1630,7 @@ std::string TgTypeParser::parseChatMemberRestricted(const ChatMemberRestricted::
     appendToJson(result, "can_change_info", object->canChangeInfo);
     appendToJson(result, "can_invite_users", object->canInviteUsers);
     appendToJson(result, "can_pin_messages", object->canPinMessages);
+    appendToJson(result, "can_manage_topics", object->canManageTopics);
     appendToJson(result, "can_send_messages", object->canSendMessages);
     appendToJson(result, "can_send_media_messages", object->canSendMediaMessages);
     appendToJson(result, "can_send_polls", object->canSendPolls);
@@ -1652,14 +1733,15 @@ std::string TgTypeParser::parseChatJoinRequest(const ChatJoinRequest::Ptr& objec
 
 ChatPermissions::Ptr TgTypeParser::parseJsonAndGetChatPermissions(const boost::property_tree::ptree& data) const {
     auto result(std::make_shared<ChatPermissions>());
-    result->canSendMessages = data.get<bool>("can_send_messages");
-    result->canSendMediaMessages = data.get<bool>("can_send_media_messages");
-    result->canSendPolls = data.get<bool>("can_send_polls");
-    result->canSendOtherMessages = data.get<bool>("can_send_other_messages");
-    result->canAddWebPagePreviews = data.get<bool>("can_add_web_page_previews");
-    result->canChangeInfo = data.get<bool>("can_change_info");
-    result->canInviteUsers = data.get<bool>("can_invite_users");
-    result->canPinMessages = data.get<bool>("can_pin_messages");
+    result->canSendMessages = data.get<bool>("can_send_messages", false);
+    result->canSendMediaMessages = data.get<bool>("can_send_media_messages", false);
+    result->canSendPolls = data.get<bool>("can_send_polls", false);
+    result->canSendOtherMessages = data.get<bool>("can_send_other_messages", false);
+    result->canAddWebPagePreviews = data.get<bool>("can_add_web_page_previews", false);
+    result->canChangeInfo = data.get<bool>("can_change_info", false);
+    result->canInviteUsers = data.get<bool>("can_invite_users", false);
+    result->canPinMessages = data.get<bool>("can_pin_messages", false);
+    result->canManageTopics = data.get<bool>("can_manage_topics", false);
     return result;
 }
 
@@ -1677,6 +1759,7 @@ std::string TgTypeParser::parseChatPermissions(const ChatPermissions::Ptr& objec
     appendToJson(result, "can_change_info", object->canChangeInfo);
     appendToJson(result, "can_invite_users", object->canInviteUsers);
     appendToJson(result, "can_pin_messages", object->canPinMessages);
+    appendToJson(result, "can_manage_topics", object->canManageTopics);
     removeLastComma(result);
     result += '}';
     return result;
@@ -1697,6 +1780,30 @@ std::string TgTypeParser::parseChatLocation(const ChatLocation::Ptr& object) con
     result += '{';
     appendToJson(result, "location", parseLocation(object->location));
     appendToJson(result, "address", object->address);
+    removeLastComma(result);
+    result += '}';
+    return result;
+}
+
+ForumTopic::Ptr TgTypeParser::parseJsonAndGetForumTopic(const boost::property_tree::ptree& data) const {
+    auto result(std::make_shared<ForumTopic>());
+    result->messageThreadId = data.get<std::int32_t>("message_thread_id", 0);
+    result->name = data.get<std::string>("name", "");
+    result->iconColor = data.get<std::int32_t>("icon_color", 0);
+    result->iconCustomEmojiId = data.get<std::string>("icon_custom_emoji_id", "");
+    return result;
+}
+
+std::string TgTypeParser::parseForumTopic(const ForumTopic::Ptr& object) const {
+    if (!object) {
+        return "";
+    }
+    std::string result;
+    result += '{';
+    appendToJson(result, "message_thread_id", object->messageThreadId);
+    appendToJson(result, "name", object->name);
+    appendToJson(result, "icon_color", object->iconColor);
+    appendToJson(result, "icon_custom_emoji_id", object->iconCustomEmojiId);
     removeLastComma(result);
     result += '}';
     return result;
