@@ -8,6 +8,7 @@ var class_tg_bot_1_1_chat_member_administrator =
     [ "canEditMessages", "class_tg_bot_1_1_chat_member_administrator.html#ae19a2e6527779eabaa426f254c3647ff", null ],
     [ "canInviteUsers", "class_tg_bot_1_1_chat_member_administrator.html#a0f6eb51b3b66c38eac84b521f3d29e6a", null ],
     [ "canManageChat", "class_tg_bot_1_1_chat_member_administrator.html#aabd5b60d25f721dc8b47481b24ab8cb9", null ],
+    [ "canManageTopics", "class_tg_bot_1_1_chat_member_administrator.html#ae99e9a7fdb22115291aa014bfeffccd9", null ],
     [ "canManageVideoChats", "class_tg_bot_1_1_chat_member_administrator.html#a21df5545ca64384924c5c9d595c8b8dd", null ],
     [ "canPinMessages", "class_tg_bot_1_1_chat_member_administrator.html#aac36329368f87985ad53880e461c4906", null ],
     [ "canPostMessages", "class_tg_bot_1_1_chat_member_administrator.html#a93feeeef1b708b85d03de591fe91d625", null ],

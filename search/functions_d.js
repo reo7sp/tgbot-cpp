@@ -12,5 +12,5 @@ var searchData=
   ['passportelementerrortranslationfiles_9',['PassportElementErrorTranslationFiles',['../class_tg_bot_1_1_passport_element_error_translation_files.html#a5773278aecd6037ab953ebdaa6cfb610',1,'TgBot::PassportElementErrorTranslationFiles']]],
   ['passportelementerrorunspecified_10',['PassportElementErrorUnspecified',['../class_tg_bot_1_1_passport_element_error_unspecified.html#aa3dd6fd84b762477bcfd0bca309d90c5',1,'TgBot::PassportElementErrorUnspecified']]],
   ['pinchatmessage_11',['pinChatMessage',['../class_tg_bot_1_1_api.html#a88a2867e8eb0f7f4a138b4d3d91f354c',1,'TgBot::Api']]],
-  ['promotechatmember_12',['promoteChatMember',['../class_tg_bot_1_1_api.html#ab1fa2e41fe2fc06e99d9490f090c52a7',1,'TgBot::Api']]]
+  ['promotechatmember_12',['promoteChatMember',['../class_tg_bot_1_1_api.html#a04e9a6f8c5b8813d4b24e755b23e6bc9',1,'TgBot::Api']]]
 ];

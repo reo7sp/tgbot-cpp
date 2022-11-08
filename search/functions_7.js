@@ -16,13 +16,14 @@ var searchData=
   ['geteventhandler_13',['getEventHandler',['../class_tg_bot_1_1_bot.html#ab4d01abdf6bbeec03ede589037e09195',1,'TgBot::Bot']]],
   ['getevents_14',['getEvents',['../class_tg_bot_1_1_bot.html#a6eff97ca5023423e01c88ff0387c3efe',1,'TgBot::Bot']]],
   ['getfile_15',['getFile',['../class_tg_bot_1_1_api.html#ac50bdd50bf0cf5a211e699925759ebc1',1,'TgBot::Api']]],
-  ['getgamehighscores_16',['getGameHighScores',['../class_tg_bot_1_1_api.html#a428c2fc5cad41b81f2fddbcb89ca184a',1,'TgBot::Api']]],
-  ['getme_17',['getMe',['../class_tg_bot_1_1_api.html#a566fcf52400de18737110edd7ab01535',1,'TgBot::Api']]],
-  ['getmycommands_18',['getMyCommands',['../class_tg_bot_1_1_api.html#a6da52ef11be86a7c7bc21afef5049360',1,'TgBot::Api']]],
-  ['getmydefaultadministratorrights_19',['getMyDefaultAdministratorRights',['../class_tg_bot_1_1_api.html#ab994d460aa6d5fbfdd3984da45092d79',1,'TgBot::Api']]],
-  ['getstickerset_20',['getStickerSet',['../class_tg_bot_1_1_api.html#a270296c79f52985fca19cacf3ed75d2f',1,'TgBot::Api']]],
-  ['gettoken_21',['getToken',['../class_tg_bot_1_1_bot.html#a791871aa800310f6263c5a29c8a09418',1,'TgBot::Bot']]],
-  ['getupdates_22',['getUpdates',['../class_tg_bot_1_1_api.html#a79187c21ea38f8a81a21c2a78ae217bd',1,'TgBot::Api']]],
-  ['getuserprofilephotos_23',['getUserProfilePhotos',['../class_tg_bot_1_1_api.html#a94be048e47bb355ba5946081ad649ef2',1,'TgBot::Api']]],
-  ['getwebhookinfo_24',['getWebhookInfo',['../class_tg_bot_1_1_api.html#a43bf35783ec4f9a03e46925e36fda24c',1,'TgBot::Api']]]
+  ['getforumtopiciconstickers_16',['getForumTopicIconStickers',['../class_tg_bot_1_1_api.html#a55476559ff3708fa195fb545f8963e60',1,'TgBot::Api']]],
+  ['getgamehighscores_17',['getGameHighScores',['../class_tg_bot_1_1_api.html#a428c2fc5cad41b81f2fddbcb89ca184a',1,'TgBot::Api']]],
+  ['getme_18',['getMe',['../class_tg_bot_1_1_api.html#a566fcf52400de18737110edd7ab01535',1,'TgBot::Api']]],
+  ['getmycommands_19',['getMyCommands',['../class_tg_bot_1_1_api.html#a6da52ef11be86a7c7bc21afef5049360',1,'TgBot::Api']]],
+  ['getmydefaultadministratorrights_20',['getMyDefaultAdministratorRights',['../class_tg_bot_1_1_api.html#ab994d460aa6d5fbfdd3984da45092d79',1,'TgBot::Api']]],
+  ['getstickerset_21',['getStickerSet',['../class_tg_bot_1_1_api.html#a270296c79f52985fca19cacf3ed75d2f',1,'TgBot::Api']]],
+  ['gettoken_22',['getToken',['../class_tg_bot_1_1_bot.html#a791871aa800310f6263c5a29c8a09418',1,'TgBot::Bot']]],
+  ['getupdates_23',['getUpdates',['../class_tg_bot_1_1_api.html#a79187c21ea38f8a81a21c2a78ae217bd',1,'TgBot::Api']]],
+  ['getuserprofilephotos_24',['getUserProfilePhotos',['../class_tg_bot_1_1_api.html#a94be048e47bb355ba5946081ad649ef2',1,'TgBot::Api']]],
+  ['getwebhookinfo_25',['getWebhookInfo',['../class_tg_bot_1_1_api.html#a43bf35783ec4f9a03e46925e36fda24c',1,'TgBot::Api']]]
 ];

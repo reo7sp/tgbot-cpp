@@ -97,7 +97,7 @@ $(document).ready(function(){initNavTree('class_tg_bot_1_1_chat_permissions.html
 </div><!--header-->
 <div class="contents">
 
-<p>This object describes actions that a non-administrator user is allowed to take in a chat.  
+<p>Describes actions that a non-administrator user is allowed to take in a chat.  
  <a href="class_tg_bot_1_1_chat_permissions.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="_chat_permissions_8h_source.html">ChatPermissions.h</a>&gt;</code></p>
@@ -109,33 +109,36 @@ Public Types</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a008889fb00f173cfa7e81b0275f93786"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tg_bot_1_1_chat_permissions.html#a008889fb00f173cfa7e81b0275f93786">canSendMessages</a> = false</td></tr>
+<tr class="memitem:a008889fb00f173cfa7e81b0275f93786"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tg_bot_1_1_chat_permissions.html#a008889fb00f173cfa7e81b0275f93786">canSendMessages</a></td></tr>
 <tr class="memdesc:a008889fb00f173cfa7e81b0275f93786"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. True, if the user is allowed to send text messages, contacts, locations and venues.  <a href="class_tg_bot_1_1_chat_permissions.html#a008889fb00f173cfa7e81b0275f93786">More...</a><br /></td></tr>
 <tr class="separator:a008889fb00f173cfa7e81b0275f93786"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3be049c62f0d31ab6dc902363999a577"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tg_bot_1_1_chat_permissions.html#a3be049c62f0d31ab6dc902363999a577">canSendMediaMessages</a> = false</td></tr>
-<tr class="memdesc:a3be049c62f0d31ab6dc902363999a577"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. True, if the user is allowed to send audios, documents, photos, videos, video notes and voice notes, implies can_send_messages.  <a href="class_tg_bot_1_1_chat_permissions.html#a3be049c62f0d31ab6dc902363999a577">More...</a><br /></td></tr>
+<tr class="memitem:a3be049c62f0d31ab6dc902363999a577"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tg_bot_1_1_chat_permissions.html#a3be049c62f0d31ab6dc902363999a577">canSendMediaMessages</a></td></tr>
+<tr class="memdesc:a3be049c62f0d31ab6dc902363999a577"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. True, if the user is allowed to send audios, documents, photos, videos, video notes and voice notes, implies canSendMessages.  <a href="class_tg_bot_1_1_chat_permissions.html#a3be049c62f0d31ab6dc902363999a577">More...</a><br /></td></tr>
 <tr class="separator:a3be049c62f0d31ab6dc902363999a577"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8d2e84c98f006b84646f27d7de5d0904"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tg_bot_1_1_chat_permissions.html#a8d2e84c98f006b84646f27d7de5d0904">canSendPolls</a> = false</td></tr>
-<tr class="memdesc:a8d2e84c98f006b84646f27d7de5d0904"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. True, if the user is allowed to send polls, implies can_send_messages.  <a href="class_tg_bot_1_1_chat_permissions.html#a8d2e84c98f006b84646f27d7de5d0904">More...</a><br /></td></tr>
+<tr class="memitem:a8d2e84c98f006b84646f27d7de5d0904"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tg_bot_1_1_chat_permissions.html#a8d2e84c98f006b84646f27d7de5d0904">canSendPolls</a></td></tr>
+<tr class="memdesc:a8d2e84c98f006b84646f27d7de5d0904"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. True, if the user is allowed to send polls, implies canSendMessages.  <a href="class_tg_bot_1_1_chat_permissions.html#a8d2e84c98f006b84646f27d7de5d0904">More...</a><br /></td></tr>
 <tr class="separator:a8d2e84c98f006b84646f27d7de5d0904"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a67bd4eafe69a718339804c43f823ea44"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tg_bot_1_1_chat_permissions.html#a67bd4eafe69a718339804c43f823ea44">canSendOtherMessages</a> = false</td></tr>
-<tr class="memdesc:a67bd4eafe69a718339804c43f823ea44"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. True, if the user is allowed to send animations, games, stickers and use inline bots, implies can_send_media_messages.  <a href="class_tg_bot_1_1_chat_permissions.html#a67bd4eafe69a718339804c43f823ea44">More...</a><br /></td></tr>
+<tr class="memitem:a67bd4eafe69a718339804c43f823ea44"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tg_bot_1_1_chat_permissions.html#a67bd4eafe69a718339804c43f823ea44">canSendOtherMessages</a></td></tr>
+<tr class="memdesc:a67bd4eafe69a718339804c43f823ea44"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. True, if the user is allowed to send animations, games, stickers and use inline bots, implies canSendMediaMessages.  <a href="class_tg_bot_1_1_chat_permissions.html#a67bd4eafe69a718339804c43f823ea44">More...</a><br /></td></tr>
 <tr class="separator:a67bd4eafe69a718339804c43f823ea44"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2a1ee73a743e512edad914352479a308"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tg_bot_1_1_chat_permissions.html#a2a1ee73a743e512edad914352479a308">canAddWebPagePreviews</a> = false</td></tr>
-<tr class="memdesc:a2a1ee73a743e512edad914352479a308"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. True, if the user is allowed to add web page previews to their messages, implies can_send_media_messages.  <a href="class_tg_bot_1_1_chat_permissions.html#a2a1ee73a743e512edad914352479a308">More...</a><br /></td></tr>
+<tr class="memitem:a2a1ee73a743e512edad914352479a308"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tg_bot_1_1_chat_permissions.html#a2a1ee73a743e512edad914352479a308">canAddWebPagePreviews</a></td></tr>
+<tr class="memdesc:a2a1ee73a743e512edad914352479a308"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. True, if the user is allowed to add web page previews to their messages, implies canSendMediaMessages.  <a href="class_tg_bot_1_1_chat_permissions.html#a2a1ee73a743e512edad914352479a308">More...</a><br /></td></tr>
 <tr class="separator:a2a1ee73a743e512edad914352479a308"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a24346f33b8852720ceba76cf0fa7b6c5"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tg_bot_1_1_chat_permissions.html#a24346f33b8852720ceba76cf0fa7b6c5">canChangeInfo</a> = false</td></tr>
-<tr class="memdesc:a24346f33b8852720ceba76cf0fa7b6c5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. True, if the user is allowed to change the chat title, photo and other settings. Ignored in public supergroups.  <a href="class_tg_bot_1_1_chat_permissions.html#a24346f33b8852720ceba76cf0fa7b6c5">More...</a><br /></td></tr>
+<tr class="memitem:a24346f33b8852720ceba76cf0fa7b6c5"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tg_bot_1_1_chat_permissions.html#a24346f33b8852720ceba76cf0fa7b6c5">canChangeInfo</a></td></tr>
+<tr class="memdesc:a24346f33b8852720ceba76cf0fa7b6c5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. True, if the user is allowed to change the chat title, photo and other settings.  <a href="class_tg_bot_1_1_chat_permissions.html#a24346f33b8852720ceba76cf0fa7b6c5">More...</a><br /></td></tr>
 <tr class="separator:a24346f33b8852720ceba76cf0fa7b6c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aeb4bb85f314f5c0a0f1e3f6c41d5a2b7"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tg_bot_1_1_chat_permissions.html#aeb4bb85f314f5c0a0f1e3f6c41d5a2b7">canInviteUsers</a> = false</td></tr>
+<tr class="memitem:aeb4bb85f314f5c0a0f1e3f6c41d5a2b7"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tg_bot_1_1_chat_permissions.html#aeb4bb85f314f5c0a0f1e3f6c41d5a2b7">canInviteUsers</a></td></tr>
 <tr class="memdesc:aeb4bb85f314f5c0a0f1e3f6c41d5a2b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. True, if the user is allowed to invite new users to the chat.  <a href="class_tg_bot_1_1_chat_permissions.html#aeb4bb85f314f5c0a0f1e3f6c41d5a2b7">More...</a><br /></td></tr>
 <tr class="separator:aeb4bb85f314f5c0a0f1e3f6c41d5a2b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afed71b3cfbb93994b3a74959ba7017f8"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tg_bot_1_1_chat_permissions.html#afed71b3cfbb93994b3a74959ba7017f8">canPinMessages</a> = false</td></tr>
-<tr class="memdesc:afed71b3cfbb93994b3a74959ba7017f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. True, if the user is allowed to pin messages. Ignored in public supergroups.  <a href="class_tg_bot_1_1_chat_permissions.html#afed71b3cfbb93994b3a74959ba7017f8">More...</a><br /></td></tr>
+<tr class="memitem:afed71b3cfbb93994b3a74959ba7017f8"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tg_bot_1_1_chat_permissions.html#afed71b3cfbb93994b3a74959ba7017f8">canPinMessages</a></td></tr>
+<tr class="memdesc:afed71b3cfbb93994b3a74959ba7017f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. True, if the user is allowed to pin messages.  <a href="class_tg_bot_1_1_chat_permissions.html#afed71b3cfbb93994b3a74959ba7017f8">More...</a><br /></td></tr>
 <tr class="separator:afed71b3cfbb93994b3a74959ba7017f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a290b0ada6a8dd7c73c9e3e62c101b34f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tg_bot_1_1_chat_permissions.html#a290b0ada6a8dd7c73c9e3e62c101b34f">canManageTopics</a></td></tr>
+<tr class="memdesc:a290b0ada6a8dd7c73c9e3e62c101b34f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. True, if the user is allowed to create forum topics.  <a href="class_tg_bot_1_1_chat_permissions.html#a290b0ada6a8dd7c73c9e3e62c101b34f">More...</a><br /></td></tr>
+<tr class="separator:a290b0ada6a8dd7c73c9e3e62c101b34f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p >This object describes actions that a non-administrator user is allowed to take in a chat. </p>
+<div class="textblock"><p >Describes actions that a non-administrator user is allowed to take in a chat. </p>
 
 <p class="definition">Definition at line <a class="el" href="_chat_permissions_8h_source.html#l00014">14</a> of file <a class="el" href="_chat_permissions_8h_source.html">ChatPermissions.h</a>.</p>
 </div><h2 class="groupheader">Member Typedef Documentation</h2>
@@ -163,12 +166,12 @@ Public Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool TgBot::ChatPermissions::canAddWebPagePreviews = false</td>
+          <td class="memname">bool TgBot::ChatPermissions::canAddWebPagePreviews</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Optional. True, if the user is allowed to add web page previews to their messages, implies can_send_media_messages. </p>
+<p>Optional. True, if the user is allowed to add web page previews to their messages, implies canSendMediaMessages. </p>
 
 <p class="definition">Definition at line <a class="el" href="_chat_permissions_8h_source.html#l00041">41</a> of file <a class="el" href="_chat_permissions_8h_source.html">ChatPermissions.h</a>.</p>
 
@@ -181,14 +184,15 @@ Public Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool TgBot::ChatPermissions::canChangeInfo = false</td>
+          <td class="memname">bool TgBot::ChatPermissions::canChangeInfo</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Optional. True, if the user is allowed to change the chat title, photo and other settings. Ignored in public supergroups. </p>
+<p>Optional. True, if the user is allowed to change the chat title, photo and other settings. </p>
+<p >Ignored in public supergroups </p>
 
-<p class="definition">Definition at line <a class="el" href="_chat_permissions_8h_source.html#l00046">46</a> of file <a class="el" href="_chat_permissions_8h_source.html">ChatPermissions.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_chat_permissions_8h_source.html#l00048">48</a> of file <a class="el" href="_chat_permissions_8h_source.html">ChatPermissions.h</a>.</p>
 
 </div>
 </div>
@@ -199,14 +203,33 @@ Public Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool TgBot::ChatPermissions::canInviteUsers = false</td>
+          <td class="memname">bool TgBot::ChatPermissions::canInviteUsers</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Optional. True, if the user is allowed to invite new users to the chat. </p>
 
-<p class="definition">Definition at line <a class="el" href="_chat_permissions_8h_source.html#l00051">51</a> of file <a class="el" href="_chat_permissions_8h_source.html">ChatPermissions.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_chat_permissions_8h_source.html#l00053">53</a> of file <a class="el" href="_chat_permissions_8h_source.html">ChatPermissions.h</a>.</p>
+
+</div>
+</div>
+<a id="a290b0ada6a8dd7c73c9e3e62c101b34f" name="a290b0ada6a8dd7c73c9e3e62c101b34f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a290b0ada6a8dd7c73c9e3e62c101b34f">&#9670;&#160;</a></span>canManageTopics</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool TgBot::ChatPermissions::canManageTopics</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Optional. True, if the user is allowed to create forum topics. </p>
+<p >If omitted defaults to the value of canPinMessages </p>
+
+<p class="definition">Definition at line <a class="el" href="_chat_permissions_8h_source.html#l00067">67</a> of file <a class="el" href="_chat_permissions_8h_source.html">ChatPermissions.h</a>.</p>
 
 </div>
 </div>
@@ -217,14 +240,15 @@ Public Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool TgBot::ChatPermissions::canPinMessages = false</td>
+          <td class="memname">bool TgBot::ChatPermissions::canPinMessages</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Optional. True, if the user is allowed to pin messages. Ignored in public supergroups. </p>
+<p>Optional. True, if the user is allowed to pin messages. </p>
+<p >Ignored in public supergroups </p>
 
-<p class="definition">Definition at line <a class="el" href="_chat_permissions_8h_source.html#l00056">56</a> of file <a class="el" href="_chat_permissions_8h_source.html">ChatPermissions.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_chat_permissions_8h_source.html#l00060">60</a> of file <a class="el" href="_chat_permissions_8h_source.html">ChatPermissions.h</a>.</p>
 
 </div>
 </div>
@@ -235,12 +259,12 @@ Public Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool TgBot::ChatPermissions::canSendMediaMessages = false</td>
+          <td class="memname">bool TgBot::ChatPermissions::canSendMediaMessages</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Optional. True, if the user is allowed to send audios, documents, photos, videos, video notes and voice notes, implies can_send_messages. </p>
+<p>Optional. True, if the user is allowed to send audios, documents, photos, videos, video notes and voice notes, implies canSendMessages. </p>
 
 <p class="definition">Definition at line <a class="el" href="_chat_permissions_8h_source.html#l00026">26</a> of file <a class="el" href="_chat_permissions_8h_source.html">ChatPermissions.h</a>.</p>
 
@@ -253,7 +277,7 @@ Public Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool TgBot::ChatPermissions::canSendMessages = false</td>
+          <td class="memname">bool TgBot::ChatPermissions::canSendMessages</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -271,12 +295,12 @@ Public Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool TgBot::ChatPermissions::canSendOtherMessages = false</td>
+          <td class="memname">bool TgBot::ChatPermissions::canSendOtherMessages</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Optional. True, if the user is allowed to send animations, games, stickers and use inline bots, implies can_send_media_messages. </p>
+<p>Optional. True, if the user is allowed to send animations, games, stickers and use inline bots, implies canSendMediaMessages. </p>
 
 <p class="definition">Definition at line <a class="el" href="_chat_permissions_8h_source.html#l00036">36</a> of file <a class="el" href="_chat_permissions_8h_source.html">ChatPermissions.h</a>.</p>
 
@@ -289,12 +313,12 @@ Public Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool TgBot::ChatPermissions::canSendPolls = false</td>
+          <td class="memname">bool TgBot::ChatPermissions::canSendPolls</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Optional. True, if the user is allowed to send polls, implies can_send_messages. </p>
+<p>Optional. True, if the user is allowed to send polls, implies canSendMessages. </p>
 
 <p class="definition">Definition at line <a class="el" href="_chat_permissions_8h_source.html#l00031">31</a> of file <a class="el" href="_chat_permissions_8h_source.html">ChatPermissions.h</a>.</p>
 
@@ -309,7 +333,7 @@ Public Attributes</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespace_tg_bot.html">TgBot</a></li><li class="navelem"><a class="el" href="class_tg_bot_1_1_chat_permissions.html">ChatPermissions</a></li>
-    <li class="footer">Generated on Tue Nov 1 2022 20:24:19 for tgbot-cpp by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.5 </li>
+    <li class="footer">Generated on Tue Nov 8 2022 15:20:00 for tgbot-cpp by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.5 </li>
   </ul>
 </div>
 </body>

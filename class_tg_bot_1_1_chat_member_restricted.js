@@ -5,6 +5,7 @@ var class_tg_bot_1_1_chat_member_restricted =
     [ "canAddWebPagePreviews", "class_tg_bot_1_1_chat_member_restricted.html#a94e9d2405571c1bd03980d95036886cb", null ],
     [ "canChangeInfo", "class_tg_bot_1_1_chat_member_restricted.html#a08d30544eb1910706409da69d6692537", null ],
     [ "canInviteUsers", "class_tg_bot_1_1_chat_member_restricted.html#aedcd6665d9baf765c4c651de5cc7ded5", null ],
+    [ "canManageTopics", "class_tg_bot_1_1_chat_member_restricted.html#ab018634e772c7c919fd2af7ff99090a2", null ],
     [ "canPinMessages", "class_tg_bot_1_1_chat_member_restricted.html#a2746db0c58783692a1846e981bfd5da6", null ],
     [ "canSendMediaMessages", "class_tg_bot_1_1_chat_member_restricted.html#a52affd1a0210ac8e72b7af49069504bb", null ],
     [ "canSendMessages", "class_tg_bot_1_1_chat_member_restricted.html#ac85551e4197c09278ed8d95702677d8e", null ],

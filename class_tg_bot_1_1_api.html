@@ -127,60 +127,60 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aeb39b4a7389c71108f7e9eda0fad1af7"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tg_bot_1_1_api.html#aeb39b4a7389c71108f7e9eda0fad1af7">close</a> () const</td></tr>
 <tr class="memdesc:aeb39b4a7389c71108f7e9eda0fad1af7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Use this method to close the bot instance before moving it from one local server to another.  <a href="class_tg_bot_1_1_api.html#aeb39b4a7389c71108f7e9eda0fad1af7">More...</a><br /></td></tr>
 <tr class="separator:aeb39b4a7389c71108f7e9eda0fad1af7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a844e8652fe1be2296081e1fb55150fb5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_tg_bot_1_1_message.html#a3805a5dc013c6ab23ac5efc91282c11d">Message::Ptr</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tg_bot_1_1_api.html#a844e8652fe1be2296081e1fb55150fb5">sendMessage</a> (boost::variant&lt; std::int64_t, std::string &gt; chatId, const std::string &amp;text, bool disableWebPagePreview=false, std::int32_t replyToMessageId=0, <a class="el" href="class_tg_bot_1_1_generic_reply.html#aa7bb5f2c5484cb791e1c60c346bbb06f">GenericReply::Ptr</a> replyMarkup=std::make_shared&lt; <a class="el" href="class_tg_bot_1_1_generic_reply.html">GenericReply</a> &gt;(), const std::string &amp;parseMode=&quot;&quot;, bool disableNotification=false, const std::vector&lt; <a class="el" href="class_tg_bot_1_1_message_entity.html#a6710ffdbafba909633df7bcd8c488da0">MessageEntity::Ptr</a> &gt; &amp;entities=std::vector&lt; <a class="el" href="class_tg_bot_1_1_message_entity.html#a6710ffdbafba909633df7bcd8c488da0">MessageEntity::Ptr</a> &gt;(), bool allowSendingWithoutReply=false, bool protectContent=false) const</td></tr>
-<tr class="memdesc:a844e8652fe1be2296081e1fb55150fb5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Use this method to send text messages.  <a href="class_tg_bot_1_1_api.html#a844e8652fe1be2296081e1fb55150fb5">More...</a><br /></td></tr>
-<tr class="separator:a844e8652fe1be2296081e1fb55150fb5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2809b20aeac24ba7cad3f6833675dcc4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_tg_bot_1_1_message.html#a3805a5dc013c6ab23ac5efc91282c11d">Message::Ptr</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tg_bot_1_1_api.html#a2809b20aeac24ba7cad3f6833675dcc4">forwardMessage</a> (boost::variant&lt; std::int64_t, std::string &gt; chatId, boost::variant&lt; std::int64_t, std::string &gt; fromChatId, std::int32_t messageId, bool disableNotification=false, bool protectContent=false) const</td></tr>
-<tr class="memdesc:a2809b20aeac24ba7cad3f6833675dcc4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Use this method to forward messages of any kind.  <a href="class_tg_bot_1_1_api.html#a2809b20aeac24ba7cad3f6833675dcc4">More...</a><br /></td></tr>
-<tr class="separator:a2809b20aeac24ba7cad3f6833675dcc4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0c454871d0f7c34c9407fcb48d527bee"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_tg_bot_1_1_message_id.html#a0e2c1626a8ec04e813127c6c979a51d1">MessageId::Ptr</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tg_bot_1_1_api.html#a0c454871d0f7c34c9407fcb48d527bee">copyMessage</a> (boost::variant&lt; std::int64_t, std::string &gt; chatId, boost::variant&lt; std::int64_t, std::string &gt; fromChatId, std::int32_t messageId, const std::string &amp;caption=&quot;&quot;, const std::string &amp;parseMode=&quot;&quot;, const std::vector&lt; <a class="el" href="class_tg_bot_1_1_message_entity.html#a6710ffdbafba909633df7bcd8c488da0">MessageEntity::Ptr</a> &gt; &amp;captionEntities=std::vector&lt; <a class="el" href="class_tg_bot_1_1_message_entity.html#a6710ffdbafba909633df7bcd8c488da0">MessageEntity::Ptr</a> &gt;(), bool disableNotification=false, std::int32_t replyToMessageId=0, bool allowSendingWithoutReply=false, <a class="el" href="class_tg_bot_1_1_generic_reply.html#aa7bb5f2c5484cb791e1c60c346bbb06f">GenericReply::Ptr</a> replyMarkup=std::make_shared&lt; <a class="el" href="class_tg_bot_1_1_generic_reply.html">GenericReply</a> &gt;(), bool protectContent=false) const</td></tr>
-<tr class="memdesc:a0c454871d0f7c34c9407fcb48d527bee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Use this method to copy messages of any kind.  <a href="class_tg_bot_1_1_api.html#a0c454871d0f7c34c9407fcb48d527bee">More...</a><br /></td></tr>
-<tr class="separator:a0c454871d0f7c34c9407fcb48d527bee"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a48d27df55a3dffa537aa6c12cc200678"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_tg_bot_1_1_message.html#a3805a5dc013c6ab23ac5efc91282c11d">Message::Ptr</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tg_bot_1_1_api.html#a48d27df55a3dffa537aa6c12cc200678">sendPhoto</a> (boost::variant&lt; std::int64_t, std::string &gt; chatId, boost::variant&lt; <a class="el" href="class_tg_bot_1_1_input_file.html#a9b1b7a8f913d9c4d4a389d9a4353d94f">InputFile::Ptr</a>, std::string &gt; photo, const std::string &amp;caption=&quot;&quot;, std::int32_t replyToMessageId=0, <a class="el" href="class_tg_bot_1_1_generic_reply.html#aa7bb5f2c5484cb791e1c60c346bbb06f">GenericReply::Ptr</a> replyMarkup=std::make_shared&lt; <a class="el" href="class_tg_bot_1_1_generic_reply.html">GenericReply</a> &gt;(), const std::string &amp;parseMode=&quot;&quot;, bool disableNotification=false, const std::vector&lt; <a class="el" href="class_tg_bot_1_1_message_entity.html#a6710ffdbafba909633df7bcd8c488da0">MessageEntity::Ptr</a> &gt; &amp;captionEntities=std::vector&lt; <a class="el" href="class_tg_bot_1_1_message_entity.html#a6710ffdbafba909633df7bcd8c488da0">MessageEntity::Ptr</a> &gt;(), bool allowSendingWithoutReply=false, bool protectContent=false) const</td></tr>
-<tr class="memdesc:a48d27df55a3dffa537aa6c12cc200678"><td class="mdescLeft">&#160;</td><td class="mdescRight">Use this method to send photos.  <a href="class_tg_bot_1_1_api.html#a48d27df55a3dffa537aa6c12cc200678">More...</a><br /></td></tr>
-<tr class="separator:a48d27df55a3dffa537aa6c12cc200678"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7748f9164ee98d64b79df0bf94d17032"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_tg_bot_1_1_message.html#a3805a5dc013c6ab23ac5efc91282c11d">Message::Ptr</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tg_bot_1_1_api.html#a7748f9164ee98d64b79df0bf94d17032">sendAudio</a> (boost::variant&lt; std::int64_t, std::string &gt; chatId, boost::variant&lt; <a class="el" href="class_tg_bot_1_1_input_file.html#a9b1b7a8f913d9c4d4a389d9a4353d94f">InputFile::Ptr</a>, std::string &gt; audio, const std::string &amp;caption=&quot;&quot;, std::int32_t duration=0, const std::string &amp;performer=&quot;&quot;, const std::string &amp;title=&quot;&quot;, boost::variant&lt; <a class="el" href="class_tg_bot_1_1_input_file.html#a9b1b7a8f913d9c4d4a389d9a4353d94f">InputFile::Ptr</a>, std::string &gt; thumb=&quot;&quot;, std::int32_t replyToMessageId=0, <a class="el" href="class_tg_bot_1_1_generic_reply.html#aa7bb5f2c5484cb791e1c60c346bbb06f">GenericReply::Ptr</a> replyMarkup=std::make_shared&lt; <a class="el" href="class_tg_bot_1_1_generic_reply.html">GenericReply</a> &gt;(), const std::string &amp;parseMode=&quot;&quot;, bool disableNotification=false, const std::vector&lt; <a class="el" href="class_tg_bot_1_1_message_entity.html#a6710ffdbafba909633df7bcd8c488da0">MessageEntity::Ptr</a> &gt; &amp;captionEntities=std::vector&lt; <a class="el" href="class_tg_bot_1_1_message_entity.html#a6710ffdbafba909633df7bcd8c488da0">MessageEntity::Ptr</a> &gt;(), bool allowSendingWithoutReply=false, bool protectContent=false) const</td></tr>
-<tr class="memdesc:a7748f9164ee98d64b79df0bf94d17032"><td class="mdescLeft">&#160;</td><td class="mdescRight">Use this method to send audio files, if you want Telegram clients to display them in the music player.  <a href="class_tg_bot_1_1_api.html#a7748f9164ee98d64b79df0bf94d17032">More...</a><br /></td></tr>
-<tr class="separator:a7748f9164ee98d64b79df0bf94d17032"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a978b998597776fc4e628c1eccbff1296"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_tg_bot_1_1_message.html#a3805a5dc013c6ab23ac5efc91282c11d">Message::Ptr</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tg_bot_1_1_api.html#a978b998597776fc4e628c1eccbff1296">sendDocument</a> (boost::variant&lt; std::int64_t, std::string &gt; chatId, boost::variant&lt; <a class="el" href="class_tg_bot_1_1_input_file.html#a9b1b7a8f913d9c4d4a389d9a4353d94f">InputFile::Ptr</a>, std::string &gt; document, boost::variant&lt; <a class="el" href="class_tg_bot_1_1_input_file.html#a9b1b7a8f913d9c4d4a389d9a4353d94f">InputFile::Ptr</a>, std::string &gt; thumb=&quot;&quot;, const std::string &amp;caption=&quot;&quot;, std::int32_t replyToMessageId=0, <a class="el" href="class_tg_bot_1_1_generic_reply.html#aa7bb5f2c5484cb791e1c60c346bbb06f">GenericReply::Ptr</a> replyMarkup=std::make_shared&lt; <a class="el" href="class_tg_bot_1_1_generic_reply.html">GenericReply</a> &gt;(), const std::string &amp;parseMode=&quot;&quot;, bool disableNotification=false, const std::vector&lt; <a class="el" href="class_tg_bot_1_1_message_entity.html#a6710ffdbafba909633df7bcd8c488da0">MessageEntity::Ptr</a> &gt; &amp;captionEntities=std::vector&lt; <a class="el" href="class_tg_bot_1_1_message_entity.html#a6710ffdbafba909633df7bcd8c488da0">MessageEntity::Ptr</a> &gt;(), bool disableContentTypeDetection=false, bool allowSendingWithoutReply=false, bool protectContent=false) const</td></tr>
-<tr class="memdesc:a978b998597776fc4e628c1eccbff1296"><td class="mdescLeft">&#160;</td><td class="mdescRight">Use this method to send general files.  <a href="class_tg_bot_1_1_api.html#a978b998597776fc4e628c1eccbff1296">More...</a><br /></td></tr>
-<tr class="separator:a978b998597776fc4e628c1eccbff1296"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aacf9f93e0e546c56820d5c0347c34fa8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_tg_bot_1_1_message.html#a3805a5dc013c6ab23ac5efc91282c11d">Message::Ptr</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tg_bot_1_1_api.html#aacf9f93e0e546c56820d5c0347c34fa8">sendVideo</a> (boost::variant&lt; std::int64_t, std::string &gt; chatId, boost::variant&lt; <a class="el" href="class_tg_bot_1_1_input_file.html#a9b1b7a8f913d9c4d4a389d9a4353d94f">InputFile::Ptr</a>, std::string &gt; video, bool supportsStreaming=false, std::int32_t duration=0, std::int32_t width=0, std::int32_t height=0, boost::variant&lt; <a class="el" href="class_tg_bot_1_1_input_file.html#a9b1b7a8f913d9c4d4a389d9a4353d94f">InputFile::Ptr</a>, std::string &gt; thumb=&quot;&quot;, const std::string &amp;caption=&quot;&quot;, std::int32_t replyToMessageId=0, <a class="el" href="class_tg_bot_1_1_generic_reply.html#aa7bb5f2c5484cb791e1c60c346bbb06f">GenericReply::Ptr</a> replyMarkup=std::make_shared&lt; <a class="el" href="class_tg_bot_1_1_generic_reply.html">GenericReply</a> &gt;(), const std::string &amp;parseMode=&quot;&quot;, bool disableNotification=false, const std::vector&lt; <a class="el" href="class_tg_bot_1_1_message_entity.html#a6710ffdbafba909633df7bcd8c488da0">MessageEntity::Ptr</a> &gt; &amp;captionEntities=std::vector&lt; <a class="el" href="class_tg_bot_1_1_message_entity.html#a6710ffdbafba909633df7bcd8c488da0">MessageEntity::Ptr</a> &gt;(), bool allowSendingWithoutReply=false, bool protectContent=false) const</td></tr>
-<tr class="memdesc:aacf9f93e0e546c56820d5c0347c34fa8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Use this method to send video files, Telegram clients support MPEG4 videos (other formats may be sent as <a class="el" href="class_tg_bot_1_1_document.html" title="This object represents a general file (as opposed to photos, voice messages and audio files).">Document</a>).  <a href="class_tg_bot_1_1_api.html#aacf9f93e0e546c56820d5c0347c34fa8">More...</a><br /></td></tr>
-<tr class="separator:aacf9f93e0e546c56820d5c0347c34fa8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6caad8a8a85549f6498cc45534393bb4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_tg_bot_1_1_message.html#a3805a5dc013c6ab23ac5efc91282c11d">Message::Ptr</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tg_bot_1_1_api.html#a6caad8a8a85549f6498cc45534393bb4">sendAnimation</a> (boost::variant&lt; std::int64_t, std::string &gt; chatId, boost::variant&lt; <a class="el" href="class_tg_bot_1_1_input_file.html#a9b1b7a8f913d9c4d4a389d9a4353d94f">InputFile::Ptr</a>, std::string &gt; animation, std::int32_t duration=0, std::int32_t width=0, std::int32_t height=0, boost::variant&lt; <a class="el" href="class_tg_bot_1_1_input_file.html#a9b1b7a8f913d9c4d4a389d9a4353d94f">InputFile::Ptr</a>, std::string &gt; thumb=&quot;&quot;, const std::string &amp;caption=&quot;&quot;, std::int32_t replyToMessageId=0, <a class="el" href="class_tg_bot_1_1_generic_reply.html#aa7bb5f2c5484cb791e1c60c346bbb06f">GenericReply::Ptr</a> replyMarkup=std::make_shared&lt; <a class="el" href="class_tg_bot_1_1_generic_reply.html">GenericReply</a> &gt;(), const std::string &amp;parseMode=&quot;&quot;, bool disableNotification=false, const std::vector&lt; <a class="el" href="class_tg_bot_1_1_message_entity.html#a6710ffdbafba909633df7bcd8c488da0">MessageEntity::Ptr</a> &gt; &amp;captionEntities=std::vector&lt; <a class="el" href="class_tg_bot_1_1_message_entity.html#a6710ffdbafba909633df7bcd8c488da0">MessageEntity::Ptr</a> &gt;(), bool allowSendingWithoutReply=false, bool protectContent=false) const</td></tr>
-<tr class="memdesc:a6caad8a8a85549f6498cc45534393bb4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Use this method to send animation files (GIF or H.264/MPEG-4 AVC video without sound).  <a href="class_tg_bot_1_1_api.html#a6caad8a8a85549f6498cc45534393bb4">More...</a><br /></td></tr>
-<tr class="separator:a6caad8a8a85549f6498cc45534393bb4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a567b02279364e03ef79ae4f9a11be468"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_tg_bot_1_1_message.html#a3805a5dc013c6ab23ac5efc91282c11d">Message::Ptr</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tg_bot_1_1_api.html#a567b02279364e03ef79ae4f9a11be468">sendVoice</a> (boost::variant&lt; std::int64_t, std::string &gt; chatId, boost::variant&lt; <a class="el" href="class_tg_bot_1_1_input_file.html#a9b1b7a8f913d9c4d4a389d9a4353d94f">InputFile::Ptr</a>, std::string &gt; voice, const std::string &amp;caption=&quot;&quot;, std::int32_t duration=0, std::int32_t replyToMessageId=0, <a class="el" href="class_tg_bot_1_1_generic_reply.html#aa7bb5f2c5484cb791e1c60c346bbb06f">GenericReply::Ptr</a> replyMarkup=std::make_shared&lt; <a class="el" href="class_tg_bot_1_1_generic_reply.html">GenericReply</a> &gt;(), const std::string &amp;parseMode=&quot;&quot;, bool disableNotification=false, const std::vector&lt; <a class="el" href="class_tg_bot_1_1_message_entity.html#a6710ffdbafba909633df7bcd8c488da0">MessageEntity::Ptr</a> &gt; &amp;captionEntities=std::vector&lt; <a class="el" href="class_tg_bot_1_1_message_entity.html#a6710ffdbafba909633df7bcd8c488da0">MessageEntity::Ptr</a> &gt;(), bool allowSendingWithoutReply=false, bool protectContent=false) const</td></tr>
-<tr class="memdesc:a567b02279364e03ef79ae4f9a11be468"><td class="mdescLeft">&#160;</td><td class="mdescRight">Use this method to send audio files, if you want Telegram clients to display the file as a playable voice message.  <a href="class_tg_bot_1_1_api.html#a567b02279364e03ef79ae4f9a11be468">More...</a><br /></td></tr>
-<tr class="separator:a567b02279364e03ef79ae4f9a11be468"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa3e0e6fff1756a7200e7b056e4a96f99"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_tg_bot_1_1_message.html#a3805a5dc013c6ab23ac5efc91282c11d">Message::Ptr</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tg_bot_1_1_api.html#aa3e0e6fff1756a7200e7b056e4a96f99">sendVideoNote</a> (boost::variant&lt; std::int64_t, std::string &gt; chatId, boost::variant&lt; <a class="el" href="class_tg_bot_1_1_input_file.html#a9b1b7a8f913d9c4d4a389d9a4353d94f">InputFile::Ptr</a>, std::string &gt; videoNote, std::int64_t replyToMessageId=0, bool disableNotification=false, std::int32_t duration=0, std::int32_t length=0, boost::variant&lt; <a class="el" href="class_tg_bot_1_1_input_file.html#a9b1b7a8f913d9c4d4a389d9a4353d94f">InputFile::Ptr</a>, std::string &gt; thumb=&quot;&quot;, <a class="el" href="class_tg_bot_1_1_generic_reply.html#aa7bb5f2c5484cb791e1c60c346bbb06f">GenericReply::Ptr</a> replyMarkup=std::make_shared&lt; <a class="el" href="class_tg_bot_1_1_generic_reply.html">GenericReply</a> &gt;(), bool allowSendingWithoutReply=false, bool protectContent=false) const</td></tr>
-<tr class="memdesc:aa3e0e6fff1756a7200e7b056e4a96f99"><td class="mdescLeft">&#160;</td><td class="mdescRight">Use this method to send video messages.  <a href="class_tg_bot_1_1_api.html#aa3e0e6fff1756a7200e7b056e4a96f99">More...</a><br /></td></tr>
-<tr class="separator:aa3e0e6fff1756a7200e7b056e4a96f99"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af1da216aafe98438644e45b66be32100"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="class_tg_bot_1_1_message.html#a3805a5dc013c6ab23ac5efc91282c11d">Message::Ptr</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tg_bot_1_1_api.html#af1da216aafe98438644e45b66be32100">sendMediaGroup</a> (boost::variant&lt; std::int64_t, std::string &gt; chatId, const std::vector&lt; <a class="el" href="class_tg_bot_1_1_input_media.html#abdc38ae21d5213ead3720db082ef1f9c">InputMedia::Ptr</a> &gt; &amp;media, bool disableNotification=false, std::int32_t replyToMessageId=0, bool allowSendingWithoutReply=false, bool protectContent=false) const</td></tr>
-<tr class="memdesc:af1da216aafe98438644e45b66be32100"><td class="mdescLeft">&#160;</td><td class="mdescRight">Use this method to send a group of photos, videos, documents or audios as an album.  <a href="class_tg_bot_1_1_api.html#af1da216aafe98438644e45b66be32100">More...</a><br /></td></tr>
-<tr class="separator:af1da216aafe98438644e45b66be32100"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aedc6303ec5b47b61901a82976e4d6c0e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_tg_bot_1_1_message.html#a3805a5dc013c6ab23ac5efc91282c11d">Message::Ptr</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tg_bot_1_1_api.html#aedc6303ec5b47b61901a82976e4d6c0e">sendLocation</a> (boost::variant&lt; std::int64_t, std::string &gt; chatId, float latitude, float longitude, std::int32_t livePeriod=0, std::int32_t replyToMessageId=0, <a class="el" href="class_tg_bot_1_1_generic_reply.html#aa7bb5f2c5484cb791e1c60c346bbb06f">GenericReply::Ptr</a> replyMarkup=std::make_shared&lt; <a class="el" href="class_tg_bot_1_1_generic_reply.html">GenericReply</a> &gt;(), bool disableNotification=false, float horizontalAccuracy=0, std::int32_t heading=0, std::int32_t proximityAlertRadius=0, bool allowSendingWithoutReply=false, bool protectContent=false) const</td></tr>
-<tr class="memdesc:aedc6303ec5b47b61901a82976e4d6c0e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Use this method to send point on the map.  <a href="class_tg_bot_1_1_api.html#aedc6303ec5b47b61901a82976e4d6c0e">More...</a><br /></td></tr>
-<tr class="separator:aedc6303ec5b47b61901a82976e4d6c0e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3e0b0a666d0a7664d0818c5229abe32c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_tg_bot_1_1_message.html#a3805a5dc013c6ab23ac5efc91282c11d">Message::Ptr</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tg_bot_1_1_api.html#a3e0b0a666d0a7664d0818c5229abe32c">sendMessage</a> (boost::variant&lt; std::int64_t, std::string &gt; chatId, const std::string &amp;text, bool disableWebPagePreview=false, std::int32_t replyToMessageId=0, <a class="el" href="class_tg_bot_1_1_generic_reply.html#aa7bb5f2c5484cb791e1c60c346bbb06f">GenericReply::Ptr</a> replyMarkup=std::make_shared&lt; <a class="el" href="class_tg_bot_1_1_generic_reply.html">GenericReply</a> &gt;(), const std::string &amp;parseMode=&quot;&quot;, bool disableNotification=false, const std::vector&lt; <a class="el" href="class_tg_bot_1_1_message_entity.html#a6710ffdbafba909633df7bcd8c488da0">MessageEntity::Ptr</a> &gt; &amp;entities=std::vector&lt; <a class="el" href="class_tg_bot_1_1_message_entity.html#a6710ffdbafba909633df7bcd8c488da0">MessageEntity::Ptr</a> &gt;(), bool allowSendingWithoutReply=false, bool protectContent=false, std::int32_t messageThreadId=0) const</td></tr>
+<tr class="memdesc:a3e0b0a666d0a7664d0818c5229abe32c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Use this method to send text messages.  <a href="class_tg_bot_1_1_api.html#a3e0b0a666d0a7664d0818c5229abe32c">More...</a><br /></td></tr>
+<tr class="separator:a3e0b0a666d0a7664d0818c5229abe32c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aff0c1359b43a63ac7fccaeaaeafdf0d1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_tg_bot_1_1_message.html#a3805a5dc013c6ab23ac5efc91282c11d">Message::Ptr</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tg_bot_1_1_api.html#aff0c1359b43a63ac7fccaeaaeafdf0d1">forwardMessage</a> (boost::variant&lt; std::int64_t, std::string &gt; chatId, boost::variant&lt; std::int64_t, std::string &gt; fromChatId, std::int32_t messageId, bool disableNotification=false, bool protectContent=false, std::int32_t messageThreadId=0) const</td></tr>
+<tr class="memdesc:aff0c1359b43a63ac7fccaeaaeafdf0d1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Use this method to forward messages of any kind.  <a href="class_tg_bot_1_1_api.html#aff0c1359b43a63ac7fccaeaaeafdf0d1">More...</a><br /></td></tr>
+<tr class="separator:aff0c1359b43a63ac7fccaeaaeafdf0d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a20fba2af3e07f5cfdbb00df67d7b7bef"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_tg_bot_1_1_message_id.html#a0e2c1626a8ec04e813127c6c979a51d1">MessageId::Ptr</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tg_bot_1_1_api.html#a20fba2af3e07f5cfdbb00df67d7b7bef">copyMessage</a> (boost::variant&lt; std::int64_t, std::string &gt; chatId, boost::variant&lt; std::int64_t, std::string &gt; fromChatId, std::int32_t messageId, const std::string &amp;caption=&quot;&quot;, const std::string &amp;parseMode=&quot;&quot;, const std::vector&lt; <a class="el" href="class_tg_bot_1_1_message_entity.html#a6710ffdbafba909633df7bcd8c488da0">MessageEntity::Ptr</a> &gt; &amp;captionEntities=std::vector&lt; <a class="el" href="class_tg_bot_1_1_message_entity.html#a6710ffdbafba909633df7bcd8c488da0">MessageEntity::Ptr</a> &gt;(), bool disableNotification=false, std::int32_t replyToMessageId=0, bool allowSendingWithoutReply=false, <a class="el" href="class_tg_bot_1_1_generic_reply.html#aa7bb5f2c5484cb791e1c60c346bbb06f">GenericReply::Ptr</a> replyMarkup=std::make_shared&lt; <a class="el" href="class_tg_bot_1_1_generic_reply.html">GenericReply</a> &gt;(), bool protectContent=false, std::int32_t messageThreadId=0) const</td></tr>
+<tr class="memdesc:a20fba2af3e07f5cfdbb00df67d7b7bef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Use this method to copy messages of any kind.  <a href="class_tg_bot_1_1_api.html#a20fba2af3e07f5cfdbb00df67d7b7bef">More...</a><br /></td></tr>
+<tr class="separator:a20fba2af3e07f5cfdbb00df67d7b7bef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a63a977eaf37217d51fcc716bc35083f8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_tg_bot_1_1_message.html#a3805a5dc013c6ab23ac5efc91282c11d">Message::Ptr</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tg_bot_1_1_api.html#a63a977eaf37217d51fcc716bc35083f8">sendPhoto</a> (boost::variant&lt; std::int64_t, std::string &gt; chatId, boost::variant&lt; <a class="el" href="class_tg_bot_1_1_input_file.html#a9b1b7a8f913d9c4d4a389d9a4353d94f">InputFile::Ptr</a>, std::string &gt; photo, const std::string &amp;caption=&quot;&quot;, std::int32_t replyToMessageId=0, <a class="el" href="class_tg_bot_1_1_generic_reply.html#aa7bb5f2c5484cb791e1c60c346bbb06f">GenericReply::Ptr</a> replyMarkup=std::make_shared&lt; <a class="el" href="class_tg_bot_1_1_generic_reply.html">GenericReply</a> &gt;(), const std::string &amp;parseMode=&quot;&quot;, bool disableNotification=false, const std::vector&lt; <a class="el" href="class_tg_bot_1_1_message_entity.html#a6710ffdbafba909633df7bcd8c488da0">MessageEntity::Ptr</a> &gt; &amp;captionEntities=std::vector&lt; <a class="el" href="class_tg_bot_1_1_message_entity.html#a6710ffdbafba909633df7bcd8c488da0">MessageEntity::Ptr</a> &gt;(), bool allowSendingWithoutReply=false, bool protectContent=false, std::int32_t messageThreadId=0) const</td></tr>
+<tr class="memdesc:a63a977eaf37217d51fcc716bc35083f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Use this method to send photos.  <a href="class_tg_bot_1_1_api.html#a63a977eaf37217d51fcc716bc35083f8">More...</a><br /></td></tr>
+<tr class="separator:a63a977eaf37217d51fcc716bc35083f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeec19eb9bd282ab20fa7c9b522103bcb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_tg_bot_1_1_message.html#a3805a5dc013c6ab23ac5efc91282c11d">Message::Ptr</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tg_bot_1_1_api.html#aeec19eb9bd282ab20fa7c9b522103bcb">sendAudio</a> (boost::variant&lt; std::int64_t, std::string &gt; chatId, boost::variant&lt; <a class="el" href="class_tg_bot_1_1_input_file.html#a9b1b7a8f913d9c4d4a389d9a4353d94f">InputFile::Ptr</a>, std::string &gt; audio, const std::string &amp;caption=&quot;&quot;, std::int32_t duration=0, const std::string &amp;performer=&quot;&quot;, const std::string &amp;title=&quot;&quot;, boost::variant&lt; <a class="el" href="class_tg_bot_1_1_input_file.html#a9b1b7a8f913d9c4d4a389d9a4353d94f">InputFile::Ptr</a>, std::string &gt; thumb=&quot;&quot;, std::int32_t replyToMessageId=0, <a class="el" href="class_tg_bot_1_1_generic_reply.html#aa7bb5f2c5484cb791e1c60c346bbb06f">GenericReply::Ptr</a> replyMarkup=std::make_shared&lt; <a class="el" href="class_tg_bot_1_1_generic_reply.html">GenericReply</a> &gt;(), const std::string &amp;parseMode=&quot;&quot;, bool disableNotification=false, const std::vector&lt; <a class="el" href="class_tg_bot_1_1_message_entity.html#a6710ffdbafba909633df7bcd8c488da0">MessageEntity::Ptr</a> &gt; &amp;captionEntities=std::vector&lt; <a class="el" href="class_tg_bot_1_1_message_entity.html#a6710ffdbafba909633df7bcd8c488da0">MessageEntity::Ptr</a> &gt;(), bool allowSendingWithoutReply=false, bool protectContent=false, std::int32_t messageThreadId=0) const</td></tr>
+<tr class="memdesc:aeec19eb9bd282ab20fa7c9b522103bcb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Use this method to send audio files, if you want Telegram clients to display them in the music player.  <a href="class_tg_bot_1_1_api.html#aeec19eb9bd282ab20fa7c9b522103bcb">More...</a><br /></td></tr>
+<tr class="separator:aeec19eb9bd282ab20fa7c9b522103bcb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a03b80fb4608d638d858768f4ebac1a4a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_tg_bot_1_1_message.html#a3805a5dc013c6ab23ac5efc91282c11d">Message::Ptr</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tg_bot_1_1_api.html#a03b80fb4608d638d858768f4ebac1a4a">sendDocument</a> (boost::variant&lt; std::int64_t, std::string &gt; chatId, boost::variant&lt; <a class="el" href="class_tg_bot_1_1_input_file.html#a9b1b7a8f913d9c4d4a389d9a4353d94f">InputFile::Ptr</a>, std::string &gt; document, boost::variant&lt; <a class="el" href="class_tg_bot_1_1_input_file.html#a9b1b7a8f913d9c4d4a389d9a4353d94f">InputFile::Ptr</a>, std::string &gt; thumb=&quot;&quot;, const std::string &amp;caption=&quot;&quot;, std::int32_t replyToMessageId=0, <a class="el" href="class_tg_bot_1_1_generic_reply.html#aa7bb5f2c5484cb791e1c60c346bbb06f">GenericReply::Ptr</a> replyMarkup=std::make_shared&lt; <a class="el" href="class_tg_bot_1_1_generic_reply.html">GenericReply</a> &gt;(), const std::string &amp;parseMode=&quot;&quot;, bool disableNotification=false, const std::vector&lt; <a class="el" href="class_tg_bot_1_1_message_entity.html#a6710ffdbafba909633df7bcd8c488da0">MessageEntity::Ptr</a> &gt; &amp;captionEntities=std::vector&lt; <a class="el" href="class_tg_bot_1_1_message_entity.html#a6710ffdbafba909633df7bcd8c488da0">MessageEntity::Ptr</a> &gt;(), bool disableContentTypeDetection=false, bool allowSendingWithoutReply=false, bool protectContent=false, std::int32_t messageThreadId=0) const</td></tr>
+<tr class="memdesc:a03b80fb4608d638d858768f4ebac1a4a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Use this method to send general files.  <a href="class_tg_bot_1_1_api.html#a03b80fb4608d638d858768f4ebac1a4a">More...</a><br /></td></tr>
+<tr class="separator:a03b80fb4608d638d858768f4ebac1a4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a069d3ddf6f65ab70f69532d914d9f072"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_tg_bot_1_1_message.html#a3805a5dc013c6ab23ac5efc91282c11d">Message::Ptr</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tg_bot_1_1_api.html#a069d3ddf6f65ab70f69532d914d9f072">sendVideo</a> (boost::variant&lt; std::int64_t, std::string &gt; chatId, boost::variant&lt; <a class="el" href="class_tg_bot_1_1_input_file.html#a9b1b7a8f913d9c4d4a389d9a4353d94f">InputFile::Ptr</a>, std::string &gt; video, bool supportsStreaming=false, std::int32_t duration=0, std::int32_t width=0, std::int32_t height=0, boost::variant&lt; <a class="el" href="class_tg_bot_1_1_input_file.html#a9b1b7a8f913d9c4d4a389d9a4353d94f">InputFile::Ptr</a>, std::string &gt; thumb=&quot;&quot;, const std::string &amp;caption=&quot;&quot;, std::int32_t replyToMessageId=0, <a class="el" href="class_tg_bot_1_1_generic_reply.html#aa7bb5f2c5484cb791e1c60c346bbb06f">GenericReply::Ptr</a> replyMarkup=std::make_shared&lt; <a class="el" href="class_tg_bot_1_1_generic_reply.html">GenericReply</a> &gt;(), const std::string &amp;parseMode=&quot;&quot;, bool disableNotification=false, const std::vector&lt; <a class="el" href="class_tg_bot_1_1_message_entity.html#a6710ffdbafba909633df7bcd8c488da0">MessageEntity::Ptr</a> &gt; &amp;captionEntities=std::vector&lt; <a class="el" href="class_tg_bot_1_1_message_entity.html#a6710ffdbafba909633df7bcd8c488da0">MessageEntity::Ptr</a> &gt;(), bool allowSendingWithoutReply=false, bool protectContent=false, std::int32_t messageThreadId=0) const</td></tr>
+<tr class="memdesc:a069d3ddf6f65ab70f69532d914d9f072"><td class="mdescLeft">&#160;</td><td class="mdescRight">Use this method to send video files, Telegram clients support MPEG4 videos (other formats may be sent as <a class="el" href="class_tg_bot_1_1_document.html" title="This object represents a general file (as opposed to photos, voice messages and audio files).">Document</a>).  <a href="class_tg_bot_1_1_api.html#a069d3ddf6f65ab70f69532d914d9f072">More...</a><br /></td></tr>
+<tr class="separator:a069d3ddf6f65ab70f69532d914d9f072"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab96a798f738e5a34897a61d16ffb65db"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_tg_bot_1_1_message.html#a3805a5dc013c6ab23ac5efc91282c11d">Message::Ptr</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tg_bot_1_1_api.html#ab96a798f738e5a34897a61d16ffb65db">sendAnimation</a> (boost::variant&lt; std::int64_t, std::string &gt; chatId, boost::variant&lt; <a class="el" href="class_tg_bot_1_1_input_file.html#a9b1b7a8f913d9c4d4a389d9a4353d94f">InputFile::Ptr</a>, std::string &gt; animation, std::int32_t duration=0, std::int32_t width=0, std::int32_t height=0, boost::variant&lt; <a class="el" href="class_tg_bot_1_1_input_file.html#a9b1b7a8f913d9c4d4a389d9a4353d94f">InputFile::Ptr</a>, std::string &gt; thumb=&quot;&quot;, const std::string &amp;caption=&quot;&quot;, std::int32_t replyToMessageId=0, <a class="el" href="class_tg_bot_1_1_generic_reply.html#aa7bb5f2c5484cb791e1c60c346bbb06f">GenericReply::Ptr</a> replyMarkup=std::make_shared&lt; <a class="el" href="class_tg_bot_1_1_generic_reply.html">GenericReply</a> &gt;(), const std::string &amp;parseMode=&quot;&quot;, bool disableNotification=false, const std::vector&lt; <a class="el" href="class_tg_bot_1_1_message_entity.html#a6710ffdbafba909633df7bcd8c488da0">MessageEntity::Ptr</a> &gt; &amp;captionEntities=std::vector&lt; <a class="el" href="class_tg_bot_1_1_message_entity.html#a6710ffdbafba909633df7bcd8c488da0">MessageEntity::Ptr</a> &gt;(), bool allowSendingWithoutReply=false, bool protectContent=false, std::int32_t messageThreadId=0) const</td></tr>
+<tr class="memdesc:ab96a798f738e5a34897a61d16ffb65db"><td class="mdescLeft">&#160;</td><td class="mdescRight">Use this method to send animation files (GIF or H.264/MPEG-4 AVC video without sound).  <a href="class_tg_bot_1_1_api.html#ab96a798f738e5a34897a61d16ffb65db">More...</a><br /></td></tr>
+<tr class="separator:ab96a798f738e5a34897a61d16ffb65db"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a64541d4f43b219120ec092f4563b8f9a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_tg_bot_1_1_message.html#a3805a5dc013c6ab23ac5efc91282c11d">Message::Ptr</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tg_bot_1_1_api.html#a64541d4f43b219120ec092f4563b8f9a">sendVoice</a> (boost::variant&lt; std::int64_t, std::string &gt; chatId, boost::variant&lt; <a class="el" href="class_tg_bot_1_1_input_file.html#a9b1b7a8f913d9c4d4a389d9a4353d94f">InputFile::Ptr</a>, std::string &gt; voice, const std::string &amp;caption=&quot;&quot;, std::int32_t duration=0, std::int32_t replyToMessageId=0, <a class="el" href="class_tg_bot_1_1_generic_reply.html#aa7bb5f2c5484cb791e1c60c346bbb06f">GenericReply::Ptr</a> replyMarkup=std::make_shared&lt; <a class="el" href="class_tg_bot_1_1_generic_reply.html">GenericReply</a> &gt;(), const std::string &amp;parseMode=&quot;&quot;, bool disableNotification=false, const std::vector&lt; <a class="el" href="class_tg_bot_1_1_message_entity.html#a6710ffdbafba909633df7bcd8c488da0">MessageEntity::Ptr</a> &gt; &amp;captionEntities=std::vector&lt; <a class="el" href="class_tg_bot_1_1_message_entity.html#a6710ffdbafba909633df7bcd8c488da0">MessageEntity::Ptr</a> &gt;(), bool allowSendingWithoutReply=false, bool protectContent=false, std::int32_t messageThreadId=0) const</td></tr>
+<tr class="memdesc:a64541d4f43b219120ec092f4563b8f9a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Use this method to send audio files, if you want Telegram clients to display the file as a playable voice message.  <a href="class_tg_bot_1_1_api.html#a64541d4f43b219120ec092f4563b8f9a">More...</a><br /></td></tr>
+<tr class="separator:a64541d4f43b219120ec092f4563b8f9a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9e82f0432e407040eb4b01ab729459fa"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_tg_bot_1_1_message.html#a3805a5dc013c6ab23ac5efc91282c11d">Message::Ptr</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tg_bot_1_1_api.html#a9e82f0432e407040eb4b01ab729459fa">sendVideoNote</a> (boost::variant&lt; std::int64_t, std::string &gt; chatId, boost::variant&lt; <a class="el" href="class_tg_bot_1_1_input_file.html#a9b1b7a8f913d9c4d4a389d9a4353d94f">InputFile::Ptr</a>, std::string &gt; videoNote, std::int64_t replyToMessageId=0, bool disableNotification=false, std::int32_t duration=0, std::int32_t length=0, boost::variant&lt; <a class="el" href="class_tg_bot_1_1_input_file.html#a9b1b7a8f913d9c4d4a389d9a4353d94f">InputFile::Ptr</a>, std::string &gt; thumb=&quot;&quot;, <a class="el" href="class_tg_bot_1_1_generic_reply.html#aa7bb5f2c5484cb791e1c60c346bbb06f">GenericReply::Ptr</a> replyMarkup=std::make_shared&lt; <a class="el" href="class_tg_bot_1_1_generic_reply.html">GenericReply</a> &gt;(), bool allowSendingWithoutReply=false, bool protectContent=false, std::int32_t messageThreadId=0) const</td></tr>
+<tr class="memdesc:a9e82f0432e407040eb4b01ab729459fa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Use this method to send video messages.  <a href="class_tg_bot_1_1_api.html#a9e82f0432e407040eb4b01ab729459fa">More...</a><br /></td></tr>
+<tr class="separator:a9e82f0432e407040eb4b01ab729459fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a347745fed13125390ac2ba3be0235e94"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="class_tg_bot_1_1_message.html#a3805a5dc013c6ab23ac5efc91282c11d">Message::Ptr</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tg_bot_1_1_api.html#a347745fed13125390ac2ba3be0235e94">sendMediaGroup</a> (boost::variant&lt; std::int64_t, std::string &gt; chatId, const std::vector&lt; <a class="el" href="class_tg_bot_1_1_input_media.html#abdc38ae21d5213ead3720db082ef1f9c">InputMedia::Ptr</a> &gt; &amp;media, bool disableNotification=false, std::int32_t replyToMessageId=0, bool allowSendingWithoutReply=false, bool protectContent=false, std::int32_t messageThreadId=0) const</td></tr>
+<tr class="memdesc:a347745fed13125390ac2ba3be0235e94"><td class="mdescLeft">&#160;</td><td class="mdescRight">Use this method to send a group of photos, videos, documents or audios as an album.  <a href="class_tg_bot_1_1_api.html#a347745fed13125390ac2ba3be0235e94">More...</a><br /></td></tr>
+<tr class="separator:a347745fed13125390ac2ba3be0235e94"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a41e6466b9a9371cf27e980f016ceb029"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_tg_bot_1_1_message.html#a3805a5dc013c6ab23ac5efc91282c11d">Message::Ptr</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tg_bot_1_1_api.html#a41e6466b9a9371cf27e980f016ceb029">sendLocation</a> (boost::variant&lt; std::int64_t, std::string &gt; chatId, float latitude, float longitude, std::int32_t livePeriod=0, std::int32_t replyToMessageId=0, <a class="el" href="class_tg_bot_1_1_generic_reply.html#aa7bb5f2c5484cb791e1c60c346bbb06f">GenericReply::Ptr</a> replyMarkup=std::make_shared&lt; <a class="el" href="class_tg_bot_1_1_generic_reply.html">GenericReply</a> &gt;(), bool disableNotification=false, float horizontalAccuracy=0, std::int32_t heading=0, std::int32_t proximityAlertRadius=0, bool allowSendingWithoutReply=false, bool protectContent=false, std::int32_t messageThreadId=0) const</td></tr>
+<tr class="memdesc:a41e6466b9a9371cf27e980f016ceb029"><td class="mdescLeft">&#160;</td><td class="mdescRight">Use this method to send point on the map.  <a href="class_tg_bot_1_1_api.html#a41e6466b9a9371cf27e980f016ceb029">More...</a><br /></td></tr>
+<tr class="separator:a41e6466b9a9371cf27e980f016ceb029"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac0477c2f07c7b427a41c357d09b8c559"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_tg_bot_1_1_message.html#a3805a5dc013c6ab23ac5efc91282c11d">Message::Ptr</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tg_bot_1_1_api.html#ac0477c2f07c7b427a41c357d09b8c559">editMessageLiveLocation</a> (float latitude, float longitude, boost::variant&lt; std::int64_t, std::string &gt; chatId=&quot;&quot;, std::int32_t messageId=0, const std::string &amp;inlineMessageId=&quot;&quot;, <a class="el" href="class_tg_bot_1_1_inline_keyboard_markup.html#a596873291582fb23cfbe6b62e20df8e7">InlineKeyboardMarkup::Ptr</a> replyMarkup=std::make_shared&lt; <a class="el" href="class_tg_bot_1_1_inline_keyboard_markup.html">InlineKeyboardMarkup</a> &gt;(), float horizontalAccuracy=0, std::int32_t heading=0, std::int32_t proximityAlertRadius=0) const</td></tr>
 <tr class="memdesc:ac0477c2f07c7b427a41c357d09b8c559"><td class="mdescLeft">&#160;</td><td class="mdescRight">Use this method to edit live location messages.  <a href="class_tg_bot_1_1_api.html#ac0477c2f07c7b427a41c357d09b8c559">More...</a><br /></td></tr>
 <tr class="separator:ac0477c2f07c7b427a41c357d09b8c559"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3ad5f67218db66956f910172b7bd505b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_tg_bot_1_1_message.html#a3805a5dc013c6ab23ac5efc91282c11d">Message::Ptr</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tg_bot_1_1_api.html#a3ad5f67218db66956f910172b7bd505b">stopMessageLiveLocation</a> (boost::variant&lt; std::int64_t, std::string &gt; chatId=&quot;&quot;, std::int32_t messageId=0, const std::string &amp;inlineMessageId=&quot;&quot;, <a class="el" href="class_tg_bot_1_1_inline_keyboard_markup.html#a596873291582fb23cfbe6b62e20df8e7">InlineKeyboardMarkup::Ptr</a> replyMarkup=std::make_shared&lt; <a class="el" href="class_tg_bot_1_1_inline_keyboard_markup.html">InlineKeyboardMarkup</a> &gt;()) const</td></tr>
 <tr class="memdesc:a3ad5f67218db66956f910172b7bd505b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Use this method to stop updating a live location message before livePeriod expires.  <a href="class_tg_bot_1_1_api.html#a3ad5f67218db66956f910172b7bd505b">More...</a><br /></td></tr>
 <tr class="separator:a3ad5f67218db66956f910172b7bd505b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a010e7d02858a2b27a6c422de650b18e6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_tg_bot_1_1_message.html#a3805a5dc013c6ab23ac5efc91282c11d">Message::Ptr</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tg_bot_1_1_api.html#a010e7d02858a2b27a6c422de650b18e6">sendVenue</a> (boost::variant&lt; std::int64_t, std::string &gt; chatId, float latitude, float longitude, const std::string &amp;title, const std::string &amp;address, const std::string &amp;foursquareId=&quot;&quot;, const std::string &amp;foursquareType=&quot;&quot;, bool disableNotification=false, std::int32_t replyToMessageId=0, <a class="el" href="class_tg_bot_1_1_generic_reply.html#aa7bb5f2c5484cb791e1c60c346bbb06f">GenericReply::Ptr</a> replyMarkup=std::make_shared&lt; <a class="el" href="class_tg_bot_1_1_generic_reply.html">GenericReply</a> &gt;(), const std::string &amp;googlePlaceId=&quot;&quot;, const std::string &amp;googlePlaceType=&quot;&quot;, bool allowSendingWithoutReply=false, bool protectContent=false) const</td></tr>
-<tr class="memdesc:a010e7d02858a2b27a6c422de650b18e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Use this method to send information about a venue.  <a href="class_tg_bot_1_1_api.html#a010e7d02858a2b27a6c422de650b18e6">More...</a><br /></td></tr>
-<tr class="separator:a010e7d02858a2b27a6c422de650b18e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8973103d15b3da62452500c86ad11d9c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_tg_bot_1_1_message.html#a3805a5dc013c6ab23ac5efc91282c11d">Message::Ptr</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tg_bot_1_1_api.html#a8973103d15b3da62452500c86ad11d9c">sendContact</a> (boost::variant&lt; std::int64_t, std::string &gt; chatId, const std::string &amp;phoneNumber, const std::string &amp;firstName, const std::string &amp;lastName=&quot;&quot;, const std::string &amp;vcard=&quot;&quot;, bool disableNotification=false, std::int32_t replyToMessageId=0, <a class="el" href="class_tg_bot_1_1_generic_reply.html#aa7bb5f2c5484cb791e1c60c346bbb06f">GenericReply::Ptr</a> replyMarkup=std::make_shared&lt; <a class="el" href="class_tg_bot_1_1_generic_reply.html">GenericReply</a> &gt;(), bool allowSendingWithoutReply=false, bool protectContent=false) const</td></tr>
-<tr class="memdesc:a8973103d15b3da62452500c86ad11d9c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Use this method to send phone contacts.  <a href="class_tg_bot_1_1_api.html#a8973103d15b3da62452500c86ad11d9c">More...</a><br /></td></tr>
-<tr class="separator:a8973103d15b3da62452500c86ad11d9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aae0bee0e1d6a17627611cb3c6b346fdd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_tg_bot_1_1_message.html#a3805a5dc013c6ab23ac5efc91282c11d">Message::Ptr</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tg_bot_1_1_api.html#aae0bee0e1d6a17627611cb3c6b346fdd">sendPoll</a> (boost::variant&lt; std::int64_t, std::string &gt; chatId, const std::string &amp;question, const std::vector&lt; std::string &gt; &amp;options, bool disableNotification=false, std::int32_t replyToMessageId=0, <a class="el" href="class_tg_bot_1_1_generic_reply.html#aa7bb5f2c5484cb791e1c60c346bbb06f">GenericReply::Ptr</a> replyMarkup=std::make_shared&lt; <a class="el" href="class_tg_bot_1_1_generic_reply.html">GenericReply</a> &gt;(), bool isAnonymous=true, const std::string &amp;type=&quot;&quot;, bool allowsMultipleAnswers=false, std::int32_t correctOptionId=-1, const std::string &amp;explanation=&quot;&quot;, const std::string &amp;explanationParseMode=&quot;&quot;, const std::vector&lt; <a class="el" href="class_tg_bot_1_1_message_entity.html#a6710ffdbafba909633df7bcd8c488da0">MessageEntity::Ptr</a> &gt; &amp;explanationEntities=std::vector&lt; <a class="el" href="class_tg_bot_1_1_message_entity.html#a6710ffdbafba909633df7bcd8c488da0">MessageEntity::Ptr</a> &gt;(), std::int32_t openPeriod=0, std::int32_t closeDate=0, bool isClosed=false, bool allowSendingWithoutReply=false, bool protectContent=false) const</td></tr>
-<tr class="memdesc:aae0bee0e1d6a17627611cb3c6b346fdd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Use this method to send a native poll.  <a href="class_tg_bot_1_1_api.html#aae0bee0e1d6a17627611cb3c6b346fdd">More...</a><br /></td></tr>
-<tr class="separator:aae0bee0e1d6a17627611cb3c6b346fdd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2e5ace0e3c728c9548b241c2907dc3fa"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_tg_bot_1_1_message.html#a3805a5dc013c6ab23ac5efc91282c11d">Message::Ptr</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tg_bot_1_1_api.html#a2e5ace0e3c728c9548b241c2907dc3fa">sendDice</a> (boost::variant&lt; std::int64_t, std::string &gt; chatId, bool disableNotification=false, std::int32_t replyToMessageId=0, <a class="el" href="class_tg_bot_1_1_generic_reply.html#aa7bb5f2c5484cb791e1c60c346bbb06f">GenericReply::Ptr</a> replyMarkup=std::make_shared&lt; <a class="el" href="class_tg_bot_1_1_generic_reply.html">GenericReply</a> &gt;(), const std::string &amp;emoji=&quot;&quot;, bool allowSendingWithoutReply=false, bool protectContent=false) const</td></tr>
-<tr class="memdesc:a2e5ace0e3c728c9548b241c2907dc3fa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Use this method to send an animated emoji that will display a random value.  <a href="class_tg_bot_1_1_api.html#a2e5ace0e3c728c9548b241c2907dc3fa">More...</a><br /></td></tr>
-<tr class="separator:a2e5ace0e3c728c9548b241c2907dc3fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aec5b77aa041cf28ae977864640a860b8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_tg_bot_1_1_message.html#a3805a5dc013c6ab23ac5efc91282c11d">Message::Ptr</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tg_bot_1_1_api.html#aec5b77aa041cf28ae977864640a860b8">sendVenue</a> (boost::variant&lt; std::int64_t, std::string &gt; chatId, float latitude, float longitude, const std::string &amp;title, const std::string &amp;address, const std::string &amp;foursquareId=&quot;&quot;, const std::string &amp;foursquareType=&quot;&quot;, bool disableNotification=false, std::int32_t replyToMessageId=0, <a class="el" href="class_tg_bot_1_1_generic_reply.html#aa7bb5f2c5484cb791e1c60c346bbb06f">GenericReply::Ptr</a> replyMarkup=std::make_shared&lt; <a class="el" href="class_tg_bot_1_1_generic_reply.html">GenericReply</a> &gt;(), const std::string &amp;googlePlaceId=&quot;&quot;, const std::string &amp;googlePlaceType=&quot;&quot;, bool allowSendingWithoutReply=false, bool protectContent=false, std::int32_t messageThreadId=0) const</td></tr>
+<tr class="memdesc:aec5b77aa041cf28ae977864640a860b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Use this method to send information about a venue.  <a href="class_tg_bot_1_1_api.html#aec5b77aa041cf28ae977864640a860b8">More...</a><br /></td></tr>
+<tr class="separator:aec5b77aa041cf28ae977864640a860b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1d072dd65d6478a5af80dff89750cfaa"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_tg_bot_1_1_message.html#a3805a5dc013c6ab23ac5efc91282c11d">Message::Ptr</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tg_bot_1_1_api.html#a1d072dd65d6478a5af80dff89750cfaa">sendContact</a> (boost::variant&lt; std::int64_t, std::string &gt; chatId, const std::string &amp;phoneNumber, const std::string &amp;firstName, const std::string &amp;lastName=&quot;&quot;, const std::string &amp;vcard=&quot;&quot;, bool disableNotification=false, std::int32_t replyToMessageId=0, <a class="el" href="class_tg_bot_1_1_generic_reply.html#aa7bb5f2c5484cb791e1c60c346bbb06f">GenericReply::Ptr</a> replyMarkup=std::make_shared&lt; <a class="el" href="class_tg_bot_1_1_generic_reply.html">GenericReply</a> &gt;(), bool allowSendingWithoutReply=false, bool protectContent=false, std::int32_t messageThreadId=0) const</td></tr>
+<tr class="memdesc:a1d072dd65d6478a5af80dff89750cfaa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Use this method to send phone contacts.  <a href="class_tg_bot_1_1_api.html#a1d072dd65d6478a5af80dff89750cfaa">More...</a><br /></td></tr>
+<tr class="separator:a1d072dd65d6478a5af80dff89750cfaa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeef67708a044949436dcdea3b0ad0a2d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_tg_bot_1_1_message.html#a3805a5dc013c6ab23ac5efc91282c11d">Message::Ptr</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tg_bot_1_1_api.html#aeef67708a044949436dcdea3b0ad0a2d">sendPoll</a> (boost::variant&lt; std::int64_t, std::string &gt; chatId, const std::string &amp;question, const std::vector&lt; std::string &gt; &amp;options, bool disableNotification=false, std::int32_t replyToMessageId=0, <a class="el" href="class_tg_bot_1_1_generic_reply.html#aa7bb5f2c5484cb791e1c60c346bbb06f">GenericReply::Ptr</a> replyMarkup=std::make_shared&lt; <a class="el" href="class_tg_bot_1_1_generic_reply.html">GenericReply</a> &gt;(), bool isAnonymous=true, const std::string &amp;type=&quot;&quot;, bool allowsMultipleAnswers=false, std::int32_t correctOptionId=-1, const std::string &amp;explanation=&quot;&quot;, const std::string &amp;explanationParseMode=&quot;&quot;, const std::vector&lt; <a class="el" href="class_tg_bot_1_1_message_entity.html#a6710ffdbafba909633df7bcd8c488da0">MessageEntity::Ptr</a> &gt; &amp;explanationEntities=std::vector&lt; <a class="el" href="class_tg_bot_1_1_message_entity.html#a6710ffdbafba909633df7bcd8c488da0">MessageEntity::Ptr</a> &gt;(), std::int32_t openPeriod=0, std::int32_t closeDate=0, bool isClosed=false, bool allowSendingWithoutReply=false, bool protectContent=false, std::int32_t messageThreadId=0) const</td></tr>
+<tr class="memdesc:aeef67708a044949436dcdea3b0ad0a2d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Use this method to send a native poll.  <a href="class_tg_bot_1_1_api.html#aeef67708a044949436dcdea3b0ad0a2d">More...</a><br /></td></tr>
+<tr class="separator:aeef67708a044949436dcdea3b0ad0a2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a344a6c28008ea877613f9f49979b3630"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_tg_bot_1_1_message.html#a3805a5dc013c6ab23ac5efc91282c11d">Message::Ptr</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tg_bot_1_1_api.html#a344a6c28008ea877613f9f49979b3630">sendDice</a> (boost::variant&lt; std::int64_t, std::string &gt; chatId, bool disableNotification=false, std::int32_t replyToMessageId=0, <a class="el" href="class_tg_bot_1_1_generic_reply.html#aa7bb5f2c5484cb791e1c60c346bbb06f">GenericReply::Ptr</a> replyMarkup=std::make_shared&lt; <a class="el" href="class_tg_bot_1_1_generic_reply.html">GenericReply</a> &gt;(), const std::string &amp;emoji=&quot;&quot;, bool allowSendingWithoutReply=false, bool protectContent=false, std::int32_t messageThreadId=0) const</td></tr>
+<tr class="memdesc:a344a6c28008ea877613f9f49979b3630"><td class="mdescLeft">&#160;</td><td class="mdescRight">Use this method to send an animated emoji that will display a random value.  <a href="class_tg_bot_1_1_api.html#a344a6c28008ea877613f9f49979b3630">More...</a><br /></td></tr>
+<tr class="separator:a344a6c28008ea877613f9f49979b3630"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a30c54f491d42029955cdf9c9eae473b6"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tg_bot_1_1_api.html#a30c54f491d42029955cdf9c9eae473b6">sendChatAction</a> (std::int64_t chatId, const std::string &amp;action) const</td></tr>
 <tr class="memdesc:a30c54f491d42029955cdf9c9eae473b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Use this method when you need to tell the user that something is happening on the bot's side. The status is set for 5 seconds or less (when a message arrives from your bot, Telegram clients clear its typing status).  <a href="class_tg_bot_1_1_api.html#a30c54f491d42029955cdf9c9eae473b6">More...</a><br /></td></tr>
 <tr class="separator:a30c54f491d42029955cdf9c9eae473b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -199,9 +199,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ac9759fcd731deb40fcee323831c5df12"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tg_bot_1_1_api.html#ac9759fcd731deb40fcee323831c5df12">restrictChatMember</a> (boost::variant&lt; std::int64_t, std::string &gt; chatId, std::int64_t userId, <a class="el" href="class_tg_bot_1_1_chat_permissions.html#a2483eba25a23b37a08e907b31d9f6944">ChatPermissions::Ptr</a> permissions, std::int64_t untilDate=0) const</td></tr>
 <tr class="memdesc:ac9759fcd731deb40fcee323831c5df12"><td class="mdescLeft">&#160;</td><td class="mdescRight">Use this method to restrict a user in a supergroup.  <a href="class_tg_bot_1_1_api.html#ac9759fcd731deb40fcee323831c5df12">More...</a><br /></td></tr>
 <tr class="separator:ac9759fcd731deb40fcee323831c5df12"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab1fa2e41fe2fc06e99d9490f090c52a7"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tg_bot_1_1_api.html#ab1fa2e41fe2fc06e99d9490f090c52a7">promoteChatMember</a> (boost::variant&lt; std::int64_t, std::string &gt; chatId, std::int64_t userId, bool canChangeInfo=false, bool canPostMessages=false, bool canEditMessages=false, bool canDeleteMessages=false, bool canInviteUsers=false, bool canPinMessages=false, bool canPromoteMembers=false, bool isAnonymous=false, bool canManageChat=false, bool canManageVideoChats=false, bool canRestrictMembers=false) const</td></tr>
-<tr class="memdesc:ab1fa2e41fe2fc06e99d9490f090c52a7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Use this method to promote or demote a user in a supergroup or a channel.  <a href="class_tg_bot_1_1_api.html#ab1fa2e41fe2fc06e99d9490f090c52a7">More...</a><br /></td></tr>
-<tr class="separator:ab1fa2e41fe2fc06e99d9490f090c52a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a04e9a6f8c5b8813d4b24e755b23e6bc9"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tg_bot_1_1_api.html#a04e9a6f8c5b8813d4b24e755b23e6bc9">promoteChatMember</a> (boost::variant&lt; std::int64_t, std::string &gt; chatId, std::int64_t userId, bool canChangeInfo=false, bool canPostMessages=false, bool canEditMessages=false, bool canDeleteMessages=false, bool canInviteUsers=false, bool canPinMessages=false, bool canPromoteMembers=false, bool isAnonymous=false, bool canManageChat=false, bool canManageVideoChats=false, bool canRestrictMembers=false, bool canManageTopics=false) const</td></tr>
+<tr class="memdesc:a04e9a6f8c5b8813d4b24e755b23e6bc9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Use this method to promote or demote a user in a supergroup or a channel.  <a href="class_tg_bot_1_1_api.html#a04e9a6f8c5b8813d4b24e755b23e6bc9">More...</a><br /></td></tr>
+<tr class="separator:a04e9a6f8c5b8813d4b24e755b23e6bc9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa3546f9f7c03d1aee52588c5077b3392"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tg_bot_1_1_api.html#aa3546f9f7c03d1aee52588c5077b3392">setChatAdministratorCustomTitle</a> (boost::variant&lt; std::int64_t, std::string &gt; chatId, std::int64_t userId, const std::string &amp;customTitle) const</td></tr>
 <tr class="memdesc:aa3546f9f7c03d1aee52588c5077b3392"><td class="mdescLeft">&#160;</td><td class="mdescRight">Use this method to set a custom title for an administrator in a supergroup promoted by the bot.  <a href="class_tg_bot_1_1_api.html#aa3546f9f7c03d1aee52588c5077b3392">More...</a><br /></td></tr>
 <tr class="separator:aa3546f9f7c03d1aee52588c5077b3392"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -274,6 +274,27 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ae5ddfebfab86fd2875685851bd374129"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tg_bot_1_1_api.html#ae5ddfebfab86fd2875685851bd374129">deleteChatStickerSet</a> (boost::variant&lt; std::int64_t, std::string &gt; chatId) const</td></tr>
 <tr class="memdesc:ae5ddfebfab86fd2875685851bd374129"><td class="mdescLeft">&#160;</td><td class="mdescRight">Use this method to delete a group sticker set from a supergroup.  <a href="class_tg_bot_1_1_api.html#ae5ddfebfab86fd2875685851bd374129">More...</a><br /></td></tr>
 <tr class="separator:ae5ddfebfab86fd2875685851bd374129"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a55476559ff3708fa195fb545f8963e60"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="class_tg_bot_1_1_sticker.html#a63c460c539e3549bec82850fe30c8fff">Sticker::Ptr</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tg_bot_1_1_api.html#a55476559ff3708fa195fb545f8963e60">getForumTopicIconStickers</a> () const</td></tr>
+<tr class="memdesc:a55476559ff3708fa195fb545f8963e60"><td class="mdescLeft">&#160;</td><td class="mdescRight">Use this method to get custom emoji stickers, which can be used as a forum topic icon by any user.  <a href="class_tg_bot_1_1_api.html#a55476559ff3708fa195fb545f8963e60">More...</a><br /></td></tr>
+<tr class="separator:a55476559ff3708fa195fb545f8963e60"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9f60e3f13fa55ccf14ec3966260e7a8b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_tg_bot_1_1_forum_topic.html#a6518752f878175c536f55db5f50907b8">ForumTopic::Ptr</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tg_bot_1_1_api.html#a9f60e3f13fa55ccf14ec3966260e7a8b">createForumTopic</a> (boost::variant&lt; std::int64_t, std::string &gt; chatId, const std::string &amp;name, std::int32_t iconColor=0, const std::string &amp;iconCustomEmojiId=&quot;&quot;) const</td></tr>
+<tr class="memdesc:a9f60e3f13fa55ccf14ec3966260e7a8b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Use this method to create a topic in a forum supergroup chat.  <a href="class_tg_bot_1_1_api.html#a9f60e3f13fa55ccf14ec3966260e7a8b">More...</a><br /></td></tr>
+<tr class="separator:a9f60e3f13fa55ccf14ec3966260e7a8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a75a0d6003b7781edd5fefc67105fe86f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tg_bot_1_1_api.html#a75a0d6003b7781edd5fefc67105fe86f">editForumTopic</a> (boost::variant&lt; std::int64_t, std::string &gt; chatId, std::int32_t messageThreadId, const std::string &amp;name, const std::string &amp;iconCustomEmojiId) const</td></tr>
+<tr class="memdesc:a75a0d6003b7781edd5fefc67105fe86f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Use this method to edit name and icon of a topic in a forum supergroup chat.  <a href="class_tg_bot_1_1_api.html#a75a0d6003b7781edd5fefc67105fe86f">More...</a><br /></td></tr>
+<tr class="separator:a75a0d6003b7781edd5fefc67105fe86f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab18c7ce2d2c1b74c0abeb00ed13083b7"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tg_bot_1_1_api.html#ab18c7ce2d2c1b74c0abeb00ed13083b7">closeForumTopic</a> (boost::variant&lt; std::int64_t, std::string &gt; chatId, std::int32_t messageThreadId) const</td></tr>
+<tr class="memdesc:ab18c7ce2d2c1b74c0abeb00ed13083b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Use this method to close an open topic in a forum supergroup chat.  <a href="class_tg_bot_1_1_api.html#ab18c7ce2d2c1b74c0abeb00ed13083b7">More...</a><br /></td></tr>
+<tr class="separator:ab18c7ce2d2c1b74c0abeb00ed13083b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a95281d29d8b9e7728608b81591f6979e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tg_bot_1_1_api.html#a95281d29d8b9e7728608b81591f6979e">reopenForumTopic</a> (boost::variant&lt; std::int64_t, std::string &gt; chatId, std::int32_t messageThreadId) const</td></tr>
+<tr class="memdesc:a95281d29d8b9e7728608b81591f6979e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Use this method to reopen a closed topic in a forum supergroup chat.  <a href="class_tg_bot_1_1_api.html#a95281d29d8b9e7728608b81591f6979e">More...</a><br /></td></tr>
+<tr class="separator:a95281d29d8b9e7728608b81591f6979e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a60a21cb1f97290e051b366f6e7c6f540"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tg_bot_1_1_api.html#a60a21cb1f97290e051b366f6e7c6f540">deleteForumTopic</a> (boost::variant&lt; std::int64_t, std::string &gt; chatId, std::int32_t messageThreadId) const</td></tr>
+<tr class="memdesc:a60a21cb1f97290e051b366f6e7c6f540"><td class="mdescLeft">&#160;</td><td class="mdescRight">Use this method to delete a forum topic along with all its messages in a forum supergroup chat.  <a href="class_tg_bot_1_1_api.html#a60a21cb1f97290e051b366f6e7c6f540">More...</a><br /></td></tr>
+<tr class="separator:a60a21cb1f97290e051b366f6e7c6f540"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab6dd3fbfacfa2ec5d137a6d387dd4b96"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tg_bot_1_1_api.html#ab6dd3fbfacfa2ec5d137a6d387dd4b96">unpinAllForumTopicMessages</a> (boost::variant&lt; std::int64_t, std::string &gt; chatId, std::int32_t messageThreadId) const</td></tr>
+<tr class="memdesc:ab6dd3fbfacfa2ec5d137a6d387dd4b96"><td class="mdescLeft">&#160;</td><td class="mdescRight">Use this method to clear the list of pinned messages in a forum topic.  <a href="class_tg_bot_1_1_api.html#ab6dd3fbfacfa2ec5d137a6d387dd4b96">More...</a><br /></td></tr>
+<tr class="separator:ab6dd3fbfacfa2ec5d137a6d387dd4b96"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae1876967bc75494654910684954936a8"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tg_bot_1_1_api.html#ae1876967bc75494654910684954936a8">answerCallbackQuery</a> (const std::string &amp;callbackQueryId, const std::string &amp;text=&quot;&quot;, bool showAlert=false, const std::string &amp;url=&quot;&quot;, std::int32_t cacheTime=0) const</td></tr>
 <tr class="memdesc:ae1876967bc75494654910684954936a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Use this method to send answers to callback queries sent from inline keyboards.  <a href="class_tg_bot_1_1_api.html#ae1876967bc75494654910684954936a8">More...</a><br /></td></tr>
 <tr class="separator:ae1876967bc75494654910684954936a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -316,9 +337,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ade815d30cd8ee22f04be1328dcd2f5da"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tg_bot_1_1_api.html#ade815d30cd8ee22f04be1328dcd2f5da">deleteMessage</a> (boost::variant&lt; std::int64_t, std::string &gt; chatId, std::int32_t messageId) const</td></tr>
 <tr class="memdesc:ade815d30cd8ee22f04be1328dcd2f5da"><td class="mdescLeft">&#160;</td><td class="mdescRight">Use this method to delete a message, including service messages, with the following limitations:  <a href="class_tg_bot_1_1_api.html#ade815d30cd8ee22f04be1328dcd2f5da">More...</a><br /></td></tr>
 <tr class="separator:ade815d30cd8ee22f04be1328dcd2f5da"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa96b2b0352233aaddb3a06c77c18580a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_tg_bot_1_1_message.html#a3805a5dc013c6ab23ac5efc91282c11d">Message::Ptr</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tg_bot_1_1_api.html#aa96b2b0352233aaddb3a06c77c18580a">sendSticker</a> (boost::variant&lt; std::int64_t, std::string &gt; chatId, boost::variant&lt; <a class="el" href="class_tg_bot_1_1_input_file.html#a9b1b7a8f913d9c4d4a389d9a4353d94f">InputFile::Ptr</a>, std::string &gt; sticker, std::int32_t replyToMessageId=0, <a class="el" href="class_tg_bot_1_1_generic_reply.html#aa7bb5f2c5484cb791e1c60c346bbb06f">GenericReply::Ptr</a> replyMarkup=std::make_shared&lt; <a class="el" href="class_tg_bot_1_1_generic_reply.html">GenericReply</a> &gt;(), bool disableNotification=false, bool allowSendingWithoutReply=false, bool protectContent=false) const</td></tr>
-<tr class="memdesc:aa96b2b0352233aaddb3a06c77c18580a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Use this method to send static .WEBP, animated .TGS, or video .WEBM stickers.  <a href="class_tg_bot_1_1_api.html#aa96b2b0352233aaddb3a06c77c18580a">More...</a><br /></td></tr>
-<tr class="separator:aa96b2b0352233aaddb3a06c77c18580a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abceb575b91419f8ed312664a7f8aa368"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_tg_bot_1_1_message.html#a3805a5dc013c6ab23ac5efc91282c11d">Message::Ptr</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tg_bot_1_1_api.html#abceb575b91419f8ed312664a7f8aa368">sendSticker</a> (boost::variant&lt; std::int64_t, std::string &gt; chatId, boost::variant&lt; <a class="el" href="class_tg_bot_1_1_input_file.html#a9b1b7a8f913d9c4d4a389d9a4353d94f">InputFile::Ptr</a>, std::string &gt; sticker, std::int32_t replyToMessageId=0, <a class="el" href="class_tg_bot_1_1_generic_reply.html#aa7bb5f2c5484cb791e1c60c346bbb06f">GenericReply::Ptr</a> replyMarkup=std::make_shared&lt; <a class="el" href="class_tg_bot_1_1_generic_reply.html">GenericReply</a> &gt;(), bool disableNotification=false, bool allowSendingWithoutReply=false, bool protectContent=false, std::int32_t messageThreadId=0) const</td></tr>
+<tr class="memdesc:abceb575b91419f8ed312664a7f8aa368"><td class="mdescLeft">&#160;</td><td class="mdescRight">Use this method to send static .WEBP, animated .TGS, or video .WEBM stickers.  <a href="class_tg_bot_1_1_api.html#abceb575b91419f8ed312664a7f8aa368">More...</a><br /></td></tr>
+<tr class="separator:abceb575b91419f8ed312664a7f8aa368"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a270296c79f52985fca19cacf3ed75d2f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_tg_bot_1_1_sticker_set.html#ad3c58f08ddacdb946507cd96a3d54421">StickerSet::Ptr</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tg_bot_1_1_api.html#a270296c79f52985fca19cacf3ed75d2f">getStickerSet</a> (const std::string &amp;name) const</td></tr>
 <tr class="memdesc:a270296c79f52985fca19cacf3ed75d2f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Use this method to get a sticker set.  <a href="class_tg_bot_1_1_api.html#a270296c79f52985fca19cacf3ed75d2f">More...</a><br /></td></tr>
 <tr class="separator:a270296c79f52985fca19cacf3ed75d2f"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -349,9 +370,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a7d3ccc6d02bf5d9d48866c3fcd97b809"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_tg_bot_1_1_sent_web_app_message.html#ac4cfd108c1e0a1d3e7a3957e4554f482">SentWebAppMessage::Ptr</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tg_bot_1_1_api.html#a7d3ccc6d02bf5d9d48866c3fcd97b809">answerWebAppQuery</a> (const std::string &amp;webAppQueryId, <a class="el" href="class_tg_bot_1_1_inline_query_result.html#af567dd95c4dae7c4a895e561a97ed4c5">InlineQueryResult::Ptr</a> result) const</td></tr>
 <tr class="memdesc:a7d3ccc6d02bf5d9d48866c3fcd97b809"><td class="mdescLeft">&#160;</td><td class="mdescRight">Use this method to set the result of an interaction with a Web App and send a corresponding message on behalf of the user to the chat from which the query originated.  <a href="class_tg_bot_1_1_api.html#a7d3ccc6d02bf5d9d48866c3fcd97b809">More...</a><br /></td></tr>
 <tr class="separator:a7d3ccc6d02bf5d9d48866c3fcd97b809"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af3ec0b1cecae7140f6b92af414a0e779"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_tg_bot_1_1_message.html#a3805a5dc013c6ab23ac5efc91282c11d">Message::Ptr</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tg_bot_1_1_api.html#af3ec0b1cecae7140f6b92af414a0e779">sendInvoice</a> (boost::variant&lt; std::int64_t, std::string &gt; chatId, const std::string &amp;title, const std::string &amp;description, const std::string &amp;payload, const std::string &amp;providerToken, const std::string &amp;currency, const std::vector&lt; <a class="el" href="class_tg_bot_1_1_labeled_price.html#a1d53775f4034427a2dfaae9ef176796c">LabeledPrice::Ptr</a> &gt; &amp;prices, const std::string &amp;providerData=&quot;&quot;, const std::string &amp;photoUrl=&quot;&quot;, std::int32_t photoSize=0, std::int32_t photoWidth=0, std::int32_t photoHeight=0, bool needName=false, bool needPhoneNumber=false, bool needEmail=false, bool needShippingAddress=false, bool sendPhoneNumberToProvider=false, bool sendEmailToProvider=false, bool isFlexible=false, std::int32_t replyToMessageId=0, <a class="el" href="class_tg_bot_1_1_generic_reply.html#aa7bb5f2c5484cb791e1c60c346bbb06f">GenericReply::Ptr</a> replyMarkup=std::make_shared&lt; <a class="el" href="class_tg_bot_1_1_generic_reply.html">GenericReply</a> &gt;(), bool disableNotification=false, bool allowSendingWithoutReply=false, std::int32_t maxTipAmount=0, const std::vector&lt; std::int32_t &gt; &amp;suggestedTipAmounts=std::vector&lt; std::int32_t &gt;(), const std::string &amp;startParameter=&quot;&quot;, bool protectContent=false) const</td></tr>
-<tr class="memdesc:af3ec0b1cecae7140f6b92af414a0e779"><td class="mdescLeft">&#160;</td><td class="mdescRight">Use this method to send invoices.  <a href="class_tg_bot_1_1_api.html#af3ec0b1cecae7140f6b92af414a0e779">More...</a><br /></td></tr>
-<tr class="separator:af3ec0b1cecae7140f6b92af414a0e779"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a81a992bff9947004e98e342012b08eb3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_tg_bot_1_1_message.html#a3805a5dc013c6ab23ac5efc91282c11d">Message::Ptr</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tg_bot_1_1_api.html#a81a992bff9947004e98e342012b08eb3">sendInvoice</a> (boost::variant&lt; std::int64_t, std::string &gt; chatId, const std::string &amp;title, const std::string &amp;description, const std::string &amp;payload, const std::string &amp;providerToken, const std::string &amp;currency, const std::vector&lt; <a class="el" href="class_tg_bot_1_1_labeled_price.html#a1d53775f4034427a2dfaae9ef176796c">LabeledPrice::Ptr</a> &gt; &amp;prices, const std::string &amp;providerData=&quot;&quot;, const std::string &amp;photoUrl=&quot;&quot;, std::int32_t photoSize=0, std::int32_t photoWidth=0, std::int32_t photoHeight=0, bool needName=false, bool needPhoneNumber=false, bool needEmail=false, bool needShippingAddress=false, bool sendPhoneNumberToProvider=false, bool sendEmailToProvider=false, bool isFlexible=false, std::int32_t replyToMessageId=0, <a class="el" href="class_tg_bot_1_1_generic_reply.html#aa7bb5f2c5484cb791e1c60c346bbb06f">GenericReply::Ptr</a> replyMarkup=std::make_shared&lt; <a class="el" href="class_tg_bot_1_1_generic_reply.html">GenericReply</a> &gt;(), bool disableNotification=false, bool allowSendingWithoutReply=false, std::int32_t maxTipAmount=0, const std::vector&lt; std::int32_t &gt; &amp;suggestedTipAmounts=std::vector&lt; std::int32_t &gt;(), const std::string &amp;startParameter=&quot;&quot;, bool protectContent=false, std::int32_t messageThreadId=0) const</td></tr>
+<tr class="memdesc:a81a992bff9947004e98e342012b08eb3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Use this method to send invoices.  <a href="class_tg_bot_1_1_api.html#a81a992bff9947004e98e342012b08eb3">More...</a><br /></td></tr>
+<tr class="separator:a81a992bff9947004e98e342012b08eb3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afdef3a6a006deac7b1321469e333bb21"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tg_bot_1_1_api.html#afdef3a6a006deac7b1321469e333bb21">createInvoiceLink</a> (const std::string &amp;title, const std::string &amp;description, const std::string &amp;payload, const std::string &amp;providerToken, const std::string &amp;currency, const std::vector&lt; <a class="el" href="class_tg_bot_1_1_labeled_price.html#a1d53775f4034427a2dfaae9ef176796c">LabeledPrice::Ptr</a> &gt; &amp;prices, std::int32_t maxTipAmount=0, const std::vector&lt; std::int32_t &gt; &amp;suggestedTipAmounts=std::vector&lt; std::int32_t &gt;(), const std::string &amp;providerData=&quot;&quot;, const std::string &amp;photoUrl=&quot;&quot;, std::int32_t photoSize=0, std::int32_t photoWidth=0, std::int32_t photoHeight=0, bool needName=false, bool needPhoneNumber=false, bool needEmail=false, bool needShippingAddress=false, bool sendPhoneNumberToProvider=false, bool sendEmailToProvider=false, bool isFlexible=false) const</td></tr>
 <tr class="memdesc:afdef3a6a006deac7b1321469e333bb21"><td class="mdescLeft">&#160;</td><td class="mdescRight">Use this method to create a link for an invoice.  <a href="class_tg_bot_1_1_api.html#afdef3a6a006deac7b1321469e333bb21">More...</a><br /></td></tr>
 <tr class="separator:afdef3a6a006deac7b1321469e333bb21"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -364,9 +385,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a9bbf020fce874a4b1c51e7e88b3b3397"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tg_bot_1_1_api.html#a9bbf020fce874a4b1c51e7e88b3b3397">setPassportDataErrors</a> (std::int64_t userId, const std::vector&lt; <a class="el" href="class_tg_bot_1_1_passport_element_error.html#ace4c5e5cdebe26ce87b2aa8a40e5b348">PassportElementError::Ptr</a> &gt; &amp;errors) const</td></tr>
 <tr class="memdesc:a9bbf020fce874a4b1c51e7e88b3b3397"><td class="mdescLeft">&#160;</td><td class="mdescRight">Informs a user that some of the Telegram Passport elements they provided contains errors.  <a href="class_tg_bot_1_1_api.html#a9bbf020fce874a4b1c51e7e88b3b3397">More...</a><br /></td></tr>
 <tr class="separator:a9bbf020fce874a4b1c51e7e88b3b3397"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5b61e271839c051b972e8ee0baf16b3d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_tg_bot_1_1_message.html#a3805a5dc013c6ab23ac5efc91282c11d">Message::Ptr</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tg_bot_1_1_api.html#a5b61e271839c051b972e8ee0baf16b3d">sendGame</a> (std::int64_t chatId, const std::string &amp;gameShortName, std::int32_t replyToMessageId=0, <a class="el" href="class_tg_bot_1_1_inline_keyboard_markup.html#a596873291582fb23cfbe6b62e20df8e7">InlineKeyboardMarkup::Ptr</a> replyMarkup=std::make_shared&lt; <a class="el" href="class_tg_bot_1_1_inline_keyboard_markup.html">InlineKeyboardMarkup</a> &gt;(), bool disableNotification=false, bool allowSendingWithoutReply=false, bool protectContent=false) const</td></tr>
-<tr class="memdesc:a5b61e271839c051b972e8ee0baf16b3d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Use this method to send a game.  <a href="class_tg_bot_1_1_api.html#a5b61e271839c051b972e8ee0baf16b3d">More...</a><br /></td></tr>
-<tr class="separator:a5b61e271839c051b972e8ee0baf16b3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7a2adb8cee600ef855619d5a09f53921"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_tg_bot_1_1_message.html#a3805a5dc013c6ab23ac5efc91282c11d">Message::Ptr</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tg_bot_1_1_api.html#a7a2adb8cee600ef855619d5a09f53921">sendGame</a> (std::int64_t chatId, const std::string &amp;gameShortName, std::int32_t replyToMessageId=0, <a class="el" href="class_tg_bot_1_1_inline_keyboard_markup.html#a596873291582fb23cfbe6b62e20df8e7">InlineKeyboardMarkup::Ptr</a> replyMarkup=std::make_shared&lt; <a class="el" href="class_tg_bot_1_1_inline_keyboard_markup.html">InlineKeyboardMarkup</a> &gt;(), bool disableNotification=false, bool allowSendingWithoutReply=false, bool protectContent=false, std::int32_t messageThreadId=0) const</td></tr>
+<tr class="memdesc:a7a2adb8cee600ef855619d5a09f53921"><td class="mdescLeft">&#160;</td><td class="mdescRight">Use this method to send a game.  <a href="class_tg_bot_1_1_api.html#a7a2adb8cee600ef855619d5a09f53921">More...</a><br /></td></tr>
+<tr class="separator:a7a2adb8cee600ef855619d5a09f53921"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad2097a947e18236f954ab22d6c00d6e6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_tg_bot_1_1_message.html#a3805a5dc013c6ab23ac5efc91282c11d">Message::Ptr</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tg_bot_1_1_api.html#ad2097a947e18236f954ab22d6c00d6e6">setGameScore</a> (std::int64_t userId, std::int32_t score, bool force=false, bool disableEditMessage=false, std::int64_t chatId=0, std::int32_t messageId=0, const std::string &amp;inlineMessageId=&quot;&quot;) const</td></tr>
 <tr class="memdesc:ad2097a947e18236f954ab22d6c00d6e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Use this method to set the score of the specified user in a game message.  <a href="class_tg_bot_1_1_api.html#ad2097a947e18236f954ab22d6c00d6e6">More...</a><br /></td></tr>
 <tr class="separator:ad2097a947e18236f954ab22d6c00d6e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -388,7 +409,7 @@ Friends</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p >This class executes telegram api methods. Telegram docs: <a href="https://core.telegram.org/bots/api#available-methods">https://core.telegram.org/bots/api#available-methods</a> </p>
 
-<p class="definition">Definition at line <a class="el" href="_api_8h_source.html#l00047">47</a> of file <a class="el" href="_api_8h_source.html">Api.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_api_8h_source.html#l00048">48</a> of file <a class="el" href="_api_8h_source.html">Api.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="aa7918747eb1d24eb1794e5b8a1abc000" name="aa7918747eb1d24eb1794e5b8a1abc000"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aa7918747eb1d24eb1794e5b8a1abc000">&#9670;&#160;</a></span>Api()</h2>
@@ -950,8 +971,47 @@ Friends</h2></td></tr>
 
 </div>
 </div>
-<a id="a0c454871d0f7c34c9407fcb48d527bee" name="a0c454871d0f7c34c9407fcb48d527bee"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0c454871d0f7c34c9407fcb48d527bee">&#9670;&#160;</a></span>copyMessage()</h2>
+<a id="ab18c7ce2d2c1b74c0abeb00ed13083b7" name="ab18c7ce2d2c1b74c0abeb00ed13083b7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab18c7ce2d2c1b74c0abeb00ed13083b7">&#9670;&#160;</a></span>closeForumTopic()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool TgBot::Api::closeForumTopic </td>
+          <td>(</td>
+          <td class="paramtype">boost::variant&lt; std::int64_t, std::string &gt;&#160;</td>
+          <td class="paramname"><em>chatId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::int32_t&#160;</td>
+          <td class="paramname"><em>messageThreadId</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Use this method to close an open topic in a forum supergroup chat. </p>
+<p >The bot must be an administrator in the chat for this to work and must have the canManageTopics administrator rights, unless it is the creator of the topic.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">chatId</td><td>Unique identifier for the target chat or username of the target supergroup (in the format @supergroupusername) </td></tr>
+    <tr><td class="paramname">messageThreadId</td><td>Unique identifier for the target message thread of the forum topic</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns True on success. </dd></dl>
+
+</div>
+</div>
+<a id="a20fba2af3e07f5cfdbb00df67d7b7bef" name="a20fba2af3e07f5cfdbb00df67d7b7bef"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a20fba2af3e07f5cfdbb00df67d7b7bef">&#9670;&#160;</a></span>copyMessage()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1020,7 +1080,13 @@ Friends</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>protectContent</em> = <code>false</code>&#160;</td>
+          <td class="paramname"><em>protectContent</em> = <code>false</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::int32_t&#160;</td>
+          <td class="paramname"><em>messageThreadId</em> = <code>0</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1031,7 +1097,7 @@ Friends</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Use this method to copy messages of any kind. </p>
-<p >Service messages and invoice messages can't be copied. A quiz poll can be copied only if the value of the field correctOptionId is known to the bot. The method is analogous to the method <a class="el" href="class_tg_bot_1_1_api.html#a2809b20aeac24ba7cad3f6833675dcc4" title="Use this method to forward messages of any kind.">Api::forwardMessage</a>, but the copied message doesn't have a link to the original message.</p>
+<p >Service messages and invoice messages can't be copied. A quiz poll can be copied only if the value of the field correctOptionId is known to the bot. The method is analogous to the method <a class="el" href="class_tg_bot_1_1_api.html#aff0c1359b43a63ac7fccaeaaeafdf0d1" title="Use this method to forward messages of any kind.">Api::forwardMessage</a>, but the copied message doesn't have a link to the original message.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">chatId</td><td>Unique identifier for the target chat or username of the target channel (in the format @channelusername) </td></tr>
@@ -1044,7 +1110,8 @@ Friends</h2></td></tr>
     <tr><td class="paramname">replyToMessageId</td><td>Optional. If the message is a reply, ID of the original message </td></tr>
     <tr><td class="paramname">allowSendingWithoutReply</td><td>Optional. Pass True if the message should be sent even if the specified replied-to message is not found </td></tr>
     <tr><td class="paramname">replyMarkup</td><td>Optional. Additional interface options. A JSON-serialized object for an inline keyboard, custom reply keyboard, instructions to remove reply keyboard or to force a reply from the user. </td></tr>
-    <tr><td class="paramname">protectContent</td><td>Optional. Protects the contents of the sent message from forwarding and saving</td></tr>
+    <tr><td class="paramname">protectContent</td><td>Optional. Protects the contents of the sent message from forwarding and saving </td></tr>
+    <tr><td class="paramname">messageThreadId</td><td>Optional. Unique identifier for the target message thread (topic) of the forum; for forum supergroups only</td></tr>
   </table>
   </dd>
 </dl>
@@ -1109,6 +1176,59 @@ Friends</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns the new invite link as <a class="el" href="class_tg_bot_1_1_chat_invite_link.html" title="Represents an invite link for a chat.">ChatInviteLink</a> object. </dd></dl>
+
+</div>
+</div>
+<a id="a9f60e3f13fa55ccf14ec3966260e7a8b" name="a9f60e3f13fa55ccf14ec3966260e7a8b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9f60e3f13fa55ccf14ec3966260e7a8b">&#9670;&#160;</a></span>createForumTopic()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_tg_bot_1_1_forum_topic.html#a6518752f878175c536f55db5f50907b8">ForumTopic::Ptr</a> TgBot::Api::createForumTopic </td>
+          <td>(</td>
+          <td class="paramtype">boost::variant&lt; std::int64_t, std::string &gt;&#160;</td>
+          <td class="paramname"><em>chatId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::int32_t&#160;</td>
+          <td class="paramname"><em>iconColor</em> = <code>0</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>iconCustomEmojiId</em> = <code>&quot;&quot;</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Use this method to create a topic in a forum supergroup chat. </p>
+<p >The bot must be an administrator in the chat for this to work and must have the canManageTopics administrator rights.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">chatId</td><td>Unique identifier for the target chat or username of the target supergroup (in the format @supergroupusername) </td></tr>
+    <tr><td class="paramname">name</td><td>Topic name, 1-128 characters </td></tr>
+    <tr><td class="paramname">iconColor</td><td>Optional. Color of the topic icon in RGB format. Currently, must be one of 0x6FB9F0, 0xFFD67E, 0xCB86DB, 0x8EEE98, 0xFF93B2, or 0xFB6F5F </td></tr>
+    <tr><td class="paramname">iconCustomEmojiId</td><td>Optional. Unique identifier of the custom emoji shown as the topic icon. Use <a class="el" href="class_tg_bot_1_1_api.html#a55476559ff3708fa195fb545f8963e60" title="Use this method to get custom emoji stickers, which can be used as a forum topic icon by any user.">Api::getForumTopicIconStickers</a> to get all allowed custom emoji identifiers.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns information about the created topic as a <a class="el" href="class_tg_bot_1_1_forum_topic.html" title="This object represents a forum topic.">ForumTopic</a> object. </dd></dl>
 
 </div>
 </div>
@@ -1459,6 +1579,45 @@ Friends</h2></td></tr>
 
 </div>
 </div>
+<a id="a60a21cb1f97290e051b366f6e7c6f540" name="a60a21cb1f97290e051b366f6e7c6f540"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a60a21cb1f97290e051b366f6e7c6f540">&#9670;&#160;</a></span>deleteForumTopic()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool TgBot::Api::deleteForumTopic </td>
+          <td>(</td>
+          <td class="paramtype">boost::variant&lt; std::int64_t, std::string &gt;&#160;</td>
+          <td class="paramname"><em>chatId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::int32_t&#160;</td>
+          <td class="paramname"><em>messageThreadId</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Use this method to delete a forum topic along with all its messages in a forum supergroup chat. </p>
+<p >The bot must be an administrator in the chat for this to work and must have the canDeleteMessages administrator rights.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">chatId</td><td>Unique identifier for the target chat or username of the target supergroup (in the format @supergroupusername) </td></tr>
+    <tr><td class="paramname">messageThreadId</td><td>Unique identifier for the target message thread of the forum topic</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns True on success. </dd></dl>
+
+</div>
+</div>
 <a id="ade815d30cd8ee22f04be1328dcd2f5da" name="ade815d30cd8ee22f04be1328dcd2f5da"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ade815d30cd8ee22f04be1328dcd2f5da">&#9670;&#160;</a></span>deleteMessage()</h2>
 
@@ -1488,6 +1647,7 @@ Friends</h2></td></tr>
 <p>Use this method to delete a message, including service messages, with the following limitations: </p>
 <ul>
 <li>A message can only be deleted if it was sent less than 48 hours ago.</li>
+<li>Service messages about a supergroup, channel, or forum topic creation can't be deleted.</li>
 <li>A dice message in a private chat can only be deleted if it was sent more than 24 hours ago.</li>
 <li>Bots can delete outgoing messages in private chats, groups, and supergroups.</li>
 <li>Bots can delete incoming messages in private chats.</li>
@@ -1701,6 +1861,59 @@ Friends</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns the edited invite link as a <a class="el" href="class_tg_bot_1_1_chat_invite_link.html" title="Represents an invite link for a chat.">ChatInviteLink</a> object. </dd></dl>
+
+</div>
+</div>
+<a id="a75a0d6003b7781edd5fefc67105fe86f" name="a75a0d6003b7781edd5fefc67105fe86f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a75a0d6003b7781edd5fefc67105fe86f">&#9670;&#160;</a></span>editForumTopic()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool TgBot::Api::editForumTopic </td>
+          <td>(</td>
+          <td class="paramtype">boost::variant&lt; std::int64_t, std::string &gt;&#160;</td>
+          <td class="paramname"><em>chatId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::int32_t&#160;</td>
+          <td class="paramname"><em>messageThreadId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>iconCustomEmojiId</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Use this method to edit name and icon of a topic in a forum supergroup chat. </p>
+<p >The bot must be an administrator in the chat for this to work and must have canManageTopics administrator rights, unless it is the creator of the topic.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">chatId</td><td>Unique identifier for the target chat or username of the target supergroup (in the format @supergroupusername) </td></tr>
+    <tr><td class="paramname">messageThreadId</td><td>Unique identifier for the target message thread of the forum topic </td></tr>
+    <tr><td class="paramname">name</td><td>New topic name, 1-128 characters </td></tr>
+    <tr><td class="paramname">iconCustomEmojiId</td><td>New unique identifier of the custom emoji shown as the topic icon. Use <a class="el" href="class_tg_bot_1_1_api.html#a55476559ff3708fa195fb545f8963e60" title="Use this method to get custom emoji stickers, which can be used as a forum topic icon by any user.">Api::getForumTopicIconStickers</a> to get all allowed custom emoji identifiers</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns True on success. </dd></dl>
 
 </div>
 </div>
@@ -2086,8 +2299,8 @@ Friends</h2></td></tr>
 
 </div>
 </div>
-<a id="a2809b20aeac24ba7cad3f6833675dcc4" name="a2809b20aeac24ba7cad3f6833675dcc4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2809b20aeac24ba7cad3f6833675dcc4">&#9670;&#160;</a></span>forwardMessage()</h2>
+<a id="aff0c1359b43a63ac7fccaeaaeafdf0d1" name="aff0c1359b43a63ac7fccaeaaeafdf0d1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aff0c1359b43a63ac7fccaeaaeafdf0d1">&#9670;&#160;</a></span>forwardMessage()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2120,7 +2333,13 @@ Friends</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>protectContent</em> = <code>false</code>&#160;</td>
+          <td class="paramname"><em>protectContent</em> = <code>false</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::int32_t&#160;</td>
+          <td class="paramname"><em>messageThreadId</em> = <code>0</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -2138,7 +2357,8 @@ Friends</h2></td></tr>
     <tr><td class="paramname">fromChatId</td><td>Unique identifier for the chat where the original message was sent (or channel username in the format @channelusername) </td></tr>
     <tr><td class="paramname">messageId</td><td><a class="el" href="class_tg_bot_1_1_message.html" title="This object represents a message.">Message</a> identifier in the chat specified in fromChatId </td></tr>
     <tr><td class="paramname">disableNotification</td><td>Optional. Sends the message silently. Users will receive a notification with no sound. </td></tr>
-    <tr><td class="paramname">protectContent</td><td>Optional. Protects the contents of the forwarded message from forwarding and saving</td></tr>
+    <tr><td class="paramname">protectContent</td><td>Optional. Protects the contents of the forwarded message from forwarding and saving </td></tr>
+    <tr><td class="paramname">messageThreadId</td><td>Optional. Unique identifier for the target message thread (topic) of the forum; for forum supergroups only</td></tr>
   </table>
   </dd>
 </dl>
@@ -2345,6 +2565,26 @@ Friends</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>On success, a <a class="el" href="class_tg_bot_1_1_file.html" title="This object represents a file ready to be downloaded. The file can be downloaded via Api::downloadFil...">File</a> object is returned. </dd></dl>
+
+</div>
+</div>
+<a id="a55476559ff3708fa195fb545f8963e60" name="a55476559ff3708fa195fb545f8963e60"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a55476559ff3708fa195fb545f8963e60">&#9670;&#160;</a></span>getForumTopicIconStickers()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; <a class="el" href="class_tg_bot_1_1_sticker.html#a63c460c539e3549bec82850fe30c8fff">Sticker::Ptr</a> &gt; TgBot::Api::getForumTopicIconStickers </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Use this method to get custom emoji stickers, which can be used as a forum topic icon by any user. </p>
+<dl class="section return"><dt>Returns</dt><dd>Returns an Array of <a class="el" href="class_tg_bot_1_1_sticker.html" title="This object represents a sticker.">Sticker</a> objects. </dd></dl>
 
 </div>
 </div>
@@ -2728,8 +2968,8 @@ Friends</h2></td></tr>
 
 </div>
 </div>
-<a id="ab1fa2e41fe2fc06e99d9490f090c52a7" name="ab1fa2e41fe2fc06e99d9490f090c52a7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab1fa2e41fe2fc06e99d9490f090c52a7">&#9670;&#160;</a></span>promoteChatMember()</h2>
+<a id="a04e9a6f8c5b8813d4b24e755b23e6bc9" name="a04e9a6f8c5b8813d4b24e755b23e6bc9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a04e9a6f8c5b8813d4b24e755b23e6bc9">&#9670;&#160;</a></span>promoteChatMember()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2810,7 +3050,13 @@ Friends</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>canRestrictMembers</em> = <code>false</code>&#160;</td>
+          <td class="paramname"><em>canRestrictMembers</em> = <code>false</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>canManageTopics</em> = <code>false</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -2826,17 +3072,57 @@ Friends</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">chatId</td><td>Unique identifier for the target chat or username of the target channel (in the format @channelusername) </td></tr>
     <tr><td class="paramname">userId</td><td>Unique identifier of the target user </td></tr>
-    <tr><td class="paramname">canChangeInfo</td><td>Optional. Pass True, if the administrator can change chat title, photo and other settings </td></tr>
-    <tr><td class="paramname">canPostMessages</td><td>Optional. Pass True, if the administrator can create channel posts, channels only </td></tr>
-    <tr><td class="paramname">canEditMessages</td><td>Optional. Pass True, if the administrator can edit messages of other users and can pin messages, channels only </td></tr>
-    <tr><td class="paramname">canDeleteMessages</td><td>Optional. Pass True, if the administrator can delete messages of other users </td></tr>
-    <tr><td class="paramname">canInviteUsers</td><td>Optional. Pass True, if the administrator can invite new users to the chat </td></tr>
-    <tr><td class="paramname">canPinMessages</td><td>Optional. Pass True, if the administrator can pin messages, supergroups only </td></tr>
-    <tr><td class="paramname">canPromoteMembers</td><td>Optional. Pass True, if the administrator can add new administrators with a subset of their own privileges or demote administrators that he has promoted, directly or indirectly (promoted by administrators that were appointed by him) </td></tr>
-    <tr><td class="paramname">isAnonymous</td><td>Optional. Pass True, if the administrator's presence in the chat is hidden </td></tr>
-    <tr><td class="paramname">canManageChat</td><td>Optional. Pass True, if the administrator can access the chat event log, chat statistics, message statistics in channels, see channel members, see anonymous administrators in supergroups and ignore slow mode. Implied by any other administrator privilege </td></tr>
-    <tr><td class="paramname">canManageVideoChats</td><td>Optional. Pass True, if the administrator can manage video chats </td></tr>
-    <tr><td class="paramname">canRestrictMembers</td><td>Optional. Pass True, if the administrator can restrict, ban or unban chat members</td></tr>
+    <tr><td class="paramname">canChangeInfo</td><td>Optional. Pass True if the administrator can change chat title, photo and other settings </td></tr>
+    <tr><td class="paramname">canPostMessages</td><td>Optional. Pass True if the administrator can create channel posts, channels only </td></tr>
+    <tr><td class="paramname">canEditMessages</td><td>Optional. Pass True if the administrator can edit messages of other users and can pin messages, channels only </td></tr>
+    <tr><td class="paramname">canDeleteMessages</td><td>Optional. Pass True if the administrator can delete messages of other users </td></tr>
+    <tr><td class="paramname">canInviteUsers</td><td>Optional. Pass True if the administrator can invite new users to the chat </td></tr>
+    <tr><td class="paramname">canPinMessages</td><td>Optional. Pass True if the administrator can pin messages, supergroups only </td></tr>
+    <tr><td class="paramname">canPromoteMembers</td><td>Optional. Pass True if the administrator can add new administrators with a subset of their own privileges or demote administrators that he has promoted, directly or indirectly (promoted by administrators that were appointed by him) </td></tr>
+    <tr><td class="paramname">isAnonymous</td><td>Optional. Pass True if the administrator's presence in the chat is hidden </td></tr>
+    <tr><td class="paramname">canManageChat</td><td>Optional. Pass True if the administrator can access the chat event log, chat statistics, message statistics in channels, see channel members, see anonymous administrators in supergroups and ignore slow mode. Implied by any other administrator privilege </td></tr>
+    <tr><td class="paramname">canManageVideoChats</td><td>Optional. Pass True if the administrator can manage video chats </td></tr>
+    <tr><td class="paramname">canRestrictMembers</td><td>Optional. Pass True if the administrator can restrict, ban or unban chat members </td></tr>
+    <tr><td class="paramname">canManageTopics</td><td>Optional. Pass True if the user is allowed to create, rename, close, and reopen forum topics, supergroups only</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns True on success. </dd></dl>
+
+</div>
+</div>
+<a id="a95281d29d8b9e7728608b81591f6979e" name="a95281d29d8b9e7728608b81591f6979e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a95281d29d8b9e7728608b81591f6979e">&#9670;&#160;</a></span>reopenForumTopic()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool TgBot::Api::reopenForumTopic </td>
+          <td>(</td>
+          <td class="paramtype">boost::variant&lt; std::int64_t, std::string &gt;&#160;</td>
+          <td class="paramname"><em>chatId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::int32_t&#160;</td>
+          <td class="paramname"><em>messageThreadId</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Use this method to reopen a closed topic in a forum supergroup chat. </p>
+<p >The bot must be an administrator in the chat for this to work and must have the canManageTopics administrator rights, unless it is the creator of the topic.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">chatId</td><td>Unique identifier for the target chat or username of the target supergroup (in the format @supergroupusername) </td></tr>
+    <tr><td class="paramname">messageThreadId</td><td>Unique identifier for the target message thread of the forum topic</td></tr>
   </table>
   </dd>
 </dl>
@@ -2936,8 +3222,8 @@ Friends</h2></td></tr>
 
 </div>
 </div>
-<a id="a6caad8a8a85549f6498cc45534393bb4" name="a6caad8a8a85549f6498cc45534393bb4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6caad8a8a85549f6498cc45534393bb4">&#9670;&#160;</a></span>sendAnimation()</h2>
+<a id="ab96a798f738e5a34897a61d16ffb65db" name="ab96a798f738e5a34897a61d16ffb65db"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab96a798f738e5a34897a61d16ffb65db">&#9670;&#160;</a></span>sendAnimation()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -3024,7 +3310,13 @@ Friends</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>protectContent</em> = <code>false</code>&#160;</td>
+          <td class="paramname"><em>protectContent</em> = <code>false</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::int32_t&#160;</td>
+          <td class="paramname"><em>messageThreadId</em> = <code>0</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -3051,7 +3343,8 @@ Friends</h2></td></tr>
     <tr><td class="paramname">disableNotification</td><td>Optional. Sends the message silently. Users will receive a notification with no sound. </td></tr>
     <tr><td class="paramname">captionEntities</td><td>Optional. A JSON-serialized list of special entities that appear in the caption, which can be specified instead of parseMode </td></tr>
     <tr><td class="paramname">allowSendingWithoutReply</td><td>Optional. Pass True if the message should be sent even if the specified replied-to message is not found </td></tr>
-    <tr><td class="paramname">protectContent</td><td>Optional. Protects the contents of the sent message from forwarding and saving</td></tr>
+    <tr><td class="paramname">protectContent</td><td>Optional. Protects the contents of the sent message from forwarding and saving </td></tr>
+    <tr><td class="paramname">messageThreadId</td><td>Optional. Unique identifier for the target message thread (topic) of the forum; for forum supergroups only</td></tr>
   </table>
   </dd>
 </dl>
@@ -3059,8 +3352,8 @@ Friends</h2></td></tr>
 
 </div>
 </div>
-<a id="a7748f9164ee98d64b79df0bf94d17032" name="a7748f9164ee98d64b79df0bf94d17032"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7748f9164ee98d64b79df0bf94d17032">&#9670;&#160;</a></span>sendAudio()</h2>
+<a id="aeec19eb9bd282ab20fa7c9b522103bcb" name="aeec19eb9bd282ab20fa7c9b522103bcb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeec19eb9bd282ab20fa7c9b522103bcb">&#9670;&#160;</a></span>sendAudio()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -3147,7 +3440,13 @@ Friends</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>protectContent</em> = <code>false</code>&#160;</td>
+          <td class="paramname"><em>protectContent</em> = <code>false</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::int32_t&#160;</td>
+          <td class="paramname"><em>messageThreadId</em> = <code>0</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -3159,7 +3458,7 @@ Friends</h2></td></tr>
 
 <p>Use this method to send audio files, if you want Telegram clients to display them in the music player. </p>
 <p >Your audio must be in the .MP3 or .M4A format. Bots can currently send audio files of up to 50 MB in size, this limit may be changed in the future.</p>
-<p >For sending voice messages, use the <a class="el" href="class_tg_bot_1_1_api.html#a567b02279364e03ef79ae4f9a11be468" title="Use this method to send audio files, if you want Telegram clients to display the file as a playable v...">Api::sendVoice</a> method instead.</p>
+<p >For sending voice messages, use the <a class="el" href="class_tg_bot_1_1_api.html#a64541d4f43b219120ec092f4563b8f9a" title="Use this method to send audio files, if you want Telegram clients to display the file as a playable v...">Api::sendVoice</a> method instead.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">chatId</td><td>Unique identifier for the target chat or username of the target channel (in the format @channelusername) </td></tr>
@@ -3175,7 +3474,8 @@ Friends</h2></td></tr>
     <tr><td class="paramname">disableNotification</td><td>Optional. Sends the message silently. Users will receive a notification with no sound. </td></tr>
     <tr><td class="paramname">captionEntities</td><td>Optional. A JSON-serialized list of special entities that appear in the caption, which can be specified instead of parseMode </td></tr>
     <tr><td class="paramname">allowSendingWithoutReply</td><td>Optional. Pass True if the message should be sent even if the specified replied-to message is not found </td></tr>
-    <tr><td class="paramname">protectContent</td><td>Optional. Protects the contents of the sent message from forwarding and saving</td></tr>
+    <tr><td class="paramname">protectContent</td><td>Optional. Protects the contents of the sent message from forwarding and saving </td></tr>
+    <tr><td class="paramname">messageThreadId</td><td>Optional. Unique identifier for the target message thread (topic) of the forum; for forum supergroups only</td></tr>
   </table>
   </dd>
 </dl>
@@ -3223,8 +3523,8 @@ Friends</h2></td></tr>
 
 </div>
 </div>
-<a id="a8973103d15b3da62452500c86ad11d9c" name="a8973103d15b3da62452500c86ad11d9c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8973103d15b3da62452500c86ad11d9c">&#9670;&#160;</a></span>sendContact()</h2>
+<a id="a1d072dd65d6478a5af80dff89750cfaa" name="a1d072dd65d6478a5af80dff89750cfaa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1d072dd65d6478a5af80dff89750cfaa">&#9670;&#160;</a></span>sendContact()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -3287,7 +3587,13 @@ Friends</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>protectContent</em> = <code>false</code>&#160;</td>
+          <td class="paramname"><em>protectContent</em> = <code>false</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::int32_t&#160;</td>
+          <td class="paramname"><em>messageThreadId</em> = <code>0</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -3309,7 +3615,8 @@ Friends</h2></td></tr>
     <tr><td class="paramname">replyToMessageId</td><td>Optional. If the message is a reply, ID of the original message </td></tr>
     <tr><td class="paramname">replyMarkup</td><td>Optional. Additional interface options. A JSON-serialized object for an inline keyboard, custom reply keyboard, instructions to remove keyboard or to force a reply from the user. </td></tr>
     <tr><td class="paramname">allowSendingWithoutReply</td><td>Optional. Pass True if the message should be sent even if the specified replied-to message is not found </td></tr>
-    <tr><td class="paramname">protectContent</td><td>Optional. Protects the contents of the sent message from forwarding and saving</td></tr>
+    <tr><td class="paramname">protectContent</td><td>Optional. Protects the contents of the sent message from forwarding and saving </td></tr>
+    <tr><td class="paramname">messageThreadId</td><td>Optional. Unique identifier for the target message thread (topic) of the forum; for forum supergroups only</td></tr>
   </table>
   </dd>
 </dl>
@@ -3317,8 +3624,8 @@ Friends</h2></td></tr>
 
 </div>
 </div>
-<a id="a2e5ace0e3c728c9548b241c2907dc3fa" name="a2e5ace0e3c728c9548b241c2907dc3fa"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2e5ace0e3c728c9548b241c2907dc3fa">&#9670;&#160;</a></span>sendDice()</h2>
+<a id="a344a6c28008ea877613f9f49979b3630" name="a344a6c28008ea877613f9f49979b3630"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a344a6c28008ea877613f9f49979b3630">&#9670;&#160;</a></span>sendDice()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -3363,7 +3670,13 @@ Friends</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>protectContent</em> = <code>false</code>&#160;</td>
+          <td class="paramname"><em>protectContent</em> = <code>false</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::int32_t&#160;</td>
+          <td class="paramname"><em>messageThreadId</em> = <code>0</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -3382,7 +3695,8 @@ Friends</h2></td></tr>
     <tr><td class="paramname">replyMarkup</td><td>Optional. Additional interface options. A JSON-serialized object for an inline keyboard, custom reply keyboard, instructions to remove reply keyboard or to force a reply from the user. </td></tr>
     <tr><td class="paramname">emoji</td><td>Optional. Emoji on which the dice throw animation is based. Currently, must be one of “🎲”, “🎯”, “🏀”, “⚽”, “🎳”, or “🎰”. <a class="el" href="class_tg_bot_1_1_dice.html" title="This object represents an animated emoji that displays a random value.">Dice</a> can have values 1-6 for “🎲”, “🎯” and “🎳”, values 1-5 for “🏀” and “⚽”, and values 1-64 for “🎰”. Defaults to “🎲” </td></tr>
     <tr><td class="paramname">allowSendingWithoutReply</td><td>Optional. Pass True if the message should be sent even if the specified replied-to message is not found </td></tr>
-    <tr><td class="paramname">protectContent</td><td>Optional. Protects the contents of the sent message from forwarding</td></tr>
+    <tr><td class="paramname">protectContent</td><td>Optional. Protects the contents of the sent message from forwarding </td></tr>
+    <tr><td class="paramname">messageThreadId</td><td>Optional. Unique identifier for the target message thread (topic) of the forum; for forum supergroups only</td></tr>
   </table>
   </dd>
 </dl>
@@ -3390,8 +3704,8 @@ Friends</h2></td></tr>
 
 </div>
 </div>
-<a id="a978b998597776fc4e628c1eccbff1296" name="a978b998597776fc4e628c1eccbff1296"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a978b998597776fc4e628c1eccbff1296">&#9670;&#160;</a></span>sendDocument()</h2>
+<a id="a03b80fb4608d638d858768f4ebac1a4a" name="a03b80fb4608d638d858768f4ebac1a4a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a03b80fb4608d638d858768f4ebac1a4a">&#9670;&#160;</a></span>sendDocument()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -3466,7 +3780,13 @@ Friends</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>protectContent</em> = <code>false</code>&#160;</td>
+          <td class="paramname"><em>protectContent</em> = <code>false</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::int32_t&#160;</td>
+          <td class="paramname"><em>messageThreadId</em> = <code>0</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -3491,7 +3811,8 @@ Friends</h2></td></tr>
     <tr><td class="paramname">captionEntities</td><td>Optional. A JSON-serialized list of special entities that appear in the caption, which can be specified instead of parseMode </td></tr>
     <tr><td class="paramname">disableContentTypeDetection</td><td>Optional. Disables automatic server-side content type detection for files uploaded using multipart/form-data </td></tr>
     <tr><td class="paramname">allowSendingWithoutReply</td><td>Optional. Pass True if the message should be sent even if the specified replied-to message is not found </td></tr>
-    <tr><td class="paramname">protectContent</td><td>Optional. Protects the contents of the sent message from forwarding and saving</td></tr>
+    <tr><td class="paramname">protectContent</td><td>Optional. Protects the contents of the sent message from forwarding and saving </td></tr>
+    <tr><td class="paramname">messageThreadId</td><td>Optional. Unique identifier for the target message thread (topic) of the forum; for forum supergroups only</td></tr>
   </table>
   </dd>
 </dl>
@@ -3499,8 +3820,8 @@ Friends</h2></td></tr>
 
 </div>
 </div>
-<a id="a5b61e271839c051b972e8ee0baf16b3d" name="a5b61e271839c051b972e8ee0baf16b3d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5b61e271839c051b972e8ee0baf16b3d">&#9670;&#160;</a></span>sendGame()</h2>
+<a id="a7a2adb8cee600ef855619d5a09f53921" name="a7a2adb8cee600ef855619d5a09f53921"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7a2adb8cee600ef855619d5a09f53921">&#9670;&#160;</a></span>sendGame()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -3545,7 +3866,13 @@ Friends</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>protectContent</em> = <code>false</code>&#160;</td>
+          <td class="paramname"><em>protectContent</em> = <code>false</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::int32_t&#160;</td>
+          <td class="paramname"><em>messageThreadId</em> = <code>0</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -3564,7 +3891,8 @@ Friends</h2></td></tr>
     <tr><td class="paramname">replyMarkup</td><td>Optional. A JSON-serialized object for an inline keyboard. If empty, one 'Play gameTitle' button will be shown. If not empty, the first button must launch the game. </td></tr>
     <tr><td class="paramname">disableNotification</td><td>Optional. Sends the message silently. Users will receive a notification with no sound. </td></tr>
     <tr><td class="paramname">allowSendingWithoutReply</td><td>Optional. Pass True if the message should be sent even if the specified replied-to message is not found </td></tr>
-    <tr><td class="paramname">protectContent</td><td>Optional. Protects the contents of the sent message from forwarding and saving</td></tr>
+    <tr><td class="paramname">protectContent</td><td>Optional. Protects the contents of the sent message from forwarding and saving </td></tr>
+    <tr><td class="paramname">messageThreadId</td><td>Optional. Unique identifier for the target message thread (topic) of the forum; for forum supergroups only</td></tr>
   </table>
   </dd>
 </dl>
@@ -3572,8 +3900,8 @@ Friends</h2></td></tr>
 
 </div>
 </div>
-<a id="af3ec0b1cecae7140f6b92af414a0e779" name="af3ec0b1cecae7140f6b92af414a0e779"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af3ec0b1cecae7140f6b92af414a0e779">&#9670;&#160;</a></span>sendInvoice()</h2>
+<a id="a81a992bff9947004e98e342012b08eb3" name="a81a992bff9947004e98e342012b08eb3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a81a992bff9947004e98e342012b08eb3">&#9670;&#160;</a></span>sendInvoice()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -3738,7 +4066,13 @@ Friends</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>protectContent</em> = <code>false</code>&#160;</td>
+          <td class="paramname"><em>protectContent</em> = <code>false</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::int32_t&#160;</td>
+          <td class="paramname"><em>messageThreadId</em> = <code>0</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -3777,7 +4111,8 @@ Friends</h2></td></tr>
     <tr><td class="paramname">maxTipAmount</td><td>Optional. The maximum accepted amount for tips in the smallest units of the currency (integer, not float/double). For example, for a maximum tip of US$ 1.45 pass max_tip_amount = 145. See the exp parameter in <a href="https://core.telegram.org/bots/payments/currencies.json">https://core.telegram.org/bots/payments/currencies.json</a>, it shows the number of digits past the decimal point for each currency (2 for the majority of currencies). Defaults to 0 </td></tr>
     <tr><td class="paramname">suggestedTipAmounts</td><td>Optional. A JSON-serialized array of suggested amounts of tips in the smallest units of the currency (integer, not float/double). At most 4 suggested tip amounts can be specified. The suggested tip amounts must be positive, passed in a strictly increased order and must not exceed maxTipAmount. </td></tr>
     <tr><td class="paramname">startParameter</td><td>Optional. Unique deep-linking parameter. If left empty, forwarded copies of the sent message will have a Pay button, allowing multiple users to pay directly from the forwarded message, using the same invoice. If non-empty, forwarded copies of the sent message will have a URL button with a deep link to the bot (instead of a Pay button), with the value used as the start parameter </td></tr>
-    <tr><td class="paramname">protectContent</td><td>Optional. Protects the contents of the sent message from forwarding and saving</td></tr>
+    <tr><td class="paramname">protectContent</td><td>Optional. Protects the contents of the sent message from forwarding and saving </td></tr>
+    <tr><td class="paramname">messageThreadId</td><td>Optional. Unique identifier for the target message thread (topic) of the forum; for forum supergroups only</td></tr>
   </table>
   </dd>
 </dl>
@@ -3785,8 +4120,8 @@ Friends</h2></td></tr>
 
 </div>
 </div>
-<a id="aedc6303ec5b47b61901a82976e4d6c0e" name="aedc6303ec5b47b61901a82976e4d6c0e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aedc6303ec5b47b61901a82976e4d6c0e">&#9670;&#160;</a></span>sendLocation()</h2>
+<a id="a41e6466b9a9371cf27e980f016ceb029" name="a41e6466b9a9371cf27e980f016ceb029"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a41e6466b9a9371cf27e980f016ceb029">&#9670;&#160;</a></span>sendLocation()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -3861,7 +4196,13 @@ Friends</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>protectContent</em> = <code>false</code>&#160;</td>
+          <td class="paramname"><em>protectContent</em> = <code>false</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::int32_t&#160;</td>
+          <td class="paramname"><em>messageThreadId</em> = <code>0</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -3885,7 +4226,8 @@ Friends</h2></td></tr>
     <tr><td class="paramname">heading</td><td>Optional. For live locations, a direction in which the user is moving, in degrees. Must be between 1 and 360 if specified. </td></tr>
     <tr><td class="paramname">proximityAlertRadius</td><td>Optional. For live locations, a maximum distance for proximity alerts about approaching another chat member, in meters. Must be between 1 and 100000 if specified. </td></tr>
     <tr><td class="paramname">allowSendingWithoutReply</td><td>Optional. Pass True if the message should be sent even if the specified replied-to message is not found </td></tr>
-    <tr><td class="paramname">protectContent</td><td>Optional. Protects the contents of the sent message from forwarding and saving</td></tr>
+    <tr><td class="paramname">protectContent</td><td>Optional. Protects the contents of the sent message from forwarding and saving </td></tr>
+    <tr><td class="paramname">messageThreadId</td><td>Optional. Unique identifier for the target message thread (topic) of the forum; for forum supergroups only</td></tr>
   </table>
   </dd>
 </dl>
@@ -3893,8 +4235,8 @@ Friends</h2></td></tr>
 
 </div>
 </div>
-<a id="af1da216aafe98438644e45b66be32100" name="af1da216aafe98438644e45b66be32100"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af1da216aafe98438644e45b66be32100">&#9670;&#160;</a></span>sendMediaGroup()</h2>
+<a id="a347745fed13125390ac2ba3be0235e94" name="a347745fed13125390ac2ba3be0235e94"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a347745fed13125390ac2ba3be0235e94">&#9670;&#160;</a></span>sendMediaGroup()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -3933,7 +4275,13 @@ Friends</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>protectContent</em> = <code>false</code>&#160;</td>
+          <td class="paramname"><em>protectContent</em> = <code>false</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::int32_t&#160;</td>
+          <td class="paramname"><em>messageThreadId</em> = <code>0</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -3952,7 +4300,8 @@ Friends</h2></td></tr>
     <tr><td class="paramname">disableNotification</td><td>Optional. Sends messages silently. Users will receive a notification with no sound. </td></tr>
     <tr><td class="paramname">replyToMessageId</td><td>Optional. If the messages are a reply, ID of the original message </td></tr>
     <tr><td class="paramname">allowSendingWithoutReply</td><td>Optional. Pass True if the message should be sent even if the specified replied-to message is not found </td></tr>
-    <tr><td class="paramname">protectContent</td><td>Optional. Protects the contents of the sent messages from forwarding and saving</td></tr>
+    <tr><td class="paramname">protectContent</td><td>Optional. Protects the contents of the sent messages from forwarding and saving </td></tr>
+    <tr><td class="paramname">messageThreadId</td><td>Optional. Unique identifier for the target message thread (topic) of the forum; for forum supergroups only</td></tr>
   </table>
   </dd>
 </dl>
@@ -3960,8 +4309,8 @@ Friends</h2></td></tr>
 
 </div>
 </div>
-<a id="a844e8652fe1be2296081e1fb55150fb5" name="a844e8652fe1be2296081e1fb55150fb5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a844e8652fe1be2296081e1fb55150fb5">&#9670;&#160;</a></span>sendMessage()</h2>
+<a id="a3e0b0a666d0a7664d0818c5229abe32c" name="a3e0b0a666d0a7664d0818c5229abe32c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3e0b0a666d0a7664d0818c5229abe32c">&#9670;&#160;</a></span>sendMessage()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -4024,7 +4373,13 @@ Friends</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>protectContent</em> = <code>false</code>&#160;</td>
+          <td class="paramname"><em>protectContent</em> = <code>false</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::int32_t&#160;</td>
+          <td class="paramname"><em>messageThreadId</em> = <code>0</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -4046,7 +4401,8 @@ Friends</h2></td></tr>
     <tr><td class="paramname">disableNotification</td><td>Optional. Sends the message silently. Users will receive a notification with no sound. </td></tr>
     <tr><td class="paramname">entities</td><td>Optional. A JSON-serialized list of special entities that appear in message text, which can be specified instead of parseMode </td></tr>
     <tr><td class="paramname">allowSendingWithoutReply</td><td>Optional. Pass True if the message should be sent even if the specified replied-to message is not found </td></tr>
-    <tr><td class="paramname">protectContent</td><td>Optional. Protects the contents of the sent message from forwarding and saving</td></tr>
+    <tr><td class="paramname">protectContent</td><td>Optional. Protects the contents of the sent message from forwarding and saving </td></tr>
+    <tr><td class="paramname">messageThreadId</td><td>Optional. Unique identifier for the target message thread (topic) of the forum; for forum supergroups only</td></tr>
   </table>
   </dd>
 </dl>
@@ -4054,8 +4410,8 @@ Friends</h2></td></tr>
 
 </div>
 </div>
-<a id="a48d27df55a3dffa537aa6c12cc200678" name="a48d27df55a3dffa537aa6c12cc200678"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a48d27df55a3dffa537aa6c12cc200678">&#9670;&#160;</a></span>sendPhoto()</h2>
+<a id="a63a977eaf37217d51fcc716bc35083f8" name="a63a977eaf37217d51fcc716bc35083f8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a63a977eaf37217d51fcc716bc35083f8">&#9670;&#160;</a></span>sendPhoto()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -4118,7 +4474,13 @@ Friends</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>protectContent</em> = <code>false</code>&#160;</td>
+          <td class="paramname"><em>protectContent</em> = <code>false</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::int32_t&#160;</td>
+          <td class="paramname"><em>messageThreadId</em> = <code>0</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -4140,7 +4502,8 @@ Friends</h2></td></tr>
     <tr><td class="paramname">disableNotification</td><td>Optional. Sends the message silently. Users will receive a notification with no sound. </td></tr>
     <tr><td class="paramname">captionEntities</td><td>Optional. A JSON-serialized list of special entities that appear in the caption, which can be specified instead of parseMode </td></tr>
     <tr><td class="paramname">allowSendingWithoutReply</td><td>Optional. Pass True if the message should be sent even if the specified replied-to message is not found </td></tr>
-    <tr><td class="paramname">protectContent</td><td>Optional. Protects the contents of the sent message from forwarding and saving</td></tr>
+    <tr><td class="paramname">protectContent</td><td>Optional. Protects the contents of the sent message from forwarding and saving </td></tr>
+    <tr><td class="paramname">messageThreadId</td><td>Optional. Unique identifier for the target message thread (topic) of the forum; for forum supergroups only</td></tr>
   </table>
   </dd>
 </dl>
@@ -4148,8 +4511,8 @@ Friends</h2></td></tr>
 
 </div>
 </div>
-<a id="aae0bee0e1d6a17627611cb3c6b346fdd" name="aae0bee0e1d6a17627611cb3c6b346fdd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aae0bee0e1d6a17627611cb3c6b346fdd">&#9670;&#160;</a></span>sendPoll()</h2>
+<a id="aeef67708a044949436dcdea3b0ad0a2d" name="aeef67708a044949436dcdea3b0ad0a2d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeef67708a044949436dcdea3b0ad0a2d">&#9670;&#160;</a></span>sendPoll()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -4260,7 +4623,13 @@ Friends</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>protectContent</em> = <code>false</code>&#160;</td>
+          <td class="paramname"><em>protectContent</em> = <code>false</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::int32_t&#160;</td>
+          <td class="paramname"><em>messageThreadId</em> = <code>0</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -4290,7 +4659,8 @@ Friends</h2></td></tr>
     <tr><td class="paramname">closeDate</td><td>Optional. Point in time (Unix timestamp) when the poll will be automatically closed. Must be at least 5 and no more than 600 seconds in the future. Can't be used together with openPeriod. </td></tr>
     <tr><td class="paramname">isClosed</td><td>Optional. Pass True, if the poll needs to be immediately closed. This can be useful for poll preview. </td></tr>
     <tr><td class="paramname">allowSendingWithoutReply</td><td>Optional. Pass True if the message should be sent even if the specified replied-to message is not found </td></tr>
-    <tr><td class="paramname">protectContent</td><td>Optional. Protects the contents of the sent message from forwarding and saving</td></tr>
+    <tr><td class="paramname">protectContent</td><td>Optional. Protects the contents of the sent message from forwarding and saving </td></tr>
+    <tr><td class="paramname">messageThreadId</td><td>Optional. Unique identifier for the target message thread (topic) of the forum; for forum supergroups only</td></tr>
   </table>
   </dd>
 </dl>
@@ -4298,8 +4668,8 @@ Friends</h2></td></tr>
 
 </div>
 </div>
-<a id="aa96b2b0352233aaddb3a06c77c18580a" name="aa96b2b0352233aaddb3a06c77c18580a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa96b2b0352233aaddb3a06c77c18580a">&#9670;&#160;</a></span>sendSticker()</h2>
+<a id="abceb575b91419f8ed312664a7f8aa368" name="abceb575b91419f8ed312664a7f8aa368"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abceb575b91419f8ed312664a7f8aa368">&#9670;&#160;</a></span>sendSticker()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -4344,7 +4714,13 @@ Friends</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>protectContent</em> = <code>false</code>&#160;</td>
+          <td class="paramname"><em>protectContent</em> = <code>false</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::int32_t&#160;</td>
+          <td class="paramname"><em>messageThreadId</em> = <code>0</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -4363,7 +4739,8 @@ Friends</h2></td></tr>
     <tr><td class="paramname">replyMarkup</td><td>Optional. Additional interface options. A JSON-serialized object for an inline keyboard, custom reply keyboard, instructions to remove reply keyboard or to force a reply from the user. </td></tr>
     <tr><td class="paramname">disableNotification</td><td>Optional. Sends the message silently. Users will receive a notification with no sound. </td></tr>
     <tr><td class="paramname">allowSendingWithoutReply</td><td>Optional. Pass True if the message should be sent even if the specified replied-to message is not found </td></tr>
-    <tr><td class="paramname">protectContent</td><td>Optional. Protects the contents of the sent message from forwarding and saving</td></tr>
+    <tr><td class="paramname">protectContent</td><td>Optional. Protects the contents of the sent message from forwarding and saving </td></tr>
+    <tr><td class="paramname">messageThreadId</td><td>Optional. Unique identifier for the target message thread (topic) of the forum; for forum supergroups only</td></tr>
   </table>
   </dd>
 </dl>
@@ -4371,8 +4748,8 @@ Friends</h2></td></tr>
 
 </div>
 </div>
-<a id="a010e7d02858a2b27a6c422de650b18e6" name="a010e7d02858a2b27a6c422de650b18e6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a010e7d02858a2b27a6c422de650b18e6">&#9670;&#160;</a></span>sendVenue()</h2>
+<a id="aec5b77aa041cf28ae977864640a860b8" name="aec5b77aa041cf28ae977864640a860b8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aec5b77aa041cf28ae977864640a860b8">&#9670;&#160;</a></span>sendVenue()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -4459,7 +4836,13 @@ Friends</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>protectContent</em> = <code>false</code>&#160;</td>
+          <td class="paramname"><em>protectContent</em> = <code>false</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::int32_t&#160;</td>
+          <td class="paramname"><em>messageThreadId</em> = <code>0</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -4485,7 +4868,8 @@ Friends</h2></td></tr>
     <tr><td class="paramname">googlePlaceId</td><td>Optional. Google Places identifier of the venue </td></tr>
     <tr><td class="paramname">googlePlaceType</td><td>Optional. Google Places type of the venue. (See <a href="https://developers.google.com/places/web-service/supported_types">https://developers.google.com/places/web-service/supported_types</a>) </td></tr>
     <tr><td class="paramname">allowSendingWithoutReply</td><td>Optional. Pass True if the message should be sent even if the specified replied-to message is not found </td></tr>
-    <tr><td class="paramname">protectContent</td><td>Optional. Protects the contents of the sent message from forwarding and saving</td></tr>
+    <tr><td class="paramname">protectContent</td><td>Optional. Protects the contents of the sent message from forwarding and saving </td></tr>
+    <tr><td class="paramname">messageThreadId</td><td>Optional. Unique identifier for the target message thread (topic) of the forum; for forum supergroups only</td></tr>
   </table>
   </dd>
 </dl>
@@ -4493,8 +4877,8 @@ Friends</h2></td></tr>
 
 </div>
 </div>
-<a id="aacf9f93e0e546c56820d5c0347c34fa8" name="aacf9f93e0e546c56820d5c0347c34fa8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aacf9f93e0e546c56820d5c0347c34fa8">&#9670;&#160;</a></span>sendVideo()</h2>
+<a id="a069d3ddf6f65ab70f69532d914d9f072" name="a069d3ddf6f65ab70f69532d914d9f072"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a069d3ddf6f65ab70f69532d914d9f072">&#9670;&#160;</a></span>sendVideo()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -4587,7 +4971,13 @@ Friends</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>protectContent</em> = <code>false</code>&#160;</td>
+          <td class="paramname"><em>protectContent</em> = <code>false</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::int32_t&#160;</td>
+          <td class="paramname"><em>messageThreadId</em> = <code>0</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -4615,7 +5005,8 @@ Friends</h2></td></tr>
     <tr><td class="paramname">disableNotification</td><td>Optional. Sends the message silently. Users will receive a notification with no sound. </td></tr>
     <tr><td class="paramname">captionEntities</td><td>Optional. A JSON-serialized list of special entities that appear in the caption, which can be specified instead of parseMode </td></tr>
     <tr><td class="paramname">allowSendingWithoutReply</td><td>Optional. Pass True if the message should be sent even if the specified replied-to message is not found </td></tr>
-    <tr><td class="paramname">protectContent</td><td>Optional. Protects the contents of the sent message from forwarding and saving</td></tr>
+    <tr><td class="paramname">protectContent</td><td>Optional. Protects the contents of the sent message from forwarding and saving </td></tr>
+    <tr><td class="paramname">messageThreadId</td><td>Optional. Unique identifier for the target message thread (topic) of the forum; for forum supergroups only</td></tr>
   </table>
   </dd>
 </dl>
@@ -4623,8 +5014,8 @@ Friends</h2></td></tr>
 
 </div>
 </div>
-<a id="aa3e0e6fff1756a7200e7b056e4a96f99" name="aa3e0e6fff1756a7200e7b056e4a96f99"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa3e0e6fff1756a7200e7b056e4a96f99">&#9670;&#160;</a></span>sendVideoNote()</h2>
+<a id="a9e82f0432e407040eb4b01ab729459fa" name="a9e82f0432e407040eb4b01ab729459fa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9e82f0432e407040eb4b01ab729459fa">&#9670;&#160;</a></span>sendVideoNote()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -4687,7 +5078,13 @@ Friends</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>protectContent</em> = <code>false</code>&#160;</td>
+          <td class="paramname"><em>protectContent</em> = <code>false</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::int32_t&#160;</td>
+          <td class="paramname"><em>messageThreadId</em> = <code>0</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -4710,7 +5107,8 @@ Friends</h2></td></tr>
     <tr><td class="paramname">thumb</td><td>Optional. Thumbnail of the file sent; can be ignored if thumbnail generation for the file is supported server-side. The thumbnail should be in JPEG format and less than 200 kB in size. A thumbnail's width and height should not exceed 320. Ignored if the file is not uploaded using multipart/form-data. Thumbnails can't be reused and can be only uploaded as a new file, so you can pass “attach://&lt;file_attach_name&gt;” if the thumbnail was uploaded using multipart/form-data under &lt;file_attach_name&gt;. <a href="https://core.telegram.org/bots/api#sending-files">https://core.telegram.org/bots/api#sending-files</a> </td></tr>
     <tr><td class="paramname">replyMarkup</td><td>Optional. Additional interface options. A JSON-serialized object for an inline keyboard, custom reply keyboard, instructions to remove reply keyboard or to force a reply from the user. </td></tr>
     <tr><td class="paramname">allowSendingWithoutReply</td><td>Optional. Pass True if the message should be sent even if the specified replied-to message is not found </td></tr>
-    <tr><td class="paramname">protectContent</td><td>Optional. Protects the contents of the sent message from forwarding and saving</td></tr>
+    <tr><td class="paramname">protectContent</td><td>Optional. Protects the contents of the sent message from forwarding and saving </td></tr>
+    <tr><td class="paramname">messageThreadId</td><td>Optional. Unique identifier for the target message thread (topic) of the forum; for forum supergroups only</td></tr>
   </table>
   </dd>
 </dl>
@@ -4718,8 +5116,8 @@ Friends</h2></td></tr>
 
 </div>
 </div>
-<a id="a567b02279364e03ef79ae4f9a11be468" name="a567b02279364e03ef79ae4f9a11be468"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a567b02279364e03ef79ae4f9a11be468">&#9670;&#160;</a></span>sendVoice()</h2>
+<a id="a64541d4f43b219120ec092f4563b8f9a" name="a64541d4f43b219120ec092f4563b8f9a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a64541d4f43b219120ec092f4563b8f9a">&#9670;&#160;</a></span>sendVoice()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -4788,7 +5186,13 @@ Friends</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>protectContent</em> = <code>false</code>&#160;</td>
+          <td class="paramname"><em>protectContent</em> = <code>false</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::int32_t&#160;</td>
+          <td class="paramname"><em>messageThreadId</em> = <code>0</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -4812,7 +5216,8 @@ Friends</h2></td></tr>
     <tr><td class="paramname">disableNotification</td><td>Optional. Sends the message silently. Users will receive a notification with no sound. </td></tr>
     <tr><td class="paramname">captionEntities</td><td>Optional. A JSON-serialized list of special entities that appear in the caption, which can be specified instead of parseMode </td></tr>
     <tr><td class="paramname">allowSendingWithoutReply</td><td>Optional. Pass True if the message should be sent even if the specified replied-to message is not found </td></tr>
-    <tr><td class="paramname">protectContent</td><td>Optional. Protects the contents of the sent message from forwarding and saving</td></tr>
+    <tr><td class="paramname">protectContent</td><td>Optional. Protects the contents of the sent message from forwarding and saving </td></tr>
+    <tr><td class="paramname">messageThreadId</td><td>Optional. Unique identifier for the target message thread (topic) of the forum; for forum supergroups only</td></tr>
   </table>
   </dd>
 </dl>
@@ -5669,6 +6074,45 @@ Friends</h2></td></tr>
 
 </div>
 </div>
+<a id="ab6dd3fbfacfa2ec5d137a6d387dd4b96" name="ab6dd3fbfacfa2ec5d137a6d387dd4b96"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab6dd3fbfacfa2ec5d137a6d387dd4b96">&#9670;&#160;</a></span>unpinAllForumTopicMessages()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool TgBot::Api::unpinAllForumTopicMessages </td>
+          <td>(</td>
+          <td class="paramtype">boost::variant&lt; std::int64_t, std::string &gt;&#160;</td>
+          <td class="paramname"><em>chatId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::int32_t&#160;</td>
+          <td class="paramname"><em>messageThreadId</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Use this method to clear the list of pinned messages in a forum topic. </p>
+<p >The bot must be an administrator in the chat for this to work and must have the canPinMessages administrator right in the supergroup.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">chatId</td><td>Unique identifier for the target chat or username of the target supergroup (in the format @supergroupusername) </td></tr>
+    <tr><td class="paramname">messageThreadId</td><td>Unique identifier for the target message thread of the forum topic</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns True on success. </dd></dl>
+
+</div>
+</div>
 <a id="a937d24d8c91be2e57c4c2f7e79612047" name="a937d24d8c91be2e57c4c2f7e79612047"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a937d24d8c91be2e57c4c2f7e79612047">&#9670;&#160;</a></span>unpinChatMessage()</h2>
 
@@ -5767,7 +6211,7 @@ Friends</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_api_8h_source.html#l00051">51</a> of file <a class="el" href="_api_8h_source.html">Api.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_api_8h_source.html#l00052">52</a> of file <a class="el" href="_api_8h_source.html">Api.h</a>.</p>
 
 </div>
 </div>
@@ -5780,7 +6224,7 @@ Friends</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespace_tg_bot.html">TgBot</a></li><li class="navelem"><a class="el" href="class_tg_bot_1_1_api.html">Api</a></li>
-    <li class="footer">Generated on Tue Nov 1 2022 20:24:19 for tgbot-cpp by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.5 </li>
+    <li class="footer">Generated on Tue Nov 8 2022 15:20:00 for tgbot-cpp by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.5 </li>
   </ul>
 </div>
 </body>

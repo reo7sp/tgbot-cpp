@@ -44,6 +44,10 @@ var hierarchy =
     [ "TgBot::EventBroadcaster", "class_tg_bot_1_1_event_broadcaster.html", null ],
     [ "TgBot::EventHandler", "class_tg_bot_1_1_event_handler.html", null ],
     [ "TgBot::File", "class_tg_bot_1_1_file.html", null ],
+    [ "TgBot::ForumTopic", "class_tg_bot_1_1_forum_topic.html", null ],
+    [ "TgBot::ForumTopicClosed", "class_tg_bot_1_1_forum_topic_closed.html", null ],
+    [ "TgBot::ForumTopicCreated", "class_tg_bot_1_1_forum_topic_created.html", null ],
+    [ "TgBot::ForumTopicReopened", "class_tg_bot_1_1_forum_topic_reopened.html", null ],
     [ "TgBot::Game", "class_tg_bot_1_1_game.html", null ],
     [ "TgBot::GameHighScore", "class_tg_bot_1_1_game_high_score.html", null ],
     [ "TgBot::GenericReply", "class_tg_bot_1_1_generic_reply.html", [
