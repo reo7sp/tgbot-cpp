@@ -85,7 +85,7 @@ Alternatively, you can use Docker to build and run your bot. Set the base image 
 You can install dependencies with these commands:
 
 ```sh
-brew install boost openssl zlib curl
+brew install gcc cmake boost openssl zlib curl
 ```
 
 You can compile and install the library like Linux instructions.
