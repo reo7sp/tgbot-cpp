@@ -67,7 +67,7 @@ bool Api::setWebhook(const std::string& url,
         args.emplace_back("secret_token", secretToken);
     }
 
-    return sendRequest("setWebhook").get<bool>("", false);
+    return sendRequest("setWebhook", args).get<bool>("", false);
 }
 
 bool Api::deleteWebhook(bool dropPendingUpdates) const {
@@ -78,7 +78,7 @@ bool Api::deleteWebhook(bool dropPendingUpdates) const {
         args.emplace_back("drop_pending_updates", dropPendingUpdates);
     }
 
-    return sendRequest("deleteWebhook").get<bool>("", false);
+    return sendRequest("deleteWebhook", args).get<bool>("", false);
 }
 
 WebhookInfo::Ptr Api::getWebhookInfo() const {
