@@ -1280,12 +1280,15 @@ std::string TgTypeParser::parseInlineKeyboardButton(const InlineKeyboardButton::
     }
     std::string result;
     result += '{';
-    appendToJson(result, "pay", object->pay);
     appendToJson(result, "text", object->text);
     appendToJson(result, "url", object->url);
     appendToJson(result, "callback_data", object->callbackData);
+    appendToJson(result, "web_app", parseWebAppInfo(object->webApp));
+    appendToJson(result, "login_url", parseLoginUrl(object->loginUrl));
     appendToJson(result, "switch_inline_query", object->switchInlineQuery);
     appendToJson(result, "switch_inline_query_current_chat", object->switchInlineQueryCurrentChat);
+    appendToJson(result, "callback_game", parseCallbackGame(object->callbackGame));
+    appendToJson(result, "pay", object->pay);
     removeLastComma(result);
     result += '}';
     return result;
