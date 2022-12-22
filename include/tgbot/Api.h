@@ -180,7 +180,7 @@ public:
                              const std::string& text,
                              bool disableWebPagePreview = false,
                              std::int32_t replyToMessageId = 0,
-                             GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>(),
+                             GenericReply::Ptr replyMarkup = nullptr,
                              const std::string& parseMode = "",
                              bool disableNotification = false,
                              const std::vector<MessageEntity::Ptr>& entities = std::vector<MessageEntity::Ptr>(),
@@ -265,7 +265,7 @@ public:
                            boost::variant<InputFile::Ptr, std::string> photo,
                            const std::string& caption = "",
                            std::int32_t replyToMessageId = 0,
-                           GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>(),
+                           GenericReply::Ptr replyMarkup = nullptr,
                            const std::string& parseMode = "",
                            bool disableNotification = false,
                            const std::vector<MessageEntity::Ptr>& captionEntities = std::vector<MessageEntity::Ptr>(),
@@ -307,7 +307,7 @@ public:
                            const std::string& title = "",
                            boost::variant<InputFile::Ptr, std::string> thumb = "",
                            std::int32_t replyToMessageId = 0,
-                           GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>(),
+                           GenericReply::Ptr replyMarkup = nullptr,
                            const std::string& parseMode = "",
                            bool disableNotification = false,
                            const std::vector<MessageEntity::Ptr>& captionEntities = std::vector<MessageEntity::Ptr>(),
@@ -341,7 +341,7 @@ public:
                               boost::variant<InputFile::Ptr, std::string> thumb = "",
                               const std::string& caption = "",
                               std::int32_t replyToMessageId = 0,
-                              GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>(),
+                              GenericReply::Ptr replyMarkup = nullptr,
                               const std::string& parseMode = "",
                               bool disableNotification = false,
                               const std::vector<MessageEntity::Ptr>& captionEntities = std::vector<MessageEntity::Ptr>(),
@@ -383,7 +383,7 @@ public:
                            boost::variant<InputFile::Ptr, std::string> thumb = "",
                            const std::string& caption = "",
                            std::int32_t replyToMessageId = 0,
-                           GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>(),
+                           GenericReply::Ptr replyMarkup = nullptr,
                            const std::string& parseMode = "",
                            bool disableNotification = false,
                            const std::vector<MessageEntity::Ptr>& captionEntities = std::vector<MessageEntity::Ptr>(),
@@ -422,7 +422,7 @@ public:
                                boost::variant<InputFile::Ptr, std::string> thumb = "",
                                const std::string& caption = "",
                                std::int32_t replyToMessageId = 0,
-                               GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>(),
+                               GenericReply::Ptr replyMarkup = nullptr,
                                const std::string& parseMode = "",
                                bool disableNotification = false,
                                const std::vector<MessageEntity::Ptr>& captionEntities = std::vector<MessageEntity::Ptr>(),
@@ -456,7 +456,7 @@ public:
                            const std::string& caption = "",
                            std::int32_t duration = 0,
                            std::int32_t replyToMessageId = 0,
-                           GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>(),
+                           GenericReply::Ptr replyMarkup = nullptr,
                            const std::string& parseMode = "",
                            bool disableNotification = false,
                            const std::vector<MessageEntity::Ptr>& captionEntities = std::vector<MessageEntity::Ptr>(),
@@ -490,7 +490,7 @@ public:
                                std::int32_t duration = 0,
                                std::int32_t length = 0,
                                boost::variant<InputFile::Ptr, std::string> thumb = "",
-                               GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>(),
+                               GenericReply::Ptr replyMarkup = nullptr,
                                bool allowSendingWithoutReply = false,
                                bool protectContent = false,
                                std::int32_t messageThreadId = 0) const;
@@ -542,7 +542,7 @@ public:
                               float longitude,
                               std::int32_t livePeriod = 0,
                               std::int32_t replyToMessageId = 0,
-                              GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>(),
+                              GenericReply::Ptr replyMarkup = nullptr,
                               bool disableNotification = false,
                               float horizontalAccuracy = 0,
                               std::int32_t heading = 0,
@@ -623,7 +623,7 @@ public:
                            const std::string& foursquareType = "",
                            bool disableNotification = false,
                            std::int32_t replyToMessageId = 0,
-                           GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>(),
+                           GenericReply::Ptr replyMarkup = nullptr,
                            const std::string& googlePlaceId = "",
                            const std::string& googlePlaceType = "",
                            bool allowSendingWithoutReply = false,
@@ -654,7 +654,7 @@ public:
                              const std::string& vcard = "",
                              bool disableNotification = false,
                              std::int32_t replyToMessageId = 0,
-                             GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>(),
+                             GenericReply::Ptr replyMarkup = nullptr,
                              bool allowSendingWithoutReply = false,
                              bool protectContent = false,
                              std::int32_t messageThreadId = 0) const;
@@ -689,7 +689,7 @@ public:
                           const std::vector<std::string>& options,
                           bool disableNotification = false,
                           std::int32_t replyToMessageId = 0,
-                          GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>(),
+                          GenericReply::Ptr replyMarkup = nullptr,
                           bool isAnonymous = true,
                           const std::string& type = "",
                           bool allowsMultipleAnswers = false,
@@ -721,7 +721,7 @@ public:
     Message::Ptr sendDice(boost::variant<std::int64_t, std::string> chatId,
                           bool disableNotification = false,
                           std::int32_t replyToMessageId = 0,
-                          GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>(),
+                          GenericReply::Ptr replyMarkup = nullptr,
                           const std::string& emoji = "",
                           bool allowSendingWithoutReply = false,
                           bool protectContent = false,
@@ -1400,7 +1400,7 @@ public:
                                  const std::string& inlineMessageId = "",
                                  const std::string& parseMode = "",
                                  bool disableWebPagePreview = false,
-                                 GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>(),
+                                 GenericReply::Ptr replyMarkup = nullptr,
                                  const std::vector<MessageEntity::Ptr>& entities = std::vector<MessageEntity::Ptr>()) const;
 
     /**
@@ -1420,7 +1420,7 @@ public:
                                     std::int32_t messageId = 0,
                                     const std::string& caption = "",
                                     const std::string& inlineMessageId = "",
-                                    GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>(),
+                                    GenericReply::Ptr replyMarkup = nullptr,
                                     const std::string& parseMode = "",
                                     const std::vector<MessageEntity::Ptr>& captionEntities = std::vector<MessageEntity::Ptr>()) const;
 
@@ -1442,7 +1442,7 @@ public:
                                   boost::variant<std::int64_t, std::string> chatId = 0,
                                   std::int32_t messageId = 0,
                                   const std::string& inlineMessageId = "",
-                                  GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>()) const;
+                                  GenericReply::Ptr replyMarkup = nullptr) const;
 
     /**
      * @brief Use this method to edit only the reply markup of messages.
@@ -1457,7 +1457,7 @@ public:
     Message::Ptr editMessageReplyMarkup(boost::variant<std::int64_t, std::string> chatId = 0,
                                         std::int32_t messageId = 0,
                                         const std::string& inlineMessageId = "",
-                                        GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>()) const;
+                                        GenericReply::Ptr replyMarkup = nullptr) const;
 
     /**
      * @brief Use this method to stop a poll which was sent by the bot.
@@ -1509,7 +1509,7 @@ public:
     Message::Ptr sendSticker(boost::variant<std::int64_t, std::string> chatId,
                              boost::variant<InputFile::Ptr, std::string> sticker,
                              std::int32_t replyToMessageId = 0,
-                             GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>(),
+                             GenericReply::Ptr replyMarkup = nullptr,
                              bool disableNotification = false,
                              bool allowSendingWithoutReply = false,
                              bool protectContent = false,
@@ -1722,7 +1722,7 @@ public:
                              bool sendEmailToProvider = false,
                              bool isFlexible = false,
                              std::int32_t replyToMessageId = 0,
-                             GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>(),
+                             GenericReply::Ptr replyMarkup = nullptr,
                              bool disableNotification = false,
                              bool allowSendingWithoutReply = false,
                              std::int32_t maxTipAmount = 0,
