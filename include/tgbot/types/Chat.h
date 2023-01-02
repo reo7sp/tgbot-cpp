@@ -168,6 +168,21 @@ public:
     std::int32_t messageAutoDeleteTime;
 
     /**
+     * @brief Optional. True, if aggressive anti-spam checks are enabled in the supergroup.
+     * 
+     * The field is only available to chat administrators.
+     * Returned only in Api::getChat.
+     */
+    bool hasAggressiveAntiSpamEnabled;
+
+    /**
+     * @brief Optional. True, if non-administrators can only get the list of bots and administrators in the chat.
+     * 
+     * Returned only in Api::getChat.
+     */
+    bool hasHiddenMembers;
+
+    /**
      * @brief Optional. True, if messages from the chat can't be forwarded to other chats.
      * 
      * Returned only in Api::getChat.

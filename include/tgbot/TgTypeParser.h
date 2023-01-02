@@ -28,7 +28,11 @@
 #include "tgbot/types/MessageAutoDeleteTimerChanged.h"
 #include "tgbot/types/ForumTopicCreated.h"
 #include "tgbot/types/ForumTopicClosed.h"
+#include "tgbot/types/ForumTopicEdited.h"
 #include "tgbot/types/ForumTopicReopened.h"
+#include "tgbot/types/GeneralForumTopicHidden.h"
+#include "tgbot/types/GeneralForumTopicUnhidden.h"
+#include "tgbot/types/WriteAccessAllowed.h"
 #include "tgbot/types/VideoChatScheduled.h"
 #include "tgbot/types/VideoChatStarted.h"
 #include "tgbot/types/VideoChatEnded.h"
@@ -236,8 +240,20 @@ public:
     ForumTopicClosed::Ptr parseJsonAndGetForumTopicClosed(const boost::property_tree::ptree& data) const;
     std::string parseForumTopicClosed(const ForumTopicClosed::Ptr& object) const;
 
+    ForumTopicEdited::Ptr parseJsonAndGetForumTopicEdited(const boost::property_tree::ptree& data) const;
+    std::string parseForumTopicEdited(const ForumTopicEdited::Ptr& object) const;
+
     ForumTopicReopened::Ptr parseJsonAndGetForumTopicReopened(const boost::property_tree::ptree& data) const;
     std::string parseForumTopicReopened(const ForumTopicReopened::Ptr& object) const;
+
+    GeneralForumTopicHidden::Ptr parseJsonAndGetGeneralForumTopicHidden(const boost::property_tree::ptree& data) const;
+    std::string parseGeneralForumTopicHidden(const GeneralForumTopicHidden::Ptr& object) const;
+
+    GeneralForumTopicUnhidden::Ptr parseJsonAndGetGeneralForumTopicUnhidden(const boost::property_tree::ptree& data) const;
+    std::string parseGeneralForumTopicUnhidden(const GeneralForumTopicUnhidden::Ptr& object) const;
+
+    WriteAccessAllowed::Ptr parseJsonAndGetWriteAccessAllowed(const boost::property_tree::ptree& data) const;
+    std::string parseWriteAccessAllowed(const WriteAccessAllowed::Ptr& object) const;
 
     VideoChatScheduled::Ptr parseJsonAndGetVideoChatScheduled(const boost::property_tree::ptree& data) const;
     std::string parseVideoChatScheduled(const VideoChatScheduled::Ptr& object) const;

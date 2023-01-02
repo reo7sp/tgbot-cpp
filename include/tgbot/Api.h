@@ -258,6 +258,7 @@ public:
      * @param allowSendingWithoutReply Optional. Pass True if the message should be sent even if the specified replied-to message is not found
      * @param protectContent Optional. Protects the contents of the sent message from forwarding and saving
      * @param messageThreadId Optional. Unique identifier for the target message thread (topic) of the forum; for forum supergroups only
+     * @param hasSpoiler Optional. Pass True if the photo needs to be covered with a spoiler animation
      * 
      * @return On success, the sent Message is returned.
      */
@@ -271,7 +272,8 @@ public:
                            const std::vector<MessageEntity::Ptr>& captionEntities = std::vector<MessageEntity::Ptr>(),
                            bool allowSendingWithoutReply = false,
                            bool protectContent = false,
-                           std::int32_t messageThreadId = 0) const;
+                           std::int32_t messageThreadId = 0,
+                           bool hasSpoiler = false) const;
 
     /**
      * @brief Use this method to send audio files, if you want Telegram clients to display them in the music player.
@@ -371,6 +373,7 @@ public:
      * @param allowSendingWithoutReply Optional. Pass True if the message should be sent even if the specified replied-to message is not found
      * @param protectContent Optional. Protects the contents of the sent message from forwarding and saving
      * @param messageThreadId Optional. Unique identifier for the target message thread (topic) of the forum; for forum supergroups only
+     * @param hasSpoiler Optional. Pass True if the video needs to be covered with a spoiler animation
      * 
      * @return On success, the sent Message is returned.
      */
@@ -389,7 +392,8 @@ public:
                            const std::vector<MessageEntity::Ptr>& captionEntities = std::vector<MessageEntity::Ptr>(),
                            bool allowSendingWithoutReply = false,
                            bool protectContent = false,
-                           std::int32_t messageThreadId = 0) const;
+                           std::int32_t messageThreadId = 0,
+                           bool hasSpoiler = false) const;
 
     /**
      * @brief Use this method to send animation files (GIF or H.264/MPEG-4 AVC video without sound).
@@ -411,6 +415,7 @@ public:
      * @param allowSendingWithoutReply Optional. Pass True if the message should be sent even if the specified replied-to message is not found
      * @param protectContent Optional. Protects the contents of the sent message from forwarding and saving
      * @param messageThreadId Optional. Unique identifier for the target message thread (topic) of the forum; for forum supergroups only
+     * @param hasSpoiler Optional. Pass True if the animation needs to be covered with a spoiler animation
      * 
      * @return On success, the sent Message is returned.
      */
@@ -428,7 +433,8 @@ public:
                                const std::vector<MessageEntity::Ptr>& captionEntities = std::vector<MessageEntity::Ptr>(),
                                bool allowSendingWithoutReply = false,
                                bool protectContent = false,
-                               std::int32_t messageThreadId = 0) const;
+                               std::int32_t messageThreadId = 0,
+                               bool hasSpoiler = false) const;
 
     /**
      * @brief Use this method to send audio files, if you want Telegram clients to display the file as a playable voice message.
@@ -732,18 +738,20 @@ public:
      * The status is set for 5 seconds or less (when a message arrives from your bot, Telegram clients clear its typing status).
      *
      * Example: The ImageBot needs some time to process a request and upload the image.
-     * Instead of sending a text message along the lines of “Retrieving image, please wait…”, the bot may use sendChatAction with action = upload_photo.
+     * Instead of sending a text message along the lines of “Retrieving image, please wait…”, the bot may use Api::sendChatAction with action = upload_photo.
      * The user will see a “sending photo” status for the bot.
      * 
      * We only recommend using this method when a response from the bot will take a noticeable amount of time to arrive.
      *
      * @param chatId Unique identifier for the target chat or username of the target channel (in the format @channelusername)
      * @param action Type of action to broadcast. Choose one, depending on what the user is about to receive: typing for text messages, upload_photo for photos, record_video or upload_video for videos, record_voice or upload_voice for voice notes, upload_document for general files, choose_sticker for stickers, find_location for location data, record_video_note or upload_video_note for video notes.
+     * @param messageThreadId Optional. Unique identifier for the target message thread; supergroups only
      * 
-     * @return True on success.
+     * @return Returns True on success.
      */
     bool sendChatAction(std::int64_t chatId,
-                        const std::string& action) const;
+                        const std::string& action,
+                        std::int32_t messageThreadId = 0) const;
 
     /**
      * @brief Use this method to get a list of profile pictures for a user.
@@ -1149,6 +1157,8 @@ public:
     /**
      * @brief Use this method to get information about a member of a chat.
      * 
+     * The method is guaranteed to work for other users, only if the bot is an administrator in the chat.
+     * 
      * @param chatId Unique identifier for the target chat or username of the target supergroup or channel (in the format @channelusername)
      * @param userId Unique identifier of the target user
      * 
@@ -1214,15 +1224,15 @@ public:
      * 
      * @param chatId Unique identifier for the target chat or username of the target supergroup (in the format @supergroupusername)
      * @param messageThreadId Unique identifier for the target message thread of the forum topic
-     * @param name New topic name, 1-128 characters
-     * @param iconCustomEmojiId New unique identifier of the custom emoji shown as the topic icon. Use Api::getForumTopicIconStickers to get all allowed custom emoji identifiers
+     * @param name Optional. New topic name, 0-128 characters. If not specified or empty, the current name of the topic will be kept
+     * @param iconCustomEmojiId Optional. New unique identifier of the custom emoji shown as the topic icon. Use Api::getForumTopicIconStickers to get all allowed custom emoji identifiers. Pass an empty string to remove the icon. If not specified, the current icon will be kept
      * 
      * @return Returns True on success.
      */
     bool editForumTopic(boost::variant<std::int64_t, std::string> chatId,
                         std::int32_t messageThreadId,
-                        const std::string& name,
-                        const std::string& iconCustomEmojiId) const;
+                        const std::string& name = "",
+                        boost::variant<std::int8_t, std::string> iconCustomEmojiId = 0) const;
 
     /**
      * @brief Use this method to close an open topic in a forum supergroup chat.
@@ -1275,6 +1285,65 @@ public:
      */
     bool unpinAllForumTopicMessages(boost::variant<std::int64_t, std::string> chatId,
                                     std::int32_t messageThreadId) const;
+
+    /**
+     * @brief Use this method to edit the name of the 'General' topic in a forum supergroup chat.
+     * 
+     * The bot must be an administrator in the chat for this to work and must have canManageTopics administrator rights.
+     * 
+     * @param chatId Unique identifier for the target chat or username of the target supergroup (in the format @supergroupusername)
+     * @param name New topic name, 1-128 characters
+     * 
+     * @return Returns True on success.
+     */
+    bool editGeneralForumTopic(boost::variant<std::int64_t, std::string> chatId,
+                               std::string name) const;
+
+    /**
+     * @brief Use this method to close an open 'General' topic in a forum supergroup chat.
+     * 
+     * The bot must be an administrator in the chat for this to work and must have the canManageTopics administrator rights.
+     * 
+     * @param chatId Unique identifier for the target chat or username of the target supergroup (in the format @supergroupusername)
+     * 
+     * @return Returns True on success.
+     */
+    bool closeGeneralForumTopic(boost::variant<std::int64_t, std::string> chatId) const;
+
+    /**
+     * @brief Use this method to reopen a closed 'General' topic in a forum supergroup chat.
+     * 
+     * The bot must be an administrator in the chat for this to work and must have the canManageTopics administrator rights.
+     * The topic will be automatically unhidden if it was hidden.
+     * 
+     * @param chatId Unique identifier for the target chat or username of the target supergroup (in the format @supergroupusername)
+     * 
+     * @return Returns True on success.
+     */
+    bool reopenGeneralForumTopic(boost::variant<std::int64_t, std::string> chatId) const;
+
+    /**
+     * @brief Use this method to hide the 'General' topic in a forum supergroup chat.
+     * 
+     * The bot must be an administrator in the chat for this to work and must have the canManageTopics administrator rights.
+     * The topic will be automatically closed if it was open.
+     * 
+     * @param chatId Unique identifier for the target chat or username of the target supergroup (in the format @supergroupusername)
+     * 
+     * @return Returns True on success.
+     */
+    bool hideGeneralForumTopic(boost::variant<std::int64_t, std::string> chatId) const;
+
+    /**
+     * @brief Use this method to unhide the 'General' topic in a forum supergroup chat.
+     * 
+     * The bot must be an administrator in the chat for this to work and must have the canManageTopics administrator rights.
+     * 
+     * @param chatId Unique identifier for the target chat or username of the target supergroup (in the format @supergroupusername)
+     * 
+     * @return Returns True on success.
+     */
+    bool unhideGeneralForumTopic(boost::variant<std::int64_t, std::string> chatId) const;
 
     /**
      * @brief Use this method to send answers to callback queries sent from inline keyboards.

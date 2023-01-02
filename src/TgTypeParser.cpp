@@ -164,6 +164,8 @@ Chat::Ptr TgTypeParser::parseJsonAndGetChat(const boost::property_tree::ptree& d
     result->slowModeDelay = data.get<std::int32_t>("slow_mode_delay", 0);
     result->messageAutoDeleteTime = data.get<std::int32_t>("message_auto_delete_time", 0);
     result->hasProtectedContent = data.get<bool>("has_protected_content", false);
+    result->hasAggressiveAntiSpamEnabled = data.get<bool>("has_aggressive_anti_spam_enabled", false);
+    result->hasHiddenMembers = data.get<bool>("has_hidden_members", false);
     result->stickerSetName = data.get<std::string>("sticker_set_name", "");
     result->canSetStickerSet = data.get<bool>("can_set_sticker_set", false);
     result->linkedChatId = data.get<std::int64_t>("linked_chat_id", 0);
@@ -209,6 +211,8 @@ std::string TgTypeParser::parseChat(const Chat::Ptr& object) const {
     appendToJson(result, "permissions", parseChatPermissions(object->permissions));
     appendToJson(result, "slow_mode_delay", object->slowModeDelay);
     appendToJson(result, "message_auto_delete_time", object->messageAutoDeleteTime);
+    appendToJson(result, "has_aggressive_anti_spam_enabled", object->hasAggressiveAntiSpamEnabled);
+    appendToJson(result, "has_hidden_members", object->hasHiddenMembers);
     appendToJson(result, "has_protected_content", object->hasProtectedContent);
     appendToJson(result, "sticker_set_name", object->stickerSetName);
     appendToJson(result, "can_set_sticker_set", object->canSetStickerSet);
@@ -253,6 +257,7 @@ Message::Ptr TgTypeParser::parseJsonAndGetMessage(const boost::property_tree::pt
     result->voice = tryParseJson<Voice>(&TgTypeParser::parseJsonAndGetVoice, data, "voice");
     result->caption = data.get<std::string>("caption", "");
     result->captionEntities = parseJsonAndGetArray<MessageEntity>(&TgTypeParser::parseJsonAndGetMessageEntity, data, "caption_entities");
+    result->hasMediaSpoiler = data.get<bool>("has_media_spoiler", false);
     result->contact = tryParseJson<Contact>(&TgTypeParser::parseJsonAndGetContact, data, "contact");
     result->dice = tryParseJson<Dice>(&TgTypeParser::parseJsonAndGetDice, data, "dice");
     result->game = tryParseJson<Game>(&TgTypeParser::parseJsonAndGetGame, data, "game");
@@ -274,11 +279,15 @@ Message::Ptr TgTypeParser::parseJsonAndGetMessage(const boost::property_tree::pt
     result->invoice = tryParseJson<Invoice>(&TgTypeParser::parseJsonAndGetInvoice, data, "invoice");
     result->successfulPayment = tryParseJson<SuccessfulPayment>(&TgTypeParser::parseJsonAndGetSuccessfulPayment, data, "successful_payment");
     result->connectedWebsite = data.get<std::string>("connected_website", "");
+    result->writeAccessAllowed = tryParseJson<WriteAccessAllowed>(&TgTypeParser::parseJsonAndGetWriteAccessAllowed, data, "write_access_allowed");
     result->passportData = tryParseJson<PassportData>(&TgTypeParser::parseJsonAndGetPassportData, data, "passport_data");
     result->proximityAlertTriggered = tryParseJson<ProximityAlertTriggered>(&TgTypeParser::parseJsonAndGetProximityAlertTriggered, data, "proximity_alert_triggered");
     result->forumTopicCreated = tryParseJson<ForumTopicCreated>(&TgTypeParser::parseJsonAndGetForumTopicCreated, data, "forum_topic_created");
+    result->forumTopicEdited = tryParseJson<ForumTopicEdited>(&TgTypeParser::parseJsonAndGetForumTopicEdited, data, "forum_topic_edited");
     result->forumTopicClosed = tryParseJson<ForumTopicClosed>(&TgTypeParser::parseJsonAndGetForumTopicClosed, data, "forum_topic_closed");
     result->forumTopicReopened = tryParseJson<ForumTopicReopened>(&TgTypeParser::parseJsonAndGetForumTopicReopened, data, "forum_topic_reopened");
+    result->generalForumTopicHidden = tryParseJson<GeneralForumTopicHidden>(&TgTypeParser::parseJsonAndGetGeneralForumTopicHidden, data, "general_forum_topic_hidden");
+    result->generalForumTopicUnhidden = tryParseJson<GeneralForumTopicUnhidden>(&TgTypeParser::parseJsonAndGetGeneralForumTopicUnhidden, data, "general_forum_topic_unhidden");
     result->videoChatScheduled = tryParseJson<VideoChatScheduled>(&TgTypeParser::parseJsonAndGetVideoChatScheduled, data, "video_chat_scheduled");
     result->videoChatStarted = tryParseJson<VideoChatStarted>(&TgTypeParser::parseJsonAndGetVideoChatStarted, data, "video_chat_started");
     result->videoChatEnded = tryParseJson<VideoChatEnded>(&TgTypeParser::parseJsonAndGetVideoChatEnded, data, "video_chat_ended");
@@ -326,6 +335,7 @@ std::string TgTypeParser::parseMessage(const Message::Ptr& object) const {
     appendToJson(result, "voice", parseVoice(object->voice));
     appendToJson(result, "caption", object->caption);
     appendToJson(result, "caption_entities", parseArray(&TgTypeParser::parseMessageEntity, object->captionEntities));
+    appendToJson(result, "has_media_spoiler", object->hasMediaSpoiler);
     appendToJson(result, "contact", parseContact(object->contact));
     appendToJson(result, "dice", parseDice(object->dice));
     appendToJson(result, "game", parseGame(object->game));
@@ -347,11 +357,15 @@ std::string TgTypeParser::parseMessage(const Message::Ptr& object) const {
     appendToJson(result, "invoice", parseInvoice(object->invoice));
     appendToJson(result, "successful_payment", parseSuccessfulPayment(object->successfulPayment));
     appendToJson(result, "connected_website", object->connectedWebsite);
+    appendToJson(result, "write_access_allowed", parseWriteAccessAllowed(object->writeAccessAllowed));
     appendToJson(result, "passport_data", parsePassportData(object->passportData));
     appendToJson(result, "proximity_alert_triggered", parseProximityAlertTriggered(object->proximityAlertTriggered));
     appendToJson(result, "forum_topic_created", parseForumTopicCreated(object->forumTopicCreated));
+    appendToJson(result, "forum_topic_edited", parseForumTopicEdited(object->forumTopicEdited));
     appendToJson(result, "forum_topic_closed", parseForumTopicClosed(object->forumTopicClosed));
     appendToJson(result, "forum_topic_reopened", parseForumTopicReopened(object->forumTopicReopened));
+    appendToJson(result, "general_forum_topic_hidden", parseGeneralForumTopicHidden(object->generalForumTopicHidden));
+    appendToJson(result, "general_forum_topic_unhidden", parseGeneralForumTopicUnhidden(object->generalForumTopicUnhidden));
     appendToJson(result, "video_chat_scheduled", parseVideoChatScheduled(object->videoChatScheduled));
     appendToJson(result, "video_chat_started", parseVideoChatStarted(object->videoChatStarted));
     appendToJson(result, "video_chat_ended", parseVideoChatEnded(object->videoChatEnded));
@@ -981,12 +995,80 @@ std::string TgTypeParser::parseForumTopicClosed(const ForumTopicClosed::Ptr& obj
     return result;
 }
 
+ForumTopicEdited::Ptr TgTypeParser::parseJsonAndGetForumTopicEdited(const boost::property_tree::ptree& data) const {
+    auto result(std::make_shared<ForumTopicEdited>());
+    result->name = data.get<std::string>("name", "");
+    result->iconCustomEmojiId = data.get<std::string>("icon_custom_emoji_id", "");
+    return result;
+}
+
+std::string TgTypeParser::parseForumTopicEdited(const ForumTopicEdited::Ptr& object) const {
+    if (!object) {
+        return "";
+    }
+    std::string result;
+    result += '{';
+    appendToJson(result, "name", object->name);
+    appendToJson(result, "icon_custom_emoji_id", object->iconCustomEmojiId);
+    removeLastComma(result);
+    result += '}';
+    return result;
+}
+
 ForumTopicReopened::Ptr TgTypeParser::parseJsonAndGetForumTopicReopened(const boost::property_tree::ptree& data) const {
     auto result(std::make_shared<ForumTopicReopened>());
     return result;
 }
 
 std::string TgTypeParser::parseForumTopicReopened(const ForumTopicReopened::Ptr& object) const {
+    if (!object) {
+        return "";
+    }
+    std::string result;
+    result += '{';
+    //removeLastComma(result);
+    result += '}';
+    return result;
+}
+
+GeneralForumTopicHidden::Ptr TgTypeParser::parseJsonAndGetGeneralForumTopicHidden(const boost::property_tree::ptree& data) const {
+    auto result(std::make_shared<GeneralForumTopicHidden>());
+    return result;
+}
+
+std::string TgTypeParser::parseGeneralForumTopicHidden(const GeneralForumTopicHidden::Ptr& object) const {
+    if (!object) {
+        return "";
+    }
+    std::string result;
+    result += '{';
+    //removeLastComma(result);
+    result += '}';
+    return result;
+}
+
+GeneralForumTopicUnhidden::Ptr TgTypeParser::parseJsonAndGetGeneralForumTopicUnhidden(const boost::property_tree::ptree& data) const {
+    auto result(std::make_shared<GeneralForumTopicUnhidden>());
+    return result;
+}
+
+std::string TgTypeParser::parseGeneralForumTopicUnhidden(const GeneralForumTopicUnhidden::Ptr& object) const {
+    if (!object) {
+        return "";
+    }
+    std::string result;
+    result += '{';
+    //removeLastComma(result);
+    result += '}';
+    return result;
+}
+
+WriteAccessAllowed::Ptr TgTypeParser::parseJsonAndGetWriteAccessAllowed(const boost::property_tree::ptree& data) const {
+    auto result(std::make_shared<WriteAccessAllowed>());
+    return result;
+}
+
+std::string TgTypeParser::parseWriteAccessAllowed(const WriteAccessAllowed::Ptr& object) const {
     if (!object) {
         return "";
     }
@@ -1133,6 +1215,7 @@ ReplyKeyboardMarkup::Ptr TgTypeParser::parseJsonAndGetReplyKeyboardMarkup(const 
     for (const auto& item : data.find("keyboard")->second) {
         result->keyboard.push_back(parseJsonAndGetArray<KeyboardButton>(&TgTypeParser::parseJsonAndGetKeyboardButton, item.second));
     }
+    result->isPersistent = data.get<bool>("is_persistent", false);
     result->resizeKeyboard = data.get<bool>("resize_keyboard", false);
     result->oneTimeKeyboard = data.get<bool>("one_time_keyboard", false);
     result->inputFieldPlaceholder = data.get<std::string>("input_field_placeholder", "");
@@ -1159,6 +1242,7 @@ std::string TgTypeParser::parseReplyKeyboardMarkup(const ReplyKeyboardMarkup::Pt
     if (!object->keyboard.empty())
         removeLastComma(result);
     result += "],";
+    appendToJson(result, "is_persistent", object->isPersistent);
     appendToJson(result, "resize_keyboard", object->resizeKeyboard);
     appendToJson(result, "one_time_keyboard", object->oneTimeKeyboard);
     appendToJson(result, "input_field_placeholder", object->inputFieldPlaceholder);
@@ -2186,6 +2270,7 @@ std::string TgTypeParser::parseInputMedia(const InputMedia::Ptr& object) const {
 InputMediaPhoto::Ptr TgTypeParser::parseJsonAndGetInputMediaPhoto(const boost::property_tree::ptree& data) const {
     // NOTE: This function will be called by parseJsonAndGetInputMedia().
     auto result(std::make_shared<InputMediaPhoto>());
+    result->hasSpoiler = data.get<bool>("has_spoiler", false);
     return result;
 }
 
@@ -2196,6 +2281,7 @@ std::string TgTypeParser::parseInputMediaPhoto(const InputMediaPhoto::Ptr& objec
     // This function will be called by parseInputMedia(), so I don't add
     // curly brackets to the result std::string.
     std::string result;
+    appendToJson(result, "has_spoiler", object->hasSpoiler);
     // The last comma will be erased by parseInputMedia().
     return result;
 }
@@ -2208,6 +2294,7 @@ InputMediaVideo::Ptr TgTypeParser::parseJsonAndGetInputMediaVideo(const boost::p
     result->height = data.get<std::int32_t>("height", 0);
     result->duration = data.get<std::int32_t>("duration", 0);
     result->supportsStreaming = data.get<bool>("supports_streaming", false);
+    result->hasSpoiler = data.get<bool>("has_spoiler", false);
     return result;
 }
 
@@ -2223,6 +2310,7 @@ std::string TgTypeParser::parseInputMediaVideo(const InputMediaVideo::Ptr& objec
     appendToJson(result, "height", object->height);
     appendToJson(result, "duration", object->duration);
     appendToJson(result, "supports_streaming", object->supportsStreaming);
+    appendToJson(result, "has_spoiler", object->hasSpoiler);
     // The last comma will be erased by parseInputMedia().
     return result;
 }
@@ -2234,6 +2322,7 @@ InputMediaAnimation::Ptr TgTypeParser::parseJsonAndGetInputMediaAnimation(const 
     result->width = data.get<std::int32_t>("width", 0);
     result->height = data.get<std::int32_t>("height", 0);
     result->duration = data.get<std::int32_t>("duration", 0);
+    result->hasSpoiler = data.get<bool>("has_spoiler", false);
     return result;
 }
 
@@ -2248,6 +2337,7 @@ std::string TgTypeParser::parseInputMediaAnimation(const InputMediaAnimation::Pt
     appendToJson(result, "width", object->width);
     appendToJson(result, "height", object->height);
     appendToJson(result, "duration", object->duration);
+    appendToJson(result, "has_spoiler", object->hasSpoiler);
     // The last comma will be erased by parseInputMedia().
     return result;
 }
