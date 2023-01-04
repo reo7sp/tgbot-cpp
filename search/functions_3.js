@@ -9,11 +9,12 @@ var searchData=
   ['chatmemberrestricted_6',['ChatMemberRestricted',['../class_tg_bot_1_1_chat_member_restricted.html#ac67011a7b7b9bbc8296f82800102e237',1,'TgBot::ChatMemberRestricted']]],
   ['close_7',['close',['../class_tg_bot_1_1_api.html#aeb39b4a7389c71108f7e9eda0fad1af7',1,'TgBot::Api']]],
   ['closeforumtopic_8',['closeForumTopic',['../class_tg_bot_1_1_api.html#ab18c7ce2d2c1b74c0abeb00ed13083b7',1,'TgBot::Api']]],
-  ['connection_9',['Connection',['../class_tg_bot_1_1_http_server_1_1_connection.html#a5983b463e05a4a5ecd421f3e53b49af0',1,'TgBot::HttpServer::Connection']]],
-  ['copymessage_10',['copyMessage',['../class_tg_bot_1_1_api.html#a20fba2af3e07f5cfdbb00df67d7b7bef',1,'TgBot::Api']]],
-  ['createchatinvitelink_11',['createChatInviteLink',['../class_tg_bot_1_1_api.html#a96e010c971d36cb6ebffb3742d2522d8',1,'TgBot::Api']]],
-  ['createforumtopic_12',['createForumTopic',['../class_tg_bot_1_1_api.html#a9f60e3f13fa55ccf14ec3966260e7a8b',1,'TgBot::Api']]],
-  ['createinvoicelink_13',['createInvoiceLink',['../class_tg_bot_1_1_api.html#afdef3a6a006deac7b1321469e333bb21',1,'TgBot::Api']]],
-  ['createnewstickerset_14',['createNewStickerSet',['../class_tg_bot_1_1_api.html#af24f47af6f8d1f78698faebfd9e1bcf9',1,'TgBot::Api']]],
-  ['curlhttpclient_15',['CurlHttpClient',['../class_tg_bot_1_1_curl_http_client.html#a64fa7c2a4873cea91d955e4df2175b71',1,'TgBot::CurlHttpClient']]]
+  ['closegeneralforumtopic_9',['closeGeneralForumTopic',['../class_tg_bot_1_1_api.html#a2637d7ad50500e89d3c180814eaff8b0',1,'TgBot::Api']]],
+  ['connection_10',['Connection',['../class_tg_bot_1_1_http_server_1_1_connection.html#a5983b463e05a4a5ecd421f3e53b49af0',1,'TgBot::HttpServer::Connection']]],
+  ['copymessage_11',['copyMessage',['../class_tg_bot_1_1_api.html#a20fba2af3e07f5cfdbb00df67d7b7bef',1,'TgBot::Api']]],
+  ['createchatinvitelink_12',['createChatInviteLink',['../class_tg_bot_1_1_api.html#a96e010c971d36cb6ebffb3742d2522d8',1,'TgBot::Api']]],
+  ['createforumtopic_13',['createForumTopic',['../class_tg_bot_1_1_api.html#a9f60e3f13fa55ccf14ec3966260e7a8b',1,'TgBot::Api']]],
+  ['createinvoicelink_14',['createInvoiceLink',['../class_tg_bot_1_1_api.html#afdef3a6a006deac7b1321469e333bb21',1,'TgBot::Api']]],
+  ['createnewstickerset_15',['createNewStickerSet',['../class_tg_bot_1_1_api.html#af24f47af6f8d1f78698faebfd9e1bcf9',1,'TgBot::Api']]],
+  ['curlhttpclient_16',['CurlHttpClient',['../class_tg_bot_1_1_curl_http_client.html#a64fa7c2a4873cea91d955e4df2175b71',1,'TgBot::CurlHttpClient']]]
 ];

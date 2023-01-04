@@ -47,9 +47,12 @@ var hierarchy =
     [ "TgBot::ForumTopic", "class_tg_bot_1_1_forum_topic.html", null ],
     [ "TgBot::ForumTopicClosed", "class_tg_bot_1_1_forum_topic_closed.html", null ],
     [ "TgBot::ForumTopicCreated", "class_tg_bot_1_1_forum_topic_created.html", null ],
+    [ "TgBot::ForumTopicEdited", "class_tg_bot_1_1_forum_topic_edited.html", null ],
     [ "TgBot::ForumTopicReopened", "class_tg_bot_1_1_forum_topic_reopened.html", null ],
     [ "TgBot::Game", "class_tg_bot_1_1_game.html", null ],
     [ "TgBot::GameHighScore", "class_tg_bot_1_1_game_high_score.html", null ],
+    [ "TgBot::GeneralForumTopicHidden", "class_tg_bot_1_1_general_forum_topic_hidden.html", null ],
+    [ "TgBot::GeneralForumTopicUnhidden", "class_tg_bot_1_1_general_forum_topic_unhidden.html", null ],
     [ "TgBot::GenericReply", "class_tg_bot_1_1_generic_reply.html", [
       [ "TgBot::ForceReply", "class_tg_bot_1_1_force_reply.html", null ],
       [ "TgBot::InlineKeyboardMarkup", "class_tg_bot_1_1_inline_keyboard_markup.html", null ],
@@ -174,5 +177,6 @@ var hierarchy =
     [ "TgBot::Voice", "class_tg_bot_1_1_voice.html", null ],
     [ "TgBot::WebAppData", "class_tg_bot_1_1_web_app_data.html", null ],
     [ "TgBot::WebAppInfo", "class_tg_bot_1_1_web_app_info.html", null ],
-    [ "TgBot::WebhookInfo", "class_tg_bot_1_1_webhook_info.html", null ]
+    [ "TgBot::WebhookInfo", "class_tg_bot_1_1_webhook_info.html", null ],
+    [ "TgBot::WriteAccessAllowed", "class_tg_bot_1_1_write_access_allowed.html", null ]
 ];

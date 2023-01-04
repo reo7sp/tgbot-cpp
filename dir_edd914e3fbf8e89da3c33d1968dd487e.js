@@ -39,9 +39,12 @@ var dir_edd914e3fbf8e89da3c33d1968dd487e =
     [ "ForumTopic.h", "_forum_topic_8h.html", null ],
     [ "ForumTopicClosed.h", "_forum_topic_closed_8h.html", null ],
     [ "ForumTopicCreated.h", "_forum_topic_created_8h.html", null ],
+    [ "ForumTopicEdited.h", "_forum_topic_edited_8h.html", null ],
     [ "ForumTopicReopened.h", "_forum_topic_reopened_8h.html", null ],
     [ "Game.h", "_game_8h.html", null ],
     [ "GameHighScore.h", "_game_high_score_8h.html", null ],
+    [ "GeneralForumTopicHidden.h", "_general_forum_topic_hidden_8h.html", null ],
+    [ "GeneralForumTopicUnhidden.h", "_general_forum_topic_unhidden_8h.html", null ],
     [ "GenericReply.h", "_generic_reply_8h.html", null ],
     [ "InlineKeyboardButton.h", "_inline_keyboard_button_8h.html", null ],
     [ "InlineKeyboardMarkup.h", "_inline_keyboard_markup_8h.html", null ],
@@ -137,5 +140,6 @@ var dir_edd914e3fbf8e89da3c33d1968dd487e =
     [ "Voice.h", "_voice_8h.html", null ],
     [ "WebAppData.h", "_web_app_data_8h.html", null ],
     [ "WebAppInfo.h", "_web_app_info_8h.html", null ],
-    [ "WebhookInfo.h", "_webhook_info_8h.html", null ]
+    [ "WebhookInfo.h", "_webhook_info_8h.html", null ],
+    [ "WriteAccessAllowed.h", "_write_access_allowed_8h.html", null ]
 ];

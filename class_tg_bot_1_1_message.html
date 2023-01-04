@@ -205,6 +205,9 @@ Public Attributes</h2></td></tr>
 <tr class="memitem:a112bce084dd4b01dc5918a1232c4cc05"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="class_tg_bot_1_1_message_entity.html#a6710ffdbafba909633df7bcd8c488da0">MessageEntity::Ptr</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tg_bot_1_1_message.html#a112bce084dd4b01dc5918a1232c4cc05">captionEntities</a></td></tr>
 <tr class="memdesc:a112bce084dd4b01dc5918a1232c4cc05"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. For messages with a caption, special entities like usernames, URLs, bot commands, etc. that appear in the caption.  <a href="class_tg_bot_1_1_message.html#a112bce084dd4b01dc5918a1232c4cc05">More...</a><br /></td></tr>
 <tr class="separator:a112bce084dd4b01dc5918a1232c4cc05"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a75d34a9ea323b75472907545f2985634"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tg_bot_1_1_message.html#a75d34a9ea323b75472907545f2985634">hasMediaSpoiler</a></td></tr>
+<tr class="memdesc:a75d34a9ea323b75472907545f2985634"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. True, if the message media is covered by a spoiler animation.  <a href="class_tg_bot_1_1_message.html#a75d34a9ea323b75472907545f2985634">More...</a><br /></td></tr>
+<tr class="separator:a75d34a9ea323b75472907545f2985634"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adb3a1a65ce014085f7231f8d356b6c4f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_tg_bot_1_1_contact.html#a43915fd39dc9ef11a5f8684512ce5e7b">Contact::Ptr</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tg_bot_1_1_message.html#adb3a1a65ce014085f7231f8d356b6c4f">contact</a></td></tr>
 <tr class="memdesc:adb3a1a65ce014085f7231f8d356b6c4f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. <a class="el" href="class_tg_bot_1_1_message.html" title="This object represents a message.">Message</a> is a shared contact, information about the contact.  <a href="class_tg_bot_1_1_message.html#adb3a1a65ce014085f7231f8d356b6c4f">More...</a><br /></td></tr>
 <tr class="separator:adb3a1a65ce014085f7231f8d356b6c4f"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -268,6 +271,9 @@ Public Attributes</h2></td></tr>
 <tr class="memitem:a44a07b98262601eb86a5dc9ae0e3b932"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tg_bot_1_1_message.html#a44a07b98262601eb86a5dc9ae0e3b932">connectedWebsite</a></td></tr>
 <tr class="memdesc:a44a07b98262601eb86a5dc9ae0e3b932"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. The domain name of the website on which the user has logged in.  <a href="class_tg_bot_1_1_message.html#a44a07b98262601eb86a5dc9ae0e3b932">More...</a><br /></td></tr>
 <tr class="separator:a44a07b98262601eb86a5dc9ae0e3b932"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8972ab7fadd62b1288f3cc39278567e2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_tg_bot_1_1_write_access_allowed.html#acd928e8d5360d75513bd8e8c6d8e050f">WriteAccessAllowed::Ptr</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tg_bot_1_1_message.html#a8972ab7fadd62b1288f3cc39278567e2">writeAccessAllowed</a></td></tr>
+<tr class="memdesc:a8972ab7fadd62b1288f3cc39278567e2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. Service message: the user allowed the bot added to the attachment menu to write messages.  <a href="class_tg_bot_1_1_message.html#a8972ab7fadd62b1288f3cc39278567e2">More...</a><br /></td></tr>
+<tr class="separator:a8972ab7fadd62b1288f3cc39278567e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a38d600a45c218c6a417c469d2819eb43"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_tg_bot_1_1_passport_data.html#afaf6665eb1b1ac17025c97ee54800c4b">PassportData::Ptr</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tg_bot_1_1_message.html#a38d600a45c218c6a417c469d2819eb43">passportData</a></td></tr>
 <tr class="memdesc:a38d600a45c218c6a417c469d2819eb43"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. Telegram Passport data.  <a href="class_tg_bot_1_1_message.html#a38d600a45c218c6a417c469d2819eb43">More...</a><br /></td></tr>
 <tr class="separator:a38d600a45c218c6a417c469d2819eb43"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -277,12 +283,21 @@ Public Attributes</h2></td></tr>
 <tr class="memitem:ae5bc39c572aa0f81fde6c3272699b304"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_tg_bot_1_1_forum_topic_created.html#abe87a850b592330c92e9a1c14accec45">ForumTopicCreated::Ptr</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tg_bot_1_1_message.html#ae5bc39c572aa0f81fde6c3272699b304">forumTopicCreated</a></td></tr>
 <tr class="memdesc:ae5bc39c572aa0f81fde6c3272699b304"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. Service message: forum topic created.  <a href="class_tg_bot_1_1_message.html#ae5bc39c572aa0f81fde6c3272699b304">More...</a><br /></td></tr>
 <tr class="separator:ae5bc39c572aa0f81fde6c3272699b304"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a14f2b44b7919c3ded2058c7249932923"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_tg_bot_1_1_forum_topic_edited.html#af596ab8ba6ae23e08059fdefcaa791cd">ForumTopicEdited::Ptr</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tg_bot_1_1_message.html#a14f2b44b7919c3ded2058c7249932923">forumTopicEdited</a></td></tr>
+<tr class="memdesc:a14f2b44b7919c3ded2058c7249932923"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. Service message: forum topic edited.  <a href="class_tg_bot_1_1_message.html#a14f2b44b7919c3ded2058c7249932923">More...</a><br /></td></tr>
+<tr class="separator:a14f2b44b7919c3ded2058c7249932923"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aff5f52e61c6152baf7b6e5f6cd6ddbd1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_tg_bot_1_1_forum_topic_closed.html#a7746856eccf8749e5168274ee4db6c11">ForumTopicClosed::Ptr</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tg_bot_1_1_message.html#aff5f52e61c6152baf7b6e5f6cd6ddbd1">forumTopicClosed</a></td></tr>
 <tr class="memdesc:aff5f52e61c6152baf7b6e5f6cd6ddbd1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. Service message: forum topic closed.  <a href="class_tg_bot_1_1_message.html#aff5f52e61c6152baf7b6e5f6cd6ddbd1">More...</a><br /></td></tr>
 <tr class="separator:aff5f52e61c6152baf7b6e5f6cd6ddbd1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a39297d610f167adeb2341c9c26ae65a6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_tg_bot_1_1_forum_topic_reopened.html#a6a134d86b0b4f1fae8463603951f7a3a">ForumTopicReopened::Ptr</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tg_bot_1_1_message.html#a39297d610f167adeb2341c9c26ae65a6">forumTopicReopened</a></td></tr>
 <tr class="memdesc:a39297d610f167adeb2341c9c26ae65a6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. Service message: forum topic reopened.  <a href="class_tg_bot_1_1_message.html#a39297d610f167adeb2341c9c26ae65a6">More...</a><br /></td></tr>
 <tr class="separator:a39297d610f167adeb2341c9c26ae65a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a258b68396cb3fc3553d96208f48aefc3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_tg_bot_1_1_general_forum_topic_hidden.html#afd2dbc65aa15cc1acb74d9a24f31c4d3">GeneralForumTopicHidden::Ptr</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tg_bot_1_1_message.html#a258b68396cb3fc3553d96208f48aefc3">generalForumTopicHidden</a></td></tr>
+<tr class="memdesc:a258b68396cb3fc3553d96208f48aefc3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. Service message: the 'General' forum topic hidden.  <a href="class_tg_bot_1_1_message.html#a258b68396cb3fc3553d96208f48aefc3">More...</a><br /></td></tr>
+<tr class="separator:a258b68396cb3fc3553d96208f48aefc3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adadba3b8c1f0823c45367fe0965d9f13"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_tg_bot_1_1_general_forum_topic_unhidden.html#a9cf03fbf7d42070cdcdc052528c6979b">GeneralForumTopicUnhidden::Ptr</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tg_bot_1_1_message.html#adadba3b8c1f0823c45367fe0965d9f13">generalForumTopicUnhidden</a></td></tr>
+<tr class="memdesc:adadba3b8c1f0823c45367fe0965d9f13"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. Service message: the 'General' forum topic unhidden.  <a href="class_tg_bot_1_1_message.html#adadba3b8c1f0823c45367fe0965d9f13">More...</a><br /></td></tr>
+<tr class="separator:adadba3b8c1f0823c45367fe0965d9f13"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acc5d418b095787b19641d94eb22cd406"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_tg_bot_1_1_video_chat_scheduled.html#a740d20b2fb887dd2b61fe330616f5646">VideoChatScheduled::Ptr</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tg_bot_1_1_message.html#acc5d418b095787b19641d94eb22cd406">videoChatScheduled</a></td></tr>
 <tr class="memdesc:acc5d418b095787b19641d94eb22cd406"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. Service message: video chat scheduled.  <a href="class_tg_bot_1_1_message.html#acc5d418b095787b19641d94eb22cd406">More...</a><br /></td></tr>
 <tr class="separator:acc5d418b095787b19641d94eb22cd406"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -305,7 +320,7 @@ Public Attributes</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p >This object represents a message. </p>
 
-<p class="definition">Definition at line <a class="el" href="_message_8h_source.html#l00049">49</a> of file <a class="el" href="_message_8h_source.html">Message.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_message_8h_source.html#l00053">53</a> of file <a class="el" href="_message_8h_source.html">Message.h</a>.</p>
 </div><h2 class="groupheader">Member Typedef Documentation</h2>
 <a id="a3805a5dc013c6ab23ac5efc91282c11d" name="a3805a5dc013c6ab23ac5efc91282c11d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a3805a5dc013c6ab23ac5efc91282c11d">&#9670;&#160;</a></span>Ptr</h2>
@@ -319,7 +334,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_message_8h_source.html#l00051">51</a> of file <a class="el" href="_message_8h_source.html">Message.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_message_8h_source.html#l00055">55</a> of file <a class="el" href="_message_8h_source.html">Message.h</a>.</p>
 
 </div>
 </div>
@@ -339,7 +354,7 @@ Public Attributes</h2></td></tr>
 <p>Optional. <a class="el" href="class_tg_bot_1_1_message.html" title="This object represents a message.">Message</a> is an animation, information about the animation. </p>
 <p >For backward compatibility, when this field is set, the document field will also be set </p>
 
-<p class="definition">Definition at line <a class="el" href="_message_8h_source.html#l00175">175</a> of file <a class="el" href="_message_8h_source.html">Message.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_message_8h_source.html#l00179">179</a> of file <a class="el" href="_message_8h_source.html">Message.h</a>.</p>
 
 </div>
 </div>
@@ -357,7 +372,7 @@ Public Attributes</h2></td></tr>
 
 <p>Optional. <a class="el" href="class_tg_bot_1_1_message.html" title="This object represents a message.">Message</a> is an audio file, information about the file. </p>
 
-<p class="definition">Definition at line <a class="el" href="_message_8h_source.html#l00180">180</a> of file <a class="el" href="_message_8h_source.html">Message.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_message_8h_source.html#l00184">184</a> of file <a class="el" href="_message_8h_source.html">Message.h</a>.</p>
 
 </div>
 </div>
@@ -375,7 +390,7 @@ Public Attributes</h2></td></tr>
 
 <p>Optional. Signature of the post author for messages in channels, or the custom title of an anonymous group administrator. </p>
 
-<p class="definition">Definition at line <a class="el" href="_message_8h_source.html#l00158">158</a> of file <a class="el" href="_message_8h_source.html">Message.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_message_8h_source.html#l00162">162</a> of file <a class="el" href="_message_8h_source.html">Message.h</a>.</p>
 
 </div>
 </div>
@@ -393,7 +408,7 @@ Public Attributes</h2></td></tr>
 
 <p>Optional. Caption for the animation, audio, document, photo, video or voice. </p>
 
-<p class="definition">Definition at line <a class="el" href="_message_8h_source.html#l00215">215</a> of file <a class="el" href="_message_8h_source.html">Message.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_message_8h_source.html#l00219">219</a> of file <a class="el" href="_message_8h_source.html">Message.h</a>.</p>
 
 </div>
 </div>
@@ -411,7 +426,7 @@ Public Attributes</h2></td></tr>
 
 <p>Optional. For messages with a caption, special entities like usernames, URLs, bot commands, etc. that appear in the caption. </p>
 
-<p class="definition">Definition at line <a class="el" href="_message_8h_source.html#l00220">220</a> of file <a class="el" href="_message_8h_source.html">Message.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_message_8h_source.html#l00224">224</a> of file <a class="el" href="_message_8h_source.html">Message.h</a>.</p>
 
 </div>
 </div>
@@ -430,7 +445,7 @@ Public Attributes</h2></td></tr>
 <p>Optional. Service message: the channel has been created. </p>
 <p >This field can't be received in a message coming through updates, because bot can't be a member of a channel when it is created. It can only be found in replyToMessage if someone replies to a very first message in a channel. </p>
 
-<p class="definition">Definition at line <a class="el" href="_message_8h_source.html#l00298">298</a> of file <a class="el" href="_message_8h_source.html">Message.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_message_8h_source.html#l00307">307</a> of file <a class="el" href="_message_8h_source.html">Message.h</a>.</p>
 
 </div>
 </div>
@@ -448,7 +463,7 @@ Public Attributes</h2></td></tr>
 
 <p>Conversation the message belongs to. </p>
 
-<p class="definition">Definition at line <a class="el" href="_message_8h_source.html#l00086">86</a> of file <a class="el" href="_message_8h_source.html">Message.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_message_8h_source.html#l00090">90</a> of file <a class="el" href="_message_8h_source.html">Message.h</a>.</p>
 
 </div>
 </div>
@@ -467,7 +482,7 @@ Public Attributes</h2></td></tr>
 <p>Optional. The domain name of the website on which the user has logged in. </p>
 <p ><a href="https://core.telegram.org/widgets/login">https://core.telegram.org/widgets/login</a> </p>
 
-<p class="definition">Definition at line <a class="el" href="_message_8h_source.html#l00347">347</a> of file <a class="el" href="_message_8h_source.html">Message.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_message_8h_source.html#l00356">356</a> of file <a class="el" href="_message_8h_source.html">Message.h</a>.</p>
 
 </div>
 </div>
@@ -485,7 +500,7 @@ Public Attributes</h2></td></tr>
 
 <p>Optional. <a class="el" href="class_tg_bot_1_1_message.html" title="This object represents a message.">Message</a> is a shared contact, information about the contact. </p>
 
-<p class="definition">Definition at line <a class="el" href="_message_8h_source.html#l00225">225</a> of file <a class="el" href="_message_8h_source.html">Message.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_message_8h_source.html#l00234">234</a> of file <a class="el" href="_message_8h_source.html">Message.h</a>.</p>
 
 </div>
 </div>
@@ -503,7 +518,7 @@ Public Attributes</h2></td></tr>
 
 <p>Date the message was sent in Unix time. </p>
 
-<p class="definition">Definition at line <a class="el" href="_message_8h_source.html#l00081">81</a> of file <a class="el" href="_message_8h_source.html">Message.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_message_8h_source.html#l00085">85</a> of file <a class="el" href="_message_8h_source.html">Message.h</a>.</p>
 
 </div>
 </div>
@@ -521,7 +536,7 @@ Public Attributes</h2></td></tr>
 
 <p>Optional. Service message: the chat photo was deleted. </p>
 
-<p class="definition">Definition at line <a class="el" href="_message_8h_source.html#l00277">277</a> of file <a class="el" href="_message_8h_source.html">Message.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_message_8h_source.html#l00286">286</a> of file <a class="el" href="_message_8h_source.html">Message.h</a>.</p>
 
 </div>
 </div>
@@ -539,7 +554,7 @@ Public Attributes</h2></td></tr>
 
 <p>Optional. <a class="el" href="class_tg_bot_1_1_message.html" title="This object represents a message.">Message</a> is a dice with random value. </p>
 
-<p class="definition">Definition at line <a class="el" href="_message_8h_source.html#l00230">230</a> of file <a class="el" href="_message_8h_source.html">Message.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_message_8h_source.html#l00239">239</a> of file <a class="el" href="_message_8h_source.html">Message.h</a>.</p>
 
 </div>
 </div>
@@ -557,7 +572,7 @@ Public Attributes</h2></td></tr>
 
 <p>Optional. <a class="el" href="class_tg_bot_1_1_message.html" title="This object represents a message.">Message</a> is a general file, information about the file. </p>
 
-<p class="definition">Definition at line <a class="el" href="_message_8h_source.html#l00185">185</a> of file <a class="el" href="_message_8h_source.html">Message.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_message_8h_source.html#l00189">189</a> of file <a class="el" href="_message_8h_source.html">Message.h</a>.</p>
 
 </div>
 </div>
@@ -575,7 +590,7 @@ Public Attributes</h2></td></tr>
 
 <p>Optional. Date the message was last edited in Unix time. </p>
 
-<p class="definition">Definition at line <a class="el" href="_message_8h_source.html#l00143">143</a> of file <a class="el" href="_message_8h_source.html">Message.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_message_8h_source.html#l00147">147</a> of file <a class="el" href="_message_8h_source.html">Message.h</a>.</p>
 
 </div>
 </div>
@@ -593,7 +608,7 @@ Public Attributes</h2></td></tr>
 
 <p>Optional. For text messages, special entities like usernames, URLs, bot commands, etc. that appear in the text. </p>
 
-<p class="definition">Definition at line <a class="el" href="_message_8h_source.html#l00168">168</a> of file <a class="el" href="_message_8h_source.html">Message.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_message_8h_source.html#l00172">172</a> of file <a class="el" href="_message_8h_source.html">Message.h</a>.</p>
 
 </div>
 </div>
@@ -611,7 +626,7 @@ Public Attributes</h2></td></tr>
 
 <p>Optional. Service message: forum topic closed. </p>
 
-<p class="definition">Definition at line <a class="el" href="_message_8h_source.html#l00369">369</a> of file <a class="el" href="_message_8h_source.html">Message.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_message_8h_source.html#l00388">388</a> of file <a class="el" href="_message_8h_source.html">Message.h</a>.</p>
 
 </div>
 </div>
@@ -629,7 +644,25 @@ Public Attributes</h2></td></tr>
 
 <p>Optional. Service message: forum topic created. </p>
 
-<p class="definition">Definition at line <a class="el" href="_message_8h_source.html#l00364">364</a> of file <a class="el" href="_message_8h_source.html">Message.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_message_8h_source.html#l00378">378</a> of file <a class="el" href="_message_8h_source.html">Message.h</a>.</p>
+
+</div>
+</div>
+<a id="a14f2b44b7919c3ded2058c7249932923" name="a14f2b44b7919c3ded2058c7249932923"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a14f2b44b7919c3ded2058c7249932923">&#9670;&#160;</a></span>forumTopicEdited</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_tg_bot_1_1_forum_topic_edited.html#af596ab8ba6ae23e08059fdefcaa791cd">ForumTopicEdited::Ptr</a> TgBot::Message::forumTopicEdited</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Optional. Service message: forum topic edited. </p>
+
+<p class="definition">Definition at line <a class="el" href="_message_8h_source.html#l00383">383</a> of file <a class="el" href="_message_8h_source.html">Message.h</a>.</p>
 
 </div>
 </div>
@@ -647,7 +680,7 @@ Public Attributes</h2></td></tr>
 
 <p>Optional. Service message: forum topic reopened. </p>
 
-<p class="definition">Definition at line <a class="el" href="_message_8h_source.html#l00374">374</a> of file <a class="el" href="_message_8h_source.html">Message.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_message_8h_source.html#l00393">393</a> of file <a class="el" href="_message_8h_source.html">Message.h</a>.</p>
 
 </div>
 </div>
@@ -665,7 +698,7 @@ Public Attributes</h2></td></tr>
 
 <p>Optional. For forwarded messages, date the original message was sent in Unix time. </p>
 
-<p class="definition">Definition at line <a class="el" href="_message_8h_source.html#l00116">116</a> of file <a class="el" href="_message_8h_source.html">Message.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_message_8h_source.html#l00120">120</a> of file <a class="el" href="_message_8h_source.html">Message.h</a>.</p>
 
 </div>
 </div>
@@ -683,7 +716,7 @@ Public Attributes</h2></td></tr>
 
 <p>Optional. For forwarded messages, sender of the original message. </p>
 
-<p class="definition">Definition at line <a class="el" href="_message_8h_source.html#l00091">91</a> of file <a class="el" href="_message_8h_source.html">Message.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_message_8h_source.html#l00095">95</a> of file <a class="el" href="_message_8h_source.html">Message.h</a>.</p>
 
 </div>
 </div>
@@ -701,7 +734,7 @@ Public Attributes</h2></td></tr>
 
 <p>Optional. For messages forwarded from channels or from anonymous administrators, information about the original sender chat. </p>
 
-<p class="definition">Definition at line <a class="el" href="_message_8h_source.html#l00096">96</a> of file <a class="el" href="_message_8h_source.html">Message.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_message_8h_source.html#l00100">100</a> of file <a class="el" href="_message_8h_source.html">Message.h</a>.</p>
 
 </div>
 </div>
@@ -719,7 +752,7 @@ Public Attributes</h2></td></tr>
 
 <p>Optional. For messages forwarded from channels, identifier of the original message in the channel. </p>
 
-<p class="definition">Definition at line <a class="el" href="_message_8h_source.html#l00101">101</a> of file <a class="el" href="_message_8h_source.html">Message.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_message_8h_source.html#l00105">105</a> of file <a class="el" href="_message_8h_source.html">Message.h</a>.</p>
 
 </div>
 </div>
@@ -737,7 +770,7 @@ Public Attributes</h2></td></tr>
 
 <p>Optional. Sender's name for messages forwarded from users who disallow adding a link to their account in forwarded messages. </p>
 
-<p class="definition">Definition at line <a class="el" href="_message_8h_source.html#l00111">111</a> of file <a class="el" href="_message_8h_source.html">Message.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_message_8h_source.html#l00115">115</a> of file <a class="el" href="_message_8h_source.html">Message.h</a>.</p>
 
 </div>
 </div>
@@ -755,7 +788,7 @@ Public Attributes</h2></td></tr>
 
 <p>Optional. For forwarded messages that were originally sent in channels or by an anonymous chat administrator, signature of the message sender if present. </p>
 
-<p class="definition">Definition at line <a class="el" href="_message_8h_source.html#l00106">106</a> of file <a class="el" href="_message_8h_source.html">Message.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_message_8h_source.html#l00110">110</a> of file <a class="el" href="_message_8h_source.html">Message.h</a>.</p>
 
 </div>
 </div>
@@ -774,7 +807,7 @@ Public Attributes</h2></td></tr>
 <p>Optional. Sender of the message; empty for messages sent to channels. </p>
 <p >For backward compatibility, the field contains a fake sender user in non-channel chats, if the message was sent on behalf of a chat. </p>
 
-<p class="definition">Definition at line <a class="el" href="_message_8h_source.html#l00068">68</a> of file <a class="el" href="_message_8h_source.html">Message.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_message_8h_source.html#l00072">72</a> of file <a class="el" href="_message_8h_source.html">Message.h</a>.</p>
 
 </div>
 </div>
@@ -792,7 +825,43 @@ Public Attributes</h2></td></tr>
 
 <p>Optional. <a class="el" href="class_tg_bot_1_1_message.html" title="This object represents a message.">Message</a> is a game, information about the game. <a href="https://core.telegram.org/bots/api#games">https://core.telegram.org/bots/api#games</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="_message_8h_source.html#l00235">235</a> of file <a class="el" href="_message_8h_source.html">Message.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_message_8h_source.html#l00244">244</a> of file <a class="el" href="_message_8h_source.html">Message.h</a>.</p>
+
+</div>
+</div>
+<a id="a258b68396cb3fc3553d96208f48aefc3" name="a258b68396cb3fc3553d96208f48aefc3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a258b68396cb3fc3553d96208f48aefc3">&#9670;&#160;</a></span>generalForumTopicHidden</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_tg_bot_1_1_general_forum_topic_hidden.html#afd2dbc65aa15cc1acb74d9a24f31c4d3">GeneralForumTopicHidden::Ptr</a> TgBot::Message::generalForumTopicHidden</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Optional. Service message: the 'General' forum topic hidden. </p>
+
+<p class="definition">Definition at line <a class="el" href="_message_8h_source.html#l00398">398</a> of file <a class="el" href="_message_8h_source.html">Message.h</a>.</p>
+
+</div>
+</div>
+<a id="adadba3b8c1f0823c45367fe0965d9f13" name="adadba3b8c1f0823c45367fe0965d9f13"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adadba3b8c1f0823c45367fe0965d9f13">&#9670;&#160;</a></span>generalForumTopicUnhidden</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_tg_bot_1_1_general_forum_topic_unhidden.html#a9cf03fbf7d42070cdcdc052528c6979b">GeneralForumTopicUnhidden::Ptr</a> TgBot::Message::generalForumTopicUnhidden</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Optional. Service message: the 'General' forum topic unhidden. </p>
+
+<p class="definition">Definition at line <a class="el" href="_message_8h_source.html#l00403">403</a> of file <a class="el" href="_message_8h_source.html">Message.h</a>.</p>
 
 </div>
 </div>
@@ -810,7 +879,25 @@ Public Attributes</h2></td></tr>
 
 <p>Optional. Service message: the group has been created. </p>
 
-<p class="definition">Definition at line <a class="el" href="_message_8h_source.html#l00282">282</a> of file <a class="el" href="_message_8h_source.html">Message.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_message_8h_source.html#l00291">291</a> of file <a class="el" href="_message_8h_source.html">Message.h</a>.</p>
+
+</div>
+</div>
+<a id="a75d34a9ea323b75472907545f2985634" name="a75d34a9ea323b75472907545f2985634"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a75d34a9ea323b75472907545f2985634">&#9670;&#160;</a></span>hasMediaSpoiler</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool TgBot::Message::hasMediaSpoiler</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Optional. True, if the message media is covered by a spoiler animation. </p>
+
+<p class="definition">Definition at line <a class="el" href="_message_8h_source.html#l00229">229</a> of file <a class="el" href="_message_8h_source.html">Message.h</a>.</p>
 
 </div>
 </div>
@@ -828,7 +915,7 @@ Public Attributes</h2></td></tr>
 
 <p>Optional. True, if the message can't be forwarded. </p>
 
-<p class="definition">Definition at line <a class="el" href="_message_8h_source.html#l00148">148</a> of file <a class="el" href="_message_8h_source.html">Message.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_message_8h_source.html#l00152">152</a> of file <a class="el" href="_message_8h_source.html">Message.h</a>.</p>
 
 </div>
 </div>
@@ -847,7 +934,7 @@ Public Attributes</h2></td></tr>
 <p>Optional. <a class="el" href="class_tg_bot_1_1_message.html" title="This object represents a message.">Message</a> is an invoice for a payment, information about the invoice. </p>
 <p ><a href="https://core.telegram.org/bots/api#payments">https://core.telegram.org/bots/api#payments</a> </p>
 
-<p class="definition">Definition at line <a class="el" href="_message_8h_source.html#l00333">333</a> of file <a class="el" href="_message_8h_source.html">Message.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_message_8h_source.html#l00342">342</a> of file <a class="el" href="_message_8h_source.html">Message.h</a>.</p>
 
 </div>
 </div>
@@ -865,7 +952,7 @@ Public Attributes</h2></td></tr>
 
 <p>Optional. True, if the message is a channel post that was automatically forwarded to the connected discussion group. </p>
 
-<p class="definition">Definition at line <a class="el" href="_message_8h_source.html#l00126">126</a> of file <a class="el" href="_message_8h_source.html">Message.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_message_8h_source.html#l00130">130</a> of file <a class="el" href="_message_8h_source.html">Message.h</a>.</p>
 
 </div>
 </div>
@@ -883,7 +970,7 @@ Public Attributes</h2></td></tr>
 
 <p>Optional. True, if the message is sent to a forum topic. </p>
 
-<p class="definition">Definition at line <a class="el" href="_message_8h_source.html#l00121">121</a> of file <a class="el" href="_message_8h_source.html">Message.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_message_8h_source.html#l00125">125</a> of file <a class="el" href="_message_8h_source.html">Message.h</a>.</p>
 
 </div>
 </div>
@@ -901,7 +988,7 @@ Public Attributes</h2></td></tr>
 
 <p>Optional. A member was removed from the group, information about them (this member may be the bot itself) </p>
 
-<p class="definition">Definition at line <a class="el" href="_message_8h_source.html#l00262">262</a> of file <a class="el" href="_message_8h_source.html">Message.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_message_8h_source.html#l00271">271</a> of file <a class="el" href="_message_8h_source.html">Message.h</a>.</p>
 
 </div>
 </div>
@@ -919,7 +1006,7 @@ Public Attributes</h2></td></tr>
 
 <p>Optional. <a class="el" href="class_tg_bot_1_1_message.html" title="This object represents a message.">Message</a> is a shared location, information about the location. </p>
 
-<p class="definition">Definition at line <a class="el" href="_message_8h_source.html#l00252">252</a> of file <a class="el" href="_message_8h_source.html">Message.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_message_8h_source.html#l00261">261</a> of file <a class="el" href="_message_8h_source.html">Message.h</a>.</p>
 
 </div>
 </div>
@@ -937,7 +1024,7 @@ Public Attributes</h2></td></tr>
 
 <p>Optional. The unique identifier of a media message group this message belongs to. </p>
 
-<p class="definition">Definition at line <a class="el" href="_message_8h_source.html#l00153">153</a> of file <a class="el" href="_message_8h_source.html">Message.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_message_8h_source.html#l00157">157</a> of file <a class="el" href="_message_8h_source.html">Message.h</a>.</p>
 
 </div>
 </div>
@@ -955,7 +1042,7 @@ Public Attributes</h2></td></tr>
 
 <p>Optional. Service message: auto-delete timer settings changed in the chat. </p>
 
-<p class="definition">Definition at line <a class="el" href="_message_8h_source.html#l00303">303</a> of file <a class="el" href="_message_8h_source.html">Message.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_message_8h_source.html#l00312">312</a> of file <a class="el" href="_message_8h_source.html">Message.h</a>.</p>
 
 </div>
 </div>
@@ -973,7 +1060,7 @@ Public Attributes</h2></td></tr>
 
 <p>Unique message identifier inside this chat. </p>
 
-<p class="definition">Definition at line <a class="el" href="_message_8h_source.html#l00056">56</a> of file <a class="el" href="_message_8h_source.html">Message.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_message_8h_source.html#l00060">60</a> of file <a class="el" href="_message_8h_source.html">Message.h</a>.</p>
 
 </div>
 </div>
@@ -991,7 +1078,7 @@ Public Attributes</h2></td></tr>
 
 <p>Optional. Unique identifier of a message thread to which the message belongs; for supergroups only. </p>
 
-<p class="definition">Definition at line <a class="el" href="_message_8h_source.html#l00061">61</a> of file <a class="el" href="_message_8h_source.html">Message.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_message_8h_source.html#l00065">65</a> of file <a class="el" href="_message_8h_source.html">Message.h</a>.</p>
 
 </div>
 </div>
@@ -1010,7 +1097,7 @@ Public Attributes</h2></td></tr>
 <p>Optional. The supergroup has been migrated from a group with the specified identifier. </p>
 <p >This number may have more than 32 significant bits and some programming languages may have difficulty/silent defects in interpreting it. But it has at most 52 significant bits, so a signed 64-bit integer or double-precision float type are safe for storing this identifier. </p>
 
-<p class="definition">Definition at line <a class="el" href="_message_8h_source.html#l00319">319</a> of file <a class="el" href="_message_8h_source.html">Message.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_message_8h_source.html#l00328">328</a> of file <a class="el" href="_message_8h_source.html">Message.h</a>.</p>
 
 </div>
 </div>
@@ -1029,7 +1116,7 @@ Public Attributes</h2></td></tr>
 <p>Optional. The group has been migrated to a supergroup with the specified identifier. </p>
 <p >This number may have more than 32 significant bits and some programming languages may have difficulty/silent defects in interpreting it. But it has at most 52 significant bits, so a signed 64-bit integer or double-precision float type are safe for storing this identifier. </p>
 
-<p class="definition">Definition at line <a class="el" href="_message_8h_source.html#l00311">311</a> of file <a class="el" href="_message_8h_source.html">Message.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_message_8h_source.html#l00320">320</a> of file <a class="el" href="_message_8h_source.html">Message.h</a>.</p>
 
 </div>
 </div>
@@ -1047,7 +1134,7 @@ Public Attributes</h2></td></tr>
 
 <p>Optional. New members that were added to the group or supergroup and information about them (the bot itself may be one of these members) </p>
 
-<p class="definition">Definition at line <a class="el" href="_message_8h_source.html#l00257">257</a> of file <a class="el" href="_message_8h_source.html">Message.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_message_8h_source.html#l00266">266</a> of file <a class="el" href="_message_8h_source.html">Message.h</a>.</p>
 
 </div>
 </div>
@@ -1065,7 +1152,7 @@ Public Attributes</h2></td></tr>
 
 <p>Optional. A chat photo was change to this value. </p>
 
-<p class="definition">Definition at line <a class="el" href="_message_8h_source.html#l00272">272</a> of file <a class="el" href="_message_8h_source.html">Message.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_message_8h_source.html#l00281">281</a> of file <a class="el" href="_message_8h_source.html">Message.h</a>.</p>
 
 </div>
 </div>
@@ -1083,7 +1170,7 @@ Public Attributes</h2></td></tr>
 
 <p>Optional. A chat title was changed to this value. </p>
 
-<p class="definition">Definition at line <a class="el" href="_message_8h_source.html#l00267">267</a> of file <a class="el" href="_message_8h_source.html">Message.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_message_8h_source.html#l00276">276</a> of file <a class="el" href="_message_8h_source.html">Message.h</a>.</p>
 
 </div>
 </div>
@@ -1101,7 +1188,7 @@ Public Attributes</h2></td></tr>
 
 <p>Optional. Telegram Passport data. </p>
 
-<p class="definition">Definition at line <a class="el" href="_message_8h_source.html#l00352">352</a> of file <a class="el" href="_message_8h_source.html">Message.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_message_8h_source.html#l00366">366</a> of file <a class="el" href="_message_8h_source.html">Message.h</a>.</p>
 
 </div>
 </div>
@@ -1119,7 +1206,7 @@ Public Attributes</h2></td></tr>
 
 <p>Optional. <a class="el" href="class_tg_bot_1_1_message.html" title="This object represents a message.">Message</a> is a photo, available sizes of the photo. </p>
 
-<p class="definition">Definition at line <a class="el" href="_message_8h_source.html#l00190">190</a> of file <a class="el" href="_message_8h_source.html">Message.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_message_8h_source.html#l00194">194</a> of file <a class="el" href="_message_8h_source.html">Message.h</a>.</p>
 
 </div>
 </div>
@@ -1138,7 +1225,7 @@ Public Attributes</h2></td></tr>
 <p>Optional. Specified message was pinned. </p>
 <p >Note that the <a class="el" href="class_tg_bot_1_1_message.html" title="This object represents a message.">Message</a> object in this field will not contain further replyToMessage fields even if it is itself a reply. </p>
 
-<p class="definition">Definition at line <a class="el" href="_message_8h_source.html#l00326">326</a> of file <a class="el" href="_message_8h_source.html">Message.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_message_8h_source.html#l00335">335</a> of file <a class="el" href="_message_8h_source.html">Message.h</a>.</p>
 
 </div>
 </div>
@@ -1156,7 +1243,7 @@ Public Attributes</h2></td></tr>
 
 <p>Optional. <a class="el" href="class_tg_bot_1_1_message.html" title="This object represents a message.">Message</a> is a native poll, information about the poll. </p>
 
-<p class="definition">Definition at line <a class="el" href="_message_8h_source.html#l00240">240</a> of file <a class="el" href="_message_8h_source.html">Message.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_message_8h_source.html#l00249">249</a> of file <a class="el" href="_message_8h_source.html">Message.h</a>.</p>
 
 </div>
 </div>
@@ -1175,7 +1262,7 @@ Public Attributes</h2></td></tr>
 <p>Optional. Service message. </p>
 <p >A user in the chat triggered another user's proximity alert while sharing Live <a class="el" href="class_tg_bot_1_1_location.html" title="This object represents a point on the map.">Location</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="_message_8h_source.html#l00359">359</a> of file <a class="el" href="_message_8h_source.html">Message.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_message_8h_source.html#l00373">373</a> of file <a class="el" href="_message_8h_source.html">Message.h</a>.</p>
 
 </div>
 </div>
@@ -1194,7 +1281,7 @@ Public Attributes</h2></td></tr>
 <p>Optional. Inline keyboard attached to the message. </p>
 <p >loginUrl buttons are represented as ordinary url buttons. </p>
 
-<p class="definition">Definition at line <a class="el" href="_message_8h_source.html#l00406">406</a> of file <a class="el" href="_message_8h_source.html">Message.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_message_8h_source.html#l00435">435</a> of file <a class="el" href="_message_8h_source.html">Message.h</a>.</p>
 
 </div>
 </div>
@@ -1213,7 +1300,7 @@ Public Attributes</h2></td></tr>
 <p>Optional. For replies, the original message. </p>
 <p >Note that the <a class="el" href="class_tg_bot_1_1_message.html" title="This object represents a message.">Message</a> object in this field will not contain further replyToMessage fields even if it itself is a reply. </p>
 
-<p class="definition">Definition at line <a class="el" href="_message_8h_source.html#l00133">133</a> of file <a class="el" href="_message_8h_source.html">Message.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_message_8h_source.html#l00137">137</a> of file <a class="el" href="_message_8h_source.html">Message.h</a>.</p>
 
 </div>
 </div>
@@ -1232,7 +1319,7 @@ Public Attributes</h2></td></tr>
 <p>Optional. Sender of the message, sent on behalf of a chat. </p>
 <p >For example, the channel itself for channel posts, the supergroup itself for messages from anonymous group administrators, the linked channel for messages automatically forwarded to the discussion group. For backward compatibility, the field from contains a fake sender user in non-channel chats, if the message was sent on behalf of a chat. </p>
 
-<p class="definition">Definition at line <a class="el" href="_message_8h_source.html#l00076">76</a> of file <a class="el" href="_message_8h_source.html">Message.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_message_8h_source.html#l00080">80</a> of file <a class="el" href="_message_8h_source.html">Message.h</a>.</p>
 
 </div>
 </div>
@@ -1250,7 +1337,7 @@ Public Attributes</h2></td></tr>
 
 <p>Optional. <a class="el" href="class_tg_bot_1_1_message.html" title="This object represents a message.">Message</a> is a sticker, information about the sticker. </p>
 
-<p class="definition">Definition at line <a class="el" href="_message_8h_source.html#l00195">195</a> of file <a class="el" href="_message_8h_source.html">Message.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_message_8h_source.html#l00199">199</a> of file <a class="el" href="_message_8h_source.html">Message.h</a>.</p>
 
 </div>
 </div>
@@ -1269,7 +1356,7 @@ Public Attributes</h2></td></tr>
 <p>Optional. <a class="el" href="class_tg_bot_1_1_message.html" title="This object represents a message.">Message</a> is a service message about a successful payment, information about the payment. </p>
 <p ><a href="https://core.telegram.org/bots/api#payments">https://core.telegram.org/bots/api#payments</a> </p>
 
-<p class="definition">Definition at line <a class="el" href="_message_8h_source.html#l00340">340</a> of file <a class="el" href="_message_8h_source.html">Message.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_message_8h_source.html#l00349">349</a> of file <a class="el" href="_message_8h_source.html">Message.h</a>.</p>
 
 </div>
 </div>
@@ -1288,7 +1375,7 @@ Public Attributes</h2></td></tr>
 <p>Optional. Service message: the supergroup has been created. </p>
 <p >This field can't be received in a message coming through updates, because bot can't be a member of a supergroup when it is created. It can only be found in replyToMessage if someone replies to a very first message in a directly created supergroup. </p>
 
-<p class="definition">Definition at line <a class="el" href="_message_8h_source.html#l00290">290</a> of file <a class="el" href="_message_8h_source.html">Message.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_message_8h_source.html#l00299">299</a> of file <a class="el" href="_message_8h_source.html">Message.h</a>.</p>
 
 </div>
 </div>
@@ -1306,7 +1393,7 @@ Public Attributes</h2></td></tr>
 
 <p>Optional. For text messages, the actual UTF-8 text of the message. </p>
 
-<p class="definition">Definition at line <a class="el" href="_message_8h_source.html#l00163">163</a> of file <a class="el" href="_message_8h_source.html">Message.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_message_8h_source.html#l00167">167</a> of file <a class="el" href="_message_8h_source.html">Message.h</a>.</p>
 
 </div>
 </div>
@@ -1325,7 +1412,7 @@ Public Attributes</h2></td></tr>
 <p>Optional. <a class="el" href="class_tg_bot_1_1_message.html" title="This object represents a message.">Message</a> is a venue, information about the venue. </p>
 <p >For backward compatibility, when this field is set, the location field will also be set </p>
 
-<p class="definition">Definition at line <a class="el" href="_message_8h_source.html#l00247">247</a> of file <a class="el" href="_message_8h_source.html">Message.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_message_8h_source.html#l00256">256</a> of file <a class="el" href="_message_8h_source.html">Message.h</a>.</p>
 
 </div>
 </div>
@@ -1343,7 +1430,7 @@ Public Attributes</h2></td></tr>
 
 <p>Optional. <a class="el" href="class_tg_bot_1_1_bot.html" title="This object holds other objects specific for this bot instance.">Bot</a> through which the message was sent. </p>
 
-<p class="definition">Definition at line <a class="el" href="_message_8h_source.html#l00138">138</a> of file <a class="el" href="_message_8h_source.html">Message.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_message_8h_source.html#l00142">142</a> of file <a class="el" href="_message_8h_source.html">Message.h</a>.</p>
 
 </div>
 </div>
@@ -1361,7 +1448,7 @@ Public Attributes</h2></td></tr>
 
 <p>Optional. <a class="el" href="class_tg_bot_1_1_message.html" title="This object represents a message.">Message</a> is a video, information about the video. </p>
 
-<p class="definition">Definition at line <a class="el" href="_message_8h_source.html#l00200">200</a> of file <a class="el" href="_message_8h_source.html">Message.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_message_8h_source.html#l00204">204</a> of file <a class="el" href="_message_8h_source.html">Message.h</a>.</p>
 
 </div>
 </div>
@@ -1379,7 +1466,7 @@ Public Attributes</h2></td></tr>
 
 <p>Optional. Service message: video chat ended. </p>
 
-<p class="definition">Definition at line <a class="el" href="_message_8h_source.html#l00389">389</a> of file <a class="el" href="_message_8h_source.html">Message.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_message_8h_source.html#l00418">418</a> of file <a class="el" href="_message_8h_source.html">Message.h</a>.</p>
 
 </div>
 </div>
@@ -1397,7 +1484,7 @@ Public Attributes</h2></td></tr>
 
 <p>Optional. Service message: new participants invited to a video chat. </p>
 
-<p class="definition">Definition at line <a class="el" href="_message_8h_source.html#l00394">394</a> of file <a class="el" href="_message_8h_source.html">Message.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_message_8h_source.html#l00423">423</a> of file <a class="el" href="_message_8h_source.html">Message.h</a>.</p>
 
 </div>
 </div>
@@ -1415,7 +1502,7 @@ Public Attributes</h2></td></tr>
 
 <p>Optional. Service message: video chat scheduled. </p>
 
-<p class="definition">Definition at line <a class="el" href="_message_8h_source.html#l00379">379</a> of file <a class="el" href="_message_8h_source.html">Message.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_message_8h_source.html#l00408">408</a> of file <a class="el" href="_message_8h_source.html">Message.h</a>.</p>
 
 </div>
 </div>
@@ -1433,7 +1520,7 @@ Public Attributes</h2></td></tr>
 
 <p>Optional. Service message: video chat started. </p>
 
-<p class="definition">Definition at line <a class="el" href="_message_8h_source.html#l00384">384</a> of file <a class="el" href="_message_8h_source.html">Message.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_message_8h_source.html#l00413">413</a> of file <a class="el" href="_message_8h_source.html">Message.h</a>.</p>
 
 </div>
 </div>
@@ -1451,7 +1538,7 @@ Public Attributes</h2></td></tr>
 
 <p>Optional. <a class="el" href="class_tg_bot_1_1_message.html" title="This object represents a message.">Message</a> is a video note, information about the video message. </p>
 
-<p class="definition">Definition at line <a class="el" href="_message_8h_source.html#l00205">205</a> of file <a class="el" href="_message_8h_source.html">Message.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_message_8h_source.html#l00209">209</a> of file <a class="el" href="_message_8h_source.html">Message.h</a>.</p>
 
 </div>
 </div>
@@ -1469,7 +1556,7 @@ Public Attributes</h2></td></tr>
 
 <p>Optional. <a class="el" href="class_tg_bot_1_1_message.html" title="This object represents a message.">Message</a> is a voice message, information about the file. </p>
 
-<p class="definition">Definition at line <a class="el" href="_message_8h_source.html#l00210">210</a> of file <a class="el" href="_message_8h_source.html">Message.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_message_8h_source.html#l00214">214</a> of file <a class="el" href="_message_8h_source.html">Message.h</a>.</p>
 
 </div>
 </div>
@@ -1487,7 +1574,25 @@ Public Attributes</h2></td></tr>
 
 <p>Optional. Service message: data sent by a Web App. </p>
 
-<p class="definition">Definition at line <a class="el" href="_message_8h_source.html#l00399">399</a> of file <a class="el" href="_message_8h_source.html">Message.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_message_8h_source.html#l00428">428</a> of file <a class="el" href="_message_8h_source.html">Message.h</a>.</p>
+
+</div>
+</div>
+<a id="a8972ab7fadd62b1288f3cc39278567e2" name="a8972ab7fadd62b1288f3cc39278567e2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8972ab7fadd62b1288f3cc39278567e2">&#9670;&#160;</a></span>writeAccessAllowed</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_tg_bot_1_1_write_access_allowed.html#acd928e8d5360d75513bd8e8c6d8e050f">WriteAccessAllowed::Ptr</a> TgBot::Message::writeAccessAllowed</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Optional. Service message: the user allowed the bot added to the attachment menu to write messages. </p>
+
+<p class="definition">Definition at line <a class="el" href="_message_8h_source.html#l00361">361</a> of file <a class="el" href="_message_8h_source.html">Message.h</a>.</p>
 
 </div>
 </div>
@@ -1500,7 +1605,7 @@ Public Attributes</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespace_tg_bot.html">TgBot</a></li><li class="navelem"><a class="el" href="class_tg_bot_1_1_message.html">Message</a></li>
-    <li class="footer">Generated on Tue Nov 8 2022 15:20:01 for tgbot-cpp by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.5 </li>
+    <li class="footer">Generated on Wed Jan 4 2023 23:15:17 for tgbot-cpp by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.5 </li>
   </ul>
 </div>
 </body>

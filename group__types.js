@@ -96,6 +96,8 @@ var group__types =
       [ "description", "class_tg_bot_1_1_chat.html#a8f87f388215d07bb2745cdf2600ff299", null ],
       [ "emojiStatusCustomEmojiId", "class_tg_bot_1_1_chat.html#a59151510a8cad1b3af517ba397e1106d", null ],
       [ "firstName", "class_tg_bot_1_1_chat.html#a884c0c1c6d6f0a5453231f7b9049da29", null ],
+      [ "hasAggressiveAntiSpamEnabled", "class_tg_bot_1_1_chat.html#a642da5c21f7fd146908f24ab1c47c154", null ],
+      [ "hasHiddenMembers", "class_tg_bot_1_1_chat.html#a54d814c559379fb43af91c5fc68a1e3d", null ],
       [ "hasPrivateForwards", "class_tg_bot_1_1_chat.html#a59d90603c32220999ff5280afdeefd1c", null ],
       [ "hasProtectedContent", "class_tg_bot_1_1_chat.html#a6e749f4fe47340a468301899a3c9c616", null ],
       [ "hasRestrictedVoiceAndVideoMessages", "class_tg_bot_1_1_chat.html#a6002ed2a694def78dbf8a02d719a861b", null ],
@@ -322,6 +324,11 @@ var group__types =
       [ "iconCustomEmojiId", "class_tg_bot_1_1_forum_topic_created.html#aabf82483b0b32ee82ae940728453b85e", null ],
       [ "name", "class_tg_bot_1_1_forum_topic_created.html#a37bcfbf5986cc5ba7a192e379db50751", null ]
     ] ],
+    [ "TgBot::ForumTopicEdited", "class_tg_bot_1_1_forum_topic_edited.html", [
+      [ "Ptr", "class_tg_bot_1_1_forum_topic_edited.html#af596ab8ba6ae23e08059fdefcaa791cd", null ],
+      [ "iconCustomEmojiId", "class_tg_bot_1_1_forum_topic_edited.html#ae8e965cee35b3d41174f59fc2a2e5ec8", null ],
+      [ "name", "class_tg_bot_1_1_forum_topic_edited.html#aa05feba2c00d6ca491f7a6dd57b1e336", null ]
+    ] ],
     [ "TgBot::ForumTopicReopened", "class_tg_bot_1_1_forum_topic_reopened.html", [
       [ "Ptr", "class_tg_bot_1_1_forum_topic_reopened.html#a6a134d86b0b4f1fae8463603951f7a3a", null ]
     ] ],
@@ -339,6 +346,12 @@ var group__types =
       [ "position", "class_tg_bot_1_1_game_high_score.html#a76d2ff519f8a09b6550d78666950204f", null ],
       [ "score", "class_tg_bot_1_1_game_high_score.html#acf9985416cffef1b7e0a9735a61d278d", null ],
       [ "user", "class_tg_bot_1_1_game_high_score.html#a8cbe4f32e28775c3f8aa0c9b78a9842b", null ]
+    ] ],
+    [ "TgBot::GeneralForumTopicHidden", "class_tg_bot_1_1_general_forum_topic_hidden.html", [
+      [ "Ptr", "class_tg_bot_1_1_general_forum_topic_hidden.html#afd2dbc65aa15cc1acb74d9a24f31c4d3", null ]
+    ] ],
+    [ "TgBot::GeneralForumTopicUnhidden", "class_tg_bot_1_1_general_forum_topic_unhidden.html", [
+      [ "Ptr", "class_tg_bot_1_1_general_forum_topic_unhidden.html#a9cf03fbf7d42070cdcdc052528c6979b", null ]
     ] ],
     [ "TgBot::GenericReply", "class_tg_bot_1_1_generic_reply.html", [
       [ "Ptr", "class_tg_bot_1_1_generic_reply.html#aa7bb5f2c5484cb791e1c60c346bbb06f", null ],
@@ -675,6 +688,7 @@ var group__types =
       [ "Ptr", "class_tg_bot_1_1_input_media_animation.html#a30ba6a562ee26977fe3e7efc7aad6d22", null ],
       [ "InputMediaAnimation", "class_tg_bot_1_1_input_media_animation.html#aa9bbc275fd2c74abe6691e774f81357e", null ],
       [ "duration", "class_tg_bot_1_1_input_media_animation.html#aa5f772bd3637638664c5a329f98e0482", null ],
+      [ "hasSpoiler", "class_tg_bot_1_1_input_media_animation.html#a54276e9a6fb2a330628866fb87d02fd6", null ],
       [ "height", "class_tg_bot_1_1_input_media_animation.html#a85d96d7c9ca1f8352c60cf8c8cabffd0", null ],
       [ "thumb", "class_tg_bot_1_1_input_media_animation.html#a8e70231993cbb00a393bbaf5a62b9d02", null ],
       [ "width", "class_tg_bot_1_1_input_media_animation.html#a4acb011d55885788e847f4b6a51b6501", null ]
@@ -695,12 +709,14 @@ var group__types =
     ] ],
     [ "TgBot::InputMediaPhoto", "class_tg_bot_1_1_input_media_photo.html", [
       [ "Ptr", "class_tg_bot_1_1_input_media_photo.html#a02ac033a0ebe474b02f745f4d9e8e2b3", null ],
-      [ "InputMediaPhoto", "class_tg_bot_1_1_input_media_photo.html#ab064268a26729415ebfb71c5a0abf36f", null ]
+      [ "InputMediaPhoto", "class_tg_bot_1_1_input_media_photo.html#ab064268a26729415ebfb71c5a0abf36f", null ],
+      [ "hasSpoiler", "class_tg_bot_1_1_input_media_photo.html#a469622f5460b11739d56e57427735a7d", null ]
     ] ],
     [ "TgBot::InputMediaVideo", "class_tg_bot_1_1_input_media_video.html", [
       [ "Ptr", "class_tg_bot_1_1_input_media_video.html#a659beee71ba67a81f85892800761eb0f", null ],
       [ "InputMediaVideo", "class_tg_bot_1_1_input_media_video.html#a698a73c20b1c6c10be011543ec1253ea", null ],
       [ "duration", "class_tg_bot_1_1_input_media_video.html#ad8c52e1bc6d3f05a81122b3f5895d512", null ],
+      [ "hasSpoiler", "class_tg_bot_1_1_input_media_video.html#a2e667eeed22e295ec6bec841883ae768", null ],
       [ "height", "class_tg_bot_1_1_input_media_video.html#ad731a89348777e927afcc261edfc4bb1", null ],
       [ "supportsStreaming", "class_tg_bot_1_1_input_media_video.html#adceba9e2e196f5d1356f283e5e2f043d", null ],
       [ "thumb", "class_tg_bot_1_1_input_media_video.html#abbf924ff355bfbabb2be2cd3a8e17278", null ],
@@ -819,6 +835,7 @@ var group__types =
       [ "entities", "class_tg_bot_1_1_message.html#a53c199056538ebe72c65e409deaf7a8e", null ],
       [ "forumTopicClosed", "class_tg_bot_1_1_message.html#aff5f52e61c6152baf7b6e5f6cd6ddbd1", null ],
       [ "forumTopicCreated", "class_tg_bot_1_1_message.html#ae5bc39c572aa0f81fde6c3272699b304", null ],
+      [ "forumTopicEdited", "class_tg_bot_1_1_message.html#a14f2b44b7919c3ded2058c7249932923", null ],
       [ "forumTopicReopened", "class_tg_bot_1_1_message.html#a39297d610f167adeb2341c9c26ae65a6", null ],
       [ "forwardDate", "class_tg_bot_1_1_message.html#a94e9d1e38a8cb12932f5718dd5d7fdbc", null ],
       [ "forwardFrom", "class_tg_bot_1_1_message.html#a7e4d984cb1464d0ae504d7c8ed11b508", null ],
@@ -828,7 +845,10 @@ var group__types =
       [ "forwardSignature", "class_tg_bot_1_1_message.html#a70f5fe7a8e14b0ce0842fa8661492e4a", null ],
       [ "from", "class_tg_bot_1_1_message.html#a65b78a13b38ad767338cd2e9d2e69ca2", null ],
       [ "game", "class_tg_bot_1_1_message.html#a64216e0a25408a6946fcebebf5b38307", null ],
+      [ "generalForumTopicHidden", "class_tg_bot_1_1_message.html#a258b68396cb3fc3553d96208f48aefc3", null ],
+      [ "generalForumTopicUnhidden", "class_tg_bot_1_1_message.html#adadba3b8c1f0823c45367fe0965d9f13", null ],
       [ "groupChatCreated", "class_tg_bot_1_1_message.html#a5bbf76e34ec52a41a6392f7d61c19035", null ],
+      [ "hasMediaSpoiler", "class_tg_bot_1_1_message.html#a75d34a9ea323b75472907545f2985634", null ],
       [ "hasProtectedContent", "class_tg_bot_1_1_message.html#a5ff9a1e2a031eac4334a0c50a99e34fd", null ],
       [ "invoice", "class_tg_bot_1_1_message.html#ade904bacf5a1b53b09924ebb965a3832", null ],
       [ "isAutomaticForward", "class_tg_bot_1_1_message.html#aa825a43feb82f9ca7385a844e701b338", null ],
@@ -865,7 +885,8 @@ var group__types =
       [ "videoChatStarted", "class_tg_bot_1_1_message.html#a5c380c66e59aa38a56148d77428215e4", null ],
       [ "videoNote", "class_tg_bot_1_1_message.html#a396f8dfc81ee298fe1ea48546f7b2f84", null ],
       [ "voice", "class_tg_bot_1_1_message.html#a45147e56a0cb9b7dee926da7a11a0093", null ],
-      [ "webAppData", "class_tg_bot_1_1_message.html#a00204c5e0135b9852fd47f731ff5f39e", null ]
+      [ "webAppData", "class_tg_bot_1_1_message.html#a00204c5e0135b9852fd47f731ff5f39e", null ],
+      [ "writeAccessAllowed", "class_tg_bot_1_1_message.html#a8972ab7fadd62b1288f3cc39278567e2", null ]
     ] ],
     [ "TgBot::MessageAutoDeleteTimerChanged", "class_tg_bot_1_1_message_auto_delete_timer_changed.html", [
       [ "Ptr", "class_tg_bot_1_1_message_auto_delete_timer_changed.html#a95578c6cfe958277050a6d7f32670a9c", null ],
@@ -1026,6 +1047,7 @@ var group__types =
     [ "TgBot::ReplyKeyboardMarkup", "class_tg_bot_1_1_reply_keyboard_markup.html", [
       [ "Ptr", "class_tg_bot_1_1_reply_keyboard_markup.html#af19f8402b914b603ab41305dee55f44a", null ],
       [ "inputFieldPlaceholder", "class_tg_bot_1_1_reply_keyboard_markup.html#a749a554a495cdb02c7098d597dbaca69", null ],
+      [ "isPersistent", "class_tg_bot_1_1_reply_keyboard_markup.html#a018afdfb6d986572a67c51d00c32efe4", null ],
       [ "keyboard", "class_tg_bot_1_1_reply_keyboard_markup.html#a87d9dc41554e585b137b922fa20fd020", null ],
       [ "oneTimeKeyboard", "class_tg_bot_1_1_reply_keyboard_markup.html#a12205ba27bf676459507684be019799e", null ],
       [ "resizeKeyboard", "class_tg_bot_1_1_reply_keyboard_markup.html#aafed175ccf3c58fe7c3a15a2300a1ff3", null ],
@@ -1225,5 +1247,8 @@ var group__types =
       [ "maxConnections", "class_tg_bot_1_1_webhook_info.html#a0ea5bcf6df4abab2e2c9bf8cc0b988b0", null ],
       [ "pendingUpdateCount", "class_tg_bot_1_1_webhook_info.html#a61e3f91f8047af3b5293038ab05f0577", null ],
       [ "url", "class_tg_bot_1_1_webhook_info.html#a4f1f6efd16518a24e8c153f5e126a36f", null ]
+    ] ],
+    [ "TgBot::WriteAccessAllowed", "class_tg_bot_1_1_write_access_allowed.html", [
+      [ "Ptr", "class_tg_bot_1_1_write_access_allowed.html#acd928e8d5360d75513bd8e8c6d8e050f", null ]
     ] ]
 ];

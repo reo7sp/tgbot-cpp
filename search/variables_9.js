@@ -1,7 +1,7 @@
 var searchData=
 [
   ['iconcolor_0',['iconColor',['../class_tg_bot_1_1_forum_topic.html#a7145ec2f8f21a06930b8f493006e8195',1,'TgBot::ForumTopic::iconColor()'],['../class_tg_bot_1_1_forum_topic_created.html#aea05667773455a3d1f55b546b2efe26a',1,'TgBot::ForumTopicCreated::iconColor()']]],
-  ['iconcustomemojiid_1',['iconCustomEmojiId',['../class_tg_bot_1_1_forum_topic.html#abf2c0652dac575abd61befd4f4205bdc',1,'TgBot::ForumTopic::iconCustomEmojiId()'],['../class_tg_bot_1_1_forum_topic_created.html#aabf82483b0b32ee82ae940728453b85e',1,'TgBot::ForumTopicCreated::iconCustomEmojiId()']]],
+  ['iconcustomemojiid_1',['iconCustomEmojiId',['../class_tg_bot_1_1_forum_topic.html#abf2c0652dac575abd61befd4f4205bdc',1,'TgBot::ForumTopic::iconCustomEmojiId()'],['../class_tg_bot_1_1_forum_topic_created.html#aabf82483b0b32ee82ae940728453b85e',1,'TgBot::ForumTopicCreated::iconCustomEmojiId()'],['../class_tg_bot_1_1_forum_topic_edited.html#ae8e965cee35b3d41174f59fc2a2e5ec8',1,'TgBot::ForumTopicEdited::iconCustomEmojiId()']]],
   ['id_2',['id',['../class_tg_bot_1_1_callback_query.html#ae9a9b23ba076f2c6d6ba4421de85f7df',1,'TgBot::CallbackQuery::id()'],['../class_tg_bot_1_1_chat.html#a40a34b9c7545ff69d0a8dc1ff8208fa7',1,'TgBot::Chat::id()'],['../class_tg_bot_1_1_inline_query.html#a8787b5e72cbfc95c3e938143ba7f6ee7',1,'TgBot::InlineQuery::id()'],['../class_tg_bot_1_1_inline_query_result.html#a75316c8ba9522f44aedb9788584156db',1,'TgBot::InlineQueryResult::id()'],['../class_tg_bot_1_1_poll.html#a7e6294227d359ec09856d41fa5b6e8e0',1,'TgBot::Poll::id()'],['../class_tg_bot_1_1_pre_checkout_query.html#afaf8a7d12af830eea0644c30f51f429e',1,'TgBot::PreCheckoutQuery::id()'],['../class_tg_bot_1_1_shipping_option.html#ac482c80d9eae891d1a08437fa935f48c',1,'TgBot::ShippingOption::id()'],['../class_tg_bot_1_1_shipping_query.html#ab3b7dedd15793e42c7efe594e38f8003',1,'TgBot::ShippingQuery::id()'],['../class_tg_bot_1_1_user.html#a13f239816528f24ccbd49f64decc4662',1,'TgBot::User::id()']]],
   ['inlinekeyboard_3',['inlineKeyboard',['../class_tg_bot_1_1_inline_keyboard_markup.html#a7ff086034bc62f1a791f2e872e652b4b',1,'TgBot::InlineKeyboardMarkup']]],
   ['inlinemessageid_4',['inlineMessageId',['../class_tg_bot_1_1_callback_query.html#a1565d380d5aa70d2304f572e5b56a24e',1,'TgBot::CallbackQuery::inlineMessageId()'],['../class_tg_bot_1_1_chosen_inline_result.html#ab61cb2aadbf6ab78e334cbc49076514c',1,'TgBot::ChosenInlineResult::inlineMessageId()'],['../class_tg_bot_1_1_sent_web_app_message.html#a842000d2e5ced90cf2d4bc7d126ac93b',1,'TgBot::SentWebAppMessage::inlineMessageId()']]],
@@ -21,9 +21,10 @@ var searchData=
   ['isflexible_18',['isFlexible',['../class_tg_bot_1_1_input_invoice_message_content.html#a485ad6f965692a3f2061d6edb01846d5',1,'TgBot::InputInvoiceMessageContent']]],
   ['isforum_19',['isForum',['../class_tg_bot_1_1_chat.html#a0d3345dc1881126eb66f1e6ec6c9ec0b',1,'TgBot::Chat']]],
   ['ismember_20',['isMember',['../class_tg_bot_1_1_chat_member_restricted.html#a97ea6dea750a7cd723a8d1d780962da9',1,'TgBot::ChatMemberRestricted']]],
-  ['ispremium_21',['isPremium',['../class_tg_bot_1_1_user.html#ace6734ba62dc61ed390229955387c3d8',1,'TgBot::User']]],
-  ['isprimary_22',['isPrimary',['../class_tg_bot_1_1_chat_invite_link.html#a5cbc5b0989d138dbedf1dfd70e746695',1,'TgBot::ChatInviteLink']]],
-  ['isrevoked_23',['isRevoked',['../class_tg_bot_1_1_chat_invite_link.html#a39d1eba729e882a3e3c82288fe70d8bf',1,'TgBot::ChatInviteLink']]],
-  ['istopicmessage_24',['isTopicMessage',['../class_tg_bot_1_1_message.html#a10ba6b0e76da2dc0963ecf7ce21f5f69',1,'TgBot::Message']]],
-  ['isvideo_25',['isVideo',['../class_tg_bot_1_1_sticker.html#a6f1b557771bee5f4414efe53cb161b8f',1,'TgBot::Sticker::isVideo()'],['../class_tg_bot_1_1_sticker_set.html#a635ca8fe248d102194eac675c3b7da8f',1,'TgBot::StickerSet::isVideo()']]]
+  ['ispersistent_21',['isPersistent',['../class_tg_bot_1_1_reply_keyboard_markup.html#a018afdfb6d986572a67c51d00c32efe4',1,'TgBot::ReplyKeyboardMarkup']]],
+  ['ispremium_22',['isPremium',['../class_tg_bot_1_1_user.html#ace6734ba62dc61ed390229955387c3d8',1,'TgBot::User']]],
+  ['isprimary_23',['isPrimary',['../class_tg_bot_1_1_chat_invite_link.html#a5cbc5b0989d138dbedf1dfd70e746695',1,'TgBot::ChatInviteLink']]],
+  ['isrevoked_24',['isRevoked',['../class_tg_bot_1_1_chat_invite_link.html#a39d1eba729e882a3e3c82288fe70d8bf',1,'TgBot::ChatInviteLink']]],
+  ['istopicmessage_25',['isTopicMessage',['../class_tg_bot_1_1_message.html#a10ba6b0e76da2dc0963ecf7ce21f5f69',1,'TgBot::Message']]],
+  ['isvideo_26',['isVideo',['../class_tg_bot_1_1_sticker.html#a6f1b557771bee5f4414efe53cb161b8f',1,'TgBot::Sticker::isVideo()'],['../class_tg_bot_1_1_sticker_set.html#a635ca8fe248d102194eac675c3b7da8f',1,'TgBot::StickerSet::isVideo()']]]
 ];

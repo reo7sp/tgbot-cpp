@@ -134,7 +134,7 @@ Public Member Functions</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:a8e70231993cbb00a393bbaf5a62b9d02"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tg_bot_1_1_input_media_animation.html#a8e70231993cbb00a393bbaf5a62b9d02">thumb</a></td></tr>
-<tr class="memdesc:a8e70231993cbb00a393bbaf5a62b9d02"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. Thumbnail of the file sent; can be ignored if thumbnail generation for the file is supported server-side. The thumbnail should be in JPEG format and less than 200 kB in size. A thumbnail's width and height should not exceed 320. Ignored if the file is not uploaded using multipart/form-data. Thumbnails can't be reused and can be only uploaded as a new file, so you can pass “attach://&lt;file_attach_name&gt;” if the thumbnail was uploaded using multipart/form-data under &lt;file_attach_name&gt;. <a href="https://core.telegram.org/bots/api#sending-files">https://core.telegram.org/bots/api#sending-files</a>.  <a href="class_tg_bot_1_1_input_media_animation.html#a8e70231993cbb00a393bbaf5a62b9d02">More...</a><br /></td></tr>
+<tr class="memdesc:a8e70231993cbb00a393bbaf5a62b9d02"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. Thumbnail of the file sent; can be ignored if thumbnail generation for the file is supported server-side.  <a href="class_tg_bot_1_1_input_media_animation.html#a8e70231993cbb00a393bbaf5a62b9d02">More...</a><br /></td></tr>
 <tr class="separator:a8e70231993cbb00a393bbaf5a62b9d02"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4acb011d55885788e847f4b6a51b6501"><td class="memItemLeft" align="right" valign="top">std::int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tg_bot_1_1_input_media_animation.html#a4acb011d55885788e847f4b6a51b6501">width</a></td></tr>
 <tr class="memdesc:a4acb011d55885788e847f4b6a51b6501"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. <a class="el" href="class_tg_bot_1_1_animation.html" title="This object represents an animation file (GIF or H.264/MPEG-4 AVC video without sound).">Animation</a> width.  <a href="class_tg_bot_1_1_input_media_animation.html#a4acb011d55885788e847f4b6a51b6501">More...</a><br /></td></tr>
@@ -143,23 +143,26 @@ Public Attributes</h2></td></tr>
 <tr class="memdesc:a85d96d7c9ca1f8352c60cf8c8cabffd0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. <a class="el" href="class_tg_bot_1_1_animation.html" title="This object represents an animation file (GIF or H.264/MPEG-4 AVC video without sound).">Animation</a> height.  <a href="class_tg_bot_1_1_input_media_animation.html#a85d96d7c9ca1f8352c60cf8c8cabffd0">More...</a><br /></td></tr>
 <tr class="separator:a85d96d7c9ca1f8352c60cf8c8cabffd0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa5f772bd3637638664c5a329f98e0482"><td class="memItemLeft" align="right" valign="top">std::int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tg_bot_1_1_input_media_animation.html#aa5f772bd3637638664c5a329f98e0482">duration</a></td></tr>
-<tr class="memdesc:aa5f772bd3637638664c5a329f98e0482"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. <a class="el" href="class_tg_bot_1_1_animation.html" title="This object represents an animation file (GIF or H.264/MPEG-4 AVC video without sound).">Animation</a> duration.  <a href="class_tg_bot_1_1_input_media_animation.html#aa5f772bd3637638664c5a329f98e0482">More...</a><br /></td></tr>
+<tr class="memdesc:aa5f772bd3637638664c5a329f98e0482"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. <a class="el" href="class_tg_bot_1_1_animation.html" title="This object represents an animation file (GIF or H.264/MPEG-4 AVC video without sound).">Animation</a> duration in seconds.  <a href="class_tg_bot_1_1_input_media_animation.html#aa5f772bd3637638664c5a329f98e0482">More...</a><br /></td></tr>
 <tr class="separator:aa5f772bd3637638664c5a329f98e0482"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a54276e9a6fb2a330628866fb87d02fd6"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tg_bot_1_1_input_media_animation.html#a54276e9a6fb2a330628866fb87d02fd6">hasSpoiler</a></td></tr>
+<tr class="memdesc:a54276e9a6fb2a330628866fb87d02fd6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. Pass True if the animation needs to be covered with a spoiler animation.  <a href="class_tg_bot_1_1_input_media_animation.html#a54276e9a6fb2a330628866fb87d02fd6">More...</a><br /></td></tr>
+<tr class="separator:a54276e9a6fb2a330628866fb87d02fd6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_attribs_class_tg_bot_1_1_input_media"><td colspan="2" onclick="javascript:toggleInherit('pub_attribs_class_tg_bot_1_1_input_media')"><img src="closed.png" alt="-"/>&#160;Public Attributes inherited from <a class="el" href="class_tg_bot_1_1_input_media.html">TgBot::InputMedia</a></td></tr>
 <tr class="memitem:a6f6257abd52513fd9c1253c98158ed98 inherit pub_attribs_class_tg_bot_1_1_input_media"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tg_bot_1_1_input_media.html#a6f6257abd52513fd9c1253c98158ed98">type</a></td></tr>
 <tr class="memdesc:a6f6257abd52513fd9c1253c98158ed98 inherit pub_attribs_class_tg_bot_1_1_input_media"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type of the result.  <a href="class_tg_bot_1_1_input_media.html#a6f6257abd52513fd9c1253c98158ed98">More...</a><br /></td></tr>
 <tr class="separator:a6f6257abd52513fd9c1253c98158ed98 inherit pub_attribs_class_tg_bot_1_1_input_media"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3b06a5b4686339b58c4a95b5734b4b77 inherit pub_attribs_class_tg_bot_1_1_input_media"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tg_bot_1_1_input_media.html#a3b06a5b4686339b58c4a95b5734b4b77">media</a></td></tr>
-<tr class="memdesc:a3b06a5b4686339b58c4a95b5734b4b77 inherit pub_attribs_class_tg_bot_1_1_input_media"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="class_tg_bot_1_1_file.html" title="This object represents a file ready to be downloaded. The file can be downloaded via Api::downloadFil...">File</a> to send. Pass a fileId to send a file that exists on the Telegram servers (recommended), pass an HTTP URL for Telegram to get a file from the Internet, or pass “attach://&lt;file_attach_name&gt;” to upload a new one using multipart/form-data under &lt;file_attach_name&gt; name. <a href="https://core.telegram.org/bots/api#sending-files">https://core.telegram.org/bots/api#sending-files</a>.  <a href="class_tg_bot_1_1_input_media.html#a3b06a5b4686339b58c4a95b5734b4b77">More...</a><br /></td></tr>
+<tr class="memdesc:a3b06a5b4686339b58c4a95b5734b4b77 inherit pub_attribs_class_tg_bot_1_1_input_media"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="class_tg_bot_1_1_file.html" title="This object represents a file ready to be downloaded. The file can be downloaded via Api::downloadFil...">File</a> to send.  <a href="class_tg_bot_1_1_input_media.html#a3b06a5b4686339b58c4a95b5734b4b77">More...</a><br /></td></tr>
 <tr class="separator:a3b06a5b4686339b58c4a95b5734b4b77 inherit pub_attribs_class_tg_bot_1_1_input_media"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5fd875b292792f8d699d7bb678e68c90 inherit pub_attribs_class_tg_bot_1_1_input_media"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tg_bot_1_1_input_media.html#a5fd875b292792f8d699d7bb678e68c90">caption</a></td></tr>
-<tr class="memdesc:a5fd875b292792f8d699d7bb678e68c90 inherit pub_attribs_class_tg_bot_1_1_input_media"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. Caption of the media to to be sent, 0-1024 characters after entities parsing.  <a href="class_tg_bot_1_1_input_media.html#a5fd875b292792f8d699d7bb678e68c90">More...</a><br /></td></tr>
+<tr class="memdesc:a5fd875b292792f8d699d7bb678e68c90 inherit pub_attribs_class_tg_bot_1_1_input_media"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. Caption of the media to be sent, 0-1024 characters after entities parsing.  <a href="class_tg_bot_1_1_input_media.html#a5fd875b292792f8d699d7bb678e68c90">More...</a><br /></td></tr>
 <tr class="separator:a5fd875b292792f8d699d7bb678e68c90 inherit pub_attribs_class_tg_bot_1_1_input_media"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae2761ade0de31f96074d6760661c7edc inherit pub_attribs_class_tg_bot_1_1_input_media"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tg_bot_1_1_input_media.html#ae2761ade0de31f96074d6760661c7edc">parseMode</a></td></tr>
-<tr class="memdesc:ae2761ade0de31f96074d6760661c7edc inherit pub_attribs_class_tg_bot_1_1_input_media"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. Mode for parsing entities in the media caption. See <a href="https://core.telegram.org/bots/api#formatting-options">https://core.telegram.org/bots/api#formatting-options</a> for more details.  <a href="class_tg_bot_1_1_input_media.html#ae2761ade0de31f96074d6760661c7edc">More...</a><br /></td></tr>
+<tr class="memdesc:ae2761ade0de31f96074d6760661c7edc inherit pub_attribs_class_tg_bot_1_1_input_media"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. Mode for parsing entities in the media caption.  <a href="class_tg_bot_1_1_input_media.html#ae2761ade0de31f96074d6760661c7edc">More...</a><br /></td></tr>
 <tr class="separator:ae2761ade0de31f96074d6760661c7edc inherit pub_attribs_class_tg_bot_1_1_input_media"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5f7c6625006dc088bf880ea707895ee0 inherit pub_attribs_class_tg_bot_1_1_input_media"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="class_tg_bot_1_1_message_entity.html#a6710ffdbafba909633df7bcd8c488da0">MessageEntity::Ptr</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tg_bot_1_1_input_media.html#a5f7c6625006dc088bf880ea707895ee0">captionEntities</a></td></tr>
-<tr class="memdesc:a5f7c6625006dc088bf880ea707895ee0 inherit pub_attribs_class_tg_bot_1_1_input_media"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. List of special entities that appear in the caption, which can be specified instead of <a class="el" href="class_tg_bot_1_1_input_media.html#ae2761ade0de31f96074d6760661c7edc" title="Optional. Mode for parsing entities in the media caption. See https://core.telegram....">InputMedia::parseMode</a>.  <a href="class_tg_bot_1_1_input_media.html#a5f7c6625006dc088bf880ea707895ee0">More...</a><br /></td></tr>
+<tr class="memdesc:a5f7c6625006dc088bf880ea707895ee0 inherit pub_attribs_class_tg_bot_1_1_input_media"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. List of special entities that appear in the caption, which can be specified instead of parseMode.  <a href="class_tg_bot_1_1_input_media.html#a5f7c6625006dc088bf880ea707895ee0">More...</a><br /></td></tr>
 <tr class="separator:a5f7c6625006dc088bf880ea707895ee0 inherit pub_attribs_class_tg_bot_1_1_input_media"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-attribs" name="pub-static-attribs"></a>
@@ -229,9 +232,27 @@ Static Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Optional. <a class="el" href="class_tg_bot_1_1_animation.html" title="This object represents an animation file (GIF or H.264/MPEG-4 AVC video without sound).">Animation</a> duration. </p>
+<p>Optional. <a class="el" href="class_tg_bot_1_1_animation.html" title="This object represents an animation file (GIF or H.264/MPEG-4 AVC video without sound).">Animation</a> duration in seconds. </p>
 
-<p class="definition">Definition at line <a class="el" href="_input_media_animation_8h_source.html#l00050">50</a> of file <a class="el" href="_input_media_animation_8h_source.html">InputMediaAnimation.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_input_media_animation_8h_source.html#l00051">51</a> of file <a class="el" href="_input_media_animation_8h_source.html">InputMediaAnimation.h</a>.</p>
+
+</div>
+</div>
+<a id="a54276e9a6fb2a330628866fb87d02fd6" name="a54276e9a6fb2a330628866fb87d02fd6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a54276e9a6fb2a330628866fb87d02fd6">&#9670;&#160;</a></span>hasSpoiler</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool TgBot::InputMediaAnimation::hasSpoiler</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Optional. Pass True if the animation needs to be covered with a spoiler animation. </p>
+
+<p class="definition">Definition at line <a class="el" href="_input_media_animation_8h_source.html#l00056">56</a> of file <a class="el" href="_input_media_animation_8h_source.html">InputMediaAnimation.h</a>.</p>
 
 </div>
 </div>
@@ -249,7 +270,7 @@ Static Public Attributes</h2></td></tr>
 
 <p>Optional. <a class="el" href="class_tg_bot_1_1_animation.html" title="This object represents an animation file (GIF or H.264/MPEG-4 AVC video without sound).">Animation</a> height. </p>
 
-<p class="definition">Definition at line <a class="el" href="_input_media_animation_8h_source.html#l00045">45</a> of file <a class="el" href="_input_media_animation_8h_source.html">InputMediaAnimation.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_input_media_animation_8h_source.html#l00046">46</a> of file <a class="el" href="_input_media_animation_8h_source.html">InputMediaAnimation.h</a>.</p>
 
 </div>
 </div>
@@ -265,9 +286,10 @@ Static Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Optional. Thumbnail of the file sent; can be ignored if thumbnail generation for the file is supported server-side. The thumbnail should be in JPEG format and less than 200 kB in size. A thumbnail's width and height should not exceed 320. Ignored if the file is not uploaded using multipart/form-data. Thumbnails can't be reused and can be only uploaded as a new file, so you can pass “attach://&lt;file_attach_name&gt;” if the thumbnail was uploaded using multipart/form-data under &lt;file_attach_name&gt;. <a href="https://core.telegram.org/bots/api#sending-files">https://core.telegram.org/bots/api#sending-files</a>. </p>
+<p>Optional. Thumbnail of the file sent; can be ignored if thumbnail generation for the file is supported server-side. </p>
+<p >The thumbnail should be in JPEG format and less than 200 kB in size. A thumbnail's width and height should not exceed 320. Ignored if the file is not uploaded using multipart/form-data. Thumbnails can't be reused and can be only uploaded as a new file, so you can pass “attach://&lt;file_attach_name&gt;” if the thumbnail was uploaded using multipart/form-data under &lt;file_attach_name&gt;. <a href="https://core.telegram.org/bots/api#sending-files">https://core.telegram.org/bots/api#sending-files</a> </p>
 
-<p class="definition">Definition at line <a class="el" href="_input_media_animation_8h_source.html#l00035">35</a> of file <a class="el" href="_input_media_animation_8h_source.html">InputMediaAnimation.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_input_media_animation_8h_source.html#l00036">36</a> of file <a class="el" href="_input_media_animation_8h_source.html">InputMediaAnimation.h</a>.</p>
 
 </div>
 </div>
@@ -309,7 +331,7 @@ Static Public Attributes</h2></td></tr>
 
 <p>Optional. <a class="el" href="class_tg_bot_1_1_animation.html" title="This object represents an animation file (GIF or H.264/MPEG-4 AVC video without sound).">Animation</a> width. </p>
 
-<p class="definition">Definition at line <a class="el" href="_input_media_animation_8h_source.html#l00040">40</a> of file <a class="el" href="_input_media_animation_8h_source.html">InputMediaAnimation.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_input_media_animation_8h_source.html#l00041">41</a> of file <a class="el" href="_input_media_animation_8h_source.html">InputMediaAnimation.h</a>.</p>
 
 </div>
 </div>
@@ -322,7 +344,7 @@ Static Public Attributes</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespace_tg_bot.html">TgBot</a></li><li class="navelem"><a class="el" href="class_tg_bot_1_1_input_media_animation.html">InputMediaAnimation</a></li>
-    <li class="footer">Generated on Tue Nov 8 2022 15:20:01 for tgbot-cpp by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.5 </li>
+    <li class="footer">Generated on Wed Jan 4 2023 23:15:17 for tgbot-cpp by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.5 </li>
   </ul>
 </div>
 </body>

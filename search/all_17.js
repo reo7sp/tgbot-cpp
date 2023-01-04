@@ -10,5 +10,8 @@ var searchData=
   ['webhookinfo_7',['WebhookInfo',['../class_tg_bot_1_1_webhook_info.html',1,'TgBot']]],
   ['webhookinfo_2eh_8',['WebhookInfo.h',['../_webhook_info_8h.html',1,'']]],
   ['width_9',['width',['../class_tg_bot_1_1_animation.html#aa77b1558a9065bffa0b0f218499a3a8e',1,'TgBot::Animation::width()'],['../class_tg_bot_1_1_input_media_animation.html#a4acb011d55885788e847f4b6a51b6501',1,'TgBot::InputMediaAnimation::width()'],['../class_tg_bot_1_1_input_media_video.html#af72ea0910d138e6c8f04af0d9f84f640',1,'TgBot::InputMediaVideo::width()'],['../class_tg_bot_1_1_photo_size.html#a16df78bbeb13cf4969031b42691c9b77',1,'TgBot::PhotoSize::width()'],['../class_tg_bot_1_1_sticker.html#a5293cffae2125fdd6fc37a93b7a73f32',1,'TgBot::Sticker::width()'],['../class_tg_bot_1_1_video.html#a758db27186352b4f8dd471455937e624',1,'TgBot::Video::width()']]],
-  ['write_10',['write',['../namespace_file_tools.html#a6471554bc576e86efe50ebbab7bcdb66',1,'FileTools']]]
+  ['write_10',['write',['../namespace_file_tools.html#a6471554bc576e86efe50ebbab7bcdb66',1,'FileTools']]],
+  ['writeaccessallowed_11',['WriteAccessAllowed',['../class_tg_bot_1_1_write_access_allowed.html',1,'TgBot']]],
+  ['writeaccessallowed_12',['writeAccessAllowed',['../class_tg_bot_1_1_message.html#a8972ab7fadd62b1288f3cc39278567e2',1,'TgBot::Message']]],
+  ['writeaccessallowed_2eh_13',['WriteAccessAllowed.h',['../_write_access_allowed_8h.html',1,'']]]
 ];

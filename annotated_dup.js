@@ -46,9 +46,12 @@ var annotated_dup =
       [ "ForumTopic", "class_tg_bot_1_1_forum_topic.html", "class_tg_bot_1_1_forum_topic" ],
       [ "ForumTopicClosed", "class_tg_bot_1_1_forum_topic_closed.html", "class_tg_bot_1_1_forum_topic_closed" ],
       [ "ForumTopicCreated", "class_tg_bot_1_1_forum_topic_created.html", "class_tg_bot_1_1_forum_topic_created" ],
+      [ "ForumTopicEdited", "class_tg_bot_1_1_forum_topic_edited.html", "class_tg_bot_1_1_forum_topic_edited" ],
       [ "ForumTopicReopened", "class_tg_bot_1_1_forum_topic_reopened.html", "class_tg_bot_1_1_forum_topic_reopened" ],
       [ "Game", "class_tg_bot_1_1_game.html", "class_tg_bot_1_1_game" ],
       [ "GameHighScore", "class_tg_bot_1_1_game_high_score.html", "class_tg_bot_1_1_game_high_score" ],
+      [ "GeneralForumTopicHidden", "class_tg_bot_1_1_general_forum_topic_hidden.html", "class_tg_bot_1_1_general_forum_topic_hidden" ],
+      [ "GeneralForumTopicUnhidden", "class_tg_bot_1_1_general_forum_topic_unhidden.html", "class_tg_bot_1_1_general_forum_topic_unhidden" ],
       [ "GenericReply", "class_tg_bot_1_1_generic_reply.html", "class_tg_bot_1_1_generic_reply" ],
       [ "HttpClient", "class_tg_bot_1_1_http_client.html", "class_tg_bot_1_1_http_client" ],
       [ "HttpParser", "class_tg_bot_1_1_http_parser.html", "class_tg_bot_1_1_http_parser" ],
@@ -154,6 +157,7 @@ var annotated_dup =
       [ "Voice", "class_tg_bot_1_1_voice.html", "class_tg_bot_1_1_voice" ],
       [ "WebAppData", "class_tg_bot_1_1_web_app_data.html", "class_tg_bot_1_1_web_app_data" ],
       [ "WebAppInfo", "class_tg_bot_1_1_web_app_info.html", "class_tg_bot_1_1_web_app_info" ],
-      [ "WebhookInfo", "class_tg_bot_1_1_webhook_info.html", "class_tg_bot_1_1_webhook_info" ]
+      [ "WebhookInfo", "class_tg_bot_1_1_webhook_info.html", "class_tg_bot_1_1_webhook_info" ],
+      [ "WriteAccessAllowed", "class_tg_bot_1_1_write_access_allowed.html", "class_tg_bot_1_1_write_access_allowed" ]
     ] ]
 ];

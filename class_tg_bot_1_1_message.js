@@ -18,6 +18,7 @@ var class_tg_bot_1_1_message =
     [ "entities", "class_tg_bot_1_1_message.html#a53c199056538ebe72c65e409deaf7a8e", null ],
     [ "forumTopicClosed", "class_tg_bot_1_1_message.html#aff5f52e61c6152baf7b6e5f6cd6ddbd1", null ],
     [ "forumTopicCreated", "class_tg_bot_1_1_message.html#ae5bc39c572aa0f81fde6c3272699b304", null ],
+    [ "forumTopicEdited", "class_tg_bot_1_1_message.html#a14f2b44b7919c3ded2058c7249932923", null ],
     [ "forumTopicReopened", "class_tg_bot_1_1_message.html#a39297d610f167adeb2341c9c26ae65a6", null ],
     [ "forwardDate", "class_tg_bot_1_1_message.html#a94e9d1e38a8cb12932f5718dd5d7fdbc", null ],
     [ "forwardFrom", "class_tg_bot_1_1_message.html#a7e4d984cb1464d0ae504d7c8ed11b508", null ],
@@ -27,7 +28,10 @@ var class_tg_bot_1_1_message =
     [ "forwardSignature", "class_tg_bot_1_1_message.html#a70f5fe7a8e14b0ce0842fa8661492e4a", null ],
     [ "from", "class_tg_bot_1_1_message.html#a65b78a13b38ad767338cd2e9d2e69ca2", null ],
     [ "game", "class_tg_bot_1_1_message.html#a64216e0a25408a6946fcebebf5b38307", null ],
+    [ "generalForumTopicHidden", "class_tg_bot_1_1_message.html#a258b68396cb3fc3553d96208f48aefc3", null ],
+    [ "generalForumTopicUnhidden", "class_tg_bot_1_1_message.html#adadba3b8c1f0823c45367fe0965d9f13", null ],
     [ "groupChatCreated", "class_tg_bot_1_1_message.html#a5bbf76e34ec52a41a6392f7d61c19035", null ],
+    [ "hasMediaSpoiler", "class_tg_bot_1_1_message.html#a75d34a9ea323b75472907545f2985634", null ],
     [ "hasProtectedContent", "class_tg_bot_1_1_message.html#a5ff9a1e2a031eac4334a0c50a99e34fd", null ],
     [ "invoice", "class_tg_bot_1_1_message.html#ade904bacf5a1b53b09924ebb965a3832", null ],
     [ "isAutomaticForward", "class_tg_bot_1_1_message.html#aa825a43feb82f9ca7385a844e701b338", null ],
@@ -64,5 +68,6 @@ var class_tg_bot_1_1_message =
     [ "videoChatStarted", "class_tg_bot_1_1_message.html#a5c380c66e59aa38a56148d77428215e4", null ],
     [ "videoNote", "class_tg_bot_1_1_message.html#a396f8dfc81ee298fe1ea48546f7b2f84", null ],
     [ "voice", "class_tg_bot_1_1_message.html#a45147e56a0cb9b7dee926da7a11a0093", null ],
-    [ "webAppData", "class_tg_bot_1_1_message.html#a00204c5e0135b9852fd47f731ff5f39e", null ]
+    [ "webAppData", "class_tg_bot_1_1_message.html#a00204c5e0135b9852fd47f731ff5f39e", null ],
+    [ "writeAccessAllowed", "class_tg_bot_1_1_message.html#a8972ab7fadd62b1288f3cc39278567e2", null ]
 ];

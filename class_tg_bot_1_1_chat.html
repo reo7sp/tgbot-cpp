@@ -179,6 +179,12 @@ Public Attributes</h2></td></tr>
 <tr class="memitem:a8bbf4ddfca42b8b46af4a71b512fab79"><td class="memItemLeft" align="right" valign="top">std::int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tg_bot_1_1_chat.html#a8bbf4ddfca42b8b46af4a71b512fab79">messageAutoDeleteTime</a></td></tr>
 <tr class="memdesc:a8bbf4ddfca42b8b46af4a71b512fab79"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. The time after which all messages sent to the chat will be automatically deleted; in seconds.  <a href="class_tg_bot_1_1_chat.html#a8bbf4ddfca42b8b46af4a71b512fab79">More...</a><br /></td></tr>
 <tr class="separator:a8bbf4ddfca42b8b46af4a71b512fab79"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a642da5c21f7fd146908f24ab1c47c154"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tg_bot_1_1_chat.html#a642da5c21f7fd146908f24ab1c47c154">hasAggressiveAntiSpamEnabled</a></td></tr>
+<tr class="memdesc:a642da5c21f7fd146908f24ab1c47c154"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. True, if aggressive anti-spam checks are enabled in the supergroup.  <a href="class_tg_bot_1_1_chat.html#a642da5c21f7fd146908f24ab1c47c154">More...</a><br /></td></tr>
+<tr class="separator:a642da5c21f7fd146908f24ab1c47c154"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a54d814c559379fb43af91c5fc68a1e3d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tg_bot_1_1_chat.html#a54d814c559379fb43af91c5fc68a1e3d">hasHiddenMembers</a></td></tr>
+<tr class="memdesc:a54d814c559379fb43af91c5fc68a1e3d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. True, if non-administrators can only get the list of bots and administrators in the chat.  <a href="class_tg_bot_1_1_chat.html#a54d814c559379fb43af91c5fc68a1e3d">More...</a><br /></td></tr>
+<tr class="separator:a54d814c559379fb43af91c5fc68a1e3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6e749f4fe47340a468301899a3c9c616"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tg_bot_1_1_chat.html#a6e749f4fe47340a468301899a3c9c616">hasProtectedContent</a></td></tr>
 <tr class="memdesc:a6e749f4fe47340a468301899a3c9c616"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. True, if messages from the chat can't be forwarded to other chats.  <a href="class_tg_bot_1_1_chat.html#a6e749f4fe47340a468301899a3c9c616">More...</a><br /></td></tr>
 <tr class="separator:a6e749f4fe47340a468301899a3c9c616"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -303,7 +309,7 @@ Public Attributes</h2></td></tr>
 <p>Optional. True, if the bot can change the group sticker set. </p>
 <p >Returned only in <a class="el" href="class_tg_bot_1_1_api.html#a48cfa16d3e2ef7208caf1d1788761aa6" title="Use this method to get up to date information about the chat (current name of the user for one-on-one...">Api::getChat</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="_chat_8h_source.html#l00189">189</a> of file <a class="el" href="_chat_8h_source.html">Chat.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_chat_8h_source.html#l00204">204</a> of file <a class="el" href="_chat_8h_source.html">Chat.h</a>.</p>
 
 </div>
 </div>
@@ -363,6 +369,44 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
+<a id="a642da5c21f7fd146908f24ab1c47c154" name="a642da5c21f7fd146908f24ab1c47c154"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a642da5c21f7fd146908f24ab1c47c154">&#9670;&#160;</a></span>hasAggressiveAntiSpamEnabled</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool TgBot::Chat::hasAggressiveAntiSpamEnabled</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Optional. True, if aggressive anti-spam checks are enabled in the supergroup. </p>
+<p >The field is only available to chat administrators. Returned only in <a class="el" href="class_tg_bot_1_1_api.html#a48cfa16d3e2ef7208caf1d1788761aa6" title="Use this method to get up to date information about the chat (current name of the user for one-on-one...">Api::getChat</a>. </p>
+
+<p class="definition">Definition at line <a class="el" href="_chat_8h_source.html#l00176">176</a> of file <a class="el" href="_chat_8h_source.html">Chat.h</a>.</p>
+
+</div>
+</div>
+<a id="a54d814c559379fb43af91c5fc68a1e3d" name="a54d814c559379fb43af91c5fc68a1e3d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a54d814c559379fb43af91c5fc68a1e3d">&#9670;&#160;</a></span>hasHiddenMembers</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool TgBot::Chat::hasHiddenMembers</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Optional. True, if non-administrators can only get the list of bots and administrators in the chat. </p>
+<p >Returned only in <a class="el" href="class_tg_bot_1_1_api.html#a48cfa16d3e2ef7208caf1d1788761aa6" title="Use this method to get up to date information about the chat (current name of the user for one-on-one...">Api::getChat</a>. </p>
+
+<p class="definition">Definition at line <a class="el" href="_chat_8h_source.html#l00183">183</a> of file <a class="el" href="_chat_8h_source.html">Chat.h</a>.</p>
+
+</div>
+</div>
 <a id="a59d90603c32220999ff5280afdeefd1c" name="a59d90603c32220999ff5280afdeefd1c"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a59d90603c32220999ff5280afdeefd1c">&#9670;&#160;</a></span>hasPrivateForwards</h2>
 
@@ -397,7 +441,7 @@ Public Attributes</h2></td></tr>
 <p>Optional. True, if messages from the chat can't be forwarded to other chats. </p>
 <p >Returned only in <a class="el" href="class_tg_bot_1_1_api.html#a48cfa16d3e2ef7208caf1d1788761aa6" title="Use this method to get up to date information about the chat (current name of the user for one-on-one...">Api::getChat</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="_chat_8h_source.html#l00175">175</a> of file <a class="el" href="_chat_8h_source.html">Chat.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_chat_8h_source.html#l00190">190</a> of file <a class="el" href="_chat_8h_source.html">Chat.h</a>.</p>
 
 </div>
 </div>
@@ -547,7 +591,7 @@ Public Attributes</h2></td></tr>
 <p>Optional. Unique identifier for the linked chat, i.e. the discussion group identifier for a channel and vice versa; for supergroups and channel chats. </p>
 <p >This identifier may be greater than 32 bits and some programming languages may have difficulty/silent defects in interpreting it. But it is smaller than 52 bits, so a signed 64 bit integer or double-precision float type are safe for storing this identifier. Returned only in <a class="el" href="class_tg_bot_1_1_api.html#a48cfa16d3e2ef7208caf1d1788761aa6" title="Use this method to get up to date information about the chat (current name of the user for one-on-one...">Api::getChat</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="_chat_8h_source.html#l00198">198</a> of file <a class="el" href="_chat_8h_source.html">Chat.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_chat_8h_source.html#l00213">213</a> of file <a class="el" href="_chat_8h_source.html">Chat.h</a>.</p>
 
 </div>
 </div>
@@ -566,7 +610,7 @@ Public Attributes</h2></td></tr>
 <p>Optional. For supergroups, the location to which the supergroup is connected. </p>
 <p >Returned only in <a class="el" href="class_tg_bot_1_1_api.html#a48cfa16d3e2ef7208caf1d1788761aa6" title="Use this method to get up to date information about the chat (current name of the user for one-on-one...">Api::getChat</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="_chat_8h_source.html#l00205">205</a> of file <a class="el" href="_chat_8h_source.html">Chat.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_chat_8h_source.html#l00220">220</a> of file <a class="el" href="_chat_8h_source.html">Chat.h</a>.</p>
 
 </div>
 </div>
@@ -680,7 +724,7 @@ Public Attributes</h2></td></tr>
 <p>Optional. For supergroups, name of group sticker set. </p>
 <p >Returned only in <a class="el" href="class_tg_bot_1_1_api.html#a48cfa16d3e2ef7208caf1d1788761aa6" title="Use this method to get up to date information about the chat (current name of the user for one-on-one...">Api::getChat</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="_chat_8h_source.html#l00182">182</a> of file <a class="el" href="_chat_8h_source.html">Chat.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_chat_8h_source.html#l00197">197</a> of file <a class="el" href="_chat_8h_source.html">Chat.h</a>.</p>
 
 </div>
 </div>
@@ -747,7 +791,7 @@ Public Attributes</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespace_tg_bot.html">TgBot</a></li><li class="navelem"><a class="el" href="class_tg_bot_1_1_chat.html">Chat</a></li>
-    <li class="footer">Generated on Tue Nov 8 2022 15:20:00 for tgbot-cpp by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.5 </li>
+    <li class="footer">Generated on Wed Jan 4 2023 23:15:16 for tgbot-cpp by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.5 </li>
   </ul>
 </div>
 </body>

@@ -13,6 +13,8 @@ var class_tg_bot_1_1_chat =
     [ "description", "class_tg_bot_1_1_chat.html#a8f87f388215d07bb2745cdf2600ff299", null ],
     [ "emojiStatusCustomEmojiId", "class_tg_bot_1_1_chat.html#a59151510a8cad1b3af517ba397e1106d", null ],
     [ "firstName", "class_tg_bot_1_1_chat.html#a884c0c1c6d6f0a5453231f7b9049da29", null ],
+    [ "hasAggressiveAntiSpamEnabled", "class_tg_bot_1_1_chat.html#a642da5c21f7fd146908f24ab1c47c154", null ],
+    [ "hasHiddenMembers", "class_tg_bot_1_1_chat.html#a54d814c559379fb43af91c5fc68a1e3d", null ],
     [ "hasPrivateForwards", "class_tg_bot_1_1_chat.html#a59d90603c32220999ff5280afdeefd1c", null ],
     [ "hasProtectedContent", "class_tg_bot_1_1_chat.html#a6e749f4fe47340a468301899a3c9c616", null ],
     [ "hasRestrictedVoiceAndVideoMessages", "class_tg_bot_1_1_chat.html#a6002ed2a694def78dbf8a02d719a861b", null ],
