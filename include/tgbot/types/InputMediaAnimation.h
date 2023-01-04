@@ -26,6 +26,7 @@ public:
 
     /**
      * @brief Optional. Thumbnail of the file sent; can be ignored if thumbnail generation for the file is supported server-side.
+     * 
      * The thumbnail should be in JPEG format and less than 200 kB in size.
      * A thumbnail's width and height should not exceed 320.
      * Ignored if the file is not uploaded using multipart/form-data.
@@ -45,9 +46,14 @@ public:
     std::int32_t height;
 
     /**
-     * @brief Optional. Animation duration
+     * @brief Optional. Animation duration in seconds
      */
     std::int32_t duration;
+
+    /**
+     * @brief Optional. Pass True if the animation needs to be covered with a spoiler animation
+     */
+    bool hasSpoiler;
 };
 }
 

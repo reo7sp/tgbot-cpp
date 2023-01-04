@@ -4,7 +4,6 @@
 #include "tgbot/types/InputMedia.h"
 
 #include <memory>
-#include <string>
 
 namespace TgBot {
 
@@ -22,6 +21,11 @@ public:
     InputMediaPhoto() {
         this->type = TYPE;
     }
+
+    /**
+     * @brief Optional. Pass True if the photo needs to be covered with a spoiler animation
+     */
+    bool hasSpoiler;
 };
 }
 

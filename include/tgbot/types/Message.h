@@ -22,11 +22,15 @@
 #include "tgbot/types/MessageAutoDeleteTimerChanged.h"
 #include "tgbot/types/Invoice.h"
 #include "tgbot/types/SuccessfulPayment.h"
+#include "tgbot/types/WriteAccessAllowed.h"
 #include "tgbot/types/PassportData.h"
 #include "tgbot/types/ProximityAlertTriggered.h"
 #include "tgbot/types/ForumTopicCreated.h"
+#include "tgbot/types/ForumTopicEdited.h"
 #include "tgbot/types/ForumTopicClosed.h"
 #include "tgbot/types/ForumTopicReopened.h"
+#include "tgbot/types/GeneralForumTopicHidden.h"
+#include "tgbot/types/GeneralForumTopicUnhidden.h"
 #include "tgbot/types/VideoChatScheduled.h"
 #include "tgbot/types/VideoChatStarted.h"
 #include "tgbot/types/VideoChatEnded.h"
@@ -220,6 +224,11 @@ public:
     std::vector<MessageEntity::Ptr> captionEntities;
 
     /**
+     * @brief Optional. True, if the message media is covered by a spoiler animation
+     */
+    bool hasMediaSpoiler;
+
+    /**
      * @brief Optional. Message is a shared contact, information about the contact
      */
     Contact::Ptr contact;
@@ -347,6 +356,11 @@ public:
     std::string connectedWebsite;
 
     /**
+     * @brief Optional. Service message: the user allowed the bot added to the attachment menu to write messages
+     */
+    WriteAccessAllowed::Ptr writeAccessAllowed;
+
+    /**
      * @brief Optional. Telegram Passport data
      */
     PassportData::Ptr passportData;
@@ -364,6 +378,11 @@ public:
     ForumTopicCreated::Ptr forumTopicCreated;
 
     /**
+     * @brief Optional. Service message: forum topic edited
+     */
+    ForumTopicEdited::Ptr forumTopicEdited;
+
+    /**
      * @brief Optional. Service message: forum topic closed
      */
     ForumTopicClosed::Ptr forumTopicClosed;
@@ -372,6 +391,16 @@ public:
      * @brief Optional. Service message: forum topic reopened
      */
     ForumTopicReopened::Ptr forumTopicReopened;
+
+    /**
+     * @brief Optional. Service message: the 'General' forum topic hidden
+     */
+    GeneralForumTopicHidden::Ptr generalForumTopicHidden;
+
+    /**
+     * @brief Optional. Service message: the 'General' forum topic unhidden
+     */
+    GeneralForumTopicUnhidden::Ptr generalForumTopicUnhidden;
 
     /**
      * @brief Optional. Service message: video chat scheduled
