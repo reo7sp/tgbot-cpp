@@ -6,7 +6,6 @@
 
 #include <tgbot/tgbot.h>
 
-
 using namespace std;
 using namespace TgBot;
 
