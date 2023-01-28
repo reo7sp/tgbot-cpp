@@ -21,7 +21,7 @@ int main() {
         printf("User wrote %s\n", message->text.c_str());
 
         File::Ptr file = bot.getApi().getFile(message->document->fileId);
-        std::string fileContent = bot.getApi().downloadFile(file->filePath);
+        string fileContent = bot.getApi().downloadFile(file->filePath);
 
         if (StringTools::startsWith(message->text, "/start")) {
             return;
