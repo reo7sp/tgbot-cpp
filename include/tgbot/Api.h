@@ -1982,12 +1982,13 @@ public:
      * @return Returns True if bot is blocked by user
      */
     bool blockedByUser(std::int64_t chatId) const;
+
+    const HttpClient& _httpClient;
     
 private:
     boost::property_tree::ptree sendRequest(const std::string& method, const std::vector<HttpReqArg>& args = std::vector<HttpReqArg>()) const;
 
     const std::string _token;
-    const HttpClient& _httpClient;
     const TgTypeParser _tgTypeParser;
     const std::string _url;
 };
