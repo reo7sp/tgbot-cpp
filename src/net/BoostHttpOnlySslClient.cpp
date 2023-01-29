@@ -52,7 +52,7 @@ string BoostHttpOnlySslClient::makeRequest(const Url& url, const vector<HttpReqA
     struct timeval timeStruct;
     
     // set the timeout to 20 seconds
-    timeStruct.tv_sec = 20;
+    timeStruct.tv_sec = _timeout;
     timeStruct.tv_usec = 0;
     FD_ZERO(&fileDescriptorSet);
     
