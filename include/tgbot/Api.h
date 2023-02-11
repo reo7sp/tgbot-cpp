@@ -770,7 +770,7 @@ public:
      * @brief Use this method to get basic information about a file and prepare it for downloading.
      * 
      * For the moment, bots can download files of up to 20MB in size.
-     * The file can then be downloaded via Api::downloadFile, where filePath is taken from the response.
+     * The file can then be downloaded via Api::downloadFile or via the link https://api.telegram.org/file/bot<token>/<filePath>, where filePath is taken from the response.
      * It is guaranteed that the filePath will be valid for at least 1 hour.
      * When the link expires, a new one can be requested by calling Api::getFile again.
      * 
@@ -823,20 +823,22 @@ public:
     /**
      * @brief Use this method to restrict a user in a supergroup.
      * 
-     * The bot must be an administrator in the supergroup for this to work and must have the appropriate admin rights.
+     * The bot must be an administrator in the supergroup for this to work and must have the appropriate administrator rights.
      * Pass True for all permissions to lift restrictions from a user.
      * 
      * @param chatId Unique identifier for the target chat or username of the target supergroup (in the format @supergroupusername)
      * @param userId Unique identifier of the target user
      * @param permissions A JSON-serialized object for new user permissions
      * @param untilDate Optional. Date when restrictions will be lifted for the user, unix time. If user is restricted for more than 366 days or less than 30 seconds from the current time, they are considered to be restricted forever
+     * @param useIndependentChatPermissions Optional. Pass True if chat permissions are set independently. Otherwise, the canSendOtherMessages and canAddWebPagPreviews permissions will imply the canSendMessages, canSendAudios, canSendDocuments, canSendPhotos, canSendVideos, canSendVideoNotes, and canSendVoiceNotes permissions; the canSendPolls permission will imply the canSendMessages permission.
      * 
      * @return Returns True on success.
      */
     bool restrictChatMember(boost::variant<std::int64_t, std::string> chatId,
                             std::int64_t userId,
                             ChatPermissions::Ptr permissions,
-                            std::int64_t untilDate = 0) const;
+                            std::int64_t untilDate = 0,
+                            bool useIndependentChatPermissions = false) const;
 
     /**
      * @brief Use this method to promote or demote a user in a supergroup or a channel.
@@ -852,7 +854,7 @@ public:
      * @param canDeleteMessages Optional. Pass True if the administrator can delete messages of other users
      * @param canInviteUsers Optional. Pass True if the administrator can invite new users to the chat
      * @param canPinMessages Optional. Pass True if the administrator can pin messages, supergroups only
-     * @param canPromoteMembers Optional. Pass True if the administrator can add new administrators with a subset of their own privileges or demote administrators that he has promoted, directly or indirectly (promoted by administrators that were appointed by him)
+     * @param canPromoteMembers Optional. Pass True if the administrator can add new administrators with a subset of their own privileges or demote administrators that they have promoted, directly or indirectly (promoted by administrators that were appointed by him)
      * @param isAnonymous Optional. Pass True if the administrator's presence in the chat is hidden
      * @param canManageChat Optional. Pass True if the administrator can access the chat event log, chat statistics, message statistics in channels, see channel members, see anonymous administrators in supergroups and ignore slow mode. Implied by any other administrator privilege
      * @param canManageVideoChats Optional. Pass True if the administrator can manage video chats
@@ -923,11 +925,13 @@ public:
      * 
      * @param chatId Unique identifier for the target chat or username of the target supergroup (in the format @supergroupusername)
      * @param permissions A JSON-serialized object for new default chat permissions
+     * @param useIndependentChatPermissions Optional. Pass True if chat permissions are set independently. Otherwise, the canSendOtherMessages and canAddWebPagPreviews permissions will imply the canSendMessages, canSendAudios, canSendDocuments, canSendPhotos, canSendVideos, canSendVideoNotes, and canSendVoiceNotes permissions; the canSendPolls permission will imply the canSendMessages permission.
      * 
      * @return Returns True on success.
      */
     bool setChatPermissions(boost::variant<std::int64_t, std::string> chatId,
-                            ChatPermissions::Ptr permissions) const;
+                            ChatPermissions::Ptr permissions,
+                            bool useIndependentChatPermissions = false) const;
 
     /**
      * @brief Use this method to generate a new primary invite link for a chat; any previously generated primary link is revoked.
@@ -1157,7 +1161,7 @@ public:
     /**
      * @brief Use this method to get information about a member of a chat.
      * 
-     * The method is guaranteed to work for other users, only if the bot is an administrator in the chat.
+     * The method is only guaranteed to work for other users if the bot is an administrator in the chat.
      * 
      * @param chatId Unique identifier for the target chat or username of the target supergroup or channel (in the format @channelusername)
      * @param userId Unique identifier of the target user
@@ -1207,7 +1211,7 @@ public:
      * 
      * @param chatId Unique identifier for the target chat or username of the target supergroup (in the format @supergroupusername)
      * @param name Topic name, 1-128 characters
-     * @param iconColor Optional. Color of the topic icon in RGB format. Currently, must be one of 0x6FB9F0, 0xFFD67E, 0xCB86DB, 0x8EEE98, 0xFF93B2, or 0xFB6F5F
+     * @param iconColor Optional. Color of the topic icon in RGB format. Currently, must be one of 7322096 (0x6FB9F0), 16766590 (0xFFD67E), 13338331 (0xCB86DB), 9367192 (0x8EEE98), 16749490 (0xFF93B2), or 16478047 (0xFB6F5F)
      * @param iconCustomEmojiId Optional. Unique identifier of the custom emoji shown as the topic icon. Use Api::getForumTopicIconStickers to get all allowed custom emoji identifiers.
      * 
      * @return Returns information about the created topic as a ForumTopic object.

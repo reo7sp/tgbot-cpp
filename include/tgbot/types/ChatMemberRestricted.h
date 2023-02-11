@@ -31,6 +31,56 @@ public:
     bool isMember;
 
     /**
+     * @brief True, if the user is allowed to send text messages, contacts, invoices, locations and venues
+     */
+    bool canSendMessages;
+
+    /**
+     * @brief True, if the user is allowed to send audios
+     */
+    bool canSendAudios;
+
+    /**
+     * @brief True, if the user is allowed to send documents
+     */
+    bool canSendDocuments;
+
+    /**
+     * @brief True, if the user is allowed to send photos
+     */
+    bool canSendPhotos;
+
+    /**
+     * @brief True, if the user is allowed to send videos
+     */
+    bool canSendVideos;
+
+    /**
+     * @brief True, if the user is allowed to send video notes
+     */
+    bool canSendVideoNotes;
+
+    /**
+     * @brief True, if the user is allowed to send voice notes
+     */
+    bool canSendVoiceNotes;
+
+    /**
+     * @brief True, if the user is allowed to send polls
+     */
+    bool canSendPolls;
+
+    /**
+     * @brief True, if the user is allowed to send animations, games, stickers and use inline bots
+     */
+    bool canSendOtherMessages;
+
+    /**
+     * @brief True, if the user is allowed to add web page previews to their messages
+     */
+    bool canAddWebPagePreviews;
+
+    /**
      * @brief True, if the user is allowed to change the chat title, photo and other settings
      */
     bool canChangeInfo;
@@ -49,31 +99,6 @@ public:
      * @brief True, if the user is allowed to create forum topics
      */
     bool canManageTopics;
-
-    /**
-     * @brief True, if the user is allowed to send text messages, contacts, locations and venues
-     */
-    bool canSendMessages;
-
-    /**
-     * @brief True, if the user is allowed to send audios, documents, photos, videos, video notes and voice notes
-     */
-    bool canSendMediaMessages;
-
-    /**
-     * @brief True, if the user is allowed to send polls
-     */
-    bool canSendPolls;
-
-    /**
-     * @brief True, if the user is allowed to send animations, games, stickers and use inline bots
-     */
-    bool canSendOtherMessages;
-
-    /**
-     * @brief True, if the user is allowed to add web page previews to their messages
-     */
-    bool canAddWebPagePreviews;
 
     /**
      * @brief Date when restrictions will be lifted for this user; unix time.

@@ -9,7 +9,7 @@ namespace TgBot {
 
 /**
  * @brief This object represents a file ready to be downloaded.
- * The file can be downloaded via Api::downloadFile.
+ * The file can be downloaded via Api::downloadFile or via the link https://api.telegram.org/file/bot<token>/<filePath>.
  * It is guaranteed that the File::filePath will be valid for at least 1 hour.
  * When the File::filePath expires, a new one can be requested by calling Api::getFile.
  * 
@@ -43,7 +43,7 @@ public:
 
     /**
      * @brief Optional. File path.
-     * Use Api::downloadFile to get the file.
+     * Use Api::downloadFile or https://api.telegram.org/file/bot<token>/<filePath> to get the file.
      */
     std::string filePath;
 };

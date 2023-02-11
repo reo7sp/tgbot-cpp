@@ -278,6 +278,8 @@ Message::Ptr TgTypeParser::parseJsonAndGetMessage(const boost::property_tree::pt
     result->pinnedMessage = tryParseJson<Message>(&TgTypeParser::parseJsonAndGetMessage, data, "pinned_message");
     result->invoice = tryParseJson<Invoice>(&TgTypeParser::parseJsonAndGetInvoice, data, "invoice");
     result->successfulPayment = tryParseJson<SuccessfulPayment>(&TgTypeParser::parseJsonAndGetSuccessfulPayment, data, "successful_payment");
+    result->userShared = tryParseJson<UserShared>(&TgTypeParser::parseJsonAndGetUserShared, data, "user_shared");
+    result->chatShared = tryParseJson<ChatShared>(&TgTypeParser::parseJsonAndGetChatShared, data, "chat_shared");
     result->connectedWebsite = data.get<std::string>("connected_website", "");
     result->writeAccessAllowed = tryParseJson<WriteAccessAllowed>(&TgTypeParser::parseJsonAndGetWriteAccessAllowed, data, "write_access_allowed");
     result->passportData = tryParseJson<PassportData>(&TgTypeParser::parseJsonAndGetPassportData, data, "passport_data");
@@ -356,6 +358,8 @@ std::string TgTypeParser::parseMessage(const Message::Ptr& object) const {
     appendToJson(result, "pinned_message", parseMessage(object->pinnedMessage));
     appendToJson(result, "invoice", parseInvoice(object->invoice));
     appendToJson(result, "successful_payment", parseSuccessfulPayment(object->successfulPayment));
+    appendToJson(result, "user_shared", parseUserShared(object->userShared));
+    appendToJson(result, "chat_shared", parseChatShared(object->chatShared));
     appendToJson(result, "connected_website", object->connectedWebsite);
     appendToJson(result, "write_access_allowed", parseWriteAccessAllowed(object->writeAccessAllowed));
     appendToJson(result, "passport_data", parsePassportData(object->passportData));
@@ -1063,6 +1067,46 @@ std::string TgTypeParser::parseGeneralForumTopicUnhidden(const GeneralForumTopic
     return result;
 }
 
+UserShared::Ptr TgTypeParser::parseJsonAndGetUserShared(const boost::property_tree::ptree& data) const {
+    auto result(std::make_shared<UserShared>());
+    result->requestId = data.get<std::int32_t>("request_id", 0);
+    result->userId = data.get<std::int64_t>("user_id", 0);
+    return result;
+}
+
+std::string TgTypeParser::parseUserShared(const UserShared::Ptr& object) const {
+    if (!object) {
+        return "";
+    }
+    std::string result;
+    result += '{';
+    appendToJson(result, "request_id", object->requestId);
+    appendToJson(result, "user_id", object->userId);
+    removeLastComma(result);
+    result += '}';
+    return result;
+}
+
+ChatShared::Ptr TgTypeParser::parseJsonAndGetChatShared(const boost::property_tree::ptree& data) const {
+    auto result(std::make_shared<ChatShared>());
+    result->requestId = data.get<std::int32_t>("request_id", 0);
+    result->userId = data.get<std::int64_t>("user_id", 0);
+    return result;
+}
+
+std::string TgTypeParser::parseChatShared(const ChatShared::Ptr& object) const {
+    if (!object) {
+        return "";
+    }
+    std::string result;
+    result += '{';
+    appendToJson(result, "request_id", object->requestId);
+    appendToJson(result, "user_id", object->userId);
+    removeLastComma(result);
+    result += '}';
+    return result;
+}
+
 WriteAccessAllowed::Ptr TgTypeParser::parseJsonAndGetWriteAccessAllowed(const boost::property_tree::ptree& data) const {
     auto result(std::make_shared<WriteAccessAllowed>());
     return result;
@@ -1255,6 +1299,8 @@ std::string TgTypeParser::parseReplyKeyboardMarkup(const ReplyKeyboardMarkup::Pt
 KeyboardButton::Ptr TgTypeParser::parseJsonAndGetKeyboardButton(const boost::property_tree::ptree& data) const {
     auto result(std::make_shared<KeyboardButton>());
     result->text = data.get<std::string>("text", "");
+    result->requestUser = tryParseJson<KeyboardButtonRequestUser>(&TgTypeParser::parseJsonAndGetKeyboardButtonRequestUser, data, "request_user");
+    result->requestChat = tryParseJson<KeyboardButtonRequestChat>(&TgTypeParser::parseJsonAndGetKeyboardButtonRequestChat, data, "request_chat");
     result->requestContact = data.get<bool>("request_contact", false);
     result->requestLocation = data.get<bool>("request_location", false);
     result->requestPoll = tryParseJson<KeyboardButtonPollType>(&TgTypeParser::parseJsonAndGetKeyboardButtonPollType, data, "request_poll");
@@ -1269,10 +1315,66 @@ std::string TgTypeParser::parseKeyboardButton(const KeyboardButton::Ptr& object)
     std::string result;
     result += '{';
     appendToJson(result, "text", object->text);
+    appendToJson(result, "request_user", parseKeyboardButtonRequestUser(object->requestUser));
+    appendToJson(result, "request_chat", parseKeyboardButtonRequestChat(object->requestChat));
     appendToJson(result, "request_contact", object->requestContact);
     appendToJson(result, "request_location", object->requestLocation);
     appendToJson(result, "request_poll", parseKeyboardButtonPollType(object->requestPoll));
     appendToJson(result, "web_app", parseWebAppInfo(object->webApp));
+    removeLastComma(result);
+    result += '}';
+    return result;
+}
+
+KeyboardButtonRequestUser::Ptr TgTypeParser::parseJsonAndGetKeyboardButtonRequestUser(const boost::property_tree::ptree& data) const {
+    auto result(std::make_shared<KeyboardButtonRequestUser>());
+    result->requestId = data.get<std::int32_t>("request_id", 0);
+    result->userIsBot = data.get<bool>("user_is_bot", false);
+    result->userIsPremium = data.get<bool>("user_is_premium", false);
+    return result;
+}
+
+std::string TgTypeParser::parseKeyboardButtonRequestUser(const KeyboardButtonRequestUser::Ptr& object) const {
+    if (!object) {
+        return "";
+    }
+    std::string result;
+    result += '{';
+    appendToJson(result, "request_id", object->requestId);
+    appendToJson(result, "user_is_bot", object->userIsBot);
+    appendToJson(result, "user_is_premium", object->userIsPremium);
+    removeLastComma(result);
+    result += '}';
+    return result;
+}
+
+KeyboardButtonRequestChat::Ptr TgTypeParser::parseJsonAndGetKeyboardButtonRequestChat(const boost::property_tree::ptree& data) const {
+    auto result(std::make_shared<KeyboardButtonRequestChat>());
+    result->requestId = data.get<std::int32_t>("request_id", 0);
+    result->chatIsChannel = data.get<bool>("chat_is_channel", false);
+    result->chatIsForum = data.get<bool>("chat_is_forum", false);
+    result->chatHasUsername = data.get<bool>("chat_has_username", false);
+    result->chatIsCreated = data.get<bool>("chat_is_created", false);
+    result->userAdministratorRights = tryParseJson<ChatAdministratorRights>(&TgTypeParser::parseJsonAndGetChatAdministratorRights, data, "user_administrator_rights");
+    result->botAdministratorRights = tryParseJson<ChatAdministratorRights>(&TgTypeParser::parseJsonAndGetChatAdministratorRights, data, "bot_administrator_rights");
+    result->botIsMember = data.get<bool>("bot_is_member", false);
+    return result;
+}
+
+std::string TgTypeParser::parseKeyboardButtonRequestChat(const KeyboardButtonRequestChat::Ptr& object) const {
+    if (!object) {
+        return "";
+    }
+    std::string result;
+    result += '{';
+    appendToJson(result, "request_id", object->requestId);
+    appendToJson(result, "chat_is_channel", object->chatIsChannel);
+    appendToJson(result, "chat_is_forum", object->chatIsForum);
+    appendToJson(result, "chat_has_username", object->chatHasUsername);
+    appendToJson(result, "chat_is_created", object->chatIsCreated);
+    appendToJson(result, "user_administrator_rights", parseChatAdministratorRights(object->userAdministratorRights));
+    appendToJson(result, "bot_administrator_rights", parseChatAdministratorRights(object->botAdministratorRights));
+    appendToJson(result, "bot_is_member", object->botIsMember);
     removeLastComma(result);
     result += '}';
     return result;
@@ -1693,15 +1795,20 @@ ChatMemberRestricted::Ptr TgTypeParser::parseJsonAndGetChatMemberRestricted(cons
     // NOTE: This function will be called by parseJsonAndGetChatMember().
     auto result(std::make_shared<ChatMemberRestricted>());
     result->isMember = data.get<bool>("is_member", false);
+    result->canSendMessages = data.get<bool>("can_send_messages", false);
+    result->canSendAudios = data.get<bool>("can_send_audios", false);
+    result->canSendDocuments = data.get<bool>("can_send_documents", false);
+    result->canSendPhotos = data.get<bool>("can_send_photos", false);
+    result->canSendVideos = data.get<bool>("can_send_videos", false);
+    result->canSendVideoNotes = data.get<bool>("can_send_video_notes", false);
+    result->canSendVoiceNotes = data.get<bool>("can_send_voice_notes", false);
+    result->canSendPolls = data.get<bool>("can_send_polls", false);
+    result->canSendOtherMessages = data.get<bool>("can_send_other_messages", false);
+    result->canAddWebPagePreviews = data.get<bool>("can_add_web_page_previews", false);
     result->canChangeInfo = data.get<bool>("can_change_info", false);
     result->canInviteUsers = data.get<bool>("can_invite_users", false);
     result->canPinMessages = data.get<bool>("can_pin_messages", false);
     result->canManageTopics = data.get<bool>("can_manage_topics", false);
-    result->canSendMessages = data.get<bool>("can_send_messages", false);
-    result->canSendMediaMessages = data.get<bool>("can_send_media_messages", false);
-    result->canSendPolls = data.get<bool>("can_send_polls", false);
-    result->canSendOtherMessages = data.get<bool>("can_send_other_messages", false);
-    result->canAddWebPagePreviews = data.get<bool>("can_add_web_page_previews", false);
     result->untilDate = data.get<std::uint32_t>("until_date", 0);
     return result;
 }
@@ -1714,15 +1821,20 @@ std::string TgTypeParser::parseChatMemberRestricted(const ChatMemberRestricted::
     // curly brackets to the result std::string.
     std::string result;
     appendToJson(result, "is_member", object->isMember);
+    appendToJson(result, "can_send_messages", object->canSendMessages);
+    appendToJson(result, "can_send_audios", object->canSendAudios);
+    appendToJson(result, "can_send_documents", object->canSendDocuments);
+    appendToJson(result, "can_send_photos", object->canSendPhotos);
+    appendToJson(result, "can_send_videos", object->canSendVideos);
+    appendToJson(result, "can_send_video_notes", object->canSendVideoNotes);
+    appendToJson(result, "can_send_voice_notes", object->canSendVoiceNotes);
+    appendToJson(result, "can_send_polls", object->canSendPolls);
+    appendToJson(result, "can_send_other_messages", object->canSendOtherMessages);
+    appendToJson(result, "can_add_web_page_previews", object->canAddWebPagePreviews);
     appendToJson(result, "can_change_info", object->canChangeInfo);
     appendToJson(result, "can_invite_users", object->canInviteUsers);
     appendToJson(result, "can_pin_messages", object->canPinMessages);
     appendToJson(result, "can_manage_topics", object->canManageTopics);
-    appendToJson(result, "can_send_messages", object->canSendMessages);
-    appendToJson(result, "can_send_media_messages", object->canSendMediaMessages);
-    appendToJson(result, "can_send_polls", object->canSendPolls);
-    appendToJson(result, "can_send_other_messages", object->canSendOtherMessages);
-    appendToJson(result, "can_add_web_page_previews", object->canAddWebPagePreviews);
     appendToJson(result, "until_date", object->untilDate);
     // The last comma will be erased by parseChatMember().
     return result;
@@ -1796,6 +1908,7 @@ ChatJoinRequest::Ptr TgTypeParser::parseJsonAndGetChatJoinRequest(const boost::p
     auto result(std::make_shared<ChatJoinRequest>());
     result->chat = tryParseJson<Chat>(&TgTypeParser::parseJsonAndGetChat, data, "chat");
     result->from = tryParseJson<User>(&TgTypeParser::parseJsonAndGetUser, data, "from");
+    result->userChatId = data.get<std::int64_t>("user_chat_id", 0);
     result->date = data.get<std::int32_t>("date", 0);
     result->bio = data.get<std::string>("bio", "");
     result->inviteLink = tryParseJson<ChatInviteLink>(&TgTypeParser::parseJsonAndGetChatInviteLink, data, "invite_link");
@@ -1810,6 +1923,7 @@ std::string TgTypeParser::parseChatJoinRequest(const ChatJoinRequest::Ptr& objec
     result += '{';
     appendToJson(result, "chat", parseChat(object->chat));
     appendToJson(result, "from", parseUser(object->from));
+    appendToJson(result, "user_chat_id", object->userChatId);
     appendToJson(result, "date", object->date);
     appendToJson(result, "bio", object->bio);
     appendToJson(result, "invite_link", parseChatInviteLink(object->inviteLink));
@@ -1821,7 +1935,12 @@ std::string TgTypeParser::parseChatJoinRequest(const ChatJoinRequest::Ptr& objec
 ChatPermissions::Ptr TgTypeParser::parseJsonAndGetChatPermissions(const boost::property_tree::ptree& data) const {
     auto result(std::make_shared<ChatPermissions>());
     result->canSendMessages = data.get<bool>("can_send_messages", false);
-    result->canSendMediaMessages = data.get<bool>("can_send_media_messages", false);
+    result->canSendAudios = data.get<bool>("can_send_audios", false);
+    result->canSendDocuments = data.get<bool>("can_send_documents", false);
+    result->canSendPhotos = data.get<bool>("can_send_photos", false);
+    result->canSendVideos = data.get<bool>("can_send_videos", false);
+    result->canSendVideoNotes = data.get<bool>("can_send_video_notes", false);
+    result->canSendVoiceNotes = data.get<bool>("can_send_voice_notes", false);
     result->canSendPolls = data.get<bool>("can_send_polls", false);
     result->canSendOtherMessages = data.get<bool>("can_send_other_messages", false);
     result->canAddWebPagePreviews = data.get<bool>("can_add_web_page_previews", false);
@@ -1839,7 +1958,12 @@ std::string TgTypeParser::parseChatPermissions(const ChatPermissions::Ptr& objec
     std::string result;
     result += '{';
     appendToJson(result, "can_send_messages", object->canSendMessages);
-    appendToJson(result, "can_send_media_messages", object->canSendMediaMessages);
+    appendToJson(result, "can_send_audios", object->canSendAudios);
+    appendToJson(result, "can_send_documents", object->canSendDocuments);
+    appendToJson(result, "can_send_photos", object->canSendPhotos);
+    appendToJson(result, "can_send_videos", object->canSendVideos);
+    appendToJson(result, "can_send_video_notes", object->canSendVideoNotes);
+    appendToJson(result, "can_send_voice_notes", object->canSendVoiceNotes);
     appendToJson(result, "can_send_polls", object->canSendPolls);
     appendToJson(result, "can_send_other_messages", object->canSendOtherMessages);
     appendToJson(result, "can_add_web_page_previews", object->canAddWebPagePreviews);

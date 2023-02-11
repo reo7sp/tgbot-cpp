@@ -9,7 +9,7 @@ Documentation is located [here](http://reo7sp.github.io/tgbot-cpp).
 
 ## State
 
-- [x] Bot API 3.0 ~ 6.4
+- [x] Telegram Bot API 6.5
 
 
 ## Sample
