@@ -22,6 +22,8 @@
 #include "tgbot/types/MessageAutoDeleteTimerChanged.h"
 #include "tgbot/types/Invoice.h"
 #include "tgbot/types/SuccessfulPayment.h"
+#include "tgbot/types/UserShared.h"
+#include "tgbot/types/ChatShared.h"
 #include "tgbot/types/WriteAccessAllowed.h"
 #include "tgbot/types/PassportData.h"
 #include "tgbot/types/ProximityAlertTriggered.h"
@@ -347,6 +349,16 @@ public:
      * https://core.telegram.org/bots/api#payments
      */
     SuccessfulPayment::Ptr successfulPayment;
+
+    /**
+     * @brief Optional. Service message: a user was shared with the bot
+     */
+    UserShared::Ptr userShared;
+
+    /**
+     * @brief Optional. Service message: a chat was shared with the bot
+     */
+    ChatShared::Ptr chatShared;
 
     /**
      * @brief Optional. The domain name of the website on which the user has logged in.

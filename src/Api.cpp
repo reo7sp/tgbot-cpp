@@ -1141,13 +1141,17 @@ bool Api::unbanChatMember(boost::variant<std::int64_t, std::string> chatId,
 bool Api::restrictChatMember(boost::variant<std::int64_t, std::string> chatId,
                              std::int64_t userId,
                              TgBot::ChatPermissions::Ptr permissions,
-                             std::int64_t untilDate) const {
+                             std::int64_t untilDate,
+                             bool useIndependentChatPermissions) const {
     std::vector<HttpReqArg> args;
-    args.reserve(4);
+    args.reserve(5);
 
     args.emplace_back("chat_id", chatId);
     args.emplace_back("user_id", userId);
     args.emplace_back("permissions", _tgTypeParser.parseChatPermissions(permissions));
+    if (useIndependentChatPermissions) {
+        args.emplace_back("use_independent_chat_permissions", useIndependentChatPermissions);
+    }
     if (untilDate) {
         args.emplace_back("until_date", untilDate);
     }
@@ -1250,12 +1254,16 @@ bool Api::unbanChatSenderChat(boost::variant<std::int64_t, std::string> chatId,
 }
 
 bool Api::setChatPermissions(boost::variant<std::int64_t, std::string> chatId,
-                             ChatPermissions::Ptr permissions) const {
+                             ChatPermissions::Ptr permissions,
+                             bool useIndependentChatPermissions) const {
     std::vector<HttpReqArg> args;
-    args.reserve(2);
+    args.reserve(3);
 
     args.emplace_back("chat_id", chatId);
     args.emplace_back("permissions", _tgTypeParser.parseChatPermissions(permissions));
+    if (useIndependentChatPermissions) {
+        args.emplace_back("use_independent_chat_permissions", useIndependentChatPermissions);
+    }
 
     return sendRequest("setChatPermissions", args).get<bool>("", false);
 }

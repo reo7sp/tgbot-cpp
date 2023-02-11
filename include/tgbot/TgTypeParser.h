@@ -32,6 +32,8 @@
 #include "tgbot/types/ForumTopicReopened.h"
 #include "tgbot/types/GeneralForumTopicHidden.h"
 #include "tgbot/types/GeneralForumTopicUnhidden.h"
+#include "tgbot/types/UserShared.h"
+#include "tgbot/types/ChatShared.h"
 #include "tgbot/types/WriteAccessAllowed.h"
 #include "tgbot/types/VideoChatScheduled.h"
 #include "tgbot/types/VideoChatStarted.h"
@@ -42,6 +44,8 @@
 #include "tgbot/types/WebAppInfo.h"
 #include "tgbot/types/ReplyKeyboardMarkup.h"
 #include "tgbot/types/KeyboardButton.h"
+#include "tgbot/types/KeyboardButtonRequestUser.h"
+#include "tgbot/types/KeyboardButtonRequestChat.h"
 #include "tgbot/types/KeyboardButtonPollType.h"
 #include "tgbot/types/ReplyKeyboardRemove.h"
 #include "tgbot/types/InlineKeyboardMarkup.h"
@@ -252,6 +256,12 @@ public:
     GeneralForumTopicUnhidden::Ptr parseJsonAndGetGeneralForumTopicUnhidden(const boost::property_tree::ptree& data) const;
     std::string parseGeneralForumTopicUnhidden(const GeneralForumTopicUnhidden::Ptr& object) const;
 
+    UserShared::Ptr parseJsonAndGetUserShared(const boost::property_tree::ptree& data) const;
+    std::string parseUserShared(const UserShared::Ptr& object) const;
+
+    ChatShared::Ptr parseJsonAndGetChatShared(const boost::property_tree::ptree& data) const;
+    std::string parseChatShared(const ChatShared::Ptr& object) const;
+
     WriteAccessAllowed::Ptr parseJsonAndGetWriteAccessAllowed(const boost::property_tree::ptree& data) const;
     std::string parseWriteAccessAllowed(const WriteAccessAllowed::Ptr& object) const;
 
@@ -281,6 +291,12 @@ public:
 
     KeyboardButton::Ptr parseJsonAndGetKeyboardButton(const boost::property_tree::ptree& data) const;
     std::string parseKeyboardButton(const KeyboardButton::Ptr& object) const;
+
+    KeyboardButtonRequestUser::Ptr parseJsonAndGetKeyboardButtonRequestUser(const boost::property_tree::ptree& data) const;
+    std::string parseKeyboardButtonRequestUser(const KeyboardButtonRequestUser::Ptr& object) const;
+
+    KeyboardButtonRequestChat::Ptr parseJsonAndGetKeyboardButtonRequestChat(const boost::property_tree::ptree& data) const;
+    std::string parseKeyboardButtonRequestChat(const KeyboardButtonRequestChat::Ptr& object) const;
 
     KeyboardButtonPollType::Ptr parseJsonAndGetKeyboardButtonPollType(const boost::property_tree::ptree& data) const;
     std::string parseKeyboardButtonPollType(const KeyboardButtonPollType::Ptr& object) const;

@@ -16,14 +16,39 @@ public:
     typedef std::shared_ptr<ChatPermissions> Ptr;
 
     /**
-     * @brief Optional. True, if the user is allowed to send text messages, contacts, locations and venues
+     * @brief Optional. True, if the user is allowed to send text messages, contacts, invoices, locations and venues
      */
     bool canSendMessages;
 
     /**
-     * @brief Optional. True, if the user is allowed to send audios, documents, photos, videos, video notes and voice notes, implies canSendMessages
+     * @brief Optional. True, if the user is allowed to send audios
      */
-    bool canSendMediaMessages;
+    bool canSendAudios;
+
+    /**
+     * @brief Optional. True, if the user is allowed to send documents
+     */
+    bool canSendDocuments;
+
+    /**
+     * @brief Optional. True, if the user is allowed to send photos
+     */
+    bool canSendPhotos;
+
+    /**
+     * @brief Optional. True, if the user is allowed to send videos
+     */
+    bool canSendVideos;
+
+    /**
+     * @brief Optional. True, if the user is allowed to send video notes
+     */
+    bool canSendVideoNotes;
+
+    /**
+     * @brief Optional. True, if the user is allowed to send voice notes
+     */
+    bool canSendVoiceNotes;
 
     /**
      * @brief Optional. True, if the user is allowed to send polls, implies canSendMessages
