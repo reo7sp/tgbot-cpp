@@ -29,10 +29,16 @@ public:
 
     std::int32_t _timeout = 25;
 
+    /**
+      * @brief Get the maximum number of makeRequest() retries before giving up and throwing an exception.
+      */
     virtual int getRequestMaxRetries() const {
         return requestMaxRetries;
     }
 
+    /**
+      * @brief Get the makeRequest() backoff duration between retries, in seconds.
+      */
     virtual int getRequestBackoff() const {
         return requestBackoff;
     }
