@@ -28,6 +28,18 @@ public:
     virtual std::string makeRequest(const Url& url, const std::vector<HttpReqArg>& args) const = 0;
 
     std::int32_t _timeout = 25;
+
+    virtual int getRequestMaxRetries() const {
+        return requestMaxRetries;
+    }
+
+    virtual int getRequestBackoff() const {
+        return requestBackoff;
+    }
+
+private:
+    int requestMaxRetries = 3;
+    int requestBackoff = 1;
 };
 
 }

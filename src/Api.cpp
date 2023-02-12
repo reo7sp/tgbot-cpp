@@ -2499,7 +2499,9 @@ boost::property_tree::ptree Api::sendRequest(const std::string& method, const st
     url += "/";
     url += method;
 
-    while(1)
+    int requestRetryBackoff = _httpClient.getRequestBackoff();
+    int retries = 0;
+    while (1)
     {
         std::string serverResponse = _httpClient.makeRequest(url, args);
         if (!serverResponse.compare(0, 6, "<html>")) {
@@ -2511,9 +2513,14 @@ boost::property_tree::ptree Api::sendRequest(const std::string& method, const st
             if (result.get<bool>("ok", false)) {
                 return result.get_child("result");
             } else {
-	        std::this_thread::sleep_for(std::chrono::seconds(1));
-	        continue;
-                //throw TgException(result.get("description", ""));
+                if (retries == _httpClient.getRequestMaxRetries()) {
+                    throw TgException(result.get("description", ""));
+                }
+                else {
+                    std::this_thread::sleep_for(std::chrono::seconds(requestRetryBackoff));
+                    retries++;
+                    continue;
+                }
             }
         } catch (boost::property_tree::ptree_error& e) {
             throw TgException("tgbot-cpp library can't parse json response. " + std::string(e.what()));
