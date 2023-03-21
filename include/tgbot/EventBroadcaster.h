@@ -202,6 +202,34 @@ public:
         _onChatJoinRequestListeners.push_back(listener);
     }
 
+    /**
+    * @brief Gets an array of allowed_updates for the registered listener.
+    *
+    */
+    inline std::vector<std::string> GetAllowedUpdates() const {
+        std::vector<std::string> result;
+        result.reserve(8);
+
+        if (!_onAnyMessageListeners.empty() || !_onCommandListeners.empty() ||
+            !_onUnknownCommandListeners.empty() || !_onNonCommandMessageListeners.empty())
+        {
+            result.push_back("message");
+        }
+        if (!_onEditedMessageListeners.empty()) result.push_back("edited_message");
+        if (!_onInlineQueryListeners.empty()) result.push_back("inline_query");
+        if (!_onChosenInlineResultListeners.empty()) result.push_back("chosen_inline_result");
+        if (!_onCallbackQueryListeners.empty()) result.push_back("callback_query");
+        if (!_onShippingQueryListeners.empty()) result.push_back("shipping_query");
+        if (!_onPreCheckoutQueryListeners.empty()) result.push_back("pre_checkout_query");
+        if (!_onPollListeners.empty()) result.push_back("poll");
+        if (!_onPollAnswerListeners.empty()) result.push_back("poll_answer");
+        if (!_onMyChatMemberListeners.empty()) result.push_back("my_chat_member");
+        if (!_onChatMemberListeners.empty()) result.push_back("chat_member");
+        if (!_onChatJoinRequestListeners.empty()) result.push_back("chat_join_request");
+
+        return result;
+    }
+
 private:
     template<typename ListenerType, typename ObjectType>
     inline void broadcast(const std::vector<ListenerType>& listeners, const ObjectType object) const {
@@ -293,6 +321,7 @@ private:
     std::vector<ChatMemberUpdatedListener> _onMyChatMemberListeners;
     std::vector<ChatMemberUpdatedListener> _onChatMemberListeners;
     std::vector<ChatJoinRequestListener> _onChatJoinRequestListeners;
+
 };
 
 }
