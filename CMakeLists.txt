@@ -1,6 +1,10 @@
 cmake_minimum_required(VERSION 3.10.2)
 project(TgBot)
 
+if(POLICY CMP0074)
+    cmake_policy(SET CMP0074 NEW) # find_package() uses <PackageName>_ROOT variables
+endif()
+
 # options
 option(ENABLE_TESTS "Set to ON to enable building of tests" OFF)
 option(BUILD_SHARED_LIBS "Build tgbot-cpp shared/static library." OFF)
@@ -12,6 +16,9 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 if(WIN32)
     set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)
+    add_definitions(-D_WIN32_WINNT=0x0601)
+    add_definitions(-DWIN32_LEAN_AND_MEAN)
+    add_definitions(-DNOMINMAX)
 else()
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall")
 endif()
@@ -75,8 +82,11 @@ set(LIB_LIST
     ${ZLIB_LIBRARIES}
     ${OPENSSL_LIBRARIES}
     ${Boost_LIBRARIES}
-    ${CURL_LIBRARIES}
 )
+
+if (CURL_FOUND)
+    set(LIB_LIST ${LIB_LIST} ${CURL_LIBRARIES})
+endif()
 
 # building project
 add_library(${PROJECT_NAME} ${SRC_LIST})
