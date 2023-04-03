@@ -63,7 +63,7 @@ string generateRandomString(std::size_t length) {
 
     random_device randomDevice;
     mt19937 randomSeed(randomDevice());
-    uniform_int_distribution<int> generator(0, charsLen - 1);
+    uniform_int_distribution<std::size_t> generator(0, charsLen - 1);
 
     for (std::size_t i = 0; i < length; ++i) {
         result += chars[generator(randomSeed)];

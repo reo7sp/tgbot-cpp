@@ -59,7 +59,7 @@ string BoostHttpOnlySslClient::makeRequest(const Url& url, const vector<HttpReqA
     // We'll need to get the underlying native socket for this select call, in order
     // to add a simple timeout on the read:
     
-    int nativeSocket = socket.lowest_layer().native_handle();
+    int nativeSocket = static_cast<int>(socket.lowest_layer().native_handle());
     
     FD_SET(nativeSocket,&fileDescriptorSet);        
     select(nativeSocket+1,&fileDescriptorSet,NULL,NULL,&timeStruct);
