@@ -5,6 +5,8 @@
 #include <cstddef>
 #include <vector>
 
+#include <fstream>
+
 using namespace std;
 using namespace boost::asio;
 using namespace boost::asio::ip;

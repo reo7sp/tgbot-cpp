@@ -230,6 +230,18 @@ public:
         return result;
     }
 
+    inline void SetToken(std::string& botId) const {
+        _botId = botId;
+    }
+
+    inline void SetToken(std::string&& botId) const {
+        _botId = std::move(botId);
+    }
+
+    inline const std::string& GetToken() const {
+        return _botId;
+    }
+
 private:
     template<typename ListenerType, typename ObjectType>
     inline void broadcast(const std::vector<ListenerType>& listeners, const ObjectType object) const {
@@ -321,6 +333,8 @@ private:
     std::vector<ChatMemberUpdatedListener> _onMyChatMemberListeners;
     std::vector<ChatMemberUpdatedListener> _onChatMemberListeners;
     std::vector<ChatJoinRequestListener> _onChatJoinRequestListeners;
+
+    mutable std::string _botId;
 
 };
 
