@@ -24,3 +24,4 @@ out/
 
 # MacOS dependecies
 .DS_Store
+/build32
