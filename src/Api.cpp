@@ -3,7 +3,7 @@
 namespace TgBot {
 
 Api::Api(std::string token, const HttpClient& httpClient, const std::string& url)
-    : _token(std::move(token)), _httpClient(httpClient), _tgTypeParser(), _url(url) {
+    : _httpClient(httpClient), _token(std::move(token)), _tgTypeParser(), _url(url) {
 }
 
 std::vector<Update::Ptr> Api::getUpdates(std::int32_t offset,
