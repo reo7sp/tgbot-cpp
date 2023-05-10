@@ -30,6 +30,8 @@ public:
      */
     void start();
 
+    std::int32_t GetLastUpdateId() const;
+
 private:
     const Api* _api;
     const EventHandler* _eventHandler;

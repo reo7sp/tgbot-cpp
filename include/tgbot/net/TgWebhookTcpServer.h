@@ -14,15 +14,35 @@ namespace TgBot {
 class TgWebhookTcpServer : public TgWebhookServer<boost::asio::ip::tcp> {
 
 public:
-    TgWebhookTcpServer(unsigned short port, const std::string& path, const EventHandler& eventHandler)
-            : TgWebhookServer<boost::asio::ip::tcp>(boost::asio::ip::tcp::endpoint(boost::asio::ip::tcp::v4(), port),
-                                                    path, eventHandler)
+    TgWebhookTcpServer(
+        unsigned short port, 
+        const EventHandler& eventHandler,
+        const bool request_must_contain_a_secret_token = false
+    )
+            : TgWebhookServer<boost::asio::ip::tcp>(
+                boost::asio::ip::tcp::endpoint(
+                    boost::asio::ip::tcp::v4(), 
+                    port
+                )
+                , eventHandler
+                , request_must_contain_a_secret_token
+            )
     {
     }
 
-    TgWebhookTcpServer(unsigned short port, const Bot& bot)
-            : TgWebhookServer<boost::asio::ip::tcp>(boost::asio::ip::tcp::endpoint(boost::asio::ip::tcp::v4(), port),
-                                                    bot)
+    TgWebhookTcpServer(
+        unsigned short port, 
+        const Bot& bot,
+        const bool request_must_contain_a_secret_token = false
+    )
+            : TgWebhookServer<boost::asio::ip::tcp>(
+                boost::asio::ip::tcp::endpoint(
+                    boost::asio::ip::tcp::v4(),
+                    port
+                )
+                , bot
+                , request_must_contain_a_secret_token
+            )
     {
     }
 };

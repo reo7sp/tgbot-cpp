@@ -25,7 +25,7 @@ std::vector<Update::Ptr> Api::getUpdates(std::int32_t offset,
     if (allowedUpdates != nullptr) {
         std::string allowedUpdatesJson = _tgTypeParser.parseArray<std::string>(
             [] (const std::string& s)->std::string {
-            return s;
+            return '"' + s + '"';
         }, *allowedUpdates);
         args.emplace_back("allowed_updates", allowedUpdatesJson);
     }
@@ -2519,5 +2519,9 @@ boost::property_tree::ptree Api::sendRequest(const std::string& method, const st
     } catch (boost::property_tree::ptree_error& e) {
         throw TgException("tgbot-cpp library can't parse json response. " + std::string(e.what()));
     }
+}
+
+void Api::SetToken(std::string newToken) {
+    _token = std::move(newToken);
 }
 }

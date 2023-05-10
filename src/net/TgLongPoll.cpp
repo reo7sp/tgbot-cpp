@@ -35,4 +35,9 @@ void TgLongPoll::start() {
     _updates = _api->getUpdates(_lastUpdateId, _limit, _timeout, _allowUpdates);
 }
 
+std::int32_t TgLongPoll::GetLastUpdateId() const
+{
+    return _lastUpdateId;
+}
+
 }

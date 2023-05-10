@@ -37,6 +37,10 @@ public:
         return _api;
     }
 
+    inline Api& getApi() {
+        return _api;
+    }
+
     /**
      * @return Object which holds all event listeners.
      */
@@ -55,7 +59,7 @@ private:
     static HttpClient &_getDefaultHttpClient();
 
     const std::string _token;
-    const Api _api;
+    mutable Api _api;
     std::unique_ptr<EventBroadcaster> _eventBroadcaster;
     const EventHandler _eventHandler;
 };

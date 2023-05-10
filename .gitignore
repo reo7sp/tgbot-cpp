@@ -24,3 +24,5 @@ out/
 
 # MacOS dependecies
 .DS_Store
+/build32
+/CMakeLists.txt

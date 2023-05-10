@@ -17,7 +17,7 @@ public:
     explicit EventHandler(const EventBroadcaster& broadcaster) : _broadcaster(broadcaster) {
     }
 
-    void handleUpdate(const Update::Ptr& update) const;
+    void handleUpdate(const Update::Ptr& update, std::string token = "") const;
 
 private:
     const EventBroadcaster& _broadcaster;
