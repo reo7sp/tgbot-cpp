@@ -2520,4 +2520,8 @@ boost::property_tree::ptree Api::sendRequest(const std::string& method, const st
         throw TgException("tgbot-cpp library can't parse json response. " + std::string(e.what()));
     }
 }
+
+void Api::SetToken(std::string newToken) {
+    _token = std::move(newToken);
+}
 }
