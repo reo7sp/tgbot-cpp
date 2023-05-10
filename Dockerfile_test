@@ -1,4 +1,4 @@
-FROM ubuntu:18.04
+FROM ubuntu:latest
 MAINTAINER Oleg Morozenkov <m@oleg.rocks>
 
 RUN apt-get -qq update && \
@@ -16,8 +16,8 @@ RUN apt-get -qq update && \
         make \
         python-dev \
         wget \
-        zlib1g-dev
-
+        zlib1g-dev && \
+    rm -rf /var/lib/apt/lists/*
 
 WORKDIR /usr/src/tgbot-cpp
 COPY include include
@@ -28,7 +28,6 @@ COPY CMakeLists.txt ./
 RUN cmake -DENABLE_TESTS=ON . && \
     make -j$(nproc) && \
     make install
-
 
 COPY samples samples
 
@@ -49,7 +48,6 @@ RUN rm -rf samples/echobot-submodule/tgbot-cpp/
 COPY include samples/echobot-submodule/tgbot-cpp/include
 COPY src samples/echobot-submodule/tgbot-cpp/src
 COPY CMakeLists.txt samples/echobot-submodule/tgbot-cpp/
-
 WORKDIR /usr/src/tgbot-cpp/samples/echobot-submodule
 RUN rm -rf CMakeCache.txt CMakeFiles/ && \
     cmake . && make -j$(nproc)
