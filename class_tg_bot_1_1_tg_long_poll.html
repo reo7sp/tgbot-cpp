@@ -103,10 +103,10 @@ $(document).ready(function(){initNavTree('class_tg_bot_1_1_tg_long_poll.html',''
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a6d70d6fbc6fa839a575ebbabacec695e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tg_bot_1_1_tg_long_poll.html#a6d70d6fbc6fa839a575ebbabacec695e">TgLongPoll</a> (const <a class="el" href="class_tg_bot_1_1_api.html">Api</a> *api, const <a class="el" href="class_tg_bot_1_1_event_handler.html">EventHandler</a> *eventHandler, std::int32_t, std::int32_t, std::shared_ptr&lt; std::vector&lt; std::string &gt; &gt;)</td></tr>
-<tr class="separator:a6d70d6fbc6fa839a575ebbabacec695e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7788eb8b8a466d41dcd6fab9c2171d82"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tg_bot_1_1_tg_long_poll.html#a7788eb8b8a466d41dcd6fab9c2171d82">TgLongPoll</a> (const <a class="el" href="class_tg_bot_1_1_bot.html">Bot</a> &amp;bot, std::int32_t=100, std::int32_t=10, const std::shared_ptr&lt; std::vector&lt; std::string &gt; &gt; &amp;=nullptr)</td></tr>
-<tr class="separator:a7788eb8b8a466d41dcd6fab9c2171d82"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9039d9da985ae7717a85199c830e6c19"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tg_bot_1_1_tg_long_poll.html#a9039d9da985ae7717a85199c830e6c19">TgLongPoll</a> (const <a class="el" href="class_tg_bot_1_1_api.html">Api</a> *api, const <a class="el" href="class_tg_bot_1_1_event_handler.html">EventHandler</a> *eventHandler, std::int32_t limit, std::int32_t timeout, std::shared_ptr&lt; std::vector&lt; std::string &gt; &gt; allowUpdates)</td></tr>
+<tr class="separator:a9039d9da985ae7717a85199c830e6c19"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2cc4ebc5c87ab935d8fe72afe5023bbb"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tg_bot_1_1_tg_long_poll.html#a2cc4ebc5c87ab935d8fe72afe5023bbb">TgLongPoll</a> (const <a class="el" href="class_tg_bot_1_1_bot.html">Bot</a> &amp;bot, std::int32_t limit=100, std::int32_t timeout=10, const std::shared_ptr&lt; std::vector&lt; std::string &gt; &gt; &amp;allowUpdates=nullptr)</td></tr>
+<tr class="separator:a2cc4ebc5c87ab935d8fe72afe5023bbb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8928ddad3b976a636a53bb066180cbaa"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tg_bot_1_1_tg_long_poll.html#a8928ddad3b976a636a53bb066180cbaa">start</a> ()</td></tr>
 <tr class="memdesc:a8928ddad3b976a636a53bb066180cbaa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Starts long poll. After new update will come, this method will parse it and send to <a class="el" href="class_tg_bot_1_1_event_handler.html">EventHandler</a> which invokes your listeners. Designed to be executed in a loop.  <a href="class_tg_bot_1_1_tg_long_poll.html#a8928ddad3b976a636a53bb066180cbaa">More...</a><br /></td></tr>
 <tr class="separator:a8928ddad3b976a636a53bb066180cbaa"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -116,8 +116,8 @@ Public Member Functions</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="_tg_long_poll_8h_source.html#l00022">22</a> of file <a class="el" href="_tg_long_poll_8h_source.html">TgLongPoll.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a6d70d6fbc6fa839a575ebbabacec695e" name="a6d70d6fbc6fa839a575ebbabacec695e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6d70d6fbc6fa839a575ebbabacec695e">&#9670;&#160;</a></span>TgLongPoll() <span class="overload">[1/2]</span></h2>
+<a id="a9039d9da985ae7717a85199c830e6c19" name="a9039d9da985ae7717a85199c830e6c19"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9039d9da985ae7717a85199c830e6c19">&#9670;&#160;</a></span>TgLongPoll() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -138,19 +138,19 @@ Public Member Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">std::int32_t&#160;</td>
-          <td class="paramname">, </td>
+          <td class="paramname"><em>limit</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">std::int32_t&#160;</td>
-          <td class="paramname">, </td>
+          <td class="paramname"><em>timeout</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">std::shared_ptr&lt; std::vector&lt; std::string &gt; &gt;&#160;</td>
-          <td class="paramname">&#160;</td>
+          <td class="paramname"><em>allowUpdates</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -162,8 +162,8 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a7788eb8b8a466d41dcd6fab9c2171d82" name="a7788eb8b8a466d41dcd6fab9c2171d82"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7788eb8b8a466d41dcd6fab9c2171d82">&#9670;&#160;</a></span>TgLongPoll() <span class="overload">[2/2]</span></h2>
+<a id="a2cc4ebc5c87ab935d8fe72afe5023bbb" name="a2cc4ebc5c87ab935d8fe72afe5023bbb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2cc4ebc5c87ab935d8fe72afe5023bbb">&#9670;&#160;</a></span>TgLongPoll() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -178,19 +178,19 @@ Public Member Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">std::int32_t&#160;</td>
-          <td class="paramname"> = <code>100</code>, </td>
+          <td class="paramname"><em>limit</em> = <code>100</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">std::int32_t&#160;</td>
-          <td class="paramname"> = <code>10</code>, </td>
+          <td class="paramname"><em>timeout</em> = <code>10</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const std::shared_ptr&lt; std::vector&lt; std::string &gt; &gt; &amp;&#160;</td>
-          <td class="paramname"> = <code>nullptr</code>&#160;</td>
+          <td class="paramname"><em>allowUpdates</em> = <code>nullptr</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -231,7 +231,7 @@ Public Member Functions</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespace_tg_bot.html">TgBot</a></li><li class="navelem"><a class="el" href="class_tg_bot_1_1_tg_long_poll.html">TgLongPoll</a></li>
-    <li class="footer">Generated on Wed Jan 4 2023 23:15:17 for tgbot-cpp by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.5 </li>
+    <li class="footer">Generated on Thu May 11 2023 00:32:54 for tgbot-cpp by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.5 </li>
   </ul>
 </div>
 </body>

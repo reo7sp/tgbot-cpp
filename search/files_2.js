@@ -17,7 +17,8 @@ var searchData=
   ['chatmemberupdated_2eh_14',['ChatMemberUpdated.h',['../_chat_member_updated_8h.html',1,'']]],
   ['chatpermissions_2eh_15',['ChatPermissions.h',['../_chat_permissions_8h.html',1,'']]],
   ['chatphoto_2eh_16',['ChatPhoto.h',['../_chat_photo_8h.html',1,'']]],
-  ['choseninlineresult_2eh_17',['ChosenInlineResult.h',['../_chosen_inline_result_8h.html',1,'']]],
-  ['contact_2eh_18',['Contact.h',['../_contact_8h.html',1,'']]],
-  ['curlhttpclient_2eh_19',['CurlHttpClient.h',['../_curl_http_client_8h.html',1,'']]]
+  ['chatshared_2eh_17',['ChatShared.h',['../_chat_shared_8h.html',1,'']]],
+  ['choseninlineresult_2eh_18',['ChosenInlineResult.h',['../_chosen_inline_result_8h.html',1,'']]],
+  ['contact_2eh_19',['Contact.h',['../_contact_8h.html',1,'']]],
+  ['curlhttpclient_2eh_20',['CurlHttpClient.h',['../_curl_http_client_8h.html',1,'']]]
 ];

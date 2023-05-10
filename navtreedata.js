@@ -55,13 +55,13 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "_animation_8h.html",
-"_poll_answer_8h.html",
-"class_tg_bot_1_1_bot_command_scope_chat_member.html#a0b3f86e5e72797432345a3386b849432",
-"class_tg_bot_1_1_file.html#a97c8a544babcda6b532e0e681e38523c",
-"class_tg_bot_1_1_inline_query_result_gif.html#a91988e5d118d7d3e04168be74f2f8832",
-"class_tg_bot_1_1_menu_button_web_app.html#a6f582547e734ca2629b570da18f1c616",
-"class_tg_bot_1_1_shipping_query.html#a6f10c244ff5e3323961bdc7c5eb43f31",
-"functions_vars_t.html"
+"_passport_file_8h.html",
+"class_tg_bot_1_1_bot_command_scope_chat.html",
+"class_tg_bot_1_1_event_broadcaster.html#a3ec551ffdcf5be1b9b39ed081ea078d4",
+"class_tg_bot_1_1_inline_query_result_contact.html#af0826f3c054781cc33e5020cab2bc307",
+"class_tg_bot_1_1_keyboard_button_request_chat.html#a90a6233ac5529980201a752f7f24acd1",
+"class_tg_bot_1_1_pre_checkout_query.html#a5d21bc0c7610030e89a910029a5fb0ca",
+"functions_func_h.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

@@ -21,7 +21,7 @@ var searchData=
   ['setchatadministratorcustomtitle_18',['setChatAdministratorCustomTitle',['../class_tg_bot_1_1_api.html#aa3546f9f7c03d1aee52588c5077b3392',1,'TgBot::Api']]],
   ['setchatdescription_19',['setChatDescription',['../class_tg_bot_1_1_api.html#a91a0aafe588ccd376ef1b53822f14316',1,'TgBot::Api']]],
   ['setchatmenubutton_20',['setChatMenuButton',['../class_tg_bot_1_1_api.html#ae4a72cc36fd91b59c5155a819a0f00c6',1,'TgBot::Api']]],
-  ['setchatpermissions_21',['setChatPermissions',['../class_tg_bot_1_1_api.html#a511e60678aa126a5cb8603f45565d2c0',1,'TgBot::Api']]],
+  ['setchatpermissions_21',['setChatPermissions',['../class_tg_bot_1_1_api.html#aafae6a2b89778aa05d878d8958c7b444',1,'TgBot::Api']]],
   ['setchatphoto_22',['setChatPhoto',['../class_tg_bot_1_1_api.html#a195720cfaa66c445d08cf5df92bce134',1,'TgBot::Api']]],
   ['setchatstickerset_23',['setChatStickerSet',['../class_tg_bot_1_1_api.html#a57647872bb1645ad87ab3d74cea934d4',1,'TgBot::Api']]],
   ['setchattitle_24',['setChatTitle',['../class_tg_bot_1_1_api.html#aa040a74a992d7f8a05488f452b44ac76',1,'TgBot::Api']]],

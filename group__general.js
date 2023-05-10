@@ -62,7 +62,7 @@ var group__general =
       [ "promoteChatMember", "class_tg_bot_1_1_api.html#a04e9a6f8c5b8813d4b24e755b23e6bc9", null ],
       [ "reopenForumTopic", "class_tg_bot_1_1_api.html#a95281d29d8b9e7728608b81591f6979e", null ],
       [ "reopenGeneralForumTopic", "class_tg_bot_1_1_api.html#a90d311301a1f7695bf45e9098a141060", null ],
-      [ "restrictChatMember", "class_tg_bot_1_1_api.html#ac9759fcd731deb40fcee323831c5df12", null ],
+      [ "restrictChatMember", "class_tg_bot_1_1_api.html#a4c16492088eada5ccc59738cc26cfb5a", null ],
       [ "revokeChatInviteLink", "class_tg_bot_1_1_api.html#a396338228fd91ba4469ac40634afc88a", null ],
       [ "sendAnimation", "class_tg_bot_1_1_api.html#a5b1a2bf1d80def912cef63ec2e0d88e3", null ],
       [ "sendAudio", "class_tg_bot_1_1_api.html#a5e9abb728fc3fc6e555cbb553a112650", null ],
@@ -85,7 +85,7 @@ var group__general =
       [ "setChatAdministratorCustomTitle", "class_tg_bot_1_1_api.html#aa3546f9f7c03d1aee52588c5077b3392", null ],
       [ "setChatDescription", "class_tg_bot_1_1_api.html#a91a0aafe588ccd376ef1b53822f14316", null ],
       [ "setChatMenuButton", "class_tg_bot_1_1_api.html#ae4a72cc36fd91b59c5155a819a0f00c6", null ],
-      [ "setChatPermissions", "class_tg_bot_1_1_api.html#a511e60678aa126a5cb8603f45565d2c0", null ],
+      [ "setChatPermissions", "class_tg_bot_1_1_api.html#aafae6a2b89778aa05d878d8958c7b444", null ],
       [ "setChatPhoto", "class_tg_bot_1_1_api.html#a195720cfaa66c445d08cf5df92bce134", null ],
       [ "setChatStickerSet", "class_tg_bot_1_1_api.html#a57647872bb1645ad87ab3d74cea934d4", null ],
       [ "setChatTitle", "class_tg_bot_1_1_api.html#aa040a74a992d7f8a05488f452b44ac76", null ],
@@ -105,7 +105,8 @@ var group__general =
       [ "unpinAllForumTopicMessages", "class_tg_bot_1_1_api.html#ab6dd3fbfacfa2ec5d137a6d387dd4b96", null ],
       [ "unpinChatMessage", "class_tg_bot_1_1_api.html#a937d24d8c91be2e57c4c2f7e79612047", null ],
       [ "uploadStickerFile", "class_tg_bot_1_1_api.html#a944e5b87816bd7cb0c9747d3c1a27a45", null ],
-      [ "Bot", "class_tg_bot_1_1_api.html#afb5d57ac6b56fe83e7894e3b686c3339", null ]
+      [ "Bot", "class_tg_bot_1_1_api.html#afb5d57ac6b56fe83e7894e3b686c3339", null ],
+      [ "_httpClient", "class_tg_bot_1_1_api.html#a529228096544b44031672f749a02c2d0", null ]
     ] ],
     [ "TgBot::Bot", "class_tg_bot_1_1_bot.html", [
       [ "Bot", "class_tg_bot_1_1_bot.html#aad9ae2e4f1117361c928b1d5ea69b51e", null ],
