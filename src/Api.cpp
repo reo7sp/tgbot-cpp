@@ -2521,7 +2521,7 @@ boost::property_tree::ptree Api::sendRequest(const std::string& method, const st
     }
 }
 
-void Api::SetToken(std::string newToken) const {
+void Api::SetToken(std::string newToken) {
     _token = std::move(newToken);
 }
 }
