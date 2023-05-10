@@ -1989,12 +1989,12 @@ public:
 
     const HttpClient& _httpClient;
     
-    void SetToken(std::string newToken);
+    void SetToken(std::string newToken) const;
 
 private:
     boost::property_tree::ptree sendRequest(const std::string& method, const std::vector<HttpReqArg>& args = std::vector<HttpReqArg>()) const;
 
-    std::string _token;
+    mutable std::string _token;
     const TgTypeParser _tgTypeParser;
     const std::string _url;
 };
