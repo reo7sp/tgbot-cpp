@@ -14,7 +14,7 @@ RUN apt-get -qq update && \
         libicu-dev \
         libssl-dev \
         make \
-        python-dev \
+        python2.7-dev \
         wget \
         zlib1g-dev && \
     rm -rf /var/lib/apt/lists/*
