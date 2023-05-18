@@ -100,6 +100,8 @@ User::Ptr Api::getMe() const {
 }
 
 User::Ptr Api::getMe(const std::string& token) const {
+    auto result = sendRequest("getMe", token);
+    if (result.empty()) return nullptr;
     return _tgTypeParser.parseJsonAndGetUser(sendRequest("getMe", token));
 }
 
@@ -2529,7 +2531,7 @@ boost::property_tree::ptree Api::sendRequest(const std::string& method, const st
 boost::property_tree::ptree Api::sendRequest(
     const std::string& method,
     const std::string& token,
-    const std::vector<HttpReqArg>& args
+    const std::vector<HttpReqArg>& args 
 ) const {
     std::string url(_url);
     url += "/bot";
@@ -2548,7 +2550,7 @@ boost::property_tree::ptree Api::sendRequest(
             return result.get_child("result");
         }
         else {
-            throw TgException(result.get("description", ""));
+            return {};
         }
     }
     catch (boost::property_tree::ptree_error& e) {
