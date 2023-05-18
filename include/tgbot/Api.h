@@ -136,6 +136,8 @@ public:
      */
     User::Ptr getMe() const;
 
+    User::Ptr getMe(const std::string& token) const;
+
     /**
      * @brief Use this method to log out from the cloud Bot API server before launching the bot locally.
      * 
@@ -1993,6 +1995,11 @@ public:
 
 private:
     boost::property_tree::ptree sendRequest(const std::string& method, const std::vector<HttpReqArg>& args = std::vector<HttpReqArg>()) const;
+    boost::property_tree::ptree sendRequest(
+        const std::string& method,
+        const std::string& token,
+        const std::vector<HttpReqArg>& args = std::vector<HttpReqArg>()) const;
+
 
     mutable std::string _token;
     const TgTypeParser _tgTypeParser;

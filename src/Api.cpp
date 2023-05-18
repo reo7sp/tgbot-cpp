@@ -99,6 +99,11 @@ User::Ptr Api::getMe() const {
     return _tgTypeParser.parseJsonAndGetUser(sendRequest("getMe"));
 }
 
+User::Ptr Api::getMe(const std::string& token) const {
+    return _tgTypeParser.parseJsonAndGetUser(sendRequest("getMe", token));
+}
+
+
 bool Api::logOut() const {
     return sendRequest("logOut").get<bool>("", false);
 }
@@ -2517,6 +2522,36 @@ boost::property_tree::ptree Api::sendRequest(const std::string& method, const st
             throw TgException(result.get("description", ""));
         }
     } catch (boost::property_tree::ptree_error& e) {
+        throw TgException("tgbot-cpp library can't parse json response. " + std::string(e.what()));
+    }
+}
+
+boost::property_tree::ptree Api::sendRequest(
+    const std::string& method,
+    const std::string& token,
+    const std::vector<HttpReqArg>& args
+) const {
+    std::string url(_url);
+    url += "/bot";
+    url += token;
+    url += "/";
+    url += method;
+
+    std::string serverResponse = _httpClient.makeRequest(url, args);
+    if (!serverResponse.compare(0, 6, "<html>")) {
+        throw TgException("tgbot-cpp library have got html page instead of json response. Maybe you entered wrong bot token.");
+    }
+
+    boost::property_tree::ptree result = _tgTypeParser.parseJson(serverResponse);
+    try {
+        if (result.get<bool>("ok", false)) {
+            return result.get_child("result");
+        }
+        else {
+            throw TgException(result.get("description", ""));
+        }
+    }
+    catch (boost::property_tree::ptree_error& e) {
         throw TgException("tgbot-cpp library can't parse json response. " + std::string(e.what()));
     }
 }
