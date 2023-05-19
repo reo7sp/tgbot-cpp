@@ -39,7 +39,22 @@ bool Api::setWebhook(const std::string& url,
                      const StringArrayPtr& allowedUpdates,
                      const std::string& ipAddress,
                      bool dropPendingUpdates,
-                     const std::string& secretToken) const {
+                     const std::string& secretToken
+) const 
+{
+    return setWebhook(url, _token, certificate, maxConnections, allowedUpdates, ipAddress, dropPendingUpdates, secretToken);
+}
+
+bool Api::setWebhook(const std::string& url,
+    const std::string& token,
+    InputFile::Ptr certificate,
+    std::int32_t maxConnections,
+    const StringArrayPtr& allowedUpdates,
+    const std::string& ipAddress,
+    bool dropPendingUpdates,
+    const std::string& secretToken
+) const 
+{
     std::vector<HttpReqArg> args;
     args.reserve(7);
 
@@ -55,9 +70,9 @@ bool Api::setWebhook(const std::string& url,
     }
     if (allowedUpdates != nullptr) {
         auto allowedUpdatesJson = _tgTypeParser.parseArray<std::string>(
-            [] (const std::string& s)->std::string {
-            return s;
-        }, *allowedUpdates);
+            [](const std::string& s)->std::string {
+                return s;
+            }, *allowedUpdates);
         args.emplace_back("allowed_updates", allowedUpdatesJson);
     }
     if (dropPendingUpdates) {
@@ -70,7 +85,12 @@ bool Api::setWebhook(const std::string& url,
     return sendRequest("setWebhook", args).get<bool>("", false);
 }
 
+
 bool Api::deleteWebhook(bool dropPendingUpdates) const {
+    return deleteWebhook(_token, dropPendingUpdates);
+}
+
+bool Api::deleteWebhook(const std::string& token, bool dropPendingUpdates) const {
     std::vector<HttpReqArg> args;
     args.reserve(1);
 
@@ -82,6 +102,10 @@ bool Api::deleteWebhook(bool dropPendingUpdates) const {
 }
 
 WebhookInfo::Ptr Api::getWebhookInfo() const {
+    return getWebhookInfo(_token);
+}
+
+WebhookInfo::Ptr Api::getWebhookInfo(const std::string& token) const {
     boost::property_tree::ptree p = sendRequest("getWebhookInfo");
 
     if (!p.get_child_optional("url")) {
@@ -90,7 +114,8 @@ WebhookInfo::Ptr Api::getWebhookInfo() const {
 
     if (p.get<std::string>("url", "") != std::string("")) {
         return _tgTypeParser.parseJsonAndGetWebhookInfo(p);
-    } else {
+    }
+    else {
         return nullptr;
     }
 }
@@ -100,9 +125,11 @@ User::Ptr Api::getMe() const {
 }
 
 User::Ptr Api::getMe(const std::string& token) const {
-    auto result = sendRequest("getMe", token);
-    if (result.empty()) return nullptr;
-    return _tgTypeParser.parseJsonAndGetUser(sendRequest("getMe", token));
+    auto p = sendRequest("getMe", token);
+    if (p.empty()) {
+        return nullptr;
+    }
+    return _tgTypeParser.parseJsonAndGetUser(p);
 }
 
 
@@ -2504,28 +2531,13 @@ bool Api::blockedByUser(std::int64_t chatId) const {
     return isBotBlocked;
 }
 
+const std::string& Api::GetParseErrorDescription() const
+{
+    return _parseErrorDescription;
+}
+
 boost::property_tree::ptree Api::sendRequest(const std::string& method, const std::vector<HttpReqArg>& args) const {
-    std::string url(_url);
-    url += "/bot";
-    url += _token;
-    url += "/";
-    url += method;
-
-    std::string serverResponse = _httpClient.makeRequest(url, args);
-    if (!serverResponse.compare(0, 6, "<html>")) {
-        throw TgException("tgbot-cpp library have got html page instead of json response. Maybe you entered wrong bot token.");
-    }
-
-    boost::property_tree::ptree result = _tgTypeParser.parseJson(serverResponse);
-    try {
-        if (result.get<bool>("ok", false)) {
-            return result.get_child("result");
-        } else {
-            throw TgException(result.get("description", ""));
-        }
-    } catch (boost::property_tree::ptree_error& e) {
-        throw TgException("tgbot-cpp library can't parse json response. " + std::string(e.what()));
-    }
+    return sendRequest(method, _token, args);
 }
 
 boost::property_tree::ptree Api::sendRequest(
@@ -2547,9 +2559,11 @@ boost::property_tree::ptree Api::sendRequest(
     boost::property_tree::ptree result = _tgTypeParser.parseJson(serverResponse);
     try {
         if (result.get<bool>("ok", false)) {
+            _parseErrorDescription = "";
             return result.get_child("result");
         }
         else {
+            _parseErrorDescription = result.get("description", "");
             return {};
         }
     }

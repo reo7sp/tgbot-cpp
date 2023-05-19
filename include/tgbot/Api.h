@@ -108,6 +108,16 @@ public:
                     bool dropPendingUpdates = false,
                     const std::string& secretToken = "") const;
 
+    bool setWebhook(const std::string& url,
+        const std::string& token,
+        InputFile::Ptr certificate = nullptr,
+        std::int32_t maxConnections = 40,
+        const StringArrayPtr& allowedUpdates = nullptr,
+        const std::string& ipAddress = "",
+        bool dropPendingUpdates = false,
+        const std::string& secretToken = "") const;
+
+
     /**
      * @brief Use this method to remove webhook integration if you decide to switch back to Api::getUpdates.
      *
@@ -116,6 +126,8 @@ public:
      * @return Returns True on success.
      */
     bool deleteWebhook(bool dropPendingUpdates = false) const;
+
+    bool deleteWebhook(const std::string& token, bool dropPendingUpdates = false) const;
 
     /**
      * @brief Use this method to get current webhook status.
@@ -126,6 +138,8 @@ public:
      * @return On success, returns a WebhookInfo object. If the bot is using getUpdates, will return a nullptr.
      */
     WebhookInfo::Ptr getWebhookInfo() const;
+
+    WebhookInfo::Ptr getWebhookInfo(const std::string& token) const;
 
     /**
      * @brief A simple method for testing your bot's authentication token.
@@ -1993,6 +2007,8 @@ public:
     
     void SetToken(std::string newToken);
 
+    const std::string& GetParseErrorDescription() const;
+
 private:
     boost::property_tree::ptree sendRequest(const std::string& method, const std::vector<HttpReqArg>& args = std::vector<HttpReqArg>()) const;
     boost::property_tree::ptree sendRequest(
@@ -2004,6 +2020,7 @@ private:
     mutable std::string _token;
     const TgTypeParser _tgTypeParser;
     const std::string _url;
+    mutable std::string _parseErrorDescription;
 };
 }
 
