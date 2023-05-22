@@ -3,6 +3,7 @@
 namespace TgBot {
 
 Update::Ptr TgTypeParser::parseJsonAndGetUpdate(const boost::property_tree::ptree& data) const {
+    if (data.empty()) return nullptr;
     auto result(std::make_shared<Update>());
     result->updateId = data.get<std::int32_t>("update_id", 0);
     result->message = tryParseJson<Message>(&TgTypeParser::parseJsonAndGetMessage, data, "message");
@@ -49,6 +50,7 @@ std::string TgTypeParser::parseUpdate(const Update::Ptr& object) const {
 }
 
 WebhookInfo::Ptr TgTypeParser::parseJsonAndGetWebhookInfo(const boost::property_tree::ptree& data) const {
+    if (data.empty()) return nullptr;
     auto result(std::make_shared<WebhookInfo>());
     result->url = data.get<std::string>("url", "");
     result->hasCustomCertificate = data.get<bool>("has_custom_certificate", false);
@@ -91,6 +93,7 @@ std::string TgTypeParser::parseWebhookInfo(const WebhookInfo::Ptr& object) const
 }
 
 User::Ptr TgTypeParser::parseJsonAndGetUser(const boost::property_tree::ptree& data) const {
+    if (data.empty()) return nullptr;
     auto result(std::make_shared<User>());
     result->id = data.get<std::int64_t>("id", 0);
     result->isBot = data.get<bool>("is_bot", false);
@@ -129,6 +132,7 @@ std::string TgTypeParser::parseUser(const User::Ptr& object) const {
 }
 
 Chat::Ptr TgTypeParser::parseJsonAndGetChat(const boost::property_tree::ptree& data) const {
+    if (data.empty()) return nullptr;
     auto result(std::make_shared<Chat>());
     result->id = data.get<std::int64_t>("id", 0);
     std::string type = data.get<std::string>("type", "");
@@ -224,6 +228,7 @@ std::string TgTypeParser::parseChat(const Chat::Ptr& object) const {
 }
 
 Message::Ptr TgTypeParser::parseJsonAndGetMessage(const boost::property_tree::ptree& data) const {
+    if (data.empty()) return nullptr;
     auto result(std::make_shared<Message>());
     result->messageId = data.get<std::int32_t>("message_id", 0);
     result->messageThreadId = data.get<std::int32_t>("message_thread_id", 0);
@@ -382,6 +387,7 @@ std::string TgTypeParser::parseMessage(const Message::Ptr& object) const {
 }
 
 MessageId::Ptr TgTypeParser::parseJsonAndGetMessageId(const boost::property_tree::ptree& data) const {
+    if (data.empty()) return nullptr;
     auto result(std::make_shared<MessageId>());
     result->messageId = data.get<std::int32_t>("message_id", 0);
     return result;
@@ -400,6 +406,7 @@ std::string TgTypeParser::parseMessageId(const MessageId::Ptr& object) const {
 }
 
 MessageEntity::Ptr TgTypeParser::parseJsonAndGetMessageEntity(const boost::property_tree::ptree& data) const {
+    if (data.empty()) return nullptr;
     auto result(std::make_shared<MessageEntity>());
     std::string type = data.get<std::string>("type", "");
     if (type == "mention") {
@@ -499,6 +506,7 @@ std::string TgTypeParser::parseMessageEntity(const MessageEntity::Ptr& object) c
 }
 
 PhotoSize::Ptr TgTypeParser::parseJsonAndGetPhotoSize(const boost::property_tree::ptree& data) const {
+    if (data.empty()) return nullptr;
     auto result(std::make_shared<PhotoSize>());
     result->fileId = data.get<std::string>("file_id", "");
     result->fileUniqueId = data.get<std::string>("file_unique_id", "");
@@ -525,6 +533,7 @@ std::string TgTypeParser::parsePhotoSize(const PhotoSize::Ptr& object) const {
 }
 
 Animation::Ptr TgTypeParser::parseJsonAndGetAnimation(const boost::property_tree::ptree& data) const {
+    if (data.empty()) return nullptr;
     auto result(std::make_shared<Animation>());
     result->fileId = data.get<std::string>("file_id", "");
     result->fileUniqueId = data.get<std::string>("file_unique_id", "");
@@ -559,6 +568,7 @@ std::string TgTypeParser::parseAnimation(const Animation::Ptr& object) const {
 }
 
 Audio::Ptr TgTypeParser::parseJsonAndGetAudio(const boost::property_tree::ptree& data) const {
+    if (data.empty()) return nullptr;
     auto result(std::make_shared<Audio>());
     result->fileId = data.get<std::string>("file_id", "");
     result->fileUniqueId = data.get<std::string>("file_unique_id", "");
@@ -593,6 +603,7 @@ std::string TgTypeParser::parseAudio(const Audio::Ptr& object) const {
 }
 
 Document::Ptr TgTypeParser::parseJsonAndGetDocument(const boost::property_tree::ptree& data) const {
+    if (data.empty()) return nullptr;
     auto result(std::make_shared<Document>());
     result->fileId = data.get<std::string>("file_id", "");
     result->fileUniqueId = data.get<std::string>("file_unique_id", "");
@@ -621,6 +632,7 @@ std::string TgTypeParser::parseDocument(const Document::Ptr& object) const {
 }
 
 Video::Ptr TgTypeParser::parseJsonAndGetVideo(const boost::property_tree::ptree& data) const {
+    if (data.empty()) return nullptr;
     auto result(std::make_shared<Video>());
     result->fileId = data.get<std::string>("file_id", "");
     result->fileUniqueId = data.get<std::string>("file_unique_id", "");
@@ -655,6 +667,7 @@ std::string TgTypeParser::parseVideo(const Video::Ptr& object) const {
 }
 
 VideoNote::Ptr TgTypeParser::parseJsonAndGetVideoNote(const boost::property_tree::ptree& data) const {
+    if (data.empty()) return nullptr;
     auto result(std::make_shared<VideoNote>());
     result->fileId = data.get<std::string>("file_id", "");
     result->fileUniqueId = data.get<std::string>("file_unique_id", "");
@@ -683,6 +696,7 @@ std::string TgTypeParser::parseVideoNote(const VideoNote::Ptr& object) const {
 }
 
 Voice::Ptr TgTypeParser::parseJsonAndGetVoice(const boost::property_tree::ptree& data) const {
+    if (data.empty()) return nullptr;
     auto result(std::make_shared<Voice>());
     result->fileId = data.get<std::string>("file_id", "");
     result->fileUniqueId = data.get<std::string>("file_unique_id", "");
@@ -709,6 +723,7 @@ std::string TgTypeParser::parseVoice(const Voice::Ptr& object) const {
 }
 
 Contact::Ptr TgTypeParser::parseJsonAndGetContact(const boost::property_tree::ptree& data) const {
+    if (data.empty()) return nullptr;
     auto result(std::make_shared<Contact>());
     result->phoneNumber = data.get<std::string>("phone_number", "");
     result->firstName = data.get<std::string>("first_name", "");
@@ -735,6 +750,7 @@ std::string TgTypeParser::parseContact(const Contact::Ptr& object) const {
 }
 
 Dice::Ptr TgTypeParser::parseJsonAndGetDice(const boost::property_tree::ptree& data) const {
+    if (data.empty()) return nullptr;
     auto result(std::make_shared<Dice>());
     result->emoji = data.get<std::string>("emoji", "");
     result->value = data.get<std::int32_t>("value", 0);
@@ -755,6 +771,7 @@ std::string TgTypeParser::parseDice(const Dice::Ptr& object) const {
 }
 
 PollOption::Ptr TgTypeParser::parseJsonAndGetPollOption(const boost::property_tree::ptree& data) const {
+    if (data.empty()) return nullptr;
     auto result(std::make_shared<PollOption>());
     result->text = data.get<std::string>("text", "");
     result->voterCount = data.get<int64_t>("voter_count", 0);
@@ -775,6 +792,7 @@ std::string TgTypeParser::parsePollOption(const PollOption::Ptr& object) const {
 }
 
 PollAnswer::Ptr TgTypeParser::parseJsonAndGetPollAnswer(const boost::property_tree::ptree& data) const {
+    if (data.empty()) return nullptr;
     auto result(std::make_shared<PollAnswer>());
     result->pollId = data.get<std::string>("poll_id", "");
     result->user = tryParseJson<User>(&TgTypeParser::parseJsonAndGetUser, data, "user");
@@ -802,6 +820,7 @@ std::string TgTypeParser::parsePollAnswer(const PollAnswer::Ptr& object) const {
 }
 
 Poll::Ptr TgTypeParser::parseJsonAndGetPoll(const boost::property_tree::ptree& data) const {
+    if (data.empty()) return nullptr;
     auto result(std::make_shared<Poll>());
     result->id = data.get<std::string>("id", "");
     result->question = data.get<std::string>("question", "");
@@ -844,6 +863,7 @@ std::string TgTypeParser::parsePoll(const Poll::Ptr& object) const {
 }
 
 Location::Ptr TgTypeParser::parseJsonAndGetLocation(const boost::property_tree::ptree& data) const {
+    if (data.empty()) return nullptr;
     auto result(std::make_shared<Location>());
     result->longitude = data.get<float>("longitude", 0);
     result->latitude = data.get<float>("latitude", 0);
@@ -872,6 +892,7 @@ std::string TgTypeParser::parseLocation(const Location::Ptr& object) const {
 }
 
 Venue::Ptr TgTypeParser::parseJsonAndGetVenue(const boost::property_tree::ptree& data) const {
+    if (data.empty()) return nullptr;
     auto result(std::make_shared<Venue>());
     result->location = tryParseJson<Location>(&TgTypeParser::parseJsonAndGetLocation, data, "location");
     result->title = data.get<std::string>("title", "");
@@ -902,6 +923,7 @@ std::string TgTypeParser::parseVenue(const Venue::Ptr& object) const {
 }
 
 WebAppData::Ptr TgTypeParser::parseJsonAndGetWebAppData(const boost::property_tree::ptree& data) const {
+    if (data.empty()) return nullptr;
     auto result(std::make_shared<WebAppData>());
     result->data = data.get<std::string>("data", "");
     result->buttonText = data.get<std::string>("button_text", "");
@@ -922,6 +944,7 @@ std::string TgTypeParser::parseWebAppData(const WebAppData::Ptr& object) const {
 }
 
 ProximityAlertTriggered::Ptr TgTypeParser::parseJsonAndGetProximityAlertTriggered(const boost::property_tree::ptree& data) const {
+    if (data.empty()) return nullptr;
     auto result(std::make_shared<ProximityAlertTriggered>());
     result->traveler = tryParseJson<User>(&TgTypeParser::parseJsonAndGetUser, data, "traveler");
     result->watcher = tryParseJson<User>(&TgTypeParser::parseJsonAndGetUser, data, "watcher");
@@ -944,6 +967,7 @@ std::string TgTypeParser::parseProximityAlertTriggered(const ProximityAlertTrigg
 }
 
 MessageAutoDeleteTimerChanged::Ptr TgTypeParser::parseJsonAndGetMessageAutoDeleteTimerChanged(const boost::property_tree::ptree& data) const {
+    if (data.empty()) return nullptr;
     auto result(std::make_shared<MessageAutoDeleteTimerChanged>());
     result->messageAutoDeleteTime = data.get<std::int32_t>("message_auto_delete_time", 0);
     return result;
@@ -962,6 +986,7 @@ std::string TgTypeParser::parseMessageAutoDeleteTimerChanged(const MessageAutoDe
 }
 
 ForumTopicCreated::Ptr TgTypeParser::parseJsonAndGetForumTopicCreated(const boost::property_tree::ptree& data) const {
+    if (data.empty()) return nullptr;
     auto result(std::make_shared<ForumTopicCreated>());
     result->name = data.get<std::string>("name", "");
     result->iconColor = data.get<std::int32_t>("icon_color", 0);
@@ -984,6 +1009,7 @@ std::string TgTypeParser::parseForumTopicCreated(const ForumTopicCreated::Ptr& o
 }
 
 ForumTopicClosed::Ptr TgTypeParser::parseJsonAndGetForumTopicClosed(const boost::property_tree::ptree& data) const {
+    if (data.empty()) return nullptr;
     auto result(std::make_shared<ForumTopicClosed>());
     return result;
 }
@@ -1000,6 +1026,7 @@ std::string TgTypeParser::parseForumTopicClosed(const ForumTopicClosed::Ptr& obj
 }
 
 ForumTopicEdited::Ptr TgTypeParser::parseJsonAndGetForumTopicEdited(const boost::property_tree::ptree& data) const {
+    if (data.empty()) return nullptr;
     auto result(std::make_shared<ForumTopicEdited>());
     result->name = data.get<std::string>("name", "");
     result->iconCustomEmojiId = data.get<std::string>("icon_custom_emoji_id", "");
@@ -1020,6 +1047,7 @@ std::string TgTypeParser::parseForumTopicEdited(const ForumTopicEdited::Ptr& obj
 }
 
 ForumTopicReopened::Ptr TgTypeParser::parseJsonAndGetForumTopicReopened(const boost::property_tree::ptree& data) const {
+    if (data.empty()) return nullptr;
     auto result(std::make_shared<ForumTopicReopened>());
     return result;
 }
@@ -1036,6 +1064,7 @@ std::string TgTypeParser::parseForumTopicReopened(const ForumTopicReopened::Ptr&
 }
 
 GeneralForumTopicHidden::Ptr TgTypeParser::parseJsonAndGetGeneralForumTopicHidden(const boost::property_tree::ptree& data) const {
+    if (data.empty()) return nullptr;
     auto result(std::make_shared<GeneralForumTopicHidden>());
     return result;
 }
@@ -1052,6 +1081,7 @@ std::string TgTypeParser::parseGeneralForumTopicHidden(const GeneralForumTopicHi
 }
 
 GeneralForumTopicUnhidden::Ptr TgTypeParser::parseJsonAndGetGeneralForumTopicUnhidden(const boost::property_tree::ptree& data) const {
+    if (data.empty()) return nullptr;
     auto result(std::make_shared<GeneralForumTopicUnhidden>());
     return result;
 }
@@ -1068,6 +1098,7 @@ std::string TgTypeParser::parseGeneralForumTopicUnhidden(const GeneralForumTopic
 }
 
 UserShared::Ptr TgTypeParser::parseJsonAndGetUserShared(const boost::property_tree::ptree& data) const {
+    if (data.empty()) return nullptr;
     auto result(std::make_shared<UserShared>());
     result->requestId = data.get<std::int32_t>("request_id", 0);
     result->userId = data.get<std::int64_t>("user_id", 0);
@@ -1088,6 +1119,7 @@ std::string TgTypeParser::parseUserShared(const UserShared::Ptr& object) const {
 }
 
 ChatShared::Ptr TgTypeParser::parseJsonAndGetChatShared(const boost::property_tree::ptree& data) const {
+    if (data.empty()) return nullptr;
     auto result(std::make_shared<ChatShared>());
     result->requestId = data.get<std::int32_t>("request_id", 0);
     result->userId = data.get<std::int64_t>("user_id", 0);
@@ -1108,6 +1140,7 @@ std::string TgTypeParser::parseChatShared(const ChatShared::Ptr& object) const {
 }
 
 WriteAccessAllowed::Ptr TgTypeParser::parseJsonAndGetWriteAccessAllowed(const boost::property_tree::ptree& data) const {
+    if (data.empty()) return nullptr;
     auto result(std::make_shared<WriteAccessAllowed>());
     return result;
 }
@@ -1124,6 +1157,7 @@ std::string TgTypeParser::parseWriteAccessAllowed(const WriteAccessAllowed::Ptr&
 }
 
 VideoChatScheduled::Ptr TgTypeParser::parseJsonAndGetVideoChatScheduled(const boost::property_tree::ptree& data) const {
+    if (data.empty()) return nullptr;
     auto result(std::make_shared<VideoChatScheduled>());
     result->startDate = data.get<std::int32_t>("start_date", 0);
     return result;
@@ -1142,6 +1176,7 @@ std::string TgTypeParser::parseVideoChatScheduled(const VideoChatScheduled::Ptr&
 }
 
 VideoChatStarted::Ptr TgTypeParser::parseJsonAndGetVideoChatStarted(const boost::property_tree::ptree& data) const {
+    if (data.empty()) return nullptr;
     auto result(std::make_shared<VideoChatStarted>());
     return result;
 }
@@ -1157,6 +1192,7 @@ std::string TgTypeParser::parseVideoChatStarted(const VideoChatStarted::Ptr& obj
 }
 
 VideoChatEnded::Ptr TgTypeParser::parseJsonAndGetVideoChatEnded(const boost::property_tree::ptree& data) const {
+    if (data.empty()) return nullptr;
     auto result(std::make_shared<VideoChatEnded>());
     result->duration = data.get<std::int32_t>("duration", 0);
     return result;
@@ -1175,6 +1211,7 @@ std::string TgTypeParser::parseVideoChatEnded(const VideoChatEnded::Ptr& object)
 }
 
 VideoChatParticipantsInvited::Ptr TgTypeParser::parseJsonAndGetVideoChatParticipantsInvited(const boost::property_tree::ptree& data) const {
+    if (data.empty()) return nullptr;
     auto result(std::make_shared<VideoChatParticipantsInvited>());
     result->users = parseJsonAndGetArray<User>(&TgTypeParser::parseJsonAndGetUser, data, "users");
     return result;
@@ -1193,6 +1230,7 @@ std::string TgTypeParser::parseVideoChatParticipantsInvited(const VideoChatParti
 }
 
 UserProfilePhotos::Ptr TgTypeParser::parseJsonAndGetUserProfilePhotos(const boost::property_tree::ptree& data) const {
+    if (data.empty()) return nullptr;
     auto result(std::make_shared<UserProfilePhotos>());
     result->totalCount = data.get<std::int32_t>("total_count");
     result->photos = parseJsonAndGet2DArray<PhotoSize>(&TgTypeParser::parseJsonAndGetPhotoSize, data, "photos");
@@ -1213,6 +1251,7 @@ std::string TgTypeParser::parseUserProfilePhotos(const UserProfilePhotos::Ptr& o
 }
 
 File::Ptr TgTypeParser::parseJsonAndGetFile(const boost::property_tree::ptree& data) const {
+    if (data.empty()) return nullptr;
     auto result(std::make_shared<File>());
     result->fileId = data.get<std::string>("file_id", "");
     result->fileUniqueId = data.get<std::string>("file_unique_id", "");
@@ -1237,6 +1276,7 @@ std::string TgTypeParser::parseFile(const File::Ptr& object) const {
 }
 
 WebAppInfo::Ptr TgTypeParser::parseJsonAndGetWebAppInfo(const boost::property_tree::ptree& data) const {
+    if (data.empty()) return nullptr;
     auto result(std::make_shared<WebAppInfo>());
     result->url = data.get<std::string>("url", "");
     return result;
@@ -1255,6 +1295,7 @@ std::string TgTypeParser::parseWebAppInfo(const WebAppInfo::Ptr& object) const {
 }
 
 ReplyKeyboardMarkup::Ptr TgTypeParser::parseJsonAndGetReplyKeyboardMarkup(const boost::property_tree::ptree& data) const {
+    if (data.empty()) return nullptr;
     auto result(std::make_shared<ReplyKeyboardMarkup>());
     for (const auto& item : data.find("keyboard")->second) {
         result->keyboard.push_back(parseJsonAndGetArray<KeyboardButton>(&TgTypeParser::parseJsonAndGetKeyboardButton, item.second));
@@ -1297,6 +1338,7 @@ std::string TgTypeParser::parseReplyKeyboardMarkup(const ReplyKeyboardMarkup::Pt
 }
 
 KeyboardButton::Ptr TgTypeParser::parseJsonAndGetKeyboardButton(const boost::property_tree::ptree& data) const {
+    if (data.empty()) return nullptr;
     auto result(std::make_shared<KeyboardButton>());
     result->text = data.get<std::string>("text", "");
     result->requestUser = tryParseJson<KeyboardButtonRequestUser>(&TgTypeParser::parseJsonAndGetKeyboardButtonRequestUser, data, "request_user");
@@ -1327,6 +1369,7 @@ std::string TgTypeParser::parseKeyboardButton(const KeyboardButton::Ptr& object)
 }
 
 KeyboardButtonRequestUser::Ptr TgTypeParser::parseJsonAndGetKeyboardButtonRequestUser(const boost::property_tree::ptree& data) const {
+    if (data.empty()) return nullptr;
     auto result(std::make_shared<KeyboardButtonRequestUser>());
     result->requestId = data.get<std::int32_t>("request_id", 0);
     result->userIsBot = data.get<bool>("user_is_bot", false);
@@ -1349,6 +1392,7 @@ std::string TgTypeParser::parseKeyboardButtonRequestUser(const KeyboardButtonReq
 }
 
 KeyboardButtonRequestChat::Ptr TgTypeParser::parseJsonAndGetKeyboardButtonRequestChat(const boost::property_tree::ptree& data) const {
+    if (data.empty()) return nullptr;
     auto result(std::make_shared<KeyboardButtonRequestChat>());
     result->requestId = data.get<std::int32_t>("request_id", 0);
     result->chatIsChannel = data.get<bool>("chat_is_channel", false);
@@ -1381,6 +1425,7 @@ std::string TgTypeParser::parseKeyboardButtonRequestChat(const KeyboardButtonReq
 }
 
 KeyboardButtonPollType::Ptr TgTypeParser::parseJsonAndGetKeyboardButtonPollType(const boost::property_tree::ptree& data) const {
+    if (data.empty()) return nullptr;
     auto result(std::make_shared<KeyboardButtonPollType>());
     result->type = data.get<std::string>("type", "");
     return result;
@@ -1399,6 +1444,7 @@ std::string TgTypeParser::parseKeyboardButtonPollType(const KeyboardButtonPollTy
 }
 
 ReplyKeyboardRemove::Ptr TgTypeParser::parseJsonAndGetReplyKeyboardRemove(const boost::property_tree::ptree& data) const {
+    if (data.empty()) return nullptr;
     auto result(std::make_shared<ReplyKeyboardRemove>());
     result->selective = data.get<bool>("selective", false);
     return result;
@@ -1418,6 +1464,7 @@ std::string TgTypeParser::parseReplyKeyboardRemove(const ReplyKeyboardRemove::Pt
 }
 
 InlineKeyboardMarkup::Ptr TgTypeParser::parseJsonAndGetInlineKeyboardMarkup(const boost::property_tree::ptree& data) const {
+    if (data.empty()) return nullptr;
     auto result(std::make_shared<InlineKeyboardMarkup>());
     for (const auto& item : data.find("inline_keyboard")->second) {
         result->inlineKeyboard.push_back(parseJsonAndGetArray<InlineKeyboardButton>(&TgTypeParser::parseJsonAndGetInlineKeyboardButton, item.second));
@@ -1448,6 +1495,7 @@ std::string TgTypeParser::parseInlineKeyboardMarkup(const InlineKeyboardMarkup::
 }
 
 InlineKeyboardButton::Ptr TgTypeParser::parseJsonAndGetInlineKeyboardButton(const boost::property_tree::ptree& data) const {
+    if (data.empty()) return nullptr;
     auto result(std::make_shared<InlineKeyboardButton>());
     result->text = data.get<std::string>("text", "");
     result->url = data.get<std::string>("url", "");
@@ -1481,6 +1529,7 @@ std::string TgTypeParser::parseInlineKeyboardButton(const InlineKeyboardButton::
 }
 
 LoginUrl::Ptr TgTypeParser::parseJsonAndGetLoginUrl(const boost::property_tree::ptree& data) const {
+    if (data.empty()) return nullptr;
     auto result(std::make_shared<LoginUrl>());
     result->url = data.get<std::string>("url", "");
     result->forwardText = data.get<std::string>("forward_text", "");
@@ -1505,6 +1554,7 @@ std::string TgTypeParser::parseLoginUrl(const LoginUrl::Ptr& object) const {
 }
 
 CallbackQuery::Ptr TgTypeParser::parseJsonAndGetCallbackQuery(const boost::property_tree::ptree& data) const {
+    if (data.empty()) return nullptr;
     auto result(std::make_shared<CallbackQuery>());
     result->id = data.get<std::string>("id");
     result->from = tryParseJson<User>(&TgTypeParser::parseJsonAndGetUser, data, "from");
@@ -1536,6 +1586,7 @@ std::string TgTypeParser::parseCallbackQuery(const CallbackQuery::Ptr& object) c
 }
 
 ForceReply::Ptr TgTypeParser::parseJsonAndGetForceReply(const boost::property_tree::ptree& data) const {
+    if (data.empty()) return nullptr;
     auto result(std::make_shared<ForceReply>());
     result->inputFieldPlaceholder = data.get<std::string>("input_field_placeholder", "");
     result->selective = data.get<bool>("selective", false);
@@ -1557,6 +1608,7 @@ std::string TgTypeParser::parseForceReply(const ForceReply::Ptr& object) const {
 }
 
 ChatPhoto::Ptr TgTypeParser::parseJsonAndGetChatPhoto(const boost::property_tree::ptree& data) const {
+    if (data.empty()) return nullptr;
     auto result(std::make_shared<ChatPhoto>());
     result->smallFileId = data.get<std::string>("small_file_id", "");
     result->smallFileUniqueId = data.get<std::string>("small_file_unique_id", "");
@@ -1581,6 +1633,7 @@ std::string TgTypeParser::parseChatPhoto(const ChatPhoto::Ptr& object) const {
 }
 
 ChatInviteLink::Ptr TgTypeParser::parseJsonAndGetChatInviteLink(const boost::property_tree::ptree& data) const {
+    if (data.empty()) return nullptr;
     auto result(std::make_shared<ChatInviteLink>());
     result->inviteLink = data.get<std::string>("invite_link", "");
     result->creator = tryParseJson<User>(&TgTypeParser::parseJsonAndGetUser, data, "creator");
@@ -1615,6 +1668,7 @@ std::string TgTypeParser::parseChatInviteLink(const ChatInviteLink::Ptr& object)
 }
 
 ChatAdministratorRights::Ptr TgTypeParser::parseJsonAndGetChatAdministratorRights(const boost::property_tree::ptree& data) const {
+    if (data.empty()) return nullptr;
     auto result(std::make_shared<ChatAdministratorRights>());
     result->isAnonymous = data.get<bool>("is_anonymous", false);
     result->canManageChat = data.get<bool>("can_manage_chat", false);
@@ -1655,6 +1709,7 @@ std::string TgTypeParser::parseChatAdministratorRights(const ChatAdministratorRi
 }
 
 ChatMember::Ptr TgTypeParser::parseJsonAndGetChatMember(const boost::property_tree::ptree& data) const {
+    if (data.empty()) return nullptr;
     std::string status = data.get<std::string>("status", "");
     ChatMember::Ptr result;
 
@@ -1710,6 +1765,7 @@ std::string TgTypeParser::parseChatMember(const ChatMember::Ptr& object) const {
 
 ChatMemberOwner::Ptr TgTypeParser::parseJsonAndGetChatMemberOwner(const boost::property_tree::ptree& data) const {
     // NOTE: This function will be called by parseJsonAndGetChatMember().
+    if (data.empty()) return nullptr;
     auto result(std::make_shared<ChatMemberOwner>());
     result->customTitle = data.get<std::string>("custom_title", "");
     result->isAnonymous = data.get<bool>("is_anonymous", false);
@@ -1731,6 +1787,7 @@ std::string TgTypeParser::parseChatMemberOwner(const ChatMemberOwner::Ptr& objec
 
 ChatMemberAdministrator::Ptr TgTypeParser::parseJsonAndGetChatMemberAdministrator(const boost::property_tree::ptree& data) const {
     // NOTE: This function will be called by parseJsonAndGetChatMember().
+    if (data.empty()) return nullptr;
     auto result(std::make_shared<ChatMemberAdministrator>());
     result->canBeEdited = data.get<bool>("can_be_edited", false);
     result->isAnonymous = data.get<bool>("is_anonymous", false);
@@ -1776,6 +1833,7 @@ std::string TgTypeParser::parseChatMemberAdministrator(const ChatMemberAdministr
 
 ChatMemberMember::Ptr TgTypeParser::parseJsonAndGetChatMemberMember(const boost::property_tree::ptree& data) const {
     // NOTE: This function will be called by parseJsonAndGetChatMember().
+    if (data.empty()) return nullptr;
     auto result(std::make_shared<ChatMemberMember>());
     return result;
 }
@@ -1793,6 +1851,7 @@ std::string TgTypeParser::parseChatMemberMember(const ChatMemberMember::Ptr& obj
 
 ChatMemberRestricted::Ptr TgTypeParser::parseJsonAndGetChatMemberRestricted(const boost::property_tree::ptree& data) const {
     // NOTE: This function will be called by parseJsonAndGetChatMember().
+    if (data.empty()) return nullptr;
     auto result(std::make_shared<ChatMemberRestricted>());
     result->isMember = data.get<bool>("is_member", false);
     result->canSendMessages = data.get<bool>("can_send_messages", false);
@@ -1842,6 +1901,7 @@ std::string TgTypeParser::parseChatMemberRestricted(const ChatMemberRestricted::
 
 ChatMemberLeft::Ptr TgTypeParser::parseJsonAndGetChatMemberLeft(const boost::property_tree::ptree& data) const {
     // NOTE: This function will be called by parseJsonAndGetChatMember().
+    if (data.empty()) return nullptr;
     auto result(std::make_shared<ChatMemberLeft>());
     return result;
 }
@@ -1859,6 +1919,7 @@ std::string TgTypeParser::parseChatMemberLeft(const ChatMemberLeft::Ptr& object)
 
 ChatMemberBanned::Ptr TgTypeParser::parseJsonAndGetChatMemberBanned(const boost::property_tree::ptree& data) const {
     // NOTE: This function will be called by parseJsonAndGetChatMember().
+    if (data.empty()) return nullptr;
     auto result(std::make_shared<ChatMemberBanned>());
     result->untilDate = data.get<uint32_t>("until_date", 0);
     return result;
@@ -1877,6 +1938,7 @@ std::string TgTypeParser::parseChatMemberBanned(const ChatMemberBanned::Ptr& obj
 }
 
 ChatMemberUpdated::Ptr TgTypeParser::parseJsonAndGetChatMemberUpdated(const boost::property_tree::ptree& data) const {
+    if (data.empty()) return nullptr;
     auto result(std::make_shared<ChatMemberUpdated>());
     result->chat = tryParseJson<Chat>(&TgTypeParser::parseJsonAndGetChat, data, "chat");
     result->from = tryParseJson<User>(&TgTypeParser::parseJsonAndGetUser, data, "from");
@@ -1905,6 +1967,7 @@ std::string TgTypeParser::parseChatMemberUpdated(const ChatMemberUpdated::Ptr& o
 }
 
 ChatJoinRequest::Ptr TgTypeParser::parseJsonAndGetChatJoinRequest(const boost::property_tree::ptree& data) const {
+    if (data.empty()) return nullptr;
     auto result(std::make_shared<ChatJoinRequest>());
     result->chat = tryParseJson<Chat>(&TgTypeParser::parseJsonAndGetChat, data, "chat");
     result->from = tryParseJson<User>(&TgTypeParser::parseJsonAndGetUser, data, "from");
@@ -1933,6 +1996,7 @@ std::string TgTypeParser::parseChatJoinRequest(const ChatJoinRequest::Ptr& objec
 }
 
 ChatPermissions::Ptr TgTypeParser::parseJsonAndGetChatPermissions(const boost::property_tree::ptree& data) const {
+    if (data.empty()) return nullptr;
     auto result(std::make_shared<ChatPermissions>());
     result->canSendMessages = data.get<bool>("can_send_messages", false);
     result->canSendAudios = data.get<bool>("can_send_audios", false);
@@ -1977,6 +2041,7 @@ std::string TgTypeParser::parseChatPermissions(const ChatPermissions::Ptr& objec
 }
 
 ChatLocation::Ptr TgTypeParser::parseJsonAndGetChatLocation(const boost::property_tree::ptree& data) const {
+    if (data.empty()) return nullptr;
     auto result(std::make_shared<ChatLocation>());
     result->location = tryParseJson<Location>(&TgTypeParser::parseJsonAndGetLocation, data, "location");
     result->address = data.get<std::string>("address", "");
@@ -1997,6 +2062,7 @@ std::string TgTypeParser::parseChatLocation(const ChatLocation::Ptr& object) con
 }
 
 ForumTopic::Ptr TgTypeParser::parseJsonAndGetForumTopic(const boost::property_tree::ptree& data) const {
+    if (data.empty()) return nullptr;
     auto result(std::make_shared<ForumTopic>());
     result->messageThreadId = data.get<std::int32_t>("message_thread_id", 0);
     result->name = data.get<std::string>("name", "");
@@ -2021,6 +2087,7 @@ std::string TgTypeParser::parseForumTopic(const ForumTopic::Ptr& object) const {
 }
 
 BotCommand::Ptr TgTypeParser::parseJsonAndGetBotCommand(const boost::property_tree::ptree& data) const {
+    if (data.empty()) return nullptr;
     auto result(std::make_shared<BotCommand>());
     result->command = data.get("command", "");
     result->description = data.get("description", "");
@@ -2038,6 +2105,7 @@ std::string TgTypeParser::parseBotCommand(const BotCommand::Ptr& object) const {
 }
 
 BotCommandScope::Ptr TgTypeParser::parseJsonAndGetBotCommandScope(const boost::property_tree::ptree& data) const {
+    if (data.empty()) return nullptr;
     std::string type = data.get<std::string>("type", "");
     BotCommandScope::Ptr result;
 
@@ -2095,6 +2163,7 @@ std::string TgTypeParser::parseBotCommandScope(const BotCommandScope::Ptr& objec
 
 BotCommandScopeDefault::Ptr TgTypeParser::parseJsonAndGetBotCommandScopeDefault(const boost::property_tree::ptree& data) const {
     // NOTE: This function will be called by parseJsonAndGetBotCommandScope().
+    if (data.empty()) return nullptr;
     auto result(std::make_shared<BotCommandScopeDefault>());
     return result;
 }
@@ -2112,6 +2181,7 @@ std::string TgTypeParser::parseBotCommandScopeDefault(const BotCommandScopeDefau
 
 BotCommandScopeAllPrivateChats::Ptr TgTypeParser::parseJsonAndGetBotCommandScopeAllPrivateChats(const boost::property_tree::ptree& data) const {
     // NOTE: This function will be called by parseJsonAndGetBotCommandScope().
+    if (data.empty()) return nullptr;
     auto result(std::make_shared<BotCommandScopeAllPrivateChats>());
     return result;
 }
@@ -2129,6 +2199,7 @@ std::string TgTypeParser::parseBotCommandScopeAllPrivateChats(const BotCommandSc
 
 BotCommandScopeAllGroupChats::Ptr TgTypeParser::parseJsonAndGetBotCommandScopeAllGroupChats(const boost::property_tree::ptree& data) const {
     // NOTE: This function will be called by parseJsonAndGetBotCommandScope().
+    if (data.empty()) return nullptr;
     auto result(std::make_shared<BotCommandScopeAllGroupChats>());
     return result;
 }
@@ -2146,6 +2217,7 @@ std::string TgTypeParser::parseBotCommandScopeAllGroupChats(const BotCommandScop
 
 BotCommandScopeAllChatAdministrators::Ptr TgTypeParser::parseJsonAndGetBotCommandScopeAllChatAdministrators(const boost::property_tree::ptree& data) const {
     // NOTE: This function will be called by parseJsonAndGetBotCommandScope().
+    if (data.empty()) return nullptr;
     auto result(std::make_shared<BotCommandScopeAllChatAdministrators>());
     return result;
 }
@@ -2163,6 +2235,7 @@ std::string TgTypeParser::parseBotCommandScopeAllChatAdministrators(const BotCom
 
 BotCommandScopeChat::Ptr TgTypeParser::parseJsonAndGetBotCommandScopeChat(const boost::property_tree::ptree& data) const {
     // NOTE: This function will be called by parseJsonAndGetBotCommandScope().
+    if (data.empty()) return nullptr;
     auto result(std::make_shared<BotCommandScopeChat>());
     result->chatId = data.get<std::int64_t>("chat_id", 0);
     return result;
@@ -2182,6 +2255,7 @@ std::string TgTypeParser::parseBotCommandScopeChat(const BotCommandScopeChat::Pt
 
 BotCommandScopeChatAdministrators::Ptr TgTypeParser::parseJsonAndGetBotCommandScopeChatAdministrators(const boost::property_tree::ptree& data) const {
     // NOTE: This function will be called by parseJsonAndGetBotCommandScope().
+    if (data.empty()) return nullptr;
     auto result(std::make_shared<BotCommandScopeChatAdministrators>());
     result->chatId = data.get<std::int64_t>("chat_id", 0);
     return result;
@@ -2201,6 +2275,7 @@ std::string TgTypeParser::parseBotCommandScopeChatAdministrators(const BotComman
 
 BotCommandScopeChatMember::Ptr TgTypeParser::parseJsonAndGetBotCommandScopeChatMember(const boost::property_tree::ptree& data) const {
     // NOTE: This function will be called by parseJsonAndGetBotCommandScope().
+    if (data.empty()) return nullptr;
     auto result(std::make_shared<BotCommandScopeChatMember>());
     result->chatId = data.get<std::int64_t>("chat_id", 0);
     result->userId = data.get<std::int64_t>("user_id", 0);
@@ -2221,6 +2296,7 @@ std::string TgTypeParser::parseBotCommandScopeChatMember(const BotCommandScopeCh
 }
 
 MenuButton::Ptr TgTypeParser::parseJsonAndGetMenuButton(const boost::property_tree::ptree& data) const {
+    if (data.empty()) return nullptr;
     std::string type = data.get<std::string>("type", "");
     MenuButton::Ptr result;
 
@@ -2262,6 +2338,7 @@ std::string TgTypeParser::parseMenuButton(const MenuButton::Ptr& object) const {
 
 MenuButtonCommands::Ptr TgTypeParser::parseJsonAndGetMenuButtonCommands(const boost::property_tree::ptree& data) const {
     // NOTE: This function will be called by parseJsonAndGetMenuButton().
+    if (data.empty()) return nullptr;
     auto result(std::make_shared<MenuButtonCommands>());
     return result;
 }
@@ -2279,6 +2356,7 @@ std::string TgTypeParser::parseMenuButtonCommands(const MenuButtonCommands::Ptr&
 
 MenuButtonWebApp::Ptr TgTypeParser::parseJsonAndGetMenuButtonWebApp(const boost::property_tree::ptree& data) const {
     // NOTE: This function will be called by parseJsonAndGetMenuButton().
+    if (data.empty()) return nullptr;
     auto result(std::make_shared<MenuButtonWebApp>());
     result->text = data.get<std::string>("text", "");
     result->webApp = tryParseJson<WebAppInfo>(&TgTypeParser::parseJsonAndGetWebAppInfo, data, "web_app");
@@ -2300,6 +2378,7 @@ std::string TgTypeParser::parseMenuButtonWebApp(const MenuButtonWebApp::Ptr& obj
 
 MenuButtonDefault::Ptr TgTypeParser::parseJsonAndGetMenuButtonDefault(const boost::property_tree::ptree& data) const {
     // NOTE: This function will be called by parseJsonAndGetMenuButton().
+    if (data.empty()) return nullptr;
     auto result(std::make_shared<MenuButtonDefault>());
     return result;
 }
@@ -2316,6 +2395,7 @@ std::string TgTypeParser::parseMenuButtonDefault(const MenuButtonDefault::Ptr& o
 }
 
 ResponseParameters::Ptr TgTypeParser::parseJsonAndGetResponseParameters(const boost::property_tree::ptree& data) const {
+    if (data.empty()) return nullptr;
     auto result(std::make_shared<ResponseParameters>());
     result->migrateToChatId = data.get<std::int64_t>("migrate_to_chat_id", 0);
     result->retryAfter = data.get<std::int32_t>("retry_after", 0);
@@ -2336,6 +2416,7 @@ std::string TgTypeParser::parseResponseParameters(const ResponseParameters::Ptr&
 }
 
 InputMedia::Ptr TgTypeParser::parseJsonAndGetInputMedia(const boost::property_tree::ptree& data) const {
+    if (data.empty()) return nullptr;
     std::string type = data.get<std::string>("type", "");
     InputMedia::Ptr result;
 
@@ -2393,6 +2474,7 @@ std::string TgTypeParser::parseInputMedia(const InputMedia::Ptr& object) const {
 
 InputMediaPhoto::Ptr TgTypeParser::parseJsonAndGetInputMediaPhoto(const boost::property_tree::ptree& data) const {
     // NOTE: This function will be called by parseJsonAndGetInputMedia().
+    if (data.empty()) return nullptr;
     auto result(std::make_shared<InputMediaPhoto>());
     result->hasSpoiler = data.get<bool>("has_spoiler", false);
     return result;
@@ -2412,6 +2494,7 @@ std::string TgTypeParser::parseInputMediaPhoto(const InputMediaPhoto::Ptr& objec
 
 InputMediaVideo::Ptr TgTypeParser::parseJsonAndGetInputMediaVideo(const boost::property_tree::ptree& data) const {
     // NOTE: This function will be called by parseJsonAndGetInputMedia().
+    if (data.empty()) return nullptr;
     auto result(std::make_shared<InputMediaVideo>());
     result->thumb = data.get<std::string>("thumb", "");
     result->width = data.get<std::int32_t>("width", 0);
@@ -2441,6 +2524,7 @@ std::string TgTypeParser::parseInputMediaVideo(const InputMediaVideo::Ptr& objec
 
 InputMediaAnimation::Ptr TgTypeParser::parseJsonAndGetInputMediaAnimation(const boost::property_tree::ptree& data) const {
     // NOTE: This function will be called by parseJsonAndGetInputMedia().
+    if (data.empty()) return nullptr;
     auto result(std::make_shared<InputMediaAnimation>());
     result->thumb = data.get<std::string>("thumb", "");
     result->width = data.get<std::int32_t>("width", 0);
@@ -2468,6 +2552,7 @@ std::string TgTypeParser::parseInputMediaAnimation(const InputMediaAnimation::Pt
 
 InputMediaAudio::Ptr TgTypeParser::parseJsonAndGetInputMediaAudio(const boost::property_tree::ptree& data) const {
     // NOTE: This function will be called by parseJsonAndGetInputMedia().
+    if (data.empty()) return nullptr;
     auto result(std::make_shared<InputMediaAudio>());
     result->thumb = data.get<std::string>("thumb", "");
     result->duration = data.get<std::int32_t>("duration", 0);
@@ -2493,6 +2578,7 @@ std::string TgTypeParser::parseInputMediaAudio(const InputMediaAudio::Ptr& objec
 
 InputMediaDocument::Ptr TgTypeParser::parseJsonAndGetInputMediaDocument(const boost::property_tree::ptree& data) const {
     // NOTE: This function will be called by parseJsonAndGetInputMedia().
+    if (data.empty()) return nullptr;
     auto result(std::make_shared<InputMediaDocument>());
     result->thumb = data.get<std::string>("thumb", "");
     result->disableContentTypeDetection = data.get<bool>("disable_content_type_detection", false);
@@ -2513,6 +2599,7 @@ std::string TgTypeParser::parseInputMediaDocument(const InputMediaDocument::Ptr&
 }
 
 Sticker::Ptr TgTypeParser::parseJsonAndGetSticker(const boost::property_tree::ptree& data) const {
+    if (data.empty()) return nullptr;
     auto result(std::make_shared<Sticker>());
     result->fileId = data.get<std::string>("file_id", "");
     result->fileUniqueId = data.get<std::string>("file_unique_id", "");
@@ -2570,6 +2657,7 @@ std::string TgTypeParser::parseSticker(const Sticker::Ptr& object) const {
 }
 
 StickerSet::Ptr TgTypeParser::parseJsonAndGetStickerSet(const boost::property_tree::ptree& data) const {
+    if (data.empty()) return nullptr;
     auto result(std::make_shared<StickerSet>());
     result->name = data.get<std::string>("name", "");
     result->title = data.get<std::string>("title", "");
@@ -2613,6 +2701,7 @@ std::string TgTypeParser::parseStickerSet(const StickerSet::Ptr& object) const {
 }
 
 MaskPosition::Ptr TgTypeParser::parseJsonAndGetMaskPosition(const boost::property_tree::ptree& data) const {
+    if (data.empty()) return nullptr;
     auto result(std::make_shared<MaskPosition>());
     result->point = data.get<std::string>("point", "");
     result->xShift = data.get<float>("x_shift", 0);
@@ -2637,6 +2726,7 @@ std::string TgTypeParser::parseMaskPosition(const MaskPosition::Ptr& object) con
 }
 
 InlineQuery::Ptr TgTypeParser::parseJsonAndGetInlineQuery(const boost::property_tree::ptree& data) const {
+    if (data.empty()) return nullptr;
     auto result(std::make_shared<InlineQuery>());
     result->id = data.get<std::string>("id", "");
     result->from = tryParseJson<User>(&TgTypeParser::parseJsonAndGetUser, data, "from");
@@ -2665,6 +2755,7 @@ std::string TgTypeParser::parseInlineQuery(const InlineQuery::Ptr& object) const
 }
 
 InlineQueryResult::Ptr TgTypeParser::parseJsonAndGetInlineQueryResult(const boost::property_tree::ptree& data) const {
+    if (data.empty()) return nullptr;
     std::string type = data.get<std::string>("type", "");
     InlineQueryResult::Ptr result;
 
@@ -2778,6 +2869,7 @@ std::string TgTypeParser::parseInlineQueryResult(const InlineQueryResult::Ptr& o
 
 InlineQueryResultArticle::Ptr TgTypeParser::parseJsonAndGetInlineQueryResultArticle(const boost::property_tree::ptree& data) const {
     // NOTE: This function will be called by parseJsonAndGetInlineQueryResult().
+    if (data.empty()) return nullptr;
     auto result(std::make_shared<InlineQueryResultArticle>());
     result->title = data.get<std::string>("title", "");
     result->inputMessageContent = tryParseJson<InputMessageContent>(&TgTypeParser::parseJsonAndGetInputMessageContent, data, "input_message_content");
@@ -2811,6 +2903,7 @@ std::string TgTypeParser::parseInlineQueryResultArticle(const InlineQueryResultA
 
 InlineQueryResultPhoto::Ptr TgTypeParser::parseJsonAndGetInlineQueryResultPhoto(const boost::property_tree::ptree& data) const {
     // NOTE: This function will be called by parseJsonAndGetInlineQueryResult().
+    if (data.empty()) return nullptr;
     auto result(std::make_shared<InlineQueryResultPhoto>());
     result->photoUrl = data.get<std::string>("photo_url", "");
     result->thumbUrl = data.get<std::string>("thumb_url", "");
@@ -2848,6 +2941,7 @@ std::string TgTypeParser::parseInlineQueryResultPhoto(const InlineQueryResultPho
 
 InlineQueryResultGif::Ptr TgTypeParser::parseJsonAndGetInlineQueryResultGif(const boost::property_tree::ptree& data) const {
     // NOTE: This function will be called by parseJsonAndGetInlineQueryResult().
+    if (data.empty()) return nullptr;
     auto result(std::make_shared<InlineQueryResultGif>());
     result->gifUrl = data.get<std::string>("gif_url", "");
     result->gifWidth = data.get<std::int32_t>("gif_width", 0);
@@ -2887,6 +2981,7 @@ std::string TgTypeParser::parseInlineQueryResultGif(const InlineQueryResultGif::
 
 InlineQueryResultMpeg4Gif::Ptr TgTypeParser::parseJsonAndGetInlineQueryResultMpeg4Gif(const boost::property_tree::ptree& data) const {
     // NOTE: This function will be called by parseJsonAndGetInlineQueryResult().
+    if (data.empty()) return nullptr;
     auto result(std::make_shared<InlineQueryResultMpeg4Gif>());
     result->mpeg4Url = data.get<std::string>("mpeg4_url", "");
     result->mpeg4Width = data.get<std::int32_t>("mpeg4_width", 0);
@@ -2926,6 +3021,7 @@ std::string TgTypeParser::parseInlineQueryResultMpeg4Gif(const InlineQueryResult
 
 InlineQueryResultVideo::Ptr TgTypeParser::parseJsonAndGetInlineQueryResultVideo(const boost::property_tree::ptree& data) const {
     // NOTE: This function will be called by parseJsonAndGetInlineQueryResult().
+    if (data.empty()) return nullptr;
     auto result(std::make_shared<InlineQueryResultVideo>());
     result->videoUrl = data.get<std::string>("video_url", "");
     result->mimeType = data.get<std::string>("mime_type", "");
@@ -2967,6 +3063,7 @@ std::string TgTypeParser::parseInlineQueryResultVideo(const InlineQueryResultVid
 
 InlineQueryResultAudio::Ptr TgTypeParser::parseJsonAndGetInlineQueryResultAudio(const boost::property_tree::ptree& data) const {
     // NOTE: This function will be called by parseJsonAndGetInlineQueryResult().
+    if (data.empty()) return nullptr;
     auto result(std::make_shared<InlineQueryResultAudio>());
     result->audioUrl = data.get<std::string>("audio_url", "");
     result->title = data.get<std::string>("title", "");
@@ -3000,6 +3097,7 @@ std::string TgTypeParser::parseInlineQueryResultAudio(const InlineQueryResultAud
 
 InlineQueryResultVoice::Ptr TgTypeParser::parseJsonAndGetInlineQueryResultVoice(const boost::property_tree::ptree& data) const {
     // NOTE: This function will be called by parseJsonAndGetInlineQueryResult().
+    if (data.empty()) return nullptr;
     auto result(std::make_shared<InlineQueryResultVoice>());
     result->voiceUrl = data.get<std::string>("voice_url", "");
     result->title = data.get<std::string>("title", "");
@@ -3031,6 +3129,7 @@ std::string TgTypeParser::parseInlineQueryResultVoice(const InlineQueryResultVoi
 
 InlineQueryResultDocument::Ptr TgTypeParser::parseJsonAndGetInlineQueryResultDocument(const boost::property_tree::ptree& data) const {
     // NOTE: This function will be called by parseJsonAndGetInlineQueryResult().
+    if (data.empty()) return nullptr;
     auto result(std::make_shared<InlineQueryResultDocument>());
     result->title = data.get<std::string>("title", "");
     result->caption = data.get<std::string>("caption", "");
@@ -3070,6 +3169,7 @@ std::string TgTypeParser::parseInlineQueryResultDocument(const InlineQueryResult
 
 InlineQueryResultLocation::Ptr TgTypeParser::parseJsonAndGetInlineQueryResultLocation(const boost::property_tree::ptree& data) const {
     // NOTE: This function will be called by parseJsonAndGetInlineQueryResult().
+    if (data.empty()) return nullptr;
     auto result(std::make_shared<InlineQueryResultLocation>());
     result->latitude = data.get<float>("latitude", 0);
     result->longitude = data.get<float>("longitude", 0);
@@ -3109,6 +3209,7 @@ std::string TgTypeParser::parseInlineQueryResultLocation(const InlineQueryResult
 
 InlineQueryResultVenue::Ptr TgTypeParser::parseJsonAndGetInlineQueryResultVenue(const boost::property_tree::ptree& data) const {
     // NOTE: This function will be called by parseJsonAndGetInlineQueryResult().
+    if (data.empty()) return nullptr;
     auto result(std::make_shared<InlineQueryResultVenue>());
     result->latitude = data.get<float>("latitude", 0);
     result->longitude = data.get<float>("longitude", 0);
@@ -3150,6 +3251,7 @@ std::string TgTypeParser::parseInlineQueryResultVenue(const InlineQueryResultVen
 
 InlineQueryResultContact::Ptr TgTypeParser::parseJsonAndGetInlineQueryResultContact(const boost::property_tree::ptree& data) const {
     // NOTE: This function will be called by parseJsonAndGetInlineQueryResult().
+    if (data.empty()) return nullptr;
     auto result(std::make_shared<InlineQueryResultContact>());
     result->phoneNumber = data.get<std::string>("phone_number", "");
     result->firstName = data.get<std::string>("first_name", "");
@@ -3183,6 +3285,7 @@ std::string TgTypeParser::parseInlineQueryResultContact(const InlineQueryResultC
 
 InlineQueryResultGame::Ptr TgTypeParser::parseJsonAndGetInlineQueryResultGame(const boost::property_tree::ptree& data) const {
     // NOTE: This function will be called by parseJsonAndGetInlineQueryResult().
+    if (data.empty()) return nullptr;
     auto result(std::make_shared<InlineQueryResultGame>());
     result->gameShortName = data.get<std::string>("game_short_name", "");
     return result;
@@ -3202,6 +3305,7 @@ std::string TgTypeParser::parseInlineQueryResultGame(const InlineQueryResultGame
 
 InlineQueryResultCachedPhoto::Ptr TgTypeParser::parseJsonAndGetInlineQueryResultCachedPhoto(const boost::property_tree::ptree& data) const {
     // NOTE: This function will be called by parseJsonAndGetInlineQueryResult().
+    if (data.empty()) return nullptr;
     auto result(std::make_shared<InlineQueryResultCachedPhoto>());
     result->photoFileId = data.get<std::string>("photo_file_id", "");
     result->title = data.get<std::string>("title", "");
@@ -3233,6 +3337,7 @@ std::string TgTypeParser::parseInlineQueryResultCachedPhoto(const InlineQueryRes
 
 InlineQueryResultCachedGif::Ptr TgTypeParser::parseJsonAndGetInlineQueryResultCachedGif(const boost::property_tree::ptree& data) const {
     // NOTE: This function will be called by parseJsonAndGetInlineQueryResult().
+    if (data.empty()) return nullptr;
     auto result(std::make_shared<InlineQueryResultCachedGif>());
     result->gifFileId = data.get<std::string>("gif_file_id", "");
     result->title = data.get<std::string>("title", "");
@@ -3262,6 +3367,7 @@ std::string TgTypeParser::parseInlineQueryResultCachedGif(const InlineQueryResul
 
 InlineQueryResultCachedMpeg4Gif::Ptr TgTypeParser::parseJsonAndGetInlineQueryResultCachedMpeg4Gif(const boost::property_tree::ptree& data) const {
     // NOTE: This function will be called by parseJsonAndGetInlineQueryResult().
+    if (data.empty()) return nullptr;
     auto result(std::make_shared<InlineQueryResultCachedMpeg4Gif>());
     result->mpeg4FileId = data.get<std::string>("mpeg4_file_id", "");
     result->title = data.get<std::string>("title", "");
@@ -3291,6 +3397,7 @@ std::string TgTypeParser::parseInlineQueryResultCachedMpeg4Gif(const InlineQuery
 
 InlineQueryResultCachedSticker::Ptr TgTypeParser::parseJsonAndGetInlineQueryResultCachedSticker(const boost::property_tree::ptree& data) const {
     // NOTE: This function will be called by parseJsonAndGetInlineQueryResult().
+    if (data.empty()) return nullptr;
     auto result(std::make_shared<InlineQueryResultCachedSticker>());
     result->stickerFileId = data.get<std::string>("sticker_file_id", "");
     result->inputMessageContent = tryParseJson<InputMessageContent>(&TgTypeParser::parseJsonAndGetInputMessageContent, data, "input_message_content");
@@ -3312,6 +3419,7 @@ std::string TgTypeParser::parseInlineQueryResultCachedSticker(const InlineQueryR
 
 InlineQueryResultCachedDocument::Ptr TgTypeParser::parseJsonAndGetInlineQueryResultCachedDocument(const boost::property_tree::ptree& data) const {
     // NOTE: This function will be called by parseJsonAndGetInlineQueryResult().
+    if (data.empty()) return nullptr;
     auto result(std::make_shared<InlineQueryResultCachedDocument>());
     result->title = data.get<std::string>("title", "");
     result->documentFileId = data.get<std::string>("document_file_id", "");
@@ -3343,6 +3451,7 @@ std::string TgTypeParser::parseInlineQueryResultCachedDocument(const InlineQuery
 
 InlineQueryResultCachedVideo::Ptr TgTypeParser::parseJsonAndGetInlineQueryResultCachedVideo(const boost::property_tree::ptree& data) const {
     // NOTE: This function will be called by parseJsonAndGetInlineQueryResult().
+    if (data.empty()) return nullptr;
     auto result(std::make_shared<InlineQueryResultCachedVideo>());
     result->videoFileId = data.get<std::string>("video_file_id", "");
     result->title = data.get<std::string>("title", "");
@@ -3374,6 +3483,7 @@ std::string TgTypeParser::parseInlineQueryResultCachedVideo(const InlineQueryRes
 
 InlineQueryResultCachedVoice::Ptr TgTypeParser::parseJsonAndGetInlineQueryResultCachedVoice(const boost::property_tree::ptree& data) const {
     // NOTE: This function will be called by parseJsonAndGetInlineQueryResult().
+    if (data.empty()) return nullptr;
     auto result(std::make_shared<InlineQueryResultCachedVoice>());
     result->voiceFileId = data.get<std::string>("voice_file_id", "");
     result->title = data.get<std::string>("title", "");
@@ -3403,6 +3513,7 @@ std::string TgTypeParser::parseInlineQueryResultCachedVoice(const InlineQueryRes
 
 InlineQueryResultCachedAudio::Ptr TgTypeParser::parseJsonAndGetInlineQueryResultCachedAudio(const boost::property_tree::ptree& data) const {
     // NOTE: This function will be called by parseJsonAndGetInlineQueryResult().
+    if (data.empty()) return nullptr;
     auto result(std::make_shared<InlineQueryResultCachedAudio>());
     result->audioFileId = data.get<std::string>("audio_file_id", "");
     result->caption = data.get<std::string>("caption", "");
@@ -3429,6 +3540,7 @@ std::string TgTypeParser::parseInlineQueryResultCachedAudio(const InlineQueryRes
 }
 
 InputMessageContent::Ptr TgTypeParser::parseJsonAndGetInputMessageContent(const boost::property_tree::ptree& data) const {
+    if (data.empty()) return nullptr;
     InputMessageContent::Ptr result;
 
     std::string messageText = data.get<std::string>("message_text", "");
@@ -3480,6 +3592,7 @@ std::string TgTypeParser::parseInputMessageContent(const InputMessageContent::Pt
 
 InputTextMessageContent::Ptr TgTypeParser::parseJsonAndGetInputTextMessageContent(const boost::property_tree::ptree& data) const {
     // NOTE: This function will be called by parseJsonAndGetInputMessageContent().
+    if (data.empty()) return nullptr;
     auto result(std::make_shared<InputTextMessageContent>());
     result->messageText = data.get<std::string>("message_text", "");
     result->parseMode = data.get<std::string>("parse_mode", "");
@@ -3504,6 +3617,7 @@ std::string TgTypeParser::parseInputTextMessageContent(const InputTextMessageCon
 
 InputLocationMessageContent::Ptr TgTypeParser::parseJsonAndGetInputLocationMessageContent(const boost::property_tree::ptree& data) const {
     // NOTE: This function will be called by parseJsonAndGetInputMessageContent().
+    if (data.empty()) return nullptr;
     auto result(std::make_shared<InputLocationMessageContent>());
     result->latitude = data.get<float>("latitude", 0);
     result->longitude = data.get<float>("longitude", 0);
@@ -3532,6 +3646,7 @@ std::string TgTypeParser::parseInputLocationMessageContent(const InputLocationMe
 
 InputVenueMessageContent::Ptr TgTypeParser::parseJsonAndGetInputVenueMessageContent(const boost::property_tree::ptree& data) const {
     // NOTE: This function will be called by parseJsonAndGetInputMessageContent().
+    if (data.empty()) return nullptr;
     auto result(std::make_shared<InputVenueMessageContent>());
     result->latitude = data.get<float>("latitude", 0);
     result->longitude = data.get<float>("longitude", 0);
@@ -3564,6 +3679,7 @@ std::string TgTypeParser::parseInputVenueMessageContent(const InputVenueMessageC
 
 InputContactMessageContent::Ptr TgTypeParser::parseJsonAndGetInputContactMessageContent(const boost::property_tree::ptree& data) const {
     // NOTE: This function will be called by parseJsonAndGetInputMessageContent().
+    if (data.empty()) return nullptr;
     auto result(std::make_shared<InputContactMessageContent>());
     result->phoneNumber = data.get<std::string>("phone_number", "");
     result->firstName = data.get<std::string>("first_name", "");
@@ -3588,6 +3704,7 @@ std::string TgTypeParser::parseInputContactMessageContent(const InputContactMess
 
 InputInvoiceMessageContent::Ptr TgTypeParser::parseJsonAndGetInputInvoiceMessageContent(const boost::property_tree::ptree& data) const {
     // NOTE: This function will be called by parseJsonAndGetInputMessageContent().
+    if (data.empty()) return nullptr;
     auto result(std::make_shared<InputInvoiceMessageContent>());
     result->title = data.get<std::string>("title", "");
     result->description = data.get<std::string>("description", "");
@@ -3648,6 +3765,7 @@ std::string TgTypeParser::parseInputInvoiceMessageContent(const InputInvoiceMess
 }
 
 ChosenInlineResult::Ptr TgTypeParser::parseJsonAndGetChosenInlineResult(const boost::property_tree::ptree& data) const {
+    if (data.empty()) return nullptr;
     auto result(std::make_shared<ChosenInlineResult>());
     result->resultId = data.get<std::string>("result_id", "");
     result->from = tryParseJson<User>(&TgTypeParser::parseJsonAndGetUser, data, "from");
@@ -3672,6 +3790,7 @@ std::string TgTypeParser::parseChosenInlineResult(const ChosenInlineResult::Ptr&
 }
 
 SentWebAppMessage::Ptr TgTypeParser::parseJsonAndGetSentWebAppMessage(const boost::property_tree::ptree& data) const {
+    if (data.empty()) return nullptr;
     auto result(std::make_shared<SentWebAppMessage>());
     result->inlineMessageId = data.get<std::string>("inline_message_id", "");
     return result;
@@ -3690,6 +3809,7 @@ std::string TgTypeParser::parseSentWebAppMessage(const SentWebAppMessage::Ptr& o
 }
 
 LabeledPrice::Ptr TgTypeParser::parseJsonAndGetLabeledPrice(const boost::property_tree::ptree& data) const {
+    if (data.empty()) return nullptr;
     auto result(std::make_shared<LabeledPrice>());
     result->label = data.get<std::string>("label", "");
     result->amount = data.get<std::int32_t>("amount", 0);
@@ -3707,6 +3827,7 @@ std::string TgTypeParser::parseLabeledPrice(const LabeledPrice::Ptr& object) con
 }
 
 Invoice::Ptr TgTypeParser::parseJsonAndGetInvoice(const boost::property_tree::ptree& data) const {
+    if (data.empty()) return nullptr;
     auto result(std::make_shared<Invoice>());
     result->title = data.get<std::string>("title", "");
     result->description = data.get<std::string>("description", "");
@@ -3733,6 +3854,7 @@ std::string TgTypeParser::parseInvoice(const Invoice::Ptr& object) const {
 }
 
 ShippingAddress::Ptr TgTypeParser::parseJsonAndGetShippingAddress(const boost::property_tree::ptree& data) const {
+    if (data.empty()) return nullptr;
     ShippingAddress::Ptr result;
     result->countryCode = data.get<std::string>("country_code", "");
     result->state = data.get<std::string>("state", "");
@@ -3760,6 +3882,7 @@ std::string TgTypeParser::parseShippingAddress(const ShippingAddress::Ptr& objec
 }
 
 OrderInfo::Ptr TgTypeParser::parseJsonAndGetOrderInfo(const boost::property_tree::ptree& data) const {
+    if (data.empty()) return nullptr;
     auto result(std::make_shared<OrderInfo>());
     result->name = data.get<std::string>("name", "");
     result->phoneNumber = data.get<std::string>("phone_number", "");
@@ -3794,6 +3917,7 @@ std::string TgTypeParser::parseOrderInfo(const OrderInfo::Ptr& object) const {
 }
 
 ShippingOption::Ptr TgTypeParser::parseJsonAndGetShippingOption(const boost::property_tree::ptree& data) const {
+    if (data.empty()) return nullptr;
     auto result(std::make_shared<ShippingOption>());
     result->id = data.get<std::string>("id", "");
     result->title = data.get<std::string>("title", "");
@@ -3814,6 +3938,7 @@ std::string TgTypeParser::parseShippingOption(const ShippingOption::Ptr& object)
 }
 
 SuccessfulPayment::Ptr TgTypeParser::parseJsonAndGetSuccessfulPayment(const boost::property_tree::ptree& data) const {
+    if (data.empty()) return nullptr;
     auto result(std::make_shared<SuccessfulPayment>());
     result->currency = data.get<std::string>("currency", "");
     result->totalAmount = data.get<std::int32_t>("total_amount", 0);
@@ -3839,6 +3964,7 @@ std::string TgTypeParser::parseSuccessfulPayment(const SuccessfulPayment::Ptr& o
 }
 
 ShippingQuery::Ptr TgTypeParser::parseJsonAndGetShippingQuery(const boost::property_tree::ptree& data) const {
+    if (data.empty()) return nullptr;
     auto result(std::make_shared<ShippingQuery>());
     result->id = data.get<std::string>("id", "");
     result->from = tryParseJson(&TgTypeParser::parseJsonAndGetUser, data, "from");
@@ -3864,6 +3990,7 @@ std::string TgTypeParser::parseShippingQuery(const ShippingQuery::Ptr& object) c
 }
 
 PreCheckoutQuery::Ptr TgTypeParser::parseJsonAndGetPreCheckoutQuery(const boost::property_tree::ptree& data) const {
+    if (data.empty()) return nullptr;
     auto result(std::make_shared<PreCheckoutQuery>());
     result->id = data.get<std::string>("id", "");
     result->from = tryParseJson(&TgTypeParser::parseJsonAndGetUser, data, "user");
@@ -3887,6 +4014,7 @@ std::string TgTypeParser::parsePreCheckoutQuery(const PreCheckoutQuery::Ptr& obj
 }
 
 PassportData::Ptr TgTypeParser::parseJsonAndGetPassportData(const boost::property_tree::ptree& data) const {
+    if (data.empty()) return nullptr;
     auto result(std::make_shared<PassportData>());
     result->data = parseJsonAndGetArray<EncryptedPassportElement>(&TgTypeParser::parseJsonAndGetEncryptedPassportElement, data, "data");
     result->credentials = tryParseJson(&TgTypeParser::parseJsonAndGetEncryptedCredentials, data, "credentials");
@@ -3907,6 +4035,7 @@ std::string TgTypeParser::parsePassportData(const PassportData::Ptr& object) con
 }
 
 PassportFile::Ptr TgTypeParser::parseJsonAndGetPassportFile(const boost::property_tree::ptree& data) const {
+    if (data.empty()) return nullptr;
     auto result(std::make_shared<PassportFile>());
     result->fileId = data.get<std::string>("file_id", "");
     result->fileUniqueId = data.get<std::string>("file_unique_id", "");
@@ -3931,6 +4060,7 @@ std::string TgTypeParser::parsePassportFile(const PassportFile::Ptr& object) con
 }
 
 EncryptedPassportElement::Ptr TgTypeParser::parseJsonAndGetEncryptedPassportElement(const boost::property_tree::ptree& data) const {
+    if (data.empty()) return nullptr;
     auto result(std::make_shared<EncryptedPassportElement>());
     result->type = data.get<std::string>("type", "");
     result->data = data.get<std::string>("data", "");
@@ -3967,6 +4097,7 @@ std::string TgTypeParser::parseEncryptedPassportElement(const EncryptedPassportE
 }
 
 EncryptedCredentials::Ptr TgTypeParser::parseJsonAndGetEncryptedCredentials(const boost::property_tree::ptree& data) const {
+    if (data.empty()) return nullptr;
     auto result(std::make_shared<EncryptedCredentials>());
     result->data = data.get<std::string>("data", "");
     result->hash = data.get<std::string>("hash", "");
@@ -3989,6 +4120,7 @@ std::string TgTypeParser::parseEncryptedCredentials(const EncryptedCredentials::
 }
 
 PassportElementError::Ptr TgTypeParser::parseJsonAndGetPassportElementError(const boost::property_tree::ptree& data) const {
+    if (data.empty()) return nullptr;
     std::string source = data.get<std::string>("source", "");
     PassportElementError::Ptr result;
 
@@ -4058,6 +4190,7 @@ std::string TgTypeParser::parsePassportElementError(const PassportElementError::
 
 PassportElementErrorDataField::Ptr TgTypeParser::parseJsonAndGetPassportElementErrorDataField(const boost::property_tree::ptree& data) const {
     // NOTE: This function will be called by parseJsonAndGetPassportElementError().
+    if (data.empty()) return nullptr;
     auto result(std::make_shared<PassportElementErrorDataField>());
     result->fieldName = data.get<std::string>("field_name", "");
     result->dataHash = data.get<std::string>("data_hash", "");
@@ -4079,6 +4212,7 @@ std::string TgTypeParser::parsePassportElementErrorDataField(const PassportEleme
 
 PassportElementErrorFrontSide::Ptr TgTypeParser::parseJsonAndGetPassportElementErrorFrontSide(const boost::property_tree::ptree& data) const {
     // NOTE: This function will be called by parseJsonAndGetPassportElementError().
+    if (data.empty()) return nullptr;
     auto result(std::make_shared<PassportElementErrorFrontSide>());
     result->fileHash = data.get<std::string>("file_hash", "");
     return result;
@@ -4098,6 +4232,7 @@ std::string TgTypeParser::parsePassportElementErrorFrontSide(const PassportEleme
 
 PassportElementErrorReverseSide::Ptr TgTypeParser::parseJsonAndGetPassportElementErrorReverseSide(const boost::property_tree::ptree& data) const {
     // NOTE: This function will be called by parseJsonAndGetPassportElementError().
+    if (data.empty()) return nullptr;
     auto result(std::make_shared<PassportElementErrorReverseSide>());
     result->fileHash = data.get<std::string>("file_hash", "");
     return result;
@@ -4117,6 +4252,7 @@ std::string TgTypeParser::parsePassportElementErrorReverseSide(const PassportEle
 
 PassportElementErrorSelfie::Ptr TgTypeParser::parseJsonAndGetPassportElementErrorSelfie(const boost::property_tree::ptree& data) const {
     // NOTE: This function will be called by parseJsonAndGetPassportElementError().
+    if (data.empty()) return nullptr;
     auto result(std::make_shared<PassportElementErrorSelfie>());
     result->fileHash = data.get<std::string>("file_hash", "");
     return result;
@@ -4136,6 +4272,7 @@ std::string TgTypeParser::parsePassportElementErrorSelfie(const PassportElementE
 
 PassportElementErrorFile::Ptr TgTypeParser::parseJsonAndGetPassportElementErrorFile(const boost::property_tree::ptree& data) const {
     // NOTE: This function will be called by parseJsonAndGetPassportElementError().
+    if (data.empty()) return nullptr;
     auto result(std::make_shared<PassportElementErrorFile>());
     result->fileHash = data.get<std::string>("file_hash", "");
     return result;
@@ -4155,6 +4292,7 @@ std::string TgTypeParser::parsePassportElementErrorFile(const PassportElementErr
 
 PassportElementErrorFiles::Ptr TgTypeParser::parseJsonAndGetPassportElementErrorFiles(const boost::property_tree::ptree& data) const {
     // NOTE: This function will be called by parseJsonAndGetPassportElementError().
+    if (data.empty()) return nullptr;
     auto result(std::make_shared<PassportElementErrorFiles>());
     result->fileHashes = parseJsonAndGetArray<std::string>(
         [] (const boost::property_tree::ptree& innerData)->std::string {
@@ -4180,6 +4318,7 @@ std::string TgTypeParser::parsePassportElementErrorFiles(const PassportElementEr
 
 PassportElementErrorTranslationFile::Ptr TgTypeParser::parseJsonAndGetPassportElementErrorTranslationFile(const boost::property_tree::ptree& data) const {
     // NOTE: This function will be called by parseJsonAndGetPassportElementError().
+    if (data.empty()) return nullptr;
     auto result(std::make_shared<PassportElementErrorTranslationFile>());
     result->fileHash = data.get<std::string>("file_hash", "");
     return result;
@@ -4199,6 +4338,7 @@ std::string TgTypeParser::parsePassportElementErrorTranslationFile(const Passpor
 
 PassportElementErrorTranslationFiles::Ptr TgTypeParser::parseJsonAndGetPassportElementErrorTranslationFiles(const boost::property_tree::ptree& data) const {
     // NOTE: This function will be called by parseJsonAndGetPassportElementError().
+    if (data.empty()) return nullptr;
     auto result(std::make_shared<PassportElementErrorTranslationFiles>());
     result->fileHashes = parseJsonAndGetArray<std::string>(
         [] (const boost::property_tree::ptree& innerData)->std::string {
@@ -4224,6 +4364,7 @@ std::string TgTypeParser::parsePassportElementErrorTranslationFiles(const Passpo
 
 PassportElementErrorUnspecified::Ptr TgTypeParser::parseJsonAndGetPassportElementErrorUnspecified(const boost::property_tree::ptree& data) const {
     // NOTE: This function will be called by parseJsonAndGetPassportElementError().
+    if (data.empty()) return nullptr;
     auto result(std::make_shared<PassportElementErrorUnspecified>());
     result->elementHash = data.get<std::string>("element_hash", "");
     return result;
@@ -4242,6 +4383,7 @@ std::string TgTypeParser::parsePassportElementErrorUnspecified(const PassportEle
 }
 
 Game::Ptr TgTypeParser::parseJsonAndGetGame(const boost::property_tree::ptree& data) const {
+    if (data.empty()) return nullptr;
     auto result(std::make_shared<Game>());
     result->title = data.get<std::string>("title", "");
     result->description = data.get<std::string>("description", "");
@@ -4270,6 +4412,7 @@ std::string TgTypeParser::parseGame(const Game::Ptr& object) const {
 }
 
 CallbackGame::Ptr TgTypeParser::parseJsonAndGetCallbackGame(const boost::property_tree::ptree& data) const {
+    if (data.empty()) return nullptr;
     auto result(std::make_shared<CallbackGame>());
     return result;
 }
@@ -4285,6 +4428,7 @@ std::string TgTypeParser::parseCallbackGame(const CallbackGame::Ptr& object) con
 }
 
 GameHighScore::Ptr TgTypeParser::parseJsonAndGetGameHighScore(const boost::property_tree::ptree& data) const {
+    if (data.empty()) return nullptr;
     auto result(std::make_shared<GameHighScore>());
     result->position = data.get<std::string>("position", "");
     result->user = tryParseJson<User>(&TgTypeParser::parseJsonAndGetUser, data, "user");
@@ -4307,6 +4451,7 @@ std::string TgTypeParser::parseGameHighScore(const GameHighScore::Ptr& object) c
 }
 
 GenericReply::Ptr TgTypeParser::parseJsonAndGetGenericReply(const boost::property_tree::ptree& data) const {
+    if (data.empty()) return nullptr;
     if (data.find("force_reply") != data.not_found()) {
         return std::static_pointer_cast<GenericReply>(parseJsonAndGetForceReply(data));
     } else if (data.find("remove_keyboard") != data.not_found()) {
