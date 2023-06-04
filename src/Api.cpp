@@ -1,8 +1,5 @@
 #include "tgbot/Api.h"
 
-#include <chrono>
-#include <thread>
-
 namespace TgBot {
 
 Api::Api(std::string token, const HttpClient& httpClient, const std::string& url)
@@ -2507,36 +2504,20 @@ boost::property_tree::ptree Api::sendRequest(const std::string& method, const st
     url += "/";
     url += method;
 
-    int requestRetryBackoff = _httpClient.getRequestBackoff();
-    int retries = 0;
-    while (1)
-    {
-        try {
-            std::string serverResponse = _httpClient.makeRequest(url, args);
-            if (!serverResponse.compare(0, 6, "<html>")) {
-                throw TgException("tgbot-cpp library have got html page instead of json response. Maybe you entered wrong bot token.");
-            }
+    std::string serverResponse = _httpClient.makeRequest(url, args);
+    if (!serverResponse.compare(0, 6, "<html>")) {
+        throw TgException("tgbot-cpp library have got html page instead of json response. Maybe you entered wrong bot token.");
+    }
 
-            boost::property_tree::ptree result = _tgTypeParser.parseJson(serverResponse);
-            try {
-                if (result.get<bool>("ok", false)) {
-                    return result.get_child("result");
-                } else {
-                    throw TgException(result.get("description", ""));
-                }
-            } catch (boost::property_tree::ptree_error& e) {
-                throw TgException("tgbot-cpp library can't parse json response. " + std::string(e.what()));
-            }
-        } catch (...) {
-            int max_retries = _httpClient.getRequestMaxRetries();
-            if ((max_retries >= 0) && (retries == max_retries)) {
-                throw;
-            } else {
-                std::this_thread::sleep_for(std::chrono::seconds(requestRetryBackoff));
-                retries++;
-                continue;
-            }
+    boost::property_tree::ptree result = _tgTypeParser.parseJson(serverResponse);
+    try {
+        if (result.get<bool>("ok", false)) {
+            return result.get_child("result");
+        } else {
+            throw TgException(result.get("description", ""));
         }
+    } catch (boost::property_tree::ptree_error& e) {
+        throw TgException("tgbot-cpp library can't parse json response. " + std::string(e.what()));
     }
 }
 }
