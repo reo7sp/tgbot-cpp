@@ -1,7 +1,5 @@
 var NAVTREEINDEX4 =
 {
-"class_tg_bot_1_1_inline_query_result_contact.html#af0826f3c054781cc33e5020cab2bc307":[0,1,61,6],
-"class_tg_bot_1_1_inline_query_result_document.html":[0,1,62],
 "class_tg_bot_1_1_inline_query_result_document.html#a1a8cb4000b1a15091a03196d3304b363":[0,1,62,4],
 "class_tg_bot_1_1_inline_query_result_document.html#a2f2e0cbdd4e65d0e78580705c51cbb35":[0,1,62,12],
 "class_tg_bot_1_1_inline_query_result_document.html#a30d03c94900541bc48405af6324b74af":[0,1,62,6],
@@ -249,5 +247,7 @@ var NAVTREEINDEX4 =
 "class_tg_bot_1_1_keyboard_button_request_chat.html#a3b067dc3850a5557efec6a52d455ff7b":[0,1,87,0],
 "class_tg_bot_1_1_keyboard_button_request_chat.html#a49d0e4b157b4703b01a1a0446754001f":[0,1,87,7],
 "class_tg_bot_1_1_keyboard_button_request_chat.html#a54f711bd1c97d9dc500e3ec57d76e585":[0,1,87,2],
-"class_tg_bot_1_1_keyboard_button_request_chat.html#a7fed15a42a3ffe79605915c2669bd04e":[0,1,87,3]
+"class_tg_bot_1_1_keyboard_button_request_chat.html#a7fed15a42a3ffe79605915c2669bd04e":[0,1,87,3],
+"class_tg_bot_1_1_keyboard_button_request_chat.html#a90a6233ac5529980201a752f7f24acd1":[0,1,87,6],
+"class_tg_bot_1_1_keyboard_button_request_chat.html#add00e14687eb904e40f8c2fa1b7cefd9":[0,1,87,4]
 };

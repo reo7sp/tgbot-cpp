@@ -43,7 +43,7 @@ var NAVTREE =
         [ "Variables", "functions_vars.html", "functions_vars" ],
         [ "Typedefs", "functions_type.html", null ],
         [ "Enumerations", "functions_enum.html", null ],
-        [ "Related Functions", "functions_rela.html", null ]
+        [ "Related Symbols", "functions_rela.html", null ]
       ] ]
     ] ],
     [ "Files", "files.html", [
@@ -58,10 +58,10 @@ var NAVTREEINDEX =
 "_passport_file_8h.html",
 "class_tg_bot_1_1_bot_command_scope_chat.html",
 "class_tg_bot_1_1_event_broadcaster.html#a3ec551ffdcf5be1b9b39ed081ea078d4",
-"class_tg_bot_1_1_inline_query_result_contact.html#af0826f3c054781cc33e5020cab2bc307",
-"class_tg_bot_1_1_keyboard_button_request_chat.html#a90a6233ac5529980201a752f7f24acd1",
-"class_tg_bot_1_1_pre_checkout_query.html#a5d21bc0c7610030e89a910029a5fb0ca",
-"functions_func_h.html"
+"class_tg_bot_1_1_inline_query_result_document.html#a1a8cb4000b1a15091a03196d3304b363",
+"class_tg_bot_1_1_keyboard_button_request_user.html",
+"class_tg_bot_1_1_pre_checkout_query.html#a9cfe210488785f6980e6fb45ffb67e84",
+"functions_func_l.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

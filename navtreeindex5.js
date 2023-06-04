@@ -1,7 +1,5 @@
 var NAVTREEINDEX5 =
 {
-"class_tg_bot_1_1_keyboard_button_request_chat.html#a90a6233ac5529980201a752f7f24acd1":[0,1,87,6],
-"class_tg_bot_1_1_keyboard_button_request_chat.html#add00e14687eb904e40f8c2fa1b7cefd9":[0,1,87,4],
 "class_tg_bot_1_1_keyboard_button_request_user.html":[0,1,88],
 "class_tg_bot_1_1_keyboard_button_request_user.html#a2e0815b922ea6102027551f692984535":[0,1,88,1],
 "class_tg_bot_1_1_keyboard_button_request_user.html#a2eae952f78e0ddbb5a625881293cc9be":[0,1,88,0],
@@ -242,12 +240,14 @@ var NAVTREEINDEX5 =
 "class_tg_bot_1_1_poll_answer.html#ac06c32a1330317999b99d046573b1ade":[0,1,116,1],
 "class_tg_bot_1_1_poll_option.html":[2,0,0,127],
 "class_tg_bot_1_1_poll_option.html":[1,0,2,127],
-"class_tg_bot_1_1_poll_option.html#a01fc38b5bdeb715960eec7906f91f5fb":[2,0,0,127,2],
 "class_tg_bot_1_1_poll_option.html#a01fc38b5bdeb715960eec7906f91f5fb":[1,0,2,127,2],
+"class_tg_bot_1_1_poll_option.html#a01fc38b5bdeb715960eec7906f91f5fb":[2,0,0,127,2],
 "class_tg_bot_1_1_poll_option.html#a0fc5824722ba1d38ef3547f447126047":[2,0,0,127,1],
 "class_tg_bot_1_1_poll_option.html#a0fc5824722ba1d38ef3547f447126047":[1,0,2,127,1],
-"class_tg_bot_1_1_poll_option.html#a1f30924e7308ece68ae4d57e13dab4f7":[2,0,0,127,0],
 "class_tg_bot_1_1_poll_option.html#a1f30924e7308ece68ae4d57e13dab4f7":[1,0,2,127,0],
+"class_tg_bot_1_1_poll_option.html#a1f30924e7308ece68ae4d57e13dab4f7":[2,0,0,127,0],
 "class_tg_bot_1_1_pre_checkout_query.html":[0,1,117],
-"class_tg_bot_1_1_pre_checkout_query.html#a02b9ed49670c68da6530ac95d9325624":[0,1,117,7]
+"class_tg_bot_1_1_pre_checkout_query.html#a02b9ed49670c68da6530ac95d9325624":[0,1,117,7],
+"class_tg_bot_1_1_pre_checkout_query.html#a5d21bc0c7610030e89a910029a5fb0ca":[0,1,117,5],
+"class_tg_bot_1_1_pre_checkout_query.html#a919320034b6e6f6b586a7311925bb028":[0,1,117,2]
 };

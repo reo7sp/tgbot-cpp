@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['value_0',['value',['../class_tg_bot_1_1_dice.html#a25dd494d544929e49846aa0710941c43',1,'TgBot::Dice::value()'],['../class_tg_bot_1_1_http_req_arg.html#ae854084229a093b6819953d0055844eb',1,'TgBot::HttpReqArg::value()']]],
-  ['vcard_1',['vcard',['../class_tg_bot_1_1_inline_query_result_contact.html#a33fe5dafe6dca0dddaf7798bd1a8ca8a',1,'TgBot::InlineQueryResultContact::vcard()'],['../class_tg_bot_1_1_input_contact_message_content.html#acf386d75877bd190f3d845e697e03a9f',1,'TgBot::InputContactMessageContent::vcard()'],['../class_tg_bot_1_1_contact.html#a595fe95f16dbde5cb49fa44946cf0d2b',1,'TgBot::Contact::vcard()']]],
+  ['value_0',['value',['../class_tg_bot_1_1_dice.html#a25dd494d544929e49846aa0710941c43',1,'TgBot::Dice::value'],['../class_tg_bot_1_1_http_req_arg.html#ae854084229a093b6819953d0055844eb',1,'TgBot::HttpReqArg::value']]],
+  ['vcard_1',['vcard',['../class_tg_bot_1_1_inline_query_result_contact.html#a33fe5dafe6dca0dddaf7798bd1a8ca8a',1,'TgBot::InlineQueryResultContact::vcard'],['../class_tg_bot_1_1_input_contact_message_content.html#acf386d75877bd190f3d845e697e03a9f',1,'TgBot::InputContactMessageContent::vcard'],['../class_tg_bot_1_1_contact.html#a595fe95f16dbde5cb49fa44946cf0d2b',1,'TgBot::Contact::vcard']]],
   ['venue_2',['Venue',['../class_tg_bot_1_1_venue.html',1,'TgBot']]],
   ['venue_3',['venue',['../class_tg_bot_1_1_message.html#a9739779daeda0ac90d711349e0674f6e',1,'TgBot::Message']]],
   ['venue_2eh_4',['Venue.h',['../_venue_8h.html',1,'']]],
