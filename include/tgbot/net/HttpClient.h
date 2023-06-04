@@ -29,24 +29,6 @@ public:
     virtual std::string makeRequest(const Url& url, const std::vector<HttpReqArg>& args) const = 0;
 
     std::int32_t _timeout = 25;
-
-    /**
-      * @brief Get the maximum number of makeRequest() retries before giving up and throwing an exception.
-      */
-    virtual int getRequestMaxRetries() const {
-        return requestMaxRetries;
-    }
-
-    /**
-      * @brief Get the makeRequest() backoff duration between retries, in seconds.
-      */
-    virtual int getRequestBackoff() const {
-        return requestBackoff;
-    }
-
-private:
-    int requestMaxRetries = 3;
-    int requestBackoff = 1;
 };
 
 }
