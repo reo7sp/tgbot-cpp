@@ -21,9 +21,11 @@ var searchData=
   ['getme_18',['getMe',['../class_tg_bot_1_1_api.html#a566fcf52400de18737110edd7ab01535',1,'TgBot::Api']]],
   ['getmycommands_19',['getMyCommands',['../class_tg_bot_1_1_api.html#a6da52ef11be86a7c7bc21afef5049360',1,'TgBot::Api']]],
   ['getmydefaultadministratorrights_20',['getMyDefaultAdministratorRights',['../class_tg_bot_1_1_api.html#ab994d460aa6d5fbfdd3984da45092d79',1,'TgBot::Api']]],
-  ['getstickerset_21',['getStickerSet',['../class_tg_bot_1_1_api.html#a270296c79f52985fca19cacf3ed75d2f',1,'TgBot::Api']]],
-  ['gettoken_22',['getToken',['../class_tg_bot_1_1_bot.html#a791871aa800310f6263c5a29c8a09418',1,'TgBot::Bot']]],
-  ['getupdates_23',['getUpdates',['../class_tg_bot_1_1_api.html#a79187c21ea38f8a81a21c2a78ae217bd',1,'TgBot::Api']]],
-  ['getuserprofilephotos_24',['getUserProfilePhotos',['../class_tg_bot_1_1_api.html#a94be048e47bb355ba5946081ad649ef2',1,'TgBot::Api']]],
-  ['getwebhookinfo_25',['getWebhookInfo',['../class_tg_bot_1_1_api.html#a43bf35783ec4f9a03e46925e36fda24c',1,'TgBot::Api']]]
+  ['getrequestbackoff_21',['getRequestBackoff',['../class_tg_bot_1_1_http_client.html#a9cd4b3053cd7c6e60d0c0ed9a45530a8',1,'TgBot::HttpClient']]],
+  ['getrequestmaxretries_22',['getRequestMaxRetries',['../class_tg_bot_1_1_http_client.html#ab5ecfc2262f493f62483d42fa904fa26',1,'TgBot::HttpClient']]],
+  ['getstickerset_23',['getStickerSet',['../class_tg_bot_1_1_api.html#a270296c79f52985fca19cacf3ed75d2f',1,'TgBot::Api']]],
+  ['gettoken_24',['getToken',['../class_tg_bot_1_1_bot.html#a791871aa800310f6263c5a29c8a09418',1,'TgBot::Bot']]],
+  ['getupdates_25',['getUpdates',['../class_tg_bot_1_1_api.html#a79187c21ea38f8a81a21c2a78ae217bd',1,'TgBot::Api']]],
+  ['getuserprofilephotos_26',['getUserProfilePhotos',['../class_tg_bot_1_1_api.html#a94be048e47bb355ba5946081ad649ef2',1,'TgBot::Api']]],
+  ['getwebhookinfo_27',['getWebhookInfo',['../class_tg_bot_1_1_api.html#a43bf35783ec4f9a03e46925e36fda24c',1,'TgBot::Api']]]
 ];
