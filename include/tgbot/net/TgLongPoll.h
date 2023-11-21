@@ -30,6 +30,8 @@ public:
      */
     void start();
 
+    void start(const std::string& secretToken);
+
     std::int32_t GetLastUpdateId() const;
 
 private:

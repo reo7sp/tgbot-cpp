@@ -3,7 +3,7 @@
 namespace TgBot {
 
 void EventHandler::handleUpdate(const Update::Ptr& update, std::string token) const {
-    _broadcaster.SetToken(std::move(token));
+    _broadcaster.SetSecretToken(std::move(token));
     if (update->message != nullptr) {
         handleMessage(update->message);
     }

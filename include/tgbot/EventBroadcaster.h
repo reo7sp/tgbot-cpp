@@ -230,16 +230,16 @@ public:
         return result;
     }
 
-    inline void SetToken(std::string& botId) const {
-        _botId = botId;
+    inline void SetSecretToken(std::string& secretToken) const {
+        _secretToken = secretToken;
     }
 
-    inline void SetToken(std::string&& botId) const {
-        _botId = std::move(botId);
+    inline void SetSecretToken(std::string&& secretToken) const {
+        _secretToken = std::move(secretToken);
     }
 
-    inline const std::string& GetToken() const {
-        return _botId;
+    inline const std::string& GetSecretToken() const {
+        return _secretToken;
     }
 
 private:
@@ -334,7 +334,7 @@ private:
     std::vector<ChatMemberUpdatedListener> _onChatMemberListeners;
     std::vector<ChatJoinRequestListener> _onChatJoinRequestListeners;
 
-    mutable std::string _botId;
+    mutable std::string _secretToken;
 
 };
 
