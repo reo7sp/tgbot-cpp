@@ -1989,7 +1989,7 @@ public:
 
     const HttpClient& _httpClient;
     
-private:
+protected:
     boost::property_tree::ptree sendRequest(const std::string& method, const std::vector<HttpReqArg>& args = std::vector<HttpReqArg>()) const;
 
     const std::string _token;

@@ -2513,19 +2513,28 @@ boost::property_tree::ptree Api::sendRequest(const std::string& method, const st
     {
         try {
             std::string serverResponse = _httpClient.makeRequest(url, args);
+            
             if (!serverResponse.compare(0, 6, "<html>")) {
-                throw TgException("tgbot-cpp library have got html page instead of json response. Maybe you entered wrong bot token.");
+                std::string message = "tgbot-cpp library have got html page instead of json response. Maybe you entered wrong bot token.";
+                throw TgException(message, TgException::ErrorCode::HtmlResponse);
             }
 
-            boost::property_tree::ptree result = _tgTypeParser.parseJson(serverResponse);
+            boost::property_tree::ptree result; 
             try {
-                if (result.get<bool>("ok", false)) {
-                    return result.get_child("result");
-                } else {
-                    throw TgException(result.get("description", ""));
-                }
+                result = _tgTypeParser.parseJson(serverResponse);
             } catch (boost::property_tree::ptree_error& e) {
-                throw TgException("tgbot-cpp library can't parse json response. " + std::string(e.what()));
+                std::string message = "tgbot-cpp library can't parse json response. " + std::string(e.what());
+
+                throw TgException(message, TgException::ErrorCode::InvalidJson);
+            }
+
+            if (result.get<bool>("ok", false)) {
+                return result.get_child("result");
+            } else {
+                std::string message = result.get("description", "");
+                size_t errorCode = result.get<size_t>("error_code", 0u);
+
+                throw TgException(message, static_cast<TgException::ErrorCode>(errorCode));
             }
         } catch (...) {
             int max_retries = _httpClient.getRequestMaxRetries();
