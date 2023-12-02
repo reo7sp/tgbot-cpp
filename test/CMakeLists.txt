@@ -1,5 +1,6 @@
 set(TEST_SRC_LIST
     main.cpp
+    tgbot/Api.cpp
     tgbot/net/Url.cpp
     tgbot/net/HttpParser.cpp
     tgbot/tools/StringTools.cpp

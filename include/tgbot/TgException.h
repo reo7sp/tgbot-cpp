@@ -16,7 +16,21 @@ namespace TgBot {
 class TGBOT_API TgException : public std::runtime_error {
 
 public:
-    explicit TgException(const std::string& description);
+
+    /**
+     * @brief Enum of possible errors from Api requests 
+     */
+    enum class ErrorCode : size_t {
+        Undefined = 0,
+        BadRequest = 400, Unauthorized = 401, 
+        Forbidden = 403, NotFound = 404, 
+        Flood = 402, Internal = 500,
+        HtmlResponse = 100, InvalidJson = 101
+    };
+
+    explicit TgException(const std::string& description, ErrorCode errorCode);
+
+    const ErrorCode errorCode;
 };
 
 }
