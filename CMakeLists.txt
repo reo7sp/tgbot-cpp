@@ -90,14 +90,21 @@ endif()
 
 # building project
 add_library(${PROJECT_NAME} ${SRC_LIST})
-target_include_directories(${PROJECT_NAME} PUBLIC include)
+target_include_directories(${PROJECT_NAME} PUBLIC 
+                           $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+                           $<INSTALL_INTERFACE:include>)
 target_link_libraries(${PROJECT_NAME} ${LIB_LIST})
 include(GNUInstallDirs)
 install(TARGETS ${PROJECT_NAME}
+        EXPORT ${PROJECT_NAME}-targets
         RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
         LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
         ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR})
 install(DIRECTORY include/ DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
+install(EXPORT ${PROJECT_NAME}-targets
+        NAMESPACE ${PROJECT_NAME}::
+        FILE ${PROJECT_NAME}Config.cmake
+        DESTINATION lib/cmake/${PROJECT_NAME})
 set_property(TARGET ${PROJECT_NAME} PROPERTY POSITION_INDEPENDENT_CODE ON)
 
 # ABI version
