@@ -76,6 +76,7 @@ link_directories(${Boost_LIBRARY_DIR_RELEASE})
 if(NOT Boost_USE_STATIC_LIBS)
     add_definitions(-DBOOST_ALL_DYN_LINK)
 endif()
+add_definitions(-DBOOST_BIND_GLOBAL_PLACEHOLDERS)
 
 set(LIB_LIST
     ${CMAKE_THREAD_LIBS_INIT}
