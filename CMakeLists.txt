@@ -11,7 +11,7 @@ option(BUILD_SHARED_LIBS "Build tgbot-cpp shared/static library." OFF)
 option(BUILD_DOCUMENTATION "Build doxygen API documentation." OFF)
 
 # sources
-set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 if(WIN32)
@@ -76,6 +76,7 @@ link_directories(${Boost_LIBRARY_DIR_RELEASE})
 if(NOT Boost_USE_STATIC_LIBS)
     add_definitions(-DBOOST_ALL_DYN_LINK)
 endif()
+add_definitions(-DBOOST_BIND_GLOBAL_PLACEHOLDERS)
 
 set(LIB_LIST
     ${CMAKE_THREAD_LIBS_INIT}
