@@ -77,6 +77,7 @@ var group__general =
       [ "sendMessage", "class_tg_bot_1_1_api.html#a97c42bed628892e7644c7e54bd623fc8", null ],
       [ "sendPhoto", "class_tg_bot_1_1_api.html#a62359c93e391661f704256889740496a", null ],
       [ "sendPoll", "class_tg_bot_1_1_api.html#ad26213abdf3a899eb776a7bd6a6844e6", null ],
+      [ "sendRequest", "class_tg_bot_1_1_api.html#ae4a679bf2a9346ae9511b4cdfc26e789", null ],
       [ "sendSticker", "class_tg_bot_1_1_api.html#ad7a8c642fd8d61403cd2e465b7bfe815", null ],
       [ "sendVenue", "class_tg_bot_1_1_api.html#a56bc2aed96cbc2e8a3f36332b0d72575", null ],
       [ "sendVideo", "class_tg_bot_1_1_api.html#a2e8c2041de81a8aaa7e4ae16415d37ec", null ],
@@ -106,7 +107,10 @@ var group__general =
       [ "unpinChatMessage", "class_tg_bot_1_1_api.html#a937d24d8c91be2e57c4c2f7e79612047", null ],
       [ "uploadStickerFile", "class_tg_bot_1_1_api.html#a944e5b87816bd7cb0c9747d3c1a27a45", null ],
       [ "Bot", "class_tg_bot_1_1_api.html#afb5d57ac6b56fe83e7894e3b686c3339", null ],
-      [ "_httpClient", "class_tg_bot_1_1_api.html#a529228096544b44031672f749a02c2d0", null ]
+      [ "_httpClient", "class_tg_bot_1_1_api.html#a529228096544b44031672f749a02c2d0", null ],
+      [ "_tgTypeParser", "class_tg_bot_1_1_api.html#a080dc56a7fef4a0a2c3d7c39a18a145b", null ],
+      [ "_token", "class_tg_bot_1_1_api.html#acafdff775d0f2aae706b3fa7e043b315", null ],
+      [ "_url", "class_tg_bot_1_1_api.html#a4727b16a25011fa6f647b64d7f67013b", null ]
     ] ],
     [ "TgBot::Bot", "class_tg_bot_1_1_bot.html", [
       [ "Bot", "class_tg_bot_1_1_bot.html#aad9ae2e4f1117361c928b1d5ea69b51e", null ],
@@ -144,6 +148,18 @@ var group__general =
       [ "onUnknownCommand", "class_tg_bot_1_1_event_broadcaster.html#a5bed996221f047ec0469ae19e7bd00eb", null ]
     ] ],
     [ "TgBot::TgException", "class_tg_bot_1_1_tg_exception.html", [
-      [ "TgException", "class_tg_bot_1_1_tg_exception.html#a372244063ddbde6a604bd785c966f11b", null ]
+      [ "ErrorCode", "class_tg_bot_1_1_tg_exception.html#a88b4eb82d516cd897ace08c9cb4c5097", [
+        [ "Undefined", "class_tg_bot_1_1_tg_exception.html#a88b4eb82d516cd897ace08c9cb4c5097aec0fc0100c4fc1ce4eea230c3dc10360", null ],
+        [ "BadRequest", "class_tg_bot_1_1_tg_exception.html#a88b4eb82d516cd897ace08c9cb4c5097a9edf8fbf00a57d95a0af4923c9a1ec6f", null ],
+        [ "Unauthorized", "class_tg_bot_1_1_tg_exception.html#a88b4eb82d516cd897ace08c9cb4c5097ae06d1ba70f1331e9f9a113cc2f887d3f", null ],
+        [ "Forbidden", "class_tg_bot_1_1_tg_exception.html#a88b4eb82d516cd897ace08c9cb4c5097a722969577a96ca3953e84e3d949dee81", null ],
+        [ "NotFound", "class_tg_bot_1_1_tg_exception.html#a88b4eb82d516cd897ace08c9cb4c5097a38c300f4fc9ce8a77aad4a30de05cad8", null ],
+        [ "Flood", "class_tg_bot_1_1_tg_exception.html#a88b4eb82d516cd897ace08c9cb4c5097a6593d0aaf3950a1fdf50f35584657fcd", null ],
+        [ "Internal", "class_tg_bot_1_1_tg_exception.html#a88b4eb82d516cd897ace08c9cb4c5097aafbf0897a5a83fdd873dfb032ec695d3", null ],
+        [ "HtmlResponse", "class_tg_bot_1_1_tg_exception.html#a88b4eb82d516cd897ace08c9cb4c5097aef175244b78e28f8bf48443c5aba0969", null ],
+        [ "InvalidJson", "class_tg_bot_1_1_tg_exception.html#a88b4eb82d516cd897ace08c9cb4c5097a4f67c44b93cc62755fee6051885d5e5a", null ]
+      ] ],
+      [ "TgException", "class_tg_bot_1_1_tg_exception.html#af5b73173b5b8b655135c0c3b198d0caf", null ],
+      [ "errorCode", "class_tg_bot_1_1_tg_exception.html#a3e660db4ebe1576e7f54a3064e3a7144", null ]
     ] ]
 ];

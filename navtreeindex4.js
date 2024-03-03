@@ -1,5 +1,9 @@
 var NAVTREEINDEX4 =
 {
+"class_tg_bot_1_1_inline_query_result_contact.html#a33fe5dafe6dca0dddaf7798bd1a8ca8a":[0,1,61,9],
+"class_tg_bot_1_1_inline_query_result_contact.html#a5ee952bdd68e0006d377398221c6e003":[0,1,61,4],
+"class_tg_bot_1_1_inline_query_result_contact.html#a70df19e3e75c6b798a72cfb3057da235":[0,1,61,2],
+"class_tg_bot_1_1_inline_query_result_contact.html#a8bf9d71688e348b69876301a4422f228":[0,1,61,5],
 "class_tg_bot_1_1_inline_query_result_contact.html#af0826f3c054781cc33e5020cab2bc307":[0,1,61,6],
 "class_tg_bot_1_1_inline_query_result_document.html":[0,1,62],
 "class_tg_bot_1_1_inline_query_result_document.html#a1a8cb4000b1a15091a03196d3304b363":[0,1,62,4],
@@ -245,9 +249,5 @@ var NAVTREEINDEX4 =
 "class_tg_bot_1_1_keyboard_button_request_chat.html":[0,1,87],
 "class_tg_bot_1_1_keyboard_button_request_chat.html#a001ed0ecab6816f743756e04b253a2ea":[0,1,87,1],
 "class_tg_bot_1_1_keyboard_button_request_chat.html#a08c7d51ce6446abc7b87095e5ed01b0f":[0,1,87,8],
-"class_tg_bot_1_1_keyboard_button_request_chat.html#a11926f2a9448c02955afaccc87311dba":[0,1,87,5],
-"class_tg_bot_1_1_keyboard_button_request_chat.html#a3b067dc3850a5557efec6a52d455ff7b":[0,1,87,0],
-"class_tg_bot_1_1_keyboard_button_request_chat.html#a49d0e4b157b4703b01a1a0446754001f":[0,1,87,7],
-"class_tg_bot_1_1_keyboard_button_request_chat.html#a54f711bd1c97d9dc500e3ec57d76e585":[0,1,87,2],
-"class_tg_bot_1_1_keyboard_button_request_chat.html#a7fed15a42a3ffe79605915c2669bd04e":[0,1,87,3]
+"class_tg_bot_1_1_keyboard_button_request_chat.html#a11926f2a9448c02955afaccc87311dba":[0,1,87,5]
 };

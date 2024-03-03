@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['textlink_0',['TextLink',['../class_tg_bot_1_1_message_entity.html#a6cb87a43b52a982682c1e592fbc1f2c9a7f01c2ecef93cd509dab0bb85ff03f49',1,'TgBot::MessageEntity']]],
-  ['textmention_1',['TextMention',['../class_tg_bot_1_1_message_entity.html#a6cb87a43b52a982682c1e592fbc1f2c9a4ed8233defa4ad141a6a784b45a31c45',1,'TgBot::MessageEntity']]]
+  ['regular_0',['regular',['../class_tg_bot_1_1_sticker.html#a864abb74b27c5f729798954010bcc533ad2203cb1237cb6460cbad94564e39345',1,'TgBot::Sticker::Regular'],['../class_tg_bot_1_1_sticker_set.html#a373e98a1f30061b7a8e3c81a5015b4f8ad2203cb1237cb6460cbad94564e39345',1,'TgBot::StickerSet::Regular']]]
 ];

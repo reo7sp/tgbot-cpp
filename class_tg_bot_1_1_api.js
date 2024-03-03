@@ -76,6 +76,7 @@ var class_tg_bot_1_1_api =
     [ "sendMessage", "class_tg_bot_1_1_api.html#a97c42bed628892e7644c7e54bd623fc8", null ],
     [ "sendPhoto", "class_tg_bot_1_1_api.html#a62359c93e391661f704256889740496a", null ],
     [ "sendPoll", "class_tg_bot_1_1_api.html#ad26213abdf3a899eb776a7bd6a6844e6", null ],
+    [ "sendRequest", "class_tg_bot_1_1_api.html#ae4a679bf2a9346ae9511b4cdfc26e789", null ],
     [ "sendSticker", "class_tg_bot_1_1_api.html#ad7a8c642fd8d61403cd2e465b7bfe815", null ],
     [ "sendVenue", "class_tg_bot_1_1_api.html#a56bc2aed96cbc2e8a3f36332b0d72575", null ],
     [ "sendVideo", "class_tg_bot_1_1_api.html#a2e8c2041de81a8aaa7e4ae16415d37ec", null ],
@@ -105,5 +106,8 @@ var class_tg_bot_1_1_api =
     [ "unpinChatMessage", "class_tg_bot_1_1_api.html#a937d24d8c91be2e57c4c2f7e79612047", null ],
     [ "uploadStickerFile", "class_tg_bot_1_1_api.html#a944e5b87816bd7cb0c9747d3c1a27a45", null ],
     [ "Bot", "class_tg_bot_1_1_api.html#afb5d57ac6b56fe83e7894e3b686c3339", null ],
-    [ "_httpClient", "class_tg_bot_1_1_api.html#a529228096544b44031672f749a02c2d0", null ]
+    [ "_httpClient", "class_tg_bot_1_1_api.html#a529228096544b44031672f749a02c2d0", null ],
+    [ "_tgTypeParser", "class_tg_bot_1_1_api.html#a080dc56a7fef4a0a2c3d7c39a18a145b", null ],
+    [ "_token", "class_tg_bot_1_1_api.html#acafdff775d0f2aae706b3fa7e043b315", null ],
+    [ "_url", "class_tg_bot_1_1_api.html#a4727b16a25011fa6f647b64d7f67013b", null ]
 ];

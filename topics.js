@@ -1,4 +1,4 @@
-var modules =
+var topics =
 [
     [ "General", "group__general.html", "group__general" ],
     [ "Types", "group__types.html", "group__types" ],

@@ -1,7 +1,7 @@
 var searchData=
 [
   ['read_0',['read',['../namespace_file_tools.html#a0dbf1894e634a9872e43da157418daa0',1,'FileTools']]],
-  ['regular_1',['Regular',['../class_tg_bot_1_1_sticker_set.html#a373e98a1f30061b7a8e3c81a5015b4f8ad2203cb1237cb6460cbad94564e39345',1,'TgBot::StickerSet::Regular'],['../class_tg_bot_1_1_sticker.html#a864abb74b27c5f729798954010bcc533ad2203cb1237cb6460cbad94564e39345',1,'TgBot::Sticker::Regular']]],
+  ['regular_1',['regular',['../class_tg_bot_1_1_sticker_set.html#a373e98a1f30061b7a8e3c81a5015b4f8ad2203cb1237cb6460cbad94564e39345',1,'TgBot::StickerSet::Regular'],['../class_tg_bot_1_1_sticker.html#a864abb74b27c5f729798954010bcc533ad2203cb1237cb6460cbad94564e39345',1,'TgBot::Sticker::Regular']]],
   ['removekeyboard_2',['removeKeyboard',['../class_tg_bot_1_1_reply_keyboard_remove.html#a42b8b08952603a9566757bbe7d543408',1,'TgBot::ReplyKeyboardRemove']]],
   ['reopenforumtopic_3',['reopenForumTopic',['../class_tg_bot_1_1_api.html#a95281d29d8b9e7728608b81591f6979e',1,'TgBot::Api']]],
   ['reopengeneralforumtopic_4',['reopenGeneralForumTopic',['../class_tg_bot_1_1_api.html#a90d311301a1f7695bf45e9098a141060',1,'TgBot::Api']]],
@@ -9,11 +9,11 @@ var searchData=
   ['replykeyboardmarkup_2eh_6',['ReplyKeyboardMarkup.h',['../_reply_keyboard_markup_8h.html',1,'']]],
   ['replykeyboardremove_7',['ReplyKeyboardRemove',['../class_tg_bot_1_1_reply_keyboard_remove.html',1,'TgBot']]],
   ['replykeyboardremove_2eh_8',['ReplyKeyboardRemove.h',['../_reply_keyboard_remove_8h.html',1,'']]],
-  ['replymarkup_9',['replyMarkup',['../class_tg_bot_1_1_inline_query_result.html#a5b19b26210f5191e80fc1ed8de9a12a0',1,'TgBot::InlineQueryResult::replyMarkup'],['../class_tg_bot_1_1_message.html#a9948e9d9720ced0bd0e869d175b326df',1,'TgBot::Message::replyMarkup']]],
+  ['replymarkup_9',['replymarkup',['../class_tg_bot_1_1_inline_query_result.html#a5b19b26210f5191e80fc1ed8de9a12a0',1,'TgBot::InlineQueryResult::replyMarkup'],['../class_tg_bot_1_1_message.html#a9948e9d9720ced0bd0e869d175b326df',1,'TgBot::Message::replyMarkup']]],
   ['replytomessage_10',['replyToMessage',['../class_tg_bot_1_1_message.html#a312864bfddbf624c6923cb871fd4060e',1,'TgBot::Message']]],
   ['requestchat_11',['requestChat',['../class_tg_bot_1_1_keyboard_button.html#a51ca819ba8ec40fd27c44cf4332a97eb',1,'TgBot::KeyboardButton']]],
   ['requestcontact_12',['requestContact',['../class_tg_bot_1_1_keyboard_button.html#a3e8c6e40ecf3a8f739a12265a89fd381',1,'TgBot::KeyboardButton']]],
-  ['requestid_13',['requestId',['../class_tg_bot_1_1_chat_shared.html#a5d3cca6c262a6c9d58bd0ca5acc1a68d',1,'TgBot::ChatShared::requestId'],['../class_tg_bot_1_1_keyboard_button_request_chat.html#a49d0e4b157b4703b01a1a0446754001f',1,'TgBot::KeyboardButtonRequestChat::requestId'],['../class_tg_bot_1_1_keyboard_button_request_user.html#a2e0815b922ea6102027551f692984535',1,'TgBot::KeyboardButtonRequestUser::requestId'],['../class_tg_bot_1_1_user_shared.html#aaea5f12f67865429e8edb0ea644f51e7',1,'TgBot::UserShared::requestId']]],
+  ['requestid_13',['requestid',['../class_tg_bot_1_1_user_shared.html#aaea5f12f67865429e8edb0ea644f51e7',1,'TgBot::UserShared::requestId'],['../class_tg_bot_1_1_chat_shared.html#a5d3cca6c262a6c9d58bd0ca5acc1a68d',1,'TgBot::ChatShared::requestId'],['../class_tg_bot_1_1_keyboard_button_request_chat.html#a49d0e4b157b4703b01a1a0446754001f',1,'TgBot::KeyboardButtonRequestChat::requestId'],['../class_tg_bot_1_1_keyboard_button_request_user.html#a2e0815b922ea6102027551f692984535',1,'TgBot::KeyboardButtonRequestUser::requestId']]],
   ['requestlocation_14',['requestLocation',['../class_tg_bot_1_1_keyboard_button.html#a8948e0ca465352d04c44767c25275022',1,'TgBot::KeyboardButton']]],
   ['requestpoll_15',['requestPoll',['../class_tg_bot_1_1_keyboard_button.html#a78e64f0135834719c29f9c25936591d0',1,'TgBot::KeyboardButton']]],
   ['requestuser_16',['requestUser',['../class_tg_bot_1_1_keyboard_button.html#acd602d87bcf5a22714f47f0c45e7521d',1,'TgBot::KeyboardButton']]],

@@ -1,5 +1,9 @@
 var NAVTREEINDEX2 =
 {
+"class_tg_bot_1_1_bot_command_scope_all_group_chats.html#abedcb3383e0600342d04e15f5c96e4b6":[0,1,5,0],
+"class_tg_bot_1_1_bot_command_scope_all_private_chats.html":[0,1,6],
+"class_tg_bot_1_1_bot_command_scope_all_private_chats.html#a1a99cd25b579f3ac446b630202d888ee":[0,1,6,0],
+"class_tg_bot_1_1_bot_command_scope_all_private_chats.html#aede59b0eb40339909ca28be9ea5fb8f2":[0,1,6,1],
 "class_tg_bot_1_1_bot_command_scope_chat.html":[0,1,7],
 "class_tg_bot_1_1_bot_command_scope_chat.html#a06b7d06920da2e9c88dfc7243d8c12a9":[0,1,7,2],
 "class_tg_bot_1_1_bot_command_scope_chat.html#a623b89c6e785c593fb42e18d40b77a27":[0,1,7,0],
@@ -245,9 +249,5 @@ var NAVTREEINDEX2 =
 "class_tg_bot_1_1_event_broadcaster.html#a21adc85e9ed2a08a186423a5231342a9":[0,0,2,10],
 "class_tg_bot_1_1_event_broadcaster.html#a22b41f2b1eb992e31783b13d16c3c206":[0,0,2,8],
 "class_tg_bot_1_1_event_broadcaster.html#a22e70b8493ea455e70734a36968f3d55":[0,0,2,20],
-"class_tg_bot_1_1_event_broadcaster.html#a29ebfb5a8748d687f7582c23a83dd1e8":[0,0,2,2],
-"class_tg_bot_1_1_event_broadcaster.html#a2c0338bc5cc3c1654d0e3f0dac0ab8a6":[0,0,2,4],
-"class_tg_bot_1_1_event_broadcaster.html#a2c6cfe304bd79c7d6432863cd7b399c3":[0,0,2,21],
-"class_tg_bot_1_1_event_broadcaster.html#a347c3cbf4bcf5afcbca7dc8a6c5702ff":[0,0,2,1],
-"class_tg_bot_1_1_event_broadcaster.html#a3a27dc2a18bfaa0983ee4651657aaf98":[0,0,2,7]
+"class_tg_bot_1_1_event_broadcaster.html#a29ebfb5a8748d687f7582c23a83dd1e8":[0,0,2,2]
 };

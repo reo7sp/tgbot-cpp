@@ -9,5 +9,6 @@ var searchData=
   ['newchatmember_6',['newChatMember',['../class_tg_bot_1_1_chat_member_updated.html#a2415b4aebc2c3ef58057f14e2a1dd4d9',1,'TgBot::ChatMemberUpdated']]],
   ['newchatmembers_7',['newChatMembers',['../class_tg_bot_1_1_message.html#aac7be66dd576e712ea37a2631670ef03',1,'TgBot::Message']]],
   ['newchatphoto_8',['newChatPhoto',['../class_tg_bot_1_1_message.html#a8f8a9c50fd30fa24476605b8efdd95ea',1,'TgBot::Message']]],
-  ['newchattitle_9',['newChatTitle',['../class_tg_bot_1_1_message.html#a34323ada99461aced73af81edb88f813',1,'TgBot::Message']]]
+  ['newchattitle_9',['newChatTitle',['../class_tg_bot_1_1_message.html#a34323ada99461aced73af81edb88f813',1,'TgBot::Message']]],
+  ['notfound_10',['NotFound',['../class_tg_bot_1_1_tg_exception.html#a88b4eb82d516cd897ace08c9cb4c5097a38c300f4fc9ce8a77aad4a30de05cad8',1,'TgBot::TgException']]]
 ];

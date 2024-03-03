@@ -8,7 +8,8 @@ var searchData=
   ['emoji_5',['emoji',['../class_tg_bot_1_1_dice.html#a52a1d3e1b7d1437a666caecdbd72943f',1,'TgBot::Dice::emoji'],['../class_tg_bot_1_1_sticker.html#a91d598b9805292d3956b47d88febe001',1,'TgBot::Sticker::emoji']]],
   ['emojistatuscustomemojiid_6',['emojiStatusCustomEmojiId',['../class_tg_bot_1_1_chat.html#a59151510a8cad1b3af517ba397e1106d',1,'TgBot::Chat']]],
   ['entities_7',['entities',['../class_tg_bot_1_1_input_text_message_content.html#aef947c6035a4501bfe40adbd5fad9b7c',1,'TgBot::InputTextMessageContent::entities'],['../class_tg_bot_1_1_message.html#a53c199056538ebe72c65e409deaf7a8e',1,'TgBot::Message::entities']]],
-  ['expiredate_8',['expireDate',['../class_tg_bot_1_1_chat_invite_link.html#a3093a0857497134c6469a00679e745b4',1,'TgBot::ChatInviteLink']]],
-  ['explanation_9',['explanation',['../class_tg_bot_1_1_poll.html#acdd4b56671243e5b2c3a6628ca13fba1',1,'TgBot::Poll']]],
-  ['explanationentities_10',['explanationEntities',['../class_tg_bot_1_1_poll.html#af0df276266745c3d812fa034239480b9',1,'TgBot::Poll']]]
+  ['errorcode_8',['errorCode',['../class_tg_bot_1_1_tg_exception.html#a3e660db4ebe1576e7f54a3064e3a7144',1,'TgBot::TgException']]],
+  ['expiredate_9',['expireDate',['../class_tg_bot_1_1_chat_invite_link.html#a3093a0857497134c6469a00679e745b4',1,'TgBot::ChatInviteLink']]],
+  ['explanation_10',['explanation',['../class_tg_bot_1_1_poll.html#acdd4b56671243e5b2c3a6628ca13fba1',1,'TgBot::Poll']]],
+  ['explanationentities_11',['explanationEntities',['../class_tg_bot_1_1_poll.html#af0df276266745c3d812fa034239480b9',1,'TgBot::Poll']]]
 ];
