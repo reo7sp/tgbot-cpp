@@ -3,7 +3,7 @@ var searchData=
   ['_5facceptor_0',['_acceptor',['../class_tg_bot_1_1_http_server.html#a1a48cb5e272aae75d3ee1b51fca445d5',1,'TgBot::HttpServer']]],
   ['_5fhandler_1',['_handler',['../class_tg_bot_1_1_http_server_1_1_connection.html#ab630576fda90c3a33e563e44cd5a08dd',1,'TgBot::HttpServer::Connection::_handler'],['../class_tg_bot_1_1_http_server.html#a9af2cf386463a1f40d0d3e9d92d88eec',1,'TgBot::HttpServer::_handler']]],
   ['_5fhttpclient_2',['_httpClient',['../class_tg_bot_1_1_api.html#a529228096544b44031672f749a02c2d0',1,'TgBot::Api']]],
-  ['_5fhttpparser_3',['_httpparser',['../class_tg_bot_1_1_http_server_1_1_connection.html#a3f41a81c73bc3b0257433892b11cf21e',1,'TgBot::HttpServer::Connection::_httpParser'],['../class_tg_bot_1_1_http_server.html#ac31bb13213ce451f0daa7e3cb13c9f73',1,'TgBot::HttpServer::_httpParser']]],
+  ['_5fhttpparser_3',['_httpParser',['../class_tg_bot_1_1_http_server_1_1_connection.html#a3f41a81c73bc3b0257433892b11cf21e',1,'TgBot::HttpServer::Connection::_httpParser'],['../class_tg_bot_1_1_http_server.html#ac31bb13213ce451f0daa7e3cb13c9f73',1,'TgBot::HttpServer::_httpParser']]],
   ['_5fioservice_4',['_ioService',['../class_tg_bot_1_1_http_server.html#a68812914f5c398331ee3ef8e77fe39b7',1,'TgBot::HttpServer']]],
   ['_5freadbody_5',['_readBody',['../class_tg_bot_1_1_http_server_1_1_connection.html#af0b89120c9d55f683f1a9e202392f77c',1,'TgBot::HttpServer::Connection']]],
   ['_5freadheader_6',['_readHeader',['../class_tg_bot_1_1_http_server_1_1_connection.html#ae0eaa05e9efdb533a5ec68d5717908a3',1,'TgBot::HttpServer::Connection']]],
