@@ -89,6 +89,10 @@ if (CURL_FOUND)
     set(LIB_LIST ${LIB_LIST} ${CURL_LIBRARIES})
 endif()
 
+if (WIN32)
+    set(LIB_LIST ${LIB_LIST} Ws2_32)
+endif()
+
 # building project
 add_library(${PROJECT_NAME} ${SRC_LIST})
 target_include_directories(${PROJECT_NAME} PUBLIC include)
