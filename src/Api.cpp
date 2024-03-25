@@ -1776,7 +1776,7 @@ Message::Ptr Api::editMessageText(const std::string& text,
                                   const std::string& inlineMessageId,
                                   const std::string& parseMode,
                                   bool disableWebPagePreview,
-                                  GenericReply::Ptr replyMarkup,
+                                  InlineKeyboardMarkup::Ptr replyMarkup,
                                   const std::vector<MessageEntity::Ptr>& entities) const {
     std::vector<HttpReqArg> args;
     args.reserve(8);

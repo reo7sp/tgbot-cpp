@@ -1473,7 +1473,7 @@ public:
                                  const std::string& inlineMessageId = "",
                                  const std::string& parseMode = "",
                                  bool disableWebPagePreview = false,
-                                 GenericReply::Ptr replyMarkup = nullptr,
+                                 InlineKeyboardMarkup::Ptr replyMarkup = nullptr,
                                  const std::vector<MessageEntity::Ptr>& entities = std::vector<MessageEntity::Ptr>()) const;
 
     /**
