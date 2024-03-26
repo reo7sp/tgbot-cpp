@@ -1801,7 +1801,7 @@ Message::Ptr Api::editMessageText(const std::string& text,
         args.emplace_back("disable_web_page_preview", disableWebPagePreview);
     }
     if (replyMarkup) {
-        args.emplace_back("reply_markup", _tgTypeParser.parseGenericReply(replyMarkup));
+        args.emplace_back("reply_markup", _tgTypeParser.parseInlineKeyboardMarkup(replyMarkup));
     }
 
     boost::property_tree::ptree p = sendRequest("editMessageText", args);
