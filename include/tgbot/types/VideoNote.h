@@ -43,7 +43,7 @@ public:
     /**
      * @brief Optional. Video thumbnail
      */
-    PhotoSize::Ptr thumb;
+    PhotoSize::Ptr thumbnail;
 
     /**
      * @brief Optional. File size

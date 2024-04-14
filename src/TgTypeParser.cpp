@@ -531,7 +531,7 @@ Animation::Ptr TgTypeParser::parseJsonAndGetAnimation(const boost::property_tree
     result->width = data.get<std::int32_t>("width", 0);
     result->height = data.get<std::int32_t>("height", 0);
     result->duration = data.get<std::int32_t>("duration", 0);
-    result->thumb = tryParseJson<PhotoSize>(&TgTypeParser::parseJsonAndGetPhotoSize, data, "thumb");
+    result->thumbnail = tryParseJson<PhotoSize>(&TgTypeParser::parseJsonAndGetPhotoSize, data, "thumbnail");
     result->fileName = data.get<std::string>("file_name", "");
     result->mimeType = data.get<std::string>("mime_type", "");
     result->fileSize = data.get<std::int64_t>("file_size", 0);
@@ -549,7 +549,7 @@ std::string TgTypeParser::parseAnimation(const Animation::Ptr& object) const {
     appendToJson(result, "width", object->width);
     appendToJson(result, "height", object->height);
     appendToJson(result, "duration", object->duration);
-    appendToJson(result, "thumb", parsePhotoSize(object->thumb));
+    appendToJson(result, "thumbnail", parsePhotoSize(object->thumbnail));
     appendToJson(result, "file_name", object->fileName);
     appendToJson(result, "mime_type", object->mimeType);
     appendToJson(result, "file_size", object->fileSize);
@@ -568,7 +568,7 @@ Audio::Ptr TgTypeParser::parseJsonAndGetAudio(const boost::property_tree::ptree&
     result->fileName = data.get<std::string>("file_name", "");
     result->mimeType = data.get<std::string>("mime_type", "");
     result->fileSize = data.get<std::int64_t>("file_size", 0);
-    result->thumb = tryParseJson<PhotoSize>(&TgTypeParser::parseJsonAndGetPhotoSize, data, "thumb");
+    result->thumbnail = tryParseJson<PhotoSize>(&TgTypeParser::parseJsonAndGetPhotoSize, data, "thumbnail");
     return result;
 }
 
@@ -586,7 +586,7 @@ std::string TgTypeParser::parseAudio(const Audio::Ptr& object) const {
     appendToJson(result, "file_name", object->fileName);
     appendToJson(result, "mime_type", object->mimeType);
     appendToJson(result, "file_size", object->fileSize);
-    appendToJson(result, "thumb", parsePhotoSize(object->thumb));
+    appendToJson(result, "thumbnail", parsePhotoSize(object->thumbnail));
     removeLastComma(result);
     result += '}';
     return result;
@@ -596,7 +596,7 @@ Document::Ptr TgTypeParser::parseJsonAndGetDocument(const boost::property_tree::
     auto result(std::make_shared<Document>());
     result->fileId = data.get<std::string>("file_id", "");
     result->fileUniqueId = data.get<std::string>("file_unique_id", "");
-    result->thumb = tryParseJson<PhotoSize>(&TgTypeParser::parseJsonAndGetPhotoSize, data, "thumb");
+    result->thumbnail = tryParseJson<PhotoSize>(&TgTypeParser::parseJsonAndGetPhotoSize, data, "thumbnail");
     result->fileName = data.get<std::string>("file_name", "");
     result->mimeType = data.get<std::string>("mime_type", "");
     result->fileSize = data.get<std::int64_t>("file_size", 0);
@@ -611,7 +611,7 @@ std::string TgTypeParser::parseDocument(const Document::Ptr& object) const {
     result += '{';
     appendToJson(result, "file_id", object->fileId);
     appendToJson(result, "file_unique_id", object->fileUniqueId);
-    appendToJson(result, "thumb", parsePhotoSize(object->thumb));
+    appendToJson(result, "thumbnail", parsePhotoSize(object->thumbnail));
     appendToJson(result, "file_name", object->fileName);
     appendToJson(result, "mime_type", object->mimeType);
     appendToJson(result, "file_size", object->fileSize);
@@ -627,7 +627,7 @@ Video::Ptr TgTypeParser::parseJsonAndGetVideo(const boost::property_tree::ptree&
     result->width = data.get<std::int32_t>("width", 0);
     result->height = data.get<std::int32_t>("height", 0);
     result->duration = data.get<std::int32_t>("duration", 0);
-    result->thumb = tryParseJson<PhotoSize>(&TgTypeParser::parseJsonAndGetPhotoSize, data, "thumb");
+    result->thumbnail = tryParseJson<PhotoSize>(&TgTypeParser::parseJsonAndGetPhotoSize, data, "thumbnail");
     result->fileName = data.get<std::string>("file_name", "");
     result->mimeType = data.get<std::string>("mime_type", "");
     result->fileSize = data.get<std::int64_t>("file_size", 0);
@@ -645,7 +645,7 @@ std::string TgTypeParser::parseVideo(const Video::Ptr& object) const {
     appendToJson(result, "width", object->width);
     appendToJson(result, "height", object->height);
     appendToJson(result, "duration", object->duration);
-    appendToJson(result, "thumb", parsePhotoSize(object->thumb));
+    appendToJson(result, "thumbnail", parsePhotoSize(object->thumbnail));
     appendToJson(result, "file_name", object->fileName);
     appendToJson(result, "mime_type", object->mimeType);
     appendToJson(result, "file_size", object->fileSize);
@@ -660,7 +660,7 @@ VideoNote::Ptr TgTypeParser::parseJsonAndGetVideoNote(const boost::property_tree
     result->fileUniqueId = data.get<std::string>("file_unique_id", "");
     result->length = data.get<std::int32_t>("length", 0);
     result->duration = data.get<std::int32_t>("duration", 0);
-    result->thumb = tryParseJson<PhotoSize>(&TgTypeParser::parseJsonAndGetPhotoSize, data, "thumb");
+    result->thumbnail = tryParseJson<PhotoSize>(&TgTypeParser::parseJsonAndGetPhotoSize, data, "thumbnail");
     result->fileSize = data.get("file_size", 0);
     return result;
 }
@@ -675,7 +675,7 @@ std::string TgTypeParser::parseVideoNote(const VideoNote::Ptr& object) const {
     appendToJson(result, "file_unique_id", object->fileUniqueId);
     appendToJson(result, "length", object->length);
     appendToJson(result, "duration", object->duration);
-    appendToJson(result, "thumb", parsePhotoSize(object->thumb));
+    appendToJson(result, "thumbnail", parsePhotoSize(object->thumbnail));
     appendToJson(result, "file_size", object->fileSize);
     removeLastComma(result);
     result += '}';
@@ -2220,6 +2220,36 @@ std::string TgTypeParser::parseBotCommandScopeChatMember(const BotCommandScopeCh
     return result;
 }
 
+BotDescription::Ptr TgTypeParser::parseJsonAndGetBotDescription(const boost::property_tree::ptree& data) const {
+    auto result(std::make_shared<BotDescription>());
+    result->description = data.get<std::string>("description", "");
+    return result;
+}
+
+std::string TgTypeParser::parseBotDescription(const BotDescription::Ptr& object) const {
+    std::string result;
+    result += '{';
+    appendToJson(result, "description", object->description);
+    removeLastComma(result);
+    result += '}';
+    return result;
+}
+
+BotShortDescription::Ptr TgTypeParser::parseJsonAndGetBotShortDescription(const boost::property_tree::ptree& data) const {
+    auto result(std::make_shared<BotShortDescription>());
+    result->shortDescription = data.get<std::string>("short_description", "");
+    return result;
+}
+
+std::string TgTypeParser::parseBotShortDescription(const BotShortDescription::Ptr& object) const {
+    std::string result;
+    result += '{';
+    appendToJson(result, "short_description", object->shortDescription);
+    removeLastComma(result);
+    result += '}';
+    return result;
+}
+
 MenuButton::Ptr TgTypeParser::parseJsonAndGetMenuButton(const boost::property_tree::ptree& data) const {
     std::string type = data.get<std::string>("type", "");
     MenuButton::Ptr result;
@@ -2413,7 +2443,7 @@ std::string TgTypeParser::parseInputMediaPhoto(const InputMediaPhoto::Ptr& objec
 InputMediaVideo::Ptr TgTypeParser::parseJsonAndGetInputMediaVideo(const boost::property_tree::ptree& data) const {
     // NOTE: This function will be called by parseJsonAndGetInputMedia().
     auto result(std::make_shared<InputMediaVideo>());
-    result->thumb = data.get<std::string>("thumb", "");
+    result->thumbnail = data.get<std::string>("thumbnail", "");
     result->width = data.get<std::int32_t>("width", 0);
     result->height = data.get<std::int32_t>("height", 0);
     result->duration = data.get<std::int32_t>("duration", 0);
@@ -2429,7 +2459,7 @@ std::string TgTypeParser::parseInputMediaVideo(const InputMediaVideo::Ptr& objec
     // This function will be called by parseInputMedia(), so I don't add
     // curly brackets to the result std::string.
     std::string result;
-    appendToJson(result, "thumb", object->thumb);
+    appendToJson(result, "thumbnail", object->thumbnail);
     appendToJson(result, "width", object->width);
     appendToJson(result, "height", object->height);
     appendToJson(result, "duration", object->duration);
@@ -2442,7 +2472,7 @@ std::string TgTypeParser::parseInputMediaVideo(const InputMediaVideo::Ptr& objec
 InputMediaAnimation::Ptr TgTypeParser::parseJsonAndGetInputMediaAnimation(const boost::property_tree::ptree& data) const {
     // NOTE: This function will be called by parseJsonAndGetInputMedia().
     auto result(std::make_shared<InputMediaAnimation>());
-    result->thumb = data.get<std::string>("thumb", "");
+    result->thumbnail = data.get<std::string>("thumbnail", "");
     result->width = data.get<std::int32_t>("width", 0);
     result->height = data.get<std::int32_t>("height", 0);
     result->duration = data.get<std::int32_t>("duration", 0);
@@ -2457,7 +2487,7 @@ std::string TgTypeParser::parseInputMediaAnimation(const InputMediaAnimation::Pt
     // This function will be called by parseInputMedia(), so I don't add
     // curly brackets to the result std::string.
     std::string result;
-    appendToJson(result, "thumb", object->thumb);
+    appendToJson(result, "thumbnail", object->thumbnail);
     appendToJson(result, "width", object->width);
     appendToJson(result, "height", object->height);
     appendToJson(result, "duration", object->duration);
@@ -2469,7 +2499,7 @@ std::string TgTypeParser::parseInputMediaAnimation(const InputMediaAnimation::Pt
 InputMediaAudio::Ptr TgTypeParser::parseJsonAndGetInputMediaAudio(const boost::property_tree::ptree& data) const {
     // NOTE: This function will be called by parseJsonAndGetInputMedia().
     auto result(std::make_shared<InputMediaAudio>());
-    result->thumb = data.get<std::string>("thumb", "");
+    result->thumbnail = data.get<std::string>("thumbnail", "");
     result->duration = data.get<std::int32_t>("duration", 0);
     result->performer = data.get<std::string>("performer", "");
     result->title = data.get<std::string>("title", "");
@@ -2483,7 +2513,7 @@ std::string TgTypeParser::parseInputMediaAudio(const InputMediaAudio::Ptr& objec
     // This function will be called by parseInputMedia(), so I don't add
     // curly brackets to the result std::string.
     std::string result;
-    appendToJson(result, "thumb", object->thumb);
+    appendToJson(result, "thumbnail", object->thumbnail);
     appendToJson(result, "duration", object->duration);
     appendToJson(result, "performer", object->performer);
     appendToJson(result, "title", object->title);
@@ -2494,7 +2524,7 @@ std::string TgTypeParser::parseInputMediaAudio(const InputMediaAudio::Ptr& objec
 InputMediaDocument::Ptr TgTypeParser::parseJsonAndGetInputMediaDocument(const boost::property_tree::ptree& data) const {
     // NOTE: This function will be called by parseJsonAndGetInputMedia().
     auto result(std::make_shared<InputMediaDocument>());
-    result->thumb = data.get<std::string>("thumb", "");
+    result->thumbnail = data.get<std::string>("thumbnail", "");
     result->disableContentTypeDetection = data.get<bool>("disable_content_type_detection", false);
     return result;
 }
@@ -2506,7 +2536,7 @@ std::string TgTypeParser::parseInputMediaDocument(const InputMediaDocument::Ptr&
     // This function will be called by parseInputMedia(), so I don't add
     // curly brackets to the result std::string.
     std::string result;
-    appendToJson(result, "thumb", object->thumb);
+    appendToJson(result, "thumbnail", object->thumbnail);
     appendToJson(result, "disable_content_type_detection", object->disableContentTypeDetection);
     // The last comma will be erased by parseInputMedia().
     return result;
@@ -2528,12 +2558,13 @@ Sticker::Ptr TgTypeParser::parseJsonAndGetSticker(const boost::property_tree::pt
     result->height = data.get<std::int32_t>("height", 0);
     result->isAnimated = data.get<bool>("is_animated", false);
     result->isVideo = data.get<bool>("is_video", false);
-    result->thumb = tryParseJson<PhotoSize>(&TgTypeParser::parseJsonAndGetPhotoSize, data, "thumb");
+    result->thumbnail = tryParseJson<PhotoSize>(&TgTypeParser::parseJsonAndGetPhotoSize, data, "thumbnail");
     result->emoji = data.get<std::string>("emoji", "");
     result->setName = data.get<std::string>("set_name", "");
     result->premiumAnimation = tryParseJson<File>(&TgTypeParser::parseJsonAndGetFile, data, "premium_animation");
     result->maskPosition = tryParseJson<MaskPosition>(&TgTypeParser::parseJsonAndGetMaskPosition, data, "mask_position");
     result->customEmojiId = data.get<std::string>("custom_emoji_id", "");
+    result->needsRepainting = data.get<bool>("needs_repainting", true);
     result->fileSize = data.get<std::int32_t>("file_size", 0);
     return result;
 }
@@ -2557,12 +2588,13 @@ std::string TgTypeParser::parseSticker(const Sticker::Ptr& object) const {
     appendToJson(result, "height", object->height);
     appendToJson(result, "is_animated", object->isAnimated);
     appendToJson(result, "is_video", object->isVideo);
-    appendToJson(result, "thumb", parsePhotoSize(object->thumb));
+    appendToJson(result, "thumbnail", parsePhotoSize(object->thumbnail));
     appendToJson(result, "emoji", object->emoji);
     appendToJson(result, "set_name", object->setName);
     appendToJson(result, "premium_animation", parseFile(object->premiumAnimation));
     appendToJson(result, "mask_position", parseMaskPosition(object->maskPosition));
     appendToJson(result, "custom_emoji_id", object->customEmojiId);
+    appendToJson(result, "needs_repainting", object->needsRepainting);
     appendToJson(result, "file_size", object->fileSize);
     removeLastComma(result);
     result += '}';
@@ -2584,7 +2616,7 @@ StickerSet::Ptr TgTypeParser::parseJsonAndGetStickerSet(const boost::property_tr
     result->isAnimated = data.get<bool>("is_animated", false);
     result->isVideo = data.get<bool>("is_video", false);
     result->stickers = parseJsonAndGetArray<Sticker>(&TgTypeParser::parseJsonAndGetSticker, data, "stickers");
-    result->thumb = tryParseJson<PhotoSize>(&TgTypeParser::parseJsonAndGetPhotoSize, data, "thumb");
+    result->thumbnail = tryParseJson<PhotoSize>(&TgTypeParser::parseJsonAndGetPhotoSize, data, "thumbnail");
     return result;
 }
 
@@ -2606,7 +2638,7 @@ std::string TgTypeParser::parseStickerSet(const StickerSet::Ptr& object) const {
     appendToJson(result, "is_animated", object->isAnimated);
     appendToJson(result, "is_video", object->isVideo);
     appendToJson(result, "stickers", parseArray(&TgTypeParser::parseSticker, object->stickers));
-    appendToJson(result, "thumb", parsePhotoSize(object->thumb));
+    appendToJson(result, "thumbnail", parsePhotoSize(object->thumbnail));
     removeLastComma(result);
     result += '}';
     return result;
@@ -2631,6 +2663,44 @@ std::string TgTypeParser::parseMaskPosition(const MaskPosition::Ptr& object) con
     appendToJson(result, "x_shift", object->xShift);
     appendToJson(result, "y_shift", object->yShift);
     appendToJson(result, "scale", object->scale);
+    removeLastComma(result);
+    result += '}';
+    return result;
+}
+
+InputSticker::Ptr TgTypeParser::parseJsonAndGetInputSticker(const boost::property_tree::ptree& data) const {
+    auto result(std::make_shared<InputSticker>());
+    result->sticker = data.get<std::string>("sticker", "");
+    result->emojiList = parseJsonAndGetArray<std::string>(
+        [] (const boost::property_tree::ptree& innerData)->std::string {
+        return innerData.get<std::string>("");
+    }
+    , data, "emoji_list");
+    result->maskPosition = tryParseJson<MaskPosition>(&TgTypeParser::parseJsonAndGetMaskPosition, data, "mask_position");
+    result->keywords = parseJsonAndGetArray<std::string>(
+        [] (const boost::property_tree::ptree& innerData)->std::string {
+        return innerData.get<std::string>("");
+    }
+    , data, "keywords");
+    return result;
+}
+
+std::string TgTypeParser::parseInputSticker(const InputSticker::Ptr& object) const {
+    if (!object) {
+        return "";
+    }
+    std::string result;
+    result += '{';
+    appendToJson(result, "sticker", object->sticker);
+    appendToJson(result, "emoji_list", parseArray<std::string>(
+        [] (const std::string& s)->std::string {
+        return s;
+    }, object->emojiList));
+    appendToJson(result, "mask_position", parseMaskPosition(object->maskPosition));
+    appendToJson(result, "keywords", parseArray<std::string>(
+        [] (const std::string& s)->std::string {
+        return s;
+    }, object->keywords));
     removeLastComma(result);
     result += '}';
     return result;
@@ -2784,9 +2854,9 @@ InlineQueryResultArticle::Ptr TgTypeParser::parseJsonAndGetInlineQueryResultArti
     result->url = data.get<std::string>("url", "");
     result->hideUrl = data.get<bool>("hide_url", false);
     result->description = data.get<std::string>("description", "");
-    result->thumbUrl = data.get<std::string>("thumb_url", "");
-    result->thumbWidth = data.get<std::int32_t>("thumb_width", 0);
-    result->thumbHeight = data.get<std::int32_t>("thumb_height", 0);
+    result->thumbnailUrl = data.get<std::string>("thumbnail_url", "");
+    result->thumbnailWidth = data.get<std::int32_t>("thumbnail_width", 0);
+    result->thumbnailHeight = data.get<std::int32_t>("thumbnail_height", 0);
     return result;
 }
 
@@ -2802,9 +2872,9 @@ std::string TgTypeParser::parseInlineQueryResultArticle(const InlineQueryResultA
     appendToJson(result, "url", object->url);
     appendToJson(result, "hide_url", object->hideUrl);
     appendToJson(result, "description", object->description);
-    appendToJson(result, "thumb_url", object->thumbUrl);
-    appendToJson(result, "thumb_width", object->thumbWidth);
-    appendToJson(result, "thumb_height", object->thumbHeight);
+    appendToJson(result, "thumbnail_url", object->thumbnailUrl);
+    appendToJson(result, "thumbnail_width", object->thumbnailWidth);
+    appendToJson(result, "thumbnail_height", object->thumbnailHeight);
     // The last comma will be erased by parseInlineQueryResult().
     return result;
 }
@@ -2813,7 +2883,7 @@ InlineQueryResultPhoto::Ptr TgTypeParser::parseJsonAndGetInlineQueryResultPhoto(
     // NOTE: This function will be called by parseJsonAndGetInlineQueryResult().
     auto result(std::make_shared<InlineQueryResultPhoto>());
     result->photoUrl = data.get<std::string>("photo_url", "");
-    result->thumbUrl = data.get<std::string>("thumb_url", "");
+    result->thumbnailUrl = data.get<std::string>("thumbnail_url", "");
     result->photoWidth = data.get<std::int32_t>("photo_width", 0);
     result->photoHeight = data.get<std::int32_t>("photo_height", 0);
     result->title = data.get<std::string>("title", "");
@@ -2833,7 +2903,7 @@ std::string TgTypeParser::parseInlineQueryResultPhoto(const InlineQueryResultPho
     // curly brackets to the result std::string.
     std::string result;
     appendToJson(result, "photo_url", object->photoUrl);
-    appendToJson(result, "thumb_url", object->thumbUrl);
+    appendToJson(result, "thumbnail_url", object->thumbnailUrl);
     appendToJson(result, "photo_width", object->photoWidth);
     appendToJson(result, "photo_height", object->photoHeight);
     appendToJson(result, "title", object->title);
@@ -2853,8 +2923,8 @@ InlineQueryResultGif::Ptr TgTypeParser::parseJsonAndGetInlineQueryResultGif(cons
     result->gifWidth = data.get<std::int32_t>("gif_width", 0);
     result->gifHeight = data.get<std::int32_t>("gif_height", 0);
     result->gifDuration = data.get<std::int32_t>("gif_duration", 0);
-    result->thumbUrl = data.get<std::string>("thumb_url", "");
-    result->thumbMimeType = data.get<std::string>("thumb_mime_type", "");
+    result->thumbnailUrl = data.get<std::string>("thumbnail_url", "");
+    result->thumbnailMimeType = data.get<std::string>("thumbnail_mime_type", "");
     result->title = data.get<std::string>("title", "");
     result->caption = data.get<std::string>("caption", "");
     result->parseMode = data.get<std::string>("parse_mode", "");
@@ -2874,8 +2944,8 @@ std::string TgTypeParser::parseInlineQueryResultGif(const InlineQueryResultGif::
     appendToJson(result, "gif_width", object->gifWidth);
     appendToJson(result, "gif_height", object->gifHeight);
     appendToJson(result, "gif_duration", object->gifDuration);
-    appendToJson(result, "thumb_url", object->thumbUrl);
-    appendToJson(result, "thumb_mime_type", object->thumbMimeType);
+    appendToJson(result, "thumbnail_url", object->thumbnailUrl);
+    appendToJson(result, "thumbnail_mime_type", object->thumbnailMimeType);
     appendToJson(result, "title", object->title);
     appendToJson(result, "caption", object->caption);
     appendToJson(result, "parse_mode", object->parseMode);
@@ -2892,8 +2962,8 @@ InlineQueryResultMpeg4Gif::Ptr TgTypeParser::parseJsonAndGetInlineQueryResultMpe
     result->mpeg4Width = data.get<std::int32_t>("mpeg4_width", 0);
     result->mpeg4Height = data.get<std::int32_t>("mpeg4_height", 0);
     result->mpeg4Duration = data.get<std::int32_t>("mpeg4_duration", 0);
-    result->thumbUrl = data.get<std::string>("thumb_url", "");
-    result->thumbMimeType = data.get<std::string>("thumb_mime_type", "");
+    result->thumbnailUrl = data.get<std::string>("thumbnail_url", "");
+    result->thumbnailMimeType = data.get<std::string>("thumbnail_mime_type", "");
     result->title = data.get<std::string>("title", "");
     result->caption = data.get<std::string>("caption", "");
     result->parseMode = data.get<std::string>("parse_mode", "");
@@ -2913,8 +2983,8 @@ std::string TgTypeParser::parseInlineQueryResultMpeg4Gif(const InlineQueryResult
     appendToJson(result, "mpeg4_width", object->mpeg4Width);
     appendToJson(result, "mpeg4_height", object->mpeg4Height);
     appendToJson(result, "mpeg4_duration", object->mpeg4Duration);
-    appendToJson(result, "thumb_url", object->thumbUrl);
-    appendToJson(result, "thumb_mime_type", object->thumbMimeType);
+    appendToJson(result, "thumbnail_url", object->thumbnailUrl);
+    appendToJson(result, "thumbnail_mime_type", object->thumbnailMimeType);
     appendToJson(result, "title", object->title);
     appendToJson(result, "caption", object->caption);
     appendToJson(result, "parse_mode", object->parseMode);
@@ -2929,7 +2999,7 @@ InlineQueryResultVideo::Ptr TgTypeParser::parseJsonAndGetInlineQueryResultVideo(
     auto result(std::make_shared<InlineQueryResultVideo>());
     result->videoUrl = data.get<std::string>("video_url", "");
     result->mimeType = data.get<std::string>("mime_type", "");
-    result->thumbUrl = data.get<std::string>("thumb_url", "");
+    result->thumbnailUrl = data.get<std::string>("thumbnail_url", "");
     result->title = data.get<std::string>("title", "");
     result->caption = data.get<std::string>("caption", "");
     result->parseMode = data.get<std::string>("parse_mode", "");
@@ -2951,7 +3021,7 @@ std::string TgTypeParser::parseInlineQueryResultVideo(const InlineQueryResultVid
     std::string result;
     appendToJson(result, "video_url", object->videoUrl);
     appendToJson(result, "mime_type", object->mimeType);
-    appendToJson(result, "thumb_url", object->thumbUrl);
+    appendToJson(result, "thumbnail_url", object->thumbnailUrl);
     appendToJson(result, "title", object->title);
     appendToJson(result, "caption", object->caption);
     appendToJson(result, "parse_mode", object->parseMode);
@@ -3040,9 +3110,9 @@ InlineQueryResultDocument::Ptr TgTypeParser::parseJsonAndGetInlineQueryResultDoc
     result->mimeType = data.get<std::string>("mime_type", "");
     result->description = data.get<std::string>("description", "");
     result->inputMessageContent = tryParseJson<InputMessageContent>(&TgTypeParser::parseJsonAndGetInputMessageContent, data, "input_message_content");
-    result->thumbUrl = data.get<std::string>("thumb_url", "");
-    result->thumbWidth = data.get<std::int32_t>("thumb_width", 0);
-    result->thumbHeight = data.get<std::int32_t>("thumb_height", 0);
+    result->thumbnailUrl = data.get<std::string>("thumbnail_url", "");
+    result->thumbnailWidth = data.get<std::int32_t>("thumbnail_width", 0);
+    result->thumbnailHeight = data.get<std::int32_t>("thumbnail_height", 0);
     return result;
 }
 
@@ -3061,9 +3131,9 @@ std::string TgTypeParser::parseInlineQueryResultDocument(const InlineQueryResult
     appendToJson(result, "mime_type", object->mimeType);
     appendToJson(result, "description", object->description);
     appendToJson(result, "input_message_content", parseInputMessageContent(object->inputMessageContent));
-    appendToJson(result, "thumb_url", object->thumbUrl);
-    appendToJson(result, "thumb_width", object->thumbWidth);
-    appendToJson(result, "thumb_height", object->thumbHeight);
+    appendToJson(result, "thumbnail_url", object->thumbnailUrl);
+    appendToJson(result, "thumbnail_width", object->thumbnailWidth);
+    appendToJson(result, "thumbnail_height", object->thumbnailHeight);
     // The last comma will be erased by parseInlineQueryResult().
     return result;
 }
@@ -3079,9 +3149,9 @@ InlineQueryResultLocation::Ptr TgTypeParser::parseJsonAndGetInlineQueryResultLoc
     result->heading = data.get<std::int32_t>("heading", 0);
     result->proximityAlertRadius = data.get<std::int32_t>("proximity_alert_radius", 0);
     result->inputMessageContent = tryParseJson<InputMessageContent>(&TgTypeParser::parseJsonAndGetInputMessageContent, data, "input_message_content");
-    result->thumbUrl = data.get<std::string>("thumb_url", "");
-    result->thumbWidth = data.get<std::int32_t>("thumb_width", 0);
-    result->thumbHeight = data.get<std::int32_t>("thumb_height", 0);
+    result->thumbnailUrl = data.get<std::string>("thumbnail_url", "");
+    result->thumbnailWidth = data.get<std::int32_t>("thumbnail_width", 0);
+    result->thumbnailHeight = data.get<std::int32_t>("thumbnail_height", 0);
     return result;
 }
 
@@ -3100,9 +3170,9 @@ std::string TgTypeParser::parseInlineQueryResultLocation(const InlineQueryResult
     appendToJson(result, "heading", object->heading);
     appendToJson(result, "proximity_alert_radius", object->proximityAlertRadius);
     appendToJson(result, "input_message_content", parseInputMessageContent(object->inputMessageContent));
-    appendToJson(result, "thumb_url", object->thumbUrl);
-    appendToJson(result, "thumb_width", object->thumbWidth);
-    appendToJson(result, "thumb_height", object->thumbHeight);
+    appendToJson(result, "thumbnail_url", object->thumbnailUrl);
+    appendToJson(result, "thumbnail_width", object->thumbnailWidth);
+    appendToJson(result, "thumbnail_height", object->thumbnailHeight);
     // The last comma will be erased by parseInlineQueryResult().
     return result;
 }
@@ -3119,9 +3189,9 @@ InlineQueryResultVenue::Ptr TgTypeParser::parseJsonAndGetInlineQueryResultVenue(
     result->googlePlaceId = data.get<std::string>("google_place_id", "");
     result->googlePlaceType = data.get<std::string>("google_place_type", "");
     result->inputMessageContent = tryParseJson<InputMessageContent>(&TgTypeParser::parseJsonAndGetInputMessageContent, data, "input_message_content");
-    result->thumbUrl = data.get<std::string>("thumb_url", "");
-    result->thumbWidth = data.get<std::int32_t>("thumb_width", 0);
-    result->thumbHeight = data.get<std::int32_t>("thumb_height", 0);
+    result->thumbnailUrl = data.get<std::string>("thumbnail_url", "");
+    result->thumbnailWidth = data.get<std::int32_t>("thumbnail_width", 0);
+    result->thumbnailHeight = data.get<std::int32_t>("thumbnail_height", 0);
     return result;
 }
 
@@ -3141,9 +3211,9 @@ std::string TgTypeParser::parseInlineQueryResultVenue(const InlineQueryResultVen
     appendToJson(result, "google_place_id", object->googlePlaceId);
     appendToJson(result, "google_place_type", object->googlePlaceType);
     appendToJson(result, "input_message_content", parseInputMessageContent(object->inputMessageContent));
-    appendToJson(result, "thumb_url", object->thumbUrl);
-    appendToJson(result, "thumb_width", object->thumbWidth);
-    appendToJson(result, "thumb_height", object->thumbHeight);
+    appendToJson(result, "thumbnail_url", object->thumbnailUrl);
+    appendToJson(result, "thumbnail_width", object->thumbnailWidth);
+    appendToJson(result, "thumbnail_height", object->thumbnailHeight);
     // The last comma will be erased by parseInlineQueryResult().
     return result;
 }
@@ -3156,9 +3226,9 @@ InlineQueryResultContact::Ptr TgTypeParser::parseJsonAndGetInlineQueryResultCont
     result->lastName = data.get<std::string>("last_name", "");
     result->vcard = data.get<std::string>("vcard", "");
     result->inputMessageContent = tryParseJson<InputMessageContent>(&TgTypeParser::parseJsonAndGetInputMessageContent, data, "input_message_content");
-    result->thumbUrl = data.get<std::string>("thumb_url", "");
-    result->thumbWidth = data.get<std::int32_t>("thumb_width", 0);
-    result->thumbHeight = data.get<std::int32_t>("thumb_height", 0);
+    result->thumbnailUrl = data.get<std::string>("thumbnail_url", "");
+    result->thumbnailWidth = data.get<std::int32_t>("thumbnail_width", 0);
+    result->thumbnailHeight = data.get<std::int32_t>("thumbnail_height", 0);
     return result;
 }
 
@@ -3174,9 +3244,9 @@ std::string TgTypeParser::parseInlineQueryResultContact(const InlineQueryResultC
     appendToJson(result, "last_name", object->lastName);
     appendToJson(result, "vcard", object->vcard);
     appendToJson(result, "input_message_content", parseInputMessageContent(object->inputMessageContent));
-    appendToJson(result, "thumb_url", object->thumbUrl);
-    appendToJson(result, "thumb_width", object->thumbWidth);
-    appendToJson(result, "thumb_height", object->thumbHeight);
+    appendToJson(result, "thumbnail_url", object->thumbnailUrl);
+    appendToJson(result, "thumbnail_width", object->thumbnailWidth);
+    appendToJson(result, "thumbnail_height", object->thumbnailHeight);
     // The last comma will be erased by parseInlineQueryResult().
     return result;
 }

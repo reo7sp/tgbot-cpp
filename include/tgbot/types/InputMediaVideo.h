@@ -33,7 +33,7 @@ public:
      * Thumbnails can't be reused and can be only uploaded as a new file, so you can pass “attach://<file_attach_name>” if the thumbnail was uploaded using multipart/form-data under <file_attach_name>.
      * https://core.telegram.org/bots/api#sending-files
      */
-    std::string thumb;
+    std::string thumbnail;
 
     /**
      * @brief Optional. Video width

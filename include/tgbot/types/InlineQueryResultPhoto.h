@@ -39,7 +39,7 @@ public:
     /**
      * @brief URL of the thumbnail for the photo
      */
-    std::string thumbUrl;
+    std::string thumbnailUrl;
 
     /**
      * @brief Optional. Width of the photo

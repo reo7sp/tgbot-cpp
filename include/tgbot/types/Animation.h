@@ -47,7 +47,7 @@ public:
     /**
      * @brief Optional. Animation thumbnail as defined by sender
      */
-    PhotoSize::Ptr thumb;
+    PhotoSize::Ptr thumbnail;
 
     /**
      * @brief Optional. Original animation filename as defined by sender

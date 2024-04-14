@@ -55,17 +55,17 @@ public:
     /**
     * @brief Optional. Url of the thumbnail for the result
     */
-    std::string thumbUrl;
+    std::string thumbnailUrl;
 
     /**
     * @brief Optional. Thumbnail width
     */
-    std::int32_t thumbWidth;
+    std::int32_t thumbnailWidth;
 
     /**
     * @brief Optinal. Thumbnail height
     */
-    std::int32_t thumbHeight;
+    std::int32_t thumbnailHeight;
 };
 }
 

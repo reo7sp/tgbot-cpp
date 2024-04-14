@@ -48,7 +48,7 @@ public:
     /**
      * @brief Optional. Video thumbnail
      */
-    PhotoSize::Ptr thumb;
+    PhotoSize::Ptr thumbnail;
 
     /**
      * @brief Optional. Original filename as defined by sender

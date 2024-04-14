@@ -77,6 +77,8 @@
 #include "tgbot/types/BotCommandScopeChat.h"
 #include "tgbot/types/BotCommandScopeChatAdministrators.h"
 #include "tgbot/types/BotCommandScopeChatMember.h"
+#include "tgbot/types/BotDescription.h"
+#include "tgbot/types/BotShortDescription.h"
 #include "tgbot/types/MenuButton.h"
 #include "tgbot/types/MenuButtonCommands.h"
 #include "tgbot/types/MenuButtonWebApp.h"
@@ -91,6 +93,7 @@
 #include "tgbot/types/Sticker.h"
 #include "tgbot/types/StickerSet.h"
 #include "tgbot/types/MaskPosition.h"
+#include "tgbot/types/InputSticker.h"
 #include "tgbot/types/InlineQuery.h"
 #include "tgbot/types/InlineQueryResult.h"
 #include "tgbot/types/InlineQueryResultArticle.h"
@@ -391,6 +394,12 @@ public:
     BotCommandScopeChatMember::Ptr parseJsonAndGetBotCommandScopeChatMember(const boost::property_tree::ptree& data) const;
     std::string parseBotCommandScopeChatMember(const BotCommandScopeChatMember::Ptr& object) const;
 
+    BotDescription::Ptr parseJsonAndGetBotDescription(const boost::property_tree::ptree& data) const;
+    std::string parseBotDescription(const BotDescription::Ptr& object) const;
+
+    BotShortDescription::Ptr parseJsonAndGetBotShortDescription(const boost::property_tree::ptree& data) const;
+    std::string parseBotShortDescription(const BotShortDescription::Ptr& object) const;
+
     MenuButton::Ptr parseJsonAndGetMenuButton(const boost::property_tree::ptree& data) const;
     std::string parseMenuButton(const MenuButton::Ptr& object) const;
 
@@ -432,6 +441,9 @@ public:
 
     MaskPosition::Ptr parseJsonAndGetMaskPosition(const boost::property_tree::ptree& data) const;
     std::string parseMaskPosition(const MaskPosition::Ptr& object) const;
+
+    InputSticker::Ptr parseJsonAndGetInputSticker(const boost::property_tree::ptree& data) const;
+    std::string parseInputSticker(const InputSticker::Ptr& object) const;
 
     InlineQuery::Ptr parseJsonAndGetInlineQuery(const boost::property_tree::ptree& data) const;
     std::string parseInlineQuery(const InlineQuery::Ptr& object) const;

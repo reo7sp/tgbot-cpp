@@ -9,7 +9,8 @@ Documentation is located [here](http://reo7sp.github.io/tgbot-cpp).
 
 ## State
 
-- [x] Telegram Bot API 6.5
+- [x] Telegram Bot API 6.6
+- [] [Deep Linking](https://core.telegram.org/bots/features#deep-linking)
 
 
 ## Sample
@@ -64,7 +65,12 @@ Dependencies:
 You can install dependencies on Debian-based distibutives with these commands:
 
 ```sh
-sudo apt-get install g++ make binutils cmake libboost-system-dev libssl-dev zlib1g-dev libcurl4-openssl-dev
+sudo apt install g++ make binutils cmake libboost-system-dev libssl-dev zlib1g-dev libcurl4-openssl-dev
+```
+
+Optionally, install the dependencies for testing and documenting
+```sh
+sudo apt install libboost-test-dev doxygen
 ```
 
 You can compile and install the library with these commands:

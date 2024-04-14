@@ -289,7 +289,7 @@ public:
      * @param duration Optional. Duration of the audio in seconds
      * @param performer Optional. Performer
      * @param title Optional. Track name
-     * @param thumb Optional. Thumbnail of the file sent; can be ignored if thumbnail generation for the file is supported server-side. The thumbnail should be in JPEG format and less than 200 kB in size. A thumbnail's width and height should not exceed 320. Ignored if the file is not uploaded using multipart/form-data. Thumbnails can't be reused and can be only uploaded as a new file, so you can pass “attach://<file_attach_name>” if the thumbnail was uploaded using multipart/form-data under <file_attach_name>. https://core.telegram.org/bots/api#sending-files
+     * @param thumbnail Optional. Thumbnail of the file sent; can be ignored if thumbnail generation for the file is supported server-side. The thumbnail should be in JPEG format and less than 200 kB in size. A thumbnail's width and height should not exceed 320. Ignored if the file is not uploaded using multipart/form-data. Thumbnails can't be reused and can be only uploaded as a new file, so you can pass “attach://<file_attach_name>” if the thumbnail was uploaded using multipart/form-data under <file_attach_name>. https://core.telegram.org/bots/api#sending-files
      * @param replyToMessageId Optional. If the message is a reply, ID of the original message
      * @param replyMarkup Optional. Additional interface options. A JSON-serialized object for an inline keyboard, custom reply keyboard, instructions to remove reply keyboard or to force a reply from the user.
      * @param parseMode Optional. Mode for parsing entities in the audio caption. See https://core.telegram.org/bots/api#formatting-options for more details.
@@ -307,7 +307,7 @@ public:
                            std::int32_t duration = 0,
                            const std::string& performer = "",
                            const std::string& title = "",
-                           boost::variant<InputFile::Ptr, std::string> thumb = "",
+                           boost::variant<InputFile::Ptr, std::string> thumbnail = "",
                            std::int32_t replyToMessageId = 0,
                            GenericReply::Ptr replyMarkup = nullptr,
                            const std::string& parseMode = "",
@@ -324,7 +324,7 @@ public:
      * 
      * @param chatId Unique identifier for the target chat or username of the target channel (in the format @channelusername)
      * @param document File to send. Pass a fileId as String to send a file that exists on the Telegram servers (recommended), pass an HTTP URL as a String for Telegram to get a file from the Internet, or upload a new one using multipart/form-data. https://core.telegram.org/bots/api#sending-files
-     * @param thumb Optional. Thumbnail of the file sent; can be ignored if thumbnail generation for the file is supported server-side. The thumbnail should be in JPEG format and less than 200 kB in size. A thumbnail's width and height should not exceed 320. Ignored if the file is not uploaded using multipart/form-data. Thumbnails can't be reused and can be only uploaded as a new file, so you can pass “attach://<file_attach_name>” if the thumbnail was uploaded using multipart/form-data under <file_attach_name>. https://core.telegram.org/bots/api#sending-files
+     * @param thumbnail Optional. Thumbnail of the file sent; can be ignored if thumbnail generation for the file is supported server-side. The thumbnail should be in JPEG format and less than 200 kB in size. A thumbnail's width and height should not exceed 320. Ignored if the file is not uploaded using multipart/form-data. Thumbnails can't be reused and can be only uploaded as a new file, so you can pass “attach://<file_attach_name>” if the thumbnail was uploaded using multipart/form-data under <file_attach_name>. https://core.telegram.org/bots/api#sending-files
      * @param caption Optional. Document caption (may also be used when resending documents by fileId), 0-1024 characters after entities parsing
      * @param replyToMessageId Optional. If the message is a reply, ID of the original message
      * @param replyMarkup Optional. Additional interface options. A JSON-serialized object for an inline keyboard, custom reply keyboard, instructions to remove reply keyboard or to force a reply from the user.
@@ -340,7 +340,7 @@ public:
      */
     Message::Ptr sendDocument(boost::variant<std::int64_t, std::string> chatId,
                               boost::variant<InputFile::Ptr, std::string> document,
-                              boost::variant<InputFile::Ptr, std::string> thumb = "",
+                              boost::variant<InputFile::Ptr, std::string> thumbnail = "",
                               const std::string& caption = "",
                               std::int32_t replyToMessageId = 0,
                               GenericReply::Ptr replyMarkup = nullptr,
@@ -363,7 +363,7 @@ public:
      * @param duration Optional. Duration of sent video in seconds
      * @param width Optional. Video width
      * @param height Optional. Video height
-     * @param thumb Optional. Thumbnail of the file sent; can be ignored if thumbnail generation for the file is supported server-side. The thumbnail should be in JPEG format and less than 200 kB in size. A thumbnail's width and height should not exceed 320. Ignored if the file is not uploaded using multipart/form-data. Thumbnails can't be reused and can be only uploaded as a new file, so you can pass “attach://<file_attach_name>” if the thumbnail was uploaded using multipart/form-data under <file_attach_name>. https://core.telegram.org/bots/api#sending-files
+     * @param thumbnail Optional. Thumbnail of the file sent; can be ignored if thumbnail generation for the file is supported server-side. The thumbnail should be in JPEG format and less than 200 kB in size. A thumbnail's width and height should not exceed 320. Ignored if the file is not uploaded using multipart/form-data. Thumbnails can't be reused and can be only uploaded as a new file, so you can pass “attach://<file_attach_name>” if the thumbnail was uploaded using multipart/form-data under <file_attach_name>. https://core.telegram.org/bots/api#sending-files
      * @param caption Optional. Video caption (may also be used when resending videos by fileId), 0-1024 characters after entities parsing
      * @param replyToMessageId Optional. If the message is a reply, ID of the original message
      * @param replyMarkup Optional. Additional interface options. A JSON-serialized object for an inline keyboard, custom reply keyboard, instructions to remove reply keyboard or to force a reply from the user.
@@ -383,7 +383,7 @@ public:
                            std::int32_t duration = 0,
                            std::int32_t width = 0,
                            std::int32_t height = 0,
-                           boost::variant<InputFile::Ptr, std::string> thumb = "",
+                           boost::variant<InputFile::Ptr, std::string> thumbnail = "",
                            const std::string& caption = "",
                            std::int32_t replyToMessageId = 0,
                            GenericReply::Ptr replyMarkup = nullptr,
@@ -405,7 +405,7 @@ public:
      * @param duration Optional. Duration of sent animation in seconds
      * @param width Optional. Animation width
      * @param height Optional. Animation height
-     * @param thumb Optional. Thumbnail of the file sent; can be ignored if thumbnail generation for the file is supported server-side. The thumbnail should be in JPEG format and less than 200 kB in size. A thumbnail's width and height should not exceed 320. Ignored if the file is not uploaded using multipart/form-data. Thumbnails can't be reused and can be only uploaded as a new file, so you can pass “attach://<file_attach_name>” if the thumbnail was uploaded using multipart/form-data under <file_attach_name>. https://core.telegram.org/bots/api#sending-files
+     * @param thumbnail Optional. Thumbnail of the file sent; can be ignored if thumbnail generation for the file is supported server-side. The thumbnail should be in JPEG format and less than 200 kB in size. A thumbnail's width and height should not exceed 320. Ignored if the file is not uploaded using multipart/form-data. Thumbnails can't be reused and can be only uploaded as a new file, so you can pass “attach://<file_attach_name>” if the thumbnail was uploaded using multipart/form-data under <file_attach_name>. https://core.telegram.org/bots/api#sending-files
      * @param caption Optional. Animation caption (may also be used when resending animation by fileId), 0-1024 characters after entities parsing
      * @param replyToMessageId Optional. If the message is a reply, ID of the original message
      * @param replyMarkup Optional. Additional interface options. A JSON-serialized object for an inline keyboard, custom reply keyboard, instructions to remove reply keyboard or to force a reply from the user.
@@ -424,7 +424,7 @@ public:
                                std::int32_t duration = 0,
                                std::int32_t width = 0,
                                std::int32_t height = 0,
-                               boost::variant<InputFile::Ptr, std::string> thumb = "",
+                               boost::variant<InputFile::Ptr, std::string> thumbnail = "",
                                const std::string& caption = "",
                                std::int32_t replyToMessageId = 0,
                                GenericReply::Ptr replyMarkup = nullptr,
@@ -481,7 +481,7 @@ public:
      * @param disableNotification Optional. Sends the message silently. Users will receive a notification with no sound.
      * @param duration Optional. Duration of sent video in seconds
      * @param length Optional. Video width and height, i.e. diameter of the video message
-     * @param thumb Optional. Thumbnail of the file sent; can be ignored if thumbnail generation for the file is supported server-side. The thumbnail should be in JPEG format and less than 200 kB in size. A thumbnail's width and height should not exceed 320. Ignored if the file is not uploaded using multipart/form-data. Thumbnails can't be reused and can be only uploaded as a new file, so you can pass “attach://<file_attach_name>” if the thumbnail was uploaded using multipart/form-data under <file_attach_name>. https://core.telegram.org/bots/api#sending-files
+     * @param thumbnail Optional. Thumbnail of the file sent; can be ignored if thumbnail generation for the file is supported server-side. The thumbnail should be in JPEG format and less than 200 kB in size. A thumbnail's width and height should not exceed 320. Ignored if the file is not uploaded using multipart/form-data. Thumbnails can't be reused and can be only uploaded as a new file, so you can pass “attach://<file_attach_name>” if the thumbnail was uploaded using multipart/form-data under <file_attach_name>. https://core.telegram.org/bots/api#sending-files
      * @param replyMarkup Optional. Additional interface options. A JSON-serialized object for an inline keyboard, custom reply keyboard, instructions to remove reply keyboard or to force a reply from the user.
      * @param allowSendingWithoutReply Optional. Pass True if the message should be sent even if the specified replied-to message is not found
      * @param protectContent Optional. Protects the contents of the sent message from forwarding and saving
@@ -495,7 +495,7 @@ public:
                                bool disableNotification = false,
                                std::int32_t duration = 0,
                                std::int32_t length = 0,
-                               boost::variant<InputFile::Ptr, std::string> thumb = "",
+                               boost::variant<InputFile::Ptr, std::string> thumbnail = "",
                                GenericReply::Ptr replyMarkup = nullptr,
                                bool allowSendingWithoutReply = false,
                                bool protectContent = false,
@@ -1236,7 +1236,7 @@ public:
     bool editForumTopic(boost::variant<std::int64_t, std::string> chatId,
                         std::int32_t messageThreadId,
                         const std::string& name = "",
-                        boost::variant<std::int8_t, std::string> iconCustomEmojiId = 0) const;
+                        boost::variant<std::int32_t, std::string> iconCustomEmojiId = 0) const;
 
     /**
      * @brief Use this method to close an open topic in a forum supergroup chat.
@@ -1412,6 +1412,46 @@ public:
                                                const std::string& languageCode = "") const;
 
     /**
+     * @brief Use this method to change the bot's description, which is shown in the chat with the bot if the chat is empty.
+     * 
+     * @param description Optional. New bot description; 0-512 characters. Pass an empty string to remove the dedicated description for the given language.
+     * @param languageCode Optional. A two-letter ISO 639-1 language code. If empty, the description will be applied to all users for whose language there is no dedicated description.
+     * 
+     * @return Returns True on success.
+     */
+    bool setMyDescription(const std::string& description = "",
+                          const std::string& languageCode = "") const;
+
+    /**
+     * @brief Use this method to get the current bot description for the given user language.
+     * 
+     * @param languageCode Optional. A two-letter ISO 639-1 language code or an empty string
+     * 
+     * @return Returns BotDescription on success.
+     */
+    BotDescription::Ptr getMyDescription(const std::string& languageCode = "") const;
+
+    /**
+     * @brief Use this method to change the bot's short description, which is shown on the bot's profile page and is sent together with the link when users share the bot.
+     * 
+     * @param shortDescription Optional. New short description for the bot; 0-120 characters. Pass an empty string to remove the dedicated short description for the given language.
+     * @param languageCode Optional. A two-letter ISO 639-1 language code. If empty, the short description will be applied to all users for whose language there is no dedicated short description.
+     * 
+     * @return Returns True on success.
+     */
+    bool setMyShortDescription(const std::string& shortDescription = "",
+                               const std::string& languageCode = "") const;
+
+    /**
+     * @brief Use this method to get the current bot short description for the given user language.
+     * 
+     * @param languageCode Optional. A two-letter ISO 639-1 language code or an empty string
+     * 
+     * @return Returns BotShortDescription on success.
+     */
+    BotShortDescription::Ptr getMyShortDescription(const std::string& languageCode = "") const;
+
+    /**
      * @brief Use this method to change the bot's menu button in a private chat, or the default menu button.
      * 
      * @param chatId Optional. Unique identifier for the target private chat. If not specified, default bot's menu button will be changed
@@ -1434,7 +1474,7 @@ public:
     /**
      * @brief Use this method to change the default administrator rights requested by the bot when it's added as an administrator to groups or channels.
      * 
-     * These rights will be suggested to users, but they are are free to modify the list before adding the bot.
+     * These rights will be suggested to users, but they are free to modify the list before adding the bot.
      *
      * @param rights Optional. A JSON-serialized object describing new default administrator rights. If not specified, the default administrator rights will be cleared.
      * @param forChannels Optional. Pass True to change the default administrator rights of the bot in channels. Otherwise, the default administrator rights of the bot for groups and supergroups will be changed.
@@ -1569,13 +1609,14 @@ public:
      * @brief Use this method to send static .WEBP, animated .TGS, or video .WEBM stickers.
      * 
      * @param chatId Unique identifier for the target chat or username of the target channel (in the format @channelusername)
-     * @param sticker Sticker to send. Pass a fileId as String to send a file that exists on the Telegram servers (recommended), pass an HTTP URL as a String for Telegram to get a .WEBP file from the Internet, or upload a new one using multipart/form-data. https://core.telegram.org/bots/api#sending-files
+     * @param sticker Sticker to send. Pass a fileId as String to send a file that exists on the Telegram servers (recommended), pass an HTTP URL as a String for Telegram to get a .WEBP sticker from the Internet, or upload a new .WEBP or .TGS sticker using multipart/form-data. https://core.telegram.org/bots/api#sending-files. Video stickers can only be sent by a fileId. Animated stickers can't be sent via an HTTP URL.
      * @param replyToMessageId Optional. If the message is a reply, ID of the original message
      * @param replyMarkup Optional. Additional interface options. A JSON-serialized object for an inline keyboard, custom reply keyboard, instructions to remove reply keyboard or to force a reply from the user.
      * @param disableNotification Optional. Sends the message silently. Users will receive a notification with no sound.
      * @param allowSendingWithoutReply Optional. Pass True if the message should be sent even if the specified replied-to message is not found
      * @param protectContent Optional. Protects the contents of the sent message from forwarding and saving
      * @param messageThreadId Optional. Unique identifier for the target message thread (topic) of the forum; for forum supergroups only
+     * @param emoji Optional. Emoji associated with the sticker; only for just uploaded stickers
      * 
      * @return On success, the sent Message is returned.
      */
@@ -1586,7 +1627,8 @@ public:
                              bool disableNotification = false,
                              bool allowSendingWithoutReply = false,
                              bool protectContent = false,
-                             std::int32_t messageThreadId = 0) const;
+                             std::int32_t messageThreadId = 0,
+                             const std::string& emoji = "") const;
 
     /**
      * @brief Use this method to get a sticker set.
@@ -1607,69 +1649,58 @@ public:
     std::vector<Sticker::Ptr> getCustomEmojiStickers(const std::vector<std::string>& customEmojiIds) const;
 
     /**
-     * @brief Use this method to upload a .PNG file with a sticker for later use in Api::createNewStickerSet and Api::addStickerToSet methods (can be used multiple times).
+     * @brief Use this method to upload a file with a sticker for later use in the Api::createNewStickerSet and Api::addStickerToSet methods (the file can be used multiple times).
      * 
      * @param userId User identifier of sticker file owner
-     * @param pngSticker PNG image with the sticker, must be up to 512 kilobytes in size, dimensions must not exceed 512px, and either width or height must be exactly 512px. https://core.telegram.org/bots/api#sending-files
+     * @param sticker A file with the sticker in .WEBP, .PNG, .TGS, or .WEBM format. See https://core.telegram.org/stickers for technical requirements. https://core.telegram.org/bots/api#sending-files
+     * @param stickerFormat Format of the sticker, must be one of “static”, “animated”, “video”
      * 
      * @return Returns the uploaded File on success.
      */
     File::Ptr uploadStickerFile(std::int64_t userId,
-                                InputFile::Ptr pngSticker) const;
+                                InputFile::Ptr sticker,
+                                const std::string& stickerFormat) const;
 
     /**
      * @brief Use this method to create a new sticker set owned by a user.
      * 
      * The bot will be able to edit the sticker set thus created.
-     * You must use exactly one of the fields pngSticker, tgsSticker, or webmSticker.
      *
      * @param userId User identifier of created sticker set owner
      * @param name Short name of sticker set, to be used in t.me/addstickers/ URLs (e.g., animals). Can contain only English letters, digits and underscores. Must begin with a letter, can't contain consecutive underscores and must end in "_by_<bot_username>". <bot_username> is case insensitive. 1-64 characters.
      * @param title Sticker set title, 1-64 characters
-     * @param emojis One or more emoji corresponding to the sticker
-     * @param maskPosition Optional. A JSON-serialized object for position where the mask should be placed on faces
-     * @param pngSticker Optional. PNG image with the sticker, must be up to 512 kilobytes in size, dimensions must not exceed 512px, and either width or height must be exactly 512px. Pass a fileId as a String to send a file that already exists on the Telegram servers, pass an HTTP URL as a String for Telegram to get a file from the Internet, or upload a new one using multipart/form-data. https://core.telegram.org/bots/api#sending-files
-     * @param tgsSticker Optional. TGS animation with the sticker, uploaded using multipart/form-data. See https://core.telegram.org/stickers#animated-sticker-requirements for technical requirements
-     * @param webmSticker Optional. WEBM video with the sticker, uploaded using multipart/form-data. See https://core.telegram.org/stickers#video-sticker-requirements for technical requirements
-     * @param stickerType Optional. Type of stickers in the set, pass “regular” or “mask”. Custom emoji sticker sets can't be created via the Bot API at the moment. By default, a regular sticker set is created.
+     * @param stickers A JSON-serialized list of 1-50 initial stickers to be added to the sticker set
+     * @param stickerFormat Format of stickers in the set, must be one of “static”, “animated”, “video”
+     * @param stickerType Optional. Type of stickers in the set, pass “regular”, “mask”, or “custom_emoji”. By default, a regular sticker set is created.
+     * @param needsRepainting Optional. Pass True if stickers in the sticker set must be repainted to the color of text when used in messages, the accent color if used as emoji status, white on chat photos, or another appropriate color based on context; for custom emoji sticker sets only
      *
      * @return Returns True on success.
      */
     bool createNewStickerSet(std::int64_t userId,
                              const std::string& name,
                              const std::string& title,
-                             const std::string& emojis,
-                             MaskPosition::Ptr maskPosition = nullptr,
-                             boost::variant<InputFile::Ptr, std::string> pngSticker = "",
-                             InputFile::Ptr tgsSticker = nullptr,
-                             InputFile::Ptr webmSticker = nullptr,
-                             const std::string& stickerType = "") const;
+                             const std::vector<InputSticker::Ptr>& stickers,
+                             const std::string& stickerFormat,
+                             const std::string& stickerType = "",
+                             bool needsRepainting = false) const;
 
     /**
      * @brief Use this method to add a new sticker to a set created by the bot.
      * 
-     * You must use exactly one of the fields pngSticker, tgsSticker, or webmSticker.
-     * Animated stickers can be added to animated sticker sets and only to them.
-     * Animated sticker sets can have up to 50 stickers.
+     * The format of the added sticker must match the format of the other stickers in the set.
+     * Emoji sticker sets can have up to 200 stickers.
+     * Animated and video sticker sets can have up to 50 stickers.
      * Static sticker sets can have up to 120 stickers.
      *
      * @param userId User identifier of sticker set owner
      * @param name Sticker set name
-     * @param emojis One or more emoji corresponding to the sticker
-     * @param maskPosition Optional. A JSON-serialized object for position where the mask should be placed on faces
-     * @param pngSticker Optional. PNG image with the sticker, must be up to 512 kilobytes in size, dimensions must not exceed 512px, and either width or height must be exactly 512px. Pass a fileId as a String to send a file that already exists on the Telegram servers, pass an HTTP URL as a String for Telegram to get a file from the Internet, or upload a new one using multipart/form-data. https://core.telegram.org/bots/api#sending-files
-     * @param tgsSticker Optional. TGS animation with the sticker, uploaded using multipart/form-data. See https://core.telegram.org/stickers#animated-sticker-requirements for technical requirements
-     * @param webmSticker Optional. WEBM video with the sticker, uploaded using multipart/form-data. See https://core.telegram.org/stickers#video-sticker-requirements for technical requirements
+     * @param sticker A JSON-serialized object with information about the added sticker. If exactly the same sticker had already been added to the set, then the set isn't changed.
      *
      * @return Returns True on success.
      */
     bool addStickerToSet(std::int64_t userId,
                          const std::string& name,
-                         const std::string& emojis,
-                         MaskPosition::Ptr maskPosition = nullptr,
-                         boost::variant<InputFile::Ptr, std::string> pngSticker = "",
-                         InputFile::Ptr tgsSticker = nullptr,
-                         InputFile::Ptr webmSticker = nullptr) const;
+                         InputSticker::Ptr sticker) const;
 
     /**
      * @brief Use this method to move a sticker in a set created by the bot to a specific position.
@@ -1692,20 +1723,89 @@ public:
     bool deleteStickerFromSet(const std::string& sticker) const;
 
     /**
-     * @brief Use this method to set the thumbnail of a sticker set.
+     * @brief Use this method to change the list of emoji assigned to a regular or custom emoji sticker.
      * 
-     * Animated thumbnails can be set for animated sticker sets only.
-     * Video thumbnails can be set only for video sticker sets only.
+     * The sticker must belong to a sticker set created by the bot.
+     * 
+     * @param sticker File identifier of the sticker
+     * @param emojiList A JSON-serialized list of 1-20 emoji associated with the sticker
+     * 
+     * @return Returns True on success.
+     */
+    bool setStickerEmojiList(const std::string& sticker,
+                             const std::vector<std::string>& emojiList) const;
+
+    /**
+     * @brief Use this method to change search keywords assigned to a regular or custom emoji sticker.
+     * 
+     * The sticker must belong to a sticker set created by the bot.
+     * 
+     * @param sticker File identifier of the sticker
+     * @param keywords Optional. A JSON-serialized list of 0-20 search keywords for the sticker with total length of up to 64 characters
+     * 
+     * @return Returns True on success.
+     */
+    bool setStickerKeywords(const std::string& sticker,
+                            const std::vector<std::string>& keywords = std::vector<std::string>()) const;
+
+    /**
+     * @brief Use this method to change the mask position of a mask sticker.
+     * 
+     * The sticker must belong to a sticker set that was created by the bot.
+     * 
+     * @param sticker File identifier of the sticker
+     * @param maskPosition A JSON-serialized object with the position where the mask should be placed on faces. Omit the parameter to remove the mask position.
+     * 
+     * @return Returns True on success.
+     */
+    bool setStickerMaskPosition(const std::string& sticker,
+                                MaskPosition::Ptr maskPosition = nullptr) const;
+
+    /**
+     * @brief Use this method to set the title of a created sticker set.
+     * 
+     * @param name Sticker set name
+     * @param title Sticker set title, 1-64 characters
+     * 
+     * @return Returns True on success.
+     */
+    bool setStickerSetTitle(const std::string& name,
+                            const std::string& title) const;
+
+    /**
+     * @brief Use this method to set the thumbnail of a regular or mask sticker set.
+     * 
+     * The format of the thumbnail file must match the format of the stickers in the set.
      *
      * @param name Sticker set name
      * @param userId User identifier of the sticker set owner
-     * @param thumb Optional. A PNG image with the thumbnail, must be up to 128 kilobytes in size and have width and height exactly 100px, or a TGS animation with the thumbnail up to 32 kilobytes in size; see https://core.telegram.org/stickers#animated-sticker-requirements for animated sticker technical requirements, or a WEBM video with the thumbnail up to 32 kilobytes in size; see https://core.telegram.org/stickers#video-sticker-requirements for video sticker technical requirements. Pass a fileId as a String to send a file that already exists on the Telegram servers, pass an HTTP URL as a String for Telegram to get a file from the Internet, or upload a new one using multipart/form-data. https://core.telegram.org/bots/api#sending-files. Animated sticker set thumbnails can't be uploaded via HTTP URL.
+     * @param thumbnail Optional. A .WEBP or .PNG image with the thumbnail, must be up to 128 kilobytes in size and have a width and height of exactly 100px, or a .TGS animation with a thumbnail up to 32 kilobytes in size (see https://core.telegram.org/stickers#animated-sticker-requirements for animated sticker technical requirements), or a WEBM video with the thumbnail up to 32 kilobytes in size; see https://core.telegram.org/stickers#video-sticker-requirements for video sticker technical requirements. Pass a fileId as a String to send a file that already exists on the Telegram servers, pass an HTTP URL as a String for Telegram to get a file from the Internet, or upload a new one using multipart/form-data. https://core.telegram.org/bots/api#sending-files. Animated and video sticker set thumbnails can't be uploaded via HTTP URL. If omitted, then the thumbnail is dropped and the first sticker is used as the thumbnail.
      *
      * @return Returns True on success.
      */
-    bool setStickerSetThumb(const std::string& name,
-                            std::int64_t userId,
-                            boost::variant<InputFile::Ptr, std::string> thumb = "") const;
+    bool setStickerSetThumbnail(const std::string& name,
+                                std::int64_t userId,
+                                boost::variant<InputFile::Ptr, std::string> thumbnail = "") const;
+
+    /**
+     * @brief Use this method to set the thumbnail of a custom emoji sticker set.
+     *
+     * @param name Sticker set name
+     * @param customEmojiId Optional. Custom emoji identifier of a sticker from the sticker set; pass an empty string to drop the thumbnail and use the first sticker as the thumbnail.
+     *
+     * @return Returns True on success.
+     */
+    bool setCustomEmojiStickerSetThumbnail(const std::string& name,
+                                           const std::string& customEmojiId = "") const;
+
+    /**
+     * @brief Use this method to delete a sticker set that was created by the bot.
+     *
+     * @param name Sticker set name
+     *
+     * @return Returns True on success.
+     */
+    bool deleteStickerSet(const std::string& name) const;
 
     /**
      * @brief Use this method to send answers to an inline query.

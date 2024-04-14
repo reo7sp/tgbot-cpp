@@ -33,7 +33,7 @@ public:
     /**
      * @brief Optional. Document thumbnail as defined by sender
      */
-    PhotoSize::Ptr thumb;
+    PhotoSize::Ptr thumbnail;
 
     /**
      * @brief Optional. Original filename as defined by sender

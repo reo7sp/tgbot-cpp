@@ -59,7 +59,7 @@ public:
     /**
      * @brief Optional. Sticker set thumbnail in the .WEBP, .TGS, or .WEBM format
      */
-    PhotoSize::Ptr thumb;
+    PhotoSize::Ptr thumbnail;
 };
 }
 
