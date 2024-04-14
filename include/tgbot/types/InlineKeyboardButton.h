@@ -3,6 +3,7 @@
 
 #include "tgbot/types/WebAppInfo.h"
 #include "tgbot/types/LoginUrl.h"
+#include "tgbot/types/SwitchInlineQueryChosenChat.h"
 #include "tgbot/types/CallbackGame.h"
 
 #include <memory>
@@ -65,6 +66,11 @@ public:
      * This offers a quick way for the user to open your bot in inline mode in the same chat - good for selecting something from multiple options.
      */
     std::string switchInlineQueryCurrentChat;
+
+    /**
+     * @brief Optional. If set, pressing the button will prompt the user to select one of their chats of the specified type, open that chat and insert the bot's username and the specified inline query in the input field
+     */
+    SwitchInlineQueryChosenChat::Ptr switchInlineQueryChosenChat;
 
     /**
      * @brief Optional. Description of the game that will be launched when the user presses the button.

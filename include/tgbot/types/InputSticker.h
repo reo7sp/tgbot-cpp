@@ -20,7 +20,7 @@ public:
 
     /**
      * @brief The added sticker.
-     * Pass a fileId as a String to send a file that already exists on the Telegram servers, pass an HTTP URL as a String for Telegram to get a file from the Internet, or upload a new one using multipart/form-data.
+     * Pass a fileId as a String to send a file that already exists on the Telegram servers, pass an HTTP URL as a String for Telegram to get a file from the Internet, upload a new one using multipart/form-data, or pass “attach://<file_attach_name>” to upload a new one using multipart/form-data under <file_attach_name> name.
      * Animated and video stickers can't be uploaded via HTTP URL. https://core.telegram.org/bots/api#sending-files
      */
     std::string sticker;

@@ -1412,6 +1412,26 @@ public:
                                                const std::string& languageCode = "") const;
 
     /**
+     * @brief Use this method to change the bot's name.
+     * 
+     * @param name Optional. New bot name; 0-64 characters. Pass an empty string to remove the dedicated name for the given language.
+     * @param languageCode Optional. A two-letter ISO 639-1 language code. If empty, the name will be shown to all users for whose language there is no dedicated name.
+     * 
+     * @return Returns True on success.
+     */
+    bool setMyName(const std::string& name = "",
+                   const std::string& languageCode = "") const;
+
+    /**
+     * @brief Use this method to get the current bot name for the given user language.
+     * 
+     * @param languageCode Optional. A two-letter ISO 639-1 language code or an empty string
+     * 
+     * @return Returns BotName on success.
+     */
+    BotName::Ptr getMyName(const std::string& languageCode = "") const;
+
+    /**
      * @brief Use this method to change the bot's description, which is shown in the chat with the bot if the chat is empty.
      * 
      * @param description Optional. New bot description; 0-512 characters. Pass an empty string to remove the dedicated description for the given language.
@@ -1815,10 +1835,9 @@ public:
      * @param inlineQueryId Unique identifier for the answered query
      * @param results A JSON-serialized array of results for the inline query
      * @param cacheTime Optional. The maximum amount of time in seconds that the result of the inline query may be cached on the server. Defaults to 300.
-     * @param isPersonal Optional. Pass True if results may be cached on the server side only for the user that sent the query. By default, results may be returned to any user who sends the same query
+     * @param isPersonal Optional. Pass True if results may be cached on the server side only for the user that sent the query. By default, results may be returned to any user who sends the same query.
      * @param nextOffset Optional. Pass the offset that a client should send in the next query with the same text to receive more results. Pass an empty string if there are no more results or if you don't support pagination. Offset length can't exceed 64 bytes.
-     * @param switchPmText Optional. If passed, clients will display a button with specified text that switches the user to a private chat with the bot and sends the bot a start message with the parameter switchPmParameter
-     * @param switchPmParameter Optional. Deep-linking parameter for the /start message sent to the bot when user presses the switch button. 1-64 characters, only A-Z, a-z, 0-9, _ and - are allowed. Example: An inline bot that sends YouTube videos can ask the user to connect the bot to their YouTube account to adapt search results accordingly. To do this, it displays a 'Connect your YouTube account' button above the results, or even before showing any. The user presses the button, switches to a private chat with the bot and, in doing so, passes a start parameter that instructs the bot to return an OAuth link. Once done, the bot can offer an InlineKeyboardMarkup button so that the user can easily return to the chat where they wanted to use the bot's inline capabilities.
+     * @param button Optional. A JSON-serialized object describing a button to be shown above inline query results
      * 
      * @return On success, True is returned.
      */
@@ -1827,8 +1846,7 @@ public:
                            std::int32_t cacheTime = 300,
                            bool isPersonal = false,
                            const std::string& nextOffset = "",
-                           const std::string& switchPmText = "",
-                           const std::string& switchPmParameter = "") const;
+                           InlineQueryResultsButton::Ptr button = nullptr) const;
 
     /**
      * @brief Use this method to set the result of an interaction with a Web App and send a corresponding message on behalf of the user to the chat from which the query originated.

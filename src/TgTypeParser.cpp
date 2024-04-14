@@ -1109,6 +1109,7 @@ std::string TgTypeParser::parseChatShared(const ChatShared::Ptr& object) const {
 
 WriteAccessAllowed::Ptr TgTypeParser::parseJsonAndGetWriteAccessAllowed(const boost::property_tree::ptree& data) const {
     auto result(std::make_shared<WriteAccessAllowed>());
+    result->webAppName = data.get<std::string>("web_app_name", "");
     return result;
 }
 
@@ -1118,7 +1119,8 @@ std::string TgTypeParser::parseWriteAccessAllowed(const WriteAccessAllowed::Ptr&
     }
     std::string result;
     result += '{';
-    //removeLastComma(result);
+    appendToJson(result, "web_app_name", object->webAppName);
+    removeLastComma(result);
     result += '}';
     return result;
 }
@@ -1456,10 +1458,12 @@ InlineKeyboardButton::Ptr TgTypeParser::parseJsonAndGetInlineKeyboardButton(cons
     result->loginUrl = tryParseJson<LoginUrl>(&TgTypeParser::parseJsonAndGetLoginUrl, data, "login_url");
     result->switchInlineQuery = data.get<std::string>("switch_inline_query", "");
     result->switchInlineQueryCurrentChat = data.get<std::string>("switch_inline_query_current_chat", "");
+    result->switchInlineQueryChosenChat = tryParseJson<SwitchInlineQueryChosenChat>(&TgTypeParser::parseJsonAndGetSwitchInlineQueryChosenChat, data, "switch_inline_query_chosen_chat");
     result->callbackGame = tryParseJson<CallbackGame>(&TgTypeParser::parseJsonAndGetCallbackGame, data, "callback_game");
     result->pay = data.get<bool>("pay", false);
     return result;
 }
+
 std::string TgTypeParser::parseInlineKeyboardButton(const InlineKeyboardButton::Ptr& object) const {
     if (!object) {
         return "";
@@ -1473,6 +1477,7 @@ std::string TgTypeParser::parseInlineKeyboardButton(const InlineKeyboardButton::
     appendToJson(result, "login_url", parseLoginUrl(object->loginUrl));
     appendToJson(result, "switch_inline_query", object->switchInlineQuery);
     appendToJson(result, "switch_inline_query_current_chat", object->switchInlineQueryCurrentChat);
+    appendToJson(result, "switch_inline_query_chosen_chat", parseSwitchInlineQueryChosenChat(object->switchInlineQueryChosenChat));
     appendToJson(result, "callback_game", parseCallbackGame(object->callbackGame));
     appendToJson(result, "pay", object->pay);
     removeLastComma(result);
@@ -1499,6 +1504,32 @@ std::string TgTypeParser::parseLoginUrl(const LoginUrl::Ptr& object) const {
     appendToJson(result, "forward_text", object->forwardText);
     appendToJson(result, "bot_username", object->botUsername);
     appendToJson(result, "request_write_access", object->requestWriteAccess);
+    removeLastComma(result);
+    result += '}';
+    return result;
+}
+
+SwitchInlineQueryChosenChat::Ptr TgTypeParser::parseJsonAndGetSwitchInlineQueryChosenChat(const boost::property_tree::ptree& data) const {
+    auto result(std::make_shared<SwitchInlineQueryChosenChat>());
+    result->query = data.get<std::string>("query", "");
+    result->allowUserChats = data.get<bool>("allow_user_chats", false);
+    result->allowBotChats = data.get<bool>("allow_bot_chats", false);
+    result->allowGroupChats = data.get<bool>("allow_group_chats", false);
+    result->allowChannelChats = data.get<bool>("allow_channel_chats", false);
+    return result;
+}
+
+std::string TgTypeParser::parseSwitchInlineQueryChosenChat(const SwitchInlineQueryChosenChat::Ptr& object) const {
+    if (!object) {
+        return "";
+    }
+    std::string result;
+    result += '{';
+    appendToJson(result, "query", object->query);
+    appendToJson(result, "allow_user_chats", object->allowUserChats);
+    appendToJson(result, "allow_bot_chats", object->allowBotChats);
+    appendToJson(result, "allow_group_chats", object->allowGroupChats);
+    appendToJson(result, "allow_channel_chats", object->allowChannelChats);
     removeLastComma(result);
     result += '}';
     return result;
@@ -1880,10 +1911,11 @@ ChatMemberUpdated::Ptr TgTypeParser::parseJsonAndGetChatMemberUpdated(const boos
     auto result(std::make_shared<ChatMemberUpdated>());
     result->chat = tryParseJson<Chat>(&TgTypeParser::parseJsonAndGetChat, data, "chat");
     result->from = tryParseJson<User>(&TgTypeParser::parseJsonAndGetUser, data, "from");
-    result->date = data.get<uint32_t>("date", 0);
+    result->date = data.get<std::uint64_t>("date", 0);
     result->oldChatMember = tryParseJson<ChatMember>(&TgTypeParser::parseJsonAndGetChatMember, data, "old_chat_member");
     result->newChatMember = tryParseJson<ChatMember>(&TgTypeParser::parseJsonAndGetChatMember, data, "new_chat_member");
     result->inviteLink = tryParseJson<ChatInviteLink>(&TgTypeParser::parseJsonAndGetChatInviteLink, data, "invite_link");
+    result->viaChatFolderInviteLink = data.get<bool>("via_chat_folder_invite_link", false);
     return result;
 }
 
@@ -1899,6 +1931,7 @@ std::string TgTypeParser::parseChatMemberUpdated(const ChatMemberUpdated::Ptr& o
     appendToJson(result, "old_chat_member", parseChatMember(object->oldChatMember));
     appendToJson(result, "new_chat_member", parseChatMember(object->newChatMember));
     appendToJson(result, "invite_link", parseChatInviteLink(object->inviteLink));
+    appendToJson(result, "via_chat_folder_invite_link", object->viaChatFolderInviteLink);
     removeLastComma(result);
     result += '}';
     return result;
@@ -2217,6 +2250,21 @@ std::string TgTypeParser::parseBotCommandScopeChatMember(const BotCommandScopeCh
     appendToJson(result, "chat_id", object->chatId);
     appendToJson(result, "user_id", object->userId);
     // The last comma will be erased by parseBotCommandScope().
+    return result;
+}
+
+BotName::Ptr TgTypeParser::parseJsonAndGetBotName(const boost::property_tree::ptree& data) const {
+    auto result(std::make_shared<BotName>());
+    result->name = data.get<std::string>("name", "");
+    return result;
+}
+
+std::string TgTypeParser::parseBotName(const BotName::Ptr& object) const {
+    std::string result;
+    result += '{';
+    appendToJson(result, "name", object->name);
+    removeLastComma(result);
+    result += '}';
     return result;
 }
 
@@ -2729,6 +2777,28 @@ std::string TgTypeParser::parseInlineQuery(const InlineQuery::Ptr& object) const
     appendToJson(result, "offset", object->offset);
     appendToJson(result, "chat_type", object->chatType);
     appendToJson(result, "location", parseLocation(object->location));
+    removeLastComma(result);
+    result += '}';
+    return result;
+}
+
+InlineQueryResultsButton::Ptr TgTypeParser::parseJsonAndGetInlineQueryResultsButton(const boost::property_tree::ptree& data) const {
+    auto result(std::make_shared<InlineQueryResultsButton>());
+    result->text = data.get<std::string>("text", "");
+    result->webApp = tryParseJson<WebAppInfo>(&TgTypeParser::parseJsonAndGetWebAppInfo, data, "web_app");
+    result->startParameter = data.get<std::string>("start_parameter", "");
+    return result;
+}
+
+std::string TgTypeParser::parseInlineQueryResultsButton(const InlineQueryResultsButton::Ptr& object) const {
+    if (!object) {
+        return "";
+    }
+    std::string result;
+    result += '{';
+    appendToJson(result, "text", object->text);
+    appendToJson(result, "web_app", parseWebAppInfo(object->webApp));
+    appendToJson(result, "start_parameter", object->startParameter);
     removeLastComma(result);
     result += '}';
     return result;

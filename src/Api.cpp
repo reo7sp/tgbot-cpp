@@ -1736,6 +1736,32 @@ std::vector<BotCommand::Ptr> Api::getMyCommands(BotCommandScope::Ptr scope,
     return _tgTypeParser.parseJsonAndGetArray<BotCommand>(&TgTypeParser::parseJsonAndGetBotCommand, sendRequest("getMyCommands", args));
 }
 
+bool Api::setMyName(const std::string& name,
+                    const std::string& languageCode) const {
+    std::vector<HttpReqArg> args;
+    args.reserve(2);
+
+    if (!name.empty()) {
+        args.emplace_back("name", name);
+    }
+    if (!languageCode.empty()) {
+        args.emplace_back("language_code", languageCode);
+    }
+
+    return sendRequest("setMyName", args).get<bool>("", false);
+}
+
+BotName::Ptr Api::getMyName(const std::string& languageCode) const {
+    std::vector<HttpReqArg> args;
+    args.reserve(1);
+
+    if (!languageCode.empty()) {
+        args.emplace_back("language_code", languageCode);
+    }
+
+    return _tgTypeParser.parseJsonAndGetBotName(sendRequest("getMyName", args));
+}
+
 bool Api::setMyDescription(const std::string& description,
                            const std::string& languageCode) const {
     std::vector<HttpReqArg> args;
@@ -2271,27 +2297,23 @@ bool Api::answerInlineQuery(const std::string& inlineQueryId,
                             std::int32_t cacheTime,
                             bool isPersonal,
                             const std::string& nextOffset,
-                            const std::string& switchPmText,
-                            const std::string& switchPmParameter) const {
+                            InlineQueryResultsButton::Ptr button) const {
     std::vector<HttpReqArg> args;
-    args.reserve(7);
+    args.reserve(6);
 
     args.emplace_back("inline_query_id", inlineQueryId);
     args.emplace_back("results", _tgTypeParser.parseArray<InlineQueryResult>(&TgTypeParser::parseInlineQueryResult, results));
-    if (cacheTime) {
+    if (cacheTime != 300) {
         args.emplace_back("cache_time", cacheTime);
     }
-    if (isPersonal) {
+    if (isPersonal != false) {
         args.emplace_back("is_personal", isPersonal);
     }
     if (!nextOffset.empty()) {
         args.emplace_back("next_offset", nextOffset);
     }
-    if (!switchPmText.empty()) {
-        args.emplace_back("switch_pm_text", switchPmText);
-    }
-    if (!switchPmParameter.empty()) {
-        args.emplace_back("switch_pm_parameter", switchPmParameter);
+    if (button != nullptr) {
+        args.emplace_back("button", _tgTypeParser.parseInlineQueryResultsButton(button));
     }
 
     return sendRequest("answerInlineQuery", args).get<bool>("", false);

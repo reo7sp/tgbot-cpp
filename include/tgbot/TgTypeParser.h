@@ -51,6 +51,7 @@
 #include "tgbot/types/InlineKeyboardMarkup.h"
 #include "tgbot/types/InlineKeyboardButton.h"
 #include "tgbot/types/LoginUrl.h"
+#include "tgbot/types/SwitchInlineQueryChosenChat.h"
 #include "tgbot/types/CallbackQuery.h"
 #include "tgbot/types/ForceReply.h"
 #include "tgbot/types/ChatPhoto.h"
@@ -77,6 +78,7 @@
 #include "tgbot/types/BotCommandScopeChat.h"
 #include "tgbot/types/BotCommandScopeChatAdministrators.h"
 #include "tgbot/types/BotCommandScopeChatMember.h"
+#include "tgbot/types/BotName.h"
 #include "tgbot/types/BotDescription.h"
 #include "tgbot/types/BotShortDescription.h"
 #include "tgbot/types/MenuButton.h"
@@ -95,6 +97,7 @@
 #include "tgbot/types/MaskPosition.h"
 #include "tgbot/types/InputSticker.h"
 #include "tgbot/types/InlineQuery.h"
+#include "tgbot/types/InlineQueryResultsButton.h"
 #include "tgbot/types/InlineQueryResult.h"
 #include "tgbot/types/InlineQueryResultArticle.h"
 #include "tgbot/types/InlineQueryResultPhoto.h"
@@ -316,6 +319,9 @@ public:
     LoginUrl::Ptr parseJsonAndGetLoginUrl(const boost::property_tree::ptree& data) const;
     std::string parseLoginUrl(const LoginUrl::Ptr& object) const;
 
+    SwitchInlineQueryChosenChat::Ptr parseJsonAndGetSwitchInlineQueryChosenChat(const boost::property_tree::ptree& data) const;
+    std::string parseSwitchInlineQueryChosenChat(const SwitchInlineQueryChosenChat::Ptr& object) const;
+
     CallbackQuery::Ptr parseJsonAndGetCallbackQuery(const boost::property_tree::ptree& data) const;
     std::string parseCallbackQuery(const CallbackQuery::Ptr& object) const;
 
@@ -394,6 +400,9 @@ public:
     BotCommandScopeChatMember::Ptr parseJsonAndGetBotCommandScopeChatMember(const boost::property_tree::ptree& data) const;
     std::string parseBotCommandScopeChatMember(const BotCommandScopeChatMember::Ptr& object) const;
 
+    BotName::Ptr parseJsonAndGetBotName(const boost::property_tree::ptree& data) const;
+    std::string parseBotName(const BotName::Ptr& object) const;
+
     BotDescription::Ptr parseJsonAndGetBotDescription(const boost::property_tree::ptree& data) const;
     std::string parseBotDescription(const BotDescription::Ptr& object) const;
 
@@ -447,6 +456,9 @@ public:
 
     InlineQuery::Ptr parseJsonAndGetInlineQuery(const boost::property_tree::ptree& data) const;
     std::string parseInlineQuery(const InlineQuery::Ptr& object) const;
+
+    InlineQueryResultsButton::Ptr parseJsonAndGetInlineQueryResultsButton(const boost::property_tree::ptree& data) const;
+    std::string parseInlineQueryResultsButton(const InlineQueryResultsButton::Ptr& object) const;
 
     InlineQueryResult::Ptr parseJsonAndGetInlineQueryResult(const boost::property_tree::ptree& data) const;
     std::string parseInlineQueryResult(const InlineQueryResult::Ptr& object) const;

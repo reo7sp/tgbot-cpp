@@ -9,7 +9,7 @@ Documentation is located [here](http://reo7sp.github.io/tgbot-cpp).
 
 ## State
 
-- [x] Telegram Bot API 6.6
+- [x] Telegram Bot API 6.7
 - [ ] [Deep Linking](https://core.telegram.org/bots/features#deep-linking)
 
 
@@ -105,8 +105,8 @@ Taken from [Vcpkg - Quick Start: Windows](https://github.com/Microsoft/vcpkg/#qu
 
 Prerequisites:
 - Windows 7 or newer
-- Git
-- Visual Studio 2015 Update 3 or greater with the English language pack
+- [Git][https://git-scm.com/downloads]
+- [Visual Studio][https://visualstudio.microsoft.com] 2015 Update 3 or greater with the English language pack
 
 First, download and bootstrap vcpkg itself; it can be installed anywhere, but generally we recommend using vcpkg as a submodule for CMake projects, and installing it globally for Visual Studio projects. We recommend somewhere like `C:\src\vcpkg` or `C:\dev\vcpkg`, since otherwise you may run into path issues for some port build systems.
 
