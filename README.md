@@ -10,7 +10,7 @@ Documentation is located [here](http://reo7sp.github.io/tgbot-cpp).
 ## State
 
 - [x] Telegram Bot API 6.6
-- [] [Deep Linking](https://core.telegram.org/bots/features#deep-linking)
+- [ ] [Deep Linking](https://core.telegram.org/bots/features#deep-linking)
 
 
 ## Sample
