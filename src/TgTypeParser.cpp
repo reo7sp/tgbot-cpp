@@ -152,6 +152,7 @@ Chat::Ptr TgTypeParser::parseJsonAndGetChat(const boost::property_tree::ptree& d
         return innerData.get<std::string>("");
     }, data, "active_usernames");
     result->emojiStatusCustomEmojiId = data.get<std::string>("emoji_status_custom_emoji_id", "");
+    result->emojiStatusExpirationDate = data.get<std::int64_t>("emoji_status_expiration_date", 0);
     result->bio = data.get<std::string>("bio", "");
     result->hasPrivateForwards = data.get<bool>("has_private_forwards", false);
     result->hasRestrictedVoiceAndVideoMessages = data.get<bool>("has_restricted_voice_and_video_messages", false);
@@ -200,6 +201,7 @@ std::string TgTypeParser::parseChat(const Chat::Ptr& object) const {
         return s;
     }, object->activeUsernames));
     appendToJson(result, "emoji_status_custom_emoji_id", object->emojiStatusCustomEmojiId);
+    appendToJson(result, "emoji_status_expiration_date", object->emojiStatusExpirationDate);
     appendToJson(result, "bio", object->bio);
     appendToJson(result, "has_private_forwards", object->hasPrivateForwards);
     appendToJson(result, "has_restricted_voice_and_video_messages", object->hasRestrictedVoiceAndVideoMessages);
@@ -229,19 +231,19 @@ Message::Ptr TgTypeParser::parseJsonAndGetMessage(const boost::property_tree::pt
     result->messageThreadId = data.get<std::int32_t>("message_thread_id", 0);
     result->from = tryParseJson<User>(&TgTypeParser::parseJsonAndGetUser, data, "from");
     result->senderChat = tryParseJson<Chat>(&TgTypeParser::parseJsonAndGetChat, data, "sender_chat");
-    result->date = data.get<std::int32_t>("date", 0);
+    result->date = data.get<std::int64_t>("date", 0);
     result->chat = parseJsonAndGetChat(data.find("chat")->second);
     result->forwardFrom = tryParseJson<User>(&TgTypeParser::parseJsonAndGetUser, data, "forward_from");
     result->forwardFromChat = tryParseJson<Chat>(&TgTypeParser::parseJsonAndGetChat, data, "forward_from_chat");
     result->forwardFromMessageId = data.get<std::int32_t>("forward_from_message_id", 0);
     result->forwardSignature = data.get<std::string>("forward_signature", "");
     result->forwardSenderName = data.get<std::string>("forward_sender_name", "");
-    result->forwardDate = data.get<std::int32_t>("forward_date", 0);
+    result->forwardDate = data.get<std::int64_t>("forward_date", 0);
     result->isTopicMessage = data.get<bool>("is_topic_message", false);
     result->isAutomaticForward = data.get<bool>("is_automatic_forward", false);
     result->replyToMessage = tryParseJson<Message>(&TgTypeParser::parseJsonAndGetMessage, data, "reply_to_message");
     result->viaBot = tryParseJson<User>(&TgTypeParser::parseJsonAndGetUser, data, "via_bot");
-    result->editDate = data.get<std::int32_t>("edit_date", 0);
+    result->editDate = data.get<std::int64_t>("edit_date", 0);
     result->hasProtectedContent = data.get<bool>("has_protected_content", false);
     result->mediaGroupId = data.get<std::string>("media_group_id", "");
     result->authorSignature = data.get<std::string>("author_signature", "");
@@ -252,6 +254,7 @@ Message::Ptr TgTypeParser::parseJsonAndGetMessage(const boost::property_tree::pt
     result->document = tryParseJson<Document>(&TgTypeParser::parseJsonAndGetDocument, data, "document");
     result->photo = parseJsonAndGetArray<PhotoSize>(&TgTypeParser::parseJsonAndGetPhotoSize, data, "photo");
     result->sticker = tryParseJson<Sticker>(&TgTypeParser::parseJsonAndGetSticker, data, "sticker");
+    result->story = tryParseJson<Story>(&TgTypeParser::parseJsonAndGetStory, data, "story");
     result->video = tryParseJson<Video>(&TgTypeParser::parseJsonAndGetVideo, data, "video");
     result->videoNote = tryParseJson<VideoNote>(&TgTypeParser::parseJsonAndGetVideoNote, data, "video_note");
     result->voice = tryParseJson<Voice>(&TgTypeParser::parseJsonAndGetVoice, data, "voice");
@@ -332,6 +335,7 @@ std::string TgTypeParser::parseMessage(const Message::Ptr& object) const {
     appendToJson(result, "document", parseDocument(object->document));
     appendToJson(result, "photo", parseArray(&TgTypeParser::parsePhotoSize, object->photo));
     appendToJson(result, "sticker", parseSticker(object->sticker));
+    appendToJson(result, "story", parseStory(object->story));
     appendToJson(result, "video", parseVideo(object->video));
     appendToJson(result, "video_note", parseVideoNote(object->videoNote));
     appendToJson(result, "voice", parseVoice(object->voice));
@@ -620,6 +624,22 @@ std::string TgTypeParser::parseDocument(const Document::Ptr& object) const {
     return result;
 }
 
+Story::Ptr TgTypeParser::parseJsonAndGetStory(const boost::property_tree::ptree& /*data*/) const {
+    auto result(std::make_shared<Story>());
+    return result;
+}
+
+std::string TgTypeParser::parseStory(const Story::Ptr& object) const {
+    if (!object) {
+        return "";
+    }
+    std::string result;
+    result += '{';
+    // removeLastComma(result);
+    result += '}';
+    return result;
+}
+
 Video::Ptr TgTypeParser::parseJsonAndGetVideo(const boost::property_tree::ptree& data) const {
     auto result(std::make_shared<Video>());
     result->fileId = data.get<std::string>("file_id", "");
@@ -777,6 +797,7 @@ std::string TgTypeParser::parsePollOption(const PollOption::Ptr& object) const {
 PollAnswer::Ptr TgTypeParser::parseJsonAndGetPollAnswer(const boost::property_tree::ptree& data) const {
     auto result(std::make_shared<PollAnswer>());
     result->pollId = data.get<std::string>("poll_id", "");
+    result->voterChat = tryParseJson<Chat>(&TgTypeParser::parseJsonAndGetChat, data, "voter_chat");
     result->user = tryParseJson<User>(&TgTypeParser::parseJsonAndGetUser, data, "user");
     result->optionIds = parseJsonAndGetArray<std::int32_t>(
         [] (const boost::property_tree::ptree& innerData)->std::int32_t {
@@ -792,8 +813,10 @@ std::string TgTypeParser::parsePollAnswer(const PollAnswer::Ptr& object) const {
     std::string result;
     result += '{';
     appendToJson(result, "poll_id", object->pollId);
+    appendToJson(result, "voter_chat", parseChat(object->voterChat));
     appendToJson(result, "user", parseUser(object->user));
-    appendToJson(result, "option_ids", parseArray<std::int32_t>([] (std::int32_t i)->std::int32_t {
+    appendToJson(result, "option_ids", parseArray<std::int32_t>(
+        [] (std::int32_t i)->std::int32_t {
         return i;
     }, object->optionIds));
     removeLastComma(result);
@@ -983,7 +1006,7 @@ std::string TgTypeParser::parseForumTopicCreated(const ForumTopicCreated::Ptr& o
     return result;
 }
 
-ForumTopicClosed::Ptr TgTypeParser::parseJsonAndGetForumTopicClosed(const boost::property_tree::ptree& data) const {
+ForumTopicClosed::Ptr TgTypeParser::parseJsonAndGetForumTopicClosed(const boost::property_tree::ptree& /*data*/) const {
     auto result(std::make_shared<ForumTopicClosed>());
     return result;
 }
@@ -1019,7 +1042,7 @@ std::string TgTypeParser::parseForumTopicEdited(const ForumTopicEdited::Ptr& obj
     return result;
 }
 
-ForumTopicReopened::Ptr TgTypeParser::parseJsonAndGetForumTopicReopened(const boost::property_tree::ptree& data) const {
+ForumTopicReopened::Ptr TgTypeParser::parseJsonAndGetForumTopicReopened(const boost::property_tree::ptree& /*data*/) const {
     auto result(std::make_shared<ForumTopicReopened>());
     return result;
 }
@@ -1035,7 +1058,7 @@ std::string TgTypeParser::parseForumTopicReopened(const ForumTopicReopened::Ptr&
     return result;
 }
 
-GeneralForumTopicHidden::Ptr TgTypeParser::parseJsonAndGetGeneralForumTopicHidden(const boost::property_tree::ptree& data) const {
+GeneralForumTopicHidden::Ptr TgTypeParser::parseJsonAndGetGeneralForumTopicHidden(const boost::property_tree::ptree& /*data*/) const {
     auto result(std::make_shared<GeneralForumTopicHidden>());
     return result;
 }
@@ -1051,7 +1074,7 @@ std::string TgTypeParser::parseGeneralForumTopicHidden(const GeneralForumTopicHi
     return result;
 }
 
-GeneralForumTopicUnhidden::Ptr TgTypeParser::parseJsonAndGetGeneralForumTopicUnhidden(const boost::property_tree::ptree& data) const {
+GeneralForumTopicUnhidden::Ptr TgTypeParser::parseJsonAndGetGeneralForumTopicUnhidden(const boost::property_tree::ptree& /*data*/) const {
     auto result(std::make_shared<GeneralForumTopicUnhidden>());
     return result;
 }
@@ -1143,7 +1166,7 @@ std::string TgTypeParser::parseVideoChatScheduled(const VideoChatScheduled::Ptr&
     return result;
 }
 
-VideoChatStarted::Ptr TgTypeParser::parseJsonAndGetVideoChatStarted(const boost::property_tree::ptree& data) const {
+VideoChatStarted::Ptr TgTypeParser::parseJsonAndGetVideoChatStarted(const boost::property_tree::ptree& /*data*/) const {
     auto result(std::make_shared<VideoChatStarted>());
     return result;
 }
@@ -1154,6 +1177,7 @@ std::string TgTypeParser::parseVideoChatStarted(const VideoChatStarted::Ptr& obj
     }
     std::string result;
     result += '{';
+    //removeLastComma(result);
     result += '}';
     return result;
 }
@@ -1805,7 +1829,7 @@ std::string TgTypeParser::parseChatMemberAdministrator(const ChatMemberAdministr
     return result;
 }
 
-ChatMemberMember::Ptr TgTypeParser::parseJsonAndGetChatMemberMember(const boost::property_tree::ptree& data) const {
+ChatMemberMember::Ptr TgTypeParser::parseJsonAndGetChatMemberMember(const boost::property_tree::ptree& /*data*/) const {
     // NOTE: This function will be called by parseJsonAndGetChatMember().
     auto result(std::make_shared<ChatMemberMember>());
     return result;
@@ -1871,7 +1895,7 @@ std::string TgTypeParser::parseChatMemberRestricted(const ChatMemberRestricted::
     return result;
 }
 
-ChatMemberLeft::Ptr TgTypeParser::parseJsonAndGetChatMemberLeft(const boost::property_tree::ptree& data) const {
+ChatMemberLeft::Ptr TgTypeParser::parseJsonAndGetChatMemberLeft(const boost::property_tree::ptree& /*data*/) const {
     // NOTE: This function will be called by parseJsonAndGetChatMember().
     auto result(std::make_shared<ChatMemberLeft>());
     return result;
@@ -2126,7 +2150,7 @@ std::string TgTypeParser::parseBotCommandScope(const BotCommandScope::Ptr& objec
     return result;
 }
 
-BotCommandScopeDefault::Ptr TgTypeParser::parseJsonAndGetBotCommandScopeDefault(const boost::property_tree::ptree& data) const {
+BotCommandScopeDefault::Ptr TgTypeParser::parseJsonAndGetBotCommandScopeDefault(const boost::property_tree::ptree& /*data*/) const {
     // NOTE: This function will be called by parseJsonAndGetBotCommandScope().
     auto result(std::make_shared<BotCommandScopeDefault>());
     return result;
@@ -2143,7 +2167,7 @@ std::string TgTypeParser::parseBotCommandScopeDefault(const BotCommandScopeDefau
     return result;
 }
 
-BotCommandScopeAllPrivateChats::Ptr TgTypeParser::parseJsonAndGetBotCommandScopeAllPrivateChats(const boost::property_tree::ptree& data) const {
+BotCommandScopeAllPrivateChats::Ptr TgTypeParser::parseJsonAndGetBotCommandScopeAllPrivateChats(const boost::property_tree::ptree& /*data*/) const {
     // NOTE: This function will be called by parseJsonAndGetBotCommandScope().
     auto result(std::make_shared<BotCommandScopeAllPrivateChats>());
     return result;
@@ -2160,7 +2184,7 @@ std::string TgTypeParser::parseBotCommandScopeAllPrivateChats(const BotCommandSc
     return result;
 }
 
-BotCommandScopeAllGroupChats::Ptr TgTypeParser::parseJsonAndGetBotCommandScopeAllGroupChats(const boost::property_tree::ptree& data) const {
+BotCommandScopeAllGroupChats::Ptr TgTypeParser::parseJsonAndGetBotCommandScopeAllGroupChats(const boost::property_tree::ptree& /*data*/) const {
     // NOTE: This function will be called by parseJsonAndGetBotCommandScope().
     auto result(std::make_shared<BotCommandScopeAllGroupChats>());
     return result;
@@ -2177,7 +2201,7 @@ std::string TgTypeParser::parseBotCommandScopeAllGroupChats(const BotCommandScop
     return result;
 }
 
-BotCommandScopeAllChatAdministrators::Ptr TgTypeParser::parseJsonAndGetBotCommandScopeAllChatAdministrators(const boost::property_tree::ptree& data) const {
+BotCommandScopeAllChatAdministrators::Ptr TgTypeParser::parseJsonAndGetBotCommandScopeAllChatAdministrators(const boost::property_tree::ptree& /*data*/) const {
     // NOTE: This function will be called by parseJsonAndGetBotCommandScope().
     auto result(std::make_shared<BotCommandScopeAllChatAdministrators>());
     return result;
@@ -2338,7 +2362,7 @@ std::string TgTypeParser::parseMenuButton(const MenuButton::Ptr& object) const {
     return result;
 }
 
-MenuButtonCommands::Ptr TgTypeParser::parseJsonAndGetMenuButtonCommands(const boost::property_tree::ptree& data) const {
+MenuButtonCommands::Ptr TgTypeParser::parseJsonAndGetMenuButtonCommands(const boost::property_tree::ptree& /*data*/) const {
     // NOTE: This function will be called by parseJsonAndGetMenuButton().
     auto result(std::make_shared<MenuButtonCommands>());
     return result;
@@ -2376,7 +2400,7 @@ std::string TgTypeParser::parseMenuButtonWebApp(const MenuButtonWebApp::Ptr& obj
     return result;
 }
 
-MenuButtonDefault::Ptr TgTypeParser::parseJsonAndGetMenuButtonDefault(const boost::property_tree::ptree& data) const {
+MenuButtonDefault::Ptr TgTypeParser::parseJsonAndGetMenuButtonDefault(const boost::property_tree::ptree& /*data*/) const {
     // NOTE: This function will be called by parseJsonAndGetMenuButton().
     auto result(std::make_shared<MenuButtonDefault>());
     return result;
@@ -4409,7 +4433,7 @@ std::string TgTypeParser::parseGame(const Game::Ptr& object) const {
     return result;
 }
 
-CallbackGame::Ptr TgTypeParser::parseJsonAndGetCallbackGame(const boost::property_tree::ptree& data) const {
+CallbackGame::Ptr TgTypeParser::parseJsonAndGetCallbackGame(const boost::property_tree::ptree& /*data*/) const {
     auto result(std::make_shared<CallbackGame>());
     return result;
 }
@@ -4420,6 +4444,7 @@ std::string TgTypeParser::parseCallbackGame(const CallbackGame::Ptr& object) con
     }
     std::string result;
     result += '{';
+    //removeLastComma(result);
     result += '}';
     return result;
 }

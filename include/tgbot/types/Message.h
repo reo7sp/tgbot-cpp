@@ -10,6 +10,7 @@
 #include "tgbot/types/Document.h"
 #include "tgbot/types/PhotoSize.h"
 #include "tgbot/types/Sticker.h"
+#include "tgbot/types/Story.h"
 #include "tgbot/types/Video.h"
 #include "tgbot/types/VideoNote.h"
 #include "tgbot/types/Voice.h"
@@ -41,9 +42,9 @@
 #include "tgbot/types/InlineKeyboardMarkup.h"
 
 #include <cstdint>
+#include <memory>
 #include <string>
 #include <vector>
-#include <memory>
 
 namespace TgBot {
 
@@ -84,7 +85,7 @@ public:
     /**
      * @brief Date the message was sent in Unix time
      */
-    std::int32_t date;
+    std::int64_t date;
 
     /**
      * @brief Conversation the message belongs to
@@ -119,7 +120,7 @@ public:
     /**
      * @brief Optional. For forwarded messages, date the original message was sent in Unix time
      */
-    std::int32_t forwardDate;
+    std::int64_t forwardDate;
 
     /**
      * @brief Optional. True, if the message is sent to a forum topic
@@ -146,7 +147,7 @@ public:
     /**
      * @brief Optional. Date the message was last edited in Unix time
      */
-    std::int32_t editDate;
+    std::int64_t editDate;
 
     /**
      * @brief Optional. True, if the message can't be forwarded
@@ -199,6 +200,11 @@ public:
      * @brief Optional. Message is a sticker, information about the sticker
      */
     Sticker::Ptr sticker;
+
+    /**
+     * @brief Optional. Message is a forwarded story
+     */
+    Story::Ptr story;
 
     /**
      * @brief Optional. Message is a video, information about the video

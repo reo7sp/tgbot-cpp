@@ -13,6 +13,7 @@
 #include "tgbot/types/Animation.h"
 #include "tgbot/types/Audio.h"
 #include "tgbot/types/Document.h"
+#include "tgbot/types/Story.h"
 #include "tgbot/types/Video.h"
 #include "tgbot/types/VideoNote.h"
 #include "tgbot/types/Voice.h"
@@ -204,6 +205,9 @@ public:
 
     Document::Ptr parseJsonAndGetDocument(const boost::property_tree::ptree& data) const;
     std::string parseDocument(const Document::Ptr& object) const;
+
+    Story::Ptr parseJsonAndGetStory(const boost::property_tree::ptree& data) const;
+    std::string parseStory(const Story::Ptr& object) const;
 
     Video::Ptr parseJsonAndGetVideo(const boost::property_tree::ptree& data) const;
     std::string parseVideo(const Video::Ptr& object) const;

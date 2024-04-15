@@ -1664,6 +1664,15 @@ bool Api::unhideGeneralForumTopic(boost::variant<std::int64_t, std::string> chat
     return sendRequest("unhideGeneralForumTopic", args).get<bool>("", false);
 }
 
+bool Api::unpinAllGeneralForumTopicMessages(boost::variant<std::int64_t, std::string> chatId) const {
+    std::vector<HttpReqArg> args;
+    args.reserve(1);
+
+    args.emplace_back("chat_id", chatId);
+
+    return sendRequest("unpinAllGeneralForumTopicMessages", args).get<bool>("", false);
+}
+
 bool Api::answerCallbackQuery(const std::string& callbackQueryId,
                               const std::string& text,
                               bool showAlert,
