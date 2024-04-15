@@ -1156,7 +1156,7 @@ bool Api::unbanChatMember(boost::variant<std::int64_t, std::string> chatId,
 bool Api::restrictChatMember(boost::variant<std::int64_t, std::string> chatId,
                              std::int64_t userId,
                              TgBot::ChatPermissions::Ptr permissions,
-                             std::int64_t untilDate,
+                             std::uint32_t untilDate,
                              bool useIndependentChatPermissions) const {
     std::vector<HttpReqArg> args;
     args.reserve(5);
@@ -1164,10 +1164,10 @@ bool Api::restrictChatMember(boost::variant<std::int64_t, std::string> chatId,
     args.emplace_back("chat_id", chatId);
     args.emplace_back("user_id", userId);
     args.emplace_back("permissions", _tgTypeParser.parseChatPermissions(permissions));
-    if (useIndependentChatPermissions) {
+    if (useIndependentChatPermissions != false) {
         args.emplace_back("use_independent_chat_permissions", useIndependentChatPermissions);
     }
-    if (untilDate) {
+    if (untilDate != 0) {
         args.emplace_back("until_date", untilDate);
     }
 
@@ -1187,46 +1187,58 @@ bool Api::promoteChatMember(boost::variant<std::int64_t, std::string> chatId,
                             bool canManageChat,
                             bool canManageVideoChats,
                             bool canRestrictMembers,
-                            bool canManageTopics) const {
+                            bool canManageTopics,
+                            bool canPostStories,
+                            bool canEditStories,
+                            bool canDeleteStories) const {
     std::vector<HttpReqArg> args;
-    args.reserve(14);
+    args.reserve(17);
 
     args.emplace_back("chat_id", chatId);
     args.emplace_back("user_id", userId);
-    if (isAnonymous) {
+    if (isAnonymous != false) {
         args.emplace_back("is_anonymous", isAnonymous);
     }
-    if (canManageChat) {
+    if (canManageChat != false) {
         args.emplace_back("can_manage_chat", canManageChat);
     }
-    if (canPostMessages) {
+    if (canPostMessages != false) {
         args.emplace_back("can_post_messages", canPostMessages);
     }
-    if (canEditMessages) {
+    if (canEditMessages != false) {
         args.emplace_back("can_edit_messages", canEditMessages);
     }
-    if (canDeleteMessages) {
+    if (canDeleteMessages != false) {
         args.emplace_back("can_delete_messages", canDeleteMessages);
     }
-    if (canManageVideoChats) {
+    if (canPostStories != false) {
+        args.emplace_back("can_post_stories", canPostStories);
+    }
+    if (canEditStories != false) {
+        args.emplace_back("can_edit_stories", canEditStories);
+    }
+    if (canDeleteStories != false) {
+        args.emplace_back("can_delete_stories", canDeleteStories);
+    }
+    if (canManageVideoChats != false) {
         args.emplace_back("can_manage_video_chats", canManageVideoChats);
     }
-    if (canRestrictMembers) {
+    if (canRestrictMembers != false) {
         args.emplace_back("can_restrict_members", canRestrictMembers);
     }
-    if (canPromoteMembers) {
+    if (canPromoteMembers != false) {
         args.emplace_back("can_promote_members", canPromoteMembers);
     }
-    if (canChangeInfo) {
+    if (canChangeInfo != false) {
         args.emplace_back("can_change_info", canChangeInfo);
     }
-    if (canInviteUsers) {
+    if (canInviteUsers != false) {
         args.emplace_back("can_invite_users", canInviteUsers);
     }
-    if (canPinMessages) {
+    if (canPinMessages != false) {
         args.emplace_back("can_pin_messages", canPinMessages);
     }
-    if (canManageTopics) {
+    if (canManageTopics != false) {
         args.emplace_back("can_manage_topics", canManageTopics);
     }
 

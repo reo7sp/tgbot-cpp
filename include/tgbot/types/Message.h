@@ -374,7 +374,7 @@ public:
     std::string connectedWebsite;
 
     /**
-     * @brief Optional. Service message: the user allowed the bot added to the attachment menu to write messages
+     * @brief Optional. Service message: the user allowed the bot to write messages after adding it to the attachment or side menu, launching a Web App from a link, or accepting an explicit request from a Web App sent by the method requestWriteAccess (https://core.telegram.org/bots/webapps#initializing-mini-apps)
      */
     WriteAccessAllowed::Ptr writeAccessAllowed;
 

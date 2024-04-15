@@ -91,7 +91,7 @@ public:
     std::string emojiStatusCustomEmojiId;
 
     /**
-     * @brief Optional. Expiration date of the emoji status of the other party in a private chat, if any.
+     * @brief Optional. Expiration date of the emoji status of the other party in a private chat in Unix time, if any.
      * 
      * Returned only in Api::getChat.
      */

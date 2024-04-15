@@ -25,7 +25,9 @@ public:
     std::string text;
 
     /**
-     * @brief Optional. Description of the Web App (https://core.telegram.org/bots/webapps) that will be launched when the user presses the button. The Web App will be able to switch back to the inline mode using the method switchInlineQuery (https://core.telegram.org/bots/webapps#initializing-web-apps) inside the Web App.
+     * @brief Optional. Description of the Web App (https://core.telegram.org/bots/webapps) that will be launched when the user presses the button.
+     * 
+     * The Web App will be able to switch back to the inline mode using the method switchInlineQuery (https://core.telegram.org/bots/webapps#initializing-mini-apps) inside the Web App.
      */
     WebAppInfo::Ptr webApp;
 

@@ -34,7 +34,7 @@ public:
     /**
      * @brief Date the change was done in Unix time
      */
-    std::uint64_t date;
+    std::uint32_t date;
 
     /**
      * @brief Previous information about the chat member

@@ -24,7 +24,9 @@ public:
     }
 
     /**
-     * @brief Date when restrictions will be lifted for this user; unix time
+     * @brief Date when restrictions will be lifted for this user; Unix time.
+     * 
+     * If 0, then the user is banned forever
      */
     std::uint32_t untilDate;
 };

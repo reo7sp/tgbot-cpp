@@ -829,7 +829,7 @@ public:
      * @param chatId Unique identifier for the target chat or username of the target supergroup (in the format @supergroupusername)
      * @param userId Unique identifier of the target user
      * @param permissions A JSON-serialized object for new user permissions
-     * @param untilDate Optional. Date when restrictions will be lifted for the user, unix time. If user is restricted for more than 366 days or less than 30 seconds from the current time, they are considered to be restricted forever
+     * @param untilDate Optional. Date when restrictions will be lifted for the user; Unix time. If user is restricted for more than 366 days or less than 30 seconds from the current time, they are considered to be restricted forever
      * @param useIndependentChatPermissions Optional. Pass True if chat permissions are set independently. Otherwise, the canSendOtherMessages and canAddWebPagPreviews permissions will imply the canSendMessages, canSendAudios, canSendDocuments, canSendPhotos, canSendVideos, canSendVideoNotes, and canSendVoiceNotes permissions; the canSendPolls permission will imply the canSendMessages permission.
      * 
      * @return Returns True on success.
@@ -837,7 +837,7 @@ public:
     bool restrictChatMember(boost::variant<std::int64_t, std::string> chatId,
                             std::int64_t userId,
                             ChatPermissions::Ptr permissions,
-                            std::int64_t untilDate = 0,
+                            std::uint32_t untilDate = 0,
                             bool useIndependentChatPermissions = false) const;
 
     /**
@@ -849,17 +849,20 @@ public:
      * @param chatId Unique identifier for the target chat or username of the target channel (in the format @channelusername)
      * @param userId Unique identifier of the target user
      * @param canChangeInfo Optional. Pass True if the administrator can change chat title, photo and other settings
-     * @param canPostMessages Optional. Pass True if the administrator can create channel posts, channels only
-     * @param canEditMessages Optional. Pass True if the administrator can edit messages of other users and can pin messages, channels only
+     * @param canPostMessages Optional. Pass True if the administrator can post messages in the channel; channels only
+     * @param canEditMessages Optional. Pass True if the administrator can edit messages of other users and can pin messages; channels only
      * @param canDeleteMessages Optional. Pass True if the administrator can delete messages of other users
      * @param canInviteUsers Optional. Pass True if the administrator can invite new users to the chat
      * @param canPinMessages Optional. Pass True if the administrator can pin messages, supergroups only
      * @param canPromoteMembers Optional. Pass True if the administrator can add new administrators with a subset of their own privileges or demote administrators that they have promoted, directly or indirectly (promoted by administrators that were appointed by him)
      * @param isAnonymous Optional. Pass True if the administrator's presence in the chat is hidden
-     * @param canManageChat Optional. Pass True if the administrator can access the chat event log, chat statistics, message statistics in channels, see channel members, see anonymous administrators in supergroups and ignore slow mode. Implied by any other administrator privilege
+     * @param canManageChat Optional. Pass True if the administrator can access the chat event log, chat statistics, boost list in channels, message statistics in channels, see channel members, see anonymous administrators in supergroups and ignore slow mode. Implied by any other administrator privilege
      * @param canManageVideoChats Optional. Pass True if the administrator can manage video chats
      * @param canRestrictMembers Optional. Pass True if the administrator can restrict, ban or unban chat members
      * @param canManageTopics Optional. Pass True if the user is allowed to create, rename, close, and reopen forum topics, supergroups only
+     * @param canPostStories Optional. Pass True if the administrator can post stories in the channel; channels only
+     * @param canEditStories Optional. Pass True if the administrator can edit stories posted by other users; channels only
+     * @param canDeleteStories Optional. Pass True if the administrator can delete stories posted by other users; channels only
      * 
      * @return Returns True on success.
      */
@@ -876,7 +879,10 @@ public:
                            bool canManageChat = false,
                            bool canManageVideoChats = false,
                            bool canRestrictMembers = false,
-                           bool canManageTopics = false) const;
+                           bool canManageTopics = false,
+                           bool canPostStories = false,
+                           bool canEditStories = false,
+                           bool canDeleteStories = false) const;
 
     /**
      * @brief Use this method to set a custom title for an administrator in a supergroup promoted by the bot.

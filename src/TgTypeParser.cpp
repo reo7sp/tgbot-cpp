@@ -1132,7 +1132,9 @@ std::string TgTypeParser::parseChatShared(const ChatShared::Ptr& object) const {
 
 WriteAccessAllowed::Ptr TgTypeParser::parseJsonAndGetWriteAccessAllowed(const boost::property_tree::ptree& data) const {
     auto result(std::make_shared<WriteAccessAllowed>());
+    result->fromRequest = data.get<bool>("from_request", false);
     result->webAppName = data.get<std::string>("web_app_name", "");
+    result->fromAttachmentMenu = data.get<bool>("from_attachment_menu", false);
     return result;
 }
 
@@ -1142,7 +1144,9 @@ std::string TgTypeParser::parseWriteAccessAllowed(const WriteAccessAllowed::Ptr&
     }
     std::string result;
     result += '{';
+    appendToJson(result, "from_request", object->fromRequest);
     appendToJson(result, "web_app_name", object->webAppName);
+    appendToJson(result, "from_attachment_menu", object->fromAttachmentMenu);
     removeLastComma(result);
     result += '}';
     return result;
@@ -1682,6 +1686,9 @@ ChatAdministratorRights::Ptr TgTypeParser::parseJsonAndGetChatAdministratorRight
     result->canPostMessages = data.get<bool>("can_post_messages", false);
     result->canEditMessages = data.get<bool>("can_edit_messages", false);
     result->canPinMessages = data.get<bool>("can_pin_messages", false);
+    result->canPostStories = data.get<bool>("can_post_stories", false);
+    result->canEditStories = data.get<bool>("can_edit_stories", false);
+    result->canDeleteStories = data.get<bool>("can_delete_stories", false);
     result->canManageTopics = data.get<bool>("can_manage_topics", false);
     return result;
 }
@@ -1703,6 +1710,9 @@ std::string TgTypeParser::parseChatAdministratorRights(const ChatAdministratorRi
     appendToJson(result, "can_post_messages", object->canPostMessages);
     appendToJson(result, "can_edit_messages", object->canEditMessages);
     appendToJson(result, "can_pin_messages", object->canPinMessages);
+    appendToJson(result, "can_post_stories", object->canPostStories);
+    appendToJson(result, "can_edit_stories", object->canEditStories);
+    appendToJson(result, "can_delete_stories", object->canDeleteStories);
     appendToJson(result, "can_manage_topics", object->canManageTopics);
     removeLastComma(result);
     result += '}';
@@ -1799,6 +1809,9 @@ ChatMemberAdministrator::Ptr TgTypeParser::parseJsonAndGetChatMemberAdministrato
     result->canPostMessages = data.get<bool>("can_post_messages", false);
     result->canEditMessages = data.get<bool>("can_edit_messages", false);
     result->canPinMessages = data.get<bool>("can_pin_messages", false);
+    result->canPostStories = data.get<bool>("can_post_stories", false);
+    result->canEditStories = data.get<bool>("can_edit_stories", false);
+    result->canDeleteStories = data.get<bool>("can_delete_stories", false);
     result->canManageTopics = data.get<bool>("can_manage_topics", false);
     result->customTitle = data.get<std::string>("custom_title", "");
     return result;
@@ -1823,6 +1836,9 @@ std::string TgTypeParser::parseChatMemberAdministrator(const ChatMemberAdministr
     appendToJson(result, "can_post_messages", object->canPostMessages);
     appendToJson(result, "can_edit_messages", object->canEditMessages);
     appendToJson(result, "can_pin_messages", object->canPinMessages);
+    appendToJson(result, "can_post_stories", object->canPostStories);
+    appendToJson(result, "can_edit_stories", object->canEditStories);
+    appendToJson(result, "can_delete_stories", object->canDeleteStories);
     appendToJson(result, "can_manage_topics", object->canManageTopics);
     appendToJson(result, "custom_title", object->customTitle);
     // The last comma will be erased by parseChatMember().
@@ -1915,7 +1931,7 @@ std::string TgTypeParser::parseChatMemberLeft(const ChatMemberLeft::Ptr& object)
 ChatMemberBanned::Ptr TgTypeParser::parseJsonAndGetChatMemberBanned(const boost::property_tree::ptree& data) const {
     // NOTE: This function will be called by parseJsonAndGetChatMember().
     auto result(std::make_shared<ChatMemberBanned>());
-    result->untilDate = data.get<uint32_t>("until_date", 0);
+    result->untilDate = data.get<std::uint32_t>("until_date", 0);
     return result;
 }
 
@@ -1935,7 +1951,7 @@ ChatMemberUpdated::Ptr TgTypeParser::parseJsonAndGetChatMemberUpdated(const boos
     auto result(std::make_shared<ChatMemberUpdated>());
     result->chat = tryParseJson<Chat>(&TgTypeParser::parseJsonAndGetChat, data, "chat");
     result->from = tryParseJson<User>(&TgTypeParser::parseJsonAndGetUser, data, "from");
-    result->date = data.get<std::uint64_t>("date", 0);
+    result->date = data.get<std::uint32_t>("date", 0);
     result->oldChatMember = tryParseJson<ChatMember>(&TgTypeParser::parseJsonAndGetChatMember, data, "old_chat_member");
     result->newChatMember = tryParseJson<ChatMember>(&TgTypeParser::parseJsonAndGetChatMember, data, "new_chat_member");
     result->inviteLink = tryParseJson<ChatInviteLink>(&TgTypeParser::parseJsonAndGetChatInviteLink, data, "invite_link");

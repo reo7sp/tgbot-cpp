@@ -101,7 +101,7 @@ public:
     bool canManageTopics;
 
     /**
-     * @brief Date when restrictions will be lifted for this user; unix time.
+     * @brief Date when restrictions will be lifted for this user; Unix time.
      * 
      * If 0, then the user is restricted forever
      */
