@@ -681,7 +681,7 @@ VideoNote::Ptr TgTypeParser::parseJsonAndGetVideoNote(const boost::property_tree
     result->length = data.get<std::int32_t>("length", 0);
     result->duration = data.get<std::int32_t>("duration", 0);
     result->thumbnail = tryParseJson<PhotoSize>(&TgTypeParser::parseJsonAndGetPhotoSize, data, "thumbnail");
-    result->fileSize = data.get("file_size", 0);
+    result->fileSize = data.get<std::int32_t>("file_size", 0);
     return result;
 }
 
@@ -730,11 +730,11 @@ std::string TgTypeParser::parseVoice(const Voice::Ptr& object) const {
 
 Contact::Ptr TgTypeParser::parseJsonAndGetContact(const boost::property_tree::ptree& data) const {
     auto result(std::make_shared<Contact>());
-    result->phoneNumber = data.get<std::string>("phone_number");
-    result->firstName = data.get<std::string>("first_name");
-    result->lastName = data.get("last_name", "");
-    result->userId = data.get("user_id", 0);
-    result->vcard = data.get("vcard", "");
+    result->phoneNumber = data.get<std::string>("phone_number", "");
+    result->firstName = data.get<std::string>("first_name", "");
+    result->lastName = data.get<std::string>("last_name", "");
+    result->userId = data.get<std::int64_t>("user_id", 0);
+    result->vcard = data.get<std::string>("vcard", "");
     return result;
 }
 
@@ -776,8 +776,8 @@ std::string TgTypeParser::parseDice(const Dice::Ptr& object) const {
 
 PollOption::Ptr TgTypeParser::parseJsonAndGetPollOption(const boost::property_tree::ptree& data) const {
     auto result(std::make_shared<PollOption>());
-    result->text = data.get("text", "");
-    result->voterCount = data.get("voter_count", 0);
+    result->text = data.get<std::string>("text", "");
+    result->voterCount = data.get<std::int32_t>("voter_count", 0);
     return result;
 }
 
@@ -831,7 +831,7 @@ Poll::Ptr TgTypeParser::parseJsonAndGetPoll(const boost::property_tree::ptree& d
     result->options = parseJsonAndGetArray<PollOption>(&TgTypeParser::parseJsonAndGetPollOption, data, "options");
     result->totalVoterCount = data.get<std::int32_t>("total_voter_count", 0);
     result->isClosed = data.get<bool>("is_closed", false);
-    result->isAnonymous = data.get<bool>("is_anonymous", true);
+    result->isAnonymous = data.get<bool>("is_anonymous", false);
     result->type = data.get<std::string>("type", "");
     result->allowsMultipleAnswers = data.get<bool>("allows_multiple_answers", false);
     result->correctOptionId = data.get<std::int32_t>("correct_option_id", 0);
@@ -857,7 +857,7 @@ std::string TgTypeParser::parsePoll(const Poll::Ptr& object) const {
     appendToJson(result, "type", object->type);
     appendToJson(result, "allows_multiple_answers", object->allowsMultipleAnswers);
     appendToJson(result, "correct_option_id", object->correctOptionId);
-    appendToJson(result, "explanation", object->correctOptionId);
+    appendToJson(result, "explanation", object->explanation);
     appendToJson(result, "explanation_entities", parseArray(&TgTypeParser::parseMessageEntity, object->explanationEntities));
     appendToJson(result, "open_period", object->openPeriod);
     appendToJson(result, "close_date", object->closeDate);
@@ -1113,7 +1113,7 @@ std::string TgTypeParser::parseUserShared(const UserShared::Ptr& object) const {
 ChatShared::Ptr TgTypeParser::parseJsonAndGetChatShared(const boost::property_tree::ptree& data) const {
     auto result(std::make_shared<ChatShared>());
     result->requestId = data.get<std::int32_t>("request_id", 0);
-    result->userId = data.get<std::int64_t>("user_id", 0);
+    result->chatId = data.get<std::int64_t>("chat_id", 0);
     return result;
 }
 
@@ -1124,7 +1124,7 @@ std::string TgTypeParser::parseChatShared(const ChatShared::Ptr& object) const {
     std::string result;
     result += '{';
     appendToJson(result, "request_id", object->requestId);
-    appendToJson(result, "user_id", object->userId);
+    appendToJson(result, "chat_id", object->chatId);
     removeLastComma(result);
     result += '}';
     return result;
@@ -1224,7 +1224,7 @@ std::string TgTypeParser::parseVideoChatParticipantsInvited(const VideoChatParti
 
 UserProfilePhotos::Ptr TgTypeParser::parseJsonAndGetUserProfilePhotos(const boost::property_tree::ptree& data) const {
     auto result(std::make_shared<UserProfilePhotos>());
-    result->totalCount = data.get<std::int32_t>("total_count");
+    result->totalCount = data.get<std::int32_t>("total_count", 0);
     result->photos = parseJsonAndGet2DArray<PhotoSize>(&TgTypeParser::parseJsonAndGetPhotoSize, data, "photos");
     return result;
 }
@@ -1565,13 +1565,13 @@ std::string TgTypeParser::parseSwitchInlineQueryChosenChat(const SwitchInlineQue
 
 CallbackQuery::Ptr TgTypeParser::parseJsonAndGetCallbackQuery(const boost::property_tree::ptree& data) const {
     auto result(std::make_shared<CallbackQuery>());
-    result->id = data.get<std::string>("id");
+    result->id = data.get<std::string>("id", "");
     result->from = tryParseJson<User>(&TgTypeParser::parseJsonAndGetUser, data, "from");
     result->message = tryParseJson<Message>(&TgTypeParser::parseJsonAndGetMessage, data, "message");
     result->inlineMessageId = data.get<std::string>("inline_message_id", "");
-    result->chatInstance = data.get<std::string>("chat_instance");
-    result->gameShortName = data.get<std::string>("game_short_name", "");
+    result->chatInstance = data.get<std::string>("chat_instance", "");
     result->data = data.get<std::string>("data", "");
+    result->gameShortName = data.get<std::string>("game_short_name", "");
     return result;
 }
 
@@ -2095,12 +2095,15 @@ std::string TgTypeParser::parseForumTopic(const ForumTopic::Ptr& object) const {
 
 BotCommand::Ptr TgTypeParser::parseJsonAndGetBotCommand(const boost::property_tree::ptree& data) const {
     auto result(std::make_shared<BotCommand>());
-    result->command = data.get("command", "");
-    result->description = data.get("description", "");
+    result->command = data.get<std::string>("command", "");
+    result->description = data.get<std::string>("description", "");
     return result;
 }
 
 std::string TgTypeParser::parseBotCommand(const BotCommand::Ptr& object) const {
+    if (!object) {
+        return "";
+    }
     std::string result;
     result += '{';
     appendToJson(result, "command", object->command);
@@ -2300,6 +2303,9 @@ BotName::Ptr TgTypeParser::parseJsonAndGetBotName(const boost::property_tree::pt
 }
 
 std::string TgTypeParser::parseBotName(const BotName::Ptr& object) const {
+    if (!object) {
+        return "";
+    }
     std::string result;
     result += '{';
     appendToJson(result, "name", object->name);
@@ -2315,6 +2321,9 @@ BotDescription::Ptr TgTypeParser::parseJsonAndGetBotDescription(const boost::pro
 }
 
 std::string TgTypeParser::parseBotDescription(const BotDescription::Ptr& object) const {
+    if (!object) {
+        return "";
+    }
     std::string result;
     result += '{';
     appendToJson(result, "description", object->description);
@@ -2330,6 +2339,9 @@ BotShortDescription::Ptr TgTypeParser::parseJsonAndGetBotShortDescription(const 
 }
 
 std::string TgTypeParser::parseBotShortDescription(const BotShortDescription::Ptr& object) const {
+    if (!object) {
+        return "";
+    }
     std::string result;
     result += '{';
     appendToJson(result, "short_description", object->shortDescription);
@@ -2734,7 +2746,7 @@ std::string TgTypeParser::parseStickerSet(const StickerSet::Ptr& object) const {
 
 MaskPosition::Ptr TgTypeParser::parseJsonAndGetMaskPosition(const boost::property_tree::ptree& data) const {
     auto result(std::make_shared<MaskPosition>());
-    result->point = data.get("point", "");
+    result->point = data.get<std::string>("point", "");
     result->xShift = data.get<float>("x_shift", 0);
     result->yShift = data.get<float>("y_shift", 0);
     result->scale = data.get<float>("scale", 0);
@@ -3845,6 +3857,8 @@ std::string TgTypeParser::parseChosenInlineResult(const ChosenInlineResult::Ptr&
     result += '{';
     appendToJson(result, "result_id", object->resultId);
     appendToJson(result, "from", parseUser(object->from));
+    appendToJson(result, "location", parseLocation(object->location));
+    appendToJson(result, "inline_message_id", object->inlineMessageId);
     appendToJson(result, "query", object->query);
     removeLastComma(result);
     result += '}';
@@ -3871,12 +3885,15 @@ std::string TgTypeParser::parseSentWebAppMessage(const SentWebAppMessage::Ptr& o
 
 LabeledPrice::Ptr TgTypeParser::parseJsonAndGetLabeledPrice(const boost::property_tree::ptree& data) const {
     auto result(std::make_shared<LabeledPrice>());
-    result->label = data.get<std::string>("label");
-    result->amount = data.get<std::int32_t>("amount");
+    result->label = data.get<std::string>("label", "");
+    result->amount = data.get<std::int32_t>("amount", 0);
     return result;
 }
 
 std::string TgTypeParser::parseLabeledPrice(const LabeledPrice::Ptr& object) const {
+    if (!object) {
+        return "";
+    }
     std::string result;
     result += '{';
     appendToJson(result, "label", object->label);
@@ -3888,11 +3905,11 @@ std::string TgTypeParser::parseLabeledPrice(const LabeledPrice::Ptr& object) con
 
 Invoice::Ptr TgTypeParser::parseJsonAndGetInvoice(const boost::property_tree::ptree& data) const {
     auto result(std::make_shared<Invoice>());
-    result->title = data.get<std::string>("title");
-    result->description = data.get<std::string>("description");
-    result->startParameter = data.get<std::string>("start_parameter");
-    result->currency = data.get<std::string>("currency");
-    result->totalAmount = data.get<std::int32_t>("total_amount");
+    result->title = data.get<std::string>("title", "");
+    result->description = data.get<std::string>("description", "");
+    result->startParameter = data.get<std::string>("start_parameter", "");
+    result->currency = data.get<std::string>("currency", "");
+    result->totalAmount = data.get<std::int32_t>("total_amount", 0);
     return result;
 }
 
@@ -3913,23 +3930,24 @@ std::string TgTypeParser::parseInvoice(const Invoice::Ptr& object) const {
 }
 
 ShippingAddress::Ptr TgTypeParser::parseJsonAndGetShippingAddress(const boost::property_tree::ptree& data) const {
-    ShippingAddress::Ptr result;
-    result->countryCode = data.get<std::string>("country_code");
+    auto result(std::make_shared<ShippingAddress>());
+    result->countryCode = data.get<std::string>("country_code", "");
     result->state = data.get<std::string>("state", "");
-    result->city = data.get<std::string>("city");
-    result->streetLine1 = data.get<std::string>("street_line1");
-    result->streetLine2 = data.get<std::string>("street_line2");
-    result->postCode = data.get<std::string>("post_code");
+    result->city = data.get<std::string>("city", "");
+    result->streetLine1 = data.get<std::string>("street_line1", "");
+    result->streetLine2 = data.get<std::string>("street_line2", "");
+    result->postCode = data.get<std::string>("post_code", "");
     return result;
 }
 
 std::string TgTypeParser::parseShippingAddress(const ShippingAddress::Ptr& object) const {
+    if (!object) {
+        return "";
+    }
     std::string result;
     result += '{';
     appendToJson(result, "country_code", object->countryCode);
-    if (!object->state.empty()) {
-        appendToJson(result, "state", object->state);
-    }
+    appendToJson(result, "state", object->state);
     appendToJson(result, "city", object->city);
     appendToJson(result, "street_line1", object->streetLine1);
     appendToJson(result, "street_line2", object->streetLine2);
@@ -3944,7 +3962,7 @@ OrderInfo::Ptr TgTypeParser::parseJsonAndGetOrderInfo(const boost::property_tree
     result->name = data.get<std::string>("name", "");
     result->phoneNumber = data.get<std::string>("phone_number", "");
     result->email = data.get<std::string>("email", "");
-    result->shippingAddress = tryParseJson(&TgTypeParser::parseJsonAndGetShippingAddress, data, "shipping_address");
+    result->shippingAddress = tryParseJson<ShippingAddress>(&TgTypeParser::parseJsonAndGetShippingAddress, data, "shipping_address");
     return result;
 }
 
@@ -3954,20 +3972,10 @@ std::string TgTypeParser::parseOrderInfo(const OrderInfo::Ptr& object) const {
     }
     std::string result;
     result += '{';
-    if (!object->name.empty()) {
-        appendToJson(result, "name", object->name);
-    }
-    if (!object->phoneNumber.empty()) {
-        appendToJson(result, "phone_number", object->phoneNumber);
-    }
-    if (!object->email.empty()) {
-        appendToJson(result, "email", object->email);
-    }
-    if (!object->shippingAddress) {
-        result += R"("shipping_address":)";
-        result += parseShippingAddress(object->shippingAddress);
-        result += ",";
-    }
+    appendToJson(result, "name", object->name);
+    appendToJson(result, "phone_number", object->phoneNumber);
+    appendToJson(result, "email", object->email);
+    appendToJson(result, "shipping_address", parseShippingAddress(object->shippingAddress));
     removeLastComma(result);
     result += '}';
     return result;
@@ -3975,44 +3983,51 @@ std::string TgTypeParser::parseOrderInfo(const OrderInfo::Ptr& object) const {
 
 ShippingOption::Ptr TgTypeParser::parseJsonAndGetShippingOption(const boost::property_tree::ptree& data) const {
     auto result(std::make_shared<ShippingOption>());
-    result->id = data.get<std::string>("id");
-    result->title = data.get<std::string>("title");
+    result->id = data.get<std::string>("id", "");
+    result->title = data.get<std::string>("title", "");
     result->prices = parseJsonAndGetArray<LabeledPrice>(&TgTypeParser::parseJsonAndGetLabeledPrice, data, "prices");
     return result;
 }
 
 std::string TgTypeParser::parseShippingOption(const ShippingOption::Ptr& object) const {
+    if (!object) {
+        return "";
+    }
     std::string result;
     result += '{';
     appendToJson(result, "id", object->id);
     appendToJson(result, "title", object->title);
+    appendToJson(result, "prices", parseArray(&TgTypeParser::parseLabeledPrice, object->prices));
     removeLastComma(result);
-    result += R"("prices":)";
-    result += parseArray(&TgTypeParser::parseLabeledPrice, object->prices);
     result += '}';
     return result;
 }
 
 SuccessfulPayment::Ptr TgTypeParser::parseJsonAndGetSuccessfulPayment(const boost::property_tree::ptree& data) const {
     auto result(std::make_shared<SuccessfulPayment>());
-    result->currency = data.get<std::string>("currency");
-    result->totalAmount = data.get<std::int32_t>("total_amount");
-    result->invoicePayload = data.get<std::string>("invoice_payload");
-    result->shippingOptionId = data.get<std::string>("shipping_option_id");
-    result->orderInfo = tryParseJson(&TgTypeParser::parseJsonAndGetOrderInfo, data, "order_info");
+    result->currency = data.get<std::string>("currency", "");
+    result->totalAmount = data.get<std::int32_t>("total_amount", 0);
+    result->invoicePayload = data.get<std::string>("invoice_payload", "");
+    result->shippingOptionId = data.get<std::string>("shipping_option_id", "");
+    result->orderInfo = tryParseJson<OrderInfo>(&TgTypeParser::parseJsonAndGetOrderInfo, data, "order_info");
+    result->telegramPaymentChargeId = data.get<std::string>("telegram_payment_charge_id", "");
+    result->providerPaymentChargeId = data.get<std::string>("provider_payment_charge_id", "");
     return result;
 }
 
 std::string TgTypeParser::parseSuccessfulPayment(const SuccessfulPayment::Ptr& object) const {
+    if (!object) {
+        return "";
+    }
     std::string result;
     result += '{';
     appendToJson(result, "currency", object->currency);
     appendToJson(result, "total_amount", object->totalAmount);
     appendToJson(result, "invoice_payload", object->invoicePayload);
     appendToJson(result, "shipping_option_id", object->shippingOptionId);
-    result += R"("order_info":)";
-    result += parseOrderInfo(object->orderInfo);
-    result += ",";
+    appendToJson(result, "order_info", parseOrderInfo(object->orderInfo));
+    appendToJson(result, "telegram_payment_charge_id", object->telegramPaymentChargeId);
+    appendToJson(result, "provider_payment_charge_id", object->providerPaymentChargeId);
     removeLastComma(result);
     result += '}';
     return result;
@@ -4020,24 +4035,23 @@ std::string TgTypeParser::parseSuccessfulPayment(const SuccessfulPayment::Ptr& o
 
 ShippingQuery::Ptr TgTypeParser::parseJsonAndGetShippingQuery(const boost::property_tree::ptree& data) const {
     auto result(std::make_shared<ShippingQuery>());
-    result->id = data.get<std::string>("id");
-    result->from = tryParseJson(&TgTypeParser::parseJsonAndGetUser, data, "from");
-    result->invoicePayload = data.get<std::string>("invoice_payload");
-    result->shippingAddress = tryParseJson(&TgTypeParser::parseJsonAndGetShippingAddress, data, "shipping_address");
+    result->id = data.get<std::string>("id", "");
+    result->from = tryParseJson<User>(&TgTypeParser::parseJsonAndGetUser, data, "from");
+    result->invoicePayload = data.get<std::string>("invoice_payload", "");
+    result->shippingAddress = tryParseJson<ShippingAddress>(&TgTypeParser::parseJsonAndGetShippingAddress, data, "shipping_address");
     return result;
 }
 
 std::string TgTypeParser::parseShippingQuery(const ShippingQuery::Ptr& object) const {
+    if (!object) {
+        return "";
+    }
     std::string result;
     result += '{';
     appendToJson(result, "id", object->id);
-    result += R"("from":)";
-    result += parseUser(object->from);
-    result += ",";
+    appendToJson(result, "from", parseUser(object->from));
     appendToJson(result, "invoice_payload", object->invoicePayload);
-    result += R"("shipping_address":)";
-    result += parseShippingAddress(object->shippingAddress);
-    result += ",";
+    appendToJson(result, "shipping_address", parseShippingAddress(object->shippingAddress));
     removeLastComma(result);
     result += '}';
     return result;
@@ -4045,22 +4059,29 @@ std::string TgTypeParser::parseShippingQuery(const ShippingQuery::Ptr& object) c
 
 PreCheckoutQuery::Ptr TgTypeParser::parseJsonAndGetPreCheckoutQuery(const boost::property_tree::ptree& data) const {
     auto result(std::make_shared<PreCheckoutQuery>());
-    result->id = data.get<std::string>("id");
-    result->from = tryParseJson(&TgTypeParser::parseJsonAndGetUser, data, "user");
-    result->currency = data.get<std::string>("currency");
-    result->totalAmount = data.get<std::int32_t>("total_amount");
+    result->id = data.get<std::string>("id", "");
+    result->from = tryParseJson<User>(&TgTypeParser::parseJsonAndGetUser, data, "from");
+    result->currency = data.get<std::string>("currency", "");
+    result->totalAmount = data.get<std::int32_t>("total_amount", 0);
+    result->invoicePayload = data.get<std::string>("invoice_payload", "");
+    result->shippingOptionId = data.get<std::string>("shipping_option_id", "");
+    result->orderInfo = tryParseJson<OrderInfo>(&TgTypeParser::parseJsonAndGetOrderInfo, data, "order_info");
     return result;
 }
 
 std::string TgTypeParser::parsePreCheckoutQuery(const PreCheckoutQuery::Ptr& object) const {
+    if (!object) {
+        return "";
+    }
     std::string result;
     result += '{';
     appendToJson(result, "id", object->id);
-    result += R"("user":)";
-    result += parseUser(object->from);
-    result += ",";
+    appendToJson(result, "from", parseUser(object->from));
     appendToJson(result, "currency", object->currency);
     appendToJson(result, "total_amount", object->totalAmount);
+    appendToJson(result, "invoice_payload", object->invoicePayload);
+    appendToJson(result, "shipping_option_id", object->shippingOptionId);
+    appendToJson(result, "order_info", parseOrderInfo(object->orderInfo));
     removeLastComma(result);
     result += '}';
     return result;
@@ -4069,7 +4090,7 @@ std::string TgTypeParser::parsePreCheckoutQuery(const PreCheckoutQuery::Ptr& obj
 PassportData::Ptr TgTypeParser::parseJsonAndGetPassportData(const boost::property_tree::ptree& data) const {
     auto result(std::make_shared<PassportData>());
     result->data = parseJsonAndGetArray<EncryptedPassportElement>(&TgTypeParser::parseJsonAndGetEncryptedPassportElement, data, "data");
-    result->credentials = tryParseJson(&TgTypeParser::parseJsonAndGetEncryptedCredentials, data, "credentials");
+    result->credentials = tryParseJson<EncryptedCredentials>(&TgTypeParser::parseJsonAndGetEncryptedCredentials, data, "credentials");
     return result;
 }
 
@@ -4117,9 +4138,9 @@ EncryptedPassportElement::Ptr TgTypeParser::parseJsonAndGetEncryptedPassportElem
     result->phoneNumber = data.get<std::string>("phone_number", "");
     result->email = data.get<std::string>("email", "");
     result->files = parseJsonAndGetArray<PassportFile>(&TgTypeParser::parseJsonAndGetPassportFile, data, "files");
-    result->frontSide = tryParseJson(&TgTypeParser::parseJsonAndGetPassportFile, data, "front_side");
-    result->reverseSide = tryParseJson(&TgTypeParser::parseJsonAndGetPassportFile, data, "reverse_side");
-    result->selfie = tryParseJson(&TgTypeParser::parseJsonAndGetPassportFile, data, "selfie");
+    result->frontSide = tryParseJson<PassportFile>(&TgTypeParser::parseJsonAndGetPassportFile, data, "front_side");
+    result->reverseSide = tryParseJson<PassportFile>(&TgTypeParser::parseJsonAndGetPassportFile, data, "reverse_side");
+    result->selfie = tryParseJson<PassportFile>(&TgTypeParser::parseJsonAndGetPassportFile, data, "selfie");
     result->translation = parseJsonAndGetArray<PassportFile>(&TgTypeParser::parseJsonAndGetPassportFile, data, "translation");
     result->hash = data.get<std::string>("hash", "");
     return result;
@@ -4423,10 +4444,10 @@ std::string TgTypeParser::parsePassportElementErrorUnspecified(const PassportEle
 
 Game::Ptr TgTypeParser::parseJsonAndGetGame(const boost::property_tree::ptree& data) const {
     auto result(std::make_shared<Game>());
-    result->title = data.get("title", "");
-    result->description = data.get("description", "");
+    result->title = data.get<std::string>("title", "");
+    result->description = data.get<std::string>("description", "");
     result->photo = parseJsonAndGetArray<PhotoSize>(&TgTypeParser::parseJsonAndGetPhotoSize, data, "photo");
-    result->text = data.get("text", "");
+    result->text = data.get<std::string>("text", "");
     result->textEntities = parseJsonAndGetArray<MessageEntity>(&TgTypeParser::parseJsonAndGetMessageEntity, data, "text_entities");
     result->animation = tryParseJson<Animation>(&TgTypeParser::parseJsonAndGetAnimation, data, "animation");
     return result;
@@ -4467,7 +4488,7 @@ std::string TgTypeParser::parseCallbackGame(const CallbackGame::Ptr& object) con
 
 GameHighScore::Ptr TgTypeParser::parseJsonAndGetGameHighScore(const boost::property_tree::ptree& data) const {
     auto result(std::make_shared<GameHighScore>());
-    result->position = data.get("position", "");
+    result->position = data.get<std::int32_t>("position", 0);
     result->user = tryParseJson<User>(&TgTypeParser::parseJsonAndGetUser, data, "user");
     result->score = data.get<std::int32_t>("score", 0);
     return result;
