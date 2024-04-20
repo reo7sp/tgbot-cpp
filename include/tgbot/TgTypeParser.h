@@ -36,6 +36,7 @@
 #include "tgbot/types/WebAppData.h"
 #include "tgbot/types/ProximityAlertTriggered.h"
 #include "tgbot/types/MessageAutoDeleteTimerChanged.h"
+#include "tgbot/types/ChatBoostAdded.h"
 #include "tgbot/types/ForumTopicCreated.h"
 #include "tgbot/types/ForumTopicClosed.h"
 #include "tgbot/types/ForumTopicEdited.h"
@@ -304,6 +305,9 @@ public:
 
     MessageAutoDeleteTimerChanged::Ptr parseJsonAndGetMessageAutoDeleteTimerChanged(const boost::property_tree::ptree& data) const;
     std::string parseMessageAutoDeleteTimerChanged(const MessageAutoDeleteTimerChanged::Ptr& object) const;
+
+    ChatBoostAdded::Ptr parseJsonAndGetChatBoostAdded(const boost::property_tree::ptree& data) const;
+    std::string parseChatBoostAdded(const ChatBoostAdded::Ptr& object) const;
 
     ForumTopicCreated::Ptr parseJsonAndGetForumTopicCreated(const boost::property_tree::ptree& data) const;
     std::string parseForumTopicCreated(const ForumTopicCreated::Ptr& object) const;

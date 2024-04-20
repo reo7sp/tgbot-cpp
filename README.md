@@ -9,7 +9,7 @@ Documentation is located [here](http://reo7sp.github.io/tgbot-cpp).
 
 ## State
 
-- [x] Telegram Bot API 7.0
+- [x] Telegram Bot API 7.1
 - [ ] [MaybeInaccessibleMessage](https://core.telegram.org/bots/api#maybeinaccessiblemessage)
 - [ ] [Message->pinnedMessage](https://core.telegram.org/bots/api#message)
 - [ ] [CallbackQuery->message](https://core.telegram.org/bots/api#callbackquery)

@@ -892,13 +892,13 @@ public:
      * @param canPinMessages Optional. Pass True if the administrator can pin messages, supergroups only
      * @param canPromoteMembers Optional. Pass True if the administrator can add new administrators with a subset of their own privileges or demote administrators that they have promoted, directly or indirectly (promoted by administrators that were appointed by him)
      * @param isAnonymous Optional. Pass True if the administrator's presence in the chat is hidden
-     * @param canManageChat Optional. Pass True if the administrator can access the chat event log, boost list in channels, see channel members, report spam messages, see anonymous administrators in supergroups and ignore slow mode. Implied by any other administrator privilege
+     * @param canManageChat Optional. Pass True if the administrator can access the chat event log, get boost list, see hidden supergroup and channel members, report spam messages and ignore slow mode. Implied by any other administrator privilege.
      * @param canManageVideoChats Optional. Pass True if the administrator can manage video chats
      * @param canRestrictMembers Optional. Pass True if the administrator can restrict, ban or unban chat members, or access supergroup statistics
      * @param canManageTopics Optional. Pass True if the user is allowed to create, rename, close, and reopen forum topics, supergroups only
-     * @param canPostStories Optional. Pass True if the administrator can post stories in the channel; channels only
-     * @param canEditStories Optional. Pass True if the administrator can edit stories posted by other users; channels only
-     * @param canDeleteStories Optional. Pass True if the administrator can delete stories posted by other users; channels only
+     * @param canPostStories Optional. Pass True if the administrator can post stories to the chat
+     * @param canEditStories Optional. Pass True if the administrator can edit stories posted by other users
+     * @param canDeleteStories Optional. Pass True if the administrator can delete stories posted by other users
      *
      * @return Returns True on success.
      */

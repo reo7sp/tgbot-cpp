@@ -1,5 +1,5 @@
-#ifndef TGBOT_CPP_CHATMEMBERUPDATED_H
-#define TGBOT_CPP_CHATMEMBERUPDATED_H
+#ifndef TGBOT_CHATMEMBERUPDATED_H
+#define TGBOT_CHATMEMBERUPDATED_H
 
 #include "tgbot/types/Chat.h"
 #include "tgbot/types/User.h"
@@ -58,4 +58,4 @@ public:
 };
 }
 
-#endif //TGBOT_CPP_CHATMEMBERUPDATED_H
+#endif //TGBOT_CHATMEMBERUPDATED_H

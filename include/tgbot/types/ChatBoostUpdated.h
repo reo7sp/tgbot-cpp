@@ -24,7 +24,7 @@ public:
     Chat::Ptr chat;
 
     /**
-     * @brief Infomation about the chat boost
+     * @brief Information about the chat boost
      */
     ChatBoost::Ptr boost;
 };

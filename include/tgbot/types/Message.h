@@ -7,6 +7,7 @@
 #include "tgbot/types/Message.h"
 #include "tgbot/types/ExternalReplyInfo.h"
 #include "tgbot/types/TextQuote.h"
+#include "tgbot/types/Story.h"
 #include "tgbot/types/MessageEntity.h"
 #include "tgbot/types/LinkPreviewOptions.h"
 #include "tgbot/types/Animation.h"
@@ -14,7 +15,6 @@
 #include "tgbot/types/Document.h"
 #include "tgbot/types/PhotoSize.h"
 #include "tgbot/types/Sticker.h"
-#include "tgbot/types/Story.h"
 #include "tgbot/types/Video.h"
 #include "tgbot/types/VideoNote.h"
 #include "tgbot/types/Voice.h"
@@ -32,6 +32,7 @@
 #include "tgbot/types/WriteAccessAllowed.h"
 #include "tgbot/types/PassportData.h"
 #include "tgbot/types/ProximityAlertTriggered.h"
+#include "tgbot/types/ChatBoostAdded.h"
 #include "tgbot/types/ForumTopicCreated.h"
 #include "tgbot/types/ForumTopicEdited.h"
 #include "tgbot/types/ForumTopicClosed.h"
@@ -92,6 +93,11 @@ public:
     Chat::Ptr senderChat;
 
     /**
+     * @brief Optional. If the sender of the message boosted the chat, the number of boosts added by the user
+     */
+    std::int32_t senderBoostCount;
+
+    /**
      * @brief Date the message was sent in Unix time.
      *
      * It is always a positive number, representing a valid date.
@@ -134,6 +140,11 @@ public:
      * @brief Optional. For replies that quote part of the original message, the quoted part of the message
      */
     TextQuote::Ptr quote;
+
+    /**
+     * @brief Optional. For replies to a story, the original story
+     */
+    Story::Ptr replyToStory;
 
     /**
      * @brief Optional. Bot through which the message was sent
@@ -341,7 +352,7 @@ public:
     /**
      * @brief Optional. Specified message was pinned.
      *
-     * Note that the Message object in this field will not contain further replyToMessage fields even if it is itself a reply.
+     * Note that the Message object in this field will not contain further replyToMessage fields even if it itself is a reply.
      */
     Message::Ptr pinnedMessage;
 
@@ -392,6 +403,11 @@ public:
      * A user in the chat triggered another user's proximity alert while sharing Live Location.
      */
     ProximityAlertTriggered::Ptr proximityAlertTriggered;
+
+    /**
+     * @brief Optional. Service message: user boosted the chat
+     */
+    ChatBoostAdded::Ptr boostAdded;
 
     /**
      * @brief Optional. Service message: forum topic created

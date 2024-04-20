@@ -135,7 +135,7 @@ public:
      *
      * Returned only in Api::getChat.
      */
-    std::int64_t emojiStatusExpirationDate;
+    std::uint32_t emojiStatusExpirationDate;
 
     /**
      * @brief Optional. Bio of the other party in a private chat.
@@ -201,11 +201,18 @@ public:
     ChatPermissions::Ptr permissions;
 
     /**
-     * @brief Optional. For supergroups, the minimum allowed delay between consecutive messages sent by each unpriviledged user; in seconds.
+     * @brief Optional. For supergroups, the minimum allowed delay between consecutive messages sent by each unprivileged user; in seconds.
      *
      * Returned only in Api::getChat.
      */
     std::int32_t slowModeDelay;
+
+    /**
+     * @brief Optional. For supergroups, the minimum number of boosts that a non-administrator user needs to add in order to ignore slow mode and chat permissions.
+     *
+     * Returned only in Api::getChat.
+     */
+    std::int32_t unrestrictBoostCount;
 
     /**
      * @brief Optional. The time after which all messages sent to the chat will be automatically deleted; in seconds.
@@ -256,6 +263,14 @@ public:
      * Returned only in Api::getChat.
      */
     bool canSetStickerSet;
+
+    /**
+     * @brief Optional. For supergroups, the name of the group's custom emoji sticker set.
+     *
+     * Custom emoji from this set can be used by all users and bots in the group.
+     * Returned only in Api::getChat.
+     */
+    std::string customEmojiStickerSetName;
 
     /**
      * @brief Optional. Unique identifier for the linked chat, i.e. the discussion group identifier for a channel and vice versa; for supergroups and channel chats.

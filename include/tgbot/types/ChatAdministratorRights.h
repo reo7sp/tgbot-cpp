@@ -21,9 +21,9 @@ public:
     bool isAnonymous;
 
     /**
-     * @brief True, if the administrator can access the chat event log, boost list in channels, see channel members, report spam messages, see anonymous administrators in supergroups and ignore slow mode.
+     * @brief True, if the administrator can access the chat event log, get boost list, see hidden supergroup and channel members, report spam messages and ignore slow mode.
      *
-     * Implied by any other administrator privilege
+     * Implied by any other administrator privilege.
      */
     bool canManageChat;
 
@@ -58,6 +58,21 @@ public:
     bool canInviteUsers;
 
     /**
+     * @brief True, if the administrator can post stories to the chat
+     */
+    bool canPostStories;
+
+    /**
+     * @brief True, if the administrator can edit stories posted by other users
+     */
+    bool canEditStories;
+
+    /**
+     * @brief True, if the administrator can delete stories posted by other users
+     */
+    bool canDeleteStories;
+
+    /**
      * @brief Optional. True, if the administrator can post messages in the channel, or access channel statistics; channels only
      */
     bool canPostMessages;
@@ -71,21 +86,6 @@ public:
      * @brief Optional. True, if the user is allowed to pin messages; groups and supergroups only
      */
     bool canPinMessages;
-
-    /**
-     * @brief Optional. True, if the administrator can post stories in the channel; channels only
-     */
-    bool canPostStories;
-
-    /**
-     * @brief Optional. True, if the administrator can edit stories posted by other users; channels only
-     */
-    bool canEditStories;
-
-    /**
-     * @brief Optional. True, if the administrator can delete stories posted by other users; channels only
-     */
-    bool canDeleteStories;
 
     /**
      * @brief Optional. True, if the user is allowed to create, rename, close, and reopen forum topics; supergroups only

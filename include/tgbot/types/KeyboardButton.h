@@ -17,15 +17,6 @@ namespace TgBot {
  * For simple text buttons, String can be used instead of this object to specify the button text.
  * The optional fields KeyboardButton::webApp, KeyboardButton::requestUsers, KeyboardButton::requestChat, KeyboardButton::requestContact, KeyboardButton::requestLocation, and KeyboardButton::requestPoll are mutually exclusive.
  *
- * Note: KeyboardButton::requestContact and KeyboardButton::requestLocation options will only work in Telegram versions released after 9 April, 2016.
- * Older clients will display unsupported message.
- *
- * Note: KeyboardButton::requestPoll option will only work in Telegram versions released after 23 January, 2020.
- * Older clients will display unsupported message.
- *
- * Note: KeyboardButton::webApp option will only work in Telegram versions released after 16 April, 2022.
- * Older clients will display unsupported message.
- *
  * Note: KeyboardButton::requestUsers and KeyboardButton::requestChat options will only work in Telegram versions released after 3 February, 2023.
  * Older clients will display unsupported message.
  *

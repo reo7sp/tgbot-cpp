@@ -27,7 +27,7 @@ public:
     Chat::Ptr chat;
 
     /**
-     * @brief Identifier of the messsage with the giveaway in the chat
+     * @brief Identifier of the message with the giveaway in the chat
      */
     std::int32_t giveawayMessageId;
 

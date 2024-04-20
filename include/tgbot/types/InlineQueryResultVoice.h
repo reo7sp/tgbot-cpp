@@ -14,12 +14,14 @@ namespace TgBot {
 
 /**
  * @brief Represents a link to a voice recording in an .OGG container encoded with OPUS.
+ *
  * By default, this voice recording will be sent by the user.
  * Alternatively, you can use inputMessageContent to send a message with the specified content instead of the the voice message.
  *
  * @ingroup types
  */
 class InlineQueryResultVoice : public InlineQueryResult {
+
 public:
     static const std::string TYPE;
 
@@ -46,7 +48,8 @@ public:
 
     /**
      * @brief Optional. Mode for parsing entities in the voice message caption.
-     * See https://core.telegram.org/bots/api#formatting-options for more details.
+     *
+     * See [formatting options](https://core.telegram.org/bots/api#formatting-options) for more details.
      */
     std::string parseMode;
 

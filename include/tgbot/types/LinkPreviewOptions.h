@@ -29,12 +29,12 @@ public:
     std::string url;
 
     /**
-     * @brief Optional. True, if the media in the link preview is suppposed to be shrunk; ignored if the URL isn't explicitly specified or media size change isn't supported for the preview
+     * @brief Optional. True, if the media in the link preview is supposed to be shrunk; ignored if the URL isn't explicitly specified or media size change isn't supported for the preview
      */
     bool preferSmallMedia;
 
     /**
-     * @brief Optional. True, if the media in the link preview is suppposed to be enlarged; ignored if the URL isn't explicitly specified or media size change isn't supported for the preview
+     * @brief Optional. True, if the media in the link preview is supposed to be enlarged; ignored if the URL isn't explicitly specified or media size change isn't supported for the preview
      */
     bool preferLargeMedia;
 

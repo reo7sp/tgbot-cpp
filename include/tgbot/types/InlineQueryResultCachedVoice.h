@@ -5,20 +5,22 @@
 #include "tgbot/types/MessageEntity.h"
 #include "tgbot/types/InputMessageContent.h"
 
-#include <string>
 #include <memory>
+#include <string>
 #include <vector>
 
 namespace TgBot {
 
 /**
  * @brief Represents a link to a voice message stored on the Telegram servers.
+ *
  * By default, this voice message will be sent by the user.
  * Alternatively, you can use inputMessageContent to send a message with the specified content instead of the voice message.
  *
  * @ingroup types
  */
 class InlineQueryResultCachedVoice : public InlineQueryResult {
+
 public:
     static const std::string TYPE;
 
@@ -34,7 +36,7 @@ public:
     std::string voiceFileId;
 
     /**
-     * @brief  	Voice message title
+     * @brief Voice message title
      */
     std::string title;
 
@@ -45,7 +47,8 @@ public:
 
     /**
      * @brief Optional. Mode for parsing entities in the voice message caption.
-     * See https://core.telegram.org/bots/api#formatting-options for more details.
+     *
+     * See [formatting options](https://core.telegram.org/bots/api#formatting-options) for more details.
      */
     std::string parseMode;
 

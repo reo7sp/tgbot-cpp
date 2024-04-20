@@ -4,19 +4,21 @@
 #include "tgbot/types/InlineQueryResult.h"
 #include "tgbot/types/InputMessageContent.h"
 
-#include <string>
 #include <memory>
+#include <string>
 
 namespace TgBot {
 
 /**
  * @brief Represents a link to a sticker stored on the Telegram servers.
+ *
  * By default, this sticker will be sent by the user.
  * Alternatively, you can use inputMessageContent to send a message with the specified content instead of the sticker.
  *
  * @ingroup types
  */
 class InlineQueryResultCachedSticker : public InlineQueryResult {
+
 public:
     static const std::string TYPE;
 
