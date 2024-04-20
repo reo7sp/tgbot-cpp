@@ -7,16 +7,16 @@ namespace TgBot {
 
 /**
  * @brief Describes actions that a non-administrator user is allowed to take in a chat.
- * 
+ *
  * @ingroup types
  */
-
 class ChatPermissions {
+
 public:
     typedef std::shared_ptr<ChatPermissions> Ptr;
 
     /**
-     * @brief Optional. True, if the user is allowed to send text messages, contacts, invoices, locations and venues
+     * @brief Optional. True, if the user is allowed to send text messages, contacts, giveaways, giveaway winners, invoices, locations and venues
      */
     bool canSendMessages;
 
@@ -51,23 +51,23 @@ public:
     bool canSendVoiceNotes;
 
     /**
-     * @brief Optional. True, if the user is allowed to send polls, implies canSendMessages
+     * @brief Optional. True, if the user is allowed to send polls
      */
     bool canSendPolls;
 
     /**
-     * @brief Optional. True, if the user is allowed to send animations, games, stickers and use inline bots, implies canSendMediaMessages
+     * @brief Optional. True, if the user is allowed to send animations, games, stickers and use inline bots
      */
     bool canSendOtherMessages;
 
     /**
-     * @brief Optional. True, if the user is allowed to add web page previews to their messages, implies canSendMediaMessages
+     * @brief Optional. True, if the user is allowed to add web page previews to their messages
      */
     bool canAddWebPagePreviews;
 
     /**
      * @brief Optional. True, if the user is allowed to change the chat title, photo and other settings.
-     * 
+     *
      * Ignored in public supergroups
      */
     bool canChangeInfo;
@@ -79,14 +79,14 @@ public:
 
     /**
      * @brief Optional. True, if the user is allowed to pin messages.
-     * 
+     *
      * Ignored in public supergroups
      */
     bool canPinMessages;
 
     /**
      * @brief Optional. True, if the user is allowed to create forum topics.
-     * 
+     *
      * If omitted defaults to the value of canPinMessages
      */
     bool canManageTopics;

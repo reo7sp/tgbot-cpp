@@ -1,7 +1,7 @@
 #ifndef TGBOT_KEYBOARDBUTTON_H
 #define TGBOT_KEYBOARDBUTTON_H
 
-#include "tgbot/types/KeyboardButtonRequestUser.h"
+#include "tgbot/types/KeyboardButtonRequestUsers.h"
 #include "tgbot/types/KeyboardButtonRequestChat.h"
 #include "tgbot/types/KeyboardButtonPollType.h"
 #include "tgbot/types/WebAppInfo.h"
@@ -13,8 +13,21 @@ namespace TgBot {
 
 /**
  * @brief This object represents one button of the reply keyboard.
+ *
  * For simple text buttons, String can be used instead of this object to specify the button text.
- * The optional fields webApp, requestUser, requestChat, requestContact, requestLocation, and requestPoll are mutually exclusive.
+ * The optional fields KeyboardButton::webApp, KeyboardButton::requestUsers, KeyboardButton::requestChat, KeyboardButton::requestContact, KeyboardButton::requestLocation, and KeyboardButton::requestPoll are mutually exclusive.
+ *
+ * Note: KeyboardButton::requestContact and KeyboardButton::requestLocation options will only work in Telegram versions released after 9 April, 2016.
+ * Older clients will display unsupported message.
+ *
+ * Note: KeyboardButton::requestPoll option will only work in Telegram versions released after 23 January, 2020.
+ * Older clients will display unsupported message.
+ *
+ * Note: KeyboardButton::webApp option will only work in Telegram versions released after 16 April, 2022.
+ * Older clients will display unsupported message.
+ *
+ * Note: KeyboardButton::requestUsers and KeyboardButton::requestChat options will only work in Telegram versions released after 3 February, 2023.
+ * Older clients will display unsupported message.
  *
  * @ingroup types
  */
@@ -25,52 +38,52 @@ public:
 
     /**
      * @brief Text of the button.
-     * 
+     *
      * If none of the optional fields are used, it will be sent as a message when the button is pressed
      */
     std::string text;
 
     /**
      * @brief Optional. If specified, pressing the button will open a list of suitable users.
-     * 
-     * Tapping on any user will send their identifier to the bot in a “user_shared” service message.
+     *
+     * Identifiers of selected users will be sent to the bot in a “usersShared” service message.
      * Available in private chats only.
      */
-    KeyboardButtonRequestUser::Ptr requestUser;
+    KeyboardButtonRequestUsers::Ptr requestUsers;
 
     /**
      * @brief Optional. If specified, pressing the button will open a list of suitable chats.
-     * 
-     * Tapping on a chat will send its identifier to the bot in a “chat_shared” service message.
+     *
+     * Tapping on a chat will send its identifier to the bot in a “chatShared” service message.
      * Available in private chats only.
      */
     KeyboardButtonRequestChat::Ptr requestChat;
 
     /**
      * @brief Optional. If True, the user's phone number will be sent as a contact when the button is pressed.
-     * 
+     *
      * Available in private chats only.
      */
     bool requestContact;
 
     /**
      * @brief Optional. If True, the user's current location will be sent when the button is pressed.
-     * 
+     *
      * Available in private chats only.
      */
     bool requestLocation;
 
     /**
      * @brief Optional. If specified, the user will be asked to create a poll and send it to the bot when the button is pressed.
-     * 
+     *
      * Available in private chats only.
      */
     KeyboardButtonPollType::Ptr requestPoll;
 
     /**
-     * @brief Optional. If specified, the described Web App will be launched when the button is pressed.
-     * 
-     * The Web App will be able to send a “web_app_data” service message.
+     * @brief Optional. If specified, the described [Web App](https://core.telegram.org/bots/webapps) will be launched when the button is pressed.
+     *
+     * The Web App will be able to send a “webAppData” service message.
      * Available in private chats only.
      */
     WebAppInfo::Ptr webApp;

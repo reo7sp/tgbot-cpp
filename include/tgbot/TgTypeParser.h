@@ -8,7 +8,16 @@
 #include "tgbot/types/Chat.h"
 #include "tgbot/types/Message.h"
 #include "tgbot/types/MessageId.h"
+#include "tgbot/types/InaccessibleMessage.h"
 #include "tgbot/types/MessageEntity.h"
+#include "tgbot/types/TextQuote.h"
+#include "tgbot/types/ExternalReplyInfo.h"
+#include "tgbot/types/ReplyParameters.h"
+#include "tgbot/types/MessageOrigin.h"
+#include "tgbot/types/MessageOriginUser.h"
+#include "tgbot/types/MessageOriginHiddenUser.h"
+#include "tgbot/types/MessageOriginChat.h"
+#include "tgbot/types/MessageOriginChannel.h"
 #include "tgbot/types/PhotoSize.h"
 #include "tgbot/types/Animation.h"
 #include "tgbot/types/Audio.h"
@@ -33,19 +42,24 @@
 #include "tgbot/types/ForumTopicReopened.h"
 #include "tgbot/types/GeneralForumTopicHidden.h"
 #include "tgbot/types/GeneralForumTopicUnhidden.h"
-#include "tgbot/types/UserShared.h"
+#include "tgbot/types/UsersShared.h"
 #include "tgbot/types/ChatShared.h"
 #include "tgbot/types/WriteAccessAllowed.h"
 #include "tgbot/types/VideoChatScheduled.h"
 #include "tgbot/types/VideoChatStarted.h"
 #include "tgbot/types/VideoChatEnded.h"
 #include "tgbot/types/VideoChatParticipantsInvited.h"
+#include "tgbot/types/GiveawayCreated.h"
+#include "tgbot/types/Giveaway.h"
+#include "tgbot/types/GiveawayWinners.h"
+#include "tgbot/types/GiveawayCompleted.h"
+#include "tgbot/types/LinkPreviewOptions.h"
 #include "tgbot/types/UserProfilePhotos.h"
 #include "tgbot/types/File.h"
 #include "tgbot/types/WebAppInfo.h"
 #include "tgbot/types/ReplyKeyboardMarkup.h"
 #include "tgbot/types/KeyboardButton.h"
-#include "tgbot/types/KeyboardButtonRequestUser.h"
+#include "tgbot/types/KeyboardButtonRequestUsers.h"
 #include "tgbot/types/KeyboardButtonRequestChat.h"
 #include "tgbot/types/KeyboardButtonPollType.h"
 #include "tgbot/types/ReplyKeyboardRemove.h"
@@ -58,6 +72,7 @@
 #include "tgbot/types/ChatPhoto.h"
 #include "tgbot/types/ChatInviteLink.h"
 #include "tgbot/types/ChatAdministratorRights.h"
+#include "tgbot/types/ChatMemberUpdated.h"
 #include "tgbot/types/ChatMember.h"
 #include "tgbot/types/ChatMemberOwner.h"
 #include "tgbot/types/ChatMemberAdministrator.h"
@@ -65,10 +80,15 @@
 #include "tgbot/types/ChatMemberRestricted.h"
 #include "tgbot/types/ChatMemberLeft.h"
 #include "tgbot/types/ChatMemberBanned.h"
-#include "tgbot/types/ChatMemberUpdated.h"
 #include "tgbot/types/ChatJoinRequest.h"
 #include "tgbot/types/ChatPermissions.h"
 #include "tgbot/types/ChatLocation.h"
+#include "tgbot/types/ReactionType.h"
+#include "tgbot/types/ReactionTypeEmoji.h"
+#include "tgbot/types/ReactionTypeCustomEmoji.h"
+#include "tgbot/types/ReactionCount.h"
+#include "tgbot/types/MessageReactionUpdated.h"
+#include "tgbot/types/MessageReactionCountUpdated.h"
 #include "tgbot/types/ForumTopic.h"
 #include "tgbot/types/BotCommand.h"
 #include "tgbot/types/BotCommandScope.h"
@@ -86,6 +106,14 @@
 #include "tgbot/types/MenuButtonCommands.h"
 #include "tgbot/types/MenuButtonWebApp.h"
 #include "tgbot/types/MenuButtonDefault.h"
+#include "tgbot/types/ChatBoostSource.h"
+#include "tgbot/types/ChatBoostSourcePremium.h"
+#include "tgbot/types/ChatBoostSourceGiftCode.h"
+#include "tgbot/types/ChatBoostSourceGiveaway.h"
+#include "tgbot/types/ChatBoost.h"
+#include "tgbot/types/ChatBoostUpdated.h"
+#include "tgbot/types/ChatBoostRemoved.h"
+#include "tgbot/types/UserChatBoosts.h"
 #include "tgbot/types/ResponseParameters.h"
 #include "tgbot/types/InputMedia.h"
 #include "tgbot/types/InputMediaPhoto.h"
@@ -138,6 +166,8 @@
 #include "tgbot/types/PreCheckoutQuery.h"
 #include "tgbot/types/PassportData.h"
 #include "tgbot/types/PassportFile.h"
+#include "tgbot/types/EncryptedPassportElement.h"
+#include "tgbot/types/EncryptedCredentials.h"
 #include "tgbot/types/PassportElementError.h"
 #include "tgbot/types/PassportElementErrorDataField.h"
 #include "tgbot/types/PassportElementErrorFrontSide.h"
@@ -191,8 +221,35 @@ public:
     MessageId::Ptr parseJsonAndGetMessageId(const boost::property_tree::ptree& data) const;
     std::string parseMessageId(const MessageId::Ptr& object) const;
 
+    InaccessibleMessage::Ptr parseJsonAndGetInaccessibleMessage(const boost::property_tree::ptree& data) const;
+    std::string parseInaccessibleMessage(const InaccessibleMessage::Ptr& object) const;
+
     MessageEntity::Ptr parseJsonAndGetMessageEntity(const boost::property_tree::ptree& data) const;
     std::string parseMessageEntity(const MessageEntity::Ptr& object) const;
+
+    TextQuote::Ptr parseJsonAndGetTextQuote(const boost::property_tree::ptree& data) const;
+    std::string parseTextQuote(const TextQuote::Ptr& object) const;
+
+    ExternalReplyInfo::Ptr parseJsonAndGetExternalReplyInfo(const boost::property_tree::ptree& data) const;
+    std::string parseExternalReplyInfo(const ExternalReplyInfo::Ptr& object) const;
+
+    ReplyParameters::Ptr parseJsonAndGetReplyParameters(const boost::property_tree::ptree& data) const;
+    std::string parseReplyParameters(const ReplyParameters::Ptr& object) const;
+
+    MessageOrigin::Ptr parseJsonAndGetMessageOrigin(const boost::property_tree::ptree& data) const;
+    std::string parseMessageOrigin(const MessageOrigin::Ptr& object) const;
+
+    MessageOriginUser::Ptr parseJsonAndGetMessageOriginUser(const boost::property_tree::ptree& data) const;
+    std::string parseMessageOriginUser(const MessageOriginUser::Ptr& object) const;
+
+    MessageOriginHiddenUser::Ptr parseJsonAndGetMessageOriginHiddenUser(const boost::property_tree::ptree& data) const;
+    std::string parseMessageOriginHiddenUser(const MessageOriginHiddenUser::Ptr& object) const;
+
+    MessageOriginChat::Ptr parseJsonAndGetMessageOriginChat(const boost::property_tree::ptree& data) const;
+    std::string parseMessageOriginChat(const MessageOriginChat::Ptr& object) const;
+
+    MessageOriginChannel::Ptr parseJsonAndGetMessageOriginChannel(const boost::property_tree::ptree& data) const;
+    std::string parseMessageOriginChannel(const MessageOriginChannel::Ptr& object) const;
 
     PhotoSize::Ptr parseJsonAndGetPhotoSize(const boost::property_tree::ptree& data) const;
     std::string parsePhotoSize(const PhotoSize::Ptr& object) const;
@@ -266,8 +323,8 @@ public:
     GeneralForumTopicUnhidden::Ptr parseJsonAndGetGeneralForumTopicUnhidden(const boost::property_tree::ptree& data) const;
     std::string parseGeneralForumTopicUnhidden(const GeneralForumTopicUnhidden::Ptr& object) const;
 
-    UserShared::Ptr parseJsonAndGetUserShared(const boost::property_tree::ptree& data) const;
-    std::string parseUserShared(const UserShared::Ptr& object) const;
+    UsersShared::Ptr parseJsonAndGetUsersShared(const boost::property_tree::ptree& data) const;
+    std::string parseUsersShared(const UsersShared::Ptr& object) const;
 
     ChatShared::Ptr parseJsonAndGetChatShared(const boost::property_tree::ptree& data) const;
     std::string parseChatShared(const ChatShared::Ptr& object) const;
@@ -287,6 +344,21 @@ public:
     VideoChatParticipantsInvited::Ptr parseJsonAndGetVideoChatParticipantsInvited(const boost::property_tree::ptree& data) const;
     std::string parseVideoChatParticipantsInvited(const VideoChatParticipantsInvited::Ptr& object) const;
 
+    GiveawayCreated::Ptr parseJsonAndGetGiveawayCreated(const boost::property_tree::ptree& data) const;
+    std::string parseGiveawayCreated(const GiveawayCreated::Ptr& object) const;
+
+    Giveaway::Ptr parseJsonAndGetGiveaway(const boost::property_tree::ptree& data) const;
+    std::string parseGiveaway(const Giveaway::Ptr& object) const;
+
+    GiveawayWinners::Ptr parseJsonAndGetGiveawayWinners(const boost::property_tree::ptree& data) const;
+    std::string parseGiveawayWinners(const GiveawayWinners::Ptr& object) const;
+
+    GiveawayCompleted::Ptr parseJsonAndGetGiveawayCompleted(const boost::property_tree::ptree& data) const;
+    std::string parseGiveawayCompleted(const GiveawayCompleted::Ptr& object) const;
+
+    LinkPreviewOptions::Ptr parseJsonAndGetLinkPreviewOptions(const boost::property_tree::ptree& data) const;
+    std::string parseLinkPreviewOptions(const LinkPreviewOptions::Ptr& object) const;
+
     UserProfilePhotos::Ptr parseJsonAndGetUserProfilePhotos(const boost::property_tree::ptree& data) const;
     std::string parseUserProfilePhotos(const UserProfilePhotos::Ptr& object) const;
 
@@ -302,8 +374,8 @@ public:
     KeyboardButton::Ptr parseJsonAndGetKeyboardButton(const boost::property_tree::ptree& data) const;
     std::string parseKeyboardButton(const KeyboardButton::Ptr& object) const;
 
-    KeyboardButtonRequestUser::Ptr parseJsonAndGetKeyboardButtonRequestUser(const boost::property_tree::ptree& data) const;
-    std::string parseKeyboardButtonRequestUser(const KeyboardButtonRequestUser::Ptr& object) const;
+    KeyboardButtonRequestUsers::Ptr parseJsonAndGetKeyboardButtonRequestUsers(const boost::property_tree::ptree& data) const;
+    std::string parseKeyboardButtonRequestUsers(const KeyboardButtonRequestUsers::Ptr& object) const;
 
     KeyboardButtonRequestChat::Ptr parseJsonAndGetKeyboardButtonRequestChat(const boost::property_tree::ptree& data) const;
     std::string parseKeyboardButtonRequestChat(const KeyboardButtonRequestChat::Ptr& object) const;
@@ -341,6 +413,9 @@ public:
     ChatAdministratorRights::Ptr parseJsonAndGetChatAdministratorRights(const boost::property_tree::ptree& data) const;
     std::string parseChatAdministratorRights(const ChatAdministratorRights::Ptr& object) const;
 
+    ChatMemberUpdated::Ptr parseJsonAndGetChatMemberUpdated(const boost::property_tree::ptree& data) const;
+    std::string parseChatMemberUpdated(const ChatMemberUpdated::Ptr& object) const;
+
     ChatMember::Ptr parseJsonAndGetChatMember(const boost::property_tree::ptree& data) const;
     std::string parseChatMember(const ChatMember::Ptr& object) const;
 
@@ -362,9 +437,6 @@ public:
     ChatMemberBanned::Ptr parseJsonAndGetChatMemberBanned(const boost::property_tree::ptree& data) const;
     std::string parseChatMemberBanned(const ChatMemberBanned::Ptr& object) const;
 
-    ChatMemberUpdated::Ptr parseJsonAndGetChatMemberUpdated(const boost::property_tree::ptree& data) const;
-    std::string parseChatMemberUpdated(const ChatMemberUpdated::Ptr& object) const;
-
     ChatJoinRequest::Ptr parseJsonAndGetChatJoinRequest(const boost::property_tree::ptree& data) const;
     std::string parseChatJoinRequest(const ChatJoinRequest::Ptr& object) const;
 
@@ -373,6 +445,24 @@ public:
 
     ChatLocation::Ptr parseJsonAndGetChatLocation(const boost::property_tree::ptree& data) const;
     std::string parseChatLocation(const ChatLocation::Ptr& object) const;
+
+    ReactionType::Ptr parseJsonAndGetReactionType(const boost::property_tree::ptree& data) const;
+    std::string parseReactionType(const ReactionType::Ptr& object) const;
+
+    ReactionTypeEmoji::Ptr parseJsonAndGetReactionTypeEmoji(const boost::property_tree::ptree& data) const;
+    std::string parseReactionTypeEmoji(const ReactionTypeEmoji::Ptr& object) const;
+
+    ReactionTypeCustomEmoji::Ptr parseJsonAndGetReactionTypeCustomEmoji(const boost::property_tree::ptree& data) const;
+    std::string parseReactionTypeCustomEmoji(const ReactionTypeCustomEmoji::Ptr& object) const;
+
+    ReactionCount::Ptr parseJsonAndGetReactionCount(const boost::property_tree::ptree& data) const;
+    std::string parseReactionCount(const ReactionCount::Ptr& object) const;
+
+    MessageReactionUpdated::Ptr parseJsonAndGetMessageReactionUpdated(const boost::property_tree::ptree& data) const;
+    std::string parseMessageReactionUpdated(const MessageReactionUpdated::Ptr& object) const;
+
+    MessageReactionCountUpdated::Ptr parseJsonAndGetMessageReactionCountUpdated(const boost::property_tree::ptree& data) const;
+    std::string parseMessageReactionCountUpdated(const MessageReactionCountUpdated::Ptr& object) const;
 
     ForumTopic::Ptr parseJsonAndGetForumTopic(const boost::property_tree::ptree& data) const;
     std::string parseForumTopic(const ForumTopic::Ptr& object) const;
@@ -424,6 +514,30 @@ public:
 
     MenuButtonDefault::Ptr parseJsonAndGetMenuButtonDefault(const boost::property_tree::ptree& data) const;
     std::string parseMenuButtonDefault(const MenuButtonDefault::Ptr& object) const;
+
+    ChatBoostSource::Ptr parseJsonAndGetChatBoostSource(const boost::property_tree::ptree& data) const;
+    std::string parseChatBoostSource(const ChatBoostSource::Ptr& object) const;
+
+    ChatBoostSourcePremium::Ptr parseJsonAndGetChatBoostSourcePremium(const boost::property_tree::ptree& data) const;
+    std::string parseChatBoostSourcePremium(const ChatBoostSourcePremium::Ptr& object) const;
+
+    ChatBoostSourceGiftCode::Ptr parseJsonAndGetChatBoostSourceGiftCode(const boost::property_tree::ptree& data) const;
+    std::string parseChatBoostSourceGiftCode(const ChatBoostSourceGiftCode::Ptr& object) const;
+
+    ChatBoostSourceGiveaway::Ptr parseJsonAndGetChatBoostSourceGiveaway(const boost::property_tree::ptree& data) const;
+    std::string parseChatBoostSourceGiveaway(const ChatBoostSourceGiveaway::Ptr& object) const;
+
+    ChatBoost::Ptr parseJsonAndGetChatBoost(const boost::property_tree::ptree& data) const;
+    std::string parseChatBoost(const ChatBoost::Ptr& object) const;
+
+    ChatBoostUpdated::Ptr parseJsonAndGetChatBoostUpdated(const boost::property_tree::ptree& data) const;
+    std::string parseChatBoostUpdated(const ChatBoostUpdated::Ptr& object) const;
+
+    ChatBoostRemoved::Ptr parseJsonAndGetChatBoostRemoved(const boost::property_tree::ptree& data) const;
+    std::string parseChatBoostRemoved(const ChatBoostRemoved::Ptr& object) const;
+
+    UserChatBoosts::Ptr parseJsonAndGetUserChatBoosts(const boost::property_tree::ptree& data) const;
+    std::string parseUserChatBoosts(const UserChatBoosts::Ptr& object) const;
 
     ResponseParameters::Ptr parseJsonAndGetResponseParameters(const boost::property_tree::ptree& data) const;
     std::string parseResponseParameters(const ResponseParameters::Ptr& object) const;
@@ -625,10 +739,10 @@ public:
 
     GameHighScore::Ptr parseJsonAndGetGameHighScore(const boost::property_tree::ptree& data) const;
     std::string parseGameHighScore(const GameHighScore::Ptr& object) const;
-    
+
     GenericReply::Ptr parseJsonAndGetGenericReply(const boost::property_tree::ptree& data) const;
     std::string parseGenericReply(const GenericReply::Ptr& object) const;
-    
+
     inline boost::property_tree::ptree parseJson(const std::string& json) const {
         boost::property_tree::ptree tree;
         std::istringstream input(json);

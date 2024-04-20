@@ -1,7 +1,9 @@
-#ifndef TGBOT_CPP_UPDATE_H
-#define TGBOT_CPP_UPDATE_H
+#ifndef TGBOT_UPDATE_H
+#define TGBOT_UPDATE_H
 
 #include "tgbot/types/Message.h"
+#include "tgbot/types/MessageReactionUpdated.h"
+#include "tgbot/types/MessageReactionCountUpdated.h"
 #include "tgbot/types/InlineQuery.h"
 #include "tgbot/types/ChosenInlineResult.h"
 #include "tgbot/types/CallbackQuery.h"
@@ -11,6 +13,8 @@
 #include "tgbot/types/PollAnswer.h"
 #include "tgbot/types/ChatMemberUpdated.h"
 #include "tgbot/types/ChatJoinRequest.h"
+#include "tgbot/types/ChatBoostUpdated.h"
+#include "tgbot/types/ChatBoostRemoved.h"
 
 #include <cstdint>
 #include <memory>
@@ -18,7 +22,8 @@
 namespace TgBot {
 
 /**
- * @brief This object represents an incoming update.
+ * @brief This [object](https://core.telegram.org/bots/api#available-types) represents an incoming update.
+ *
  * At most one of the optional parameters can be present in any given update.
  *
  * @ingroup types
@@ -29,41 +34,58 @@ public:
     typedef std::shared_ptr<Update> Ptr;
 
     /**
-     * @brief The update‘s unique identifier.
+     * @brief The update's unique identifier.
+     *
      * Update identifiers start from a certain positive number and increase sequentially.
-     * This ID becomes especially handy if you’re using Webhooks, since it allows you to ignore repeated updates or to restore the correct update sequence, should they get out of order.
+     * This ID becomes especially handy if you're using [webhooks](https://core.telegram.org/bots/api#setwebhook), since it allows you to ignore repeated updates or to restore the correct update sequence, should they get out of order.
      * If there are no new updates for at least a week, then identifier of the next update will be chosen randomly instead of sequentially.
      */
     std::int32_t updateId;
 
     /**
-     * @brief Optional. New incoming message of any kind — text, photo, sticker, etc.
+     * @brief Optional. New incoming message of any kind - text, photo, sticker, etc.
      */
     Message::Ptr message;
 
     /**
-    * @brief Optional. New version of a message that is known to the bot and was edited
-    */
+     * @brief Optional. New version of a message that is known to the bot and was edited
+     */
     Message::Ptr editedMessage;
 
     /**
-    * @brief Optional. New incoming channel post of any kind — text, photo, sticker, etc.
-    */
+     * @brief Optional. New incoming channel post of any kind - text, photo, sticker, etc.
+     */
     Message::Ptr channelPost;
 
     /**
-    * @brief Optional. New version of a channel post that is known to the bot and was edited
-    */
+     * @brief Optional. New version of a channel post that is known to the bot and was edited
+     */
     Message::Ptr editedChannelPost;
 
     /**
-     * @brief Optional. New incoming inline query
+     * @brief Optional. A reaction to a message was changed by a user.
+     *
+     * The bot must be an administrator in the chat and must explicitly specify "message_reaction" in the list of allowedUpdates to receive these updates.
+     * The update isn't received for reactions set by bots.
+     */
+    MessageReactionUpdated::Ptr messageReaction;
+
+    /**
+     * @brief Optional. Reactions to a message with anonymous reactions were changed.
+     *
+     * The bot must be an administrator in the chat and must explicitly specify "message_reaction_count" in the list of allowedUpdates to receive these updates.
+     */
+    MessageReactionCountUpdated::Ptr messageReactionCount;
+
+    /**
+     * @brief Optional. New incoming [inline](https://core.telegram.org/bots/api#inline-mode) query
      */
     InlineQuery::Ptr inlineQuery;
 
     /**
-     * @brief Optional. The result of an inline query that was chosen by a user and sent to their chat partner.
-     * Please see https://core.telegram.org/bots/inline#collecting-feedback for details on how to enable these updates for your bot. (https://core.telegram.org/bots/inline#collecting-feedback)
+     * @brief Optional. The result of an [inline](https://core.telegram.org/bots/api#inline-mode) query that was chosen by a user and sent to their chat partner.
+     *
+     * Please see our documentation on the [feedback collecting](https://core.telegram.org/bots/inline#collecting-feedback) for details on how to enable these updates for your bot.
      */
     ChosenInlineResult::Ptr chosenInlineResult;
 
@@ -74,46 +96,67 @@ public:
 
     /**
      * @brief Optional. New incoming shipping query.
+     *
      * Only for invoices with flexible price
      */
     ShippingQuery::Ptr shippingQuery;
 
     /**
      * @brief Optional. New incoming pre-checkout query.
+     *
      * Contains full information about checkout
      */
     PreCheckoutQuery::Ptr preCheckoutQuery;
 
     /**
      * @brief Optional. New poll state.
+     *
      * Bots receive only updates about stopped polls and polls, which are sent by the bot
      */
     Poll::Ptr poll;
 
     /**
      * @brief Optional. A user changed their answer in a non-anonymous poll.
+     *
      * Bots receive new votes only in polls that were sent by the bot itself.
      */
     PollAnswer::Ptr pollAnswer;
 
     /**
      * @brief Optional. The bot's chat member status was updated in a chat.
+     *
      * For private chats, this update is received only when the bot is blocked or unblocked by the user.
      */
     ChatMemberUpdated::Ptr myChatMember;
 
     /**
      * @brief Optional. A chat member's status was updated in a chat.
-     * The bot must be an administrator in the chat and must explicitly specify “chatMember” in the list of allowedUpdates to receive these updates.
+     *
+     * The bot must be an administrator in the chat and must explicitly specify "chat_member" in the list of allowedUpdates to receive these updates.
      */
     ChatMemberUpdated::Ptr chatMember;
 
     /**
      * @brief Optional. A request to join the chat has been sent.
+     *
      * The bot must have the canInviteUsers administrator right in the chat to receive these updates.
      */
     ChatJoinRequest::Ptr chatJoinRequest;
+
+    /**
+     * @brief Optional. A chat boost was added or changed.
+     *
+     * The bot must be an administrator in the chat to receive these updates.
+     */
+    ChatBoostUpdated::Ptr chatBoost;
+
+    /**
+     * @brief Optional. A boost was removed from a chat.
+     *
+     * The bot must be an administrator in the chat to receive these updates.
+     */
+    ChatBoostRemoved::Ptr removedChatBoost;
 };
 }
 
-#endif //TGBOT_CPP_UPDATE_H
+#endif //TGBOT_UPDATE_H

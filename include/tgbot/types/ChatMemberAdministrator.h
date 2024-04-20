@@ -9,11 +9,12 @@
 namespace TgBot {
 
 /**
- * @brief Represents a chat member that has some additional privileges.
+ * @brief Represents a [chat member](https://core.telegram.org/bots/api#chatmember) that has some additional privileges.
  *
  * @ingroup types
  */
 class ChatMemberAdministrator : public ChatMember {
+
 public:
     static const std::string STATUS;
 
@@ -34,8 +35,8 @@ public:
     bool isAnonymous;
 
     /**
-     * @brief True, if the administrator can access the chat event log, chat statistics, boost list in channels, message statistics in channels, see channel members, see anonymous administrators in supergroups and ignore slow mode.
-     * 
+     * @brief True, if the administrator can access the chat event log, boost list in channels, see channel members, report spam messages, see anonymous administrators in supergroups and ignore slow mode.
+     *
      * Implied by any other administrator privilege
      */
     bool canManageChat;
@@ -51,7 +52,7 @@ public:
     bool canManageVideoChats;
 
     /**
-     * @brief True, if the administrator can restrict, ban or unban chat members
+     * @brief True, if the administrator can restrict, ban or unban chat members, or access supergroup statistics
      */
     bool canRestrictMembers;
 
@@ -71,7 +72,7 @@ public:
     bool canInviteUsers;
 
     /**
-     * @brief Optional. True, if the administrator can post messages in the channel; channels only
+     * @brief Optional. True, if the administrator can post messages in the channel, or access channel statistics; channels only
      */
     bool canPostMessages;
 
