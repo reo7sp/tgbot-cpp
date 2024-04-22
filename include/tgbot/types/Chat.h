@@ -2,6 +2,11 @@
 #define TGBOT_CHAT_H
 
 #include "tgbot/types/ChatPhoto.h"
+#include "tgbot/types/Birthdate.h"
+#include "tgbot/types/BusinessIntro.h"
+#include "tgbot/types/BusinessLocation.h"
+#include "tgbot/types/BusinessOpeningHours.h"
+#include "tgbot/types/Chat.h"
 #include "tgbot/types/ReactionType.h"
 #include "tgbot/types/ChatPermissions.h"
 #include "tgbot/types/ChatLocation.h"
@@ -83,6 +88,41 @@ public:
      * Returned only in Api::getChat.
      */
     std::vector<std::string> activeUsernames;
+
+    /**
+     * @brief Optional. For private chats, the date of birth of the user.
+     *
+     * Returned only in Api::getChat.
+     */
+    Birthdate::Ptr birthdate;
+
+    /**
+     * @brief Optional. For private chats with business accounts, the intro of the business.
+     *
+     * Returned only in Api::getChat.
+     */
+    BusinessIntro::Ptr businessIntro;
+
+    /**
+     * @brief Optional. For private chats with business accounts, the location of the business.
+     *
+     * Returned only in Api::getChat.
+     */
+    BusinessLocation::Ptr businessLocation;
+
+    /**
+     * @brief Optional. For private chats with business accounts, the opening hours of the business.
+     *
+     * Returned only in Api::getChat.
+     */
+    BusinessOpeningHours::Ptr businessOpeningHours;
+
+    /**
+     * @brief Optional. For private chats, the personal channel of the user.
+     *
+     * Returned only in Api::getChat.
+     */
+    Chat::Ptr personalChat;
 
     /**
      * @brief Optional. List of available reactions allowed in the chat.

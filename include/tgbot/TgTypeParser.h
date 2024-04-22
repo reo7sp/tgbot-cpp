@@ -43,6 +43,7 @@
 #include "tgbot/types/ForumTopicReopened.h"
 #include "tgbot/types/GeneralForumTopicHidden.h"
 #include "tgbot/types/GeneralForumTopicUnhidden.h"
+#include "tgbot/types/SharedUser.h"
 #include "tgbot/types/UsersShared.h"
 #include "tgbot/types/ChatShared.h"
 #include "tgbot/types/WriteAccessAllowed.h"
@@ -83,6 +84,11 @@
 #include "tgbot/types/ChatMemberBanned.h"
 #include "tgbot/types/ChatJoinRequest.h"
 #include "tgbot/types/ChatPermissions.h"
+#include "tgbot/types/Birthdate.h"
+#include "tgbot/types/BusinessIntro.h"
+#include "tgbot/types/BusinessLocation.h"
+#include "tgbot/types/BusinessOpeningHoursInterval.h"
+#include "tgbot/types/BusinessOpeningHours.h"
 #include "tgbot/types/ChatLocation.h"
 #include "tgbot/types/ReactionType.h"
 #include "tgbot/types/ReactionTypeEmoji.h"
@@ -115,6 +121,8 @@
 #include "tgbot/types/ChatBoostUpdated.h"
 #include "tgbot/types/ChatBoostRemoved.h"
 #include "tgbot/types/UserChatBoosts.h"
+#include "tgbot/types/BusinessConnection.h"
+#include "tgbot/types/BusinessMessagesDeleted.h"
 #include "tgbot/types/ResponseParameters.h"
 #include "tgbot/types/InputMedia.h"
 #include "tgbot/types/InputMediaPhoto.h"
@@ -327,6 +335,9 @@ public:
     GeneralForumTopicUnhidden::Ptr parseJsonAndGetGeneralForumTopicUnhidden(const boost::property_tree::ptree& data) const;
     std::string parseGeneralForumTopicUnhidden(const GeneralForumTopicUnhidden::Ptr& object) const;
 
+    SharedUser::Ptr parseJsonAndGetSharedUser(const boost::property_tree::ptree& data) const;
+    std::string parseSharedUser(const SharedUser::Ptr& object) const;
+
     UsersShared::Ptr parseJsonAndGetUsersShared(const boost::property_tree::ptree& data) const;
     std::string parseUsersShared(const UsersShared::Ptr& object) const;
 
@@ -447,6 +458,21 @@ public:
     ChatPermissions::Ptr parseJsonAndGetChatPermissions(const boost::property_tree::ptree& data) const;
     std::string parseChatPermissions(const ChatPermissions::Ptr& object) const;
 
+    Birthdate::Ptr parseJsonAndGetBirthdate(const boost::property_tree::ptree& data) const;
+    std::string parseBirthdate(const Birthdate::Ptr& object) const;
+
+    BusinessIntro::Ptr parseJsonAndGetBusinessIntro(const boost::property_tree::ptree& data) const;
+    std::string parseBusinessIntro(const BusinessIntro::Ptr& object) const;
+
+    BusinessLocation::Ptr parseJsonAndGetBusinessLocation(const boost::property_tree::ptree& data) const;
+    std::string parseBusinessLocation(const BusinessLocation::Ptr& object) const;
+
+    BusinessOpeningHoursInterval::Ptr parseJsonAndGetBusinessOpeningHoursInterval(const boost::property_tree::ptree& data) const;
+    std::string parseBusinessOpeningHoursInterval(const BusinessOpeningHoursInterval::Ptr& object) const;
+
+    BusinessOpeningHours::Ptr parseJsonAndGetBusinessOpeningHours(const boost::property_tree::ptree& data) const;
+    std::string parseBusinessOpeningHours(const BusinessOpeningHours::Ptr& object) const;
+
     ChatLocation::Ptr parseJsonAndGetChatLocation(const boost::property_tree::ptree& data) const;
     std::string parseChatLocation(const ChatLocation::Ptr& object) const;
 
@@ -542,6 +568,12 @@ public:
 
     UserChatBoosts::Ptr parseJsonAndGetUserChatBoosts(const boost::property_tree::ptree& data) const;
     std::string parseUserChatBoosts(const UserChatBoosts::Ptr& object) const;
+
+    BusinessConnection::Ptr parseJsonAndGetBusinessConnection(const boost::property_tree::ptree& data) const;
+    std::string parseBusinessConnection(const BusinessConnection::Ptr& object) const;
+
+    BusinessMessagesDeleted::Ptr parseJsonAndGetBusinessMessagesDeleted(const boost::property_tree::ptree& data) const;
+    std::string parseBusinessMessagesDeleted(const BusinessMessagesDeleted::Ptr& object) const;
 
     ResponseParameters::Ptr parseJsonAndGetResponseParameters(const boost::property_tree::ptree& data) const;
     std::string parseResponseParameters(const ResponseParameters::Ptr& object) const;

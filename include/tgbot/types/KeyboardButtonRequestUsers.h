@@ -9,7 +9,7 @@ namespace TgBot {
 /**
  * @brief This object defines the criteria used to request suitable users.
  *
- * The identifiers of the selected users will be shared with the bot when the corresponding button is pressed.
+ * Information about the selected users will be shared with the bot when the corresponding button is pressed.
  * [More about requesting users »](https://core.telegram.org/bots/features#chat-and-user-selection)
  *
  * @ingroup types
@@ -46,6 +46,21 @@ public:
      * Defaults to 1.
      */
     std::uint8_t maxQuantity;
+
+    /**
+     * @brief Optional. Pass True to request the users' first and last name
+     */
+    bool requestName;
+
+    /**
+     * @brief Optional. Pass True to request the users' username
+     */
+    bool requestUsername;
+
+    /**
+     * @brief Optional. Pass True to request the users' photo
+     */
+    bool requestPhoto;
 };
 }
 

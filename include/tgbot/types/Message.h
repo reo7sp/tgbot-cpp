@@ -98,11 +98,25 @@ public:
     std::int32_t senderBoostCount;
 
     /**
+     * @brief Optional. The bot that actually sent the message on behalf of the business account.
+     *
+     * Available only for outgoing messages sent on behalf of the connected business account.
+     */
+    User::Ptr senderBusinessBot;
+
+    /**
      * @brief Date the message was sent in Unix time.
      *
      * It is always a positive number, representing a valid date.
      */
     std::uint32_t date;
+
+    /**
+     * @brief Optional. Unique identifier of the business connection from which the message was received.
+     *
+     * If non-empty, the message belongs to a chat of the corresponding business account that is independent from any potential bot chat which might share the same identifier.
+     */
+    std::string businessConnectionId;
 
     /**
      * @brief Chat the message belongs to
@@ -160,6 +174,11 @@ public:
      * @brief Optional. True, if the message can't be forwarded
      */
     bool hasProtectedContent;
+
+    /**
+     * @brief Optional. True, if the message was sent by an implicit action, for example, as an away or a greeting business message, or as a scheduled message
+     */
+    bool isFromOffline;
 
     /**
      * @brief Optional. The unique identifier of a media message group this message belongs to

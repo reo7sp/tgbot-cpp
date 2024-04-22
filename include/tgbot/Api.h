@@ -17,6 +17,7 @@
 #include "tgbot/types/Venue.h"
 #include "tgbot/types/WebhookInfo.h"
 #include "tgbot/types/ChatMember.h"
+#include "tgbot/types/Sticker.h"
 #include "tgbot/types/StickerSet.h"
 #include "tgbot/types/File.h"
 #include "tgbot/types/InputMedia.h"
@@ -164,12 +165,13 @@ public:
      * @param text Text of the message to be sent, 1-4096 characters after entities parsing
      * @param linkPreviewOptions Optional. Link preview generation options for the message
      * @param replyParameters Optional. Description of the message to reply to
-     * @param replyMarkup Optional. Additional interface options. A JSON-serialized object for an [inline keyboard](https://core.telegram.org/bots/features#inline-keyboards), [custom reply keyboard](https://core.telegram.org/bots/features#keyboards), instructions to remove reply keyboard or to force a reply from the user.
+     * @param replyMarkup Optional. Additional interface options. A JSON-serialized object for an [inline keyboard](https://core.telegram.org/bots/features#inline-keyboards), [custom reply keyboard](https://core.telegram.org/bots/features#keyboards), instructions to remove a reply keyboard or to force a reply from the user. Not supported for messages sent on behalf of a business account
      * @param parseMode Optional. Mode for parsing entities in the message text. See [formatting options](https://core.telegram.org/bots/api#formatting-options) for more details.
      * @param disableNotification Optional. Sends the message [silently](https://telegram.org/blog/channels-2-0#silent-messages). Users will receive a notification with no sound.
      * @param entities Optional. A JSON-serialized list of special entities that appear in message text, which can be specified instead of parseMode
      * @param messageThreadId Optional. Unique identifier for the target message thread (topic) of the forum; for forum supergroups only
      * @param protectContent Optional. Protects the contents of the sent message from forwarding and saving
+     * @param businessConnectionId Optional. Unique identifier of the business connection on behalf of which the message will be sent
      *
      * @return On success, the sent Message is returned.
      */
@@ -182,7 +184,8 @@ public:
                              bool disableNotification = false,
                              const std::vector<MessageEntity::Ptr>& entities = std::vector<MessageEntity::Ptr>(),
                              std::int32_t messageThreadId = 0,
-                             bool protectContent = false) const;
+                             bool protectContent = false,
+                             const std::string& businessConnectionId = "") const;
 
     /**
      * @brief Use this method to forward messages of any kind.
@@ -214,7 +217,7 @@ public:
      *
      * @param chatId Unique identifier for the target chat or username of the target channel (in the format @channelusername)
      * @param fromChatId Unique identifier for the chat where the original messages were sent (or channel username in the format @channelusername)
-     * @param messageIds Identifiers of 1-100 messages in the chat fromChatId to forward. The identifiers must be specified in a strictly increasing order.
+     * @param messageIds A JSON-serialized list of 1-100 identifiers of messages in the chat fromChatId to forward. The identifiers must be specified in a strictly increasing order.
      * @param messageThreadId Optional. Unique identifier for the target message thread (topic) of the forum; for forum supergroups only
      * @param disableNotification Optional. Sends the messages [silently](https://telegram.org/blog/channels-2-0#silent-messages). Users will receive a notification with no sound.
      * @param protectContent Optional. Protects the contents of the forwarded message from forwarding and saving
@@ -272,7 +275,7 @@ public:
      *
      * @param chatId Unique identifier for the target chat or username of the target channel (in the format @channelusername)
      * @param fromChatId Unique identifier for the chat where the original messages were sent (or channel username in the format @channelusername)
-     * @param messageIds Identifiers of 1-100 messages in the chat fromChatId to copy. The identifiers must be specified in a strictly increasing order.
+     * @param messageIds A JSON-serialized list of 1-100 identifiers of messages in the chat fromChatId to copy. The identifiers must be specified in a strictly increasing order.
      * @param messageThreadId Optional. Unique identifier for the target message thread (topic) of the forum; for forum supergroups only
      * @param disableNotification Optional. Sends the messages [silently](https://telegram.org/blog/channels-2-0#silent-messages). Users will receive a notification with no sound.
      * @param protectContent Optional. Protects the contents of the sent messages from forwarding and saving
@@ -295,13 +298,14 @@ public:
      * @param photo Photo to send. Pass a fileId as String to send a photo that exists on the Telegram servers (recommended), pass an HTTP URL as a String for Telegram to get a photo from the Internet, or upload a new photo using multipart/form-data. The photo must be at most 10 MB in size. The photo's width and height must not exceed 10000 in total. Width and height ratio must be at most 20. https://core.telegram.org/bots/api#sending-files
      * @param caption Optional. Photo caption (may also be used when resending photos by fileId), 0-1024 characters after entities parsing
      * @param replyParameters Optional. Description of the message to reply to
-     * @param replyMarkup Optional. Additional interface options. A JSON-serialized object for an inline keyboard, custom reply keyboard, instructions to remove reply keyboard or to force a reply from the user.
+     * @param replyMarkup Optional. Additional interface options. A JSON-serialized object for an [inline keyboard](https://core.telegram.org/bots/features#inline-keyboards), [custom reply keyboard](https://core.telegram.org/bots/features#keyboards), instructions to remove a reply keyboard or to force a reply from the user. Not supported for messages sent on behalf of a business account
      * @param parseMode Optional. Mode for parsing entities in the photo caption. See https://core.telegram.org/bots/api#formatting-options for more details.
      * @param disableNotification Optional. Sends the message silently. Users will receive a notification with no sound.
      * @param captionEntities Optional. A JSON-serialized list of special entities that appear in the caption, which can be specified instead of parseMode
      * @param messageThreadId Optional. Unique identifier for the target message thread (topic) of the forum; for forum supergroups only
      * @param protectContent Optional. Protects the contents of the sent message from forwarding and saving
      * @param hasSpoiler Optional. Pass True if the photo needs to be covered with a spoiler animation
+     * @param businessConnectionId Optional. Unique identifier of the business connection on behalf of which the message will be sent
      *
      * @return On success, the sent Message is returned.
      */
@@ -315,7 +319,8 @@ public:
                            const std::vector<MessageEntity::Ptr>& captionEntities = std::vector<MessageEntity::Ptr>(),
                            std::int32_t messageThreadId = 0,
                            bool protectContent = false,
-                           bool hasSpoiler = false) const;
+                           bool hasSpoiler = false,
+                           const std::string& businessConnectionId = "") const;
 
     /**
      * @brief Use this method to send audio files, if you want Telegram clients to display them in the music player.
@@ -333,12 +338,13 @@ public:
      * @param title Optional. Track name
      * @param thumbnail Optional. Thumbnail of the file sent; can be ignored if thumbnail generation for the file is supported server-side. The thumbnail should be in JPEG format and less than 200 kB in size. A thumbnail's width and height should not exceed 320. Ignored if the file is not uploaded using multipart/form-data. Thumbnails can't be reused and can be only uploaded as a new file, so you can pass “attach://<file_attach_name>” if the thumbnail was uploaded using multipart/form-data under <file_attach_name>. https://core.telegram.org/bots/api#sending-files
      * @param replyParameters Optional. Description of the message to reply to
-     * @param replyMarkup Optional. Additional interface options. A JSON-serialized object for an inline keyboard, custom reply keyboard, instructions to remove reply keyboard or to force a reply from the user.
+     * @param replyMarkup Optional. Additional interface options. A JSON-serialized object for an [inline keyboard](https://core.telegram.org/bots/features#inline-keyboards), [custom reply keyboard](https://core.telegram.org/bots/features#keyboards), instructions to remove a reply keyboard or to force a reply from the user. Not supported for messages sent on behalf of a business account
      * @param parseMode Optional. Mode for parsing entities in the audio caption. See https://core.telegram.org/bots/api#formatting-options for more details.
      * @param disableNotification Optional. Sends the message silently. Users will receive a notification with no sound.
      * @param captionEntities Optional. A JSON-serialized list of special entities that appear in the caption, which can be specified instead of parseMode
      * @param messageThreadId Optional. Unique identifier for the target message thread (topic) of the forum; for forum supergroups only
      * @param protectContent Optional. Protects the contents of the sent message from forwarding and saving
+     * @param businessConnectionId Optional. Unique identifier of the business connection on behalf of which the message will be sent
      *
      * @return On success, the sent Message is returned.
      */
@@ -355,7 +361,8 @@ public:
                            bool disableNotification = false,
                            const std::vector<MessageEntity::Ptr>& captionEntities = std::vector<MessageEntity::Ptr>(),
                            std::int32_t messageThreadId = 0,
-                           bool protectContent = false) const;
+                           bool protectContent = false,
+                           const std::string& businessConnectionId = "") const;
 
     /**
      * @brief Use this method to send general files.
@@ -367,13 +374,14 @@ public:
      * @param thumbnail Optional. Thumbnail of the file sent; can be ignored if thumbnail generation for the file is supported server-side. The thumbnail should be in JPEG format and less than 200 kB in size. A thumbnail's width and height should not exceed 320. Ignored if the file is not uploaded using multipart/form-data. Thumbnails can't be reused and can be only uploaded as a new file, so you can pass “attach://<file_attach_name>” if the thumbnail was uploaded using multipart/form-data under <file_attach_name>. https://core.telegram.org/bots/api#sending-files
      * @param caption Optional. Document caption (may also be used when resending documents by fileId), 0-1024 characters after entities parsing
      * @param replyParameters Optional. Description of the message to reply to
-     * @param replyMarkup Optional. Additional interface options. A JSON-serialized object for an inline keyboard, custom reply keyboard, instructions to remove reply keyboard or to force a reply from the user.
+     * @param replyMarkup Optional. Additional interface options. A JSON-serialized object for an [inline keyboard](https://core.telegram.org/bots/features#inline-keyboards), [custom reply keyboard](https://core.telegram.org/bots/features#keyboards), instructions to remove a reply keyboard or to force a reply from the user. Not supported for messages sent on behalf of a business account
      * @param parseMode Optional. Mode for parsing entities in the document caption. See https://core.telegram.org/bots/api#formatting-options for more details.
      * @param disableNotification Optional. Sends the message silently. Users will receive a notification with no sound.
      * @param captionEntities Optional. A JSON-serialized list of special entities that appear in the caption, which can be specified instead of parseMode
      * @param disableContentTypeDetection Optional. Disables automatic server-side content type detection for files uploaded using multipart/form-data
      * @param messageThreadId Optional. Unique identifier for the target message thread (topic) of the forum; for forum supergroups only
      * @param protectContent Optional. Protects the contents of the sent message from forwarding and saving
+     * @param businessConnectionId Optional. Unique identifier of the business connection on behalf of which the message will be sent
      *
      * @return On success, the sent Message is returned.
      */
@@ -388,7 +396,8 @@ public:
                               const std::vector<MessageEntity::Ptr>& captionEntities = std::vector<MessageEntity::Ptr>(),
                               bool disableContentTypeDetection = false,
                               std::int32_t messageThreadId = 0,
-                              bool protectContent = false) const;
+                              bool protectContent = false,
+                              const std::string& businessConnectionId = "") const;
 
     /**
      * @brief Use this method to send video files, Telegram clients support MPEG4 videos (other formats may be sent as Document).
@@ -404,13 +413,14 @@ public:
      * @param thumbnail Optional. Thumbnail of the file sent; can be ignored if thumbnail generation for the file is supported server-side. The thumbnail should be in JPEG format and less than 200 kB in size. A thumbnail's width and height should not exceed 320. Ignored if the file is not uploaded using multipart/form-data. Thumbnails can't be reused and can be only uploaded as a new file, so you can pass “attach://<file_attach_name>” if the thumbnail was uploaded using multipart/form-data under <file_attach_name>. https://core.telegram.org/bots/api#sending-files
      * @param caption Optional. Video caption (may also be used when resending videos by fileId), 0-1024 characters after entities parsing
      * @param replyParameters Optional. Description of the message to reply to
-     * @param replyMarkup Optional. Additional interface options. A JSON-serialized object for an inline keyboard, custom reply keyboard, instructions to remove reply keyboard or to force a reply from the user.
+     * @param replyMarkup Optional. Additional interface options. A JSON-serialized object for an [inline keyboard](https://core.telegram.org/bots/features#inline-keyboards), [custom reply keyboard](https://core.telegram.org/bots/features#keyboards), instructions to remove a reply keyboard or to force a reply from the user. Not supported for messages sent on behalf of a business account
      * @param parseMode Optional. Mode for parsing entities in the video caption. See https://core.telegram.org/bots/api#formatting-options for more details.
      * @param disableNotification Optional. Sends the message silently. Users will receive a notification with no sound.
      * @param captionEntities Optional. A JSON-serialized list of special entities that appear in the caption, which can be specified instead of parseMode
      * @param messageThreadId Optional. Unique identifier for the target message thread (topic) of the forum; for forum supergroups only
      * @param protectContent Optional. Protects the contents of the sent message from forwarding and saving
      * @param hasSpoiler Optional. Pass True if the video needs to be covered with a spoiler animation
+     * @param businessConnectionId Optional. Unique identifier of the business connection on behalf of which the message will be sent
      *
      * @return On success, the sent Message is returned.
      */
@@ -429,7 +439,8 @@ public:
                            const std::vector<MessageEntity::Ptr>& captionEntities = std::vector<MessageEntity::Ptr>(),
                            std::int32_t messageThreadId = 0,
                            bool protectContent = false,
-                           bool hasSpoiler = false) const;
+                           bool hasSpoiler = false,
+                           const std::string& businessConnectionId = "") const;
 
     /**
      * @brief Use this method to send animation files (GIF or H.264/MPEG-4 AVC video without sound).
@@ -444,13 +455,14 @@ public:
      * @param thumbnail Optional. Thumbnail of the file sent; can be ignored if thumbnail generation for the file is supported server-side. The thumbnail should be in JPEG format and less than 200 kB in size. A thumbnail's width and height should not exceed 320. Ignored if the file is not uploaded using multipart/form-data. Thumbnails can't be reused and can be only uploaded as a new file, so you can pass “attach://<file_attach_name>” if the thumbnail was uploaded using multipart/form-data under <file_attach_name>. https://core.telegram.org/bots/api#sending-files
      * @param caption Optional. Animation caption (may also be used when resending animation by fileId), 0-1024 characters after entities parsing
      * @param replyParameters Optional. Description of the message to reply to
-     * @param replyMarkup Optional. Additional interface options. A JSON-serialized object for an inline keyboard, custom reply keyboard, instructions to remove reply keyboard or to force a reply from the user.
+     * @param replyMarkup Optional. Additional interface options. A JSON-serialized object for an [inline keyboard](https://core.telegram.org/bots/features#inline-keyboards), [custom reply keyboard](https://core.telegram.org/bots/features#keyboards), instructions to remove a reply keyboard or to force a reply from the user. Not supported for messages sent on behalf of a business account
      * @param parseMode Optional. Mode for parsing entities in the animation caption. See https://core.telegram.org/bots/api#formatting-options for more details.
      * @param disableNotification Optional. Sends the message silently. Users will receive a notification with no sound.
      * @param captionEntities Optional. A JSON-serialized list of special entities that appear in the caption, which can be specified instead of parseMode
      * @param messageThreadId Optional. Unique identifier for the target message thread (topic) of the forum; for forum supergroups only
      * @param protectContent Optional. Protects the contents of the sent message from forwarding and saving
      * @param hasSpoiler Optional. Pass True if the animation needs to be covered with a spoiler animation
+     * @param businessConnectionId Optional. Unique identifier of the business connection on behalf of which the message will be sent
      *
      * @return On success, the sent Message is returned.
      */
@@ -468,7 +480,8 @@ public:
                                const std::vector<MessageEntity::Ptr>& captionEntities = std::vector<MessageEntity::Ptr>(),
                                std::int32_t messageThreadId = 0,
                                bool protectContent = false,
-                               bool hasSpoiler = false) const;
+                               bool hasSpoiler = false,
+                               const std::string& businessConnectionId = "") const;
 
     /**
      * @brief Use this method to send audio files, if you want Telegram clients to display the file as a playable voice message.
@@ -481,12 +494,13 @@ public:
      * @param caption Optional. Voice message caption, 0-1024 characters after entities parsing
      * @param duration Optional. Duration of the voice message in seconds
      * @param replyParameters Optional. Description of the message to reply to
-     * @param replyMarkup Optional. Additional interface options. A JSON-serialized object for an inline keyboard, custom reply keyboard, instructions to remove reply keyboard or to force a reply from the user.
+     * @param replyMarkup Optional. Additional interface options. A JSON-serialized object for an [inline keyboard](https://core.telegram.org/bots/features#inline-keyboards), [custom reply keyboard](https://core.telegram.org/bots/features#keyboards), instructions to remove a reply keyboard or to force a reply from the user. Not supported for messages sent on behalf of a business account
      * @param parseMode Optional. Mode for parsing entities in the voice message caption. See https://core.telegram.org/bots/api#formatting-options for more details.
      * @param disableNotification Optional. Sends the message silently. Users will receive a notification with no sound.
      * @param captionEntities Optional. A JSON-serialized list of special entities that appear in the caption, which can be specified instead of parseMode
      * @param messageThreadId Optional. Unique identifier for the target message thread (topic) of the forum; for forum supergroups only
      * @param protectContent Optional. Protects the contents of the sent message from forwarding and saving
+     * @param businessConnectionId Optional. Unique identifier of the business connection on behalf of which the message will be sent
      *
      * @return On success, the sent Message is returned.
      */
@@ -500,7 +514,8 @@ public:
                            bool disableNotification = false,
                            const std::vector<MessageEntity::Ptr>& captionEntities = std::vector<MessageEntity::Ptr>(),
                            std::int32_t messageThreadId = 0,
-                           bool protectContent = false) const;
+                           bool protectContent = false,
+                           const std::string& businessConnectionId = "") const;
 
     /**
      * @brief Use this method to send video messages.
@@ -514,9 +529,10 @@ public:
      * @param duration Optional. Duration of sent video in seconds
      * @param length Optional. Video width and height, i.e. diameter of the video message
      * @param thumbnail Optional. Thumbnail of the file sent; can be ignored if thumbnail generation for the file is supported server-side. The thumbnail should be in JPEG format and less than 200 kB in size. A thumbnail's width and height should not exceed 320. Ignored if the file is not uploaded using multipart/form-data. Thumbnails can't be reused and can be only uploaded as a new file, so you can pass “attach://<file_attach_name>” if the thumbnail was uploaded using multipart/form-data under <file_attach_name>. https://core.telegram.org/bots/api#sending-files
-     * @param replyMarkup Optional. Additional interface options. A JSON-serialized object for an inline keyboard, custom reply keyboard, instructions to remove reply keyboard or to force a reply from the user.
+     * @param replyMarkup Optional. Additional interface options. A JSON-serialized object for an [inline keyboard](https://core.telegram.org/bots/features#inline-keyboards), [custom reply keyboard](https://core.telegram.org/bots/features#keyboards), instructions to remove a reply keyboard or to force a reply from the user. Not supported for messages sent on behalf of a business account
      * @param messageThreadId Optional. Unique identifier for the target message thread (topic) of the forum; for forum supergroups only
      * @param protectContent Optional. Protects the contents of the sent message from forwarding and saving
+     * @param businessConnectionId Optional. Unique identifier of the business connection on behalf of which the message will be sent
      *
      * @return On success, the sent Message is returned.
      */
@@ -529,7 +545,8 @@ public:
                                boost::variant<InputFile::Ptr, std::string> thumbnail = "",
                                GenericReply::Ptr replyMarkup = nullptr,
                                std::int32_t messageThreadId = 0,
-                               bool protectContent = false) const;
+                               bool protectContent = false,
+                               const std::string& businessConnectionId = "") const;
 
     /**
      * @brief Use this method to send a group of photos, videos, documents or audios as an album.
@@ -542,6 +559,7 @@ public:
      * @param replyParameters Optional. Description of the message to reply to
      * @param messageThreadId Optional. Unique identifier for the target message thread (topic) of the forum; for forum supergroups only
      * @param protectContent Optional. Protects the contents of the sent messages from forwarding and saving
+     * @param businessConnectionId Optional. Unique identifier of the business connection on behalf of which the message will be sent
      *
      * @return On success, an array of Messages that were sent is returned.
      */
@@ -550,7 +568,8 @@ public:
                                              bool disableNotification = false,
                                              ReplyParameters::Ptr replyParameters = nullptr,
                                              std::int32_t messageThreadId = 0,
-                                             bool protectContent = false) const;
+                                             bool protectContent = false,
+                                             const std::string& businessConnectionId = "") const;
 
     /**
      * @brief Use this method to send point on the map.
@@ -560,13 +579,14 @@ public:
      * @param longitude Longitude of the location
      * @param livePeriod Optional. Period in seconds for which the location will be updated (see https://telegram.org/blog/live-locations, should be between 60 and 86400.
      * @param replyParameters Optional. Description of the message to reply to
-     * @param replyMarkup Optional. Additional interface options. A JSON-serialized object for an inline keyboard, custom reply keyboard, instructions to remove reply keyboard or to force a reply from the user.
+     * @param replyMarkup Optional. Additional interface options. A JSON-serialized object for an [inline keyboard](https://core.telegram.org/bots/features#inline-keyboards), [custom reply keyboard](https://core.telegram.org/bots/features#keyboards), instructions to remove a reply keyboard or to force a reply from the user. Not supported for messages sent on behalf of a business account
      * @param disableNotification Optional. Sends the message silently. Users will receive a notification with no sound.
      * @param horizontalAccuracy Optional. The radius of uncertainty for the location, measured in meters; 0-1500
      * @param heading Optional. For live locations, a direction in which the user is moving, in degrees. Must be between 1 and 360 if specified.
      * @param proximityAlertRadius Optional. For live locations, a maximum distance for proximity alerts about approaching another chat member, in meters. Must be between 1 and 100000 if specified.
      * @param messageThreadId Optional. Unique identifier for the target message thread (topic) of the forum; for forum supergroups only
      * @param protectContent Optional. Protects the contents of the sent message from forwarding and saving
+     * @param businessConnectionId Optional. Unique identifier of the business connection on behalf of which the message will be sent
      *
      * @return On success, the sent Message is returned.
      */
@@ -581,7 +601,8 @@ public:
                               std::int32_t heading = 0,
                               std::int32_t proximityAlertRadius = 0,
                               std::int32_t messageThreadId = 0,
-                              bool protectContent = false) const;
+                              bool protectContent = false,
+                              const std::string& businessConnectionId = "") const;
 
     /**
      * @brief Use this method to edit live location messages.
@@ -637,11 +658,12 @@ public:
      * @param foursquareType Optional. Foursquare type of the venue, if known. (For example, “arts_entertainment/default”, “arts_entertainment/aquarium” or “food/icecream”.)
      * @param disableNotification Optional. Sends the message silently. Users will receive a notification with no sound.
      * @param replyParameters Optional. Description of the message to reply to
-     * @param replyMarkup Optional. Additional interface options. A JSON-serialized object for an inline keyboard, custom reply keyboard, instructions to remove reply keyboard or to force a reply from the user.
+     * @param replyMarkup Optional. Additional interface options. A JSON-serialized object for an [inline keyboard](https://core.telegram.org/bots/features#inline-keyboards), [custom reply keyboard](https://core.telegram.org/bots/features#keyboards), instructions to remove a reply keyboard or to force a reply from the user. Not supported for messages sent on behalf of a business account
      * @param googlePlaceId Optional. Google Places identifier of the venue
      * @param googlePlaceType Optional. Google Places type of the venue. (See https://developers.google.com/places/web-service/supported_types)
      * @param messageThreadId Optional. Unique identifier for the target message thread (topic) of the forum; for forum supergroups only
      * @param protectContent Optional. Protects the contents of the sent message from forwarding and saving
+     * @param businessConnectionId Optional. Unique identifier of the business connection on behalf of which the message will be sent
      *
      * @return On success, the sent Message is returned.
      */
@@ -658,7 +680,8 @@ public:
                            const std::string& googlePlaceId = "",
                            const std::string& googlePlaceType = "",
                            std::int32_t messageThreadId = 0,
-                           bool protectContent = false) const;
+                           bool protectContent = false,
+                           const std::string& businessConnectionId = "") const;
 
     /**
      * @brief Use this method to send phone contacts.
@@ -670,9 +693,10 @@ public:
      * @param vcard Optional. Additional data about the contact in the form of a vCard, 0-2048 bytes
      * @param disableNotification Optional. Sends the message silently. Users will receive a notification with no sound.
      * @param replyParameters Optional. Description of the message to reply to
-     * @param replyMarkup Optional. Additional interface options. A JSON-serialized object for an inline keyboard, custom reply keyboard, instructions to remove keyboard or to force a reply from the user.
+     * @param replyMarkup Optional. Additional interface options. A JSON-serialized object for an [inline keyboard](https://core.telegram.org/bots/features#inline-keyboards), [custom reply keyboard](https://core.telegram.org/bots/features#keyboards), instructions to remove a reply keyboard or to force a reply from the user. Not supported for messages sent on behalf of a business account
      * @param messageThreadId Optional. Unique identifier for the target message thread (topic) of the forum; for forum supergroups only
      * @param protectContent Optional. Protects the contents of the sent message from forwarding and saving
+     * @param businessConnectionId Optional. Unique identifier of the business connection on behalf of which the message will be sent
      *
      * @return On success, the sent Message is returned.
      */
@@ -685,7 +709,8 @@ public:
                              ReplyParameters::Ptr replyParameters = nullptr,
                              GenericReply::Ptr replyMarkup = nullptr,
                              std::int32_t messageThreadId = 0,
-                             bool protectContent = false) const;
+                             bool protectContent = false,
+                             const std::string& businessConnectionId = "") const;
 
     /**
      * @brief Use this method to send a native poll.
@@ -695,7 +720,7 @@ public:
      * @param options A JSON-serialized list of answer options, 2-10 strings 1-100 characters each
      * @param disableNotification Optional. Sends the message silently. Users will receive a notification with no sound.
      * @param replyParameters Optional. Description of the message to reply to
-     * @param replyMarkup Optional. Additional interface options. A JSON-serialized object for an inline keyboard, custom reply keyboard, instructions to remove reply keyboard or to force a reply from the user.
+     * @param replyMarkup Optional. Additional interface options. A JSON-serialized object for an [inline keyboard](https://core.telegram.org/bots/features#inline-keyboards), [custom reply keyboard](https://core.telegram.org/bots/features#keyboards), instructions to remove a reply keyboard or to force a reply from the user. Not supported for messages sent on behalf of a business account
      * @param isAnonymous Optional. True, if the poll needs to be anonymous, defaults to True
      * @param type Optional. Poll type, “quiz” or “regular”, defaults to “regular”
      * @param allowsMultipleAnswers Optional. True, if the poll allows multiple answers, ignored for polls in quiz mode, defaults to False
@@ -708,6 +733,7 @@ public:
      * @param isClosed Optional. Pass True, if the poll needs to be immediately closed. This can be useful for poll preview.
      * @param messageThreadId Optional. Unique identifier for the target message thread (topic) of the forum; for forum supergroups only
      * @param protectContent Optional. Protects the contents of the sent message from forwarding and saving
+     * @param businessConnectionId Optional. Unique identifier of the business connection on behalf of which the message will be sent
      *
      * @return On success, the sent Message is returned.
      */
@@ -728,7 +754,8 @@ public:
                           std::int32_t closeDate = 0,
                           bool isClosed = false,
                           std::int32_t messageThreadId = 0,
-                          bool protectContent = false) const;
+                          bool protectContent = false,
+                          const std::string& businessConnectionId = "") const;
 
     /**
      * @brief Use this method to send an animated emoji that will display a random value.
@@ -736,10 +763,11 @@ public:
      * @param chatId Unique identifier for the target chat or username of the target channel (in the format @channelusername)
      * @param disableNotification Optional. Sends the message silently. Users will receive a notification with no sound.
      * @param replyParameters Optional. Description of the message to reply to
-     * @param replyMarkup Optional. Additional interface options. A JSON-serialized object for an inline keyboard, custom reply keyboard, instructions to remove reply keyboard or to force a reply from the user.
+     * @param replyMarkup Optional. Additional interface options. A JSON-serialized object for an [inline keyboard](https://core.telegram.org/bots/features#inline-keyboards), [custom reply keyboard](https://core.telegram.org/bots/features#keyboards), instructions to remove a reply keyboard or to force a reply from the user. Not supported for messages sent on behalf of a business account
      * @param emoji Optional. Emoji on which the dice throw animation is based. Currently, must be one of “🎲”, “🎯”, “🏀”, “⚽”, “🎳”, or “🎰”. Dice can have values 1-6 for “🎲”, “🎯” and “🎳”, values 1-5 for “🏀” and “⚽”, and values 1-64 for “🎰”. Defaults to “🎲”
      * @param messageThreadId Optional. Unique identifier for the target message thread (topic) of the forum; for forum supergroups only
      * @param protectContent Optional. Protects the contents of the sent message from forwarding
+     * @param businessConnectionId Optional. Unique identifier of the business connection on behalf of which the message will be sent
      *
      * @return On success, the sent Message is returned.
      */
@@ -749,7 +777,8 @@ public:
                           GenericReply::Ptr replyMarkup = nullptr,
                           const std::string& emoji = "",
                           std::int32_t messageThreadId = 0,
-                          bool protectContent = false) const;
+                          bool protectContent = false,
+                          const std::string& businessConnectionId = "") const;
 
     /**
      * @brief Use this method to change the chosen reactions on a message.
@@ -759,7 +788,7 @@ public:
      *
      * @param chatId Unique identifier for the target chat or username of the target channel (in the format @channelusername)
      * @param messageId Identifier of the target message. If the message belongs to a media group, the reaction is set to the first non-deleted message in the group instead.
-     * @param reaction Optional. New list of reaction types to set on the message. Currently, as non-premium users, bots can set up to one reaction per message. A custom emoji reaction can be used if it is either already present on the message or explicitly allowed by chat administrators.
+     * @param reaction Optional. A JSON-serialized list of reaction types to set on the message. Currently, as non-premium users, bots can set up to one reaction per message. A custom emoji reaction can be used if it is either already present on the message or explicitly allowed by chat administrators.
      * @param isBig Optional. Pass True to set the reaction with a big animation
      *
      * @return Returns True on success.
@@ -771,23 +800,26 @@ public:
 
     /**
      * @brief Use this method when you need to tell the user that something is happening on the bot's side.
+     *
      * The status is set for 5 seconds or less (when a message arrives from your bot, Telegram clients clear its typing status).
      *
-     * Example: The ImageBot needs some time to process a request and upload the image.
+     * Example: The [ImageBot](https://t.me/imagebot) needs some time to process a request and upload the image.
      * Instead of sending a text message along the lines of “Retrieving image, please wait…”, the bot may use Api::sendChatAction with action = upload_photo.
      * The user will see a “sending photo” status for the bot.
-     * 
+     *
      * We only recommend using this method when a response from the bot will take a noticeable amount of time to arrive.
      *
      * @param chatId Unique identifier for the target chat or username of the target channel (in the format @channelusername)
      * @param action Type of action to broadcast. Choose one, depending on what the user is about to receive: typing for text messages, upload_photo for photos, record_video or upload_video for videos, record_voice or upload_voice for voice notes, upload_document for general files, choose_sticker for stickers, find_location for location data, record_video_note or upload_video_note for video notes.
-     * @param messageThreadId Optional. Unique identifier for the target message thread; supergroups only
+     * @param messageThreadId Optional. Unique identifier for the target message thread; for supergroups only
+     * @param businessConnectionId Optional. Unique identifier of the business connection on behalf of which the action will be sent
      * 
      * @return Returns True on success.
      */
     bool sendChatAction(std::int64_t chatId,
                         const std::string& action,
-                        std::int32_t messageThreadId = 0) const;
+                        std::int32_t messageThreadId = 0,
+                        const std::string& businessConnectionId = "") const;
 
     /**
      * @brief Use this method to get a list of profile pictures for a user.
@@ -885,17 +917,17 @@ public:
      * @param chatId Unique identifier for the target chat or username of the target channel (in the format @channelusername)
      * @param userId Unique identifier of the target user
      * @param canChangeInfo Optional. Pass True if the administrator can change chat title, photo and other settings
-     * @param canPostMessages Optional. Pass True if the administrator can post messages in the channel, or access channel statistics; channels only
-     * @param canEditMessages Optional. Pass True if the administrator can edit messages of other users and can pin messages; channels only
+     * @param canPostMessages Optional. Pass True if the administrator can post messages in the channel, or access channel statistics; for channels only
+     * @param canEditMessages Optional. Pass True if the administrator can edit messages of other users and can pin messages; for channels only
      * @param canDeleteMessages Optional. Pass True if the administrator can delete messages of other users
      * @param canInviteUsers Optional. Pass True if the administrator can invite new users to the chat
-     * @param canPinMessages Optional. Pass True if the administrator can pin messages, supergroups only
+     * @param canPinMessages Optional. Pass True if the administrator can pin messages; for supergroups only
      * @param canPromoteMembers Optional. Pass True if the administrator can add new administrators with a subset of their own privileges or demote administrators that they have promoted, directly or indirectly (promoted by administrators that were appointed by him)
      * @param isAnonymous Optional. Pass True if the administrator's presence in the chat is hidden
      * @param canManageChat Optional. Pass True if the administrator can access the chat event log, get boost list, see hidden supergroup and channel members, report spam messages and ignore slow mode. Implied by any other administrator privilege.
      * @param canManageVideoChats Optional. Pass True if the administrator can manage video chats
      * @param canRestrictMembers Optional. Pass True if the administrator can restrict, ban or unban chat members, or access supergroup statistics
-     * @param canManageTopics Optional. Pass True if the user is allowed to create, rename, close, and reopen forum topics, supergroups only
+     * @param canManageTopics Optional. Pass True if the user is allowed to create, rename, close, and reopen forum topics; for supergroups only
      * @param canPostStories Optional. Pass True if the administrator can post stories to the chat
      * @param canEditStories Optional. Pass True if the administrator can edit stories posted by other users
      * @param canDeleteStories Optional. Pass True if the administrator can delete stories posted by other users
@@ -1439,6 +1471,15 @@ public:
                                           std::int32_t userId) const;
 
     /**
+     * @brief Use this method to get information about the connection of the bot with a business account.
+     *
+     * @param businessConnectionId Unique identifier of the business connection
+     *
+     * @return Returns a BusinessConnection object on success.
+     */
+    BusinessConnection::Ptr getBusinessConnection(const std::string& businessConnectionId) const;
+
+    /**
      * @brief Use this method to change the list of the bot's commands.
      * 
      * See https://core.telegram.org/bots#commands for more details about bot commands.
@@ -1697,7 +1738,7 @@ public:
      * If some of the specified messages can't be found, they are skipped.
      *
      * @param chatId Unique identifier for the target chat or username of the target channel (in the format @channelusername)
-     * @param messageIds Identifiers of 1-100 messages to delete. See Api::deleteMessage for limitations on which messages can be deleted
+     * @param messageIds A JSON-serialized list of 1-100 identifiers of messages to delete. See Api::deleteMessage for limitations on which messages can be deleted
      * 
      * @return Returns True on success.
      */
@@ -1708,13 +1749,14 @@ public:
      * @brief Use this method to send static .WEBP, [animated](https://telegram.org/blog/animated-stickers) .TGS, or [video](https://telegram.org/blog/video-stickers-better-reactions) .WEBM stickers.
      *
      * @param chatId Unique identifier for the target chat or username of the target channel (in the format @channelusername)
-     * @param sticker Sticker to send. Pass a fileId as String to send a file that exists on the Telegram servers (recommended), pass an HTTP URL as a String for Telegram to get a .WEBP sticker from the Internet, or upload a new .WEBP or .TGS sticker using multipart/form-data. https://core.telegram.org/bots/api#sending-files. Video stickers can only be sent by a fileId. Animated stickers can't be sent via an HTTP URL.
+     * @param sticker Sticker to send. Pass a fileId as String to send a file that exists on the Telegram servers (recommended), pass an HTTP URL as a String for Telegram to get a .WEBP sticker from the Internet, or upload a new .WEBP, .TGS, or .WEBM sticker using multipart/form-data. [More information on Sending Files »](https://core.telegram.org/bots/api#sending-files). Video and animated stickers can't be sent via an HTTP URL.
      * @param replyParameters Optional. Description of the message to reply to
-     * @param replyMarkup Optional. Additional interface options. A JSON-serialized object for an inline keyboard, custom reply keyboard, instructions to remove reply keyboard or to force a reply from the user.
+     * @param replyMarkup Optional. Additional interface options. A JSON-serialized object for an [inline keyboard](https://core.telegram.org/bots/features#inline-keyboards), [custom reply keyboard](https://core.telegram.org/bots/features#keyboards), instructions to remove a reply keyboard or to force a reply from the user. Not supported for messages sent on behalf of a business account
      * @param disableNotification Optional. Sends the message silently. Users will receive a notification with no sound.
      * @param messageThreadId Optional. Unique identifier for the target message thread (topic) of the forum; for forum supergroups only
      * @param protectContent Optional. Protects the contents of the sent message from forwarding and saving
      * @param emoji Optional. Emoji associated with the sticker; only for just uploaded stickers
+     * @param businessConnectionId Optional. Unique identifier of the business connection on behalf of which the message will be sent
      *
      * @return On success, the sent Message is returned.
      */
@@ -1725,7 +1767,8 @@ public:
                              bool disableNotification = false,
                              std::int32_t messageThreadId = 0,
                              bool protectContent = false,
-                             const std::string& emoji = "") const;
+                             const std::string& emoji = "",
+                             const std::string& businessConnectionId = "") const;
 
     /**
      * @brief Use this method to get a sticker set.
@@ -1739,19 +1782,19 @@ public:
     /**
      * @brief Use this method to get information about custom emoji stickers by their identifiers.
      *
-     * @param customEmojiIds List of custom emoji identifiers. At most 200 custom emoji identifiers can be specified.
+     * @param customEmojiIds A JSON-serialized list of custom emoji identifiers. At most 200 custom emoji identifiers can be specified.
      *
      * @return Returns an Array of Sticker objects.
      */
     std::vector<Sticker::Ptr> getCustomEmojiStickers(const std::vector<std::string>& customEmojiIds) const;
 
     /**
-     * @brief Use this method to upload a file with a sticker for later use in the Api::createNewStickerSet and Api::addStickerToSet methods (the file can be used multiple times).
-     * 
+     * @brief Use this method to upload a file with a sticker for later use in the Api::createNewStickerSet, Api::addStickerToSet, or Api::replaceStickerInSet methods (the file can be used multiple times).
+     *
      * @param userId User identifier of sticker file owner
      * @param sticker A file with the sticker in .WEBP, .PNG, .TGS, or .WEBM format. See https://core.telegram.org/stickers for technical requirements. https://core.telegram.org/bots/api#sending-files
      * @param stickerFormat Format of the sticker, must be one of “static”, “animated”, “video”
-     * 
+     *
      * @return Returns the uploaded File on success.
      */
     File::Ptr uploadStickerFile(std::int64_t userId,
@@ -1760,14 +1803,13 @@ public:
 
     /**
      * @brief Use this method to create a new sticker set owned by a user.
-     * 
+     *
      * The bot will be able to edit the sticker set thus created.
      *
      * @param userId User identifier of created sticker set owner
      * @param name Short name of sticker set, to be used in t.me/addstickers/ URLs (e.g., animals). Can contain only English letters, digits and underscores. Must begin with a letter, can't contain consecutive underscores and must end in "_by_<bot_username>". <bot_username> is case insensitive. 1-64 characters.
      * @param title Sticker set title, 1-64 characters
      * @param stickers A JSON-serialized list of 1-50 initial stickers to be added to the sticker set
-     * @param stickerFormat Format of stickers in the set, must be one of “static”, “animated”, “video”
      * @param stickerType Optional. Type of stickers in the set, pass “regular”, “mask”, or “custom_emoji”. By default, a regular sticker set is created.
      * @param needsRepainting Optional. Pass True if stickers in the sticker set must be repainted to the color of text when used in messages, the accent color if used as emoji status, white on chat photos, or another appropriate color based on context; for custom emoji sticker sets only
      *
@@ -1777,17 +1819,14 @@ public:
                              const std::string& name,
                              const std::string& title,
                              const std::vector<InputSticker::Ptr>& stickers,
-                             const std::string& stickerFormat,
-                             const std::string& stickerType = "",
+                             Sticker::Type stickerType = Sticker::Type::Regular,
                              bool needsRepainting = false) const;
 
     /**
      * @brief Use this method to add a new sticker to a set created by the bot.
-     * 
-     * The format of the added sticker must match the format of the other stickers in the set.
+     *
      * Emoji sticker sets can have up to 200 stickers.
-     * Animated and video sticker sets can have up to 50 stickers.
-     * Static sticker sets can have up to 120 stickers.
+     * Other sticker sets can have up to 120 stickers.
      *
      * @param userId User identifier of sticker set owner
      * @param name Sticker set name
@@ -1818,6 +1857,23 @@ public:
      * @return Returns True on success.
      */
     bool deleteStickerFromSet(const std::string& sticker) const;
+
+    /**
+     * @brief Use this method to replace an existing sticker in a sticker set with a new one.
+     *
+     * The method is equivalent to calling Api::deleteStickerFromSet, then Api::addStickerToSet, then Api::setStickerPositionInSet.
+     *
+     * @param userId User identifier of the sticker set owner
+     * @param name Sticker set name
+     * @param oldSticker File identifier of the replaced sticker
+     * @param sticker A JSON-serialized object with information about the added sticker. If exactly the same sticker had already been added to the set, then the set remains unchanged.
+     *
+     * @return Returns True on success.
+     */
+    bool replaceStickerInSet(std::int64_t userId,
+                             const std::string& name,
+                             const std::string& oldSticker,
+                             InputSticker::Ptr sticker) const;
 
     /**
      * @brief Use this method to change the list of emoji assigned to a regular or custom emoji sticker.
@@ -1871,17 +1927,19 @@ public:
 
     /**
      * @brief Use this method to set the thumbnail of a regular or mask sticker set.
-     * 
+     *
      * The format of the thumbnail file must match the format of the stickers in the set.
      *
      * @param name Sticker set name
      * @param userId User identifier of the sticker set owner
+     * @param format Format of the thumbnail, must be one of “static” for a .WEBP or .PNG image, “animated” for a .TGS animation, or “video” for a WEBM video
      * @param thumbnail Optional. A .WEBP or .PNG image with the thumbnail, must be up to 128 kilobytes in size and have a width and height of exactly 100px, or a .TGS animation with a thumbnail up to 32 kilobytes in size (see https://core.telegram.org/stickers#animated-sticker-requirements for animated sticker technical requirements), or a WEBM video with the thumbnail up to 32 kilobytes in size; see https://core.telegram.org/stickers#video-sticker-requirements for video sticker technical requirements. Pass a fileId as a String to send a file that already exists on the Telegram servers, pass an HTTP URL as a String for Telegram to get a file from the Internet, or upload a new one using multipart/form-data. https://core.telegram.org/bots/api#sending-files. Animated and video sticker set thumbnails can't be uploaded via HTTP URL. If omitted, then the thumbnail is dropped and the first sticker is used as the thumbnail.
      *
      * @return Returns True on success.
      */
     bool setStickerSetThumbnail(const std::string& name,
                                 std::int64_t userId,
+                                const std::string& format,
                                 boost::variant<InputFile::Ptr, std::string> thumbnail = "") const;
 
     /**
@@ -2099,10 +2157,11 @@ public:
      * @param chatId Unique identifier for the target chat
      * @param gameShortName Short name of the game, serves as the unique identifier for the game. Set up your games via @BotFather.
      * @param replyParameters Optional. Description of the message to reply to
-     * @param replyMarkup Optional. A JSON-serialized object for an inline keyboard. If empty, one 'Play gameTitle' button will be shown. If not empty, the first button must launch the game.
+     * @param replyMarkup Optional. A JSON-serialized object for an [inline keyboard](https://core.telegram.org/bots/features#inline-keyboards). If empty, one 'Play gameTitle' button will be shown. If not empty, the first button must launch the game. Not supported for messages sent on behalf of a business account.
      * @param disableNotification Optional. Sends the message silently. Users will receive a notification with no sound.
      * @param messageThreadId Optional. Unique identifier for the target message thread (topic) of the forum; for forum supergroups only
      * @param protectContent Optional. Protects the contents of the sent message from forwarding and saving
+     * @param businessConnectionId Optional. Unique identifier of the business connection on behalf of which the message will be sent
      *
      * @return On success, the sent Message is returned.
      */
@@ -2112,7 +2171,8 @@ public:
                           InlineKeyboardMarkup::Ptr replyMarkup = std::make_shared<InlineKeyboardMarkup>(),
                           bool disableNotification = false,
                           std::int32_t messageThreadId = 0,
-                          bool protectContent = false) const;
+                          bool protectContent = false,
+                          const std::string& businessConnectionId = "") const;
 
     /**
      * @brief Use this method to set the score of the specified user in a game message.

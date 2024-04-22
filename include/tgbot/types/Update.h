@@ -2,6 +2,8 @@
 #define TGBOT_UPDATE_H
 
 #include "tgbot/types/Message.h"
+#include "tgbot/types/BusinessConnection.h"
+#include "tgbot/types/BusinessMessagesDeleted.h"
 #include "tgbot/types/MessageReactionUpdated.h"
 #include "tgbot/types/MessageReactionCountUpdated.h"
 #include "tgbot/types/InlineQuery.h"
@@ -65,6 +67,26 @@ public:
      * This update may at times be triggered by changes to message fields that are either unavailable or not actively used by your bot.
      */
     Message::Ptr editedChannelPost;
+
+    /**
+     * @brief Optional. The bot was connected to or disconnected from a business account, or a user edited an existing connection with the bot
+     */
+    BusinessConnection::Ptr businessConnection;
+
+    /**
+     * @brief Optional. New non-service message from a connected business account
+     */
+    Message::Ptr businessMessage;
+
+    /**
+     * @brief Optional. New version of a message from a connected business account
+     */
+    Message::Ptr editedBusinessMessage;
+
+    /**
+     * @brief Optional. Messages were deleted from a connected business account
+     */
+    BusinessMessagesDeleted::Ptr deletedBusinessMessages;
 
     /**
      * @brief Optional. A reaction to a message was changed by a user.

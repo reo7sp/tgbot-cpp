@@ -87,22 +87,22 @@ public:
     bool canDeleteStories;
 
     /**
-     * @brief Optional. True, if the administrator can post messages in the channel, or access channel statistics; channels only
+     * @brief Optional. True, if the administrator can post messages in the channel, or access channel statistics; for channels only
      */
     bool canPostMessages;
 
     /**
-     * @brief Optional. True, if the administrator can edit messages of other users and can pin messages; channels only
+     * @brief Optional. True, if the administrator can edit messages of other users and can pin messages; for channels only
      */
     bool canEditMessages;
 
     /**
-     * @brief Optional. True, if the user is allowed to pin messages; groups and supergroups only
+     * @brief Optional. True, if the user is allowed to pin messages; for groups and supergroups only
      */
     bool canPinMessages;
 
     /**
-     * @brief Optional. True, if the user is allowed to create, rename, close, and reopen forum topics; supergroups only
+     * @brief Optional. True, if the user is allowed to create, rename, close, and reopen forum topics; for supergroups only
      */
     bool canManageTopics;
 

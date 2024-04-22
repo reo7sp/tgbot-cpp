@@ -119,10 +119,14 @@ Message::Ptr Api::sendMessage(boost::variant<std::int64_t, std::string> chatId,
                               bool disableNotification,
                               const std::vector<MessageEntity::Ptr>& entities,
                               std::int32_t messageThreadId,
-                              bool protectContent) const {
+                              bool protectContent,
+                              const std::string& businessConnectionId) const {
     std::vector<HttpReqArg> args;
-    args.reserve(10);
+    args.reserve(11);
 
+    if (!businessConnectionId.empty()) {
+        args.emplace_back("business_connection_id", businessConnectionId);
+    }
     args.emplace_back("chat_id", chatId);
     if (messageThreadId != 0) {
         args.emplace_back("message_thread_id", messageThreadId);
@@ -298,10 +302,14 @@ Message::Ptr Api::sendPhoto(boost::variant<std::int64_t, std::string> chatId,
                             const std::vector<MessageEntity::Ptr>& captionEntities,
                             std::int32_t messageThreadId,
                             bool protectContent,
-                            bool hasSpoiler) const {
+                            bool hasSpoiler,
+                            const std::string& businessConnectionId) const {
     std::vector<HttpReqArg> args;
-    args.reserve(11);
+    args.reserve(12);
 
+    if (!businessConnectionId.empty()) {
+        args.emplace_back("business_connection_id", businessConnectionId);
+    }
     args.emplace_back("chat_id", chatId);
     if (messageThreadId != 0) {
         args.emplace_back("message_thread_id", messageThreadId);
@@ -353,10 +361,14 @@ Message::Ptr Api::sendAudio(boost::variant<std::int64_t, std::string> chatId,
                             bool disableNotification,
                             const std::vector<MessageEntity::Ptr>& captionEntities,
                             std::int32_t messageThreadId,
-                            bool protectContent) const {
+                            bool protectContent,
+                            const std::string& businessConnectionId) const {
     std::vector<HttpReqArg> args;
-    args.reserve(14);
+    args.reserve(15);
 
+    if (!businessConnectionId.empty()) {
+        args.emplace_back("business_connection_id", businessConnectionId);
+    }
     args.emplace_back("chat_id", chatId);
     if (messageThreadId != 0) {
         args.emplace_back("message_thread_id", messageThreadId);
@@ -421,10 +433,14 @@ Message::Ptr Api::sendDocument(boost::variant<std::int64_t, std::string> chatId,
                                const std::vector<MessageEntity::Ptr>& captionEntities,
                                bool disableContentTypeDetection,
                                std::int32_t messageThreadId,
-                               bool protectContent) const {
+                               bool protectContent,
+                               const std::string& businessConnectionId) const {
     std::vector<HttpReqArg> args;
-    args.reserve(12);
+    args.reserve(13);
 
+    if (!businessConnectionId.empty()) {
+        args.emplace_back("business_connection_id", businessConnectionId);
+    }
     args.emplace_back("chat_id", chatId);
     if (messageThreadId != 0) {
         args.emplace_back("message_thread_id", messageThreadId);
@@ -487,10 +503,14 @@ Message::Ptr Api::sendVideo(boost::variant<std::int64_t, std::string> chatId,
                             const std::vector<MessageEntity::Ptr>& captionEntities,
                             std::int32_t messageThreadId,
                             bool protectContent,
-                            bool hasSpoiler) const {
+                            bool hasSpoiler,
+                            const std::string& businessConnectionId) const {
     std::vector<HttpReqArg> args;
-    args.reserve(16);
+    args.reserve(17);
 
+    if (!businessConnectionId.empty()) {
+        args.emplace_back("business_connection_id", businessConnectionId);
+    }
     args.emplace_back("chat_id", chatId);
     if (messageThreadId != 0) {
         args.emplace_back("message_thread_id", messageThreadId);
@@ -564,10 +584,14 @@ Message::Ptr Api::sendAnimation(boost::variant<std::int64_t, std::string> chatId
                                 const std::vector<MessageEntity::Ptr>& captionEntities,
                                 std::int32_t messageThreadId,
                                 bool protectContent,
-                                bool hasSpoiler) const {
+                                bool hasSpoiler,
+                                const std::string& businessConnectionId) const {
     std::vector<HttpReqArg> args;
-    args.reserve(15);
+    args.reserve(16);
 
+    if (!businessConnectionId.empty()) {
+        args.emplace_back("business_connection_id", businessConnectionId);
+    }
     args.emplace_back("chat_id", chatId);
     if (messageThreadId != 0) {
         args.emplace_back("message_thread_id", messageThreadId);
@@ -634,10 +658,14 @@ Message::Ptr Api::sendVoice(boost::variant<std::int64_t, std::string> chatId,
                             bool disableNotification,
                             const std::vector<MessageEntity::Ptr>& captionEntities,
                             std::int32_t messageThreadId,
-                            bool protectContent) const {
+                            bool protectContent,
+                            const std::string& businessConnectionId) const {
     std::vector<HttpReqArg> args;
-    args.reserve(11);
+    args.reserve(12);
 
+    if (!businessConnectionId.empty()) {
+        args.emplace_back("business_connection_id", businessConnectionId);
+    }
     args.emplace_back("chat_id", chatId);
     if (messageThreadId != 0) {
         args.emplace_back("message_thread_id", messageThreadId);
@@ -685,10 +713,14 @@ Message::Ptr Api::sendVideoNote(boost::variant<std::int64_t, std::string> chatId
                                 boost::variant<InputFile::Ptr, std::string> thumbnail,
                                 GenericReply::Ptr replyMarkup,
                                 std::int32_t messageThreadId,
-                                bool protectContent) const {
+                                bool protectContent,
+                                const std::string& businessConnectionId) const {
     std::vector<HttpReqArg> args;
-    args.reserve(10);
+    args.reserve(11);
 
+    if (!businessConnectionId.empty()) {
+        args.emplace_back("business_connection_id", businessConnectionId);
+    }
     args.emplace_back("chat_id", chatId);
     if (messageThreadId != 0) {
         args.emplace_back("message_thread_id", messageThreadId);
@@ -735,10 +767,14 @@ std::vector<Message::Ptr> Api::sendMediaGroup(boost::variant<std::int64_t, std::
                                               bool disableNotification,
                                               ReplyParameters::Ptr replyParameters,
                                               std::int32_t messageThreadId,
-                                              bool protectContent) const {
+                                              bool protectContent,
+                                              const std::string& businessConnectionId) const {
     std::vector<HttpReqArg> args;
-    args.reserve(6);
+    args.reserve(7);
 
+    if (!businessConnectionId.empty()) {
+        args.emplace_back("business_connection_id", businessConnectionId);
+    }
     args.emplace_back("chat_id", chatId);
     if (messageThreadId != 0) {
         args.emplace_back("message_thread_id", messageThreadId);
@@ -768,10 +804,14 @@ Message::Ptr Api::sendLocation(boost::variant<std::int64_t, std::string> chatId,
                                std::int32_t heading,
                                std::int32_t proximityAlertRadius,
                                std::int32_t messageThreadId,
-                               bool protectContent) const {
+                               bool protectContent,
+                               const std::string& businessConnectionId) const {
     std::vector<HttpReqArg> args;
-    args.reserve(12);
+    args.reserve(13);
 
+    if (!businessConnectionId.empty()) {
+        args.emplace_back("business_connection_id", businessConnectionId);
+    }
     args.emplace_back("chat_id", chatId);
     if (messageThreadId != 0) {
         args.emplace_back("message_thread_id", messageThreadId);
@@ -893,10 +933,14 @@ Message::Ptr Api::sendVenue(boost::variant<std::int64_t, std::string> chatId,
                             const std::string& googlePlaceId,
                             const std::string& googlePlaceType,
                             std::int32_t messageThreadId,
-                            bool protectContent) const {
+                            bool protectContent,
+                            const std::string& businessConnectionId) const {
     std::vector<HttpReqArg> args;
-    args.reserve(14);
+    args.reserve(15);
 
+    if (!businessConnectionId.empty()) {
+        args.emplace_back("business_connection_id", businessConnectionId);
+    }
     args.emplace_back("chat_id", chatId);
     if (messageThreadId != 0) {
         args.emplace_back("message_thread_id", messageThreadId);
@@ -942,10 +986,14 @@ Message::Ptr Api::sendContact(boost::variant<std::int64_t, std::string> chatId,
                               ReplyParameters::Ptr replyParameters,
                               GenericReply::Ptr replyMarkup,
                               std::int32_t messageThreadId,
-                              bool protectContent) const {
+                              bool protectContent,
+                              const std::string& businessConnectionId) const {
     std::vector<HttpReqArg> args;
-    args.reserve(10);
+    args.reserve(11);
 
+    if (!businessConnectionId.empty()) {
+        args.emplace_back("business_connection_id", businessConnectionId);
+    }
     args.emplace_back("chat_id", chatId);
     if (messageThreadId != 0) {
         args.emplace_back("message_thread_id", messageThreadId);
@@ -991,10 +1039,14 @@ Message::Ptr Api::sendPoll(boost::variant<std::int64_t, std::string> chatId,
                            std::int32_t closeDate,
                            bool isClosed,
                            std::int32_t messageThreadId,
-                           bool protectContent) const {
+                           bool protectContent,
+                           const std::string& businessConnectionId) const {
     std::vector<HttpReqArg> args;
-    args.reserve(18);
+    args.reserve(19);
 
+    if (!businessConnectionId.empty()) {
+        args.emplace_back("business_connection_id", businessConnectionId);
+    }
     args.emplace_back("chat_id", chatId);
     if (messageThreadId != 0) {
         args.emplace_back("message_thread_id", messageThreadId);
@@ -1056,10 +1108,14 @@ Message::Ptr Api::sendDice(boost::variant<std::int64_t, std::string> chatId,
                            GenericReply::Ptr replyMarkup,
                            const std::string& emoji,
                            std::int32_t messageThreadId,
-                           bool protectContent) const {
+                           bool protectContent,
+                           const std::string& businessConnectionId) const {
     std::vector<HttpReqArg> args;
-    args.reserve(7);
+    args.reserve(8);
 
+    if (!businessConnectionId.empty()) {
+        args.emplace_back("business_connection_id", businessConnectionId);
+    }
     args.emplace_back("chat_id", chatId);
     if (messageThreadId != 0) {
         args.emplace_back("message_thread_id", messageThreadId);
@@ -1104,10 +1160,14 @@ bool Api::setMessageReaction(boost::variant<std::int64_t, std::string> chatId,
 
 bool Api::sendChatAction(std::int64_t chatId,
                          const std::string& action,
-                         std::int32_t messageThreadId) const {
+                         std::int32_t messageThreadId,
+                         const std::string& businessConnectionId) const {
     std::vector<HttpReqArg> args;
-    args.reserve(3);
+    args.reserve(4);
 
+    if (!businessConnectionId.empty()) {
+        args.emplace_back("business_connection_id", businessConnectionId);
+    }
     args.emplace_back("chat_id", chatId);
     args.emplace_back("action", action);
     if (messageThreadId != 0) {
@@ -1745,6 +1805,15 @@ UserChatBoosts::Ptr Api::getUserChatBoosts(boost::variant<std::int64_t, std::str
     return _tgTypeParser.parseJsonAndGetUserChatBoosts(sendRequest("getUserChatBoosts", args));
 }
 
+BusinessConnection::Ptr Api::getBusinessConnection(const std::string& businessConnectionId) const {
+    std::vector<HttpReqArg> args;
+    args.reserve(1);
+
+    args.emplace_back("business_connection_id", businessConnectionId);
+
+    return _tgTypeParser.parseJsonAndGetBusinessConnection(sendRequest("getBusinessConnection", args));
+}
+
 bool Api::setMyCommands(const std::vector<BotCommand::Ptr>& commands,
                         BotCommandScope::Ptr scope,
                         const std::string& languageCode) const {
@@ -2137,10 +2206,14 @@ Message::Ptr Api::sendSticker(boost::variant<std::int64_t, std::string> chatId,
                               bool disableNotification,
                               std::int32_t messageThreadId,
                               bool protectContent,
-                              const std::string& emoji) const {
+                              const std::string& emoji,
+                              const std::string& businessConnectionId) const {
     std::vector<HttpReqArg> args;
-    args.reserve(8);
+    args.reserve(9);
 
+    if (!businessConnectionId.empty()) {
+        args.emplace_back("business_connection_id", businessConnectionId);
+    }
     args.emplace_back("chat_id", chatId);
     if (messageThreadId != 0) {
         args.emplace_back("message_thread_id", messageThreadId);
@@ -2208,19 +2281,21 @@ bool Api::createNewStickerSet(std::int64_t userId,
                               const std::string& name,
                               const std::string& title,
                               const std::vector<InputSticker::Ptr>& stickers,
-                              const std::string& stickerFormat,
-                              const std::string& stickerType,
+                              Sticker::Type stickerType,
                               bool needsRepainting) const {
     std::vector<HttpReqArg> args;
-    args.reserve(7);
+    args.reserve(6);
 
     args.emplace_back("user_id", userId);
     args.emplace_back("name", name);
     args.emplace_back("title", title);
     args.emplace_back("stickers", _tgTypeParser.parseArray<InputSticker>(&TgTypeParser::parseInputSticker, stickers));
-    args.emplace_back("sticker_format", stickerFormat);
-    if (!stickerType.empty()) {
-        args.emplace_back("sticker_type", stickerType);
+    if (stickerType == Sticker::Type::Regular) {
+        args.emplace_back("sticker_type", "regular");
+    } else if (stickerType == Sticker::Type::Mask) {
+        args.emplace_back("sticker_type", "mask");
+    } else if (stickerType == Sticker::Type::CustomEmoji) {
+        args.emplace_back("sticker_type", "custom_emoji");
     }
     if (needsRepainting) {
         args.emplace_back("needs_repainting", needsRepainting);
@@ -2260,6 +2335,21 @@ bool Api::deleteStickerFromSet(const std::string& sticker) const {
     args.emplace_back("sticker", sticker);
 
     return sendRequest("deleteStickerFromSet", args).get<bool>("", false);
+}
+
+bool Api::replaceStickerInSet(std::int64_t userId,
+                             const std::string& name,
+                             const std::string& oldSticker,
+                             InputSticker::Ptr sticker) const {
+    std::vector<HttpReqArg> args;
+    args.reserve(4);
+
+    args.emplace_back("user_id", userId);
+    args.emplace_back("name", name);
+    args.emplace_back("old_sticker", oldSticker);
+    args.emplace_back("sticker", _tgTypeParser.parseInputSticker(sticker));
+
+    return sendRequest("replaceStickerInSet", args).get<bool>("", false);
 }
 
 bool Api::setStickerEmojiList(const std::string& sticker,
@@ -2318,12 +2408,14 @@ bool Api::setStickerSetTitle(const std::string& name,
 
 bool Api::setStickerSetThumbnail(const std::string& name,
                                  std::int64_t userId,
+                                 const std::string& format,
                                  boost::variant<InputFile::Ptr, std::string> thumbnail) const {
     std::vector<HttpReqArg> args;
-    args.reserve(3);
+    args.reserve(4);
 
     args.emplace_back("name", name);
     args.emplace_back("user_id", userId);
+    args.emplace_back("format", format);
     if (thumbnail.which() == 0) {   // InputFile::Ptr
         if (boost::get<InputFile::Ptr>(thumbnail) != nullptr) {
             auto file = boost::get<InputFile::Ptr>(thumbnail);
@@ -2625,10 +2717,14 @@ Message::Ptr Api::sendGame(std::int64_t chatId,
                            InlineKeyboardMarkup::Ptr replyMarkup,
                            bool disableNotification,
                            std::int32_t messageThreadId,
-                           bool protectContent) const {
+                           bool protectContent,
+                           const std::string& businessConnectionId) const {
     std::vector<HttpReqArg> args;
-    args.reserve(7);
+    args.reserve(8);
 
+    if (!businessConnectionId.empty()) {
+        args.emplace_back("business_connection_id", businessConnectionId);
+    }
     args.emplace_back("chat_id", chatId);
     if (messageThreadId != 0) {
         args.emplace_back("message_thread_id", messageThreadId);
