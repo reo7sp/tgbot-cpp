@@ -1,19 +1,27 @@
 var class_tg_bot_1_1_update =
 [
     [ "Ptr", "class_tg_bot_1_1_update.html#abace63cf3605fe7a480a3bb839a672a8", null ],
+    [ "businessConnection", "class_tg_bot_1_1_update.html#a6aa5fece26676b3ce85e6bc0e9c50290", null ],
+    [ "businessMessage", "class_tg_bot_1_1_update.html#a52ea48fc42be7b134c32dda55932709f", null ],
     [ "callbackQuery", "class_tg_bot_1_1_update.html#a2c6890adcab16d6a306b3b89fd954f6f", null ],
     [ "channelPost", "class_tg_bot_1_1_update.html#aabddc6947fe255f1763802532d34ef2b", null ],
+    [ "chatBoost", "class_tg_bot_1_1_update.html#ac0b9b4872958dd23837937e7a75bb0fd", null ],
     [ "chatJoinRequest", "class_tg_bot_1_1_update.html#a2ebed85cdcf8d531ae2a2d5a70a74331", null ],
     [ "chatMember", "class_tg_bot_1_1_update.html#ab72c74166928c9a7b7b182e4dadbe656", null ],
     [ "chosenInlineResult", "class_tg_bot_1_1_update.html#aa3fab72bc10111e2f8f8930c43a0ff8b", null ],
+    [ "deletedBusinessMessages", "class_tg_bot_1_1_update.html#a63e1bf2011df6faccdf697af8248cf70", null ],
+    [ "editedBusinessMessage", "class_tg_bot_1_1_update.html#a997db7929cb69b1041b240fbb980e10e", null ],
     [ "editedChannelPost", "class_tg_bot_1_1_update.html#a05588da55717387ef91434f014afff1b", null ],
     [ "editedMessage", "class_tg_bot_1_1_update.html#a188502d94515baee85ba30f58cffa1b5", null ],
     [ "inlineQuery", "class_tg_bot_1_1_update.html#aea03e36b9015a0fe9f1278564c5b8806", null ],
     [ "message", "class_tg_bot_1_1_update.html#ab65136c0345978742fb3026e6855ff2c", null ],
+    [ "messageReaction", "class_tg_bot_1_1_update.html#accd264a788d829485a43b5fa186c5c1a", null ],
+    [ "messageReactionCount", "class_tg_bot_1_1_update.html#a2f906cbe310962c012465fb97d9bcc24", null ],
     [ "myChatMember", "class_tg_bot_1_1_update.html#a15ac10adb0286474f5918cf1f9c4d95a", null ],
     [ "poll", "class_tg_bot_1_1_update.html#a74adc6d7b6f71daccd35fe120b400038", null ],
     [ "pollAnswer", "class_tg_bot_1_1_update.html#a403354cd2d62720d19d12421573e65a7", null ],
     [ "preCheckoutQuery", "class_tg_bot_1_1_update.html#a9c1dab567059da89f8529263bdc92da3", null ],
+    [ "removedChatBoost", "class_tg_bot_1_1_update.html#a0cac69c79b882039a2876afc217c1780", null ],
     [ "shippingQuery", "class_tg_bot_1_1_update.html#ab36e473d65557a1fb6ab4096eadc1269", null ],
     [ "updateId", "class_tg_bot_1_1_update.html#aa1f17980cc04fa62367620f922ff9fcb", null ]
 ];

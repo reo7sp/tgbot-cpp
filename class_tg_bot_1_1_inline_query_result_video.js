@@ -8,7 +8,7 @@ var class_tg_bot_1_1_inline_query_result_video =
     [ "inputMessageContent", "class_tg_bot_1_1_inline_query_result_video.html#a640b85f236120b746e0132f9b12e76be", null ],
     [ "mimeType", "class_tg_bot_1_1_inline_query_result_video.html#a6eb48f1bc3089f4caef133c8c6644baf", null ],
     [ "parseMode", "class_tg_bot_1_1_inline_query_result_video.html#a687ee12bae3dbfc09e145e15537033ea", null ],
-    [ "thumbUrl", "class_tg_bot_1_1_inline_query_result_video.html#aa03003971380ecfaef6466f2cbb3e721", null ],
+    [ "thumbnailUrl", "class_tg_bot_1_1_inline_query_result_video.html#a55cf02c64ab4994c49fdec75449a5e2f", null ],
     [ "title", "class_tg_bot_1_1_inline_query_result_video.html#a6519c3cb7929fde9e33c041a0c58e1fa", null ],
     [ "videoDuration", "class_tg_bot_1_1_inline_query_result_video.html#a1bc60b0ecd1aa215e164702157836da1", null ],
     [ "videoHeight", "class_tg_bot_1_1_inline_query_result_video.html#a4ed6271bba4be5be43675119c9ad1146", null ],

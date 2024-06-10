@@ -10,8 +10,8 @@ var class_tg_bot_1_1_inline_query_result_venue =
     [ "inputMessageContent", "class_tg_bot_1_1_inline_query_result_venue.html#ad9374428a9aa1ba20af79cc601ece351", null ],
     [ "latitude", "class_tg_bot_1_1_inline_query_result_venue.html#a842e5f5e15da3e24e81f8d68ec00ad97", null ],
     [ "longitude", "class_tg_bot_1_1_inline_query_result_venue.html#a385d6861f463a496af03accc31143a4c", null ],
-    [ "thumbHeight", "class_tg_bot_1_1_inline_query_result_venue.html#aebfea7a9ce3f4beaa58c9c8b544a1b44", null ],
-    [ "thumbUrl", "class_tg_bot_1_1_inline_query_result_venue.html#a7c54d597c7b13147109ca777364abf90", null ],
-    [ "thumbWidth", "class_tg_bot_1_1_inline_query_result_venue.html#a160e77299b7274410e7bfc0e9987ab76", null ],
+    [ "thumbnailHeight", "class_tg_bot_1_1_inline_query_result_venue.html#a9028ceebce86609c18e8c9795fdc1c07", null ],
+    [ "thumbnailUrl", "class_tg_bot_1_1_inline_query_result_venue.html#abfa3b7a66f0c80a781c9e79cef9636b7", null ],
+    [ "thumbnailWidth", "class_tg_bot_1_1_inline_query_result_venue.html#accb26d1c82377328160c4aba9d07b6a9", null ],
     [ "title", "class_tg_bot_1_1_inline_query_result_venue.html#a9d43ce317a702fc0e10636caac7bb3d3", null ]
 ];

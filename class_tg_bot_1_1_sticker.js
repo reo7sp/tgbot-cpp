@@ -15,9 +15,10 @@ var class_tg_bot_1_1_sticker =
     [ "isAnimated", "class_tg_bot_1_1_sticker.html#a98d7ea2d2917d544ecc2eddd02ca3a94", null ],
     [ "isVideo", "class_tg_bot_1_1_sticker.html#a6f1b557771bee5f4414efe53cb161b8f", null ],
     [ "maskPosition", "class_tg_bot_1_1_sticker.html#a4e61ddba7363932939846585eec348e2", null ],
+    [ "needsRepainting", "class_tg_bot_1_1_sticker.html#a1ed3eb30f8c7891d6b5e1d80acd47449", null ],
     [ "premiumAnimation", "class_tg_bot_1_1_sticker.html#a8eebc28f8e2cc5d675249d5622b0ed37", null ],
     [ "setName", "class_tg_bot_1_1_sticker.html#ac9ff439183edc6a5fb2c469e29c687ba", null ],
-    [ "thumb", "class_tg_bot_1_1_sticker.html#aff8374f6355156deae78e8f934f3aab3", null ],
+    [ "thumbnail", "class_tg_bot_1_1_sticker.html#a283601691bf14475b720da5a049e9c1a", null ],
     [ "type", "class_tg_bot_1_1_sticker.html#a0b730d358ba84e22ed6cac1a17a8c64e", null ],
     [ "width", "class_tg_bot_1_1_sticker.html#a5293cffae2125fdd6fc37a93b7a73f32", null ]
 ];

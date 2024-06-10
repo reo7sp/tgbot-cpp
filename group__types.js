@@ -9,7 +9,7 @@ var group__types =
       [ "fileUniqueId", "class_tg_bot_1_1_animation.html#a28d07e89fdd8ad22f39bfd326e89a2d6", null ],
       [ "height", "class_tg_bot_1_1_animation.html#a9a256b9f48d0b1c4f60f7b6d0d06a25c", null ],
       [ "mimeType", "class_tg_bot_1_1_animation.html#a112e29bf5a35ef1fc78f093cf7ecc48d", null ],
-      [ "thumb", "class_tg_bot_1_1_animation.html#ac8e9bb631206971b80674a71002ed8a5", null ],
+      [ "thumbnail", "class_tg_bot_1_1_animation.html#a3317077b9d70106c1efeaf480a0062f7", null ],
       [ "width", "class_tg_bot_1_1_animation.html#aa77b1558a9065bffa0b0f218499a3a8e", null ]
     ] ],
     [ "TgBot::Audio", "class_tg_bot_1_1_audio.html", [
@@ -21,8 +21,14 @@ var group__types =
       [ "fileUniqueId", "class_tg_bot_1_1_audio.html#ae40bca8fa2e720a40fe31d7203766187", null ],
       [ "mimeType", "class_tg_bot_1_1_audio.html#a0657e6fec492919e086084ab07bcf7ae", null ],
       [ "performer", "class_tg_bot_1_1_audio.html#ac91ee59f6137da2da2f7c8ad6d1e9119", null ],
-      [ "thumb", "class_tg_bot_1_1_audio.html#aafd12221a8d29da7783beafd1fc62d5a", null ],
+      [ "thumbnail", "class_tg_bot_1_1_audio.html#a4a1144036b4357d8e56343bebbc03f86", null ],
       [ "title", "class_tg_bot_1_1_audio.html#a93a600b9821a425e31e51fdee027e1b4", null ]
+    ] ],
+    [ "TgBot::Birthdate", "class_tg_bot_1_1_birthdate.html", [
+      [ "Ptr", "class_tg_bot_1_1_birthdate.html#a092a1eda8861ba07e4f854e1fd448134", null ],
+      [ "day", "class_tg_bot_1_1_birthdate.html#aee52431df9bf1f85462e1f7484f9a0b0", null ],
+      [ "month", "class_tg_bot_1_1_birthdate.html#a936d921acf2e090070b281fca455aaf6", null ],
+      [ "year", "class_tg_bot_1_1_birthdate.html#adfe81d1f53d600bdb2c438a439174f9c", null ]
     ] ],
     [ "TgBot::BotCommand", "class_tg_bot_1_1_bot_command.html", [
       [ "Ptr", "class_tg_bot_1_1_bot_command.html#a213b909895dffb361056043dd84962a2", null ],
@@ -69,6 +75,54 @@ var group__types =
       [ "Ptr", "class_tg_bot_1_1_bot_command_scope_default.html#aa187dcf730bf411169bd7c1e0043c46e", null ],
       [ "BotCommandScopeDefault", "class_tg_bot_1_1_bot_command_scope_default.html#adf31c86ddfe7968c5bdc818136fb909b", null ]
     ] ],
+    [ "TgBot::BotDescription", "class_tg_bot_1_1_bot_description.html", [
+      [ "Ptr", "class_tg_bot_1_1_bot_description.html#a53890bb7b752aa783d2e2bef32eae55c", null ],
+      [ "description", "class_tg_bot_1_1_bot_description.html#a4249515e266fcf50a9bdea0c9e9b6eed", null ]
+    ] ],
+    [ "TgBot::BotName", "class_tg_bot_1_1_bot_name.html", [
+      [ "Ptr", "class_tg_bot_1_1_bot_name.html#addb44b446691f53bd1c03e789c3e868a", null ],
+      [ "name", "class_tg_bot_1_1_bot_name.html#a69d73224710ee16ac8092bc51c1eb500", null ]
+    ] ],
+    [ "TgBot::BotShortDescription", "class_tg_bot_1_1_bot_short_description.html", [
+      [ "Ptr", "class_tg_bot_1_1_bot_short_description.html#a516becf8f8efe9a24cfa1f7b3e593ae6", null ],
+      [ "shortDescription", "class_tg_bot_1_1_bot_short_description.html#aa7c827468aec5bf361c2efde9a6e3b4d", null ]
+    ] ],
+    [ "TgBot::BusinessConnection", "class_tg_bot_1_1_business_connection.html", [
+      [ "Ptr", "class_tg_bot_1_1_business_connection.html#a7b928349ff34d9a9e2abd8f600b0d7c1", null ],
+      [ "canReply", "class_tg_bot_1_1_business_connection.html#ac6e6f81941993f8f7958f5eae5512fbb", null ],
+      [ "date", "class_tg_bot_1_1_business_connection.html#a2e3f70cd916214cb2c298c696ee16e80", null ],
+      [ "id", "class_tg_bot_1_1_business_connection.html#a7ed3e44a8f1a337fadf5e13814d7f32b", null ],
+      [ "isEnabled", "class_tg_bot_1_1_business_connection.html#a34bc24430072b85895c0318946544522", null ],
+      [ "user", "class_tg_bot_1_1_business_connection.html#a8ba312ec9d01ce576a42af6a630c023f", null ],
+      [ "userChatId", "class_tg_bot_1_1_business_connection.html#a154523c3629cc744deae6db0fde1c57e", null ]
+    ] ],
+    [ "TgBot::BusinessIntro", "class_tg_bot_1_1_business_intro.html", [
+      [ "Ptr", "class_tg_bot_1_1_business_intro.html#a46c2156ac3c847222983c9a5e5e9f19b", null ],
+      [ "message", "class_tg_bot_1_1_business_intro.html#a3f936eef001725a427909035dfad2ad2", null ],
+      [ "sticker", "class_tg_bot_1_1_business_intro.html#aef5d4bb16cddcb946c3c9a2b2df22e93", null ],
+      [ "title", "class_tg_bot_1_1_business_intro.html#a60bc8ecd89ed7efad804a2987ade8b60", null ]
+    ] ],
+    [ "TgBot::BusinessLocation", "class_tg_bot_1_1_business_location.html", [
+      [ "Ptr", "class_tg_bot_1_1_business_location.html#aefeebbedfbacb04ebad116533ea3dc52", null ],
+      [ "address", "class_tg_bot_1_1_business_location.html#ab7256b6ec25f75be0653ea80c013217f", null ],
+      [ "location", "class_tg_bot_1_1_business_location.html#ae567e86f35d65a385eff7b4d3ca9e26f", null ]
+    ] ],
+    [ "TgBot::BusinessMessagesDeleted", "class_tg_bot_1_1_business_messages_deleted.html", [
+      [ "Ptr", "class_tg_bot_1_1_business_messages_deleted.html#adf851f41293c41bd4ed57eb214fa33c0", null ],
+      [ "businessConnectionId", "class_tg_bot_1_1_business_messages_deleted.html#a256a4ae65bda11209979ae80dc687050", null ],
+      [ "chat", "class_tg_bot_1_1_business_messages_deleted.html#ac3a3d10e7f603b6377fc0e6af1205866", null ],
+      [ "messageIds", "class_tg_bot_1_1_business_messages_deleted.html#a8f311321f1a3056c9ba2cf650060d258", null ]
+    ] ],
+    [ "TgBot::BusinessOpeningHours", "class_tg_bot_1_1_business_opening_hours.html", [
+      [ "Ptr", "class_tg_bot_1_1_business_opening_hours.html#a6c3cc971f99d7d8fecd00e14abdf7ee2", null ],
+      [ "openingHours", "class_tg_bot_1_1_business_opening_hours.html#aa57706ae34654f4ecd72941ded62f7af", null ],
+      [ "timeZoneName", "class_tg_bot_1_1_business_opening_hours.html#a2494bea02d54dd617e7aec062c75433b", null ]
+    ] ],
+    [ "TgBot::BusinessOpeningHoursInterval", "class_tg_bot_1_1_business_opening_hours_interval.html", [
+      [ "Ptr", "class_tg_bot_1_1_business_opening_hours_interval.html#a0acbac57302ff472390916745cf5e48a", null ],
+      [ "closingMinute", "class_tg_bot_1_1_business_opening_hours_interval.html#a60a60706f5224bbb544f6d1bba898109", null ],
+      [ "openingMinute", "class_tg_bot_1_1_business_opening_hours_interval.html#a2d782af5643d459d85551e56c0e09440", null ]
+    ] ],
     [ "TgBot::CallbackGame", "class_tg_bot_1_1_callback_game.html", [
       [ "Ptr", "class_tg_bot_1_1_callback_game.html#a9bf84f7624a6ad378d65dc6d84b8d624", null ]
     ] ],
@@ -90,17 +144,27 @@ var group__types =
         [ "Supergroup", "class_tg_bot_1_1_chat.html#a939946fe3181210f9e3f3d9610edb52ea9c306d98196730ac00fc621998b4a8f5", null ],
         [ "Channel", "class_tg_bot_1_1_chat.html#a939946fe3181210f9e3f3d9610edb52ea781dc97dc62331eec3ea9ec4373a3ca8", null ]
       ] ],
+      [ "accentColorId", "class_tg_bot_1_1_chat.html#a8d2364ddb441cc0e8d1dd0f81bbb5c7a", null ],
       [ "activeUsernames", "class_tg_bot_1_1_chat.html#ac7c390f186d5cb13652bb4e2357b0661", null ],
+      [ "availableReactions", "class_tg_bot_1_1_chat.html#a16c281c478c79ad3d6922d12ecdac1d8", null ],
+      [ "backgroundCustomEmojiId", "class_tg_bot_1_1_chat.html#ae1761279511cdd5fdd1d75ca320f2299", null ],
       [ "bio", "class_tg_bot_1_1_chat.html#a22780fc23fb3e04fd7aeee1d56dd0aa7", null ],
+      [ "birthdate", "class_tg_bot_1_1_chat.html#aff148e52dff516b80109a30cdef0a251", null ],
+      [ "businessIntro", "class_tg_bot_1_1_chat.html#ad7d842e014db2eea35bc675b51fc7c7f", null ],
+      [ "businessLocation", "class_tg_bot_1_1_chat.html#af6388c7391107c60f2a79851412edf72", null ],
+      [ "businessOpeningHours", "class_tg_bot_1_1_chat.html#a6a9232e9ebe53c2e8d8de26b45a8fd00", null ],
       [ "canSetStickerSet", "class_tg_bot_1_1_chat.html#a634c679550d78b602254cf3044f6169a", null ],
+      [ "customEmojiStickerSetName", "class_tg_bot_1_1_chat.html#a5cc676c71281ae83b244724ae3307127", null ],
       [ "description", "class_tg_bot_1_1_chat.html#a8f87f388215d07bb2745cdf2600ff299", null ],
       [ "emojiStatusCustomEmojiId", "class_tg_bot_1_1_chat.html#a59151510a8cad1b3af517ba397e1106d", null ],
+      [ "emojiStatusExpirationDate", "class_tg_bot_1_1_chat.html#ad029319ef8b7553a99aa9e23546944e6", null ],
       [ "firstName", "class_tg_bot_1_1_chat.html#a884c0c1c6d6f0a5453231f7b9049da29", null ],
       [ "hasAggressiveAntiSpamEnabled", "class_tg_bot_1_1_chat.html#a642da5c21f7fd146908f24ab1c47c154", null ],
       [ "hasHiddenMembers", "class_tg_bot_1_1_chat.html#a54d814c559379fb43af91c5fc68a1e3d", null ],
       [ "hasPrivateForwards", "class_tg_bot_1_1_chat.html#a59d90603c32220999ff5280afdeefd1c", null ],
       [ "hasProtectedContent", "class_tg_bot_1_1_chat.html#a6e749f4fe47340a468301899a3c9c616", null ],
       [ "hasRestrictedVoiceAndVideoMessages", "class_tg_bot_1_1_chat.html#a6002ed2a694def78dbf8a02d719a861b", null ],
+      [ "hasVisibleHistory", "class_tg_bot_1_1_chat.html#ac8681ae0e1a779a960704add407496b9", null ],
       [ "id", "class_tg_bot_1_1_chat.html#a40a34b9c7545ff69d0a8dc1ff8208fa7", null ],
       [ "inviteLink", "class_tg_bot_1_1_chat.html#a5653ec719aa43764670c2c88055107e2", null ],
       [ "isForum", "class_tg_bot_1_1_chat.html#a0d3345dc1881126eb66f1e6ec6c9ec0b", null ],
@@ -111,28 +175,79 @@ var group__types =
       [ "location", "class_tg_bot_1_1_chat.html#a9f03f6ce79230a563f5c83d62671bc10", null ],
       [ "messageAutoDeleteTime", "class_tg_bot_1_1_chat.html#a8bbf4ddfca42b8b46af4a71b512fab79", null ],
       [ "permissions", "class_tg_bot_1_1_chat.html#ad5ac6cb3ffaede7feee6d3795793599b", null ],
+      [ "personalChat", "class_tg_bot_1_1_chat.html#ae7cea77c08a06e7820102fc8ba213d3a", null ],
       [ "photo", "class_tg_bot_1_1_chat.html#acbc96ba84a02da42e5fa3c936458b735", null ],
       [ "pinnedMessage", "class_tg_bot_1_1_chat.html#af6904afd95332cd46ce65d3c82139875", null ],
+      [ "profileAccentColorId", "class_tg_bot_1_1_chat.html#afc277c7e1646b97c4107e1220cd495ae", null ],
+      [ "profileBackgroundCustomEmojiId", "class_tg_bot_1_1_chat.html#a37067115bfa5e4179496e57ef7e3a1d5", null ],
       [ "slowModeDelay", "class_tg_bot_1_1_chat.html#af6d8fb296acd128f1d61e2da1c3093bb", null ],
       [ "stickerSetName", "class_tg_bot_1_1_chat.html#a056b7b53d5d81e5ab395dd555fa35c14", null ],
       [ "title", "class_tg_bot_1_1_chat.html#a15a1f1328125b45ba80ea8ee5a99aed0", null ],
       [ "type", "class_tg_bot_1_1_chat.html#a86d47a69eb66a74d7f5b294700d884cd", null ],
+      [ "unrestrictBoostCount", "class_tg_bot_1_1_chat.html#aa4c5fee5afecef74b98d19760d3de215", null ],
       [ "username", "class_tg_bot_1_1_chat.html#afce7dfa93a025025eef940447ed17990", null ]
     ] ],
     [ "TgBot::ChatAdministratorRights", "class_tg_bot_1_1_chat_administrator_rights.html", [
       [ "Ptr", "class_tg_bot_1_1_chat_administrator_rights.html#aa36bfd6ddb3990328b3202ffc419e44c", null ],
       [ "canChangeInfo", "class_tg_bot_1_1_chat_administrator_rights.html#a3dac273da2e7639df2958666e96b08d1", null ],
       [ "canDeleteMessages", "class_tg_bot_1_1_chat_administrator_rights.html#ab9198a8468396418dd1207bb6fe9b028", null ],
+      [ "canDeleteStories", "class_tg_bot_1_1_chat_administrator_rights.html#a80bf53bf48fdb4048adbb608e90a7874", null ],
       [ "canEditMessages", "class_tg_bot_1_1_chat_administrator_rights.html#a684ec5af05a50fb8a3559a7106e8079f", null ],
+      [ "canEditStories", "class_tg_bot_1_1_chat_administrator_rights.html#a53f2c8235aa11859a6d84fb9cc3fba5c", null ],
       [ "canInviteUsers", "class_tg_bot_1_1_chat_administrator_rights.html#a87033add98a173169ceff9933d24d7ae", null ],
       [ "canManageChat", "class_tg_bot_1_1_chat_administrator_rights.html#acaada133a86ebf624f8724ee33c78700", null ],
       [ "canManageTopics", "class_tg_bot_1_1_chat_administrator_rights.html#a5eeef33b92c45d14b9ad729e46efa201", null ],
       [ "canManageVideoChats", "class_tg_bot_1_1_chat_administrator_rights.html#a4bad1cd40944cbc9b31188b81939ed46", null ],
       [ "canPinMessages", "class_tg_bot_1_1_chat_administrator_rights.html#a75eb958627e4ba2a16219f0899122194", null ],
       [ "canPostMessages", "class_tg_bot_1_1_chat_administrator_rights.html#a7fa041dd8e6c7ed1f8f46886c19ad953", null ],
+      [ "canPostStories", "class_tg_bot_1_1_chat_administrator_rights.html#af1edefe35e2b61a572c525e229f60fc4", null ],
       [ "canPromoteMembers", "class_tg_bot_1_1_chat_administrator_rights.html#aa6c8fcde13ecdae6096d3ca8e0065a92", null ],
       [ "canRestrictMembers", "class_tg_bot_1_1_chat_administrator_rights.html#ae54793c77c5a125176c752a676488044", null ],
       [ "isAnonymous", "class_tg_bot_1_1_chat_administrator_rights.html#ad5280637c12fb66707da60cd67918b92", null ]
+    ] ],
+    [ "TgBot::ChatBoost", "class_tg_bot_1_1_chat_boost.html", [
+      [ "Ptr", "class_tg_bot_1_1_chat_boost.html#af4e9aed008f25af80f98ecc42c491ea7", null ],
+      [ "addDate", "class_tg_bot_1_1_chat_boost.html#ae19868d77d844c172d475cc59872992d", null ],
+      [ "boostId", "class_tg_bot_1_1_chat_boost.html#a6a7cea300ed0b11e49ab253cbe587d60", null ],
+      [ "expirationDate", "class_tg_bot_1_1_chat_boost.html#ab875d47161340834e67d411f94a34ef9", null ],
+      [ "source", "class_tg_bot_1_1_chat_boost.html#af66036b731e5353796cdf34d584a929e", null ]
+    ] ],
+    [ "TgBot::ChatBoostAdded", "class_tg_bot_1_1_chat_boost_added.html", [
+      [ "Ptr", "class_tg_bot_1_1_chat_boost_added.html#ac98056e9c7dbafec808542b2b3b77eda", null ],
+      [ "boostCount", "class_tg_bot_1_1_chat_boost_added.html#a459cddd7c650e2181efccf83ae666cd5", null ]
+    ] ],
+    [ "TgBot::ChatBoostRemoved", "class_tg_bot_1_1_chat_boost_removed.html", [
+      [ "Ptr", "class_tg_bot_1_1_chat_boost_removed.html#a483864bfc706da1ac47ad82237673399", null ],
+      [ "boostId", "class_tg_bot_1_1_chat_boost_removed.html#a8cb5455fff91992616c828c8923f2c65", null ],
+      [ "chat", "class_tg_bot_1_1_chat_boost_removed.html#a38150731217d7d399a288947a5086703", null ],
+      [ "removeDate", "class_tg_bot_1_1_chat_boost_removed.html#adcd91952007fb72bf92afb3f2d62cc3d", null ],
+      [ "source", "class_tg_bot_1_1_chat_boost_removed.html#af96999e19dda24258c8e23dec5297393", null ]
+    ] ],
+    [ "TgBot::ChatBoostSource", "class_tg_bot_1_1_chat_boost_source.html", [
+      [ "Ptr", "class_tg_bot_1_1_chat_boost_source.html#a2ce5f44bfc84953b2bf9d2de5790cf55", null ],
+      [ "ChatBoostSource", "class_tg_bot_1_1_chat_boost_source.html#a2f850477ddc07dc136433b51b6780f94", null ],
+      [ "~ChatBoostSource", "class_tg_bot_1_1_chat_boost_source.html#aa28e901cfabd50ea9ed5e89141760e94", null ],
+      [ "source", "class_tg_bot_1_1_chat_boost_source.html#aa60ba396eadd821406f93ab140cfb4b6", null ],
+      [ "user", "class_tg_bot_1_1_chat_boost_source.html#a1fa1aefa937614bd5585f05cfdf3271f", null ]
+    ] ],
+    [ "TgBot::ChatBoostSourceGiftCode", "class_tg_bot_1_1_chat_boost_source_gift_code.html", [
+      [ "Ptr", "class_tg_bot_1_1_chat_boost_source_gift_code.html#a5915184be6a33db70a9c4f70c333cdb4", null ],
+      [ "ChatBoostSourceGiftCode", "class_tg_bot_1_1_chat_boost_source_gift_code.html#a9df04eff8ba468ad1a6d0814a70560ca", null ]
+    ] ],
+    [ "TgBot::ChatBoostSourceGiveaway", "class_tg_bot_1_1_chat_boost_source_giveaway.html", [
+      [ "Ptr", "class_tg_bot_1_1_chat_boost_source_giveaway.html#ad73cee54c462c0080fbfa45f2d23f5a2", null ],
+      [ "ChatBoostSourceGiveaway", "class_tg_bot_1_1_chat_boost_source_giveaway.html#ab0cde5405af1fe73325fdc803ac3d25c", null ],
+      [ "giveawayMessageId", "class_tg_bot_1_1_chat_boost_source_giveaway.html#ae96945a94550ce012c31f1ece7ab401f", null ],
+      [ "isUnclaimed", "class_tg_bot_1_1_chat_boost_source_giveaway.html#ac5ba1e7145f08c08a853cc4685b9e360", null ]
+    ] ],
+    [ "TgBot::ChatBoostSourcePremium", "class_tg_bot_1_1_chat_boost_source_premium.html", [
+      [ "Ptr", "class_tg_bot_1_1_chat_boost_source_premium.html#a23369d33d036660845020baac47744b2", null ],
+      [ "ChatBoostSourcePremium", "class_tg_bot_1_1_chat_boost_source_premium.html#a8ce561ef8b51a1fdaee669e437945b37", null ]
+    ] ],
+    [ "TgBot::ChatBoostUpdated", "class_tg_bot_1_1_chat_boost_updated.html", [
+      [ "Ptr", "class_tg_bot_1_1_chat_boost_updated.html#ace3eccbcb6f91654232da73a9d60d4a2", null ],
+      [ "boost", "class_tg_bot_1_1_chat_boost_updated.html#acc45da507e3b65e6840bf8fd8b8a47ba", null ],
+      [ "chat", "class_tg_bot_1_1_chat_boost_updated.html#ace2b4aa73f532e705aa86c3db97b5e12", null ]
     ] ],
     [ "TgBot::ChatInviteLink", "class_tg_bot_1_1_chat_invite_link.html", [
       [ "Ptr", "class_tg_bot_1_1_chat_invite_link.html#ac91a0457148fbf708220ca74bd7e5ff5", null ],
@@ -173,13 +288,16 @@ var group__types =
       [ "canBeEdited", "class_tg_bot_1_1_chat_member_administrator.html#ac21dd80f3ca3896739b758fd1dbc7809", null ],
       [ "canChangeInfo", "class_tg_bot_1_1_chat_member_administrator.html#aad12845861ce5ae18541a87ec4ec4bf6", null ],
       [ "canDeleteMessages", "class_tg_bot_1_1_chat_member_administrator.html#ad0fac323deb8df71f0297f6d61940ca7", null ],
+      [ "canDeleteStories", "class_tg_bot_1_1_chat_member_administrator.html#acf40332410f3301a35663f0f00d640a9", null ],
       [ "canEditMessages", "class_tg_bot_1_1_chat_member_administrator.html#ae19a2e6527779eabaa426f254c3647ff", null ],
+      [ "canEditStories", "class_tg_bot_1_1_chat_member_administrator.html#a9eb1db9a1c83e9bad924b5e9040bed86", null ],
       [ "canInviteUsers", "class_tg_bot_1_1_chat_member_administrator.html#a0f6eb51b3b66c38eac84b521f3d29e6a", null ],
       [ "canManageChat", "class_tg_bot_1_1_chat_member_administrator.html#aabd5b60d25f721dc8b47481b24ab8cb9", null ],
       [ "canManageTopics", "class_tg_bot_1_1_chat_member_administrator.html#ae99e9a7fdb22115291aa014bfeffccd9", null ],
       [ "canManageVideoChats", "class_tg_bot_1_1_chat_member_administrator.html#a21df5545ca64384924c5c9d595c8b8dd", null ],
       [ "canPinMessages", "class_tg_bot_1_1_chat_member_administrator.html#aac36329368f87985ad53880e461c4906", null ],
       [ "canPostMessages", "class_tg_bot_1_1_chat_member_administrator.html#a93feeeef1b708b85d03de591fe91d625", null ],
+      [ "canPostStories", "class_tg_bot_1_1_chat_member_administrator.html#aad1dd6d1cb81956cf132514ae8d864d4", null ],
       [ "canPromoteMembers", "class_tg_bot_1_1_chat_member_administrator.html#a27dceac59572ec63e5a933ef45bfc663", null ],
       [ "canRestrictMembers", "class_tg_bot_1_1_chat_member_administrator.html#ac8491cce893a049c0ed372b8e136e001", null ],
       [ "customTitle", "class_tg_bot_1_1_chat_member_administrator.html#ab83434486deaca965ab4954d9e4f8eb0", null ],
@@ -231,7 +349,8 @@ var group__types =
       [ "from", "class_tg_bot_1_1_chat_member_updated.html#a3f62ada77a4d98c866691d87a87cf363", null ],
       [ "inviteLink", "class_tg_bot_1_1_chat_member_updated.html#a050b25e08bab6d85b25b370da1791d54", null ],
       [ "newChatMember", "class_tg_bot_1_1_chat_member_updated.html#a2415b4aebc2c3ef58057f14e2a1dd4d9", null ],
-      [ "oldChatMember", "class_tg_bot_1_1_chat_member_updated.html#a0f8180a9f319ecbb8e316a80af3bc1c9", null ]
+      [ "oldChatMember", "class_tg_bot_1_1_chat_member_updated.html#a0f8180a9f319ecbb8e316a80af3bc1c9", null ],
+      [ "viaChatFolderInviteLink", "class_tg_bot_1_1_chat_member_updated.html#a19b3447a1e703cbc244833f6ca953cc1", null ]
     ] ],
     [ "TgBot::ChatPermissions", "class_tg_bot_1_1_chat_permissions.html", [
       [ "Ptr", "class_tg_bot_1_1_chat_permissions.html#a2483eba25a23b37a08e907b31d9f6944", null ],
@@ -259,8 +378,11 @@ var group__types =
     ] ],
     [ "TgBot::ChatShared", "class_tg_bot_1_1_chat_shared.html", [
       [ "Ptr", "class_tg_bot_1_1_chat_shared.html#a6173ed4a82d84a755165d5dba5c95bf5", null ],
+      [ "chatId", "class_tg_bot_1_1_chat_shared.html#ab790d0dcc1a2cce2d3dd0f83c5d1d6f3", null ],
+      [ "photo", "class_tg_bot_1_1_chat_shared.html#ac0a5427384e52acf767e72d33eb70c73", null ],
       [ "requestId", "class_tg_bot_1_1_chat_shared.html#a5d3cca6c262a6c9d58bd0ca5acc1a68d", null ],
-      [ "userId", "class_tg_bot_1_1_chat_shared.html#a9d061ab41f075297264554fb9315f355", null ]
+      [ "title", "class_tg_bot_1_1_chat_shared.html#a31e24a67db00db03f26ca4af5fb08cb6", null ],
+      [ "username", "class_tg_bot_1_1_chat_shared.html#a4cb2d18ea929902428164b6372311a1d", null ]
     ] ],
     [ "TgBot::ChosenInlineResult", "class_tg_bot_1_1_chosen_inline_result.html", [
       [ "Ptr", "class_tg_bot_1_1_chosen_inline_result.html#ad4b7edd30fd0d876fa99493fe19b3247", null ],
@@ -290,7 +412,7 @@ var group__types =
       [ "fileSize", "class_tg_bot_1_1_document.html#a8e5070cb3b32327d742cee6f1ceccd30", null ],
       [ "fileUniqueId", "class_tg_bot_1_1_document.html#ab39867b6a4c966f30b880eb21291367f", null ],
       [ "mimeType", "class_tg_bot_1_1_document.html#ac95f48d00ace3b28c97c4bfc1e3e592b", null ],
-      [ "thumb", "class_tg_bot_1_1_document.html#a21a156d86da82dcb636fba01a3ef351f", null ]
+      [ "thumbnail", "class_tg_bot_1_1_document.html#a123a5127819070e186eee5851891ebf2", null ]
     ] ],
     [ "TgBot::EncryptedCredentials", "class_tg_bot_1_1_encrypted_credentials.html", [
       [ "Ptr", "class_tg_bot_1_1_encrypted_credentials.html#aa99308b0526faa971b6c95d4e0d7af99", null ],
@@ -311,6 +433,32 @@ var group__types =
       [ "translation", "class_tg_bot_1_1_encrypted_passport_element.html#aea06de3233c33b9fa418d8dd462cc16b", null ],
       [ "type", "class_tg_bot_1_1_encrypted_passport_element.html#a655336dc7d37617ec43d05955603c838", null ]
     ] ],
+    [ "TgBot::ExternalReplyInfo", "class_tg_bot_1_1_external_reply_info.html", [
+      [ "Ptr", "class_tg_bot_1_1_external_reply_info.html#a81129671386354ee721d278f4c8f2ede", null ],
+      [ "animation", "class_tg_bot_1_1_external_reply_info.html#a21afc2fe395576e5bb349bc6c8e7503c", null ],
+      [ "audio", "class_tg_bot_1_1_external_reply_info.html#adaa35c0faaf5b8abd5f357d7fba8503d", null ],
+      [ "chat", "class_tg_bot_1_1_external_reply_info.html#a634b50990009496efb8278f45e71dcad", null ],
+      [ "contact", "class_tg_bot_1_1_external_reply_info.html#a232b6de11b0737b2d5476de16564673c", null ],
+      [ "dice", "class_tg_bot_1_1_external_reply_info.html#a40754618373ac40aa1baa25991158176", null ],
+      [ "document", "class_tg_bot_1_1_external_reply_info.html#ae9d1c52c080431e4464c9903616c8385", null ],
+      [ "game", "class_tg_bot_1_1_external_reply_info.html#a6012bcb24c674b568a4fdb436fe16d4c", null ],
+      [ "giveaway", "class_tg_bot_1_1_external_reply_info.html#a38e7bcfa50b1ba80ba871992effe836e", null ],
+      [ "giveawayWinners", "class_tg_bot_1_1_external_reply_info.html#a5d342f0d289ed5d67e05fcda49a73c17", null ],
+      [ "hasMediaSpoiler", "class_tg_bot_1_1_external_reply_info.html#af4f6cf255a28b9b38a4147fb051899c4", null ],
+      [ "invoice", "class_tg_bot_1_1_external_reply_info.html#afb478ce06eeccd998995d1b4325456b2", null ],
+      [ "linkPreviewOptions", "class_tg_bot_1_1_external_reply_info.html#a13a4071354314b9b5c4badd8fc075df3", null ],
+      [ "location", "class_tg_bot_1_1_external_reply_info.html#abb71849296dc1b77add7befa118dc442", null ],
+      [ "messageId", "class_tg_bot_1_1_external_reply_info.html#af3b39c67643c14d7b02fdbec1b254094", null ],
+      [ "origin", "class_tg_bot_1_1_external_reply_info.html#a61c0a0260f4e8c96f3ff87811d76c409", null ],
+      [ "photo", "class_tg_bot_1_1_external_reply_info.html#aad31e3b87e8c470df1718786fb727a4c", null ],
+      [ "poll", "class_tg_bot_1_1_external_reply_info.html#aeb84c6ffba827dda848457f30f9a71da", null ],
+      [ "sticker", "class_tg_bot_1_1_external_reply_info.html#aebcee781b92ea06482a1e2588d2a60e5", null ],
+      [ "story", "class_tg_bot_1_1_external_reply_info.html#a0cd25bdb8ea1a82aecfcea51bc29c747", null ],
+      [ "venue", "class_tg_bot_1_1_external_reply_info.html#a35415d1406619fb6f445b53e7a03318d", null ],
+      [ "video", "class_tg_bot_1_1_external_reply_info.html#ad35d52538a2ccb7f5372c176d00ba113", null ],
+      [ "videoNote", "class_tg_bot_1_1_external_reply_info.html#a08f0255775ea9e69a8efee5a29ccbb3e", null ],
+      [ "voice", "class_tg_bot_1_1_external_reply_info.html#af80b6102ddb9f1d4e15f4e185e1b2492", null ]
+    ] ],
     [ "TgBot::File", "class_tg_bot_1_1_file.html", [
       [ "Ptr", "class_tg_bot_1_1_file.html#ac47e9c73b9d762eef2322c0932c5a934", null ],
       [ "fileId", "class_tg_bot_1_1_file.html#a0e64b7f89b84e674ea890399ea27dd6e", null ],
@@ -320,7 +468,7 @@ var group__types =
     ] ],
     [ "TgBot::ForceReply", "class_tg_bot_1_1_force_reply.html", [
       [ "Ptr", "class_tg_bot_1_1_force_reply.html#a3d17d51e17dfdfd22d263bdeaf603b66", null ],
-      [ "forceReply", "class_tg_bot_1_1_force_reply.html#a8c4637ab74050185a86f5c058cf35de7", null ],
+      [ "forceReply", "class_tg_bot_1_1_force_reply.html#a2fa7505b10f714b5500772bac64e84f7", null ],
       [ "inputFieldPlaceholder", "class_tg_bot_1_1_force_reply.html#a3cece322a5e0ef1c4ca64beaf008bc82", null ],
       [ "selective", "class_tg_bot_1_1_force_reply.html#afbb510a24ebda5409311ff0d385065dc", null ]
     ] ],
@@ -373,6 +521,46 @@ var group__types =
       [ "Ptr", "class_tg_bot_1_1_generic_reply.html#aa7bb5f2c5484cb791e1c60c346bbb06f", null ],
       [ "~GenericReply", "class_tg_bot_1_1_generic_reply.html#a519019da5ab3cb27fc11bd56cc94123c", null ]
     ] ],
+    [ "TgBot::Giveaway", "class_tg_bot_1_1_giveaway.html", [
+      [ "Ptr", "class_tg_bot_1_1_giveaway.html#a76f33c56f2bfb91cd6363ca099b30d7a", null ],
+      [ "chats", "class_tg_bot_1_1_giveaway.html#ac5335e65d0bffd45e3d53dec4583874c", null ],
+      [ "countryCodes", "class_tg_bot_1_1_giveaway.html#a2a62dee1582e6da0bf10415e498509d0", null ],
+      [ "hasPublicWinners", "class_tg_bot_1_1_giveaway.html#a02778ebfbee08d1641d59f2fe1791cf6", null ],
+      [ "onlyNewMembers", "class_tg_bot_1_1_giveaway.html#ac6f419b9a6d876bd4808b4d013eb86b1", null ],
+      [ "premiumSubscriptionMonthCount", "class_tg_bot_1_1_giveaway.html#ae7105807c56a113a2b380d7ba1d1a23d", null ],
+      [ "prizeDescription", "class_tg_bot_1_1_giveaway.html#abd2319914f2c1a4fc6727f90258d09a7", null ],
+      [ "winnerCount", "class_tg_bot_1_1_giveaway.html#a3a70b60af639e4ba6d57aa850d24d580", null ],
+      [ "winnersSelectionDate", "class_tg_bot_1_1_giveaway.html#abda8c41682e56511dbc9f1de56eac418", null ]
+    ] ],
+    [ "TgBot::GiveawayCompleted", "class_tg_bot_1_1_giveaway_completed.html", [
+      [ "Ptr", "class_tg_bot_1_1_giveaway_completed.html#a5bdc9100a60dee351196ff4b96cea3a0", null ],
+      [ "giveawayMessage", "class_tg_bot_1_1_giveaway_completed.html#abf7c03e3b20eb66804a1dfefd95e181d", null ],
+      [ "unclaimedPrizeCount", "class_tg_bot_1_1_giveaway_completed.html#a84ff618504c9e52bf060f8a64272ab1b", null ],
+      [ "winnerCount", "class_tg_bot_1_1_giveaway_completed.html#adca34adab9e4bd6932aac2d628131090", null ]
+    ] ],
+    [ "TgBot::GiveawayCreated", "class_tg_bot_1_1_giveaway_created.html", [
+      [ "Ptr", "class_tg_bot_1_1_giveaway_created.html#a0ce039597026819f1dde225dd8ff9c06", null ]
+    ] ],
+    [ "TgBot::GiveawayWinners", "class_tg_bot_1_1_giveaway_winners.html", [
+      [ "Ptr", "class_tg_bot_1_1_giveaway_winners.html#a2edfc7660a85a8010d80c8f6ff4704f3", null ],
+      [ "additionalChatCount", "class_tg_bot_1_1_giveaway_winners.html#ab30f23fd2a5e8b7ebb50afe3e5694a2d", null ],
+      [ "chat", "class_tg_bot_1_1_giveaway_winners.html#a181c5c1bf5970bb1f01b8bee48028887", null ],
+      [ "giveawayMessageId", "class_tg_bot_1_1_giveaway_winners.html#a344e7d1a8eb240a6c1ab71e3d25b263a", null ],
+      [ "onlyNewMembers", "class_tg_bot_1_1_giveaway_winners.html#a9f99633a6b010f2d62463ca758a482ce", null ],
+      [ "premiumSubscriptionMonthCount", "class_tg_bot_1_1_giveaway_winners.html#ae9b620aa7c783b80e715b5cc6da74750", null ],
+      [ "prizeDescription", "class_tg_bot_1_1_giveaway_winners.html#a4418ae7cfcf7adfba8408d6ca535c56f", null ],
+      [ "unclaimedPrizeCount", "class_tg_bot_1_1_giveaway_winners.html#ab9cd24c3a87914ce50d254bcda3ee4a0", null ],
+      [ "wasRefunded", "class_tg_bot_1_1_giveaway_winners.html#a5db199e8a10b38591a9afd8511a90243", null ],
+      [ "winnerCount", "class_tg_bot_1_1_giveaway_winners.html#a7e7f866e7d8abadb12bbc1031a054f78", null ],
+      [ "winners", "class_tg_bot_1_1_giveaway_winners.html#ab49bf657e0d29931240b43999ebe6e6a", null ],
+      [ "winnersSelectionDate", "class_tg_bot_1_1_giveaway_winners.html#adc275aa45f41b311d06e021f8069302e", null ]
+    ] ],
+    [ "TgBot::InaccessibleMessage", "class_tg_bot_1_1_inaccessible_message.html", [
+      [ "Ptr", "class_tg_bot_1_1_inaccessible_message.html#a20f03fa351aa77eb82394c609e4038e9", null ],
+      [ "chat", "class_tg_bot_1_1_inaccessible_message.html#aa35042cefaf033677b3ffec385880bf5", null ],
+      [ "date", "class_tg_bot_1_1_inaccessible_message.html#a06e3b7673f00b91e22523a225d46ea96", null ],
+      [ "messageId", "class_tg_bot_1_1_inaccessible_message.html#ae44c6f4303156241549ba225474208fa", null ]
+    ] ],
     [ "TgBot::InlineKeyboardButton", "class_tg_bot_1_1_inline_keyboard_button.html", [
       [ "Ptr", "class_tg_bot_1_1_inline_keyboard_button.html#a27b82f178b242b6417377daae1f09983", null ],
       [ "callbackData", "class_tg_bot_1_1_inline_keyboard_button.html#a25716bdfc7a0719f1c17702a8d6a8aa4", null ],
@@ -380,6 +568,7 @@ var group__types =
       [ "loginUrl", "class_tg_bot_1_1_inline_keyboard_button.html#a2c44c6c9696c69c3b0e6acc5b33eedef", null ],
       [ "pay", "class_tg_bot_1_1_inline_keyboard_button.html#a4b25902fc2688c3d93d189cdee0434d2", null ],
       [ "switchInlineQuery", "class_tg_bot_1_1_inline_keyboard_button.html#ac04cb38b85aa31568e0acbb54202c274", null ],
+      [ "switchInlineQueryChosenChat", "class_tg_bot_1_1_inline_keyboard_button.html#a6687952871edfb9c1d167ef5ae0d256e", null ],
       [ "switchInlineQueryCurrentChat", "class_tg_bot_1_1_inline_keyboard_button.html#a12c3bfab730b6ec9f0d8ef39957bf406", null ],
       [ "text", "class_tg_bot_1_1_inline_keyboard_button.html#aa96c745e6d2c531bc50bf344ff0fee6f", null ],
       [ "url", "class_tg_bot_1_1_inline_keyboard_button.html#ab9b5e02f10e2cd937a3d3794d26e6bf3", null ],
@@ -412,9 +601,9 @@ var group__types =
       [ "description", "class_tg_bot_1_1_inline_query_result_article.html#adb17d53fd713e3203b6e3ebf4947d404", null ],
       [ "hideUrl", "class_tg_bot_1_1_inline_query_result_article.html#a4f2858334ee45a2e409e82cdb5be0256", null ],
       [ "inputMessageContent", "class_tg_bot_1_1_inline_query_result_article.html#a9b5632b5949578950a18c7fd387ca817", null ],
-      [ "thumbHeight", "class_tg_bot_1_1_inline_query_result_article.html#ad22dc596c9c33b0f7e38d8ab89787761", null ],
-      [ "thumbUrl", "class_tg_bot_1_1_inline_query_result_article.html#a842471f67e9ae13cbe79e1a1bb43b21e", null ],
-      [ "thumbWidth", "class_tg_bot_1_1_inline_query_result_article.html#af7fffa93162e42a9345f055c53d60f2a", null ],
+      [ "thumbnailHeight", "class_tg_bot_1_1_inline_query_result_article.html#a96053ef20f6134d062ef1a65a7041691", null ],
+      [ "thumbnailUrl", "class_tg_bot_1_1_inline_query_result_article.html#a7a0a8741726634b39c65d62e387eae23", null ],
+      [ "thumbnailWidth", "class_tg_bot_1_1_inline_query_result_article.html#ac24ecc16500913f219390e42ad3cac84", null ],
       [ "title", "class_tg_bot_1_1_inline_query_result_article.html#aa4f2862c1b6c24a44b71681952cb2ac9", null ],
       [ "url", "class_tg_bot_1_1_inline_query_result_article.html#a772fc689e3813a8025eb3c0d69e6a109", null ]
     ] ],
@@ -515,9 +704,9 @@ var group__types =
       [ "inputMessageContent", "class_tg_bot_1_1_inline_query_result_contact.html#a16168c9c03ae0e42d1d5a72ba750bbef", null ],
       [ "lastName", "class_tg_bot_1_1_inline_query_result_contact.html#a5ee952bdd68e0006d377398221c6e003", null ],
       [ "phoneNumber", "class_tg_bot_1_1_inline_query_result_contact.html#a8bf9d71688e348b69876301a4422f228", null ],
-      [ "thumbHeight", "class_tg_bot_1_1_inline_query_result_contact.html#af0826f3c054781cc33e5020cab2bc307", null ],
-      [ "thumbUrl", "class_tg_bot_1_1_inline_query_result_contact.html#a27661e2e0d1e7746e92e569a023b566d", null ],
-      [ "thumbWidth", "class_tg_bot_1_1_inline_query_result_contact.html#a0efc1307b3edfba2921679559ed4f50c", null ],
+      [ "thumbnailHeight", "class_tg_bot_1_1_inline_query_result_contact.html#ab98efa294aae1c5f7c25b78938e18911", null ],
+      [ "thumbnailUrl", "class_tg_bot_1_1_inline_query_result_contact.html#ac3b4b3ae3d3d48cf1a964fd204cfd1ed", null ],
+      [ "thumbnailWidth", "class_tg_bot_1_1_inline_query_result_contact.html#ae823c278cf3608d21fa808b822ff3d23", null ],
       [ "vcard", "class_tg_bot_1_1_inline_query_result_contact.html#a33fe5dafe6dca0dddaf7798bd1a8ca8a", null ]
     ] ],
     [ "TgBot::InlineQueryResultDocument", "class_tg_bot_1_1_inline_query_result_document.html", [
@@ -530,9 +719,9 @@ var group__types =
       [ "inputMessageContent", "class_tg_bot_1_1_inline_query_result_document.html#a30d03c94900541bc48405af6324b74af", null ],
       [ "mimeType", "class_tg_bot_1_1_inline_query_result_document.html#a77536770d42b1df1879519ee99e7a182", null ],
       [ "parseMode", "class_tg_bot_1_1_inline_query_result_document.html#a9896019b1be79c2d67a85cee7f59fd76", null ],
-      [ "thumbHeight", "class_tg_bot_1_1_inline_query_result_document.html#aea207b9130ff7d2ba596d1bd71377b27", null ],
-      [ "thumbUrl", "class_tg_bot_1_1_inline_query_result_document.html#a7d119b843296c1f51392f05b7dc221df", null ],
-      [ "thumbWidth", "class_tg_bot_1_1_inline_query_result_document.html#a7ee6c2411b744244226d64deeb848a2c", null ],
+      [ "thumbnailHeight", "class_tg_bot_1_1_inline_query_result_document.html#abf4a082d23b54b5b40d98fc2bdc9fd3b", null ],
+      [ "thumbnailUrl", "class_tg_bot_1_1_inline_query_result_document.html#a4b882137667dade3ddcbf8e75313096c", null ],
+      [ "thumbnailWidth", "class_tg_bot_1_1_inline_query_result_document.html#a434352410378de7a42b71e53e27e30a2", null ],
       [ "title", "class_tg_bot_1_1_inline_query_result_document.html#a2f2e0cbdd4e65d0e78580705c51cbb35", null ]
     ] ],
     [ "TgBot::InlineQueryResultGame", "class_tg_bot_1_1_inline_query_result_game.html", [
@@ -551,8 +740,8 @@ var group__types =
       [ "gifWidth", "class_tg_bot_1_1_inline_query_result_gif.html#ad047eebfcd4f62060a99e95fc7a4a6ce", null ],
       [ "inputMessageContent", "class_tg_bot_1_1_inline_query_result_gif.html#ae2613259bbdee1e4e994d93ceffc06b3", null ],
       [ "parseMode", "class_tg_bot_1_1_inline_query_result_gif.html#a152cd4d5b17a0642831159c6d1279524", null ],
-      [ "thumbMimeType", "class_tg_bot_1_1_inline_query_result_gif.html#a3da15c01c7a9aac2a8fc054bb383622a", null ],
-      [ "thumbUrl", "class_tg_bot_1_1_inline_query_result_gif.html#a0872ef8aa09cbf3b1fba851dd37e49a3", null ],
+      [ "thumbnailMimeType", "class_tg_bot_1_1_inline_query_result_gif.html#affda49de8b398e191afefbbf15a92a7c", null ],
+      [ "thumbnailUrl", "class_tg_bot_1_1_inline_query_result_gif.html#abf9407826b1be2eebff869cde61e6419", null ],
       [ "title", "class_tg_bot_1_1_inline_query_result_gif.html#a2bffc03c04bb47927f019bab8b72d84a", null ]
     ] ],
     [ "TgBot::InlineQueryResultLocation", "class_tg_bot_1_1_inline_query_result_location.html", [
@@ -565,9 +754,9 @@ var group__types =
       [ "livePeriod", "class_tg_bot_1_1_inline_query_result_location.html#a7e1f31069a49aabfe9430c07d7eb23b7", null ],
       [ "longitude", "class_tg_bot_1_1_inline_query_result_location.html#a7561bd9c6447a72a2a45a7fe966dbfb7", null ],
       [ "proximityAlertRadius", "class_tg_bot_1_1_inline_query_result_location.html#a0409a5983350ec7e34698d33db5c0b72", null ],
-      [ "thumbHeight", "class_tg_bot_1_1_inline_query_result_location.html#a873264b38895940c8769a86f04f9760d", null ],
-      [ "thumbUrl", "class_tg_bot_1_1_inline_query_result_location.html#ae18d6b73278913416e3cbc1b23dc88a4", null ],
-      [ "thumbWidth", "class_tg_bot_1_1_inline_query_result_location.html#ac302fbbf2de3056bb84dfcdc554d263c", null ],
+      [ "thumbnailHeight", "class_tg_bot_1_1_inline_query_result_location.html#a983358ad7b8c0d62491f5c04350fcd37", null ],
+      [ "thumbnailUrl", "class_tg_bot_1_1_inline_query_result_location.html#ac842314c8df0f235b5e05bdd7c8cec70", null ],
+      [ "thumbnailWidth", "class_tg_bot_1_1_inline_query_result_location.html#a4940b73adf7ccd27611b469f8a302ed8", null ],
       [ "title", "class_tg_bot_1_1_inline_query_result_location.html#a954b00a4353a9acf928a03a97c1be252", null ]
     ] ],
     [ "TgBot::InlineQueryResultMpeg4Gif", "class_tg_bot_1_1_inline_query_result_mpeg4_gif.html", [
@@ -581,8 +770,8 @@ var group__types =
       [ "mpeg4Url", "class_tg_bot_1_1_inline_query_result_mpeg4_gif.html#a32b8a36f73b908be5a142f58e3355069", null ],
       [ "mpeg4Width", "class_tg_bot_1_1_inline_query_result_mpeg4_gif.html#af5b5b1cc7dd9cd4299e19b23a5e60fce", null ],
       [ "parseMode", "class_tg_bot_1_1_inline_query_result_mpeg4_gif.html#a62e38a654650eb3875e429863b1b1390", null ],
-      [ "thumbMimeType", "class_tg_bot_1_1_inline_query_result_mpeg4_gif.html#ac62e21ac671a13abc14f352442f29152", null ],
-      [ "thumbUrl", "class_tg_bot_1_1_inline_query_result_mpeg4_gif.html#ac90d65262a4481d149f90153bcf621e5", null ],
+      [ "thumbnailMimeType", "class_tg_bot_1_1_inline_query_result_mpeg4_gif.html#af6adb65b8f9e1fd5657176aa27a75d83", null ],
+      [ "thumbnailUrl", "class_tg_bot_1_1_inline_query_result_mpeg4_gif.html#ae6d1e7e91d78920df5eddc47aaad6c08", null ],
       [ "title", "class_tg_bot_1_1_inline_query_result_mpeg4_gif.html#a0aa28e82742c95bad0525a4ea6c86db0", null ]
     ] ],
     [ "TgBot::InlineQueryResultPhoto", "class_tg_bot_1_1_inline_query_result_photo.html", [
@@ -596,8 +785,14 @@ var group__types =
       [ "photoHeight", "class_tg_bot_1_1_inline_query_result_photo.html#a1ad9297232c3e965599ebfc3eaf49c0c", null ],
       [ "photoUrl", "class_tg_bot_1_1_inline_query_result_photo.html#a0ad0da22b0a217208453aea34ed9a2c2", null ],
       [ "photoWidth", "class_tg_bot_1_1_inline_query_result_photo.html#aca919115c3245e6625a1694305ef58fd", null ],
-      [ "thumbUrl", "class_tg_bot_1_1_inline_query_result_photo.html#aca6ea097fce7827241ae1628c44a5893", null ],
+      [ "thumbnailUrl", "class_tg_bot_1_1_inline_query_result_photo.html#a1282671c10b281e6c7875c16e4becc57", null ],
       [ "title", "class_tg_bot_1_1_inline_query_result_photo.html#acd9ece494fcf7fa3ed57e83e5721ea02", null ]
+    ] ],
+    [ "TgBot::InlineQueryResultsButton", "class_tg_bot_1_1_inline_query_results_button.html", [
+      [ "Ptr", "class_tg_bot_1_1_inline_query_results_button.html#a0b546b33b944350c8a837eea5a25dc14", null ],
+      [ "startParameter", "class_tg_bot_1_1_inline_query_results_button.html#a4ab675f27d67c345049a6eeb63af2085", null ],
+      [ "text", "class_tg_bot_1_1_inline_query_results_button.html#a30a2552539b53542ab484609ce9c5768", null ],
+      [ "webApp", "class_tg_bot_1_1_inline_query_results_button.html#ac663408c2f60b7407cefe49a2a3ecd62", null ]
     ] ],
     [ "TgBot::InlineQueryResultVenue", "class_tg_bot_1_1_inline_query_result_venue.html", [
       [ "Ptr", "class_tg_bot_1_1_inline_query_result_venue.html#a216e83019cb0df61e4bc74f4499e0eb5", null ],
@@ -610,9 +805,9 @@ var group__types =
       [ "inputMessageContent", "class_tg_bot_1_1_inline_query_result_venue.html#ad9374428a9aa1ba20af79cc601ece351", null ],
       [ "latitude", "class_tg_bot_1_1_inline_query_result_venue.html#a842e5f5e15da3e24e81f8d68ec00ad97", null ],
       [ "longitude", "class_tg_bot_1_1_inline_query_result_venue.html#a385d6861f463a496af03accc31143a4c", null ],
-      [ "thumbHeight", "class_tg_bot_1_1_inline_query_result_venue.html#aebfea7a9ce3f4beaa58c9c8b544a1b44", null ],
-      [ "thumbUrl", "class_tg_bot_1_1_inline_query_result_venue.html#a7c54d597c7b13147109ca777364abf90", null ],
-      [ "thumbWidth", "class_tg_bot_1_1_inline_query_result_venue.html#a160e77299b7274410e7bfc0e9987ab76", null ],
+      [ "thumbnailHeight", "class_tg_bot_1_1_inline_query_result_venue.html#a9028ceebce86609c18e8c9795fdc1c07", null ],
+      [ "thumbnailUrl", "class_tg_bot_1_1_inline_query_result_venue.html#abfa3b7a66f0c80a781c9e79cef9636b7", null ],
+      [ "thumbnailWidth", "class_tg_bot_1_1_inline_query_result_venue.html#accb26d1c82377328160c4aba9d07b6a9", null ],
       [ "title", "class_tg_bot_1_1_inline_query_result_venue.html#a9d43ce317a702fc0e10636caac7bb3d3", null ]
     ] ],
     [ "TgBot::InlineQueryResultVideo", "class_tg_bot_1_1_inline_query_result_video.html", [
@@ -624,7 +819,7 @@ var group__types =
       [ "inputMessageContent", "class_tg_bot_1_1_inline_query_result_video.html#a640b85f236120b746e0132f9b12e76be", null ],
       [ "mimeType", "class_tg_bot_1_1_inline_query_result_video.html#a6eb48f1bc3089f4caef133c8c6644baf", null ],
       [ "parseMode", "class_tg_bot_1_1_inline_query_result_video.html#a687ee12bae3dbfc09e145e15537033ea", null ],
-      [ "thumbUrl", "class_tg_bot_1_1_inline_query_result_video.html#aa03003971380ecfaef6466f2cbb3e721", null ],
+      [ "thumbnailUrl", "class_tg_bot_1_1_inline_query_result_video.html#a55cf02c64ab4994c49fdec75449a5e2f", null ],
       [ "title", "class_tg_bot_1_1_inline_query_result_video.html#a6519c3cb7929fde9e33c041a0c58e1fa", null ],
       [ "videoDuration", "class_tg_bot_1_1_inline_query_result_video.html#a1bc60b0ecd1aa215e164702157836da1", null ],
       [ "videoHeight", "class_tg_bot_1_1_inline_query_result_video.html#a4ed6271bba4be5be43675119c9ad1146", null ],
@@ -706,7 +901,7 @@ var group__types =
       [ "duration", "class_tg_bot_1_1_input_media_animation.html#aa5f772bd3637638664c5a329f98e0482", null ],
       [ "hasSpoiler", "class_tg_bot_1_1_input_media_animation.html#a54276e9a6fb2a330628866fb87d02fd6", null ],
       [ "height", "class_tg_bot_1_1_input_media_animation.html#a85d96d7c9ca1f8352c60cf8c8cabffd0", null ],
-      [ "thumb", "class_tg_bot_1_1_input_media_animation.html#a8e70231993cbb00a393bbaf5a62b9d02", null ],
+      [ "thumbnail", "class_tg_bot_1_1_input_media_animation.html#aedad4385b47f63531de6486c40deed2b", null ],
       [ "width", "class_tg_bot_1_1_input_media_animation.html#a4acb011d55885788e847f4b6a51b6501", null ]
     ] ],
     [ "TgBot::InputMediaAudio", "class_tg_bot_1_1_input_media_audio.html", [
@@ -714,14 +909,14 @@ var group__types =
       [ "InputMediaAudio", "class_tg_bot_1_1_input_media_audio.html#a227d09539cfb2a6a38dca56b3777d4c4", null ],
       [ "duration", "class_tg_bot_1_1_input_media_audio.html#a6d90bb5d9d443b196ddd7433f682ff96", null ],
       [ "performer", "class_tg_bot_1_1_input_media_audio.html#a12896ac4e29e209a1df2a0c6bfcb9fa6", null ],
-      [ "thumb", "class_tg_bot_1_1_input_media_audio.html#afeeee280373c4aeb0a9aff8405c12652", null ],
+      [ "thumbnail", "class_tg_bot_1_1_input_media_audio.html#ab7d35534f0776c13d7fe001487fd72f5", null ],
       [ "title", "class_tg_bot_1_1_input_media_audio.html#aee946ad84b642b6580640005f38dd860", null ]
     ] ],
     [ "TgBot::InputMediaDocument", "class_tg_bot_1_1_input_media_document.html", [
       [ "Ptr", "class_tg_bot_1_1_input_media_document.html#a8d624ad41088d1a512e4bfc5ceef7856", null ],
       [ "InputMediaDocument", "class_tg_bot_1_1_input_media_document.html#a452614833e0cb356fb74fc26fa16dac8", null ],
       [ "disableContentTypeDetection", "class_tg_bot_1_1_input_media_document.html#a2230938e3f785e7e857d1684cd36f20f", null ],
-      [ "thumb", "class_tg_bot_1_1_input_media_document.html#a7a3dc457880d88a71b0222402e908200", null ]
+      [ "thumbnail", "class_tg_bot_1_1_input_media_document.html#a7d8158dc2236f55a39aa06fe5744b422", null ]
     ] ],
     [ "TgBot::InputMediaPhoto", "class_tg_bot_1_1_input_media_photo.html", [
       [ "Ptr", "class_tg_bot_1_1_input_media_photo.html#a02ac033a0ebe474b02f745f4d9e8e2b3", null ],
@@ -735,7 +930,7 @@ var group__types =
       [ "hasSpoiler", "class_tg_bot_1_1_input_media_video.html#a2e667eeed22e295ec6bec841883ae768", null ],
       [ "height", "class_tg_bot_1_1_input_media_video.html#ad731a89348777e927afcc261edfc4bb1", null ],
       [ "supportsStreaming", "class_tg_bot_1_1_input_media_video.html#adceba9e2e196f5d1356f283e5e2f043d", null ],
-      [ "thumb", "class_tg_bot_1_1_input_media_video.html#abbf924ff355bfbabb2be2cd3a8e17278", null ],
+      [ "thumbnail", "class_tg_bot_1_1_input_media_video.html#a77c63709cde3bae3e6bba4398bbc4ebb", null ],
       [ "width", "class_tg_bot_1_1_input_media_video.html#af72ea0910d138e6c8f04af0d9f84f640", null ]
     ] ],
     [ "TgBot::InputMessageContent", "class_tg_bot_1_1_input_message_content.html", [
@@ -744,11 +939,19 @@ var group__types =
       [ "~InputMessageContent", "class_tg_bot_1_1_input_message_content.html#a102a0b7456c22110a7cf751f0273ee7d", null ],
       [ "type", "class_tg_bot_1_1_input_message_content.html#ad9bc101393caa3296bdae0fe01f4e033", null ]
     ] ],
+    [ "TgBot::InputSticker", "class_tg_bot_1_1_input_sticker.html", [
+      [ "Ptr", "class_tg_bot_1_1_input_sticker.html#abf7bcde8ef1a51c7b53399bc98a9523c", null ],
+      [ "emojiList", "class_tg_bot_1_1_input_sticker.html#a09c31831cb867ad14706e14dca70392d", null ],
+      [ "format", "class_tg_bot_1_1_input_sticker.html#a01afc9208fb6454c5a6ec5227cf0a3b9", null ],
+      [ "keywords", "class_tg_bot_1_1_input_sticker.html#a270b3394169778932c24ebc9fed1d33b", null ],
+      [ "maskPosition", "class_tg_bot_1_1_input_sticker.html#ab09e38a74fbc4b0b5ca1aabea312292d", null ],
+      [ "sticker", "class_tg_bot_1_1_input_sticker.html#ae25b9729519fb6bf8a8fe11f11df1cdc", null ]
+    ] ],
     [ "TgBot::InputTextMessageContent", "class_tg_bot_1_1_input_text_message_content.html", [
       [ "Ptr", "class_tg_bot_1_1_input_text_message_content.html#ab183a605903cf8dbc04b220cf1472495", null ],
       [ "InputTextMessageContent", "class_tg_bot_1_1_input_text_message_content.html#a6926fc1a1b56159d2e2d92ed3de507e7", null ],
-      [ "disableWebPagePreview", "class_tg_bot_1_1_input_text_message_content.html#a34537bb0f04f312293f4717526f32ecc", null ],
       [ "entities", "class_tg_bot_1_1_input_text_message_content.html#aef947c6035a4501bfe40adbd5fad9b7c", null ],
+      [ "linkPreviewOptions", "class_tg_bot_1_1_input_text_message_content.html#a70fc75a6923f524aa78fda5aa6223360", null ],
       [ "messageText", "class_tg_bot_1_1_input_text_message_content.html#a6c7e1a9893a7c7c3be75f221f801e8e1", null ],
       [ "parseMode", "class_tg_bot_1_1_input_text_message_content.html#abc5610bba9379026280ab5cf2e5d6c0c", null ]
     ] ],
@@ -778,7 +981,7 @@ var group__types =
       [ "requestContact", "class_tg_bot_1_1_keyboard_button.html#a3e8c6e40ecf3a8f739a12265a89fd381", null ],
       [ "requestLocation", "class_tg_bot_1_1_keyboard_button.html#a8948e0ca465352d04c44767c25275022", null ],
       [ "requestPoll", "class_tg_bot_1_1_keyboard_button.html#a78e64f0135834719c29f9c25936591d0", null ],
-      [ "requestUser", "class_tg_bot_1_1_keyboard_button.html#acd602d87bcf5a22714f47f0c45e7521d", null ],
+      [ "requestUsers", "class_tg_bot_1_1_keyboard_button.html#a2700880d68b8848498cf1e9b6d391824", null ],
       [ "text", "class_tg_bot_1_1_keyboard_button.html#ac9ac8ddd73e27732fcbab7163ff74e2e", null ],
       [ "webApp", "class_tg_bot_1_1_keyboard_button.html#ad1093de41b26dead2a53cdd1cbc4a759", null ]
     ] ],
@@ -795,18 +998,33 @@ var group__types =
       [ "chatIsCreated", "class_tg_bot_1_1_keyboard_button_request_chat.html#a11926f2a9448c02955afaccc87311dba", null ],
       [ "chatIsForum", "class_tg_bot_1_1_keyboard_button_request_chat.html#a90a6233ac5529980201a752f7f24acd1", null ],
       [ "requestId", "class_tg_bot_1_1_keyboard_button_request_chat.html#a49d0e4b157b4703b01a1a0446754001f", null ],
+      [ "requestPhoto", "class_tg_bot_1_1_keyboard_button_request_chat.html#a8b719fbd08ce39f35bcf5b48742263b2", null ],
+      [ "requestTitle", "class_tg_bot_1_1_keyboard_button_request_chat.html#ae29629ff0d5adc50445e0d50da6b6e08", null ],
+      [ "requestUsername", "class_tg_bot_1_1_keyboard_button_request_chat.html#ae083366edf97ad18336c2ca23118ded2", null ],
       [ "userAdministratorRights", "class_tg_bot_1_1_keyboard_button_request_chat.html#a08c7d51ce6446abc7b87095e5ed01b0f", null ]
     ] ],
-    [ "TgBot::KeyboardButtonRequestUser", "class_tg_bot_1_1_keyboard_button_request_user.html", [
-      [ "Ptr", "class_tg_bot_1_1_keyboard_button_request_user.html#a2eae952f78e0ddbb5a625881293cc9be", null ],
-      [ "requestId", "class_tg_bot_1_1_keyboard_button_request_user.html#a2e0815b922ea6102027551f692984535", null ],
-      [ "userIsBot", "class_tg_bot_1_1_keyboard_button_request_user.html#a3f1ad2a36e303820377c09784b3204d6", null ],
-      [ "userIsPremium", "class_tg_bot_1_1_keyboard_button_request_user.html#a7119f2478f5f81ed8c9717a6a35c1e83", null ]
+    [ "TgBot::KeyboardButtonRequestUsers", "class_tg_bot_1_1_keyboard_button_request_users.html", [
+      [ "Ptr", "class_tg_bot_1_1_keyboard_button_request_users.html#a33c4af96a5a39ab84c4b9251c4ede4e3", null ],
+      [ "maxQuantity", "class_tg_bot_1_1_keyboard_button_request_users.html#ad58cb3b2e58572575f9356b2faf740c5", null ],
+      [ "requestId", "class_tg_bot_1_1_keyboard_button_request_users.html#a77c7ab8824abf46295ea35b298601719", null ],
+      [ "requestName", "class_tg_bot_1_1_keyboard_button_request_users.html#a31ea093b0de95096dc88b160e5ace7e5", null ],
+      [ "requestPhoto", "class_tg_bot_1_1_keyboard_button_request_users.html#ac983f800029377c2528fc9b7c7cc69b8", null ],
+      [ "requestUsername", "class_tg_bot_1_1_keyboard_button_request_users.html#a1b7f78a6fdc29eea53febd85c9b086a3", null ],
+      [ "userIsBot", "class_tg_bot_1_1_keyboard_button_request_users.html#a6f50372b603b3af7e83c4b3645ee0d0a", null ],
+      [ "userIsPremium", "class_tg_bot_1_1_keyboard_button_request_users.html#afc876aac22525d7c30d1adbde57788e4", null ]
     ] ],
     [ "TgBot::LabeledPrice", "class_tg_bot_1_1_labeled_price.html", [
       [ "Ptr", "class_tg_bot_1_1_labeled_price.html#a1d53775f4034427a2dfaae9ef176796c", null ],
       [ "amount", "class_tg_bot_1_1_labeled_price.html#ad030867d66a09c99f41fe5a2b71bfc94", null ],
       [ "label", "class_tg_bot_1_1_labeled_price.html#a035375dfc58fe01e91d07fe918847046", null ]
+    ] ],
+    [ "TgBot::LinkPreviewOptions", "class_tg_bot_1_1_link_preview_options.html", [
+      [ "Ptr", "class_tg_bot_1_1_link_preview_options.html#a67964caf7ed8200d1aa2560f2113885f", null ],
+      [ "isDisabled", "class_tg_bot_1_1_link_preview_options.html#a04d6d66b8b3e4d23b42c4742acfd9c73", null ],
+      [ "preferLargeMedia", "class_tg_bot_1_1_link_preview_options.html#a68c38308520c4ab168fd73d51ff99de3", null ],
+      [ "preferSmallMedia", "class_tg_bot_1_1_link_preview_options.html#a32d89d710787f811d1510f7f449eed23", null ],
+      [ "showAboveText", "class_tg_bot_1_1_link_preview_options.html#a02b03c8b9800e04bafbc92d547bff3b7", null ],
+      [ "url", "class_tg_bot_1_1_link_preview_options.html#a6dbd79cdc855797577bbe78e78819f22", null ]
     ] ],
     [ "TgBot::Location", "class_tg_bot_1_1_location.html", [
       [ "Ptr", "class_tg_bot_1_1_location.html#a0854defd16651e7742f89eca2202d678", null ],
@@ -856,6 +1074,8 @@ var group__types =
       [ "animation", "class_tg_bot_1_1_message.html#a45f98ebfeecddc6d91fd5359aea9bbc2", null ],
       [ "audio", "class_tg_bot_1_1_message.html#a5119ef820bcb4c231a1402147305ea67", null ],
       [ "authorSignature", "class_tg_bot_1_1_message.html#a5e23abf4c637e59a51bd7f7a49339d54", null ],
+      [ "boostAdded", "class_tg_bot_1_1_message.html#aacff83a393cdde1c8bf686b447af8272", null ],
+      [ "businessConnectionId", "class_tg_bot_1_1_message.html#ad332abe0439c958fb9b2bdb4e333abb5", null ],
       [ "caption", "class_tg_bot_1_1_message.html#a2c8eb6214270371cfb094b699c07f695", null ],
       [ "captionEntities", "class_tg_bot_1_1_message.html#a112bce084dd4b01dc5918a1232c4cc05", null ],
       [ "channelChatCreated", "class_tg_bot_1_1_message.html#a537a751af11a7f18d92c1d70c93c9f2d", null ],
@@ -863,33 +1083,35 @@ var group__types =
       [ "chatShared", "class_tg_bot_1_1_message.html#a7d0d27dc4512abb20abffd18e93ae320", null ],
       [ "connectedWebsite", "class_tg_bot_1_1_message.html#a44a07b98262601eb86a5dc9ae0e3b932", null ],
       [ "contact", "class_tg_bot_1_1_message.html#adb3a1a65ce014085f7231f8d356b6c4f", null ],
-      [ "date", "class_tg_bot_1_1_message.html#a732e4e14c9c5845e713441bc09610eee", null ],
+      [ "date", "class_tg_bot_1_1_message.html#acbe814da3604407384621a2e42af1461", null ],
       [ "deleteChatPhoto", "class_tg_bot_1_1_message.html#a35db549a420fd4b5a28b4a5a569770d5", null ],
       [ "dice", "class_tg_bot_1_1_message.html#abc74d1e0001cb0f048cad8dc1abb42fc", null ],
       [ "document", "class_tg_bot_1_1_message.html#a9d4520b321f421425803aa5c5a414e72", null ],
-      [ "editDate", "class_tg_bot_1_1_message.html#a57ae9cfe48d6de764083c9253469188c", null ],
+      [ "editDate", "class_tg_bot_1_1_message.html#aa43f695895edb4cdef46240375a81393", null ],
       [ "entities", "class_tg_bot_1_1_message.html#a53c199056538ebe72c65e409deaf7a8e", null ],
+      [ "externalReply", "class_tg_bot_1_1_message.html#ae6ee7d5f72f5c4bca28714a9853aa00b", null ],
       [ "forumTopicClosed", "class_tg_bot_1_1_message.html#aff5f52e61c6152baf7b6e5f6cd6ddbd1", null ],
       [ "forumTopicCreated", "class_tg_bot_1_1_message.html#ae5bc39c572aa0f81fde6c3272699b304", null ],
       [ "forumTopicEdited", "class_tg_bot_1_1_message.html#a14f2b44b7919c3ded2058c7249932923", null ],
       [ "forumTopicReopened", "class_tg_bot_1_1_message.html#a39297d610f167adeb2341c9c26ae65a6", null ],
-      [ "forwardDate", "class_tg_bot_1_1_message.html#a94e9d1e38a8cb12932f5718dd5d7fdbc", null ],
-      [ "forwardFrom", "class_tg_bot_1_1_message.html#a7e4d984cb1464d0ae504d7c8ed11b508", null ],
-      [ "forwardFromChat", "class_tg_bot_1_1_message.html#aeab58d33a3f4e712e8b78d65f48892e5", null ],
-      [ "forwardFromMessageId", "class_tg_bot_1_1_message.html#a05b949c759fc42382631257ac3fed64a", null ],
-      [ "forwardSenderName", "class_tg_bot_1_1_message.html#a4fc86142877a3cd3aaf126d467d496e6", null ],
-      [ "forwardSignature", "class_tg_bot_1_1_message.html#a70f5fe7a8e14b0ce0842fa8661492e4a", null ],
+      [ "forwardOrigin", "class_tg_bot_1_1_message.html#a88aef9b810d04b0e70c4cf015390489a", null ],
       [ "from", "class_tg_bot_1_1_message.html#a65b78a13b38ad767338cd2e9d2e69ca2", null ],
       [ "game", "class_tg_bot_1_1_message.html#a64216e0a25408a6946fcebebf5b38307", null ],
       [ "generalForumTopicHidden", "class_tg_bot_1_1_message.html#a258b68396cb3fc3553d96208f48aefc3", null ],
       [ "generalForumTopicUnhidden", "class_tg_bot_1_1_message.html#adadba3b8c1f0823c45367fe0965d9f13", null ],
+      [ "giveaway", "class_tg_bot_1_1_message.html#a5d63c82b3131623adbb8a506d8491d6b", null ],
+      [ "giveawayCompleted", "class_tg_bot_1_1_message.html#a628f558cf60ee7fb1df215004974342c", null ],
+      [ "giveawayCreated", "class_tg_bot_1_1_message.html#a841d84ff657d7f7ba1f4ad005d904e31", null ],
+      [ "giveawayWinners", "class_tg_bot_1_1_message.html#a4fcc7a757bb9ed263df372c0bdea4566", null ],
       [ "groupChatCreated", "class_tg_bot_1_1_message.html#a5bbf76e34ec52a41a6392f7d61c19035", null ],
       [ "hasMediaSpoiler", "class_tg_bot_1_1_message.html#a75d34a9ea323b75472907545f2985634", null ],
       [ "hasProtectedContent", "class_tg_bot_1_1_message.html#a5ff9a1e2a031eac4334a0c50a99e34fd", null ],
       [ "invoice", "class_tg_bot_1_1_message.html#ade904bacf5a1b53b09924ebb965a3832", null ],
       [ "isAutomaticForward", "class_tg_bot_1_1_message.html#aa825a43feb82f9ca7385a844e701b338", null ],
+      [ "isFromOffline", "class_tg_bot_1_1_message.html#abdcda56dcc60c87b0c2114243f241972", null ],
       [ "isTopicMessage", "class_tg_bot_1_1_message.html#a10ba6b0e76da2dc0963ecf7ce21f5f69", null ],
       [ "leftChatMember", "class_tg_bot_1_1_message.html#a2291a3c7d9445a02774b4cd0e3972c29", null ],
+      [ "linkPreviewOptions", "class_tg_bot_1_1_message.html#a2505dfdbb661e858b945ac69d6ac88b4", null ],
       [ "location", "class_tg_bot_1_1_message.html#afda60437cce532170cb9b924f70e1c56", null ],
       [ "mediaGroupId", "class_tg_bot_1_1_message.html#a43c15e9f9aa7be2c5d42f3d08802e8d7", null ],
       [ "messageAutoDeleteTimerChanged", "class_tg_bot_1_1_message.html#af862168187faa83074e342bc52235d63", null ],
@@ -905,14 +1127,19 @@ var group__types =
       [ "pinnedMessage", "class_tg_bot_1_1_message.html#a92e01a2f89ce8edb5aa1c116585b19a6", null ],
       [ "poll", "class_tg_bot_1_1_message.html#a38bbb4dee51704ba1778bedac948dc31", null ],
       [ "proximityAlertTriggered", "class_tg_bot_1_1_message.html#ab8187a2f4f444bdb35f67ddbdebc1677", null ],
+      [ "quote", "class_tg_bot_1_1_message.html#a04cc2fd9e167d9faa7d506f916a6fe30", null ],
       [ "replyMarkup", "class_tg_bot_1_1_message.html#a9948e9d9720ced0bd0e869d175b326df", null ],
       [ "replyToMessage", "class_tg_bot_1_1_message.html#a312864bfddbf624c6923cb871fd4060e", null ],
+      [ "replyToStory", "class_tg_bot_1_1_message.html#a8f3f622aa73c9af21b33727f4d3f9d21", null ],
+      [ "senderBoostCount", "class_tg_bot_1_1_message.html#a50b47e2c20126ebc61a5d6b00f158dfd", null ],
+      [ "senderBusinessBot", "class_tg_bot_1_1_message.html#aa4b2f98bd2fe8029b35e7651e4cbaa9d", null ],
       [ "senderChat", "class_tg_bot_1_1_message.html#ab15c9ac689162abd782627c9a21a83d1", null ],
       [ "sticker", "class_tg_bot_1_1_message.html#aab21f25e3dfd5a6f2bfca8d04dda2559", null ],
+      [ "story", "class_tg_bot_1_1_message.html#a77edf74f572ab2cca9def6ee9d21a8eb", null ],
       [ "successfulPayment", "class_tg_bot_1_1_message.html#a9a29d1deca8234fbd2ab448d95f56f6a", null ],
       [ "supergroupChatCreated", "class_tg_bot_1_1_message.html#a49695ef9284f68853700ca5426fd506f", null ],
       [ "text", "class_tg_bot_1_1_message.html#af9e05110ffd8c5356c523e1501dbd108", null ],
-      [ "userShared", "class_tg_bot_1_1_message.html#ac888350a60a35b16eecc373a0df4c246", null ],
+      [ "usersShared", "class_tg_bot_1_1_message.html#a65a39bb7f847e63a9640a2b925716ce0", null ],
       [ "venue", "class_tg_bot_1_1_message.html#a9739779daeda0ac90d711349e0674f6e", null ],
       [ "viaBot", "class_tg_bot_1_1_message.html#a88497a043a0d771ad08d666e333db32c", null ],
       [ "video", "class_tg_bot_1_1_message.html#abd645f5273f4cd142979beab925ff16f", null ],
@@ -944,6 +1171,7 @@ var group__types =
         [ "Underline", "class_tg_bot_1_1_message_entity.html#a6cb87a43b52a982682c1e592fbc1f2c9a852721aa5fc738dfedff2945d71da439", null ],
         [ "Strikethrough", "class_tg_bot_1_1_message_entity.html#a6cb87a43b52a982682c1e592fbc1f2c9a926a51baad949d12035107e5d06e2fdb", null ],
         [ "Spoiler", "class_tg_bot_1_1_message_entity.html#a6cb87a43b52a982682c1e592fbc1f2c9af7115e4891ab41c009017e95f47eb6e9", null ],
+        [ "Blockquote", "class_tg_bot_1_1_message_entity.html#a6cb87a43b52a982682c1e592fbc1f2c9a146aaf1333c7e82829fe9c5c52340b56", null ],
         [ "Code", "class_tg_bot_1_1_message_entity.html#a6cb87a43b52a982682c1e592fbc1f2c9aca0dbad92a874b2f69b549293387925e", null ],
         [ "Pre", "class_tg_bot_1_1_message_entity.html#a6cb87a43b52a982682c1e592fbc1f2c9afb55a965b77791b31ffd2bb548f71080", null ],
         [ "TextLink", "class_tg_bot_1_1_message_entity.html#a6cb87a43b52a982682c1e592fbc1f2c9a7f01c2ecef93cd509dab0bb85ff03f49", null ],
@@ -961,6 +1189,53 @@ var group__types =
     [ "TgBot::MessageId", "class_tg_bot_1_1_message_id.html", [
       [ "Ptr", "class_tg_bot_1_1_message_id.html#a0e2c1626a8ec04e813127c6c979a51d1", null ],
       [ "messageId", "class_tg_bot_1_1_message_id.html#a0cbb717c892f65f5dccb51dd150819d8", null ]
+    ] ],
+    [ "TgBot::MessageOrigin", "class_tg_bot_1_1_message_origin.html", [
+      [ "Ptr", "class_tg_bot_1_1_message_origin.html#ae609abddfc1dd7681062a2060e2e0147", null ],
+      [ "MessageOrigin", "class_tg_bot_1_1_message_origin.html#ac424f70c1ac55e6a2305053146bd5a49", null ],
+      [ "~MessageOrigin", "class_tg_bot_1_1_message_origin.html#a1d19c4ae10cf103d93ee64006f2cc590", null ],
+      [ "date", "class_tg_bot_1_1_message_origin.html#a192f1ab4a0c90268a6e13d696954ad7d", null ],
+      [ "type", "class_tg_bot_1_1_message_origin.html#a4f797188722f1fe986c054f1f0fb93c8", null ]
+    ] ],
+    [ "TgBot::MessageOriginChannel", "class_tg_bot_1_1_message_origin_channel.html", [
+      [ "Ptr", "class_tg_bot_1_1_message_origin_channel.html#ae6dcecd2fdbc6658152a1e84dea7fdf5", null ],
+      [ "MessageOriginChannel", "class_tg_bot_1_1_message_origin_channel.html#a86fd76ae8ab7c5ce628065993c9b460a", null ],
+      [ "authorSignature", "class_tg_bot_1_1_message_origin_channel.html#a910df38adb6cd687e7a418fddb3339d6", null ],
+      [ "chat", "class_tg_bot_1_1_message_origin_channel.html#ad8b24518da868e9981ad058aacfcae33", null ],
+      [ "messageId", "class_tg_bot_1_1_message_origin_channel.html#ae69102fff4584de04fe7c72e0b39a6b8", null ]
+    ] ],
+    [ "TgBot::MessageOriginChat", "class_tg_bot_1_1_message_origin_chat.html", [
+      [ "Ptr", "class_tg_bot_1_1_message_origin_chat.html#aa455998841a8d6a296fb6aa44ab6f347", null ],
+      [ "MessageOriginChat", "class_tg_bot_1_1_message_origin_chat.html#a0bfbb4122b7c44135d915919dd10aefc", null ],
+      [ "authorSignature", "class_tg_bot_1_1_message_origin_chat.html#a22a8edac5436d9d0b76d55f6086947fd", null ],
+      [ "senderChat", "class_tg_bot_1_1_message_origin_chat.html#a98bf38527bf0d825351643cfcca3ed37", null ]
+    ] ],
+    [ "TgBot::MessageOriginHiddenUser", "class_tg_bot_1_1_message_origin_hidden_user.html", [
+      [ "Ptr", "class_tg_bot_1_1_message_origin_hidden_user.html#a3fb82e606670bd908e500dab0fa3e9c2", null ],
+      [ "MessageOriginHiddenUser", "class_tg_bot_1_1_message_origin_hidden_user.html#a45d5d6319fe823a21cea35d7a575f895", null ],
+      [ "senderUserName", "class_tg_bot_1_1_message_origin_hidden_user.html#af5a75b2bcd3a54fcf89ebcc5bc1e99ab", null ]
+    ] ],
+    [ "TgBot::MessageOriginUser", "class_tg_bot_1_1_message_origin_user.html", [
+      [ "Ptr", "class_tg_bot_1_1_message_origin_user.html#a9b758b4a8ac92ef2cb49109b6262e92b", null ],
+      [ "MessageOriginUser", "class_tg_bot_1_1_message_origin_user.html#a884e5235435d06177aa51362f5071e3e", null ],
+      [ "senderUser", "class_tg_bot_1_1_message_origin_user.html#a93c1429a31411da5a7786fa5f67beb8d", null ]
+    ] ],
+    [ "TgBot::MessageReactionCountUpdated", "class_tg_bot_1_1_message_reaction_count_updated.html", [
+      [ "Ptr", "class_tg_bot_1_1_message_reaction_count_updated.html#aeade6dbcbffeaf1442cc5cf08b982d48", null ],
+      [ "chat", "class_tg_bot_1_1_message_reaction_count_updated.html#a1287b9944e8721c7aa5e19ff755a10d3", null ],
+      [ "date", "class_tg_bot_1_1_message_reaction_count_updated.html#a063fca7093fd418d32f731ec61dd6727", null ],
+      [ "messageId", "class_tg_bot_1_1_message_reaction_count_updated.html#a01abe41509c3e556de3141c735ecf7a5", null ],
+      [ "reactions", "class_tg_bot_1_1_message_reaction_count_updated.html#a78cdaf8ae4ff69be737922acf9982473", null ]
+    ] ],
+    [ "TgBot::MessageReactionUpdated", "class_tg_bot_1_1_message_reaction_updated.html", [
+      [ "Ptr", "class_tg_bot_1_1_message_reaction_updated.html#a28c1ad91aa71983c11fbc07cebf48a29", null ],
+      [ "actorChat", "class_tg_bot_1_1_message_reaction_updated.html#ab78e05b1b01bae5ac1e88e98b02293db", null ],
+      [ "chat", "class_tg_bot_1_1_message_reaction_updated.html#af3549de6fdd8a344110667e9ef2e4746", null ],
+      [ "date", "class_tg_bot_1_1_message_reaction_updated.html#aa4491809a1559984c6908b949d756685", null ],
+      [ "messageId", "class_tg_bot_1_1_message_reaction_updated.html#a2e0106141c2ebaca628824efdeda93a1", null ],
+      [ "newReaction", "class_tg_bot_1_1_message_reaction_updated.html#a53e27b12b5e622def608bd8a5a7fd224", null ],
+      [ "oldReaction", "class_tg_bot_1_1_message_reaction_updated.html#a1ac34daf09d54e1a650cee8888ebcacf", null ],
+      [ "user", "class_tg_bot_1_1_message_reaction_updated.html#a49cfe5bffc01df4cdff1d2b0e3a27aba", null ]
     ] ],
     [ "TgBot::OrderInfo", "class_tg_bot_1_1_order_info.html", [
       [ "Ptr", "class_tg_bot_1_1_order_info.html#a546d93329dceb7bbd542a82d34e3b76a", null ],
@@ -1063,7 +1338,8 @@ var group__types =
       [ "Ptr", "class_tg_bot_1_1_poll_answer.html#a02366881c7f302c75712815460809cc4", null ],
       [ "optionIds", "class_tg_bot_1_1_poll_answer.html#ac06c32a1330317999b99d046573b1ade", null ],
       [ "pollId", "class_tg_bot_1_1_poll_answer.html#a18edcaf4890a2a935ad7d40d7d24630b", null ],
-      [ "user", "class_tg_bot_1_1_poll_answer.html#a89820a94c0995e65ed59fa40201bcc7e", null ]
+      [ "user", "class_tg_bot_1_1_poll_answer.html#a89820a94c0995e65ed59fa40201bcc7e", null ],
+      [ "voterChat", "class_tg_bot_1_1_poll_answer.html#a3da11e7a283bbcb12efadba797092e59", null ]
     ] ],
     [ "TgBot::PreCheckoutQuery", "class_tg_bot_1_1_pre_checkout_query.html", [
       [ "Ptr", "class_tg_bot_1_1_pre_checkout_query.html#aa2f66d4bc5e55b3efbaaf285bcdbe207", null ],
@@ -1081,6 +1357,27 @@ var group__types =
       [ "traveler", "class_tg_bot_1_1_proximity_alert_triggered.html#a3d422a13c85852e12f5ad2fce0b3c102", null ],
       [ "watcher", "class_tg_bot_1_1_proximity_alert_triggered.html#abed396bc9c76de670dbbef9d3d93110f", null ]
     ] ],
+    [ "TgBot::ReactionCount", "class_tg_bot_1_1_reaction_count.html", [
+      [ "Ptr", "class_tg_bot_1_1_reaction_count.html#aa6ef52775626119fc3aa7ab9d030f862", null ],
+      [ "totalCount", "class_tg_bot_1_1_reaction_count.html#aa88a01ae89629f16e9d46d60f7fba11d", null ],
+      [ "type", "class_tg_bot_1_1_reaction_count.html#a437b6eb08d302119bacfe7278578b55a", null ]
+    ] ],
+    [ "TgBot::ReactionType", "class_tg_bot_1_1_reaction_type.html", [
+      [ "Ptr", "class_tg_bot_1_1_reaction_type.html#aa306edd02649b76e813dde93ce0a8e1d", null ],
+      [ "ReactionType", "class_tg_bot_1_1_reaction_type.html#a581a9bfa7ba21b07432941dd20abe75a", null ],
+      [ "~ReactionType", "class_tg_bot_1_1_reaction_type.html#ac321e01a19382b065d8e40e24db51fa9", null ],
+      [ "type", "class_tg_bot_1_1_reaction_type.html#a1e9866671110f4bbdf2b5c4ff9fa26e7", null ]
+    ] ],
+    [ "TgBot::ReactionTypeCustomEmoji", "class_tg_bot_1_1_reaction_type_custom_emoji.html", [
+      [ "Ptr", "class_tg_bot_1_1_reaction_type_custom_emoji.html#aee7307778e535a0b022f89e1ca8b4513", null ],
+      [ "ReactionTypeCustomEmoji", "class_tg_bot_1_1_reaction_type_custom_emoji.html#af5dde4f2bac9f18c338b49cbb644f068", null ],
+      [ "customEmojiId", "class_tg_bot_1_1_reaction_type_custom_emoji.html#a6424a92626f8650b6313de42c283153b", null ]
+    ] ],
+    [ "TgBot::ReactionTypeEmoji", "class_tg_bot_1_1_reaction_type_emoji.html", [
+      [ "Ptr", "class_tg_bot_1_1_reaction_type_emoji.html#a5babe93d86e5622ab870f9cca76fd311", null ],
+      [ "ReactionTypeEmoji", "class_tg_bot_1_1_reaction_type_emoji.html#acbe96cd03b1e1af43b9379e3b4b7f28d", null ],
+      [ "emoji", "class_tg_bot_1_1_reaction_type_emoji.html#af815d845cb6a30e9fcdffd696d4b122c", null ]
+    ] ],
     [ "TgBot::ReplyKeyboardMarkup", "class_tg_bot_1_1_reply_keyboard_markup.html", [
       [ "Ptr", "class_tg_bot_1_1_reply_keyboard_markup.html#af19f8402b914b603ab41305dee55f44a", null ],
       [ "inputFieldPlaceholder", "class_tg_bot_1_1_reply_keyboard_markup.html#a749a554a495cdb02c7098d597dbaca69", null ],
@@ -1092,8 +1389,18 @@ var group__types =
     ] ],
     [ "TgBot::ReplyKeyboardRemove", "class_tg_bot_1_1_reply_keyboard_remove.html", [
       [ "Ptr", "class_tg_bot_1_1_reply_keyboard_remove.html#aaa58ef7c177db3a3f46530bfb5fc0148", null ],
-      [ "removeKeyboard", "class_tg_bot_1_1_reply_keyboard_remove.html#a42b8b08952603a9566757bbe7d543408", null ],
+      [ "removeKeyboard", "class_tg_bot_1_1_reply_keyboard_remove.html#a098e93d60bcc39d61c242d36b2047c7d", null ],
       [ "selective", "class_tg_bot_1_1_reply_keyboard_remove.html#a840a781ad230cee4c50057a7c7f82828", null ]
+    ] ],
+    [ "TgBot::ReplyParameters", "class_tg_bot_1_1_reply_parameters.html", [
+      [ "Ptr", "class_tg_bot_1_1_reply_parameters.html#af2fd57c9c12b570689e662d25da08138", null ],
+      [ "allowSendingWithoutReply", "class_tg_bot_1_1_reply_parameters.html#ae94d177f3b7df6c543143ebb7bc30747", null ],
+      [ "chatId", "class_tg_bot_1_1_reply_parameters.html#a4cb42dfd26bf4965a10bee9551c46feb", null ],
+      [ "messageId", "class_tg_bot_1_1_reply_parameters.html#a68730cc7da26a1bb19dd760661789234", null ],
+      [ "quote", "class_tg_bot_1_1_reply_parameters.html#a7fac135c4c465d18aa56501d981f54bc", null ],
+      [ "quoteEntities", "class_tg_bot_1_1_reply_parameters.html#abdd998c837390eda76b8262feb0cdf04", null ],
+      [ "quoteParseMode", "class_tg_bot_1_1_reply_parameters.html#ad68d48027366a52ad2d266d8316b6a00", null ],
+      [ "quotePosition", "class_tg_bot_1_1_reply_parameters.html#a1c6ed6ca517a88b41486c87e07d07f72", null ]
     ] ],
     [ "TgBot::ResponseParameters", "class_tg_bot_1_1_response_parameters.html", [
       [ "Ptr", "class_tg_bot_1_1_response_parameters.html#a345c84a4e959ed8e529b1cb6e76d0182", null ],
@@ -1103,6 +1410,14 @@ var group__types =
     [ "TgBot::SentWebAppMessage", "class_tg_bot_1_1_sent_web_app_message.html", [
       [ "Ptr", "class_tg_bot_1_1_sent_web_app_message.html#ac4cfd108c1e0a1d3e7a3957e4554f482", null ],
       [ "inlineMessageId", "class_tg_bot_1_1_sent_web_app_message.html#a842000d2e5ced90cf2d4bc7d126ac93b", null ]
+    ] ],
+    [ "TgBot::SharedUser", "class_tg_bot_1_1_shared_user.html", [
+      [ "Ptr", "class_tg_bot_1_1_shared_user.html#aed330979632aa25d490304db5ac3b7a8", null ],
+      [ "firstName", "class_tg_bot_1_1_shared_user.html#ad034c52c754b19c7fec315d28365999b", null ],
+      [ "lastName", "class_tg_bot_1_1_shared_user.html#aba193d8e72c3aeb282bb48fbf09d9d10", null ],
+      [ "photo", "class_tg_bot_1_1_shared_user.html#a025d0d49edbe84fac2c0dada759917d9", null ],
+      [ "userId", "class_tg_bot_1_1_shared_user.html#a41fe4687cf0159de83efd8ade56c5064", null ],
+      [ "username", "class_tg_bot_1_1_shared_user.html#a0bf546b34b9d56255f580ca4d0b7a1af", null ]
     ] ],
     [ "TgBot::ShippingAddress", "class_tg_bot_1_1_shipping_address.html", [
       [ "Ptr", "class_tg_bot_1_1_shipping_address.html#a92871afa1e15fa06460729711ce6641d", null ],
@@ -1142,9 +1457,10 @@ var group__types =
       [ "isAnimated", "class_tg_bot_1_1_sticker.html#a98d7ea2d2917d544ecc2eddd02ca3a94", null ],
       [ "isVideo", "class_tg_bot_1_1_sticker.html#a6f1b557771bee5f4414efe53cb161b8f", null ],
       [ "maskPosition", "class_tg_bot_1_1_sticker.html#a4e61ddba7363932939846585eec348e2", null ],
+      [ "needsRepainting", "class_tg_bot_1_1_sticker.html#a1ed3eb30f8c7891d6b5e1d80acd47449", null ],
       [ "premiumAnimation", "class_tg_bot_1_1_sticker.html#a8eebc28f8e2cc5d675249d5622b0ed37", null ],
       [ "setName", "class_tg_bot_1_1_sticker.html#ac9ff439183edc6a5fb2c469e29c687ba", null ],
-      [ "thumb", "class_tg_bot_1_1_sticker.html#aff8374f6355156deae78e8f934f3aab3", null ],
+      [ "thumbnail", "class_tg_bot_1_1_sticker.html#a283601691bf14475b720da5a049e9c1a", null ],
       [ "type", "class_tg_bot_1_1_sticker.html#a0b730d358ba84e22ed6cac1a17a8c64e", null ],
       [ "width", "class_tg_bot_1_1_sticker.html#a5293cffae2125fdd6fc37a93b7a73f32", null ]
     ] ],
@@ -1155,13 +1471,16 @@ var group__types =
         [ "Mask", "class_tg_bot_1_1_sticker_set.html#a373e98a1f30061b7a8e3c81a5015b4f8a4a18312b5b75f549d5551e5912ad6ebf", null ],
         [ "CustomEmoji", "class_tg_bot_1_1_sticker_set.html#a373e98a1f30061b7a8e3c81a5015b4f8af2ded25b30113452f7b15011b876ef8f", null ]
       ] ],
-      [ "isAnimated", "class_tg_bot_1_1_sticker_set.html#a42adf2c3363ea458cbcf3d68bccc18c3", null ],
-      [ "isVideo", "class_tg_bot_1_1_sticker_set.html#a635ca8fe248d102194eac675c3b7da8f", null ],
       [ "name", "class_tg_bot_1_1_sticker_set.html#a28755ab9c48ec7b667fd187976682631", null ],
       [ "stickers", "class_tg_bot_1_1_sticker_set.html#a029bf60e037c38c991706c378d545f34", null ],
-      [ "thumb", "class_tg_bot_1_1_sticker_set.html#a3ecdac531618bb85d5aad18d922da240", null ],
-      [ "title", "class_tg_bot_1_1_sticker_set.html#ade2402dfdb526b9826eb4db22527f0e2", null ],
-      [ "type", "class_tg_bot_1_1_sticker_set.html#aafeaf4476b8f2749d2728a5202277c65", null ]
+      [ "stickerType", "class_tg_bot_1_1_sticker_set.html#ad32975d0ecf002f1b0c3d42c2d387776", null ],
+      [ "thumbnail", "class_tg_bot_1_1_sticker_set.html#a978ba9427b44e33873ae8674baf2d1a1", null ],
+      [ "title", "class_tg_bot_1_1_sticker_set.html#ade2402dfdb526b9826eb4db22527f0e2", null ]
+    ] ],
+    [ "TgBot::Story", "class_tg_bot_1_1_story.html", [
+      [ "Ptr", "class_tg_bot_1_1_story.html#ac91b933678bd8970f0138d087e1f54ea", null ],
+      [ "chat", "class_tg_bot_1_1_story.html#a23031cac2562005ce243ec65264f5cd7", null ],
+      [ "id", "class_tg_bot_1_1_story.html#a0994231467e09c0c3a7955ba8fdf526d", null ]
     ] ],
     [ "TgBot::SuccessfulPayment", "class_tg_bot_1_1_successful_payment.html", [
       [ "Ptr", "class_tg_bot_1_1_successful_payment.html#a753e2643432af6f0b2561436f2b1da0d", null ],
@@ -1173,27 +1492,51 @@ var group__types =
       [ "telegramPaymentChargeId", "class_tg_bot_1_1_successful_payment.html#a42ec4a5d0de537eaf1e9d43866ac3c04", null ],
       [ "totalAmount", "class_tg_bot_1_1_successful_payment.html#a457b4d9fc8be91352149a6a80fac65b3", null ]
     ] ],
+    [ "TgBot::SwitchInlineQueryChosenChat", "class_tg_bot_1_1_switch_inline_query_chosen_chat.html", [
+      [ "Ptr", "class_tg_bot_1_1_switch_inline_query_chosen_chat.html#a5a390c16da2555cb125202c79dc1ce8f", null ],
+      [ "allowBotChats", "class_tg_bot_1_1_switch_inline_query_chosen_chat.html#ae0befac0e3d0baadbb54764df008737a", null ],
+      [ "allowChannelChats", "class_tg_bot_1_1_switch_inline_query_chosen_chat.html#a823919d2fe8898972b4352611d653fc0", null ],
+      [ "allowGroupChats", "class_tg_bot_1_1_switch_inline_query_chosen_chat.html#ad1391da43e8b62e2039f00c54d7c11a9", null ],
+      [ "allowUserChats", "class_tg_bot_1_1_switch_inline_query_chosen_chat.html#af007bc321813c79a70fa4d67cb4d5da5", null ],
+      [ "query", "class_tg_bot_1_1_switch_inline_query_chosen_chat.html#aacb325951f79913f6d376eceae57064e", null ]
+    ] ],
+    [ "TgBot::TextQuote", "class_tg_bot_1_1_text_quote.html", [
+      [ "Ptr", "class_tg_bot_1_1_text_quote.html#a0f8a4777922c2c09f64e36b9bf669d51", null ],
+      [ "entities", "class_tg_bot_1_1_text_quote.html#a473becdd04729e228563058422abd872", null ],
+      [ "isManual", "class_tg_bot_1_1_text_quote.html#a82033ae14fbb299b607e6785c16fcb2e", null ],
+      [ "position", "class_tg_bot_1_1_text_quote.html#a3c91b2c6bc1212050a1a849ed7d6d304", null ],
+      [ "text", "class_tg_bot_1_1_text_quote.html#a9ba7c37dca47203aeebbd2d951c3c49c", null ]
+    ] ],
     [ "TgBot::Update", "class_tg_bot_1_1_update.html", [
       [ "Ptr", "class_tg_bot_1_1_update.html#abace63cf3605fe7a480a3bb839a672a8", null ],
+      [ "businessConnection", "class_tg_bot_1_1_update.html#a6aa5fece26676b3ce85e6bc0e9c50290", null ],
+      [ "businessMessage", "class_tg_bot_1_1_update.html#a52ea48fc42be7b134c32dda55932709f", null ],
       [ "callbackQuery", "class_tg_bot_1_1_update.html#a2c6890adcab16d6a306b3b89fd954f6f", null ],
       [ "channelPost", "class_tg_bot_1_1_update.html#aabddc6947fe255f1763802532d34ef2b", null ],
+      [ "chatBoost", "class_tg_bot_1_1_update.html#ac0b9b4872958dd23837937e7a75bb0fd", null ],
       [ "chatJoinRequest", "class_tg_bot_1_1_update.html#a2ebed85cdcf8d531ae2a2d5a70a74331", null ],
       [ "chatMember", "class_tg_bot_1_1_update.html#ab72c74166928c9a7b7b182e4dadbe656", null ],
       [ "chosenInlineResult", "class_tg_bot_1_1_update.html#aa3fab72bc10111e2f8f8930c43a0ff8b", null ],
+      [ "deletedBusinessMessages", "class_tg_bot_1_1_update.html#a63e1bf2011df6faccdf697af8248cf70", null ],
+      [ "editedBusinessMessage", "class_tg_bot_1_1_update.html#a997db7929cb69b1041b240fbb980e10e", null ],
       [ "editedChannelPost", "class_tg_bot_1_1_update.html#a05588da55717387ef91434f014afff1b", null ],
       [ "editedMessage", "class_tg_bot_1_1_update.html#a188502d94515baee85ba30f58cffa1b5", null ],
       [ "inlineQuery", "class_tg_bot_1_1_update.html#aea03e36b9015a0fe9f1278564c5b8806", null ],
       [ "message", "class_tg_bot_1_1_update.html#ab65136c0345978742fb3026e6855ff2c", null ],
+      [ "messageReaction", "class_tg_bot_1_1_update.html#accd264a788d829485a43b5fa186c5c1a", null ],
+      [ "messageReactionCount", "class_tg_bot_1_1_update.html#a2f906cbe310962c012465fb97d9bcc24", null ],
       [ "myChatMember", "class_tg_bot_1_1_update.html#a15ac10adb0286474f5918cf1f9c4d95a", null ],
       [ "poll", "class_tg_bot_1_1_update.html#a74adc6d7b6f71daccd35fe120b400038", null ],
       [ "pollAnswer", "class_tg_bot_1_1_update.html#a403354cd2d62720d19d12421573e65a7", null ],
       [ "preCheckoutQuery", "class_tg_bot_1_1_update.html#a9c1dab567059da89f8529263bdc92da3", null ],
+      [ "removedChatBoost", "class_tg_bot_1_1_update.html#a0cac69c79b882039a2876afc217c1780", null ],
       [ "shippingQuery", "class_tg_bot_1_1_update.html#ab36e473d65557a1fb6ab4096eadc1269", null ],
       [ "updateId", "class_tg_bot_1_1_update.html#aa1f17980cc04fa62367620f922ff9fcb", null ]
     ] ],
     [ "TgBot::User", "class_tg_bot_1_1_user.html", [
       [ "Ptr", "class_tg_bot_1_1_user.html#ae6ea24aef677abaaf0fd7d60adf5be79", null ],
       [ "addedToAttachmentMenu", "class_tg_bot_1_1_user.html#a685524df1d79bf33fb82c782683bd2cc", null ],
+      [ "canConnectToBusiness", "class_tg_bot_1_1_user.html#a4744fa719e6ba8eae9ca98b06f04d8ec", null ],
       [ "canJoinGroups", "class_tg_bot_1_1_user.html#a2412401cc890f7244aca8a512d5cfc14", null ],
       [ "canReadAllGroupMessages", "class_tg_bot_1_1_user.html#afbdaa87956f6c813e63f0627903992ef", null ],
       [ "firstName", "class_tg_bot_1_1_user.html#a7f7a9c98a98fdd7199d2c22c63dd75b0", null ],
@@ -1205,15 +1548,19 @@ var group__types =
       [ "supportsInlineQueries", "class_tg_bot_1_1_user.html#aff4fc02eba51485e01a873d47ce6289c", null ],
       [ "username", "class_tg_bot_1_1_user.html#a3b32a26af904966eb8f961309f49eeba", null ]
     ] ],
+    [ "TgBot::UserChatBoosts", "class_tg_bot_1_1_user_chat_boosts.html", [
+      [ "Ptr", "class_tg_bot_1_1_user_chat_boosts.html#a310a67a1e081f49973c689de3ce9a3a4", null ],
+      [ "boosts", "class_tg_bot_1_1_user_chat_boosts.html#a573180bad0bf71a67792377f7a87bf94", null ]
+    ] ],
     [ "TgBot::UserProfilePhotos", "class_tg_bot_1_1_user_profile_photos.html", [
       [ "Ptr", "class_tg_bot_1_1_user_profile_photos.html#a734352c5b115ea29e639f01462187d55", null ],
       [ "photos", "class_tg_bot_1_1_user_profile_photos.html#a66b1e0c0b5b462ab8087ce05b0311f16", null ],
       [ "totalCount", "class_tg_bot_1_1_user_profile_photos.html#a69aacb7963dabce9cacb3a7f3ff225d5", null ]
     ] ],
-    [ "TgBot::UserShared", "class_tg_bot_1_1_user_shared.html", [
-      [ "Ptr", "class_tg_bot_1_1_user_shared.html#aeb4c80035da1f958b31e4cadd8572edf", null ],
-      [ "requestId", "class_tg_bot_1_1_user_shared.html#aaea5f12f67865429e8edb0ea644f51e7", null ],
-      [ "userId", "class_tg_bot_1_1_user_shared.html#a24d327d03ce1b82c5744978332d895a9", null ]
+    [ "TgBot::UsersShared", "class_tg_bot_1_1_users_shared.html", [
+      [ "Ptr", "class_tg_bot_1_1_users_shared.html#aa155f88c785b5fd90c86f9095a1483d6", null ],
+      [ "requestId", "class_tg_bot_1_1_users_shared.html#a9ce12328026861a8f83191fff0088a5a", null ],
+      [ "users", "class_tg_bot_1_1_users_shared.html#a37c44045290e2dc181e22b43bff24ea6", null ]
     ] ],
     [ "TgBot::Venue", "class_tg_bot_1_1_venue.html", [
       [ "Ptr", "class_tg_bot_1_1_venue.html#a9f9505e1035b3aacd2ad9d68a8285a14", null ],
@@ -1234,7 +1581,7 @@ var group__types =
       [ "fileUniqueId", "class_tg_bot_1_1_video.html#a9a62bbc7789e62d61ce9f769ffdc022a", null ],
       [ "height", "class_tg_bot_1_1_video.html#aaac001ebb35b733cc21e4a24cb3667ba", null ],
       [ "mimeType", "class_tg_bot_1_1_video.html#a4162b4cc66825ce32fea222399ef3356", null ],
-      [ "thumb", "class_tg_bot_1_1_video.html#ab71e1325c685af9e67ddf0af418a77a7", null ],
+      [ "thumbnail", "class_tg_bot_1_1_video.html#a9b7a6d26dae485c45cf88eb964e240b2", null ],
       [ "width", "class_tg_bot_1_1_video.html#a758db27186352b4f8dd471455937e624", null ]
     ] ],
     [ "TgBot::VideoChatEnded", "class_tg_bot_1_1_video_chat_ended.html", [
@@ -1259,7 +1606,7 @@ var group__types =
       [ "fileSize", "class_tg_bot_1_1_video_note.html#ac7c8199417a15f6f4b9e7f9f395477d0", null ],
       [ "fileUniqueId", "class_tg_bot_1_1_video_note.html#a9618fc7f5b11c82a84cd559dcb972d1d", null ],
       [ "length", "class_tg_bot_1_1_video_note.html#ae18cab7bc286ea51f3f11b7b384c55d7", null ],
-      [ "thumb", "class_tg_bot_1_1_video_note.html#ac9d929d057a59bdfb1dee50819b0e06f", null ]
+      [ "thumbnail", "class_tg_bot_1_1_video_note.html#a69887333c3d3680a4119b45a1358ae51", null ]
     ] ],
     [ "TgBot::Voice", "class_tg_bot_1_1_voice.html", [
       [ "Ptr", "class_tg_bot_1_1_voice.html#a73311e993b61a62531f42583d82fed91", null ],
@@ -1291,6 +1638,9 @@ var group__types =
       [ "url", "class_tg_bot_1_1_webhook_info.html#a4f1f6efd16518a24e8c153f5e126a36f", null ]
     ] ],
     [ "TgBot::WriteAccessAllowed", "class_tg_bot_1_1_write_access_allowed.html", [
-      [ "Ptr", "class_tg_bot_1_1_write_access_allowed.html#acd928e8d5360d75513bd8e8c6d8e050f", null ]
+      [ "Ptr", "class_tg_bot_1_1_write_access_allowed.html#acd928e8d5360d75513bd8e8c6d8e050f", null ],
+      [ "fromAttachmentMenu", "class_tg_bot_1_1_write_access_allowed.html#abf619ee0c11f31840929baf7ce61a3a2", null ],
+      [ "fromRequest", "class_tg_bot_1_1_write_access_allowed.html#a7983b41011f106dcb88dd07ed0294ad7", null ],
+      [ "webAppName", "class_tg_bot_1_1_write_access_allowed.html#ab25ee6846e4369e83245e2cdc0ed1ea5", null ]
     ] ]
 ];

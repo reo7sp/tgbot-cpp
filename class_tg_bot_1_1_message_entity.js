@@ -14,6 +14,7 @@ var class_tg_bot_1_1_message_entity =
       [ "Underline", "class_tg_bot_1_1_message_entity.html#a6cb87a43b52a982682c1e592fbc1f2c9a852721aa5fc738dfedff2945d71da439", null ],
       [ "Strikethrough", "class_tg_bot_1_1_message_entity.html#a6cb87a43b52a982682c1e592fbc1f2c9a926a51baad949d12035107e5d06e2fdb", null ],
       [ "Spoiler", "class_tg_bot_1_1_message_entity.html#a6cb87a43b52a982682c1e592fbc1f2c9af7115e4891ab41c009017e95f47eb6e9", null ],
+      [ "Blockquote", "class_tg_bot_1_1_message_entity.html#a6cb87a43b52a982682c1e592fbc1f2c9a146aaf1333c7e82829fe9c5c52340b56", null ],
       [ "Code", "class_tg_bot_1_1_message_entity.html#a6cb87a43b52a982682c1e592fbc1f2c9aca0dbad92a874b2f69b549293387925e", null ],
       [ "Pre", "class_tg_bot_1_1_message_entity.html#a6cb87a43b52a982682c1e592fbc1f2c9afb55a965b77791b31ffd2bb548f71080", null ],
       [ "TextLink", "class_tg_bot_1_1_message_entity.html#a6cb87a43b52a982682c1e592fbc1f2c9a7f01c2ecef93cd509dab0bb85ff03f49", null ],

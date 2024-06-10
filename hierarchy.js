@@ -3,6 +3,7 @@ var hierarchy =
     [ "TgBot::Animation", "class_tg_bot_1_1_animation.html", null ],
     [ "TgBot::Api", "class_tg_bot_1_1_api.html", null ],
     [ "TgBot::Audio", "class_tg_bot_1_1_audio.html", null ],
+    [ "TgBot::Birthdate", "class_tg_bot_1_1_birthdate.html", null ],
     [ "TgBot::Bot", "class_tg_bot_1_1_bot.html", null ],
     [ "TgBot::BotCommand", "class_tg_bot_1_1_bot_command.html", null ],
     [ "TgBot::BotCommandScope", "class_tg_bot_1_1_bot_command_scope.html", [
@@ -14,10 +15,28 @@ var hierarchy =
       [ "TgBot::BotCommandScopeChatMember", "class_tg_bot_1_1_bot_command_scope_chat_member.html", null ],
       [ "TgBot::BotCommandScopeDefault", "class_tg_bot_1_1_bot_command_scope_default.html", null ]
     ] ],
+    [ "TgBot::BotDescription", "class_tg_bot_1_1_bot_description.html", null ],
+    [ "TgBot::BotName", "class_tg_bot_1_1_bot_name.html", null ],
+    [ "TgBot::BotShortDescription", "class_tg_bot_1_1_bot_short_description.html", null ],
+    [ "TgBot::BusinessConnection", "class_tg_bot_1_1_business_connection.html", null ],
+    [ "TgBot::BusinessIntro", "class_tg_bot_1_1_business_intro.html", null ],
+    [ "TgBot::BusinessLocation", "class_tg_bot_1_1_business_location.html", null ],
+    [ "TgBot::BusinessMessagesDeleted", "class_tg_bot_1_1_business_messages_deleted.html", null ],
+    [ "TgBot::BusinessOpeningHours", "class_tg_bot_1_1_business_opening_hours.html", null ],
+    [ "TgBot::BusinessOpeningHoursInterval", "class_tg_bot_1_1_business_opening_hours_interval.html", null ],
     [ "TgBot::CallbackGame", "class_tg_bot_1_1_callback_game.html", null ],
     [ "TgBot::CallbackQuery", "class_tg_bot_1_1_callback_query.html", null ],
     [ "TgBot::Chat", "class_tg_bot_1_1_chat.html", null ],
     [ "TgBot::ChatAdministratorRights", "class_tg_bot_1_1_chat_administrator_rights.html", null ],
+    [ "TgBot::ChatBoost", "class_tg_bot_1_1_chat_boost.html", null ],
+    [ "TgBot::ChatBoostAdded", "class_tg_bot_1_1_chat_boost_added.html", null ],
+    [ "TgBot::ChatBoostRemoved", "class_tg_bot_1_1_chat_boost_removed.html", null ],
+    [ "TgBot::ChatBoostSource", "class_tg_bot_1_1_chat_boost_source.html", [
+      [ "TgBot::ChatBoostSourceGiftCode", "class_tg_bot_1_1_chat_boost_source_gift_code.html", null ],
+      [ "TgBot::ChatBoostSourceGiveaway", "class_tg_bot_1_1_chat_boost_source_giveaway.html", null ],
+      [ "TgBot::ChatBoostSourcePremium", "class_tg_bot_1_1_chat_boost_source_premium.html", null ]
+    ] ],
+    [ "TgBot::ChatBoostUpdated", "class_tg_bot_1_1_chat_boost_updated.html", null ],
     [ "TgBot::ChatInviteLink", "class_tg_bot_1_1_chat_invite_link.html", null ],
     [ "TgBot::ChatJoinRequest", "class_tg_bot_1_1_chat_join_request.html", null ],
     [ "TgBot::ChatLocation", "class_tg_bot_1_1_chat_location.html", null ],
@@ -44,6 +63,7 @@ var hierarchy =
     [ "TgBot::EncryptedPassportElement", "class_tg_bot_1_1_encrypted_passport_element.html", null ],
     [ "TgBot::EventBroadcaster", "class_tg_bot_1_1_event_broadcaster.html", null ],
     [ "TgBot::EventHandler", "class_tg_bot_1_1_event_handler.html", null ],
+    [ "TgBot::ExternalReplyInfo", "class_tg_bot_1_1_external_reply_info.html", null ],
     [ "TgBot::File", "class_tg_bot_1_1_file.html", null ],
     [ "TgBot::ForumTopic", "class_tg_bot_1_1_forum_topic.html", null ],
     [ "TgBot::ForumTopicClosed", "class_tg_bot_1_1_forum_topic_closed.html", null ],
@@ -60,6 +80,10 @@ var hierarchy =
       [ "TgBot::ReplyKeyboardMarkup", "class_tg_bot_1_1_reply_keyboard_markup.html", null ],
       [ "TgBot::ReplyKeyboardRemove", "class_tg_bot_1_1_reply_keyboard_remove.html", null ]
     ] ],
+    [ "TgBot::Giveaway", "class_tg_bot_1_1_giveaway.html", null ],
+    [ "TgBot::GiveawayCompleted", "class_tg_bot_1_1_giveaway_completed.html", null ],
+    [ "TgBot::GiveawayCreated", "class_tg_bot_1_1_giveaway_created.html", null ],
+    [ "TgBot::GiveawayWinners", "class_tg_bot_1_1_giveaway_winners.html", null ],
     [ "TgBot::HttpClient", "class_tg_bot_1_1_http_client.html", [
       [ "TgBot::BoostHttpOnlySslClient", "class_tg_bot_1_1_boost_http_only_ssl_client.html", null ],
       [ "TgBot::CurlHttpClient", "class_tg_bot_1_1_curl_http_client.html", null ]
@@ -67,16 +91,19 @@ var hierarchy =
     [ "TgBot::HttpParser", "class_tg_bot_1_1_http_parser.html", null ],
     [ "TgBot::HttpReqArg", "class_tg_bot_1_1_http_req_arg.html", null ],
     [ "TgBot::HttpServer< Protocol >", "class_tg_bot_1_1_http_server.html", [
-      [ "TgBot::TgWebhookServer< boost::asio::local::stream_protocol >", "class_tg_bot_1_1_tg_webhook_server.html", [
-        [ "TgBot::TgWebhookLocalServer", "class_tg_bot_1_1_tg_webhook_local_server.html", null ]
-      ] ],
-      [ "TgBot::TgWebhookServer< boost::asio::ip::tcp >", "class_tg_bot_1_1_tg_webhook_server.html", [
-        [ "TgBot::TgWebhookTcpServer", "class_tg_bot_1_1_tg_webhook_tcp_server.html", null ]
-      ] ],
       [ "TgBot::TgWebhookServer< Protocol >", "class_tg_bot_1_1_tg_webhook_server.html", null ]
     ] ],
-    [ "TgBot::HttpServer< boost::asio::ip::tcp >", "class_tg_bot_1_1_http_server.html", null ],
-    [ "TgBot::HttpServer< boost::asio::local::stream_protocol >", "class_tg_bot_1_1_http_server.html", null ],
+    [ "TgBot::HttpServer< boost::asio::ip::tcp >", "class_tg_bot_1_1_http_server.html", [
+      [ "TgBot::TgWebhookServer< boost::asio::ip::tcp >", "class_tg_bot_1_1_tg_webhook_server.html", [
+        [ "TgBot::TgWebhookTcpServer", "class_tg_bot_1_1_tg_webhook_tcp_server.html", null ]
+      ] ]
+    ] ],
+    [ "TgBot::HttpServer< boost::asio::local::stream_protocol >", "class_tg_bot_1_1_http_server.html", [
+      [ "TgBot::TgWebhookServer< boost::asio::local::stream_protocol >", "class_tg_bot_1_1_tg_webhook_server.html", [
+        [ "TgBot::TgWebhookLocalServer", "class_tg_bot_1_1_tg_webhook_local_server.html", null ]
+      ] ]
+    ] ],
+    [ "TgBot::InaccessibleMessage", "class_tg_bot_1_1_inaccessible_message.html", null ],
     [ "TgBot::InlineKeyboardButton", "class_tg_bot_1_1_inline_keyboard_button.html", null ],
     [ "TgBot::InlineQuery", "class_tg_bot_1_1_inline_query.html", null ],
     [ "TgBot::InlineQueryResult", "class_tg_bot_1_1_inline_query_result.html", [
@@ -101,6 +128,7 @@ var hierarchy =
       [ "TgBot::InlineQueryResultVideo", "class_tg_bot_1_1_inline_query_result_video.html", null ],
       [ "TgBot::InlineQueryResultVoice", "class_tg_bot_1_1_inline_query_result_voice.html", null ]
     ] ],
+    [ "TgBot::InlineQueryResultsButton", "class_tg_bot_1_1_inline_query_results_button.html", null ],
     [ "TgBot::InputFile", "class_tg_bot_1_1_input_file.html", null ],
     [ "TgBot::InputMedia", "class_tg_bot_1_1_input_media.html", [
       [ "TgBot::InputMediaAnimation", "class_tg_bot_1_1_input_media_animation.html", null ],
@@ -116,12 +144,14 @@ var hierarchy =
       [ "TgBot::InputTextMessageContent", "class_tg_bot_1_1_input_text_message_content.html", null ],
       [ "TgBot::InputVenueMessageContent", "class_tg_bot_1_1_input_venue_message_content.html", null ]
     ] ],
+    [ "TgBot::InputSticker", "class_tg_bot_1_1_input_sticker.html", null ],
     [ "TgBot::Invoice", "class_tg_bot_1_1_invoice.html", null ],
     [ "TgBot::KeyboardButton", "class_tg_bot_1_1_keyboard_button.html", null ],
     [ "TgBot::KeyboardButtonPollType", "class_tg_bot_1_1_keyboard_button_poll_type.html", null ],
     [ "TgBot::KeyboardButtonRequestChat", "class_tg_bot_1_1_keyboard_button_request_chat.html", null ],
-    [ "TgBot::KeyboardButtonRequestUser", "class_tg_bot_1_1_keyboard_button_request_user.html", null ],
+    [ "TgBot::KeyboardButtonRequestUsers", "class_tg_bot_1_1_keyboard_button_request_users.html", null ],
     [ "TgBot::LabeledPrice", "class_tg_bot_1_1_labeled_price.html", null ],
+    [ "TgBot::LinkPreviewOptions", "class_tg_bot_1_1_link_preview_options.html", null ],
     [ "TgBot::Location", "class_tg_bot_1_1_location.html", null ],
     [ "TgBot::LoginUrl", "class_tg_bot_1_1_login_url.html", null ],
     [ "TgBot::MaskPosition", "class_tg_bot_1_1_mask_position.html", null ],
@@ -134,6 +164,14 @@ var hierarchy =
     [ "TgBot::MessageAutoDeleteTimerChanged", "class_tg_bot_1_1_message_auto_delete_timer_changed.html", null ],
     [ "TgBot::MessageEntity", "class_tg_bot_1_1_message_entity.html", null ],
     [ "TgBot::MessageId", "class_tg_bot_1_1_message_id.html", null ],
+    [ "TgBot::MessageOrigin", "class_tg_bot_1_1_message_origin.html", [
+      [ "TgBot::MessageOriginChannel", "class_tg_bot_1_1_message_origin_channel.html", null ],
+      [ "TgBot::MessageOriginChat", "class_tg_bot_1_1_message_origin_chat.html", null ],
+      [ "TgBot::MessageOriginHiddenUser", "class_tg_bot_1_1_message_origin_hidden_user.html", null ],
+      [ "TgBot::MessageOriginUser", "class_tg_bot_1_1_message_origin_user.html", null ]
+    ] ],
+    [ "TgBot::MessageReactionCountUpdated", "class_tg_bot_1_1_message_reaction_count_updated.html", null ],
+    [ "TgBot::MessageReactionUpdated", "class_tg_bot_1_1_message_reaction_updated.html", null ],
     [ "TgBot::OrderInfo", "class_tg_bot_1_1_order_info.html", null ],
     [ "TgBot::PassportData", "class_tg_bot_1_1_passport_data.html", null ],
     [ "TgBot::PassportElementError", "class_tg_bot_1_1_passport_element_error.html", [
@@ -154,23 +192,34 @@ var hierarchy =
     [ "TgBot::PollOption", "class_tg_bot_1_1_poll_option.html", null ],
     [ "TgBot::PreCheckoutQuery", "class_tg_bot_1_1_pre_checkout_query.html", null ],
     [ "TgBot::ProximityAlertTriggered", "class_tg_bot_1_1_proximity_alert_triggered.html", null ],
+    [ "TgBot::ReactionCount", "class_tg_bot_1_1_reaction_count.html", null ],
+    [ "TgBot::ReactionType", "class_tg_bot_1_1_reaction_type.html", [
+      [ "TgBot::ReactionTypeCustomEmoji", "class_tg_bot_1_1_reaction_type_custom_emoji.html", null ],
+      [ "TgBot::ReactionTypeEmoji", "class_tg_bot_1_1_reaction_type_emoji.html", null ]
+    ] ],
+    [ "TgBot::ReplyParameters", "class_tg_bot_1_1_reply_parameters.html", null ],
     [ "TgBot::ResponseParameters", "class_tg_bot_1_1_response_parameters.html", null ],
     [ "std::runtime_error", null, [
       [ "TgBot::TgException", "class_tg_bot_1_1_tg_exception.html", null ]
     ] ],
     [ "TgBot::SentWebAppMessage", "class_tg_bot_1_1_sent_web_app_message.html", null ],
+    [ "TgBot::SharedUser", "class_tg_bot_1_1_shared_user.html", null ],
     [ "TgBot::ShippingAddress", "class_tg_bot_1_1_shipping_address.html", null ],
     [ "TgBot::ShippingOption", "class_tg_bot_1_1_shipping_option.html", null ],
     [ "TgBot::ShippingQuery", "class_tg_bot_1_1_shipping_query.html", null ],
     [ "TgBot::Sticker", "class_tg_bot_1_1_sticker.html", null ],
     [ "TgBot::StickerSet", "class_tg_bot_1_1_sticker_set.html", null ],
+    [ "TgBot::Story", "class_tg_bot_1_1_story.html", null ],
     [ "TgBot::SuccessfulPayment", "class_tg_bot_1_1_successful_payment.html", null ],
+    [ "TgBot::SwitchInlineQueryChosenChat", "class_tg_bot_1_1_switch_inline_query_chosen_chat.html", null ],
+    [ "TgBot::TextQuote", "class_tg_bot_1_1_text_quote.html", null ],
     [ "TgBot::TgLongPoll", "class_tg_bot_1_1_tg_long_poll.html", null ],
     [ "TgBot::Update", "class_tg_bot_1_1_update.html", null ],
     [ "TgBot::Url", "class_tg_bot_1_1_url.html", null ],
     [ "TgBot::User", "class_tg_bot_1_1_user.html", null ],
+    [ "TgBot::UserChatBoosts", "class_tg_bot_1_1_user_chat_boosts.html", null ],
     [ "TgBot::UserProfilePhotos", "class_tg_bot_1_1_user_profile_photos.html", null ],
-    [ "TgBot::UserShared", "class_tg_bot_1_1_user_shared.html", null ],
+    [ "TgBot::UsersShared", "class_tg_bot_1_1_users_shared.html", null ],
     [ "TgBot::Venue", "class_tg_bot_1_1_venue.html", null ],
     [ "TgBot::Video", "class_tg_bot_1_1_video.html", null ],
     [ "TgBot::VideoChatEnded", "class_tg_bot_1_1_video_chat_ended.html", null ],

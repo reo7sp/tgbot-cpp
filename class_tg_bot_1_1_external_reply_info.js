@@ -1,0 +1,27 @@
+var class_tg_bot_1_1_external_reply_info =
+[
+    [ "Ptr", "class_tg_bot_1_1_external_reply_info.html#a81129671386354ee721d278f4c8f2ede", null ],
+    [ "animation", "class_tg_bot_1_1_external_reply_info.html#a21afc2fe395576e5bb349bc6c8e7503c", null ],
+    [ "audio", "class_tg_bot_1_1_external_reply_info.html#adaa35c0faaf5b8abd5f357d7fba8503d", null ],
+    [ "chat", "class_tg_bot_1_1_external_reply_info.html#a634b50990009496efb8278f45e71dcad", null ],
+    [ "contact", "class_tg_bot_1_1_external_reply_info.html#a232b6de11b0737b2d5476de16564673c", null ],
+    [ "dice", "class_tg_bot_1_1_external_reply_info.html#a40754618373ac40aa1baa25991158176", null ],
+    [ "document", "class_tg_bot_1_1_external_reply_info.html#ae9d1c52c080431e4464c9903616c8385", null ],
+    [ "game", "class_tg_bot_1_1_external_reply_info.html#a6012bcb24c674b568a4fdb436fe16d4c", null ],
+    [ "giveaway", "class_tg_bot_1_1_external_reply_info.html#a38e7bcfa50b1ba80ba871992effe836e", null ],
+    [ "giveawayWinners", "class_tg_bot_1_1_external_reply_info.html#a5d342f0d289ed5d67e05fcda49a73c17", null ],
+    [ "hasMediaSpoiler", "class_tg_bot_1_1_external_reply_info.html#af4f6cf255a28b9b38a4147fb051899c4", null ],
+    [ "invoice", "class_tg_bot_1_1_external_reply_info.html#afb478ce06eeccd998995d1b4325456b2", null ],
+    [ "linkPreviewOptions", "class_tg_bot_1_1_external_reply_info.html#a13a4071354314b9b5c4badd8fc075df3", null ],
+    [ "location", "class_tg_bot_1_1_external_reply_info.html#abb71849296dc1b77add7befa118dc442", null ],
+    [ "messageId", "class_tg_bot_1_1_external_reply_info.html#af3b39c67643c14d7b02fdbec1b254094", null ],
+    [ "origin", "class_tg_bot_1_1_external_reply_info.html#a61c0a0260f4e8c96f3ff87811d76c409", null ],
+    [ "photo", "class_tg_bot_1_1_external_reply_info.html#aad31e3b87e8c470df1718786fb727a4c", null ],
+    [ "poll", "class_tg_bot_1_1_external_reply_info.html#aeb84c6ffba827dda848457f30f9a71da", null ],
+    [ "sticker", "class_tg_bot_1_1_external_reply_info.html#aebcee781b92ea06482a1e2588d2a60e5", null ],
+    [ "story", "class_tg_bot_1_1_external_reply_info.html#a0cd25bdb8ea1a82aecfcea51bc29c747", null ],
+    [ "venue", "class_tg_bot_1_1_external_reply_info.html#a35415d1406619fb6f445b53e7a03318d", null ],
+    [ "video", "class_tg_bot_1_1_external_reply_info.html#ad35d52538a2ccb7f5372c176d00ba113", null ],
+    [ "videoNote", "class_tg_bot_1_1_external_reply_info.html#a08f0255775ea9e69a8efee5a29ccbb3e", null ],
+    [ "voice", "class_tg_bot_1_1_external_reply_info.html#af80b6102ddb9f1d4e15f4e185e1b2492", null ]
+];

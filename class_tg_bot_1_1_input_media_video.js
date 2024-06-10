@@ -6,6 +6,6 @@ var class_tg_bot_1_1_input_media_video =
     [ "hasSpoiler", "class_tg_bot_1_1_input_media_video.html#a2e667eeed22e295ec6bec841883ae768", null ],
     [ "height", "class_tg_bot_1_1_input_media_video.html#ad731a89348777e927afcc261edfc4bb1", null ],
     [ "supportsStreaming", "class_tg_bot_1_1_input_media_video.html#adceba9e2e196f5d1356f283e5e2f043d", null ],
-    [ "thumb", "class_tg_bot_1_1_input_media_video.html#abbf924ff355bfbabb2be2cd3a8e17278", null ],
+    [ "thumbnail", "class_tg_bot_1_1_input_media_video.html#a77c63709cde3bae3e6bba4398bbc4ebb", null ],
     [ "width", "class_tg_bot_1_1_input_media_video.html#af72ea0910d138e6c8f04af0d9f84f640", null ]
 ];

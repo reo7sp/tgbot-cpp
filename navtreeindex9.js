@@ -1,0 +1,23 @@
+var NAVTREEINDEX9 =
+{
+"namespace_file_tools.html":[0,3,0],
+"namespace_file_tools.html#a0dbf1894e634a9872e43da157418daa0":[1,0,0,0],
+"namespace_file_tools.html#a6471554bc576e86efe50ebbab7bcdb66":[1,0,0,1],
+"namespace_string_tools.html":[0,3,1],
+"namespace_string_tools.html#a0f9c6845125656b2ff321d8f80b582a7":[1,0,1,2],
+"namespace_string_tools.html#a4536e012d2314f80313f62c5fff99c09":[1,0,1,5],
+"namespace_string_tools.html#a46a68045f7b5b2077af2e3d639a42200":[1,0,1,3],
+"namespace_string_tools.html#a6cc0b327a4167d33154fdf9bcbc58ee8":[1,0,1,6],
+"namespace_string_tools.html#a729d3647c39da48546065e17a182e4d6":[1,0,1,0],
+"namespace_string_tools.html#ab20b53a15c499d9499d9ef5cb052f493":[1,0,1,4],
+"namespace_string_tools.html#abb8b6a64b92060a3ee9a877ebe53be3d":[1,0,1,7],
+"namespace_string_tools.html#afdaf7cd1c254e70b9a4fd15fe39bb03c":[1,0,1,1],
+"namespace_tg_bot.html":[1,0,2],
+"namespacemembers.html":[1,1,0],
+"namespacemembers_func.html":[1,1,1],
+"namespaces.html":[1,0],
+"pages.html":[],
+"tgbot_8h.html":[3,0,0,0,8],
+"tgbot_8h_source.html":[3,0,0,0,8],
+"topics.html":[0]
+};

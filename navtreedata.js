@@ -41,7 +41,7 @@ var NAVTREE =
         [ "All", "functions.html", "functions_dup" ],
         [ "Functions", "functions_func.html", "functions_func" ],
         [ "Variables", "functions_vars.html", "functions_vars" ],
-        [ "Typedefs", "functions_type.html", null ],
+        [ "Typedefs", "functions_type.html", "functions_type" ],
         [ "Enumerations", "functions_enum.html", null ],
         [ "Related Symbols", "functions_rela.html", null ]
       ] ]
@@ -55,13 +55,15 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "_animation_8h.html",
-"_passport_file_8h.html",
-"class_tg_bot_1_1_bot_command_scope_all_group_chats.html#abedcb3383e0600342d04e15f5c96e4b6",
-"class_tg_bot_1_1_event_broadcaster.html#a2c0338bc5cc3c1654d0e3f0dac0ab8a6",
-"class_tg_bot_1_1_inline_query_result_contact.html#a33fe5dafe6dca0dddaf7798bd1a8ca8a",
-"class_tg_bot_1_1_keyboard_button_request_chat.html#a3b067dc3850a5557efec6a52d455ff7b",
-"class_tg_bot_1_1_poll_option.html#a1f30924e7308ece68ae4d57e13dab4f7",
-"functions_b.html"
+"_keyboard_button_request_chat_8h.html",
+"class_tg_bot_1_1_api.html#a88a2867e8eb0f7f4a138b4d3d91f354c",
+"class_tg_bot_1_1_chat_boost.html#a6a7cea300ed0b11e49ab253cbe587d60",
+"class_tg_bot_1_1_external_reply_info.html#a81129671386354ee721d278f4c8f2ede",
+"class_tg_bot_1_1_inline_query_result_cached_video.html#a168ecacabc5443d2b79dc28707df35f1",
+"class_tg_bot_1_1_input_text_message_content.html#aef947c6035a4501bfe40adbd5fad9b7c",
+"class_tg_bot_1_1_message_reaction_updated.html#a2e0106141c2ebaca628824efdeda93a1",
+"class_tg_bot_1_1_tg_exception.html#a88b4eb82d516cd897ace08c9cb4c5097a6593d0aaf3950a1fdf50f35584657fcd",
+"namespace_file_tools.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

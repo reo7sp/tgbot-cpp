@@ -1,15 +1,20 @@
 var searchData=
 [
-  ['editdate_0',['editDate',['../class_tg_bot_1_1_message.html#a57ae9cfe48d6de764083c9253469188c',1,'TgBot::Message']]],
-  ['editedchannelpost_1',['editedChannelPost',['../class_tg_bot_1_1_update.html#a05588da55717387ef91434f014afff1b',1,'TgBot::Update']]],
-  ['editedmessage_2',['editedMessage',['../class_tg_bot_1_1_update.html#a188502d94515baee85ba30f58cffa1b5',1,'TgBot::Update']]],
-  ['elementhash_3',['elementHash',['../class_tg_bot_1_1_passport_element_error_unspecified.html#a3d0b711fdcfd3179cc70423fdbd16759',1,'TgBot::PassportElementErrorUnspecified']]],
-  ['email_4',['email',['../class_tg_bot_1_1_encrypted_passport_element.html#a161d11f95e2bcc0850343bc0cf0905fd',1,'TgBot::EncryptedPassportElement::email'],['../class_tg_bot_1_1_order_info.html#a0cc4794ebb169cd832b6724782e29126',1,'TgBot::OrderInfo::email']]],
-  ['emoji_5',['emoji',['../class_tg_bot_1_1_dice.html#a52a1d3e1b7d1437a666caecdbd72943f',1,'TgBot::Dice::emoji'],['../class_tg_bot_1_1_sticker.html#a91d598b9805292d3956b47d88febe001',1,'TgBot::Sticker::emoji']]],
-  ['emojistatuscustomemojiid_6',['emojiStatusCustomEmojiId',['../class_tg_bot_1_1_chat.html#a59151510a8cad1b3af517ba397e1106d',1,'TgBot::Chat']]],
-  ['entities_7',['entities',['../class_tg_bot_1_1_input_text_message_content.html#aef947c6035a4501bfe40adbd5fad9b7c',1,'TgBot::InputTextMessageContent::entities'],['../class_tg_bot_1_1_message.html#a53c199056538ebe72c65e409deaf7a8e',1,'TgBot::Message::entities']]],
-  ['errorcode_8',['errorCode',['../class_tg_bot_1_1_tg_exception.html#a3e660db4ebe1576e7f54a3064e3a7144',1,'TgBot::TgException']]],
-  ['expiredate_9',['expireDate',['../class_tg_bot_1_1_chat_invite_link.html#a3093a0857497134c6469a00679e745b4',1,'TgBot::ChatInviteLink']]],
-  ['explanation_10',['explanation',['../class_tg_bot_1_1_poll.html#acdd4b56671243e5b2c3a6628ca13fba1',1,'TgBot::Poll']]],
-  ['explanationentities_11',['explanationEntities',['../class_tg_bot_1_1_poll.html#af0df276266745c3d812fa034239480b9',1,'TgBot::Poll']]]
+  ['editdate_0',['editDate',['../class_tg_bot_1_1_message.html#aa43f695895edb4cdef46240375a81393',1,'TgBot::Message']]],
+  ['editedbusinessmessage_1',['editedBusinessMessage',['../class_tg_bot_1_1_update.html#a997db7929cb69b1041b240fbb980e10e',1,'TgBot::Update']]],
+  ['editedchannelpost_2',['editedChannelPost',['../class_tg_bot_1_1_update.html#a05588da55717387ef91434f014afff1b',1,'TgBot::Update']]],
+  ['editedmessage_3',['editedMessage',['../class_tg_bot_1_1_update.html#a188502d94515baee85ba30f58cffa1b5',1,'TgBot::Update']]],
+  ['elementhash_4',['elementHash',['../class_tg_bot_1_1_passport_element_error_unspecified.html#a3d0b711fdcfd3179cc70423fdbd16759',1,'TgBot::PassportElementErrorUnspecified']]],
+  ['email_5',['email',['../class_tg_bot_1_1_encrypted_passport_element.html#a161d11f95e2bcc0850343bc0cf0905fd',1,'TgBot::EncryptedPassportElement::email'],['../class_tg_bot_1_1_order_info.html#a0cc4794ebb169cd832b6724782e29126',1,'TgBot::OrderInfo::email']]],
+  ['emoji_6',['emoji',['../class_tg_bot_1_1_dice.html#a52a1d3e1b7d1437a666caecdbd72943f',1,'TgBot::Dice::emoji'],['../class_tg_bot_1_1_reaction_type_emoji.html#af815d845cb6a30e9fcdffd696d4b122c',1,'TgBot::ReactionTypeEmoji::emoji'],['../class_tg_bot_1_1_sticker.html#a91d598b9805292d3956b47d88febe001',1,'TgBot::Sticker::emoji']]],
+  ['emojilist_7',['emojiList',['../class_tg_bot_1_1_input_sticker.html#a09c31831cb867ad14706e14dca70392d',1,'TgBot::InputSticker']]],
+  ['emojistatuscustomemojiid_8',['emojiStatusCustomEmojiId',['../class_tg_bot_1_1_chat.html#a59151510a8cad1b3af517ba397e1106d',1,'TgBot::Chat']]],
+  ['emojistatusexpirationdate_9',['emojiStatusExpirationDate',['../class_tg_bot_1_1_chat.html#ad029319ef8b7553a99aa9e23546944e6',1,'TgBot::Chat']]],
+  ['entities_10',['entities',['../class_tg_bot_1_1_input_text_message_content.html#aef947c6035a4501bfe40adbd5fad9b7c',1,'TgBot::InputTextMessageContent::entities'],['../class_tg_bot_1_1_message.html#a53c199056538ebe72c65e409deaf7a8e',1,'TgBot::Message::entities'],['../class_tg_bot_1_1_text_quote.html#a473becdd04729e228563058422abd872',1,'TgBot::TextQuote::entities']]],
+  ['errorcode_11',['errorCode',['../class_tg_bot_1_1_tg_exception.html#a3e660db4ebe1576e7f54a3064e3a7144',1,'TgBot::TgException']]],
+  ['expirationdate_12',['expirationDate',['../class_tg_bot_1_1_chat_boost.html#ab875d47161340834e67d411f94a34ef9',1,'TgBot::ChatBoost']]],
+  ['expiredate_13',['expireDate',['../class_tg_bot_1_1_chat_invite_link.html#a3093a0857497134c6469a00679e745b4',1,'TgBot::ChatInviteLink']]],
+  ['explanation_14',['explanation',['../class_tg_bot_1_1_poll.html#acdd4b56671243e5b2c3a6628ca13fba1',1,'TgBot::Poll']]],
+  ['explanationentities_15',['explanationEntities',['../class_tg_bot_1_1_poll.html#af0df276266745c3d812fa034239480b9',1,'TgBot::Poll']]],
+  ['externalreply_16',['externalReply',['../class_tg_bot_1_1_message.html#ae6ee7d5f72f5c4bca28714a9853aa00b',1,'TgBot::Message']]]
 ];

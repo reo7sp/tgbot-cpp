@@ -9,8 +9,8 @@ var class_tg_bot_1_1_inline_query_result_document =
     [ "inputMessageContent", "class_tg_bot_1_1_inline_query_result_document.html#a30d03c94900541bc48405af6324b74af", null ],
     [ "mimeType", "class_tg_bot_1_1_inline_query_result_document.html#a77536770d42b1df1879519ee99e7a182", null ],
     [ "parseMode", "class_tg_bot_1_1_inline_query_result_document.html#a9896019b1be79c2d67a85cee7f59fd76", null ],
-    [ "thumbHeight", "class_tg_bot_1_1_inline_query_result_document.html#aea207b9130ff7d2ba596d1bd71377b27", null ],
-    [ "thumbUrl", "class_tg_bot_1_1_inline_query_result_document.html#a7d119b843296c1f51392f05b7dc221df", null ],
-    [ "thumbWidth", "class_tg_bot_1_1_inline_query_result_document.html#a7ee6c2411b744244226d64deeb848a2c", null ],
+    [ "thumbnailHeight", "class_tg_bot_1_1_inline_query_result_document.html#abf4a082d23b54b5b40d98fc2bdc9fd3b", null ],
+    [ "thumbnailUrl", "class_tg_bot_1_1_inline_query_result_document.html#a4b882137667dade3ddcbf8e75313096c", null ],
+    [ "thumbnailWidth", "class_tg_bot_1_1_inline_query_result_document.html#a434352410378de7a42b71e53e27e30a2", null ],
     [ "title", "class_tg_bot_1_1_inline_query_result_document.html#a2f2e0cbdd4e65d0e78580705c51cbb35", null ]
 ];

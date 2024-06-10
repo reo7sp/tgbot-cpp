@@ -10,6 +10,6 @@ var class_tg_bot_1_1_inline_query_result_photo =
     [ "photoHeight", "class_tg_bot_1_1_inline_query_result_photo.html#a1ad9297232c3e965599ebfc3eaf49c0c", null ],
     [ "photoUrl", "class_tg_bot_1_1_inline_query_result_photo.html#a0ad0da22b0a217208453aea34ed9a2c2", null ],
     [ "photoWidth", "class_tg_bot_1_1_inline_query_result_photo.html#aca919115c3245e6625a1694305ef58fd", null ],
-    [ "thumbUrl", "class_tg_bot_1_1_inline_query_result_photo.html#aca6ea097fce7827241ae1628c44a5893", null ],
+    [ "thumbnailUrl", "class_tg_bot_1_1_inline_query_result_photo.html#a1282671c10b281e6c7875c16e4becc57", null ],
     [ "title", "class_tg_bot_1_1_inline_query_result_photo.html#acd9ece494fcf7fa3ed57e83e5721ea02", null ]
 ];

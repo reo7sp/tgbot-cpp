@@ -10,7 +10,7 @@ var class_tg_bot_1_1_inline_query_result_gif =
     [ "gifWidth", "class_tg_bot_1_1_inline_query_result_gif.html#ad047eebfcd4f62060a99e95fc7a4a6ce", null ],
     [ "inputMessageContent", "class_tg_bot_1_1_inline_query_result_gif.html#ae2613259bbdee1e4e994d93ceffc06b3", null ],
     [ "parseMode", "class_tg_bot_1_1_inline_query_result_gif.html#a152cd4d5b17a0642831159c6d1279524", null ],
-    [ "thumbMimeType", "class_tg_bot_1_1_inline_query_result_gif.html#a3da15c01c7a9aac2a8fc054bb383622a", null ],
-    [ "thumbUrl", "class_tg_bot_1_1_inline_query_result_gif.html#a0872ef8aa09cbf3b1fba851dd37e49a3", null ],
+    [ "thumbnailMimeType", "class_tg_bot_1_1_inline_query_result_gif.html#affda49de8b398e191afefbbf15a92a7c", null ],
+    [ "thumbnailUrl", "class_tg_bot_1_1_inline_query_result_gif.html#abf9407826b1be2eebff869cde61e6419", null ],
     [ "title", "class_tg_bot_1_1_inline_query_result_gif.html#a2bffc03c04bb47927f019bab8b72d84a", null ]
 ];

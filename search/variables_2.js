@@ -1,10 +1,23 @@
 var searchData=
 [
-  ['bigfileid_0',['bigFileId',['../class_tg_bot_1_1_chat_photo.html#a6939e40e825e12b9b5dd2002d6d4d178',1,'TgBot::ChatPhoto']]],
-  ['bigfileuniqueid_1',['bigFileUniqueId',['../class_tg_bot_1_1_chat_photo.html#a621197488a00336f06526b93be188c28',1,'TgBot::ChatPhoto']]],
-  ['bio_2',['bio',['../class_tg_bot_1_1_chat.html#a22780fc23fb3e04fd7aeee1d56dd0aa7',1,'TgBot::Chat::bio'],['../class_tg_bot_1_1_chat_join_request.html#a1744d387c4182f19e81a55163095edfb',1,'TgBot::ChatJoinRequest::bio']]],
-  ['botadministratorrights_3',['botAdministratorRights',['../class_tg_bot_1_1_keyboard_button_request_chat.html#a001ed0ecab6816f743756e04b253a2ea',1,'TgBot::KeyboardButtonRequestChat']]],
-  ['botismember_4',['botIsMember',['../class_tg_bot_1_1_keyboard_button_request_chat.html#a54f711bd1c97d9dc500e3ec57d76e585',1,'TgBot::KeyboardButtonRequestChat']]],
-  ['botusername_5',['botUsername',['../class_tg_bot_1_1_login_url.html#aa25bdf1ca9fa3bd6954b13f8415e104c',1,'TgBot::LoginUrl']]],
-  ['buttontext_6',['buttonText',['../class_tg_bot_1_1_web_app_data.html#a6777fb1032d56fc4886a32bb59969b41',1,'TgBot::WebAppData']]]
+  ['backgroundcustomemojiid_0',['backgroundCustomEmojiId',['../class_tg_bot_1_1_chat.html#ae1761279511cdd5fdd1d75ca320f2299',1,'TgBot::Chat']]],
+  ['bigfileid_1',['bigFileId',['../class_tg_bot_1_1_chat_photo.html#a6939e40e825e12b9b5dd2002d6d4d178',1,'TgBot::ChatPhoto']]],
+  ['bigfileuniqueid_2',['bigFileUniqueId',['../class_tg_bot_1_1_chat_photo.html#a621197488a00336f06526b93be188c28',1,'TgBot::ChatPhoto']]],
+  ['bio_3',['bio',['../class_tg_bot_1_1_chat.html#a22780fc23fb3e04fd7aeee1d56dd0aa7',1,'TgBot::Chat::bio'],['../class_tg_bot_1_1_chat_join_request.html#a1744d387c4182f19e81a55163095edfb',1,'TgBot::ChatJoinRequest::bio']]],
+  ['birthdate_4',['birthdate',['../class_tg_bot_1_1_chat.html#aff148e52dff516b80109a30cdef0a251',1,'TgBot::Chat']]],
+  ['boost_5',['boost',['../class_tg_bot_1_1_chat_boost_updated.html#acc45da507e3b65e6840bf8fd8b8a47ba',1,'TgBot::ChatBoostUpdated']]],
+  ['boostadded_6',['boostAdded',['../class_tg_bot_1_1_message.html#aacff83a393cdde1c8bf686b447af8272',1,'TgBot::Message']]],
+  ['boostcount_7',['boostCount',['../class_tg_bot_1_1_chat_boost_added.html#a459cddd7c650e2181efccf83ae666cd5',1,'TgBot::ChatBoostAdded']]],
+  ['boostid_8',['boostId',['../class_tg_bot_1_1_chat_boost.html#a6a7cea300ed0b11e49ab253cbe587d60',1,'TgBot::ChatBoost::boostId'],['../class_tg_bot_1_1_chat_boost_removed.html#a8cb5455fff91992616c828c8923f2c65',1,'TgBot::ChatBoostRemoved::boostId']]],
+  ['boosts_9',['boosts',['../class_tg_bot_1_1_user_chat_boosts.html#a573180bad0bf71a67792377f7a87bf94',1,'TgBot::UserChatBoosts']]],
+  ['botadministratorrights_10',['botAdministratorRights',['../class_tg_bot_1_1_keyboard_button_request_chat.html#a001ed0ecab6816f743756e04b253a2ea',1,'TgBot::KeyboardButtonRequestChat']]],
+  ['botismember_11',['botIsMember',['../class_tg_bot_1_1_keyboard_button_request_chat.html#a54f711bd1c97d9dc500e3ec57d76e585',1,'TgBot::KeyboardButtonRequestChat']]],
+  ['botusername_12',['botUsername',['../class_tg_bot_1_1_login_url.html#aa25bdf1ca9fa3bd6954b13f8415e104c',1,'TgBot::LoginUrl']]],
+  ['businessconnection_13',['businessConnection',['../class_tg_bot_1_1_update.html#a6aa5fece26676b3ce85e6bc0e9c50290',1,'TgBot::Update']]],
+  ['businessconnectionid_14',['businessConnectionId',['../class_tg_bot_1_1_business_messages_deleted.html#a256a4ae65bda11209979ae80dc687050',1,'TgBot::BusinessMessagesDeleted::businessConnectionId'],['../class_tg_bot_1_1_message.html#ad332abe0439c958fb9b2bdb4e333abb5',1,'TgBot::Message::businessConnectionId']]],
+  ['businessintro_15',['businessIntro',['../class_tg_bot_1_1_chat.html#ad7d842e014db2eea35bc675b51fc7c7f',1,'TgBot::Chat']]],
+  ['businesslocation_16',['businessLocation',['../class_tg_bot_1_1_chat.html#af6388c7391107c60f2a79851412edf72',1,'TgBot::Chat']]],
+  ['businessmessage_17',['businessMessage',['../class_tg_bot_1_1_update.html#a52ea48fc42be7b134c32dda55932709f',1,'TgBot::Update']]],
+  ['businessopeninghours_18',['businessOpeningHours',['../class_tg_bot_1_1_chat.html#a6a9232e9ebe53c2e8d8de26b45a8fd00',1,'TgBot::Chat']]],
+  ['buttontext_19',['buttonText',['../class_tg_bot_1_1_web_app_data.html#a6777fb1032d56fc4886a32bb59969b41',1,'TgBot::WebAppData']]]
 ];

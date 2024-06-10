@@ -8,6 +8,6 @@ var class_tg_bot_1_1_animation =
     [ "fileUniqueId", "class_tg_bot_1_1_animation.html#a28d07e89fdd8ad22f39bfd326e89a2d6", null ],
     [ "height", "class_tg_bot_1_1_animation.html#a9a256b9f48d0b1c4f60f7b6d0d06a25c", null ],
     [ "mimeType", "class_tg_bot_1_1_animation.html#a112e29bf5a35ef1fc78f093cf7ecc48d", null ],
-    [ "thumb", "class_tg_bot_1_1_animation.html#ac8e9bb631206971b80674a71002ed8a5", null ],
+    [ "thumbnail", "class_tg_bot_1_1_animation.html#a3317077b9d70106c1efeaf480a0062f7", null ],
     [ "width", "class_tg_bot_1_1_animation.html#aa77b1558a9065bffa0b0f218499a3a8e", null ]
 ];

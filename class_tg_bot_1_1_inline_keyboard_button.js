@@ -6,6 +6,7 @@ var class_tg_bot_1_1_inline_keyboard_button =
     [ "loginUrl", "class_tg_bot_1_1_inline_keyboard_button.html#a2c44c6c9696c69c3b0e6acc5b33eedef", null ],
     [ "pay", "class_tg_bot_1_1_inline_keyboard_button.html#a4b25902fc2688c3d93d189cdee0434d2", null ],
     [ "switchInlineQuery", "class_tg_bot_1_1_inline_keyboard_button.html#ac04cb38b85aa31568e0acbb54202c274", null ],
+    [ "switchInlineQueryChosenChat", "class_tg_bot_1_1_inline_keyboard_button.html#a6687952871edfb9c1d167ef5ae0d256e", null ],
     [ "switchInlineQueryCurrentChat", "class_tg_bot_1_1_inline_keyboard_button.html#a12c3bfab730b6ec9f0d8ef39957bf406", null ],
     [ "text", "class_tg_bot_1_1_inline_keyboard_button.html#aa96c745e6d2c531bc50bf344ff0fee6f", null ],
     [ "url", "class_tg_bot_1_1_inline_keyboard_button.html#ab9b5e02f10e2cd937a3d3794d26e6bf3", null ],

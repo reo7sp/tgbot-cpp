@@ -112,10 +112,10 @@ var menudata={children:[
 {text:"y",url:"functions_vars_y.html#index_y"}]},
 {text:"Typedefs",url:"functions_type.html",children:[
 {text:"c",url:"functions_type.html#index_c"},
-{text:"i",url:"functions_type.html#index_i"},
-{text:"m",url:"functions_type.html#index_m"},
-{text:"p",url:"functions_type.html#index_p"},
-{text:"s",url:"functions_type.html#index_s"}]},
+{text:"i",url:"functions_type_i.html#index_i"},
+{text:"m",url:"functions_type_m.html#index_m"},
+{text:"p",url:"functions_type_p.html#index_p"},
+{text:"s",url:"functions_type_s.html#index_s"}]},
 {text:"Enumerations",url:"functions_enum.html"},
 {text:"Related Symbols",url:"functions_rela.html"}]}]},
 {text:"Files",url:"files.html",children:[

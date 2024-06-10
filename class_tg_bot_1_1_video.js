@@ -8,6 +8,6 @@ var class_tg_bot_1_1_video =
     [ "fileUniqueId", "class_tg_bot_1_1_video.html#a9a62bbc7789e62d61ce9f769ffdc022a", null ],
     [ "height", "class_tg_bot_1_1_video.html#aaac001ebb35b733cc21e4a24cb3667ba", null ],
     [ "mimeType", "class_tg_bot_1_1_video.html#a4162b4cc66825ce32fea222399ef3356", null ],
-    [ "thumb", "class_tg_bot_1_1_video.html#ab71e1325c685af9e67ddf0af418a77a7", null ],
+    [ "thumbnail", "class_tg_bot_1_1_video.html#a9b7a6d26dae485c45cf88eb964e240b2", null ],
     [ "width", "class_tg_bot_1_1_video.html#a758db27186352b4f8dd471455937e624", null ]
 ];

@@ -7,6 +7,7 @@ var searchData=
   ['keyboardbuttonpolltype_2eh_4',['KeyboardButtonPollType.h',['../_keyboard_button_poll_type_8h.html',1,'']]],
   ['keyboardbuttonrequestchat_5',['KeyboardButtonRequestChat',['../class_tg_bot_1_1_keyboard_button_request_chat.html',1,'TgBot']]],
   ['keyboardbuttonrequestchat_2eh_6',['KeyboardButtonRequestChat.h',['../_keyboard_button_request_chat_8h.html',1,'']]],
-  ['keyboardbuttonrequestuser_7',['KeyboardButtonRequestUser',['../class_tg_bot_1_1_keyboard_button_request_user.html',1,'TgBot']]],
-  ['keyboardbuttonrequestuser_2eh_8',['KeyboardButtonRequestUser.h',['../_keyboard_button_request_user_8h.html',1,'']]]
+  ['keyboardbuttonrequestusers_7',['KeyboardButtonRequestUsers',['../class_tg_bot_1_1_keyboard_button_request_users.html',1,'TgBot']]],
+  ['keyboardbuttonrequestusers_2eh_8',['KeyboardButtonRequestUsers.h',['../_keyboard_button_request_users_8h.html',1,'']]],
+  ['keywords_9',['keywords',['../class_tg_bot_1_1_input_sticker.html#a270b3394169778932c24ebc9fed1d33b',1,'TgBot::InputSticker']]]
 ];
