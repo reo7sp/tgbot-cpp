@@ -2,19 +2,20 @@ name: Docker Image CI
 
 on:
   push:
-    branches: [ master ]
+    branches:
+      - master
   pull_request:
-    branches: [ master ]
+    branches:
+      - master
 
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v2
-    - name: Build docker image
-      run: docker build -t reo7sp/tgbot-cpp -f Dockerfile .
-    - name: Build docker image with examples and unit tests
-      run: docker build -t reo7sp/tgbot-cpp-test -f Dockerfile_test .
-    - name: Run unit tests
-      run: docker run --rm reo7sp/tgbot-cpp-test
+      - uses: actions/checkout@v2
+      - name: Build docker image
+        run: docker build -t reo7sp/tgbot-cpp -f Dockerfile .
+      - name: Build docker image with examples and unit tests
+        run: docker build -t reo7sp/tgbot-cpp-test -f Dockerfile_test .
+      - name: Run unit tests
+        run: docker run --rm reo7sp/tgbot-cpp-test
