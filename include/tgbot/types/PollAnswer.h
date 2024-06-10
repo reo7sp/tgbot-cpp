@@ -1,8 +1,10 @@
-#ifndef TGBOT_CPP_POLLANSWER_H
-#define TGBOT_CPP_POLLANSWER_H
+#ifndef TGBOT_POLLANSWER_H
+#define TGBOT_POLLANSWER_H
 
+#include "tgbot/types/Chat.h"
 #include "tgbot/types/User.h"
 
+#include <cstdint>
 #include <string>
 #include <memory>
 #include <vector>
@@ -25,16 +27,22 @@ public:
     std::string pollId;
 
     /**
-     * @brief The user, who changed the answer to the poll
+     * @brief Optional. The chat that changed the answer to the poll, if the voter is anonymous
+     */
+    Chat::Ptr voterChat;
+
+    /**
+     * @brief Optional. The user that changed the answer to the poll, if the voter isn't anonymous
      */
     User::Ptr user;
 
     /**
-     * @brief 0-based identifiers of answer options, chosen by the user.
-     * May be empty if the user retracted their vote.
+     * @brief 0-based identifiers of chosen answer options.
+     * 
+     * May be empty if the vote was retracted.
      */
     std::vector<std::int32_t> optionIds;
 };
 }
 
-#endif //TGBOT_CPP_POLLANSWER_H
+#endif //TGBOT_POLLANSWER_H

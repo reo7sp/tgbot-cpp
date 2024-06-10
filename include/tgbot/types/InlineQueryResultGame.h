@@ -3,8 +3,8 @@
 
 #include "tgbot/types/InlineQueryResult.h"
 
-#include <string>
 #include <memory>
+#include <string>
 
 namespace TgBot {
 
@@ -14,6 +14,7 @@ namespace TgBot {
  * @ingroup types
  */
 class InlineQueryResultGame : public InlineQueryResult {
+
 public:
     static const std::string TYPE;
 

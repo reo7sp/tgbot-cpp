@@ -9,13 +9,14 @@
 namespace TgBot {
 
 /**
- * @brief Represents a chat member that is under certain restrictions in the chat.
- * 
+ * @brief Represents a [chat member](https://core.telegram.org/bots/api#chatmember) that is under certain restrictions in the chat.
+ *
  * Supergroups only.
  *
  * @ingroup types
  */
 class ChatMemberRestricted : public ChatMember {
+
 public:
     static const std::string STATUS;
 
@@ -31,7 +32,7 @@ public:
     bool isMember;
 
     /**
-     * @brief True, if the user is allowed to send text messages, contacts, invoices, locations and venues
+     * @brief True, if the user is allowed to send text messages, contacts, giveaways, giveaway winners, invoices, locations and venues
      */
     bool canSendMessages;
 
@@ -101,8 +102,8 @@ public:
     bool canManageTopics;
 
     /**
-     * @brief Date when restrictions will be lifted for this user; unix time.
-     * 
+     * @brief Date when restrictions will be lifted for this user; Unix time.
+     *
      * If 0, then the user is restricted forever
      */
     std::uint32_t untilDate;

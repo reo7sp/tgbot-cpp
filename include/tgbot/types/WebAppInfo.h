@@ -7,7 +7,9 @@
 namespace TgBot {
 
 /**
- * @brief Contains information about a Web App.
+ * @brief Describes a Web App.
+ * 
+ * https://core.telegram.org/bots/webapps
  *
  * @ingroup types
  */
@@ -17,7 +19,7 @@ public:
     typedef std::shared_ptr<WebAppInfo> Ptr;
 
     /**
-     * @brief An HTTPS URL of a Web App to be opened with additional data as specified in https://core.telegram.org/bots/webapps#initializing-web-apps
+     * @brief An HTTPS URL of a Web App to be opened with additional data as specified in Initializing Web Apps (https://core.telegram.org/bots/webapps#initializing-mini-apps)
      */
     std::string url;
 };

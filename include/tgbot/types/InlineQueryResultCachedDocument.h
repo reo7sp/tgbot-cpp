@@ -5,20 +5,22 @@
 #include "tgbot/types/MessageEntity.h"
 #include "tgbot/types/InputMessageContent.h"
 
-#include <string>
 #include <memory>
+#include <string>
 #include <vector>
 
 namespace TgBot {
 
 /**
  * @brief Represents a link to a file stored on the Telegram servers.
+ *
  * By default, this file will be sent by the user with an optional caption.
  * Alternatively, you can use inputMessageContent to send a message with the specified content instead of the file.
  *
  * @ingroup types
  */
 class InlineQueryResultCachedDocument : public InlineQueryResult {
+
 public:
     static const std::string TYPE;
 
@@ -50,7 +52,8 @@ public:
 
     /**
      * @brief Optional. Mode for parsing entities in the document caption.
-     * See https://core.telegram.org/bots/api#formatting-options for more details.
+     *
+     * See [formatting options](https://core.telegram.org/bots/api#formatting-options) for more details.
      */
     std::string parseMode;
 

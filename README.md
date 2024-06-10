@@ -9,7 +9,11 @@ Documentation is located [here](http://reo7sp.github.io/tgbot-cpp).
 
 ## State
 
-- [x] Telegram Bot API 6.5
+- [x] Telegram Bot API 7.2
+- [ ] [MaybeInaccessibleMessage](https://core.telegram.org/bots/api#maybeinaccessiblemessage)
+- [ ] [Message->pinnedMessage](https://core.telegram.org/bots/api#message)
+- [ ] [CallbackQuery->message](https://core.telegram.org/bots/api#callbackquery)
+- [ ] [Deep Linking](https://core.telegram.org/bots/features#deep-linking)
 
 
 ## Sample
@@ -64,7 +68,12 @@ Dependencies:
 You can install dependencies on Debian-based distibutives with these commands:
 
 ```sh
-sudo apt-get install g++ make binutils cmake libboost-system-dev libssl-dev zlib1g-dev libcurl4-openssl-dev
+sudo apt install g++ make binutils cmake libboost-system-dev libssl-dev zlib1g-dev libcurl4-openssl-dev
+```
+
+Optionally, install the dependencies for testing and documenting
+```sh
+sudo apt install libboost-test-dev doxygen
 ```
 
 You can compile and install the library with these commands:
@@ -99,8 +108,8 @@ Taken from [Vcpkg - Quick Start: Windows](https://github.com/Microsoft/vcpkg/#qu
 
 Prerequisites:
 - Windows 7 or newer
-- Git
-- Visual Studio 2015 Update 3 or greater with the English language pack
+- [Git][https://git-scm.com/downloads]
+- [Visual Studio][https://visualstudio.microsoft.com] 2015 Update 3 or greater with the English language pack
 
 First, download and bootstrap vcpkg itself; it can be installed anywhere, but generally we recommend using vcpkg as a submodule for CMake projects, and installing it globally for Visual Studio projects. We recommend somewhere like `C:\src\vcpkg` or `C:\dev\vcpkg`, since otherwise you may run into path issues for some port build systems.
 

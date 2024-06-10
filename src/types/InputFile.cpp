@@ -5,12 +5,10 @@
 #include <memory>
 #include <string>
 
-using namespace std;
-
 namespace TgBot {
 
-InputFile::Ptr InputFile::fromFile(const string& filePath, const string& mimeType) {
-    auto result(make_shared<InputFile>());
+InputFile::Ptr InputFile::fromFile(const std::string& filePath, const std::string& mimeType) {
+    auto result(std::make_shared<InputFile>());
     result->data = FileTools::read(filePath);
     result->mimeType = mimeType;
     result->fileName = std::filesystem::path(filePath).filename().string();

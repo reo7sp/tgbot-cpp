@@ -20,12 +20,13 @@ int main() {
     bot.getEvents().onAnyMessage([&bot](Message::Ptr message) {
         printf("User wrote %s\n", message->text.c_str());
 
-        File::Ptr file = bot.getApi().getFile(message->document->fileId);
-        string fileContent = bot.getApi().downloadFile(file->filePath);
-
         if (StringTools::startsWith(message->text, "/start")) {
             return;
         }
+
+        File::Ptr file = bot.getApi().getFile(message->document->fileId);
+        string fileContent = bot.getApi().downloadFile(file->filePath);
+
         bot.getApi().sendMessage(message->chat->id, "Your file content: " + fileContent);
     });
 

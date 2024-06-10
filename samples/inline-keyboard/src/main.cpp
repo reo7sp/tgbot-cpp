@@ -25,16 +25,16 @@ int main() {
     keyboard->inlineKeyboard.push_back(row0);
 
     bot.getEvents().onCommand("start", [&bot, &keyboard](Message::Ptr message) {
-        bot.getApi().sendMessage(message->chat->id, "Hi!", false, 0, keyboard);
+        bot.getApi().sendMessage(message->chat->id, "Hi!", nullptr, nullptr, keyboard);
     });
     bot.getEvents().onCommand("check", [&bot, &keyboard](Message::Ptr message) {
         string response = "ok";
-        bot.getApi().sendMessage(message->chat->id, response, false, 0, keyboard, "Markdown");
+        bot.getApi().sendMessage(message->chat->id, response, nullptr, nullptr, keyboard, "Markdown");
     });
     bot.getEvents().onCallbackQuery([&bot, &keyboard](CallbackQuery::Ptr query) {
         if (StringTools::startsWith(query->data, "check")) {
             string response = "ok";
-            bot.getApi().sendMessage(query->message->chat->id, response, false, 0, keyboard, "Markdown");
+            bot.getApi().sendMessage(query->message->chat->id, response, nullptr, nullptr, keyboard, "Markdown");
         }
     });
 

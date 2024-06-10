@@ -54,10 +54,10 @@ int main() {
     }, keyboardWithLayout);
 
     bot.getEvents().onCommand("start", [&bot, &keyboardOneCol](Message::Ptr message) {
-        bot.getApi().sendMessage(message->chat->id, "/start for one column keyboard\n/layout for a more complex keyboard", false, 0, keyboardOneCol);
+        bot.getApi().sendMessage(message->chat->id, "/start for one column keyboard\n/layout for a more complex keyboard", nullptr, nullptr, keyboardOneCol);
     });
     bot.getEvents().onCommand("layout", [&bot, &keyboardWithLayout](Message::Ptr message) {
-        bot.getApi().sendMessage(message->chat->id, "/start for one column keyboard\n/layout for a more complex keyboard", false, 0, keyboardWithLayout);
+        bot.getApi().sendMessage(message->chat->id, "/start for one column keyboard\n/layout for a more complex keyboard", nullptr, nullptr, keyboardWithLayout);
     });
     bot.getEvents().onAnyMessage([&bot](Message::Ptr message) {
         printf("User wrote %s\n", message->text.c_str());

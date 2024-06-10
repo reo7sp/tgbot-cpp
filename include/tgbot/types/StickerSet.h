@@ -16,6 +16,7 @@ namespace TgBot {
  * @ingroup types
  */
 class StickerSet {
+
 public:
     typedef std::shared_ptr<StickerSet> Ptr;
 
@@ -37,19 +38,9 @@ public:
     std::string title;
 
     /**
-     * @brief Type of stickers in the set, currently one of “regular”, “mask”, “custom_emoji”
+     * @brief Type of stickers in the set, currently one of Type::Regular, Type::Mask, Type::CustomEmoji”
      */
-    Type type;
-
-    /**
-     * @brief True, if the sticker set contains animated stickers
-     */
-    bool isAnimated;
-
-    /**
-     * @brief True, if the sticker set contains video stickers
-     */
-    bool isVideo;
+    Type stickerType;
 
     /**
      * @brief List of all set stickers
@@ -59,7 +50,7 @@ public:
     /**
      * @brief Optional. Sticker set thumbnail in the .WEBP, .TGS, or .WEBM format
      */
-    PhotoSize::Ptr thumb;
+    PhotoSize::Ptr thumbnail;
 };
 }
 

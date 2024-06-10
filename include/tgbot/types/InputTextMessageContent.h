@@ -3,6 +3,7 @@
 
 #include "tgbot/types/InputMessageContent.h"
 #include "tgbot/types/MessageEntity.h"
+#include "tgbot/types/LinkPreviewOptions.h"
 
 #include <memory>
 #include <string>
@@ -11,11 +12,12 @@
 namespace TgBot {
 
 /**
- * @brief Represents the content of a text message to be sent as the result of an inline query.
+ * @brief Represents the [content](https://core.telegram.org/bots/api#inputmessagecontent) of a text message to be sent as the result of an inline query.
  *
  * @ingroup types
  */
 class InputTextMessageContent : public InputMessageContent {
+
 public:
     static const std::string TYPE;
 
@@ -32,19 +34,20 @@ public:
 
     /**
      * @brief Optional. Mode for parsing entities in the message text.
-     * See https://core.telegram.org/bots/api#formatting-options for more details.
+     *
+     * See [formatting options](https://core.telegram.org/bots/api#formatting-options) for more details.
      */
     std::string parseMode;
 
     /**
-     * @brief Optional. List of special entities that appear in message text, which can be specified instead of InputTextMessageContent::parseMode
+     * @brief Optional. List of special entities that appear in message text, which can be specified instead of parseMode
      */
     std::vector<MessageEntity::Ptr> entities;
 
     /**
-     * @brief Optional. Disables link previews for links in the sent message
+     * @brief Optional. Link preview generation options for the message
      */
-    bool disableWebPagePreview;
+    LinkPreviewOptions::Ptr linkPreviewOptions;
 };
 }
 

@@ -68,7 +68,7 @@ public:
     /**
      * @brief Optional. Sticker thumbnail in the .WEBP or .JPG format
      */
-    PhotoSize::Ptr thumb;
+    PhotoSize::Ptr thumbnail;
 
     /**
      * @brief Optional. Emoji associated with the sticker
@@ -94,6 +94,11 @@ public:
      * @brief Optional. For custom emoji stickers, unique identifier of the custom emoji
      */
     std::string customEmojiId;
+
+    /**
+     * @brief Optional. True, if the sticker must be repainted to a text color in messages, the color of the Telegram Premium badge in emoji status, white color on chat photos, or another appropriate color in other places
+     */
+    bool needsRepainting = true;
 
     /**
      * @brief Optional. File size in bytes

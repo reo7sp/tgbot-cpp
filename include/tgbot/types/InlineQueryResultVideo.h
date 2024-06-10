@@ -44,7 +44,7 @@ public:
     /**
     * @brief URL of the thumbnail (jpeg only) for the video
     */
-    std::string thumbUrl;
+    std::string thumbnailUrl;
 
     /**
      * @brief Title for the result

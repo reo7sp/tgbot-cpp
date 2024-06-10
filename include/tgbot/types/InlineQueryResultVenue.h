@@ -5,19 +5,21 @@
 #include "tgbot/types/InputMessageContent.h"
 
 #include <cstdint>
-#include <string>
 #include <memory>
+#include <string>
 
 namespace TgBot {
 
 /**
  * @brief Represents a venue.
+ *
  * By default, the venue will be sent by the user.
  * Alternatively, you can use inputMessageContent to send a message with the specified content instead of the venue.
  *
  * @ingroup types
  */
 class InlineQueryResultVenue : public InlineQueryResult {
+
 public:
     static const std::string TYPE;
 
@@ -28,13 +30,13 @@ public:
     }
 
     /**
-    * @brief Latitude of the venue location in degrees
-    */
+     * @brief Latitude of the venue location in degrees
+     */
     float latitude;
 
     /**
-    * @brief Longitude of the venue location in degrees
-    */
+     * @brief Longitude of the venue location in degrees
+     */
     float longitude;
 
     /**
@@ -43,29 +45,31 @@ public:
     std::string title;
 
     /**
-    * @brief Address of the venue
-    */
+     * @brief Address of the venue
+     */
     std::string address;
 
     /**
-    * @brief Optional. Foursquare identifier of the venue if known
-    */
+     * @brief Optional. Foursquare identifier of the venue if known
+     */
     std::string foursquareId;
 
     /**
      * @brief Optional. Foursquare type of the venue, if known.
+     *
      * (For example, “arts_entertainment/default”, “arts_entertainment/aquarium” or “food/icecream”.)
      */
     std::string foursquareType;
 
     /**
-    * @brief Optional. Google Places identifier of the venue
-    */
+     * @brief Optional. Google Places identifier of the venue
+     */
     std::string googlePlaceId;
 
     /**
      * @brief Optional. Google Places type of the venue.
-     * (See https://developers.google.com/places/web-service/supported_types.)
+     *
+     * (See [supported types](https://developers.google.com/places/web-service/supported_types).)
      */
     std::string googlePlaceType;
 
@@ -77,17 +81,17 @@ public:
     /**
      * @brief Optional. Url of the thumbnail for the result
      */
-    std::string thumbUrl;
+    std::string thumbnailUrl;
 
     /**
      * @brief Optional. Thumbnail width
      */
-    std::int32_t thumbWidth;
+    std::int32_t thumbnailWidth;
 
     /**
-     * @brief Optinal. Thumbnail height
+     * @brief Optional. Thumbnail height
      */
-    std::int32_t thumbHeight;
+    std::int32_t thumbnailHeight;
 };
 }
 

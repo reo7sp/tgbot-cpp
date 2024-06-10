@@ -53,13 +53,13 @@ public:
     /**
      * @brief URL of the static (JPEG or GIF) or animated (MPEG4) thumbnail for the result
      */
-    std::string thumbUrl;
+    std::string thumbnailUrl;
 
     /**
      * @brief Optional. MIME type of the thumbnail, must be one of “image/jpeg”, “image/gif”, or “video/mp4”.
      * Defaults to “image/jpeg”
      */
-    std::string thumbMimeType;
+    std::string thumbnailMimeType;
 
     /**
      * @brief Optional. Title for the result

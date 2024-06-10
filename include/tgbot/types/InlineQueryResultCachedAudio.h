@@ -5,20 +5,22 @@
 #include "tgbot/types/MessageEntity.h"
 #include "tgbot/types/InputMessageContent.h"
 
-#include <string>
 #include <memory>
+#include <string>
 #include <vector>
 
 namespace TgBot {
 
 /**
  * @brief Represents a link to an MP3 audio file stored on the Telegram servers.
+ *
  * By default, this audio file will be sent by the user.
  * Alternatively, you can use inputMessageContent to send a message with the specified content instead of the audio.
  *
  * @ingroup types
  */
 class InlineQueryResultCachedAudio : public InlineQueryResult {
+
 public:
     static const std::string TYPE;
 
@@ -40,7 +42,8 @@ public:
 
     /**
      * @brief Optional. Mode for parsing entities in the audio caption.
-     * See https://core.telegram.org/bots/api#formatting-options for more details.
+     *
+     * See [formatting options](https://core.telegram.org/bots/api#formatting-options) for more details.
      */
     std::string parseMode;
 
