@@ -1,6 +1,7 @@
 #ifndef TGBOT_API_H
 #define TGBOT_API_H
 
+#include <json/json.h>
 #include "tgbot/TgException.h"
 #include "tgbot/TgTypeParser.h"
 #include "tgbot/net/HttpClient.h"
@@ -28,7 +29,6 @@
 #include "tgbot/types/BotCommand.h"
 #include "tgbot/types/ForumTopic.h"
 
-#include <boost/property_tree/ptree.hpp>
 #include <boost/variant.hpp>
 
 #include <cstdint>
@@ -2241,7 +2241,7 @@ public:
     const HttpClient& _httpClient;
     
 protected:
-    boost::property_tree::ptree sendRequest(const std::string& method, const std::vector<HttpReqArg>& args = std::vector<HttpReqArg>()) const;
+    Json::Value sendRequest(const std::string& method, const std::vector<HttpReqArg>& args = std::vector<HttpReqArg>()) const;
 
     const std::string _token;
     const std::string _url;

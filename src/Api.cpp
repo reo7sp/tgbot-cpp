@@ -1,9 +1,13 @@
 #include "tgbot/Api.h"
+#include <json/json.h>
+#include "tgbot/TgException.h"
 #include "tgbot/TgTypeParser.h"
 #include "tgbot/types/Message.h"
 #include "tgbot/types/MessageId.h"
 
 #include <chrono>
+#include <iomanip>
+#include <iostream>
 #include <thread>
 
 namespace {
@@ -78,7 +82,7 @@ bool Api::setWebhook(const std::string &url, InputFile::Ptr certificate,
     args.emplace_back("secret_token", secretToken);
   }
 
-  return sendRequest("setWebhook", args).get<bool>("", false);
+  return sendRequest("setWebhook", args).asBool();
 }
 
 bool Api::deleteWebhook(bool dropPendingUpdates) const {
@@ -89,18 +93,18 @@ bool Api::deleteWebhook(bool dropPendingUpdates) const {
     args.emplace_back("drop_pending_updates", dropPendingUpdates);
   }
 
-  return sendRequest("deleteWebhook", args).get<bool>("", false);
+  return sendRequest("deleteWebhook", args).asBool();
 }
 
 WebhookInfo::Ptr Api::getWebhookInfo() const {
-  boost::property_tree::ptree p = sendRequest("getWebhookInfo");
+  const auto& p = sendRequest("getWebhookInfo");
 
-  if (!p.get_child_optional("url")) {
+  if (!p.isMember("url")) {
     return nullptr;
   }
 
-  if (p.get<std::string>("url", "") != std::string("")) {
-    return parse<WebhookInfo>(p);
+  if (!p["url"].asString().empty()) {
+    return parse<WebhookInfo>(p["url"]);
   } else {
     return nullptr;
   }
@@ -108,9 +112,9 @@ WebhookInfo::Ptr Api::getWebhookInfo() const {
 
 User::Ptr Api::getMe() const { return parse<User>(sendRequest("getMe")); }
 
-bool Api::logOut() const { return sendRequest("logOut").get<bool>("", false); }
+bool Api::logOut() const { return sendRequest("logOut").asBool(); }
 
-bool Api::close() const { return sendRequest("close").get<bool>("", false); }
+bool Api::close() const { return sendRequest("close").asBool(); }
 
 Message::Ptr Api::sendMessage(boost::variant<std::int64_t, std::string> chatId,
                               const std::string &text,
@@ -1104,7 +1108,7 @@ bool Api::setMessageReaction(boost::variant<std::int64_t, std::string> chatId,
     args.emplace_back("is_big", isBig);
   }
 
-  return sendRequest("setMessageReaction", args).get<bool>("", false);
+  return sendRequest("setMessageReaction", args).asBool();
 }
 
 bool Api::sendChatAction(std::int64_t chatId, const std::string &action,
@@ -1122,7 +1126,7 @@ bool Api::sendChatAction(std::int64_t chatId, const std::string &action,
     args.emplace_back("message_thread_id", messageThreadId);
   }
 
-  return sendRequest("sendChatAction", args).get<bool>("", false);
+  return sendRequest("sendChatAction", args).asBool();
 }
 
 UserProfilePhotos::Ptr Api::getUserProfilePhotos(std::int64_t userId,
@@ -1166,7 +1170,7 @@ bool Api::banChatMember(boost::variant<std::int64_t, std::string> chatId,
     args.emplace_back("revoke_messages", revokeMessages);
   }
 
-  return sendRequest("banChatMember", args).get<bool>("", false);
+  return sendRequest("banChatMember", args).asBool();
 }
 
 bool Api::unbanChatMember(boost::variant<std::int64_t, std::string> chatId,
@@ -1180,7 +1184,7 @@ bool Api::unbanChatMember(boost::variant<std::int64_t, std::string> chatId,
     args.emplace_back("only_if_banned", onlyIfBanned);
   }
 
-  return sendRequest("unbanChatMember", args).get<bool>("", false);
+  return sendRequest("unbanChatMember", args).asBool();
 }
 
 bool Api::restrictChatMember(boost::variant<std::int64_t, std::string> chatId,
@@ -1202,7 +1206,7 @@ bool Api::restrictChatMember(boost::variant<std::int64_t, std::string> chatId,
     args.emplace_back("until_date", untilDate);
   }
 
-  return sendRequest("restrictChatMember", args).get<bool>("", false);
+  return sendRequest("restrictChatMember", args).asBool();
 }
 
 bool Api::promoteChatMember(boost::variant<std::int64_t, std::string> chatId,
@@ -1265,7 +1269,7 @@ bool Api::promoteChatMember(boost::variant<std::int64_t, std::string> chatId,
     args.emplace_back("can_manage_topics", canManageTopics);
   }
 
-  return sendRequest("promoteChatMember", args).get<bool>("", false);
+  return sendRequest("promoteChatMember", args).asBool();
 }
 
 bool Api::setChatAdministratorCustomTitle(
@@ -1279,7 +1283,7 @@ bool Api::setChatAdministratorCustomTitle(
   args.emplace_back("custom_title", customTitle);
 
   return sendRequest("setChatAdministratorCustomTitle", args)
-      .get<bool>("", false);
+      .asBool();
 }
 
 bool Api::banChatSenderChat(boost::variant<std::int64_t, std::string> chatId,
@@ -1290,7 +1294,7 @@ bool Api::banChatSenderChat(boost::variant<std::int64_t, std::string> chatId,
   args.emplace_back("chat_id", chatId);
   args.emplace_back("sender_chat_id", senderChatId);
 
-  return sendRequest("banChatSenderChat", args).get<bool>("", false);
+  return sendRequest("banChatSenderChat", args).asBool();
 }
 
 bool Api::unbanChatSenderChat(boost::variant<std::int64_t, std::string> chatId,
@@ -1301,7 +1305,7 @@ bool Api::unbanChatSenderChat(boost::variant<std::int64_t, std::string> chatId,
   args.emplace_back("chat_id", chatId);
   args.emplace_back("sender_chat_id", senderChatId);
 
-  return sendRequest("unbanChatSenderChat", args).get<bool>("", false);
+  return sendRequest("unbanChatSenderChat", args).asBool();
 }
 
 bool Api::setChatPermissions(boost::variant<std::int64_t, std::string> chatId,
@@ -1317,7 +1321,7 @@ bool Api::setChatPermissions(boost::variant<std::int64_t, std::string> chatId,
                       useIndependentChatPermissions);
   }
 
-  return sendRequest("setChatPermissions", args).get<bool>("", false);
+  return sendRequest("setChatPermissions", args).asBool();
 }
 
 std::string Api::exportChatInviteLink(
@@ -1327,7 +1331,7 @@ std::string Api::exportChatInviteLink(
 
   args.emplace_back("chat_id", chatId);
 
-  return sendRequest("exportChatInviteLink", args).get("", "");
+  return sendRequest("exportChatInviteLink", args).asString();
 }
 
 ChatInviteLink::Ptr
@@ -1402,7 +1406,7 @@ bool Api::approveChatJoinRequest(
   args.emplace_back("chat_id", chatId);
   args.emplace_back("user_id", userId);
 
-  return sendRequest("approveChatJoinRequest", args).get<bool>("", false);
+  return sendRequest("approveChatJoinRequest", args).asBool();
 }
 
 bool Api::declineChatJoinRequest(
@@ -1414,7 +1418,7 @@ bool Api::declineChatJoinRequest(
   args.emplace_back("chat_id", chatId);
   args.emplace_back("user_id", userId);
 
-  return sendRequest("declineChatJoinRequest", args).get<bool>("", false);
+  return sendRequest("declineChatJoinRequest", args).asBool();
 }
 
 bool Api::setChatPhoto(boost::variant<std::int64_t, std::string> chatId,
@@ -1426,7 +1430,7 @@ bool Api::setChatPhoto(boost::variant<std::int64_t, std::string> chatId,
   args.emplace_back("photo", photo->data, true, photo->mimeType,
                     photo->fileName);
 
-  return sendRequest("setChatPhoto", args).get<bool>("", false);
+  return sendRequest("setChatPhoto", args).asBool();
 }
 
 bool Api::deleteChatPhoto(
@@ -1436,7 +1440,7 @@ bool Api::deleteChatPhoto(
 
   args.emplace_back("chat_id", chatId);
 
-  return sendRequest("deleteChatPhoto", args).get<bool>("", false);
+  return sendRequest("deleteChatPhoto", args).asBool();
 }
 
 bool Api::setChatTitle(boost::variant<std::int64_t, std::string> chatId,
@@ -1447,7 +1451,7 @@ bool Api::setChatTitle(boost::variant<std::int64_t, std::string> chatId,
   args.emplace_back("chat_id", chatId);
   args.emplace_back("title", title);
 
-  return sendRequest("setChatTitle", args).get<bool>("", false);
+  return sendRequest("setChatTitle", args).asBool();
 }
 
 bool Api::setChatDescription(boost::variant<std::int64_t, std::string> chatId,
@@ -1460,7 +1464,7 @@ bool Api::setChatDescription(boost::variant<std::int64_t, std::string> chatId,
     args.emplace_back("description", description);
   }
 
-  return sendRequest("setChatDescription", args).get<bool>("", false);
+  return sendRequest("setChatDescription", args).asBool();
 }
 
 bool Api::pinChatMessage(boost::variant<std::int64_t, std::string> chatId,
@@ -1475,7 +1479,7 @@ bool Api::pinChatMessage(boost::variant<std::int64_t, std::string> chatId,
     args.emplace_back("disable_notification", disableNotification);
   }
 
-  return sendRequest("pinChatMessage", args).get<bool>("", false);
+  return sendRequest("pinChatMessage", args).asBool();
 }
 
 bool Api::unpinChatMessage(boost::variant<std::int64_t, std::string> chatId,
@@ -1488,7 +1492,7 @@ bool Api::unpinChatMessage(boost::variant<std::int64_t, std::string> chatId,
     args.emplace_back("message_id", messageId);
   }
 
-  return sendRequest("unpinChatMessage", args).get<bool>("", false);
+  return sendRequest("unpinChatMessage", args).asBool();
 }
 
 bool Api::unpinAllChatMessages(
@@ -1498,7 +1502,7 @@ bool Api::unpinAllChatMessages(
 
   args.emplace_back("chat_id", chatId);
 
-  return sendRequest("unpinAllChatMessages", args).get<bool>("", false);
+  return sendRequest("unpinAllChatMessages", args).asBool();
 }
 
 bool Api::leaveChat(boost::variant<std::int64_t, std::string> chatId) const {
@@ -1507,7 +1511,7 @@ bool Api::leaveChat(boost::variant<std::int64_t, std::string> chatId) const {
 
   args.emplace_back("chat_id", chatId);
 
-  return sendRequest("leaveChat", args).get<bool>("", false);
+  return sendRequest("leaveChat", args).asBool();
 }
 
 Chat::Ptr Api::getChat(boost::variant<std::int64_t, std::string> chatId) const {
@@ -1536,7 +1540,7 @@ int32_t Api::getChatMemberCount(
 
   args.emplace_back("chat_id", chatId);
 
-  return sendRequest("getChatMemberCount", args).get<int32_t>("", 0);
+  return sendRequest("getChatMemberCount", args).asInt();
 }
 
 ChatMember::Ptr
@@ -1559,7 +1563,7 @@ bool Api::setChatStickerSet(boost::variant<std::int64_t, std::string> chatId,
   args.emplace_back("chat_id", chatId);
   args.emplace_back("sticker_set_name	", stickerSetName);
 
-  return sendRequest("setChatStickerSet", args).get<bool>("", false);
+  return sendRequest("setChatStickerSet", args).asBool();
 }
 
 bool Api::deleteChatStickerSet(
@@ -1569,7 +1573,7 @@ bool Api::deleteChatStickerSet(
 
   args.emplace_back("chat_id", chatId);
 
-  return sendRequest("deleteChatStickerSet", args).get<bool>("", false);
+  return sendRequest("deleteChatStickerSet", args).asBool();
 }
 
 std::vector<Sticker::Ptr> Api::getForumTopicIconStickers() const {
@@ -1617,7 +1621,7 @@ bool Api::editForumTopic(
     }
   }
 
-  return sendRequest("editForumTopic", args).get<bool>("", false);
+  return sendRequest("editForumTopic", args).asBool();
 }
 
 bool Api::closeForumTopic(boost::variant<std::int64_t, std::string> chatId,
@@ -1628,7 +1632,7 @@ bool Api::closeForumTopic(boost::variant<std::int64_t, std::string> chatId,
   args.emplace_back("chat_id", chatId);
   args.emplace_back("message_thread_id", messageThreadId);
 
-  return sendRequest("closeForumTopic", args).get<bool>("", false);
+  return sendRequest("closeForumTopic", args).asBool();
 }
 
 bool Api::reopenForumTopic(boost::variant<std::int64_t, std::string> chatId,
@@ -1639,7 +1643,7 @@ bool Api::reopenForumTopic(boost::variant<std::int64_t, std::string> chatId,
   args.emplace_back("chat_id", chatId);
   args.emplace_back("message_thread_id", messageThreadId);
 
-  return sendRequest("reopenForumTopic", args).get<bool>("", false);
+  return sendRequest("reopenForumTopic", args).asBool();
 }
 
 bool Api::deleteForumTopic(boost::variant<std::int64_t, std::string> chatId,
@@ -1650,7 +1654,7 @@ bool Api::deleteForumTopic(boost::variant<std::int64_t, std::string> chatId,
   args.emplace_back("chat_id", chatId);
   args.emplace_back("message_thread_id", messageThreadId);
 
-  return sendRequest("deleteForumTopic", args).get<bool>("", false);
+  return sendRequest("deleteForumTopic", args).asBool();
 }
 
 bool Api::unpinAllForumTopicMessages(
@@ -1662,7 +1666,7 @@ bool Api::unpinAllForumTopicMessages(
   args.emplace_back("chat_id", chatId);
   args.emplace_back("message_thread_id", messageThreadId);
 
-  return sendRequest("unpinAllForumTopicMessages", args).get<bool>("", false);
+  return sendRequest("unpinAllForumTopicMessages", args).asBool();
 }
 
 bool Api::editGeneralForumTopic(
@@ -1673,7 +1677,7 @@ bool Api::editGeneralForumTopic(
   args.emplace_back("chat_id", chatId);
   args.emplace_back("name", name);
 
-  return sendRequest("editGeneralForumTopic", args).get<bool>("", false);
+  return sendRequest("editGeneralForumTopic", args).asBool();
 }
 
 bool Api::closeGeneralForumTopic(
@@ -1683,7 +1687,7 @@ bool Api::closeGeneralForumTopic(
 
   args.emplace_back("chat_id", chatId);
 
-  return sendRequest("closeGeneralForumTopic", args).get<bool>("", false);
+  return sendRequest("closeGeneralForumTopic", args).asBool();
 }
 
 bool Api::reopenGeneralForumTopic(
@@ -1693,7 +1697,7 @@ bool Api::reopenGeneralForumTopic(
 
   args.emplace_back("chat_id", chatId);
 
-  return sendRequest("reopenGeneralForumTopic", args).get<bool>("", false);
+  return sendRequest("reopenGeneralForumTopic", args).asBool();
 }
 
 bool Api::hideGeneralForumTopic(
@@ -1703,7 +1707,7 @@ bool Api::hideGeneralForumTopic(
 
   args.emplace_back("chat_id", chatId);
 
-  return sendRequest("hideGeneralForumTopic", args).get<bool>("", false);
+  return sendRequest("hideGeneralForumTopic", args).asBool();
 }
 
 bool Api::unhideGeneralForumTopic(
@@ -1713,7 +1717,7 @@ bool Api::unhideGeneralForumTopic(
 
   args.emplace_back("chat_id", chatId);
 
-  return sendRequest("unhideGeneralForumTopic", args).get<bool>("", false);
+  return sendRequest("unhideGeneralForumTopic", args).asBool();
 }
 
 bool Api::unpinAllGeneralForumTopicMessages(
@@ -1724,7 +1728,7 @@ bool Api::unpinAllGeneralForumTopicMessages(
   args.emplace_back("chat_id", chatId);
 
   return sendRequest("unpinAllGeneralForumTopicMessages", args)
-      .get<bool>("", false);
+      .asBool();
 }
 
 bool Api::answerCallbackQuery(const std::string &callbackQueryId,
@@ -1748,7 +1752,7 @@ bool Api::answerCallbackQuery(const std::string &callbackQueryId,
     args.emplace_back("cache_time", cacheTime);
   }
 
-  return sendRequest("answerCallbackQuery", args).get<bool>("", false);
+  return sendRequest("answerCallbackQuery", args).asBool();
 }
 
 UserChatBoosts::Ptr
@@ -1787,7 +1791,7 @@ bool Api::setMyCommands(const std::vector<BotCommand::Ptr> &commands,
     args.emplace_back("language_code", languageCode);
   }
 
-  return sendRequest("setMyCommands", args).get<bool>("", false);
+  return sendRequest("setMyCommands", args).asBool();
 }
 
 bool Api::deleteMyCommands(BotCommandScope::Ptr scope,
@@ -1802,7 +1806,7 @@ bool Api::deleteMyCommands(BotCommandScope::Ptr scope,
     args.emplace_back("language_code", languageCode);
   }
 
-  return sendRequest("deleteMyCommands", args).get<bool>("", false);
+  return sendRequest("deleteMyCommands", args).asBool();
 }
 
 std::vector<BotCommand::Ptr>
@@ -1833,7 +1837,7 @@ bool Api::setMyName(const std::string &name,
     args.emplace_back("language_code", languageCode);
   }
 
-  return sendRequest("setMyName", args).get<bool>("", false);
+  return sendRequest("setMyName", args).asBool();
 }
 
 BotName::Ptr Api::getMyName(const std::string &languageCode) const {
@@ -1859,7 +1863,7 @@ bool Api::setMyDescription(const std::string &description,
     args.emplace_back("language_code", languageCode);
   }
 
-  return sendRequest("setMyDescription", args).get<bool>("", false);
+  return sendRequest("setMyDescription", args).asBool();
 }
 
 BotDescription::Ptr
@@ -1886,7 +1890,7 @@ bool Api::setMyShortDescription(const std::string &shortDescription,
     args.emplace_back("language_code", languageCode);
   }
 
-  return sendRequest("setMyShortDescription", args).get<bool>("", false);
+  return sendRequest("setMyShortDescription", args).asBool();
 }
 
 BotShortDescription::Ptr
@@ -1913,7 +1917,7 @@ bool Api::setChatMenuButton(std::int64_t chatId,
     args.emplace_back("menu_button", putJSON(menuButton));
   }
 
-  return sendRequest("setChatMenuButton", args).get<bool>("", false);
+  return sendRequest("setChatMenuButton", args).asBool();
 }
 
 MenuButton::Ptr Api::getChatMenuButton(std::int64_t chatId) const {
@@ -1940,7 +1944,7 @@ bool Api::setMyDefaultAdministratorRights(ChatAdministratorRights::Ptr rights,
   }
 
   return sendRequest("setMyDefaultAdministratorRights", args)
-      .get<bool>("", false);
+      .asBool();
 }
 
 ChatAdministratorRights::Ptr
@@ -1994,8 +1998,8 @@ Message::Ptr Api::editMessageText(
     args.emplace_back("reply_markup", putJSON(replyMarkup));
   }
 
-  boost::property_tree::ptree p = sendRequest("editMessageText", args);
-  if (p.get_child_optional("message_id")) {
+  const auto p = sendRequest("editMessageText", args);
+  if (p.isMember("message_id")) {
     return parse<Message>(p);
   } else {
     return nullptr;
@@ -2038,8 +2042,8 @@ Message::Ptr Api::editMessageCaption(
     args.emplace_back("reply_markup", putJSON(replyMarkup));
   }
 
-  boost::property_tree::ptree p = sendRequest("editMessageCaption", args);
-  if (p.get_child_optional("message_id")) {
+  const auto p = sendRequest("editMessageCaption", args);
+  if (p.isMember("message_id")) {
     return parse<Message>(p);
   } else {
     return nullptr;
@@ -2074,8 +2078,8 @@ Message::Ptr Api::editMessageMedia(
     args.emplace_back("reply_markup", putJSON(replyMarkup));
   }
 
-  boost::property_tree::ptree p = sendRequest("editMessageMedia", args);
-  if (p.get_child_optional("message_id")) {
+  const auto& p = sendRequest("editMessageMedia", args);
+  if (p.isMember("message_id")) {
     return parse<Message>(p);
   } else {
     return nullptr;
@@ -2110,8 +2114,8 @@ Api::editMessageReplyMarkup(boost::variant<std::int64_t, std::string> chatId,
     args.emplace_back("reply_markup", putJSON(replyMarkup));
   }
 
-  boost::property_tree::ptree p = sendRequest("editMessageReplyMarkup", args);
-  if (p.get_child_optional("message_id")) {
+  const auto& p = sendRequest("editMessageReplyMarkup", args);
+  if (p.isMember("message_id")) {
     return parse<Message>(p);
   } else {
     return nullptr;
@@ -2141,7 +2145,7 @@ bool Api::deleteMessage(boost::variant<std::int64_t, std::string> chatId,
   args.emplace_back("chat_id", chatId);
   args.emplace_back("message_id", messageId);
 
-  return sendRequest("deleteMessage", args).get<bool>("", false);
+  return sendRequest("deleteMessage", args).asBool();
 }
 
 bool Api::deleteMessages(boost::variant<std::int64_t, std::string> chatId,
@@ -2154,7 +2158,7 @@ bool Api::deleteMessages(boost::variant<std::int64_t, std::string> chatId,
     args.emplace_back("message_ids", putJSON(messageIds));
   }
 
-  return sendRequest("deleteMessages", args).get<bool>("", false);
+  return sendRequest("deleteMessages", args).asBool();
 }
 
 Message::Ptr Api::sendSticker(
@@ -2255,7 +2259,7 @@ bool Api::createNewStickerSet(std::int64_t userId, const std::string &name,
     args.emplace_back("needs_repainting", needsRepainting);
   }
 
-  return sendRequest("createNewStickerSet", args).get<bool>("", false);
+  return sendRequest("createNewStickerSet", args).asBool();
 }
 
 bool Api::addStickerToSet(std::int64_t userId, const std::string &name,
@@ -2267,7 +2271,7 @@ bool Api::addStickerToSet(std::int64_t userId, const std::string &name,
   args.emplace_back("name", name);
   args.emplace_back("sticker", putJSON(sticker));
 
-  return sendRequest("addStickerToSet", args).get<bool>("", false);
+  return sendRequest("addStickerToSet", args).asBool();
 }
 
 bool Api::setStickerPositionInSet(const std::string &sticker,
@@ -2278,7 +2282,7 @@ bool Api::setStickerPositionInSet(const std::string &sticker,
   args.emplace_back("sticker", sticker);
   args.emplace_back("position", position);
 
-  return sendRequest("setStickerPositionInSet", args).get<bool>("", false);
+  return sendRequest("setStickerPositionInSet", args).asBool();
 }
 
 bool Api::deleteStickerFromSet(const std::string &sticker) const {
@@ -2287,7 +2291,7 @@ bool Api::deleteStickerFromSet(const std::string &sticker) const {
 
   args.emplace_back("sticker", sticker);
 
-  return sendRequest("deleteStickerFromSet", args).get<bool>("", false);
+  return sendRequest("deleteStickerFromSet", args).asBool();
 }
 
 bool Api::replaceStickerInSet(std::int64_t userId, const std::string &name,
@@ -2301,7 +2305,7 @@ bool Api::replaceStickerInSet(std::int64_t userId, const std::string &name,
   args.emplace_back("old_sticker", oldSticker);
   args.emplace_back("sticker", putJSON(sticker));
 
-  return sendRequest("replaceStickerInSet", args).get<bool>("", false);
+  return sendRequest("replaceStickerInSet", args).asBool();
 }
 
 bool Api::setStickerEmojiList(const std::string &sticker,
@@ -2311,7 +2315,7 @@ bool Api::setStickerEmojiList(const std::string &sticker,
 
   args.emplace_back("sticker", sticker);
   args.emplace_back("emoji_list", putJSON(escapeJSONStringVec(emojiList)));
-  return sendRequest("setStickerEmojiList", args).get<bool>("", false);
+  return sendRequest("setStickerEmojiList", args).asBool();
 }
 
 bool Api::setStickerKeywords(const std::string &sticker,
@@ -2324,7 +2328,7 @@ bool Api::setStickerKeywords(const std::string &sticker,
     args.emplace_back("keywords", putJSON(escapeJSONStringVec(keywords)));
   }
 
-  return sendRequest("setStickerKeywords", args).get<bool>("", false);
+  return sendRequest("setStickerKeywords", args).asBool();
 }
 
 bool Api::setStickerMaskPosition(const std::string &sticker,
@@ -2337,7 +2341,7 @@ bool Api::setStickerMaskPosition(const std::string &sticker,
     args.emplace_back("mask_position", putJSON(maskPosition));
   }
 
-  return sendRequest("setStickerMaskPosition", args).get<bool>("", false);
+  return sendRequest("setStickerMaskPosition", args).asBool();
 }
 
 bool Api::setStickerSetTitle(const std::string &name,
@@ -2348,7 +2352,7 @@ bool Api::setStickerSetTitle(const std::string &name,
   args.emplace_back("name", name);
   args.emplace_back("title", title);
 
-  return sendRequest("setStickerSetTitle", args).get<bool>("", false);
+  return sendRequest("setStickerSetTitle", args).asBool();
 }
 
 bool Api::setStickerSetThumbnail(
@@ -2372,7 +2376,7 @@ bool Api::setStickerSetThumbnail(
     }
   }
 
-  return sendRequest("setStickerSetThumbnail", args).get<bool>("", false);
+  return sendRequest("setStickerSetThumbnail", args).asBool();
 }
 
 bool Api::setCustomEmojiStickerSetThumbnail(
@@ -2386,7 +2390,7 @@ bool Api::setCustomEmojiStickerSetThumbnail(
   }
 
   return sendRequest("setCustomEmojiStickerSetThumbnail", args)
-      .get<bool>("", false);
+      .asBool();
 }
 
 bool Api::deleteStickerSet(const std::string &name) const {
@@ -2395,7 +2399,7 @@ bool Api::deleteStickerSet(const std::string &name) const {
 
   args.emplace_back("name", name);
 
-  return sendRequest("deleteStickerSet", args).get<bool>("", false);
+  return sendRequest("deleteStickerSet", args).asBool();
 }
 
 bool Api::answerInlineQuery(const std::string &inlineQueryId,
@@ -2421,7 +2425,7 @@ bool Api::answerInlineQuery(const std::string &inlineQueryId,
     args.emplace_back("button", putJSON(button));
   }
 
-  return sendRequest("answerInlineQuery", args).get<bool>("", false);
+  return sendRequest("answerInlineQuery", args).asBool();
 }
 
 SentWebAppMessage::Ptr
@@ -2587,7 +2591,7 @@ std::string Api::createInvoiceLink(
     args.emplace_back("is_flexible", isFlexible);
   }
 
-  return sendRequest("createInvoiceLink", args).get<std::string>("", "");
+  return sendRequest("createInvoiceLink", args).asString();
 }
 
 bool Api::answerShippingQuery(
@@ -2606,7 +2610,7 @@ bool Api::answerShippingQuery(
     args.emplace_back("error_message", errorMessage);
   }
 
-  return sendRequest("answerShippingQuery", args).get<bool>("", false);
+  return sendRequest("answerShippingQuery", args).asBool();
 }
 
 bool Api::answerPreCheckoutQuery(const std::string &preCheckoutQueryId, bool ok,
@@ -2620,7 +2624,7 @@ bool Api::answerPreCheckoutQuery(const std::string &preCheckoutQueryId, bool ok,
     args.emplace_back("error_message", errorMessage);
   }
 
-  return sendRequest("answerPreCheckoutQuery", args).get<bool>("", false);
+  return sendRequest("answerPreCheckoutQuery", args).asBool();
 }
 
 bool Api::setPassportDataErrors(
@@ -2632,7 +2636,7 @@ bool Api::setPassportDataErrors(
   args.emplace_back("user_id", userId);
   args.emplace_back("errors", putJSON(errors));
 
-  return sendRequest("setPassportDataErrors", args).get<bool>("", false);
+  return sendRequest("setPassportDataErrors", args).asBool();
 }
 
 Message::Ptr Api::sendGame(std::int64_t chatId,
@@ -2746,7 +2750,9 @@ bool Api::blockedByUser(std::int64_t chatId) const {
   return isBotBlocked;
 }
 
-boost::property_tree::ptree
+constexpr bool kSendRequestDebug = true;
+
+Json::Value
 Api::sendRequest(const std::string &method,
                  const std::vector<HttpReqArg> &args) const {
   std::string url(_url);
@@ -2757,6 +2763,12 @@ Api::sendRequest(const std::string &method,
 
   int requestRetryBackoff = _httpClient.getRequestBackoff();
   int retries = 0;
+  if constexpr (kSendRequestDebug) {
+    std::cout << "tgbot-cpp: Sending request: " << method << std::endl;
+    for (const auto &arg : args) {
+      std::cout << arg.name << " is " << arg.value << std::endl;
+    }
+  }
   while (1) {
     try {
       std::string serverResponse = _httpClient.makeRequest(url, args);
@@ -2768,27 +2780,26 @@ Api::sendRequest(const std::string &method,
         throw TgException(message, TgException::ErrorCode::HtmlResponse);
       }
 
-      boost::property_tree::ptree result;
-      try {
-        std::istringstream inputJSON(serverResponse);
-        boost::property_tree::read_json(inputJSON, result);
-      } catch (boost::property_tree::ptree_error &e) {
-        std::string message = "tgbot-cpp library can't parse json response. " +
-                              std::string(e.what());
-
+      Json::Value result;
+      Json::Reader reader;
+      if (!reader.parse(serverResponse, result, false)){
+        std::string message = "tgbot-cpp library can't parse json response.";
         throw TgException(message, TgException::ErrorCode::InvalidJson);
       }
 
-      if (result.get<bool>("ok", false)) {
-        return result.get_child("result");
+      if (result["ok"].asBool()) {
+        return result["result"];
       } else {
-        std::string message = result.get("description", "");
-        size_t errorCode = result.get<size_t>("error_code", 0u);
+        std::string message = result["description"].asString();
+        size_t errorCode = result["error_code"].as<size_t>();
 
         throw TgException(message,
                           static_cast<TgException::ErrorCode>(errorCode));
       }
-    } catch (...) {
+    } catch (const TgException& ex) {
+      if constexpr (kSendRequestDebug) {
+        std::cerr << "tgbot-cpp: Error: " << ex.what() << std::endl;
+      }
       int max_retries = _httpClient.getRequestMaxRetries();
       if ((max_retries >= 0) && (retries == max_retries)) {
         throw;
