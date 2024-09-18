@@ -2750,7 +2750,7 @@ bool Api::blockedByUser(std::int64_t chatId) const {
   return isBotBlocked;
 }
 
-constexpr bool kSendRequestDebug = true;
+constexpr bool kSendRequestDebug = false;
 
 Json::Value
 Api::sendRequest(const std::string &method,
