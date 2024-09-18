@@ -1,12 +1,12 @@
 #ifndef TGBOT_TGHTTPSERVER_H
 #define TGBOT_TGHTTPSERVER_H
 
+#include <json/json.h>
 #include "tgbot/Bot.h"
 #include "tgbot/EventHandler.h"
 #include "tgbot/TgTypeParser.h"
 #include "tgbot/net/HttpServer.h"
 
-#include <boost/property_tree/json_parser.hpp>
 #include <string>
 #include <unordered_map>
 #include <utility>
@@ -46,10 +46,10 @@ private:
   _handle(const std::string &data,
           const std::unordered_map<std::string, std::string> &headers) {
     if (headers.at("_method") == "POST" && headers.at("_path") == _path) {
-      std::istringstream iss(data);
-      boost::property_tree::ptree pt;
-      boost::property_tree::read_json(iss, pt);
-      _eventHandler.handleUpdate(parse<Update>(pt));
+      Json::Value update;
+      Json::Reader reader;
+      reader.parse(data, update, false);
+      _eventHandler.handleUpdate(parse<Update>(update));
     }
     return HttpServer<Protocol>::_httpParser.generateResponse("", "text/plain",
                                                               200, "OK", false);

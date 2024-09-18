@@ -67,6 +67,9 @@ if (CURL_FOUND)
     add_definitions(-DHAVE_CURL)
 endif()
 
+## jsoncpp
+find_package(jsoncpp REQUIRED)
+
 ## boost
 set(Boost_USE_MULTITHREADED ON)
 if (ENABLE_TESTS)
@@ -86,6 +89,7 @@ set(LIB_LIST
     ${ZLIB_LIBRARIES}
     ${OPENSSL_LIBRARIES}
     ${Boost_LIBRARIES}
+    JsonCpp::JsonCpp
 )
 
 if (CURL_FOUND)

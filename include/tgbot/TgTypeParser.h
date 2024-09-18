@@ -1,7 +1,14 @@
 #ifndef TGBOT_TGTYPEPARSER_H
 #define TGBOT_TGTYPEPARSER_H
 
-#include "tgbot/export.h"
+#include <json/json.h>
+#include <memory>
+#include <sstream>
+#include <string>
+#include <type_traits>
+#include <utility>
+#include <vector>
+
 #include "tgbot/types/Animation.h"
 #include "tgbot/types/Audio.h"
 #include "tgbot/types/Birthdate.h"
@@ -192,168 +199,168 @@
 #include "tgbot/types/WebhookInfo.h"
 #include "tgbot/types/WriteAccessAllowed.h"
 
-#include <boost/property_tree/json_parser.hpp>
-#include <boost/property_tree/ptree.hpp>
-
-#include <memory>
-#include <sstream>
-#include <string>
-#include <type_traits>
-#include <utility>
-#include <vector>
-
 namespace TgBot {
 
-template <typename T> using Matrix = std::vector<std::vector<T>>;
-namespace detail { // shared_ptr
-template <typename T> struct is_shared_ptr : std::false_type {};
+template <typename T>
+using Matrix = std::vector<std::vector<T>>;
+namespace detail {  // shared_ptr
+template <typename T>
+struct is_shared_ptr : std::false_type {};
 
 template <typename T>
 struct is_shared_ptr<std::shared_ptr<T>> : std::true_type {
-  using type = T;
+    using type = T;
 };
 
-template <typename T> constexpr bool is_shared_ptr_v = is_shared_ptr<T>::value;
+template <typename T>
+constexpr bool is_shared_ptr_v = is_shared_ptr<T>::value;
 
 // vector
-template <typename T> struct is_vector : std::false_type {};
-template <typename T> struct is_vector<std::vector<T>> : std::true_type {
-  using type = T;
+template <typename T>
+struct is_vector : std::false_type {};
+template <typename T>
+struct is_vector<std::vector<T>> : std::true_type {
+    using type = T;
 };
-template <typename T> constexpr bool is_vector_v = is_vector<T>::value;
+template <typename T>
+constexpr bool is_vector_v = is_vector<T>::value;
 
 // primitive
-template <typename T> struct is_primitive : std::false_type {};
-template <> struct is_primitive<std::string> : std::true_type {};
-template <> struct is_primitive<int> : std::true_type {};
-template <> struct is_primitive<bool> : std::true_type {};
+template <typename T>
+struct is_primitive : std::false_type {};
+template <>
+struct is_primitive<std::string> : std::true_type {};
+template <>
+struct is_primitive<int> : std::true_type {};
+template <>
+struct is_primitive<bool> : std::true_type {};
 
-template <typename T> constexpr bool is_primitive_v = is_primitive<T>::value;
+template <typename T>
+constexpr bool is_primitive_v = is_primitive<T>::value;
 
 // Matrix
-template <typename T> struct is_matrix : std::false_type {};
-template <typename T> struct is_matrix<Matrix<T>> : std::true_type {
-  using type = T;
+template <typename T>
+struct is_matrix : std::false_type {};
+template <typename T>
+struct is_matrix<Matrix<T>> : std::true_type {
+    using type = T;
 };
-template <typename T> constexpr bool is_matrix_v = is_matrix<T>::value;
-
-} // namespace detail
-
 template <typename T>
-std::shared_ptr<T> parse(const boost::property_tree::ptree &data) = delete;
+constexpr bool is_matrix_v = is_matrix<T>::value;
 
-#define DECLARE_PARSER_FROM_PTREE(TYPE)                                        \
-  template <> TYPE::Ptr parse(const boost::property_tree::ptree &data)
+}  // namespace detail
 
-// Grab array of T from this specific node.
+// Parse function for shared_ptr<T>
 template <typename T>
-std::vector<std::shared_ptr<T>>
-parseArray(const boost::property_tree::ptree &data) {
-  std::vector<std::shared_ptr<T>> result;
-  for (const auto &item : data) {
-    result.emplace_back(parse<T>(item.second));
-  }
-  return result;
+std::shared_ptr<T> parse(const Json::Value &data) = delete;
+
+#define DECLARE_PARSER_FROM_JSON(TYPE) \
+    template <>                         \
+    TYPE::Ptr parse(const Json::Value &data)
+
+// Grab array of T from JSON array.
+template <typename T>
+std::vector<std::shared_ptr<T>> parseArray(const Json::Value &data) {
+    std::vector<std::shared_ptr<T>> result;
+    for (const auto &item : data) {
+        result.emplace_back(parse<T>(item));
+    }
+    return result;
 }
 
-// T should be instance of std::shared_ptr.
-// Grab array of T with a given key.
+// Parse array from a key.
 template <typename T>
-std::vector<std::shared_ptr<T>>
-parseArray(const boost::property_tree::ptree &data, const std::string &key) {
-  if (data.empty() || data.find(key) == data.not_found()) {
-    return {};
-  }
-  return parseArray<T>(data.find(key)->second);
+std::vector<std::shared_ptr<T>> parseArray(const Json::Value &data, const std::string &key) {
+    if (!data.isMember(key)) {
+        return {};
+    }
+    return parseArray<T>(data[key]);
 }
 
-// T should be instance of std::shared_ptr.
-// Grab 2D array of T from this specific node.
+// Parse 2D array of T from JSON.
 template <typename T>
-Matrix<std::shared_ptr<T>>
-parseMatrix(const boost::property_tree::ptree &data) {
-  std::vector<std::vector<std::shared_ptr<T>>> result;
-  for (const auto &item : data) {
-    result.emplace_back(parseArray<T>(item.second));
-  }
-  return result;
+Matrix<std::shared_ptr<T>> parseMatrix(const Json::Value &data) {
+    Matrix<std::shared_ptr<T>> result;
+    for (const auto &item : data) {
+        result.emplace_back(parseArray<T>(item));
+    }
+    return result;
 }
 
 template <typename T>
-Matrix<std::shared_ptr<T>> parseMatrix(const boost::property_tree::ptree &data,
-                                       const std::string &key) {
-  if (data.empty() || data.find(key) == data.not_found()) {
-    return {};
-  }
-  return parseMatrix<T>(data.find(key)->second);
+Matrix<std::shared_ptr<T>> parseMatrix(const Json::Value &data, const std::string &key) {
+    if (!data.isMember(key)) {
+        return {};
+    }
+    return parseMatrix<T>(data[key]);
 }
 
-// T should be int, bool, std::string, etc where boost::property_tree::ptree
-// supports it.
+// Parse an array of primitive types.
 template <typename T>
-std::vector<T> parsePrimitiveArray(const boost::property_tree::ptree &data,
-                                   const std::string &key) {
-  if (data.empty() || data.find(key) == data.not_found()) {
-    return {};
-  }
-  std::vector<T> result;
-  for (const auto &item : data.find(key)->second) {
-    result.emplace_back(item.second.get<T>(""));
-  }
-  return result;
+std::vector<T> parsePrimitiveArray(const Json::Value &data, const std::string &key) {
+    if (!data.isMember(key)) {
+        return {};
+    }
+    std::vector<T> result;
+    for (const auto &item : data[key]) {
+        result.emplace_back(item.as<T>());
+    }
+    return result;
 }
 
-// This is for processing objects to JSON string.
-template <typename T> boost::property_tree::ptree put(const T &value) = delete;
+// Put function for objects to JSON
+template <typename T>
+Json::Value put(const T &value) = delete;
 
-#define DECLARE_PARSER_TO_PTREE(TYPE)                                          \
-  template <> boost::property_tree::ptree put(const TYPE ::Ptr &object)
+#define DECLARE_PARSER_TO_JSON(TYPE) \
+    template <>                       \
+    Json::Value put(const TYPE::Ptr &object)
 
 // Helper to put base class shared_ptr to derived T.
 template <typename T, typename V,
           std::enable_if_t<detail::is_shared_ptr_v<V> &&
-                               !std::is_same_v<typename T ::Ptr, V> &&
-                               std::is_base_of_v<typename V ::element_type, T>,
+                               !std::is_same_v<typename T::Ptr, V> &&
+                               std::is_base_of_v<typename V::element_type, T>,
                            bool> = true>
-boost::property_tree::ptree put(const V &data) {
-  return put(std::static_pointer_cast<T>(data));
+Json::Value put(const V &data) {
+    return put(std::static_pointer_cast<T>(data));
 }
 
+// Put vector to JSON.
 template <typename T, std::enable_if_t<!detail::is_vector_v<T>, bool> = true>
-boost::property_tree::ptree put(const std::vector<T> &vector) {
-  boost::property_tree::ptree dataArray;
-  for (const auto &item : vector) {
-    boost::property_tree::ptree dataNode;
-    if constexpr (detail::is_primitive_v<T>) {
-      dataNode.put("", item);
-    } else {
-      dataNode.add_child("", put(item));
+Json::Value put(const std::vector<T> &vector) {
+    Json::Value dataArray(Json::arrayValue);
+    for (const auto &item : vector) {
+        if constexpr (detail::is_primitive_v<T>) {
+            dataArray.append(item);
+        } else {
+            dataArray.append(put(item));  // Recursively call put for non-primitives
+        }
     }
-    dataArray.push_back(std::make_pair("", dataNode));
-  }
-  return dataArray;
+    return dataArray;
 }
 
-// Put 2D array of T to JSON string.
-template <typename T> boost::property_tree::ptree put(const Matrix<T> &matrix) {
-  boost::property_tree::ptree dataMatrix;
-  for (const auto &row : matrix) {
-    boost::property_tree::ptree dataRow;
-    dataRow.push_back(std::make_pair("", put(row)));
-    dataMatrix.push_back(std::make_pair("", dataRow));
-  }
-  return dataMatrix;
+// Put 2D array (Matrix) to JSON.
+template <typename T>
+Json::Value put(const Matrix<T> &matrix) {
+    Json::Value dataMatrix(Json::arrayValue);
+    for (const auto &row : matrix) {
+        dataMatrix.append(put(row));  // Recursively call put for each row
+    }
+    return dataMatrix;
 }
 
-template <typename T> std::string putJSON(const T &object) {
-  std::ostringstream ss;
-  boost::property_tree::write_json(ss, put(object), false);
-  return ss.str();
+// Serialize object to JSON string.
+template <typename T>
+std::string putJSON(const T &object) {
+    Json::StreamWriterBuilder writer;
+    return Json::writeString(writer, put(object));
 }
 
-#define IMPLEMENT_PARSERS(type)                                                \
-  DECLARE_PARSER_FROM_PTREE(type);                                             \
-  DECLARE_PARSER_TO_PTREE(type)
+
+#define IMPLEMENT_PARSERS(type)      \
+    DECLARE_PARSER_FROM_JSON(type); \
+    DECLARE_PARSER_TO_JSON(type)
 IMPLEMENT_PARSERS(Animation);
 IMPLEMENT_PARSERS(Audio);
 IMPLEMENT_PARSERS(Birthdate);
@@ -544,6 +551,6 @@ IMPLEMENT_PARSERS(WebAppInfo);
 IMPLEMENT_PARSERS(WebhookInfo);
 IMPLEMENT_PARSERS(WriteAccessAllowed);
 
-} // namespace TgBot
+}  // namespace TgBot
 
-#endif // TGBOT_TGTYPEPARSER_H
+#endif  // TGBOT_TGTYPEPARSER_H
