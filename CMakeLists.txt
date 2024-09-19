@@ -69,6 +69,7 @@ endif()
 
 ## jsoncpp
 find_package(jsoncpp REQUIRED)
+include_directories(${jsoncpp_INCLUDE_DIRS})
 
 ## boost
 set(Boost_USE_MULTITHREADED ON)
