@@ -4754,7 +4754,7 @@ DECLARE_PARSER_FROM_JSON(GenericReply) {
     } else if (data.isMember("inline_keyboard")) {
         return parse<InlineKeyboardMarkup>(data);
     }
-    return std::make_shared<GenericReply>();
+    return nullptr;
 }
 
 DECLARE_PARSER_TO_JSON(GenericReply) {

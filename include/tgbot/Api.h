@@ -260,7 +260,7 @@ public:
                                const std::vector<MessageEntity::Ptr>& captionEntities = std::vector<MessageEntity::Ptr>(),
                                bool disableNotification = false,
                                ReplyParameters::Ptr replyParameters = nullptr,
-                               GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>(),
+                               GenericReply::Ptr replyMarkup = nullptr,
                                bool protectContent = false,
                                std::int32_t messageThreadId = 0) const;
 
