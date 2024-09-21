@@ -5,6 +5,7 @@
 
 #include <string>
 #include <stdexcept>
+#include <cstdint>
 
 namespace TgBot {
 
@@ -20,7 +21,7 @@ public:
     /**
      * @brief Enum of possible errors from Api requests 
      */
-    enum class ErrorCode : size_t {
+    enum class ErrorCode : std::int32_t {
         Undefined = 0,
         BadRequest = 400, Unauthorized = 401, 
         Forbidden = 403, NotFound = 404, 
