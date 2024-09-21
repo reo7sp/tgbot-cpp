@@ -68,8 +68,27 @@ if (CURL_FOUND)
 endif()
 
 ## jsoncpp
-find_package(jsoncpp REQUIRED)
-include_directories(${jsoncpp_INCLUDE_DIRS})
+find_package(jsoncpp QUIET)
+if (NOT TARGET jsoncpp_lib)
+    # Check for pkg-config and try to find jsoncpp using it
+    find_package(PkgConfig QUIET)
+    if (PKG_CONFIG_FOUND)
+        pkg_check_modules(JSONCPP_PKG jsoncpp)
+        if (JSONCPP_PKG_FOUND)
+            add_library(jsoncpp_lib INTERFACE)
+            target_include_directories(jsoncpp_lib INTERFACE ${JSONCPP_PKG_INCLUDE_DIRS})
+            target_link_directories(jsoncpp_lib INTERFACE ${JSONCPP_PKG_LIBRARY_DIRS})
+            target_link_libraries(jsoncpp_lib INTERFACE ${JSONCPP_PKG_LIBRARIES})
+            install(
+                TARGETS jsoncpp_lib EXPORT ${PROJECT_NAME}-targets DESTINATION lib
+            )
+        endif()
+    endif()
+endif()
+if (NOT TARGET jsoncpp_lib)
+    message(FATAL_ERROR "Jsoncpp is not available")
+endif()
+include_directories(${jsoncpp_INCLUDE_DIRS} ${JSONCPP_PKG_INCLUDE_DIRS})
 
 ## boost
 set(Boost_USE_MULTITHREADED ON)
@@ -90,7 +109,7 @@ set(LIB_LIST
     ${ZLIB_LIBRARIES}
     ${OPENSSL_LIBRARIES}
     ${Boost_LIBRARIES}
-    JsonCpp::JsonCpp
+    jsoncpp_lib
 )
 
 if (CURL_FOUND)
