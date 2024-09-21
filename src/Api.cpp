@@ -2791,7 +2791,7 @@ Api::sendRequest(const std::string &method,
         return result["result"];
       } else {
         std::string message = result["description"].asString();
-        size_t errorCode = result["error_code"].as<size_t>();
+        int errorCode = result["error_code"].as<int>();
 
         throw TgException(message,
                           static_cast<TgException::ErrorCode>(errorCode));
