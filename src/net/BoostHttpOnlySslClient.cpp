@@ -3,6 +3,7 @@
 #include <boost/asio/ssl.hpp>
 
 #include <cstddef>
+#include <stdexcept>
 #include <vector>
 
 using namespace std;
@@ -71,7 +72,7 @@ string BoostHttpOnlySslClient::makeRequest(const Url& url, const vector<HttpReqA
         sMsg.append(socket.next_layer().remote_endpoint().address().to_string());
         _ioService.reset();
         
-        throw std::exception();
+        throw std::runtime_error(sMsg);
     }      
     
     string response;
