@@ -77,6 +77,7 @@ if (NOT TARGET jsoncpp_lib)
         if (JSONCPP_PKG_FOUND)
             add_library(jsoncpp_lib INTERFACE)
             target_include_directories(jsoncpp_lib INTERFACE ${JSONCPP_PKG_INCLUDE_DIRS})
+            target_link_directories(jsoncpp_lib INTERFACE ${JSONCPP_PKG_LIBRARY_DIRS})
             target_link_libraries(jsoncpp_lib INTERFACE ${JSONCPP_PKG_LIBRARIES})
             install(
                 TARGETS jsoncpp_lib EXPORT ${PROJECT_NAME}-targets DESTINATION lib
@@ -87,7 +88,7 @@ endif()
 if (NOT TARGET jsoncpp_lib)
     message(FATAL_ERROR "Jsoncpp is not available")
 endif()
-include_directories(${jsoncpp_INCLUDE_DIRS})
+include_directories(${jsoncpp_INCLUDE_DIRS} ${JSONCPP_PKG_INCLUDE_DIRS})
 
 ## boost
 set(Boost_USE_MULTITHREADED ON)
