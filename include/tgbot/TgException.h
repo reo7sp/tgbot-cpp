@@ -25,7 +25,7 @@ public:
         Undefined = 0,
         BadRequest = 400, Unauthorized = 401, 
         Forbidden = 403, NotFound = 404, 
-        Flood = 402, Internal = 500,
+        Flood = 402, Conflict = 409, Internal = 500,
         HtmlResponse = 100, InvalidJson = 101
     };
 
