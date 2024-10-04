@@ -88,7 +88,6 @@ endif()
 if (NOT TARGET jsoncpp_lib)
     message(FATAL_ERROR "Jsoncpp is not available")
 endif()
-include_directories(${jsoncpp_INCLUDE_DIRS} ${JSONCPP_PKG_INCLUDE_DIRS})
 
 ## boost
 set(Boost_USE_MULTITHREADED ON)
@@ -122,6 +121,8 @@ endif()
 
 # building project
 add_library(${PROJECT_NAME} ${SRC_LIST})
+
+target_include_directories(${PROJECT_NAME} PUBLIC ${jsoncpp_INCLUDE_DIRS} ${JSONCPP_PKG_INCLUDE_DIRS})
 target_include_directories(${PROJECT_NAME} PUBLIC 
                            $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
                            $<INSTALL_INTERFACE:include>)
