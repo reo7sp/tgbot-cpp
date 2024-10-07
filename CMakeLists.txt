@@ -67,6 +67,28 @@ if (CURL_FOUND)
     add_definitions(-DHAVE_CURL)
 endif()
 
+## jsoncpp
+find_package(jsoncpp QUIET)
+if (NOT TARGET jsoncpp_lib)
+    # Check for pkg-config and try to find jsoncpp using it
+    find_package(PkgConfig QUIET)
+    if (PKG_CONFIG_FOUND)
+        pkg_check_modules(JSONCPP_PKG jsoncpp)
+        if (JSONCPP_PKG_FOUND)
+            add_library(jsoncpp_lib INTERFACE)
+            target_include_directories(jsoncpp_lib INTERFACE ${JSONCPP_PKG_INCLUDE_DIRS})
+            target_link_directories(jsoncpp_lib INTERFACE ${JSONCPP_PKG_LIBRARY_DIRS})
+            target_link_libraries(jsoncpp_lib INTERFACE ${JSONCPP_PKG_LIBRARIES})
+            install(
+                TARGETS jsoncpp_lib EXPORT ${PROJECT_NAME}-targets DESTINATION lib
+            )
+        endif()
+    endif()
+endif()
+if (NOT TARGET jsoncpp_lib)
+    message(FATAL_ERROR "Jsoncpp is not available")
+endif()
+
 ## boost
 set(Boost_USE_MULTITHREADED ON)
 if (ENABLE_TESTS)
@@ -86,10 +108,11 @@ set(LIB_LIST
     ${ZLIB_LIBRARIES}
     ${OPENSSL_LIBRARIES}
     ${Boost_LIBRARIES}
+    jsoncpp_lib
 )
 
 if (CURL_FOUND)
-    set(LIB_LIST ${LIB_LIST} ${CURL_LIBRARIES})
+    set(LIB_LIST ${LIB_LIST} CURL::libcurl)
 endif()
 
 if (WIN32)
@@ -98,6 +121,8 @@ endif()
 
 # building project
 add_library(${PROJECT_NAME} ${SRC_LIST})
+
+target_include_directories(${PROJECT_NAME} PUBLIC ${jsoncpp_INCLUDE_DIRS} ${JSONCPP_PKG_INCLUDE_DIRS})
 target_include_directories(${PROJECT_NAME} PUBLIC 
                            $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
                            $<INSTALL_INTERFACE:include>)

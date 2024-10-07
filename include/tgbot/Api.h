@@ -1,6 +1,7 @@
 #ifndef TGBOT_API_H
 #define TGBOT_API_H
 
+#include <json/json.h>
 #include "tgbot/TgException.h"
 #include "tgbot/TgTypeParser.h"
 #include "tgbot/net/HttpClient.h"
@@ -28,7 +29,6 @@
 #include "tgbot/types/BotCommand.h"
 #include "tgbot/types/ForumTopic.h"
 
-#include <boost/property_tree/ptree.hpp>
 #include <boost/variant.hpp>
 
 #include <cstdint>
@@ -260,7 +260,7 @@ public:
                                const std::vector<MessageEntity::Ptr>& captionEntities = std::vector<MessageEntity::Ptr>(),
                                bool disableNotification = false,
                                ReplyParameters::Ptr replyParameters = nullptr,
-                               GenericReply::Ptr replyMarkup = std::make_shared<GenericReply>(),
+                               GenericReply::Ptr replyMarkup = nullptr,
                                bool protectContent = false,
                                std::int32_t messageThreadId = 0) const;
 
@@ -2241,10 +2241,9 @@ public:
     const HttpClient& _httpClient;
     
 protected:
-    boost::property_tree::ptree sendRequest(const std::string& method, const std::vector<HttpReqArg>& args = std::vector<HttpReqArg>()) const;
+    Json::Value sendRequest(const std::string& method, const std::vector<HttpReqArg>& args = std::vector<HttpReqArg>()) const;
 
     const std::string _token;
-    const TgTypeParser _tgTypeParser;
     const std::string _url;
 };
 }

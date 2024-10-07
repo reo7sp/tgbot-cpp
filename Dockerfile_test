@@ -16,7 +16,8 @@ RUN apt-get -qq update && \
         make \
         python2.7-dev \
         wget \
-        zlib1g-dev && \
+        zlib1g-dev \
+        libjsoncpp-dev && \
     rm -rf /var/lib/apt/lists/*
 
 WORKDIR /usr/src/tgbot-cpp
