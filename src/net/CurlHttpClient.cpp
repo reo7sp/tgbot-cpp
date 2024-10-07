@@ -29,6 +29,9 @@ std::string CurlHttpClient::makeRequest(const Url& url, const std::vector<HttpRe
     auto curl = curl_easy_duphandle(curlSettings);
 
     std::string u = url.protocol + "://" + url.host + url.path;
+    if (args.empty()) {
+        u += "?" + url.query;
+    }
     curl_easy_setopt(curl, CURLOPT_URL, u.c_str());
 
     // disable keep-alive
