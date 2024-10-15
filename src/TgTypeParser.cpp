@@ -3404,6 +3404,8 @@ DECLARE_PARSER_TO_JSON(InlineQueryResult) {
     } else if (object->type == InlineQueryResultVideo::TYPE) {
         ptree +=
             put<InlineQueryResultVideo, InlineQueryResultCachedVideo>(object);
+    } else if (object->type == InlineQueryResultCachedSticker::TYPE) {
+        ptree += put<InlineQueryResultCachedSticker>(object);
     }
     return ptree;
 }
