@@ -34,7 +34,7 @@ public:
      * @return Object which can execute Telegram Bot API methods.
      */
     inline const Api& getApi() const {
-        return _api;
+        return *_api;
     }
 
     /**
@@ -55,7 +55,7 @@ private:
     static HttpClient &_getDefaultHttpClient();
 
     const std::string _token;
-    const Api _api;
+    const std::shared_ptr<Api> _api;
     std::unique_ptr<EventBroadcaster> _eventBroadcaster;
     const EventHandler _eventHandler;
 };

@@ -4,7 +4,7 @@
 #include <boost/test/unit_test.hpp>
 
 #include "tgbot/net/HttpClient.h"
-#include "tgbot/Api.h"
+#include "tgbot/ApiImpl.h"
 #include "tgbot/TgException.h"
 
 using namespace std;
@@ -12,10 +12,10 @@ using namespace TgBot;
 
 typedef TgException::ErrorCode TgErrorCode;
 
-class TestableApi : public Api {
+class TestableApi : public ApiImpl {
 public:
-    using Api::Api;
-    using Api::sendRequest;
+    using ApiImpl::ApiImpl;
+    using ApiImpl::sendRequest;
 };
 
 class HttpClientMock : public HttpClient {

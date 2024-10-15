@@ -1,14 +1,14 @@
-#include "tgbot/Api.h"
+#include <tgbot/ApiImpl.h>
+#include <tgbot/TgTypeParser.h>
+#include <tgbot/TgException.h>
+#include <tgbot/tools/StringTools.h>
 #include <json/json.h>
-#include "tgbot/TgException.h"
-#include "tgbot/TgTypeParser.h"
-#include "tgbot/types/Message.h"
-#include "tgbot/types/MessageId.h"
 
 #include <chrono>
 #include <iomanip>
 #include <iostream>
 #include <thread>
+#include <utility>
 
 namespace {
 std::vector<std::string>
@@ -21,15 +21,16 @@ escapeJSONStringVec(const std::vector<std::string> &vec) {
   }
   return newVec;
 }
+
 } // namespace
 namespace TgBot {
 
-Api::Api(std::string token, const HttpClient &httpClient,
-         const std::string &url)
-    : _httpClient(httpClient), _token(std::move(token)), _url(url) {}
+ApiImpl::ApiImpl(std::string token, const HttpClient &httpClient,
+         std::string url)
+    : _httpClient(httpClient), _token(std::move(token)), _url(std::move(url)) {}
 
 std::vector<Update::Ptr>
-Api::getUpdates(std::int32_t offset, std::int32_t limit, std::int32_t timeout,
+ApiImpl::getUpdates(std::int32_t offset, std::int32_t limit, std::int32_t timeout,
                 const StringArrayPtr &allowedUpdates) const {
   std::vector<HttpReqArg> args;
   args.reserve(4);
@@ -51,7 +52,7 @@ Api::getUpdates(std::int32_t offset, std::int32_t limit, std::int32_t timeout,
   return parseArray<Update>(sendRequest("getUpdates", args));
 }
 
-bool Api::setWebhook(const std::string &url, InputFile::Ptr certificate,
+bool ApiImpl::setWebhook(const std::string &url, InputFile::Ptr certificate,
                      std::int32_t maxConnections,
                      const StringArrayPtr &allowedUpdates,
                      const std::string &ipAddress, bool dropPendingUpdates,
@@ -85,7 +86,7 @@ bool Api::setWebhook(const std::string &url, InputFile::Ptr certificate,
   return sendRequest("setWebhook", args).asBool();
 }
 
-bool Api::deleteWebhook(bool dropPendingUpdates) const {
+bool ApiImpl::deleteWebhook(bool dropPendingUpdates) const {
   std::vector<HttpReqArg> args;
   args.reserve(1);
 
@@ -96,7 +97,7 @@ bool Api::deleteWebhook(bool dropPendingUpdates) const {
   return sendRequest("deleteWebhook", args).asBool();
 }
 
-WebhookInfo::Ptr Api::getWebhookInfo() const {
+WebhookInfo::Ptr ApiImpl::getWebhookInfo() const {
   const auto& p = sendRequest("getWebhookInfo");
 
   if (!p.isMember("url")) {
@@ -110,13 +111,13 @@ WebhookInfo::Ptr Api::getWebhookInfo() const {
   }
 }
 
-User::Ptr Api::getMe() const { return parse<User>(sendRequest("getMe")); }
+User::Ptr ApiImpl::getMe() const { return parse<User>(sendRequest("getMe")); }
 
-bool Api::logOut() const { return sendRequest("logOut").asBool(); }
+bool ApiImpl::logOut() const { return sendRequest("logOut").asBool(); }
 
-bool Api::close() const { return sendRequest("close").asBool(); }
+bool ApiImpl::close() const { return sendRequest("close").asBool(); }
 
-Message::Ptr Api::sendMessage(boost::variant<std::int64_t, std::string> chatId,
+Message::Ptr ApiImpl::sendMessage(boost::variant<std::int64_t, std::string> chatId,
                               const std::string &text,
                               LinkPreviewOptions::Ptr linkPreviewOptions,
                               ReplyParameters::Ptr replyParameters,
@@ -163,7 +164,7 @@ Message::Ptr Api::sendMessage(boost::variant<std::int64_t, std::string> chatId,
 }
 
 Message::Ptr
-Api::forwardMessage(boost::variant<std::int64_t, std::string> chatId,
+ApiImpl::forwardMessage(boost::variant<std::int64_t, std::string> chatId,
                     boost::variant<std::int64_t, std::string> fromChatId,
                     std::int32_t messageId, bool disableNotification,
                     bool protectContent, std::int32_t messageThreadId) const {
@@ -187,7 +188,7 @@ Api::forwardMessage(boost::variant<std::int64_t, std::string> chatId,
 }
 
 std::vector<MessageId::Ptr>
-Api::forwardMessages(boost::variant<std::int64_t, std::string> chatId,
+ApiImpl::forwardMessages(boost::variant<std::int64_t, std::string> chatId,
                      boost::variant<std::int64_t, std::string> fromChatId,
                      const std::vector<std::int32_t> &messageIds,
                      std::int32_t messageThreadId, bool disableNotification,
@@ -214,7 +215,7 @@ Api::forwardMessages(boost::variant<std::int64_t, std::string> chatId,
 }
 
 MessageId::Ptr
-Api::copyMessage(boost::variant<std::int64_t, std::string> chatId,
+ApiImpl::copyMessage(boost::variant<std::int64_t, std::string> chatId,
                  boost::variant<std::int64_t, std::string> fromChatId,
                  std::int32_t messageId, const std::string &caption,
                  const std::string &parseMode,
@@ -257,7 +258,7 @@ Api::copyMessage(boost::variant<std::int64_t, std::string> chatId,
 }
 
 std::vector<MessageId::Ptr>
-Api::copyMessages(boost::variant<std::int64_t, std::string> chatId,
+ApiImpl::copyMessages(boost::variant<std::int64_t, std::string> chatId,
                   boost::variant<std::int64_t, std::string> fromChatId,
                   const std::vector<std::int32_t> &messageIds,
                   std::int32_t messageThreadId, bool disableNotification,
@@ -288,7 +289,7 @@ Api::copyMessages(boost::variant<std::int64_t, std::string> chatId,
 }
 
 Message::Ptr
-Api::sendPhoto(boost::variant<std::int64_t, std::string> chatId,
+ApiImpl::sendPhoto(boost::variant<std::int64_t, std::string> chatId,
                boost::variant<InputFile::Ptr, std::string> photo,
                const std::string &caption, ReplyParameters::Ptr replyParameters,
                GenericReply::Ptr replyMarkup, const std::string &parseMode,
@@ -342,7 +343,7 @@ Api::sendPhoto(boost::variant<std::int64_t, std::string> chatId,
 }
 
 Message::Ptr
-Api::sendAudio(boost::variant<std::int64_t, std::string> chatId,
+ApiImpl::sendAudio(boost::variant<std::int64_t, std::string> chatId,
                boost::variant<InputFile::Ptr, std::string> audio,
                const std::string &caption, std::int32_t duration,
                const std::string &performer, const std::string &title,
@@ -414,7 +415,7 @@ Api::sendAudio(boost::variant<std::int64_t, std::string> chatId,
   return parse<Message>(sendRequest("sendAudio", args));
 }
 
-Message::Ptr Api::sendDocument(
+Message::Ptr ApiImpl::sendDocument(
     boost::variant<std::int64_t, std::string> chatId,
     boost::variant<InputFile::Ptr, std::string> document,
     boost::variant<InputFile::Ptr, std::string> thumbnail,
@@ -481,7 +482,7 @@ Message::Ptr Api::sendDocument(
 }
 
 Message::Ptr
-Api::sendVideo(boost::variant<std::int64_t, std::string> chatId,
+ApiImpl::sendVideo(boost::variant<std::int64_t, std::string> chatId,
                boost::variant<InputFile::Ptr, std::string> video,
                bool supportsStreaming, std::int32_t duration,
                std::int32_t width, std::int32_t height,
@@ -559,7 +560,7 @@ Api::sendVideo(boost::variant<std::int64_t, std::string> chatId,
   return parse<Message>(sendRequest("sendVideo", args));
 }
 
-Message::Ptr Api::sendAnimation(
+Message::Ptr ApiImpl::sendAnimation(
     boost::variant<std::int64_t, std::string> chatId,
     boost::variant<InputFile::Ptr, std::string> animation,
     std::int32_t duration, std::int32_t width, std::int32_t height,
@@ -635,7 +636,7 @@ Message::Ptr Api::sendAnimation(
 }
 
 Message::Ptr
-Api::sendVoice(boost::variant<std::int64_t, std::string> chatId,
+ApiImpl::sendVoice(boost::variant<std::int64_t, std::string> chatId,
                boost::variant<InputFile::Ptr, std::string> voice,
                const std::string &caption, std::int32_t duration,
                ReplyParameters::Ptr replyParameters,
@@ -689,7 +690,7 @@ Api::sendVoice(boost::variant<std::int64_t, std::string> chatId,
   return parse<Message>(sendRequest("sendVoice", args));
 }
 
-Message::Ptr Api::sendVideoNote(
+Message::Ptr ApiImpl::sendVideoNote(
     boost::variant<std::int64_t, std::string> chatId,
     boost::variant<InputFile::Ptr, std::string> videoNote,
     ReplyParameters::Ptr replyParameters, bool disableNotification,
@@ -746,7 +747,7 @@ Message::Ptr Api::sendVideoNote(
   return parse<Message>(sendRequest("sendVideoNote", args));
 }
 
-std::vector<Message::Ptr> Api::sendMediaGroup(
+std::vector<Message::Ptr> ApiImpl::sendMediaGroup(
     boost::variant<std::int64_t, std::string> chatId,
     const std::vector<InputMedia::Ptr> &media, bool disableNotification,
     ReplyParameters::Ptr replyParameters, std::int32_t messageThreadId,
@@ -775,7 +776,7 @@ std::vector<Message::Ptr> Api::sendMediaGroup(
   return parseArray<Message>(sendRequest("sendMediaGroup", args));
 }
 
-Message::Ptr Api::sendLocation(
+Message::Ptr ApiImpl::sendLocation(
     boost::variant<std::int64_t, std::string> chatId, float latitude,
     float longitude, std::int32_t livePeriod,
     ReplyParameters::Ptr replyParameters, GenericReply::Ptr replyMarkup,
@@ -823,7 +824,7 @@ Message::Ptr Api::sendLocation(
   return parse<Message>(sendRequest("sendLocation", args));
 }
 
-Message::Ptr Api::editMessageLiveLocation(
+Message::Ptr ApiImpl::editMessageLiveLocation(
     float latitude, float longitude,
     boost::variant<std::int64_t, std::string> chatId, std::int32_t messageId,
     const std::string &inlineMessageId, InlineKeyboardMarkup::Ptr replyMarkup,
@@ -866,7 +867,7 @@ Message::Ptr Api::editMessageLiveLocation(
 }
 
 Message::Ptr
-Api::stopMessageLiveLocation(boost::variant<std::int64_t, std::string> chatId,
+ApiImpl::stopMessageLiveLocation(boost::variant<std::int64_t, std::string> chatId,
                              std::int32_t messageId,
                              const std::string &inlineMessageId,
                              InlineKeyboardMarkup::Ptr replyMarkup) const {
@@ -895,7 +896,7 @@ Api::stopMessageLiveLocation(boost::variant<std::int64_t, std::string> chatId,
   return parse<Message>(sendRequest("stopMessageLiveLocation", args));
 }
 
-Message::Ptr Api::sendVenue(
+Message::Ptr ApiImpl::sendVenue(
     boost::variant<std::int64_t, std::string> chatId, float latitude,
     float longitude, const std::string &title, const std::string &address,
     const std::string &foursquareId, const std::string &foursquareType,
@@ -946,7 +947,7 @@ Message::Ptr Api::sendVenue(
 }
 
 Message::Ptr
-Api::sendContact(boost::variant<std::int64_t, std::string> chatId,
+ApiImpl::sendContact(boost::variant<std::int64_t, std::string> chatId,
                  const std::string &phoneNumber, const std::string &firstName,
                  const std::string &lastName, const std::string &vcard,
                  bool disableNotification, ReplyParameters::Ptr replyParameters,
@@ -987,7 +988,7 @@ Api::sendContact(boost::variant<std::int64_t, std::string> chatId,
   return parse<Message>(sendRequest("sendContact", args));
 }
 
-Message::Ptr Api::sendPoll(
+Message::Ptr ApiImpl::sendPoll(
     boost::variant<std::int64_t, std::string> chatId,
     const std::string &question, const std::vector<std::string> &options,
     bool disableNotification, ReplyParameters::Ptr replyParameters,
@@ -1056,7 +1057,7 @@ Message::Ptr Api::sendPoll(
   return parse<Message>(sendRequest("sendPoll", args));
 }
 
-Message::Ptr Api::sendDice(boost::variant<std::int64_t, std::string> chatId,
+Message::Ptr ApiImpl::sendDice(boost::variant<std::int64_t, std::string> chatId,
                            bool disableNotification,
                            ReplyParameters::Ptr replyParameters,
                            GenericReply::Ptr replyMarkup,
@@ -1092,7 +1093,7 @@ Message::Ptr Api::sendDice(boost::variant<std::int64_t, std::string> chatId,
   return parse<Message>(sendRequest("sendDice", args));
 }
 
-bool Api::setMessageReaction(boost::variant<std::int64_t, std::string> chatId,
+bool ApiImpl::setMessageReaction(boost::variant<std::int64_t, std::string> chatId,
                              std::int32_t messageId,
                              const std::vector<ReactionType::Ptr> &reaction,
                              bool isBig) const {
@@ -1111,7 +1112,7 @@ bool Api::setMessageReaction(boost::variant<std::int64_t, std::string> chatId,
   return sendRequest("setMessageReaction", args).asBool();
 }
 
-bool Api::sendChatAction(std::int64_t chatId, const std::string &action,
+bool ApiImpl::sendChatAction(std::int64_t chatId, const std::string &action,
                          std::int32_t messageThreadId,
                          const std::string &businessConnectionId) const {
   std::vector<HttpReqArg> args;
@@ -1129,7 +1130,7 @@ bool Api::sendChatAction(std::int64_t chatId, const std::string &action,
   return sendRequest("sendChatAction", args).asBool();
 }
 
-UserProfilePhotos::Ptr Api::getUserProfilePhotos(std::int64_t userId,
+UserProfilePhotos::Ptr ApiImpl::getUserProfilePhotos(std::int64_t userId,
                                                  std::int32_t offset,
                                                  std::int32_t limit) const {
   std::vector<HttpReqArg> args;
@@ -1146,7 +1147,7 @@ UserProfilePhotos::Ptr Api::getUserProfilePhotos(std::int64_t userId,
   return parse<UserProfilePhotos>(sendRequest("getUserProfilePhotos", args));
 }
 
-File::Ptr Api::getFile(const std::string &fileId) const {
+File::Ptr ApiImpl::getFile(const std::string &fileId) const {
   std::vector<HttpReqArg> args;
   args.reserve(1);
 
@@ -1155,7 +1156,7 @@ File::Ptr Api::getFile(const std::string &fileId) const {
   return parse<File>(sendRequest("getFile", args));
 }
 
-bool Api::banChatMember(boost::variant<std::int64_t, std::string> chatId,
+bool ApiImpl::banChatMember(boost::variant<std::int64_t, std::string> chatId,
                         std::int64_t userId, std::int32_t untilDate,
                         bool revokeMessages) const {
   std::vector<HttpReqArg> args;
@@ -1173,7 +1174,7 @@ bool Api::banChatMember(boost::variant<std::int64_t, std::string> chatId,
   return sendRequest("banChatMember", args).asBool();
 }
 
-bool Api::unbanChatMember(boost::variant<std::int64_t, std::string> chatId,
+bool ApiImpl::unbanChatMember(boost::variant<std::int64_t, std::string> chatId,
                           std::int64_t userId, bool onlyIfBanned) const {
   std::vector<HttpReqArg> args;
   args.reserve(3);
@@ -1187,7 +1188,7 @@ bool Api::unbanChatMember(boost::variant<std::int64_t, std::string> chatId,
   return sendRequest("unbanChatMember", args).asBool();
 }
 
-bool Api::restrictChatMember(boost::variant<std::int64_t, std::string> chatId,
+bool ApiImpl::restrictChatMember(boost::variant<std::int64_t, std::string> chatId,
                              std::int64_t userId,
                              TgBot::ChatPermissions::Ptr permissions,
                              std::uint32_t untilDate,
@@ -1209,7 +1210,7 @@ bool Api::restrictChatMember(boost::variant<std::int64_t, std::string> chatId,
   return sendRequest("restrictChatMember", args).asBool();
 }
 
-bool Api::promoteChatMember(boost::variant<std::int64_t, std::string> chatId,
+bool ApiImpl::promoteChatMember(boost::variant<std::int64_t, std::string> chatId,
                             std::int64_t userId, bool canChangeInfo,
                             bool canPostMessages, bool canEditMessages,
                             bool canDeleteMessages, bool canInviteUsers,
@@ -1272,7 +1273,7 @@ bool Api::promoteChatMember(boost::variant<std::int64_t, std::string> chatId,
   return sendRequest("promoteChatMember", args).asBool();
 }
 
-bool Api::setChatAdministratorCustomTitle(
+bool ApiImpl::setChatAdministratorCustomTitle(
     boost::variant<std::int64_t, std::string> chatId, std::int64_t userId,
     const std::string &customTitle) const {
   std::vector<HttpReqArg> args;
@@ -1286,7 +1287,7 @@ bool Api::setChatAdministratorCustomTitle(
       .asBool();
 }
 
-bool Api::banChatSenderChat(boost::variant<std::int64_t, std::string> chatId,
+bool ApiImpl::banChatSenderChat(boost::variant<std::int64_t, std::string> chatId,
                             std::int64_t senderChatId) const {
   std::vector<HttpReqArg> args;
   args.reserve(2);
@@ -1297,7 +1298,7 @@ bool Api::banChatSenderChat(boost::variant<std::int64_t, std::string> chatId,
   return sendRequest("banChatSenderChat", args).asBool();
 }
 
-bool Api::unbanChatSenderChat(boost::variant<std::int64_t, std::string> chatId,
+bool ApiImpl::unbanChatSenderChat(boost::variant<std::int64_t, std::string> chatId,
                               std::int64_t senderChatId) const {
   std::vector<HttpReqArg> args;
   args.reserve(2);
@@ -1308,7 +1309,7 @@ bool Api::unbanChatSenderChat(boost::variant<std::int64_t, std::string> chatId,
   return sendRequest("unbanChatSenderChat", args).asBool();
 }
 
-bool Api::setChatPermissions(boost::variant<std::int64_t, std::string> chatId,
+bool ApiImpl::setChatPermissions(boost::variant<std::int64_t, std::string> chatId,
                              ChatPermissions::Ptr permissions,
                              bool useIndependentChatPermissions) const {
   std::vector<HttpReqArg> args;
@@ -1324,7 +1325,7 @@ bool Api::setChatPermissions(boost::variant<std::int64_t, std::string> chatId,
   return sendRequest("setChatPermissions", args).asBool();
 }
 
-std::string Api::exportChatInviteLink(
+std::string ApiImpl::exportChatInviteLink(
     boost::variant<std::int64_t, std::string> chatId) const {
   std::vector<HttpReqArg> args;
   args.reserve(1);
@@ -1335,7 +1336,7 @@ std::string Api::exportChatInviteLink(
 }
 
 ChatInviteLink::Ptr
-Api::createChatInviteLink(boost::variant<std::int64_t, std::string> chatId,
+ApiImpl::createChatInviteLink(boost::variant<std::int64_t, std::string> chatId,
                           std::int32_t expireDate, std::int32_t memberLimit,
                           const std::string &name,
                           bool createsJoinRequest) const {
@@ -1360,7 +1361,7 @@ Api::createChatInviteLink(boost::variant<std::int64_t, std::string> chatId,
 }
 
 ChatInviteLink::Ptr
-Api::editChatInviteLink(boost::variant<std::int64_t, std::string> chatId,
+ApiImpl::editChatInviteLink(boost::variant<std::int64_t, std::string> chatId,
                         const std::string &inviteLink, std::int32_t expireDate,
                         std::int32_t memberLimit, const std::string &name,
                         bool createsJoinRequest) const {
@@ -1386,7 +1387,7 @@ Api::editChatInviteLink(boost::variant<std::int64_t, std::string> chatId,
 }
 
 ChatInviteLink::Ptr
-Api::revokeChatInviteLink(boost::variant<std::int64_t, std::string> chatId,
+ApiImpl::revokeChatInviteLink(boost::variant<std::int64_t, std::string> chatId,
                           const std::string &inviteLink) const {
   std::vector<HttpReqArg> args;
   args.reserve(2);
@@ -1397,7 +1398,7 @@ Api::revokeChatInviteLink(boost::variant<std::int64_t, std::string> chatId,
   return parse<ChatInviteLink>(sendRequest("revokeChatInviteLink", args));
 }
 
-bool Api::approveChatJoinRequest(
+bool ApiImpl::approveChatJoinRequest(
     boost::variant<std::int64_t, std::string> chatId,
     std::int64_t userId) const {
   std::vector<HttpReqArg> args;
@@ -1409,7 +1410,7 @@ bool Api::approveChatJoinRequest(
   return sendRequest("approveChatJoinRequest", args).asBool();
 }
 
-bool Api::declineChatJoinRequest(
+bool ApiImpl::declineChatJoinRequest(
     boost::variant<std::int64_t, std::string> chatId,
     std::int64_t userId) const {
   std::vector<HttpReqArg> args;
@@ -1421,7 +1422,7 @@ bool Api::declineChatJoinRequest(
   return sendRequest("declineChatJoinRequest", args).asBool();
 }
 
-bool Api::setChatPhoto(boost::variant<std::int64_t, std::string> chatId,
+bool ApiImpl::setChatPhoto(boost::variant<std::int64_t, std::string> chatId,
                        const InputFile::Ptr photo) const {
   std::vector<HttpReqArg> args;
   args.reserve(2);
@@ -1433,7 +1434,7 @@ bool Api::setChatPhoto(boost::variant<std::int64_t, std::string> chatId,
   return sendRequest("setChatPhoto", args).asBool();
 }
 
-bool Api::deleteChatPhoto(
+bool ApiImpl::deleteChatPhoto(
     boost::variant<std::int64_t, std::string> chatId) const {
   std::vector<HttpReqArg> args;
   args.reserve(1);
@@ -1443,7 +1444,7 @@ bool Api::deleteChatPhoto(
   return sendRequest("deleteChatPhoto", args).asBool();
 }
 
-bool Api::setChatTitle(boost::variant<std::int64_t, std::string> chatId,
+bool ApiImpl::setChatTitle(boost::variant<std::int64_t, std::string> chatId,
                        const std::string &title) const {
   std::vector<HttpReqArg> args;
   args.reserve(2);
@@ -1454,7 +1455,7 @@ bool Api::setChatTitle(boost::variant<std::int64_t, std::string> chatId,
   return sendRequest("setChatTitle", args).asBool();
 }
 
-bool Api::setChatDescription(boost::variant<std::int64_t, std::string> chatId,
+bool ApiImpl::setChatDescription(boost::variant<std::int64_t, std::string> chatId,
                              const std::string &description) const {
   std::vector<HttpReqArg> args;
   args.reserve(2);
@@ -1467,7 +1468,7 @@ bool Api::setChatDescription(boost::variant<std::int64_t, std::string> chatId,
   return sendRequest("setChatDescription", args).asBool();
 }
 
-bool Api::pinChatMessage(boost::variant<std::int64_t, std::string> chatId,
+bool ApiImpl::pinChatMessage(boost::variant<std::int64_t, std::string> chatId,
                          std::int32_t messageId,
                          bool disableNotification) const {
   std::vector<HttpReqArg> args;
@@ -1482,7 +1483,7 @@ bool Api::pinChatMessage(boost::variant<std::int64_t, std::string> chatId,
   return sendRequest("pinChatMessage", args).asBool();
 }
 
-bool Api::unpinChatMessage(boost::variant<std::int64_t, std::string> chatId,
+bool ApiImpl::unpinChatMessage(boost::variant<std::int64_t, std::string> chatId,
                            std::int32_t messageId) const {
   std::vector<HttpReqArg> args;
   args.reserve(2);
@@ -1495,7 +1496,7 @@ bool Api::unpinChatMessage(boost::variant<std::int64_t, std::string> chatId,
   return sendRequest("unpinChatMessage", args).asBool();
 }
 
-bool Api::unpinAllChatMessages(
+bool ApiImpl::unpinAllChatMessages(
     boost::variant<std::int64_t, std::string> chatId) const {
   std::vector<HttpReqArg> args;
   args.reserve(1);
@@ -1505,7 +1506,7 @@ bool Api::unpinAllChatMessages(
   return sendRequest("unpinAllChatMessages", args).asBool();
 }
 
-bool Api::leaveChat(boost::variant<std::int64_t, std::string> chatId) const {
+bool ApiImpl::leaveChat(boost::variant<std::int64_t, std::string> chatId) const {
   std::vector<HttpReqArg> args;
   args.reserve(1);
 
@@ -1514,7 +1515,7 @@ bool Api::leaveChat(boost::variant<std::int64_t, std::string> chatId) const {
   return sendRequest("leaveChat", args).asBool();
 }
 
-Chat::Ptr Api::getChat(boost::variant<std::int64_t, std::string> chatId) const {
+Chat::Ptr ApiImpl::getChat(boost::variant<std::int64_t, std::string> chatId) const {
   std::vector<HttpReqArg> args;
   args.reserve(1);
 
@@ -1523,7 +1524,7 @@ Chat::Ptr Api::getChat(boost::variant<std::int64_t, std::string> chatId) const {
   return parse<Chat>(sendRequest("getChat", args));
 }
 
-std::vector<ChatMember::Ptr> Api::getChatAdministrators(
+std::vector<ChatMember::Ptr> ApiImpl::getChatAdministrators(
     boost::variant<std::int64_t, std::string> chatId) const {
   std::vector<HttpReqArg> args;
   args.reserve(1);
@@ -1533,7 +1534,7 @@ std::vector<ChatMember::Ptr> Api::getChatAdministrators(
   return parseArray<ChatMember>(sendRequest("getChatAdministrators", args));
 }
 
-int32_t Api::getChatMemberCount(
+int32_t ApiImpl::getChatMemberCount(
     boost::variant<std::int64_t, std::string> chatId) const {
   std::vector<HttpReqArg> args;
   args.reserve(1);
@@ -1544,7 +1545,7 @@ int32_t Api::getChatMemberCount(
 }
 
 ChatMember::Ptr
-Api::getChatMember(boost::variant<std::int64_t, std::string> chatId,
+ApiImpl::getChatMember(boost::variant<std::int64_t, std::string> chatId,
                    std::int64_t userId) const {
   std::vector<HttpReqArg> args;
   args.reserve(2);
@@ -1555,7 +1556,7 @@ Api::getChatMember(boost::variant<std::int64_t, std::string> chatId,
   return parse<ChatMember>(sendRequest("getChatMember", args));
 }
 
-bool Api::setChatStickerSet(boost::variant<std::int64_t, std::string> chatId,
+bool ApiImpl::setChatStickerSet(boost::variant<std::int64_t, std::string> chatId,
                             const std::string &stickerSetName) const {
   std::vector<HttpReqArg> args;
   args.reserve(2);
@@ -1566,7 +1567,7 @@ bool Api::setChatStickerSet(boost::variant<std::int64_t, std::string> chatId,
   return sendRequest("setChatStickerSet", args).asBool();
 }
 
-bool Api::deleteChatStickerSet(
+bool ApiImpl::deleteChatStickerSet(
     boost::variant<std::int64_t, std::string> chatId) const {
   std::vector<HttpReqArg> args;
   args.reserve(1);
@@ -1576,12 +1577,12 @@ bool Api::deleteChatStickerSet(
   return sendRequest("deleteChatStickerSet", args).asBool();
 }
 
-std::vector<Sticker::Ptr> Api::getForumTopicIconStickers() const {
+std::vector<Sticker::Ptr> ApiImpl::getForumTopicIconStickers() const {
   return parseArray<Sticker>(sendRequest("getForumTopicIconStickers"));
 }
 
 ForumTopic::Ptr
-Api::createForumTopic(boost::variant<std::int64_t, std::string> chatId,
+ApiImpl::createForumTopic(boost::variant<std::int64_t, std::string> chatId,
                       const std::string &name, std::int32_t iconColor,
                       const std::string &iconCustomEmojiId) const {
   std::vector<HttpReqArg> args;
@@ -1599,7 +1600,7 @@ Api::createForumTopic(boost::variant<std::int64_t, std::string> chatId,
   return parse<ForumTopic>(sendRequest("createForumTopic", args));
 }
 
-bool Api::editForumTopic(
+bool ApiImpl::editForumTopic(
     boost::variant<std::int64_t, std::string> chatId,
     std::int32_t messageThreadId, const std::string &name,
     boost::variant<std::int32_t, std::string> iconCustomEmojiId) const {
@@ -1624,7 +1625,7 @@ bool Api::editForumTopic(
   return sendRequest("editForumTopic", args).asBool();
 }
 
-bool Api::closeForumTopic(boost::variant<std::int64_t, std::string> chatId,
+bool ApiImpl::closeForumTopic(boost::variant<std::int64_t, std::string> chatId,
                           std::int32_t messageThreadId) const {
   std::vector<HttpReqArg> args;
   args.reserve(2);
@@ -1635,7 +1636,7 @@ bool Api::closeForumTopic(boost::variant<std::int64_t, std::string> chatId,
   return sendRequest("closeForumTopic", args).asBool();
 }
 
-bool Api::reopenForumTopic(boost::variant<std::int64_t, std::string> chatId,
+bool ApiImpl::reopenForumTopic(boost::variant<std::int64_t, std::string> chatId,
                            std::int32_t messageThreadId) const {
   std::vector<HttpReqArg> args;
   args.reserve(2);
@@ -1646,7 +1647,7 @@ bool Api::reopenForumTopic(boost::variant<std::int64_t, std::string> chatId,
   return sendRequest("reopenForumTopic", args).asBool();
 }
 
-bool Api::deleteForumTopic(boost::variant<std::int64_t, std::string> chatId,
+bool ApiImpl::deleteForumTopic(boost::variant<std::int64_t, std::string> chatId,
                            std::int32_t messageThreadId) const {
   std::vector<HttpReqArg> args;
   args.reserve(2);
@@ -1657,7 +1658,7 @@ bool Api::deleteForumTopic(boost::variant<std::int64_t, std::string> chatId,
   return sendRequest("deleteForumTopic", args).asBool();
 }
 
-bool Api::unpinAllForumTopicMessages(
+bool ApiImpl::unpinAllForumTopicMessages(
     boost::variant<std::int64_t, std::string> chatId,
     std::int32_t messageThreadId) const {
   std::vector<HttpReqArg> args;
@@ -1669,7 +1670,7 @@ bool Api::unpinAllForumTopicMessages(
   return sendRequest("unpinAllForumTopicMessages", args).asBool();
 }
 
-bool Api::editGeneralForumTopic(
+bool ApiImpl::editGeneralForumTopic(
     boost::variant<std::int64_t, std::string> chatId, std::string name) const {
   std::vector<HttpReqArg> args;
   args.reserve(2);
@@ -1680,7 +1681,7 @@ bool Api::editGeneralForumTopic(
   return sendRequest("editGeneralForumTopic", args).asBool();
 }
 
-bool Api::closeGeneralForumTopic(
+bool ApiImpl::closeGeneralForumTopic(
     boost::variant<std::int64_t, std::string> chatId) const {
   std::vector<HttpReqArg> args;
   args.reserve(1);
@@ -1690,7 +1691,7 @@ bool Api::closeGeneralForumTopic(
   return sendRequest("closeGeneralForumTopic", args).asBool();
 }
 
-bool Api::reopenGeneralForumTopic(
+bool ApiImpl::reopenGeneralForumTopic(
     boost::variant<std::int64_t, std::string> chatId) const {
   std::vector<HttpReqArg> args;
   args.reserve(1);
@@ -1700,7 +1701,7 @@ bool Api::reopenGeneralForumTopic(
   return sendRequest("reopenGeneralForumTopic", args).asBool();
 }
 
-bool Api::hideGeneralForumTopic(
+bool ApiImpl::hideGeneralForumTopic(
     boost::variant<std::int64_t, std::string> chatId) const {
   std::vector<HttpReqArg> args;
   args.reserve(1);
@@ -1710,7 +1711,7 @@ bool Api::hideGeneralForumTopic(
   return sendRequest("hideGeneralForumTopic", args).asBool();
 }
 
-bool Api::unhideGeneralForumTopic(
+bool ApiImpl::unhideGeneralForumTopic(
     boost::variant<std::int64_t, std::string> chatId) const {
   std::vector<HttpReqArg> args;
   args.reserve(1);
@@ -1720,7 +1721,7 @@ bool Api::unhideGeneralForumTopic(
   return sendRequest("unhideGeneralForumTopic", args).asBool();
 }
 
-bool Api::unpinAllGeneralForumTopicMessages(
+bool ApiImpl::unpinAllGeneralForumTopicMessages(
     boost::variant<std::int64_t, std::string> chatId) const {
   std::vector<HttpReqArg> args;
   args.reserve(1);
@@ -1731,7 +1732,7 @@ bool Api::unpinAllGeneralForumTopicMessages(
       .asBool();
 }
 
-bool Api::answerCallbackQuery(const std::string &callbackQueryId,
+bool ApiImpl::answerCallbackQuery(const std::string &callbackQueryId,
                               const std::string &text, bool showAlert,
                               const std::string &url,
                               std::int32_t cacheTime) const {
@@ -1756,7 +1757,7 @@ bool Api::answerCallbackQuery(const std::string &callbackQueryId,
 }
 
 UserChatBoosts::Ptr
-Api::getUserChatBoosts(boost::variant<std::int64_t, std::string> chatId,
+ApiImpl::getUserChatBoosts(boost::variant<std::int64_t, std::string> chatId,
                        std::int32_t userId) const {
   std::vector<HttpReqArg> args;
   args.reserve(2);
@@ -1768,7 +1769,7 @@ Api::getUserChatBoosts(boost::variant<std::int64_t, std::string> chatId,
 }
 
 BusinessConnection::Ptr
-Api::getBusinessConnection(const std::string &businessConnectionId) const {
+ApiImpl::getBusinessConnection(const std::string &businessConnectionId) const {
   std::vector<HttpReqArg> args;
   args.reserve(1);
 
@@ -1777,7 +1778,7 @@ Api::getBusinessConnection(const std::string &businessConnectionId) const {
   return parse<BusinessConnection>(sendRequest("getBusinessConnection", args));
 }
 
-bool Api::setMyCommands(const std::vector<BotCommand::Ptr> &commands,
+bool ApiImpl::setMyCommands(const std::vector<BotCommand::Ptr> &commands,
                         BotCommandScope::Ptr scope,
                         const std::string &languageCode) const {
   std::vector<HttpReqArg> args;
@@ -1794,7 +1795,7 @@ bool Api::setMyCommands(const std::vector<BotCommand::Ptr> &commands,
   return sendRequest("setMyCommands", args).asBool();
 }
 
-bool Api::deleteMyCommands(BotCommandScope::Ptr scope,
+bool ApiImpl::deleteMyCommands(BotCommandScope::Ptr scope,
                            const std::string &languageCode) const {
   std::vector<HttpReqArg> args;
   args.reserve(2);
@@ -1810,7 +1811,7 @@ bool Api::deleteMyCommands(BotCommandScope::Ptr scope,
 }
 
 std::vector<BotCommand::Ptr>
-Api::getMyCommands(BotCommandScope::Ptr scope,
+ApiImpl::getMyCommands(BotCommandScope::Ptr scope,
                    const std::string &languageCode) const {
   std::vector<HttpReqArg> args;
   args.reserve(2);
@@ -1825,7 +1826,7 @@ Api::getMyCommands(BotCommandScope::Ptr scope,
   return parseArray<BotCommand>(sendRequest("getMyCommands", args));
 }
 
-bool Api::setMyName(const std::string &name,
+bool ApiImpl::setMyName(const std::string &name,
                     const std::string &languageCode) const {
   std::vector<HttpReqArg> args;
   args.reserve(2);
@@ -1840,7 +1841,7 @@ bool Api::setMyName(const std::string &name,
   return sendRequest("setMyName", args).asBool();
 }
 
-BotName::Ptr Api::getMyName(const std::string &languageCode) const {
+BotName::Ptr ApiImpl::getMyName(const std::string &languageCode) const {
   std::vector<HttpReqArg> args;
   args.reserve(1);
 
@@ -1851,7 +1852,7 @@ BotName::Ptr Api::getMyName(const std::string &languageCode) const {
   return parse<BotName>(sendRequest("getMyName", args));
 }
 
-bool Api::setMyDescription(const std::string &description,
+bool ApiImpl::setMyDescription(const std::string &description,
                            const std::string &languageCode) const {
   std::vector<HttpReqArg> args;
   args.reserve(2);
@@ -1867,7 +1868,7 @@ bool Api::setMyDescription(const std::string &description,
 }
 
 BotDescription::Ptr
-Api::getMyDescription(const std::string &languageCode) const {
+ApiImpl::getMyDescription(const std::string &languageCode) const {
   std::vector<HttpReqArg> args;
   args.reserve(1);
 
@@ -1878,7 +1879,7 @@ Api::getMyDescription(const std::string &languageCode) const {
   return parse<BotDescription>(sendRequest("getMyDescription", args));
 }
 
-bool Api::setMyShortDescription(const std::string &shortDescription,
+bool ApiImpl::setMyShortDescription(const std::string &shortDescription,
                                 const std::string &languageCode) const {
   std::vector<HttpReqArg> args;
   args.reserve(2);
@@ -1894,7 +1895,7 @@ bool Api::setMyShortDescription(const std::string &shortDescription,
 }
 
 BotShortDescription::Ptr
-Api::getMyShortDescription(const std::string &languageCode) const {
+ApiImpl::getMyShortDescription(const std::string &languageCode) const {
   std::vector<HttpReqArg> args;
   args.reserve(1);
 
@@ -1905,7 +1906,7 @@ Api::getMyShortDescription(const std::string &languageCode) const {
   return parse<BotShortDescription>(sendRequest("getMyShortDescription", args));
 }
 
-bool Api::setChatMenuButton(std::int64_t chatId,
+bool ApiImpl::setChatMenuButton(std::int64_t chatId,
                             MenuButton::Ptr menuButton) const {
   std::vector<HttpReqArg> args;
   args.reserve(2);
@@ -1920,7 +1921,7 @@ bool Api::setChatMenuButton(std::int64_t chatId,
   return sendRequest("setChatMenuButton", args).asBool();
 }
 
-MenuButton::Ptr Api::getChatMenuButton(std::int64_t chatId) const {
+MenuButton::Ptr ApiImpl::getChatMenuButton(std::int64_t chatId) const {
   std::vector<HttpReqArg> args;
   args.reserve(1);
 
@@ -1931,7 +1932,7 @@ MenuButton::Ptr Api::getChatMenuButton(std::int64_t chatId) const {
   return parse<MenuButton>(sendRequest("getChatMenuButton", args));
 }
 
-bool Api::setMyDefaultAdministratorRights(ChatAdministratorRights::Ptr rights,
+bool ApiImpl::setMyDefaultAdministratorRights(ChatAdministratorRights::Ptr rights,
                                           bool forChannels) const {
   std::vector<HttpReqArg> args;
   args.reserve(2);
@@ -1948,7 +1949,7 @@ bool Api::setMyDefaultAdministratorRights(ChatAdministratorRights::Ptr rights,
 }
 
 ChatAdministratorRights::Ptr
-Api::getMyDefaultAdministratorRights(bool forChannels) const {
+ApiImpl::getMyDefaultAdministratorRights(bool forChannels) const {
   std::vector<HttpReqArg> args;
   args.reserve(1);
 
@@ -1960,7 +1961,7 @@ Api::getMyDefaultAdministratorRights(bool forChannels) const {
       sendRequest("getMyDefaultAdministratorRights", args));
 }
 
-Message::Ptr Api::editMessageText(
+Message::Ptr ApiImpl::editMessageText(
     const std::string &text, boost::variant<std::int64_t, std::string> chatId,
     std::int32_t messageId, const std::string &inlineMessageId,
     const std::string &parseMode, LinkPreviewOptions::Ptr linkPreviewOptions,
@@ -2006,7 +2007,7 @@ Message::Ptr Api::editMessageText(
   }
 }
 
-Message::Ptr Api::editMessageCaption(
+Message::Ptr ApiImpl::editMessageCaption(
     boost::variant<std::int64_t, std::string> chatId, std::int32_t messageId,
     const std::string &caption, const std::string &inlineMessageId,
     GenericReply::Ptr replyMarkup, const std::string &parseMode,
@@ -2050,7 +2051,7 @@ Message::Ptr Api::editMessageCaption(
   }
 }
 
-Message::Ptr Api::editMessageMedia(
+Message::Ptr ApiImpl::editMessageMedia(
     InputMedia::Ptr media, boost::variant<std::int64_t, std::string> chatId,
     std::int32_t messageId, const std::string &inlineMessageId,
     GenericReply::Ptr replyMarkup) const {
@@ -2087,7 +2088,7 @@ Message::Ptr Api::editMessageMedia(
 }
 
 Message::Ptr
-Api::editMessageReplyMarkup(boost::variant<std::int64_t, std::string> chatId,
+ApiImpl::editMessageReplyMarkup(boost::variant<std::int64_t, std::string> chatId,
                             std::int32_t messageId,
                             const std::string &inlineMessageId,
                             const GenericReply::Ptr replyMarkup) const {
@@ -2122,7 +2123,7 @@ Api::editMessageReplyMarkup(boost::variant<std::int64_t, std::string> chatId,
   }
 }
 
-Poll::Ptr Api::stopPoll(boost::variant<std::int64_t, std::string> chatId,
+Poll::Ptr ApiImpl::stopPoll(boost::variant<std::int64_t, std::string> chatId,
                         std::int64_t messageId,
                         const InlineKeyboardMarkup::Ptr replyMarkup) const {
   std::vector<HttpReqArg> args;
@@ -2137,7 +2138,7 @@ Poll::Ptr Api::stopPoll(boost::variant<std::int64_t, std::string> chatId,
   return parse<Poll>(sendRequest("stopPoll", args));
 }
 
-bool Api::deleteMessage(boost::variant<std::int64_t, std::string> chatId,
+bool ApiImpl::deleteMessage(boost::variant<std::int64_t, std::string> chatId,
                         std::int32_t messageId) const {
   std::vector<HttpReqArg> args;
   args.reserve(2);
@@ -2148,7 +2149,7 @@ bool Api::deleteMessage(boost::variant<std::int64_t, std::string> chatId,
   return sendRequest("deleteMessage", args).asBool();
 }
 
-bool Api::deleteMessages(boost::variant<std::int64_t, std::string> chatId,
+bool ApiImpl::deleteMessages(boost::variant<std::int64_t, std::string> chatId,
                          const std::vector<std::int32_t> &messageIds) const {
   std::vector<HttpReqArg> args;
   args.reserve(2);
@@ -2161,7 +2162,7 @@ bool Api::deleteMessages(boost::variant<std::int64_t, std::string> chatId,
   return sendRequest("deleteMessages", args).asBool();
 }
 
-Message::Ptr Api::sendSticker(
+Message::Ptr ApiImpl::sendSticker(
     boost::variant<std::int64_t, std::string> chatId,
     boost::variant<InputFile::Ptr, std::string> sticker,
     ReplyParameters::Ptr replyParameters, GenericReply::Ptr replyMarkup,
@@ -2203,7 +2204,7 @@ Message::Ptr Api::sendSticker(
   return parse<Message>(sendRequest("sendSticker", args));
 }
 
-StickerSet::Ptr Api::getStickerSet(const std::string &name) const {
+StickerSet::Ptr ApiImpl::getStickerSet(const std::string &name) const {
   std::vector<HttpReqArg> args;
   args.reserve(1);
 
@@ -2212,7 +2213,7 @@ StickerSet::Ptr Api::getStickerSet(const std::string &name) const {
   return parse<StickerSet>(sendRequest("getStickerSet", args));
 }
 
-std::vector<Sticker::Ptr> Api::getCustomEmojiStickers(
+std::vector<Sticker::Ptr> ApiImpl::getCustomEmojiStickers(
     const std::vector<std::string> &customEmojiIds) const {
   std::vector<HttpReqArg> args;
   args.reserve(1);
@@ -2223,7 +2224,7 @@ std::vector<Sticker::Ptr> Api::getCustomEmojiStickers(
   return parseArray<Sticker>(sendRequest("getCustomEmojiStickers", args));
 }
 
-File::Ptr Api::uploadStickerFile(std::int64_t userId, InputFile::Ptr sticker,
+File::Ptr ApiImpl::uploadStickerFile(std::int64_t userId, InputFile::Ptr sticker,
                                  const std::string &stickerFormat) const {
   std::vector<HttpReqArg> args;
   args.reserve(3);
@@ -2236,7 +2237,7 @@ File::Ptr Api::uploadStickerFile(std::int64_t userId, InputFile::Ptr sticker,
   return parse<File>(sendRequest("uploadStickerFile", args));
 }
 
-bool Api::createNewStickerSet(std::int64_t userId, const std::string &name,
+bool ApiImpl::createNewStickerSet(std::int64_t userId, const std::string &name,
                               const std::string &title,
                               const std::vector<InputSticker::Ptr> &stickers,
                               Sticker::Type stickerType,
@@ -2262,7 +2263,7 @@ bool Api::createNewStickerSet(std::int64_t userId, const std::string &name,
   return sendRequest("createNewStickerSet", args).asBool();
 }
 
-bool Api::addStickerToSet(std::int64_t userId, const std::string &name,
+bool ApiImpl::addStickerToSet(std::int64_t userId, const std::string &name,
                           InputSticker::Ptr sticker) const {
   std::vector<HttpReqArg> args;
   args.reserve(3);
@@ -2274,7 +2275,7 @@ bool Api::addStickerToSet(std::int64_t userId, const std::string &name,
   return sendRequest("addStickerToSet", args).asBool();
 }
 
-bool Api::setStickerPositionInSet(const std::string &sticker,
+bool ApiImpl::setStickerPositionInSet(const std::string &sticker,
                                   std::int32_t position) const {
   std::vector<HttpReqArg> args;
   args.reserve(2);
@@ -2285,7 +2286,7 @@ bool Api::setStickerPositionInSet(const std::string &sticker,
   return sendRequest("setStickerPositionInSet", args).asBool();
 }
 
-bool Api::deleteStickerFromSet(const std::string &sticker) const {
+bool ApiImpl::deleteStickerFromSet(const std::string &sticker) const {
   std::vector<HttpReqArg> args;
   args.reserve(1);
 
@@ -2294,7 +2295,7 @@ bool Api::deleteStickerFromSet(const std::string &sticker) const {
   return sendRequest("deleteStickerFromSet", args).asBool();
 }
 
-bool Api::replaceStickerInSet(std::int64_t userId, const std::string &name,
+bool ApiImpl::replaceStickerInSet(std::int64_t userId, const std::string &name,
                               const std::string &oldSticker,
                               InputSticker::Ptr sticker) const {
   std::vector<HttpReqArg> args;
@@ -2308,7 +2309,7 @@ bool Api::replaceStickerInSet(std::int64_t userId, const std::string &name,
   return sendRequest("replaceStickerInSet", args).asBool();
 }
 
-bool Api::setStickerEmojiList(const std::string &sticker,
+bool ApiImpl::setStickerEmojiList(const std::string &sticker,
                               const std::vector<std::string> &emojiList) const {
   std::vector<HttpReqArg> args;
   args.reserve(2);
@@ -2318,7 +2319,7 @@ bool Api::setStickerEmojiList(const std::string &sticker,
   return sendRequest("setStickerEmojiList", args).asBool();
 }
 
-bool Api::setStickerKeywords(const std::string &sticker,
+bool ApiImpl::setStickerKeywords(const std::string &sticker,
                              const std::vector<std::string> &keywords) const {
   std::vector<HttpReqArg> args;
   args.reserve(2);
@@ -2331,7 +2332,7 @@ bool Api::setStickerKeywords(const std::string &sticker,
   return sendRequest("setStickerKeywords", args).asBool();
 }
 
-bool Api::setStickerMaskPosition(const std::string &sticker,
+bool ApiImpl::setStickerMaskPosition(const std::string &sticker,
                                  MaskPosition::Ptr maskPosition) const {
   std::vector<HttpReqArg> args;
   args.reserve(2);
@@ -2344,7 +2345,7 @@ bool Api::setStickerMaskPosition(const std::string &sticker,
   return sendRequest("setStickerMaskPosition", args).asBool();
 }
 
-bool Api::setStickerSetTitle(const std::string &name,
+bool ApiImpl::setStickerSetTitle(const std::string &name,
                              const std::string &title) const {
   std::vector<HttpReqArg> args;
   args.reserve(2);
@@ -2355,7 +2356,7 @@ bool Api::setStickerSetTitle(const std::string &name,
   return sendRequest("setStickerSetTitle", args).asBool();
 }
 
-bool Api::setStickerSetThumbnail(
+bool ApiImpl::setStickerSetThumbnail(
     const std::string &name, std::int64_t userId, const std::string &format,
     boost::variant<InputFile::Ptr, std::string> thumbnail) const {
   std::vector<HttpReqArg> args;
@@ -2379,7 +2380,7 @@ bool Api::setStickerSetThumbnail(
   return sendRequest("setStickerSetThumbnail", args).asBool();
 }
 
-bool Api::setCustomEmojiStickerSetThumbnail(
+bool ApiImpl::setCustomEmojiStickerSetThumbnail(
     const std::string &name, const std::string &customEmojiId) const {
   std::vector<HttpReqArg> args;
   args.reserve(2);
@@ -2393,7 +2394,7 @@ bool Api::setCustomEmojiStickerSetThumbnail(
       .asBool();
 }
 
-bool Api::deleteStickerSet(const std::string &name) const {
+bool ApiImpl::deleteStickerSet(const std::string &name) const {
   std::vector<HttpReqArg> args;
   args.reserve(1);
 
@@ -2402,7 +2403,7 @@ bool Api::deleteStickerSet(const std::string &name) const {
   return sendRequest("deleteStickerSet", args).asBool();
 }
 
-bool Api::answerInlineQuery(const std::string &inlineQueryId,
+bool ApiImpl::answerInlineQuery(const std::string &inlineQueryId,
                             const std::vector<InlineQueryResult::Ptr> &results,
                             std::int32_t cacheTime, bool isPersonal,
                             const std::string &nextOffset,
@@ -2429,7 +2430,7 @@ bool Api::answerInlineQuery(const std::string &inlineQueryId,
 }
 
 SentWebAppMessage::Ptr
-Api::answerWebAppQuery(const std::string &webAppQueryId,
+ApiImpl::answerWebAppQuery(const std::string &webAppQueryId,
                        InlineQueryResult::Ptr result) const {
   std::vector<HttpReqArg> args;
   args.reserve(2);
@@ -2441,7 +2442,7 @@ Api::answerWebAppQuery(const std::string &webAppQueryId,
 }
 
 Message::Ptr
-Api::sendInvoice(boost::variant<std::int64_t, std::string> chatId,
+ApiImpl::sendInvoice(boost::variant<std::int64_t, std::string> chatId,
                  const std::string &title, const std::string &description,
                  const std::string &payload, const std::string &providerToken,
                  const std::string &currency,
@@ -2529,7 +2530,7 @@ Api::sendInvoice(boost::variant<std::int64_t, std::string> chatId,
   return parse<Message>(sendRequest("sendInvoice", args));
 }
 
-std::string Api::createInvoiceLink(
+std::string ApiImpl::createInvoiceLink(
     const std::string &title, const std::string &description,
     const std::string &payload, const std::string &providerToken,
     const std::string &currency, const std::vector<LabeledPrice::Ptr> &prices,
@@ -2594,7 +2595,7 @@ std::string Api::createInvoiceLink(
   return sendRequest("createInvoiceLink", args).asString();
 }
 
-bool Api::answerShippingQuery(
+bool ApiImpl::answerShippingQuery(
     const std::string &shippingQueryId, bool ok,
     const std::vector<ShippingOption::Ptr> &shippingOptions,
     const std::string &errorMessage) const {
@@ -2613,7 +2614,7 @@ bool Api::answerShippingQuery(
   return sendRequest("answerShippingQuery", args).asBool();
 }
 
-bool Api::answerPreCheckoutQuery(const std::string &preCheckoutQueryId, bool ok,
+bool ApiImpl::answerPreCheckoutQuery(const std::string &preCheckoutQueryId, bool ok,
                                  const std::string &errorMessage) const {
   std::vector<HttpReqArg> args;
   args.reserve(3);
@@ -2627,7 +2628,7 @@ bool Api::answerPreCheckoutQuery(const std::string &preCheckoutQueryId, bool ok,
   return sendRequest("answerPreCheckoutQuery", args).asBool();
 }
 
-bool Api::setPassportDataErrors(
+bool ApiImpl::setPassportDataErrors(
     std::int64_t userId,
     const std::vector<PassportElementError::Ptr> &errors) const {
   std::vector<HttpReqArg> args;
@@ -2639,7 +2640,7 @@ bool Api::setPassportDataErrors(
   return sendRequest("setPassportDataErrors", args).asBool();
 }
 
-Message::Ptr Api::sendGame(std::int64_t chatId,
+Message::Ptr ApiImpl::sendGame(std::int64_t chatId,
                            const std::string &gameShortName,
                            ReplyParameters::Ptr replyParameters,
                            InlineKeyboardMarkup::Ptr replyMarkup,
@@ -2673,7 +2674,7 @@ Message::Ptr Api::sendGame(std::int64_t chatId,
   return parse<Message>(sendRequest("sendGame", args));
 }
 
-Message::Ptr Api::setGameScore(std::int64_t userId, std::int32_t score,
+Message::Ptr ApiImpl::setGameScore(std::int64_t userId, std::int32_t score,
                                bool force, bool disableEditMessage,
                                std::int64_t chatId, std::int32_t messageId,
                                const std::string &inlineMessageId) const {
@@ -2702,7 +2703,7 @@ Message::Ptr Api::setGameScore(std::int64_t userId, std::int32_t score,
 }
 
 std::vector<GameHighScore::Ptr>
-Api::getGameHighScores(std::int64_t userId, std::int64_t chatId,
+ApiImpl::getGameHighScores(std::int64_t userId, std::int64_t chatId,
                        std::int32_t messageId,
                        const std::string &inlineMessageId) const {
   std::vector<HttpReqArg> args;
@@ -2722,7 +2723,7 @@ Api::getGameHighScores(std::int64_t userId, std::int64_t chatId,
   return parseArray<GameHighScore>(sendRequest("getGameHighScores", args));
 }
 
-std::string Api::downloadFile(const std::string &filePath,
+std::string ApiImpl::downloadFile(const std::string &filePath,
                               const std::vector<HttpReqArg> &args) const {
   std::string url(_url);
   url += "/file/bot";
@@ -2733,7 +2734,7 @@ std::string Api::downloadFile(const std::string &filePath,
   return _httpClient.makeRequest(url, args);
 }
 
-bool Api::blockedByUser(std::int64_t chatId) const {
+bool ApiImpl::blockedByUser(std::int64_t chatId) const {
   bool isBotBlocked = false;
 
   try {
@@ -2753,8 +2754,8 @@ bool Api::blockedByUser(std::int64_t chatId) const {
 constexpr bool kSendRequestDebug = false;
 
 Json::Value
-Api::sendRequest(const std::string &method,
-                 const std::vector<HttpReqArg> &args) const {
+TgBot::ApiImpl::sendRequest(const std::string &method,
+                 const std::vector<TgBot::HttpReqArg> &args) const {
   std::string url(_url);
   url += "/bot";
   url += _token;

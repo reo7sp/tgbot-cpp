@@ -1,70 +1,28 @@
-#ifndef TGBOT_API_H
-#define TGBOT_API_H
+#ifndef TGBOT_API_PRIV_H
+#define TGBOT_API_PRIV_H
 
-#include "tgbot/net/HttpReqArg.h"
-#include "tgbot/types/BotCommand.h"
-#include "tgbot/types/BotCommandScope.h"
-#include "tgbot/types/BotDescription.h"
-#include "tgbot/types/BotName.h"
-#include "tgbot/types/BotShortDescription.h"
-#include "tgbot/types/BusinessConnection.h"
-#include "tgbot/types/Chat.h"
-#include "tgbot/types/ChatAdministratorRights.h"
-#include "tgbot/types/ChatInviteLink.h"
-#include "tgbot/types/ChatMember.h"
-#include "tgbot/types/ChatPermissions.h"
-#include "tgbot/types/File.h"
-#include "tgbot/types/ForumTopic.h"
-#include "tgbot/types/GameHighScore.h"
-#include "tgbot/types/GenericReply.h"
-#include "tgbot/types/GiveawayCompleted.h"
-#include "tgbot/types/InlineKeyboardMarkup.h"
-#include "tgbot/types/InlineQueryResult.h"
-#include "tgbot/types/InlineQueryResultsButton.h"
-#include "tgbot/types/InputMedia.h"
-#include "tgbot/types/InputFile.h"
-#include "tgbot/types/InputSticker.h"
-#include "tgbot/types/LabeledPrice.h"
-#include "tgbot/types/LinkPreviewOptions.h"
-#include "tgbot/types/MaskPosition.h"
-#include "tgbot/types/MenuButton.h"
-#include "tgbot/types/Message.h"
-#include "tgbot/types/MessageEntity.h"
-#include "tgbot/types/MessageId.h"
-#include "tgbot/types/PassportElementError.h"
-#include "tgbot/types/Poll.h"
-#include "tgbot/types/ReactionType.h"
-#include "tgbot/types/ReplyParameters.h"
-#include "tgbot/types/SentWebAppMessage.h"
-#include "tgbot/types/ShippingOption.h"
-#include "tgbot/types/Sticker.h"
-#include "tgbot/types/StickerSet.h"
-#include "tgbot/types/Update.h"
-#include "tgbot/types/User.h"
-#include "tgbot/types/UserChatBoosts.h"
-#include "tgbot/types/UserProfilePhotos.h"
-#include "tgbot/types/WebhookInfo.h"
-#include <boost/variant.hpp>
-
-#include <cstdint>
-#include <memory>
-#include <string>
-#include <vector>
+#include <json/json.h>
+#include <tgbot/Api.h>
+#include <tgbot/export.h>
+#include <tgbot/net/HttpClient.h>
 
 namespace TgBot {
 
 class Bot;
 
 /**
- * @brief This class executes telegram api methods. Telegram docs: <https://core.telegram.org/bots/api#available-methods>
+ * @brief This class is a API class that implements internal logic
  *
  * @ingroup general
  */
-class TGBOT_API Api {
+class TGBOT_API ApiImpl : public Api {
+    friend class Bot;
 
 public:
-    typedef std::shared_ptr<std::vector<std::string>> StringArrayPtr;
-    
+    ApiImpl(std::string token, const HttpClient& httpClient,
+            std::string url);
+    ~ApiImpl() override = default;
+
     /**
      * @brief Use this method to receive incoming updates using long polling ([wiki](https://en.wikipedia.org/wiki/Push_technology#Long_polling)).
      *
@@ -79,10 +37,10 @@ public:
      *
      * @return Returns an Array of Update objects.
      */
-    virtual std::vector<Update::Ptr> getUpdates(std::int32_t offset = 0,
+    std::vector<Update::Ptr> getUpdates(std::int32_t offset = 0,
                                         std::int32_t limit = 100,
                                         std::int32_t timeout = 0,
-                                        const StringArrayPtr& allowedUpdates = nullptr) const = 0;
+                                        const StringArrayPtr& allowedUpdates = nullptr) const override;
 
     /**
      * @brief Use this method to specify a URL and receive incoming updates via an outgoing webhook.
@@ -110,13 +68,13 @@ public:
      *
      * @return Returns True on success.
      */
-    virtual bool setWebhook(const std::string& url,
+    bool setWebhook(const std::string& url,
                     InputFile::Ptr certificate = nullptr,
                     std::int32_t maxConnections = 40,
                     const StringArrayPtr& allowedUpdates = nullptr,
                     const std::string& ipAddress = "",
                     bool dropPendingUpdates = false,
-                    const std::string& secretToken = "") const = 0;
+                    const std::string& secretToken = "") const override;
 
     /**
      * @brief Use this method to remove webhook integration if you decide to switch back to Api::getUpdates.
@@ -125,7 +83,7 @@ public:
      *
      * @return Returns True on success.
      */
-    virtual bool deleteWebhook(bool dropPendingUpdates = false) const = 0;
+    bool deleteWebhook(bool dropPendingUpdates = false) const override;
 
     /**
      * @brief Use this method to get current webhook status.
@@ -135,7 +93,7 @@ public:
      *
      * @return On success, returns a WebhookInfo object. If the bot is using getUpdates, will return a nullptr.
      */
-    virtual WebhookInfo::Ptr getWebhookInfo() const = 0;
+    WebhookInfo::Ptr getWebhookInfo() const override;
 
     /**
      * @brief A simple method for testing your bot's authentication token.
@@ -144,7 +102,7 @@ public:
      * 
      * @return Returns basic information about the bot in form of a User object.
      */
-    virtual User::Ptr getMe() const = 0;
+    User::Ptr getMe() const override;
 
     /**
      * @brief Use this method to log out from the cloud Bot API server before launching the bot locally.
@@ -155,7 +113,7 @@ public:
      *
      * @return Returns True on success.
      */
-    virtual bool logOut() const = 0;
+    bool logOut() const override;
 
     /**
      * @brief Use this method to close the bot instance before moving it from one local server to another.
@@ -166,7 +124,7 @@ public:
      *
      * @return Returns True on success.
      */
-    virtual bool close() const = 0;
+    bool close() const override;
 
     /**
      * @brief Use this method to send text messages.
@@ -185,7 +143,7 @@ public:
      *
      * @return On success, the sent Message is returned.
      */
-    virtual Message::Ptr sendMessage(boost::variant<std::int64_t, std::string> chatId,
+    Message::Ptr sendMessage(boost::variant<std::int64_t, std::string> chatId,
                              const std::string& text,
                              LinkPreviewOptions::Ptr linkPreviewOptions = nullptr,
                              ReplyParameters::Ptr replyParameters = nullptr,
@@ -195,7 +153,7 @@ public:
                              const std::vector<MessageEntity::Ptr>& entities = std::vector<MessageEntity::Ptr>(),
                              std::int32_t messageThreadId = 0,
                              bool protectContent = false,
-                             const std::string& businessConnectionId = "") const = 0;
+                             const std::string& businessConnectionId = "") const override;
 
     /**
      * @brief Use this method to forward messages of any kind.
@@ -211,12 +169,12 @@ public:
      *
      * @return On success, the sent Message is returned.
      */
-    virtual Message::Ptr forwardMessage(boost::variant<std::int64_t, std::string> chatId,
+    Message::Ptr forwardMessage(boost::variant<std::int64_t, std::string> chatId,
                                 boost::variant<std::int64_t, std::string> fromChatId,
                                 std::int32_t messageId,
                                 bool disableNotification = false,
                                 bool protectContent = false,
-                                std::int32_t messageThreadId = 0) const = 0;
+                                std::int32_t messageThreadId = 0) const override;
 
     /**
      * @brief Use this method to forward multiple messages of any kind.
@@ -234,12 +192,12 @@ public:
      *
      * @return On success, an array of MessageId of the sent messages is returned.
      */
-    virtual std::vector<MessageId::Ptr> forwardMessages(boost::variant<std::int64_t, std::string> chatId,
+    std::vector<MessageId::Ptr> forwardMessages(boost::variant<std::int64_t, std::string> chatId,
                                                 boost::variant<std::int64_t, std::string> fromChatId,
                                                 const std::vector<std::int32_t>& messageIds,
                                                 std::int32_t messageThreadId = 0,
                                                 bool disableNotification = false,
-                                                bool protectContent = false) const = 0;
+                                                bool protectContent = false) const override;
 
     /**
      * @brief Use this method to copy messages of any kind.
@@ -262,7 +220,7 @@ public:
      *
      * @return Returns the MessageId of the sent message on success.
      */
-    virtual MessageId::Ptr copyMessage(boost::variant<std::int64_t, std::string> chatId,
+    MessageId::Ptr copyMessage(boost::variant<std::int64_t, std::string> chatId,
                                boost::variant<std::int64_t, std::string> fromChatId,
                                std::int32_t messageId,
                                const std::string& caption = "",
@@ -272,7 +230,7 @@ public:
                                ReplyParameters::Ptr replyParameters = nullptr,
                                GenericReply::Ptr replyMarkup = nullptr,
                                bool protectContent = false,
-                               std::int32_t messageThreadId = 0) const = 0;
+                               std::int32_t messageThreadId = 0) const override;
 
     /**
      * @brief Use this method to copy messages of any kind.
@@ -293,13 +251,13 @@ public:
      *
      * @return On success, an array of MessageId of the sent messages is returned.
      */
-    virtual std::vector<MessageId::Ptr> copyMessages(boost::variant<std::int64_t, std::string> chatId,
+    std::vector<MessageId::Ptr> copyMessages(boost::variant<std::int64_t, std::string> chatId,
                                              boost::variant<std::int64_t, std::string> fromChatId,
                                              const std::vector<std::int32_t>& messageIds,
                                              std::int32_t messageThreadId = 0,
                                              bool disableNotification = false,
                                              bool protectContent = false,
-                                             bool removeCaption = false) const = 0;
+                                             bool removeCaption = false) const override;
 
     /**
      * @brief Use this method to send photos.
@@ -319,7 +277,7 @@ public:
      *
      * @return On success, the sent Message is returned.
      */
-    virtual Message::Ptr sendPhoto(boost::variant<std::int64_t, std::string> chatId,
+    Message::Ptr sendPhoto(boost::variant<std::int64_t, std::string> chatId,
                            boost::variant<InputFile::Ptr, std::string> photo,
                            const std::string& caption = "",
                            ReplyParameters::Ptr replyParameters = nullptr,
@@ -330,7 +288,7 @@ public:
                            std::int32_t messageThreadId = 0,
                            bool protectContent = false,
                            bool hasSpoiler = false,
-                           const std::string& businessConnectionId = "") const = 0;
+                           const std::string& businessConnectionId = "") const override;
 
     /**
      * @brief Use this method to send audio files, if you want Telegram clients to display them in the music player.
@@ -358,7 +316,7 @@ public:
      *
      * @return On success, the sent Message is returned.
      */
-    virtual Message::Ptr sendAudio(boost::variant<std::int64_t, std::string> chatId,
+    Message::Ptr sendAudio(boost::variant<std::int64_t, std::string> chatId,
                            boost::variant<InputFile::Ptr, std::string> audio,
                            const std::string& caption = "",
                            std::int32_t duration = 0,
@@ -372,7 +330,7 @@ public:
                            const std::vector<MessageEntity::Ptr>& captionEntities = std::vector<MessageEntity::Ptr>(),
                            std::int32_t messageThreadId = 0,
                            bool protectContent = false,
-                           const std::string& businessConnectionId = "") const = 0;
+                           const std::string& businessConnectionId = "") const override;
 
     /**
      * @brief Use this method to send general files.
@@ -395,7 +353,7 @@ public:
      *
      * @return On success, the sent Message is returned.
      */
-    virtual Message::Ptr sendDocument(boost::variant<std::int64_t, std::string> chatId,
+    Message::Ptr sendDocument(boost::variant<std::int64_t, std::string> chatId,
                               boost::variant<InputFile::Ptr, std::string> document,
                               boost::variant<InputFile::Ptr, std::string> thumbnail = "",
                               const std::string& caption = "",
@@ -407,7 +365,7 @@ public:
                               bool disableContentTypeDetection = false,
                               std::int32_t messageThreadId = 0,
                               bool protectContent = false,
-                              const std::string& businessConnectionId = "") const = 0;
+                              const std::string& businessConnectionId = "") const override;
 
     /**
      * @brief Use this method to send video files, Telegram clients support MPEG4 videos (other formats may be sent as Document).
@@ -434,7 +392,7 @@ public:
      *
      * @return On success, the sent Message is returned.
      */
-    virtual Message::Ptr sendVideo(boost::variant<std::int64_t, std::string> chatId,
+    Message::Ptr sendVideo(boost::variant<std::int64_t, std::string> chatId,
                            boost::variant<InputFile::Ptr, std::string> video,
                            bool supportsStreaming = false,
                            std::int32_t duration = 0,
@@ -450,7 +408,7 @@ public:
                            std::int32_t messageThreadId = 0,
                            bool protectContent = false,
                            bool hasSpoiler = false,
-                           const std::string& businessConnectionId = "") const = 0;
+                           const std::string& businessConnectionId = "") const override;
 
     /**
      * @brief Use this method to send animation files (GIF or H.264/MPEG-4 AVC video without sound).
@@ -476,7 +434,7 @@ public:
      *
      * @return On success, the sent Message is returned.
      */
-    virtual Message::Ptr sendAnimation(boost::variant<std::int64_t, std::string> chatId,
+    Message::Ptr sendAnimation(boost::variant<std::int64_t, std::string> chatId,
                                boost::variant<InputFile::Ptr, std::string> animation,
                                std::int32_t duration = 0,
                                std::int32_t width = 0,
@@ -491,7 +449,7 @@ public:
                                std::int32_t messageThreadId = 0,
                                bool protectContent = false,
                                bool hasSpoiler = false,
-                               const std::string& businessConnectionId = "") const = 0;
+                               const std::string& businessConnectionId = "") const override;
 
     /**
      * @brief Use this method to send audio files, if you want Telegram clients to display the file as a playable voice message.
@@ -514,7 +472,7 @@ public:
      *
      * @return On success, the sent Message is returned.
      */
-    virtual Message::Ptr sendVoice(boost::variant<std::int64_t, std::string> chatId,
+    Message::Ptr sendVoice(boost::variant<std::int64_t, std::string> chatId,
                            boost::variant<InputFile::Ptr, std::string> voice,
                            const std::string& caption = "",
                            std::int32_t duration = 0,
@@ -525,7 +483,7 @@ public:
                            const std::vector<MessageEntity::Ptr>& captionEntities = std::vector<MessageEntity::Ptr>(),
                            std::int32_t messageThreadId = 0,
                            bool protectContent = false,
-                           const std::string& businessConnectionId = "") const = 0;
+                           const std::string& businessConnectionId = "") const override;
 
     /**
      * @brief Use this method to send video messages.
@@ -546,7 +504,7 @@ public:
      *
      * @return On success, the sent Message is returned.
      */
-    virtual Message::Ptr sendVideoNote(boost::variant<std::int64_t, std::string> chatId,
+    Message::Ptr sendVideoNote(boost::variant<std::int64_t, std::string> chatId,
                                boost::variant<InputFile::Ptr, std::string> videoNote,
                                ReplyParameters::Ptr replyParameters = nullptr,
                                bool disableNotification = false,
@@ -556,7 +514,7 @@ public:
                                GenericReply::Ptr replyMarkup = nullptr,
                                std::int32_t messageThreadId = 0,
                                bool protectContent = false,
-                               const std::string& businessConnectionId = "") const = 0;
+                               const std::string& businessConnectionId = "") const override;
 
     /**
      * @brief Use this method to send a group of photos, videos, documents or audios as an album.
@@ -573,13 +531,13 @@ public:
      *
      * @return On success, an array of Messages that were sent is returned.
      */
-    virtual std::vector<Message::Ptr> sendMediaGroup(boost::variant<std::int64_t, std::string> chatId,
+    std::vector<Message::Ptr> sendMediaGroup(boost::variant<std::int64_t, std::string> chatId,
                                              const std::vector<InputMedia::Ptr>& media,
                                              bool disableNotification = false,
                                              ReplyParameters::Ptr replyParameters = nullptr,
                                              std::int32_t messageThreadId = 0,
                                              bool protectContent = false,
-                                             const std::string& businessConnectionId = "") const = 0;
+                                             const std::string& businessConnectionId = "") const override;
 
     /**
      * @brief Use this method to send point on the map.
@@ -600,7 +558,7 @@ public:
      *
      * @return On success, the sent Message is returned.
      */
-    virtual Message::Ptr sendLocation(boost::variant<std::int64_t, std::string> chatId,
+    Message::Ptr sendLocation(boost::variant<std::int64_t, std::string> chatId,
                               float latitude,
                               float longitude,
                               std::int32_t livePeriod = 0,
@@ -612,7 +570,7 @@ public:
                               std::int32_t proximityAlertRadius = 0,
                               std::int32_t messageThreadId = 0,
                               bool protectContent = false,
-                              const std::string& businessConnectionId = "") const = 0;
+                              const std::string& businessConnectionId = "") const override;
 
     /**
      * @brief Use this method to edit live location messages.
@@ -631,7 +589,7 @@ public:
      * 
      * @return On success, the edited Message is returned.
      */
-    virtual Message::Ptr editMessageLiveLocation(float latitude,
+    Message::Ptr editMessageLiveLocation(float latitude,
                                          float longitude,
                                          boost::variant<std::int64_t, std::string> chatId = "",
                                          std::int32_t messageId = 0,
@@ -639,7 +597,7 @@ public:
                                          InlineKeyboardMarkup::Ptr replyMarkup = std::make_shared<InlineKeyboardMarkup>(),
                                          float horizontalAccuracy = 0,
                                          std::int32_t heading = 0,
-                                         std::int32_t proximityAlertRadius = 0) const = 0;
+                                         std::int32_t proximityAlertRadius = 0) const override;
 
     /**
      * @brief Use this method to stop updating a live location message before livePeriod expires.
@@ -651,10 +609,10 @@ public:
      * 
      * @return On success, the edited Message is returned.
      */
-    virtual Message::Ptr stopMessageLiveLocation(boost::variant<std::int64_t, std::string> chatId = "",
+    Message::Ptr stopMessageLiveLocation(boost::variant<std::int64_t, std::string> chatId = "",
                                          std::int32_t messageId = 0,
                                          const std::string& inlineMessageId = "",
-                                         InlineKeyboardMarkup::Ptr replyMarkup = std::make_shared<InlineKeyboardMarkup>()) const = 0;
+                                         InlineKeyboardMarkup::Ptr replyMarkup = std::make_shared<InlineKeyboardMarkup>()) const override;
 
     /**
      * @brief Use this method to send information about a venue.
@@ -677,7 +635,7 @@ public:
      *
      * @return On success, the sent Message is returned.
      */
-    virtual Message::Ptr sendVenue(boost::variant<std::int64_t, std::string> chatId,
+    Message::Ptr sendVenue(boost::variant<std::int64_t, std::string> chatId,
                            float latitude,
                            float longitude,
                            const std::string& title,
@@ -691,7 +649,7 @@ public:
                            const std::string& googlePlaceType = "",
                            std::int32_t messageThreadId = 0,
                            bool protectContent = false,
-                           const std::string& businessConnectionId = "") const = 0;
+                           const std::string& businessConnectionId = "") const override;
 
     /**
      * @brief Use this method to send phone contacts.
@@ -710,7 +668,7 @@ public:
      *
      * @return On success, the sent Message is returned.
      */
-    virtual Message::Ptr sendContact(boost::variant<std::int64_t, std::string> chatId,
+    Message::Ptr sendContact(boost::variant<std::int64_t, std::string> chatId,
                              const std::string& phoneNumber,
                              const std::string& firstName,
                              const std::string& lastName = "",
@@ -720,7 +678,7 @@ public:
                              GenericReply::Ptr replyMarkup = nullptr,
                              std::int32_t messageThreadId = 0,
                              bool protectContent = false,
-                             const std::string& businessConnectionId = "") const = 0;
+                             const std::string& businessConnectionId = "") const override;
 
     /**
      * @brief Use this method to send a native poll.
@@ -747,7 +705,7 @@ public:
      *
      * @return On success, the sent Message is returned.
      */
-    virtual Message::Ptr sendPoll(boost::variant<std::int64_t, std::string> chatId,
+    Message::Ptr sendPoll(boost::variant<std::int64_t, std::string> chatId,
                           const std::string& question,
                           const std::vector<std::string>& options,
                           bool disableNotification = false,
@@ -765,7 +723,7 @@ public:
                           bool isClosed = false,
                           std::int32_t messageThreadId = 0,
                           bool protectContent = false,
-                          const std::string& businessConnectionId = "") const = 0;
+                          const std::string& businessConnectionId = "") const override;
 
     /**
      * @brief Use this method to send an animated emoji that will display a random value.
@@ -781,14 +739,14 @@ public:
      *
      * @return On success, the sent Message is returned.
      */
-    virtual Message::Ptr sendDice(boost::variant<std::int64_t, std::string> chatId,
+    Message::Ptr sendDice(boost::variant<std::int64_t, std::string> chatId,
                           bool disableNotification = false,
                           ReplyParameters::Ptr replyParameters = nullptr,
                           GenericReply::Ptr replyMarkup = nullptr,
                           const std::string& emoji = "",
                           std::int32_t messageThreadId = 0,
                           bool protectContent = false,
-                          const std::string& businessConnectionId = "") const = 0;
+                          const std::string& businessConnectionId = "") const override;
 
     /**
      * @brief Use this method to change the chosen reactions on a message.
@@ -803,10 +761,10 @@ public:
      *
      * @return Returns True on success.
      */
-    virtual bool setMessageReaction(boost::variant<std::int64_t, std::string> chatId,
+    bool setMessageReaction(boost::variant<std::int64_t, std::string> chatId,
                             std::int32_t messageId = 0,
                             const std::vector<ReactionType::Ptr>& reaction = std::vector<ReactionType::Ptr>(),
-                            bool isBig = false) const = 0;
+                            bool isBig = false) const override;
 
     /**
      * @brief Use this method when you need to tell the user that something is happening on the bot's side.
@@ -826,10 +784,10 @@ public:
      * 
      * @return Returns True on success.
      */
-    virtual bool sendChatAction(std::int64_t chatId,
+    bool sendChatAction(std::int64_t chatId,
                         const std::string& action,
                         std::int32_t messageThreadId = 0,
-                        const std::string& businessConnectionId = "") const = 0;
+                        const std::string& businessConnectionId = "") const override;
 
     /**
      * @brief Use this method to get a list of profile pictures for a user.
@@ -840,9 +798,9 @@ public:
      * 
      * @return Returns a UserProfilePhotos object.
      */
-    virtual UserProfilePhotos::Ptr getUserProfilePhotos(std::int64_t userId,
+    UserProfilePhotos::Ptr getUserProfilePhotos(std::int64_t userId,
                                                 std::int32_t offset = 0,
-                                                std::int32_t limit = 100) const = 0;
+                                                std::int32_t limit = 100) const override;
 
     /**
      * @brief Use this method to get basic information about a file and prepare it for downloading.
@@ -859,7 +817,7 @@ public:
      * 
      * @return On success, a File object is returned.
      */
-    virtual File::Ptr getFile(const std::string& fileId) const = 0;
+    File::Ptr getFile(const std::string& fileId) const override;
 
     /**
      * @brief Use this method to ban a user in a group, a supergroup or a channel.
@@ -874,10 +832,10 @@ public:
      * 
      * @return Returns True on success.
      */
-    virtual bool banChatMember(boost::variant<std::int64_t, std::string> chatId,
+    bool banChatMember(boost::variant<std::int64_t, std::string> chatId,
                        std::int64_t userId,
                        std::int32_t untilDate = 0,
-                       bool revokeMessages = true) const = 0;
+                       bool revokeMessages = true) const override;
 
     /**
      * @brief Use this method to unban a previously banned user in a supergroup or channel.
@@ -894,9 +852,9 @@ public:
      * 
      * @return Returns True on success.
      */
-    virtual bool unbanChatMember(boost::variant<std::int64_t, std::string> chatId,
+    bool unbanChatMember(boost::variant<std::int64_t, std::string> chatId,
                          std::int64_t userId,
-                         bool onlyIfBanned = false) const = 0;
+                         bool onlyIfBanned = false) const override;
 
     /**
      * @brief Use this method to restrict a user in a supergroup.
@@ -912,11 +870,11 @@ public:
      * 
      * @return Returns True on success.
      */
-    virtual bool restrictChatMember(boost::variant<std::int64_t, std::string> chatId,
+    bool restrictChatMember(boost::variant<std::int64_t, std::string> chatId,
                             std::int64_t userId,
                             ChatPermissions::Ptr permissions,
                             std::uint32_t untilDate = 0,
-                            bool useIndependentChatPermissions = false) const = 0;
+                            bool useIndependentChatPermissions = false) const override;
 
     /**
      * @brief Use this method to promote or demote a user in a supergroup or a channel.
@@ -944,7 +902,7 @@ public:
      *
      * @return Returns True on success.
      */
-    virtual bool promoteChatMember(boost::variant<std::int64_t, std::string> chatId,
+    bool promoteChatMember(boost::variant<std::int64_t, std::string> chatId,
                            std::int64_t userId,
                            bool canChangeInfo = false,
                            bool canPostMessages = false,
@@ -960,7 +918,7 @@ public:
                            bool canManageTopics = false,
                            bool canPostStories = false,
                            bool canEditStories = false,
-                           bool canDeleteStories = false) const = 0;
+                           bool canDeleteStories = false) const override;
 
     /**
      * @brief Use this method to set a custom title for an administrator in a supergroup promoted by the bot.
@@ -971,9 +929,9 @@ public:
      *
      * @return Returns True on success.
      */
-    virtual bool setChatAdministratorCustomTitle(boost::variant<std::int64_t, std::string> chatId,
+    bool setChatAdministratorCustomTitle(boost::variant<std::int64_t, std::string> chatId,
                                          std::int64_t userId,
-                                         const std::string& customTitle) const = 0;
+                                         const std::string& customTitle) const override;
 
     /**
      * @brief Use this method to ban a channel chat in a supergroup or a channel.
@@ -986,8 +944,8 @@ public:
      *
      * @return Returns True on success.
      */
-    virtual bool banChatSenderChat(boost::variant<std::int64_t, std::string> chatId,
-                           std::int64_t senderChatId) const = 0;
+    bool banChatSenderChat(boost::variant<std::int64_t, std::string> chatId,
+                           std::int64_t senderChatId) const override;
 
     /**
      * @brief Use this method to unban a previously banned channel chat in a supergroup or channel.
@@ -999,8 +957,8 @@ public:
      *
      * @return Returns True on success.
      */
-    virtual bool unbanChatSenderChat(boost::variant<std::int64_t, std::string> chatId,
-                             std::int64_t senderChatId) const = 0;
+    bool unbanChatSenderChat(boost::variant<std::int64_t, std::string> chatId,
+                             std::int64_t senderChatId) const override;
 
     /**
      * @brief Use this method to set default chat permissions for all members.
@@ -1013,9 +971,9 @@ public:
      * 
      * @return Returns True on success.
      */
-    virtual bool setChatPermissions(boost::variant<std::int64_t, std::string> chatId,
+    bool setChatPermissions(boost::variant<std::int64_t, std::string> chatId,
                             ChatPermissions::Ptr permissions,
-                            bool useIndependentChatPermissions = false) const = 0;
+                            bool useIndependentChatPermissions = false) const override;
 
     /**
      * @brief Use this method to generate a new primary invite link for a chat; any previously generated primary link is revoked.
@@ -1031,7 +989,7 @@ public:
      * 
      * @return Returns the new invite link as String on success.
      */
-    virtual std::string exportChatInviteLink(boost::variant<std::int64_t, std::string> chatId) const = 0;
+    std::string exportChatInviteLink(boost::variant<std::int64_t, std::string> chatId) const override;
 
     /**
      * @brief Use this method to create an additional invite link for a chat.
@@ -1047,11 +1005,11 @@ public:
      * 
      * @return Returns the new invite link as ChatInviteLink object.
      */
-    virtual ChatInviteLink::Ptr createChatInviteLink(boost::variant<std::int64_t, std::string> chatId,
+    ChatInviteLink::Ptr createChatInviteLink(boost::variant<std::int64_t, std::string> chatId,
                                              std::int32_t expireDate = 0,
                                              std::int32_t memberLimit = 0,
                                              const std::string& name = "",
-                                             bool createsJoinRequest = false) const = 0;
+                                             bool createsJoinRequest = false) const override;
 
     /**
      * @brief Use this method to edit a non-primary invite link created by the bot.
@@ -1067,12 +1025,12 @@ public:
      *
      * @return Returns the edited invite link as a ChatInviteLink object.
      */
-    virtual ChatInviteLink::Ptr editChatInviteLink(boost::variant<std::int64_t, std::string> chatId,
+    ChatInviteLink::Ptr editChatInviteLink(boost::variant<std::int64_t, std::string> chatId,
                                            const std::string& inviteLink,
                                            std::int32_t expireDate = 0,
                                            std::int32_t memberLimit = 0,
                                            const std::string& name = "",
-                                           bool createsJoinRequest = false) const = 0;
+                                           bool createsJoinRequest = false) const override;
 
     /**
      * @brief Use this method to revoke an invite link created by the bot.
@@ -1085,8 +1043,8 @@ public:
      *
      * @return Returns the revoked invite link as ChatInviteLink object.
      */
-    virtual ChatInviteLink::Ptr revokeChatInviteLink(boost::variant<std::int64_t, std::string> chatId,
-                                             const std::string& inviteLink) const = 0;
+    ChatInviteLink::Ptr revokeChatInviteLink(boost::variant<std::int64_t, std::string> chatId,
+                                             const std::string& inviteLink) const override;
 
     /**
      * @brief Use this method to approve a chat join request.
@@ -1098,8 +1056,8 @@ public:
      *
      * @return Returns True on success.
      */
-    virtual bool approveChatJoinRequest(boost::variant<std::int64_t, std::string> chatId,
-                                std::int64_t userId) const = 0;
+    bool approveChatJoinRequest(boost::variant<std::int64_t, std::string> chatId,
+                                std::int64_t userId) const override;
 
     /**
      * @brief Use this method to decline a chat join request.
@@ -1111,8 +1069,8 @@ public:
      *
      * @return True on success.
      */
-    virtual bool declineChatJoinRequest(boost::variant<std::int64_t, std::string> chatId,
-                                std::int64_t userId) const = 0;
+    bool declineChatJoinRequest(boost::variant<std::int64_t, std::string> chatId,
+                                std::int64_t userId) const override;
 
     /**
      * @brief Use this method to set a new profile photo for the chat.
@@ -1125,8 +1083,8 @@ public:
      * 
      * @return Returns True on success.
      */
-    virtual bool setChatPhoto(boost::variant<std::int64_t, std::string> chatId,
-                      InputFile::Ptr photo) const = 0;
+    bool setChatPhoto(boost::variant<std::int64_t, std::string> chatId,
+                      InputFile::Ptr photo) const override;
 
     /**
      * @brief Use this method to delete a chat photo.
@@ -1138,7 +1096,7 @@ public:
      * 
      * @return Returns True on success.
      */
-    virtual bool deleteChatPhoto(boost::variant<std::int64_t, std::string> chatId) const = 0;
+    bool deleteChatPhoto(boost::variant<std::int64_t, std::string> chatId) const override;
 
     /**
      * @brief Use this method to change the title of a chat.
@@ -1151,8 +1109,8 @@ public:
      * 
      * @return Returns True on success.
      */
-    virtual bool setChatTitle(boost::variant<std::int64_t, std::string> chatId,
-                      const std::string& title) const = 0;
+    bool setChatTitle(boost::variant<std::int64_t, std::string> chatId,
+                      const std::string& title) const override;
 
     /**
      * @brief Use this method to change the description of a group, a supergroup or a channel.
@@ -1164,8 +1122,8 @@ public:
      * 
      * @return Returns True on success.
      */
-    virtual bool setChatDescription(boost::variant<std::int64_t, std::string> chatId,
-                            const std::string& description = "") const = 0;
+    bool setChatDescription(boost::variant<std::int64_t, std::string> chatId,
+                            const std::string& description = "") const override;
 
     /**
      * @brief Use this method to add a message to the list of pinned messages in a chat.
@@ -1178,9 +1136,9 @@ public:
      * 
      * @return Returns True on success.
      */
-    virtual bool pinChatMessage(boost::variant<std::int64_t, std::string> chatId,
+    bool pinChatMessage(boost::variant<std::int64_t, std::string> chatId,
                         std::int32_t messageId,
-                        bool disableNotification = false) const = 0;
+                        bool disableNotification = false) const override;
 
     /**
      * @brief Use this method to remove a message from the list of pinned messages in a chat.
@@ -1192,8 +1150,8 @@ public:
      * 
      * @return Returns True on success.
      */
-    virtual bool unpinChatMessage(boost::variant<std::int64_t, std::string> chatId,
-                          std::int32_t messageId = 0) const = 0;
+    bool unpinChatMessage(boost::variant<std::int64_t, std::string> chatId,
+                          std::int32_t messageId = 0) const override;
 
     /**
      * @brief Use this method to clear the list of pinned messages in a chat.
@@ -1204,7 +1162,7 @@ public:
      *
      * @return Returns True on success.
      */
-    virtual bool unpinAllChatMessages(boost::variant<std::int64_t, std::string> chatId) const = 0;
+    bool unpinAllChatMessages(boost::variant<std::int64_t, std::string> chatId) const override;
 
     /**
      * @brief Use this method for your bot to leave a group, supergroup or channel.
@@ -1213,7 +1171,7 @@ public:
      * 
      * @return Returns True on success.
      */
-    virtual bool leaveChat(boost::variant<std::int64_t, std::string> chatId) const = 0;
+    bool leaveChat(boost::variant<std::int64_t, std::string> chatId) const override;
 
     /**
      * @brief Use this method to get up to date information about the chat.
@@ -1222,7 +1180,7 @@ public:
      *
      * @return Returns a Chat object on success.
      */
-    virtual Chat::Ptr getChat(boost::variant<std::int64_t, std::string> chatId) const = 0;
+    Chat::Ptr getChat(boost::variant<std::int64_t, std::string> chatId) const override;
 
     /**
      * @brief Use this method to get a list of administrators in a chat, which aren't bots.
@@ -1231,7 +1189,7 @@ public:
      * 
      * @return Returns an Array of ChatMember objects.
      */
-    virtual std::vector<ChatMember::Ptr> getChatAdministrators(boost::variant<std::int64_t, std::string> chatId) const = 0;
+    std::vector<ChatMember::Ptr> getChatAdministrators(boost::variant<std::int64_t, std::string> chatId) const override;
 
     /**
      * @brief Use this method to get the number of members in a chat.
@@ -1240,7 +1198,7 @@ public:
      * 
      * @return Returns Int on success.
      */
-    virtual std::int32_t getChatMemberCount(boost::variant<std::int64_t, std::string> chatId) const = 0;
+    std::int32_t getChatMemberCount(boost::variant<std::int64_t, std::string> chatId) const override;
 
     /**
      * @brief Use this method to get information about a member of a chat.
@@ -1252,8 +1210,8 @@ public:
      * 
      * @return Returns a ChatMember object on success.
      */
-    virtual ChatMember::Ptr getChatMember(boost::variant<std::int64_t, std::string> chatId,
-                                  std::int64_t userId) const = 0;
+    ChatMember::Ptr getChatMember(boost::variant<std::int64_t, std::string> chatId,
+                                  std::int64_t userId) const override;
 
     /**
      * @brief Use this method to set a new group sticker set for a supergroup.
@@ -1266,8 +1224,8 @@ public:
      * 
      * @return Returns True on success.
      */
-    virtual bool setChatStickerSet(boost::variant<std::int64_t, std::string> chatId,
-                           const std::string& stickerSetName) const = 0;
+    bool setChatStickerSet(boost::variant<std::int64_t, std::string> chatId,
+                           const std::string& stickerSetName) const override;
 
     /**
      * @brief Use this method to delete a group sticker set from a supergroup.
@@ -1279,14 +1237,14 @@ public:
      * 
      * @return Returns True on success.
      */
-    virtual bool deleteChatStickerSet(boost::variant<std::int64_t, std::string> chatId) const = 0;
+    bool deleteChatStickerSet(boost::variant<std::int64_t, std::string> chatId) const override;
 
     /**
      * @brief Use this method to get custom emoji stickers, which can be used as a forum topic icon by any user.
      * 
      * @return Returns an Array of Sticker objects.
      */
-    virtual std::vector<Sticker::Ptr> getForumTopicIconStickers() const = 0;
+    std::vector<Sticker::Ptr> getForumTopicIconStickers() const override;
 
     /**
      * @brief Use this method to create a topic in a forum supergroup chat.
@@ -1300,10 +1258,10 @@ public:
      * 
      * @return Returns information about the created topic as a ForumTopic object.
      */
-    virtual ForumTopic::Ptr createForumTopic(boost::variant<std::int64_t, std::string> chatId,
+    ForumTopic::Ptr createForumTopic(boost::variant<std::int64_t, std::string> chatId,
                                      const std::string& name,
                                      std::int32_t iconColor = 0,
-                                     const std::string& iconCustomEmojiId = "") const = 0;
+                                     const std::string& iconCustomEmojiId = "") const override;
 
     /**
      * @brief Use this method to edit name and icon of a topic in a forum supergroup chat.
@@ -1317,10 +1275,10 @@ public:
      * 
      * @return Returns True on success.
      */
-    virtual bool editForumTopic(boost::variant<std::int64_t, std::string> chatId,
+    bool editForumTopic(boost::variant<std::int64_t, std::string> chatId,
                         std::int32_t messageThreadId,
                         const std::string& name = "",
-                        boost::variant<std::int32_t, std::string> iconCustomEmojiId = 0) const = 0;
+                        boost::variant<std::int32_t, std::string> iconCustomEmojiId = 0) const override;
 
     /**
      * @brief Use this method to close an open topic in a forum supergroup chat.
@@ -1332,8 +1290,8 @@ public:
      * 
      * @return Returns True on success.
      */
-    virtual bool closeForumTopic(boost::variant<std::int64_t, std::string> chatId,
-                         std::int32_t messageThreadId) const = 0;
+    bool closeForumTopic(boost::variant<std::int64_t, std::string> chatId,
+                         std::int32_t messageThreadId) const override;
 
     /**
      * @brief Use this method to reopen a closed topic in a forum supergroup chat.
@@ -1345,8 +1303,8 @@ public:
      * 
      * @return Returns True on success.
      */
-    virtual bool reopenForumTopic(boost::variant<std::int64_t, std::string> chatId,
-                          std::int32_t messageThreadId) const = 0;
+    bool reopenForumTopic(boost::variant<std::int64_t, std::string> chatId,
+                          std::int32_t messageThreadId) const override;
 
     /**
      * @brief Use this method to delete a forum topic along with all its messages in a forum supergroup chat.
@@ -1358,8 +1316,8 @@ public:
      * 
      * @return Returns True on success.
      */
-    virtual bool deleteForumTopic(boost::variant<std::int64_t, std::string> chatId,
-                          std::int32_t messageThreadId) const = 0;
+    bool deleteForumTopic(boost::variant<std::int64_t, std::string> chatId,
+                          std::int32_t messageThreadId) const override;
 
     /**
      * @brief Use this method to clear the list of pinned messages in a forum topic.
@@ -1371,8 +1329,8 @@ public:
      * 
      * @return Returns True on success.
      */
-    virtual bool unpinAllForumTopicMessages(boost::variant<std::int64_t, std::string> chatId,
-                                    std::int32_t messageThreadId) const = 0;
+    bool unpinAllForumTopicMessages(boost::variant<std::int64_t, std::string> chatId,
+                                    std::int32_t messageThreadId) const override;
 
     /**
      * @brief Use this method to edit the name of the 'General' topic in a forum supergroup chat.
@@ -1384,8 +1342,8 @@ public:
      * 
      * @return Returns True on success.
      */
-    virtual bool editGeneralForumTopic(boost::variant<std::int64_t, std::string> chatId,
-                               std::string name) const = 0;
+    bool editGeneralForumTopic(boost::variant<std::int64_t, std::string> chatId,
+                               std::string name) const override;
 
     /**
      * @brief Use this method to close an open 'General' topic in a forum supergroup chat.
@@ -1396,7 +1354,7 @@ public:
      * 
      * @return Returns True on success.
      */
-    virtual bool closeGeneralForumTopic(boost::variant<std::int64_t, std::string> chatId) const = 0;
+    bool closeGeneralForumTopic(boost::variant<std::int64_t, std::string> chatId) const override;
 
     /**
      * @brief Use this method to reopen a closed 'General' topic in a forum supergroup chat.
@@ -1408,7 +1366,7 @@ public:
      * 
      * @return Returns True on success.
      */
-    virtual bool reopenGeneralForumTopic(boost::variant<std::int64_t, std::string> chatId) const = 0;
+    bool reopenGeneralForumTopic(boost::variant<std::int64_t, std::string> chatId) const override;
 
     /**
      * @brief Use this method to hide the 'General' topic in a forum supergroup chat.
@@ -1420,7 +1378,7 @@ public:
      * 
      * @return Returns True on success.
      */
-    virtual bool hideGeneralForumTopic(boost::variant<std::int64_t, std::string> chatId) const = 0;
+    bool hideGeneralForumTopic(boost::variant<std::int64_t, std::string> chatId) const override;
 
     /**
      * @brief Use this method to unhide the 'General' topic in a forum supergroup chat.
@@ -1431,7 +1389,7 @@ public:
      * 
      * @return Returns True on success.
      */
-    virtual bool unhideGeneralForumTopic(boost::variant<std::int64_t, std::string> chatId) const = 0;
+    bool unhideGeneralForumTopic(boost::variant<std::int64_t, std::string> chatId) const override;
 
     /**
      * @brief Use this method to clear the list of pinned messages in a General forum topic.
@@ -1442,7 +1400,7 @@ public:
      * 
      * @return Returns True on success.
      */
-    virtual bool unpinAllGeneralForumTopicMessages(boost::variant<std::int64_t, std::string> chatId) const = 0;
+    bool unpinAllGeneralForumTopicMessages(boost::variant<std::int64_t, std::string> chatId) const override;
 
     /**
      * @brief Use this method to send answers to callback queries sent from inline keyboards.
@@ -1461,11 +1419,11 @@ public:
      * 
      * @return On success, True is returned.
      */
-    virtual bool answerCallbackQuery(const std::string& callbackQueryId,
+    bool answerCallbackQuery(const std::string& callbackQueryId,
                              const std::string& text = "",
                              bool showAlert = false,
                              const std::string& url = "",
-                             std::int32_t cacheTime = 0) const = 0;
+                             std::int32_t cacheTime = 0) const override;
 
     /**
      * @brief Use this method to get the list of boosts added to a chat by a user.
@@ -1477,8 +1435,8 @@ public:
      *
      * @return Returns a UserChatBoosts object.
      */
-    virtual UserChatBoosts::Ptr getUserChatBoosts(boost::variant<std::int64_t, std::string> chatId,
-                                          std::int32_t userId) const = 0;
+    UserChatBoosts::Ptr getUserChatBoosts(boost::variant<std::int64_t, std::string> chatId,
+                                          std::int32_t userId) const override;
 
     /**
      * @brief Use this method to get information about the connection of the bot with a business account.
@@ -1487,7 +1445,7 @@ public:
      *
      * @return Returns a BusinessConnection object on success.
      */
-    virtual BusinessConnection::Ptr getBusinessConnection(const std::string& businessConnectionId) const = 0;
+    BusinessConnection::Ptr getBusinessConnection(const std::string& businessConnectionId) const override;
 
     /**
      * @brief Use this method to change the list of the bot's commands.
@@ -1500,9 +1458,9 @@ public:
      * 
      * @return Returns True on success.
      */
-    virtual bool setMyCommands(const std::vector<BotCommand::Ptr>& commands,
+    bool setMyCommands(const std::vector<BotCommand::Ptr>& commands,
                        BotCommandScope::Ptr scope = nullptr,
-                       const std::string& languageCode = "") const = 0;
+                       const std::string& languageCode = "") const override;
 
     /**
      * @brief Use this method to delete the list of the bot's commands for the given scope and user language.
@@ -1514,8 +1472,8 @@ public:
      *
      * @return Returns True on success.
      */
-    virtual bool deleteMyCommands(BotCommandScope::Ptr scope = nullptr,
-                          const std::string& languageCode = "") const = 0;
+    bool deleteMyCommands(BotCommandScope::Ptr scope = nullptr,
+                          const std::string& languageCode = "") const override;
 
     /**
      * @brief Use this method to get the current list of the bot's commands for the given scope and user language.
@@ -1525,8 +1483,8 @@ public:
      * 
      * @return Returns an Array of BotCommand objects. If commands aren't set, an empty list is returned.
      */
-    virtual std::vector<BotCommand::Ptr> getMyCommands(BotCommandScope::Ptr scope = nullptr,
-                                               const std::string& languageCode = "") const = 0;
+    std::vector<BotCommand::Ptr> getMyCommands(BotCommandScope::Ptr scope = nullptr,
+                                               const std::string& languageCode = "") const override;
 
     /**
      * @brief Use this method to change the bot's name.
@@ -1536,8 +1494,8 @@ public:
      * 
      * @return Returns True on success.
      */
-    virtual bool setMyName(const std::string& name = "",
-                   const std::string& languageCode = "") const = 0;
+    bool setMyName(const std::string& name = "",
+                   const std::string& languageCode = "") const override;
 
     /**
      * @brief Use this method to get the current bot name for the given user language.
@@ -1546,7 +1504,7 @@ public:
      * 
      * @return Returns BotName on success.
      */
-    virtual BotName::Ptr getMyName(const std::string& languageCode = "") const = 0;
+    BotName::Ptr getMyName(const std::string& languageCode = "") const override;
 
     /**
      * @brief Use this method to change the bot's description, which is shown in the chat with the bot if the chat is empty.
@@ -1556,8 +1514,8 @@ public:
      * 
      * @return Returns True on success.
      */
-    virtual bool setMyDescription(const std::string& description = "",
-                          const std::string& languageCode = "") const = 0;
+    bool setMyDescription(const std::string& description = "",
+                          const std::string& languageCode = "") const override;
 
     /**
      * @brief Use this method to get the current bot description for the given user language.
@@ -1566,7 +1524,7 @@ public:
      * 
      * @return Returns BotDescription on success.
      */
-    virtual BotDescription::Ptr getMyDescription(const std::string& languageCode = "") const = 0;
+    BotDescription::Ptr getMyDescription(const std::string& languageCode = "") const override;
 
     /**
      * @brief Use this method to change the bot's short description, which is shown on the bot's profile page and is sent together with the link when users share the bot.
@@ -1576,8 +1534,8 @@ public:
      * 
      * @return Returns True on success.
      */
-    virtual bool setMyShortDescription(const std::string& shortDescription = "",
-                               const std::string& languageCode = "") const = 0;
+    bool setMyShortDescription(const std::string& shortDescription = "",
+                               const std::string& languageCode = "") const override;
 
     /**
      * @brief Use this method to get the current bot short description for the given user language.
@@ -1586,7 +1544,7 @@ public:
      * 
      * @return Returns BotShortDescription on success.
      */
-    virtual BotShortDescription::Ptr getMyShortDescription(const std::string& languageCode = "") const = 0;
+    BotShortDescription::Ptr getMyShortDescription(const std::string& languageCode = "") const override;
 
     /**
      * @brief Use this method to change the bot's menu button in a private chat, or the default menu button.
@@ -1596,8 +1554,8 @@ public:
      * 
      * @return Returns True on success.
      */
-    virtual bool setChatMenuButton(std::int64_t chatId = 0,
-                           MenuButton::Ptr menuButton = nullptr) const = 0;
+    bool setChatMenuButton(std::int64_t chatId = 0,
+                           MenuButton::Ptr menuButton = nullptr) const override;
 
     /**
      * @brief Use this method to get the current value of the bot's menu button in a private chat, or the default menu button.
@@ -1606,7 +1564,7 @@ public:
      * 
      * @return Returns MenuButton on success.
      */
-    virtual MenuButton::Ptr getChatMenuButton(std::int64_t chatId = 0) const = 0;
+    MenuButton::Ptr getChatMenuButton(std::int64_t chatId = 0) const override;
 
     /**
      * @brief Use this method to change the default administrator rights requested by the bot when it's added as an administrator to groups or channels.
@@ -1618,8 +1576,8 @@ public:
      *
      * @return Returns True on success.
      */
-    virtual bool setMyDefaultAdministratorRights(ChatAdministratorRights::Ptr rights = nullptr,
-                                         bool forChannels = false) const = 0;
+    bool setMyDefaultAdministratorRights(ChatAdministratorRights::Ptr rights = nullptr,
+                                         bool forChannels = false) const override;
 
     /**
      * @brief Use this method to get the current default administrator rights of the bot.
@@ -1628,7 +1586,7 @@ public:
      *
      * @return Returns ChatAdministratorRights on success.
      */
-    virtual ChatAdministratorRights::Ptr getMyDefaultAdministratorRights(bool forChannels = false) const = 0;
+    ChatAdministratorRights::Ptr getMyDefaultAdministratorRights(bool forChannels = false) const override;
 
     /**
      * @brief Use this method to edit text and [game](https://core.telegram.org/bots/api#games) messages.
@@ -1644,14 +1602,14 @@ public:
      *
      * @return On success, if the edited message is not an inline message, the edited Message is returned, otherwise nullptr is returned.
      */
-    virtual Message::Ptr editMessageText(const std::string& text,
+    Message::Ptr editMessageText(const std::string& text,
                                  boost::variant<std::int64_t, std::string> chatId = 0,
                                  std::int32_t messageId = 0,
                                  const std::string& inlineMessageId = "",
                                  const std::string& parseMode = "",
                                  LinkPreviewOptions::Ptr linkPreviewOptions = nullptr,
                                  InlineKeyboardMarkup::Ptr replyMarkup = nullptr,
-                                 const std::vector<MessageEntity::Ptr>& entities = std::vector<MessageEntity::Ptr>()) const = 0;
+                                 const std::vector<MessageEntity::Ptr>& entities = std::vector<MessageEntity::Ptr>()) const override;
 
     /**
      * @brief Use this method to edit captions of messages.
@@ -1666,13 +1624,13 @@ public:
      * 
      * @return On success, if the edited message is not an inline message, the edited Message is returned, otherwise nullptr is returned.
      */
-    virtual Message::Ptr editMessageCaption(boost::variant<std::int64_t, std::string> chatId = 0,
+    Message::Ptr editMessageCaption(boost::variant<std::int64_t, std::string> chatId = 0,
                                     std::int32_t messageId = 0,
                                     const std::string& caption = "",
                                     const std::string& inlineMessageId = "",
                                     GenericReply::Ptr replyMarkup = nullptr,
                                     const std::string& parseMode = "",
-                                    const std::vector<MessageEntity::Ptr>& captionEntities = std::vector<MessageEntity::Ptr>()) const = 0;
+                                    const std::vector<MessageEntity::Ptr>& captionEntities = std::vector<MessageEntity::Ptr>()) const override;
 
     /**
      * @brief Use this method to edit animation, audio, document, photo, or video messages.
@@ -1688,11 +1646,11 @@ public:
      * 
      * @return On success, if the edited message is not an inline message, the edited Message is returned, otherwise nullptr is returned.
      */
-    virtual Message::Ptr editMessageMedia(InputMedia::Ptr media,
+    Message::Ptr editMessageMedia(InputMedia::Ptr media,
                                   boost::variant<std::int64_t, std::string> chatId = 0,
                                   std::int32_t messageId = 0,
                                   const std::string& inlineMessageId = "",
-                                  GenericReply::Ptr replyMarkup = nullptr) const = 0;
+                                  GenericReply::Ptr replyMarkup = nullptr) const override;
 
     /**
      * @brief Use this method to edit only the reply markup of messages.
@@ -1704,10 +1662,10 @@ public:
      * 
      * @return On success, if the edited message is not an inline message, the edited Message is returned, otherwise nullptr is returned.
      */
-    virtual Message::Ptr editMessageReplyMarkup(boost::variant<std::int64_t, std::string> chatId = 0,
+    Message::Ptr editMessageReplyMarkup(boost::variant<std::int64_t, std::string> chatId = 0,
                                         std::int32_t messageId = 0,
                                         const std::string& inlineMessageId = "",
-                                        GenericReply::Ptr replyMarkup = nullptr) const = 0;
+                                        GenericReply::Ptr replyMarkup = nullptr) const override;
 
     /**
      * @brief Use this method to stop a poll which was sent by the bot.
@@ -1718,9 +1676,9 @@ public:
      *
      * @return On success, the stopped Poll is returned.
      */
-    virtual Poll::Ptr stopPoll(boost::variant<std::int64_t, std::string> chatId,
+    Poll::Ptr stopPoll(boost::variant<std::int64_t, std::string> chatId,
                        std::int64_t messageId,
-                       InlineKeyboardMarkup::Ptr replyMarkup = std::make_shared<InlineKeyboardMarkup>()) const = 0;
+                       InlineKeyboardMarkup::Ptr replyMarkup = std::make_shared<InlineKeyboardMarkup>()) const override;
 
     /**
      * @brief Use this method to delete a message, including service messages, with the following limitations:
@@ -1739,8 +1697,8 @@ public:
      * 
      * @return Returns True on success.
      */
-    virtual bool deleteMessage(boost::variant<std::int64_t, std::string> chatId,
-                       std::int32_t messageId) const = 0;
+    bool deleteMessage(boost::variant<std::int64_t, std::string> chatId,
+                       std::int32_t messageId) const override;
 
     /**
      * @brief Use this method to delete multiple messages simultaneously.
@@ -1752,8 +1710,8 @@ public:
      * 
      * @return Returns True on success.
      */
-    virtual bool deleteMessages(boost::variant<std::int64_t, std::string> chatId,
-                        const std::vector<std::int32_t>& messageIds) const = 0;
+    bool deleteMessages(boost::variant<std::int64_t, std::string> chatId,
+                        const std::vector<std::int32_t>& messageIds) const override;
 
     /**
      * @brief Use this method to send static .WEBP, [animated](https://telegram.org/blog/animated-stickers) .TGS, or [video](https://telegram.org/blog/video-stickers-better-reactions) .WEBM stickers.
@@ -1770,7 +1728,7 @@ public:
      *
      * @return On success, the sent Message is returned.
      */
-    virtual Message::Ptr sendSticker(boost::variant<std::int64_t, std::string> chatId,
+    Message::Ptr sendSticker(boost::variant<std::int64_t, std::string> chatId,
                              boost::variant<InputFile::Ptr, std::string> sticker,
                              ReplyParameters::Ptr replyParameters = nullptr,
                              GenericReply::Ptr replyMarkup = nullptr,
@@ -1778,7 +1736,7 @@ public:
                              std::int32_t messageThreadId = 0,
                              bool protectContent = false,
                              const std::string& emoji = "",
-                             const std::string& businessConnectionId = "") const = 0;
+                             const std::string& businessConnectionId = "") const override;
 
     /**
      * @brief Use this method to get a sticker set.
@@ -1787,7 +1745,7 @@ public:
      * 
      * @return On success, a StickerSet object is returned.
      */
-    virtual StickerSet::Ptr getStickerSet(const std::string& name) const = 0;
+    StickerSet::Ptr getStickerSet(const std::string& name) const override;
 
     /**
      * @brief Use this method to get information about custom emoji stickers by their identifiers.
@@ -1796,7 +1754,7 @@ public:
      *
      * @return Returns an Array of Sticker objects.
      */
-    virtual std::vector<Sticker::Ptr> getCustomEmojiStickers(const std::vector<std::string>& customEmojiIds) const = 0;
+    std::vector<Sticker::Ptr> getCustomEmojiStickers(const std::vector<std::string>& customEmojiIds) const override;
 
     /**
      * @brief Use this method to upload a file with a sticker for later use in the Api::createNewStickerSet, Api::addStickerToSet, or Api::replaceStickerInSet methods (the file can be used multiple times).
@@ -1807,9 +1765,9 @@ public:
      *
      * @return Returns the uploaded File on success.
      */
-    virtual File::Ptr uploadStickerFile(std::int64_t userId,
+    File::Ptr uploadStickerFile(std::int64_t userId,
                                 InputFile::Ptr sticker,
-                                const std::string& stickerFormat) const = 0;
+                                const std::string& stickerFormat) const override;
 
     /**
      * @brief Use this method to create a new sticker set owned by a user.
@@ -1825,12 +1783,12 @@ public:
      *
      * @return Returns True on success.
      */
-    virtual bool createNewStickerSet(std::int64_t userId,
+    bool createNewStickerSet(std::int64_t userId,
                              const std::string& name,
                              const std::string& title,
                              const std::vector<InputSticker::Ptr>& stickers,
                              Sticker::Type stickerType = Sticker::Type::Regular,
-                             bool needsRepainting = false) const = 0;
+                             bool needsRepainting = false) const override;
 
     /**
      * @brief Use this method to add a new sticker to a set created by the bot.
@@ -1844,9 +1802,9 @@ public:
      *
      * @return Returns True on success.
      */
-    virtual bool addStickerToSet(std::int64_t userId,
+    bool addStickerToSet(std::int64_t userId,
                          const std::string& name,
-                         InputSticker::Ptr sticker) const = 0;
+                         InputSticker::Ptr sticker) const override;
 
     /**
      * @brief Use this method to move a sticker in a set created by the bot to a specific position.
@@ -1856,8 +1814,8 @@ public:
      * 
      * @return Returns True on success.
      */
-    virtual bool setStickerPositionInSet(const std::string& sticker,
-                                 std::int32_t position) const = 0;
+    bool setStickerPositionInSet(const std::string& sticker,
+                                 std::int32_t position) const override;
 
     /**
      * @brief Use this method to delete a sticker from a set created by the bot.
@@ -1866,7 +1824,7 @@ public:
      * 
      * @return Returns True on success.
      */
-    virtual bool deleteStickerFromSet(const std::string& sticker) const = 0;
+    bool deleteStickerFromSet(const std::string& sticker) const override;
 
     /**
      * @brief Use this method to replace an existing sticker in a sticker set with a new one.
@@ -1880,10 +1838,10 @@ public:
      *
      * @return Returns True on success.
      */
-    virtual bool replaceStickerInSet(std::int64_t userId,
+    bool replaceStickerInSet(std::int64_t userId,
                              const std::string& name,
                              const std::string& oldSticker,
-                             InputSticker::Ptr sticker) const = 0;
+                             InputSticker::Ptr sticker) const override;
 
     /**
      * @brief Use this method to change the list of emoji assigned to a regular or custom emoji sticker.
@@ -1895,8 +1853,8 @@ public:
      * 
      * @return Returns True on success.
      */
-    virtual bool setStickerEmojiList(const std::string& sticker,
-                             const std::vector<std::string>& emojiList) const = 0;
+    bool setStickerEmojiList(const std::string& sticker,
+                             const std::vector<std::string>& emojiList) const override;
 
     /**
      * @brief Use this method to change search keywords assigned to a regular or custom emoji sticker.
@@ -1908,8 +1866,8 @@ public:
      * 
      * @return Returns True on success.
      */
-    virtual bool setStickerKeywords(const std::string& sticker,
-                            const std::vector<std::string>& keywords = std::vector<std::string>()) const = 0;
+    bool setStickerKeywords(const std::string& sticker,
+                            const std::vector<std::string>& keywords = std::vector<std::string>()) const override;
 
     /**
      * @brief Use this method to change the mask position of a mask sticker.
@@ -1921,8 +1879,8 @@ public:
      * 
      * @return Returns True on success.
      */
-    virtual bool setStickerMaskPosition(const std::string& sticker,
-                                MaskPosition::Ptr maskPosition = nullptr) const = 0;
+    bool setStickerMaskPosition(const std::string& sticker,
+                                MaskPosition::Ptr maskPosition = nullptr) const override;
 
     /**
      * @brief Use this method to set the title of a created sticker set.
@@ -1932,8 +1890,8 @@ public:
      * 
      * @return Returns True on success.
      */
-    virtual bool setStickerSetTitle(const std::string& name,
-                            const std::string& title) const = 0;
+    bool setStickerSetTitle(const std::string& name,
+                            const std::string& title) const override;
 
     /**
      * @brief Use this method to set the thumbnail of a regular or mask sticker set.
@@ -1947,10 +1905,10 @@ public:
      *
      * @return Returns True on success.
      */
-    virtual bool setStickerSetThumbnail(const std::string& name,
+    bool setStickerSetThumbnail(const std::string& name,
                                 std::int64_t userId,
                                 const std::string& format,
-                                boost::variant<InputFile::Ptr, std::string> thumbnail = "") const = 0;
+                                boost::variant<InputFile::Ptr, std::string> thumbnail = "") const override;
 
     /**
      * @brief Use this method to set the thumbnail of a custom emoji sticker set.
@@ -1960,8 +1918,8 @@ public:
      *
      * @return Returns True on success.
      */
-    virtual bool setCustomEmojiStickerSetThumbnail(const std::string& name,
-                                           const std::string& customEmojiId = "") const = 0;
+    bool setCustomEmojiStickerSetThumbnail(const std::string& name,
+                                           const std::string& customEmojiId = "") const override;
 
     /**
      * @brief Use this method to delete a sticker set that was created by the bot.
@@ -1970,7 +1928,7 @@ public:
      *
      * @return Returns True on success.
      */
-    virtual bool deleteStickerSet(const std::string& name) const = 0;
+    bool deleteStickerSet(const std::string& name) const override;
 
     /**
      * @brief Use this method to send answers to an inline query.
@@ -1986,12 +1944,12 @@ public:
      * 
      * @return On success, True is returned.
      */
-    virtual bool answerInlineQuery(const std::string& inlineQueryId,
+    bool answerInlineQuery(const std::string& inlineQueryId,
                            const std::vector<InlineQueryResult::Ptr>& results,
                            std::int32_t cacheTime = 300,
                            bool isPersonal = false,
                            const std::string& nextOffset = "",
-                           InlineQueryResultsButton::Ptr button = nullptr) const = 0;
+                           InlineQueryResultsButton::Ptr button = nullptr) const override;
 
     /**
      * @brief Use this method to set the result of an interaction with a Web App and send a corresponding message on behalf of the user to the chat from which the query originated.
@@ -2001,8 +1959,8 @@ public:
      * 
      * @return On success, a SentWebAppMessage object is returned.
      */
-    virtual SentWebAppMessage::Ptr answerWebAppQuery(const std::string& webAppQueryId,
-                                             InlineQueryResult::Ptr result) const = 0;
+    SentWebAppMessage::Ptr answerWebAppQuery(const std::string& webAppQueryId,
+                                             InlineQueryResult::Ptr result) const override;
 
     /**
      * @brief Use this method to send invoices.
@@ -2037,7 +1995,7 @@ public:
      *
      * @return On success, the sent Message is returned.
      */
-    virtual Message::Ptr sendInvoice(boost::variant<std::int64_t, std::string> chatId,
+    Message::Ptr sendInvoice(boost::variant<std::int64_t, std::string> chatId,
                              const std::string& title,
                              const std::string& description,
                              const std::string& payload,
@@ -2063,7 +2021,7 @@ public:
                              std::int32_t maxTipAmount = 0,
                              const std::vector<std::int32_t>& suggestedTipAmounts = std::vector<std::int32_t>(),
                              const std::string& startParameter = "",
-                             bool protectContent = false) const = 0;
+                             bool protectContent = false) const override;
 
     /**
      * @brief Use this method to create a link for an invoice.
@@ -2091,7 +2049,7 @@ public:
      *
      * @return Returns the created invoice link as String on success.
      */
-    virtual std::string createInvoiceLink(const std::string& title,
+    std::string createInvoiceLink(const std::string& title,
                                   const std::string& description,
                                   const std::string& payload,
                                   const std::string& providerToken,
@@ -2110,7 +2068,7 @@ public:
                                   bool needShippingAddress = false,
                                   bool sendPhoneNumberToProvider = false,
                                   bool sendEmailToProvider = false,
-                                  bool isFlexible = false) const = 0;
+                                  bool isFlexible = false) const override;
 
     /**
      * @brief Use this method to reply to shipping queries.
@@ -2124,10 +2082,10 @@ public:
      * 
      * @return On success, True is returned.
      */
-    virtual bool answerShippingQuery(const std::string& shippingQueryId,
+    bool answerShippingQuery(const std::string& shippingQueryId,
                              bool ok,
                              const std::vector<ShippingOption::Ptr>& shippingOptions = std::vector<ShippingOption::Ptr>(),
-                             const std::string& errorMessage = "") const = 0;
+                             const std::string& errorMessage = "") const override;
 
     /**
      * @brief Use this method to respond to such pre-checkout queries.
@@ -2141,9 +2099,9 @@ public:
      * 
      * @return On success, True is returned.
      */
-    virtual bool answerPreCheckoutQuery(const std::string& preCheckoutQueryId,
+    bool answerPreCheckoutQuery(const std::string& preCheckoutQueryId,
                                 bool ok,
-                                const std::string& errorMessage = "") const = 0;
+                                const std::string& errorMessage = "") const override;
 
     /**
      * @brief Informs a user that some of the Telegram Passport elements they provided contains errors.
@@ -2158,8 +2116,8 @@ public:
      * 
      * @return Returns True on success.
      */
-    virtual bool setPassportDataErrors(std::int64_t userId,
-                               const std::vector<PassportElementError::Ptr>& errors) const = 0;
+    bool setPassportDataErrors(std::int64_t userId,
+                               const std::vector<PassportElementError::Ptr>& errors) const override;
 
     /**
      * @brief Use this method to send a game.
@@ -2175,14 +2133,14 @@ public:
      *
      * @return On success, the sent Message is returned.
      */
-    virtual Message::Ptr sendGame(std::int64_t chatId,
+    Message::Ptr sendGame(std::int64_t chatId,
                           const std::string& gameShortName,
                           ReplyParameters::Ptr replyParameters = nullptr,
                           InlineKeyboardMarkup::Ptr replyMarkup = std::make_shared<InlineKeyboardMarkup>(),
                           bool disableNotification = false,
                           std::int32_t messageThreadId = 0,
                           bool protectContent = false,
-                          const std::string& businessConnectionId = "") const = 0;
+                          const std::string& businessConnectionId = "") const override;
 
     /**
      * @brief Use this method to set the score of the specified user in a game message.
@@ -2199,13 +2157,13 @@ public:
      * 
      * @return On success, if the message is not an inline message, the Message is returned, otherwise nullptr is returned.
      */
-    virtual Message::Ptr setGameScore(std::int64_t userId,
+    Message::Ptr setGameScore(std::int64_t userId,
                               std::int32_t score,
                               bool force = false,
                               bool disableEditMessage = false,
                               std::int64_t chatId = 0,
                               std::int32_t messageId = 0,
-                              const std::string& inlineMessageId = "") const = 0;
+                              const std::string& inlineMessageId = "") const override;
 
     /**
      * @brief Use this method to get data for high score tables.
@@ -2223,10 +2181,10 @@ public:
      * 
      * @return Returns an Array of GameHighScore objects.
      */
-    virtual std::vector<GameHighScore::Ptr> getGameHighScores(std::int64_t userId,
+    std::vector<GameHighScore::Ptr> getGameHighScores(std::int64_t userId,
                                                       std::int64_t chatId = 0,
                                                       std::int32_t messageId = 0,
-                                                      const std::string& inlineMessageId = "") const = 0;
+                                                      const std::string& inlineMessageId = "") const override;
 
     /**
      * @brief Download a file from Telegram and save it in memory.
@@ -2236,8 +2194,8 @@ public:
      *
      * @return File content in a string.
      */
-    virtual std::string downloadFile(const std::string& filePath,
-                             const std::vector<HttpReqArg>& args = std::vector<HttpReqArg>()) const = 0;
+    std::string downloadFile(const std::string& filePath,
+                             const std::vector<HttpReqArg>& args = std::vector<HttpReqArg>()) const override;
 
     /**
      * @brief Check if user has blocked the bot
@@ -2246,10 +2204,17 @@ public:
      *
      * @return Returns True if bot is blocked by user
      */
-    virtual bool blockedByUser(std::int64_t chatId) const = 0;
+    bool blockedByUser(std::int64_t chatId) const override;
 
-    virtual ~Api() = default;
+    const HttpClient& _httpClient;
+
+   protected:
+    Json::Value sendRequest(
+        const std::string& method,
+        const std::vector<HttpReqArg>& args = std::vector<HttpReqArg>()) const;
+
+    const std::string _token;
+    const std::string _url;
 };
-}
-
-#endif //TGBOT_API_H
+}  // namespace TgBot
+#endif
