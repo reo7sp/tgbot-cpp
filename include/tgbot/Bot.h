@@ -21,7 +21,7 @@ class HttpClient;
 class TGBOT_API Bot {
 
 public:
-    explicit Bot(std::string token, const HttpClient &httpClient = _getDefaultHttpClient(), const std::string& url="https://api.telegram.org");
+    explicit Bot(std::string token, std::unique_ptr<HttpClient> httpClient = _getDefaultHttpClient(), const std::string& url="https://api.telegram.org");
 
     /**
      * @return Token for accessing api.
@@ -52,12 +52,12 @@ public:
     }
 
 private:
-    static HttpClient &_getDefaultHttpClient();
+    static std::unique_ptr<HttpClient> _getDefaultHttpClient();
 
-    const std::string _token;
-    const std::shared_ptr<Api> _api;
+    std::string _token;
+    std::unique_ptr<Api> _api;
     std::unique_ptr<EventBroadcaster> _eventBroadcaster;
-    const EventHandler _eventHandler;
+    EventHandler _eventHandler;
 };
 
 }

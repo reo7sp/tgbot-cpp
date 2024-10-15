@@ -1,7 +1,7 @@
 #ifndef TGBOT_TGLONGPOLL_H
 #define TGBOT_TGLONGPOLL_H
 
-#include "tgbot/ApiImpl.h"
+#include "tgbot/Api.h"
 #include "tgbot/export.h"
 
 #include <cstdint>
@@ -22,7 +22,6 @@ class EventHandler;
 class TGBOT_API TgLongPoll {
 
 public:
-    TgLongPoll(const ApiImpl* api, const EventHandler* eventHandler, std::int32_t limit, std::int32_t timeout, std::shared_ptr<std::vector<std::string>> allowUpdates);
     TgLongPoll(const Bot& bot, std::int32_t limit = 100, std::int32_t timeout = 10, const std::shared_ptr<std::vector<std::string>>& allowUpdates = nullptr);
 
     /**
@@ -31,7 +30,7 @@ public:
     void start();
 
 private:
-    const ApiImpl* _api;
+    const Api* _api;
     const EventHandler* _eventHandler;
     std::int32_t _lastUpdateId = 0;
     std::int32_t _limit;

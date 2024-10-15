@@ -25,9 +25,9 @@ escapeJSONStringVec(const std::vector<std::string> &vec) {
 } // namespace
 namespace TgBot {
 
-ApiImpl::ApiImpl(std::string token, const HttpClient &httpClient,
+ApiImpl::ApiImpl(std::string token, std::unique_ptr<HttpClient> httpClient,
          std::string url)
-    : _httpClient(httpClient), _token(std::move(token)), _url(std::move(url)) {}
+    : _httpClient(std::move(httpClient)), _token(std::move(token)), _url(std::move(url)) {}
 
 std::vector<Update::Ptr>
 ApiImpl::getUpdates(std::int32_t offset, std::int32_t limit, std::int32_t timeout,
@@ -2731,7 +2731,7 @@ std::string ApiImpl::downloadFile(const std::string &filePath,
   url += "/";
   url += filePath;
 
-  return _httpClient.makeRequest(url, args);
+  return _httpClient->makeRequest(url, args);
 }
 
 bool ApiImpl::blockedByUser(std::int64_t chatId) const {
@@ -2762,7 +2762,7 @@ TgBot::ApiImpl::sendRequest(const std::string &method,
   url += "/";
   url += method;
 
-  int requestRetryBackoff = _httpClient.getRequestBackoff();
+  int requestRetryBackoff = _httpClient->getRequestBackoff();
   int retries = 0;
   if constexpr (kSendRequestDebug) {
     std::cout << "tgbot-cpp: Sending request: " << method << std::endl;
@@ -2772,7 +2772,7 @@ TgBot::ApiImpl::sendRequest(const std::string &method,
   }
   while (1) {
     try {
-      std::string serverResponse = _httpClient.makeRequest(url, args);
+      std::string serverResponse = _httpClient->makeRequest(url, args);
 
       if (!serverResponse.compare(0, 6, "<html>")) {
         std::string message =
@@ -2801,7 +2801,7 @@ TgBot::ApiImpl::sendRequest(const std::string &method,
       if constexpr (kSendRequestDebug) {
         std::cerr << "tgbot-cpp: Error: " << ex.what() << std::endl;
       }
-      int max_retries = _httpClient.getRequestMaxRetries();
+      int max_retries = _httpClient->getRequestMaxRetries();
       if ((max_retries >= 0) && (retries == max_retries)) {
         throw;
       } else {

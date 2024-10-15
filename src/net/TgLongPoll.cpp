@@ -11,15 +11,9 @@
 
 namespace TgBot {
 
-TgLongPoll::TgLongPoll(const ApiImpl* api, const EventHandler* eventHandler, std::int32_t limit, std::int32_t timeout, std::shared_ptr<std::vector<std::string>> allowUpdates)
-    : _api(api), _eventHandler(eventHandler), _limit(limit), _timeout(timeout)
-    , _allowUpdates(std::move(allowUpdates)) {
-
-    const_cast<TgBot::HttpClient&>(_api->_httpClient)._timeout = _timeout + 5;
-}
-
 TgLongPoll::TgLongPoll(const Bot& bot, std::int32_t limit, std::int32_t timeout, const std::shared_ptr<std::vector<std::string>>& allowUpdates)
-    : TgLongPoll(dynamic_cast<const ApiImpl *>(&bot.getApi()), &bot.getEventHandler(), limit, timeout, allowUpdates) {
+    : _api(&bot.getApi()), _eventHandler(&bot.getEventHandler()), _limit(limit), _timeout(timeout), _allowUpdates(allowUpdates) {
+    dynamic_cast<const ApiImpl *>(_api)->_httpClient->_timeout = _timeout + 5;
 }
 
 void TgLongPoll::start() {
