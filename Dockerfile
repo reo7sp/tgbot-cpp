@@ -9,6 +9,7 @@ WORKDIR /usr/src/tgbot-cpp
 COPY include include
 COPY src src
 COPY CMakeLists.txt ./
+COPY CMake CMake
 
 RUN cmake . && \
     make -j$(nproc) && \

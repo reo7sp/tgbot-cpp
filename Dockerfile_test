@@ -17,7 +17,8 @@ RUN apt-get -qq update && \
         python2.7-dev \
         wget \
         zlib1g-dev \
-        libjsoncpp-dev && \
+        libjsoncpp-dev \
+        pkg-config && \
     rm -rf /var/lib/apt/lists/*
 
 WORKDIR /usr/src/tgbot-cpp
@@ -25,6 +26,7 @@ COPY include include
 COPY src src
 COPY test test
 COPY CMakeLists.txt ./
+COPY CMake CMake
 
 RUN cmake -DENABLE_TESTS=ON . && \
     make -j$(nproc) && \

@@ -13,9 +13,7 @@ int main() {
     string token(getenv("TOKEN"));
     printf("Token: %s\n", token.c_str());
 
-    CurlHttpClient curlHttpClient;
-
-    Bot bot(token, curlHttpClient);
+    Bot bot(token, std::make_unique<CurlHttpClient>());
     bot.getEvents().onCommand("start", [&bot](Message::Ptr message) {
         bot.getApi().sendMessage(message->chat->id, "Hi!");
     });
