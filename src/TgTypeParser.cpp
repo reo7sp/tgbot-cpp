@@ -1,11 +1,10 @@
-#include "tgbot/TgTypeParser.h"
+#include <tgbot/TgTypeParser.h>
+#include <tgbot/TgException.h>
 
 #include <json/value.h>
 
 #include <cstdint>
 #include <utility>
-
-#include "tgbot/types/InlineKeyboardMarkup.h"
 
 namespace TgBot {
 
@@ -3342,6 +3341,17 @@ DECLARE_PARSER_TO_JSON(InlineKeyboardButton) {
     return ptree;
 }
 
+template <typename T, typename CachedT>
+auto put(const InlineQueryResult::Ptr& ptr) {
+    if (const auto cached = std::dynamic_pointer_cast<CachedT>(ptr)) {
+        return put<typename CachedT::Ptr>(cached);
+    } else if (const auto result = std::dynamic_pointer_cast<T>(ptr)) {
+        return put<typename T::Ptr>(result);
+    } else {
+        throw TgBot::TgException("Invalid inline query result type", TgException::ErrorCode::Internal);
+    }
+}
+
 DECLARE_PARSER_TO_JSON(InlineQueryResult) {
     if (!object) return {};
     JsonWrapper ptree;
@@ -3349,26 +3359,10 @@ DECLARE_PARSER_TO_JSON(InlineQueryResult) {
     ptree.put("id", object->id);
     ptree.put("reply_markup", put(object->replyMarkup));
 
-    if (object->type == InlineQueryResultCachedAudio::TYPE) {
-        ptree.put("data", put<InlineQueryResultCachedAudio>(object));
-    } else if (object->type == InlineQueryResultCachedDocument::TYPE) {
-        ptree.put("data", put<InlineQueryResultCachedDocument>(object));
-    } else if (object->type == InlineQueryResultCachedGif::TYPE) {
-        ptree.put("data", put<InlineQueryResultCachedGif>(object));
-    } else if (object->type == InlineQueryResultCachedMpeg4Gif::TYPE) {
-        ptree.put("data", put<InlineQueryResultCachedMpeg4Gif>(object));
-    } else if (object->type == InlineQueryResultCachedPhoto::TYPE) {
-        ptree.put("data", put<InlineQueryResultCachedPhoto>(object));
-    } else if (object->type == InlineQueryResultCachedSticker::TYPE) {
-        ptree.put("data", put<InlineQueryResultCachedSticker>(object));
-    } else if (object->type == InlineQueryResultCachedVideo::TYPE) {
-        ptree.put("data", put<InlineQueryResultCachedVideo>(object));
-    } else if (object->type == InlineQueryResultCachedVoice::TYPE) {
-        ptree.put("data", put<InlineQueryResultCachedVoice>(object));
-    } else if (object->type == InlineQueryResultArticle::TYPE) {
+    if (object->type == InlineQueryResultArticle::TYPE) {
         ptree.put("data", put<InlineQueryResultArticle>(object));
     } else if (object->type == InlineQueryResultAudio::TYPE) {
-        ptree.put("data", put<InlineQueryResultAudio>(object));
+        ptree.put("data", put<InlineQueryResultAudio, InlineQueryResultCachedAudio>(object));
     } else if (object->type == InlineQueryResultContact::TYPE) {
         ptree.put("data", put<InlineQueryResultContact>(object));
     } else if (object->type == InlineQueryResultGame::TYPE) {
@@ -3380,15 +3374,15 @@ DECLARE_PARSER_TO_JSON(InlineQueryResult) {
     } else if (object->type == InlineQueryResultVenue::TYPE) {
         ptree.put("data", put<InlineQueryResultVenue>(object));
     } else if (object->type == InlineQueryResultVoice::TYPE) {
-        ptree.put("data", put<InlineQueryResultVoice>(object));
+        ptree.put("data", put<InlineQueryResultVoice,InlineQueryResultCachedVoice>(object));
     } else if (object->type == InlineQueryResultPhoto::TYPE) {
-        ptree.put("data", put<InlineQueryResultPhoto>(object));
+        ptree.put("data", put<InlineQueryResultPhoto, InlineQueryResultCachedPhoto>(object));
     } else if (object->type == InlineQueryResultGif::TYPE) {
-        ptree.put("data", put<InlineQueryResultGif>(object));
+        ptree.put("data", put<InlineQueryResultGif, InlineQueryResultCachedGif>(object));
     } else if (object->type == InlineQueryResultMpeg4Gif::TYPE) {
-        ptree.put("data", put<InlineQueryResultMpeg4Gif>(object));
+        ptree.put("data", put<InlineQueryResultMpeg4Gif, InlineQueryResultCachedMpeg4Gif>(object));
     } else if (object->type == InlineQueryResultVideo::TYPE) {
-        ptree.put("data", put<InlineQueryResultVideo>(object));
+        ptree.put("data", put<InlineQueryResultVideo, InlineQueryResultCachedVideo>(object));
     }
     return ptree;
 }
