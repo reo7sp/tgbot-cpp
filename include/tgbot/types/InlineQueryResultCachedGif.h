@@ -20,9 +20,9 @@ namespace TgBot {
  */
 class InlineQueryResultCachedGif : public InlineQueryResult {
 public:
-    static const std::string TYPE;
+    static constexpr std::string_view TYPE = "gif";
 
-    typedef std::shared_ptr<InlineQueryResultCachedGif> Ptr;
+    using Ptr = std::shared_ptr<InlineQueryResultCachedGif>;
 
     InlineQueryResultCachedGif() {
         this->type = TYPE;

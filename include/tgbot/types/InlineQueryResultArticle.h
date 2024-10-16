@@ -7,6 +7,7 @@
 #include <cstdint>
 #include <string>
 #include <memory>
+#include <string_view>
 
 namespace TgBot {
 
@@ -17,7 +18,7 @@ namespace TgBot {
  */
 class InlineQueryResultArticle : public InlineQueryResult {
 public:
-    static const std::string TYPE;
+    static constexpr std::string_view TYPE = "article";
 
     typedef std::shared_ptr<InlineQueryResultArticle> Ptr;
 

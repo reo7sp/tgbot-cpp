@@ -17,9 +17,9 @@ namespace TgBot {
  */
 class PassportElementErrorFiles : public PassportElementError {
 public:
-    static const std::string SOURCE;
+    static constexpr std::string_view SOURCE = "files";
 
-    typedef std::shared_ptr<PassportElementErrorFiles> Ptr;
+    using Ptr = std::shared_ptr<PassportElementErrorFiles>;
 
     PassportElementErrorFiles() {
         this->source = SOURCE;

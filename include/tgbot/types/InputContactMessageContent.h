@@ -15,9 +15,9 @@ namespace TgBot {
  */
 class InputContactMessageContent : public InputMessageContent {
 public:
-    static const std::string TYPE;
+    static constexpr std::string_view TYPE = "contact";
 
-    typedef std::shared_ptr<InputContactMessageContent> Ptr;
+    using Ptr = std::shared_ptr<InputContactMessageContent>;
 
     InputContactMessageContent() {
         this->type = TYPE;

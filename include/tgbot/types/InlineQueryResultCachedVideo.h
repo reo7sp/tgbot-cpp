@@ -7,6 +7,7 @@
 
 #include <string>
 #include <memory>
+#include <string_view>
 #include <vector>
 
 namespace TgBot {
@@ -20,9 +21,9 @@ namespace TgBot {
  */
 class InlineQueryResultCachedVideo : public InlineQueryResult {
 public:
-    static const std::string TYPE;
+    static constexpr std::string_view TYPE = "video";
 
-    typedef std::shared_ptr<InlineQueryResultCachedVideo> Ptr;
+    using Ptr = std::shared_ptr<InlineQueryResultCachedVideo>;
 
     InlineQueryResultCachedVideo() {
         this->type = TYPE;

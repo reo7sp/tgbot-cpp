@@ -16,9 +16,9 @@ namespace TgBot {
  */
 class PassportElementErrorSelfie : public PassportElementError {
 public:
-    static const std::string SOURCE;
+    static constexpr std::string_view SOURCE = "selfie";
 
-    typedef std::shared_ptr<PassportElementErrorSelfie> Ptr;
+    using Ptr = std::shared_ptr<PassportElementErrorSelfie>;
 
     PassportElementErrorSelfie() {
         this->source = SOURCE;

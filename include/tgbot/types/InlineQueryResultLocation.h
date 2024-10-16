@@ -21,7 +21,7 @@ namespace TgBot {
 class InlineQueryResultLocation : public InlineQueryResult {
 
 public:
-    static const std::string TYPE;
+    static constexpr std::string_view TYPE = "location";
 
     typedef std::shared_ptr<InlineQueryResultLocation> Ptr;
 

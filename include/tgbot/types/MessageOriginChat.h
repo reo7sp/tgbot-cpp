@@ -17,9 +17,9 @@ namespace TgBot {
 class MessageOriginChat : public MessageOrigin {
 
 public:
-    static const std::string TYPE;
+    static constexpr std::string_view TYPE = "chat";
 
-    typedef std::shared_ptr<MessageOriginChat> Ptr;
+    using Ptr = std::shared_ptr<MessageOriginChat>;
 
     MessageOriginChat() {
         this->type = TYPE;

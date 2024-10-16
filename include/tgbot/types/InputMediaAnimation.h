@@ -16,9 +16,9 @@ namespace TgBot {
 class InputMediaAnimation : public InputMedia {
 
 public:
-    static const std::string TYPE;
+    static constexpr std::string_view TYPE = "animation";
 
-    typedef std::shared_ptr<InputMediaAnimation> Ptr;
+    using Ptr = std::shared_ptr<InputMediaAnimation>;
 
     InputMediaAnimation() {
         this->type = TYPE;
@@ -38,22 +38,22 @@ public:
     /**
      * @brief Optional. Animation width
      */
-    std::int32_t width;
+    std::int32_t width{};
 
     /**
      * @brief Optional. Animation height
      */
-    std::int32_t height;
+    std::int32_t height{};
 
     /**
      * @brief Optional. Animation duration in seconds
      */
-    std::int32_t duration;
+    std::int32_t duration{};
 
     /**
      * @brief Optional. Pass True if the animation needs to be covered with a spoiler animation
      */
-    bool hasSpoiler;
+    bool hasSpoiler{};
 };
 }
 

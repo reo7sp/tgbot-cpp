@@ -18,9 +18,9 @@ namespace TgBot {
 class ChatBoostSourceGiveaway : public ChatBoostSource {
 
 public:
-    static const std::string SOURCE;
+    static constexpr std::string_view SOURCE = "giveaway";
 
-    typedef std::shared_ptr<ChatBoostSourceGiveaway> Ptr;
+    using Ptr = std::shared_ptr<ChatBoostSourceGiveaway>;
 
     ChatBoostSourceGiveaway() {
         this->source = SOURCE;
@@ -31,12 +31,12 @@ public:
      *
      * May be 0 if the message isn't sent yet.
      */
-    std::int32_t giveawayMessageId;
+    std::int32_t giveawayMessageId{};
 
     /**
      * @brief Optional. True, if the giveaway was completed, but there was no user to win the prize
      */
-    bool isUnclaimed;
+    bool isUnclaimed{};
 };
 }
 

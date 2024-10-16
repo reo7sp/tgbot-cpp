@@ -22,9 +22,9 @@ namespace TgBot {
 class InlineQueryResultCachedAudio : public InlineQueryResult {
 
 public:
-    static const std::string TYPE;
+    static constexpr std::string_view TYPE = "audio";
 
-    typedef std::shared_ptr<InlineQueryResultCachedAudio> Ptr;
+    using Ptr = std::shared_ptr<InlineQueryResultCachedAudio>;
 
     InlineQueryResultCachedAudio() {
         this->type = TYPE;

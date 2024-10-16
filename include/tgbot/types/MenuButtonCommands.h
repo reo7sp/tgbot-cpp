@@ -14,9 +14,9 @@ namespace TgBot {
  */
 class MenuButtonCommands : public MenuButton {
 public:
-    static const std::string TYPE;
+    static constexpr std::string_view TYPE = "commands";
 
-    typedef std::shared_ptr<MenuButtonCommands> Ptr;
+    using Ptr = std::shared_ptr<MenuButtonCommands>;
 
     MenuButtonCommands() {
         this->type = TYPE;

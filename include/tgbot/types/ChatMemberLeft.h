@@ -14,9 +14,9 @@ namespace TgBot {
  */
 class ChatMemberLeft : public ChatMember {
 public:
-    static const std::string STATUS;
+    static constexpr std::string_view STATUS = "left";
 
-    typedef std::shared_ptr<ChatMemberLeft> Ptr;
+    using Ptr = std::shared_ptr<ChatMemberLeft>;
 
     ChatMemberLeft() {
         this->status = STATUS;

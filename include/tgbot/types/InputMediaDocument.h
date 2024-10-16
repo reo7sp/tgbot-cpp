@@ -16,9 +16,9 @@ namespace TgBot {
 class InputMediaDocument : public InputMedia {
 
 public:
-    static const std::string TYPE;
+    static constexpr std::string_view TYPE = "document";
 
-    typedef std::shared_ptr<InputMediaDocument> Ptr;
+    using Ptr = std::shared_ptr<InputMediaDocument>;
 
     InputMediaDocument() {
         this->type = TYPE;
@@ -38,7 +38,7 @@ public:
      * @brief Optional. Disables automatic server-side content type detection for files uploaded using multipart/form-data.
      * Always true, if the document is sent as part of an album.
      */
-    bool disableContentTypeDetection;
+    bool disableContentTypeDetection{};
 };
 }
 

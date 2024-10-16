@@ -16,7 +16,7 @@ namespace TgBot {
 class InlineQueryResultGame : public InlineQueryResult {
 
 public:
-    static const std::string TYPE;
+    static constexpr std::string_view TYPE = "game";
 
     typedef std::shared_ptr<InlineQueryResultGame> Ptr;
 

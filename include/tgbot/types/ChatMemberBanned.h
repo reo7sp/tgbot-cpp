@@ -15,9 +15,9 @@ namespace TgBot {
  */
 class ChatMemberBanned : public ChatMember {
 public:
-    static const std::string STATUS;
+    static constexpr std::string_view STATUS = "kicked";
 
-    typedef std::shared_ptr<ChatMemberBanned> Ptr;
+    using Ptr = std::shared_ptr<ChatMemberBanned>;
 
     ChatMemberBanned() {
         this->status = STATUS;
@@ -28,7 +28,7 @@ public:
      * 
      * If 0, then the user is banned forever
      */
-    std::uint32_t untilDate;
+    std::uint32_t untilDate{};
 };
 }
 

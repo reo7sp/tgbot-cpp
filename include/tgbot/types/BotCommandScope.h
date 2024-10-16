@@ -15,11 +15,11 @@ namespace TgBot {
  */
 class BotCommandScope {
 public:
-    typedef std::shared_ptr<BotCommandScope> Ptr;
+    using Ptr = std::shared_ptr<BotCommandScope>;
 
-    BotCommandScope() {}
+    BotCommandScope() = default;
 
-    virtual ~BotCommandScope() {}
+    virtual ~BotCommandScope() = default;
 
     /**
      * @brief Scope type

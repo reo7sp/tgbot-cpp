@@ -37,17 +37,7 @@ set(SRC_LIST
     src/net/Url.cpp
     src/tools/FileTools.cpp
     src/tools/StringTools.cpp
-    src/types/BotCommandScope.cpp
-    src/types/ChatBoostSource.cpp
-    src/types/ChatMember.cpp
-    src/types/InlineQueryResult.cpp
-    src/types/InputFile.cpp
-    src/types/InputMedia.cpp 
-    src/types/InputMessageContent.cpp
-    src/types/MenuButton.cpp
-    src/types/MessageOrigin.cpp
-    src/types/PassportElementError.cpp
-    src/types/ReactionType.cpp)
+    src/types/InputFile.cpp)
 
 # libs
 ## threads

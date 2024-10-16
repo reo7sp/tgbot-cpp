@@ -20,9 +20,9 @@ namespace TgBot {
  */
 class InlineQueryResultCachedPhoto : public InlineQueryResult {
 public:
-    static const std::string TYPE;
+    static constexpr std::string_view TYPE = "photo";
 
-    typedef std::shared_ptr<InlineQueryResultCachedPhoto> Ptr;
+    using Ptr = std::shared_ptr<InlineQueryResultCachedPhoto>;
 
     InlineQueryResultCachedPhoto() {
         this->type = TYPE;

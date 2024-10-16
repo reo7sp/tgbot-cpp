@@ -16,7 +16,7 @@ namespace TgBot {
  */
 class PassportElementErrorUnspecified : public PassportElementError {
 public:
-    static const std::string SOURCE;
+    static constexpr std::string_view SOURCE = "unspecified";
 
     typedef std::shared_ptr<PassportElementErrorUnspecified> Ptr;
 

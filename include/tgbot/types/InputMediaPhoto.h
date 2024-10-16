@@ -14,9 +14,9 @@ namespace TgBot {
  */
 class InputMediaPhoto : public InputMedia {
 public:
-    static const std::string TYPE;
+    static constexpr std::string_view TYPE = "photo";
 
-    typedef std::shared_ptr<InputMediaPhoto> Ptr;
+    using Ptr = std::shared_ptr<InputMediaPhoto>;
 
     InputMediaPhoto() {
         this->type = TYPE;
@@ -25,7 +25,7 @@ public:
     /**
      * @brief Optional. Pass True if the photo needs to be covered with a spoiler animation
      */
-    bool hasSpoiler;
+    bool hasSpoiler{};
 };
 }
 

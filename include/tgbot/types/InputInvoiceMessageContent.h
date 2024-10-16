@@ -18,9 +18,9 @@ namespace TgBot {
  */
 class InputInvoiceMessageContent : public InputMessageContent {
 public:
-    static const std::string TYPE;
+    static constexpr std::string_view TYPE = "invoice";
 
-    typedef std::shared_ptr<InputInvoiceMessageContent> Ptr;
+    using Ptr = std::shared_ptr<InputInvoiceMessageContent>;
 
     InputInvoiceMessageContent() {
         this->type = TYPE;
@@ -63,7 +63,7 @@ public:
      * See the exp parameter in https://core.telegram.org/bots/payments/currencies.json, it shows the number of digits past the decimal point for each currency (2 for the majority of currencies).
      * Defaults to 0
      */
-    std::int32_t maxTipAmount;
+    std::int32_t maxTipAmount{};
 
     /**
      * @brief Optional. A JSON-serialized array of suggested amounts of tip in the smallest units of the currency (integer, not float/double).
@@ -88,52 +88,52 @@ public:
     /**
      * @brief Optional. Photo size
      */
-    std::int32_t photoSize;
+    std::int32_t photoSize{};
 
     /**
      * @brief Optional. Photo width
      */
-    std::int32_t photoWidth;
+    std::int32_t photoWidth{};
 
     /**
      * @brief Optional. Photo height
      */
-    std::int32_t photoHeight;
+    std::int32_t photoHeight{};
 
     /**
      * @brief Optional. Pass True, if you require the user's full name to complete the order
      */
-    bool needName;
+    bool needName{};
 
     /**
      * @brief Optional. Pass True, if you require the user's phone number to complete the order
      */
-    bool needPhoneNumber;
+    bool needPhoneNumber{};
 
     /**
      * @brief Optional. Pass True, if you require the user's email address to complete the order
      */
-    bool needEmail;
+    bool needEmail{};
 
     /**
      * @brief Optional. Pass True, if you require the user's shipping address to complete the order
      */
-    bool needShippingAddress;
+    bool needShippingAddress{};
 
     /**
      * @brief Optional. Pass True, if user's phone number should be sent to provider
      */
-    bool sendPhoneNumberToProvider;
+    bool sendPhoneNumberToProvider{};
 
     /**
      * @brief Optional. Pass True, if user's email address should be sent to provider
      */
-    bool sendEmailToProvider;
+    bool sendEmailToProvider{};
 
     /**
      * @brief Optional. Pass True, if the final price depends on the shipping method
      */
-    bool isFlexible;
+    bool isFlexible{};
 };
 }
 

@@ -16,9 +16,9 @@ namespace TgBot {
  */
 class PassportElementErrorDataField : public PassportElementError {
 public:
-    static const std::string SOURCE;
+    static constexpr std::string_view SOURCE = "data";
 
-    typedef std::shared_ptr<PassportElementErrorDataField> Ptr;
+    using Ptr = std::shared_ptr<PassportElementErrorDataField>;
 
     PassportElementErrorDataField() {
         this->source = SOURCE;

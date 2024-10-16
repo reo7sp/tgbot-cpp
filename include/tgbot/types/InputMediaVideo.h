@@ -16,9 +16,9 @@ namespace TgBot {
  */
 class InputMediaVideo : public InputMedia {
 public:
-    static const std::string TYPE;
+    static constexpr std::string_view TYPE = "video";
 
-    typedef std::shared_ptr<InputMediaVideo> Ptr;
+    using Ptr = std::shared_ptr<InputMediaVideo>;
 
     InputMediaVideo() {
         this->type = TYPE;
@@ -38,27 +38,27 @@ public:
     /**
      * @brief Optional. Video width
      */
-    std::int32_t width;
+    std::int32_t width{};
 
     /**
      * @brief Optional. Video height
      */
-    std::int32_t height;
+    std::int32_t height{};
 
     /**
      * @brief Optional. Video duration in seconds
      */
-    std::int32_t duration;
+    std::int32_t duration{};
 
     /**
      * @brief Optional. Pass True if the uploaded video is suitable for streaming
      */
-    bool supportsStreaming;
+    bool supportsStreaming{};
 
     /**
      * @brief Optional. Pass True if the video needs to be covered with a spoiler animation
      */
-    bool hasSpoiler;
+    bool hasSpoiler{};
 };
 }
 

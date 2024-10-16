@@ -18,9 +18,9 @@ namespace TgBot {
 class MessageOriginChannel : public MessageOrigin {
 
 public:
-    static const std::string TYPE;
+    static constexpr std::string_view TYPE = "channel";
 
-    typedef std::shared_ptr<MessageOriginChannel> Ptr;
+    using Ptr = std::shared_ptr<MessageOriginChannel>;
 
     MessageOriginChannel() {
         this->type = TYPE;
@@ -34,7 +34,7 @@ public:
     /**
      * @brief Unique message identifier inside the chat
      */
-    std::int32_t messageId;
+    std::int32_t messageId{};
 
     /**
      * @brief Optional. Signature of the original post author

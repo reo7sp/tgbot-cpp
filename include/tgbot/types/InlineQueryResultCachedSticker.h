@@ -20,9 +20,9 @@ namespace TgBot {
 class InlineQueryResultCachedSticker : public InlineQueryResult {
 
 public:
-    static const std::string TYPE;
+    static constexpr std::string_view TYPE = "sticker";
 
-    typedef std::shared_ptr<InlineQueryResultCachedSticker> Ptr;
+    using Ptr = std::shared_ptr<InlineQueryResultCachedSticker>;
 
     InlineQueryResultCachedSticker() {
         this->type = TYPE;

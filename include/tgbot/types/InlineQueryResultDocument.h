@@ -24,9 +24,9 @@ namespace TgBot {
 class InlineQueryResultDocument : public InlineQueryResult {
 
 public:
-    static const std::string TYPE;
+    static constexpr std::string_view TYPE = "document";
 
-    typedef std::shared_ptr<InlineQueryResultDocument> Ptr;
+    using Ptr = std::shared_ptr<InlineQueryResultDocument>;
 
     InlineQueryResultDocument() {
         this->type = TYPE;
@@ -82,12 +82,12 @@ public:
     /**
      * @brief Optional. Thumbnail width
      */
-    std::int32_t thumbnailWidth;
+    std::int32_t thumbnailWidth{};
 
     /**
      * @brief Optional. Thumbnail height
      */
-    std::int32_t thumbnailHeight;
+    std::int32_t thumbnailHeight{};
 };
 }
 

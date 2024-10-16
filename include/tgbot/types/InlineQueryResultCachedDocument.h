@@ -22,9 +22,9 @@ namespace TgBot {
 class InlineQueryResultCachedDocument : public InlineQueryResult {
 
 public:
-    static const std::string TYPE;
+    static constexpr std::string_view TYPE = "document";
 
-    typedef std::shared_ptr<InlineQueryResultCachedDocument> Ptr;
+    using Ptr = std::shared_ptr<InlineQueryResultCachedDocument>;
 
     InlineQueryResultCachedDocument() {
         this->type = TYPE;

@@ -15,9 +15,9 @@ namespace TgBot {
  */
 class ChatMemberOwner : public ChatMember {
 public:
-    static const std::string STATUS;
+    static constexpr std::string_view STATUS = "creator";
 
-    typedef std::shared_ptr<ChatMemberOwner> Ptr;
+    using Ptr = std::shared_ptr<ChatMemberOwner>;
 
     ChatMemberOwner() {
         this->status = STATUS;
@@ -31,7 +31,7 @@ public:
     /**
      * @brief True, if the user's presence in the chat is hidden
      */
-    bool isAnonymous;
+    bool isAnonymous{};
 };
 }
 

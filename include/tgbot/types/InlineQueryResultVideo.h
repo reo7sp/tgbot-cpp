@@ -23,9 +23,9 @@ namespace TgBot {
  */
 class InlineQueryResultVideo : public InlineQueryResult {
 public:
-    static const std::string TYPE;
+    static constexpr std::string_view TYPE = "video";
 
-    typedef std::shared_ptr<InlineQueryResultVideo> Ptr;
+    using Ptr = std::shared_ptr<InlineQueryResultVideo>;
 
     InlineQueryResultVideo() {
         this->type = TYPE;
@@ -70,17 +70,17 @@ public:
     /**
      * @brief Optional. Video width
      */
-    std::int32_t videoWidth;
+    std::int32_t videoWidth{};
 
     /**
      * @brief Optional. Video height
      */
-    std::int32_t videoHeight;
+    std::int32_t videoHeight{};
 
     /**
      * @brief Optional. Video duration in seconds
      */
-    std::int32_t videoDuration;
+    std::int32_t videoDuration{};
 
     /**
      * @brief Optional. Short description of the result

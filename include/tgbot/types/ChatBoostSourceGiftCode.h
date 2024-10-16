@@ -17,9 +17,9 @@ namespace TgBot {
 class ChatBoostSourceGiftCode : public ChatBoostSource {
 
 public:
-    static const std::string SOURCE;
+    static constexpr std::string_view SOURCE = "gift_code";
 
-    typedef std::shared_ptr<ChatBoostSourceGiftCode> Ptr;
+    using Ptr = std::shared_ptr<ChatBoostSourceGiftCode>;
 
     ChatBoostSourceGiftCode() {
         this->source = SOURCE;

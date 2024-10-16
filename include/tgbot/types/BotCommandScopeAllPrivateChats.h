@@ -14,9 +14,9 @@ namespace TgBot {
  */
 class BotCommandScopeAllPrivateChats : public BotCommandScope {
 public:
-    static const std::string TYPE;
+    static constexpr std::string_view TYPE = "all_private_chats";
 
-    typedef std::shared_ptr<BotCommandScopeAllPrivateChats> Ptr;
+    using Ptr = std::shared_ptr<BotCommandScopeAllPrivateChats>;
 
     BotCommandScopeAllPrivateChats() {
         this->type = TYPE;

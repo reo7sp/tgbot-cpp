@@ -15,9 +15,9 @@ namespace TgBot {
  */
 class InputVenueMessageContent : public InputMessageContent {
 public:
-    static const std::string TYPE;
+    static constexpr std::string_view TYPE = "venue";
 
-    typedef std::shared_ptr<InputVenueMessageContent> Ptr;
+    using Ptr = std::shared_ptr<InputVenueMessageContent>;
 
     InputVenueMessageContent() {
         this->type = TYPE;
@@ -26,12 +26,12 @@ public:
     /**
      * @brief Latitude of the location in degrees
      */
-    float latitude;
+    float latitude{};
 
     /**
      * @brief Longitude of the location in degrees
      */
-    float longitude;
+    float longitude{};
 
     /**
      * @brief Name of the venue

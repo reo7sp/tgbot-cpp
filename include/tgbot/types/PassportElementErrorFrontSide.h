@@ -16,7 +16,7 @@ namespace TgBot {
  */
 class PassportElementErrorFrontSide : public PassportElementError {
 public:
-    static const std::string SOURCE;
+    static constexpr std::string_view SOURCE = "front_side";
 
     typedef std::shared_ptr<PassportElementErrorFrontSide> Ptr;
 

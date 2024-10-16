@@ -16,9 +16,9 @@ namespace TgBot {
  */
 class MenuButtonWebApp : public MenuButton {
 public:
-    static const std::string TYPE;
+    static constexpr std::string_view TYPE = "web_app";
 
-    typedef std::shared_ptr<MenuButtonWebApp> Ptr;
+    using Ptr = std::shared_ptr<MenuButtonWebApp>;
 
     MenuButtonWebApp() {
         this->type = TYPE;

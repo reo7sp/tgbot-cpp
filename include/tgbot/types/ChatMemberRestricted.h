@@ -18,9 +18,9 @@ namespace TgBot {
 class ChatMemberRestricted : public ChatMember {
 
 public:
-    static const std::string STATUS;
+    static constexpr std::string_view STATUS = "restricted";
 
-    typedef std::shared_ptr<ChatMemberRestricted> Ptr;
+    using Ptr = std::shared_ptr<ChatMemberRestricted>;
 
     ChatMemberRestricted() {
         this->status = STATUS;
@@ -29,84 +29,84 @@ public:
     /**
      * @brief True, if the user is a member of the chat at the moment of the request
      */
-    bool isMember;
+    bool isMember{};
 
     /**
      * @brief True, if the user is allowed to send text messages, contacts, giveaways, giveaway winners, invoices, locations and venues
      */
-    bool canSendMessages;
+    bool canSendMessages{};
 
     /**
      * @brief True, if the user is allowed to send audios
      */
-    bool canSendAudios;
+    bool canSendAudios{};
 
     /**
      * @brief True, if the user is allowed to send documents
      */
-    bool canSendDocuments;
+    bool canSendDocuments{};
 
     /**
      * @brief True, if the user is allowed to send photos
      */
-    bool canSendPhotos;
+    bool canSendPhotos{};
 
     /**
      * @brief True, if the user is allowed to send videos
      */
-    bool canSendVideos;
+    bool canSendVideos{};
 
     /**
      * @brief True, if the user is allowed to send video notes
      */
-    bool canSendVideoNotes;
+    bool canSendVideoNotes{};
 
     /**
      * @brief True, if the user is allowed to send voice notes
      */
-    bool canSendVoiceNotes;
+    bool canSendVoiceNotes{};
 
     /**
      * @brief True, if the user is allowed to send polls
      */
-    bool canSendPolls;
+    bool canSendPolls{};
 
     /**
      * @brief True, if the user is allowed to send animations, games, stickers and use inline bots
      */
-    bool canSendOtherMessages;
+    bool canSendOtherMessages{};
 
     /**
      * @brief True, if the user is allowed to add web page previews to their messages
      */
-    bool canAddWebPagePreviews;
+    bool canAddWebPagePreviews{};
 
     /**
      * @brief True, if the user is allowed to change the chat title, photo and other settings
      */
-    bool canChangeInfo;
+    bool canChangeInfo{};
 
     /**
      * @brief True, if the user is allowed to invite new users to the chat
      */
-    bool canInviteUsers;
+    bool canInviteUsers{};
 
     /**
      * @brief True, if the user is allowed to pin messages
      */
-    bool canPinMessages;
+    bool canPinMessages{};
 
     /**
      * @brief True, if the user is allowed to create forum topics
      */
-    bool canManageTopics;
+    bool canManageTopics{};
 
     /**
      * @brief Date when restrictions will be lifted for this user; Unix time.
      *
      * If 0, then the user is restricted forever
      */
-    std::uint32_t untilDate;
+    std::uint32_t untilDate{};
 };
 }
 

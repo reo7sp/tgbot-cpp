@@ -16,9 +16,9 @@ namespace TgBot {
 class InputMediaAudio : public InputMedia {
 
 public:
-    static const std::string TYPE;
+    static constexpr std::string_view TYPE = "audio";
 
-    typedef std::shared_ptr<InputMediaAudio> Ptr;
+    using Ptr = std::shared_ptr<InputMediaAudio>;
 
     InputMediaAudio() {
         this->type = TYPE;
@@ -37,7 +37,7 @@ public:
     /**
      * @brief Optional. Duration of the audio in seconds
      */
-    std::int32_t duration;
+    std::int32_t duration{};
 
     /**
      * @brief Optional. Performer of the audio

@@ -16,9 +16,9 @@ namespace TgBot {
 class ReactionTypeCustomEmoji : public ReactionType {
 
 public:
-    static const std::string TYPE;
+    static constexpr std::string_view TYPE = "custom_emoji";
 
-    typedef std::shared_ptr<ReactionTypeCustomEmoji> Ptr;
+    using Ptr = std::shared_ptr<ReactionTypeCustomEmoji>;
 
     ReactionTypeCustomEmoji() {
         this->type = TYPE;

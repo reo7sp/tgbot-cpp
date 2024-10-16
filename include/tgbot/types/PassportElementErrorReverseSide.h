@@ -16,9 +16,9 @@ namespace TgBot {
  */
 class PassportElementErrorReverseSide : public PassportElementError {
 public:
-    static const std::string SOURCE;
+    static constexpr std::string_view SOURCE = "reverse_side";
 
-    typedef std::shared_ptr<PassportElementErrorReverseSide> Ptr;
+    using Ptr = std::shared_ptr<PassportElementErrorReverseSide>;
 
     PassportElementErrorReverseSide() {
         this->source = SOURCE;

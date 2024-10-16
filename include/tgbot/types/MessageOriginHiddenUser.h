@@ -16,9 +16,9 @@ namespace TgBot {
 class MessageOriginHiddenUser : public MessageOrigin {
 
 public:
-    static const std::string TYPE;
+    static constexpr std::string_view TYPE = "hidden_user";
 
-    typedef std::shared_ptr<MessageOriginHiddenUser> Ptr;
+    using Ptr = std::shared_ptr<MessageOriginHiddenUser>;
 
     MessageOriginHiddenUser() {
         this->type = TYPE;

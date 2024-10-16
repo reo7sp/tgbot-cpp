@@ -4,6 +4,7 @@
 #include "tgbot/types/ChatBoostSource.h"
 
 #include <memory>
+#include <string_view>
 
 namespace TgBot {
 
@@ -15,9 +16,9 @@ namespace TgBot {
 class ChatBoostSourcePremium : public ChatBoostSource {
 
 public:
-    static const std::string SOURCE;
+    static constexpr std::string_view SOURCE = "premium";
 
-    typedef std::shared_ptr<ChatBoostSourcePremium> Ptr;
+    using Ptr = std::shared_ptr<ChatBoostSourcePremium>;
 
     ChatBoostSourcePremium() {
         this->source = SOURCE;

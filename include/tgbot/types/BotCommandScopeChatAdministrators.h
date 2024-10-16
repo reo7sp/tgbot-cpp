@@ -15,9 +15,9 @@ namespace TgBot {
  */
 class BotCommandScopeChatAdministrators : public BotCommandScope {
 public:
-    static const std::string TYPE;
+    static constexpr std::string_view TYPE = "chat_administrators";
 
-    typedef std::shared_ptr<BotCommandScopeChatAdministrators> Ptr;
+    using Ptr = std::shared_ptr<BotCommandScopeChatAdministrators>;
 
     BotCommandScopeChatAdministrators() {
         this->type = TYPE;
@@ -26,7 +26,7 @@ public:
     /**
      * @brief Unique identifier for the target chat or username of the target supergroup (in the format @supergroupusername)
      */
-    std::int64_t chatId;
+    std::int64_t chatId{};
 };
 }
 

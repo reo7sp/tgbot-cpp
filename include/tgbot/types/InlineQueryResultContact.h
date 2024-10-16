@@ -21,9 +21,9 @@ namespace TgBot {
 class InlineQueryResultContact : public InlineQueryResult {
 
 public:
-    static const std::string TYPE;
+    static constexpr std::string_view TYPE = "contact";
 
-    typedef std::shared_ptr<InlineQueryResultContact> Ptr;
+    using Ptr = std::shared_ptr<InlineQueryResultContact>;
 
     InlineQueryResultContact() {
         this->type = TYPE;
@@ -62,12 +62,12 @@ public:
     /**
      * @brief Optional. Thumbnail width
      */
-    std::int32_t thumbnailWidth;
+    std::int32_t thumbnailWidth{};
 
     /**
      * @brief Optional. Thumbnail height
      */
-    std::int32_t thumbnailHeight;
+    std::int32_t thumbnailHeight{};
 };
 }
 

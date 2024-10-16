@@ -8,6 +8,7 @@
 #include <cstdint>
 #include <memory>
 #include <string>
+#include <string_view>
 #include <vector>
 
 namespace TgBot {
@@ -23,9 +24,9 @@ namespace TgBot {
 class InlineQueryResultVoice : public InlineQueryResult {
 
 public:
-    static const std::string TYPE;
+    static constexpr std::string_view TYPE = "voice";
 
-    typedef std::shared_ptr<InlineQueryResultVoice> Ptr;
+    using Ptr = std::shared_ptr<InlineQueryResultVoice>;
 
     InlineQueryResultVoice() {
         this->type = TYPE;
@@ -61,7 +62,7 @@ public:
     /**
      * @brief Optional. Recording duration in seconds
      */
-    std::int32_t voiceDuration;
+    std::int32_t voiceDuration{};
 
     /**
      * @brief Optional. Content of the message to be sent instead of the voice recording

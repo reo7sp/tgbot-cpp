@@ -21,9 +21,9 @@ namespace TgBot {
  */
 class InlineQueryResultMpeg4Gif : public InlineQueryResult {
 public:
-    static const std::string TYPE;
+    static constexpr std::string_view TYPE = "mpeg4_gif";
 
-    typedef std::shared_ptr<InlineQueryResultMpeg4Gif> Ptr;
+    using Ptr = std::shared_ptr<InlineQueryResultMpeg4Gif>;
 
     InlineQueryResultMpeg4Gif() {
         this->type = TYPE;
@@ -38,17 +38,17 @@ public:
     /**
      * @brief Optional. Video width
      */
-    std::int32_t mpeg4Width;
+    std::int32_t mpeg4Width{};
 
     /**
      * @brief Optional. Video height
      */
-    std::int32_t mpeg4Height;
+    std::int32_t mpeg4Height{};
 
     /**
      * @brief Optional. Video duration
      */
-    std::int32_t mpeg4Duration;
+    std::int32_t mpeg4Duration{};
 
     /**
     * @brief URL of the static (JPEG or GIF) or animated (MPEG4) thumbnail for the result

@@ -21,9 +21,9 @@ namespace TgBot {
 class InlineQueryResultVenue : public InlineQueryResult {
 
 public:
-    static const std::string TYPE;
+    static constexpr std::string_view TYPE = "venue";
 
-    typedef std::shared_ptr<InlineQueryResultVenue> Ptr;
+    using Ptr = std::shared_ptr<InlineQueryResultVenue>;
 
     InlineQueryResultVenue() {
         this->type = TYPE;
@@ -32,12 +32,12 @@ public:
     /**
      * @brief Latitude of the venue location in degrees
      */
-    float latitude;
+    float latitude{};
 
     /**
      * @brief Longitude of the venue location in degrees
      */
-    float longitude;
+    float longitude{};
 
     /**
      * @brief Title of the venue
@@ -86,12 +86,12 @@ public:
     /**
      * @brief Optional. Thumbnail width
      */
-    std::int32_t thumbnailWidth;
+    std::int32_t thumbnailWidth{};
 
     /**
      * @brief Optional. Thumbnail height
      */
-    std::int32_t thumbnailHeight;
+    std::int32_t thumbnailHeight{};
 };
 }
 
