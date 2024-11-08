@@ -675,12 +675,14 @@ std::string TgTypeParser::parseExternalReplyInfo(const ExternalReplyInfo::Ptr& o
 ReplyParameters::Ptr TgTypeParser::parseJsonAndGetReplyParameters(const boost::property_tree::ptree& data) const {
     auto result(std::make_shared<ReplyParameters>());
     result->messageId = data.get<std::int32_t>("message_id", 0);
-    result->chatId = data.get<std::int64_t>("chat_id", 0);
-    result->allowSendingWithoutReply = data.get<bool>("allow_sending_without_reply", false);
-    result->quote = data.get<std::string>("quote", "");
-    result->quoteParseMode = data.get<std::string>("quote_parse_mode", "");
-    result->quoteEntities = parseJsonAndGetArray<MessageEntity>(&TgTypeParser::parseJsonAndGetMessageEntity, data, "quote_entities");
-    result->quotePosition = data.get<std::int32_t>("quote_position", 0);
+    result->chatId = data.get_optional<std::int64_t>("chat_id");
+    result->allowSendingWithoutReply = data.get_optional<bool>("allow_sending_without_reply");
+    result->quote = data.get_optional<std::string>("quote");
+    result->quoteParseMode = data.get_optional<std::string>("quote_parse_mode");
+    if (data.find("quote_entities") != data.not_found()) {
+      result->quoteEntities = parseJsonAndGetArray<MessageEntity>(&TgTypeParser::parseJsonAndGetMessageEntity, data, "quote_entities");
+    }
+      result->quotePosition = data.get_optional<std::int32_t>("quote_position");
     return result;
 }
 
@@ -691,12 +693,12 @@ std::string TgTypeParser::parseReplyParameters(const ReplyParameters::Ptr& objec
     std::string result;
     result += '{';
     appendToJson(result, "message_id", object->messageId);
-    appendToJson(result, "chat_id", object->chatId);
-    appendToJson(result, "allow_sending_without_reply", object->allowSendingWithoutReply);
-    appendToJson(result, "quote", object->quote);
-    appendToJson(result, "quote_parse_mode", object->quoteParseMode);
-    appendToJson(result, "quote_entities", parseArray(&TgTypeParser::parseMessageEntity, object->quoteEntities));
-    appendToJson(result, "quote_position", object->quotePosition);
+    if (object->chatId) appendToJson(result, "chat_id", *(object->chatId));
+    if (object->allowSendingWithoutReply) appendToJson(result, "allow_sending_without_reply", *(object->allowSendingWithoutReply));
+    if (object->quote) appendToJson(result, "quote", *(object->quote));
+    if (object->quoteParseMode) appendToJson(result, "quote_parse_mode", *(object->quoteParseMode));
+    if (object->quoteEntities) appendToJson(result, "quote_entities", parseArray(&TgTypeParser::parseMessageEntity, *(object->quoteEntities)));
+    if (object->quotePosition) appendToJson(result, "quote_position", *(object->quotePosition));
     removeLastComma(result);
     result += '}';
     return result;
@@ -1720,11 +1722,11 @@ std::string TgTypeParser::parseGiveawayCompleted(const GiveawayCompleted::Ptr& o
 
 LinkPreviewOptions::Ptr TgTypeParser::parseJsonAndGetLinkPreviewOptions(const boost::property_tree::ptree& data) const {
     auto result(std::make_shared<LinkPreviewOptions>());
-    result->isDisabled = data.get<bool>("is_disabled", false);
-    result->url = data.get<std::string>("url", "");
-    result->preferSmallMedia = data.get<bool>("prefer_small_media", false);
-    result->preferLargeMedia = data.get<bool>("prefer_large_media", false);
-    result->showAboveText = data.get<bool>("show_above_text", false);
+    result->isDisabled = data.get_optional<bool>("is_disabled");
+    result->url = data.get_optional<std::string>("url");
+    result->preferSmallMedia = data.get_optional<bool>("prefer_small_media");
+    result->preferLargeMedia = data.get_optional<bool>("prefer_large_media");
+    result->showAboveText = data.get_optional<bool>("show_above_text");
     return result;
 }
 
@@ -1734,11 +1736,11 @@ std::string TgTypeParser::parseLinkPreviewOptions(const LinkPreviewOptions::Ptr&
     }
     std::string result;
     result += '{';
-    appendToJson(result, "is_disabled", object->isDisabled);
-    appendToJson(result, "url", object->url);
-    appendToJson(result, "prefer_small_media", object->preferSmallMedia);
-    appendToJson(result, "prefer_large_media", object->preferLargeMedia);
-    appendToJson(result, "show_above_text", object->showAboveText);
+    if (object->isDisabled) appendToJson(result, "is_disabled", *(object->isDisabled));
+    if (object->url) appendToJson(result, "url", *(object->url));
+    if (object->preferSmallMedia) appendToJson(result, "prefer_small_media", *(object->preferSmallMedia));
+    if (object->preferLargeMedia) appendToJson(result, "prefer_large_media", *(object->preferLargeMedia));
+    if (object->showAboveText) appendToJson(result, "show_above_text", *(object->showAboveText));
     removeLastComma(result);
     result += '}';
     return result;
