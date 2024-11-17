@@ -44,7 +44,7 @@ int main() {
     });
 
     try {
-        printf("Bot username: %s\n", bot.getApi().getMe()->username.c_str());
+        printf("Bot username: %s\n", bot.getApi().getMe()->username->c_str());
         bot.getApi().deleteWebhook();
 
         TgLongPoll longPoll(bot);

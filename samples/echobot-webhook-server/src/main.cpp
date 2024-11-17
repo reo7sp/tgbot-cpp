@@ -33,7 +33,7 @@ int main() {
     });
 
     try {
-        printf("Bot username: %s\n", bot.getApi().getMe()->username.c_str());
+        printf("Bot username: %s\n", bot.getApi().getMe()->username->c_str());
 
         TgWebhookTcpServer webhookServer(8080, bot);
 

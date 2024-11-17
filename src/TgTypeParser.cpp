@@ -109,15 +109,15 @@ User::Ptr TgTypeParser::parseJsonAndGetUser(const boost::property_tree::ptree& d
     result->id = data.get<std::int64_t>("id", 0);
     result->isBot = data.get<bool>("is_bot", false);
     result->firstName = data.get<std::string>("first_name", "");
-    result->lastName = data.get<std::string>("last_name", "");
-    result->username = data.get<std::string>("username", "");
-    result->languageCode = data.get<std::string>("language_code", "");
-    result->isPremium = data.get<bool>("is_premium", false);
-    result->addedToAttachmentMenu = data.get<bool>("added_to_attachment_menu", false);
-    result->canJoinGroups = data.get<bool>("can_join_groups", false);
-    result->canReadAllGroupMessages = data.get<bool>("can_read_all_group_messages", false);
-    result->supportsInlineQueries = data.get<bool>("supports_inline_queries", false);
-    result->canConnectToBusiness = data.get<bool>("can_connect_to_business", false);
+    result->lastName = data.get_optional<std::string>("last_name");
+    result->username = data.get_optional<std::string>("username");
+    result->languageCode = data.get_optional<std::string>("language_code");
+    result->isPremium = data.get_optional<bool>("is_premium");
+    result->addedToAttachmentMenu = data.get_optional<bool>("added_to_attachment_menu");
+    result->canJoinGroups = data.get_optional<bool>("can_join_groups");
+    result->canReadAllGroupMessages = data.get_optional<bool>("can_read_all_group_messages");
+    result->supportsInlineQueries = data.get_optional<bool>("supports_inline_queries");
+    result->canConnectToBusiness = data.get_optional<bool>("can_connect_to_business");
     return result;
 }
 
@@ -525,10 +525,10 @@ MessageEntity::Ptr TgTypeParser::parseJsonAndGetMessageEntity(const boost::prope
     }
     result->offset = data.get<std::int32_t>("offset", 0);
     result->length = data.get<std::int32_t>("length", 0);
-    result->url = data.get<std::string>("url", "");
+    result->url = data.get_optional<std::string>("url");
     result->user = tryParseJson<User>(&TgTypeParser::parseJsonAndGetUser, data, "user");
-    result->language = data.get<std::string>("language", "");
-    result->customEmojiId = data.get<std::string>("custom_emoji_id", "");
+    result->language = data.get_optional<std::string>("language");
+    result->customEmojiId = data.get_optional<std::string>("custom_emoji_id");
     return result;
 }
 
@@ -693,12 +693,12 @@ std::string TgTypeParser::parseReplyParameters(const ReplyParameters::Ptr& objec
     std::string result;
     result += '{';
     appendToJson(result, "message_id", object->messageId);
-    if (object->chatId) appendToJson(result, "chat_id", *(object->chatId));
-    if (object->allowSendingWithoutReply) appendToJson(result, "allow_sending_without_reply", *(object->allowSendingWithoutReply));
-    if (object->quote) appendToJson(result, "quote", *(object->quote));
-    if (object->quoteParseMode) appendToJson(result, "quote_parse_mode", *(object->quoteParseMode));
+    appendToJson(result, "chat_id", object->chatId);
+    appendToJson(result, "allow_sending_without_reply", object->allowSendingWithoutReply);
+    appendToJson(result, "quote", object->quote);
+    appendToJson(result, "quote_parse_mode", object->quoteParseMode);
     if (object->quoteEntities) appendToJson(result, "quote_entities", parseArray(&TgTypeParser::parseMessageEntity, *(object->quoteEntities)));
-    if (object->quotePosition) appendToJson(result, "quote_position", *(object->quotePosition));
+    appendToJson(result, "quote_position", object->quotePosition);
     removeLastComma(result);
     result += '}';
     return result;
@@ -1736,11 +1736,11 @@ std::string TgTypeParser::parseLinkPreviewOptions(const LinkPreviewOptions::Ptr&
     }
     std::string result;
     result += '{';
-    if (object->isDisabled) appendToJson(result, "is_disabled", *(object->isDisabled));
-    if (object->url) appendToJson(result, "url", *(object->url));
-    if (object->preferSmallMedia) appendToJson(result, "prefer_small_media", *(object->preferSmallMedia));
-    if (object->preferLargeMedia) appendToJson(result, "prefer_large_media", *(object->preferLargeMedia));
-    if (object->showAboveText) appendToJson(result, "show_above_text", *(object->showAboveText));
+    appendToJson(result, "is_disabled", object->isDisabled);
+    appendToJson(result, "url", object->url);
+    appendToJson(result, "prefer_small_media", object->preferSmallMedia);
+    appendToJson(result, "prefer_large_media", object->preferLargeMedia);
+    appendToJson(result, "show_above_text", object->showAboveText);
     removeLastComma(result);
     result += '}';
     return result;
@@ -1813,11 +1813,11 @@ ReplyKeyboardMarkup::Ptr TgTypeParser::parseJsonAndGetReplyKeyboardMarkup(const 
     for (const auto& item : data.find("keyboard")->second) {
         result->keyboard.push_back(parseJsonAndGetArray<KeyboardButton>(&TgTypeParser::parseJsonAndGetKeyboardButton, item.second));
     }
-    result->isPersistent = data.get<bool>("is_persistent", false);
-    result->resizeKeyboard = data.get<bool>("resize_keyboard", false);
-    result->oneTimeKeyboard = data.get<bool>("one_time_keyboard", false);
-    result->inputFieldPlaceholder = data.get<std::string>("input_field_placeholder", "");
-    result->selective = data.get<bool>("selective", false);
+    result->isPersistent = data.get_optional<bool>("is_persistent");
+    result->resizeKeyboard = data.get_optional<bool>("resize_keyboard");
+    result->oneTimeKeyboard = data.get_optional<bool>("one_time_keyboard");
+    result->inputFieldPlaceholder = data.get_optional<std::string>("input_field_placeholder");
+    result->selective = data.get_optional<bool>("selective");
     return result;
 }
 
@@ -1969,7 +1969,7 @@ std::string TgTypeParser::parseKeyboardButtonPollType(const KeyboardButtonPollTy
 ReplyKeyboardRemove::Ptr TgTypeParser::parseJsonAndGetReplyKeyboardRemove(const boost::property_tree::ptree& data) const {
     auto result(std::make_shared<ReplyKeyboardRemove>());
     result->removeKeyboard = data.get<bool>("remove_keyboard", false);
-    result->selective = data.get<bool>("selective", false);
+    result->selective = data.get_optional<bool>("selective");
     return result;
 }
 
@@ -2019,15 +2019,15 @@ std::string TgTypeParser::parseInlineKeyboardMarkup(const InlineKeyboardMarkup::
 InlineKeyboardButton::Ptr TgTypeParser::parseJsonAndGetInlineKeyboardButton(const boost::property_tree::ptree& data) const {
     auto result(std::make_shared<InlineKeyboardButton>());
     result->text = data.get<std::string>("text", "");
-    result->url = data.get<std::string>("url", "");
-    result->callbackData = data.get<std::string>("callback_data", "");
+    result->url = data.get_optional<std::string>("url");
+    result->callbackData = data.get_optional<std::string>("callback_data");
     result->webApp = tryParseJson<WebAppInfo>(&TgTypeParser::parseJsonAndGetWebAppInfo, data, "web_app");
     result->loginUrl = tryParseJson<LoginUrl>(&TgTypeParser::parseJsonAndGetLoginUrl, data, "login_url");
-    result->switchInlineQuery = data.get<std::string>("switch_inline_query", "");
-    result->switchInlineQueryCurrentChat = data.get<std::string>("switch_inline_query_current_chat", "");
+    result->switchInlineQuery = data.get_optional<std::string>("switch_inline_query");
+    result->switchInlineQueryCurrentChat = data.get_optional<std::string>("switch_inline_query_current_chat");
     result->switchInlineQueryChosenChat = tryParseJson<SwitchInlineQueryChosenChat>(&TgTypeParser::parseJsonAndGetSwitchInlineQueryChosenChat, data, "switch_inline_query_chosen_chat");
     result->callbackGame = tryParseJson<CallbackGame>(&TgTypeParser::parseJsonAndGetCallbackGame, data, "callback_game");
-    result->pay = data.get<bool>("pay", false);
+    result->pay = data.get_optional<bool>("pay");
     return result;
 }
 
@@ -2055,9 +2055,9 @@ std::string TgTypeParser::parseInlineKeyboardButton(const InlineKeyboardButton::
 LoginUrl::Ptr TgTypeParser::parseJsonAndGetLoginUrl(const boost::property_tree::ptree& data) const {
     auto result(std::make_shared<LoginUrl>());
     result->url = data.get<std::string>("url", "");
-    result->forwardText = data.get<std::string>("forward_text", "");
-    result->botUsername = data.get<std::string>("bot_username", "");
-    result->requestWriteAccess = data.get<bool>("request_write_access", false);
+    result->forwardText = data.get_optional<std::string>("forward_text");
+    result->botUsername = data.get_optional<std::string>("bot_username");
+    result->requestWriteAccess = data.get_optional<bool>("request_write_access");
     return result;
 }
 
@@ -2078,11 +2078,11 @@ std::string TgTypeParser::parseLoginUrl(const LoginUrl::Ptr& object) const {
 
 SwitchInlineQueryChosenChat::Ptr TgTypeParser::parseJsonAndGetSwitchInlineQueryChosenChat(const boost::property_tree::ptree& data) const {
     auto result(std::make_shared<SwitchInlineQueryChosenChat>());
-    result->query = data.get<std::string>("query", "");
-    result->allowUserChats = data.get<bool>("allow_user_chats", false);
-    result->allowBotChats = data.get<bool>("allow_bot_chats", false);
-    result->allowGroupChats = data.get<bool>("allow_group_chats", false);
-    result->allowChannelChats = data.get<bool>("allow_channel_chats", false);
+    result->query = data.get_optional<std::string>("query");
+    result->allowUserChats = data.get_optional<bool>("allow_user_chats");
+    result->allowBotChats = data.get_optional<bool>("allow_bot_chats");
+    result->allowGroupChats = data.get_optional<bool>("allow_group_chats");
+    result->allowChannelChats = data.get_optional<bool>("allow_channel_chats");
     return result;
 }
 
@@ -2135,8 +2135,8 @@ std::string TgTypeParser::parseCallbackQuery(const CallbackQuery::Ptr& object) c
 ForceReply::Ptr TgTypeParser::parseJsonAndGetForceReply(const boost::property_tree::ptree& data) const {
     auto result(std::make_shared<ForceReply>());
     result->forceReply = data.get<bool>("force_reply", false);
-    result->inputFieldPlaceholder = data.get<std::string>("input_field_placeholder", "");
-    result->selective = data.get<bool>("selective", false);
+    result->inputFieldPlaceholder = data.get_optional<std::string>("input_field_placeholder");
+    result->selective = data.get_optional<bool>("selective");
     return result;
 }
 
@@ -5564,7 +5564,7 @@ std::string TgTypeParser::parseGenericReply(const GenericReply::Ptr& object) con
 }
 
 void TgTypeParser::appendToJson(std::string& json, const std::string& varName, const std::string& value) const {
-    if (value.empty()) {
+    if (value.empty()) { //FIXME
         return;
     }
     json += '"';

@@ -2,6 +2,7 @@
 #define TGBOT_TGTYPEPARSER_H
 
 #include "tgbot/export.h"
+#include "tgbot/Optional.h"
 #include "tgbot/types/Update.h"
 #include "tgbot/types/WebhookInfo.h"
 #include "tgbot/types/User.h"
@@ -898,7 +899,19 @@ public:
 
 private:
     inline void removeLastComma(std::string& input) const {
-        input.erase(input.length() - 1);
+        if (!input.empty() && input.back() == ',') input.erase(input.length() - 1);
+    }
+
+    template<typename T>
+    inline void appendToJson(std::string& json, const std::string& varName, const Optional<T>& value) const {
+        if (!value) {
+            return;
+        }
+        json += '"';
+        json += varName;
+        json += R"(":)";
+        json += *value;
+        json += ',';
     }
 
     template<typename T>
