@@ -899,7 +899,7 @@ public:
 
 private:
     inline void removeLastComma(std::string& input) const {
-        if (!input.empty() && input.back() == ',') input.erase(input.length() - 1);
+        if (!input.empty() && input.back() == ',') input.pop_back();
     }
 
     template<typename T>
@@ -907,11 +907,7 @@ private:
         if (!value) {
             return;
         }
-        json += '"';
-        json += varName;
-        json += R"(":)";
-        json += *value;
-        json += ',';
+        appendToJson(json, varName, *value);
     }
 
     template<typename T>

@@ -5,16 +5,16 @@
 
 namespace TgBot {
 
+// Optional via boost::optional
 template<typename T>
-  using Optional = boost::optional<T>;
+    using Optional = boost::optional<T>;
 
-// use for: OptionalPtr<std::shared/unique_ptr<TYPE>>
-// for pointers, we assume optional value == nullptr (or not owned, etc)
+// Optional is nullptr (for std::shared/unique_ptr<> etc)
 template<typename T>
-  using OptionalPtr = T;
+    using OptionalNullPtr = T;
 
 template<typename T>
-  using Required = T;
+    using Required = T;
 
 }
 

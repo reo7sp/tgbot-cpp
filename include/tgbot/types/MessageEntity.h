@@ -55,7 +55,7 @@ public:
     /**
      * @brief Optional. For Type::TextMention only, the mentioned user
      */
-    OptionalPtr<User::Ptr> user;
+    OptionalNullPtr<User::Ptr> user;
 
     /**
      * @brief Optional. For Type::Pre only, the programming language of the entity text

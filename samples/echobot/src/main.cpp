@@ -31,7 +31,10 @@ int main() {
     });
 
     try {
-        printf("Bot username: %s\n", bot.getApi().getMe()->username.value_or(string{"unknown"}).c_str());
+        auto user = bot.getApi().getMe();
+        printf("Bot name: %s, username: %s\n",
+            user->firstName.c_str(),
+            user->username.value_or(string{"unknown"}).c_str());
         bot.getApi().deleteWebhook();
 
         TgLongPoll longPoll(bot);
