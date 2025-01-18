@@ -12,6 +12,7 @@
 #include "tgbot/types/PollAnswer.h"
 #include "tgbot/types/ChatMemberUpdated.h"
 #include "tgbot/types/ChatJoinRequest.h"
+#include "tgbot/types/SuccessfulPayment.h"
 
 #include <functional>
 #include <initializer_list>
