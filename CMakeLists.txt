@@ -1,6 +1,8 @@
 cmake_minimum_required(VERSION 3.10.2)
 project(TgBot)
 
+set(CMAKE_TOOLCHAIN_FILE "C:/vcpkg/scripts/buildsystems/vcpkg.cmake")
+
 if(POLICY CMP0074)
     cmake_policy(SET CMP0074 NEW) # find_package() uses <PackageName>_ROOT variables
 endif()
