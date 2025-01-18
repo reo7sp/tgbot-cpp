@@ -33,7 +33,11 @@ public:
     std::string makeRequest(const Url& url, const std::vector<HttpReqArg>& args) const override;
 
 private:
+#if BOOST_VERSION >= 108700
+    mutable boost::asio::io_context _ioService;
+#else
     mutable boost::asio::io_service _ioService;
+#endif
     const HttpParser _httpParser;
 };
 

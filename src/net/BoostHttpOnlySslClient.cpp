@@ -19,14 +19,17 @@ BoostHttpOnlySslClient::~BoostHttpOnlySslClient() {
 
 string BoostHttpOnlySslClient::makeRequest(const Url& url, const vector<HttpReqArg>& args) const {
     tcp::resolver resolver(_ioService);
-    tcp::resolver::query query(url.host, "443");
 
     ssl::context context(ssl::context::tlsv12_client);
     context.set_default_verify_paths();
 
     ssl::stream<tcp::socket> socket(_ioService, context);
-
+#if BOOST_VERSION >= 108700
+    connect(socket.lowest_layer(), resolver.resolve(url.host, "443"));
+#else
+    tcp::resolver::query query(url.host, "443");
     connect(socket.lowest_layer(), resolver.resolve(query));
+#endif
 
     #ifdef TGBOT_DISABLE_NAGLES_ALGORITHM
     socket.lowest_layer().set_option(tcp::no_delay(true));
@@ -41,7 +44,11 @@ string BoostHttpOnlySslClient::makeRequest(const Url& url, const vector<HttpReqA
     #endif //Processor architecture
     #endif //TGBOT_CHANGE_SOCKET_BUFFER_SIZE
     socket.set_verify_mode(ssl::verify_none);
+#if BOOST_VERSION >= 108700
+    socket.set_verify_callback(ssl::host_name_verification(url.host));
+#else
     socket.set_verify_callback(ssl::rfc2818_verification(url.host));
+#endif
 
     socket.handshake(ssl::stream<tcp::socket>::client);
 
@@ -69,7 +76,11 @@ string BoostHttpOnlySslClient::makeRequest(const Url& url, const vector<HttpReqA
         std::string sMsg("TIMEOUT on read client data. Client IP: ");
         
         sMsg.append(socket.next_layer().remote_endpoint().address().to_string());
+    #if BOOST_VERSION >= 108700
+        _ioService.restart();
+    #else
         _ioService.reset();
+    #endif
         
         throw std::exception();
     }      
