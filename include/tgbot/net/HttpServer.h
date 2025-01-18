@@ -159,8 +159,11 @@ protected:
             _startAccept();
         });
     }
-
+#if BOOST_VERSION >= 108700
+    boost::asio::io_context _ioService;
+#else
     boost::asio::io_service _ioService;
+#endif
     boost::asio::basic_socket_acceptor<Protocol> _acceptor;
     boost::asio::basic_stream_socket<Protocol> _socket;
     const ServerHandler _handler;
