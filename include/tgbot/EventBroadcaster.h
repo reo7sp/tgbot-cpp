@@ -12,6 +12,7 @@
 #include "tgbot/types/PollAnswer.h"
 #include "tgbot/types/ChatMemberUpdated.h"
 #include "tgbot/types/ChatJoinRequest.h"
+#include "tgbot/types/SuccessfulPayment.h"
 
 #include <functional>
 #include <initializer_list>
@@ -43,6 +44,7 @@ public:
     typedef std::function<void (const PollAnswer::Ptr)> PollAnswerListener;
     typedef std::function<void (const ChatMemberUpdated::Ptr)> ChatMemberUpdatedListener;
     typedef std::function<void (const ChatJoinRequest::Ptr)> ChatJoinRequestListener;
+    typedef std::function<void (const SuccessfulPayment::Ptr)> SuccessfulPaymentListener;
 
     /**
      * @brief Registers listener which receives new incoming message of any kind - text, photo, sticker, etc.
@@ -202,6 +204,16 @@ public:
         _onChatJoinRequestListeners.push_back(listener);
     }
 
+    /**
+    * @brief Registers listener which receives information about successful payments.
+    * This listener is triggered when a successful payment is received by the bot.
+    * 
+    * @param listener Listener.
+    */
+    inline void onSuccessfulPayment(const SuccessfulPaymentListener& listener) {
+        _onSuccessfulPaymentListeners.push_back(listener);
+    }
+
 private:
     template<typename ListenerType, typename ObjectType>
     inline void broadcast(const std::vector<ListenerType>& listeners, const ObjectType object) const {
@@ -278,6 +290,10 @@ private:
         broadcast<ChatJoinRequestListener, ChatJoinRequest::Ptr>(_onChatJoinRequestListeners, result);
     }
 
+    inline void broadcastSuccessfulPayment(const SuccessfulPayment::Ptr& payment) const {
+        broadcast<SuccessfulPaymentListener, SuccessfulPayment::Ptr>(_onSuccessfulPaymentListeners, payment);
+    }
+
     std::vector<MessageListener> _onAnyMessageListeners;
     std::unordered_map<std::string, MessageListener> _onCommandListeners;
     std::vector<MessageListener> _onUnknownCommandListeners;
@@ -293,6 +309,8 @@ private:
     std::vector<ChatMemberUpdatedListener> _onMyChatMemberListeners;
     std::vector<ChatMemberUpdatedListener> _onChatMemberListeners;
     std::vector<ChatJoinRequestListener> _onChatJoinRequestListeners;
+    std::vector<SuccessfulPaymentListener> _onSuccessfulPaymentListeners;
+
 };
 
 }
