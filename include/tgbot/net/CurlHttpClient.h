@@ -10,8 +10,11 @@
 
 #include <curl/curl.h>
 
+#include <mutex>
 #include <string>
 #include <vector>
+#include <thread>
+#include <unordered_map>
 
 namespace TgBot {
 
@@ -35,9 +38,14 @@ public:
     std::string makeRequest(const Url& url, const std::vector<HttpReqArg>& args) const override;
 
     /**
-     * @brief Raw curl settings storage for fine tuning.
+     * @brief Raw curl handles, each thread has its own handle.
      */
-    CURL* curlSettings;
+    std::unordered_map<std::thread::id, CURL*> curlHandles;
+
+    /**
+     * @brief Lock for curlHandles access.
+     */
+    std::mutex curlHandlesMutex;
 
 private:
     const HttpParser _httpParser;
