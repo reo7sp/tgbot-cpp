@@ -8,14 +8,33 @@
 namespace TgBot {
 
 CurlHttpClient::CurlHttpClient() : _httpParser() {
-    curlSettings = curl_easy_init();
-    
-    curl_easy_setopt(curlSettings, CURLOPT_CONNECTTIMEOUT, 20);
-    curl_easy_setopt(curlSettings, CURLOPT_TIMEOUT, _timeout);
 }
 
 CurlHttpClient::~CurlHttpClient() {
-    curl_easy_cleanup(curlSettings);
+    std::lock_guard<std::mutex> lock(curlHandlesMutex);
+    for (auto& c : curlHandles) {
+        curl_easy_cleanup(c.second);
+    }
+}
+
+static CURL* getCurlHandle(const CurlHttpClient *c_) {
+    CurlHttpClient *c = const_cast<CurlHttpClient *>(c_);
+
+    std::lock_guard<std::mutex> lock(c->curlHandlesMutex);
+    auto id = std::this_thread::get_id();
+    auto it = c->curlHandles.find(id);
+    if (it == c->curlHandles.end()) {
+        CURL* curl = curl_easy_init();
+        if (!curl) {
+            throw std::runtime_error("curl_easy_init() failed");
+        }
+        curl_easy_setopt(curl, CURLOPT_CONNECTTIMEOUT, 20);
+        curl_easy_setopt(curl, CURLOPT_TIMEOUT, c->_timeout);
+        c->curlHandles[id] = curl;
+        return curl;
+    }
+
+    return it->second;
 }
 
 static std::size_t curlWriteString(char* ptr, std::size_t size, std::size_t nmemb, void* userdata) {
@@ -24,20 +43,13 @@ static std::size_t curlWriteString(char* ptr, std::size_t size, std::size_t nmem
 }
 
 std::string CurlHttpClient::makeRequest(const Url& url, const std::vector<HttpReqArg>& args) const {
-    // Copy settings for each call because we change CURLOPT_URL and other stuff.
-    // This also protects multithreaded case.
-    auto curl = curl_easy_duphandle(curlSettings);
+    CURL* curl = getCurlHandle(this);
 
     std::string u = url.protocol + "://" + url.host + url.path;
     if (args.empty()) {
         u += "?" + url.query;
     }
     curl_easy_setopt(curl, CURLOPT_URL, u.c_str());
-
-    // disable keep-alive
-    struct curl_slist* headers = nullptr;
-    headers = curl_slist_append(headers, "Connection: close");
-    curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headers);
 
     curl_mime* mime;
     curl_mimepart* part;
@@ -64,8 +76,6 @@ std::string CurlHttpClient::makeRequest(const Url& url, const std::vector<HttpRe
     curl_easy_setopt(curl, CURLOPT_ERRORBUFFER, errbuf);
 
     auto res = curl_easy_perform(curl);
-    curl_slist_free_all(headers);
-    curl_easy_cleanup(curl);
     curl_mime_free(mime);
 
     // If the request did not complete correctly, show the error
