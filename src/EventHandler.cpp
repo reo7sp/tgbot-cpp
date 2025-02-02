@@ -72,10 +72,11 @@ void EventHandler::handleMessage(const Message::Ptr& message) const {
     } else {
         _broadcaster.broadcastNonCommandMessage(message);
     }
-
+    
     if (message->successfulPayment != nullptr) {
-        _broadcaster.broadcastSuccessfulPayment(message->successfulPayment);
+        _broadcaster.broadcastSuccessfulPayment(message);
     }
+
 }
 
 }

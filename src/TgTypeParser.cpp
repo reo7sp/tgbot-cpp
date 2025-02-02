@@ -27,6 +27,7 @@ Update::Ptr TgTypeParser::parseJsonAndGetUpdate(const boost::property_tree::ptre
     result->chatJoinRequest = tryParseJson<ChatJoinRequest>(&TgTypeParser::parseJsonAndGetChatJoinRequest, data, "chat_join_request");
     result->chatBoost = tryParseJson<ChatBoostUpdated>(&TgTypeParser::parseJsonAndGetChatBoostUpdated, data, "chat_boost");
     result->removedChatBoost = tryParseJson<ChatBoostRemoved>(&TgTypeParser::parseJsonAndGetChatBoostRemoved, data, "removed_chat_boost");
+    result->successfulPayment = tryParseJson<SuccessfulPayment>(&TgTypeParser::parseJsonAndGetSuccessfulPayment, data, "successful_payment");
     return result;
 }
 
@@ -59,6 +60,7 @@ std::string TgTypeParser::parseUpdate(const Update::Ptr& object) const {
     appendToJson(result, "chat_join_request", parseChatJoinRequest(object->chatJoinRequest));
     appendToJson(result, "chat_boost", parseChatBoostUpdated(object->chatBoost));
     appendToJson(result, "removed_chat_boost", parseChatBoostRemoved(object->removedChatBoost));
+    appendToJson(result, "successful_payment", parseSuccessfulPayment(object->successfulPayment));
     removeLastComma(result);
     result += '}';
     return result;
