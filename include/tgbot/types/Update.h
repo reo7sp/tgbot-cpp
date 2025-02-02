@@ -17,6 +17,7 @@
 #include "tgbot/types/ChatJoinRequest.h"
 #include "tgbot/types/ChatBoostUpdated.h"
 #include "tgbot/types/ChatBoostRemoved.h"
+#include "tgbot/types/SuccessfulPayment.h"
 
 #include <cstdint>
 #include <memory>
@@ -183,6 +184,13 @@ public:
      * The bot must be an administrator in the chat to receive these updates.
      */
     ChatBoostRemoved::Ptr removedChatBoost;
+
+    /**
+     * @brief Optional. A boost was removed from a chat.
+     *
+     * The bot must be an administrator in the chat to receive these updates.
+     */
+    SuccessfulPayment::Ptr successfulPayment;
 };
 }
 
