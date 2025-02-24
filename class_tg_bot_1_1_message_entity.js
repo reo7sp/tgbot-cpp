@@ -1,6 +1,6 @@
 var class_tg_bot_1_1_message_entity =
 [
-    [ "Ptr", "class_tg_bot_1_1_message_entity.html#a6710ffdbafba909633df7bcd8c488da0", null ],
+    [ "Ptr", "class_tg_bot_1_1_message_entity.html#af1748e45c29b144f74474e01a4904026", null ],
     [ "Type", "class_tg_bot_1_1_message_entity.html#a6cb87a43b52a982682c1e592fbc1f2c9", [
       [ "Mention", "class_tg_bot_1_1_message_entity.html#a6cb87a43b52a982682c1e592fbc1f2c9a53463656b8197ce564e370d296827252", null ],
       [ "Hashtag", "class_tg_bot_1_1_message_entity.html#a6cb87a43b52a982682c1e592fbc1f2c9a6adba5b578887376a318ad96235cc0b4", null ],

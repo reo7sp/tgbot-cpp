@@ -1,6 +1,6 @@
 var class_tg_bot_1_1_message =
 [
-    [ "Ptr", "class_tg_bot_1_1_message.html#a3805a5dc013c6ab23ac5efc91282c11d", null ],
+    [ "Ptr", "class_tg_bot_1_1_message.html#a3ae3820e16f1e5ad0d277be3a58d0f7e", null ],
     [ "animation", "class_tg_bot_1_1_message.html#a45f98ebfeecddc6d91fd5359aea9bbc2", null ],
     [ "audio", "class_tg_bot_1_1_message.html#a5119ef820bcb4c231a1402147305ea67", null ],
     [ "authorSignature", "class_tg_bot_1_1_message.html#a5e23abf4c637e59a51bd7f7a49339d54", null ],

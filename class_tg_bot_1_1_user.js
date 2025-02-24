@@ -1,6 +1,6 @@
 var class_tg_bot_1_1_user =
 [
-    [ "Ptr", "class_tg_bot_1_1_user.html#ae6ea24aef677abaaf0fd7d60adf5be79", null ],
+    [ "Ptr", "class_tg_bot_1_1_user.html#ad0a3d3833c7157340b23ecb679ebfa4f", null ],
     [ "addedToAttachmentMenu", "class_tg_bot_1_1_user.html#a685524df1d79bf33fb82c782683bd2cc", null ],
     [ "canConnectToBusiness", "class_tg_bot_1_1_user.html#a4744fa719e6ba8eae9ca98b06f04d8ec", null ],
     [ "canJoinGroups", "class_tg_bot_1_1_user.html#a2412401cc890f7244aca8a512d5cfc14", null ],

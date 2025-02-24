@@ -1,6 +1,6 @@
 var class_tg_bot_1_1_reply_keyboard_markup =
 [
-    [ "Ptr", "class_tg_bot_1_1_reply_keyboard_markup.html#af19f8402b914b603ab41305dee55f44a", null ],
+    [ "Ptr", "class_tg_bot_1_1_reply_keyboard_markup.html#ac73b9eb9fa85f1764be944d98edf7367", null ],
     [ "inputFieldPlaceholder", "class_tg_bot_1_1_reply_keyboard_markup.html#a749a554a495cdb02c7098d597dbaca69", null ],
     [ "isPersistent", "class_tg_bot_1_1_reply_keyboard_markup.html#a018afdfb6d986572a67c51d00c32efe4", null ],
     [ "keyboard", "class_tg_bot_1_1_reply_keyboard_markup.html#a87d9dc41554e585b137b922fa20fd020", null ],

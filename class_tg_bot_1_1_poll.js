@@ -1,6 +1,6 @@
 var class_tg_bot_1_1_poll =
 [
-    [ "Ptr", "class_tg_bot_1_1_poll.html#a87289008166e0d6ebe74d61873913a36", null ],
+    [ "Ptr", "class_tg_bot_1_1_poll.html#ae4777de9debd163a150228a70fb4c4e1", null ],
     [ "allowsMultipleAnswers", "class_tg_bot_1_1_poll.html#ab46ee0bff2395c1a8548053598b28300", null ],
     [ "closeDate", "class_tg_bot_1_1_poll.html#a044a0ed6bb5ea6c17bb5a1526a761711", null ],
     [ "correctOptionId", "class_tg_bot_1_1_poll.html#a232f4b0b9c1eb1a9cf8b98b6a347a2a0", null ],

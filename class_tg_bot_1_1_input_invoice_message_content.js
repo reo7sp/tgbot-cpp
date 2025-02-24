@@ -1,6 +1,6 @@
 var class_tg_bot_1_1_input_invoice_message_content =
 [
-    [ "Ptr", "class_tg_bot_1_1_input_invoice_message_content.html#a776b7689e793b3ce36bd36e02ac0c3e6", null ],
+    [ "Ptr", "class_tg_bot_1_1_input_invoice_message_content.html#afa3ceab1e85af770e6ac6b5eff3f7389", null ],
     [ "InputInvoiceMessageContent", "class_tg_bot_1_1_input_invoice_message_content.html#adb5f82c2703fd5b555fcd9af05086534", null ],
     [ "currency", "class_tg_bot_1_1_input_invoice_message_content.html#a942932dfb9ab40f7af9e5e8c811d4617", null ],
     [ "description", "class_tg_bot_1_1_input_invoice_message_content.html#afdd8f16a3080ddc85c0a9d4ca1cb7bd6", null ],

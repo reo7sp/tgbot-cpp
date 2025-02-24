@@ -14,5 +14,6 @@ var searchData=
   ['onpollanswer_11',['onPollAnswer',['../class_tg_bot_1_1_event_broadcaster.html#a47966cd0aefa177879b728dfff994e41',1,'TgBot::EventBroadcaster']]],
   ['onprecheckoutquery_12',['onPreCheckoutQuery',['../class_tg_bot_1_1_event_broadcaster.html#acf68ccdb336430d9b4405cac65d4fce9',1,'TgBot::EventBroadcaster']]],
   ['onshippingquery_13',['onShippingQuery',['../class_tg_bot_1_1_event_broadcaster.html#a1b45b331ec44806de82f12d06ed65106',1,'TgBot::EventBroadcaster']]],
-  ['onunknowncommand_14',['onUnknownCommand',['../class_tg_bot_1_1_event_broadcaster.html#a5bed996221f047ec0469ae19e7bd00eb',1,'TgBot::EventBroadcaster']]]
+  ['onsuccessfulpayment_14',['onSuccessfulPayment',['../class_tg_bot_1_1_event_broadcaster.html#af6a7bfddff8c46d11750ab3295eebc10',1,'TgBot::EventBroadcaster']]],
+  ['onunknowncommand_15',['onUnknownCommand',['../class_tg_bot_1_1_event_broadcaster.html#a5bed996221f047ec0469ae19e7bd00eb',1,'TgBot::EventBroadcaster']]]
 ];

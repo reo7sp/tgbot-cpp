@@ -9,7 +9,8 @@ var group__net =
       [ "CurlHttpClient", "class_tg_bot_1_1_curl_http_client.html#a64fa7c2a4873cea91d955e4df2175b71", null ],
       [ "~CurlHttpClient", "class_tg_bot_1_1_curl_http_client.html#aef991cad0f0113400a6dbee2f2e1c6c4", null ],
       [ "makeRequest", "class_tg_bot_1_1_curl_http_client.html#a6fab88353bda0e5d69c22538a242eec5", null ],
-      [ "curlSettings", "class_tg_bot_1_1_curl_http_client.html#a6292647c7f41c1d16d153a0d780944ef", null ]
+      [ "curlHandles", "class_tg_bot_1_1_curl_http_client.html#a417d0b86bf72b4d1f1701e3e15457c77", null ],
+      [ "curlHandlesMutex", "class_tg_bot_1_1_curl_http_client.html#a57b43bfb470a3164c512cae6fd344e5c", null ]
     ] ],
     [ "TgBot::HttpClient", "class_tg_bot_1_1_http_client.html", [
       [ "~HttpClient", "class_tg_bot_1_1_http_client.html#a1593785b295457dcea0611033fbd0711", null ],
@@ -36,7 +37,7 @@ var group__net =
         [ "_httpParser", "class_tg_bot_1_1_http_server_1_1_connection.html#a3f41a81c73bc3b0257433892b11cf21e", null ],
         [ "_socket", "class_tg_bot_1_1_http_server_1_1_connection.html#a4fe506ad6a637c8ef5f58ef2aaefcbca", null ]
       ] ],
-      [ "ServerHandler", "class_tg_bot_1_1_http_server.html#a0e8b3bf131f8a5d34df8870ca89bfe24", null ],
+      [ "ServerHandler", "class_tg_bot_1_1_http_server.html#adad504bad19d14c683ffe1a92150c5b3", null ],
       [ "HttpServer", "class_tg_bot_1_1_http_server.html#a76f59ef0754327c437352aeb0b19a3f2", null ],
       [ "_startAccept", "class_tg_bot_1_1_http_server.html#aa0210594baa1dfc3ee143689cf2b602c", null ],
       [ "start", "class_tg_bot_1_1_http_server.html#aa237b199d8a0712b983e4913970ad7f7", null ],
@@ -44,6 +45,7 @@ var group__net =
       [ "_acceptor", "class_tg_bot_1_1_http_server.html#a1a48cb5e272aae75d3ee1b51fca445d5", null ],
       [ "_handler", "class_tg_bot_1_1_http_server.html#a9af2cf386463a1f40d0d3e9d92d88eec", null ],
       [ "_httpParser", "class_tg_bot_1_1_http_server.html#ac31bb13213ce451f0daa7e3cb13c9f73", null ],
+      [ "_ioService", "class_tg_bot_1_1_http_server.html#ac65413c352b2a100457ffce897d7439f", null ],
       [ "_ioService", "class_tg_bot_1_1_http_server.html#a68812914f5c398331ee3ef8e77fe39b7", null ],
       [ "_socket", "class_tg_bot_1_1_http_server.html#a5bfd257760ccfc19ceecd0067c0b3df4", null ]
     ] ],

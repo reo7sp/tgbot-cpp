@@ -1,6 +1,6 @@
 var class_tg_bot_1_1_chat_boost =
 [
-    [ "Ptr", "class_tg_bot_1_1_chat_boost.html#af4e9aed008f25af80f98ecc42c491ea7", null ],
+    [ "Ptr", "class_tg_bot_1_1_chat_boost.html#a7c27264a2c3fce44d0fbb682b80a9d91", null ],
     [ "addDate", "class_tg_bot_1_1_chat_boost.html#ae19868d77d844c172d475cc59872992d", null ],
     [ "boostId", "class_tg_bot_1_1_chat_boost.html#a6a7cea300ed0b11e49ab253cbe587d60", null ],
     [ "expirationDate", "class_tg_bot_1_1_chat_boost.html#ab875d47161340834e67d411f94a34ef9", null ],

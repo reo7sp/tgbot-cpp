@@ -1,6 +1,6 @@
 var class_tg_bot_1_1_location =
 [
-    [ "Ptr", "class_tg_bot_1_1_location.html#a0854defd16651e7742f89eca2202d678", null ],
+    [ "Ptr", "class_tg_bot_1_1_location.html#a2337fd0d074be7346fbed0bc74a4239b", null ],
     [ "heading", "class_tg_bot_1_1_location.html#aa54209c7455fa7bd86bf922ce58701dc", null ],
     [ "horizontalAccuracy", "class_tg_bot_1_1_location.html#ad10aa8eed7c81844af0ca503a2ac19f2", null ],
     [ "latitude", "class_tg_bot_1_1_location.html#a01c1a917a3ae8bcbc8977b1b5f0aea7b", null ],

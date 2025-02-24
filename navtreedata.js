@@ -58,12 +58,12 @@ var NAVTREEINDEX =
 "_keyboard_button_request_chat_8h.html",
 "class_tg_bot_1_1_api.html#a88a2867e8eb0f7f4a138b4d3d91f354c",
 "class_tg_bot_1_1_chat_boost.html#a6a7cea300ed0b11e49ab253cbe587d60",
-"class_tg_bot_1_1_external_reply_info.html#a81129671386354ee721d278f4c8f2ede",
-"class_tg_bot_1_1_inline_query_result_cached_video.html#a168ecacabc5443d2b79dc28707df35f1",
-"class_tg_bot_1_1_input_text_message_content.html#aef947c6035a4501bfe40adbd5fad9b7c",
-"class_tg_bot_1_1_message_reaction_updated.html#a2e0106141c2ebaca628824efdeda93a1",
-"class_tg_bot_1_1_tg_exception.html#a88b4eb82d516cd897ace08c9cb4c5097a6593d0aaf3950a1fdf50f35584657fcd",
-"namespace_file_tools.html"
+"class_tg_bot_1_1_external_reply_info.html#a6012bcb24c674b568a4fdb436fe16d4c",
+"class_tg_bot_1_1_inline_query_result_cached_sticker.html#acc56413a356fd0408771ee24bb665c38",
+"class_tg_bot_1_1_input_text_message_content.html#a6926fc1a1b56159d2e2d92ed3de507e7",
+"class_tg_bot_1_1_message_reaction_count_updated.html#ab65e3ada48f900442a5951c54bf69903",
+"class_tg_bot_1_1_tg_exception.html#a3e660db4ebe1576e7f54a3064e3a7144",
+"group__net.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

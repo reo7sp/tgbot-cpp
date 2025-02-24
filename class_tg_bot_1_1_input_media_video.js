@@ -1,6 +1,6 @@
 var class_tg_bot_1_1_input_media_video =
 [
-    [ "Ptr", "class_tg_bot_1_1_input_media_video.html#a659beee71ba67a81f85892800761eb0f", null ],
+    [ "Ptr", "class_tg_bot_1_1_input_media_video.html#a8a0d1f447a817ecb228dad00f2ee5feb", null ],
     [ "InputMediaVideo", "class_tg_bot_1_1_input_media_video.html#a698a73c20b1c6c10be011543ec1253ea", null ],
     [ "duration", "class_tg_bot_1_1_input_media_video.html#ad8c52e1bc6d3f05a81122b3f5895d512", null ],
     [ "hasSpoiler", "class_tg_bot_1_1_input_media_video.html#a2e667eeed22e295ec6bec841883ae768", null ],

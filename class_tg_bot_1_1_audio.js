@@ -1,6 +1,6 @@
 var class_tg_bot_1_1_audio =
 [
-    [ "Ptr", "class_tg_bot_1_1_audio.html#a09651872832ece3b22c7505a2cfc0034", null ],
+    [ "Ptr", "class_tg_bot_1_1_audio.html#a102f42e9736b6e3bbf76e3b4bc8789dd", null ],
     [ "duration", "class_tg_bot_1_1_audio.html#a34fee1211b2e86a69dc79e713ad42ea1", null ],
     [ "fileId", "class_tg_bot_1_1_audio.html#accecab325a61cce4c4260923d21e2726", null ],
     [ "fileName", "class_tg_bot_1_1_audio.html#a1551e9b011a1375bcde17289cc5fc28a", null ],

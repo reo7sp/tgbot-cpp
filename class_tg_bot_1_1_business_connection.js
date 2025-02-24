@@ -1,6 +1,6 @@
 var class_tg_bot_1_1_business_connection =
 [
-    [ "Ptr", "class_tg_bot_1_1_business_connection.html#a7b928349ff34d9a9e2abd8f600b0d7c1", null ],
+    [ "Ptr", "class_tg_bot_1_1_business_connection.html#ab8e7e19865eb5a3c93a45e752fd05a35", null ],
     [ "canReply", "class_tg_bot_1_1_business_connection.html#ac6e6f81941993f8f7958f5eae5512fbb", null ],
     [ "date", "class_tg_bot_1_1_business_connection.html#a2e3f70cd916214cb2c298c696ee16e80", null ],
     [ "id", "class_tg_bot_1_1_business_connection.html#a7ed3e44a8f1a337fadf5e13814d7f32b", null ],

@@ -1,6 +1,6 @@
 var class_tg_bot_1_1_input_location_message_content =
 [
-    [ "Ptr", "class_tg_bot_1_1_input_location_message_content.html#a80ef24779acdb726590e8aaa87c52840", null ],
+    [ "Ptr", "class_tg_bot_1_1_input_location_message_content.html#a8e011962068f7820dd966f728fa330cb", null ],
     [ "InputLocationMessageContent", "class_tg_bot_1_1_input_location_message_content.html#ace56f8081ed46a4729a5f37dacdcb05e", null ],
     [ "heading", "class_tg_bot_1_1_input_location_message_content.html#ad385053347714be8e9e82117637b2d7c", null ],
     [ "horizontalAccuracy", "class_tg_bot_1_1_input_location_message_content.html#a125a037c7b5a67b84df4bbe3443fabd8", null ],

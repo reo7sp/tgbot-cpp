@@ -1,6 +1,6 @@
 var class_tg_bot_1_1_video =
 [
-    [ "Ptr", "class_tg_bot_1_1_video.html#a0005786d327b3e363cb13c18e9ee0593", null ],
+    [ "Ptr", "class_tg_bot_1_1_video.html#aa00dd35f27e027afb6c8b48ab23ef079", null ],
     [ "duration", "class_tg_bot_1_1_video.html#a92885043c8e987c8a378ecb9d09819c3", null ],
     [ "fileId", "class_tg_bot_1_1_video.html#a588d9dab172e6828c1aea49c169bb289", null ],
     [ "fileName", "class_tg_bot_1_1_video.html#a27a6dc1c54e37a6210a30cca4ffaf959", null ],

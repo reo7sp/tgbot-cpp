@@ -1,6 +1,6 @@
 var class_tg_bot_1_1_game =
 [
-    [ "Ptr", "class_tg_bot_1_1_game.html#a6a83e8940305ff4fad66dfe67dbb348b", null ],
+    [ "Ptr", "class_tg_bot_1_1_game.html#ad411d185dc77bd1542ea6103ccc041fb", null ],
     [ "animation", "class_tg_bot_1_1_game.html#a2578e62f28ad5191e1754983a14cad4c", null ],
     [ "description", "class_tg_bot_1_1_game.html#acfd798616a7d6e8d1a0c7f6962e38893", null ],
     [ "photo", "class_tg_bot_1_1_game.html#a38fe8bac265c3718117881a4d989f271", null ],

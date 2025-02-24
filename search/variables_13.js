@@ -36,7 +36,7 @@ var searchData=
   ['story_33',['story',['../class_tg_bot_1_1_external_reply_info.html#a0cd25bdb8ea1a82aecfcea51bc29c747',1,'TgBot::ExternalReplyInfo::story'],['../class_tg_bot_1_1_message.html#a77edf74f572ab2cca9def6ee9d21a8eb',1,'TgBot::Message::story']]],
   ['streetline1_34',['streetLine1',['../class_tg_bot_1_1_shipping_address.html#ae54b22b7d2dc2feb81f9a3e05aeba338',1,'TgBot::ShippingAddress']]],
   ['streetline2_35',['streetLine2',['../class_tg_bot_1_1_shipping_address.html#a2acc7779ce0095c3fea1db37190b9a24',1,'TgBot::ShippingAddress']]],
-  ['successfulpayment_36',['successfulPayment',['../class_tg_bot_1_1_message.html#a9a29d1deca8234fbd2ab448d95f56f6a',1,'TgBot::Message']]],
+  ['successfulpayment_36',['successfulPayment',['../class_tg_bot_1_1_message.html#a9a29d1deca8234fbd2ab448d95f56f6a',1,'TgBot::Message::successfulPayment'],['../class_tg_bot_1_1_update.html#ad7e2138cef3a1e7cfaf40bfa2edcf1e4',1,'TgBot::Update::successfulPayment']]],
   ['suggestedtipamounts_37',['suggestedTipAmounts',['../class_tg_bot_1_1_input_invoice_message_content.html#a6ab2d54e8db4682063e2902bdb27f4a2',1,'TgBot::InputInvoiceMessageContent']]],
   ['supergroupchatcreated_38',['supergroupChatCreated',['../class_tg_bot_1_1_message.html#a49695ef9284f68853700ca5426fd506f',1,'TgBot::Message']]],
   ['supportsinlinequeries_39',['supportsInlineQueries',['../class_tg_bot_1_1_user.html#aff4fc02eba51485e01a873d47ce6289c',1,'TgBot::User']]],

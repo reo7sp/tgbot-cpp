@@ -1,6 +1,6 @@
 var class_tg_bot_1_1_chat_administrator_rights =
 [
-    [ "Ptr", "class_tg_bot_1_1_chat_administrator_rights.html#aa36bfd6ddb3990328b3202ffc419e44c", null ],
+    [ "Ptr", "class_tg_bot_1_1_chat_administrator_rights.html#a5352a22d56e5c4f80a3068e5892fe355", null ],
     [ "canChangeInfo", "class_tg_bot_1_1_chat_administrator_rights.html#a3dac273da2e7639df2958666e96b08d1", null ],
     [ "canDeleteMessages", "class_tg_bot_1_1_chat_administrator_rights.html#ab9198a8468396418dd1207bb6fe9b028", null ],
     [ "canDeleteStories", "class_tg_bot_1_1_chat_administrator_rights.html#a80bf53bf48fdb4048adbb608e90a7874", null ],

@@ -1,6 +1,6 @@
 var class_tg_bot_1_1_update =
 [
-    [ "Ptr", "class_tg_bot_1_1_update.html#abace63cf3605fe7a480a3bb839a672a8", null ],
+    [ "Ptr", "class_tg_bot_1_1_update.html#ab35bbeeb21ced0ae844e89fe67ebb3f0", null ],
     [ "businessConnection", "class_tg_bot_1_1_update.html#a6aa5fece26676b3ce85e6bc0e9c50290", null ],
     [ "businessMessage", "class_tg_bot_1_1_update.html#a52ea48fc42be7b134c32dda55932709f", null ],
     [ "callbackQuery", "class_tg_bot_1_1_update.html#a2c6890adcab16d6a306b3b89fd954f6f", null ],
@@ -23,5 +23,6 @@ var class_tg_bot_1_1_update =
     [ "preCheckoutQuery", "class_tg_bot_1_1_update.html#a9c1dab567059da89f8529263bdc92da3", null ],
     [ "removedChatBoost", "class_tg_bot_1_1_update.html#a0cac69c79b882039a2876afc217c1780", null ],
     [ "shippingQuery", "class_tg_bot_1_1_update.html#ab36e473d65557a1fb6ab4096eadc1269", null ],
+    [ "successfulPayment", "class_tg_bot_1_1_update.html#ad7e2138cef3a1e7cfaf40bfa2edcf1e4", null ],
     [ "updateId", "class_tg_bot_1_1_update.html#aa1f17980cc04fa62367620f922ff9fcb", null ]
 ];

@@ -1,6 +1,6 @@
 var class_tg_bot_1_1_venue =
 [
-    [ "Ptr", "class_tg_bot_1_1_venue.html#a9f9505e1035b3aacd2ad9d68a8285a14", null ],
+    [ "Ptr", "class_tg_bot_1_1_venue.html#a31aee4575c566afd1312b483d523e313", null ],
     [ "address", "class_tg_bot_1_1_venue.html#a411e85c19c38ad2b8922d60582f72459", null ],
     [ "foursquareId", "class_tg_bot_1_1_venue.html#a47ef50c075a870d7a4aa9f27c4181506", null ],
     [ "foursquareType", "class_tg_bot_1_1_venue.html#a8e0d7ae114e1bb2f88ea2a10ae40438b", null ],
