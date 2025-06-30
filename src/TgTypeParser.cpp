@@ -2046,7 +2046,8 @@ std::string TgTypeParser::parseInlineKeyboardButton(const InlineKeyboardButton::
     appendToJson(result, "switch_inline_query_current_chat", object->switchInlineQueryCurrentChat);
     appendToJson(result, "switch_inline_query_chosen_chat", parseSwitchInlineQueryChosenChat(object->switchInlineQueryChosenChat));
     appendToJson(result, "callback_game", parseCallbackGame(object->callbackGame));
-    appendToJson(result, "pay", object->pay);
+    if (object->pay)
+        appendToJson(result, "pay", object->pay);
     removeLastComma(result);
     result += '}';
     return result;
