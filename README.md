@@ -37,7 +37,7 @@ int main() {
         bot.getApi().sendMessage(message->chat->id, "Your message is: " + message->text);
     });
     try {
-        printf("Bot username: %s\n", bot.getApi().getMe()->username.c_str());
+        printf("Bot name: %s\n", bot.getApi().getMe()->firstName.c_str());
         TgBot::TgLongPoll longPoll(bot);
         while (true) {
             printf("Long poll started\n");

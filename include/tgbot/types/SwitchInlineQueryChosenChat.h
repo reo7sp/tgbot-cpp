@@ -1,6 +1,8 @@
 #ifndef TGBOT_SWITCHINLINEQUERYCHOSENCHAT_H
 #define TGBOT_SWITCHINLINEQUERYCHOSENCHAT_H
 
+#include "tgbot/Optional.h"
+
 #include <memory>
 #include <string>
 
@@ -19,27 +21,27 @@ public:
     /**
      * @brief Optional. The default inline query to be inserted in the input field. If left empty, only the bot's username will be inserted
      */
-    std::string query;
+    Optional<std::string> query;
 
     /**
      * @brief Optional. True, if private chats with users can be chosen
      */
-    bool allowUserChats;
+    Optional<bool> allowUserChats;
 
     /**
      * @brief Optional. True, if private chats with bots can be chosen
      */
-    bool allowBotChats;
+    Optional<bool> allowBotChats;
 
     /**
      * @brief Optional. True, if group and supergroup chats can be chosen
      */
-    bool allowGroupChats;
+    Optional<bool> allowGroupChats;
 
     /**
      * @brief Optional. True, if channel chats can be chosen
      */
-    bool allowChannelChats;
+    Optional<bool> allowChannelChats;
 };
 }
 
