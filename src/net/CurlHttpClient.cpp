@@ -28,8 +28,6 @@ static CURL* getCurlHandle(const CurlHttpClient *c_) {
         if (!curl) {
             throw std::runtime_error("curl_easy_init() failed");
         }
-        curl_easy_setopt(curl, CURLOPT_CONNECTTIMEOUT, 20);
-        curl_easy_setopt(curl, CURLOPT_TIMEOUT, c->_timeout);
         c->curlHandles[id] = curl;
         return curl;
     }
@@ -45,6 +43,9 @@ static std::size_t curlWriteString(char* ptr, std::size_t size, std::size_t nmem
 std::string CurlHttpClient::makeRequest(const Url& url, const std::vector<HttpReqArg>& args) const {
     CURL* curl = getCurlHandle(this);
 
+    curl_easy_reset(curl);
+    curl_easy_setopt(curl, CURLOPT_CONNECTTIMEOUT, 20);
+    curl_easy_setopt(curl, CURLOPT_TIMEOUT, _timeout);
     std::string u = url.protocol + "://" + url.host + url.path;
     if (args.empty()) {
         u += "?" + url.query;
