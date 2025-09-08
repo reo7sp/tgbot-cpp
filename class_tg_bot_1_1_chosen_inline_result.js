@@ -1,6 +1,6 @@
 var class_tg_bot_1_1_chosen_inline_result =
 [
-    [ "Ptr", "class_tg_bot_1_1_chosen_inline_result.html#a2b964cb3aafe80521a2ac2edab723fbf", null ],
+    [ "Ptr", "class_tg_bot_1_1_chosen_inline_result.html#ad4b7edd30fd0d876fa99493fe19b3247", null ],
     [ "from", "class_tg_bot_1_1_chosen_inline_result.html#ab35d35a8968b0d943a415a23feed48cd", null ],
     [ "inlineMessageId", "class_tg_bot_1_1_chosen_inline_result.html#ab61cb2aadbf6ab78e334cbc49076514c", null ],
     [ "location", "class_tg_bot_1_1_chosen_inline_result.html#af4b33cf65a66df2adb1c06843b0ff998", null ],

@@ -1,6 +1,6 @@
 var class_tg_bot_1_1_sticker =
 [
-    [ "Ptr", "class_tg_bot_1_1_sticker.html#a028e3a70d3e74f11b0cd2251a77bcc17", null ],
+    [ "Ptr", "class_tg_bot_1_1_sticker.html#a63c460c539e3549bec82850fe30c8fff", null ],
     [ "Type", "class_tg_bot_1_1_sticker.html#a864abb74b27c5f729798954010bcc533", [
       [ "Regular", "class_tg_bot_1_1_sticker.html#a864abb74b27c5f729798954010bcc533ad2203cb1237cb6460cbad94564e39345", null ],
       [ "Mask", "class_tg_bot_1_1_sticker.html#a864abb74b27c5f729798954010bcc533a4a18312b5b75f549d5551e5912ad6ebf", null ],

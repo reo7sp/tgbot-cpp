@@ -1,6 +1,6 @@
 var class_tg_bot_1_1_message_reaction_updated =
 [
-    [ "Ptr", "class_tg_bot_1_1_message_reaction_updated.html#ae27cb3c63a811a643ffc0997344c310d", null ],
+    [ "Ptr", "class_tg_bot_1_1_message_reaction_updated.html#a28c1ad91aa71983c11fbc07cebf48a29", null ],
     [ "actorChat", "class_tg_bot_1_1_message_reaction_updated.html#ab78e05b1b01bae5ac1e88e98b02293db", null ],
     [ "chat", "class_tg_bot_1_1_message_reaction_updated.html#af3549de6fdd8a344110667e9ef2e4746", null ],
     [ "date", "class_tg_bot_1_1_message_reaction_updated.html#aa4491809a1559984c6908b949d756685", null ],

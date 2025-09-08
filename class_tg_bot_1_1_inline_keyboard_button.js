@@ -1,6 +1,6 @@
 var class_tg_bot_1_1_inline_keyboard_button =
 [
-    [ "Ptr", "class_tg_bot_1_1_inline_keyboard_button.html#a3ae1720385912ef90ef3a27c138b1f77", null ],
+    [ "Ptr", "class_tg_bot_1_1_inline_keyboard_button.html#a27b82f178b242b6417377daae1f09983", null ],
     [ "callbackData", "class_tg_bot_1_1_inline_keyboard_button.html#a25716bdfc7a0719f1c17702a8d6a8aa4", null ],
     [ "callbackGame", "class_tg_bot_1_1_inline_keyboard_button.html#a7607991eb8529b9cf0dc2734008cc579", null ],
     [ "loginUrl", "class_tg_bot_1_1_inline_keyboard_button.html#a2c44c6c9696c69c3b0e6acc5b33eedef", null ],

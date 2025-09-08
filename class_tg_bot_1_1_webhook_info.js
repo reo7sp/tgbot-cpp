@@ -1,6 +1,6 @@
 var class_tg_bot_1_1_webhook_info =
 [
-    [ "Ptr", "class_tg_bot_1_1_webhook_info.html#a670b5c9d7d34ddaa8b1ed5721ed8f05b", null ],
+    [ "Ptr", "class_tg_bot_1_1_webhook_info.html#a2280093713d1304207d8bba2204648d6", null ],
     [ "allowedUpdates", "class_tg_bot_1_1_webhook_info.html#a5a145b95d4d15992ac253b6f1ef834ce", null ],
     [ "hasCustomCertificate", "class_tg_bot_1_1_webhook_info.html#acf1dda44e0f4bf867cad1fd5b0099fca", null ],
     [ "ipAddress", "class_tg_bot_1_1_webhook_info.html#a2e681ad4a5868e818c248524ce9abc17", null ],

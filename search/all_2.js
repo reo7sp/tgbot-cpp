@@ -20,7 +20,7 @@ var searchData=
   ['boosthttponlysslclient_2eh_17',['BoostHttpOnlySslClient.h',['../_boost_http_only_ssl_client_8h.html',1,'']]],
   ['boostid_18',['boostId',['../class_tg_bot_1_1_chat_boost.html#a6a7cea300ed0b11e49ab253cbe587d60',1,'TgBot::ChatBoost::boostId'],['../class_tg_bot_1_1_chat_boost_removed.html#a8cb5455fff91992616c828c8923f2c65',1,'TgBot::ChatBoostRemoved::boostId']]],
   ['boosts_19',['boosts',['../class_tg_bot_1_1_user_chat_boosts.html#a573180bad0bf71a67792377f7a87bf94',1,'TgBot::UserChatBoosts']]],
-  ['bot_20',['Bot',['../class_tg_bot_1_1_bot.html',1,'TgBot::Bot'],['../class_tg_bot_1_1_api.html#afb5d57ac6b56fe83e7894e3b686c3339',1,'TgBot::Api::Bot'],['../class_tg_bot_1_1_bot.html#aad9ae2e4f1117361c928b1d5ea69b51e',1,'TgBot::Bot::Bot()']]],
+  ['bot_20',['Bot',['../class_tg_bot_1_1_bot.html',1,'TgBot::Bot'],['../class_tg_bot_1_1_api.html#afb5d57ac6b56fe83e7894e3b686c3339',1,'TgBot::Api::Bot()'],['../class_tg_bot_1_1_bot.html#aad9ae2e4f1117361c928b1d5ea69b51e',1,'TgBot::Bot::Bot()']]],
   ['bot_2eh_21',['Bot.h',['../_bot_8h.html',1,'']]],
   ['botadministratorrights_22',['botAdministratorRights',['../class_tg_bot_1_1_keyboard_button_request_chat.html#a001ed0ecab6816f743756e04b253a2ea',1,'TgBot::KeyboardButtonRequestChat']]],
   ['botcommand_23',['BotCommand',['../class_tg_bot_1_1_bot_command.html',1,'TgBot::BotCommand'],['../class_tg_bot_1_1_bot_command.html#a9e36a1194ec50369d839b5c4c5b73285',1,'TgBot::BotCommand::BotCommand()'],['../class_tg_bot_1_1_message_entity.html#a6cb87a43b52a982682c1e592fbc1f2c9a55b7b0bcd53700c861ad9e98f0b8ca9d',1,'TgBot::MessageEntity::BotCommand']]],

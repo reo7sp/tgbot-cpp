@@ -1,6 +1,6 @@
 var class_tg_bot_1_1_inline_query_result_cached_video =
 [
-    [ "Ptr", "class_tg_bot_1_1_inline_query_result_cached_video.html#aae206f29347661f5c41968e76978adf5", null ],
+    [ "Ptr", "class_tg_bot_1_1_inline_query_result_cached_video.html#a91d532c7ec70a7362c3c5b94b1eef563", null ],
     [ "InlineQueryResultCachedVideo", "class_tg_bot_1_1_inline_query_result_cached_video.html#ab67710f0343f80f75efc8d090e8e76c7", null ],
     [ "caption", "class_tg_bot_1_1_inline_query_result_cached_video.html#a12fa2f1dd9fad132504a375b221ff07b", null ],
     [ "captionEntities", "class_tg_bot_1_1_inline_query_result_cached_video.html#a6db5907e5badb50a6279f63dfe4eda57", null ],

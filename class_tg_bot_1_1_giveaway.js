@@ -1,6 +1,6 @@
 var class_tg_bot_1_1_giveaway =
 [
-    [ "Ptr", "class_tg_bot_1_1_giveaway.html#a94f55ef1ac3efca6af4244cfeb650fb7", null ],
+    [ "Ptr", "class_tg_bot_1_1_giveaway.html#a76f33c56f2bfb91cd6363ca099b30d7a", null ],
     [ "chats", "class_tg_bot_1_1_giveaway.html#ac5335e65d0bffd45e3d53dec4583874c", null ],
     [ "countryCodes", "class_tg_bot_1_1_giveaway.html#a2a62dee1582e6da0bf10415e498509d0", null ],
     [ "hasPublicWinners", "class_tg_bot_1_1_giveaway.html#a02778ebfbee08d1641d59f2fe1791cf6", null ],

@@ -113,9 +113,11 @@ var menudata={children:[
 {text:"Typedefs",url:"functions_type.html",children:[
 {text:"c",url:"functions_type.html#index_c"},
 {text:"i",url:"functions_type_i.html#index_i"},
+{text:"j",url:"functions_type_j.html#index_j"},
 {text:"m",url:"functions_type_m.html#index_m"},
 {text:"p",url:"functions_type_p.html#index_p"},
-{text:"s",url:"functions_type_s.html#index_s"}]},
+{text:"s",url:"functions_type_s.html#index_s"},
+{text:"t",url:"functions_type_t.html#index_t"}]},
 {text:"Enumerations",url:"functions_enum.html"},
 {text:"Related Symbols",url:"functions_rela.html"}]}]},
 {text:"Files",url:"files.html",children:[

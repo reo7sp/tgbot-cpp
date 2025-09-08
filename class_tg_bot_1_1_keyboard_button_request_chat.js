@@ -1,6 +1,6 @@
 var class_tg_bot_1_1_keyboard_button_request_chat =
 [
-    [ "Ptr", "class_tg_bot_1_1_keyboard_button_request_chat.html#a1fe32b6b39b45d428edf1cf1529511cf", null ],
+    [ "Ptr", "class_tg_bot_1_1_keyboard_button_request_chat.html#a3b067dc3850a5557efec6a52d455ff7b", null ],
     [ "botAdministratorRights", "class_tg_bot_1_1_keyboard_button_request_chat.html#a001ed0ecab6816f743756e04b253a2ea", null ],
     [ "botIsMember", "class_tg_bot_1_1_keyboard_button_request_chat.html#a54f711bd1c97d9dc500e3ec57d76e585", null ],
     [ "chatHasUsername", "class_tg_bot_1_1_keyboard_button_request_chat.html#a7fed15a42a3ffe79605915c2669bd04e", null ],

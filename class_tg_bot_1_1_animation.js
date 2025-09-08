@@ -1,6 +1,6 @@
 var class_tg_bot_1_1_animation =
 [
-    [ "Ptr", "class_tg_bot_1_1_animation.html#a2319ce60e82370e845319cea29a84592", null ],
+    [ "Ptr", "class_tg_bot_1_1_animation.html#afc55b2a385eeb3209e91bbbd1214c06a", null ],
     [ "duration", "class_tg_bot_1_1_animation.html#a05ecf76024688998856e31ebdeeff76d", null ],
     [ "fileId", "class_tg_bot_1_1_animation.html#ad47a8d4e733fd4c89df680838ef88bf0", null ],
     [ "fileName", "class_tg_bot_1_1_animation.html#a005529218689a10133d5c7b0482057df", null ],

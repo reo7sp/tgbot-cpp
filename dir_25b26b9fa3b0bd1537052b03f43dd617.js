@@ -10,5 +10,5 @@ var dir_25b26b9fa3b0bd1537052b03f43dd617 =
     [ "export.h", "export_8h.html", null ],
     [ "tgbot.h", "tgbot_8h.html", null ],
     [ "TgException.h", "_tg_exception_8h.html", null ],
-    [ "TgTypeParser.h", "_tg_type_parser_8h.html", null ]
+    [ "TgTypeParser.h", "_tg_type_parser_8h.html", "_tg_type_parser_8h" ]
 ];

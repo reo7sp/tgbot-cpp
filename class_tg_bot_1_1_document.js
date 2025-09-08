@@ -1,6 +1,6 @@
 var class_tg_bot_1_1_document =
 [
-    [ "Ptr", "class_tg_bot_1_1_document.html#aa4dd323b53a3e6cbd4f3c771adfaf840", null ],
+    [ "Ptr", "class_tg_bot_1_1_document.html#af311e27c16bf2a1128ee339899face9e", null ],
     [ "fileId", "class_tg_bot_1_1_document.html#aa67870c6320092c13154abde7dcdf94c", null ],
     [ "fileName", "class_tg_bot_1_1_document.html#a0b36f1611eb0cda45e47c989689456d6", null ],
     [ "fileSize", "class_tg_bot_1_1_document.html#a8e5070cb3b32327d742cee6f1ceccd30", null ],

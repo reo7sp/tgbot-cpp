@@ -1,6 +1,6 @@
 var class_tg_bot_1_1_chat_permissions =
 [
-    [ "Ptr", "class_tg_bot_1_1_chat_permissions.html#aa6b703e347d7b8258842d1381a44d35e", null ],
+    [ "Ptr", "class_tg_bot_1_1_chat_permissions.html#a2483eba25a23b37a08e907b31d9f6944", null ],
     [ "canAddWebPagePreviews", "class_tg_bot_1_1_chat_permissions.html#a2a1ee73a743e512edad914352479a308", null ],
     [ "canChangeInfo", "class_tg_bot_1_1_chat_permissions.html#a24346f33b8852720ceba76cf0fa7b6c5", null ],
     [ "canInviteUsers", "class_tg_bot_1_1_chat_permissions.html#aeb4bb85f314f5c0a0f1e3f6c41d5a2b7", null ],

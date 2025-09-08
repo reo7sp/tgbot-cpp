@@ -1,6 +1,6 @@
 var class_tg_bot_1_1_inline_query_result_location =
 [
-    [ "Ptr", "class_tg_bot_1_1_inline_query_result_location.html#ad8a26bcb43bc3944a5fc9d059e8e98e1", null ],
+    [ "Ptr", "class_tg_bot_1_1_inline_query_result_location.html#abe4f762145a16a14ef2c3d9f590392fc", null ],
     [ "InlineQueryResultLocation", "class_tg_bot_1_1_inline_query_result_location.html#ad5211e1bb511b3311161bbe5a5ae794d", null ],
     [ "heading", "class_tg_bot_1_1_inline_query_result_location.html#a62e4dd7aa774ffefd9d9b2808ca229f2", null ],
     [ "horizontalAccuracy", "class_tg_bot_1_1_inline_query_result_location.html#ad5682f554705561ef29a5c9491550322", null ],

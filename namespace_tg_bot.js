@@ -185,6 +185,7 @@ var namespace_tg_bot =
     [ "TextQuote", "class_tg_bot_1_1_text_quote.html", "class_tg_bot_1_1_text_quote" ],
     [ "TgException", "class_tg_bot_1_1_tg_exception.html", "class_tg_bot_1_1_tg_exception" ],
     [ "TgLongPoll", "class_tg_bot_1_1_tg_long_poll.html", "class_tg_bot_1_1_tg_long_poll" ],
+    [ "TgTypeParser", "class_tg_bot_1_1_tg_type_parser.html", "class_tg_bot_1_1_tg_type_parser" ],
     [ "TgWebhookLocalServer", "class_tg_bot_1_1_tg_webhook_local_server.html", "class_tg_bot_1_1_tg_webhook_local_server" ],
     [ "TgWebhookServer", "class_tg_bot_1_1_tg_webhook_server.html", "class_tg_bot_1_1_tg_webhook_server" ],
     [ "TgWebhookTcpServer", "class_tg_bot_1_1_tg_webhook_tcp_server.html", "class_tg_bot_1_1_tg_webhook_tcp_server" ],

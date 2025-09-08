@@ -1,6 +1,6 @@
 var class_tg_bot_1_1_shipping_address =
 [
-    [ "Ptr", "class_tg_bot_1_1_shipping_address.html#ab83759fb384653dd27d78d48385df68f", null ],
+    [ "Ptr", "class_tg_bot_1_1_shipping_address.html#a92871afa1e15fa06460729711ce6641d", null ],
     [ "city", "class_tg_bot_1_1_shipping_address.html#ac5fe3272ae0fe6e00214ca41b2888d69", null ],
     [ "countryCode", "class_tg_bot_1_1_shipping_address.html#a5e0083ea43cd7e629b645de8e88e8ab8", null ],
     [ "postCode", "class_tg_bot_1_1_shipping_address.html#a7c90dac349c28228c8babf63e06ce667", null ],

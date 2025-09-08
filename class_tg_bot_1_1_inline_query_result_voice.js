@@ -1,6 +1,6 @@
 var class_tg_bot_1_1_inline_query_result_voice =
 [
-    [ "Ptr", "class_tg_bot_1_1_inline_query_result_voice.html#a54f34d5d26f88cf9068f955da466f4bd", null ],
+    [ "Ptr", "class_tg_bot_1_1_inline_query_result_voice.html#a4cf1aa18aaec542598e39ee7416c7df9", null ],
     [ "InlineQueryResultVoice", "class_tg_bot_1_1_inline_query_result_voice.html#a01f73a78827c6ec75f7b355b521efd47", null ],
     [ "caption", "class_tg_bot_1_1_inline_query_result_voice.html#a583cae2219c4e702a2e4bcdcd6e549de", null ],
     [ "captionEntities", "class_tg_bot_1_1_inline_query_result_voice.html#ade30245fd0150c2856791484e539e875", null ],

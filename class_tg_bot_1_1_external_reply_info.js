@@ -1,6 +1,6 @@
 var class_tg_bot_1_1_external_reply_info =
 [
-    [ "Ptr", "class_tg_bot_1_1_external_reply_info.html#ac1322e459be2f23cb2cad1c5133a381c", null ],
+    [ "Ptr", "class_tg_bot_1_1_external_reply_info.html#a81129671386354ee721d278f4c8f2ede", null ],
     [ "animation", "class_tg_bot_1_1_external_reply_info.html#a21afc2fe395576e5bb349bc6c8e7503c", null ],
     [ "audio", "class_tg_bot_1_1_external_reply_info.html#adaa35c0faaf5b8abd5f357d7fba8503d", null ],
     [ "chat", "class_tg_bot_1_1_external_reply_info.html#a634b50990009496efb8278f45e71dcad", null ],

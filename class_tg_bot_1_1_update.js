@@ -1,6 +1,6 @@
 var class_tg_bot_1_1_update =
 [
-    [ "Ptr", "class_tg_bot_1_1_update.html#ab35bbeeb21ced0ae844e89fe67ebb3f0", null ],
+    [ "Ptr", "class_tg_bot_1_1_update.html#abace63cf3605fe7a480a3bb839a672a8", null ],
     [ "businessConnection", "class_tg_bot_1_1_update.html#a6aa5fece26676b3ce85e6bc0e9c50290", null ],
     [ "businessMessage", "class_tg_bot_1_1_update.html#a52ea48fc42be7b134c32dda55932709f", null ],
     [ "callbackQuery", "class_tg_bot_1_1_update.html#a2c6890adcab16d6a306b3b89fd954f6f", null ],

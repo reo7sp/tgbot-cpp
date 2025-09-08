@@ -1,6 +1,6 @@
 var class_tg_bot_1_1_chat =
 [
-    [ "Ptr", "class_tg_bot_1_1_chat.html#af2bd77cf2664d992df24e56e09fee2a1", null ],
+    [ "Ptr", "class_tg_bot_1_1_chat.html#a9818e295b599a08b77abefb38de75e48", null ],
     [ "Type", "class_tg_bot_1_1_chat.html#a939946fe3181210f9e3f3d9610edb52e", [
       [ "Private", "class_tg_bot_1_1_chat.html#a939946fe3181210f9e3f3d9610edb52ea47f9082fc380ca62d531096aa1d110f1", null ],
       [ "Group", "class_tg_bot_1_1_chat.html#a939946fe3181210f9e3f3d9610edb52ea03937134cedab9078be39a77ee3a48a0", null ],

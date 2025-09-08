@@ -1,6 +1,6 @@
 var class_tg_bot_1_1_callback_query =
 [
-    [ "Ptr", "class_tg_bot_1_1_callback_query.html#a2f6cea4b630a538059349143f2a395bc", null ],
+    [ "Ptr", "class_tg_bot_1_1_callback_query.html#a5a5e4f8368bd95ba214e68cde5d1c7c0", null ],
     [ "chatInstance", "class_tg_bot_1_1_callback_query.html#a1c60e74159327d5e9e686f4a1278a373", null ],
     [ "data", "class_tg_bot_1_1_callback_query.html#a9247402a210f4df79cf044683fb66734", null ],
     [ "from", "class_tg_bot_1_1_callback_query.html#a355ff7d9025603af780a63be540da901", null ],

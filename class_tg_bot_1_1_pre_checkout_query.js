@@ -1,6 +1,6 @@
 var class_tg_bot_1_1_pre_checkout_query =
 [
-    [ "Ptr", "class_tg_bot_1_1_pre_checkout_query.html#a3b079137860fc3d2c79c035ece1e9015", null ],
+    [ "Ptr", "class_tg_bot_1_1_pre_checkout_query.html#aa2f66d4bc5e55b3efbaaf285bcdbe207", null ],
     [ "currency", "class_tg_bot_1_1_pre_checkout_query.html#ac681a885c6e253c134cd659b91348182", null ],
     [ "from", "class_tg_bot_1_1_pre_checkout_query.html#a919320034b6e6f6b586a7311925bb028", null ],
     [ "id", "class_tg_bot_1_1_pre_checkout_query.html#afaf8a7d12af830eea0644c30f51f429e", null ],

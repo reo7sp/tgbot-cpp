@@ -1,6 +1,6 @@
 var class_tg_bot_1_1_successful_payment =
 [
-    [ "Ptr", "class_tg_bot_1_1_successful_payment.html#a185f7aac0d74b4dbeda4b6734adea6f8", null ],
+    [ "Ptr", "class_tg_bot_1_1_successful_payment.html#a753e2643432af6f0b2561436f2b1da0d", null ],
     [ "currency", "class_tg_bot_1_1_successful_payment.html#a7cabedcd7e557d607baf968c2fc454f3", null ],
     [ "invoicePayload", "class_tg_bot_1_1_successful_payment.html#a260f6306836c863523054f076c9350c6", null ],
     [ "orderInfo", "class_tg_bot_1_1_successful_payment.html#a7fd2215c7e0a0975477d8e5fff0ae829", null ],

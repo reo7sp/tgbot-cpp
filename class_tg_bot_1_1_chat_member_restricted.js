@@ -1,6 +1,6 @@
 var class_tg_bot_1_1_chat_member_restricted =
 [
-    [ "Ptr", "class_tg_bot_1_1_chat_member_restricted.html#a14fe205cb029144ced9716ddd95360b7", null ],
+    [ "Ptr", "class_tg_bot_1_1_chat_member_restricted.html#ab9be4188d0dc2d5a5087d6d3ebde7ac6", null ],
     [ "ChatMemberRestricted", "class_tg_bot_1_1_chat_member_restricted.html#ac67011a7b7b9bbc8296f82800102e237", null ],
     [ "canAddWebPagePreviews", "class_tg_bot_1_1_chat_member_restricted.html#a94e9d2405571c1bd03980d95036886cb", null ],
     [ "canChangeInfo", "class_tg_bot_1_1_chat_member_restricted.html#a08d30544eb1910706409da69d6692537", null ],

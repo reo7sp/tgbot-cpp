@@ -1,6 +1,6 @@
 var class_tg_bot_1_1_input_media =
 [
-    [ "Ptr", "class_tg_bot_1_1_input_media.html#aa4b717cb988565bbd04c7f2e42a2281c", null ],
+    [ "Ptr", "class_tg_bot_1_1_input_media.html#abdc38ae21d5213ead3720db082ef1f9c", null ],
     [ "InputMedia", "class_tg_bot_1_1_input_media.html#a23b6862ee6552038c18ed8d51fd2207b", null ],
     [ "~InputMedia", "class_tg_bot_1_1_input_media.html#aa222b5575a1e40126c6e63eee4050f95", null ],
     [ "caption", "class_tg_bot_1_1_input_media.html#a5fd875b292792f8d699d7bb678e68c90", null ],

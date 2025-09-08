@@ -1,6 +1,6 @@
 var class_tg_bot_1_1_invoice =
 [
-    [ "Ptr", "class_tg_bot_1_1_invoice.html#a9b2ac9f953bce4f33d2443385db7fd13", null ],
+    [ "Ptr", "class_tg_bot_1_1_invoice.html#a34a6d437618ea3be0a40c64400067f67", null ],
     [ "currency", "class_tg_bot_1_1_invoice.html#a9207fea93e6b3f3aa1081c8ab9039f8a", null ],
     [ "description", "class_tg_bot_1_1_invoice.html#ad3c1a7a4fbf8157e3fd72a2352226fbd", null ],
     [ "startParameter", "class_tg_bot_1_1_invoice.html#a659ac0711c1be89009dddc04eea4dfb2", null ],

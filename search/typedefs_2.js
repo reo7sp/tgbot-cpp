@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['messagelistener_0',['MessageListener',['../class_tg_bot_1_1_event_broadcaster.html#ae7ee0432c8e4c736bc404f4f8a88ba34',1,'TgBot::EventBroadcaster']]]
+  ['jsontotgtypefunc_0',['JsonToTgTypeFunc',['../class_tg_bot_1_1_tg_type_parser.html#ad6d33a3fef556360092afd0a2cb959f0',1,'TgBot::TgTypeParser']]]
 ];

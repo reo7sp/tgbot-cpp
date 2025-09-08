@@ -1,6 +1,6 @@
 var class_tg_bot_1_1_chat_member_administrator =
 [
-    [ "Ptr", "class_tg_bot_1_1_chat_member_administrator.html#a4406ef6c5df838264c62ecb385af8f64", null ],
+    [ "Ptr", "class_tg_bot_1_1_chat_member_administrator.html#a23d9266d69e6d19539eb73b67b4cdf21", null ],
     [ "ChatMemberAdministrator", "class_tg_bot_1_1_chat_member_administrator.html#a7f07da6ef43a4bfb3f8539d25de2b7ec", null ],
     [ "canBeEdited", "class_tg_bot_1_1_chat_member_administrator.html#ac21dd80f3ca3896739b758fd1dbc7809", null ],
     [ "canChangeInfo", "class_tg_bot_1_1_chat_member_administrator.html#aad12845861ce5ae18541a87ec4ec4bf6", null ],

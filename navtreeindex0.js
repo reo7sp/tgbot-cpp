@@ -123,8 +123,6 @@ var NAVTREEINDEX0 =
 "_file_8h.html":[3,0,0,0,2,54],
 "_file_8h_source.html":[3,0,0,0,2,54],
 "_file_tools_8h.html":[3,0,0,0,1,0],
-"_file_tools_8h.html#a0dbf1894e634a9872e43da157418daa0":[3,0,0,0,1,0,0],
-"_file_tools_8h.html#a6471554bc576e86efe50ebbab7bcdb66":[3,0,0,0,1,0,1],
 "_file_tools_8h_source.html":[3,0,0,0,1,0],
 "_force_reply_8h.html":[3,0,0,0,2,55],
 "_force_reply_8h_source.html":[3,0,0,0,2,55],
@@ -249,5 +247,7 @@ var NAVTREEINDEX0 =
 "_keyboard_button_8h.html":[3,0,0,0,2,111],
 "_keyboard_button_8h_source.html":[3,0,0,0,2,111],
 "_keyboard_button_poll_type_8h.html":[3,0,0,0,2,112],
-"_keyboard_button_poll_type_8h_source.html":[3,0,0,0,2,112]
+"_keyboard_button_poll_type_8h_source.html":[3,0,0,0,2,112],
+"_keyboard_button_request_chat_8h.html":[3,0,0,0,2,113],
+"_keyboard_button_request_chat_8h_source.html":[3,0,0,0,2,113]
 };

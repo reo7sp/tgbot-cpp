@@ -1,6 +1,6 @@
 var class_tg_bot_1_1_inline_query_result_cached_photo =
 [
-    [ "Ptr", "class_tg_bot_1_1_inline_query_result_cached_photo.html#ae31d599973b1c63bd4948c3dbc939607", null ],
+    [ "Ptr", "class_tg_bot_1_1_inline_query_result_cached_photo.html#a1c592e3dea0aae88ccd8244f70b2e8d8", null ],
     [ "InlineQueryResultCachedPhoto", "class_tg_bot_1_1_inline_query_result_cached_photo.html#afcb0d2106b2d57b2e0f77679258adbe7", null ],
     [ "caption", "class_tg_bot_1_1_inline_query_result_cached_photo.html#a9eb3917f997abfbab512f9cd487ecdbd", null ],
     [ "captionEntities", "class_tg_bot_1_1_inline_query_result_cached_photo.html#aa311069f42f8cf8403bb892cb083715f", null ],

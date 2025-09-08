@@ -1,6 +1,6 @@
 var class_tg_bot_1_1_chat_invite_link =
 [
-    [ "Ptr", "class_tg_bot_1_1_chat_invite_link.html#af1939be4bfa2bac23197f6b96a965d4b", null ],
+    [ "Ptr", "class_tg_bot_1_1_chat_invite_link.html#ac91a0457148fbf708220ca74bd7e5ff5", null ],
     [ "createsJoinRequest", "class_tg_bot_1_1_chat_invite_link.html#a50428c31e872097c2162fbec46d1ade5", null ],
     [ "creator", "class_tg_bot_1_1_chat_invite_link.html#aa41bd4de19c2d581d78f50a55dbbf78d", null ],
     [ "expireDate", "class_tg_bot_1_1_chat_invite_link.html#a3093a0857497134c6469a00679e745b4", null ],

@@ -214,6 +214,7 @@ var hierarchy =
     [ "TgBot::SwitchInlineQueryChosenChat", "class_tg_bot_1_1_switch_inline_query_chosen_chat.html", null ],
     [ "TgBot::TextQuote", "class_tg_bot_1_1_text_quote.html", null ],
     [ "TgBot::TgLongPoll", "class_tg_bot_1_1_tg_long_poll.html", null ],
+    [ "TgBot::TgTypeParser", "class_tg_bot_1_1_tg_type_parser.html", null ],
     [ "TgBot::Update", "class_tg_bot_1_1_update.html", null ],
     [ "TgBot::Url", "class_tg_bot_1_1_url.html", null ],
     [ "TgBot::User", "class_tg_bot_1_1_user.html", null ],
