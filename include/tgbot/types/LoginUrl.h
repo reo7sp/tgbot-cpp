@@ -1,6 +1,8 @@
 #ifndef TGBOT_LOGINURL_H
 #define TGBOT_LOGINURL_H
 
+#include "tgbot/Optional.h"
+
 #include <memory>
 #include <string>
 
@@ -27,12 +29,12 @@ public:
      * 
      * NOTE: You must always check the hash of the received data to verify the authentication and the integrity of the data as described in https://core.telegram.org/widgets/login#checking-authorization
      */
-    std::string url;
+    Required<std::string> url;
 
     /**
      * @brief Optional. New text of the button in forwarded messages.
      */
-    std::string forwardText;
+    Optional<std::string> forwardText;
 
     /**
      * @brief Optional. Username of a bot, which will be used for user authorization.
@@ -41,12 +43,12 @@ public:
      * The url's domain must be the same as the domain linked with the bot.
      * See https://core.telegram.org/widgets/login#linking-your-domain-to-the-bot for more details.
      */
-    std::string botUsername;
+    Optional<std::string> botUsername;
 
     /**
      * @brief Optional. Pass True to request the permission for your bot to send messages to the user.
      */
-    bool requestWriteAccess;
+    Optional<bool> requestWriteAccess;
 };
 }
 
