@@ -70,16 +70,34 @@ endif()
 ## boost
 set(Boost_USE_MULTITHREADED ON)
 if (ENABLE_TESTS)
-    find_package(Boost 1.65.1 COMPONENTS system unit_test_framework REQUIRED)
+    find_package(Boost 1.65.1 REQUIRED COMPONENTS unit_test_framework)
 else()
-    find_package(Boost 1.65.1 COMPONENTS system REQUIRED)
+    find_package(Boost 1.65.1 REQUIRED)
 endif()
+
+# Check if Boost::system target exists (compatible with new and old versions)
+if(TARGET Boost::system)
+    set(BOOST_SYSTEM_TARGET Boost::system)
+    message(STATUS "Using Boost::system target")
+else()
+    set(BOOST_SYSTEM_TARGET "")
+    message(STATUS "Boost::system not available, using header-only")
+endif()
+
 include_directories(${Boost_INCLUDE_DIR})
 link_directories(${Boost_LIBRARY_DIR_RELEASE})
 if(NOT Boost_USE_STATIC_LIBS)
     add_definitions(-DBOOST_ALL_DYN_LINK)
 endif()
 add_definitions(-DBOOST_BIND_GLOBAL_PLACEHOLDERS)
+
+set(LIB_LIST
+        ${CMAKE_THREAD_LIBS_INIT}
+        ${ZLIB_LIBRARIES}
+        ${OPENSSL_LIBRARIES}
+        ${Boost_LIBRARIES}
+        ${BOOST_SYSTEM_TARGET}
+)
 
 set(LIB_LIST
     ${CMAKE_THREAD_LIBS_INIT}
@@ -124,6 +142,10 @@ if (ENABLE_TESTS)
     enable_testing()
     add_subdirectory(test)
 endif()
+#add_subdirectory(samples/echobot-webhook-server)
+#add_subdirectory(samples/inline-keyboard)
+#add_subdirectory(samples/reply-keyboard)
+
 
 # Documentation
 if(BUILD_DOCUMENTATION)

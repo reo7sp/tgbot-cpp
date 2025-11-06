@@ -3948,46 +3948,64 @@ std::string TgTypeParser::parseInlineQueryResult(const InlineQueryResult::Ptr& o
     appendToJson(result, "id", object->id);
     appendToJson(result, "reply_markup", parseInlineKeyboardMarkup(object->replyMarkup));
 
-    if (object->type == InlineQueryResultCachedAudio::TYPE) {
-        result += parseInlineQueryResultCachedAudio(std::static_pointer_cast<InlineQueryResultCachedAudio>(object));
-    } else if (object->type == InlineQueryResultCachedDocument::TYPE) {
-        result += parseInlineQueryResultCachedDocument(std::static_pointer_cast<InlineQueryResultCachedDocument>(object));
-    } else if (object->type == InlineQueryResultCachedGif::TYPE) {
-        result += parseInlineQueryResultCachedGif(std::static_pointer_cast<InlineQueryResultCachedGif>(object));
-    } else if (object->type == InlineQueryResultCachedMpeg4Gif::TYPE) {
-        result += parseInlineQueryResultCachedMpeg4Gif(std::static_pointer_cast<InlineQueryResultCachedMpeg4Gif>(object));
-    } else if (object->type == InlineQueryResultCachedPhoto::TYPE) {
-        result += parseInlineQueryResultCachedPhoto(std::static_pointer_cast<InlineQueryResultCachedPhoto>(object));
-    } else if (object->type == InlineQueryResultCachedSticker::TYPE) {
-        result += parseInlineQueryResultCachedSticker(std::static_pointer_cast<InlineQueryResultCachedSticker>(object));
-    } else if (object->type == InlineQueryResultCachedVideo::TYPE) {
-        result += parseInlineQueryResultCachedVideo(std::static_pointer_cast<InlineQueryResultCachedVideo>(object));
-    } else if (object->type == InlineQueryResultCachedVoice::TYPE) {
-        result += parseInlineQueryResultCachedVoice(std::static_pointer_cast<InlineQueryResultCachedVoice>(object));
-    } else if (object->type == InlineQueryResultArticle::TYPE) {
+    // Single type
+    if (object->type == InlineQueryResultArticle::TYPE) {
         result += parseInlineQueryResultArticle(std::static_pointer_cast<InlineQueryResultArticle>(object));
-    } else if (object->type == InlineQueryResultAudio::TYPE) {
-        result += parseInlineQueryResultAudio(std::static_pointer_cast<InlineQueryResultAudio>(object));
     } else if (object->type == InlineQueryResultContact::TYPE) {
         result += parseInlineQueryResultContact(std::static_pointer_cast<InlineQueryResultContact>(object));
     } else if (object->type == InlineQueryResultGame::TYPE) {
         result += parseInlineQueryResultGame(std::static_pointer_cast<InlineQueryResultGame>(object));
-    } else if (object->type == InlineQueryResultDocument::TYPE) {
-        result += parseInlineQueryResultDocument(std::static_pointer_cast<InlineQueryResultDocument>(object));
     } else if (object->type == InlineQueryResultLocation::TYPE) {
         result += parseInlineQueryResultLocation(std::static_pointer_cast<InlineQueryResultLocation>(object));
     } else if (object->type == InlineQueryResultVenue::TYPE) {
         result += parseInlineQueryResultVenue(std::static_pointer_cast<InlineQueryResultVenue>(object));
-    } else if (object->type == InlineQueryResultVoice::TYPE) {
-        result += parseInlineQueryResultVoice(std::static_pointer_cast<InlineQueryResultVoice>(object));
-    } else if (object->type == InlineQueryResultPhoto::TYPE) {
-        result += parseInlineQueryResultPhoto(std::static_pointer_cast<InlineQueryResultPhoto>(object));
+    }else if (object->type == InlineQueryResultCachedSticker::TYPE) {
+        result += parseInlineQueryResultCachedSticker(std::static_pointer_cast<InlineQueryResultCachedSticker>(object));
+    }
+    // Use dynamic_cast to distinguish duplicate types
+    else if (object->type == InlineQueryResultPhoto::TYPE) {
+        if (auto cachedPhoto = std::dynamic_pointer_cast<InlineQueryResultCachedPhoto>(object)) {
+            result += parseInlineQueryResultCachedPhoto(cachedPhoto);
+        } else if (auto photo = std::dynamic_pointer_cast<InlineQueryResultPhoto>(object)) {
+            result += parseInlineQueryResultPhoto(photo);
+        }
     } else if (object->type == InlineQueryResultGif::TYPE) {
-        result += parseInlineQueryResultGif(std::static_pointer_cast<InlineQueryResultGif>(object));
-    } else if (object->type == InlineQueryResultMpeg4Gif::TYPE) {
-        result += parseInlineQueryResultMpeg4Gif(std::static_pointer_cast<InlineQueryResultMpeg4Gif>(object));
+        if (auto cachedGif = std::dynamic_pointer_cast<InlineQueryResultCachedGif>(object)) {
+            result += parseInlineQueryResultCachedGif(cachedGif);
+        } else if (auto gif = std::dynamic_pointer_cast<InlineQueryResultGif>(object)) {
+            result += parseInlineQueryResultGif(gif);
+        }
     } else if (object->type == InlineQueryResultVideo::TYPE) {
-        result += parseInlineQueryResultVideo(std::static_pointer_cast<InlineQueryResultVideo>(object));
+        if (auto cachedVideo = std::dynamic_pointer_cast<InlineQueryResultCachedVideo>(object)) {
+            result += parseInlineQueryResultCachedVideo(cachedVideo);
+        } else if (auto video = std::dynamic_pointer_cast<InlineQueryResultVideo>(object)) {
+            result += parseInlineQueryResultVideo(video);
+        }
+    } else if (object->type == InlineQueryResultAudio::TYPE) {
+        if (auto cachedAudio = std::dynamic_pointer_cast<InlineQueryResultCachedAudio>(object)) {
+            result += parseInlineQueryResultCachedAudio(cachedAudio);
+        } else if (auto audio = std::dynamic_pointer_cast<InlineQueryResultAudio>(object)) {
+            result += parseInlineQueryResultAudio(audio);
+        }
+    } else if (object->type == InlineQueryResultVoice::TYPE) {
+        if (auto cachedVoice = std::dynamic_pointer_cast<InlineQueryResultCachedVoice>(object)) {
+            result += parseInlineQueryResultCachedVoice(cachedVoice);
+        } else if (auto voice = std::dynamic_pointer_cast<InlineQueryResultVoice>(object)) {
+            result += parseInlineQueryResultVoice(voice);
+        }
+    } else if (object->type == InlineQueryResultMpeg4Gif::TYPE) {
+        if (auto cachedMpeg4Gif = std::dynamic_pointer_cast<InlineQueryResultCachedMpeg4Gif>(object)) {
+            result += parseInlineQueryResultCachedMpeg4Gif(cachedMpeg4Gif);
+        } else if (auto mpeg4Gif = std::dynamic_pointer_cast<InlineQueryResultMpeg4Gif>(object)) {
+            result += parseInlineQueryResultMpeg4Gif(mpeg4Gif);
+        }
+    } else if (object->type == InlineQueryResultDocument::TYPE) {
+        // Document类型也有冲突
+        if (auto cachedDocument = std::dynamic_pointer_cast<InlineQueryResultCachedDocument>(object)) {
+            result += parseInlineQueryResultCachedDocument(cachedDocument);
+        } else if (auto document = std::dynamic_pointer_cast<InlineQueryResultDocument>(object)) {
+            result += parseInlineQueryResultDocument(document);
+        }
     }
 
     removeLastComma(result);
