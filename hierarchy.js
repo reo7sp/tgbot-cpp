@@ -90,15 +90,15 @@ var hierarchy =
     ] ],
     [ "TgBot::HttpParser", "class_tg_bot_1_1_http_parser.html", null ],
     [ "TgBot::HttpReqArg", "class_tg_bot_1_1_http_req_arg.html", null ],
-    [ "TgBot::HttpServer< Protocol >", "class_tg_bot_1_1_http_server.html", [
+    [ "TgBot::HttpServer&lt; Protocol &gt;", "class_tg_bot_1_1_http_server.html", [
       [ "TgBot::TgWebhookServer< Protocol >", "class_tg_bot_1_1_tg_webhook_server.html", null ]
     ] ],
-    [ "TgBot::HttpServer< boost::asio::ip::tcp >", "class_tg_bot_1_1_http_server.html", [
+    [ "TgBot::HttpServer&lt; boost::asio::ip::tcp &gt;", "class_tg_bot_1_1_http_server.html", [
       [ "TgBot::TgWebhookServer< boost::asio::ip::tcp >", "class_tg_bot_1_1_tg_webhook_server.html", [
         [ "TgBot::TgWebhookTcpServer", "class_tg_bot_1_1_tg_webhook_tcp_server.html", null ]
       ] ]
     ] ],
-    [ "TgBot::HttpServer< boost::asio::local::stream_protocol >", "class_tg_bot_1_1_http_server.html", [
+    [ "TgBot::HttpServer&lt; boost::asio::local::stream_protocol &gt;", "class_tg_bot_1_1_http_server.html", [
       [ "TgBot::TgWebhookServer< boost::asio::local::stream_protocol >", "class_tg_bot_1_1_tg_webhook_server.html", [
         [ "TgBot::TgWebhookLocalServer", "class_tg_bot_1_1_tg_webhook_local_server.html", null ]
       ] ]

@@ -8,12 +8,14 @@ var searchData=
   ['oncommand_5',['onCommand',['../class_tg_bot_1_1_event_broadcaster.html#a13e4a906203fe43a950f1420b68c7583',1,'TgBot::EventBroadcaster::onCommand(const std::string &amp;commandName, const MessageListener &amp;listener)'],['../class_tg_bot_1_1_event_broadcaster.html#ad8e56ab49dbe9b4960d454f8b408bf13',1,'TgBot::EventBroadcaster::onCommand(const std::initializer_list&lt; std::string &gt; &amp;commandsList, const MessageListener &amp;listener)']]],
   ['oneditedmessage_6',['onEditedMessage',['../class_tg_bot_1_1_event_broadcaster.html#a76d485af06fe47ab56c9da264f355eac',1,'TgBot::EventBroadcaster']]],
   ['oninlinequery_7',['onInlineQuery',['../class_tg_bot_1_1_event_broadcaster.html#a9d3f31225ea84af8cb47ab2a53186ef0',1,'TgBot::EventBroadcaster']]],
-  ['onmychatmember_8',['onMyChatMember',['../class_tg_bot_1_1_event_broadcaster.html#a9d69b41590dc65b4c2eae33f87ef34ce',1,'TgBot::EventBroadcaster']]],
-  ['onnoncommandmessage_9',['onNonCommandMessage',['../class_tg_bot_1_1_event_broadcaster.html#a22e70b8493ea455e70734a36968f3d55',1,'TgBot::EventBroadcaster']]],
-  ['onpoll_10',['onPoll',['../class_tg_bot_1_1_event_broadcaster.html#a2c6cfe304bd79c7d6432863cd7b399c3',1,'TgBot::EventBroadcaster']]],
-  ['onpollanswer_11',['onPollAnswer',['../class_tg_bot_1_1_event_broadcaster.html#a47966cd0aefa177879b728dfff994e41',1,'TgBot::EventBroadcaster']]],
-  ['onprecheckoutquery_12',['onPreCheckoutQuery',['../class_tg_bot_1_1_event_broadcaster.html#acf68ccdb336430d9b4405cac65d4fce9',1,'TgBot::EventBroadcaster']]],
-  ['onshippingquery_13',['onShippingQuery',['../class_tg_bot_1_1_event_broadcaster.html#a1b45b331ec44806de82f12d06ed65106',1,'TgBot::EventBroadcaster']]],
-  ['onsuccessfulpayment_14',['onSuccessfulPayment',['../class_tg_bot_1_1_event_broadcaster.html#af6a7bfddff8c46d11750ab3295eebc10',1,'TgBot::EventBroadcaster']]],
-  ['onunknowncommand_15',['onUnknownCommand',['../class_tg_bot_1_1_event_broadcaster.html#a5bed996221f047ec0469ae19e7bd00eb',1,'TgBot::EventBroadcaster']]]
+  ['onmessagereaction_8',['onMessageReaction',['../class_tg_bot_1_1_event_broadcaster.html#a611e3e8950cdd73fb36b850d930f693e',1,'TgBot::EventBroadcaster']]],
+  ['onmessagereactioncount_9',['onMessageReactionCount',['../class_tg_bot_1_1_event_broadcaster.html#a78ffd5ada98fb70d29ed20c2c7386092',1,'TgBot::EventBroadcaster']]],
+  ['onmychatmember_10',['onMyChatMember',['../class_tg_bot_1_1_event_broadcaster.html#a9d69b41590dc65b4c2eae33f87ef34ce',1,'TgBot::EventBroadcaster']]],
+  ['onnoncommandmessage_11',['onNonCommandMessage',['../class_tg_bot_1_1_event_broadcaster.html#a22e70b8493ea455e70734a36968f3d55',1,'TgBot::EventBroadcaster']]],
+  ['onpoll_12',['onPoll',['../class_tg_bot_1_1_event_broadcaster.html#a2c6cfe304bd79c7d6432863cd7b399c3',1,'TgBot::EventBroadcaster']]],
+  ['onpollanswer_13',['onPollAnswer',['../class_tg_bot_1_1_event_broadcaster.html#a47966cd0aefa177879b728dfff994e41',1,'TgBot::EventBroadcaster']]],
+  ['onprecheckoutquery_14',['onPreCheckoutQuery',['../class_tg_bot_1_1_event_broadcaster.html#acf68ccdb336430d9b4405cac65d4fce9',1,'TgBot::EventBroadcaster']]],
+  ['onshippingquery_15',['onShippingQuery',['../class_tg_bot_1_1_event_broadcaster.html#a1b45b331ec44806de82f12d06ed65106',1,'TgBot::EventBroadcaster']]],
+  ['onsuccessfulpayment_16',['onSuccessfulPayment',['../class_tg_bot_1_1_event_broadcaster.html#af6a7bfddff8c46d11750ab3295eebc10',1,'TgBot::EventBroadcaster']]],
+  ['onunknowncommand_17',['onUnknownCommand',['../class_tg_bot_1_1_event_broadcaster.html#a5bed996221f047ec0469ae19e7bd00eb',1,'TgBot::EventBroadcaster']]]
 ];

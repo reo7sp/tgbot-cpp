@@ -9,6 +9,7 @@ var group__net =
       [ "CurlHttpClient", "class_tg_bot_1_1_curl_http_client.html#a64fa7c2a4873cea91d955e4df2175b71", null ],
       [ "~CurlHttpClient", "class_tg_bot_1_1_curl_http_client.html#aef991cad0f0113400a6dbee2f2e1c6c4", null ],
       [ "makeRequest", "class_tg_bot_1_1_curl_http_client.html#a6fab88353bda0e5d69c22538a242eec5", null ],
+      [ "setProxy", "class_tg_bot_1_1_curl_http_client.html#aac3838605a822f6620c3c941bbf23ddc", null ],
       [ "curlHandles", "class_tg_bot_1_1_curl_http_client.html#a417d0b86bf72b4d1f1701e3e15457c77", null ],
       [ "curlHandlesMutex", "class_tg_bot_1_1_curl_http_client.html#a57b43bfb470a3164c512cae6fd344e5c", null ]
     ] ],
@@ -27,7 +28,7 @@ var group__net =
       [ "name", "class_tg_bot_1_1_http_req_arg.html#a9772f0982d33fdebe587106d0b4f921d", null ],
       [ "value", "class_tg_bot_1_1_http_req_arg.html#ae854084229a093b6819953d0055844eb", null ]
     ] ],
-    [ "TgBot::HttpServer< Protocol >", "class_tg_bot_1_1_http_server.html", [
+    [ "TgBot::HttpServer&lt; Protocol &gt;", "class_tg_bot_1_1_http_server.html", [
       [ "Connection", "class_tg_bot_1_1_http_server_1_1_connection.html", [
         [ "Connection", "class_tg_bot_1_1_http_server_1_1_connection.html#a5983b463e05a4a5ecd421f3e53b49af0", null ],
         [ "_readBody", "class_tg_bot_1_1_http_server_1_1_connection.html#af0b89120c9d55f683f1a9e202392f77c", null ],
@@ -45,8 +46,8 @@ var group__net =
       [ "_acceptor", "class_tg_bot_1_1_http_server.html#a1a48cb5e272aae75d3ee1b51fca445d5", null ],
       [ "_handler", "class_tg_bot_1_1_http_server.html#a9af2cf386463a1f40d0d3e9d92d88eec", null ],
       [ "_httpParser", "class_tg_bot_1_1_http_server.html#ac31bb13213ce451f0daa7e3cb13c9f73", null ],
-      [ "_ioService", "class_tg_bot_1_1_http_server.html#ac65413c352b2a100457ffce897d7439f", null ],
       [ "_ioService", "class_tg_bot_1_1_http_server.html#a68812914f5c398331ee3ef8e77fe39b7", null ],
+      [ "_ioService", "class_tg_bot_1_1_http_server.html#ac65413c352b2a100457ffce897d7439f", null ],
       [ "_socket", "class_tg_bot_1_1_http_server.html#a5bfd257760ccfc19ceecd0067c0b3df4", null ]
     ] ],
     [ "TgBot::TgLongPoll", "class_tg_bot_1_1_tg_long_poll.html", [

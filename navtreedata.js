@@ -58,15 +58,15 @@ var NAVTREEINDEX =
 "_keyboard_button_request_users_8h.html",
 "class_tg_bot_1_1_api.html#a9663d77a66eb75c761de272959b02389",
 "class_tg_bot_1_1_chat_boost_removed.html#a483864bfc706da1ac47ad82237673399",
-"class_tg_bot_1_1_external_reply_info.html#aebcee781b92ea06482a1e2588d2a60e5",
-"class_tg_bot_1_1_inline_query_result_cached_video.html#abea4deca4249a41cb3fbe999ed820fa0",
-"class_tg_bot_1_1_input_venue_message_content.html#a5e4a82e39fc1820f49c15a10fa21f3fe",
-"class_tg_bot_1_1_order_info.html",
-"class_tg_bot_1_1_tg_exception.html#a88b4eb82d516cd897ace08c9cb4c5097aef175244b78e28f8bf48443c5aba0969",
-"class_tg_bot_1_1_tg_type_parser.html#a585028ef37c7aa7c5126e840fafd954d",
-"class_tg_bot_1_1_tg_type_parser.html#aa467ac58012075c932947a5e120f498a",
-"class_tg_bot_1_1_tg_type_parser.html#af5f07236f584e0642d1015b71a1cf16c",
-"functions_vars_i.html"
+"class_tg_bot_1_1_external_reply_info.html#abb71849296dc1b77add7befa118dc442",
+"class_tg_bot_1_1_inline_query_result_cached_video.html#a684facad34832ac67af39e4811095bbc",
+"class_tg_bot_1_1_input_venue_message_content.html",
+"class_tg_bot_1_1_message_reaction_updated.html#a49cfe5bffc01df4cdff1d2b0e3a27aba",
+"class_tg_bot_1_1_tg_exception.html#a88b4eb82d516cd897ace08c9cb4c5097a722969577a96ca3953e84e3d949dee81",
+"class_tg_bot_1_1_tg_type_parser.html#a56b0373e2d03fa8837d4b0a11fb71df4",
+"class_tg_bot_1_1_tg_type_parser.html#aa35193c7b8f13fbfbac6a4ebd5b68dcf",
+"class_tg_bot_1_1_tg_type_parser.html#af38ca87dc36896d56621f695d21a0b92",
+"functions_vars_d.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronization';
