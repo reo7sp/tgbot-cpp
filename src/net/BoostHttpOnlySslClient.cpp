@@ -1,4 +1,4 @@
-#include "tgbot/net/BoostHttpOnlySslClient.h"
+#include "maxbot/net/BoostHttpOnlySslClient.h"
 
 #include <boost/asio/ssl.hpp>
 
@@ -9,7 +9,7 @@ using namespace std;
 using namespace boost::asio;
 using namespace boost::asio::ip;
 
-namespace TgBot {
+namespace MaxBot {
 
 BoostHttpOnlySslClient::BoostHttpOnlySslClient() : _httpParser() {
 }

@@ -1,13 +1,13 @@
-#include "tgbot/types/ChatMemberOwner.h"
-#include "tgbot/types/ChatMemberAdministrator.h"
-#include "tgbot/types/ChatMemberMember.h"
-#include "tgbot/types/ChatMemberRestricted.h"
-#include "tgbot/types/ChatMemberLeft.h"
-#include "tgbot/types/ChatMemberBanned.h"
+#include "maxbot/types/ChatMemberOwner.h"
+#include "maxbot/types/ChatMemberAdministrator.h"
+#include "maxbot/types/ChatMemberMember.h"
+#include "maxbot/types/ChatMemberRestricted.h"
+#include "maxbot/types/ChatMemberLeft.h"
+#include "maxbot/types/ChatMemberBanned.h"
 
 #include <string>
 
-using namespace TgBot;
+using namespace MaxBot;
 
 const std::string ChatMemberOwner::STATUS = "creator";
 const std::string ChatMemberAdministrator::STATUS = "administrator";

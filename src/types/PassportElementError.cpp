@@ -1,16 +1,16 @@
-#include "tgbot/types/PassportElementErrorDataField.h"
-#include "tgbot/types/PassportElementErrorFrontSide.h"
-#include "tgbot/types/PassportElementErrorReverseSide.h"
-#include "tgbot/types/PassportElementErrorSelfie.h"
-#include "tgbot/types/PassportElementErrorFile.h"
-#include "tgbot/types/PassportElementErrorFiles.h"
-#include "tgbot/types/PassportElementErrorTranslationFile.h"
-#include "tgbot/types/PassportElementErrorTranslationFiles.h"
-#include "tgbot/types/PassportElementErrorUnspecified.h"
+#include "maxbot/types/PassportElementErrorDataField.h"
+#include "maxbot/types/PassportElementErrorFrontSide.h"
+#include "maxbot/types/PassportElementErrorReverseSide.h"
+#include "maxbot/types/PassportElementErrorSelfie.h"
+#include "maxbot/types/PassportElementErrorFile.h"
+#include "maxbot/types/PassportElementErrorFiles.h"
+#include "maxbot/types/PassportElementErrorTranslationFile.h"
+#include "maxbot/types/PassportElementErrorTranslationFiles.h"
+#include "maxbot/types/PassportElementErrorUnspecified.h"
 
 #include <string>
 
-using namespace TgBot;
+using namespace MaxBot;
 
 const std::string PassportElementErrorDataField::SOURCE = "data";
 const std::string PassportElementErrorFrontSide::SOURCE = "front_side";

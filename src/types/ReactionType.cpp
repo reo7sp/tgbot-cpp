@@ -1,9 +1,9 @@
-#include "tgbot/types/ReactionTypeEmoji.h"
-#include "tgbot/types/ReactionTypeCustomEmoji.h"
+#include "maxbot/types/ReactionTypeEmoji.h"
+#include "maxbot/types/ReactionTypeCustomEmoji.h"
 
 #include <string>
 
-using namespace TgBot;
+using namespace MaxBot;
 
 const std::string ReactionTypeEmoji::TYPE = "emoji";
 const std::string ReactionTypeCustomEmoji::TYPE = "custom_emoji";

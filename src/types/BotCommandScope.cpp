@@ -1,14 +1,14 @@
-#include "tgbot/types/BotCommandScopeDefault.h"
-#include "tgbot/types/BotCommandScopeAllPrivateChats.h"
-#include "tgbot/types/BotCommandScopeAllGroupChats.h"
-#include "tgbot/types/BotCommandScopeAllChatAdministrators.h"
-#include "tgbot/types/BotCommandScopeChat.h"
-#include "tgbot/types/BotCommandScopeChatAdministrators.h"
-#include "tgbot/types/BotCommandScopeChatMember.h"
+#include "maxbot/types/BotCommandScopeDefault.h"
+#include "maxbot/types/BotCommandScopeAllPrivateChats.h"
+#include "maxbot/types/BotCommandScopeAllGroupChats.h"
+#include "maxbot/types/BotCommandScopeAllChatAdministrators.h"
+#include "maxbot/types/BotCommandScopeChat.h"
+#include "maxbot/types/BotCommandScopeChatAdministrators.h"
+#include "maxbot/types/BotCommandScopeChatMember.h"
 
 #include <string>
 
-using namespace TgBot;
+using namespace MaxBot;
 
 const std::string BotCommandScopeDefault::TYPE = "default";
 const std::string BotCommandScopeAllPrivateChats::TYPE = "all_private_chats";

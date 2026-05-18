@@ -2,5 +2,5 @@
 set -e
 
 cd ..
-docker build -t reo7sp/tgbot-cpp -f Dockerfile_test .
-docker run --rm -it -e TOKEN=$2 reo7sp/tgbot-cpp /usr/src/tgbot-cpp/samples/$1/$1
+docker build -t reo7sp/maxbot-cpp -f Dockerfile_test .
+docker run --rm -it -e TOKEN=$2 reo7sp/maxbot-cpp /usr/src/maxbot-cpp/samples/$1/$1

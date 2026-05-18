@@ -18,4 +18,4 @@ endif()
 
 add_executable(echobot-webhook-server src/main.cpp)
 
-target_link_libraries(echobot-webhook-server /usr/local/lib/libTgBot.a ${CMAKE_THREAD_LIBS_INIT} ${OPENSSL_LIBRARIES} ${Boost_LIBRARIES})
+target_link_libraries(echobot-webhook-server /usr/local/lib/libMaxBot.a ${CMAKE_THREAD_LIBS_INIT} ${OPENSSL_LIBRARIES} ${Boost_LIBRARIES})

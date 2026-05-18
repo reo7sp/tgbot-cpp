@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.10.2)
-project(TgBot)
+project(MaxBot)
 
 if(POLICY CMP0074)
     cmake_policy(SET CMP0074 NEW) # find_package() uses <PackageName>_ROOT variables
@@ -7,7 +7,7 @@ endif()
 
 # options
 option(ENABLE_TESTS "Set to ON to enable building of tests" OFF)
-option(BUILD_SHARED_LIBS "Build tgbot-cpp shared/static library." OFF)
+option(BUILD_SHARED_LIBS "Build maxbot-cpp shared/static library." OFF)
 option(BUILD_DOCUMENTATION "Build doxygen API documentation." OFF)
 
 # sources
@@ -28,12 +28,12 @@ set(SRC_LIST
     src/Api.cpp
     src/Bot.cpp
     src/EventHandler.cpp
-    src/TgException.cpp
-    src/TgTypeParser.cpp
+    src/BotException.cpp
+    src/BotTypeParser.cpp
     src/net/BoostHttpOnlySslClient.cpp
     src/net/CurlHttpClient.cpp
     src/net/HttpParser.cpp
-    src/net/TgLongPoll.cpp
+    src/net/BotLongPoll.cpp
     src/net/Url.cpp
     src/tools/FileTools.cpp
     src/tools/StringTools.cpp

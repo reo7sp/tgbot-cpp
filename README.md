@@ -1,10 +1,10 @@
-# tgbot-cpp
+# maxbot-cpp
 
-[![GitHub contributors](https://img.shields.io/github/contributors/reo7sp/tgbot-cpp.svg)](https://github.com/reo7sp/tgbot-cpp/graphs/contributors)
+[![GitHub contributors](https://img.shields.io/github/contributors/reo7sp/maxbot-cpp.svg)](https://github.com/reo7sp/maxbot-cpp/graphs/contributors)
 
 C++ library for Telegram bot API.
 
-Documentation is located [here](http://reo7sp.github.io/tgbot-cpp).
+Documentation is located [here](http://reo7sp.github.io/maxbot-cpp).
 
 
 ## State
@@ -22,14 +22,14 @@ Simple echo bot which sends everything it receives:
 
 ```cpp
 #include <stdio.h>
-#include <tgbot/tgbot.h>
+#include <maxbot/maxbot.h>
 
 int main() {
-    TgBot::Bot bot("PLACE YOUR TOKEN HERE");
-    bot.getEvents().onCommand("start", [&bot](TgBot::Message::Ptr message) {
+    MaxBot::Bot bot("PLACE YOUR TOKEN HERE");
+    bot.getEvents().onCommand("start", [&bot](MaxBot::Message::Ptr message) {
         bot.getApi().sendMessage(message->chat->id, "Hi!");
     });
-    bot.getEvents().onAnyMessage([&bot](TgBot::Message::Ptr message) {
+    bot.getEvents().onAnyMessage([&bot](MaxBot::Message::Ptr message) {
         printf("User wrote %s\n", message->text.c_str());
         if (StringTools::startsWith(message->text, "/start")) {
             return;
@@ -38,12 +38,12 @@ int main() {
     });
     try {
         printf("Bot username: %s\n", bot.getApi().getMe()->username.c_str());
-        TgBot::TgLongPoll longPoll(bot);
+        MaxBot::BotLongPoll longPoll(bot);
         while (true) {
             printf("Long poll started\n");
             longPoll.start();
         }
-    } catch (TgBot::TgException& e) {
+    } catch (MaxBot::BotException& e) {
         printf("error: %s\n", e.what());
     }
     return 0;
@@ -79,14 +79,14 @@ sudo apt install libboost-test-dev doxygen
 You can compile and install the library with these commands:
 
 ```sh
-git clone https://github.com/reo7sp/tgbot-cpp
-cd tgbot-cpp
+git clone https://github.com/reo7sp/maxbot-cpp
+cd maxbot-cpp
 cmake .
 make -j4
 sudo make install
 ```
 
-Alternatively, you can use Docker to build and run your bot. Set the base image of your's Dockerfile to [reo7sp/tgbot-cpp](https://hub.docker.com/r/reo7sp/tgbot-cpp/).
+Alternatively, you can use Docker to build and run your bot. Set the base image of your's Dockerfile to [reo7sp/maxbot-cpp](https://hub.docker.com/r/reo7sp/maxbot-cpp/).
 
 
 ## Library installation on MacOS
@@ -102,7 +102,7 @@ You can compile and install the library like Linux instructions.
 
 ## Library installation on Windows
 
-### Download vcpkg and tgbot-cpp
+### Download vcpkg and maxbot-cpp
 
 Taken from [Vcpkg - Quick Start: Windows](https://github.com/Microsoft/vcpkg/#quick-start-windows).
 
@@ -127,13 +127,13 @@ In order to use vcpkg with Visual Studio, run the following command (may require
 To install the libraries for Windows x64, run:
 
 ```cmd
-> .\vcpkg\vcpkg install tgbot-cpp:x64-windows
+> .\vcpkg\vcpkg install maxbot-cpp:x64-windows
 ```
 
 To install for Windows x86, run:
 
 ```cmd
-> .\vcpkg\vcpkg install tgbot-cpp
+> .\vcpkg\vcpkg install maxbot-cpp
 ```
 
 The library will now be installed and Visual Studio should be able to find the vcpkg installation.
@@ -143,7 +143,7 @@ The library will now be installed and Visual Studio should be able to find the v
 Use the [example CMakeLists.txt](samples/echobot/CMakeLists.txt) with changes:
 
 1. Remove `/usr/local/include`
-2. Change `/usr/local/lib/libTgBot.a` to `C:/src/vcpkg/installed/x64-windows/lib/TgBot.lib` or something simmilar according to your own installation path.
+2. Change `/usr/local/lib/libMaxBot.a` to `C:/src/vcpkg/installed/x64-windows/lib/MaxBot.lib` or something simmilar according to your own installation path.
 
 
 ## Bot compilation
@@ -157,7 +157,7 @@ Also, you can treat this repository as a submodule of your project, for example,
 ### Without CMake
 
 ```sh
-g++ telegram_bot.cpp -o telegram_bot --std=c++14 -I/usr/local/include -lTgBot -lboost_system -lssl -lcrypto -lpthread
+g++ telegram_bot.cpp -o telegram_bot --std=c++14 -I/usr/local/include -lMaxBot -lboost_system -lssl -lcrypto -lpthread
 ```
 
 ### Build options
@@ -170,4 +170,4 @@ g++ telegram_bot.cpp -o telegram_bot --std=c++14 -I/usr/local/include -lTgBot -l
 
 
 ## Licence
-[The MIT License](https://github.com/reo7sp/tgbot-cpp/blob/master/LICENSE).
+[The MIT License](https://github.com/reo7sp/maxbot-cpp/blob/master/LICENSE).

@@ -18,4 +18,4 @@ endif()
 
 add_executable(inline-keyboard src/main.cpp)
 
-target_link_libraries(inline-keyboard /usr/local/lib/libTgBot.a ${CMAKE_THREAD_LIBS_INIT} ${OPENSSL_LIBRARIES} ${Boost_LIBRARIES} ${CURL_LIBRARIES})
+target_link_libraries(inline-keyboard /usr/local/lib/libMaxBot.a ${CMAKE_THREAD_LIBS_INIT} ${OPENSSL_LIBRARIES} ${Boost_LIBRARIES} ${CURL_LIBRARIES})

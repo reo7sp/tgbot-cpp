@@ -1,12 +1,12 @@
-#include "tgbot/net/BoostHttpOnlySslClient.h"
-#include "tgbot/Bot.h"
+#include "maxbot/net/BoostHttpOnlySslClient.h"
+#include "maxbot/Bot.h"
 
-#include "tgbot/EventBroadcaster.h"
+#include "maxbot/EventBroadcaster.h"
 
 #include <memory>
 #include <string>
 
-namespace TgBot {
+namespace MaxBot {
 
 Bot::Bot(std::string token, const HttpClient& httpClient, const std::string& url)
     : _token(std::move(token))

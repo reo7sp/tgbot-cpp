@@ -4,10 +4,10 @@
 #include <exception>
 #include <string>
 
-#include <tgbot/tgbot.h>
+#include <maxbot/maxbot.h>
 
 using namespace std;
-using namespace TgBot;
+using namespace MaxBot;
 
 int main() {
     string token(getenv("TOKEN"));
@@ -35,7 +35,7 @@ int main() {
     try {
         printf("Bot username: %s\n", bot.getApi().getMe()->username.c_str());
 
-        TgWebhookTcpServer webhookServer(8080, bot);
+        BotWebhookTcpServer webhookServer(8080, bot);
 
         printf("Server starting\n");
         bot.getApi().setWebhook(webhookUrl);

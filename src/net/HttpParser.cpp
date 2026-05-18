@@ -1,6 +1,6 @@
-#include "tgbot/net/HttpParser.h"
+#include "maxbot/net/HttpParser.h"
 
-#include "tgbot/tools/StringTools.h"
+#include "maxbot/tools/StringTools.h"
 
 #include <boost/algorithm/string.hpp>
 
@@ -12,7 +12,7 @@
 using namespace std;
 using namespace boost;
 
-namespace TgBot {
+namespace MaxBot {
 
 string HttpParser::generateRequest(const Url& url, const vector<HttpReqArg>& args, bool isKeepAlive) const {
     string result;

@@ -1,11 +1,11 @@
-#include "tgbot/types/MessageOriginUser.h"
-#include "tgbot/types/MessageOriginHiddenUser.h"
-#include "tgbot/types/MessageOriginChat.h"
-#include "tgbot/types/MessageOriginChannel.h"
+#include "maxbot/types/MessageOriginUser.h"
+#include "maxbot/types/MessageOriginHiddenUser.h"
+#include "maxbot/types/MessageOriginChat.h"
+#include "maxbot/types/MessageOriginChannel.h"
 
 #include <string>
 
-using namespace TgBot;
+using namespace MaxBot;
 
 const std::string MessageOriginUser::TYPE = "user";
 const std::string MessageOriginHiddenUser::TYPE = "hidden_user";

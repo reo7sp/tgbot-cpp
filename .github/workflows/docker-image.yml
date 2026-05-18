@@ -14,8 +14,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Build docker image
-        run: docker build -t reo7sp/tgbot-cpp -f Dockerfile .
+        run: docker build -t reo7sp/maxbot-cpp -f Dockerfile .
       - name: Build docker image with examples and unit tests
-        run: docker build -t reo7sp/tgbot-cpp-test -f Dockerfile_test .
+        run: docker build -t reo7sp/maxbot-cpp-test -f Dockerfile_test .
       - name: Run unit tests
-        run: docker run --rm reo7sp/tgbot-cpp-test
+        run: docker run --rm reo7sp/maxbot-cpp-test

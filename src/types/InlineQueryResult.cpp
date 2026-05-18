@@ -1,27 +1,27 @@
-#include "tgbot/types/InlineQueryResultCachedAudio.h"
-#include "tgbot/types/InlineQueryResultCachedDocument.h"
-#include "tgbot/types/InlineQueryResultCachedGif.h"
-#include "tgbot/types/InlineQueryResultCachedMpeg4Gif.h"
-#include "tgbot/types/InlineQueryResultCachedPhoto.h"
-#include "tgbot/types/InlineQueryResultCachedSticker.h"
-#include "tgbot/types/InlineQueryResultCachedVideo.h"
-#include "tgbot/types/InlineQueryResultCachedVoice.h"
-#include "tgbot/types/InlineQueryResultAudio.h"
-#include "tgbot/types/InlineQueryResultContact.h"
-#include "tgbot/types/InlineQueryResultGame.h"
-#include "tgbot/types/InlineQueryResultDocument.h"
-#include "tgbot/types/InlineQueryResultLocation.h"
-#include "tgbot/types/InlineQueryResultVenue.h"
-#include "tgbot/types/InlineQueryResultVoice.h"
-#include "tgbot/types/InlineQueryResultArticle.h"
-#include "tgbot/types/InlineQueryResultGif.h"
-#include "tgbot/types/InlineQueryResultMpeg4Gif.h"
-#include "tgbot/types/InlineQueryResultPhoto.h"
-#include "tgbot/types/InlineQueryResultVideo.h"
+#include "maxbot/types/InlineQueryResultCachedAudio.h"
+#include "maxbot/types/InlineQueryResultCachedDocument.h"
+#include "maxbot/types/InlineQueryResultCachedGif.h"
+#include "maxbot/types/InlineQueryResultCachedMpeg4Gif.h"
+#include "maxbot/types/InlineQueryResultCachedPhoto.h"
+#include "maxbot/types/InlineQueryResultCachedSticker.h"
+#include "maxbot/types/InlineQueryResultCachedVideo.h"
+#include "maxbot/types/InlineQueryResultCachedVoice.h"
+#include "maxbot/types/InlineQueryResultAudio.h"
+#include "maxbot/types/InlineQueryResultContact.h"
+#include "maxbot/types/InlineQueryResultGame.h"
+#include "maxbot/types/InlineQueryResultDocument.h"
+#include "maxbot/types/InlineQueryResultLocation.h"
+#include "maxbot/types/InlineQueryResultVenue.h"
+#include "maxbot/types/InlineQueryResultVoice.h"
+#include "maxbot/types/InlineQueryResultArticle.h"
+#include "maxbot/types/InlineQueryResultGif.h"
+#include "maxbot/types/InlineQueryResultMpeg4Gif.h"
+#include "maxbot/types/InlineQueryResultPhoto.h"
+#include "maxbot/types/InlineQueryResultVideo.h"
 
 #include <string>
 
-using namespace TgBot;
+using namespace MaxBot;
 
 const std::string InlineQueryResultCachedAudio::TYPE = "audio";
 const std::string InlineQueryResultCachedDocument::TYPE = "document";

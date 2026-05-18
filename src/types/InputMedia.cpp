@@ -1,12 +1,12 @@
-#include "tgbot/types/InputMediaPhoto.h"
-#include "tgbot/types/InputMediaVideo.h"
-#include "tgbot/types/InputMediaAnimation.h"
-#include "tgbot/types/InputMediaAudio.h"
-#include "tgbot/types/InputMediaDocument.h"
+#include "maxbot/types/InputMediaPhoto.h"
+#include "maxbot/types/InputMediaVideo.h"
+#include "maxbot/types/InputMediaAnimation.h"
+#include "maxbot/types/InputMediaAudio.h"
+#include "maxbot/types/InputMediaDocument.h"
 
 #include <string>
 
-using namespace TgBot;
+using namespace MaxBot;
 
 const std::string InputMediaPhoto::TYPE = "photo";
 const std::string InputMediaVideo::TYPE = "video";

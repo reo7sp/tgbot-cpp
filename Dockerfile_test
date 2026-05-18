@@ -19,7 +19,7 @@ RUN apt-get -qq update && \
         zlib1g-dev && \
     rm -rf /var/lib/apt/lists/*
 
-WORKDIR /usr/src/tgbot-cpp
+WORKDIR /usr/src/maxbot-cpp
 COPY include include
 COPY src src
 COPY test test
@@ -31,51 +31,51 @@ RUN cmake -DENABLE_TESTS=ON . && \
 
 COPY samples samples
 
-WORKDIR /usr/src/tgbot-cpp/samples/echobot
+WORKDIR /usr/src/maxbot-cpp/samples/echobot
 RUN rm -rf CMakeCache.txt CMakeFiles/ && \
     cmake . && make -j$(nproc)
 
-WORKDIR /usr/src/tgbot-cpp/samples/echobot-curl-client
+WORKDIR /usr/src/maxbot-cpp/samples/echobot-curl-client
 RUN rm -rf CMakeCache.txt CMakeFiles/ && \
     cmake . && make -j$(nproc)
 
-WORKDIR /usr/src/tgbot-cpp/samples/echobot-setmycommands
+WORKDIR /usr/src/maxbot-cpp/samples/echobot-setmycommands
 RUN rm -rf CMakeCache.txt CMakeFiles/ && \
     cmake . && make -j$(nproc)
 
-WORKDIR /usr/src/tgbot-cpp
-RUN rm -rf samples/echobot-submodule/tgbot-cpp/
-COPY include samples/echobot-submodule/tgbot-cpp/include
-COPY src samples/echobot-submodule/tgbot-cpp/src
-COPY CMakeLists.txt samples/echobot-submodule/tgbot-cpp/
-WORKDIR /usr/src/tgbot-cpp/samples/echobot-submodule
+WORKDIR /usr/src/maxbot-cpp
+RUN rm -rf samples/echobot-submodule/maxbot-cpp/
+COPY include samples/echobot-submodule/maxbot-cpp/include
+COPY src samples/echobot-submodule/maxbot-cpp/src
+COPY CMakeLists.txt samples/echobot-submodule/maxbot-cpp/
+WORKDIR /usr/src/maxbot-cpp/samples/echobot-submodule
 RUN rm -rf CMakeCache.txt CMakeFiles/ && \
     cmake . && make -j$(nproc)
 
-WORKDIR /usr/src/tgbot-cpp/samples/echobot-webhook-server
+WORKDIR /usr/src/maxbot-cpp/samples/echobot-webhook-server
 RUN rm -rf CMakeCache.txt CMakeFiles/ && \
     cmake . && make -j$(nproc)
 
-WORKDIR /usr/src/tgbot-cpp/samples/inline-keyboard
+WORKDIR /usr/src/maxbot-cpp/samples/inline-keyboard
 RUN rm -rf CMakeCache.txt CMakeFiles/ && \
     cmake . && make -j$(nproc)
 
-WORKDIR /usr/src/tgbot-cpp/samples/photo
+WORKDIR /usr/src/maxbot-cpp/samples/photo
 RUN rm -rf CMakeCache.txt CMakeFiles/ && \
     cmake . && make -j$(nproc)
 
-WORKDIR /usr/src/tgbot-cpp/samples/received-text-processing
+WORKDIR /usr/src/maxbot-cpp/samples/received-text-processing
 RUN rm -rf CMakeCache.txt CMakeFiles/ && \
     cmake . && make -j$(nproc)
 
-WORKDIR /usr/src/tgbot-cpp/samples/reply-keyboard
+WORKDIR /usr/src/maxbot-cpp/samples/reply-keyboard
 RUN rm -rf CMakeCache.txt CMakeFiles/ && \
     cmake . && make -j$(nproc)
 
-WORKDIR /usr/src/tgbot-cpp/samples/receive-file
+WORKDIR /usr/src/maxbot-cpp/samples/receive-file
 RUN rm -rf CMakeCache.txt CMakeFiles/ && \
     cmake . && make -j$(nproc)
 
-WORKDIR /usr/src/tgbot-cpp
+WORKDIR /usr/src/maxbot-cpp
 ENV CTEST_OUTPUT_ON_FAILURE=1
 CMD make test

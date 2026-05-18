@@ -1,6 +1,6 @@
-// Example of using array of proxies wth tgbot-cpp library.
+// Example of using array of proxies wth maxbot-cpp library.
 // Based on original code (c) Oleg Morozenkov [reo7sp] https://github.com/reo7sp
-// https://github.com/reo7sp/tgbot-cpp/blob/master/samples/echobot-curl-client/src/main.cpp
+// https://github.com/reo7sp/maxbot-cpp/blob/master/samples/echobot-curl-client/src/main.cpp
 
 #include <csignal>
 #include <cstdio>
@@ -13,11 +13,11 @@
 #define HAVE_CURL
 #endif
 
-#include <tgbot/net/CurlHttpClient.h>
-#include <tgbot/tgbot.h>
+#include <maxbot/net/CurlHttpClient.h>
+#include <maxbot/maxbot.h>
 
 using namespace std;
-using namespace TgBot;
+using namespace MaxBot;
 
 #define CONNECT_TIMEOUT 10L
 
@@ -59,7 +59,7 @@ int main() {
       printf("Bot username: %s\n", bot.getApi().getMe()->username.c_str());
       bot.getApi().deleteWebhook();
 
-      TgLongPoll longPoll(bot);
+      BotLongPoll longPoll(bot);
       while (true) {
         printf("Long poll started\n");
         longPoll.start();

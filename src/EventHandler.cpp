@@ -1,6 +1,6 @@
-#include "tgbot/EventHandler.h"
+#include "maxbot/EventHandler.h"
 
-namespace TgBot {
+namespace MaxBot {
 
 void EventHandler::handleUpdate(const Update::Ptr& update) const {
     if (update->message != nullptr) {

@@ -4,10 +4,10 @@
 #include <exception>
 #include <string>
 
-#include <tgbot/tgbot.h>
+#include <maxbot/maxbot.h>
 
 using namespace std;
-using namespace TgBot;
+using namespace MaxBot;
 
 vector<string> bot_commands = {"start", "test"};
 
@@ -18,7 +18,7 @@ int main() {
     bool test_text_state = false;
 
     Bot bot(token);
-    TgLongPoll long_poll(bot);
+    BotLongPoll long_poll(bot);
 
     bot.getEvents().onCommand("start", [&bot](Message::Ptr message) {
         bot.getApi().sendMessage(message->chat->id, "Hi!");
@@ -29,7 +29,7 @@ int main() {
         test_text_state = true;
     });
 
-    bot.getEvents().onAnyMessage([&](TgBot::Message::Ptr message) {
+    bot.getEvents().onAnyMessage([&](MaxBot::Message::Ptr message) {
         if (test_text_state) {
             bot.getApi().sendMessage(message->chat->id, message->text);
             test_text_state = false;

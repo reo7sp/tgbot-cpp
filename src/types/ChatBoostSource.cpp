@@ -1,10 +1,10 @@
-#include "tgbot/types/ChatBoostSourcePremium.h"
-#include "tgbot/types/ChatBoostSourceGiftCode.h"
-#include "tgbot/types/ChatBoostSourceGiveaway.h"
+#include "maxbot/types/ChatBoostSourcePremium.h"
+#include "maxbot/types/ChatBoostSourceGiftCode.h"
+#include "maxbot/types/ChatBoostSourceGiveaway.h"
 
 #include <string>
 
-using namespace TgBot;
+using namespace MaxBot;
 
 const std::string ChatBoostSourcePremium::SOURCE = "premium";
 const std::string ChatBoostSourceGiftCode::SOURCE = "gift_code";

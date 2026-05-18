@@ -1,11 +1,11 @@
-#include "tgbot/types/InputFile.h"
-#include "tgbot/tools/FileTools.h"
+#include "maxbot/types/InputFile.h"
+#include "maxbot/tools/FileTools.h"
 
 #include <filesystem>
 #include <memory>
 #include <string>
 
-namespace TgBot {
+namespace MaxBot {
 
 InputFile::Ptr InputFile::fromFile(const std::string& filePath, const std::string& mimeType) {
     auto result(std::make_shared<InputFile>());

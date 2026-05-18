@@ -1,4 +1,4 @@
-FROM reo7sp/tgbot-cpp
+FROM reo7sp/maxbot-cpp
 MAINTAINER Oleg Morozenkov <m@oleg.rocks>
 
 WORKDIR /usr/src/inline-keyboard

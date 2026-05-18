@@ -4,10 +4,10 @@
 #include <exception>
 #include <string>
 
-#include <tgbot/tgbot.h>
+#include <maxbot/maxbot.h>
 
 using namespace std;
-using namespace TgBot;
+using namespace MaxBot;
 
 int main() {
     string token(getenv("TOKEN"));
@@ -36,7 +36,7 @@ int main() {
         printf("Bot username: %s\n", bot.getApi().getMe()->username.c_str());
         bot.getApi().deleteWebhook();
 
-        TgLongPoll longPoll(bot);
+        BotLongPoll longPoll(bot);
         while (true) {
             printf("Long poll started\n");
             longPoll.start();

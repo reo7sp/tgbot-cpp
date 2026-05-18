@@ -1,11 +1,11 @@
-#include "tgbot/net/Url.h"
+#include "maxbot/net/Url.h"
 
 #include <cstddef>
 #include <string>
 
 using namespace std;
 
-namespace TgBot {
+namespace MaxBot {
 
 Url::Url(const string& url) {
     bool isProtocolParsed = false;

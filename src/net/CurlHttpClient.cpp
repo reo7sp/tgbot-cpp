@@ -1,11 +1,11 @@
 #ifdef HAVE_CURL
 
-#include "tgbot/net/CurlHttpClient.h"
+#include "maxbot/net/CurlHttpClient.h"
 
 #include <cstddef>
 #include <string>
 
-namespace TgBot {
+namespace MaxBot {
 
 CurlHttpClient::CurlHttpClient() : _httpParser() {
 }
