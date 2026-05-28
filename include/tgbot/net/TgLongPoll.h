@@ -29,6 +29,7 @@ public:
      * @brief Starts long poll. After new update will come, this method will parse it and send to EventHandler which invokes your listeners. Designed to be executed in a loop.
      */
     void start();
+    void launch_once(std::int32_t limit, std::int32_t timeout, const std::shared_ptr<std::vector<std::string>>& allowUpdates);
 
 private:
     const Api* _api;
