@@ -1,5 +1,5 @@
-#ifndef TGBOT_CPP_VIDEONOTE_H
-#define TGBOT_CPP_VIDEONOTE_H
+#ifndef MAXBOT_CPP_VIDEONOTE_H
+#define MAXBOT_CPP_VIDEONOTE_H
 
 #include "maxbot/types/PhotoSize.h"
 
@@ -52,4 +52,4 @@ public:
 };
 }
 
-#endif //TGBOT_CPP_VIDEONOTE_H
+#endif //MAXBOT_CPP_VIDEONOTE_H

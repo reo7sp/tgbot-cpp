@@ -1,5 +1,5 @@
-#ifndef TGBOT_GIVEAWAYCOMPLETED_H
-#define TGBOT_GIVEAWAYCOMPLETED_H
+#ifndef MAXBOT_GIVEAWAYCOMPLETED_H
+#define MAXBOT_GIVEAWAYCOMPLETED_H
 
 #include <cstdint>
 #include <memory>
@@ -35,4 +35,4 @@ public:
 };
 }
 
-#endif //TGBOT_GIVEAWAYCOMPLETED_H
+#endif //MAXBOT_GIVEAWAYCOMPLETED_H

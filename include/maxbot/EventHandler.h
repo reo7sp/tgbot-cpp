@@ -1,5 +1,5 @@
-#ifndef TGBOT_EVENTHANDLER_H
-#define TGBOT_EVENTHANDLER_H
+#ifndef MAXBOT_EVENTHANDLER_H
+#define MAXBOT_EVENTHANDLER_H
 
 #include "maxbot/EventBroadcaster.h"
 #include "maxbot/types/Update.h"
@@ -11,7 +11,7 @@
 
 namespace MaxBot {
 
-class TGBOT_API EventHandler {
+class MAXBOT_API EventHandler {
 
 public:
     explicit EventHandler(const EventBroadcaster& broadcaster) : _broadcaster(broadcaster) {
@@ -27,4 +27,4 @@ private:
 
 }
 
-#endif //TGBOT_EVENTHANDLER_H
+#endif //MAXBOT_EVENTHANDLER_H

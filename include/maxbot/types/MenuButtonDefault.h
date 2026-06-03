@@ -1,5 +1,5 @@
-#ifndef TGBOT_MENUBUTTONDEFAULT_H
-#define TGBOT_MENUBUTTONDEFAULT_H
+#ifndef MAXBOT_MENUBUTTONDEFAULT_H
+#define MAXBOT_MENUBUTTONDEFAULT_H
 
 #include "maxbot/types/MenuButton.h"
 
@@ -24,4 +24,4 @@ public:
 };
 }
 
-#endif //TGBOT_MENUBUTTONDEFAULT_H
+#endif //MAXBOT_MENUBUTTONDEFAULT_H

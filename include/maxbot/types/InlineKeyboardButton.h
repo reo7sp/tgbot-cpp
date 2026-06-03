@@ -1,5 +1,5 @@
-#ifndef TGBOT_INLINEKEYBOARDBUTTON_H
-#define TGBOT_INLINEKEYBOARDBUTTON_H
+#ifndef MAXBOT_INLINEKEYBOARDBUTTON_H
+#define MAXBOT_INLINEKEYBOARDBUTTON_H
 
 #include "maxbot/types/WebAppInfo.h"
 #include "maxbot/types/LoginUrl.h"
@@ -91,4 +91,4 @@ public:
 };
 }
 
-#endif //TGBOT_INLINEKEYBOARDBUTTON_H
+#endif //MAXBOT_INLINEKEYBOARDBUTTON_H

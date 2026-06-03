@@ -1,5 +1,5 @@
-#ifndef TGBOT_SHAREDUSER_H
-#define TGBOT_SHAREDUSER_H
+#ifndef MAXBOT_SHAREDUSER_H
+#define MAXBOT_SHAREDUSER_H
 
 #include "maxbot/types/PhotoSize.h"
 
@@ -51,4 +51,4 @@ public:
 };
 }
 
-#endif //TGBOT_SHAREDUSER_H
+#endif //MAXBOT_SHAREDUSER_H

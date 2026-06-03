@@ -1,5 +1,5 @@
-#ifndef TGBOT_CALLBACKGAME_H
-#define TGBOT_CALLBACKGAME_H
+#ifndef MAXBOT_CALLBACKGAME_H
+#define MAXBOT_CALLBACKGAME_H
 
 #include <memory>
 
@@ -17,4 +17,4 @@ public:
 };
 }
 
-#endif //TGBOT_CALLBACKGAME_H
+#endif //MAXBOT_CALLBACKGAME_H

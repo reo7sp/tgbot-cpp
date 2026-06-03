@@ -1,5 +1,5 @@
-#ifndef TGBOT_CPP_GENERICREPLY_H
-#define TGBOT_CPP_GENERICREPLY_H
+#ifndef MAXBOT_CPP_GENERICREPLY_H
+#define MAXBOT_CPP_GENERICREPLY_H
 
 #include <memory>
 
@@ -19,4 +19,4 @@ public:
 
 }
 
-#endif //TGBOT_CPP_GENERICREPLY_H
+#endif //MAXBOT_CPP_GENERICREPLY_H

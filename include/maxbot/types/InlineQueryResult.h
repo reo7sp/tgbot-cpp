@@ -1,5 +1,5 @@
-#ifndef TGBOT_INLINEQUERYRESULT_H
-#define TGBOT_INLINEQUERYRESULT_H
+#ifndef MAXBOT_INLINEQUERYRESULT_H
+#define MAXBOT_INLINEQUERYRESULT_H
 
 #include "maxbot/types/InlineKeyboardMarkup.h"
 
@@ -63,4 +63,4 @@ public:
 };
 }
 
-#endif //TGBOT_INLINEQUERYRESULT_H
+#endif //MAXBOT_INLINEQUERYRESULT_H

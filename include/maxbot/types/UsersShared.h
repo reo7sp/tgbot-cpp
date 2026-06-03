@@ -1,5 +1,5 @@
-#ifndef TGBOT_USERSSHARED_H
-#define TGBOT_USERSSHARED_H
+#ifndef MAXBOT_USERSSHARED_H
+#define MAXBOT_USERSSHARED_H
 
 #include "maxbot/types/SharedUser.h"
 
@@ -31,4 +31,4 @@ public:
 };
 }
 
-#endif //TGBOT_USERSSHARED_H
+#endif //MAXBOT_USERSSHARED_H

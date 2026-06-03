@@ -1,5 +1,5 @@
-#ifndef TGBOT_MARKPOSITION_H
-#define TGBOT_MARKPOSITION_H
+#ifndef MAXBOT_MARKPOSITION_H
+#define MAXBOT_MARKPOSITION_H
 
 #include <memory>
 #include <string>
@@ -37,4 +37,4 @@ public:
 };
 }
 
-#endif //TGBOT_MARKPOSITION_H
+#endif //MAXBOT_MARKPOSITION_H

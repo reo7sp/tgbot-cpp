@@ -1,72 +1,10 @@
 #include "maxbot/BotTypeParser.h"
+#include <type_traits>
+#include <variant>
 
 namespace MaxBot {
 
-Update::Ptr BotTypeParser::parseJsonAndGetUpdate(const boost::property_tree::ptree& data) const {
-    auto result(std::make_shared<Update>());
-    result->updateId = data.get<std::int32_t>("update_id", 0);
-    result->message = tryParseJson<Message>(&BotTypeParser::parseJsonAndGetMessage, data, "message");
-    result->editedMessage = tryParseJson<Message>(&BotTypeParser::parseJsonAndGetMessage, data, "edited_message");
-    result->channelPost = tryParseJson<Message>(&BotTypeParser::parseJsonAndGetMessage, data, "channel_post");
-    result->editedChannelPost = tryParseJson<Message>(&BotTypeParser::parseJsonAndGetMessage, data, "edited_channel_post");
-    result->businessConnection = tryParseJson<BusinessConnection>(&BotTypeParser::parseJsonAndGetBusinessConnection, data, "business_connection");
-    result->businessMessage = tryParseJson<Message>(&BotTypeParser::parseJsonAndGetMessage, data, "business_message");
-    result->editedBusinessMessage = tryParseJson<Message>(&BotTypeParser::parseJsonAndGetMessage, data, "edited_business_message");
-    result->deletedBusinessMessages = tryParseJson<BusinessMessagesDeleted>(&BotTypeParser::parseJsonAndGetBusinessMessagesDeleted, data, "deleted_business_messages");
-    result->messageReaction = tryParseJson<MessageReactionUpdated>(&BotTypeParser::parseJsonAndGetMessageReactionUpdated, data, "message_reaction");
-    result->messageReactionCount = tryParseJson<MessageReactionCountUpdated>(&BotTypeParser::parseJsonAndGetMessageReactionCountUpdated, data, "message_reaction_count");
-    result->inlineQuery = tryParseJson<InlineQuery>(&BotTypeParser::parseJsonAndGetInlineQuery, data, "inline_query");
-    result->chosenInlineResult = tryParseJson<ChosenInlineResult>(&BotTypeParser::parseJsonAndGetChosenInlineResult, data, "chosen_inline_result");
-    result->callbackQuery = tryParseJson<CallbackQuery>(&BotTypeParser::parseJsonAndGetCallbackQuery, data, "callback_query");
-    result->shippingQuery = tryParseJson<ShippingQuery>(&BotTypeParser::parseJsonAndGetShippingQuery, data, "shipping_query");
-    result->preCheckoutQuery = tryParseJson<PreCheckoutQuery>(&BotTypeParser::parseJsonAndGetPreCheckoutQuery, data, "pre_checkout_query");
-    result->poll = tryParseJson<Poll>(&BotTypeParser::parseJsonAndGetPoll, data, "poll");
-    result->pollAnswer = tryParseJson<PollAnswer>(&BotTypeParser::parseJsonAndGetPollAnswer, data, "poll_answer");
-    result->myChatMember = tryParseJson<ChatMemberUpdated>(&BotTypeParser::parseJsonAndGetChatMemberUpdated, data, "my_chat_member");
-    result->chatMember = tryParseJson<ChatMemberUpdated>(&BotTypeParser::parseJsonAndGetChatMemberUpdated, data, "chat_member");
-    result->chatJoinRequest = tryParseJson<ChatJoinRequest>(&BotTypeParser::parseJsonAndGetChatJoinRequest, data, "chat_join_request");
-    result->chatBoost = tryParseJson<ChatBoostUpdated>(&BotTypeParser::parseJsonAndGetChatBoostUpdated, data, "chat_boost");
-    result->removedChatBoost = tryParseJson<ChatBoostRemoved>(&BotTypeParser::parseJsonAndGetChatBoostRemoved, data, "removed_chat_boost");
-    result->successfulPayment = tryParseJson<SuccessfulPayment>(&BotTypeParser::parseJsonAndGetSuccessfulPayment, data, "successful_payment");
-    return result;
-}
-
-std::string BotTypeParser::parseUpdate(const Update::Ptr& object) const {
-    if (!object) {
-        return "";
-    }
-    std::string result;
-    result += '{';
-    appendToJson(result, "update_id", object->updateId);
-    appendToJson(result, "message", parseMessage(object->message));
-    appendToJson(result, "edited_message", parseMessage(object->editedMessage));
-    appendToJson(result, "channel_post", parseMessage(object->channelPost));
-    appendToJson(result, "edited_channel_post", parseMessage(object->editedChannelPost));
-    appendToJson(result, "business_connection", parseBusinessConnection(object->businessConnection));
-    appendToJson(result, "business_message", parseMessage(object->businessMessage));
-    appendToJson(result, "edited_business_message", parseMessage(object->editedBusinessMessage));
-    appendToJson(result, "deleted_business_messages", parseBusinessMessagesDeleted(object->deletedBusinessMessages));
-    appendToJson(result, "message_reaction", parseMessageReactionUpdated(object->messageReaction));
-    appendToJson(result, "message_reaction_count", parseMessageReactionCountUpdated(object->messageReactionCount));
-    appendToJson(result, "inline_query", parseInlineQuery(object->inlineQuery));
-    appendToJson(result, "chosen_inline_result", parseChosenInlineResult(object->chosenInlineResult));
-    appendToJson(result, "callback_query", parseCallbackQuery(object->callbackQuery));
-    appendToJson(result, "shipping_query", parseShippingQuery(object->shippingQuery));
-    appendToJson(result, "pre_checkout_query", parsePreCheckoutQuery(object->preCheckoutQuery));
-    appendToJson(result, "poll", parsePoll(object->poll));
-    appendToJson(result, "poll_answer", parsePollAnswer(object->pollAnswer));
-    appendToJson(result, "my_chat_member", parseChatMemberUpdated(object->myChatMember));
-    appendToJson(result, "chat_member", parseChatMemberUpdated(object->chatMember));
-    appendToJson(result, "chat_join_request", parseChatJoinRequest(object->chatJoinRequest));
-    appendToJson(result, "chat_boost", parseChatBoostUpdated(object->chatBoost));
-    appendToJson(result, "removed_chat_boost", parseChatBoostRemoved(object->removedChatBoost));
-    appendToJson(result, "successful_payment", parseSuccessfulPayment(object->successfulPayment));
-    removeLastComma(result);
-    result += '}';
-    return result;
-}
-
-WebhookInfo::Ptr BotTypeParser::parseJsonAndGetWebhookInfo(const boost::property_tree::ptree& data) const {
+WebhookInfo::Ptr BotTypeParser::parseJsonAndGetWebhookInfo(const boost::property_tree::ptree& data) {
     auto result(std::make_shared<WebhookInfo>());
     result->url = data.get<std::string>("url", "");
     result->hasCustomCertificate = data.get<bool>("has_custom_certificate", false);
@@ -83,7 +21,7 @@ WebhookInfo::Ptr BotTypeParser::parseJsonAndGetWebhookInfo(const boost::property
     return result;
 }
 
-std::string BotTypeParser::parseWebhookInfo(const WebhookInfo::Ptr& object) const {
+std::string BotTypeParser::parseWebhookInfo(const WebhookInfo::Ptr& object) {
     if (!object) {
         return "";
     }
@@ -106,47 +44,7 @@ std::string BotTypeParser::parseWebhookInfo(const WebhookInfo::Ptr& object) cons
     return result;
 }
 
-User::Ptr BotTypeParser::parseJsonAndGetUser(const boost::property_tree::ptree& data) const {
-    auto result(std::make_shared<User>());
-    result->id = data.get<std::int64_t>("id", 0);
-    result->isBot = data.get<bool>("is_bot", false);
-    result->firstName = data.get<std::string>("first_name", "");
-    result->lastName = data.get<std::string>("last_name", "");
-    result->username = data.get<std::string>("username", "");
-    result->languageCode = data.get<std::string>("language_code", "");
-    result->isPremium = data.get<bool>("is_premium", false);
-    result->addedToAttachmentMenu = data.get<bool>("added_to_attachment_menu", false);
-    result->canJoinGroups = data.get<bool>("can_join_groups", false);
-    result->canReadAllGroupMessages = data.get<bool>("can_read_all_group_messages", false);
-    result->supportsInlineQueries = data.get<bool>("supports_inline_queries", false);
-    result->canConnectToBusiness = data.get<bool>("can_connect_to_business", false);
-    return result;
-}
-
-std::string BotTypeParser::parseUser(const User::Ptr& object) const {
-    if (!object) {
-        return "";
-    }
-    std::string result;
-    result += '{';
-    appendToJson(result, "id", object->id);
-    appendToJson(result, "is_bot", object->isBot);
-    appendToJson(result, "first_name", object->firstName);
-    appendToJson(result, "last_name", object->lastName);
-    appendToJson(result, "username", object->username);
-    appendToJson(result, "language_code", object->languageCode);
-    appendToJson(result, "is_premium", object->isPremium);
-    appendToJson(result, "added_to_attachment_menu", object->addedToAttachmentMenu);
-    appendToJson(result, "can_join_groups", object->canJoinGroups);
-    appendToJson(result, "can_read_all_group_messages", object->canReadAllGroupMessages);
-    appendToJson(result, "supports_inline_queries", object->supportsInlineQueries);
-    appendToJson(result, "can_connect_to_business", object->canConnectToBusiness);
-    removeLastComma(result);
-    result += '}';
-    return result;
-}
-
-Chat::Ptr BotTypeParser::parseJsonAndGetChat(const boost::property_tree::ptree& data) const {
+Chat::Ptr BotTypeParser::parseJsonAndGetChat(const boost::property_tree::ptree& data) {
     auto result(std::make_shared<Chat>());
     result->id = data.get<std::int64_t>("id", 0);
     std::string type = data.get<std::string>("type", "");
@@ -170,9 +68,6 @@ Chat::Ptr BotTypeParser::parseJsonAndGetChat(const boost::property_tree::ptree& 
         return innerData.get<std::string>("");
     }, data, "active_usernames");
     result->birthdate = tryParseJson<Birthdate>(&BotTypeParser::parseJsonAndGetBirthdate, data, "birthdate");
-    result->businessIntro = tryParseJson<BusinessIntro>(&BotTypeParser::parseJsonAndGetBusinessIntro, data, "business_intro");
-    result->businessLocation = tryParseJson<BusinessLocation>(&BotTypeParser::parseJsonAndGetBusinessLocation, data, "business_location");
-    result->businessOpeningHours = tryParseJson<BusinessOpeningHours>(&BotTypeParser::parseJsonAndGetBusinessOpeningHours, data, "business_opening_hours");
     result->personalChat = tryParseJson<Chat>(&BotTypeParser::parseJsonAndGetChat, data, "personal_chat");
     result->availableReactions = parseJsonAndGetArray<ReactionType>(&BotTypeParser::parseJsonAndGetReactionType, data, "available_reactions");
     result->accentColorId = data.get<std::int32_t>("accent_color_id", 0);
@@ -205,253 +100,107 @@ Chat::Ptr BotTypeParser::parseJsonAndGetChat(const boost::property_tree::ptree& 
     return result;
 }
 
-std::string BotTypeParser::parseChat(const Chat::Ptr& object) const {
-    if (!object) {
-        return "";
-    }
+std::string BotTypeParser::parseNewMessageBody(const NewMessageBody::Ptr& msg) {
+    if (!msg)
+        return {};
+
     std::string result;
     result += '{';
-    appendToJson(result, "id", object->id);
-    if (object->type == Chat::Type::Private) {
-        appendToJson(result, "type", "private");
-    } else if (object->type == Chat::Type::Group) {
-        appendToJson(result, "type", "group");
-    } else if (object->type == Chat::Type::Supergroup) {
-        appendToJson(result, "type", "supergroup");
-    } else if (object->type == Chat::Type::Channel) {
-        appendToJson(result, "type", "channel");
-    }
-    appendToJson(result, "title", object->title);
-    appendToJson(result, "username", object->username);
-    appendToJson(result, "first_name", object->firstName);
-    appendToJson(result, "last_name", object->lastName);
-    appendToJson(result, "is_forum", object->isForum);
-    appendToJson(result, "photo", parseChatPhoto(object->photo));
-    appendToJson(result, "active_usernames", parseArray<std::string>(
-        [] (const std::string& s)->std::string {
-        return s;
-    }, object->activeUsernames));
-    appendToJson(result, "birthdate", parseBirthdate(object->birthdate));
-    appendToJson(result, "business_intro", parseBusinessIntro(object->businessIntro));
-    appendToJson(result, "business_location", parseBusinessLocation(object->businessLocation));
-    appendToJson(result, "business_opening_hours", parseBusinessOpeningHours(object->businessOpeningHours));
-    appendToJson(result, "personal_chat", parseChat(object->personalChat));
-    appendToJson(result, "available_reactions", parseArray(&BotTypeParser::parseReactionType, object->availableReactions));
-    appendToJson(result, "accent_color_id", object->accentColorId);
-    appendToJson(result, "background_custom_emoji_id", object->backgroundCustomEmojiId);
-    appendToJson(result, "profile_accent_color_id", object->profileAccentColorId);
-    appendToJson(result, "profile_background_custom_emoji_id", object->profileBackgroundCustomEmojiId);
-    appendToJson(result, "emoji_status_custom_emoji_id", object->emojiStatusCustomEmojiId);
-    appendToJson(result, "emoji_status_expiration_date", object->emojiStatusExpirationDate);
-    appendToJson(result, "bio", object->bio);
-    appendToJson(result, "has_private_forwards", object->hasPrivateForwards);
-    appendToJson(result, "has_restricted_voice_and_video_messages", object->hasRestrictedVoiceAndVideoMessages);
-    appendToJson(result, "join_to_send_messages", object->joinToSendMessages);
-    appendToJson(result, "join_by_request", object->joinByRequest);
-    appendToJson(result, "description", object->description);
-    appendToJson(result, "invite_link", object->inviteLink);
-    appendToJson(result, "pinned_message", parseMessage(object->pinnedMessage));
-    appendToJson(result, "permissions", parseChatPermissions(object->permissions));
-    appendToJson(result, "slow_mode_delay", object->slowModeDelay);
-    appendToJson(result, "unrestrict_boost_count", object->unrestrictBoostCount);
-    appendToJson(result, "message_auto_delete_time", object->messageAutoDeleteTime);
-    appendToJson(result, "has_aggressive_anti_spam_enabled", object->hasAggressiveAntiSpamEnabled);
-    appendToJson(result, "has_hidden_members", object->hasHiddenMembers);
-    appendToJson(result, "has_protected_content", object->hasProtectedContent);
-    appendToJson(result, "has_visible_history", object->hasVisibleHistory);
-    appendToJson(result, "sticker_set_name", object->stickerSetName);
-    appendToJson(result, "can_set_sticker_set", object->canSetStickerSet);
-    appendToJson(result, "custom_emoji_sticker_set_name", object->customEmojiStickerSetName);
-    appendToJson(result, "linked_chat_id", object->linkedChatId);
-    appendToJson(result, "location", parseChatLocation(object->location));
+    appendToJson(result, "text", msg->text);
+    appendToJson(result, "notify", msg->notify);
+    if (!msg->attachments.empty())
+        appendToJson(result, "attachments", parseArray<AttachmentRequest>(&BotTypeParser::parseAttachmentRequest, msg->attachments));
+    if (msg->link)
+        appendToJson(result, "link", parseNewMessageLink(msg->link));
+    if (!msg->format.empty())
+        appendToJson(result, "format", msg->format);
     removeLastComma(result);
     result += '}';
     return result;
 }
 
-Message::Ptr BotTypeParser::parseJsonAndGetMessage(const boost::property_tree::ptree& data) const {
-    auto result(std::make_shared<Message>());
-    result->messageId = data.get<std::int32_t>("message_id", 0);
-    result->messageThreadId = data.get<std::int32_t>("message_thread_id", 0);
-    result->from = tryParseJson<User>(&BotTypeParser::parseJsonAndGetUser, data, "from");
-    result->senderChat = tryParseJson<Chat>(&BotTypeParser::parseJsonAndGetChat, data, "sender_chat");
-    result->senderBoostCount = data.get<std::int32_t>("sender_boost_count", 0);
-    result->senderBusinessBot = tryParseJson<User>(&BotTypeParser::parseJsonAndGetUser, data, "sender_business_bot");
-    result->date = data.get<std::uint32_t>("date", 0);
-    result->businessConnectionId = data.get<std::string>("business_connection_id", "");
-    result->chat = parseJsonAndGetChat(data.find("chat")->second);
-    result->forwardOrigin = tryParseJson<MessageOrigin>(&BotTypeParser::parseJsonAndGetMessageOrigin, data, "forward_origin");
-    result->isTopicMessage = data.get<bool>("is_topic_message", false);
-    result->isAutomaticForward = data.get<bool>("is_automatic_forward", false);
-    result->replyToMessage = tryParseJson<Message>(&BotTypeParser::parseJsonAndGetMessage, data, "reply_to_message");
-    result->externalReply = tryParseJson<ExternalReplyInfo>(&BotTypeParser::parseJsonAndGetExternalReplyInfo, data, "external_reply");
-    result->quote = tryParseJson<TextQuote>(&BotTypeParser::parseJsonAndGetTextQuote, data, "quote");
-    result->replyToStory = tryParseJson<Story>(&BotTypeParser::parseJsonAndGetStory, data, "reply_to_story");
-    result->viaBot = tryParseJson<User>(&BotTypeParser::parseJsonAndGetUser, data, "via_bot");
-    result->editDate = data.get<std::uint32_t>("edit_date", 0);
-    result->hasProtectedContent = data.get<bool>("has_protected_content", false);
-    result->isFromOffline = data.get<bool>("is_from_offline", false);
-    result->mediaGroupId = data.get<std::string>("media_group_id", "");
-    result->authorSignature = data.get<std::string>("author_signature", "");
-    result->text = data.get<std::string>("text", "");
-    result->entities = parseJsonAndGetArray<MessageEntity>(&BotTypeParser::parseJsonAndGetMessageEntity, data, "entities");
-    result->linkPreviewOptions = tryParseJson<LinkPreviewOptions>(&BotTypeParser::parseJsonAndGetLinkPreviewOptions, data, "link_preview_options");
-    result->animation = tryParseJson<Animation>(&BotTypeParser::parseJsonAndGetAnimation, data, "animation");
-    result->audio = tryParseJson<Audio>(&BotTypeParser::parseJsonAndGetAudio, data, "audio");
-    result->document = tryParseJson<Document>(&BotTypeParser::parseJsonAndGetDocument, data, "document");
-    result->photo = parseJsonAndGetArray<PhotoSize>(&BotTypeParser::parseJsonAndGetPhotoSize, data, "photo");
-    result->sticker = tryParseJson<Sticker>(&BotTypeParser::parseJsonAndGetSticker, data, "sticker");
-    result->story = tryParseJson<Story>(&BotTypeParser::parseJsonAndGetStory, data, "story");
-    result->video = tryParseJson<Video>(&BotTypeParser::parseJsonAndGetVideo, data, "video");
-    result->videoNote = tryParseJson<VideoNote>(&BotTypeParser::parseJsonAndGetVideoNote, data, "video_note");
-    result->voice = tryParseJson<Voice>(&BotTypeParser::parseJsonAndGetVoice, data, "voice");
-    result->caption = data.get<std::string>("caption", "");
-    result->captionEntities = parseJsonAndGetArray<MessageEntity>(&BotTypeParser::parseJsonAndGetMessageEntity, data, "caption_entities");
-    result->hasMediaSpoiler = data.get<bool>("has_media_spoiler", false);
-    result->contact = tryParseJson<Contact>(&BotTypeParser::parseJsonAndGetContact, data, "contact");
-    result->dice = tryParseJson<Dice>(&BotTypeParser::parseJsonAndGetDice, data, "dice");
-    result->game = tryParseJson<Game>(&BotTypeParser::parseJsonAndGetGame, data, "game");
-    result->poll = tryParseJson<Poll>(&BotTypeParser::parseJsonAndGetPoll, data, "poll");
-    result->venue = tryParseJson<Venue>(&BotTypeParser::parseJsonAndGetVenue, data, "venue");
-    result->location = tryParseJson<Location>(&BotTypeParser::parseJsonAndGetLocation, data, "location");
-    result->newChatMembers = parseJsonAndGetArray<User>(&BotTypeParser::parseJsonAndGetUser, data, "new_chat_members");
-    result->leftChatMember = tryParseJson<User>(&BotTypeParser::parseJsonAndGetUser, data, "left_chat_member");
-    result->newChatTitle = data.get<std::string>("new_chat_title", "");
-    result->newChatPhoto = parseJsonAndGetArray<PhotoSize>(&BotTypeParser::parseJsonAndGetPhotoSize, data, "new_chat_photo");
-    result->deleteChatPhoto = data.get<bool>("delete_chat_photo", false);
-    result->groupChatCreated = data.get<bool>("group_chat_created", false);
-    result->supergroupChatCreated = data.get<bool>("supergroup_chat_created", false);
-    result->channelChatCreated = data.get<bool>("channel_chat_created", false);
-    result->messageAutoDeleteTimerChanged = tryParseJson<MessageAutoDeleteTimerChanged>(&BotTypeParser::parseJsonAndGetMessageAutoDeleteTimerChanged, data, "message_auto_delete_timer_changed");
-    result->migrateToChatId = data.get<std::int64_t>("migrate_to_chat_id", 0);
-    result->migrateFromChatId = data.get<std::int64_t>("migrate_from_chat_id", 0);
-    result->pinnedMessage = tryParseJson<Message>(&BotTypeParser::parseJsonAndGetMessage, data, "pinned_message");
-    result->invoice = tryParseJson<Invoice>(&BotTypeParser::parseJsonAndGetInvoice, data, "invoice");
-    result->successfulPayment = tryParseJson<SuccessfulPayment>(&BotTypeParser::parseJsonAndGetSuccessfulPayment, data, "successful_payment");
-    result->usersShared = tryParseJson<UsersShared>(&BotTypeParser::parseJsonAndGetUsersShared, data, "users_shared");
-    result->chatShared = tryParseJson<ChatShared>(&BotTypeParser::parseJsonAndGetChatShared, data, "chat_shared");
-    result->connectedWebsite = data.get<std::string>("connected_website", "");
-    result->writeAccessAllowed = tryParseJson<WriteAccessAllowed>(&BotTypeParser::parseJsonAndGetWriteAccessAllowed, data, "write_access_allowed");
-    result->passportData = tryParseJson<PassportData>(&BotTypeParser::parseJsonAndGetPassportData, data, "passport_data");
-    result->proximityAlertTriggered = tryParseJson<ProximityAlertTriggered>(&BotTypeParser::parseJsonAndGetProximityAlertTriggered, data, "proximity_alert_triggered");
-    result->boostAdded = tryParseJson<ChatBoostAdded>(&BotTypeParser::parseJsonAndGetChatBoostAdded, data, "boost_added");
-    result->forumTopicCreated = tryParseJson<ForumTopicCreated>(&BotTypeParser::parseJsonAndGetForumTopicCreated, data, "forum_topic_created");
-    result->forumTopicEdited = tryParseJson<ForumTopicEdited>(&BotTypeParser::parseJsonAndGetForumTopicEdited, data, "forum_topic_edited");
-    result->forumTopicClosed = tryParseJson<ForumTopicClosed>(&BotTypeParser::parseJsonAndGetForumTopicClosed, data, "forum_topic_closed");
-    result->forumTopicReopened = tryParseJson<ForumTopicReopened>(&BotTypeParser::parseJsonAndGetForumTopicReopened, data, "forum_topic_reopened");
-    result->generalForumTopicHidden = tryParseJson<GeneralForumTopicHidden>(&BotTypeParser::parseJsonAndGetGeneralForumTopicHidden, data, "general_forum_topic_hidden");
-    result->generalForumTopicUnhidden = tryParseJson<GeneralForumTopicUnhidden>(&BotTypeParser::parseJsonAndGetGeneralForumTopicUnhidden, data, "general_forum_topic_unhidden");
-    result->giveawayCreated = tryParseJson<GiveawayCreated>(&BotTypeParser::parseJsonAndGetGiveawayCreated, data, "giveaway_created");
-    result->giveaway = tryParseJson<Giveaway>(&BotTypeParser::parseJsonAndGetGiveaway, data, "giveaway");
-    result->giveawayWinners = tryParseJson<GiveawayWinners>(&BotTypeParser::parseJsonAndGetGiveawayWinners, data, "giveaway_winners");
-    result->giveawayCompleted = tryParseJson<GiveawayCompleted>(&BotTypeParser::parseJsonAndGetGiveawayCompleted, data, "giveaway_completed");
-    result->videoChatScheduled = tryParseJson<VideoChatScheduled>(&BotTypeParser::parseJsonAndGetVideoChatScheduled, data, "video_chat_scheduled");
-    result->videoChatStarted = tryParseJson<VideoChatStarted>(&BotTypeParser::parseJsonAndGetVideoChatStarted, data, "video_chat_started");
-    result->videoChatEnded = tryParseJson<VideoChatEnded>(&BotTypeParser::parseJsonAndGetVideoChatEnded, data, "video_chat_ended");
-    result->videoChatParticipantsInvited = tryParseJson<VideoChatParticipantsInvited>(&BotTypeParser::parseJsonAndGetVideoChatParticipantsInvited, data, "video_chat_participants_invited");
-    result->webAppData = tryParseJson<WebAppData>(&BotTypeParser::parseJsonAndGetWebAppData, data, "web_app_data");
-    result->replyMarkup = tryParseJson<InlineKeyboardMarkup>(&BotTypeParser::parseJsonAndGetInlineKeyboardMarkup, data, "reply_markup");
-    return result;
-}
-
-std::string BotTypeParser::parseMessage(const Message::Ptr& object) const {
-    if (!object) {
-        return "";
-    }
+/*static*/ std::string BotTypeParser::parseAttachmentRequest(const AttachmentRequest::Ptr& o)
+{
+    if (!o) return {};
     std::string result;
     result += '{';
-    appendToJson(result, "message_id", object->messageId);
-    appendToJson(result, "message_thread_id", object->messageThreadId);
-    appendToJson(result, "from", parseUser(object->from));
-    appendToJson(result, "sender_chat", parseChat(object->senderChat));
-    appendToJson(result, "sender_boost_count", object->senderBoostCount);
-    appendToJson(result, "sender_business_bot", parseUser(object->senderBusinessBot));
-    appendToJson(result, "date", object->date);
-    appendToJson(result, "business_connection_id", object->businessConnectionId);
-    appendToJson(result, "chat", parseChat(object->chat));
-    appendToJson(result, "forward_origin", parseMessageOrigin(object->forwardOrigin));
-    appendToJson(result, "is_topic_message", object->isTopicMessage);
-    appendToJson(result, "is_automatic_forward", object->isAutomaticForward);
-    appendToJson(result, "reply_to_message", parseMessage(object->replyToMessage));
-    appendToJson(result, "external_reply", parseExternalReplyInfo(object->externalReply));
-    appendToJson(result, "quote", parseTextQuote(object->quote));
-    appendToJson(result, "reply_to_story", parseStory(object->replyToStory));
-    appendToJson(result, "via_bot", parseUser(object->viaBot));
-    appendToJson(result, "edit_date", object->editDate);
-    appendToJson(result, "has_protected_content", object->hasProtectedContent);
-    appendToJson(result, "is_from_offline", object->isFromOffline);
-    appendToJson(result, "media_group_id", object->mediaGroupId);
-    appendToJson(result, "author_signature", object->authorSignature);
-    appendToJson(result, "text", object->text);
-    appendToJson(result, "entities", parseArray(&BotTypeParser::parseMessageEntity, object->entities));
-    appendToJson(result, "link_preview_options", parseLinkPreviewOptions(object->linkPreviewOptions));
-    appendToJson(result, "animation", parseAnimation(object->animation));
-    appendToJson(result, "audio", parseAudio(object->audio));
-    appendToJson(result, "document", parseDocument(object->document));
-    appendToJson(result, "photo", parseArray(&BotTypeParser::parsePhotoSize, object->photo));
-    appendToJson(result, "sticker", parseSticker(object->sticker));
-    appendToJson(result, "story", parseStory(object->story));
-    appendToJson(result, "video", parseVideo(object->video));
-    appendToJson(result, "video_note", parseVideoNote(object->videoNote));
-    appendToJson(result, "voice", parseVoice(object->voice));
-    appendToJson(result, "caption", object->caption);
-    appendToJson(result, "caption_entities", parseArray(&BotTypeParser::parseMessageEntity, object->captionEntities));
-    appendToJson(result, "has_media_spoiler", object->hasMediaSpoiler);
-    appendToJson(result, "contact", parseContact(object->contact));
-    appendToJson(result, "dice", parseDice(object->dice));
-    appendToJson(result, "game", parseGame(object->game));
-    appendToJson(result, "poll", parsePoll(object->poll));
-    appendToJson(result, "venue", parseVenue(object->venue));
-    appendToJson(result, "location", parseLocation(object->location));
-    appendToJson(result, "new_chat_members", parseArray(&BotTypeParser::parseUser, object->newChatMembers));
-    appendToJson(result, "left_chat_member", parseUser(object->leftChatMember));
-    appendToJson(result, "new_chat_title", object->newChatTitle);
-    appendToJson(result, "new_chat_photo", parseArray(&BotTypeParser::parsePhotoSize, object->newChatPhoto));
-    appendToJson(result, "delete_chat_photo", object->deleteChatPhoto);
-    appendToJson(result, "group_chat_created", object->groupChatCreated);
-    appendToJson(result, "supergroup_chat_created", object->supergroupChatCreated);
-    appendToJson(result, "channel_chat_created", object->channelChatCreated);
-    appendToJson(result, "message_auto_delete_timer_changed", parseMessageAutoDeleteTimerChanged(object->messageAutoDeleteTimerChanged));
-    appendToJson(result, "migrate_to_chat_id", object->migrateToChatId);
-    appendToJson(result, "migrate_from_chat_id", object->migrateFromChatId);
-    appendToJson(result, "pinned_message", parseMessage(object->pinnedMessage));
-    appendToJson(result, "invoice", parseInvoice(object->invoice));
-    appendToJson(result, "successful_payment", parseSuccessfulPayment(object->successfulPayment));
-    appendToJson(result, "users_shared", parseUsersShared(object->usersShared));
-    appendToJson(result, "chat_shared", parseChatShared(object->chatShared));
-    appendToJson(result, "connected_website", object->connectedWebsite);
-    appendToJson(result, "write_access_allowed", parseWriteAccessAllowed(object->writeAccessAllowed));
-    appendToJson(result, "passport_data", parsePassportData(object->passportData));
-    appendToJson(result, "proximity_alert_triggered", parseProximityAlertTriggered(object->proximityAlertTriggered));
-    appendToJson(result, "boost_added", parseChatBoostAdded(object->boostAdded));
-    appendToJson(result, "forum_topic_created", parseForumTopicCreated(object->forumTopicCreated));
-    appendToJson(result, "forum_topic_edited", parseForumTopicEdited(object->forumTopicEdited));
-    appendToJson(result, "forum_topic_closed", parseForumTopicClosed(object->forumTopicClosed));
-    appendToJson(result, "forum_topic_reopened", parseForumTopicReopened(object->forumTopicReopened));
-    appendToJson(result, "general_forum_topic_hidden", parseGeneralForumTopicHidden(object->generalForumTopicHidden));
-    appendToJson(result, "general_forum_topic_unhidden", parseGeneralForumTopicUnhidden(object->generalForumTopicUnhidden));
-    appendToJson(result, "giveaway_created", parseGiveawayCreated(object->giveawayCreated));
-    appendToJson(result, "giveaway", parseGiveaway(object->giveaway));
-    appendToJson(result, "giveaway_winners", parseGiveawayWinners(object->giveawayWinners));
-    appendToJson(result, "giveaway_completed", parseGiveawayCompleted(object->giveawayCompleted));
-    appendToJson(result, "video_chat_scheduled", parseVideoChatScheduled(object->videoChatScheduled));
-    appendToJson(result, "video_chat_started", parseVideoChatStarted(object->videoChatStarted));
-    appendToJson(result, "video_chat_ended", parseVideoChatEnded(object->videoChatEnded));
-    appendToJson(result, "video_chat_participants_invited", parseVideoChatParticipantsInvited(object->videoChatParticipantsInvited));
-    appendToJson(result, "web_app_data", parseWebAppData(object->webAppData));
-    appendToJson(result, "reply_markup", parseInlineKeyboardMarkup(object->replyMarkup));
+	appendToJson(result, "type", o->type);
+	std::visit([&](auto arg) {
+		using T = std::decay_t<decltype(arg)>;
+		if constexpr (!std::is_same_v<T, std::monostate>)
+			if (!arg)
+				return;
+
+		result += "\"payload\":{";
+		if constexpr (std::is_same_v<T, InlineKeyboardAttachmentRequest::Ptr>)
+		{
+			result += "\"buttons\":[";
+			for (auto&& mIt : arg->payload.buttons)
+			{
+				result += '[';
+				for (auto&& it : mIt)
+				{
+					result += '{';
+					appendToJson(result, "text", it->text);
+					appendToJson(result, "type", it->type);
+					std::visit([&](auto btn) {
+						using B = std::decay_t<decltype(btn)>;
+						if (!btn)
+							return;
+						if constexpr (std::is_same_v<B, CallbackButton::Ptr>)
+							appendToJson(result, "payload", btn->payload);
+					}, it->_data);
+					removeLastComma(result);
+					result += '}';
+				}
+				result += "],";
+			}
+
+			removeLastComma(result);
+			result += "],";
+		}
+		result += "},";
+	}, o->_data);
     removeLastComma(result);
     result += '}';
     return result;
 }
 
-MessageId::Ptr BotTypeParser::parseJsonAndGetMessageId(const boost::property_tree::ptree& data) const {
+/*static*/ std::string BotTypeParser::parseNewMessageLink(const NewMessageLink::Ptr& o)
+{
+    if (!o) return {};
+    std::string result;
+    result += '{';
+    appendToJson(result, "type", o->type);
+    appendToJson(result, "mid", o->mid);
+    removeLastComma(result);
+    result += '}';
+    return result;
+}
+
+std::string BotTypeParser::parseCallbackAnswer(const CallbackAnswer::Ptr& obj)
+{
+    if (!obj)
+        return {};
+
+    std::string result;
+    result += '{';
+    if (obj->message)
+        appendToJson(result, "message", parseNewMessageBody(obj->message));
+    if (!obj->notification.empty())
+        appendToJson(result, "notification", obj->notification);
+    removeLastComma(result);
+    result += '}';
+    return result;
+}
+
+MessageId::Ptr BotTypeParser::parseJsonAndGetMessageId(const boost::property_tree::ptree& data) {
     auto result(std::make_shared<MessageId>());
     result->messageId = data.get<std::int32_t>("message_id", 0);
     return result;
 }
 
-std::string BotTypeParser::parseMessageId(const MessageId::Ptr& object) const {
+std::string BotTypeParser::parseMessageId(const MessageId::Ptr& object) {
     if (!object) {
         return "";
     }
@@ -463,7 +212,7 @@ std::string BotTypeParser::parseMessageId(const MessageId::Ptr& object) const {
     return result;
 }
 
-InaccessibleMessage::Ptr BotTypeParser::parseJsonAndGetInaccessibleMessage(const boost::property_tree::ptree& data) const {
+InaccessibleMessage::Ptr BotTypeParser::parseJsonAndGetInaccessibleMessage(const boost::property_tree::ptree& data) {
     auto result(std::make_shared<InaccessibleMessage>());
     result->chat = tryParseJson<Chat>(&BotTypeParser::parseJsonAndGetChat, data, "chat");
     result->messageId = data.get<std::int32_t>("message_id", 0);
@@ -471,21 +220,7 @@ InaccessibleMessage::Ptr BotTypeParser::parseJsonAndGetInaccessibleMessage(const
     return result;
 }
 
-std::string BotTypeParser::parseInaccessibleMessage(const InaccessibleMessage::Ptr& object) const {
-    if (!object) {
-        return "";
-    }
-    std::string result;
-    result += '{';
-    appendToJson(result, "chat", parseChat(object->chat));
-    appendToJson(result, "message_id", object->messageId);
-    appendToJson(result, "date", object->date);
-    removeLastComma(result);
-    result += '}';
-    return result;
-}
-
-MessageEntity::Ptr BotTypeParser::parseJsonAndGetMessageEntity(const boost::property_tree::ptree& data) const {
+MessageEntity::Ptr BotTypeParser::parseJsonAndGetMessageEntity(const boost::property_tree::ptree& data) {
     auto result(std::make_shared<MessageEntity>());
     std::string type = data.get<std::string>("type", "");
     if (type == "mention") {
@@ -534,7 +269,7 @@ MessageEntity::Ptr BotTypeParser::parseJsonAndGetMessageEntity(const boost::prop
     return result;
 }
 
-std::string BotTypeParser::parseMessageEntity(const MessageEntity::Ptr& object) const {
+std::string BotTypeParser::parseMessageEntity(const MessageEntity::Ptr& object) {
     if (!object) {
         return "";
     }
@@ -588,7 +323,7 @@ std::string BotTypeParser::parseMessageEntity(const MessageEntity::Ptr& object) 
     return result;
 }
 
-TextQuote::Ptr BotTypeParser::parseJsonAndGetTextQuote(const boost::property_tree::ptree& data) const {
+TextQuote::Ptr BotTypeParser::parseJsonAndGetTextQuote(const boost::property_tree::ptree& data) {
     auto result(std::make_shared<TextQuote>());
     result->text = data.get<std::string>("text", "");
     result->entities = parseJsonAndGetArray<MessageEntity>(&BotTypeParser::parseJsonAndGetMessageEntity, data, "entities");
@@ -597,7 +332,7 @@ TextQuote::Ptr BotTypeParser::parseJsonAndGetTextQuote(const boost::property_tre
     return result;
 }
 
-std::string BotTypeParser::parseTextQuote(const TextQuote::Ptr& object) const {
+std::string BotTypeParser::parseTextQuote(const TextQuote::Ptr& object) {
     if (!object) {
         return "";
     }
@@ -612,7 +347,7 @@ std::string BotTypeParser::parseTextQuote(const TextQuote::Ptr& object) const {
     return result;
 }
 
-ExternalReplyInfo::Ptr BotTypeParser::parseJsonAndGetExternalReplyInfo(const boost::property_tree::ptree& data) const {
+ExternalReplyInfo::Ptr BotTypeParser::parseJsonAndGetExternalReplyInfo(const boost::property_tree::ptree& data) {
     auto result(std::make_shared<ExternalReplyInfo>());
     result->origin = tryParseJson<MessageOrigin>(&BotTypeParser::parseJsonAndGetMessageOrigin, data, "origin");
     result->chat = tryParseJson<Chat>(&BotTypeParser::parseJsonAndGetChat, data, "chat");
@@ -629,52 +364,15 @@ ExternalReplyInfo::Ptr BotTypeParser::parseJsonAndGetExternalReplyInfo(const boo
     result->voice = tryParseJson<Voice>(&BotTypeParser::parseJsonAndGetVoice, data, "voice");
     result->hasMediaSpoiler = data.get<bool>("has_media_spoiler", false);
     result->contact = tryParseJson<Contact>(&BotTypeParser::parseJsonAndGetContact, data, "contact");
-    result->dice = tryParseJson<Dice>(&BotTypeParser::parseJsonAndGetDice, data, "dice");
-    result->game = tryParseJson<Game>(&BotTypeParser::parseJsonAndGetGame, data, "game");
     result->giveaway = tryParseJson<Giveaway>(&BotTypeParser::parseJsonAndGetGiveaway, data, "giveaway");
     result->giveawayWinners = tryParseJson<GiveawayWinners>(&BotTypeParser::parseJsonAndGetGiveawayWinners, data, "giveaway_winners");
     result->invoice = tryParseJson<Invoice>(&BotTypeParser::parseJsonAndGetInvoice, data, "invoice");
     result->location = tryParseJson<Location>(&BotTypeParser::parseJsonAndGetLocation, data, "location");
     result->poll = tryParseJson<Poll>(&BotTypeParser::parseJsonAndGetPoll, data, "poll");
-    result->venue = tryParseJson<Venue>(&BotTypeParser::parseJsonAndGetVenue, data, "venue");
     return result;
 }
 
-std::string BotTypeParser::parseExternalReplyInfo(const ExternalReplyInfo::Ptr& object) const {
-    if (!object) {
-        return "";
-    }
-    std::string result;
-    result += '{';
-    appendToJson(result, "origin", parseMessageOrigin(object->origin));
-    appendToJson(result, "chat", parseChat(object->chat));
-    appendToJson(result, "message_id", object->messageId);
-    appendToJson(result, "link_preview_options", parseLinkPreviewOptions(object->linkPreviewOptions));
-    appendToJson(result, "animation", parseAnimation(object->animation));
-    appendToJson(result, "audio", parseAudio(object->audio));
-    appendToJson(result, "document", parseDocument(object->document));
-    appendToJson(result, "photo", parseArray(&BotTypeParser::parsePhotoSize, object->photo));
-    appendToJson(result, "sticker", parseSticker(object->sticker));
-    appendToJson(result, "story", parseStory(object->story));
-    appendToJson(result, "video", parseVideo(object->video));
-    appendToJson(result, "video_note", parseVideoNote(object->videoNote));
-    appendToJson(result, "voice", parseVoice(object->voice));
-    appendToJson(result, "has_media_spoiler", object->hasMediaSpoiler);
-    appendToJson(result, "contact", parseContact(object->contact));
-    appendToJson(result, "dice", parseDice(object->dice));
-    appendToJson(result, "game", parseGame(object->game));
-    appendToJson(result, "giveaway", parseGiveaway(object->giveaway));
-    appendToJson(result, "giveaway_winners", parseGiveawayWinners(object->giveawayWinners));
-    appendToJson(result, "invoice", parseInvoice(object->invoice));
-    appendToJson(result, "location", parseLocation(object->location));
-    appendToJson(result, "poll", parsePoll(object->poll));
-    appendToJson(result, "venue", parseVenue(object->venue));
-    removeLastComma(result);
-    result += '}';
-    return result;
-}
-
-ReplyParameters::Ptr BotTypeParser::parseJsonAndGetReplyParameters(const boost::property_tree::ptree& data) const {
+ReplyParameters::Ptr BotTypeParser::parseJsonAndGetReplyParameters(const boost::property_tree::ptree& data) {
     auto result(std::make_shared<ReplyParameters>());
     result->messageId = data.get<std::int32_t>("message_id", 0);
     result->chatId = data.get<std::int64_t>("chat_id", 0);
@@ -686,7 +384,7 @@ ReplyParameters::Ptr BotTypeParser::parseJsonAndGetReplyParameters(const boost::
     return result;
 }
 
-std::string BotTypeParser::parseReplyParameters(const ReplyParameters::Ptr& object) const {
+std::string BotTypeParser::parseReplyParameters(const ReplyParameters::Ptr& object) {
     if (!object) {
         return "";
     }
@@ -704,7 +402,7 @@ std::string BotTypeParser::parseReplyParameters(const ReplyParameters::Ptr& obje
     return result;
 }
 
-MessageOrigin::Ptr BotTypeParser::parseJsonAndGetMessageOrigin(const boost::property_tree::ptree& data) const {
+MessageOrigin::Ptr BotTypeParser::parseJsonAndGetMessageOrigin(const boost::property_tree::ptree& data) {
     std::string type = data.get<std::string>("type", "");
     MessageOrigin::Ptr result;
 
@@ -726,38 +424,14 @@ MessageOrigin::Ptr BotTypeParser::parseJsonAndGetMessageOrigin(const boost::prop
     return result;
 }
 
-std::string BotTypeParser::parseMessageOrigin(const MessageOrigin::Ptr& object) const {
-    if (!object) {
-        return "";
-    }
-    std::string result;
-    result += '{';
-    appendToJson(result, "type", object->type);
-    appendToJson(result, "date", object->date);
-
-    if (object->type == MessageOriginUser::TYPE) {
-        result += parseMessageOriginUser(std::static_pointer_cast<MessageOriginUser>(object));
-    } else if (object->type == MessageOriginHiddenUser::TYPE) {
-        result += parseMessageOriginHiddenUser(std::static_pointer_cast<MessageOriginHiddenUser>(object));
-    } else if (object->type == MessageOriginChat::TYPE) {
-        result += parseMessageOriginChat(std::static_pointer_cast<MessageOriginChat>(object));
-    } else if (object->type == MessageOriginChannel::TYPE) {
-        result += parseMessageOriginChannel(std::static_pointer_cast<MessageOriginChannel>(object));
-    }
-
-    removeLastComma(result);
-    result += '}';
-    return result;
-}
-
-MessageOriginUser::Ptr BotTypeParser::parseJsonAndGetMessageOriginUser(const boost::property_tree::ptree& data) const {
+MessageOriginUser::Ptr BotTypeParser::parseJsonAndGetMessageOriginUser(const boost::property_tree::ptree& data) {
     // NOTE: This function will be called by parseJsonAndGetMessageOrigin().
     auto result(std::make_shared<MessageOriginUser>());
     result->senderUser = tryParseJson<User>(&BotTypeParser::parseJsonAndGetUser, data, "sender_user");
     return result;
 }
 
-std::string BotTypeParser::parseMessageOriginUser(const MessageOriginUser::Ptr& object) const {
+std::string BotTypeParser::parseMessageOriginUser(const MessageOriginUser::Ptr& object) {
     if (!object) {
         return "";
     }
@@ -769,14 +443,14 @@ std::string BotTypeParser::parseMessageOriginUser(const MessageOriginUser::Ptr& 
     return result;
 }
 
-MessageOriginHiddenUser::Ptr BotTypeParser::parseJsonAndGetMessageOriginHiddenUser(const boost::property_tree::ptree& data) const {
+MessageOriginHiddenUser::Ptr BotTypeParser::parseJsonAndGetMessageOriginHiddenUser(const boost::property_tree::ptree& data) {
     // NOTE: This function will be called by parseJsonAndGetMessageOrigin().
     auto result(std::make_shared<MessageOriginHiddenUser>());
     result->senderUserName = data.get<std::string>("sender_user_name", "");
     return result;
 }
 
-std::string BotTypeParser::parseMessageOriginHiddenUser(const MessageOriginHiddenUser::Ptr& object) const {
+std::string BotTypeParser::parseMessageOriginHiddenUser(const MessageOriginHiddenUser::Ptr& object) {
     if (!object) {
         return "";
     }
@@ -788,7 +462,7 @@ std::string BotTypeParser::parseMessageOriginHiddenUser(const MessageOriginHidde
     return result;
 }
 
-MessageOriginChat::Ptr BotTypeParser::parseJsonAndGetMessageOriginChat(const boost::property_tree::ptree& data) const {
+MessageOriginChat::Ptr BotTypeParser::parseJsonAndGetMessageOriginChat(const boost::property_tree::ptree& data) {
     // NOTE: This function will be called by parseJsonAndGetMessageOrigin().
     auto result(std::make_shared<MessageOriginChat>());
     result->senderChat = tryParseJson<Chat>(&BotTypeParser::parseJsonAndGetChat, data, "sender_chat");
@@ -796,20 +470,7 @@ MessageOriginChat::Ptr BotTypeParser::parseJsonAndGetMessageOriginChat(const boo
     return result;
 }
 
-std::string BotTypeParser::parseMessageOriginChat(const MessageOriginChat::Ptr& object) const {
-    if (!object) {
-        return "";
-    }
-    // This function will be called by parseMessageOrigin(), so I don't add
-    // curly brackets to the result std::string.
-    std::string result;
-    appendToJson(result, "sender_chat", parseChat(object->senderChat));
-    appendToJson(result, "author_signature", object->authorSignature);
-    // The last comma will be erased by parseMessageOrigin().
-    return result;
-}
-
-MessageOriginChannel::Ptr BotTypeParser::parseJsonAndGetMessageOriginChannel(const boost::property_tree::ptree& data) const {
+MessageOriginChannel::Ptr BotTypeParser::parseJsonAndGetMessageOriginChannel(const boost::property_tree::ptree& data) {
     // NOTE: This function will be called by parseJsonAndGetMessageOrigin().
     auto result(std::make_shared<MessageOriginChannel>());
     result->chat = tryParseJson<Chat>(&BotTypeParser::parseJsonAndGetChat, data, "chat");
@@ -818,21 +479,7 @@ MessageOriginChannel::Ptr BotTypeParser::parseJsonAndGetMessageOriginChannel(con
     return result;
 }
 
-std::string BotTypeParser::parseMessageOriginChannel(const MessageOriginChannel::Ptr& object) const {
-    if (!object) {
-        return "";
-    }
-    // This function will be called by parseMessageOrigin(), so I don't add
-    // curly brackets to the result std::string.
-    std::string result;
-    appendToJson(result, "chat", parseChat(object->chat));
-    appendToJson(result, "message_id", object->messageId);
-    appendToJson(result, "author_signature", object->authorSignature);
-    // The last comma will be erased by parseMessageOrigin().
-    return result;
-}
-
-PhotoSize::Ptr BotTypeParser::parseJsonAndGetPhotoSize(const boost::property_tree::ptree& data) const {
+PhotoSize::Ptr BotTypeParser::parseJsonAndGetPhotoSize(const boost::property_tree::ptree& data) {
     auto result(std::make_shared<PhotoSize>());
     result->fileId = data.get<std::string>("file_id", "");
     result->fileUniqueId = data.get<std::string>("file_unique_id", "");
@@ -842,7 +489,7 @@ PhotoSize::Ptr BotTypeParser::parseJsonAndGetPhotoSize(const boost::property_tre
     return result;
 }
 
-std::string BotTypeParser::parsePhotoSize(const PhotoSize::Ptr& object) const {
+std::string BotTypeParser::parsePhotoSize(const PhotoSize::Ptr& object) {
     if (!object) {
         return "";
     }
@@ -858,7 +505,7 @@ std::string BotTypeParser::parsePhotoSize(const PhotoSize::Ptr& object) const {
     return result;
 }
 
-Animation::Ptr BotTypeParser::parseJsonAndGetAnimation(const boost::property_tree::ptree& data) const {
+Animation::Ptr BotTypeParser::parseJsonAndGetAnimation(const boost::property_tree::ptree& data) {
     auto result(std::make_shared<Animation>());
     result->fileId = data.get<std::string>("file_id", "");
     result->fileUniqueId = data.get<std::string>("file_unique_id", "");
@@ -872,7 +519,7 @@ Animation::Ptr BotTypeParser::parseJsonAndGetAnimation(const boost::property_tre
     return result;
 }
 
-std::string BotTypeParser::parseAnimation(const Animation::Ptr& object) const {
+std::string BotTypeParser::parseAnimation(const Animation::Ptr& object) {
     if (!object) {
         return "";
     }
@@ -892,7 +539,7 @@ std::string BotTypeParser::parseAnimation(const Animation::Ptr& object) const {
     return result;
 }
 
-Audio::Ptr BotTypeParser::parseJsonAndGetAudio(const boost::property_tree::ptree& data) const {
+Audio::Ptr BotTypeParser::parseJsonAndGetAudio(const boost::property_tree::ptree& data) {
     auto result(std::make_shared<Audio>());
     result->fileId = data.get<std::string>("file_id", "");
     result->fileUniqueId = data.get<std::string>("file_unique_id", "");
@@ -906,7 +553,7 @@ Audio::Ptr BotTypeParser::parseJsonAndGetAudio(const boost::property_tree::ptree
     return result;
 }
 
-std::string BotTypeParser::parseAudio(const Audio::Ptr& object) const {
+std::string BotTypeParser::parseAudio(const Audio::Ptr& object) {
     if (!object) {
         return "";
     }
@@ -926,7 +573,7 @@ std::string BotTypeParser::parseAudio(const Audio::Ptr& object) const {
     return result;
 }
 
-Document::Ptr BotTypeParser::parseJsonAndGetDocument(const boost::property_tree::ptree& data) const {
+Document::Ptr BotTypeParser::parseJsonAndGetDocument(const boost::property_tree::ptree& data) {
     auto result(std::make_shared<Document>());
     result->fileId = data.get<std::string>("file_id", "");
     result->fileUniqueId = data.get<std::string>("file_unique_id", "");
@@ -937,7 +584,7 @@ Document::Ptr BotTypeParser::parseJsonAndGetDocument(const boost::property_tree:
     return result;
 }
 
-std::string BotTypeParser::parseDocument(const Document::Ptr& object) const {
+std::string BotTypeParser::parseDocument(const Document::Ptr& object) {
     if (!object) {
         return "";
     }
@@ -954,27 +601,14 @@ std::string BotTypeParser::parseDocument(const Document::Ptr& object) const {
     return result;
 }
 
-Story::Ptr BotTypeParser::parseJsonAndGetStory(const boost::property_tree::ptree& data) const {
+Story::Ptr BotTypeParser::parseJsonAndGetStory(const boost::property_tree::ptree& data) {
     auto result(std::make_shared<Story>());
     result->chat = tryParseJson<Chat>(&BotTypeParser::parseJsonAndGetChat, data, "chat");
     result->id = data.get<std::int32_t>("id", 0);
     return result;
 }
 
-std::string BotTypeParser::parseStory(const Story::Ptr& object) const {
-    if (!object) {
-        return "";
-    }
-    std::string result;
-    result += '{';
-    appendToJson(result, "chat", parseChat(object->chat));
-    appendToJson(result, "id", object->id);
-    removeLastComma(result);
-    result += '}';
-    return result;
-}
-
-Video::Ptr BotTypeParser::parseJsonAndGetVideo(const boost::property_tree::ptree& data) const {
+Video::Ptr BotTypeParser::parseJsonAndGetVideo(const boost::property_tree::ptree& data) {
     auto result(std::make_shared<Video>());
     result->fileId = data.get<std::string>("file_id", "");
     result->fileUniqueId = data.get<std::string>("file_unique_id", "");
@@ -988,7 +622,7 @@ Video::Ptr BotTypeParser::parseJsonAndGetVideo(const boost::property_tree::ptree
     return result;
 }
 
-std::string BotTypeParser::parseVideo(const Video::Ptr& object) const {
+std::string BotTypeParser::parseVideo(const Video::Ptr& object) {
     if (!object) {
         return "";
     }
@@ -1008,7 +642,7 @@ std::string BotTypeParser::parseVideo(const Video::Ptr& object) const {
     return result;
 }
 
-VideoNote::Ptr BotTypeParser::parseJsonAndGetVideoNote(const boost::property_tree::ptree& data) const {
+VideoNote::Ptr BotTypeParser::parseJsonAndGetVideoNote(const boost::property_tree::ptree& data) {
     auto result(std::make_shared<VideoNote>());
     result->fileId = data.get<std::string>("file_id", "");
     result->fileUniqueId = data.get<std::string>("file_unique_id", "");
@@ -1019,7 +653,7 @@ VideoNote::Ptr BotTypeParser::parseJsonAndGetVideoNote(const boost::property_tre
     return result;
 }
 
-std::string BotTypeParser::parseVideoNote(const VideoNote::Ptr& object) const {
+std::string BotTypeParser::parseVideoNote(const VideoNote::Ptr& object) {
     if (!object) {
         return "";
     }
@@ -1036,7 +670,7 @@ std::string BotTypeParser::parseVideoNote(const VideoNote::Ptr& object) const {
     return result;
 }
 
-Voice::Ptr BotTypeParser::parseJsonAndGetVoice(const boost::property_tree::ptree& data) const {
+Voice::Ptr BotTypeParser::parseJsonAndGetVoice(const boost::property_tree::ptree& data) {
     auto result(std::make_shared<Voice>());
     result->fileId = data.get<std::string>("file_id", "");
     result->fileUniqueId = data.get<std::string>("file_unique_id", "");
@@ -1046,7 +680,7 @@ Voice::Ptr BotTypeParser::parseJsonAndGetVoice(const boost::property_tree::ptree
     return result;
 }
 
-std::string BotTypeParser::parseVoice(const Voice::Ptr& object) const {
+std::string BotTypeParser::parseVoice(const Voice::Ptr& object) {
     if (!object) {
         return "";
     }
@@ -1062,7 +696,7 @@ std::string BotTypeParser::parseVoice(const Voice::Ptr& object) const {
     return result;
 }
 
-Contact::Ptr BotTypeParser::parseJsonAndGetContact(const boost::property_tree::ptree& data) const {
+Contact::Ptr BotTypeParser::parseJsonAndGetContact(const boost::property_tree::ptree& data) {
     auto result(std::make_shared<Contact>());
     result->phoneNumber = data.get<std::string>("phone_number", "");
     result->firstName = data.get<std::string>("first_name", "");
@@ -1072,7 +706,7 @@ Contact::Ptr BotTypeParser::parseJsonAndGetContact(const boost::property_tree::p
     return result;
 }
 
-std::string BotTypeParser::parseContact(const Contact::Ptr& object) const {
+std::string BotTypeParser::parseContact(const Contact::Ptr& object) {
     if (!object) {
         return "";
     }
@@ -1088,34 +722,14 @@ std::string BotTypeParser::parseContact(const Contact::Ptr& object) const {
     return result;
 }
 
-Dice::Ptr BotTypeParser::parseJsonAndGetDice(const boost::property_tree::ptree& data) const {
-    auto result(std::make_shared<Dice>());
-    result->emoji = data.get<std::string>("emoji", "");
-    result->value = data.get<std::int32_t>("value", 0);
-    return result;
-}
-
-std::string BotTypeParser::parseDice(const Dice::Ptr& object) const {
-    if (!object) {
-        return "";
-    }
-    std::string result;
-    result += '{';
-    appendToJson(result, "emoji", object->emoji);
-    appendToJson(result, "value", object->value);
-    removeLastComma(result);
-    result += '}';
-    return result;
-}
-
-PollOption::Ptr BotTypeParser::parseJsonAndGetPollOption(const boost::property_tree::ptree& data) const {
+PollOption::Ptr BotTypeParser::parseJsonAndGetPollOption(const boost::property_tree::ptree& data) {
     auto result(std::make_shared<PollOption>());
     result->text = data.get<std::string>("text", "");
     result->voterCount = data.get<std::int32_t>("voter_count", 0);
     return result;
 }
 
-std::string BotTypeParser::parsePollOption(const PollOption::Ptr& object) const {
+std::string BotTypeParser::parsePollOption(const PollOption::Ptr& object) {
     if (!object) {
         return "";
     }
@@ -1128,7 +742,7 @@ std::string BotTypeParser::parsePollOption(const PollOption::Ptr& object) const 
     return result;
 }
 
-PollAnswer::Ptr BotTypeParser::parseJsonAndGetPollAnswer(const boost::property_tree::ptree& data) const {
+PollAnswer::Ptr BotTypeParser::parseJsonAndGetPollAnswer(const boost::property_tree::ptree& data) {
     auto result(std::make_shared<PollAnswer>());
     result->pollId = data.get<std::string>("poll_id", "");
     result->voterChat = tryParseJson<Chat>(&BotTypeParser::parseJsonAndGetChat, data, "voter_chat");
@@ -1140,25 +754,7 @@ PollAnswer::Ptr BotTypeParser::parseJsonAndGetPollAnswer(const boost::property_t
     return result;
 }
 
-std::string BotTypeParser::parsePollAnswer(const PollAnswer::Ptr& object) const {
-    if (!object) {
-        return "";
-    }
-    std::string result;
-    result += '{';
-    appendToJson(result, "poll_id", object->pollId);
-    appendToJson(result, "voter_chat", parseChat(object->voterChat));
-    appendToJson(result, "user", parseUser(object->user));
-    appendToJson(result, "option_ids", parseArray<std::int32_t>(
-        [] (std::int32_t i)->std::int32_t {
-        return i;
-    }, object->optionIds));
-    removeLastComma(result);
-    result += '}';
-    return result;
-}
-
-Poll::Ptr BotTypeParser::parseJsonAndGetPoll(const boost::property_tree::ptree& data) const {
+Poll::Ptr BotTypeParser::parseJsonAndGetPoll(const boost::property_tree::ptree& data) {
     auto result(std::make_shared<Poll>());
     result->id = data.get<std::string>("id", "");
     result->question = data.get<std::string>("question", "");
@@ -1176,7 +772,7 @@ Poll::Ptr BotTypeParser::parseJsonAndGetPoll(const boost::property_tree::ptree& 
     return result;
 }
 
-std::string BotTypeParser::parsePoll(const Poll::Ptr& object) const {
+std::string BotTypeParser::parsePoll(const Poll::Ptr& object) {
     if (!object) {
         return "";
     }
@@ -1200,7 +796,7 @@ std::string BotTypeParser::parsePoll(const Poll::Ptr& object) const {
     return result;
 }
 
-Location::Ptr BotTypeParser::parseJsonAndGetLocation(const boost::property_tree::ptree& data) const {
+Location::Ptr BotTypeParser::parseJsonAndGetLocation(const boost::property_tree::ptree& data) {
     auto result(std::make_shared<Location>());
     result->latitude = data.get<float>("latitude", 0);
     result->longitude = data.get<float>("longitude", 0);
@@ -1211,7 +807,7 @@ Location::Ptr BotTypeParser::parseJsonAndGetLocation(const boost::property_tree:
     return result;
 }
 
-std::string BotTypeParser::parseLocation(const Location::Ptr& object) const {
+std::string BotTypeParser::parseLocation(const Location::Ptr& object) {
     if (!object) {
         return "";
     }
@@ -1228,44 +824,14 @@ std::string BotTypeParser::parseLocation(const Location::Ptr& object) const {
     return result;
 }
 
-Venue::Ptr BotTypeParser::parseJsonAndGetVenue(const boost::property_tree::ptree& data) const {
-    auto result(std::make_shared<Venue>());
-    result->location = tryParseJson<Location>(&BotTypeParser::parseJsonAndGetLocation, data, "location");
-    result->title = data.get<std::string>("title", "");
-    result->address = data.get<std::string>("address", "");
-    result->foursquareId = data.get<std::string>("foursquare_id", "");
-    result->foursquareType = data.get<std::string>("foursquare_type", "");
-    result->googlePlaceId = data.get<std::string>("google_place_id", "");
-    result->googlePlaceType = data.get<std::string>("google_place_type", "");
-    return result;
-}
-
-std::string BotTypeParser::parseVenue(const Venue::Ptr& object) const {
-    if (!object) {
-        return "";
-    }
-    std::string result;
-    result += '{';
-    appendToJson(result, "location", parseLocation(object->location));
-    appendToJson(result, "title", object->title);
-    appendToJson(result, "address", object->address);
-    appendToJson(result, "foursquare_id", object->foursquareId);
-    appendToJson(result, "foursquare_type", object->foursquareType);
-    appendToJson(result, "google_place_id", object->googlePlaceId);
-    appendToJson(result, "google_place_type", object->googlePlaceType);
-    removeLastComma(result);
-    result += '}';
-    return result;
-}
-
-WebAppData::Ptr BotTypeParser::parseJsonAndGetWebAppData(const boost::property_tree::ptree& data) const {
+WebAppData::Ptr BotTypeParser::parseJsonAndGetWebAppData(const boost::property_tree::ptree& data) {
     auto result(std::make_shared<WebAppData>());
     result->data = data.get<std::string>("data", "");
     result->buttonText = data.get<std::string>("button_text", "");
     return result;
 }
 
-std::string BotTypeParser::parseWebAppData(const WebAppData::Ptr& object) const {
+std::string BotTypeParser::parseWebAppData(const WebAppData::Ptr& object) {
     if (!object) {
         return "";
     }
@@ -1278,7 +844,7 @@ std::string BotTypeParser::parseWebAppData(const WebAppData::Ptr& object) const 
     return result;
 }
 
-ProximityAlertTriggered::Ptr BotTypeParser::parseJsonAndGetProximityAlertTriggered(const boost::property_tree::ptree& data) const {
+ProximityAlertTriggered::Ptr BotTypeParser::parseJsonAndGetProximityAlertTriggered(const boost::property_tree::ptree& data) {
     auto result(std::make_shared<ProximityAlertTriggered>());
     result->traveler = tryParseJson<User>(&BotTypeParser::parseJsonAndGetUser, data, "traveler");
     result->watcher = tryParseJson<User>(&BotTypeParser::parseJsonAndGetUser, data, "watcher");
@@ -1286,7 +852,7 @@ ProximityAlertTriggered::Ptr BotTypeParser::parseJsonAndGetProximityAlertTrigger
     return result;
 }
 
-std::string BotTypeParser::parseProximityAlertTriggered(const ProximityAlertTriggered::Ptr& object) const {
+std::string BotTypeParser::parseProximityAlertTriggered(const ProximityAlertTriggered::Ptr& object) {
     if (!object) {
         return "";
     }
@@ -1300,13 +866,13 @@ std::string BotTypeParser::parseProximityAlertTriggered(const ProximityAlertTrig
     return result;
 }
 
-MessageAutoDeleteTimerChanged::Ptr BotTypeParser::parseJsonAndGetMessageAutoDeleteTimerChanged(const boost::property_tree::ptree& data) const {
+MessageAutoDeleteTimerChanged::Ptr BotTypeParser::parseJsonAndGetMessageAutoDeleteTimerChanged(const boost::property_tree::ptree& data) {
     auto result(std::make_shared<MessageAutoDeleteTimerChanged>());
     result->messageAutoDeleteTime = data.get<std::int32_t>("message_auto_delete_time", 0);
     return result;
 }
 
-std::string BotTypeParser::parseMessageAutoDeleteTimerChanged(const MessageAutoDeleteTimerChanged::Ptr& object) const {
+std::string BotTypeParser::parseMessageAutoDeleteTimerChanged(const MessageAutoDeleteTimerChanged::Ptr& object) {
     if (!object) {
         return "";
     }
@@ -1318,13 +884,13 @@ std::string BotTypeParser::parseMessageAutoDeleteTimerChanged(const MessageAutoD
     return result;
 }
 
-ChatBoostAdded::Ptr BotTypeParser::parseJsonAndGetChatBoostAdded(const boost::property_tree::ptree& data) const {
+ChatBoostAdded::Ptr BotTypeParser::parseJsonAndGetChatBoostAdded(const boost::property_tree::ptree& data) {
     auto result(std::make_shared<ChatBoostAdded>());
     result->boostCount = data.get<std::int32_t>("boost_count", 0);
     return result;
 }
 
-std::string BotTypeParser::parseChatBoostAdded(const ChatBoostAdded::Ptr& object) const {
+std::string BotTypeParser::parseChatBoostAdded(const ChatBoostAdded::Ptr& object) {
     if (!object) {
         return "";
     }
@@ -1336,113 +902,7 @@ std::string BotTypeParser::parseChatBoostAdded(const ChatBoostAdded::Ptr& object
     return result;
 }
 
-ForumTopicCreated::Ptr BotTypeParser::parseJsonAndGetForumTopicCreated(const boost::property_tree::ptree& data) const {
-    auto result(std::make_shared<ForumTopicCreated>());
-    result->name = data.get<std::string>("name", "");
-    result->iconColor = data.get<std::int32_t>("icon_color", 0);
-    result->iconCustomEmojiId = data.get<std::string>("icon_custom_emoji_id", "");
-    return result;
-}
-
-std::string BotTypeParser::parseForumTopicCreated(const ForumTopicCreated::Ptr& object) const {
-    if (!object) {
-        return "";
-    }
-    std::string result;
-    result += '{';
-    appendToJson(result, "name", object->name);
-    appendToJson(result, "icon_color", object->iconColor);
-    appendToJson(result, "icon_custom_emoji_id", object->iconCustomEmojiId);
-    removeLastComma(result);
-    result += '}';
-    return result;
-}
-
-ForumTopicClosed::Ptr BotTypeParser::parseJsonAndGetForumTopicClosed(const boost::property_tree::ptree& /*data*/) const {
-    auto result(std::make_shared<ForumTopicClosed>());
-    return result;
-}
-
-std::string BotTypeParser::parseForumTopicClosed(const ForumTopicClosed::Ptr& object) const {
-    if (!object) {
-        return "";
-    }
-    std::string result;
-    result += '{';
-    // removeLastComma(result);
-    result += '}';
-    return result;
-}
-
-ForumTopicEdited::Ptr BotTypeParser::parseJsonAndGetForumTopicEdited(const boost::property_tree::ptree& data) const {
-    auto result(std::make_shared<ForumTopicEdited>());
-    result->name = data.get<std::string>("name", "");
-    result->iconCustomEmojiId = data.get<std::string>("icon_custom_emoji_id", "");
-    return result;
-}
-
-std::string BotTypeParser::parseForumTopicEdited(const ForumTopicEdited::Ptr& object) const {
-    if (!object) {
-        return "";
-    }
-    std::string result;
-    result += '{';
-    appendToJson(result, "name", object->name);
-    appendToJson(result, "icon_custom_emoji_id", object->iconCustomEmojiId);
-    removeLastComma(result);
-    result += '}';
-    return result;
-}
-
-ForumTopicReopened::Ptr BotTypeParser::parseJsonAndGetForumTopicReopened(const boost::property_tree::ptree& /*data*/) const {
-    auto result(std::make_shared<ForumTopicReopened>());
-    return result;
-}
-
-std::string BotTypeParser::parseForumTopicReopened(const ForumTopicReopened::Ptr& object) const {
-    if (!object) {
-        return "";
-    }
-    std::string result;
-    result += '{';
-    // removeLastComma(result);
-    result += '}';
-    return result;
-}
-
-GeneralForumTopicHidden::Ptr BotTypeParser::parseJsonAndGetGeneralForumTopicHidden(const boost::property_tree::ptree& /*data*/) const {
-    auto result(std::make_shared<GeneralForumTopicHidden>());
-    return result;
-}
-
-std::string BotTypeParser::parseGeneralForumTopicHidden(const GeneralForumTopicHidden::Ptr& object) const {
-    if (!object) {
-        return "";
-    }
-    std::string result;
-    result += '{';
-    // removeLastComma(result);
-    result += '}';
-    return result;
-}
-
-GeneralForumTopicUnhidden::Ptr BotTypeParser::parseJsonAndGetGeneralForumTopicUnhidden(const boost::property_tree::ptree& /*data*/) const {
-    auto result(std::make_shared<GeneralForumTopicUnhidden>());
-    return result;
-}
-
-std::string BotTypeParser::parseGeneralForumTopicUnhidden(const GeneralForumTopicUnhidden::Ptr& object) const {
-    if (!object) {
-        return "";
-    }
-    std::string result;
-    result += '{';
-    // removeLastComma(result);
-    result += '}';
-    return result;
-}
-
-SharedUser::Ptr BotTypeParser::parseJsonAndGetSharedUser(const boost::property_tree::ptree& data) const {
+SharedUser::Ptr BotTypeParser::parseJsonAndGetSharedUser(const boost::property_tree::ptree& data) {
     auto result(std::make_shared<SharedUser>());
     result->userId = data.get<std::int64_t>("user_id", 0);
     result->firstName = data.get<std::string>("first_name", "");
@@ -1452,7 +912,7 @@ SharedUser::Ptr BotTypeParser::parseJsonAndGetSharedUser(const boost::property_t
     return result;
 }
 
-std::string BotTypeParser::parseSharedUser(const SharedUser::Ptr& object) const {
+std::string BotTypeParser::parseSharedUser(const SharedUser::Ptr& object) {
     if (!object) {
         return "";
     }
@@ -1468,14 +928,14 @@ std::string BotTypeParser::parseSharedUser(const SharedUser::Ptr& object) const 
     return result;
 }
 
-UsersShared::Ptr BotTypeParser::parseJsonAndGetUsersShared(const boost::property_tree::ptree& data) const {
+UsersShared::Ptr BotTypeParser::parseJsonAndGetUsersShared(const boost::property_tree::ptree& data) {
     auto result(std::make_shared<UsersShared>());
     result->requestId = data.get<std::int32_t>("request_id", 0);
     result->users = parseJsonAndGetArray<SharedUser>(&BotTypeParser::parseJsonAndGetSharedUser, data, "users");
     return result;
 }
 
-std::string BotTypeParser::parseUsersShared(const UsersShared::Ptr& object) const {
+std::string BotTypeParser::parseUsersShared(const UsersShared::Ptr& object) {
     if (!object) {
         return "";
     }
@@ -1488,7 +948,7 @@ std::string BotTypeParser::parseUsersShared(const UsersShared::Ptr& object) cons
     return result;
 }
 
-ChatShared::Ptr BotTypeParser::parseJsonAndGetChatShared(const boost::property_tree::ptree& data) const {
+ChatShared::Ptr BotTypeParser::parseJsonAndGetChatShared(const boost::property_tree::ptree& data) {
     auto result(std::make_shared<ChatShared>());
     result->requestId = data.get<std::int32_t>("request_id", 0);
     result->chatId = data.get<std::int64_t>("chat_id", 0);
@@ -1498,7 +958,7 @@ ChatShared::Ptr BotTypeParser::parseJsonAndGetChatShared(const boost::property_t
     return result;
 }
 
-std::string BotTypeParser::parseChatShared(const ChatShared::Ptr& object) const {
+std::string BotTypeParser::parseChatShared(const ChatShared::Ptr& object) {
     if (!object) {
         return "";
     }
@@ -1514,7 +974,7 @@ std::string BotTypeParser::parseChatShared(const ChatShared::Ptr& object) const 
     return result;
 }
 
-WriteAccessAllowed::Ptr BotTypeParser::parseJsonAndGetWriteAccessAllowed(const boost::property_tree::ptree& data) const {
+WriteAccessAllowed::Ptr BotTypeParser::parseJsonAndGetWriteAccessAllowed(const boost::property_tree::ptree& data) {
     auto result(std::make_shared<WriteAccessAllowed>());
     result->fromRequest = data.get<bool>("from_request", false);
     result->webAppName = data.get<std::string>("web_app_name", "");
@@ -1522,7 +982,7 @@ WriteAccessAllowed::Ptr BotTypeParser::parseJsonAndGetWriteAccessAllowed(const b
     return result;
 }
 
-std::string BotTypeParser::parseWriteAccessAllowed(const WriteAccessAllowed::Ptr& object) const {
+std::string BotTypeParser::parseWriteAccessAllowed(const WriteAccessAllowed::Ptr& object) {
     if (!object) {
         return "";
     }
@@ -1536,13 +996,13 @@ std::string BotTypeParser::parseWriteAccessAllowed(const WriteAccessAllowed::Ptr
     return result;
 }
 
-VideoChatScheduled::Ptr BotTypeParser::parseJsonAndGetVideoChatScheduled(const boost::property_tree::ptree& data) const {
+VideoChatScheduled::Ptr BotTypeParser::parseJsonAndGetVideoChatScheduled(const boost::property_tree::ptree& data) {
     auto result(std::make_shared<VideoChatScheduled>());
     result->startDate = data.get<std::int32_t>("start_date", 0);
     return result;
 }
 
-std::string BotTypeParser::parseVideoChatScheduled(const VideoChatScheduled::Ptr& object) const {
+std::string BotTypeParser::parseVideoChatScheduled(const VideoChatScheduled::Ptr& object) {
     if (!object) {
         return "";
     }
@@ -1554,12 +1014,12 @@ std::string BotTypeParser::parseVideoChatScheduled(const VideoChatScheduled::Ptr
     return result;
 }
 
-VideoChatStarted::Ptr BotTypeParser::parseJsonAndGetVideoChatStarted(const boost::property_tree::ptree& /*data*/) const {
+VideoChatStarted::Ptr BotTypeParser::parseJsonAndGetVideoChatStarted(const boost::property_tree::ptree& /*data*/) {
     auto result(std::make_shared<VideoChatStarted>());
     return result;
 }
 
-std::string BotTypeParser::parseVideoChatStarted(const VideoChatStarted::Ptr& object) const {
+std::string BotTypeParser::parseVideoChatStarted(const VideoChatStarted::Ptr& object) {
     if (!object) {
         return "";
     }
@@ -1570,13 +1030,13 @@ std::string BotTypeParser::parseVideoChatStarted(const VideoChatStarted::Ptr& ob
     return result;
 }
 
-VideoChatEnded::Ptr BotTypeParser::parseJsonAndGetVideoChatEnded(const boost::property_tree::ptree& data) const {
+VideoChatEnded::Ptr BotTypeParser::parseJsonAndGetVideoChatEnded(const boost::property_tree::ptree& data) {
     auto result(std::make_shared<VideoChatEnded>());
     result->duration = data.get<std::int32_t>("duration", 0);
     return result;
 }
 
-std::string BotTypeParser::parseVideoChatEnded(const VideoChatEnded::Ptr& object) const {
+std::string BotTypeParser::parseVideoChatEnded(const VideoChatEnded::Ptr& object) {
     if (!object) {
         return "";
     }
@@ -1588,13 +1048,13 @@ std::string BotTypeParser::parseVideoChatEnded(const VideoChatEnded::Ptr& object
     return result;
 }
 
-VideoChatParticipantsInvited::Ptr BotTypeParser::parseJsonAndGetVideoChatParticipantsInvited(const boost::property_tree::ptree& data) const {
+VideoChatParticipantsInvited::Ptr BotTypeParser::parseJsonAndGetVideoChatParticipantsInvited(const boost::property_tree::ptree& data) {
     auto result(std::make_shared<VideoChatParticipantsInvited>());
     result->users = parseJsonAndGetArray<User>(&BotTypeParser::parseJsonAndGetUser, data, "users");
     return result;
 }
 
-std::string BotTypeParser::parseVideoChatParticipantsInvited(const VideoChatParticipantsInvited::Ptr& object) const {
+std::string BotTypeParser::parseVideoChatParticipantsInvited(const VideoChatParticipantsInvited::Ptr& object) {
     if (!object) {
         return "";
     }
@@ -1606,12 +1066,12 @@ std::string BotTypeParser::parseVideoChatParticipantsInvited(const VideoChatPart
     return result;
 }
 
-GiveawayCreated::Ptr BotTypeParser::parseJsonAndGetGiveawayCreated(const boost::property_tree::ptree& /*data*/) const {
+GiveawayCreated::Ptr BotTypeParser::parseJsonAndGetGiveawayCreated(const boost::property_tree::ptree& /*data*/) {
     auto result(std::make_shared<GiveawayCreated>());
     return result;
 }
 
-std::string BotTypeParser::parseGiveawayCreated(const GiveawayCreated::Ptr& object) const {
+std::string BotTypeParser::parseGiveawayCreated(const GiveawayCreated::Ptr& object) {
     if (!object) {
         return "";
     }
@@ -1622,7 +1082,7 @@ std::string BotTypeParser::parseGiveawayCreated(const GiveawayCreated::Ptr& obje
     return result;
 }
 
-Giveaway::Ptr BotTypeParser::parseJsonAndGetGiveaway(const boost::property_tree::ptree& data) const {
+Giveaway::Ptr BotTypeParser::parseJsonAndGetGiveaway(const boost::property_tree::ptree& data) {
     auto result(std::make_shared<Giveaway>());
     result->chats = parseJsonAndGetArray<Chat>(&BotTypeParser::parseJsonAndGetChat, data, "chats");
     result->winnersSelectionDate = data.get<std::uint32_t>("winners_selection_date", 0);
@@ -1638,29 +1098,7 @@ Giveaway::Ptr BotTypeParser::parseJsonAndGetGiveaway(const boost::property_tree:
     return result;
 }
 
-std::string BotTypeParser::parseGiveaway(const Giveaway::Ptr& object) const {
-    if (!object) {
-        return "";
-    }
-    std::string result;
-    result += '{';
-    appendToJson(result, "chats", parseArray(&BotTypeParser::parseChat, object->chats));
-    appendToJson(result, "winners_selection_date", object->winnersSelectionDate);
-    appendToJson(result, "winner_count", object->winnerCount);
-    appendToJson(result, "only_new_members", object->onlyNewMembers);
-    appendToJson(result, "has_public_winners", object->hasPublicWinners);
-    appendToJson(result, "prize_description", object->prizeDescription);
-    appendToJson(result, "country_codes", parseArray<std::string>(
-        [] (const std::string& s)->std::string {
-        return s;
-    }, object->countryCodes));
-    appendToJson(result, "premium_subscription_month_count", object->premiumSubscriptionMonthCount);
-    removeLastComma(result);
-    result += '}';
-    return result;
-}
-
-GiveawayWinners::Ptr BotTypeParser::parseJsonAndGetGiveawayWinners(const boost::property_tree::ptree& data) const {
+GiveawayWinners::Ptr BotTypeParser::parseJsonAndGetGiveawayWinners(const boost::property_tree::ptree& data) {
     auto result(std::make_shared<GiveawayWinners>());
     result->chat = tryParseJson<Chat>(&BotTypeParser::parseJsonAndGetChat, data, "chat");
     result->giveawayMessageId = data.get<std::int32_t>("giveaway_message_id", 0);
@@ -1676,29 +1114,7 @@ GiveawayWinners::Ptr BotTypeParser::parseJsonAndGetGiveawayWinners(const boost::
     return result;
 }
 
-std::string BotTypeParser::parseGiveawayWinners(const GiveawayWinners::Ptr& object) const {
-    if (!object) {
-        return "";
-    }
-    std::string result;
-    result += '{';
-    appendToJson(result, "chat", parseChat(object->chat));
-    appendToJson(result, "giveaway_message_id", object->giveawayMessageId);
-    appendToJson(result, "winners_selection_date", object->winnersSelectionDate);
-    appendToJson(result, "winner_count", object->winnerCount);
-    appendToJson(result, "winners", parseArray(&BotTypeParser::parseUser, object->winners));
-    appendToJson(result, "additional_chat_count", object->additionalChatCount);
-    appendToJson(result, "premium_subscription_month_count", object->premiumSubscriptionMonthCount);
-    appendToJson(result, "unclaimed_prize_count", object->unclaimedPrizeCount);
-    appendToJson(result, "only_new_members", object->onlyNewMembers);
-    appendToJson(result, "was_refunded", object->wasRefunded);
-    appendToJson(result, "prize_description", object->prizeDescription);
-    removeLastComma(result);
-    result += '}';
-    return result;
-}
-
-GiveawayCompleted::Ptr BotTypeParser::parseJsonAndGetGiveawayCompleted(const boost::property_tree::ptree& data) const {
+GiveawayCompleted::Ptr BotTypeParser::parseJsonAndGetGiveawayCompleted(const boost::property_tree::ptree& data) {
     auto result(std::make_shared<GiveawayCompleted>());
     result->winnerCount = data.get<std::int32_t>("winner_count", 0);
     result->unclaimedPrizeCount = data.get<std::int32_t>("unclaimed_prize_count", 0);
@@ -1706,21 +1122,7 @@ GiveawayCompleted::Ptr BotTypeParser::parseJsonAndGetGiveawayCompleted(const boo
     return result;
 }
 
-std::string BotTypeParser::parseGiveawayCompleted(const GiveawayCompleted::Ptr& object) const {
-    if (!object) {
-        return "";
-    }
-    std::string result;
-    result += '{';
-    appendToJson(result, "winner_count", object->winnerCount);
-    appendToJson(result, "unclaimed_prize_count", object->unclaimedPrizeCount);
-    appendToJson(result, "giveaway_message", parseMessage(object->giveawayMessage));
-    removeLastComma(result);
-    result += '}';
-    return result;
-}
-
-LinkPreviewOptions::Ptr BotTypeParser::parseJsonAndGetLinkPreviewOptions(const boost::property_tree::ptree& data) const {
+LinkPreviewOptions::Ptr BotTypeParser::parseJsonAndGetLinkPreviewOptions(const boost::property_tree::ptree& data) {
     auto result(std::make_shared<LinkPreviewOptions>());
     result->isDisabled = data.get<bool>("is_disabled", false);
     result->url = data.get<std::string>("url", "");
@@ -1730,7 +1132,7 @@ LinkPreviewOptions::Ptr BotTypeParser::parseJsonAndGetLinkPreviewOptions(const b
     return result;
 }
 
-std::string BotTypeParser::parseLinkPreviewOptions(const LinkPreviewOptions::Ptr& object) const {
+std::string BotTypeParser::parseLinkPreviewOptions(const LinkPreviewOptions::Ptr& object) {
     if (!object) {
         return "";
     }
@@ -1746,14 +1148,14 @@ std::string BotTypeParser::parseLinkPreviewOptions(const LinkPreviewOptions::Ptr
     return result;
 }
 
-UserProfilePhotos::Ptr BotTypeParser::parseJsonAndGetUserProfilePhotos(const boost::property_tree::ptree& data) const {
+UserProfilePhotos::Ptr BotTypeParser::parseJsonAndGetUserProfilePhotos(const boost::property_tree::ptree& data) {
     auto result(std::make_shared<UserProfilePhotos>());
     result->totalCount = data.get<std::int32_t>("total_count", 0);
     result->photos = parseJsonAndGet2DArray<PhotoSize>(&BotTypeParser::parseJsonAndGetPhotoSize, data, "photos");
     return result;
 }
 
-std::string BotTypeParser::parseUserProfilePhotos(const UserProfilePhotos::Ptr& object) const {
+std::string BotTypeParser::parseUserProfilePhotos(const UserProfilePhotos::Ptr& object) {
     if (!object) {
         return "";
     }
@@ -1766,7 +1168,7 @@ std::string BotTypeParser::parseUserProfilePhotos(const UserProfilePhotos::Ptr& 
     return result;
 }
 
-File::Ptr BotTypeParser::parseJsonAndGetFile(const boost::property_tree::ptree& data) const {
+File::Ptr BotTypeParser::parseJsonAndGetFile(const boost::property_tree::ptree& data) {
     auto result(std::make_shared<File>());
     result->fileId = data.get<std::string>("file_id", "");
     result->fileUniqueId = data.get<std::string>("file_unique_id", "");
@@ -1775,7 +1177,7 @@ File::Ptr BotTypeParser::parseJsonAndGetFile(const boost::property_tree::ptree& 
     return result;
 }
 
-std::string BotTypeParser::parseFile(const File::Ptr& object) const {
+std::string BotTypeParser::parseFile(const File::Ptr& object) {
     if (!object) {
         return "";
     }
@@ -1790,13 +1192,13 @@ std::string BotTypeParser::parseFile(const File::Ptr& object) const {
     return result;
 }
 
-WebAppInfo::Ptr BotTypeParser::parseJsonAndGetWebAppInfo(const boost::property_tree::ptree& data) const {
+WebAppInfo::Ptr BotTypeParser::parseJsonAndGetWebAppInfo(const boost::property_tree::ptree& data) {
     auto result(std::make_shared<WebAppInfo>());
     result->url = data.get<std::string>("url", "");
     return result;
 }
 
-std::string BotTypeParser::parseWebAppInfo(const WebAppInfo::Ptr& object) const {
+std::string BotTypeParser::parseWebAppInfo(const WebAppInfo::Ptr& object) {
     if (!object) {
         return "";
     }
@@ -1808,7 +1210,7 @@ std::string BotTypeParser::parseWebAppInfo(const WebAppInfo::Ptr& object) const 
     return result;
 }
 
-ReplyKeyboardMarkup::Ptr BotTypeParser::parseJsonAndGetReplyKeyboardMarkup(const boost::property_tree::ptree& data) const {
+ReplyKeyboardMarkup::Ptr BotTypeParser::parseJsonAndGetReplyKeyboardMarkup(const boost::property_tree::ptree& data) {
     auto result(std::make_shared<ReplyKeyboardMarkup>());
     for (const auto& item : data.find("keyboard")->second) {
         result->keyboard.push_back(parseJsonAndGetArray<KeyboardButton>(&BotTypeParser::parseJsonAndGetKeyboardButton, item.second));
@@ -1821,7 +1223,7 @@ ReplyKeyboardMarkup::Ptr BotTypeParser::parseJsonAndGetReplyKeyboardMarkup(const
     return result;
 }
 
-std::string BotTypeParser::parseReplyKeyboardMarkup(const ReplyKeyboardMarkup::Ptr& object) const {
+std::string BotTypeParser::parseReplyKeyboardMarkup(const ReplyKeyboardMarkup::Ptr& object) {
     if (!object) {
         return "";
     }
@@ -1850,7 +1252,7 @@ std::string BotTypeParser::parseReplyKeyboardMarkup(const ReplyKeyboardMarkup::P
     return result;
 }
 
-KeyboardButton::Ptr BotTypeParser::parseJsonAndGetKeyboardButton(const boost::property_tree::ptree& data) const {
+KeyboardButton::Ptr BotTypeParser::parseJsonAndGetKeyboardButton(const boost::property_tree::ptree& data) {
     auto result(std::make_shared<KeyboardButton>());
     result->text = data.get<std::string>("text", "");
     result->requestUsers = tryParseJson<KeyboardButtonRequestUsers>(&BotTypeParser::parseJsonAndGetKeyboardButtonRequestUsers, data, "request_users");
@@ -1862,7 +1264,7 @@ KeyboardButton::Ptr BotTypeParser::parseJsonAndGetKeyboardButton(const boost::pr
     return result;
 }
 
-std::string BotTypeParser::parseKeyboardButton(const KeyboardButton::Ptr& object) const {
+std::string BotTypeParser::parseKeyboardButton(const KeyboardButton::Ptr& object) {
     if (!object) {
         return "";
     }
@@ -1880,7 +1282,7 @@ std::string BotTypeParser::parseKeyboardButton(const KeyboardButton::Ptr& object
     return result;
 }
 
-KeyboardButtonRequestUsers::Ptr BotTypeParser::parseJsonAndGetKeyboardButtonRequestUsers(const boost::property_tree::ptree& data) const {
+KeyboardButtonRequestUsers::Ptr BotTypeParser::parseJsonAndGetKeyboardButtonRequestUsers(const boost::property_tree::ptree& data) {
     auto result(std::make_shared<KeyboardButtonRequestUsers>());
     result->requestId = data.get<std::int32_t>("request_id", 0);
     result->userIsBot = data.get<bool>("user_is_bot", false);
@@ -1892,7 +1294,7 @@ KeyboardButtonRequestUsers::Ptr BotTypeParser::parseJsonAndGetKeyboardButtonRequ
     return result;
 }
 
-std::string BotTypeParser::parseKeyboardButtonRequestUsers(const KeyboardButtonRequestUsers::Ptr& object) const {
+std::string BotTypeParser::parseKeyboardButtonRequestUsers(const KeyboardButtonRequestUsers::Ptr& object) {
     if (!object) {
         return "";
     }
@@ -1910,7 +1312,7 @@ std::string BotTypeParser::parseKeyboardButtonRequestUsers(const KeyboardButtonR
     return result;
 }
 
-KeyboardButtonRequestChat::Ptr BotTypeParser::parseJsonAndGetKeyboardButtonRequestChat(const boost::property_tree::ptree& data) const {
+KeyboardButtonRequestChat::Ptr BotTypeParser::parseJsonAndGetKeyboardButtonRequestChat(const boost::property_tree::ptree& data) {
     auto result(std::make_shared<KeyboardButtonRequestChat>());
     result->requestId = data.get<std::int32_t>("request_id", 0);
     result->chatIsChannel = data.get<bool>("chat_is_channel", false);
@@ -1926,7 +1328,7 @@ KeyboardButtonRequestChat::Ptr BotTypeParser::parseJsonAndGetKeyboardButtonReque
     return result;
 }
 
-std::string BotTypeParser::parseKeyboardButtonRequestChat(const KeyboardButtonRequestChat::Ptr& object) const {
+std::string BotTypeParser::parseKeyboardButtonRequestChat(const KeyboardButtonRequestChat::Ptr& object) {
     if (!object) {
         return "";
     }
@@ -1948,13 +1350,13 @@ std::string BotTypeParser::parseKeyboardButtonRequestChat(const KeyboardButtonRe
     return result;
 }
 
-KeyboardButtonPollType::Ptr BotTypeParser::parseJsonAndGetKeyboardButtonPollType(const boost::property_tree::ptree& data) const {
+KeyboardButtonPollType::Ptr BotTypeParser::parseJsonAndGetKeyboardButtonPollType(const boost::property_tree::ptree& data) {
     auto result(std::make_shared<KeyboardButtonPollType>());
     result->type = data.get<std::string>("type", "");
     return result;
 }
 
-std::string BotTypeParser::parseKeyboardButtonPollType(const KeyboardButtonPollType::Ptr& object) const {
+std::string BotTypeParser::parseKeyboardButtonPollType(const KeyboardButtonPollType::Ptr& object) {
     if (!object) {
         return "";
     }
@@ -1966,14 +1368,14 @@ std::string BotTypeParser::parseKeyboardButtonPollType(const KeyboardButtonPollT
     return result;
 }
 
-ReplyKeyboardRemove::Ptr BotTypeParser::parseJsonAndGetReplyKeyboardRemove(const boost::property_tree::ptree& data) const {
+ReplyKeyboardRemove::Ptr BotTypeParser::parseJsonAndGetReplyKeyboardRemove(const boost::property_tree::ptree& data) {
     auto result(std::make_shared<ReplyKeyboardRemove>());
     result->removeKeyboard = data.get<bool>("remove_keyboard", false);
     result->selective = data.get<bool>("selective", false);
     return result;
 }
 
-std::string BotTypeParser::parseReplyKeyboardRemove(const ReplyKeyboardRemove::Ptr& object) const {
+std::string BotTypeParser::parseReplyKeyboardRemove(const ReplyKeyboardRemove::Ptr& object) {
     if (!object) {
         return "";
     }
@@ -1986,7 +1388,7 @@ std::string BotTypeParser::parseReplyKeyboardRemove(const ReplyKeyboardRemove::P
     return result;
 }
 
-InlineKeyboardMarkup::Ptr BotTypeParser::parseJsonAndGetInlineKeyboardMarkup(const boost::property_tree::ptree& data) const {
+InlineKeyboardMarkup::Ptr BotTypeParser::parseJsonAndGetInlineKeyboardMarkup(const boost::property_tree::ptree& data) {
     auto result(std::make_shared<InlineKeyboardMarkup>());
     for (const auto& item : data.find("inline_keyboard")->second) {
         result->inlineKeyboard.push_back(parseJsonAndGetArray<InlineKeyboardButton>(&BotTypeParser::parseJsonAndGetInlineKeyboardButton, item.second));
@@ -1994,7 +1396,7 @@ InlineKeyboardMarkup::Ptr BotTypeParser::parseJsonAndGetInlineKeyboardMarkup(con
     return result;
 }
 
-std::string BotTypeParser::parseInlineKeyboardMarkup(const InlineKeyboardMarkup::Ptr& object) const {
+std::string BotTypeParser::parseInlineKeyboardMarkup(const InlineKeyboardMarkup::Ptr& object) {
     if (!object) {
         return "";
     }
@@ -2016,7 +1418,7 @@ std::string BotTypeParser::parseInlineKeyboardMarkup(const InlineKeyboardMarkup:
     return result;
 }
 
-InlineKeyboardButton::Ptr BotTypeParser::parseJsonAndGetInlineKeyboardButton(const boost::property_tree::ptree& data) const {
+InlineKeyboardButton::Ptr BotTypeParser::parseJsonAndGetInlineKeyboardButton(const boost::property_tree::ptree& data) {
     auto result(std::make_shared<InlineKeyboardButton>());
     result->text = data.get<std::string>("text", "");
     result->url = data.get<std::string>("url", "");
@@ -2026,12 +1428,11 @@ InlineKeyboardButton::Ptr BotTypeParser::parseJsonAndGetInlineKeyboardButton(con
     result->switchInlineQuery = data.get<std::string>("switch_inline_query", "");
     result->switchInlineQueryCurrentChat = data.get<std::string>("switch_inline_query_current_chat", "");
     result->switchInlineQueryChosenChat = tryParseJson<SwitchInlineQueryChosenChat>(&BotTypeParser::parseJsonAndGetSwitchInlineQueryChosenChat, data, "switch_inline_query_chosen_chat");
-    result->callbackGame = tryParseJson<CallbackGame>(&BotTypeParser::parseJsonAndGetCallbackGame, data, "callback_game");
     result->pay = data.get<bool>("pay", false);
     return result;
 }
 
-std::string BotTypeParser::parseInlineKeyboardButton(const InlineKeyboardButton::Ptr& object) const {
+std::string BotTypeParser::parseInlineKeyboardButton(const InlineKeyboardButton::Ptr& object) {
     if (!object) {
         return "";
     }
@@ -2045,7 +1446,6 @@ std::string BotTypeParser::parseInlineKeyboardButton(const InlineKeyboardButton:
     appendToJson(result, "switch_inline_query", object->switchInlineQuery);
     appendToJson(result, "switch_inline_query_current_chat", object->switchInlineQueryCurrentChat);
     appendToJson(result, "switch_inline_query_chosen_chat", parseSwitchInlineQueryChosenChat(object->switchInlineQueryChosenChat));
-    appendToJson(result, "callback_game", parseCallbackGame(object->callbackGame));
     if (object->pay)
         appendToJson(result, "pay", object->pay);
     removeLastComma(result);
@@ -2053,7 +1453,7 @@ std::string BotTypeParser::parseInlineKeyboardButton(const InlineKeyboardButton:
     return result;
 }
 
-LoginUrl::Ptr BotTypeParser::parseJsonAndGetLoginUrl(const boost::property_tree::ptree& data) const {
+LoginUrl::Ptr BotTypeParser::parseJsonAndGetLoginUrl(const boost::property_tree::ptree& data) {
     auto result(std::make_shared<LoginUrl>());
     result->url = data.get<std::string>("url", "");
     result->forwardText = data.get<std::string>("forward_text", "");
@@ -2062,7 +1462,7 @@ LoginUrl::Ptr BotTypeParser::parseJsonAndGetLoginUrl(const boost::property_tree:
     return result;
 }
 
-std::string BotTypeParser::parseLoginUrl(const LoginUrl::Ptr& object) const {
+std::string BotTypeParser::parseLoginUrl(const LoginUrl::Ptr& object) {
     if (!object) {
         return "";
     }
@@ -2077,7 +1477,7 @@ std::string BotTypeParser::parseLoginUrl(const LoginUrl::Ptr& object) const {
     return result;
 }
 
-SwitchInlineQueryChosenChat::Ptr BotTypeParser::parseJsonAndGetSwitchInlineQueryChosenChat(const boost::property_tree::ptree& data) const {
+SwitchInlineQueryChosenChat::Ptr BotTypeParser::parseJsonAndGetSwitchInlineQueryChosenChat(const boost::property_tree::ptree& data) {
     auto result(std::make_shared<SwitchInlineQueryChosenChat>());
     result->query = data.get<std::string>("query", "");
     result->allowUserChats = data.get<bool>("allow_user_chats", false);
@@ -2087,7 +1487,7 @@ SwitchInlineQueryChosenChat::Ptr BotTypeParser::parseJsonAndGetSwitchInlineQuery
     return result;
 }
 
-std::string BotTypeParser::parseSwitchInlineQueryChosenChat(const SwitchInlineQueryChosenChat::Ptr& object) const {
+std::string BotTypeParser::parseSwitchInlineQueryChosenChat(const SwitchInlineQueryChosenChat::Ptr& object) {
     if (!object) {
         return "";
     }
@@ -2103,7 +1503,7 @@ std::string BotTypeParser::parseSwitchInlineQueryChosenChat(const SwitchInlineQu
     return result;
 }
 
-CallbackQuery::Ptr BotTypeParser::parseJsonAndGetCallbackQuery(const boost::property_tree::ptree& data) const {
+CallbackQuery::Ptr BotTypeParser::parseJsonAndGetCallbackQuery(const boost::property_tree::ptree& data) {
     auto result(std::make_shared<CallbackQuery>());
     result->id = data.get<std::string>("id", "");
     result->from = tryParseJson<User>(&BotTypeParser::parseJsonAndGetUser, data, "from");
@@ -2115,25 +1515,7 @@ CallbackQuery::Ptr BotTypeParser::parseJsonAndGetCallbackQuery(const boost::prop
     return result;
 }
 
-std::string BotTypeParser::parseCallbackQuery(const CallbackQuery::Ptr& object) const {
-    if (!object) {
-        return "";
-    }
-    std::string result;
-    result += '{';
-    appendToJson(result, "id", object->id);
-    appendToJson(result, "from", parseUser(object->from));
-    appendToJson(result, "message", parseMessage(object->message));
-    appendToJson(result, "inline_message_id", object->inlineMessageId);
-    appendToJson(result, "chat_instance", object->chatInstance);
-    appendToJson(result, "data", object->data);
-    appendToJson(result, "game_short_name", object->gameShortName);
-    removeLastComma(result);
-    result += '}';
-    return result;
-}
-
-ForceReply::Ptr BotTypeParser::parseJsonAndGetForceReply(const boost::property_tree::ptree& data) const {
+ForceReply::Ptr BotTypeParser::parseJsonAndGetForceReply(const boost::property_tree::ptree& data) {
     auto result(std::make_shared<ForceReply>());
     result->forceReply = data.get<bool>("force_reply", false);
     result->inputFieldPlaceholder = data.get<std::string>("input_field_placeholder", "");
@@ -2141,7 +1523,7 @@ ForceReply::Ptr BotTypeParser::parseJsonAndGetForceReply(const boost::property_t
     return result;
 }
 
-std::string BotTypeParser::parseForceReply(const ForceReply::Ptr& object) const {
+std::string BotTypeParser::parseForceReply(const ForceReply::Ptr& object) {
     if (!object) {
         return "";
     }
@@ -2155,7 +1537,7 @@ std::string BotTypeParser::parseForceReply(const ForceReply::Ptr& object) const 
     return result;
 }
 
-ChatPhoto::Ptr BotTypeParser::parseJsonAndGetChatPhoto(const boost::property_tree::ptree& data) const {
+ChatPhoto::Ptr BotTypeParser::parseJsonAndGetChatPhoto(const boost::property_tree::ptree& data) {
     auto result(std::make_shared<ChatPhoto>());
     result->smallFileId = data.get<std::string>("small_file_id", "");
     result->smallFileUniqueId = data.get<std::string>("small_file_unique_id", "");
@@ -2164,7 +1546,7 @@ ChatPhoto::Ptr BotTypeParser::parseJsonAndGetChatPhoto(const boost::property_tre
     return result;
 }
 
-std::string BotTypeParser::parseChatPhoto(const ChatPhoto::Ptr& object) const {
+std::string BotTypeParser::parseChatPhoto(const ChatPhoto::Ptr& object) {
     if (!object) {
         return "";
     }
@@ -2179,7 +1561,7 @@ std::string BotTypeParser::parseChatPhoto(const ChatPhoto::Ptr& object) const {
     return result;
 }
 
-ChatInviteLink::Ptr BotTypeParser::parseJsonAndGetChatInviteLink(const boost::property_tree::ptree& data) const {
+ChatInviteLink::Ptr BotTypeParser::parseJsonAndGetChatInviteLink(const boost::property_tree::ptree& data) {
     auto result(std::make_shared<ChatInviteLink>());
     result->inviteLink = data.get<std::string>("invite_link", "");
     result->creator = tryParseJson<User>(&BotTypeParser::parseJsonAndGetUser, data, "creator");
@@ -2193,7 +1575,7 @@ ChatInviteLink::Ptr BotTypeParser::parseJsonAndGetChatInviteLink(const boost::pr
     return result;
 }
 
-std::string BotTypeParser::parseChatInviteLink(const ChatInviteLink::Ptr& object) const {
+std::string BotTypeParser::parseChatInviteLink(const ChatInviteLink::Ptr& object) {
     if (!object) {
         return "";
     }
@@ -2213,7 +1595,7 @@ std::string BotTypeParser::parseChatInviteLink(const ChatInviteLink::Ptr& object
     return result;
 }
 
-ChatAdministratorRights::Ptr BotTypeParser::parseJsonAndGetChatAdministratorRights(const boost::property_tree::ptree& data) const {
+ChatAdministratorRights::Ptr BotTypeParser::parseJsonAndGetChatAdministratorRights(const boost::property_tree::ptree& data) {
     auto result(std::make_shared<ChatAdministratorRights>());
     result->isAnonymous = data.get<bool>("is_anonymous", false);
     result->canManageChat = data.get<bool>("can_manage_chat", false);
@@ -2233,7 +1615,7 @@ ChatAdministratorRights::Ptr BotTypeParser::parseJsonAndGetChatAdministratorRigh
     return result;
 }
 
-std::string BotTypeParser::parseChatAdministratorRights(const ChatAdministratorRights::Ptr& object) const {
+std::string BotTypeParser::parseChatAdministratorRights(const ChatAdministratorRights::Ptr& object) {
     if (!object) {
         return "";
     }
@@ -2259,7 +1641,7 @@ std::string BotTypeParser::parseChatAdministratorRights(const ChatAdministratorR
     return result;
 }
 
-ChatMemberUpdated::Ptr BotTypeParser::parseJsonAndGetChatMemberUpdated(const boost::property_tree::ptree& data) const {
+ChatMemberUpdated::Ptr BotTypeParser::parseJsonAndGetChatMemberUpdated(const boost::property_tree::ptree& data) {
     auto result(std::make_shared<ChatMemberUpdated>());
     result->chat = tryParseJson<Chat>(&BotTypeParser::parseJsonAndGetChat, data, "chat");
     result->from = tryParseJson<User>(&BotTypeParser::parseJsonAndGetUser, data, "from");
@@ -2271,25 +1653,7 @@ ChatMemberUpdated::Ptr BotTypeParser::parseJsonAndGetChatMemberUpdated(const boo
     return result;
 }
 
-std::string BotTypeParser::parseChatMemberUpdated(const ChatMemberUpdated::Ptr& object) const {
-    if (!object) {
-        return "";
-    }
-    std::string result;
-    result += '{';
-    appendToJson(result, "chat", parseChat(object->chat));
-    appendToJson(result, "from", parseUser(object->from));
-    appendToJson(result, "date", object->date);
-    appendToJson(result, "old_chat_member", parseChatMember(object->oldChatMember));
-    appendToJson(result, "new_chat_member", parseChatMember(object->newChatMember));
-    appendToJson(result, "invite_link", parseChatInviteLink(object->inviteLink));
-    appendToJson(result, "via_chat_folder_invite_link", object->viaChatFolderInviteLink);
-    removeLastComma(result);
-    result += '}';
-    return result;
-}
-
-ChatMember::Ptr BotTypeParser::parseJsonAndGetChatMember(const boost::property_tree::ptree& data) const {
+ChatMember::Ptr BotTypeParser::parseJsonAndGetChatMember(const boost::property_tree::ptree& data) {
     std::string status = data.get<std::string>("status", "");
     ChatMember::Ptr result;
 
@@ -2315,7 +1679,7 @@ ChatMember::Ptr BotTypeParser::parseJsonAndGetChatMember(const boost::property_t
     return result;
 }
 
-std::string BotTypeParser::parseChatMember(const ChatMember::Ptr& object) const {
+std::string BotTypeParser::parseChatMember(const ChatMember::Ptr& object) {
     if (!object) {
         return "";
     }
@@ -2343,7 +1707,7 @@ std::string BotTypeParser::parseChatMember(const ChatMember::Ptr& object) const 
     return result;
 }
 
-ChatMemberOwner::Ptr BotTypeParser::parseJsonAndGetChatMemberOwner(const boost::property_tree::ptree& data) const {
+ChatMemberOwner::Ptr BotTypeParser::parseJsonAndGetChatMemberOwner(const boost::property_tree::ptree& data) {
     // NOTE: This function will be called by parseJsonAndGetChatMember().
     auto result(std::make_shared<ChatMemberOwner>());
     result->isAnonymous = data.get<bool>("is_anonymous", false);
@@ -2351,7 +1715,7 @@ ChatMemberOwner::Ptr BotTypeParser::parseJsonAndGetChatMemberOwner(const boost::
     return result;
 }
 
-std::string BotTypeParser::parseChatMemberOwner(const ChatMemberOwner::Ptr& object) const {
+std::string BotTypeParser::parseChatMemberOwner(const ChatMemberOwner::Ptr& object) {
     if (!object) {
         return "";
     }
@@ -2364,7 +1728,7 @@ std::string BotTypeParser::parseChatMemberOwner(const ChatMemberOwner::Ptr& obje
     return result;
 }
 
-ChatMemberAdministrator::Ptr BotTypeParser::parseJsonAndGetChatMemberAdministrator(const boost::property_tree::ptree& data) const {
+ChatMemberAdministrator::Ptr BotTypeParser::parseJsonAndGetChatMemberAdministrator(const boost::property_tree::ptree& data) {
     // NOTE: This function will be called by parseJsonAndGetChatMember().
     auto result(std::make_shared<ChatMemberAdministrator>());
     result->canBeEdited = data.get<bool>("can_be_edited", false);
@@ -2387,7 +1751,7 @@ ChatMemberAdministrator::Ptr BotTypeParser::parseJsonAndGetChatMemberAdministrat
     return result;
 }
 
-std::string BotTypeParser::parseChatMemberAdministrator(const ChatMemberAdministrator::Ptr& object) const {
+std::string BotTypeParser::parseChatMemberAdministrator(const ChatMemberAdministrator::Ptr& object) {
     if (!object) {
         return "";
     }
@@ -2415,13 +1779,13 @@ std::string BotTypeParser::parseChatMemberAdministrator(const ChatMemberAdminist
     return result;
 }
 
-ChatMemberMember::Ptr BotTypeParser::parseJsonAndGetChatMemberMember(const boost::property_tree::ptree& /*data*/) const {
+ChatMemberMember::Ptr BotTypeParser::parseJsonAndGetChatMemberMember(const boost::property_tree::ptree& /*data*/) {
     // NOTE: This function will be called by parseJsonAndGetChatMember().
     auto result(std::make_shared<ChatMemberMember>());
     return result;
 }
 
-std::string BotTypeParser::parseChatMemberMember(const ChatMemberMember::Ptr& object) const {
+std::string BotTypeParser::parseChatMemberMember(const ChatMemberMember::Ptr& object) {
     if (!object) {
         return "";
     }
@@ -2432,7 +1796,7 @@ std::string BotTypeParser::parseChatMemberMember(const ChatMemberMember::Ptr& ob
     return result;
 }
 
-ChatMemberRestricted::Ptr BotTypeParser::parseJsonAndGetChatMemberRestricted(const boost::property_tree::ptree& data) const {
+ChatMemberRestricted::Ptr BotTypeParser::parseJsonAndGetChatMemberRestricted(const boost::property_tree::ptree& data) {
     // NOTE: This function will be called by parseJsonAndGetChatMember().
     auto result(std::make_shared<ChatMemberRestricted>());
     result->isMember = data.get<bool>("is_member", false);
@@ -2454,7 +1818,7 @@ ChatMemberRestricted::Ptr BotTypeParser::parseJsonAndGetChatMemberRestricted(con
     return result;
 }
 
-std::string BotTypeParser::parseChatMemberRestricted(const ChatMemberRestricted::Ptr& object) const {
+std::string BotTypeParser::parseChatMemberRestricted(const ChatMemberRestricted::Ptr& object) {
     if (!object) {
         return "";
     }
@@ -2481,13 +1845,13 @@ std::string BotTypeParser::parseChatMemberRestricted(const ChatMemberRestricted:
     return result;
 }
 
-ChatMemberLeft::Ptr BotTypeParser::parseJsonAndGetChatMemberLeft(const boost::property_tree::ptree& /*data*/) const {
+ChatMemberLeft::Ptr BotTypeParser::parseJsonAndGetChatMemberLeft(const boost::property_tree::ptree& /*data*/) {
     // NOTE: This function will be called by parseJsonAndGetChatMember().
     auto result(std::make_shared<ChatMemberLeft>());
     return result;
 }
 
-std::string BotTypeParser::parseChatMemberLeft(const ChatMemberLeft::Ptr& object) const {
+std::string BotTypeParser::parseChatMemberLeft(const ChatMemberLeft::Ptr& object) {
     if (!object) {
         return "";
     }
@@ -2498,14 +1862,14 @@ std::string BotTypeParser::parseChatMemberLeft(const ChatMemberLeft::Ptr& object
     return result;
 }
 
-ChatMemberBanned::Ptr BotTypeParser::parseJsonAndGetChatMemberBanned(const boost::property_tree::ptree& data) const {
+ChatMemberBanned::Ptr BotTypeParser::parseJsonAndGetChatMemberBanned(const boost::property_tree::ptree& data) {
     // NOTE: This function will be called by parseJsonAndGetChatMember().
     auto result(std::make_shared<ChatMemberBanned>());
     result->untilDate = data.get<std::uint32_t>("until_date", 0);
     return result;
 }
 
-std::string BotTypeParser::parseChatMemberBanned(const ChatMemberBanned::Ptr& object) const {
+std::string BotTypeParser::parseChatMemberBanned(const ChatMemberBanned::Ptr& object) {
     if (!object) {
         return "";
     }
@@ -2517,7 +1881,7 @@ std::string BotTypeParser::parseChatMemberBanned(const ChatMemberBanned::Ptr& ob
     return result;
 }
 
-ChatJoinRequest::Ptr BotTypeParser::parseJsonAndGetChatJoinRequest(const boost::property_tree::ptree& data) const {
+ChatJoinRequest::Ptr BotTypeParser::parseJsonAndGetChatJoinRequest(const boost::property_tree::ptree& data) {
     auto result(std::make_shared<ChatJoinRequest>());
     result->chat = tryParseJson<Chat>(&BotTypeParser::parseJsonAndGetChat, data, "chat");
     result->from = tryParseJson<User>(&BotTypeParser::parseJsonAndGetUser, data, "from");
@@ -2528,24 +1892,7 @@ ChatJoinRequest::Ptr BotTypeParser::parseJsonAndGetChatJoinRequest(const boost::
     return result;
 }
 
-std::string BotTypeParser::parseChatJoinRequest(const ChatJoinRequest::Ptr& object) const {
-    if (!object) {
-        return "";
-    }
-    std::string result;
-    result += '{';
-    appendToJson(result, "chat", parseChat(object->chat));
-    appendToJson(result, "from", parseUser(object->from));
-    appendToJson(result, "user_chat_id", object->userChatId);
-    appendToJson(result, "date", object->date);
-    appendToJson(result, "bio", object->bio);
-    appendToJson(result, "invite_link", parseChatInviteLink(object->inviteLink));
-    removeLastComma(result);
-    result += '}';
-    return result;
-}
-
-ChatPermissions::Ptr BotTypeParser::parseJsonAndGetChatPermissions(const boost::property_tree::ptree& data) const {
+ChatPermissions::Ptr BotTypeParser::parseJsonAndGetChatPermissions(const boost::property_tree::ptree& data) {
     auto result(std::make_shared<ChatPermissions>());
     result->canSendMessages = data.get<bool>("can_send_messages", false);
     result->canSendAudios = data.get<bool>("can_send_audios", false);
@@ -2564,7 +1911,7 @@ ChatPermissions::Ptr BotTypeParser::parseJsonAndGetChatPermissions(const boost::
     return result;
 }
 
-std::string BotTypeParser::parseChatPermissions(const ChatPermissions::Ptr& object) const {
+std::string BotTypeParser::parseChatPermissions(const ChatPermissions::Ptr& object) {
     if (!object) {
         return "";
     }
@@ -2589,7 +1936,7 @@ std::string BotTypeParser::parseChatPermissions(const ChatPermissions::Ptr& obje
     return result;
 }
 
-Birthdate::Ptr BotTypeParser::parseJsonAndGetBirthdate(const boost::property_tree::ptree& data) const {
+Birthdate::Ptr BotTypeParser::parseJsonAndGetBirthdate(const boost::property_tree::ptree& data) {
     auto result(std::make_shared<Birthdate>());
     result->day = data.get<std::uint8_t>("day", 0);
     result->month = data.get<std::uint8_t>("month", 0);
@@ -2597,7 +1944,7 @@ Birthdate::Ptr BotTypeParser::parseJsonAndGetBirthdate(const boost::property_tre
     return result;
 }
 
-std::string BotTypeParser::parseBirthdate(const Birthdate::Ptr& object) const {
+std::string BotTypeParser::parseBirthdate(const Birthdate::Ptr& object) {
     if (!object) {
         return "";
     }
@@ -2611,96 +1958,14 @@ std::string BotTypeParser::parseBirthdate(const Birthdate::Ptr& object) const {
     return result;
 }
 
-BusinessIntro::Ptr BotTypeParser::parseJsonAndGetBusinessIntro(const boost::property_tree::ptree& data) const {
-    auto result(std::make_shared<BusinessIntro>());
-    result->title = data.get<std::string>("title", "");
-    result->message = data.get<std::string>("message", "");
-    result->sticker = tryParseJson<Sticker>(&BotTypeParser::parseJsonAndGetSticker, data, "sticker");
-    return result;
-}
-
-std::string BotTypeParser::parseBusinessIntro(const BusinessIntro::Ptr& object) const {
-    if (!object) {
-        return "";
-    }
-    std::string result;
-    result += '{';
-    appendToJson(result, "title", object->title);
-    appendToJson(result, "message", object->message);
-    appendToJson(result, "sticker", parseSticker(object->sticker));
-    removeLastComma(result);
-    result += '}';
-    return result;
-}
-
-BusinessLocation::Ptr BotTypeParser::parseJsonAndGetBusinessLocation(const boost::property_tree::ptree& data) const {
-    auto result(std::make_shared<BusinessLocation>());
-    result->address = data.get<std::string>("address", "");
-    result->location = tryParseJson<Location>(&BotTypeParser::parseJsonAndGetLocation, data, "location");
-    return result;
-}
-
-std::string BotTypeParser::parseBusinessLocation(const BusinessLocation::Ptr& object) const {
-    if (!object) {
-        return "";
-    }
-    std::string result;
-    result += '{';
-    appendToJson(result, "address", object->address);
-    appendToJson(result, "location", parseLocation(object->location));
-    removeLastComma(result);
-    result += '}';
-    return result;
-}
-
-BusinessOpeningHoursInterval::Ptr BotTypeParser::parseJsonAndGetBusinessOpeningHoursInterval(const boost::property_tree::ptree& data) const {
-    auto result(std::make_shared<BusinessOpeningHoursInterval>());
-    result->openingMinute = data.get<std::int32_t>("opening_minute", 0);
-    result->closingMinute = data.get<std::int32_t>("closing_minute", 0);
-    return result;
-}
-
-std::string BotTypeParser::parseBusinessOpeningHoursInterval(const BusinessOpeningHoursInterval::Ptr& object) const {
-    if (!object) {
-        return "";
-    }
-    std::string result;
-    result += '{';
-    appendToJson(result, "opening_minute", object->openingMinute);
-    appendToJson(result, "closing_minute", object->closingMinute);
-    removeLastComma(result);
-    result += '}';
-    return result;
-}
-
-BusinessOpeningHours::Ptr BotTypeParser::parseJsonAndGetBusinessOpeningHours(const boost::property_tree::ptree& data) const {
-    auto result(std::make_shared<BusinessOpeningHours>());
-    result->timeZoneName = data.get<std::string>("time_zone_name", "");
-    result->openingHours = parseJsonAndGetArray<BusinessOpeningHoursInterval>(&BotTypeParser::parseJsonAndGetBusinessOpeningHoursInterval, data, "opening_hours");
-    return result;
-}
-
-std::string BotTypeParser::parseBusinessOpeningHours(const BusinessOpeningHours::Ptr& object) const {
-    if (!object) {
-        return "";
-    }
-    std::string result;
-    result += '{';
-    appendToJson(result, "time_zone_name", object->timeZoneName);
-    appendToJson(result, "opening_hours", parseArray(&BotTypeParser::parseBusinessOpeningHoursInterval, object->openingHours));
-    removeLastComma(result);
-    result += '}';
-    return result;
-}
-
-ChatLocation::Ptr BotTypeParser::parseJsonAndGetChatLocation(const boost::property_tree::ptree& data) const {
+ChatLocation::Ptr BotTypeParser::parseJsonAndGetChatLocation(const boost::property_tree::ptree& data) {
     auto result(std::make_shared<ChatLocation>());
     result->location = tryParseJson<Location>(&BotTypeParser::parseJsonAndGetLocation, data, "location");
     result->address = data.get<std::string>("address", "");
     return result;
 }
 
-std::string BotTypeParser::parseChatLocation(const ChatLocation::Ptr& object) const {
+std::string BotTypeParser::parseChatLocation(const ChatLocation::Ptr& object) {
     if (!object) {
         return "";
     }
@@ -2713,7 +1978,7 @@ std::string BotTypeParser::parseChatLocation(const ChatLocation::Ptr& object) co
     return result;
 }
 
-ReactionType::Ptr BotTypeParser::parseJsonAndGetReactionType(const boost::property_tree::ptree& data) const {
+ReactionType::Ptr BotTypeParser::parseJsonAndGetReactionType(const boost::property_tree::ptree& data) {
     std::string type = data.get<std::string>("type", "");
     ReactionType::Ptr result;
 
@@ -2730,7 +1995,7 @@ ReactionType::Ptr BotTypeParser::parseJsonAndGetReactionType(const boost::proper
     return result;
 }
 
-std::string BotTypeParser::parseReactionType(const ReactionType::Ptr& object) const {
+std::string BotTypeParser::parseReactionType(const ReactionType::Ptr& object) {
     if (!object) {
         return "";
     }
@@ -2749,14 +2014,14 @@ std::string BotTypeParser::parseReactionType(const ReactionType::Ptr& object) co
     return result;
 }
 
-ReactionTypeEmoji::Ptr BotTypeParser::parseJsonAndGetReactionTypeEmoji(const boost::property_tree::ptree& data) const {
+ReactionTypeEmoji::Ptr BotTypeParser::parseJsonAndGetReactionTypeEmoji(const boost::property_tree::ptree& data) {
     // NOTE: This function will be called by parseJsonAndGetReactionType().
     auto result(std::make_shared<ReactionTypeEmoji>());
     result->emoji = data.get<std::string>("emoji", "");
     return result;
 }
 
-std::string BotTypeParser::parseReactionTypeEmoji(const ReactionTypeEmoji::Ptr& object) const {
+std::string BotTypeParser::parseReactionTypeEmoji(const ReactionTypeEmoji::Ptr& object) {
     if (!object) {
         return "";
     }
@@ -2768,14 +2033,14 @@ std::string BotTypeParser::parseReactionTypeEmoji(const ReactionTypeEmoji::Ptr& 
     return result;
 }
 
-ReactionTypeCustomEmoji::Ptr BotTypeParser::parseJsonAndGetReactionTypeCustomEmoji(const boost::property_tree::ptree& data) const {
+ReactionTypeCustomEmoji::Ptr BotTypeParser::parseJsonAndGetReactionTypeCustomEmoji(const boost::property_tree::ptree& data) {
     // NOTE: This function will be called by parseJsonAndGetReactionType().
     auto result(std::make_shared<ReactionTypeCustomEmoji>());
     result->customEmojiId = data.get<std::string>("custom_emoji_id", "");
     return result;
 }
 
-std::string BotTypeParser::parseReactionTypeCustomEmoji(const ReactionTypeCustomEmoji::Ptr& object) const {
+std::string BotTypeParser::parseReactionTypeCustomEmoji(const ReactionTypeCustomEmoji::Ptr& object) {
     if (!object) {
         return "";
     }
@@ -2787,14 +2052,14 @@ std::string BotTypeParser::parseReactionTypeCustomEmoji(const ReactionTypeCustom
     return result;
 }
 
-ReactionCount::Ptr BotTypeParser::parseJsonAndGetReactionCount(const boost::property_tree::ptree& data) const {
+ReactionCount::Ptr BotTypeParser::parseJsonAndGetReactionCount(const boost::property_tree::ptree& data) {
     auto result(std::make_shared<ReactionCount>());
     result->type = tryParseJson<ReactionType>(&BotTypeParser::parseJsonAndGetReactionType, data, "type");
     result->totalCount = data.get<std::int32_t>("total_count", 0);
     return result;
 }
 
-std::string BotTypeParser::parseReactionCount(const ReactionCount::Ptr& object) const {
+std::string BotTypeParser::parseReactionCount(const ReactionCount::Ptr& object) {
     if (!object) {
         return "";
     }
@@ -2807,7 +2072,7 @@ std::string BotTypeParser::parseReactionCount(const ReactionCount::Ptr& object) 
     return result;
 }
 
-MessageReactionUpdated::Ptr BotTypeParser::parseJsonAndGetMessageReactionUpdated(const boost::property_tree::ptree& data) const {
+MessageReactionUpdated::Ptr BotTypeParser::parseJsonAndGetMessageReactionUpdated(const boost::property_tree::ptree& data) {
     auto result(std::make_shared<MessageReactionUpdated>());
     result->chat = tryParseJson<Chat>(&BotTypeParser::parseJsonAndGetChat, data, "chat");
     result->messageId = data.get<std::int32_t>("message_id", 0);
@@ -2819,25 +2084,7 @@ MessageReactionUpdated::Ptr BotTypeParser::parseJsonAndGetMessageReactionUpdated
     return result;
 }
 
-std::string BotTypeParser::parseMessageReactionUpdated(const MessageReactionUpdated::Ptr& object) const {
-    if (!object) {
-        return "";
-    }
-    std::string result;
-    result += '{';
-    appendToJson(result, "chat", parseChat(object->chat));
-    appendToJson(result, "message_id", object->messageId);
-    appendToJson(result, "user", parseUser(object->user));
-    appendToJson(result, "actor_chat", parseChat(object->actorChat));
-    appendToJson(result, "date", object->date);
-    appendToJson(result, "old_reaction", parseArray(&BotTypeParser::parseReactionType, object->oldReaction));
-    appendToJson(result, "new_reaction", parseArray(&BotTypeParser::parseReactionType, object->newReaction));
-    removeLastComma(result);
-    result += '}';
-    return result;
-}
-
-MessageReactionCountUpdated::Ptr BotTypeParser::parseJsonAndGetMessageReactionCountUpdated(const boost::property_tree::ptree& data) const {
+MessageReactionCountUpdated::Ptr BotTypeParser::parseJsonAndGetMessageReactionCountUpdated(const boost::property_tree::ptree& data) {
     auto result(std::make_shared<MessageReactionCountUpdated>());
     result->chat = tryParseJson<Chat>(&BotTypeParser::parseJsonAndGetChat, data, "chat");
     result->messageId = data.get<std::int32_t>("message_id", 0);
@@ -2846,53 +2093,14 @@ MessageReactionCountUpdated::Ptr BotTypeParser::parseJsonAndGetMessageReactionCo
     return result;
 }
 
-std::string BotTypeParser::parseMessageReactionCountUpdated(const MessageReactionCountUpdated::Ptr& object) const {
-    if (!object) {
-        return "";
-    }
-    std::string result;
-    result += '{';
-    appendToJson(result, "chat", parseChat(object->chat));
-    appendToJson(result, "message_id", object->messageId);
-    appendToJson(result, "date", object->date);
-    appendToJson(result, "reactions", parseArray(&BotTypeParser::parseReactionCount, object->reactions));
-    removeLastComma(result);
-    result += '}';
-    return result;
-}
-
-ForumTopic::Ptr BotTypeParser::parseJsonAndGetForumTopic(const boost::property_tree::ptree& data) const {
-    auto result(std::make_shared<ForumTopic>());
-    result->messageThreadId = data.get<std::int32_t>("message_thread_id", 0);
-    result->name = data.get<std::string>("name", "");
-    result->iconColor = data.get<std::int32_t>("icon_color", 0);
-    result->iconCustomEmojiId = data.get<std::string>("icon_custom_emoji_id", "");
-    return result;
-}
-
-std::string BotTypeParser::parseForumTopic(const ForumTopic::Ptr& object) const {
-    if (!object) {
-        return "";
-    }
-    std::string result;
-    result += '{';
-    appendToJson(result, "message_thread_id", object->messageThreadId);
-    appendToJson(result, "name", object->name);
-    appendToJson(result, "icon_color", object->iconColor);
-    appendToJson(result, "icon_custom_emoji_id", object->iconCustomEmojiId);
-    removeLastComma(result);
-    result += '}';
-    return result;
-}
-
-BotCommand::Ptr BotTypeParser::parseJsonAndGetBotCommand(const boost::property_tree::ptree& data) const {
+BotCommand::Ptr BotTypeParser::parseJsonAndGetBotCommand(const boost::property_tree::ptree& data) {
     auto result(std::make_shared<BotCommand>());
     result->command = data.get<std::string>("command", "");
     result->description = data.get<std::string>("description", "");
     return result;
 }
 
-std::string BotTypeParser::parseBotCommand(const BotCommand::Ptr& object) const {
+std::string BotTypeParser::parseBotCommand(const BotCommand::Ptr& object) {
     if (!object) {
         return "";
     }
@@ -2905,7 +2113,7 @@ std::string BotTypeParser::parseBotCommand(const BotCommand::Ptr& object) const 
     return result;
 }
 
-BotCommandScope::Ptr BotTypeParser::parseJsonAndGetBotCommandScope(const boost::property_tree::ptree& data) const {
+BotCommandScope::Ptr BotTypeParser::parseJsonAndGetBotCommandScope(const boost::property_tree::ptree& data) {
     std::string type = data.get<std::string>("type", "");
     BotCommandScope::Ptr result;
 
@@ -2932,7 +2140,7 @@ BotCommandScope::Ptr BotTypeParser::parseJsonAndGetBotCommandScope(const boost::
     return result;
 }
 
-std::string BotTypeParser::parseBotCommandScope(const BotCommandScope::Ptr& object) const {
+std::string BotTypeParser::parseBotCommandScope(const BotCommandScope::Ptr& object) {
     if (!object) {
         return "";
     }
@@ -2961,13 +2169,13 @@ std::string BotTypeParser::parseBotCommandScope(const BotCommandScope::Ptr& obje
     return result;
 }
 
-BotCommandScopeDefault::Ptr BotTypeParser::parseJsonAndGetBotCommandScopeDefault(const boost::property_tree::ptree& /*data*/) const {
+BotCommandScopeDefault::Ptr BotTypeParser::parseJsonAndGetBotCommandScopeDefault(const boost::property_tree::ptree& /*data*/) {
     // NOTE: This function will be called by parseJsonAndGetBotCommandScope().
     auto result(std::make_shared<BotCommandScopeDefault>());
     return result;
 }
 
-std::string BotTypeParser::parseBotCommandScopeDefault(const BotCommandScopeDefault::Ptr& object) const {
+std::string BotTypeParser::parseBotCommandScopeDefault(const BotCommandScopeDefault::Ptr& object) {
     if (!object) {
         return "";
     }
@@ -2978,13 +2186,13 @@ std::string BotTypeParser::parseBotCommandScopeDefault(const BotCommandScopeDefa
     return result;
 }
 
-BotCommandScopeAllPrivateChats::Ptr BotTypeParser::parseJsonAndGetBotCommandScopeAllPrivateChats(const boost::property_tree::ptree& /*data*/) const {
+BotCommandScopeAllPrivateChats::Ptr BotTypeParser::parseJsonAndGetBotCommandScopeAllPrivateChats(const boost::property_tree::ptree& /*data*/) {
     // NOTE: This function will be called by parseJsonAndGetBotCommandScope().
     auto result(std::make_shared<BotCommandScopeAllPrivateChats>());
     return result;
 }
 
-std::string BotTypeParser::parseBotCommandScopeAllPrivateChats(const BotCommandScopeAllPrivateChats::Ptr& object) const {
+std::string BotTypeParser::parseBotCommandScopeAllPrivateChats(const BotCommandScopeAllPrivateChats::Ptr& object) {
     if (!object) {
         return "";
     }
@@ -2995,13 +2203,13 @@ std::string BotTypeParser::parseBotCommandScopeAllPrivateChats(const BotCommandS
     return result;
 }
 
-BotCommandScopeAllGroupChats::Ptr BotTypeParser::parseJsonAndGetBotCommandScopeAllGroupChats(const boost::property_tree::ptree& /*data*/) const {
+BotCommandScopeAllGroupChats::Ptr BotTypeParser::parseJsonAndGetBotCommandScopeAllGroupChats(const boost::property_tree::ptree& /*data*/) {
     // NOTE: This function will be called by parseJsonAndGetBotCommandScope().
     auto result(std::make_shared<BotCommandScopeAllGroupChats>());
     return result;
 }
 
-std::string BotTypeParser::parseBotCommandScopeAllGroupChats(const BotCommandScopeAllGroupChats::Ptr& object) const {
+std::string BotTypeParser::parseBotCommandScopeAllGroupChats(const BotCommandScopeAllGroupChats::Ptr& object) {
     if (!object) {
         return "";
     }
@@ -3012,13 +2220,13 @@ std::string BotTypeParser::parseBotCommandScopeAllGroupChats(const BotCommandSco
     return result;
 }
 
-BotCommandScopeAllChatAdministrators::Ptr BotTypeParser::parseJsonAndGetBotCommandScopeAllChatAdministrators(const boost::property_tree::ptree& /*data*/) const {
+BotCommandScopeAllChatAdministrators::Ptr BotTypeParser::parseJsonAndGetBotCommandScopeAllChatAdministrators(const boost::property_tree::ptree& /*data*/) {
     // NOTE: This function will be called by parseJsonAndGetBotCommandScope().
     auto result(std::make_shared<BotCommandScopeAllChatAdministrators>());
     return result;
 }
 
-std::string BotTypeParser::parseBotCommandScopeAllChatAdministrators(const BotCommandScopeAllChatAdministrators::Ptr& object) const {
+std::string BotTypeParser::parseBotCommandScopeAllChatAdministrators(const BotCommandScopeAllChatAdministrators::Ptr& object) {
     if (!object) {
         return "";
     }
@@ -3029,14 +2237,14 @@ std::string BotTypeParser::parseBotCommandScopeAllChatAdministrators(const BotCo
     return result;
 }
 
-BotCommandScopeChat::Ptr BotTypeParser::parseJsonAndGetBotCommandScopeChat(const boost::property_tree::ptree& data) const {
+BotCommandScopeChat::Ptr BotTypeParser::parseJsonAndGetBotCommandScopeChat(const boost::property_tree::ptree& data) {
     // NOTE: This function will be called by parseJsonAndGetBotCommandScope().
     auto result(std::make_shared<BotCommandScopeChat>());
     result->chatId = data.get<std::int64_t>("chat_id", 0);
     return result;
 }
 
-std::string BotTypeParser::parseBotCommandScopeChat(const BotCommandScopeChat::Ptr& object) const {
+std::string BotTypeParser::parseBotCommandScopeChat(const BotCommandScopeChat::Ptr& object) {
     if (!object) {
         return "";
     }
@@ -3048,14 +2256,14 @@ std::string BotTypeParser::parseBotCommandScopeChat(const BotCommandScopeChat::P
     return result;
 }
 
-BotCommandScopeChatAdministrators::Ptr BotTypeParser::parseJsonAndGetBotCommandScopeChatAdministrators(const boost::property_tree::ptree& data) const {
+BotCommandScopeChatAdministrators::Ptr BotTypeParser::parseJsonAndGetBotCommandScopeChatAdministrators(const boost::property_tree::ptree& data) {
     // NOTE: This function will be called by parseJsonAndGetBotCommandScope().
     auto result(std::make_shared<BotCommandScopeChatAdministrators>());
     result->chatId = data.get<std::int64_t>("chat_id", 0);
     return result;
 }
 
-std::string BotTypeParser::parseBotCommandScopeChatAdministrators(const BotCommandScopeChatAdministrators::Ptr& object) const {
+std::string BotTypeParser::parseBotCommandScopeChatAdministrators(const BotCommandScopeChatAdministrators::Ptr& object) {
     if (!object) {
         return "";
     }
@@ -3067,7 +2275,7 @@ std::string BotTypeParser::parseBotCommandScopeChatAdministrators(const BotComma
     return result;
 }
 
-BotCommandScopeChatMember::Ptr BotTypeParser::parseJsonAndGetBotCommandScopeChatMember(const boost::property_tree::ptree& data) const {
+BotCommandScopeChatMember::Ptr BotTypeParser::parseJsonAndGetBotCommandScopeChatMember(const boost::property_tree::ptree& data) {
     // NOTE: This function will be called by parseJsonAndGetBotCommandScope().
     auto result(std::make_shared<BotCommandScopeChatMember>());
     result->chatId = data.get<std::int64_t>("chat_id", 0);
@@ -3075,7 +2283,7 @@ BotCommandScopeChatMember::Ptr BotTypeParser::parseJsonAndGetBotCommandScopeChat
     return result;
 }
 
-std::string BotTypeParser::parseBotCommandScopeChatMember(const BotCommandScopeChatMember::Ptr& object) const {
+std::string BotTypeParser::parseBotCommandScopeChatMember(const BotCommandScopeChatMember::Ptr& object) {
     if (!object) {
         return "";
     }
@@ -3088,13 +2296,13 @@ std::string BotTypeParser::parseBotCommandScopeChatMember(const BotCommandScopeC
     return result;
 }
 
-BotName::Ptr BotTypeParser::parseJsonAndGetBotName(const boost::property_tree::ptree& data) const {
+BotName::Ptr BotTypeParser::parseJsonAndGetBotName(const boost::property_tree::ptree& data) {
     auto result(std::make_shared<BotName>());
     result->name = data.get<std::string>("name", "");
     return result;
 }
 
-std::string BotTypeParser::parseBotName(const BotName::Ptr& object) const {
+std::string BotTypeParser::parseBotName(const BotName::Ptr& object) {
     if (!object) {
         return "";
     }
@@ -3106,13 +2314,13 @@ std::string BotTypeParser::parseBotName(const BotName::Ptr& object) const {
     return result;
 }
 
-BotDescription::Ptr BotTypeParser::parseJsonAndGetBotDescription(const boost::property_tree::ptree& data) const {
+BotDescription::Ptr BotTypeParser::parseJsonAndGetBotDescription(const boost::property_tree::ptree& data) {
     auto result(std::make_shared<BotDescription>());
     result->description = data.get<std::string>("description", "");
     return result;
 }
 
-std::string BotTypeParser::parseBotDescription(const BotDescription::Ptr& object) const {
+std::string BotTypeParser::parseBotDescription(const BotDescription::Ptr& object) {
     if (!object) {
         return "";
     }
@@ -3124,13 +2332,13 @@ std::string BotTypeParser::parseBotDescription(const BotDescription::Ptr& object
     return result;
 }
 
-BotShortDescription::Ptr BotTypeParser::parseJsonAndGetBotShortDescription(const boost::property_tree::ptree& data) const {
+BotShortDescription::Ptr BotTypeParser::parseJsonAndGetBotShortDescription(const boost::property_tree::ptree& data) {
     auto result(std::make_shared<BotShortDescription>());
     result->shortDescription = data.get<std::string>("short_description", "");
     return result;
 }
 
-std::string BotTypeParser::parseBotShortDescription(const BotShortDescription::Ptr& object) const {
+std::string BotTypeParser::parseBotShortDescription(const BotShortDescription::Ptr& object) {
     if (!object) {
         return "";
     }
@@ -3142,7 +2350,7 @@ std::string BotTypeParser::parseBotShortDescription(const BotShortDescription::P
     return result;
 }
 
-MenuButton::Ptr BotTypeParser::parseJsonAndGetMenuButton(const boost::property_tree::ptree& data) const {
+MenuButton::Ptr BotTypeParser::parseJsonAndGetMenuButton(const boost::property_tree::ptree& data) {
     std::string type = data.get<std::string>("type", "");
     MenuButton::Ptr result;
 
@@ -3161,7 +2369,7 @@ MenuButton::Ptr BotTypeParser::parseJsonAndGetMenuButton(const boost::property_t
     return result;
 }
 
-std::string BotTypeParser::parseMenuButton(const MenuButton::Ptr& object) const {
+std::string BotTypeParser::parseMenuButton(const MenuButton::Ptr& object) {
     if (!object) {
         return "";
     }
@@ -3182,13 +2390,13 @@ std::string BotTypeParser::parseMenuButton(const MenuButton::Ptr& object) const 
     return result;
 }
 
-MenuButtonCommands::Ptr BotTypeParser::parseJsonAndGetMenuButtonCommands(const boost::property_tree::ptree& /*data*/) const {
+MenuButtonCommands::Ptr BotTypeParser::parseJsonAndGetMenuButtonCommands(const boost::property_tree::ptree& /*data*/) {
     // NOTE: This function will be called by parseJsonAndGetMenuButton().
     auto result(std::make_shared<MenuButtonCommands>());
     return result;
 }
 
-std::string BotTypeParser::parseMenuButtonCommands(const MenuButtonCommands::Ptr& object) const {
+std::string BotTypeParser::parseMenuButtonCommands(const MenuButtonCommands::Ptr& object) {
     if (!object) {
         return "";
     }
@@ -3199,7 +2407,7 @@ std::string BotTypeParser::parseMenuButtonCommands(const MenuButtonCommands::Ptr
     return result;
 }
 
-MenuButtonWebApp::Ptr BotTypeParser::parseJsonAndGetMenuButtonWebApp(const boost::property_tree::ptree& data) const {
+MenuButtonWebApp::Ptr BotTypeParser::parseJsonAndGetMenuButtonWebApp(const boost::property_tree::ptree& data) {
     // NOTE: This function will be called by parseJsonAndGetMenuButton().
     auto result(std::make_shared<MenuButtonWebApp>());
     result->text = data.get<std::string>("text", "");
@@ -3207,7 +2415,7 @@ MenuButtonWebApp::Ptr BotTypeParser::parseJsonAndGetMenuButtonWebApp(const boost
     return result;
 }
 
-std::string BotTypeParser::parseMenuButtonWebApp(const MenuButtonWebApp::Ptr& object) const {
+std::string BotTypeParser::parseMenuButtonWebApp(const MenuButtonWebApp::Ptr& object) {
     if (!object) {
         return "";
     }
@@ -3220,13 +2428,13 @@ std::string BotTypeParser::parseMenuButtonWebApp(const MenuButtonWebApp::Ptr& ob
     return result;
 }
 
-MenuButtonDefault::Ptr BotTypeParser::parseJsonAndGetMenuButtonDefault(const boost::property_tree::ptree& /*data*/) const {
+MenuButtonDefault::Ptr BotTypeParser::parseJsonAndGetMenuButtonDefault(const boost::property_tree::ptree& /*data*/) {
     // NOTE: This function will be called by parseJsonAndGetMenuButton().
     auto result(std::make_shared<MenuButtonDefault>());
     return result;
 }
 
-std::string BotTypeParser::parseMenuButtonDefault(const MenuButtonDefault::Ptr& object) const {
+std::string BotTypeParser::parseMenuButtonDefault(const MenuButtonDefault::Ptr& object) {
     if (!object) {
         return "";
     }
@@ -3237,7 +2445,7 @@ std::string BotTypeParser::parseMenuButtonDefault(const MenuButtonDefault::Ptr& 
     return result;
 }
 
-ChatBoostSource::Ptr BotTypeParser::parseJsonAndGetChatBoostSource(const boost::property_tree::ptree& data) const {
+ChatBoostSource::Ptr BotTypeParser::parseJsonAndGetChatBoostSource(const boost::property_tree::ptree& data) {
     std::string source = data.get<std::string>("source", "");
     ChatBoostSource::Ptr result;
 
@@ -3257,7 +2465,7 @@ ChatBoostSource::Ptr BotTypeParser::parseJsonAndGetChatBoostSource(const boost::
     return result;
 }
 
-std::string BotTypeParser::parseChatBoostSource(const ChatBoostSource::Ptr& object) const {
+std::string BotTypeParser::parseChatBoostSource(const ChatBoostSource::Ptr& object) {
     if (!object) {
         return "";
     }
@@ -3279,13 +2487,13 @@ std::string BotTypeParser::parseChatBoostSource(const ChatBoostSource::Ptr& obje
     return result;
 }
 
-ChatBoostSourcePremium::Ptr BotTypeParser::parseJsonAndGetChatBoostSourcePremium(const boost::property_tree::ptree& /*data*/) const {
+ChatBoostSourcePremium::Ptr BotTypeParser::parseJsonAndGetChatBoostSourcePremium(const boost::property_tree::ptree& /*data*/) {
     // NOTE: This function will be called by parseJsonAndGetChatBoostSource().
     auto result(std::make_shared<ChatBoostSourcePremium>());
     return result;
 }
 
-std::string BotTypeParser::parseChatBoostSourcePremium(const ChatBoostSourcePremium::Ptr& object) const {
+std::string BotTypeParser::parseChatBoostSourcePremium(const ChatBoostSourcePremium::Ptr& object) {
     if (!object) {
         return "";
     }
@@ -3296,13 +2504,13 @@ std::string BotTypeParser::parseChatBoostSourcePremium(const ChatBoostSourcePrem
     return result;
 }
 
-ChatBoostSourceGiftCode::Ptr BotTypeParser::parseJsonAndGetChatBoostSourceGiftCode(const boost::property_tree::ptree& /*data*/) const {
+ChatBoostSourceGiftCode::Ptr BotTypeParser::parseJsonAndGetChatBoostSourceGiftCode(const boost::property_tree::ptree& /*data*/) {
     // NOTE: This function will be called by parseJsonAndGetChatBoostSource().
     auto result(std::make_shared<ChatBoostSourceGiftCode>());
     return result;
 }
 
-std::string BotTypeParser::parseChatBoostSourceGiftCode(const ChatBoostSourceGiftCode::Ptr& object) const {
+std::string BotTypeParser::parseChatBoostSourceGiftCode(const ChatBoostSourceGiftCode::Ptr& object) {
     if (!object) {
         return "";
     }
@@ -3313,7 +2521,7 @@ std::string BotTypeParser::parseChatBoostSourceGiftCode(const ChatBoostSourceGif
     return result;
 }
 
-ChatBoostSourceGiveaway::Ptr BotTypeParser::parseJsonAndGetChatBoostSourceGiveaway(const boost::property_tree::ptree& data) const {
+ChatBoostSourceGiveaway::Ptr BotTypeParser::parseJsonAndGetChatBoostSourceGiveaway(const boost::property_tree::ptree& data) {
     // NOTE: This function will be called by parseJsonAndGetChatBoostSource().
     auto result(std::make_shared<ChatBoostSourceGiveaway>());
     result->giveawayMessageId = data.get<std::int32_t>("giveaway_message_id", 0);
@@ -3321,7 +2529,7 @@ ChatBoostSourceGiveaway::Ptr BotTypeParser::parseJsonAndGetChatBoostSourceGiveaw
     return result;
 }
 
-std::string BotTypeParser::parseChatBoostSourceGiveaway(const ChatBoostSourceGiveaway::Ptr& object) const {
+std::string BotTypeParser::parseChatBoostSourceGiveaway(const ChatBoostSourceGiveaway::Ptr& object) {
     if (!object) {
         return "";
     }
@@ -3334,7 +2542,7 @@ std::string BotTypeParser::parseChatBoostSourceGiveaway(const ChatBoostSourceGiv
     return result;
 }
 
-ChatBoost::Ptr BotTypeParser::parseJsonAndGetChatBoost(const boost::property_tree::ptree& data) const {
+ChatBoost::Ptr BotTypeParser::parseJsonAndGetChatBoost(const boost::property_tree::ptree& data) {
     auto result(std::make_shared<ChatBoost>());
     result->boostId = data.get<std::string>("boost_id", "");
     result->addDate = data.get<std::uint32_t>("add_date", 0);
@@ -3343,7 +2551,7 @@ ChatBoost::Ptr BotTypeParser::parseJsonAndGetChatBoost(const boost::property_tre
     return result;
 }
 
-std::string BotTypeParser::parseChatBoost(const ChatBoost::Ptr& object) const {
+std::string BotTypeParser::parseChatBoost(const ChatBoost::Ptr& object) {
     if (!object) {
         return "";
     }
@@ -3358,27 +2566,14 @@ std::string BotTypeParser::parseChatBoost(const ChatBoost::Ptr& object) const {
     return result;
 }
 
-ChatBoostUpdated::Ptr BotTypeParser::parseJsonAndGetChatBoostUpdated(const boost::property_tree::ptree& data) const {
+ChatBoostUpdated::Ptr BotTypeParser::parseJsonAndGetChatBoostUpdated(const boost::property_tree::ptree& data) {
     auto result(std::make_shared<ChatBoostUpdated>());
     result->chat = tryParseJson<Chat>(&BotTypeParser::parseJsonAndGetChat, data, "chat");
     result->boost = tryParseJson<ChatBoost>(&BotTypeParser::parseJsonAndGetChatBoost, data, "boost");
     return result;
 }
 
-std::string BotTypeParser::parseChatBoostUpdated(const ChatBoostUpdated::Ptr& object) const {
-    if (!object) {
-        return "";
-    }
-    std::string result;
-    result += '{';
-    appendToJson(result, "chat", parseChat(object->chat));
-    appendToJson(result, "boost", parseChatBoost(object->boost));
-    removeLastComma(result);
-    result += '}';
-    return result;
-}
-
-ChatBoostRemoved::Ptr BotTypeParser::parseJsonAndGetChatBoostRemoved(const boost::property_tree::ptree& data) const {
+ChatBoostRemoved::Ptr BotTypeParser::parseJsonAndGetChatBoostRemoved(const boost::property_tree::ptree& data) {
     auto result(std::make_shared<ChatBoostRemoved>());
     result->chat = tryParseJson<Chat>(&BotTypeParser::parseJsonAndGetChat, data, "chat");
     result->boostId = data.get<std::string>("boost_id", "");
@@ -3387,28 +2582,13 @@ ChatBoostRemoved::Ptr BotTypeParser::parseJsonAndGetChatBoostRemoved(const boost
     return result;
 }
 
-std::string BotTypeParser::parseChatBoostRemoved(const ChatBoostRemoved::Ptr& object) const {
-    if (!object) {
-        return "";
-    }
-    std::string result;
-    result += '{';
-    appendToJson(result, "chat", parseChat(object->chat));
-    appendToJson(result, "boost_id", object->boostId);
-    appendToJson(result, "remove_date", object->removeDate);
-    appendToJson(result, "source", parseChatBoostSource(object->source));
-    removeLastComma(result);
-    result += '}';
-    return result;
-}
-
-UserChatBoosts::Ptr BotTypeParser::parseJsonAndGetUserChatBoosts(const boost::property_tree::ptree& data) const {
+UserChatBoosts::Ptr BotTypeParser::parseJsonAndGetUserChatBoosts(const boost::property_tree::ptree& data) {
     auto result(std::make_shared<UserChatBoosts>());
     result->boosts = parseJsonAndGetArray<ChatBoost>(&BotTypeParser::parseJsonAndGetChatBoost, data, "boosts");
     return result;
 }
 
-std::string BotTypeParser::parseUserChatBoosts(const UserChatBoosts::Ptr& object) const {
+std::string BotTypeParser::parseUserChatBoosts(const UserChatBoosts::Ptr& object) {
     if (!object) {
         return "";
     }
@@ -3420,70 +2600,14 @@ std::string BotTypeParser::parseUserChatBoosts(const UserChatBoosts::Ptr& object
     return result;
 }
 
-BusinessConnection::Ptr BotTypeParser::parseJsonAndGetBusinessConnection(const boost::property_tree::ptree& data) const {
-    auto result(std::make_shared<BusinessConnection>());
-    result->id = data.get<std::string>("id", "");
-    result->user = tryParseJson<User>(&BotTypeParser::parseJsonAndGetUser, data, "user");
-    result->userChatId = data.get<std::int64_t>("user_chat_id", 0);
-    result->date = data.get<std::uint32_t>("date", 0);
-    result->canReply = data.get<bool>("can_reply", false);
-    result->isEnabled = data.get<bool>("is_enabled", false);
-    return result;
-}
-
-std::string BotTypeParser::parseBusinessConnection(const BusinessConnection::Ptr& object) const {
-    if (!object) {
-        return "";
-    }
-    std::string result;
-    result += '{';
-    appendToJson(result, "id", object->id);
-    appendToJson(result, "user", parseUser(object->user));
-    appendToJson(result, "user_chat_id", object->userChatId);
-    appendToJson(result, "date", object->date);
-    appendToJson(result, "can_reply", object->canReply);
-    appendToJson(result, "is_enabled", object->isEnabled);
-    removeLastComma(result);
-    result += '}';
-    return result;
-}
-
-BusinessMessagesDeleted::Ptr BotTypeParser::parseJsonAndGetBusinessMessagesDeleted(const boost::property_tree::ptree& data) const {
-    auto result(std::make_shared<BusinessMessagesDeleted>());
-    result->businessConnectionId = data.get<std::string>("business_connection_id", "");
-    result->chat = tryParseJson<Chat>(&BotTypeParser::parseJsonAndGetChat, data, "chat");
-    result->messageIds = parseJsonAndGetArray<std::int32_t>(
-        [] (const boost::property_tree::ptree& innerData)->std::int32_t {
-        return innerData.get<std::int32_t>("");
-    }, data, "message_ids");
-    return result;
-}
-
-std::string BotTypeParser::parseBusinessMessagesDeleted(const BusinessMessagesDeleted::Ptr& object) const {
-    if (!object) {
-        return "";
-    }
-    std::string result;
-    result += '{';
-    appendToJson(result, "business_connection_id", object->businessConnectionId);
-    appendToJson(result, "chat", parseChat(object->chat));
-    appendToJson(result, "message_ids", parseArray<std::int32_t>(
-        [] (std::int32_t i)->std::int32_t {
-        return i;
-    }, object->messageIds));
-    removeLastComma(result);
-    result += '}';
-    return result;
-}
-
-ResponseParameters::Ptr BotTypeParser::parseJsonAndGetResponseParameters(const boost::property_tree::ptree& data) const {
+ResponseParameters::Ptr BotTypeParser::parseJsonAndGetResponseParameters(const boost::property_tree::ptree& data) {
     auto result(std::make_shared<ResponseParameters>());
     result->migrateToChatId = data.get<std::int64_t>("migrate_to_chat_id", 0);
     result->retryAfter = data.get<std::int32_t>("retry_after", 0);
     return result;
 }
 
-std::string BotTypeParser::parseResponseParameters(const ResponseParameters::Ptr& object) const {
+std::string BotTypeParser::parseResponseParameters(const ResponseParameters::Ptr& object) {
     if (!object) {
         return "";
     }
@@ -3496,7 +2620,7 @@ std::string BotTypeParser::parseResponseParameters(const ResponseParameters::Ptr
     return result;
 }
 
-InputMedia::Ptr BotTypeParser::parseJsonAndGetInputMedia(const boost::property_tree::ptree& data) const {
+InputMedia::Ptr BotTypeParser::parseJsonAndGetInputMedia(const boost::property_tree::ptree& data) {
     std::string type = data.get<std::string>("type", "");
     InputMedia::Ptr result;
 
@@ -3523,7 +2647,7 @@ InputMedia::Ptr BotTypeParser::parseJsonAndGetInputMedia(const boost::property_t
     return result;
 }
 
-std::string BotTypeParser::parseInputMedia(const InputMedia::Ptr& object) const {
+std::string BotTypeParser::parseInputMedia(const InputMedia::Ptr& object) {
     if (!object) {
         return "";
     }
@@ -3552,14 +2676,14 @@ std::string BotTypeParser::parseInputMedia(const InputMedia::Ptr& object) const 
     return result;
 }
 
-InputMediaPhoto::Ptr BotTypeParser::parseJsonAndGetInputMediaPhoto(const boost::property_tree::ptree& data) const {
+InputMediaPhoto::Ptr BotTypeParser::parseJsonAndGetInputMediaPhoto(const boost::property_tree::ptree& data) {
     // NOTE: This function will be called by parseJsonAndGetInputMedia().
     auto result(std::make_shared<InputMediaPhoto>());
     result->hasSpoiler = data.get<bool>("has_spoiler", false);
     return result;
 }
 
-std::string BotTypeParser::parseInputMediaPhoto(const InputMediaPhoto::Ptr& object) const {
+std::string BotTypeParser::parseInputMediaPhoto(const InputMediaPhoto::Ptr& object) {
     if (!object) {
         return "";
     }
@@ -3571,7 +2695,7 @@ std::string BotTypeParser::parseInputMediaPhoto(const InputMediaPhoto::Ptr& obje
     return result;
 }
 
-InputMediaVideo::Ptr BotTypeParser::parseJsonAndGetInputMediaVideo(const boost::property_tree::ptree& data) const {
+InputMediaVideo::Ptr BotTypeParser::parseJsonAndGetInputMediaVideo(const boost::property_tree::ptree& data) {
     // NOTE: This function will be called by parseJsonAndGetInputMedia().
     auto result(std::make_shared<InputMediaVideo>());
     result->thumbnail = data.get<std::string>("thumbnail", "");
@@ -3583,7 +2707,7 @@ InputMediaVideo::Ptr BotTypeParser::parseJsonAndGetInputMediaVideo(const boost::
     return result;
 }
 
-std::string BotTypeParser::parseInputMediaVideo(const InputMediaVideo::Ptr& object) const {
+std::string BotTypeParser::parseInputMediaVideo(const InputMediaVideo::Ptr& object) {
     if (!object) {
         return "";
     }
@@ -3600,7 +2724,7 @@ std::string BotTypeParser::parseInputMediaVideo(const InputMediaVideo::Ptr& obje
     return result;
 }
 
-InputMediaAnimation::Ptr BotTypeParser::parseJsonAndGetInputMediaAnimation(const boost::property_tree::ptree& data) const {
+InputMediaAnimation::Ptr BotTypeParser::parseJsonAndGetInputMediaAnimation(const boost::property_tree::ptree& data) {
     // NOTE: This function will be called by parseJsonAndGetInputMedia().
     auto result(std::make_shared<InputMediaAnimation>());
     result->thumbnail = data.get<std::string>("thumbnail", "");
@@ -3611,7 +2735,7 @@ InputMediaAnimation::Ptr BotTypeParser::parseJsonAndGetInputMediaAnimation(const
     return result;
 }
 
-std::string BotTypeParser::parseInputMediaAnimation(const InputMediaAnimation::Ptr& object) const {
+std::string BotTypeParser::parseInputMediaAnimation(const InputMediaAnimation::Ptr& object) {
     if (!object) {
         return "";
     }
@@ -3627,7 +2751,7 @@ std::string BotTypeParser::parseInputMediaAnimation(const InputMediaAnimation::P
     return result;
 }
 
-InputMediaAudio::Ptr BotTypeParser::parseJsonAndGetInputMediaAudio(const boost::property_tree::ptree& data) const {
+InputMediaAudio::Ptr BotTypeParser::parseJsonAndGetInputMediaAudio(const boost::property_tree::ptree& data) {
     // NOTE: This function will be called by parseJsonAndGetInputMedia().
     auto result(std::make_shared<InputMediaAudio>());
     result->thumbnail = data.get<std::string>("thumbnail", "");
@@ -3637,7 +2761,7 @@ InputMediaAudio::Ptr BotTypeParser::parseJsonAndGetInputMediaAudio(const boost::
     return result;
 }
 
-std::string BotTypeParser::parseInputMediaAudio(const InputMediaAudio::Ptr& object) const {
+std::string BotTypeParser::parseInputMediaAudio(const InputMediaAudio::Ptr& object) {
     if (!object) {
         return "";
     }
@@ -3652,7 +2776,7 @@ std::string BotTypeParser::parseInputMediaAudio(const InputMediaAudio::Ptr& obje
     return result;
 }
 
-InputMediaDocument::Ptr BotTypeParser::parseJsonAndGetInputMediaDocument(const boost::property_tree::ptree& data) const {
+InputMediaDocument::Ptr BotTypeParser::parseJsonAndGetInputMediaDocument(const boost::property_tree::ptree& data) {
     // NOTE: This function will be called by parseJsonAndGetInputMedia().
     auto result(std::make_shared<InputMediaDocument>());
     result->thumbnail = data.get<std::string>("thumbnail", "");
@@ -3660,7 +2784,7 @@ InputMediaDocument::Ptr BotTypeParser::parseJsonAndGetInputMediaDocument(const b
     return result;
 }
 
-std::string BotTypeParser::parseInputMediaDocument(const InputMediaDocument::Ptr& object) const {
+std::string BotTypeParser::parseInputMediaDocument(const InputMediaDocument::Ptr& object) {
     if (!object) {
         return "";
     }
@@ -3673,7 +2797,7 @@ std::string BotTypeParser::parseInputMediaDocument(const InputMediaDocument::Ptr
     return result;
 }
 
-Sticker::Ptr BotTypeParser::parseJsonAndGetSticker(const boost::property_tree::ptree& data) const {
+Sticker::Ptr BotTypeParser::parseJsonAndGetSticker(const boost::property_tree::ptree& data) {
     auto result(std::make_shared<Sticker>());
     result->fileId = data.get<std::string>("file_id", "");
     result->fileUniqueId = data.get<std::string>("file_unique_id", "");
@@ -3700,7 +2824,7 @@ Sticker::Ptr BotTypeParser::parseJsonAndGetSticker(const boost::property_tree::p
     return result;
 }
 
-std::string BotTypeParser::parseSticker(const Sticker::Ptr& object) const {
+std::string BotTypeParser::parseSticker(const Sticker::Ptr& object) {
     if (!object) {
         return "";
     }
@@ -3732,7 +2856,7 @@ std::string BotTypeParser::parseSticker(const Sticker::Ptr& object) const {
     return result;
 }
 
-StickerSet::Ptr BotTypeParser::parseJsonAndGetStickerSet(const boost::property_tree::ptree& data) const {
+StickerSet::Ptr BotTypeParser::parseJsonAndGetStickerSet(const boost::property_tree::ptree& data) {
     auto result(std::make_shared<StickerSet>());
     result->name = data.get<std::string>("name", "");
     result->title = data.get<std::string>("title", "");
@@ -3749,7 +2873,7 @@ StickerSet::Ptr BotTypeParser::parseJsonAndGetStickerSet(const boost::property_t
     return result;
 }
 
-std::string BotTypeParser::parseStickerSet(const StickerSet::Ptr& object) const {
+std::string BotTypeParser::parseStickerSet(const StickerSet::Ptr& object) {
     if (!object) {
         return "";
     }
@@ -3771,7 +2895,7 @@ std::string BotTypeParser::parseStickerSet(const StickerSet::Ptr& object) const 
     return result;
 }
 
-MaskPosition::Ptr BotTypeParser::parseJsonAndGetMaskPosition(const boost::property_tree::ptree& data) const {
+MaskPosition::Ptr BotTypeParser::parseJsonAndGetMaskPosition(const boost::property_tree::ptree& data) {
     auto result(std::make_shared<MaskPosition>());
     result->point = data.get<std::string>("point", "");
     result->xShift = data.get<float>("x_shift", 0);
@@ -3780,7 +2904,7 @@ MaskPosition::Ptr BotTypeParser::parseJsonAndGetMaskPosition(const boost::proper
     return result;
 }
 
-std::string BotTypeParser::parseMaskPosition(const MaskPosition::Ptr& object) const {
+std::string BotTypeParser::parseMaskPosition(const MaskPosition::Ptr& object) {
     if (!object) {
         return "";
     }
@@ -3795,7 +2919,7 @@ std::string BotTypeParser::parseMaskPosition(const MaskPosition::Ptr& object) co
     return result;
 }
 
-InputSticker::Ptr BotTypeParser::parseJsonAndGetInputSticker(const boost::property_tree::ptree& data) const {
+InputSticker::Ptr BotTypeParser::parseJsonAndGetInputSticker(const boost::property_tree::ptree& data) {
     auto result(std::make_shared<InputSticker>());
     result->sticker = data.get<std::string>("sticker", "");
     result->format = data.get<std::string>("format", "");
@@ -3811,7 +2935,7 @@ InputSticker::Ptr BotTypeParser::parseJsonAndGetInputSticker(const boost::proper
     return result;
 }
 
-std::string BotTypeParser::parseInputSticker(const InputSticker::Ptr& object) const {
+std::string BotTypeParser::parseInputSticker(const InputSticker::Ptr& object) {
     if (!object) {
         return "";
     }
@@ -3833,7 +2957,7 @@ std::string BotTypeParser::parseInputSticker(const InputSticker::Ptr& object) co
     return result;
 }
 
-InlineQuery::Ptr BotTypeParser::parseJsonAndGetInlineQuery(const boost::property_tree::ptree& data) const {
+InlineQuery::Ptr BotTypeParser::parseJsonAndGetInlineQuery(const boost::property_tree::ptree& data) {
     auto result(std::make_shared<InlineQuery>());
     result->id = data.get<std::string>("id", "");
     result->from = tryParseJson<User>(&BotTypeParser::parseJsonAndGetUser, data, "from");
@@ -3844,7 +2968,7 @@ InlineQuery::Ptr BotTypeParser::parseJsonAndGetInlineQuery(const boost::property
     return result;
 }
 
-std::string BotTypeParser::parseInlineQuery(const InlineQuery::Ptr& object) const {
+std::string BotTypeParser::parseInlineQuery(const InlineQuery::Ptr& object) {
     if (!object) {
         return "";
     }
@@ -3861,7 +2985,7 @@ std::string BotTypeParser::parseInlineQuery(const InlineQuery::Ptr& object) cons
     return result;
 }
 
-InlineQueryResultsButton::Ptr BotTypeParser::parseJsonAndGetInlineQueryResultsButton(const boost::property_tree::ptree& data) const {
+InlineQueryResultsButton::Ptr BotTypeParser::parseJsonAndGetInlineQueryResultsButton(const boost::property_tree::ptree& data) {
     auto result(std::make_shared<InlineQueryResultsButton>());
     result->text = data.get<std::string>("text", "");
     result->webApp = tryParseJson<WebAppInfo>(&BotTypeParser::parseJsonAndGetWebAppInfo, data, "web_app");
@@ -3869,7 +2993,7 @@ InlineQueryResultsButton::Ptr BotTypeParser::parseJsonAndGetInlineQueryResultsBu
     return result;
 }
 
-std::string BotTypeParser::parseInlineQueryResultsButton(const InlineQueryResultsButton::Ptr& object) const {
+std::string BotTypeParser::parseInlineQueryResultsButton(const InlineQueryResultsButton::Ptr& object) {
     if (!object) {
         return "";
     }
@@ -3883,7 +3007,7 @@ std::string BotTypeParser::parseInlineQueryResultsButton(const InlineQueryResult
     return result;
 }
 
-InlineQueryResult::Ptr BotTypeParser::parseJsonAndGetInlineQueryResult(const boost::property_tree::ptree& data) const {
+InlineQueryResult::Ptr BotTypeParser::parseJsonAndGetInlineQueryResult(const boost::property_tree::ptree& data) {
     std::string type = data.get<std::string>("type", "");
     InlineQueryResult::Ptr result;
 
@@ -3938,7 +3062,7 @@ InlineQueryResult::Ptr BotTypeParser::parseJsonAndGetInlineQueryResult(const boo
     return result;
 }
 
-std::string BotTypeParser::parseInlineQueryResult(const InlineQueryResult::Ptr& object) const {
+std::string BotTypeParser::parseInlineQueryResult(const InlineQueryResult::Ptr& object) {
     if (!object) {
         return "";
     }
@@ -4013,7 +3137,7 @@ std::string BotTypeParser::parseInlineQueryResult(const InlineQueryResult::Ptr& 
     return result;
 }
 
-InlineQueryResultArticle::Ptr BotTypeParser::parseJsonAndGetInlineQueryResultArticle(const boost::property_tree::ptree& data) const {
+InlineQueryResultArticle::Ptr BotTypeParser::parseJsonAndGetInlineQueryResultArticle(const boost::property_tree::ptree& data) {
     // NOTE: This function will be called by parseJsonAndGetInlineQueryResult().
     auto result(std::make_shared<InlineQueryResultArticle>());
     result->title = data.get<std::string>("title", "");
@@ -4027,7 +3151,7 @@ InlineQueryResultArticle::Ptr BotTypeParser::parseJsonAndGetInlineQueryResultArt
     return result;
 }
 
-std::string BotTypeParser::parseInlineQueryResultArticle(const InlineQueryResultArticle::Ptr& object) const {
+std::string BotTypeParser::parseInlineQueryResultArticle(const InlineQueryResultArticle::Ptr& object) {
     if (!object) {
         return "";
     }
@@ -4046,7 +3170,7 @@ std::string BotTypeParser::parseInlineQueryResultArticle(const InlineQueryResult
     return result;
 }
 
-InlineQueryResultPhoto::Ptr BotTypeParser::parseJsonAndGetInlineQueryResultPhoto(const boost::property_tree::ptree& data) const {
+InlineQueryResultPhoto::Ptr BotTypeParser::parseJsonAndGetInlineQueryResultPhoto(const boost::property_tree::ptree& data) {
     // NOTE: This function will be called by parseJsonAndGetInlineQueryResult().
     auto result(std::make_shared<InlineQueryResultPhoto>());
     result->photoUrl = data.get<std::string>("photo_url", "");
@@ -4062,7 +3186,7 @@ InlineQueryResultPhoto::Ptr BotTypeParser::parseJsonAndGetInlineQueryResultPhoto
     return result;
 }
 
-std::string BotTypeParser::parseInlineQueryResultPhoto(const InlineQueryResultPhoto::Ptr& object) const {
+std::string BotTypeParser::parseInlineQueryResultPhoto(const InlineQueryResultPhoto::Ptr& object) {
     if (!object) {
         return "";
     }
@@ -4083,7 +3207,7 @@ std::string BotTypeParser::parseInlineQueryResultPhoto(const InlineQueryResultPh
     return result;
 }
 
-InlineQueryResultGif::Ptr BotTypeParser::parseJsonAndGetInlineQueryResultGif(const boost::property_tree::ptree& data) const {
+InlineQueryResultGif::Ptr BotTypeParser::parseJsonAndGetInlineQueryResultGif(const boost::property_tree::ptree& data) {
     // NOTE: This function will be called by parseJsonAndGetInlineQueryResult().
     auto result(std::make_shared<InlineQueryResultGif>());
     result->gifUrl = data.get<std::string>("gif_url", "");
@@ -4100,7 +3224,7 @@ InlineQueryResultGif::Ptr BotTypeParser::parseJsonAndGetInlineQueryResultGif(con
     return result;
 }
 
-std::string BotTypeParser::parseInlineQueryResultGif(const InlineQueryResultGif::Ptr& object) const {
+std::string BotTypeParser::parseInlineQueryResultGif(const InlineQueryResultGif::Ptr& object) {
     if (!object) {
         return "";
     }
@@ -4122,7 +3246,7 @@ std::string BotTypeParser::parseInlineQueryResultGif(const InlineQueryResultGif:
     return result;
 }
 
-InlineQueryResultMpeg4Gif::Ptr BotTypeParser::parseJsonAndGetInlineQueryResultMpeg4Gif(const boost::property_tree::ptree& data) const {
+InlineQueryResultMpeg4Gif::Ptr BotTypeParser::parseJsonAndGetInlineQueryResultMpeg4Gif(const boost::property_tree::ptree& data) {
     // NOTE: This function will be called by parseJsonAndGetInlineQueryResult().
     auto result(std::make_shared<InlineQueryResultMpeg4Gif>());
     result->mpeg4Url = data.get<std::string>("mpeg4_url", "");
@@ -4139,7 +3263,7 @@ InlineQueryResultMpeg4Gif::Ptr BotTypeParser::parseJsonAndGetInlineQueryResultMp
     return result;
 }
 
-std::string BotTypeParser::parseInlineQueryResultMpeg4Gif(const InlineQueryResultMpeg4Gif::Ptr& object) const {
+std::string BotTypeParser::parseInlineQueryResultMpeg4Gif(const InlineQueryResultMpeg4Gif::Ptr& object) {
     if (!object) {
         return "";
     }
@@ -4161,7 +3285,7 @@ std::string BotTypeParser::parseInlineQueryResultMpeg4Gif(const InlineQueryResul
     return result;
 }
 
-InlineQueryResultVideo::Ptr BotTypeParser::parseJsonAndGetInlineQueryResultVideo(const boost::property_tree::ptree& data) const {
+InlineQueryResultVideo::Ptr BotTypeParser::parseJsonAndGetInlineQueryResultVideo(const boost::property_tree::ptree& data) {
     // NOTE: This function will be called by parseJsonAndGetInlineQueryResult().
     auto result(std::make_shared<InlineQueryResultVideo>());
     result->videoUrl = data.get<std::string>("video_url", "");
@@ -4179,7 +3303,7 @@ InlineQueryResultVideo::Ptr BotTypeParser::parseJsonAndGetInlineQueryResultVideo
     return result;
 }
 
-std::string BotTypeParser::parseInlineQueryResultVideo(const InlineQueryResultVideo::Ptr& object) const {
+std::string BotTypeParser::parseInlineQueryResultVideo(const InlineQueryResultVideo::Ptr& object) {
     if (!object) {
         return "";
     }
@@ -4202,7 +3326,7 @@ std::string BotTypeParser::parseInlineQueryResultVideo(const InlineQueryResultVi
     return result;
 }
 
-InlineQueryResultAudio::Ptr BotTypeParser::parseJsonAndGetInlineQueryResultAudio(const boost::property_tree::ptree& data) const {
+InlineQueryResultAudio::Ptr BotTypeParser::parseJsonAndGetInlineQueryResultAudio(const boost::property_tree::ptree& data) {
     // NOTE: This function will be called by parseJsonAndGetInlineQueryResult().
     auto result(std::make_shared<InlineQueryResultAudio>());
     result->audioUrl = data.get<std::string>("audio_url", "");
@@ -4216,7 +3340,7 @@ InlineQueryResultAudio::Ptr BotTypeParser::parseJsonAndGetInlineQueryResultAudio
     return result;
 }
 
-std::string BotTypeParser::parseInlineQueryResultAudio(const InlineQueryResultAudio::Ptr& object) const {
+std::string BotTypeParser::parseInlineQueryResultAudio(const InlineQueryResultAudio::Ptr& object) {
     if (!object) {
         return "";
     }
@@ -4235,7 +3359,7 @@ std::string BotTypeParser::parseInlineQueryResultAudio(const InlineQueryResultAu
     return result;
 }
 
-InlineQueryResultVoice::Ptr BotTypeParser::parseJsonAndGetInlineQueryResultVoice(const boost::property_tree::ptree& data) const {
+InlineQueryResultVoice::Ptr BotTypeParser::parseJsonAndGetInlineQueryResultVoice(const boost::property_tree::ptree& data) {
     // NOTE: This function will be called by parseJsonAndGetInlineQueryResult().
     auto result(std::make_shared<InlineQueryResultVoice>());
     result->voiceUrl = data.get<std::string>("voice_url", "");
@@ -4248,7 +3372,7 @@ InlineQueryResultVoice::Ptr BotTypeParser::parseJsonAndGetInlineQueryResultVoice
     return result;
 }
 
-std::string BotTypeParser::parseInlineQueryResultVoice(const InlineQueryResultVoice::Ptr& object) const {
+std::string BotTypeParser::parseInlineQueryResultVoice(const InlineQueryResultVoice::Ptr& object) {
     if (!object) {
         return "";
     }
@@ -4266,7 +3390,7 @@ std::string BotTypeParser::parseInlineQueryResultVoice(const InlineQueryResultVo
     return result;
 }
 
-InlineQueryResultDocument::Ptr BotTypeParser::parseJsonAndGetInlineQueryResultDocument(const boost::property_tree::ptree& data) const {
+InlineQueryResultDocument::Ptr BotTypeParser::parseJsonAndGetInlineQueryResultDocument(const boost::property_tree::ptree& data) {
     // NOTE: This function will be called by parseJsonAndGetInlineQueryResult().
     auto result(std::make_shared<InlineQueryResultDocument>());
     result->title = data.get<std::string>("title", "");
@@ -4283,7 +3407,7 @@ InlineQueryResultDocument::Ptr BotTypeParser::parseJsonAndGetInlineQueryResultDo
     return result;
 }
 
-std::string BotTypeParser::parseInlineQueryResultDocument(const InlineQueryResultDocument::Ptr& object) const {
+std::string BotTypeParser::parseInlineQueryResultDocument(const InlineQueryResultDocument::Ptr& object) {
     if (!object) {
         return "";
     }
@@ -4305,7 +3429,7 @@ std::string BotTypeParser::parseInlineQueryResultDocument(const InlineQueryResul
     return result;
 }
 
-InlineQueryResultLocation::Ptr BotTypeParser::parseJsonAndGetInlineQueryResultLocation(const boost::property_tree::ptree& data) const {
+InlineQueryResultLocation::Ptr BotTypeParser::parseJsonAndGetInlineQueryResultLocation(const boost::property_tree::ptree& data) {
     // NOTE: This function will be called by parseJsonAndGetInlineQueryResult().
     auto result(std::make_shared<InlineQueryResultLocation>());
     result->latitude = data.get<float>("latitude", 0);
@@ -4322,7 +3446,7 @@ InlineQueryResultLocation::Ptr BotTypeParser::parseJsonAndGetInlineQueryResultLo
     return result;
 }
 
-std::string BotTypeParser::parseInlineQueryResultLocation(const InlineQueryResultLocation::Ptr& object) const {
+std::string BotTypeParser::parseInlineQueryResultLocation(const InlineQueryResultLocation::Ptr& object) {
     if (!object) {
         return "";
     }
@@ -4344,7 +3468,7 @@ std::string BotTypeParser::parseInlineQueryResultLocation(const InlineQueryResul
     return result;
 }
 
-InlineQueryResultVenue::Ptr BotTypeParser::parseJsonAndGetInlineQueryResultVenue(const boost::property_tree::ptree& data) const {
+InlineQueryResultVenue::Ptr BotTypeParser::parseJsonAndGetInlineQueryResultVenue(const boost::property_tree::ptree& data) {
     // NOTE: This function will be called by parseJsonAndGetInlineQueryResult().
     auto result(std::make_shared<InlineQueryResultVenue>());
     result->latitude = data.get<float>("latitude", 0);
@@ -4362,7 +3486,7 @@ InlineQueryResultVenue::Ptr BotTypeParser::parseJsonAndGetInlineQueryResultVenue
     return result;
 }
 
-std::string BotTypeParser::parseInlineQueryResultVenue(const InlineQueryResultVenue::Ptr& object) const {
+std::string BotTypeParser::parseInlineQueryResultVenue(const InlineQueryResultVenue::Ptr& object) {
     if (!object) {
         return "";
     }
@@ -4385,7 +3509,7 @@ std::string BotTypeParser::parseInlineQueryResultVenue(const InlineQueryResultVe
     return result;
 }
 
-InlineQueryResultContact::Ptr BotTypeParser::parseJsonAndGetInlineQueryResultContact(const boost::property_tree::ptree& data) const {
+InlineQueryResultContact::Ptr BotTypeParser::parseJsonAndGetInlineQueryResultContact(const boost::property_tree::ptree& data) {
     // NOTE: This function will be called by parseJsonAndGetInlineQueryResult().
     auto result(std::make_shared<InlineQueryResultContact>());
     result->phoneNumber = data.get<std::string>("phone_number", "");
@@ -4399,7 +3523,7 @@ InlineQueryResultContact::Ptr BotTypeParser::parseJsonAndGetInlineQueryResultCon
     return result;
 }
 
-std::string BotTypeParser::parseInlineQueryResultContact(const InlineQueryResultContact::Ptr& object) const {
+std::string BotTypeParser::parseInlineQueryResultContact(const InlineQueryResultContact::Ptr& object) {
     if (!object) {
         return "";
     }
@@ -4418,14 +3542,14 @@ std::string BotTypeParser::parseInlineQueryResultContact(const InlineQueryResult
     return result;
 }
 
-InlineQueryResultGame::Ptr BotTypeParser::parseJsonAndGetInlineQueryResultGame(const boost::property_tree::ptree& data) const {
+InlineQueryResultGame::Ptr BotTypeParser::parseJsonAndGetInlineQueryResultGame(const boost::property_tree::ptree& data) {
     // NOTE: This function will be called by parseJsonAndGetInlineQueryResult().
     auto result(std::make_shared<InlineQueryResultGame>());
     result->gameShortName = data.get<std::string>("game_short_name", "");
     return result;
 }
 
-std::string BotTypeParser::parseInlineQueryResultGame(const InlineQueryResultGame::Ptr& object) const {
+std::string BotTypeParser::parseInlineQueryResultGame(const InlineQueryResultGame::Ptr& object) {
     if (!object) {
         return "";
     }
@@ -4437,7 +3561,7 @@ std::string BotTypeParser::parseInlineQueryResultGame(const InlineQueryResultGam
     return result;
 }
 
-InlineQueryResultCachedPhoto::Ptr BotTypeParser::parseJsonAndGetInlineQueryResultCachedPhoto(const boost::property_tree::ptree& data) const {
+InlineQueryResultCachedPhoto::Ptr BotTypeParser::parseJsonAndGetInlineQueryResultCachedPhoto(const boost::property_tree::ptree& data) {
     // NOTE: This function will be called by parseJsonAndGetInlineQueryResult().
     auto result(std::make_shared<InlineQueryResultCachedPhoto>());
     result->photoFileId = data.get<std::string>("photo_file_id", "");
@@ -4450,7 +3574,7 @@ InlineQueryResultCachedPhoto::Ptr BotTypeParser::parseJsonAndGetInlineQueryResul
     return result;
 }
 
-std::string BotTypeParser::parseInlineQueryResultCachedPhoto(const InlineQueryResultCachedPhoto::Ptr& object) const {
+std::string BotTypeParser::parseInlineQueryResultCachedPhoto(const InlineQueryResultCachedPhoto::Ptr& object) {
     if (!object) {
         return "";
     }
@@ -4468,7 +3592,7 @@ std::string BotTypeParser::parseInlineQueryResultCachedPhoto(const InlineQueryRe
     return result;
 }
 
-InlineQueryResultCachedGif::Ptr BotTypeParser::parseJsonAndGetInlineQueryResultCachedGif(const boost::property_tree::ptree& data) const {
+InlineQueryResultCachedGif::Ptr BotTypeParser::parseJsonAndGetInlineQueryResultCachedGif(const boost::property_tree::ptree& data) {
     // NOTE: This function will be called by parseJsonAndGetInlineQueryResult().
     auto result(std::make_shared<InlineQueryResultCachedGif>());
     result->gifFileId = data.get<std::string>("gif_file_id", "");
@@ -4480,7 +3604,7 @@ InlineQueryResultCachedGif::Ptr BotTypeParser::parseJsonAndGetInlineQueryResultC
     return result;
 }
 
-std::string BotTypeParser::parseInlineQueryResultCachedGif(const InlineQueryResultCachedGif::Ptr& object) const {
+std::string BotTypeParser::parseInlineQueryResultCachedGif(const InlineQueryResultCachedGif::Ptr& object) {
     if (!object) {
         return "";
     }
@@ -4497,7 +3621,7 @@ std::string BotTypeParser::parseInlineQueryResultCachedGif(const InlineQueryResu
     return result;
 }
 
-InlineQueryResultCachedMpeg4Gif::Ptr BotTypeParser::parseJsonAndGetInlineQueryResultCachedMpeg4Gif(const boost::property_tree::ptree& data) const {
+InlineQueryResultCachedMpeg4Gif::Ptr BotTypeParser::parseJsonAndGetInlineQueryResultCachedMpeg4Gif(const boost::property_tree::ptree& data) {
     // NOTE: This function will be called by parseJsonAndGetInlineQueryResult().
     auto result(std::make_shared<InlineQueryResultCachedMpeg4Gif>());
     result->mpeg4FileId = data.get<std::string>("mpeg4_file_id", "");
@@ -4509,7 +3633,7 @@ InlineQueryResultCachedMpeg4Gif::Ptr BotTypeParser::parseJsonAndGetInlineQueryRe
     return result;
 }
 
-std::string BotTypeParser::parseInlineQueryResultCachedMpeg4Gif(const InlineQueryResultCachedMpeg4Gif::Ptr& object) const {
+std::string BotTypeParser::parseInlineQueryResultCachedMpeg4Gif(const InlineQueryResultCachedMpeg4Gif::Ptr& object) {
     if (!object) {
         return "";
     }
@@ -4526,7 +3650,7 @@ std::string BotTypeParser::parseInlineQueryResultCachedMpeg4Gif(const InlineQuer
     return result;
 }
 
-InlineQueryResultCachedSticker::Ptr BotTypeParser::parseJsonAndGetInlineQueryResultCachedSticker(const boost::property_tree::ptree& data) const {
+InlineQueryResultCachedSticker::Ptr BotTypeParser::parseJsonAndGetInlineQueryResultCachedSticker(const boost::property_tree::ptree& data) {
     // NOTE: This function will be called by parseJsonAndGetInlineQueryResult().
     auto result(std::make_shared<InlineQueryResultCachedSticker>());
     result->stickerFileId = data.get<std::string>("sticker_file_id", "");
@@ -4534,7 +3658,7 @@ InlineQueryResultCachedSticker::Ptr BotTypeParser::parseJsonAndGetInlineQueryRes
     return result;
 }
 
-std::string BotTypeParser::parseInlineQueryResultCachedSticker(const InlineQueryResultCachedSticker::Ptr& object) const {
+std::string BotTypeParser::parseInlineQueryResultCachedSticker(const InlineQueryResultCachedSticker::Ptr& object) {
     if (!object) {
         return "";
     }
@@ -4547,7 +3671,7 @@ std::string BotTypeParser::parseInlineQueryResultCachedSticker(const InlineQuery
     return result;
 }
 
-InlineQueryResultCachedDocument::Ptr BotTypeParser::parseJsonAndGetInlineQueryResultCachedDocument(const boost::property_tree::ptree& data) const {
+InlineQueryResultCachedDocument::Ptr BotTypeParser::parseJsonAndGetInlineQueryResultCachedDocument(const boost::property_tree::ptree& data) {
     // NOTE: This function will be called by parseJsonAndGetInlineQueryResult().
     auto result(std::make_shared<InlineQueryResultCachedDocument>());
     result->title = data.get<std::string>("title", "");
@@ -4560,7 +3684,7 @@ InlineQueryResultCachedDocument::Ptr BotTypeParser::parseJsonAndGetInlineQueryRe
     return result;
 }
 
-std::string BotTypeParser::parseInlineQueryResultCachedDocument(const InlineQueryResultCachedDocument::Ptr& object) const {
+std::string BotTypeParser::parseInlineQueryResultCachedDocument(const InlineQueryResultCachedDocument::Ptr& object) {
     if (!object) {
         return "";
     }
@@ -4578,7 +3702,7 @@ std::string BotTypeParser::parseInlineQueryResultCachedDocument(const InlineQuer
     return result;
 }
 
-InlineQueryResultCachedVideo::Ptr BotTypeParser::parseJsonAndGetInlineQueryResultCachedVideo(const boost::property_tree::ptree& data) const {
+InlineQueryResultCachedVideo::Ptr BotTypeParser::parseJsonAndGetInlineQueryResultCachedVideo(const boost::property_tree::ptree& data) {
     // NOTE: This function will be called by parseJsonAndGetInlineQueryResult().
     auto result(std::make_shared<InlineQueryResultCachedVideo>());
     result->videoFileId = data.get<std::string>("video_file_id", "");
@@ -4591,7 +3715,7 @@ InlineQueryResultCachedVideo::Ptr BotTypeParser::parseJsonAndGetInlineQueryResul
     return result;
 }
 
-std::string BotTypeParser::parseInlineQueryResultCachedVideo(const InlineQueryResultCachedVideo::Ptr& object) const {
+std::string BotTypeParser::parseInlineQueryResultCachedVideo(const InlineQueryResultCachedVideo::Ptr& object) {
     if (!object) {
         return "";
     }
@@ -4609,7 +3733,7 @@ std::string BotTypeParser::parseInlineQueryResultCachedVideo(const InlineQueryRe
     return result;
 }
 
-InlineQueryResultCachedVoice::Ptr BotTypeParser::parseJsonAndGetInlineQueryResultCachedVoice(const boost::property_tree::ptree& data) const {
+InlineQueryResultCachedVoice::Ptr BotTypeParser::parseJsonAndGetInlineQueryResultCachedVoice(const boost::property_tree::ptree& data) {
     // NOTE: This function will be called by parseJsonAndGetInlineQueryResult().
     auto result(std::make_shared<InlineQueryResultCachedVoice>());
     result->voiceFileId = data.get<std::string>("voice_file_id", "");
@@ -4621,7 +3745,7 @@ InlineQueryResultCachedVoice::Ptr BotTypeParser::parseJsonAndGetInlineQueryResul
     return result;
 }
 
-std::string BotTypeParser::parseInlineQueryResultCachedVoice(const InlineQueryResultCachedVoice::Ptr& object) const {
+std::string BotTypeParser::parseInlineQueryResultCachedVoice(const InlineQueryResultCachedVoice::Ptr& object) {
     if (!object) {
         return "";
     }
@@ -4638,7 +3762,7 @@ std::string BotTypeParser::parseInlineQueryResultCachedVoice(const InlineQueryRe
     return result;
 }
 
-InlineQueryResultCachedAudio::Ptr BotTypeParser::parseJsonAndGetInlineQueryResultCachedAudio(const boost::property_tree::ptree& data) const {
+InlineQueryResultCachedAudio::Ptr BotTypeParser::parseJsonAndGetInlineQueryResultCachedAudio(const boost::property_tree::ptree& data) {
     // NOTE: This function will be called by parseJsonAndGetInlineQueryResult().
     auto result(std::make_shared<InlineQueryResultCachedAudio>());
     result->audioFileId = data.get<std::string>("audio_file_id", "");
@@ -4649,7 +3773,7 @@ InlineQueryResultCachedAudio::Ptr BotTypeParser::parseJsonAndGetInlineQueryResul
     return result;
 }
 
-std::string BotTypeParser::parseInlineQueryResultCachedAudio(const InlineQueryResultCachedAudio::Ptr& object) const {
+std::string BotTypeParser::parseInlineQueryResultCachedAudio(const InlineQueryResultCachedAudio::Ptr& object) {
     if (!object) {
         return "";
     }
@@ -4665,7 +3789,7 @@ std::string BotTypeParser::parseInlineQueryResultCachedAudio(const InlineQueryRe
     return result;
 }
 
-InputMessageContent::Ptr BotTypeParser::parseJsonAndGetInputMessageContent(const boost::property_tree::ptree& data) const {
+InputMessageContent::Ptr BotTypeParser::parseJsonAndGetInputMessageContent(const boost::property_tree::ptree& data) {
     InputMessageContent::Ptr result;
 
     std::string messageText = data.get<std::string>("message_text", "");
@@ -4691,7 +3815,7 @@ InputMessageContent::Ptr BotTypeParser::parseJsonAndGetInputMessageContent(const
     return result;
 }
 
-std::string BotTypeParser::parseInputMessageContent(const InputMessageContent::Ptr& object) const {
+std::string BotTypeParser::parseInputMessageContent(const InputMessageContent::Ptr& object) {
     if (!object) {
         return "";
     }
@@ -4715,7 +3839,7 @@ std::string BotTypeParser::parseInputMessageContent(const InputMessageContent::P
     return result;
 }
 
-InputTextMessageContent::Ptr BotTypeParser::parseJsonAndGetInputTextMessageContent(const boost::property_tree::ptree& data) const {
+InputTextMessageContent::Ptr BotTypeParser::parseJsonAndGetInputTextMessageContent(const boost::property_tree::ptree& data) {
     // NOTE: This function will be called by parseJsonAndGetInputMessageContent().
     auto result(std::make_shared<InputTextMessageContent>());
     result->messageText = data.get<std::string>("message_text", "");
@@ -4725,7 +3849,7 @@ InputTextMessageContent::Ptr BotTypeParser::parseJsonAndGetInputTextMessageConte
     return result;
 }
 
-std::string BotTypeParser::parseInputTextMessageContent(const InputTextMessageContent::Ptr& object) const {
+std::string BotTypeParser::parseInputTextMessageContent(const InputTextMessageContent::Ptr& object) {
     if (!object) {
         return "";
     }
@@ -4739,7 +3863,7 @@ std::string BotTypeParser::parseInputTextMessageContent(const InputTextMessageCo
     return result;
 }
 
-InputLocationMessageContent::Ptr BotTypeParser::parseJsonAndGetInputLocationMessageContent(const boost::property_tree::ptree& data) const {
+InputLocationMessageContent::Ptr BotTypeParser::parseJsonAndGetInputLocationMessageContent(const boost::property_tree::ptree& data) {
     // NOTE: This function will be called by parseJsonAndGetInputMessageContent().
     auto result(std::make_shared<InputLocationMessageContent>());
     result->latitude = data.get<float>("latitude", 0);
@@ -4751,7 +3875,7 @@ InputLocationMessageContent::Ptr BotTypeParser::parseJsonAndGetInputLocationMess
     return result;
 }
 
-std::string BotTypeParser::parseInputLocationMessageContent(const InputLocationMessageContent::Ptr& object) const {
+std::string BotTypeParser::parseInputLocationMessageContent(const InputLocationMessageContent::Ptr& object) {
     if (!object) {
         return "";
     }
@@ -4767,7 +3891,7 @@ std::string BotTypeParser::parseInputLocationMessageContent(const InputLocationM
     return result;
 }
 
-InputVenueMessageContent::Ptr BotTypeParser::parseJsonAndGetInputVenueMessageContent(const boost::property_tree::ptree& data) const {
+InputVenueMessageContent::Ptr BotTypeParser::parseJsonAndGetInputVenueMessageContent(const boost::property_tree::ptree& data) {
     // NOTE: This function will be called by parseJsonAndGetInputMessageContent().
     auto result(std::make_shared<InputVenueMessageContent>());
     result->latitude = data.get<float>("latitude", 0);
@@ -4781,7 +3905,7 @@ InputVenueMessageContent::Ptr BotTypeParser::parseJsonAndGetInputVenueMessageCon
     return result;
 }
 
-std::string BotTypeParser::parseInputVenueMessageContent(const InputVenueMessageContent::Ptr& object) const {
+std::string BotTypeParser::parseInputVenueMessageContent(const InputVenueMessageContent::Ptr& object) {
     if (!object) {
         return "";
     }
@@ -4799,7 +3923,7 @@ std::string BotTypeParser::parseInputVenueMessageContent(const InputVenueMessage
     return result;
 }
 
-InputContactMessageContent::Ptr BotTypeParser::parseJsonAndGetInputContactMessageContent(const boost::property_tree::ptree& data) const {
+InputContactMessageContent::Ptr BotTypeParser::parseJsonAndGetInputContactMessageContent(const boost::property_tree::ptree& data) {
     // NOTE: This function will be called by parseJsonAndGetInputMessageContent().
     auto result(std::make_shared<InputContactMessageContent>());
     result->phoneNumber = data.get<std::string>("phone_number", "");
@@ -4809,7 +3933,7 @@ InputContactMessageContent::Ptr BotTypeParser::parseJsonAndGetInputContactMessag
     return result;
 }
 
-std::string BotTypeParser::parseInputContactMessageContent(const InputContactMessageContent::Ptr& object) const {
+std::string BotTypeParser::parseInputContactMessageContent(const InputContactMessageContent::Ptr& object) {
     if (!object) {
         return "";
     }
@@ -4823,7 +3947,7 @@ std::string BotTypeParser::parseInputContactMessageContent(const InputContactMes
     return result;
 }
 
-InputInvoiceMessageContent::Ptr BotTypeParser::parseJsonAndGetInputInvoiceMessageContent(const boost::property_tree::ptree& data) const {
+InputInvoiceMessageContent::Ptr BotTypeParser::parseJsonAndGetInputInvoiceMessageContent(const boost::property_tree::ptree& data) {
     // NOTE: This function will be called by parseJsonAndGetInputMessageContent().
     auto result(std::make_shared<InputInvoiceMessageContent>());
     result->title = data.get<std::string>("title", "");
@@ -4845,14 +3969,13 @@ InputInvoiceMessageContent::Ptr BotTypeParser::parseJsonAndGetInputInvoiceMessag
     result->needName = data.get<bool>("need_name", false);
     result->needPhoneNumber = data.get<bool>("need_phone_number", false);
     result->needEmail = data.get<bool>("need_email", false);
-    result->needShippingAddress = data.get<bool>("need_shipping_address", false);
     result->sendPhoneNumberToProvider = data.get<bool>("send_phone_number_to_provider", false);
     result->sendEmailToProvider = data.get<bool>("send_email_to_provider", false);
     result->isFlexible = data.get<bool>("is_flexible", false);
     return result;
 }
 
-std::string BotTypeParser::parseInputInvoiceMessageContent(const InputInvoiceMessageContent::Ptr& object) const {
+std::string BotTypeParser::parseInputInvoiceMessageContent(const InputInvoiceMessageContent::Ptr& object) {
     if (!object) {
         return "";
     }
@@ -4876,7 +3999,6 @@ std::string BotTypeParser::parseInputInvoiceMessageContent(const InputInvoiceMes
     appendToJson(result, "need_name", object->needName);
     appendToJson(result, "need_phone_number", object->needPhoneNumber);
     appendToJson(result, "need_email", object->needEmail);
-    appendToJson(result, "need_shipping_address", object->needShippingAddress);
     appendToJson(result, "send_phone_number_to_provider", object->sendPhoneNumberToProvider);
     appendToJson(result, "send_email_to_provider", object->sendEmailToProvider);
     appendToJson(result, "is_flexible", object->isFlexible);
@@ -4884,7 +4006,7 @@ std::string BotTypeParser::parseInputInvoiceMessageContent(const InputInvoiceMes
     return result;
 }
 
-ChosenInlineResult::Ptr BotTypeParser::parseJsonAndGetChosenInlineResult(const boost::property_tree::ptree& data) const {
+ChosenInlineResult::Ptr BotTypeParser::parseJsonAndGetChosenInlineResult(const boost::property_tree::ptree& data) {
     auto result(std::make_shared<ChosenInlineResult>());
     result->resultId = data.get<std::string>("result_id", "");
     result->from = tryParseJson<User>(&BotTypeParser::parseJsonAndGetUser, data, "from");
@@ -4894,7 +4016,7 @@ ChosenInlineResult::Ptr BotTypeParser::parseJsonAndGetChosenInlineResult(const b
     return result;
 }
 
-std::string BotTypeParser::parseChosenInlineResult(const ChosenInlineResult::Ptr& object) const {
+std::string BotTypeParser::parseChosenInlineResult(const ChosenInlineResult::Ptr& object) {
     if (!object) {
         return "";
     }
@@ -4910,13 +4032,13 @@ std::string BotTypeParser::parseChosenInlineResult(const ChosenInlineResult::Ptr
     return result;
 }
 
-SentWebAppMessage::Ptr BotTypeParser::parseJsonAndGetSentWebAppMessage(const boost::property_tree::ptree& data) const {
+SentWebAppMessage::Ptr BotTypeParser::parseJsonAndGetSentWebAppMessage(const boost::property_tree::ptree& data) {
     auto result(std::make_shared<SentWebAppMessage>());
     result->inlineMessageId = data.get<std::string>("inline_message_id", "");
     return result;
 }
 
-std::string BotTypeParser::parseSentWebAppMessage(const SentWebAppMessage::Ptr& object) const {
+std::string BotTypeParser::parseSentWebAppMessage(const SentWebAppMessage::Ptr& object) {
     if (!object) {
         return "";
     }
@@ -4928,14 +4050,14 @@ std::string BotTypeParser::parseSentWebAppMessage(const SentWebAppMessage::Ptr& 
     return result;
 }
 
-LabeledPrice::Ptr BotTypeParser::parseJsonAndGetLabeledPrice(const boost::property_tree::ptree& data) const {
+LabeledPrice::Ptr BotTypeParser::parseJsonAndGetLabeledPrice(const boost::property_tree::ptree& data) {
     auto result(std::make_shared<LabeledPrice>());
     result->label = data.get<std::string>("label", "");
     result->amount = data.get<std::int32_t>("amount", 0);
     return result;
 }
 
-std::string BotTypeParser::parseLabeledPrice(const LabeledPrice::Ptr& object) const {
+std::string BotTypeParser::parseLabeledPrice(const LabeledPrice::Ptr& object) {
     if (!object) {
         return "";
     }
@@ -4948,7 +4070,7 @@ std::string BotTypeParser::parseLabeledPrice(const LabeledPrice::Ptr& object) co
     return result;
 }
 
-Invoice::Ptr BotTypeParser::parseJsonAndGetInvoice(const boost::property_tree::ptree& data) const {
+Invoice::Ptr BotTypeParser::parseJsonAndGetInvoice(const boost::property_tree::ptree& data) {
     auto result(std::make_shared<Invoice>());
     result->title = data.get<std::string>("title", "");
     result->description = data.get<std::string>("description", "");
@@ -4958,7 +4080,7 @@ Invoice::Ptr BotTypeParser::parseJsonAndGetInvoice(const boost::property_tree::p
     return result;
 }
 
-std::string BotTypeParser::parseInvoice(const Invoice::Ptr& object) const {
+std::string BotTypeParser::parseInvoice(const Invoice::Ptr& object) {
     if (!object) {
         return "";
     }
@@ -4974,586 +4096,7 @@ std::string BotTypeParser::parseInvoice(const Invoice::Ptr& object) const {
     return result;
 }
 
-ShippingAddress::Ptr BotTypeParser::parseJsonAndGetShippingAddress(const boost::property_tree::ptree& data) const {
-    auto result(std::make_shared<ShippingAddress>());
-    result->countryCode = data.get<std::string>("country_code", "");
-    result->state = data.get<std::string>("state", "");
-    result->city = data.get<std::string>("city", "");
-    result->streetLine1 = data.get<std::string>("street_line1", "");
-    result->streetLine2 = data.get<std::string>("street_line2", "");
-    result->postCode = data.get<std::string>("post_code", "");
-    return result;
-}
-
-std::string BotTypeParser::parseShippingAddress(const ShippingAddress::Ptr& object) const {
-    if (!object) {
-        return "";
-    }
-    std::string result;
-    result += '{';
-    appendToJson(result, "country_code", object->countryCode);
-    appendToJson(result, "state", object->state);
-    appendToJson(result, "city", object->city);
-    appendToJson(result, "street_line1", object->streetLine1);
-    appendToJson(result, "street_line2", object->streetLine2);
-    appendToJson(result, "post_code", object->postCode);
-    removeLastComma(result);
-    result += '}';
-    return result;
-}
-
-OrderInfo::Ptr BotTypeParser::parseJsonAndGetOrderInfo(const boost::property_tree::ptree& data) const {
-    auto result(std::make_shared<OrderInfo>());
-    result->name = data.get<std::string>("name", "");
-    result->phoneNumber = data.get<std::string>("phone_number", "");
-    result->email = data.get<std::string>("email", "");
-    result->shippingAddress = tryParseJson<ShippingAddress>(&BotTypeParser::parseJsonAndGetShippingAddress, data, "shipping_address");
-    return result;
-}
-
-std::string BotTypeParser::parseOrderInfo(const OrderInfo::Ptr& object) const {
-    if (!object) {
-        return "";
-    }
-    std::string result;
-    result += '{';
-    appendToJson(result, "name", object->name);
-    appendToJson(result, "phone_number", object->phoneNumber);
-    appendToJson(result, "email", object->email);
-    appendToJson(result, "shipping_address", parseShippingAddress(object->shippingAddress));
-    removeLastComma(result);
-    result += '}';
-    return result;
-}
-
-ShippingOption::Ptr BotTypeParser::parseJsonAndGetShippingOption(const boost::property_tree::ptree& data) const {
-    auto result(std::make_shared<ShippingOption>());
-    result->id = data.get<std::string>("id", "");
-    result->title = data.get<std::string>("title", "");
-    result->prices = parseJsonAndGetArray<LabeledPrice>(&BotTypeParser::parseJsonAndGetLabeledPrice, data, "prices");
-    return result;
-}
-
-std::string BotTypeParser::parseShippingOption(const ShippingOption::Ptr& object) const {
-    if (!object) {
-        return "";
-    }
-    std::string result;
-    result += '{';
-    appendToJson(result, "id", object->id);
-    appendToJson(result, "title", object->title);
-    appendToJson(result, "prices", parseArray(&BotTypeParser::parseLabeledPrice, object->prices));
-    removeLastComma(result);
-    result += '}';
-    return result;
-}
-
-SuccessfulPayment::Ptr BotTypeParser::parseJsonAndGetSuccessfulPayment(const boost::property_tree::ptree& data) const {
-    auto result(std::make_shared<SuccessfulPayment>());
-    result->currency = data.get<std::string>("currency", "");
-    result->totalAmount = data.get<std::int32_t>("total_amount", 0);
-    result->invoicePayload = data.get<std::string>("invoice_payload", "");
-    result->shippingOptionId = data.get<std::string>("shipping_option_id", "");
-    result->orderInfo = tryParseJson<OrderInfo>(&BotTypeParser::parseJsonAndGetOrderInfo, data, "order_info");
-    result->telegramPaymentChargeId = data.get<std::string>("telegram_payment_charge_id", "");
-    result->providerPaymentChargeId = data.get<std::string>("provider_payment_charge_id", "");
-    return result;
-}
-
-std::string BotTypeParser::parseSuccessfulPayment(const SuccessfulPayment::Ptr& object) const {
-    if (!object) {
-        return "";
-    }
-    std::string result;
-    result += '{';
-    appendToJson(result, "currency", object->currency);
-    appendToJson(result, "total_amount", object->totalAmount);
-    appendToJson(result, "invoice_payload", object->invoicePayload);
-    appendToJson(result, "shipping_option_id", object->shippingOptionId);
-    appendToJson(result, "order_info", parseOrderInfo(object->orderInfo));
-    appendToJson(result, "telegram_payment_charge_id", object->telegramPaymentChargeId);
-    appendToJson(result, "provider_payment_charge_id", object->providerPaymentChargeId);
-    removeLastComma(result);
-    result += '}';
-    return result;
-}
-
-ShippingQuery::Ptr BotTypeParser::parseJsonAndGetShippingQuery(const boost::property_tree::ptree& data) const {
-    auto result(std::make_shared<ShippingQuery>());
-    result->id = data.get<std::string>("id", "");
-    result->from = tryParseJson<User>(&BotTypeParser::parseJsonAndGetUser, data, "from");
-    result->invoicePayload = data.get<std::string>("invoice_payload", "");
-    result->shippingAddress = tryParseJson<ShippingAddress>(&BotTypeParser::parseJsonAndGetShippingAddress, data, "shipping_address");
-    return result;
-}
-
-std::string BotTypeParser::parseShippingQuery(const ShippingQuery::Ptr& object) const {
-    if (!object) {
-        return "";
-    }
-    std::string result;
-    result += '{';
-    appendToJson(result, "id", object->id);
-    appendToJson(result, "from", parseUser(object->from));
-    appendToJson(result, "invoice_payload", object->invoicePayload);
-    appendToJson(result, "shipping_address", parseShippingAddress(object->shippingAddress));
-    removeLastComma(result);
-    result += '}';
-    return result;
-}
-
-PreCheckoutQuery::Ptr BotTypeParser::parseJsonAndGetPreCheckoutQuery(const boost::property_tree::ptree& data) const {
-    auto result(std::make_shared<PreCheckoutQuery>());
-    result->id = data.get<std::string>("id", "");
-    result->from = tryParseJson<User>(&BotTypeParser::parseJsonAndGetUser, data, "from");
-    result->currency = data.get<std::string>("currency", "");
-    result->totalAmount = data.get<std::int32_t>("total_amount", 0);
-    result->invoicePayload = data.get<std::string>("invoice_payload", "");
-    result->shippingOptionId = data.get<std::string>("shipping_option_id", "");
-    result->orderInfo = tryParseJson<OrderInfo>(&BotTypeParser::parseJsonAndGetOrderInfo, data, "order_info");
-    return result;
-}
-
-std::string BotTypeParser::parsePreCheckoutQuery(const PreCheckoutQuery::Ptr& object) const {
-    if (!object) {
-        return "";
-    }
-    std::string result;
-    result += '{';
-    appendToJson(result, "id", object->id);
-    appendToJson(result, "from", parseUser(object->from));
-    appendToJson(result, "currency", object->currency);
-    appendToJson(result, "total_amount", object->totalAmount);
-    appendToJson(result, "invoice_payload", object->invoicePayload);
-    appendToJson(result, "shipping_option_id", object->shippingOptionId);
-    appendToJson(result, "order_info", parseOrderInfo(object->orderInfo));
-    removeLastComma(result);
-    result += '}';
-    return result;
-}
-
-PassportData::Ptr BotTypeParser::parseJsonAndGetPassportData(const boost::property_tree::ptree& data) const {
-    auto result(std::make_shared<PassportData>());
-    result->data = parseJsonAndGetArray<EncryptedPassportElement>(&BotTypeParser::parseJsonAndGetEncryptedPassportElement, data, "data");
-    result->credentials = tryParseJson<EncryptedCredentials>(&BotTypeParser::parseJsonAndGetEncryptedCredentials, data, "credentials");
-    return result;
-}
-
-std::string BotTypeParser::parsePassportData(const PassportData::Ptr& object) const {
-    if (!object) {
-        return "";
-    }
-    std::string result;
-    result += '{';
-    appendToJson(result, "data", parseArray(&BotTypeParser::parseEncryptedPassportElement, object->data));
-    appendToJson(result, "credentials", parseEncryptedCredentials(object->credentials));
-    removeLastComma(result);
-    result += '}';
-    return result;
-}
-
-PassportFile::Ptr BotTypeParser::parseJsonAndGetPassportFile(const boost::property_tree::ptree& data) const {
-    auto result(std::make_shared<PassportFile>());
-    result->fileId = data.get<std::string>("file_id", "");
-    result->fileUniqueId = data.get<std::string>("file_unique_id", "");
-    result->fileSize = data.get<std::int32_t>("file_size", 0);
-    result->fileDate = data.get<std::int32_t>("file_date", 0);
-    return result;
-}
-
-std::string BotTypeParser::parsePassportFile(const PassportFile::Ptr& object) const {
-    if (!object) {
-        return "";
-    }
-    std::string result;
-    result += '{';
-    appendToJson(result, "file_id", object->fileId);
-    appendToJson(result, "file_unique_id", object->fileUniqueId);
-    appendToJson(result, "file_size", object->fileSize);
-    appendToJson(result, "file_date", object->fileDate);
-    removeLastComma(result);
-    result += '}';
-    return result;
-}
-
-EncryptedPassportElement::Ptr BotTypeParser::parseJsonAndGetEncryptedPassportElement(const boost::property_tree::ptree& data) const {
-    auto result(std::make_shared<EncryptedPassportElement>());
-    result->type = data.get<std::string>("type", "");
-    result->data = data.get<std::string>("data", "");
-    result->phoneNumber = data.get<std::string>("phone_number", "");
-    result->email = data.get<std::string>("email", "");
-    result->files = parseJsonAndGetArray<PassportFile>(&BotTypeParser::parseJsonAndGetPassportFile, data, "files");
-    result->frontSide = tryParseJson<PassportFile>(&BotTypeParser::parseJsonAndGetPassportFile, data, "front_side");
-    result->reverseSide = tryParseJson<PassportFile>(&BotTypeParser::parseJsonAndGetPassportFile, data, "reverse_side");
-    result->selfie = tryParseJson<PassportFile>(&BotTypeParser::parseJsonAndGetPassportFile, data, "selfie");
-    result->translation = parseJsonAndGetArray<PassportFile>(&BotTypeParser::parseJsonAndGetPassportFile, data, "translation");
-    result->hash = data.get<std::string>("hash", "");
-    return result;
-}
-
-std::string BotTypeParser::parseEncryptedPassportElement(const EncryptedPassportElement::Ptr& object) const {
-    if (!object) {
-        return "";
-    }
-    std::string result;
-    result += '{';
-    appendToJson(result, "type", object->type);
-    appendToJson(result, "data", object->data);
-    appendToJson(result, "phone_number", object->phoneNumber);
-    appendToJson(result, "email", object->email);
-    appendToJson(result, "files", parseArray(&BotTypeParser::parsePassportFile, object->files));
-    appendToJson(result, "front_side", parsePassportFile(object->frontSide));
-    appendToJson(result, "reverse_side", parsePassportFile(object->reverseSide));
-    appendToJson(result, "selfie", parsePassportFile(object->selfie));
-    appendToJson(result, "translation", parseArray(&BotTypeParser::parsePassportFile, object->translation));
-    appendToJson(result, "hash", object->hash);
-    removeLastComma(result);
-    result += '}';
-    return result;
-}
-
-EncryptedCredentials::Ptr BotTypeParser::parseJsonAndGetEncryptedCredentials(const boost::property_tree::ptree& data) const {
-    auto result(std::make_shared<EncryptedCredentials>());
-    result->data = data.get<std::string>("data", "");
-    result->hash = data.get<std::string>("hash", "");
-    result->secret = data.get<std::string>("secret", "");
-    return result;
-}
-
-std::string BotTypeParser::parseEncryptedCredentials(const EncryptedCredentials::Ptr& object) const {
-    if (!object) {
-        return "";
-    }
-    std::string result;
-    result += '{';
-    appendToJson(result, "data", object->data);
-    appendToJson(result, "hash", object->hash);
-    appendToJson(result, "secret", object->secret);
-    removeLastComma(result);
-    result += '}';
-    return result;
-}
-
-PassportElementError::Ptr BotTypeParser::parseJsonAndGetPassportElementError(const boost::property_tree::ptree& data) const {
-    std::string source = data.get<std::string>("source", "");
-    PassportElementError::Ptr result;
-
-    if (source == PassportElementErrorDataField::SOURCE) {
-        result = std::static_pointer_cast<PassportElementError>(parseJsonAndGetPassportElementErrorDataField(data));
-    } else if (source == PassportElementErrorFrontSide::SOURCE) {
-        result = std::static_pointer_cast<PassportElementError>(parseJsonAndGetPassportElementErrorFrontSide(data));
-    } else if (source == PassportElementErrorReverseSide::SOURCE) {
-        result = std::static_pointer_cast<PassportElementError>(parseJsonAndGetPassportElementErrorReverseSide(data));
-    } else if (source == PassportElementErrorSelfie::SOURCE) {
-        result = std::static_pointer_cast<PassportElementError>(parseJsonAndGetPassportElementErrorSelfie(data));
-    } else if (source == PassportElementErrorFile::SOURCE) {
-        result = std::static_pointer_cast<PassportElementError>(parseJsonAndGetPassportElementErrorFile(data));
-    } else if (source == PassportElementErrorFiles::SOURCE) {
-        result = std::static_pointer_cast<PassportElementError>(parseJsonAndGetPassportElementErrorFiles(data));
-    } else if (source == PassportElementErrorTranslationFile::SOURCE) {
-        result = std::static_pointer_cast<PassportElementError>(parseJsonAndGetPassportElementErrorTranslationFile(data));
-    } else if (source == PassportElementErrorTranslationFiles::SOURCE) {
-        result = std::static_pointer_cast<PassportElementError>(parseJsonAndGetPassportElementErrorTranslationFiles(data));
-    } else if (source == PassportElementErrorUnspecified::SOURCE) {
-        result = std::static_pointer_cast<PassportElementError>(parseJsonAndGetPassportElementErrorUnspecified(data));
-    } else {
-        result = std::make_shared<PassportElementError>();
-    }
-
-    result->source = data.get<std::string>("source", "");
-    result->type = data.get<std::string>("type", "");
-    result->message = data.get<std::string>("message", "");
-
-    return result;
-}
-
-std::string BotTypeParser::parsePassportElementError(const PassportElementError::Ptr& object) const {
-    if (!object) {
-        return "";
-    }
-    std::string result;
-    result += '{';
-    appendToJson(result, "source", object->source);
-    appendToJson(result, "type", object->type);
-    appendToJson(result, "message", object->message);
-
-    if (object->source == PassportElementErrorDataField::SOURCE) {
-        result += parsePassportElementErrorDataField(std::static_pointer_cast<PassportElementErrorDataField>(object));
-    } else if (object->source == PassportElementErrorFrontSide::SOURCE) {
-        result += parsePassportElementErrorFrontSide(std::static_pointer_cast<PassportElementErrorFrontSide>(object));
-    } else if (object->source == PassportElementErrorReverseSide::SOURCE) {
-        result += parsePassportElementErrorReverseSide(std::static_pointer_cast<PassportElementErrorReverseSide>(object));
-    } else if (object->source == PassportElementErrorSelfie::SOURCE) {
-        result += parsePassportElementErrorSelfie(std::static_pointer_cast<PassportElementErrorSelfie>(object));
-    } else if (object->source == PassportElementErrorFile::SOURCE) {
-        result += parsePassportElementErrorFile(std::static_pointer_cast<PassportElementErrorFile>(object));
-    } else if (object->source == PassportElementErrorFiles::SOURCE) {
-        result += parsePassportElementErrorFiles(std::static_pointer_cast<PassportElementErrorFiles>(object));
-    } else if (object->source == PassportElementErrorTranslationFile::SOURCE) {
-        result += parsePassportElementErrorTranslationFile(std::static_pointer_cast<PassportElementErrorTranslationFile>(object));
-    } else if (object->source == PassportElementErrorTranslationFiles::SOURCE) {
-        result += parsePassportElementErrorTranslationFiles(std::static_pointer_cast<PassportElementErrorTranslationFiles>(object));
-    } else if (object->source == PassportElementErrorUnspecified::SOURCE) {
-        result += parsePassportElementErrorUnspecified(std::static_pointer_cast<PassportElementErrorUnspecified>(object));
-    }
-
-    removeLastComma(result);
-    result += '}';
-    return result;
-}
-
-PassportElementErrorDataField::Ptr BotTypeParser::parseJsonAndGetPassportElementErrorDataField(const boost::property_tree::ptree& data) const {
-    // NOTE: This function will be called by parseJsonAndGetPassportElementError().
-    auto result(std::make_shared<PassportElementErrorDataField>());
-    result->fieldName = data.get<std::string>("field_name", "");
-    result->dataHash = data.get<std::string>("data_hash", "");
-    return result;
-}
-
-std::string BotTypeParser::parsePassportElementErrorDataField(const PassportElementErrorDataField::Ptr& object) const {
-    if (!object) {
-        return "";
-    }
-    // This function will be called by parsePassportElementError(), so I don't add
-    // curly brackets to the result std::string.
-    std::string result;
-    appendToJson(result, "field_name", object->fieldName);
-    appendToJson(result, "data_hash", object->dataHash);
-    // The last comma will be erased by parsePassportElementError().
-    return result;
-}
-
-PassportElementErrorFrontSide::Ptr BotTypeParser::parseJsonAndGetPassportElementErrorFrontSide(const boost::property_tree::ptree& data) const {
-    // NOTE: This function will be called by parseJsonAndGetPassportElementError().
-    auto result(std::make_shared<PassportElementErrorFrontSide>());
-    result->fileHash = data.get<std::string>("file_hash", "");
-    return result;
-}
-
-std::string BotTypeParser::parsePassportElementErrorFrontSide(const PassportElementErrorFrontSide::Ptr& object) const {
-    if (!object) {
-        return "";
-    }
-    // This function will be called by parsePassportElementError(), so I don't add
-    // curly brackets to the result std::string.
-    std::string result;
-    appendToJson(result, "file_hash", object->fileHash);
-    // The last comma will be erased by parsePassportElementError().
-    return result;
-}
-
-PassportElementErrorReverseSide::Ptr BotTypeParser::parseJsonAndGetPassportElementErrorReverseSide(const boost::property_tree::ptree& data) const {
-    // NOTE: This function will be called by parseJsonAndGetPassportElementError().
-    auto result(std::make_shared<PassportElementErrorReverseSide>());
-    result->fileHash = data.get<std::string>("file_hash", "");
-    return result;
-}
-
-std::string BotTypeParser::parsePassportElementErrorReverseSide(const PassportElementErrorReverseSide::Ptr& object) const {
-    if (!object) {
-        return "";
-    }
-    // This function will be called by parsePassportElementError(), so I don't add
-    // curly brackets to the result std::string.
-    std::string result;
-    appendToJson(result, "file_hash", object->fileHash);
-    // The last comma will be erased by parsePassportElementError().
-    return result;
-}
-
-PassportElementErrorSelfie::Ptr BotTypeParser::parseJsonAndGetPassportElementErrorSelfie(const boost::property_tree::ptree& data) const {
-    // NOTE: This function will be called by parseJsonAndGetPassportElementError().
-    auto result(std::make_shared<PassportElementErrorSelfie>());
-    result->fileHash = data.get<std::string>("file_hash", "");
-    return result;
-}
-
-std::string BotTypeParser::parsePassportElementErrorSelfie(const PassportElementErrorSelfie::Ptr& object) const {
-    if (!object) {
-        return "";
-    }
-    // This function will be called by parsePassportElementError(), so I don't add
-    // curly brackets to the result std::string.
-    std::string result;
-    appendToJson(result, "file_hash", object->fileHash);
-    // The last comma will be erased by parsePassportElementError().
-    return result;
-}
-
-PassportElementErrorFile::Ptr BotTypeParser::parseJsonAndGetPassportElementErrorFile(const boost::property_tree::ptree& data) const {
-    // NOTE: This function will be called by parseJsonAndGetPassportElementError().
-    auto result(std::make_shared<PassportElementErrorFile>());
-    result->fileHash = data.get<std::string>("file_hash", "");
-    return result;
-}
-
-std::string BotTypeParser::parsePassportElementErrorFile(const PassportElementErrorFile::Ptr& object) const {
-    if (!object) {
-        return "";
-    }
-    // This function will be called by parsePassportElementError(), so I don't add
-    // curly brackets to the result std::string.
-    std::string result;
-    appendToJson(result, "file_hash", object->fileHash);
-    // The last comma will be erased by parsePassportElementError().
-    return result;
-}
-
-PassportElementErrorFiles::Ptr BotTypeParser::parseJsonAndGetPassportElementErrorFiles(const boost::property_tree::ptree& data) const {
-    // NOTE: This function will be called by parseJsonAndGetPassportElementError().
-    auto result(std::make_shared<PassportElementErrorFiles>());
-    result->fileHashes = parseJsonAndGetArray<std::string>(
-        [] (const boost::property_tree::ptree& innerData)->std::string {
-        return innerData.get<std::string>("");
-    }, data, "file_hashes");
-    return result;
-}
-
-std::string BotTypeParser::parsePassportElementErrorFiles(const PassportElementErrorFiles::Ptr& object) const {
-    if (!object) {
-        return "";
-    }
-    // This function will be called by parsePassportElementError(), so I don't add
-    // curly brackets to the result std::string.
-    std::string result;
-    appendToJson(result, "file_hashes",
-                 parseArray<std::string>([] (const std::string& s)->std::string {
-        return s;
-    }, object->fileHashes));
-    // The last comma will be erased by parsePassportElementError().
-    return result;
-}
-
-PassportElementErrorTranslationFile::Ptr BotTypeParser::parseJsonAndGetPassportElementErrorTranslationFile(const boost::property_tree::ptree& data) const {
-    // NOTE: This function will be called by parseJsonAndGetPassportElementError().
-    auto result(std::make_shared<PassportElementErrorTranslationFile>());
-    result->fileHash = data.get<std::string>("file_hash", "");
-    return result;
-}
-
-std::string BotTypeParser::parsePassportElementErrorTranslationFile(const PassportElementErrorTranslationFile::Ptr& object) const {
-    if (!object) {
-        return "";
-    }
-    // This function will be called by parsePassportElementError(), so I don't add
-    // curly brackets to the result std::string.
-    std::string result;
-    appendToJson(result, "file_hash", object->fileHash);
-    // The last comma will be erased by parsePassportElementError().
-    return result;
-}
-
-PassportElementErrorTranslationFiles::Ptr BotTypeParser::parseJsonAndGetPassportElementErrorTranslationFiles(const boost::property_tree::ptree& data) const {
-    // NOTE: This function will be called by parseJsonAndGetPassportElementError().
-    auto result(std::make_shared<PassportElementErrorTranslationFiles>());
-    result->fileHashes = parseJsonAndGetArray<std::string>(
-        [] (const boost::property_tree::ptree& innerData)->std::string {
-        return innerData.get<std::string>("");
-    }, data, "file_hashes");
-    return result;
-}
-
-std::string BotTypeParser::parsePassportElementErrorTranslationFiles(const PassportElementErrorTranslationFiles::Ptr& object) const {
-    if (!object) {
-        return "";
-    }
-    // This function will be called by parsePassportElementError(), so I don't add
-    // curly brackets to the result std::string.
-    std::string result;
-    appendToJson(result, "file_hashes",
-                 parseArray<std::string>([] (const std::string& s)->std::string {
-        return s;
-    }, object->fileHashes));
-    // The last comma will be erased by parsePassportElementError().
-    return result;
-}
-
-PassportElementErrorUnspecified::Ptr BotTypeParser::parseJsonAndGetPassportElementErrorUnspecified(const boost::property_tree::ptree& data) const {
-    // NOTE: This function will be called by parseJsonAndGetPassportElementError().
-    auto result(std::make_shared<PassportElementErrorUnspecified>());
-    result->elementHash = data.get<std::string>("element_hash", "");
-    return result;
-}
-
-std::string BotTypeParser::parsePassportElementErrorUnspecified(const PassportElementErrorUnspecified::Ptr& object) const {
-    if (!object) {
-        return "";
-    }
-    // This function will be called by parsePassportElementError(), so I don't add
-    // curly brackets to the result std::string.
-    std::string result;
-    appendToJson(result, "element_hash", object->elementHash);
-    // The last comma will be erased by parsePassportElementError().
-    return result;
-}
-
-Game::Ptr BotTypeParser::parseJsonAndGetGame(const boost::property_tree::ptree& data) const {
-    auto result(std::make_shared<Game>());
-    result->title = data.get<std::string>("title", "");
-    result->description = data.get<std::string>("description", "");
-    result->photo = parseJsonAndGetArray<PhotoSize>(&BotTypeParser::parseJsonAndGetPhotoSize, data, "photo");
-    result->text = data.get<std::string>("text", "");
-    result->textEntities = parseJsonAndGetArray<MessageEntity>(&BotTypeParser::parseJsonAndGetMessageEntity, data, "text_entities");
-    result->animation = tryParseJson<Animation>(&BotTypeParser::parseJsonAndGetAnimation, data, "animation");
-    return result;
-}
-
-std::string BotTypeParser::parseGame(const Game::Ptr& object) const {
-    if (!object) {
-        return "";
-    }
-    std::string result;
-    result += '{';
-    appendToJson(result, "title", object->title);
-    appendToJson(result, "description", object->description);
-    appendToJson(result, "photo", parseArray(&BotTypeParser::parsePhotoSize, object->photo));
-    appendToJson(result, "text", object->text);
-    appendToJson(result, "text_entities", parseArray(&BotTypeParser::parseMessageEntity, object->textEntities));
-    appendToJson(result, "animation", parseAnimation(object->animation));
-    removeLastComma(result);
-    result += '}';
-    return result;
-}
-
-CallbackGame::Ptr BotTypeParser::parseJsonAndGetCallbackGame(const boost::property_tree::ptree& /*data*/) const {
-    auto result(std::make_shared<CallbackGame>());
-    return result;
-}
-
-std::string BotTypeParser::parseCallbackGame(const CallbackGame::Ptr& object) const {
-    if (!object) {
-        return "";
-    }
-    std::string result;
-    result += '{';
-    //removeLastComma(result);
-    result += '}';
-    return result;
-}
-
-GameHighScore::Ptr BotTypeParser::parseJsonAndGetGameHighScore(const boost::property_tree::ptree& data) const {
-    auto result(std::make_shared<GameHighScore>());
-    result->position = data.get<std::int32_t>("position", 0);
-    result->user = tryParseJson<User>(&BotTypeParser::parseJsonAndGetUser, data, "user");
-    result->score = data.get<std::int32_t>("score", 0);
-    return result;
-}
-
-std::string BotTypeParser::parseGameHighScore(const GameHighScore::Ptr& object) const {
-    if (!object) {
-        return "";
-    }
-    std::string result;
-    result += '{';
-    appendToJson(result, "position", object->position);
-    appendToJson(result, "user", parseUser(object->user));
-    appendToJson(result, "score", object->score);
-    removeLastComma(result);
-    result += '}';
-    return result;
-}
-
-GenericReply::Ptr BotTypeParser::parseJsonAndGetGenericReply(const boost::property_tree::ptree& data) const {
+GenericReply::Ptr BotTypeParser::parseJsonAndGetGenericReply(const boost::property_tree::ptree& data) {
     if (data.find("force_reply") != data.not_found()) {
         return std::static_pointer_cast<GenericReply>(parseJsonAndGetForceReply(data));
     } else if (data.find("remove_keyboard") != data.not_found()) {
@@ -5566,7 +4109,7 @@ GenericReply::Ptr BotTypeParser::parseJsonAndGetGenericReply(const boost::proper
     return std::make_shared<GenericReply>();
 }
 
-std::string BotTypeParser::parseGenericReply(const GenericReply::Ptr& object) const {
+std::string BotTypeParser::parseGenericReply(const GenericReply::Ptr& object) {
     if (!object) {
         return "";
     }
@@ -5582,20 +4125,4 @@ std::string BotTypeParser::parseGenericReply(const GenericReply::Ptr& object) co
     return "";
 }
 
-void BotTypeParser::appendToJson(std::string& json, const std::string& varName, const std::string& value) const {
-    if (value.empty()) {
-        return;
-    }
-    json += '"';
-    json += varName;
-    json += R"(":)";
-    if (value.front() != '{') {
-        json += '"';
-    }
-    json += value;
-    if (value.back() != '}') {
-        json += '"';
-    }
-    json += ',';
-}
 }

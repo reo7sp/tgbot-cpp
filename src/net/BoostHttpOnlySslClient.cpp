@@ -11,13 +11,16 @@ using namespace boost::asio::ip;
 
 namespace MaxBot {
 
-BoostHttpOnlySslClient::BoostHttpOnlySslClient() : _httpParser() {
+BoostHttpOnlySslClient::BoostHttpOnlySslClient(const std::string& token)
+	: _httpParser()
+{
+	_headers.emplace("Authorization", token);
 }
 
 BoostHttpOnlySslClient::~BoostHttpOnlySslClient() {
 }
 
-string BoostHttpOnlySslClient::makeRequest(const Url& url, const vector<HttpReqArg>& args) const {
+pair<long, string> BoostHttpOnlySslClient::makeRequest(const Url& url, const vector<HttpReqArg>& args, const std::string& customMethod) const {
     tcp::resolver resolver(_ioService);
 
     ssl::context context(ssl::context::tlsv12_client);
@@ -31,10 +34,10 @@ string BoostHttpOnlySslClient::makeRequest(const Url& url, const vector<HttpReqA
     connect(socket.lowest_layer(), resolver.resolve(query));
 #endif
 
-    #ifdef TGBOT_DISABLE_NAGLES_ALGORITHM
+    #ifdef MAXBOT_DISABLE_NAGLES_ALGORITHM
     socket.lowest_layer().set_option(tcp::no_delay(true));
-    #endif //TGBOT_DISABLE_NAGLES_ALGORITHM
-    #ifdef TGBOT_CHANGE_SOCKET_BUFFER_SIZE
+    #endif //MAXBOT_DISABLE_NAGLES_ALGORITHM
+    #ifdef MAXBOT_CHANGE_SOCKET_BUFFER_SIZE
     #if _WIN64 || __amd64__ || __x86_64__ || __MINGW64__ || __aarch64__ || __powerpc64__
     socket.lowest_layer().set_option(socket_base::send_buffer_size(65536));
     socket.lowest_layer().set_option(socket_base::receive_buffer_size(65536));
@@ -42,7 +45,7 @@ string BoostHttpOnlySslClient::makeRequest(const Url& url, const vector<HttpReqA
     socket.lowest_layer().set_option(socket_base::send_buffer_size(32768));
     socket.lowest_layer().set_option(socket_base::receive_buffer_size(32768));
     #endif //Processor architecture
-    #endif //TGBOT_CHANGE_SOCKET_BUFFER_SIZE
+    #endif //MAXBOT_CHANGE_SOCKET_BUFFER_SIZE
     socket.set_verify_mode(ssl::verify_none);
 #if BOOST_VERSION >= 108700
     socket.set_verify_callback(ssl::host_name_verification(url.host));
@@ -52,7 +55,7 @@ string BoostHttpOnlySslClient::makeRequest(const Url& url, const vector<HttpReqA
 
     socket.handshake(ssl::stream<tcp::socket>::client);
 
-    string requestText = _httpParser.generateRequest(url, args, false);
+    string requestText = _httpParser.generateRequest(url, _headers, args, false, customMethod);
     write(socket, buffer(requestText.c_str(), requestText.length()));
 
     fd_set fileDescriptorSet;
@@ -87,7 +90,7 @@ string BoostHttpOnlySslClient::makeRequest(const Url& url, const vector<HttpReqA
     
     string response;
 
-    #ifdef TGBOT_CHANGE_READ_BUFFER_SIZE
+    #ifdef MAXBOT_CHANGE_READ_BUFFER_SIZE
     #if _WIN64 || __amd64__ || __x86_64__ || __MINGW64__ || __aarch64__ || __powerpc64__
     char buff[65536];
     #else //for 32-bit
@@ -95,7 +98,7 @@ string BoostHttpOnlySslClient::makeRequest(const Url& url, const vector<HttpReqA
     #endif //Processor architecture
     #else
     char buff[1024];
-    #endif //TGBOT_CHANGE_READ_BUFFER_SIZE
+    #endif //MAXBOT_CHANGE_READ_BUFFER_SIZE
 
     boost::system::error_code error;
     while (!error) {
@@ -103,7 +106,15 @@ string BoostHttpOnlySslClient::makeRequest(const Url& url, const vector<HttpReqA
         response += string(buff, bytes);
     }
 
-    return _httpParser.extractBody(response);
+	// Парсинг HTTP-кода из первой строки ответа
+	long httpCode = 0;
+	try {
+		auto pos = response.find(' ');
+		auto codeStr = response.substr(pos + 1, response.find(' ', pos + 1) - pos - 1);
+		httpCode = stol(codeStr);
+	} catch (...) { }
+
+    return std::make_pair(httpCode, _httpParser.extractBody(response));
 }
 
 }

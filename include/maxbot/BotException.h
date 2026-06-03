@@ -1,5 +1,5 @@
-#ifndef TGBOT_TGEXCEPTION_H
-#define TGBOT_TGEXCEPTION_H
+#ifndef MAXBOT_TGEXCEPTION_H
+#define MAXBOT_TGEXCEPTION_H
 
 #include "maxbot/export.h"
 
@@ -13,7 +13,7 @@ namespace MaxBot {
  *
  * @ingroup general
  */
-class TGBOT_API BotException : public std::runtime_error {
+class MAXBOT_API BotException : public std::runtime_error {
 
 public:
 
@@ -35,4 +35,4 @@ public:
 
 }
 
-#endif //TGBOT_TGEXCEPTION_H
+#endif //MAXBOT_TGEXCEPTION_H

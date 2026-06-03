@@ -1,5 +1,5 @@
-#ifndef TGBOT_INLINEKEYBOARDMARKUP_H
-#define TGBOT_INLINEKEYBOARDMARKUP_H
+#ifndef MAXBOT_INLINEKEYBOARDMARKUP_H
+#define MAXBOT_INLINEKEYBOARDMARKUP_H
 
 #include "maxbot/types/GenericReply.h"
 #include "maxbot/types/InlineKeyboardButton.h"
@@ -27,4 +27,4 @@ public:
 };
 }
 
-#endif //TGBOT_INLINEKEYBOARDMARKUP_H
+#endif //MAXBOT_INLINEKEYBOARDMARKUP_H

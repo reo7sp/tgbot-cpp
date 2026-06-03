@@ -1,20 +1,21 @@
-#ifndef TGBOT_EVENTBROADCASTER_H
-#define TGBOT_EVENTBROADCASTER_H
+#ifndef MAXBOT_EVENTBROADCASTER_H
+#define MAXBOT_EVENTBROADCASTER_H
 
 #include "maxbot/export.h"
 #include "maxbot/types/Message.h"
-#include "maxbot/types/InlineQuery.h"
-#include "maxbot/types/ChosenInlineResult.h"
-#include "maxbot/types/CallbackQuery.h"
-#include "maxbot/types/ShippingQuery.h"
-#include "maxbot/types/PreCheckoutQuery.h"
-#include "maxbot/types/Poll.h"
-#include "maxbot/types/PollAnswer.h"
-#include "maxbot/types/ChatMemberUpdated.h"
-#include "maxbot/types/ChatJoinRequest.h"
-#include "maxbot/types/MessageReactionUpdated.h"
-#include "maxbot/types/MessageReactionCountUpdated.h"
-#include "maxbot/types/SuccessfulPayment.h"
+#include "maxbot/types/UpdateBotAddedToChat.h"
+#include "maxbot/types/UpdateBotStarted.h"
+#include "maxbot/types/UpdateBotStopped.h"
+#include "maxbot/types/UpdateBotRemovedFromChat.h"
+#include "maxbot/types/UpdateChatTitleChanged.h"
+#include "maxbot/types/UpdateDialogCleared.h"
+#include "maxbot/types/UpdateDialogMuted.h"
+#include "maxbot/types/UpdateDialogUnmuted.h"
+#include "maxbot/types/UpdateDialogRemoved.h"
+#include "maxbot/types/UpdateMessageCallback.h"
+#include "maxbot/types/UpdateMessageRemoved.h"
+#include "maxbot/types/UpdateUserAddedToChat.h"
+#include "maxbot/types/UpdateUserRemovedFromChat.h"
 
 #include <functional>
 #include <initializer_list>
@@ -31,24 +32,25 @@ class EventHandler;
  *
  * @ingroup general
  */
-class TGBOT_API EventBroadcaster {
+class MAXBOT_API EventBroadcaster {
 
 friend EventHandler;
 
 public:
     typedef std::function<void (const Message::Ptr)> MessageListener;
-    typedef std::function<void (const InlineQuery::Ptr)> InlineQueryListener;
-    typedef std::function<void (const ChosenInlineResult::Ptr)> ChosenInlineResultListener;
-    typedef std::function<void (const CallbackQuery::Ptr)> CallbackQueryListener;
-    typedef std::function<void (const ShippingQuery::Ptr)> ShippingQueryListener;
-    typedef std::function<void (const PreCheckoutQuery::Ptr)> PreCheckoutQueryListener;
-    typedef std::function<void (const Poll::Ptr)> PollListener;
-    typedef std::function<void (const PollAnswer::Ptr)> PollAnswerListener;
-    typedef std::function<void (const ChatMemberUpdated::Ptr)> ChatMemberUpdatedListener;
-    typedef std::function<void (const ChatJoinRequest::Ptr)> ChatJoinRequestListener;
-    typedef std::function<void (const MessageReactionUpdated::Ptr)> MessageReactionUpdatedListener;
-    typedef std::function<void (const MessageReactionCountUpdated::Ptr)> MessageReactionCountUpdatedListener;
-    typedef std::function<void (const Message::Ptr, const SuccessfulPayment::Ptr)> SuccessfulPaymentListener;
+    typedef std::function<void (const UpdateBotAddedToChat::Ptr)> UpdateBotAddedToChatListener;
+    typedef std::function<void (const UpdateBotStarted::Ptr)> UpdateBotStartedListener;
+    typedef std::function<void (const UpdateBotStopped::Ptr)> UpdateBotStoppedListener;
+    typedef std::function<void (const UpdateBotRemovedFromChat::Ptr)> UpdateBotRemovedFromChatListener;
+    typedef std::function<void (const UpdateChatTitleChanged::Ptr)> UpdateChatTitleChangedListener;
+    typedef std::function<void (const UpdateDialogCleared::Ptr)> UpdateDialogClearedListener;
+    typedef std::function<void (const UpdateDialogMuted::Ptr)> UpdateDialogMutedListener;
+    typedef std::function<void (const UpdateDialogUnmuted::Ptr)> UpdateDialogUnmutedListener;
+    typedef std::function<void (const UpdateDialogRemoved::Ptr)> UpdateDialogRemovedListener;
+    typedef std::function<void (const UpdateMessageCallback::Ptr)> MessageCallbackListener;
+    typedef std::function<void (const UpdateMessageRemoved::Ptr)> UpdateMessageRemovedListener;
+    typedef std::function<void (const UpdateUserAddedToChat::Ptr)> UpdateUserAddedToChatListener;
+    typedef std::function<void (const UpdateUserRemovedFromChat::Ptr)> UpdateUserRemovedFromChatListener;
 
     /**
      * @brief Registers listener which receives new incoming message of any kind - text, photo, sticker, etc.
@@ -113,128 +115,108 @@ public:
     }
 
     /**
-     * @brief Registers listener which receives new incoming inline queries
+     * @brief Registers listener which receives event when bot is added to a chat or channel.
      * @param listener Listener.
      */
-    inline void onInlineQuery(const InlineQueryListener& listener) {
-        _onInlineQueryListeners.push_back(listener);
+    inline void onBotAddedToChat(const UpdateBotAddedToChatListener& listener) {
+        _onBotAddedToChatListeners.push_back(listener);
     }
 
     /**
-     * @brief Registers listener which receives the results of an inline query that was chosen by a user and sent to their chat partner.
-     * Please see https://core.telegram.org/bots/inline#collecting-feedback for details on how to enable these updates for your bot.
-     * 
+     * @brief Registers listener which receives event when user presses the Start button.
      * @param listener Listener.
      */
-    inline void onChosenInlineResult(const ChosenInlineResultListener& listener){
-        _onChosenInlineResultListeners.push_back(listener);
+    inline void onBotStarted(const UpdateBotStartedListener& listener) {
+        _onBotStartedListeners.push_back(listener);
     }
 
     /**
-     * @brief Registers listener which receives new incoming callback queries
+     * @brief Registers listener which receives event when user stops the bot.
      * @param listener Listener.
      */
-    inline void onCallbackQuery(const CallbackQueryListener& listener){
-        _onCallbackQueryListeners.push_back(listener);
+    inline void onBotStopped(const UpdateBotStoppedListener& listener) {
+        _onBotStoppedListeners.push_back(listener);
     }
 
     /**
-     * @brief Registers listener which receives new incoming shipping queries.
-     * Only for invoices with flexible price
-     * 
+     * @brief Registers listener which receives event when bot is removed from a chat or channel.
      * @param listener Listener.
      */
-    inline void onShippingQuery(const ShippingQueryListener& listener){
-        _onShippingQueryListeners.push_back(listener);
+    inline void onBotRemovedFromChat(const UpdateBotRemovedFromChatListener& listener) {
+        _onBotRemovedFromChatListeners.push_back(listener);
     }
 
     /**
-     * @brief Registers listener which receives new incoming pre-checkout queries.
-     * Contains full information about checkout
-     * 
+     * @brief Registers listener which receives event when chat title is changed.
      * @param listener Listener.
      */
-    inline void onPreCheckoutQuery(const PreCheckoutQueryListener& listener){
-        _onPreCheckoutQueryListeners.push_back(listener);
+    inline void onChatTitleChanged(const UpdateChatTitleChangedListener& listener) {
+        _onChatTitleChangedListeners.push_back(listener);
     }
 
     /**
-     * @brief Registers listener which receives new poll states.
-     * Bots receive only updates about stopped polls and polls, which are sent by the bot
-     * 
+     * @brief Registers listener which receives event when dialog history is cleared.
      * @param listener Listener.
      */
-    inline void onPoll(const PollListener& listener){
-        _onPollListeners.push_back(listener);
+    inline void onDialogCleared(const UpdateDialogClearedListener& listener) {
+        _onDialogClearedListeners.push_back(listener);
     }
 
     /**
-     * @brief Registers listener which receives an answer if a user changed their answer in a non-anonymous poll.
-     * Bots receive new votes only in polls that were sent by the bot itself.
-     * 
+     * @brief Registers listener which receives event when dialog is muted.
      * @param listener Listener.
      */
-    inline void onPollAnswer(const PollAnswerListener& listener){
-        _onPollAnswerListeners.push_back(listener);
+    inline void onDialogMuted(const UpdateDialogMutedListener& listener) {
+        _onDialogMutedListeners.push_back(listener);
     }
 
     /**
-     * @brief Registers listener which receives the bot's chat member status if it was updated in a chat.
-     * For private chats, this update is received only when the bot is blocked or unblocked by the user.
-     * 
+     * @brief Registers listener which receives event when dialog is unmuted.
      * @param listener Listener.
      */
-    inline void onMyChatMember(const ChatMemberUpdatedListener& listener){
-        _onMyChatMemberListeners.push_back(listener);
+    inline void onDialogUnmuted(const UpdateDialogUnmutedListener& listener) {
+        _onDialogUnmutedListeners.push_back(listener);
     }
 
     /**
-     * @brief Registers listener which receives a status if a chat member's status was updated in a chat.
-     * The bot must be an administrator in the chat and must explicitly specify “chat_member” in the list of allowedUpdates to receive these updates.
-     * 
+     * @brief Registers listener which receives event when dialog is removed.
      * @param listener Listener.
      */
-    inline void onChatMember(const ChatMemberUpdatedListener& listener){
-        _onChatMemberListeners.push_back(listener);
+    inline void onDialogRemoved(const UpdateDialogRemovedListener& listener) {
+        _onDialogRemovedListeners.push_back(listener);
     }
 
     /**
-     * @brief Registers listener which receives requests to join the chat.
-     * The bot must have the canInviteUsers administrator right in the chat to receive these updates.
-     * 
+     * @brief Registers listener which receives new incoming callback queries.
      * @param listener Listener.
      */
-    inline void onChatJoinRequest(const ChatJoinRequestListener& listener){
-        _onChatJoinRequestListeners.push_back(listener);
+    inline void onMessageCallback(const MessageCallbackListener& listener) {
+        _onMessageCallbackListeners.push_back(listener);
     }
 
     /**
-     * @brief Registers listener which receives new incoming message reaction update event.
+     * @brief Registers listener which receives event when message is removed.
      * @param listener Listener.
      */
-    inline void onMessageReaction(const MessageReactionUpdatedListener& listener) {
-        _onMessageReactionUpdatedListener.push_back(listener);
+    inline void onMessageRemoved(const UpdateMessageRemovedListener& listener) {
+        _onMessageRemovedListeners.push_back(listener);
     }
 
     /**
-     * @brief Registers listener which receives new incoming message reaction count update event.
+     * @brief Registers listener which receives event when user is added to chat.
      * @param listener Listener.
      */
-    inline void onMessageReactionCount(const MessageReactionCountUpdatedListener& listener) {
-        _onMessageReactionCountUpdatedListener.push_back(listener);
+    inline void onUserAddedToChat(const UpdateUserAddedToChatListener& listener) {
+        _onUserAddedToChatListeners.push_back(listener);
     }
 
     /**
-    * @brief Registers listener which receives information about successful payments.
-    * This listener is triggered when a successful payment is received by the bot.
-    * 
-    * @param listener Listener.
-    */
-    inline void onSuccessfulPayment(const SuccessfulPaymentListener& listener) {
-        _onSuccessfulPaymentListeners.push_back(listener);
+     * @brief Registers listener which receives event when user is removed from chat.
+     * @param listener Listener.
+     */
+    inline void onUserRemovedFromChat(const UpdateUserRemovedFromChatListener& listener) {
+        _onUserRemovedFromChatListeners.push_back(listener);
     }
-
-
 
 
 private:
@@ -273,61 +255,56 @@ private:
         broadcast<MessageListener, Message::Ptr>(_onEditedMessageListeners, message);
     }
 
-    inline void broadcastInlineQuery(const InlineQuery::Ptr& query) const {
-        broadcast<InlineQueryListener, InlineQuery::Ptr>(_onInlineQueryListeners, query);
+    inline void broadcastBotAddedToChat(const UpdateBotAddedToChat::Ptr& update) const {
+        broadcast<UpdateBotAddedToChatListener, UpdateBotAddedToChat::Ptr>(_onBotAddedToChatListeners, update);
     }
 
-    inline void broadcastChosenInlineResult(const ChosenInlineResult::Ptr& result) const {
-        broadcast<ChosenInlineResultListener, ChosenInlineResult::Ptr>(_onChosenInlineResultListeners, result);
+    inline void broadcastBotStarted(const UpdateBotStarted::Ptr& update) const {
+        broadcast<UpdateBotStartedListener, UpdateBotStarted::Ptr>(_onBotStartedListeners, update);
     }
 
-    inline void broadcastCallbackQuery(const CallbackQuery::Ptr& result) const {
-        broadcast<CallbackQueryListener, CallbackQuery::Ptr>(_onCallbackQueryListeners, result);
+    inline void broadcastBotStopped(const UpdateBotStopped::Ptr& update) const {
+        broadcast<UpdateBotStoppedListener, UpdateBotStopped::Ptr>(_onBotStoppedListeners, update);
     }
 
-    inline void broadcastShippingQuery(const ShippingQuery::Ptr& result) const {
-        broadcast<ShippingQueryListener, ShippingQuery::Ptr>(_onShippingQueryListeners, result);
+    inline void broadcastBotRemovedFromChat(const UpdateBotRemovedFromChat::Ptr& update) const {
+        broadcast<UpdateBotRemovedFromChatListener, UpdateBotRemovedFromChat::Ptr>(_onBotRemovedFromChatListeners, update);
     }
 
-    inline void broadcastPreCheckoutQuery(const PreCheckoutQuery::Ptr& result) const {
-        broadcast<PreCheckoutQueryListener, PreCheckoutQuery::Ptr>(_onPreCheckoutQueryListeners, result);
+    inline void broadcastChatTitleChanged(const UpdateChatTitleChanged::Ptr& update) const {
+        broadcast<UpdateChatTitleChangedListener, UpdateChatTitleChanged::Ptr>(_onChatTitleChangedListeners, update);
     }
 
-    inline void broadcastPoll(const Poll::Ptr& result) const {
-        broadcast<PollListener, Poll::Ptr>(_onPollListeners, result);
+    inline void broadcastDialogCleared(const UpdateDialogCleared::Ptr& update) const {
+        broadcast<UpdateDialogClearedListener, UpdateDialogCleared::Ptr>(_onDialogClearedListeners, update);
     }
 
-    inline void broadcastPollAnswer(const PollAnswer::Ptr& result) const {
-        broadcast<PollAnswerListener, PollAnswer::Ptr>(_onPollAnswerListeners, result);
+    inline void broadcastDialogMuted(const UpdateDialogMuted::Ptr& update) const {
+        broadcast<UpdateDialogMutedListener, UpdateDialogMuted::Ptr>(_onDialogMutedListeners, update);
     }
 
-    inline void broadcastMyChatMember(const ChatMemberUpdated::Ptr& result) const {
-        broadcast<ChatMemberUpdatedListener, ChatMemberUpdated::Ptr>(_onMyChatMemberListeners, result);
+    inline void broadcastDialogUnmuted(const UpdateDialogUnmuted::Ptr& update) const {
+        broadcast<UpdateDialogUnmutedListener, UpdateDialogUnmuted::Ptr>(_onDialogUnmutedListeners, update);
     }
 
-    inline void broadcastChatMember(const ChatMemberUpdated::Ptr& result) const {
-        broadcast<ChatMemberUpdatedListener, ChatMemberUpdated::Ptr>(_onChatMemberListeners, result);
+    inline void broadcastDialogRemoved(const UpdateDialogRemoved::Ptr& update) const {
+        broadcast<UpdateDialogRemovedListener, UpdateDialogRemoved::Ptr>(_onDialogRemovedListeners, update);
     }
 
-    inline void broadcastChatJoinRequest(const ChatJoinRequest::Ptr& result) const {
-        broadcast<ChatJoinRequestListener, ChatJoinRequest::Ptr>(_onChatJoinRequestListeners, result);
+    inline void broadcastCallbackQuery(const UpdateMessageCallback::Ptr& callback) const {
+        broadcast<MessageCallbackListener, UpdateMessageCallback::Ptr>(_onMessageCallbackListeners, callback);
     }
 
-    inline void broadcastMessageReactionUpdated(const MessageReactionUpdated::Ptr& messageReaction) const {
-        broadcast<MessageReactionUpdatedListener, MessageReactionUpdated::Ptr>(_onMessageReactionUpdatedListener, messageReaction);
+    inline void broadcastMessageRemoved(const UpdateMessageRemoved::Ptr& update) const {
+        broadcast<UpdateMessageRemovedListener, UpdateMessageRemoved::Ptr>(_onMessageRemovedListeners, update);
     }
 
-    inline void broadcastMessageReactionCountUpdated(const MessageReactionCountUpdated::Ptr& messageReactionCount) const {
-        broadcast<MessageReactionCountUpdatedListener, MessageReactionCountUpdated::Ptr>(_onMessageReactionCountUpdatedListener, messageReactionCount);
+    inline void broadcastUserAddedToChat(const UpdateUserAddedToChat::Ptr& update) const {
+        broadcast<UpdateUserAddedToChatListener, UpdateUserAddedToChat::Ptr>(_onUserAddedToChatListeners, update);
     }
 
-    inline void broadcastSuccessfulPayment(const Message::Ptr& message) const {
-        if (!message || !message->successfulPayment) {
-            return;
-        }
-        for (const auto& listener : _onSuccessfulPaymentListeners) {
-            listener(message, message->successfulPayment);
-        }
+    inline void broadcastUserRemovedFromChat(const UpdateUserRemovedFromChat::Ptr& update) const {
+        broadcast<UpdateUserRemovedFromChatListener, UpdateUserRemovedFromChat::Ptr>(_onUserRemovedFromChatListeners, update);
     }
 
 
@@ -336,22 +313,22 @@ private:
     std::vector<MessageListener> _onUnknownCommandListeners;
     std::vector<MessageListener> _onNonCommandMessageListeners;
     std::vector<MessageListener> _onEditedMessageListeners;
-    std::vector<InlineQueryListener> _onInlineQueryListeners;
-    std::vector<ChosenInlineResultListener> _onChosenInlineResultListeners;
-    std::vector<CallbackQueryListener> _onCallbackQueryListeners;
-    std::vector<ShippingQueryListener> _onShippingQueryListeners;
-    std::vector<PreCheckoutQueryListener> _onPreCheckoutQueryListeners;
-    std::vector<PollListener> _onPollListeners;
-    std::vector<PollAnswerListener> _onPollAnswerListeners;
-    std::vector<ChatMemberUpdatedListener> _onMyChatMemberListeners;
-    std::vector<ChatMemberUpdatedListener> _onChatMemberListeners;
-    std::vector<ChatJoinRequestListener> _onChatJoinRequestListeners;
-    std::vector<MessageReactionUpdatedListener> _onMessageReactionUpdatedListener;
-    std::vector<MessageReactionCountUpdatedListener> _onMessageReactionCountUpdatedListener;
-    std::vector<SuccessfulPaymentListener> _onSuccessfulPaymentListeners;
+    std::vector<UpdateBotAddedToChatListener> _onBotAddedToChatListeners;
+    std::vector<UpdateBotStartedListener> _onBotStartedListeners;
+    std::vector<UpdateBotStoppedListener> _onBotStoppedListeners;
+    std::vector<UpdateBotRemovedFromChatListener> _onBotRemovedFromChatListeners;
+    std::vector<UpdateChatTitleChangedListener> _onChatTitleChangedListeners;
+    std::vector<UpdateDialogClearedListener> _onDialogClearedListeners;
+    std::vector<UpdateDialogMutedListener> _onDialogMutedListeners;
+    std::vector<UpdateDialogUnmutedListener> _onDialogUnmutedListeners;
+    std::vector<UpdateDialogRemovedListener> _onDialogRemovedListeners;
+    std::vector<MessageCallbackListener> _onMessageCallbackListeners;
+    std::vector<UpdateMessageRemovedListener> _onMessageRemovedListeners;
+    std::vector<UpdateUserAddedToChatListener> _onUserAddedToChatListeners;
+    std::vector<UpdateUserRemovedFromChatListener> _onUserRemovedFromChatListeners;
 
 };
 
 }
 
-#endif //TGBOT_EVENTBROADCASTER_H
+#endif //MAXBOT_EVENTBROADCASTER_H

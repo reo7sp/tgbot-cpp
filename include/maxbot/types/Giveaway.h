@@ -1,5 +1,5 @@
-#ifndef TGBOT_GIVEAWAY_H
-#define TGBOT_GIVEAWAY_H
+#ifndef MAXBOT_GIVEAWAY_H
+#define MAXBOT_GIVEAWAY_H
 
 #include "maxbot/types/Chat.h"
 
@@ -65,4 +65,4 @@ public:
 };
 }
 
-#endif //TGBOT_GIVEAWAY_H
+#endif //MAXBOT_GIVEAWAY_H

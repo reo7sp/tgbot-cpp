@@ -1,5 +1,5 @@
-#ifndef TGBOT_MESSAGEENTITY_H
-#define TGBOT_MESSAGEENTITY_H
+#ifndef MAXBOT_MESSAGEENTITY_H
+#define MAXBOT_MESSAGEENTITY_H
 
 #include "maxbot/types/User.h"
 
@@ -70,4 +70,4 @@ public:
 };
 }
 
-#endif //TGBOT_MESSAGEENTITY_H
+#endif //MAXBOT_MESSAGEENTITY_H

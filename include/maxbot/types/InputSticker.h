@@ -1,5 +1,5 @@
-#ifndef TGBOT_INPUTSTICKER_H
-#define TGBOT_INPUTSTICKER_H
+#ifndef MAXBOT_INPUTSTICKER_H
+#define MAXBOT_INPUTSTICKER_H
 
 #include "maxbot/types/MaskPosition.h"
 
@@ -54,4 +54,4 @@ public:
 };
 }
 
-#endif //TGBOT_INPUTSTICKER_H
+#endif //MAXBOT_INPUTSTICKER_H

@@ -1,5 +1,5 @@
-#ifndef TGBOT_INLINEQUERYRESULTCONTACT_H
-#define TGBOT_INLINEQUERYRESULTCONTACT_H
+#ifndef MAXBOT_INLINEQUERYRESULTCONTACT_H
+#define MAXBOT_INLINEQUERYRESULTCONTACT_H
 
 #include "maxbot/types/InlineQueryResult.h"
 #include "maxbot/types/InputMessageContent.h"
@@ -71,4 +71,4 @@ public:
 };
 }
 
-#endif //TGBOT_INLINEQUERYRESULTCONTACT_H
+#endif //MAXBOT_INLINEQUERYRESULTCONTACT_H

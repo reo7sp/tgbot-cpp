@@ -1,5 +1,5 @@
-#ifndef TGBOT_PRECHECKOUTQUERY_H
-#define TGBOT_PRECHECKOUTQUERY_H
+#ifndef MAXBOT_PRECHECKOUTQUERY_H
+#define MAXBOT_PRECHECKOUTQUERY_H
 
 #include "maxbot/types/User.h"
 #include "maxbot/types/OrderInfo.h"
@@ -67,4 +67,4 @@ public:
 };
 }
 
-#endif //TGBOT_PRECHECKOUTQUERY_H
+#endif //MAXBOT_PRECHECKOUTQUERY_H

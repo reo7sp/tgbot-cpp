@@ -1,5 +1,5 @@
-#ifndef TGBOT_CHATMEMBERBANNED_H
-#define TGBOT_CHATMEMBERBANNED_H
+#ifndef MAXBOT_CHATMEMBERBANNED_H
+#define MAXBOT_CHATMEMBERBANNED_H
 
 #include "maxbot/types/ChatMember.h"
 
@@ -32,4 +32,4 @@ public:
 };
 }
 
-#endif //TGBOT_CHATMEMBERBANNED_H
+#endif //MAXBOT_CHATMEMBERBANNED_H

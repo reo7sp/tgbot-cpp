@@ -1,5 +1,5 @@
-#ifndef TGBOT_CPP_CONTACT_H
-#define TGBOT_CPP_CONTACT_H
+#ifndef MAXBOT_CPP_CONTACT_H
+#define MAXBOT_CPP_CONTACT_H
 
 #include <string>
 #include <memory>
@@ -44,4 +44,4 @@ public:
 
 }
 
-#endif //TGBOT_CPP_CONTACT_H
+#endif //MAXBOT_CPP_CONTACT_H

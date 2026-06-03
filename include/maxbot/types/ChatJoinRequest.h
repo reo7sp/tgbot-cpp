@@ -1,5 +1,5 @@
-#ifndef TGBOT_CHATJOINREQUEST_H
-#define TGBOT_CHATJOINREQUEST_H
+#ifndef MAXBOT_CHATJOINREQUEST_H
+#define MAXBOT_CHATJOINREQUEST_H
 
 #include "maxbot/types/Chat.h"
 #include "maxbot/types/User.h"
@@ -57,4 +57,4 @@ public:
 };
 }
 
-#endif //TGBOT_CHATJOINREQUEST_H
+#endif //MAXBOT_CHATJOINREQUEST_H

@@ -1,5 +1,5 @@
-#ifndef TGBOT_WEBHOOKINFO_H
-#define TGBOT_WEBHOOKINFO_H
+#ifndef MAXBOT_WEBHOOKINFO_H
+#define MAXBOT_WEBHOOKINFO_H
 
 #include <cstdint>
 #include <memory>
@@ -64,4 +64,4 @@ public:
 };
 }
 
-#endif //TGBOT_WEBHOOKINFO_H
+#endif //MAXBOT_WEBHOOKINFO_H

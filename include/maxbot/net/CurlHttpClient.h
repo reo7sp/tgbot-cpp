@@ -1,5 +1,5 @@
-#ifndef TGBOT_CURLHTTPCLIENT_H
-#define TGBOT_CURLHTTPCLIENT_H
+#ifndef MAXBOT_CURLHTTPCLIENT_H
+#define MAXBOT_CURLHTTPCLIENT_H
 
 #ifdef HAVE_CURL
 
@@ -23,10 +23,10 @@ namespace MaxBot {
  *
  * @ingroup net
  */
-class TGBOT_API CurlHttpClient : public HttpClient {
+class MAXBOT_API CurlHttpClient : public HttpClient {
 
 public:
-    CurlHttpClient();
+    CurlHttpClient(const std::string& token);
     ~CurlHttpClient() override;
 
     /**
@@ -35,7 +35,7 @@ public:
      * If there's no args specified, a GET request will be sent, otherwise a POST request will be sent.
      * If at least 1 arg is marked as file, the content type of a request will be multipart/form-data, otherwise it will be application/x-www-form-urlencoded.
      */
-    std::string makeRequest(const Url& url, const std::vector<HttpReqArg>& args) const override;
+    std::pair<long, std::string> makeRequest(const Url& url, const std::vector<HttpReqArg>& args, const std::string& customMethod = {}) const override;
 
     /**
      * @brief Raw curl handles, each thread has its own handle.
@@ -59,6 +59,7 @@ private:
     const HttpParser _httpParser;
     const char* _proxyUrl = NULL;
     long _connectTimeout = 20L;
+	const std::string _authHeader;
 
 };
 
@@ -66,4 +67,4 @@ private:
 
 #endif
 
-#endif //TGBOT_CURLHTTPCLIENT_H
+#endif //MAXBOT_CURLHTTPCLIENT_H

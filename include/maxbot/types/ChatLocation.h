@@ -1,5 +1,5 @@
-#ifndef TGBOT_CPP_CHATLOCATION_H
-#define TGBOT_CPP_CHATLOCATION_H
+#ifndef MAXBOT_CPP_CHATLOCATION_H
+#define MAXBOT_CPP_CHATLOCATION_H
 
 #include "maxbot/types/Location.h"
 
@@ -30,4 +30,4 @@ public:
 };
 }
 
-#endif //TGBOT_CPP_CHATLOCATION_H
+#endif //MAXBOT_CPP_CHATLOCATION_H

@@ -1,5 +1,5 @@
-#ifndef TGBOT_BOOSTHTTPCLIENT_H
-#define TGBOT_BOOSTHTTPCLIENT_H
+#ifndef MAXBOT_BOOSTHTTPCLIENT_H
+#define MAXBOT_BOOSTHTTPCLIENT_H
 
 #include "maxbot/net/HttpClient.h"
 #include "maxbot/net/Url.h"
@@ -18,10 +18,10 @@ namespace MaxBot {
  *
  * @ingroup net
  */
-class TGBOT_API BoostHttpOnlySslClient : public HttpClient {
+class MAXBOT_API BoostHttpOnlySslClient : public HttpClient {
 
 public:
-    BoostHttpOnlySslClient();
+    BoostHttpOnlySslClient(const std::string& token);
     ~BoostHttpOnlySslClient() override;
 
     /**
@@ -30,7 +30,7 @@ public:
      * If there's no args specified, a GET request will be sent, otherwise a POST request will be sent.
      * If at least 1 arg is marked as file, the content type of a request will be multipart/form-data, otherwise it will be application/x-www-form-urlencoded.
      */
-    std::string makeRequest(const Url& url, const std::vector<HttpReqArg>& args) const override;
+    std::pair<long, std::string> makeRequest(const Url& url, const std::vector<HttpReqArg>& args, const std::string& customMethod = {}) const override;
 
 private:
 #if BOOST_VERSION >= 108700
@@ -39,8 +39,9 @@ private:
     mutable boost::asio::io_service _ioService;
 #endif
     const HttpParser _httpParser;
+	std::unordered_map<std::string, std::string> _headers;
 };
 
 }
 
-#endif //TGBOT_BOOSTHTTPCLIENT_H
+#endif //MAXBOT_BOOSTHTTPCLIENT_H

@@ -1,5 +1,5 @@
-#ifndef TGBOT_INPUTMEDIA_H
-#define TGBOT_INPUTMEDIA_H
+#ifndef MAXBOT_INPUTMEDIA_H
+#define MAXBOT_INPUTMEDIA_H
 
 #include "maxbot/types/MessageEntity.h"
 
@@ -56,4 +56,4 @@ public:
 };
 }
 
-#endif //TGBOT_INPUTMEDIA_H
+#endif //MAXBOT_INPUTMEDIA_H

@@ -1,5 +1,5 @@
-#ifndef TGBOT_INLINEQUERY_H
-#define TGBOT_INLINEQUERY_H
+#ifndef MAXBOT_INLINEQUERY_H
+#define MAXBOT_INLINEQUERY_H
 
 #include "maxbot/types/User.h"
 #include "maxbot/types/Location.h"
@@ -53,4 +53,4 @@ public:
 };
 }
 
-#endif //TGBOT_INLINEQUERY_H
+#endif //MAXBOT_INLINEQUERY_H

@@ -1,5 +1,5 @@
-#ifndef TGBOT_INLINEQUERYRESULTGIF_H
-#define TGBOT_INLINEQUERYRESULTGIF_H
+#ifndef MAXBOT_INLINEQUERYRESULTGIF_H
+#define MAXBOT_INLINEQUERYRESULTGIF_H
 
 #include "maxbot/types/InlineQueryResult.h"
 #include "maxbot/types/MessageEntity.h"
@@ -89,4 +89,4 @@ public:
 };
 }
 
-#endif //TGBOT_INLINEQUERYRESULTGIF_H
+#endif //MAXBOT_INLINEQUERYRESULTGIF_H

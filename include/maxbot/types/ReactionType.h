@@ -1,5 +1,5 @@
-#ifndef TGBOT_REACTIONTYPE_H
-#define TGBOT_REACTIONTYPE_H
+#ifndef MAXBOT_REACTIONTYPE_H
+#define MAXBOT_REACTIONTYPE_H
 
 #include <memory>
 #include <string>
@@ -31,4 +31,4 @@ public:
 };
 }
 
-#endif //TGBOT_REACTIONTYPE_H
+#endif //MAXBOT_REACTIONTYPE_H

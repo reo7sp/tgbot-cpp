@@ -1,5 +1,5 @@
-#ifndef TGBOT_ANIMATION_H
-#define TGBOT_ANIMATION_H
+#ifndef MAXBOT_ANIMATION_H
+#define MAXBOT_ANIMATION_H
 
 #include "maxbot/types/PhotoSize.h"
 
@@ -69,4 +69,4 @@ public:
 };
 }
 
-#endif //TGBOT_ANIMATION_H
+#endif //MAXBOT_ANIMATION_H

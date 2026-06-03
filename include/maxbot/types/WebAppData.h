@@ -1,5 +1,5 @@
-#ifndef TGBOT_WEBAPPDATA_H
-#define TGBOT_WEBAPPDATA_H
+#ifndef MAXBOT_WEBAPPDATA_H
+#define MAXBOT_WEBAPPDATA_H
 
 #include <memory>
 #include <string>
@@ -29,4 +29,4 @@ public:
 };
 }
 
-#endif //TGBOT_WEBAPPMESSAGE_H
+#endif //MAXBOT_WEBAPPMESSAGE_H

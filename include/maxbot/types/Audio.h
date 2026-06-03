@@ -1,5 +1,5 @@
-#ifndef TGBOT_AUDIO_H
-#define TGBOT_AUDIO_H
+#ifndef MAXBOT_AUDIO_H
+#define MAXBOT_AUDIO_H
 
 #include "maxbot/types/PhotoSize.h"
 
@@ -70,4 +70,4 @@ public:
 };
 }
 
-#endif //TGBOT_AUDIO_H
+#endif //MAXBOT_AUDIO_H

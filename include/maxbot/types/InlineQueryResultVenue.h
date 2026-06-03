@@ -1,5 +1,5 @@
-#ifndef TGBOT_INLINEQUERYRESULTVENUE_H
-#define TGBOT_INLINEQUERYRESULTVENUE_H
+#ifndef MAXBOT_INLINEQUERYRESULTVENUE_H
+#define MAXBOT_INLINEQUERYRESULTVENUE_H
 
 #include "maxbot/types/InlineQueryResult.h"
 #include "maxbot/types/InputMessageContent.h"
@@ -95,4 +95,4 @@ public:
 };
 }
 
-#endif //TGBOT_INLINEQUERYRESULTVENUE_H
+#endif //MAXBOT_INLINEQUERYRESULTVENUE_H

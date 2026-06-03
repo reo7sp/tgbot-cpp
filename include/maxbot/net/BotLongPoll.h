@@ -1,12 +1,10 @@
-#ifndef TGBOT_TGLONGPOLL_H
-#define TGBOT_TGLONGPOLL_H
+#ifndef MAXBOT_TGLONGPOLL_H
+#define MAXBOT_TGLONGPOLL_H
 
 #include "maxbot/Api.h"
 #include "maxbot/export.h"
 
 #include <cstdint>
-#include <memory>
-#include <string>
 #include <vector>
 
 namespace MaxBot {
@@ -19,11 +17,11 @@ class EventHandler;
  *
  * @ingroup net
  */
-class TGBOT_API BotLongPoll {
+class MAXBOT_API BotLongPoll {
 
 public:
-    BotLongPoll(const Api* api, const EventHandler* eventHandler, std::int32_t limit, std::int32_t timeout, std::shared_ptr<std::vector<std::string>> allowUpdates);
-    BotLongPoll(const Bot& bot, std::int32_t limit = 100, std::int32_t timeout = 10, const std::shared_ptr<std::vector<std::string>>& allowUpdates = nullptr);
+    BotLongPoll(const Api* api, const EventHandler* eventHandler, std::int32_t limit, std::int32_t timeout);
+    BotLongPoll(const Bot& bot, std::int32_t limit = 100, std::int32_t timeout = 10);
 
     /**
      * @brief Starts long poll. After new update will come, this method will parse it and send to EventHandler which invokes your listeners. Designed to be executed in a loop.
@@ -33,14 +31,13 @@ public:
 private:
     const Api* _api;
     const EventHandler* _eventHandler;
-    std::int32_t _lastUpdateId = 0;
+    std::int64_t _marker = 0;
     std::int32_t _limit;
     std::int32_t _timeout;
-    std::shared_ptr<std::vector<std::string>> _allowUpdates;
 
     std::vector<Update::Ptr> _updates;
 };
 
 }
 
-#endif //TGBOT_TGLONGPOLL_H
+#endif //MAXBOT_TGLONGPOLL_H

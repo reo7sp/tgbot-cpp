@@ -1,5 +1,5 @@
-#ifndef TGBOT_CPP_INPUTFILE_H
-#define TGBOT_CPP_INPUTFILE_H
+#ifndef MAXBOT_CPP_INPUTFILE_H
+#define MAXBOT_CPP_INPUTFILE_H
 
 #include "maxbot/export.h"
 
@@ -13,7 +13,7 @@ namespace MaxBot {
  *
  * @ingroup types
  */
-class TGBOT_API InputFile {
+class MAXBOT_API InputFile {
 
 public:
     typedef std::shared_ptr<InputFile> Ptr;
@@ -41,4 +41,4 @@ public:
 
 }
 
-#endif //TGBOT_CPP_INPUTFILE_H
+#endif //MAXBOT_CPP_INPUTFILE_H

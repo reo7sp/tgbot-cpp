@@ -1,5 +1,5 @@
-#ifndef TGBOT_REACTIONTYPEEMOJI_H
-#define TGBOT_REACTIONTYPEEMOJI_H
+#ifndef MAXBOT_REACTIONTYPEEMOJI_H
+#define MAXBOT_REACTIONTYPEEMOJI_H
 
 #include "maxbot/types/ReactionType.h"
 
@@ -35,4 +35,4 @@ public:
 };
 }
 
-#endif //TGBOT_REACTIONTYPEEMOJI_H
+#endif //MAXBOT_REACTIONTYPEEMOJI_H

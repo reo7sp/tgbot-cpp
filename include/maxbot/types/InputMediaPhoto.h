@@ -1,5 +1,5 @@
-#ifndef TGBOT_INPUTMEDIAPHOTO_H
-#define TGBOT_INPUTMEDIAPHOTO_H
+#ifndef MAXBOT_INPUTMEDIAPHOTO_H
+#define MAXBOT_INPUTMEDIAPHOTO_H
 
 #include "maxbot/types/InputMedia.h"
 
@@ -29,4 +29,4 @@ public:
 };
 }
 
-#endif //TGBOT_INPUTMEDIAPHOTO_H
+#endif //MAXBOT_INPUTMEDIAPHOTO_H

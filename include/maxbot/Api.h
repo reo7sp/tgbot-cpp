@@ -1,5 +1,5 @@
-#ifndef TGBOT_API_H
-#define TGBOT_API_H
+#ifndef MAXBOT_API_H
+#define MAXBOT_API_H
 
 #include "maxbot/BotException.h"
 #include "maxbot/BotTypeParser.h"
@@ -7,26 +7,19 @@
 #include "maxbot/net/HttpReqArg.h"
 #include "maxbot/tools/StringTools.h"
 #include "maxbot/types/User.h"
+#include "maxbot/types/NewMessageBody.h"
 #include "maxbot/types/Message.h"
 #include "maxbot/types/MessageId.h"
 #include "maxbot/types/GenericReply.h"
 #include "maxbot/types/InputFile.h"
 #include "maxbot/types/UserProfilePhotos.h"
-#include "maxbot/types/Update.h"
 #include "maxbot/types/InlineQueryResult.h"
-#include "maxbot/types/Venue.h"
 #include "maxbot/types/WebhookInfo.h"
 #include "maxbot/types/ChatMember.h"
-#include "maxbot/types/Sticker.h"
-#include "maxbot/types/StickerSet.h"
 #include "maxbot/types/File.h"
 #include "maxbot/types/InputMedia.h"
-#include "maxbot/types/GameHighScore.h"
 #include "maxbot/types/SentWebAppMessage.h"
-#include "maxbot/types/LabeledPrice.h"
-#include "maxbot/types/ShippingOption.h"
 #include "maxbot/types/BotCommand.h"
-#include "maxbot/types/ForumTopic.h"
 
 #include <boost/property_tree/ptree.hpp>
 #include <boost/variant.hpp>
@@ -46,14 +39,14 @@ class Bot;
  *
  * @ingroup general
  */
-class TGBOT_API Api {
+class MAXBOT_API Api {
 
 typedef std::shared_ptr<std::vector<std::string>> StringArrayPtr;
 
 friend class Bot;
 
 public:
-    Api(std::string token, const HttpClient& httpClient, const std::string& url);
+    Api(const HttpClient& httpClient, const std::string& url);
 
     /**
      * @brief Use this method to receive incoming updates using long polling ([wiki](https://en.wikipedia.org/wiki/Push_technology#Long_polling)).
@@ -69,7 +62,7 @@ public:
      *
      * @return Returns an Array of Update objects.
      */
-    std::vector<Update::Ptr> getUpdates(std::int32_t offset = 0,
+    Updates::Ptr getUpdates(std::int64_t marker = 0,
                                         std::int32_t limit = 100,
                                         std::int32_t timeout = 0,
                                         const StringArrayPtr& allowedUpdates = nullptr) const;
@@ -101,11 +94,7 @@ public:
      * @return Returns True on success.
      */
     bool setWebhook(const std::string& url,
-                    InputFile::Ptr certificate = nullptr,
-                    std::int32_t maxConnections = 40,
                     const StringArrayPtr& allowedUpdates = nullptr,
-                    const std::string& ipAddress = "",
-                    bool dropPendingUpdates = false,
                     const std::string& secretToken = "") const;
 
     /**
@@ -115,7 +104,7 @@ public:
      *
      * @return Returns True on success.
      */
-    bool deleteWebhook(bool dropPendingUpdates = false) const;
+    bool deleteWebhook(const std::string& url) const;
 
     /**
      * @brief Use this method to get current webhook status.
@@ -175,17 +164,10 @@ public:
      *
      * @return On success, the sent Message is returned.
      */
-    Message::Ptr sendMessage(boost::variant<std::int64_t, std::string> chatId,
-                             const std::string& text,
-                             LinkPreviewOptions::Ptr linkPreviewOptions = nullptr,
-                             ReplyParameters::Ptr replyParameters = nullptr,
-                             GenericReply::Ptr replyMarkup = nullptr,
-                             const std::string& parseMode = "",
-                             bool disableNotification = false,
-                             const std::vector<MessageEntity::Ptr>& entities = std::vector<MessageEntity::Ptr>(),
-                             std::int32_t messageThreadId = 0,
-                             bool protectContent = false,
-                             const std::string& businessConnectionId = "") const;
+    Message::Ptr sendMessage(std::int64_t chatId,
+                             NewMessageBody::Ptr msg,
+                             bool disableLinkPreview = false) const;
+	bool editMessage(const std::string& msgId, NewMessageBody::Ptr msg) const;
 
     /**
      * @brief Use this method to forward messages of any kind.
@@ -647,43 +629,6 @@ public:
                                          InlineKeyboardMarkup::Ptr replyMarkup = std::make_shared<InlineKeyboardMarkup>()) const;
 
     /**
-     * @brief Use this method to send information about a venue.
-     *
-     * @param chatId Unique identifier for the target chat or username of the target channel (in the format @channelusername)
-     * @param latitude Latitude of the venue
-     * @param longitude Longitude of the venue
-     * @param title Name of the venue
-     * @param address Address of the venue
-     * @param foursquareId Optional. Foursquare identifier of the venue
-     * @param foursquareType Optional. Foursquare type of the venue, if known. (For example, “arts_entertainment/default”, “arts_entertainment/aquarium” or “food/icecream”.)
-     * @param disableNotification Optional. Sends the message silently. Users will receive a notification with no sound.
-     * @param replyParameters Optional. Description of the message to reply to
-     * @param replyMarkup Optional. Additional interface options. A JSON-serialized object for an [inline keyboard](https://core.telegram.org/bots/features#inline-keyboards), [custom reply keyboard](https://core.telegram.org/bots/features#keyboards), instructions to remove a reply keyboard or to force a reply from the user. Not supported for messages sent on behalf of a business account
-     * @param googlePlaceId Optional. Google Places identifier of the venue
-     * @param googlePlaceType Optional. Google Places type of the venue. (See https://developers.google.com/places/web-service/supported_types)
-     * @param messageThreadId Optional. Unique identifier for the target message thread (topic) of the forum; for forum supergroups only
-     * @param protectContent Optional. Protects the contents of the sent message from forwarding and saving
-     * @param businessConnectionId Optional. Unique identifier of the business connection on behalf of which the message will be sent
-     *
-     * @return On success, the sent Message is returned.
-     */
-    Message::Ptr sendVenue(boost::variant<std::int64_t, std::string> chatId,
-                           float latitude,
-                           float longitude,
-                           const std::string& title,
-                           const std::string& address,
-                           const std::string& foursquareId = "",
-                           const std::string& foursquareType = "",
-                           bool disableNotification = false,
-                           ReplyParameters::Ptr replyParameters = nullptr,
-                           GenericReply::Ptr replyMarkup = nullptr,
-                           const std::string& googlePlaceId = "",
-                           const std::string& googlePlaceType = "",
-                           std::int32_t messageThreadId = 0,
-                           bool protectContent = false,
-                           const std::string& businessConnectionId = "") const;
-
-    /**
      * @brief Use this method to send phone contacts.
      *
      * @param chatId Unique identifier for the target chat or username of the target channel (in the format @channelusername)
@@ -753,29 +698,6 @@ public:
                           std::int32_t openPeriod = 0,
                           std::int32_t closeDate = 0,
                           bool isClosed = false,
-                          std::int32_t messageThreadId = 0,
-                          bool protectContent = false,
-                          const std::string& businessConnectionId = "") const;
-
-    /**
-     * @brief Use this method to send an animated emoji that will display a random value.
-     *
-     * @param chatId Unique identifier for the target chat or username of the target channel (in the format @channelusername)
-     * @param disableNotification Optional. Sends the message silently. Users will receive a notification with no sound.
-     * @param replyParameters Optional. Description of the message to reply to
-     * @param replyMarkup Optional. Additional interface options. A JSON-serialized object for an [inline keyboard](https://core.telegram.org/bots/features#inline-keyboards), [custom reply keyboard](https://core.telegram.org/bots/features#keyboards), instructions to remove a reply keyboard or to force a reply from the user. Not supported for messages sent on behalf of a business account
-     * @param emoji Optional. Emoji on which the dice throw animation is based. Currently, must be one of “🎲”, “🎯”, “🏀”, “⚽”, “🎳”, or “🎰”. Dice can have values 1-6 for “🎲”, “🎯” and “🎳”, values 1-5 for “🏀” and “⚽”, and values 1-64 for “🎰”. Defaults to “🎲”
-     * @param messageThreadId Optional. Unique identifier for the target message thread (topic) of the forum; for forum supergroups only
-     * @param protectContent Optional. Protects the contents of the sent message from forwarding
-     * @param businessConnectionId Optional. Unique identifier of the business connection on behalf of which the message will be sent
-     *
-     * @return On success, the sent Message is returned.
-     */
-    Message::Ptr sendDice(boost::variant<std::int64_t, std::string> chatId,
-                          bool disableNotification = false,
-                          ReplyParameters::Ptr replyParameters = nullptr,
-                          GenericReply::Ptr replyMarkup = nullptr,
-                          const std::string& emoji = "",
                           std::int32_t messageThreadId = 0,
                           bool protectContent = false,
                           const std::string& businessConnectionId = "") const;
@@ -1246,195 +1168,6 @@ public:
                                   std::int64_t userId) const;
 
     /**
-     * @brief Use this method to set a new group sticker set for a supergroup.
-     * 
-     * The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights.
-     * Use the field canSetStickerSet optionally returned in Api::getChat requests to check if the bot can use this method.
-     * 
-     * @param chatId Unique identifier for the target chat or username of the target supergroup (in the format @supergroupusername)
-     * @param stickerSetName Name of the sticker set to be set as the group sticker set
-     * 
-     * @return Returns True on success.
-     */
-    bool setChatStickerSet(boost::variant<std::int64_t, std::string> chatId,
-                           const std::string& stickerSetName) const;
-
-    /**
-     * @brief Use this method to delete a group sticker set from a supergroup.
-     * 
-     * The bot must be an administrator in the chat for this to work and must have the appropriate administrator rights.
-     * Use the field canSetSticker_set optionally returned in Api::getChat requests to check if the bot can use this method.
-     * 
-     * @param chatId Unique identifier for the target chat or username of the target supergroup (in the format @supergroupusername)
-     * 
-     * @return Returns True on success.
-     */
-    bool deleteChatStickerSet(boost::variant<std::int64_t, std::string> chatId) const;
-
-    /**
-     * @brief Use this method to get custom emoji stickers, which can be used as a forum topic icon by any user.
-     * 
-     * @return Returns an Array of Sticker objects.
-     */
-    std::vector<Sticker::Ptr> getForumTopicIconStickers() const;
-
-    /**
-     * @brief Use this method to create a topic in a forum supergroup chat.
-     * 
-     * The bot must be an administrator in the chat for this to work and must have the canManageTopics administrator rights.
-     * 
-     * @param chatId Unique identifier for the target chat or username of the target supergroup (in the format @supergroupusername)
-     * @param name Topic name, 1-128 characters
-     * @param iconColor Optional. Color of the topic icon in RGB format. Currently, must be one of 7322096 (0x6FB9F0), 16766590 (0xFFD67E), 13338331 (0xCB86DB), 9367192 (0x8EEE98), 16749490 (0xFF93B2), or 16478047 (0xFB6F5F)
-     * @param iconCustomEmojiId Optional. Unique identifier of the custom emoji shown as the topic icon. Use Api::getForumTopicIconStickers to get all allowed custom emoji identifiers.
-     * 
-     * @return Returns information about the created topic as a ForumTopic object.
-     */
-    ForumTopic::Ptr createForumTopic(boost::variant<std::int64_t, std::string> chatId,
-                                     const std::string& name,
-                                     std::int32_t iconColor = 0,
-                                     const std::string& iconCustomEmojiId = "") const;
-
-    /**
-     * @brief Use this method to edit name and icon of a topic in a forum supergroup chat.
-     * 
-     * The bot must be an administrator in the chat for this to work and must have canManageTopics administrator rights, unless it is the creator of the topic.
-     * 
-     * @param chatId Unique identifier for the target chat or username of the target supergroup (in the format @supergroupusername)
-     * @param messageThreadId Unique identifier for the target message thread of the forum topic
-     * @param name Optional. New topic name, 0-128 characters. If not specified or empty, the current name of the topic will be kept
-     * @param iconCustomEmojiId Optional. New unique identifier of the custom emoji shown as the topic icon. Use Api::getForumTopicIconStickers to get all allowed custom emoji identifiers. Pass an empty string to remove the icon. If not specified, the current icon will be kept
-     * 
-     * @return Returns True on success.
-     */
-    bool editForumTopic(boost::variant<std::int64_t, std::string> chatId,
-                        std::int32_t messageThreadId,
-                        const std::string& name = "",
-                        boost::variant<std::int32_t, std::string> iconCustomEmojiId = 0) const;
-
-    /**
-     * @brief Use this method to close an open topic in a forum supergroup chat.
-     * 
-     * The bot must be an administrator in the chat for this to work and must have the canManageTopics administrator rights, unless it is the creator of the topic.
-     * 
-     * @param chatId Unique identifier for the target chat or username of the target supergroup (in the format @supergroupusername)
-     * @param messageThreadId Unique identifier for the target message thread of the forum topic
-     * 
-     * @return Returns True on success.
-     */
-    bool closeForumTopic(boost::variant<std::int64_t, std::string> chatId,
-                         std::int32_t messageThreadId) const;
-
-    /**
-     * @brief Use this method to reopen a closed topic in a forum supergroup chat.
-     * 
-     * The bot must be an administrator in the chat for this to work and must have the canManageTopics administrator rights, unless it is the creator of the topic.
-     * 
-     * @param chatId Unique identifier for the target chat or username of the target supergroup (in the format @supergroupusername)
-     * @param messageThreadId Unique identifier for the target message thread of the forum topic
-     * 
-     * @return Returns True on success.
-     */
-    bool reopenForumTopic(boost::variant<std::int64_t, std::string> chatId,
-                          std::int32_t messageThreadId) const;
-
-    /**
-     * @brief Use this method to delete a forum topic along with all its messages in a forum supergroup chat.
-     * 
-     * The bot must be an administrator in the chat for this to work and must have the canDeleteMessages administrator rights.
-     * 
-     * @param chatId Unique identifier for the target chat or username of the target supergroup (in the format @supergroupusername)
-     * @param messageThreadId Unique identifier for the target message thread of the forum topic
-     * 
-     * @return Returns True on success.
-     */
-    bool deleteForumTopic(boost::variant<std::int64_t, std::string> chatId,
-                          std::int32_t messageThreadId) const;
-
-    /**
-     * @brief Use this method to clear the list of pinned messages in a forum topic.
-     * 
-     * The bot must be an administrator in the chat for this to work and must have the canPinMessages administrator right in the supergroup.
-     * 
-     * @param chatId Unique identifier for the target chat or username of the target supergroup (in the format @supergroupusername)
-     * @param messageThreadId Unique identifier for the target message thread of the forum topic
-     * 
-     * @return Returns True on success.
-     */
-    bool unpinAllForumTopicMessages(boost::variant<std::int64_t, std::string> chatId,
-                                    std::int32_t messageThreadId) const;
-
-    /**
-     * @brief Use this method to edit the name of the 'General' topic in a forum supergroup chat.
-     * 
-     * The bot must be an administrator in the chat for this to work and must have canManageTopics administrator rights.
-     * 
-     * @param chatId Unique identifier for the target chat or username of the target supergroup (in the format @supergroupusername)
-     * @param name New topic name, 1-128 characters
-     * 
-     * @return Returns True on success.
-     */
-    bool editGeneralForumTopic(boost::variant<std::int64_t, std::string> chatId,
-                               std::string name) const;
-
-    /**
-     * @brief Use this method to close an open 'General' topic in a forum supergroup chat.
-     * 
-     * The bot must be an administrator in the chat for this to work and must have the canManageTopics administrator rights.
-     * 
-     * @param chatId Unique identifier for the target chat or username of the target supergroup (in the format @supergroupusername)
-     * 
-     * @return Returns True on success.
-     */
-    bool closeGeneralForumTopic(boost::variant<std::int64_t, std::string> chatId) const;
-
-    /**
-     * @brief Use this method to reopen a closed 'General' topic in a forum supergroup chat.
-     * 
-     * The bot must be an administrator in the chat for this to work and must have the canManageTopics administrator rights.
-     * The topic will be automatically unhidden if it was hidden.
-     * 
-     * @param chatId Unique identifier for the target chat or username of the target supergroup (in the format @supergroupusername)
-     * 
-     * @return Returns True on success.
-     */
-    bool reopenGeneralForumTopic(boost::variant<std::int64_t, std::string> chatId) const;
-
-    /**
-     * @brief Use this method to hide the 'General' topic in a forum supergroup chat.
-     * 
-     * The bot must be an administrator in the chat for this to work and must have the canManageTopics administrator rights.
-     * The topic will be automatically closed if it was open.
-     * 
-     * @param chatId Unique identifier for the target chat or username of the target supergroup (in the format @supergroupusername)
-     * 
-     * @return Returns True on success.
-     */
-    bool hideGeneralForumTopic(boost::variant<std::int64_t, std::string> chatId) const;
-
-    /**
-     * @brief Use this method to unhide the 'General' topic in a forum supergroup chat.
-     * 
-     * The bot must be an administrator in the chat for this to work and must have the canManageTopics administrator rights.
-     * 
-     * @param chatId Unique identifier for the target chat or username of the target supergroup (in the format @supergroupusername)
-     * 
-     * @return Returns True on success.
-     */
-    bool unhideGeneralForumTopic(boost::variant<std::int64_t, std::string> chatId) const;
-
-    /**
-     * @brief Use this method to clear the list of pinned messages in a General forum topic.
-     * 
-     * The bot must be an administrator in the chat for this to work and must have the canPinMessages administrator right in the supergroup.
-     * 
-     * @param chatId Unique identifier for the target chat or username of the target supergroup (in the format @supergroupusername)
-     * 
-     * @return Returns True on success.
-     */
-    bool unpinAllGeneralForumTopicMessages(boost::variant<std::int64_t, std::string> chatId) const;
-
-    /**
      * @brief Use this method to send answers to callback queries sent from inline keyboards.
      * 
      * The answer will be displayed to the user as a notification at the top of the chat screen or as an alert.
@@ -1443,19 +1176,12 @@ public:
      * For this option to work, you must first create a game for your bot via @BotFather and accept the terms.
      * Otherwise, you may use links like t.me/your_bot?start=XXXX that open your bot with a parameter.
      * 
-     * @param callbackQueryId Unique identifier for the query to be answered
-     * @param text Optional. Text of the notification. If not specified, nothing will be shown to the user, 0-200 characters
-     * @param showAlert Optional. If True, an alert will be shown by the client instead of a notification at the top of the chat screen. Defaults to false.
-     * @param url Optional. URL that will be opened by the user's client. If you have created a Game and accepted the conditions via @BotFather, specify the URL that opens your game - note that this will only work if the query comes from an InlineKeyboardButton button.
-     * @param cacheTime Optional. The maximum amount of time in seconds that the result of the callback query may be cached client-side. Telegram apps will support caching starting in version 3.14. Defaults to 0.
+     * @param callbackId Unique identifier for the query to be answered
+     * @param answer body
      * 
      * @return On success, True is returned.
      */
-    bool answerCallbackQuery(const std::string& callbackQueryId,
-                             const std::string& text = "",
-                             bool showAlert = false,
-                             const std::string& url = "",
-                             std::int32_t cacheTime = 0) const;
+	bool answerCallbackQuery(const std::string& callbackId, CallbackAnswer::Ptr answer) const;
 
     /**
      * @brief Use this method to get the list of boosts added to a chat by a user.
@@ -1469,15 +1195,6 @@ public:
      */
     UserChatBoosts::Ptr getUserChatBoosts(boost::variant<std::int64_t, std::string> chatId,
                                           std::int32_t userId) const;
-
-    /**
-     * @brief Use this method to get information about the connection of the bot with a business account.
-     *
-     * @param businessConnectionId Unique identifier of the business connection
-     *
-     * @return Returns a BusinessConnection object on success.
-     */
-    BusinessConnection::Ptr getBusinessConnection(const std::string& businessConnectionId) const;
 
     /**
      * @brief Use this method to change the list of the bot's commands.
@@ -1746,223 +1463,6 @@ public:
                         const std::vector<std::int32_t>& messageIds) const;
 
     /**
-     * @brief Use this method to send static .WEBP, [animated](https://telegram.org/blog/animated-stickers) .TGS, or [video](https://telegram.org/blog/video-stickers-better-reactions) .WEBM stickers.
-     *
-     * @param chatId Unique identifier for the target chat or username of the target channel (in the format @channelusername)
-     * @param sticker Sticker to send. Pass a fileId as String to send a file that exists on the Telegram servers (recommended), pass an HTTP URL as a String for Telegram to get a .WEBP sticker from the Internet, or upload a new .WEBP, .TGS, or .WEBM sticker using multipart/form-data. [More information on Sending Files »](https://core.telegram.org/bots/api#sending-files). Video and animated stickers can't be sent via an HTTP URL.
-     * @param replyParameters Optional. Description of the message to reply to
-     * @param replyMarkup Optional. Additional interface options. A JSON-serialized object for an [inline keyboard](https://core.telegram.org/bots/features#inline-keyboards), [custom reply keyboard](https://core.telegram.org/bots/features#keyboards), instructions to remove a reply keyboard or to force a reply from the user. Not supported for messages sent on behalf of a business account
-     * @param disableNotification Optional. Sends the message silently. Users will receive a notification with no sound.
-     * @param messageThreadId Optional. Unique identifier for the target message thread (topic) of the forum; for forum supergroups only
-     * @param protectContent Optional. Protects the contents of the sent message from forwarding and saving
-     * @param emoji Optional. Emoji associated with the sticker; only for just uploaded stickers
-     * @param businessConnectionId Optional. Unique identifier of the business connection on behalf of which the message will be sent
-     *
-     * @return On success, the sent Message is returned.
-     */
-    Message::Ptr sendSticker(boost::variant<std::int64_t, std::string> chatId,
-                             boost::variant<InputFile::Ptr, std::string> sticker,
-                             ReplyParameters::Ptr replyParameters = nullptr,
-                             GenericReply::Ptr replyMarkup = nullptr,
-                             bool disableNotification = false,
-                             std::int32_t messageThreadId = 0,
-                             bool protectContent = false,
-                             const std::string& emoji = "",
-                             const std::string& businessConnectionId = "") const;
-
-    /**
-     * @brief Use this method to get a sticker set.
-     * 
-     * @param name Name of the sticker set
-     * 
-     * @return On success, a StickerSet object is returned.
-     */
-    StickerSet::Ptr getStickerSet(const std::string& name) const;
-
-    /**
-     * @brief Use this method to get information about custom emoji stickers by their identifiers.
-     *
-     * @param customEmojiIds A JSON-serialized list of custom emoji identifiers. At most 200 custom emoji identifiers can be specified.
-     *
-     * @return Returns an Array of Sticker objects.
-     */
-    std::vector<Sticker::Ptr> getCustomEmojiStickers(const std::vector<std::string>& customEmojiIds) const;
-
-    /**
-     * @brief Use this method to upload a file with a sticker for later use in the Api::createNewStickerSet, Api::addStickerToSet, or Api::replaceStickerInSet methods (the file can be used multiple times).
-     *
-     * @param userId User identifier of sticker file owner
-     * @param sticker A file with the sticker in .WEBP, .PNG, .TGS, or .WEBM format. See https://core.telegram.org/stickers for technical requirements. https://core.telegram.org/bots/api#sending-files
-     * @param stickerFormat Format of the sticker, must be one of “static”, “animated”, “video”
-     *
-     * @return Returns the uploaded File on success.
-     */
-    File::Ptr uploadStickerFile(std::int64_t userId,
-                                InputFile::Ptr sticker,
-                                const std::string& stickerFormat) const;
-
-    /**
-     * @brief Use this method to create a new sticker set owned by a user.
-     *
-     * The bot will be able to edit the sticker set thus created.
-     *
-     * @param userId User identifier of created sticker set owner
-     * @param name Short name of sticker set, to be used in t.me/addstickers/ URLs (e.g., animals). Can contain only English letters, digits and underscores. Must begin with a letter, can't contain consecutive underscores and must end in "_by_<bot_username>". <bot_username> is case insensitive. 1-64 characters.
-     * @param title Sticker set title, 1-64 characters
-     * @param stickers A JSON-serialized list of 1-50 initial stickers to be added to the sticker set
-     * @param stickerType Optional. Type of stickers in the set, pass “regular”, “mask”, or “custom_emoji”. By default, a regular sticker set is created.
-     * @param needsRepainting Optional. Pass True if stickers in the sticker set must be repainted to the color of text when used in messages, the accent color if used as emoji status, white on chat photos, or another appropriate color based on context; for custom emoji sticker sets only
-     *
-     * @return Returns True on success.
-     */
-    bool createNewStickerSet(std::int64_t userId,
-                             const std::string& name,
-                             const std::string& title,
-                             const std::vector<InputSticker::Ptr>& stickers,
-                             Sticker::Type stickerType = Sticker::Type::Regular,
-                             bool needsRepainting = false) const;
-
-    /**
-     * @brief Use this method to add a new sticker to a set created by the bot.
-     *
-     * Emoji sticker sets can have up to 200 stickers.
-     * Other sticker sets can have up to 120 stickers.
-     *
-     * @param userId User identifier of sticker set owner
-     * @param name Sticker set name
-     * @param sticker A JSON-serialized object with information about the added sticker. If exactly the same sticker had already been added to the set, then the set isn't changed.
-     *
-     * @return Returns True on success.
-     */
-    bool addStickerToSet(std::int64_t userId,
-                         const std::string& name,
-                         InputSticker::Ptr sticker) const;
-
-    /**
-     * @brief Use this method to move a sticker in a set created by the bot to a specific position.
-     * 
-     * @param sticker File identifier of the sticker
-     * @param position New sticker position in the set, zero-based
-     * 
-     * @return Returns True on success.
-     */
-    bool setStickerPositionInSet(const std::string& sticker,
-                                 std::int32_t position) const;
-
-    /**
-     * @brief Use this method to delete a sticker from a set created by the bot.
-     * 
-     * @param sticker File identifier of the sticker
-     * 
-     * @return Returns True on success.
-     */
-    bool deleteStickerFromSet(const std::string& sticker) const;
-
-    /**
-     * @brief Use this method to replace an existing sticker in a sticker set with a new one.
-     *
-     * The method is equivalent to calling Api::deleteStickerFromSet, then Api::addStickerToSet, then Api::setStickerPositionInSet.
-     *
-     * @param userId User identifier of the sticker set owner
-     * @param name Sticker set name
-     * @param oldSticker File identifier of the replaced sticker
-     * @param sticker A JSON-serialized object with information about the added sticker. If exactly the same sticker had already been added to the set, then the set remains unchanged.
-     *
-     * @return Returns True on success.
-     */
-    bool replaceStickerInSet(std::int64_t userId,
-                             const std::string& name,
-                             const std::string& oldSticker,
-                             InputSticker::Ptr sticker) const;
-
-    /**
-     * @brief Use this method to change the list of emoji assigned to a regular or custom emoji sticker.
-     * 
-     * The sticker must belong to a sticker set created by the bot.
-     * 
-     * @param sticker File identifier of the sticker
-     * @param emojiList A JSON-serialized list of 1-20 emoji associated with the sticker
-     * 
-     * @return Returns True on success.
-     */
-    bool setStickerEmojiList(const std::string& sticker,
-                             const std::vector<std::string>& emojiList) const;
-
-    /**
-     * @brief Use this method to change search keywords assigned to a regular or custom emoji sticker.
-     * 
-     * The sticker must belong to a sticker set created by the bot.
-     * 
-     * @param sticker File identifier of the sticker
-     * @param keywords Optional. A JSON-serialized list of 0-20 search keywords for the sticker with total length of up to 64 characters
-     * 
-     * @return Returns True on success.
-     */
-    bool setStickerKeywords(const std::string& sticker,
-                            const std::vector<std::string>& keywords = std::vector<std::string>()) const;
-
-    /**
-     * @brief Use this method to change the mask position of a mask sticker.
-     * 
-     * The sticker must belong to a sticker set that was created by the bot.
-     * 
-     * @param sticker File identifier of the sticker
-     * @param maskPosition A JSON-serialized object with the position where the mask should be placed on faces. Omit the parameter to remove the mask position.
-     * 
-     * @return Returns True on success.
-     */
-    bool setStickerMaskPosition(const std::string& sticker,
-                                MaskPosition::Ptr maskPosition = nullptr) const;
-
-    /**
-     * @brief Use this method to set the title of a created sticker set.
-     * 
-     * @param name Sticker set name
-     * @param title Sticker set title, 1-64 characters
-     * 
-     * @return Returns True on success.
-     */
-    bool setStickerSetTitle(const std::string& name,
-                            const std::string& title) const;
-
-    /**
-     * @brief Use this method to set the thumbnail of a regular or mask sticker set.
-     *
-     * The format of the thumbnail file must match the format of the stickers in the set.
-     *
-     * @param name Sticker set name
-     * @param userId User identifier of the sticker set owner
-     * @param format Format of the thumbnail, must be one of “static” for a .WEBP or .PNG image, “animated” for a .TGS animation, or “video” for a WEBM video
-     * @param thumbnail Optional. A .WEBP or .PNG image with the thumbnail, must be up to 128 kilobytes in size and have a width and height of exactly 100px, or a .TGS animation with a thumbnail up to 32 kilobytes in size (see https://core.telegram.org/stickers#animated-sticker-requirements for animated sticker technical requirements), or a WEBM video with the thumbnail up to 32 kilobytes in size; see https://core.telegram.org/stickers#video-sticker-requirements for video sticker technical requirements. Pass a fileId as a String to send a file that already exists on the Telegram servers, pass an HTTP URL as a String for Telegram to get a file from the Internet, or upload a new one using multipart/form-data. https://core.telegram.org/bots/api#sending-files. Animated and video sticker set thumbnails can't be uploaded via HTTP URL. If omitted, then the thumbnail is dropped and the first sticker is used as the thumbnail.
-     *
-     * @return Returns True on success.
-     */
-    bool setStickerSetThumbnail(const std::string& name,
-                                std::int64_t userId,
-                                const std::string& format,
-                                boost::variant<InputFile::Ptr, std::string> thumbnail = "") const;
-
-    /**
-     * @brief Use this method to set the thumbnail of a custom emoji sticker set.
-     *
-     * @param name Sticker set name
-     * @param customEmojiId Optional. Custom emoji identifier of a sticker from the sticker set; pass an empty string to drop the thumbnail and use the first sticker as the thumbnail.
-     *
-     * @return Returns True on success.
-     */
-    bool setCustomEmojiStickerSetThumbnail(const std::string& name,
-                                           const std::string& customEmojiId = "") const;
-
-    /**
-     * @brief Use this method to delete a sticker set that was created by the bot.
-     *
-     * @param name Sticker set name
-     *
-     * @return Returns True on success.
-     */
-    bool deleteStickerSet(const std::string& name) const;
-
-    /**
      * @brief Use this method to send answers to an inline query.
      * 
      * No more than 50 results per query are allowed.
@@ -1995,230 +1495,6 @@ public:
                                              InlineQueryResult::Ptr result) const;
 
     /**
-     * @brief Use this method to send invoices.
-     *
-     * @param chatId Unique identifier for the target chat or username of the target channel (in the format @channelusername)
-     * @param title Product name, 1-32 characters
-     * @param description Product description, 1-255 characters
-     * @param payload Bot-defined invoice payload, 1-128 bytes. This will not be displayed to the user, use for your internal processes.
-     * @param providerToken Payments provider token, obtained via Botfather
-     * @param currency Three-letter ISO 4217 currency code, see https://core.telegram.org/bots/payments#supported-currencies
-     * @param prices Price breakdown, a JSON-serialized list of components (e.g. product price, tax, discount, delivery cost, delivery tax, bonus, etc.)
-     * @param providerData Optional. A JSON-serialized data about the invoice, which will be shared with the payment provider. A detailed description of required fields should be provided by the payment provider.
-     * @param photoUrl Optional. URL of the product photo for the invoice. Can be a photo of the goods or a marketing image for a service. People like it better when they see what they are paying for.
-     * @param photoSize Optional. Photo size
-     * @param photoWidth Optional. Photo width
-     * @param photoHeight Optional. Photo height
-     * @param needName Optional. Pass True, if you require the user's full name to complete the order
-     * @param needPhoneNumber Optional. Pass True, if you require the user's phone number to complete the order
-     * @param needEmail Optional. Pass True, if you require the user's email address to complete the order
-     * @param needShippingAddress Optional. Pass True, if you require the user's shipping address to complete the order
-     * @param sendPhoneNumberToProvider Optional. Pass True, if user's phone number should be sent to provider
-     * @param sendEmailToProvider Optional. Pass True, if user's email address should be sent to provider
-     * @param isFlexible Optional. Pass True, if the final price depends on the shipping method
-     * @param replyParameters Optional. Description of the message to reply to
-     * @param replyMarkup Optional. A JSON-serialized object for an inline keyboard. If empty, one 'Pay total price' button will be shown. If not empty, the first button must be a Pay button.
-     * @param disableNotification Optional. Sends the message silently. Users will receive a notification with no sound.
-     * @param messageThreadId Optional. Unique identifier for the target message thread (topic) of the forum; for forum supergroups only
-     * @param maxTipAmount Optional. The maximum accepted amount for tips in the smallest units of the currency (integer, not float/double). For example, for a maximum tip of US$ 1.45 pass max_tip_amount = 145. See the exp parameter in https://core.telegram.org/bots/payments/currencies.json, it shows the number of digits past the decimal point for each currency (2 for the majority of currencies). Defaults to 0
-     * @param suggestedTipAmounts Optional. A JSON-serialized array of suggested amounts of tips in the smallest units of the currency (integer, not float/double). At most 4 suggested tip amounts can be specified. The suggested tip amounts must be positive, passed in a strictly increased order and must not exceed maxTipAmount.
-     * @param startParameter Optional. Unique deep-linking parameter. If left empty, forwarded copies of the sent message will have a Pay button, allowing multiple users to pay directly from the forwarded message, using the same invoice. If non-empty, forwarded copies of the sent message will have a URL button with a deep link to the bot (instead of a Pay button), with the value used as the start parameter
-     * @param protectContent Optional. Protects the contents of the sent message from forwarding and saving
-     *
-     * @return On success, the sent Message is returned.
-     */
-    Message::Ptr sendInvoice(boost::variant<std::int64_t, std::string> chatId,
-                             const std::string& title,
-                             const std::string& description,
-                             const std::string& payload,
-                             const std::string& providerToken,
-                             const std::string& currency,
-                             const std::vector<LabeledPrice::Ptr>& prices,
-                             const std::string& providerData = "",
-                             const std::string& photoUrl = "",
-                             std::int32_t photoSize = 0,
-                             std::int32_t photoWidth = 0,
-                             std::int32_t photoHeight = 0,
-                             bool needName = false,
-                             bool needPhoneNumber = false,
-                             bool needEmail = false,
-                             bool needShippingAddress = false,
-                             bool sendPhoneNumberToProvider = false,
-                             bool sendEmailToProvider = false,
-                             bool isFlexible = false,
-                             ReplyParameters::Ptr replyParameters = nullptr,
-                             GenericReply::Ptr replyMarkup = nullptr,
-                             bool disableNotification = false,
-                             std::int32_t messageThreadId = 0,
-                             std::int32_t maxTipAmount = 0,
-                             const std::vector<std::int32_t>& suggestedTipAmounts = std::vector<std::int32_t>(),
-                             const std::string& startParameter = "",
-                             bool protectContent = false) const;
-
-    /**
-     * @brief Use this method to create a link for an invoice.
-     *
-     * @param title Product name, 1-32 characters
-     * @param description Product description, 1-255 characters
-     * @param payload Bot-defined invoice payload, 1-128 bytes. This will not be displayed to the user, use for your internal processes.
-     * @param providerToken Payment provider token, obtained via BotFather
-     * @param currency Three-letter ISO 4217 currency code, see https://core.telegram.org/bots/payments#supported-currencies
-     * @param prices Price breakdown, a JSON-serialized list of components (e.g. product price, tax, discount, delivery cost, delivery tax, bonus, etc.)
-     * @param maxTipAmount Optional. The maximum accepted amount for tips in the smallest units of the currency (integer, not float/double). For example, for a maximum tip of US$ 1.45 pass maxTipAmount = 145. See the exp parameter in https://core.telegram.org/bots/payments/currencies.json, it shows the number of digits past the decimal point for each currency (2 for the majority of currencies). Defaults to 0
-     * @param suggestedTipAmounts Optional. A JSON-serialized array of suggested amounts of tips in the smallest units of the currency (integer, not float/double). At most 4 suggested tip amounts can be specified. The suggested tip amounts must be positive, passed in a strictly increased order and must not exceed maxTipAmount.
-     * @param providerData Optional. JSON-serialized data about the invoice, which will be shared with the payment provider. A detailed description of required fields should be provided by the payment provider.
-     * @param photoUrl Optional. URL of the product photo for the invoice. Can be a photo of the goods or a marketing image for a service.
-     * @param photoSize Optional. Photo size in bytes
-     * @param photoWidth Optional. Photo width
-     * @param photoHeight Optional. Photo height
-     * @param needName Optional. Pass True, if you require the user's full name to complete the order
-     * @param needPhoneNumber Optional. Pass True, if you require the user's phone number to complete the order
-     * @param needEmail Optional. Pass True, if you require the user's email address to complete the order
-     * @param needShippingAddress Optional. Pass True, if you require the user's shipping address to complete the order
-     * @param sendPhoneNumberToProvider Optional. Pass True, if the user's phone number should be sent to the provider
-     * @param sendEmailToProvider Optional. Pass True, if the user's email address should be sent to the provider
-     * @param isFlexible Optional. Pass True, if the final price depends on the shipping method
-     *
-     * @return Returns the created invoice link as String on success.
-     */
-    std::string createInvoiceLink(const std::string& title,
-                                  const std::string& description,
-                                  const std::string& payload,
-                                  const std::string& providerToken,
-                                  const std::string& currency,
-                                  const std::vector<LabeledPrice::Ptr>& prices,
-                                  std::int32_t maxTipAmount = 0,
-                                  const std::vector<std::int32_t>& suggestedTipAmounts = std::vector<std::int32_t>(),
-                                  const std::string& providerData = "",
-                                  const std::string& photoUrl = "",
-                                  std::int32_t photoSize = 0,
-                                  std::int32_t photoWidth = 0,
-                                  std::int32_t photoHeight = 0,
-                                  bool needName = false,
-                                  bool needPhoneNumber = false,
-                                  bool needEmail = false,
-                                  bool needShippingAddress = false,
-                                  bool sendPhoneNumberToProvider = false,
-                                  bool sendEmailToProvider = false,
-                                  bool isFlexible = false) const;
-
-    /**
-     * @brief Use this method to reply to shipping queries.
-     *
-     * If you sent an invoice requesting a shipping address and the parameter isFlexible was specified, the Bot API will send an Update with a shippingQuery field to the bot.
-     *
-     * @param shippingQueryId Unique identifier for the query to be answered
-     * @param ok Pass True if delivery to the specified address is possible and False if there are any problems (for example, if delivery to the specified address is not possible)
-     * @param shippingOptions Optional. Required if ok is True. A JSON-serialized array of available shipping options.
-     * @param errorMessage Optional. Required if ok is False. Error message in human readable form that explains why it is impossible to complete the order (e.g. "Sorry, delivery to your desired address is unavailable'). Telegram will display this message to the user.
-     * 
-     * @return On success, True is returned.
-     */
-    bool answerShippingQuery(const std::string& shippingQueryId,
-                             bool ok,
-                             const std::vector<ShippingOption::Ptr>& shippingOptions = std::vector<ShippingOption::Ptr>(),
-                             const std::string& errorMessage = "") const;
-
-    /**
-     * @brief Use this method to respond to such pre-checkout queries.
-     *
-     * Once the user has confirmed their payment and shipping details, the Bot API sends the final confirmation in the form of an Update with the field preCheckoutQuery.
-     * Note: The Bot API must receive an answer within 10 seconds after the pre-checkout query was sent.
-     *
-     * @param preCheckoutQueryId Unique identifier for the query to be answered
-     * @param ok Specify True if everything is alright (goods are available, etc.) and the bot is ready to proceed with the order. Use False if there are any problems.
-     * @param errorMessage Required if ok is False. Error message in human readable form that explains the reason for failure to proceed with the checkout (e.g. "Sorry, somebody just bought the last of our amazing black T-shirts while you were busy filling out your payment details. Please choose a different color or garment!"). Telegram will display this message to the user.
-     * 
-     * @return On success, True is returned.
-     */
-    bool answerPreCheckoutQuery(const std::string& preCheckoutQueryId,
-                                bool ok,
-                                const std::string& errorMessage = "") const;
-
-    /**
-     * @brief Informs a user that some of the Telegram Passport elements they provided contains errors.
-     * 
-     * The user will not be able to re-submit their Passport to you until the errors are fixed (the contents of the field for which you returned the error must change).
-     * Use this if the data submitted by the user doesn't satisfy the standards your service requires for any reason.
-     * For example, if a birthday date seems invalid, a submitted document is blurry, a scan shows evidence of tampering, etc.
-     * Supply some details in the error message to make sure the user knows how to correct the issues.
-     *
-     * @param userId User identifier
-     * @param errors A JSON-serialized array describing the errors
-     * 
-     * @return Returns True on success.
-     */
-    bool setPassportDataErrors(std::int64_t userId,
-                               const std::vector<PassportElementError::Ptr>& errors) const;
-
-    /**
-     * @brief Use this method to send a game.
-     *
-     * @param chatId Unique identifier for the target chat
-     * @param gameShortName Short name of the game, serves as the unique identifier for the game. Set up your games via @BotFather.
-     * @param replyParameters Optional. Description of the message to reply to
-     * @param replyMarkup Optional. A JSON-serialized object for an [inline keyboard](https://core.telegram.org/bots/features#inline-keyboards). If empty, one 'Play gameTitle' button will be shown. If not empty, the first button must launch the game. Not supported for messages sent on behalf of a business account.
-     * @param disableNotification Optional. Sends the message silently. Users will receive a notification with no sound.
-     * @param messageThreadId Optional. Unique identifier for the target message thread (topic) of the forum; for forum supergroups only
-     * @param protectContent Optional. Protects the contents of the sent message from forwarding and saving
-     * @param businessConnectionId Optional. Unique identifier of the business connection on behalf of which the message will be sent
-     *
-     * @return On success, the sent Message is returned.
-     */
-    Message::Ptr sendGame(std::int64_t chatId,
-                          const std::string& gameShortName,
-                          ReplyParameters::Ptr replyParameters = nullptr,
-                          InlineKeyboardMarkup::Ptr replyMarkup = std::make_shared<InlineKeyboardMarkup>(),
-                          bool disableNotification = false,
-                          std::int32_t messageThreadId = 0,
-                          bool protectContent = false,
-                          const std::string& businessConnectionId = "") const;
-
-    /**
-     * @brief Use this method to set the score of the specified user in a game message.
-     *
-     * Returns an error, if the new score is not greater than the user's current score in the chat and force is False.
-     *
-     * @param userId User identifier
-     * @param score New score, must be non-negative
-     * @param force Optional. Pass True if the high score is allowed to decrease. This can be useful when fixing mistakes or banning cheaters
-     * @param disableEditMessage Optional. Pass True if the game message should not be automatically edited to include the current scoreboard
-     * @param chatId Optional. Required if inlineMessageId is not specified. Unique identifier for the target chat
-     * @param messageId Optional. Required if inlineMessageId is not specified. Identifier of the sent message
-     * @param inlineMessageId Optional. Required if chatId and messageId are not specified. Identifier of the inline message
-     * 
-     * @return On success, if the message is not an inline message, the Message is returned, otherwise nullptr is returned.
-     */
-    Message::Ptr setGameScore(std::int64_t userId,
-                              std::int32_t score,
-                              bool force = false,
-                              bool disableEditMessage = false,
-                              std::int64_t chatId = 0,
-                              std::int32_t messageId = 0,
-                              const std::string& inlineMessageId = "") const;
-
-    /**
-     * @brief Use this method to get data for high score tables.
-     * 
-     * Will return the score of the specified user and several of their neighbors in a game.
-     *
-     * This method will currently return scores for the target user, plus two of their closest neighbors on each side.
-     * Will also return the top three users if the user and their neighbors are not among them.
-     * Please note that this behavior is subject to change.
-     * 
-     * @param userId Target user id
-     * @param chatId Optional. Required if inlineMessageId is not specified. Unique identifier for the target chat
-     * @param messageId Optional. Required if inlineMessageId is not specified. Identifier of the sent message
-     * @param inlineMessageId Optional. Required if chatId and messageId are not specified. Identifier of the inline message
-     * 
-     * @return Returns an Array of GameHighScore objects.
-     */
-    std::vector<GameHighScore::Ptr> getGameHighScores(std::int64_t userId,
-                                                      std::int64_t chatId = 0,
-                                                      std::int32_t messageId = 0,
-                                                      const std::string& inlineMessageId = "") const;
-
-    /**
      * @brief Download a file from Telegram and save it in memory.
      *
      * @param filePath Telegram file path from Api::getFile
@@ -2226,7 +1502,7 @@ public:
      *
      * @return File content in a string.
      */
-    std::string downloadFile(const std::string& filePath,
+	std::pair<long, std::string> downloadFile(const std::string& url,
                              const std::vector<HttpReqArg>& args = std::vector<HttpReqArg>()) const;
 
     /**
@@ -2241,12 +1517,12 @@ public:
     const HttpClient& _httpClient;
     
 protected:
-    boost::property_tree::ptree sendRequest(const std::string& method, const std::vector<HttpReqArg>& args = std::vector<HttpReqArg>()) const;
+    boost::property_tree::ptree sendRequest(const std::string& urlPath, const std::string& json, const std::string& customMethod = {}) const;
+    boost::property_tree::ptree sendRequest(const std::string& urlPath, const std::vector<HttpReqArg>& args = std::vector<HttpReqArg>(), const std::string& customMethod = {}) const;
 
-    const std::string _token;
     const BotTypeParser _botTypeParser;
     const std::string _url;
 };
 }
 
-#endif //TGBOT_API_H
+#endif //MAXBOT_API_H

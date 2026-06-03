@@ -1,5 +1,5 @@
-#ifndef TGBOT_FILE_H
-#define TGBOT_FILE_H
+#ifndef MAXBOT_FILE_H
+#define MAXBOT_FILE_H
 
 #include <cstdint>
 #include <memory>
@@ -49,4 +49,4 @@ public:
 };
 }
 
-#endif //TGBOT_FILE_H
+#endif //MAXBOT_FILE_H

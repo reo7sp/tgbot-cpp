@@ -1,5 +1,5 @@
-#ifndef TGBOT_HTTPCLIENT_H
-#define TGBOT_HTTPCLIENT_H
+#ifndef MAXBOT_HTTPCLIENT_H
+#define MAXBOT_HTTPCLIENT_H
 
 #include "maxbot/net/Url.h"
 #include "maxbot/net/HttpReqArg.h"
@@ -15,7 +15,7 @@ namespace MaxBot {
  *
  * @ingroup net
  */
-class TGBOT_API HttpClient {
+class MAXBOT_API HttpClient {
 
 public:
     virtual ~HttpClient() = default;
@@ -26,7 +26,7 @@ public:
      * If there's no args specified, a GET request will be sent, otherwise a POST request will be sent.
      * If at least 1 arg is marked as file, the content type of a request will be multipart/form-data, otherwise it will be application/x-www-form-urlencoded.
      */
-    virtual std::string makeRequest(const Url& url, const std::vector<HttpReqArg>& args) const = 0;
+    virtual std::pair<long, std::string> makeRequest(const Url& url, const std::vector<HttpReqArg>& args, const std::string& customMethod = {}) const = 0;
 
     std::int32_t _timeout = 25;
 
@@ -52,4 +52,4 @@ private:
 }
 
 
-#endif //TGBOT_HTTPCLIENT_H
+#endif //MAXBOT_HTTPCLIENT_H

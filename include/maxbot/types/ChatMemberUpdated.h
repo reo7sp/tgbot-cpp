@@ -1,5 +1,5 @@
-#ifndef TGBOT_CHATMEMBERUPDATED_H
-#define TGBOT_CHATMEMBERUPDATED_H
+#ifndef MAXBOT_CHATMEMBERUPDATED_H
+#define MAXBOT_CHATMEMBERUPDATED_H
 
 #include "maxbot/types/Chat.h"
 #include "maxbot/types/User.h"
@@ -58,4 +58,4 @@ public:
 };
 }
 
-#endif //TGBOT_CHATMEMBERUPDATED_H
+#endif //MAXBOT_CHATMEMBERUPDATED_H

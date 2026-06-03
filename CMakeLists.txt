@@ -11,9 +11,9 @@ option(BUILD_SHARED_LIBS "Build maxbot-cpp shared/static library." OFF)
 option(BUILD_DOCUMENTATION "Build doxygen API documentation." OFF)
 
 # sources
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(CMAKE_CXX_EXTENSIONS OFF)
+set(CMAKE_CXX_EXTENSIONS ON)
 if(WIN32)
     set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)
     add_definitions(-D_WIN32_WINNT=0x0601)
@@ -30,6 +30,8 @@ set(SRC_LIST
     src/EventHandler.cpp
     src/BotException.cpp
     src/BotTypeParser.cpp
+    src/BotTypeParserBase.cpp
+    src/BotTypeParserUpdates.cpp
     src/net/BoostHttpOnlySslClient.cpp
     src/net/CurlHttpClient.cpp
     src/net/HttpParser.cpp
@@ -46,7 +48,6 @@ set(SRC_LIST
     src/types/InputMessageContent.cpp
     src/types/MenuButton.cpp
     src/types/MessageOrigin.cpp
-    src/types/PassportElementError.cpp
     src/types/ReactionType.cpp)
 
 # libs
@@ -63,6 +64,7 @@ include_directories(${OPENSSL_INCLUDE_DIR})
 ## curl
 find_package(CURL 7.58.0)
 if (CURL_FOUND)
+	message("CURL available")
     include_directories(${CURL_INCLUDE_DIRS})
     add_definitions(-DHAVE_CURL)
 endif()
@@ -159,5 +161,5 @@ if(BUILD_DOCUMENTATION)
 endif()
 
 if(BUILD_SHARED_LIBS)
-    add_definitions(-DTGBOT_DLL)
+    add_definitions(-DMAXBOT_DLL)
 endif()

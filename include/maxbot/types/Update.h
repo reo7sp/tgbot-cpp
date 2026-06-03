@@ -1,33 +1,65 @@
-#ifndef TGBOT_UPDATE_H
-#define TGBOT_UPDATE_H
+#pragma once
 
-#include "maxbot/types/Message.h"
-#include "maxbot/types/BusinessConnection.h"
-#include "maxbot/types/BusinessMessagesDeleted.h"
-#include "maxbot/types/MessageReactionUpdated.h"
-#include "maxbot/types/MessageReactionCountUpdated.h"
-#include "maxbot/types/InlineQuery.h"
-#include "maxbot/types/ChosenInlineResult.h"
-#include "maxbot/types/CallbackQuery.h"
-#include "maxbot/types/ShippingQuery.h"
-#include "maxbot/types/PreCheckoutQuery.h"
-#include "maxbot/types/Poll.h"
-#include "maxbot/types/PollAnswer.h"
-#include "maxbot/types/ChatMemberUpdated.h"
-#include "maxbot/types/ChatJoinRequest.h"
-#include "maxbot/types/ChatBoostUpdated.h"
-#include "maxbot/types/ChatBoostRemoved.h"
-#include "maxbot/types/SuccessfulPayment.h"
-
-#include <cstdint>
-#include <memory>
+#include "maxbot/types/UpdateBotAddedToChat.h"
+#include "maxbot/types/UpdateBotStarted.h"
+#include "maxbot/types/UpdateBotStopped.h"
+#include "maxbot/types/UpdateBotRemovedFromChat.h"
+#include "maxbot/types/UpdateChatTitleChanged.h"
+#include "maxbot/types/UpdateDialogCleared.h"
+#include "maxbot/types/UpdateDialogMuted.h"
+#include "maxbot/types/UpdateDialogUnmuted.h"
+#include "maxbot/types/UpdateDialogRemoved.h"
+#include "maxbot/types/UpdateMessageCallback.h"
+#include "maxbot/types/UpdateMessageCreated.h"
+#include "maxbot/types/UpdateMessageEdited.h"
+#include "maxbot/types/UpdateMessageRemoved.h"
+#include "maxbot/types/UpdateUserAddedToChat.h"
+#include "maxbot/types/UpdateUserRemovedFromChat.h"
+#include <variant>
 
 namespace MaxBot {
 
 /**
- * @brief This [object](https://core.telegram.org/bots/api#available-types) represents an incoming update.
+ * @brief Объект `Update` описывает возможные события в чате или канале. Может возвращаться в следующих случаях:
+ * - Вы подписались на обновления через Webhook — при наступлении события МАКС пришлёт [POST-запрос `/subscriptions`](/docs-api/methods/POST/subscriptions), который содержит объект `Update`
+ * - Вы отправили [GET-запрос /updates](/docs-api/methods/GET/updates) для получения обновлений через  Long Polling— в ответ вернётся объект `Update`
  *
- * At most one of the optional parameters can be present in any given update.
+ *  >! Получение обновлений с помощью [Long Polling](/docs-api/methods/GET/updates) ограничено по скорости и сроку хранения событий — этот способ не подходит для production-окружения. Рекомендуем на всех этапах работы использовать [Webhook](/docs-api/methods/POST/subscriptions)
+ *
+ * ## Типы событий
+ *
+ *- `bot_added` — бот добавлен в чат или канал
+ *
+ *- `bot_started` — пользователь впервые начал общение с ботом или возобновил после остановки — нажал соответствующую кнопку в настройках бота в МАКС
+ *
+ *- `bot_stopped` — пользователь остановил бота – выбрал соответствующее действие в настройках бота в МАКС
+ *
+ *- `bot_removed` — бот удалён из чата или канала 
+ *
+ *- `chat_title_changed` — пользователь изменил название чата или канала
+ *
+ *- `dialog_cleared` — пользователь очистил историю диалога с ботом
+ *
+ *- `dialog_muted` — пользователь отключил уведомления в диалоге с ботом
+ *
+ *- `dialog_unmuted` — пользователь включил уведомления в диалоге с ботом
+ *
+ *- `dialog_removed` — пользователь удалил диалог с ботом
+ *
+ *- `message_callback` — пользователь нажал на кнопку в чате или канале
+ *
+ *- `message_created` — пользователь отправил новое сообщение или опубликовал пост
+ *
+ *- `message_edited` — пользователь отредактировал сообщение в чате или канале
+ *
+ *- `message_removed` — пользователь удалил сообщение из чата или канала
+ *
+ *- `user_added` — в чат или канал добавлен или перешёл по ссылке новый пользователь
+ *
+ *- `user_removed` — пользователь удалён или покинул чат или канал
+ *
+ * ## Свойства объекта Update
+
  *
  * @ingroup types
  */
@@ -37,161 +69,36 @@ public:
     typedef std::shared_ptr<Update> Ptr;
 
     /**
-     * @brief The update's unique identifier.
-     *
-     * Update identifiers start from a certain positive number and increase sequentially.
-     * This identifier becomes especially handy if you're using [webhooks](https://core.telegram.org/bots/api#setwebhook), since it allows you to ignore repeated updates or to restore the correct update sequence, should they get out of order.
-     * If there are no new updates for at least a week, then identifier of the next update will be chosen randomly instead of sequentially.
+     * @brief Unix-время, когда произошло событие
      */
-    std::int32_t updateId;
+    std::int64_t timestamp;
 
     /**
-     * @brief Optional. New incoming message of any kind - text, photo, sticker, etc.
+     * @brief Тип события
      */
-    Message::Ptr message;
+    std::string update_type;
 
     /**
-     * @brief Optional. New version of a message that is known to the bot and was edited.
-     *
-     * This update may at times be triggered by changes to message fields that are either unavailable or not actively used by your bot.
+     * @brief Данные события в зависимости от типа в update_type
      */
-    Message::Ptr editedMessage;
-
-    /**
-     * @brief Optional. New incoming channel post of any kind - text, photo, sticker, etc.
-     */
-    Message::Ptr channelPost;
-
-    /**
-     * @brief Optional. New version of a channel post that is known to the bot and was edited.
-     *
-     * This update may at times be triggered by changes to message fields that are either unavailable or not actively used by your bot.
-     */
-    Message::Ptr editedChannelPost;
-
-    /**
-     * @brief Optional. The bot was connected to or disconnected from a business account, or a user edited an existing connection with the bot
-     */
-    BusinessConnection::Ptr businessConnection;
-
-    /**
-     * @brief Optional. New non-service message from a connected business account
-     */
-    Message::Ptr businessMessage;
-
-    /**
-     * @brief Optional. New version of a message from a connected business account
-     */
-    Message::Ptr editedBusinessMessage;
-
-    /**
-     * @brief Optional. Messages were deleted from a connected business account
-     */
-    BusinessMessagesDeleted::Ptr deletedBusinessMessages;
-
-    /**
-     * @brief Optional. A reaction to a message was changed by a user.
-     *
-     * The bot must be an administrator in the chat and must explicitly specify "message_reaction" in the list of allowedUpdates to receive these updates.
-     * The update isn't received for reactions set by bots.
-     */
-    MessageReactionUpdated::Ptr messageReaction;
-
-    /**
-     * @brief Optional. Reactions to a message with anonymous reactions were changed.
-     *
-     * The bot must be an administrator in the chat and must explicitly specify "message_reaction_count" in the list of allowedUpdates to receive these updates.
-     * The updates are grouped and can be sent with delay up to a few minutes.
-     */
-    MessageReactionCountUpdated::Ptr messageReactionCount;
-
-    /**
-     * @brief Optional. New incoming [inline](https://core.telegram.org/bots/api#inline-mode) query
-     */
-    InlineQuery::Ptr inlineQuery;
-
-    /**
-     * @brief Optional. The result of an [inline](https://core.telegram.org/bots/api#inline-mode) query that was chosen by a user and sent to their chat partner.
-     *
-     * Please see our documentation on the [feedback collecting](https://core.telegram.org/bots/inline#collecting-feedback) for details on how to enable these updates for your bot.
-     */
-    ChosenInlineResult::Ptr chosenInlineResult;
-
-    /**
-     * @brief Optional. New incoming callback query
-     */
-    CallbackQuery::Ptr callbackQuery;
-
-    /**
-     * @brief Optional. New incoming shipping query.
-     *
-     * Only for invoices with flexible price
-     */
-    ShippingQuery::Ptr shippingQuery;
-
-    /**
-     * @brief Optional. New incoming pre-checkout query.
-     *
-     * Contains full information about checkout
-     */
-    PreCheckoutQuery::Ptr preCheckoutQuery;
-
-    /**
-     * @brief Optional. New poll state.
-     *
-     * Bots receive only updates about manually stopped polls and polls, which are sent by the bot
-     */
-    Poll::Ptr poll;
-
-    /**
-     * @brief Optional. A user changed their answer in a non-anonymous poll.
-     *
-     * Bots receive new votes only in polls that were sent by the bot itself.
-     */
-    PollAnswer::Ptr pollAnswer;
-
-    /**
-     * @brief Optional. The bot's chat member status was updated in a chat.
-     *
-     * For private chats, this update is received only when the bot is blocked or unblocked by the user.
-     */
-    ChatMemberUpdated::Ptr myChatMember;
-
-    /**
-     * @brief Optional. A chat member's status was updated in a chat.
-     *
-     * The bot must be an administrator in the chat and must explicitly specify "chat_member" in the list of allowedUpdates to receive these updates.
-     */
-    ChatMemberUpdated::Ptr chatMember;
-
-    /**
-     * @brief Optional. A request to join the chat has been sent.
-     *
-     * The bot must have the canInviteUsers administrator right in the chat to receive these updates.
-     */
-    ChatJoinRequest::Ptr chatJoinRequest;
-
-    /**
-     * @brief Optional. A chat boost was added or changed.
-     *
-     * The bot must be an administrator in the chat to receive these updates.
-     */
-    ChatBoostUpdated::Ptr chatBoost;
-
-    /**
-     * @brief Optional. A boost was removed from a chat.
-     *
-     * The bot must be an administrator in the chat to receive these updates.
-     */
-    ChatBoostRemoved::Ptr removedChatBoost;
-
-    /**
-     * @brief Optional. A boost was removed from a chat.
-     *
-     * The bot must be an administrator in the chat to receive these updates.
-     */
-    SuccessfulPayment::Ptr successfulPayment;
+	std::variant<
+		std::monostate,
+		UpdateBotAddedToChat::Ptr,
+		UpdateBotStarted::Ptr,
+		UpdateBotStopped::Ptr,
+		UpdateBotRemovedFromChat::Ptr,
+		UpdateChatTitleChanged::Ptr,
+		UpdateDialogCleared::Ptr,
+		UpdateDialogMuted::Ptr,
+		UpdateDialogUnmuted::Ptr,
+		UpdateDialogRemoved::Ptr,
+		UpdateMessageCallback::Ptr,
+		UpdateMessageCreated::Ptr,
+		UpdateMessageEdited::Ptr,
+		UpdateMessageRemoved::Ptr,
+		UpdateUserAddedToChat::Ptr,
+		UpdateUserRemovedFromChat::Ptr
+	> _data;
 };
-}
 
-#endif //TGBOT_UPDATE_H
+}

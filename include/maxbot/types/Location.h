@@ -1,5 +1,5 @@
-#ifndef TGBOT_LOCATION_H
-#define TGBOT_LOCATION_H
+#ifndef MAXBOT_LOCATION_H
+#define MAXBOT_LOCATION_H
 
 #include <cstdint>
 #include <memory>
@@ -54,4 +54,4 @@ public:
 };
 }
 
-#endif //TGBOT_LOCATION_H
+#endif //MAXBOT_LOCATION_H

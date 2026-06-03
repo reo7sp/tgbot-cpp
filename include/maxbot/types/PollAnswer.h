@@ -1,5 +1,5 @@
-#ifndef TGBOT_POLLANSWER_H
-#define TGBOT_POLLANSWER_H
+#ifndef MAXBOT_POLLANSWER_H
+#define MAXBOT_POLLANSWER_H
 
 #include "maxbot/types/Chat.h"
 #include "maxbot/types/User.h"
@@ -45,4 +45,4 @@ public:
 };
 }
 
-#endif //TGBOT_POLLANSWER_H
+#endif //MAXBOT_POLLANSWER_H

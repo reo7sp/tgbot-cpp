@@ -1,5 +1,5 @@
-#ifndef TGBOT_CPP_MESSAGEID_H
-#define TGBOT_CPP_MESSAGEID_H
+#ifndef MAXBOT_CPP_MESSAGEID_H
+#define MAXBOT_CPP_MESSAGEID_H
 
 #include <memory>
 
@@ -22,4 +22,4 @@ public:
 };
 }
 
-#endif //TGBOT_CPP_MESSAGEID_H
+#endif //MAXBOT_CPP_MESSAGEID_H

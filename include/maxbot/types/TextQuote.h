@@ -1,5 +1,5 @@
-#ifndef TGBOT_TEXTQUOTE_H
-#define TGBOT_TEXTQUOTE_H
+#ifndef MAXBOT_TEXTQUOTE_H
+#define MAXBOT_TEXTQUOTE_H
 
 #include "maxbot/types/MessageEntity.h"
 
@@ -46,4 +46,4 @@ public:
 };
 }
 
-#endif //TGBOT_TEXTQUOTE_H
+#endif //MAXBOT_TEXTQUOTE_H

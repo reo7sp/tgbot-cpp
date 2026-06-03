@@ -1,5 +1,5 @@
-#ifndef TGBOT_CALLBACKQUERY_H
-#define TGBOT_CALLBACKQUERY_H
+#ifndef MAXBOT_CALLBACKQUERY_H
+#define MAXBOT_CALLBACKQUERY_H
 
 #include "maxbot/types/User.h"
 #include "maxbot/types/Message.h"
@@ -54,4 +54,4 @@ public:
 };
 }
 
-#endif //TGBOT_CALLBACKQUERY_H
+#endif //MAXBOT_CALLBACKQUERY_H

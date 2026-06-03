@@ -1,5 +1,5 @@
-#ifndef TGBOT_CPP_CHATINVITELINK_H
-#define TGBOT_CPP_CHATINVITELINK_H
+#ifndef MAXBOT_CPP_CHATINVITELINK_H
+#define MAXBOT_CPP_CHATINVITELINK_H
 
 #include "maxbot/types/User.h"
 
@@ -67,4 +67,4 @@ public:
 };
 }
 
-#endif //TGBOT_CPP_CHATINVITELINK_H
+#endif //MAXBOT_CPP_CHATINVITELINK_H

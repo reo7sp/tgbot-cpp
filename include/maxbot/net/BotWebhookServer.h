@@ -1,5 +1,5 @@
-#ifndef TGBOT_TGHTTPSERVER_H
-#define TGBOT_TGHTTPSERVER_H
+#ifndef MAXBOT_TGHTTPSERVER_H
+#define MAXBOT_TGHTTPSERVER_H
 
 #include "maxbot/Bot.h"
 #include "maxbot/EventHandler.h"
@@ -25,8 +25,8 @@ public:
     {
     }
 
-    BotWebhookServer(const typename boost::asio::basic_socket_acceptor<Protocol>::endpoint_type& endpoint, const Bot& bot)
-            : BotWebhookServer(endpoint, "/" + bot.getToken(), bot.getEventHandler())
+    BotWebhookServer(const typename boost::asio::basic_socket_acceptor<Protocol>::endpoint_type& endpoint, const Bot& bot, const std::string& token)
+            : BotWebhookServer(endpoint, "/" + token, bot.getEventHandler())
     {
     }
 
@@ -45,4 +45,4 @@ private:
 
 }
 
-#endif //TGBOT_TGHTTPSERVER_H
+#endif //MAXBOT_TGHTTPSERVER_H

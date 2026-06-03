@@ -1,5 +1,5 @@
-#ifndef TGBOT_MENUBUTTONWEBAPP_H
-#define TGBOT_MENUBUTTONWEBAPP_H
+#ifndef MAXBOT_MENUBUTTONWEBAPP_H
+#define MAXBOT_MENUBUTTONWEBAPP_H
 
 #include "maxbot/types/MenuButton.h"
 #include "maxbot/types/WebAppInfo.h"
@@ -37,4 +37,4 @@ public:
 };
 }
 
-#endif //TGBOT_MENUBUTTONWEBAPP_H
+#endif //MAXBOT_MENUBUTTONWEBAPP_H

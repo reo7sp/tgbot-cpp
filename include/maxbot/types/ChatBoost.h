@@ -1,5 +1,5 @@
-#ifndef TGBOT_CHATBOOST_H
-#define TGBOT_CHATBOOST_H
+#ifndef MAXBOT_CHATBOOST_H
+#define MAXBOT_CHATBOOST_H
 
 #include "maxbot/types/ChatBoostSource.h"
 
@@ -41,4 +41,4 @@ public:
 };
 }
 
-#endif //TGBOT_CHATBOOST_H
+#endif //MAXBOT_CHATBOOST_H

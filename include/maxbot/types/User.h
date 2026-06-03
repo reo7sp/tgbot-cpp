@@ -1,5 +1,4 @@
-#ifndef TGBOT_USER_H
-#define TGBOT_USER_H
+#pragma once
 
 #include <cstdint>
 #include <memory>
@@ -8,86 +7,52 @@
 namespace MaxBot {
 
 /**
- * @brief This object represents a Telegram user or bot.
+ * @brief Объект, описывающий один из вариантов наследования:
  *
- * @ingroup types
+ * - [`User`](/docs-api/objects/User) — объект содержит общую информацию о пользователе или боте без аватара
+ * - [`UserWithPhoto`](/docs-api/objects/UserWithPhoto) — объект с общей информацией о пользователе или боте, дополнительно содержит URL аватара и описание
+ * - [`BotInfo`](/docs-api/objects/BotInfo) — объект включает общую информацию о боте, URL аватара и описание. Дополнительно содержит список команд, поддерживаемых ботом. Возвращается только при вызове метода [`GET /me`](/docs-api/methods/GET/me)
+ * - [`ChatMember`](/docs-api/objects/ChatMember) — объект включает общую информацию о пользователе или боте, URL аватара и описание при его наличии. Дополнительно содержит данные для пользователей-участников чата. Возвращается только при вызове некоторых методов группы `/chats`, например [`GET /chats/{chatId}/members`](/docs-api/methods/GET/chats/-chatId-/members)
  */
-class User {
-
+class User
+{
 public:
     typedef std::shared_ptr<User> Ptr;
 
     /**
-     * @brief Unique identifier for this user or bot.
-     *
-     * This number may have more than 32 significant bits and some programming languages may have difficulty/silent defects in interpreting it.
-     * But it has at most 52 significant bits, so a 64-bit integer or double-precision float type are safe for storing this identifier.
+     * @brief Идентификатор пользователя или бота
      */
-    std::int64_t id;
+    std::int64_t user_id;
 
     /**
-     * @brief True, if this user is a bot
+     * @brief Отображаемое имя пользователя или бота
      */
-    bool isBot;
+    std::string first_name;
 
     /**
-     * @brief User's or bot's first name
+     * @brief Отображаемая фамилия пользователя. Для ботов это поле не возвращается
      */
-    std::string firstName;
+    std::string last_name;
 
     /**
-     * @brief Optional. User's or bot's last name
-     */
-    std::string lastName;
-
-    /**
-     * @brief Optional. User's or bot's username
+     * @brief Никнейм бота или уникальное публичное имя пользователя. В случае с пользователем может быть `null`, если тот недоступен или имя не задано
      */
     std::string username;
 
     /**
-     * @brief Optional. [IETF language tag](https://en.wikipedia.org/wiki/IETF_language_tag) of the user's language
+     * @brief `true`, если это бот
      */
-    std::string languageCode;
+    bool is_bot;
 
     /**
-     * @brief Optional. True, if this user is a Telegram Premium user
+     * @brief Время последней активности пользователя или бота в MAX (Unix-время в миллисекундах). Если пользователь отключил в настройках профиля мессенджера MAX возможность видеть, что он в сети онлайн, поле может не возвращаться
      */
-    bool isPremium;
+    std::int64_t last_activity_time;
 
     /**
-     * @brief Optional. True, if this user added the bot to the attachment menu
+     * @brief _Устаревшее поле, скоро будет удалено_
      */
-    bool addedToAttachmentMenu;
-
-    /**
-     * @brief Optional. True, if the bot can be invited to groups.
-     *
-     * Returned only in Api::getMe.
-     */
-    bool canJoinGroups;
-
-    /**
-     * @brief Optional. True, if [privacy mode](https://core.telegram.org/bots/features#privacy-mode) is disabled for the bot.
-     *
-     * Returned only in Api::getMe.
-     */
-    bool canReadAllGroupMessages;
-
-    /**
-     * @brief Optional. True, if the bot supports inline queries.
-     *
-     * Returned only in Api::getMe.
-     */
-    bool supportsInlineQueries;
-
-    /**
-     * @brief Optional. True, if the bot can be connected to a Telegram Business account to receive its messages.
-     *
-     * Returned only in Api::getMe.
-     */
-    bool canConnectToBusiness;
+    std::string name;
 };
-}
 
-#endif //TGBOT_USER_H
+} // namespace MaxBot

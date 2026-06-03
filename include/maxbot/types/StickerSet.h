@@ -1,5 +1,5 @@
-#ifndef TGBOT_STICKERSET_H
-#define TGBOT_STICKERSET_H
+#ifndef MAXBOT_STICKERSET_H
+#define MAXBOT_STICKERSET_H
 
 #include "maxbot/types/Sticker.h"
 #include "maxbot/types/PhotoSize.h"
@@ -54,4 +54,4 @@ public:
 };
 }
 
-#endif //TGBOT_STICKERSET_H
+#endif //MAXBOT_STICKERSET_H

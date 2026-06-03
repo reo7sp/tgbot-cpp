@@ -23,9 +23,12 @@ Simple echo bot which sends everything it receives:
 ```cpp
 #include <stdio.h>
 #include <maxbot/maxbot.h>
+#include <maxbot/net/CurlHttpClient.h>
 
 int main() {
-    MaxBot::Bot bot("PLACE YOUR TOKEN HERE");
+
+	CurlHttpClient client("PLACE YOUR TOKEN HERE");
+    MaxBot::Bot bot(client);
     bot.getEvents().onCommand("start", [&bot](MaxBot::Message::Ptr message) {
         bot.getApi().sendMessage(message->chat->id, "Hi!");
     });
@@ -163,9 +166,9 @@ g++ telegram_bot.cpp -o telegram_bot --std=c++14 -I/usr/local/include -lMaxBot -
 ### Build options
 
 ```
--DTGBOT_DISABLE_NAGLES_ALGORITHM   # Disable 'Nagle's algorithm'
--DTGBOT_CHANGE_SOCKET_BUFFER_SIZE  # Socket Buffer Size Expansion
--DTGBOT_CHANGE_READ_BUFFER_SIZE    # Read Buffer Size Expansion
+-DMAXBOT_DISABLE_NAGLES_ALGORITHM   # Disable 'Nagle's algorithm'
+-DMAXBOT_CHANGE_SOCKET_BUFFER_SIZE  # Socket Buffer Size Expansion
+-DMAXBOT_CHANGE_READ_BUFFER_SIZE    # Read Buffer Size Expansion
 ```
 
 

@@ -1,5 +1,5 @@
-#ifndef TGBOT_CHATMEMBERLEFT_H
-#define TGBOT_CHATMEMBERLEFT_H
+#ifndef MAXBOT_CHATMEMBERLEFT_H
+#define MAXBOT_CHATMEMBERLEFT_H
 
 #include "maxbot/types/ChatMember.h"
 
@@ -24,4 +24,4 @@ public:
 };
 }
 
-#endif //TGBOT_CHATMEMBERLEFT_H
+#endif //MAXBOT_CHATMEMBERLEFT_H

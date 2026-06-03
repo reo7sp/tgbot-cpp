@@ -1,5 +1,5 @@
-#ifndef TGBOT_WEBAPPINFO_H
-#define TGBOT_WEBAPPINFO_H
+#ifndef MAXBOT_WEBAPPINFO_H
+#define MAXBOT_WEBAPPINFO_H
 
 #include <memory>
 #include <string>
@@ -25,4 +25,4 @@ public:
 };
 }
 
-#endif //TGBOT_WEBAPPINFO_H
+#endif //MAXBOT_WEBAPPINFO_H

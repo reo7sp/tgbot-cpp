@@ -1,5 +1,5 @@
-#ifndef TGBOT_INPUTTEXTMESSAGECONTENT_H
-#define TGBOT_INPUTTEXTMESSAGECONTENT_H
+#ifndef MAXBOT_INPUTTEXTMESSAGECONTENT_H
+#define MAXBOT_INPUTTEXTMESSAGECONTENT_H
 
 #include "maxbot/types/InputMessageContent.h"
 #include "maxbot/types/MessageEntity.h"
@@ -51,4 +51,4 @@ public:
 };
 }
 
-#endif //TGBOT_INPUTTEXTMESSAGECONTENT_H
+#endif //MAXBOT_INPUTTEXTMESSAGECONTENT_H

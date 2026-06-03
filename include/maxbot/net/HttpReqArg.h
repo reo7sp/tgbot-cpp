@@ -1,5 +1,5 @@
-#ifndef TGBOT_HTTPPARAMETER_H
-#define TGBOT_HTTPPARAMETER_H
+#ifndef MAXBOT_HTTPPARAMETER_H
+#define MAXBOT_HTTPPARAMETER_H
 
 #include "maxbot/export.h"
 
@@ -16,7 +16,7 @@ namespace MaxBot {
  *
  * @ingroup net
  */
-class TGBOT_API HttpReqArg {
+class MAXBOT_API HttpReqArg {
 
 public:
     template<typename T>
@@ -54,4 +54,4 @@ public:
 }
 
 
-#endif //TGBOT_HTTPPARAMETER_H
+#endif //MAXBOT_HTTPPARAMETER_H

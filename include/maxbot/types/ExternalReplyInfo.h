@@ -1,5 +1,5 @@
-#ifndef TGBOT_EXTERNALREPLYINFO_H
-#define TGBOT_EXTERNALREPLYINFO_H
+#ifndef MAXBOT_EXTERNALREPLYINFO_H
+#define MAXBOT_EXTERNALREPLYINFO_H
 
 #include "maxbot/types/MessageOrigin.h"
 #include "maxbot/types/Chat.h"
@@ -14,14 +14,11 @@
 #include "maxbot/types/VideoNote.h"
 #include "maxbot/types/Voice.h"
 #include "maxbot/types/Contact.h"
-#include "maxbot/types/Dice.h"
-#include "maxbot/types/Game.h"
 #include "maxbot/types/Giveaway.h"
 #include "maxbot/types/GiveawayWinners.h"
 #include "maxbot/types/Invoice.h"
 #include "maxbot/types/Location.h"
 #include "maxbot/types/Poll.h"
-#include "maxbot/types/Venue.h"
 
 #include <cstdint>
 #include <memory>
@@ -119,18 +116,6 @@ public:
     Contact::Ptr contact;
 
     /**
-     * @brief Optional. Message is a dice with random value
-     */
-    Dice::Ptr dice;
-
-    /**
-     * @brief Optional. Message is a game, information about the game.
-     *
-     * [More about games »](https://core.telegram.org/bots/api#games)
-     */
-    Game::Ptr game;
-
-    /**
      * @brief Optional. Message is a scheduled giveaway, information about the giveaway
      */
     Giveaway::Ptr giveaway;
@@ -156,12 +141,7 @@ public:
      * @brief Optional. Message is a native poll, information about the poll
      */
     Poll::Ptr poll;
-
-    /**
-     * @brief Optional. Message is a venue, information about the venue
-     */
-    Venue::Ptr venue;
 };
 }
 
-#endif //TGBOT_EXTERNALREPLYINFO_H
+#endif //MAXBOT_EXTERNALREPLYINFO_H

@@ -1,5 +1,5 @@
-#ifndef TGBOT_POLLOPTION_H
-#define TGBOT_POLLOPTION_H
+#ifndef MAXBOT_POLLOPTION_H
+#define MAXBOT_POLLOPTION_H
 
 #include <cstdint>
 #include <memory>
@@ -26,4 +26,4 @@ public:
 
 }
 
-#endif //TGBOT_POLLOPTION_H
+#endif //MAXBOT_POLLOPTION_H

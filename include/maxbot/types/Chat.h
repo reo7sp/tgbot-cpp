@@ -1,12 +1,8 @@
-#ifndef TGBOT_CHAT_H
-#define TGBOT_CHAT_H
+#ifndef MAXBOT_CHAT_H
+#define MAXBOT_CHAT_H
 
 #include "maxbot/types/ChatPhoto.h"
 #include "maxbot/types/Birthdate.h"
-#include "maxbot/types/BusinessIntro.h"
-#include "maxbot/types/BusinessLocation.h"
-#include "maxbot/types/BusinessOpeningHours.h"
-#include "maxbot/types/Chat.h"
 #include "maxbot/types/ReactionType.h"
 #include "maxbot/types/ChatPermissions.h"
 #include "maxbot/types/ChatLocation.h"
@@ -95,27 +91,6 @@ public:
      * Returned only in Api::getChat.
      */
     Birthdate::Ptr birthdate;
-
-    /**
-     * @brief Optional. For private chats with business accounts, the intro of the business.
-     *
-     * Returned only in Api::getChat.
-     */
-    BusinessIntro::Ptr businessIntro;
-
-    /**
-     * @brief Optional. For private chats with business accounts, the location of the business.
-     *
-     * Returned only in Api::getChat.
-     */
-    BusinessLocation::Ptr businessLocation;
-
-    /**
-     * @brief Optional. For private chats with business accounts, the opening hours of the business.
-     *
-     * Returned only in Api::getChat.
-     */
-    BusinessOpeningHours::Ptr businessOpeningHours;
 
     /**
      * @brief Optional. For private chats, the personal channel of the user.
@@ -330,4 +305,4 @@ public:
 };
 }
 
-#endif //TGBOT_CHAT_H
+#endif //MAXBOT_CHAT_H

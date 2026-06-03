@@ -1,5 +1,5 @@
-#ifndef TGBOT_REPLYPARAMETERS_H
-#define TGBOT_REPLYPARAMETERS_H
+#ifndef MAXBOT_REPLYPARAMETERS_H
+#define MAXBOT_REPLYPARAMETERS_H
 
 #include "maxbot/types/MessageEntity.h"
 
@@ -69,4 +69,4 @@ public:
 };
 }
 
-#endif //TGBOT_REPLYPARAMETERS_H
+#endif //MAXBOT_REPLYPARAMETERS_H

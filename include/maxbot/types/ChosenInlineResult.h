@@ -1,5 +1,5 @@
-#ifndef TGBOT_CHOSENINLINERESULT_H
-#define TGBOT_CHOSENINLINERESULT_H
+#ifndef MAXBOT_CHOSENINLINERESULT_H
+#define MAXBOT_CHOSENINLINERESULT_H
 
 #include "maxbot/types/User.h"
 #include "maxbot/types/Location.h"
@@ -48,4 +48,4 @@ public:
 };
 }
 
-#endif //TGBOT_CHOSENINLINERESULT_H
+#endif //MAXBOT_CHOSENINLINERESULT_H

@@ -1,5 +1,5 @@
-#ifndef TGBOT_INPUTMEDIAAUDIO_H
-#define TGBOT_INPUTMEDIAAUDIO_H
+#ifndef MAXBOT_INPUTMEDIAAUDIO_H
+#define MAXBOT_INPUTMEDIAAUDIO_H
 
 #include "maxbot/types/InputMedia.h"
 
@@ -51,4 +51,4 @@ public:
 };
 }
 
-#endif //TGBOT_INPUTMEDIAAUDIO_H
+#endif //MAXBOT_INPUTMEDIAAUDIO_H

@@ -1,5 +1,5 @@
-#ifndef TGBOT_REACTIONCOUNT_H
-#define TGBOT_REACTIONCOUNT_H
+#ifndef MAXBOT_REACTIONCOUNT_H
+#define MAXBOT_REACTIONCOUNT_H
 
 #include "maxbot/types/ReactionType.h"
 
@@ -30,4 +30,4 @@ public:
 };
 }
 
-#endif //TGBOT_REACTIONCOUNT_H
+#endif //MAXBOT_REACTIONCOUNT_H

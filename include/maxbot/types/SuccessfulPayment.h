@@ -1,5 +1,5 @@
-#ifndef TGBOT_SUCCESSFULPAYMENT_H
-#define TGBOT_SUCCESSFULPAYMENT_H
+#ifndef MAXBOT_SUCCESSFULPAYMENT_H
+#define MAXBOT_SUCCESSFULPAYMENT_H
 
 #include "maxbot/types/OrderInfo.h"
 
@@ -66,4 +66,4 @@ public:
 };
 }
 
-#endif //TGBOT_SUCCESSFULPAYMENT_H
+#endif //MAXBOT_SUCCESSFULPAYMENT_H

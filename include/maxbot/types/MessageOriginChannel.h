@@ -1,5 +1,5 @@
-#ifndef TGBOT_MESSAGEORIGINCHANNEL_H
-#define TGBOT_MESSAGEORIGINCHANNEL_H
+#ifndef MAXBOT_MESSAGEORIGINCHANNEL_H
+#define MAXBOT_MESSAGEORIGINCHANNEL_H
 
 #include "maxbot/types/MessageOrigin.h"
 #include "maxbot/types/Chat.h"
@@ -43,4 +43,4 @@ public:
 };
 }
 
-#endif //TGBOT_MESSAGEORIGINCHANNEL_H
+#endif //MAXBOT_MESSAGEORIGINCHANNEL_H

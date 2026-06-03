@@ -1,5 +1,5 @@
-#ifndef TGBOT_BOTCOMMANDSCOPE_H
-#define TGBOT_BOTCOMMANDSCOPE_H
+#ifndef MAXBOT_BOTCOMMANDSCOPE_H
+#define MAXBOT_BOTCOMMANDSCOPE_H
 
 #include <memory>
 #include <string>
@@ -28,4 +28,4 @@ public:
 };
 }
 
-#endif //TGBOT_BOTCOMMANDSCOPE_H
+#endif //MAXBOT_BOTCOMMANDSCOPE_H

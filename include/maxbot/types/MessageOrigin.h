@@ -1,5 +1,5 @@
-#ifndef TGBOT_MESSAGEORIGIN_H
-#define TGBOT_MESSAGEORIGIN_H
+#ifndef MAXBOT_MESSAGEORIGIN_H
+#define MAXBOT_MESSAGEORIGIN_H
 
 #include <cstdint>
 #include <memory>
@@ -39,4 +39,4 @@ public:
 };
 }
 
-#endif //TGBOT_MESSAGEORIGIN_H
+#endif //MAXBOT_MESSAGEORIGIN_H

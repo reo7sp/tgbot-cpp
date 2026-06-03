@@ -1,5 +1,5 @@
-#ifndef TGBOT_CPP_URL_H
-#define TGBOT_CPP_URL_H
+#ifndef MAXBOT_CPP_URL_H
+#define MAXBOT_CPP_URL_H
 
 #include "maxbot/export.h"
 
@@ -12,7 +12,7 @@ namespace MaxBot {
  *
  * @ingroup net
  */
-class TGBOT_API Url {
+class MAXBOT_API Url {
 
 public:
     Url(const std::string& url);
@@ -45,4 +45,4 @@ public:
 
 }
 
-#endif //TGBOT_CPP_URL_H
+#endif //MAXBOT_CPP_URL_H

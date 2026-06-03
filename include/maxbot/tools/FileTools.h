@@ -1,5 +1,5 @@
-#ifndef TGBOT_FILETOOLS_H
-#define TGBOT_FILETOOLS_H
+#ifndef MAXBOT_FILETOOLS_H
+#define MAXBOT_FILETOOLS_H
 
 #include "maxbot/export.h"
 
@@ -16,7 +16,7 @@ namespace FileTools {
  * @throws exception of type std::ifstream::failure if reading fails
  * @return string with file contents
  */
-TGBOT_API
+MAXBOT_API
 std::string read(const std::string& filePath);
 
 /**
@@ -24,10 +24,10 @@ std::string read(const std::string& filePath);
  * @param filePath Path to a file
  * @throws exception of type std::ifstream::failure if writing fails
 */
-TGBOT_API
+MAXBOT_API
 void write(const std::string& content, const std::string& filePath);
 
 }
 
 
-#endif //TGBOT_FILETOOLS_H
+#endif //MAXBOT_FILETOOLS_H

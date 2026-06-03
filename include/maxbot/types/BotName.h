@@ -1,5 +1,5 @@
-#ifndef TGBOT_BOTNAME_H
-#define TGBOT_BOTNAME_H
+#ifndef MAXBOT_BOTNAME_H
+#define MAXBOT_BOTNAME_H
 
 #include <memory>
 #include <string>
@@ -22,4 +22,4 @@ public:
 };
 }
 
-#endif //TGBOT_BOTNAME_H
+#endif //MAXBOT_BOTNAME_H

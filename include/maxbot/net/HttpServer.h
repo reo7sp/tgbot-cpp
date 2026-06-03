@@ -1,5 +1,5 @@
-#ifndef TGBOT_HTTPSERVER_H
-#define TGBOT_HTTPSERVER_H
+#ifndef MAXBOT_HTTPSERVER_H
+#define MAXBOT_HTTPSERVER_H
 
 #include "maxbot/net/HttpParser.h"
 
@@ -172,4 +172,4 @@ protected:
 
 }
 
-#endif //TGBOT_HTTPSERVER_H
+#endif //MAXBOT_HTTPSERVER_H

@@ -1,5 +1,5 @@
-#ifndef TGBOT_HTTPPARSER_H
-#define TGBOT_HTTPPARSER_H
+#ifndef MAXBOT_HTTPPARSER_H
+#define MAXBOT_HTTPPARSER_H
 
 #include "maxbot/net/Url.h"
 #include "maxbot/net/HttpReqArg.h"
@@ -10,10 +10,10 @@
 
 namespace MaxBot {
 
-class TGBOT_API HttpParser {
+class MAXBOT_API HttpParser {
 
 public:
-    std::string generateRequest(const Url& url, const std::vector<HttpReqArg>& args, bool isKeepAlive = false) const;
+    std::string generateRequest(const Url& url, const std::unordered_map<std::string, std::string>& headers, const std::vector<HttpReqArg>& args, bool isKeepAlive = false, const std::string& customMethod = {}) const;
     std::string generateMultipartFormData(const std::vector<HttpReqArg>& args, const std::string& boundary) const;
     std::string generateMultipartBoundary(const std::vector<HttpReqArg>& args) const;
     std::string generateWwwFormUrlencoded(const std::vector<HttpReqArg>& args) const;
@@ -24,4 +24,4 @@ public:
 
 }
 
-#endif //TGBOT_HTTPPARSER_H
+#endif //MAXBOT_HTTPPARSER_H

@@ -1,5 +1,5 @@
-#ifndef TGBOT_REPLYKEYBOARDMARKUP_H
-#define TGBOT_REPLYKEYBOARDMARKUP_H
+#ifndef MAXBOT_REPLYKEYBOARDMARKUP_H
+#define MAXBOT_REPLYKEYBOARDMARKUP_H
 
 #include "maxbot/types/GenericReply.h"
 #include "maxbot/types/KeyboardButton.h"
@@ -63,4 +63,4 @@ public:
 };
 }
 
-#endif //TGBOT_REPLYKEYBOARDMARKUP_H
+#endif //MAXBOT_REPLYKEYBOARDMARKUP_H

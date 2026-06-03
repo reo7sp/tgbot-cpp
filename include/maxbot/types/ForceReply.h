@@ -1,5 +1,5 @@
-#ifndef TGBOT_FORCEREPLY_H
-#define TGBOT_FORCEREPLY_H
+#ifndef MAXBOT_FORCEREPLY_H
+#define MAXBOT_FORCEREPLY_H
 
 #include "maxbot/types/GenericReply.h"
 
@@ -46,4 +46,4 @@ public:
 };
 }
 
-#endif //TGBOT_FORCEREPLY_H
+#endif //MAXBOT_FORCEREPLY_H

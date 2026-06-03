@@ -1,5 +1,5 @@
-#ifndef TGBOT_INVOICE_H
-#define TGBOT_INVOICE_H
+#ifndef MAXBOT_INVOICE_H
+#define MAXBOT_INVOICE_H
 
 #include <cstdint>
 #include <string>
@@ -53,4 +53,4 @@ public:
 };
 }
 
-#endif //TGBOT_INVOICE_H
+#endif //MAXBOT_INVOICE_H

@@ -1,5 +1,5 @@
-#ifndef TGBOT_KEYBOARDBUTTON_H
-#define TGBOT_KEYBOARDBUTTON_H
+#ifndef MAXBOT_KEYBOARDBUTTON_H
+#define MAXBOT_KEYBOARDBUTTON_H
 
 #include "maxbot/types/KeyboardButtonRequestUsers.h"
 #include "maxbot/types/KeyboardButtonRequestChat.h"
@@ -81,4 +81,4 @@ public:
 };
 }
 
-#endif //TGBOT_KEYBOARDBUTTON_H
+#endif //MAXBOT_KEYBOARDBUTTON_H

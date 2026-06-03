@@ -1,5 +1,5 @@
-#ifndef TGBOT_POLL_H
-#define TGBOT_POLL_H
+#ifndef MAXBOT_POLL_H
+#define MAXBOT_POLL_H
 
 #include "maxbot/types/PollOption.h"
 #include "maxbot/types/MessageEntity.h"
@@ -89,4 +89,4 @@ public:
 };
 }
 
-#endif //TGBOT_POLL_H
+#endif //MAXBOT_POLL_H

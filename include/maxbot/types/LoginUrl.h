@@ -1,5 +1,5 @@
-#ifndef TGBOT_LOGINURL_H
-#define TGBOT_LOGINURL_H
+#ifndef MAXBOT_LOGINURL_H
+#define MAXBOT_LOGINURL_H
 
 #include <memory>
 #include <string>
@@ -50,4 +50,4 @@ public:
 };
 }
 
-#endif //TGBOT_LOGINURL_H
+#endif //MAXBOT_LOGINURL_H

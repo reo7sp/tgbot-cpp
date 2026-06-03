@@ -1,5 +1,5 @@
-#ifndef TGBOT_BOTDESCRIPTION_H
-#define TGBOT_BOTDESCRIPTION_H
+#ifndef MAXBOT_BOTDESCRIPTION_H
+#define MAXBOT_BOTDESCRIPTION_H
 
 #include <memory>
 #include <string>
@@ -22,4 +22,4 @@ public:
 };
 }
 
-#endif //TGBOT_BOTDESCRIPTION_H
+#endif //MAXBOT_BOTDESCRIPTION_H

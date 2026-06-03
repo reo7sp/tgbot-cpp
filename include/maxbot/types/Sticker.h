@@ -1,5 +1,5 @@
-#ifndef TGBOT_STICKER_H
-#define TGBOT_STICKER_H
+#ifndef MAXBOT_STICKER_H
+#define MAXBOT_STICKER_H
 
 #include "maxbot/types/PhotoSize.h"
 #include "maxbot/types/File.h"
@@ -107,4 +107,4 @@ public:
 };
 }
 
-#endif //TGBOT_STICKER_H
+#endif //MAXBOT_STICKER_H

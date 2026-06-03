@@ -1,5 +1,5 @@
-#ifndef TGBOT_SENTWEBAPPMESSAGE_H
-#define TGBOT_SENTWEBAPPMESSAGE_H
+#ifndef MAXBOT_SENTWEBAPPMESSAGE_H
+#define MAXBOT_SENTWEBAPPMESSAGE_H
 
 #include <memory>
 #include <string>
@@ -23,4 +23,4 @@ public:
 };
 }
 
-#endif //TGBOT_SENTWEBAPPMESSAGE_H
+#endif //MAXBOT_SENTWEBAPPMESSAGE_H

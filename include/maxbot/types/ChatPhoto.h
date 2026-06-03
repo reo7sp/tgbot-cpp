@@ -1,5 +1,5 @@
-#ifndef TGBOT_CHATPHOTO_H
-#define TGBOT_CHATPHOTO_H
+#ifndef MAXBOT_CHATPHOTO_H
+#define MAXBOT_CHATPHOTO_H
 
 #include <memory>
 #include <string>
@@ -42,4 +42,4 @@ public:
 };
 }
 
-#endif //TGBOT_CHATPHOTO_H
+#endif //MAXBOT_CHATPHOTO_H

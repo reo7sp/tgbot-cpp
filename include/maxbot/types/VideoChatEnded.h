@@ -1,5 +1,5 @@
-#ifndef TGBOT_VIDEOCHATENDED_H
-#define TGBOT_VIDEOCHATENDED_H
+#ifndef MAXBOT_VIDEOCHATENDED_H
+#define MAXBOT_VIDEOCHATENDED_H
 
 #include <cstdint>
 #include <memory>
@@ -23,4 +23,4 @@ public:
 };
 }
 
-#endif //TGBOT_VIDEOCHATENDED_H
+#endif //MAXBOT_VIDEOCHATENDED_H

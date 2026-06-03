@@ -1,5 +1,5 @@
-#ifndef TGBOT_CHATSHARED_H
-#define TGBOT_CHATSHARED_H
+#ifndef MAXBOT_CHATSHARED_H
+#define MAXBOT_CHATSHARED_H
 
 #include "maxbot/types/PhotoSize.h"
 
@@ -52,4 +52,4 @@ public:
 };
 }
 
-#endif //TGBOT_CHATSHARED_H
+#endif //MAXBOT_CHATSHARED_H

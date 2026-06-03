@@ -1,5 +1,5 @@
-#ifndef TGBOT_MESSAGEORIGINUSER_H
-#define TGBOT_MESSAGEORIGINUSER_H
+#ifndef MAXBOT_MESSAGEORIGINUSER_H
+#define MAXBOT_MESSAGEORIGINUSER_H
 
 #include "maxbot/types/MessageOrigin.h"
 #include "maxbot/types/User.h"
@@ -31,4 +31,4 @@ public:
 };
 }
 
-#endif //TGBOT_MESSAGEORIGINUSER_H
+#endif //MAXBOT_MESSAGEORIGINUSER_H

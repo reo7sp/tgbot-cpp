@@ -1,5 +1,5 @@
-#ifndef TGBOT_STORY_H
-#define TGBOT_STORY_H
+#ifndef MAXBOT_STORY_H
+#define MAXBOT_STORY_H
 
 #include "maxbot/types/Chat.h"
 
@@ -30,4 +30,4 @@ public:
 };
 }
 
-#endif //TGBOT_STORY_H
+#endif //MAXBOT_STORY_H

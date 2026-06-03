@@ -1,5 +1,5 @@
-#ifndef TGBOT_VOICE_H
-#define TGBOT_VOICE_H
+#ifndef MAXBOT_VOICE_H
+#define MAXBOT_VOICE_H
 
 #include <cstdint>
 #include <memory>
@@ -47,4 +47,4 @@ public:
 };
 }
 
-#endif //TGBOT_VOICE_H
+#endif //MAXBOT_VOICE_H

@@ -1,5 +1,5 @@
-#ifndef TGBOT_LABELEDPRICE_H
-#define TGBOT_LABELEDPRICE_H
+#ifndef MAXBOT_LABELEDPRICE_H
+#define MAXBOT_LABELEDPRICE_H
 
 #include <cstdint>
 #include <string>
@@ -36,4 +36,4 @@ public:
 };
 }
 
-#endif //TGBOT_LABELEDPRICE_H
+#endif //MAXBOT_LABELEDPRICE_H

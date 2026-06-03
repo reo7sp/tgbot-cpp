@@ -5,6 +5,7 @@
 #include <string>
 
 #include <maxbot/maxbot.h>
+#include <maxbot/net/CurlHttpClient.h>
 
 using namespace std;
 using namespace MaxBot;
@@ -13,7 +14,8 @@ int main() {
     string token(getenv("TOKEN"));
     printf("Token: %s\n", token.c_str());
 
-    Bot bot(token);
+	CurlHttpClient client(token);
+    Bot bot(client);
     bot.getEvents().onCommand("start", [&bot](Message::Ptr message) {
         bot.getApi().sendMessage(message->chat->id, "Hi!");
     });

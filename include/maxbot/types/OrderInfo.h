@@ -1,7 +1,5 @@
-#ifndef TGBOT_ORDERINFO_H
-#define TGBOT_ORDERINFO_H
-
-#include "maxbot/types/ShippingAddress.h"
+#ifndef MAXBOT_ORDERINFO_H
+#define MAXBOT_ORDERINFO_H
 
 #include <string>
 #include <memory>
@@ -33,13 +31,8 @@ public:
      * @brief Optional. User email.
      */
     std::string email;
-
-    /**
-     * @brief Optional. User shipping address.
-     */
-    ShippingAddress::Ptr shippingAddress;
 };
 
 }
 
-#endif //TGBOT_ORDERINFO_H
+#endif //MAXBOT_ORDERINFO_H

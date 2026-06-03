@@ -14,13 +14,15 @@ using namespace boost;
 
 namespace MaxBot {
 
-string HttpParser::generateRequest(const Url& url, const vector<HttpReqArg>& args, bool isKeepAlive) const {
+string HttpParser::generateRequest(const Url& url, const unordered_map<string, string>& headers, const vector<HttpReqArg>& args, bool isKeepAlive, const std::string& customMethod) const {
     string result;
-    if (args.empty()) {
-        result += "GET ";
-    } else {
-        result += "POST ";
-    }
+	if (!customMethod.empty())
+		result += customMethod;
+	else if (args.empty())
+		result += "GET";
+	else
+		result += "POST";
+    result += ' ';
     result += url.path;
     result += url.query.empty() ? "" : "?" + url.query;
     result += " HTTP/1.1\r\n";
@@ -32,22 +34,38 @@ string HttpParser::generateRequest(const Url& url, const vector<HttpReqArg>& arg
     } else {
         result += "close";
     }
+	for (auto&& it : headers)
+	{
+		result += "\r\n";
+		result += it.first;
+		result += ": ";
+		result += it.second;
+	}
+
     result += "\r\n";
     if (args.empty()) {
         result += "\r\n";
     } else {
         string requestData;
 
-        string bondary = generateMultipartBoundary(args);
-        if (bondary.empty()) {
-            result += "Content-Type: application/x-www-form-urlencoded\r\n";
-            requestData = generateWwwFormUrlencoded(args);
-        } else {
-            result += "Content-Type: multipart/form-data; boundary=";
-            result += bondary;
-            result += "\r\n";
-            requestData = generateMultipartFormData(args, bondary);
-        }
+		if (args.size() == 1 && args.front().name.empty() && args.front().mimeType == "application/json")
+		{
+			result += "Content-Type: application/json\r\n";
+			requestData = args.front().value;
+		}
+		else
+		{
+        	string bondary = generateMultipartBoundary(args);
+        	if (bondary.empty()) {
+        	    result += "Content-Type: application/x-www-form-urlencoded\r\n";
+        	    requestData = generateWwwFormUrlencoded(args);
+        	} else {
+        	    result += "Content-Type: multipart/form-data; boundary=";
+        	    result += bondary;
+        	    result += "\r\n";
+        	    requestData = generateMultipartFormData(args, bondary);
+        	}
+		}
 
         result += "Content-Length: ";
         result += std::to_string(requestData.length());

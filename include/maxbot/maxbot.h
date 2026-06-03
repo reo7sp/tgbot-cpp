@@ -1,5 +1,5 @@
-#ifndef TGBOT_TGBOT_H
-#define TGBOT_TGBOT_H
+#ifndef MAXBOT_MAXBOT_H
+#define MAXBOT_MAXBOT_H
 
 #include "maxbot/Api.h"
 #include "maxbot/Bot.h"
@@ -110,4 +110,4 @@
  *
  */
 
-#endif //TGBOT_TGBOT_H
+#endif //MAXBOT_MAXBOT_H

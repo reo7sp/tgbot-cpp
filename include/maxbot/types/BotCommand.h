@@ -1,5 +1,5 @@
-#ifndef TGBOT_BOTCOMMAND_H
-#define TGBOT_BOTCOMMAND_H
+#ifndef MAXBOT_BOTCOMMAND_H
+#define MAXBOT_BOTCOMMAND_H
 
 #include <cstdint>
 #include <string>
@@ -33,4 +33,4 @@ public:
 };
 }
 
-#endif //TGBOT_BOTCOMMAND_H
+#endif //MAXBOT_BOTCOMMAND_H

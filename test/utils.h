@@ -1,5 +1,5 @@
-#ifndef TGBOT_UTILS_H
-#define TGBOT_UTILS_H
+#ifndef MAXBOT_UTILS_H
+#define MAXBOT_UTILS_H
 
 #include <string>
 #include <vector>
@@ -93,4 +93,4 @@ inline std::string diffMSS(const std::unordered_map<std::string, std::string>& t
     return diff(v1, v2, toStringFunc);
 }
 
-#endif //TGBOT_UTILS_H
+#endif //MAXBOT_UTILS_H

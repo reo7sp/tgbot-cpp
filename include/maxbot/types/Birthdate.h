@@ -1,5 +1,5 @@
-#ifndef TGBOT_BIRTHDATE_H
-#define TGBOT_BIRTHDATE_H
+#ifndef MAXBOT_BIRTHDATE_H
+#define MAXBOT_BIRTHDATE_H
 
 #include <cstdint>
 #include <memory>
@@ -31,4 +31,4 @@ public:
 };
 }
 
-#endif //TGBOT_BIRTHDATE_H
+#endif //MAXBOT_BIRTHDATE_H

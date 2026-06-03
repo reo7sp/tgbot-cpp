@@ -1,5 +1,5 @@
-#ifndef TGBOT_CHATBOOSTADDED_H
-#define TGBOT_CHATBOOSTADDED_H
+#ifndef MAXBOT_CHATBOOSTADDED_H
+#define MAXBOT_CHATBOOSTADDED_H
 
 #include <cstdint>
 #include <memory>
@@ -23,4 +23,4 @@ public:
 };
 }
 
-#endif //TGBOT_CHATBOOSTADDED_H
+#endif //MAXBOT_CHATBOOSTADDED_H

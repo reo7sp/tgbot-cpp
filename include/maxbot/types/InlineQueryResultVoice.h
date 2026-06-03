@@ -1,5 +1,5 @@
-#ifndef TGBOT_INLINEQUERYRESULTVOICE_H
-#define TGBOT_INLINEQUERYRESULTVOICE_H
+#ifndef MAXBOT_INLINEQUERYRESULTVOICE_H
+#define MAXBOT_INLINEQUERYRESULTVOICE_H
 
 #include "maxbot/types/InlineQueryResult.h"
 #include "maxbot/types/MessageEntity.h"
@@ -70,4 +70,4 @@ public:
 };
 }
 
-#endif //TGBOT_INLINEQUERYRESULTVOICE_H
+#endif //MAXBOT_INLINEQUERYRESULTVOICE_H

@@ -1,5 +1,5 @@
-#ifndef TGBOT_MENUBUTTON_H
-#define TGBOT_MENUBUTTON_H
+#ifndef MAXBOT_MENUBUTTON_H
+#define MAXBOT_MENUBUTTON_H
 
 #include <memory>
 #include <string>
@@ -31,4 +31,4 @@ public:
 };
 }
 
-#endif //TGBOT_MENUBUTTON_H
+#endif //MAXBOT_MENUBUTTON_H

@@ -1,5 +1,5 @@
-#ifndef TGBOT_CPP_PHOTOSIZE_H
-#define TGBOT_CPP_PHOTOSIZE_H
+#ifndef MAXBOT_CPP_PHOTOSIZE_H
+#define MAXBOT_CPP_PHOTOSIZE_H
 
 #include <cstdint>
 #include <string>
@@ -45,4 +45,4 @@ public:
 };
 }
 
-#endif //TGBOT_CPP_PHOTOSIZE_H
+#endif //MAXBOT_CPP_PHOTOSIZE_H
