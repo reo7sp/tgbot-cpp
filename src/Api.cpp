@@ -2,6 +2,7 @@
 
 #include <chrono>
 #include <thread>
+#include <string_view>
 
 namespace TgBot {
 
@@ -2863,11 +2864,31 @@ boost::property_tree::ptree Api::sendRequest(const std::string& method, const st
                 throw TgException(message, static_cast<TgException::ErrorCode>(errorCode));
             }
         } catch (...) {
+            bool isCancelException = false;
+
+            try {
+                throw;
+            }
+            catch (const std::exception& e) {
+                const std::string_view sv{e.what()};
+
+                if(sv.compare(_httpClient.getCancelExceptionText()) == 0) {
+                    isCancelException = true;
+                }
+            }
+            catch (...) {
+            }
+
             int max_retries = _httpClient.getRequestMaxRetries();
-            if ((max_retries >= 0) && (retries == max_retries)) {
+            if (isCancelException || _httpClient.isEternalCancelled() || ((max_retries >= 0) && (retries == max_retries))) {
                 throw;
             } else {
                 std::this_thread::sleep_for(std::chrono::seconds(requestRetryBackoff));
+                
+                if (_httpClient.isEternalCancelled()) { 
+                    throw;
+                }
+                
                 retries++;
                 continue;
             }
