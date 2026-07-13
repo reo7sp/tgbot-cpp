@@ -957,6 +957,10 @@ private:
     }
 
     void appendToJson(std::string& json, const std::string& varName, const std::string& value) const;
+
+    /// Appends `"varName":["escapedValue1","escapedValue2",...],` to `json`.
+    /// Does nothing when `values` is empty. Each element is JSON-escaped.
+    void appendStringArrayToJson(std::string& json, const std::string& varName, const std::vector<std::string>& values) const;
 };
 }
 

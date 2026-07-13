@@ -1,5 +1,7 @@
 #include "tgbot/TgTypeParser.h"
 
+#include "tgbot/tools/StringTools.h"
+
 namespace TgBot {
 
 Update::Ptr TgTypeParser::parseJsonAndGetUpdate(const boost::property_tree::ptree& data) const {
@@ -97,10 +99,7 @@ std::string TgTypeParser::parseWebhookInfo(const WebhookInfo::Ptr& object) const
     appendToJson(result, "last_error_message", object->lastErrorMessage);
     appendToJson(result, "last_synchronization_error_date", object->lastSynchronizationErrorDate);
     appendToJson(result, "max_connections", object->maxConnections);
-    appendToJson(result, "allowed_updates", parseArray<std::string>(
-        [] (const std::string& s)->std::string {
-        return s;
-    }, object->allowedUpdates));
+    appendStringArrayToJson(result, "allowed_updates", object->allowedUpdates);
     removeLastComma(result);
     result += '}';
     return result;
@@ -227,10 +226,7 @@ std::string TgTypeParser::parseChat(const Chat::Ptr& object) const {
     appendToJson(result, "last_name", object->lastName);
     appendToJson(result, "is_forum", object->isForum);
     appendToJson(result, "photo", parseChatPhoto(object->photo));
-    appendToJson(result, "active_usernames", parseArray<std::string>(
-        [] (const std::string& s)->std::string {
-        return s;
-    }, object->activeUsernames));
+    appendStringArrayToJson(result, "active_usernames", object->activeUsernames);
     appendToJson(result, "birthdate", parseBirthdate(object->birthdate));
     appendToJson(result, "business_intro", parseBusinessIntro(object->businessIntro));
     appendToJson(result, "business_location", parseBusinessLocation(object->businessLocation));
@@ -1650,10 +1646,7 @@ std::string TgTypeParser::parseGiveaway(const Giveaway::Ptr& object) const {
     appendToJson(result, "only_new_members", object->onlyNewMembers);
     appendToJson(result, "has_public_winners", object->hasPublicWinners);
     appendToJson(result, "prize_description", object->prizeDescription);
-    appendToJson(result, "country_codes", parseArray<std::string>(
-        [] (const std::string& s)->std::string {
-        return s;
-    }, object->countryCodes));
+    appendStringArrayToJson(result, "country_codes", object->countryCodes);
     appendToJson(result, "premium_subscription_month_count", object->premiumSubscriptionMonthCount);
     removeLastComma(result);
     result += '}';
@@ -3819,15 +3812,9 @@ std::string TgTypeParser::parseInputSticker(const InputSticker::Ptr& object) con
     result += '{';
     appendToJson(result, "sticker", object->sticker);
     appendToJson(result, "format", object->format);
-    appendToJson(result, "emoji_list", parseArray<std::string>(
-        [] (const std::string& s)->std::string {
-        return s;
-    }, object->emojiList));
+    appendStringArrayToJson(result, "emoji_list", object->emojiList);
     appendToJson(result, "mask_position", parseMaskPosition(object->maskPosition));
-    appendToJson(result, "keywords", parseArray<std::string>(
-        [] (const std::string& s)->std::string {
-        return s;
-    }, object->keywords));
+    appendStringArrayToJson(result, "keywords", object->keywords);
     removeLastComma(result);
     result += '}';
     return result;
@@ -5416,10 +5403,7 @@ std::string TgTypeParser::parsePassportElementErrorFiles(const PassportElementEr
     // This function will be called by parsePassportElementError(), so I don't add
     // curly brackets to the result std::string.
     std::string result;
-    appendToJson(result, "file_hashes",
-                 parseArray<std::string>([] (const std::string& s)->std::string {
-        return s;
-    }, object->fileHashes));
+    appendStringArrayToJson(result, "file_hashes", object->fileHashes);
     // The last comma will be erased by parsePassportElementError().
     return result;
 }
@@ -5460,10 +5444,7 @@ std::string TgTypeParser::parsePassportElementErrorTranslationFiles(const Passpo
     // This function will be called by parsePassportElementError(), so I don't add
     // curly brackets to the result std::string.
     std::string result;
-    appendToJson(result, "file_hashes",
-                 parseArray<std::string>([] (const std::string& s)->std::string {
-        return s;
-    }, object->fileHashes));
+    appendStringArrayToJson(result, "file_hashes", object->fileHashes);
     // The last comma will be erased by parsePassportElementError().
     return result;
 }
@@ -5580,6 +5561,24 @@ std::string TgTypeParser::parseGenericReply(const GenericReply::Ptr& object) con
         return parseInlineKeyboardMarkup(std::static_pointer_cast<InlineKeyboardMarkup>(object));
     }
     return "";
+}
+
+void TgTypeParser::appendStringArrayToJson(std::string& json, const std::string& varName, const std::vector<std::string>& values) const {
+    if (values.empty()) {
+        return;
+    }
+    json += '"';
+    json += varName;
+    json += R"(":[)";
+    for (std::size_t i = 0; i < values.size(); ++i) {
+        if (i != 0) {
+            json += ',';
+        }
+        json += '"';
+        json += StringTools::escapeJsonString(values[i]);
+        json += '"';
+    }
+    json += "],";
 }
 
 void TgTypeParser::appendToJson(std::string& json, const std::string& varName, const std::string& value) const {

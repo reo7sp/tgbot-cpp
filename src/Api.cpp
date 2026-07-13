@@ -60,7 +60,7 @@ bool Api::setWebhook(const std::string& url,
     if (allowedUpdates != nullptr) {
         auto allowedUpdatesJson = _tgTypeParser.parseArray<std::string>(
             [] (const std::string& s)->std::string {
-            return s;
+            return "\"" + StringTools::escapeJsonString(s) + "\"";
         }, *allowedUpdates);
         args.emplace_back("allowed_updates", allowedUpdatesJson);
     }
