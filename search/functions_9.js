@@ -32,5 +32,6 @@ var searchData=
   ['inputmediavideo_29',['InputMediaVideo',['../class_tg_bot_1_1_input_media_video.html#a698a73c20b1c6c10be011543ec1253ea',1,'TgBot::InputMediaVideo']]],
   ['inputmessagecontent_30',['InputMessageContent',['../class_tg_bot_1_1_input_message_content.html#ae6be6967fa859edbf45f059baf807aad',1,'TgBot::InputMessageContent']]],
   ['inputtextmessagecontent_31',['InputTextMessageContent',['../class_tg_bot_1_1_input_text_message_content.html#a6926fc1a1b56159d2e2d92ed3de507e7',1,'TgBot::InputTextMessageContent']]],
-  ['inputvenuemessagecontent_32',['InputVenueMessageContent',['../class_tg_bot_1_1_input_venue_message_content.html#a25b40f55f2e1c3f08d4159e7254a2e77',1,'TgBot::InputVenueMessageContent']]]
+  ['inputvenuemessagecontent_32',['InputVenueMessageContent',['../class_tg_bot_1_1_input_venue_message_content.html#a25b40f55f2e1c3f08d4159e7254a2e77',1,'TgBot::InputVenueMessageContent']]],
+  ['iseternalcancelled_33',['isEternalCancelled',['../class_tg_bot_1_1_http_client.html#a68f4065ab0f5e5a4e1e9ef5da883f5ba',1,'TgBot::HttpClient']]]
 ];
