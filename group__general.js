@@ -50,6 +50,10 @@ var group__general =
       [ "onSuccessfulPayment", "class_tg_bot_1_1_event_broadcaster.html#af6a7bfddff8c46d11750ab3295eebc10", null ],
       [ "onUnknownCommand", "class_tg_bot_1_1_event_broadcaster.html#a5bed996221f047ec0469ae19e7bd00eb", null ]
     ] ],
+    [ "TgBot::EventHandler", "class_tg_bot_1_1_event_handler.html", [
+      [ "EventHandler", "class_tg_bot_1_1_event_handler.html#ae71500cae7d1ff3d40bb47b1e39b3642", null ],
+      [ "handleUpdate", "class_tg_bot_1_1_event_handler.html#a0e6279a53f59979a8546fc7c7a915862", null ]
+    ] ],
     [ "TgBot::TgException", "class_tg_bot_1_1_tg_exception.html", [
       [ "ErrorCode", "class_tg_bot_1_1_tg_exception.html#a88b4eb82d516cd897ace08c9cb4c5097", [
         [ "Undefined", "class_tg_bot_1_1_tg_exception.html#a88b4eb82d516cd897ace08c9cb4c5097aec0fc0100c4fc1ce4eea230c3dc10360", null ],

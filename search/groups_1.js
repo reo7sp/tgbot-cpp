@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['net_0',['Net',['../group__net.html',1,'']]]
+  ['bot_20api_20types_0',['Telegram Bot API types',['../group__types.html',1,'']]]
 ];

@@ -255,8 +255,6 @@ var hierarchy =
     [ "TgBot::PaidMediaPurchased", "struct_tg_bot_1_1_paid_media_purchased.html", null ],
     [ "TgBot::PaidMediaVideo", "struct_tg_bot_1_1_paid_media_video.html", null ],
     [ "TgBot::PaidMessagePriceChanged", "struct_tg_bot_1_1_paid_message_price_changed.html", null ],
-    [ "TgBot::ApiRequest::Parameter&lt; Required, T &gt;", "struct_tg_bot_1_1_api_request_1_1_parameter.html", null ],
-    [ "TgBot::ApiRequest::ParameterWithDefault&lt; T &gt;", "struct_tg_bot_1_1_api_request_1_1_parameter_with_default.html", null ],
     [ "TgBot::PassportData", "struct_tg_bot_1_1_passport_data.html", null ],
     [ "TgBot::PassportElementError", "struct_tg_bot_1_1_passport_element_error.html", null ],
     [ "TgBot::PassportElementErrorDataField", "struct_tg_bot_1_1_passport_element_error_data_field.html", null ],

@@ -10,7 +10,7 @@ var indexSectionsWithContent =
   7: "et",
   8: "bcdefghimnprstu",
   9: "b",
-  10: "gnt",
+  10: "abgnt",
   11: "ct"
 };
 

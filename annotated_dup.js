@@ -1,10 +1,6 @@
 var annotated_dup =
 [
     [ "TgBot", "namespace_tg_bot.html", [
-      [ "ApiRequest", "namespace_tg_bot_1_1_api_request.html", [
-        [ "Parameter", "struct_tg_bot_1_1_api_request_1_1_parameter.html", "struct_tg_bot_1_1_api_request_1_1_parameter" ],
-        [ "ParameterWithDefault", "struct_tg_bot_1_1_api_request_1_1_parameter_with_default.html", "struct_tg_bot_1_1_api_request_1_1_parameter_with_default" ]
-      ] ],
       [ "AcceptedGiftTypes", "struct_tg_bot_1_1_accepted_gift_types.html", "struct_tg_bot_1_1_accepted_gift_types" ],
       [ "AffiliateInfo", "struct_tg_bot_1_1_affiliate_info.html", "struct_tg_bot_1_1_affiliate_info" ],
       [ "Animation", "struct_tg_bot_1_1_animation.html", "struct_tg_bot_1_1_animation" ],

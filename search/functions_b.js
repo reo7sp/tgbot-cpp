@@ -17,6 +17,5 @@ var searchData=
   ['onprecheckoutquery_14',['onPreCheckoutQuery',['../class_tg_bot_1_1_event_broadcaster.html#acf68ccdb336430d9b4405cac65d4fce9',1,'TgBot::EventBroadcaster']]],
   ['onshippingquery_15',['onShippingQuery',['../class_tg_bot_1_1_event_broadcaster.html#a1b45b331ec44806de82f12d06ed65106',1,'TgBot::EventBroadcaster']]],
   ['onsuccessfulpayment_16',['onSuccessfulPayment',['../class_tg_bot_1_1_event_broadcaster.html#af6a7bfddff8c46d11750ab3295eebc10',1,'TgBot::EventBroadcaster']]],
-  ['onunknowncommand_17',['onUnknownCommand',['../class_tg_bot_1_1_event_broadcaster.html#a5bed996221f047ec0469ae19e7bd00eb',1,'TgBot::EventBroadcaster']]],
-  ['optional_18',['optional',['../namespace_tg_bot_1_1_api_request.html#a04b3cacefef88020665d661c17fa32aa',1,'TgBot::ApiRequest::optional(const char *name, const T &amp;value)'],['../namespace_tg_bot_1_1_api_request.html#a4cae248510edea7e86ce482827d96737',1,'TgBot::ApiRequest::optional(const char *name, const T &amp;value, T defaultValue)']]]
+  ['onunknowncommand_17',['onUnknownCommand',['../class_tg_bot_1_1_event_broadcaster.html#a5bed996221f047ec0469ae19e7bd00eb',1,'TgBot::EventBroadcaster']]]
 ];

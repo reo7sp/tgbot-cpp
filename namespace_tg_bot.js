@@ -1,10 +1,5 @@
 var namespace_tg_bot =
 [
-    [ "ApiRequest", "namespace_tg_bot_1_1_api_request.html", "namespace_tg_bot_1_1_api_request" ],
-    [ "ApiResponse", "namespace_tg_bot_1_1_api_response.html", [
-      [ "decode", "namespace_tg_bot_1_1_api_response.html#a53149e2ae393fbe9316ac2d175e79c17", null ],
-      [ "decodeObjectOrTrue", "namespace_tg_bot_1_1_api_response.html#a81b3dedc665afedb56e4730b936c3c68", null ]
-    ] ],
     [ "Json", "namespace_tg_bot_1_1_json.html", [
       [ "decode", "namespace_tg_bot_1_1_json.html#a73989baa6524653fc6ae30442740eabf", null ],
       [ "decode", "namespace_tg_bot_1_1_json.html#a1e24d3fd37095b7d0a008f10d2c094c2", null ],

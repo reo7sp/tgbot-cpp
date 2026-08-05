@@ -20,6 +20,15 @@ var group__net =
       [ "_isEternalCancel", "class_tg_bot_1_1_http_client.html#ac65b8cec3ab6be487d8659b8dafbb540", null ],
       [ "_timeout", "class_tg_bot_1_1_http_client.html#a7f12245fbf6b84f4024c768c5a643d4e", null ]
     ] ],
+    [ "TgBot::HttpFile", "struct_tg_bot_1_1_http_file.html", [
+      [ "data", "struct_tg_bot_1_1_http_file.html#a003b7d87f23731339f4cce4b82190b6b", null ],
+      [ "fileName", "struct_tg_bot_1_1_http_file.html#af4e4e638b0af55a9094e74f972d3898f", null ],
+      [ "mimeType", "struct_tg_bot_1_1_http_file.html#a63f90f3f8de709c281fbef39c6691107", null ]
+    ] ],
+    [ "TgBot::HttpFormField", "struct_tg_bot_1_1_http_form_field.html", [
+      [ "name", "struct_tg_bot_1_1_http_form_field.html#aa224471f8ecee4dced6aadb0b612d7dc", null ],
+      [ "value", "struct_tg_bot_1_1_http_form_field.html#abc545372f8f0bf9a6d1acc7cd214006f", null ]
+    ] ],
     [ "TgBot::HttpServer&lt; Protocol &gt;", "class_tg_bot_1_1_http_server.html", [
       [ "ServerHandler", "class_tg_bot_1_1_http_server.html#afba74f0301a5174a1f287313a734f3b6", null ],
       [ "HttpServer", "class_tg_bot_1_1_http_server.html#a76f59ef0754327c437352aeb0b19a3f2", null ],
@@ -34,6 +43,11 @@ var group__net =
     [ "TgBot::TgWebhookLocalServer", "class_tg_bot_1_1_tg_webhook_local_server.html", [
       [ "TgWebhookLocalServer", "class_tg_bot_1_1_tg_webhook_local_server.html#aa3dd2084536f5f3f6c8a6fd5a441966a", null ],
       [ "TgWebhookLocalServer", "class_tg_bot_1_1_tg_webhook_local_server.html#a330530faa3a3a163ec231352c5e2e341", null ]
+    ] ],
+    [ "TgBot::TgWebhookServer&lt; Protocol &gt;", "class_tg_bot_1_1_tg_webhook_server.html", [
+      [ "TgWebhookServer", "class_tg_bot_1_1_tg_webhook_server.html#ab097de93d1a3a238736d5d668ec54ed1", null ],
+      [ "TgWebhookServer", "class_tg_bot_1_1_tg_webhook_server.html#a47e45f3c13bbbb52bdde15819f7de7f2", null ],
+      [ "TgWebhookServer", "class_tg_bot_1_1_tg_webhook_server.html#a40206b1a79434028578e597983f54027", null ]
     ] ],
     [ "TgBot::TgWebhookTcpServer", "class_tg_bot_1_1_tg_webhook_tcp_server.html", [
       [ "TgWebhookTcpServer", "class_tg_bot_1_1_tg_webhook_tcp_server.html#a20e332c60eecb81d119bc932cf51f63b", null ],

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['types_0',['Types',['../group__types.html',1,'']]]
+  ['general_0',['General',['../group__general.html',1,'']]]
 ];

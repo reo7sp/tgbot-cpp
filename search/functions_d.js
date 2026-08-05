@@ -13,7 +13,6 @@ var searchData=
   ['replacemanagedbottoken_10',['replaceManagedBotToken',['../_api_methods_8inc_8h.html#a2af510905c8fb82aa0209214685b58b4',1,'ApiMethods.inc.h']]],
   ['replacestickerinset_11',['replaceStickerInSet',['../_api_methods_8inc_8h.html#ab19672128f28075e581cc22f21cb7ea3',1,'ApiMethods.inc.h']]],
   ['repoststory_12',['repostStory',['../_api_methods_8inc_8h.html#ac5204abe828cc1a40c37082901ec4d9d',1,'ApiMethods.inc.h']]],
-  ['required_13',['required',['../namespace_tg_bot_1_1_api_request.html#a98e43a5538e2d1b5de08a3455d4d5c0b',1,'TgBot::ApiRequest']]],
-  ['restrictchatmember_14',['restrictChatMember',['../_api_methods_8inc_8h.html#a3e7e7939cd6c3dac4802bdc0db30f859',1,'ApiMethods.inc.h']]],
-  ['revokechatinvitelink_15',['revokeChatInviteLink',['../_api_methods_8inc_8h.html#a94b165c6d7009c2eb4e2d283e90bb6c9',1,'ApiMethods.inc.h']]]
+  ['restrictchatmember_13',['restrictChatMember',['../_api_methods_8inc_8h.html#a3e7e7939cd6c3dac4802bdc0db30f859',1,'ApiMethods.inc.h']]],
+  ['revokechatinvitelink_14',['revokeChatInviteLink',['../_api_methods_8inc_8h.html#a94b165c6d7009c2eb4e2d283e90bb6c9',1,'ApiMethods.inc.h']]]
 ];
