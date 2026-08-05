@@ -134,7 +134,8 @@ docker-example-image: docker-image
 	docker build --platform=$(DOCKER_PLATFORM) \
 		--build-arg TGBOT_CPP_IMAGE=$(DOCKER_IMAGE) \
 		-t $(EXAMPLE_IMAGE) \
-		-f examples/$(EXAMPLE)/Dockerfile .
+		-f examples/$(EXAMPLE)/Dockerfile \
+		$(if $(filter echobot-submodule,$(EXAMPLE)),.,examples/$(EXAMPLE))
 
 docker-run-example: docker-example-image
 	@test -n "$$TOKEN" || (echo "TOKEN is required" >&2; exit 2)

@@ -9,4 +9,4 @@ target_compile_options(photo PRIVATE
     $<$<CXX_COMPILER_ID:GNU,Clang,AppleClang>:-Wall>
 )
 target_link_libraries(photo PRIVATE TgBot::TgBot)
-install(TARGETS photo RUNTIME DESTINATION bin COMPONENT example)
+install(TARGETS photo RUNTIME DESTINATION bin)

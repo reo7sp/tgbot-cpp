@@ -4,11 +4,11 @@ LABEL org.opencontainers.image.authors="Oleg Morozenkov <m@oleg.rocks>"
 
 WORKDIR /usr/src/echobot-proxy
 
-COPY examples/echobot-proxy/CMakeLists.txt ./
-COPY examples/echobot-proxy/src src
+COPY CMakeLists.txt ./
+COPY src src
 
 RUN cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
 RUN cmake --build build --parallel $(nproc)
-RUN cmake --install build --prefix /usr --component example
+RUN cmake --install build --prefix /usr
 
 CMD ["/usr/bin/echobot-proxy"]

@@ -9,4 +9,4 @@ target_compile_options(reply-keyboard PRIVATE
     $<$<CXX_COMPILER_ID:GNU,Clang,AppleClang>:-Wall>
 )
 target_link_libraries(reply-keyboard PRIVATE TgBot::TgBot)
-install(TARGETS reply-keyboard RUNTIME DESTINATION bin COMPONENT example)
+install(TARGETS reply-keyboard RUNTIME DESTINATION bin)

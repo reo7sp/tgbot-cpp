@@ -2,26 +2,29 @@
 #include <cstdlib>
 #include <exception>
 #include <iostream>
+#include <memory>
 #include <string>
 #include <vector>
 
 #include <tgbot/tgbot.h>
 
-void createOneColumnKeyboard(const std::vector<std::string>& buttonStrings, TgBot::ReplyKeyboardMarkup::Ptr& kb) {
+void createOneColumnKeyboard(const std::vector<std::string>& buttonStrings,
+                             std::shared_ptr<TgBot::ReplyKeyboardMarkup>& kb) {
     for (std::size_t i = 0; i < buttonStrings.size(); ++i) {
-        std::vector<TgBot::KeyboardButton::Ptr> row;
-        TgBot::KeyboardButton::Ptr button(new TgBot::KeyboardButton);
+        std::vector<std::shared_ptr<TgBot::KeyboardButton>> row;
+        std::shared_ptr<TgBot::KeyboardButton> button = std::make_shared<TgBot::KeyboardButton>();
         button->text = buttonStrings[i];
         row.push_back(button);
         kb->keyboard.push_back(row);
     }
 }
 
-void createKeyboard(const std::vector<std::vector<std::string>>& buttonLayout, TgBot::ReplyKeyboardMarkup::Ptr& kb) {
+void createKeyboard(const std::vector<std::vector<std::string>>& buttonLayout,
+                    std::shared_ptr<TgBot::ReplyKeyboardMarkup>& kb) {
     for (std::size_t i = 0; i < buttonLayout.size(); ++i) {
-        std::vector<TgBot::KeyboardButton::Ptr> row;
+        std::vector<std::shared_ptr<TgBot::KeyboardButton>> row;
         for (std::size_t j = 0; j < buttonLayout[i].size(); ++j) {
-            TgBot::KeyboardButton::Ptr button(new TgBot::KeyboardButton);
+            std::shared_ptr<TgBot::KeyboardButton> button = std::make_shared<TgBot::KeyboardButton>();
             button->text = buttonLayout[i][j];
             row.push_back(button);
         }
@@ -35,10 +38,10 @@ int main() {
 
     TgBot::Bot bot(token);
 
-    TgBot::ReplyKeyboardMarkup::Ptr keyboardOneCol(new TgBot::ReplyKeyboardMarkup);
+    std::shared_ptr<TgBot::ReplyKeyboardMarkup> keyboardOneCol = std::make_shared<TgBot::ReplyKeyboardMarkup>();
     createOneColumnKeyboard({ "Option 1", "Option 2", "Option 3" }, keyboardOneCol);
 
-    TgBot::ReplyKeyboardMarkup::Ptr keyboardWithLayout(new TgBot::ReplyKeyboardMarkup);
+    std::shared_ptr<TgBot::ReplyKeyboardMarkup> keyboardWithLayout = std::make_shared<TgBot::ReplyKeyboardMarkup>();
     createKeyboard({ { "Dog", "Cat", "Mouse" },
                      { "Green", "White", "Red" },
                      { "On", "Off" },
@@ -46,17 +49,17 @@ int main() {
                      { "Info", "About", "Map", "Etc" } },
                    keyboardWithLayout);
 
-    bot.getEvents().onCommand("start", [&bot, &keyboardOneCol](TgBot::Message::Ptr message) {
+    bot.getEvents().onCommand("start", [&bot, &keyboardOneCol](std::shared_ptr<TgBot::Message> message) {
         bot.getApi().sendMessage(message->chat->id,
                                  "/start for one column keyboard\n/layout for a more complex keyboard", nullptr,
                                  nullptr, keyboardOneCol);
     });
-    bot.getEvents().onCommand("layout", [&bot, &keyboardWithLayout](TgBot::Message::Ptr message) {
+    bot.getEvents().onCommand("layout", [&bot, &keyboardWithLayout](std::shared_ptr<TgBot::Message> message) {
         bot.getApi().sendMessage(message->chat->id,
                                  "/start for one column keyboard\n/layout for a more complex keyboard", nullptr,
                                  nullptr, keyboardWithLayout);
     });
-    bot.getEvents().onAnyMessage([&bot](TgBot::Message::Ptr message) {
+    bot.getEvents().onAnyMessage([&bot](std::shared_ptr<TgBot::Message> message) {
         const std::string text = message->text.value_or("");
         std::cout << "User wrote " << text << std::endl;
         if (text.starts_with("/start") || text.starts_with("/layout")) {

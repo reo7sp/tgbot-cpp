@@ -9,4 +9,4 @@ target_compile_options(received-processing-text PRIVATE
     $<$<CXX_COMPILER_ID:GNU,Clang,AppleClang>:-Wall>
 )
 target_link_libraries(received-processing-text PRIVATE TgBot::TgBot)
-install(TARGETS received-processing-text RUNTIME DESTINATION bin COMPONENT example)
+install(TARGETS received-processing-text RUNTIME DESTINATION bin)

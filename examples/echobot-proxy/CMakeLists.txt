@@ -9,4 +9,4 @@ target_compile_options(echobot-proxy PRIVATE
     $<$<CXX_COMPILER_ID:GNU,Clang,AppleClang>:-Wall>
 )
 target_link_libraries(echobot-proxy PRIVATE TgBot::TgBot)
-install(TARGETS echobot-proxy RUNTIME DESTINATION bin COMPONENT example)
+install(TARGETS echobot-proxy RUNTIME DESTINATION bin)

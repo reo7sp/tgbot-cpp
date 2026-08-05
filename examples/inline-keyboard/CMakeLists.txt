@@ -9,4 +9,4 @@ target_compile_options(inline-keyboard PRIVATE
     $<$<CXX_COMPILER_ID:GNU,Clang,AppleClang>:-Wall>
 )
 target_link_libraries(inline-keyboard PRIVATE TgBot::TgBot)
-install(TARGETS inline-keyboard RUNTIME DESTINATION bin COMPONENT example)
+install(TARGETS inline-keyboard RUNTIME DESTINATION bin)

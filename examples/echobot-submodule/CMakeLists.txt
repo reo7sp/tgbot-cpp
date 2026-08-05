@@ -9,4 +9,4 @@ target_compile_options(echobot-submodule PRIVATE
     $<$<CXX_COMPILER_ID:GNU,Clang,AppleClang>:-Wall>
 )
 target_link_libraries(echobot-submodule PRIVATE TgBot::TgBot)
-install(TARGETS echobot-submodule RUNTIME DESTINATION bin COMPONENT example)
+install(TARGETS echobot-submodule RUNTIME DESTINATION bin)

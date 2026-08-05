@@ -2,6 +2,7 @@
 #include <cstdlib>
 #include <exception>
 #include <iostream>
+#include <memory>
 #include <string>
 
 #include <tgbot/tgbot.h>
@@ -14,9 +15,10 @@ int main() {
     const std::string photoMimeType = "image/jpeg";
 
     TgBot::Bot bot(token);
-    bot.getEvents().onCommand(
-        "start", [&bot](TgBot::Message::Ptr message) { bot.getApi().sendMessage(message->chat->id, "Hi!"); });
-    bot.getEvents().onCommand("photo", [&bot, &photoFilePath, &photoMimeType](TgBot::Message::Ptr message) {
+    bot.getEvents().onCommand("start", [&bot](std::shared_ptr<TgBot::Message> message) {
+        bot.getApi().sendMessage(message->chat->id, "Hi!");
+    });
+    bot.getEvents().onCommand("photo", [&bot, &photoFilePath, &photoMimeType](std::shared_ptr<TgBot::Message> message) {
         bot.getApi().sendPhoto(message->chat->id, TgBot::InputFile::fromFile(photoFilePath, photoMimeType));
     });
 

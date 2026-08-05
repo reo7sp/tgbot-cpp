@@ -18,6 +18,6 @@ RUN cmake -S . -B build \
         -DCMAKE_BUILD_TYPE=Release \
         -DTGBOT_CPP_SOURCE_DIR=/usr/src/tgbot-cpp
 RUN cmake --build build --parallel $(nproc)
-RUN cmake --install build --prefix /usr --component example
+RUN cmake --install build --prefix /usr
 
 CMD ["/usr/bin/echobot-submodule"]

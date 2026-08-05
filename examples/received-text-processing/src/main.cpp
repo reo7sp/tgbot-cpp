@@ -2,6 +2,7 @@
 #include <cstdlib>
 #include <exception>
 #include <iostream>
+#include <memory>
 #include <string>
 #include <vector>
 
@@ -18,15 +19,16 @@ int main() {
     TgBot::Bot bot(token);
     TgBot::TgLongPoll long_poll(bot);
 
-    bot.getEvents().onCommand(
-        "start", [&bot](TgBot::Message::Ptr message) { bot.getApi().sendMessage(message->chat->id, "Hi!"); });
+    bot.getEvents().onCommand("start", [&bot](std::shared_ptr<TgBot::Message> message) {
+        bot.getApi().sendMessage(message->chat->id, "Hi!");
+    });
 
-    bot.getEvents().onCommand("test", [&](TgBot::Message::Ptr message) {
+    bot.getEvents().onCommand("test", [&](std::shared_ptr<TgBot::Message> message) {
         bot.getApi().sendMessage(message->chat->id, "Enter text");
         test_text_state = true;
     });
 
-    bot.getEvents().onAnyMessage([&](TgBot::Message::Ptr message) {
+    bot.getEvents().onAnyMessage([&](std::shared_ptr<TgBot::Message> message) {
         if (test_text_state) {
             bot.getApi().sendMessage(message->chat->id, message->text.value_or(""));
             test_text_state = false;

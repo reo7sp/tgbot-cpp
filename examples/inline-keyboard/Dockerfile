@@ -4,11 +4,11 @@ LABEL org.opencontainers.image.authors="Oleg Morozenkov <m@oleg.rocks>"
 
 WORKDIR /usr/src/inline-keyboard
 
-COPY examples/inline-keyboard/CMakeLists.txt ./
-COPY examples/inline-keyboard/src src
+COPY CMakeLists.txt ./
+COPY src src
 
 RUN cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
 RUN cmake --build build --parallel $(nproc)
-RUN cmake --install build --prefix /usr --component example
+RUN cmake --install build --prefix /usr
 
 CMD ["/usr/bin/inline-keyboard"]
