@@ -10,7 +10,7 @@ namespace TgBot {
 /**
  * @brief This object represents the contents of a file to be uploaded.
  *
- * @ingroup types
+ * @ingroup api
  */
 class TGBOT_API InputFile {
 

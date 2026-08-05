@@ -200,6 +200,7 @@ def test_generate_openapi_renders_types_methods_and_documentation(
     assert "Unique identifier for this user." in types
     assert "@brief This object represents a Telegram user." in types
     assert "@brief Unique identifier for this user." in types
+    assert "@ingroup api" in types
     assert "static TGBOT_API const std::string TYPE;" in types
     assert "TGBOT_API void from_json" in types
     assert "TGBOT_API void to_json" in types

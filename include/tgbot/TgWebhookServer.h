@@ -13,6 +13,9 @@
 
 namespace TgBot {
 
+/**
+ * @ingroup net
+ */
 template<typename Protocol>
 class TgWebhookServer : public HttpServer<Protocol> {
 

@@ -25,6 +25,7 @@ struct {{ object.name }};
 {% for line in object.description[1:] %}
  * {{ line }}
 {% endfor %}
+ * @ingroup api
  */
 struct {{ object.name }} {
     using Ptr = std::shared_ptr<{{ object.name }}>;

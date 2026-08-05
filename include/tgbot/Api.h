@@ -25,7 +25,7 @@ class HttpClient;
  * Method declarations and their documentation are generated from the official
  * Telegram Bot API documentation.
  *
- * @ingroup general
+ * @ingroup api
  */
 class TGBOT_API Api {
     friend class Bot;

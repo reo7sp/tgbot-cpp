@@ -405,6 +405,7 @@ struct WriteAccessAllowed;
 
 /**
  * @brief This object describes the types of gifts that can be gifted to a user or a chat.
+ * @ingroup api
  */
 struct AcceptedGiftTypes {
     using Ptr = std::shared_ptr<AcceptedGiftTypes>;
@@ -440,6 +441,7 @@ TGBOT_API void to_json(nlohmann::json& json, const AcceptedGiftTypes& value);
 
 /**
  * @brief Contains information about the affiliate that received a commission via this transaction.
+ * @ingroup api
  */
 struct AffiliateInfo {
     using Ptr = std::shared_ptr<AffiliateInfo>;
@@ -479,6 +481,7 @@ TGBOT_API void to_json(nlohmann::json& json, const AffiliateInfo& value);
 
 /**
  * @brief This object represents an animation file (GIF or H.264/MPEG-4 AVC video without sound).
+ * @ingroup api
  */
 struct Animation {
     using Ptr = std::shared_ptr<Animation>;
@@ -538,6 +541,7 @@ TGBOT_API void to_json(nlohmann::json& json, const Animation& value);
 
 /**
  * @brief This object represents an audio file to be treated as music by the Telegram clients.
+ * @ingroup api
  */
 struct Audio {
     using Ptr = std::shared_ptr<Audio>;
@@ -599,6 +603,7 @@ TGBOT_API void to_json(nlohmann::json& json, const Audio& value);
  * @brief This object describes the way a background is filled based on the selected colors.
  * Currently, it can be one of BackgroundFillSolid BackgroundFillGradient
  * BackgroundFillFreeformGradient
+ * @ingroup api
  */
 struct BackgroundFill {
     using Ptr = std::shared_ptr<BackgroundFill>;
@@ -613,6 +618,7 @@ TGBOT_API void to_json(nlohmann::json& json, const BackgroundFill& value);
 
 /**
  * @brief The background is a freeform gradient that rotates after every message in the chat.
+ * @ingroup api
  */
 struct BackgroundFillFreeformGradient {
     using Ptr = std::shared_ptr<BackgroundFillFreeformGradient>;
@@ -636,6 +642,7 @@ TGBOT_API void to_json(nlohmann::json& json, const BackgroundFillFreeformGradien
 
 /**
  * @brief The background is a gradient fill.
+ * @ingroup api
  */
 struct BackgroundFillGradient {
     using Ptr = std::shared_ptr<BackgroundFillGradient>;
@@ -668,6 +675,7 @@ TGBOT_API void to_json(nlohmann::json& json, const BackgroundFillGradient& value
 
 /**
  * @brief The background is filled using the selected color.
+ * @ingroup api
  */
 struct BackgroundFillSolid {
     using Ptr = std::shared_ptr<BackgroundFillSolid>;
@@ -691,6 +699,7 @@ TGBOT_API void to_json(nlohmann::json& json, const BackgroundFillSolid& value);
 /**
  * @brief This object describes the type of a background. Currently, it can be one of
  * BackgroundTypeFill BackgroundTypeWallpaper BackgroundTypePattern BackgroundTypeChatTheme
+ * @ingroup api
  */
 struct BackgroundType {
     using Ptr = std::shared_ptr<BackgroundType>;
@@ -705,6 +714,7 @@ TGBOT_API void to_json(nlohmann::json& json, const BackgroundType& value);
 
 /**
  * @brief The background is taken directly from a built-in chat theme.
+ * @ingroup api
  */
 struct BackgroundTypeChatTheme {
     using Ptr = std::shared_ptr<BackgroundTypeChatTheme>;
@@ -727,6 +737,7 @@ TGBOT_API void to_json(nlohmann::json& json, const BackgroundTypeChatTheme& valu
 
 /**
  * @brief The background is automatically filled based on the selected colors.
+ * @ingroup api
  */
 struct BackgroundTypeFill {
     using Ptr = std::shared_ptr<BackgroundTypeFill>;
@@ -756,6 +767,7 @@ TGBOT_API void to_json(nlohmann::json& json, const BackgroundTypeFill& value);
  * @brief The background is a .PNG or .TGV (gzipped subset of SVG with MIME type
  * “application/x-tgwallpattern”) pattern to be combined with the background fill chosen by the
  * user.
+ * @ingroup api
  */
 struct BackgroundTypePattern {
     using Ptr = std::shared_ptr<BackgroundTypePattern>;
@@ -799,6 +811,7 @@ TGBOT_API void to_json(nlohmann::json& json, const BackgroundTypePattern& value)
 
 /**
  * @brief The background is a wallpaper in the JPEG format.
+ * @ingroup api
  */
 struct BackgroundTypeWallpaper {
     using Ptr = std::shared_ptr<BackgroundTypeWallpaper>;
@@ -837,6 +850,7 @@ TGBOT_API void to_json(nlohmann::json& json, const BackgroundTypeWallpaper& valu
 
 /**
  * @brief Describes the birthdate of a user.
+ * @ingroup api
  */
 struct Birthdate {
     using Ptr = std::shared_ptr<Birthdate>;
@@ -862,6 +876,7 @@ TGBOT_API void to_json(nlohmann::json& json, const Birthdate& value);
 
 /**
  * @brief This object describes the access settings of a bot.
+ * @ingroup api
  */
 struct BotAccessSettings {
     using Ptr = std::shared_ptr<BotAccessSettings>;
@@ -882,6 +897,7 @@ TGBOT_API void to_json(nlohmann::json& json, const BotAccessSettings& value);
 
 /**
  * @brief This object represents a bot command.
+ * @ingroup api
  */
 struct BotCommand {
     using Ptr = std::shared_ptr<BotCommand>;
@@ -912,6 +928,7 @@ TGBOT_API void to_json(nlohmann::json& json, const BotCommand& value);
  * 7 scopes are supported: BotCommandScopeDefault BotCommandScopeAllPrivateChats
  * BotCommandScopeAllGroupChats BotCommandScopeAllChatAdministrators BotCommandScopeChat
  * BotCommandScopeChatAdministrators BotCommandScopeChatMember
+ * @ingroup api
  */
 struct BotCommandScope {
     using Ptr = std::shared_ptr<BotCommandScope>;
@@ -928,6 +945,7 @@ TGBOT_API void to_json(nlohmann::json& json, const BotCommandScope& value);
 
 /**
  * @brief Represents the scope of bot commands, covering all group and supergroup chat administrators.
+ * @ingroup api
  */
 struct BotCommandScopeAllChatAdministrators {
     using Ptr = std::shared_ptr<BotCommandScopeAllChatAdministrators>;
@@ -945,6 +963,7 @@ TGBOT_API void to_json(nlohmann::json& json, const BotCommandScopeAllChatAdminis
 
 /**
  * @brief Represents the scope of bot commands, covering all group and supergroup chats.
+ * @ingroup api
  */
 struct BotCommandScopeAllGroupChats {
     using Ptr = std::shared_ptr<BotCommandScopeAllGroupChats>;
@@ -962,6 +981,7 @@ TGBOT_API void to_json(nlohmann::json& json, const BotCommandScopeAllGroupChats&
 
 /**
  * @brief Represents the scope of bot commands, covering all private chats.
+ * @ingroup api
  */
 struct BotCommandScopeAllPrivateChats {
     using Ptr = std::shared_ptr<BotCommandScopeAllPrivateChats>;
@@ -979,6 +999,7 @@ TGBOT_API void to_json(nlohmann::json& json, const BotCommandScopeAllPrivateChat
 
 /**
  * @brief Represents the scope of bot commands, covering a specific chat.
+ * @ingroup api
  */
 struct BotCommandScopeChat {
     using Ptr = std::shared_ptr<BotCommandScopeChat>;
@@ -1003,6 +1024,7 @@ TGBOT_API void to_json(nlohmann::json& json, const BotCommandScopeChat& value);
 /**
  * @brief Represents the scope of bot commands, covering all administrators of a specific group or
  * supergroup chat.
+ * @ingroup api
  */
 struct BotCommandScopeChatAdministrators {
     using Ptr = std::shared_ptr<BotCommandScopeChatAdministrators>;
@@ -1027,6 +1049,7 @@ TGBOT_API void to_json(nlohmann::json& json, const BotCommandScopeChatAdministra
 /**
  * @brief Represents the scope of bot commands, covering a specific member of a group or supergroup
  * chat.
+ * @ingroup api
  */
 struct BotCommandScopeChatMember {
     using Ptr = std::shared_ptr<BotCommandScopeChatMember>;
@@ -1056,6 +1079,7 @@ TGBOT_API void to_json(nlohmann::json& json, const BotCommandScopeChatMember& va
 /**
  * @brief Represents the default scope of bot commands. Default commands are used if no commands with
  * a narrower scope are specified for the user.
+ * @ingroup api
  */
 struct BotCommandScopeDefault {
     using Ptr = std::shared_ptr<BotCommandScopeDefault>;
@@ -1073,6 +1097,7 @@ TGBOT_API void to_json(nlohmann::json& json, const BotCommandScopeDefault& value
 
 /**
  * @brief This object represents the bot's description.
+ * @ingroup api
  */
 struct BotDescription {
     using Ptr = std::shared_ptr<BotDescription>;
@@ -1088,6 +1113,7 @@ TGBOT_API void to_json(nlohmann::json& json, const BotDescription& value);
 
 /**
  * @brief This object represents the bot's name.
+ * @ingroup api
  */
 struct BotName {
     using Ptr = std::shared_ptr<BotName>;
@@ -1103,6 +1129,7 @@ TGBOT_API void to_json(nlohmann::json& json, const BotName& value);
 
 /**
  * @brief This object represents the bot's short description.
+ * @ingroup api
  */
 struct BotShortDescription {
     using Ptr = std::shared_ptr<BotShortDescription>;
@@ -1119,6 +1146,7 @@ TGBOT_API void to_json(nlohmann::json& json, const BotShortDescription& value);
 /**
  * @brief This object contains information about changes to a user payment subscription toward the
  * current bot.
+ * @ingroup api
  */
 struct BotSubscriptionUpdated {
     using Ptr = std::shared_ptr<BotSubscriptionUpdated>;
@@ -1146,6 +1174,7 @@ TGBOT_API void to_json(nlohmann::json& json, const BotSubscriptionUpdated& value
 
 /**
  * @brief Represents the rights of a business bot.
+ * @ingroup api
  */
 struct BusinessBotRights {
     using Ptr = std::shared_ptr<BusinessBotRights>;
@@ -1232,6 +1261,7 @@ TGBOT_API void to_json(nlohmann::json& json, const BusinessBotRights& value);
 
 /**
  * @brief Describes the connection of the bot with a business account.
+ * @ingroup api
  */
 struct BusinessConnection {
     using Ptr = std::shared_ptr<BusinessConnection>;
@@ -1275,6 +1305,7 @@ TGBOT_API void to_json(nlohmann::json& json, const BusinessConnection& value);
 
 /**
  * @brief Contains information about the start page settings of a Telegram Business account.
+ * @ingroup api
  */
 struct BusinessIntro {
     using Ptr = std::shared_ptr<BusinessIntro>;
@@ -1300,6 +1331,7 @@ TGBOT_API void to_json(nlohmann::json& json, const BusinessIntro& value);
 
 /**
  * @brief Contains information about the location of a Telegram Business account.
+ * @ingroup api
  */
 struct BusinessLocation {
     using Ptr = std::shared_ptr<BusinessLocation>;
@@ -1320,6 +1352,7 @@ TGBOT_API void to_json(nlohmann::json& json, const BusinessLocation& value);
 
 /**
  * @brief This object is received when messages are deleted from a connected business account.
+ * @ingroup api
  */
 struct BusinessMessagesDeleted {
     using Ptr = std::shared_ptr<BusinessMessagesDeleted>;
@@ -1346,6 +1379,7 @@ TGBOT_API void to_json(nlohmann::json& json, const BusinessMessagesDeleted& valu
 
 /**
  * @brief Describes the opening hours of a business.
+ * @ingroup api
  */
 struct BusinessOpeningHours {
     using Ptr = std::shared_ptr<BusinessOpeningHours>;
@@ -1366,6 +1400,7 @@ TGBOT_API void to_json(nlohmann::json& json, const BusinessOpeningHours& value);
 
 /**
  * @brief Describes an interval of time during which a business is open.
+ * @ingroup api
  */
 struct BusinessOpeningHoursInterval {
     using Ptr = std::shared_ptr<BusinessOpeningHoursInterval>;
@@ -1388,6 +1423,7 @@ TGBOT_API void to_json(nlohmann::json& json, const BusinessOpeningHoursInterval&
 
 /**
  * @brief A placeholder, currently holds no information. Use BotFather to set up your game.
+ * @ingroup api
  */
 struct CallbackGame {
     using Ptr = std::shared_ptr<CallbackGame>;
@@ -1402,6 +1438,7 @@ TGBOT_API void to_json(nlohmann::json& json, const CallbackGame& value);
  * the field message will be present. If the button was attached to a message sent via the bot
  * (in inline mode), the field inline_message_id will be present. Exactly one of the fields
  * data or game_short_name will be present.
+ * @ingroup api
  */
 struct CallbackQuery {
     using Ptr = std::shared_ptr<CallbackQuery>;
@@ -1451,6 +1488,7 @@ TGBOT_API void to_json(nlohmann::json& json, const CallbackQuery& value);
 
 /**
  * @brief This object represents a chat.
+ * @ingroup api
  */
 struct Chat {
     using Ptr = std::shared_ptr<Chat>;
@@ -1509,6 +1547,7 @@ TGBOT_API void to_json(nlohmann::json& json, const Chat& value);
 
 /**
  * @brief Represents the rights of an administrator in a chat.
+ * @ingroup api
  */
 struct ChatAdministratorRights {
     using Ptr = std::shared_ptr<ChatAdministratorRights>;
@@ -1616,6 +1655,7 @@ TGBOT_API void to_json(nlohmann::json& json, const ChatAdministratorRights& valu
 
 /**
  * @brief This object represents a chat background.
+ * @ingroup api
  */
 struct ChatBackground {
     using Ptr = std::shared_ptr<ChatBackground>;
@@ -1631,6 +1671,7 @@ TGBOT_API void to_json(nlohmann::json& json, const ChatBackground& value);
 
 /**
  * @brief This object contains information about a chat boost.
+ * @ingroup api
  */
 struct ChatBoost {
     using Ptr = std::shared_ptr<ChatBoost>;
@@ -1662,6 +1703,7 @@ TGBOT_API void to_json(nlohmann::json& json, const ChatBoost& value);
 
 /**
  * @brief This object represents a service message about a user boosting a chat.
+ * @ingroup api
  */
 struct ChatBoostAdded {
     using Ptr = std::shared_ptr<ChatBoostAdded>;
@@ -1677,6 +1719,7 @@ TGBOT_API void to_json(nlohmann::json& json, const ChatBoostAdded& value);
 
 /**
  * @brief This object represents a boost removed from a chat.
+ * @ingroup api
  */
 struct ChatBoostRemoved {
     using Ptr = std::shared_ptr<ChatBoostRemoved>;
@@ -1708,6 +1751,7 @@ TGBOT_API void to_json(nlohmann::json& json, const ChatBoostRemoved& value);
 /**
  * @brief This object describes the source of a chat boost. It can be one of ChatBoostSourcePremium
  * ChatBoostSourceGiftCode ChatBoostSourceGiveaway
+ * @ingroup api
  */
 struct ChatBoostSource {
     using Ptr = std::shared_ptr<ChatBoostSource>;
@@ -1724,6 +1768,7 @@ TGBOT_API void to_json(nlohmann::json& json, const ChatBoostSource& value);
  * @brief The boost was obtained by the creation of Telegram Premium gift codes to boost a chat. Each
  * such code boosts the chat 4 times for the duration of the corresponding Telegram Premium
  * subscription.
+ * @ingroup api
  */
 struct ChatBoostSourceGiftCode {
     using Ptr = std::shared_ptr<ChatBoostSourceGiftCode>;
@@ -1749,6 +1794,7 @@ TGBOT_API void to_json(nlohmann::json& json, const ChatBoostSourceGiftCode& valu
  * This boosts the chat 4 times for the duration of the corresponding Telegram Premium
  * subscription for Telegram Premium giveaways and prize_star_count / 500 times for one year
  * for Telegram Star giveaways.
+ * @ingroup api
  */
 struct ChatBoostSourceGiveaway {
     using Ptr = std::shared_ptr<ChatBoostSourceGiveaway>;
@@ -1790,6 +1836,7 @@ TGBOT_API void to_json(nlohmann::json& json, const ChatBoostSourceGiveaway& valu
 /**
  * @brief The boost was obtained by subscribing to Telegram Premium or by gifting a Telegram Premium
  * subscription to another user.
+ * @ingroup api
  */
 struct ChatBoostSourcePremium {
     using Ptr = std::shared_ptr<ChatBoostSourcePremium>;
@@ -1812,6 +1859,7 @@ TGBOT_API void to_json(nlohmann::json& json, const ChatBoostSourcePremium& value
 
 /**
  * @brief This object represents a boost added to a chat or changed.
+ * @ingroup api
  */
 struct ChatBoostUpdated {
     using Ptr = std::shared_ptr<ChatBoostUpdated>;
@@ -1832,6 +1880,7 @@ TGBOT_API void to_json(nlohmann::json& json, const ChatBoostUpdated& value);
 
 /**
  * @brief This object contains full information about a chat.
+ * @ingroup api
  */
 struct ChatFullInfo {
     using Ptr = std::shared_ptr<ChatFullInfo>;
@@ -2138,6 +2187,7 @@ TGBOT_API void to_json(nlohmann::json& json, const ChatFullInfo& value);
 
 /**
  * @brief Represents an invite link for a chat.
+ * @ingroup api
  */
 struct ChatInviteLink {
     using Ptr = std::shared_ptr<ChatInviteLink>;
@@ -2207,6 +2257,7 @@ TGBOT_API void to_json(nlohmann::json& json, const ChatInviteLink& value);
 
 /**
  * @brief Represents a join request sent to a chat.
+ * @ingroup api
  */
 struct ChatJoinRequest {
     using Ptr = std::shared_ptr<ChatJoinRequest>;
@@ -2259,6 +2310,7 @@ TGBOT_API void to_json(nlohmann::json& json, const ChatJoinRequest& value);
 
 /**
  * @brief Represents a location to which a chat is connected.
+ * @ingroup api
  */
 struct ChatLocation {
     using Ptr = std::shared_ptr<ChatLocation>;
@@ -2281,6 +2333,7 @@ TGBOT_API void to_json(nlohmann::json& json, const ChatLocation& value);
  * @brief This object contains information about one member of a chat. Currently, the following 6
  * types of chat members are supported: ChatMemberOwner ChatMemberAdministrator
  * ChatMemberMember ChatMemberRestricted ChatMemberLeft ChatMemberBanned
+ * @ingroup api
  */
 struct ChatMember {
     using Ptr = std::shared_ptr<ChatMember>;
@@ -2296,6 +2349,7 @@ TGBOT_API void to_json(nlohmann::json& json, const ChatMember& value);
 
 /**
  * @brief Represents a chat member that has some additional privileges.
+ * @ingroup api
  */
 struct ChatMemberAdministrator {
     using Ptr = std::shared_ptr<ChatMemberAdministrator>;
@@ -2426,6 +2480,7 @@ TGBOT_API void to_json(nlohmann::json& json, const ChatMemberAdministrator& valu
 /**
  * @brief Represents a chat member that was banned in the chat and can't return to the chat or view
  * chat messages.
+ * @ingroup api
  */
 struct ChatMemberBanned {
     using Ptr = std::shared_ptr<ChatMemberBanned>;
@@ -2455,6 +2510,7 @@ TGBOT_API void to_json(nlohmann::json& json, const ChatMemberBanned& value);
 /**
  * @brief Represents a chat member that isn't currently a member of the chat, but may join it
  * themselves.
+ * @ingroup api
  */
 struct ChatMemberLeft {
     using Ptr = std::shared_ptr<ChatMemberLeft>;
@@ -2477,6 +2533,7 @@ TGBOT_API void to_json(nlohmann::json& json, const ChatMemberLeft& value);
 
 /**
  * @brief Represents a chat member that has no additional privileges or restrictions.
+ * @ingroup api
  */
 struct ChatMemberMember {
     using Ptr = std::shared_ptr<ChatMemberMember>;
@@ -2509,6 +2566,7 @@ TGBOT_API void to_json(nlohmann::json& json, const ChatMemberMember& value);
 
 /**
  * @brief Represents a chat member that owns the chat and has all administrator privileges.
+ * @ingroup api
  */
 struct ChatMemberOwner {
     using Ptr = std::shared_ptr<ChatMemberOwner>;
@@ -2541,6 +2599,7 @@ TGBOT_API void to_json(nlohmann::json& json, const ChatMemberOwner& value);
 
 /**
  * @brief Represents a chat member that is under certain restrictions in the chat. Supergroups only.
+ * @ingroup api
  */
 struct ChatMemberRestricted {
     using Ptr = std::shared_ptr<ChatMemberRestricted>;
@@ -2660,6 +2719,7 @@ TGBOT_API void to_json(nlohmann::json& json, const ChatMemberRestricted& value);
 
 /**
  * @brief This object represents changes in the status of a chat member.
+ * @ingroup api
  */
 struct ChatMemberUpdated {
     using Ptr = std::shared_ptr<ChatMemberUpdated>;
@@ -2712,6 +2772,7 @@ TGBOT_API void to_json(nlohmann::json& json, const ChatMemberUpdated& value);
 
 /**
  * @brief Describes a service message about an ownership change in the chat.
+ * @ingroup api
  */
 struct ChatOwnerChanged {
     using Ptr = std::shared_ptr<ChatOwnerChanged>;
@@ -2727,6 +2788,7 @@ TGBOT_API void to_json(nlohmann::json& json, const ChatOwnerChanged& value);
 
 /**
  * @brief Describes a service message about the chat owner leaving the chat.
+ * @ingroup api
  */
 struct ChatOwnerLeft {
     using Ptr = std::shared_ptr<ChatOwnerLeft>;
@@ -2743,6 +2805,7 @@ TGBOT_API void to_json(nlohmann::json& json, const ChatOwnerLeft& value);
 
 /**
  * @brief Describes actions that a non-administrator user is allowed to take in a chat.
+ * @ingroup api
  */
 struct ChatPermissions {
     using Ptr = std::shared_ptr<ChatPermissions>;
@@ -2839,6 +2902,7 @@ TGBOT_API void to_json(nlohmann::json& json, const ChatPermissions& value);
 
 /**
  * @brief This object represents a chat photo.
+ * @ingroup api
  */
 struct ChatPhoto {
     using Ptr = std::shared_ptr<ChatPhoto>;
@@ -2874,6 +2938,7 @@ TGBOT_API void to_json(nlohmann::json& json, const ChatPhoto& value);
 /**
  * @brief This object contains information about a chat that was shared with the bot using a
  * KeyboardButtonRequestChat button.
+ * @ingroup api
  */
 struct ChatShared {
     using Ptr = std::shared_ptr<ChatShared>;
@@ -2914,6 +2979,7 @@ TGBOT_API void to_json(nlohmann::json& json, const ChatShared& value);
 
 /**
  * @brief Describes a checklist.
+ * @ingroup api
  */
 struct Checklist {
     using Ptr = std::shared_ptr<Checklist>;
@@ -2950,6 +3016,7 @@ TGBOT_API void to_json(nlohmann::json& json, const Checklist& value);
 
 /**
  * @brief Describes a task in a checklist.
+ * @ingroup api
  */
 struct ChecklistTask {
     using Ptr = std::shared_ptr<ChecklistTask>;
@@ -2991,6 +3058,7 @@ TGBOT_API void to_json(nlohmann::json& json, const ChecklistTask& value);
 
 /**
  * @brief Describes a service message about tasks added to a checklist.
+ * @ingroup api
  */
 struct ChecklistTasksAdded {
     using Ptr = std::shared_ptr<ChecklistTasksAdded>;
@@ -3013,6 +3081,7 @@ TGBOT_API void to_json(nlohmann::json& json, const ChecklistTasksAdded& value);
 
 /**
  * @brief Describes a service message about checklist tasks marked as done or not done.
+ * @ingroup api
  */
 struct ChecklistTasksDone {
     using Ptr = std::shared_ptr<ChecklistTasksDone>;
@@ -3041,6 +3110,7 @@ TGBOT_API void to_json(nlohmann::json& json, const ChecklistTasksDone& value);
 /**
  * @brief Represents a result of an inline query that was chosen by the user and sent to their chat
  * partner.
+ * @ingroup api
  */
 struct ChosenInlineResult {
     using Ptr = std::shared_ptr<ChosenInlineResult>;
@@ -3078,6 +3148,7 @@ TGBOT_API void to_json(nlohmann::json& json, const ChosenInlineResult& value);
 
 /**
  * @brief Represents a community (a group of chats).
+ * @ingroup api
  */
 struct Community {
     using Ptr = std::shared_ptr<Community>;
@@ -3101,6 +3172,7 @@ TGBOT_API void to_json(nlohmann::json& json, const Community& value);
 
 /**
  * @brief Describes a service message about a chat being added to a community.
+ * @ingroup api
  */
 struct CommunityChatAdded {
     using Ptr = std::shared_ptr<CommunityChatAdded>;
@@ -3117,6 +3189,7 @@ TGBOT_API void to_json(nlohmann::json& json, const CommunityChatAdded& value);
 /**
  * @brief Describes a service message about a chat being removed from a community. Currently holds no
  * information.
+ * @ingroup api
  */
 struct CommunityChatRemoved {
     using Ptr = std::shared_ptr<CommunityChatRemoved>;
@@ -3127,6 +3200,7 @@ TGBOT_API void to_json(nlohmann::json& json, const CommunityChatRemoved& value);
 
 /**
  * @brief This object represents a phone contact.
+ * @ingroup api
  */
 struct Contact {
     using Ptr = std::shared_ptr<Contact>;
@@ -3166,6 +3240,7 @@ TGBOT_API void to_json(nlohmann::json& json, const Contact& value);
 /**
  * @brief This object represents an inline keyboard button that copies specified text to the
  * clipboard.
+ * @ingroup api
  */
 struct CopyTextButton {
     using Ptr = std::shared_ptr<CopyTextButton>;
@@ -3181,6 +3256,7 @@ TGBOT_API void to_json(nlohmann::json& json, const CopyTextButton& value);
 
 /**
  * @brief This object represents an animated emoji that displays a random value.
+ * @ingroup api
  */
 struct Dice {
     using Ptr = std::shared_ptr<Dice>;
@@ -3203,6 +3279,7 @@ TGBOT_API void to_json(nlohmann::json& json, const Dice& value);
 /**
  * @brief Describes a service message about a change in the price of direct messages sent to a channel
  * chat.
+ * @ingroup api
  */
 struct DirectMessagePriceChanged {
     using Ptr = std::shared_ptr<DirectMessagePriceChanged>;
@@ -3225,6 +3302,7 @@ TGBOT_API void to_json(nlohmann::json& json, const DirectMessagePriceChanged& va
 
 /**
  * @brief Describes a topic of a direct messages chat.
+ * @ingroup api
  */
 struct DirectMessagesTopic {
     using Ptr = std::shared_ptr<DirectMessagesTopic>;
@@ -3250,6 +3328,7 @@ TGBOT_API void to_json(nlohmann::json& json, const DirectMessagesTopic& value);
 /**
  * @brief This object represents a general file (as opposed to photos, voice messages and audio
  * files).
+ * @ingroup api
  */
 struct Document {
     using Ptr = std::shared_ptr<Document>;
@@ -3296,6 +3375,7 @@ TGBOT_API void to_json(nlohmann::json& json, const Document& value);
  * @brief Describes data required for decrypting and authenticating EncryptedPassportElement. See the
  * Telegram Passport Documentation for a complete description of the data decryption and
  * authentication processes.
+ * @ingroup api
  */
 struct EncryptedCredentials {
     using Ptr = std::shared_ptr<EncryptedCredentials>;
@@ -3323,6 +3403,7 @@ TGBOT_API void to_json(nlohmann::json& json, const EncryptedCredentials& value);
 
 /**
  * @brief Describes documents or other Telegram Passport elements shared with the bot by the user.
+ * @ingroup api
  */
 struct EncryptedPassportElement {
     using Ptr = std::shared_ptr<EncryptedPassportElement>;
@@ -3404,6 +3485,7 @@ TGBOT_API void to_json(nlohmann::json& json, const EncryptedPassportElement& val
 /**
  * @brief This object contains information about a message that is being replied to, which may come
  * from another chat or forum topic.
+ * @ingroup api
  */
 struct ExternalReplyInfo {
     using Ptr = std::shared_ptr<ExternalReplyInfo>;
@@ -3551,6 +3633,7 @@ TGBOT_API void to_json(nlohmann::json& json, const ExternalReplyInfo& value);
  * link https://api.telegram.org/file/bot<token>/<file_path>. It is guaranteed that the link
  * will be valid for at least 1 hour. When the link expires, a new one can be requested by
  * calling getFile.
+ * @ingroup api
  */
 struct File {
     using Ptr = std::shared_ptr<File>;
@@ -3590,6 +3673,7 @@ TGBOT_API void to_json(nlohmann::json& json, const File& value);
  * be extremely useful if you want to create user-friendly step-by-step interfaces without
  * having to sacrifice privacy mode. Not supported in channels and for messages sent on behalf
  * of a user account.
+ * @ingroup api
  */
 struct ForceReply {
     using Ptr = std::shared_ptr<ForceReply>;
@@ -3620,6 +3704,7 @@ TGBOT_API void to_json(nlohmann::json& json, const ForceReply& value);
 
 /**
  * @brief This object represents a forum topic.
+ * @ingroup api
  */
 struct ForumTopic {
     using Ptr = std::shared_ptr<ForumTopic>;
@@ -3657,6 +3742,7 @@ TGBOT_API void to_json(nlohmann::json& json, const ForumTopic& value);
 /**
  * @brief This object represents a service message about a forum topic closed in the chat. Currently
  * holds no information.
+ * @ingroup api
  */
 struct ForumTopicClosed {
     using Ptr = std::shared_ptr<ForumTopicClosed>;
@@ -3667,6 +3753,7 @@ TGBOT_API void to_json(nlohmann::json& json, const ForumTopicClosed& value);
 
 /**
  * @brief This object represents a service message about a new forum topic created in the chat.
+ * @ingroup api
  */
 struct ForumTopicCreated {
     using Ptr = std::shared_ptr<ForumTopicCreated>;
@@ -3698,6 +3785,7 @@ TGBOT_API void to_json(nlohmann::json& json, const ForumTopicCreated& value);
 
 /**
  * @brief This object represents a service message about an edited forum topic.
+ * @ingroup api
  */
 struct ForumTopicEdited {
     using Ptr = std::shared_ptr<ForumTopicEdited>;
@@ -3720,6 +3808,7 @@ TGBOT_API void to_json(nlohmann::json& json, const ForumTopicEdited& value);
 /**
  * @brief This object represents a service message about a forum topic reopened in the chat. Currently
  * holds no information.
+ * @ingroup api
  */
 struct ForumTopicReopened {
     using Ptr = std::shared_ptr<ForumTopicReopened>;
@@ -3731,6 +3820,7 @@ TGBOT_API void to_json(nlohmann::json& json, const ForumTopicReopened& value);
 /**
  * @brief This object represents a game. Use BotFather to create and edit games, their short names
  * will act as unique identifiers.
+ * @ingroup api
  */
 struct Game {
     using Ptr = std::shared_ptr<Game>;
@@ -3775,6 +3865,7 @@ TGBOT_API void to_json(nlohmann::json& json, const Game& value);
 
 /**
  * @brief This object represents one row of the high scores table for a game.
+ * @ingroup api
  */
 struct GameHighScore {
     using Ptr = std::shared_ptr<GameHighScore>;
@@ -3801,6 +3892,7 @@ TGBOT_API void to_json(nlohmann::json& json, const GameHighScore& value);
 /**
  * @brief This object represents a service message about General forum topic hidden in the chat.
  * Currently holds no information.
+ * @ingroup api
  */
 struct GeneralForumTopicHidden {
     using Ptr = std::shared_ptr<GeneralForumTopicHidden>;
@@ -3812,6 +3904,7 @@ TGBOT_API void to_json(nlohmann::json& json, const GeneralForumTopicHidden& valu
 /**
  * @brief This object represents a service message about General forum topic unhidden in the chat.
  * Currently holds no information.
+ * @ingroup api
  */
 struct GeneralForumTopicUnhidden {
     using Ptr = std::shared_ptr<GeneralForumTopicUnhidden>;
@@ -3822,6 +3915,7 @@ TGBOT_API void to_json(nlohmann::json& json, const GeneralForumTopicUnhidden& va
 
 /**
  * @brief This object represents a gift that can be sent by the bot.
+ * @ingroup api
  */
 struct Gift {
     using Ptr = std::shared_ptr<Gift>;
@@ -3904,6 +3998,7 @@ TGBOT_API void to_json(nlohmann::json& json, const Gift& value);
 
 /**
  * @brief This object describes the background of a gift.
+ * @ingroup api
  */
 struct GiftBackground {
     using Ptr = std::shared_ptr<GiftBackground>;
@@ -3929,6 +4024,7 @@ TGBOT_API void to_json(nlohmann::json& json, const GiftBackground& value);
 
 /**
  * @brief Describes a service message about a regular gift that was sent or received.
+ * @ingroup api
  */
 struct GiftInfo {
     using Ptr = std::shared_ptr<GiftInfo>;
@@ -3993,6 +4089,7 @@ TGBOT_API void to_json(nlohmann::json& json, const GiftInfo& value);
 
 /**
  * @brief This object represent a list of gifts.
+ * @ingroup api
  */
 struct Gifts {
     using Ptr = std::shared_ptr<Gifts>;
@@ -4008,6 +4105,7 @@ TGBOT_API void to_json(nlohmann::json& json, const Gifts& value);
 
 /**
  * @brief This object represents a message about a scheduled giveaway.
+ * @ingroup api
  */
 struct Giveaway {
     using Ptr = std::shared_ptr<Giveaway>;
@@ -4070,6 +4168,7 @@ TGBOT_API void to_json(nlohmann::json& json, const Giveaway& value);
 /**
  * @brief This object represents a service message about the completion of a giveaway without public
  * winners.
+ * @ingroup api
  */
 struct GiveawayCompleted {
     using Ptr = std::shared_ptr<GiveawayCompleted>;
@@ -4101,6 +4200,7 @@ TGBOT_API void to_json(nlohmann::json& json, const GiveawayCompleted& value);
 
 /**
  * @brief This object represents a service message about the creation of a scheduled giveaway.
+ * @ingroup api
  */
 struct GiveawayCreated {
     using Ptr = std::shared_ptr<GiveawayCreated>;
@@ -4117,6 +4217,7 @@ TGBOT_API void to_json(nlohmann::json& json, const GiveawayCreated& value);
 
 /**
  * @brief This object represents a message about the completion of a giveaway with public winners.
+ * @ingroup api
  */
 struct GiveawayWinners {
     using Ptr = std::shared_ptr<GiveawayWinners>;
@@ -4191,6 +4292,7 @@ TGBOT_API void to_json(nlohmann::json& json, const GiveawayWinners& value);
 
 /**
  * @brief This object describes a message that was deleted or is otherwise inaccessible to the bot.
+ * @ingroup api
  */
 struct InaccessibleMessage {
     using Ptr = std::shared_ptr<InaccessibleMessage>;
@@ -4217,6 +4319,7 @@ TGBOT_API void to_json(nlohmann::json& json, const InaccessibleMessage& value);
 /**
  * @brief This object represents one button of an inline keyboard. Exactly one of the fields other
  * than text, icon_custom_emoji_id, and style must be used to specify the type of the button.
+ * @ingroup api
  */
 struct InlineKeyboardButton {
     using Ptr = std::shared_ptr<InlineKeyboardButton>;
@@ -4319,6 +4422,7 @@ TGBOT_API void to_json(nlohmann::json& json, const InlineKeyboardButton& value);
 /**
  * @brief This object represents an inline keyboard that appears right next to the message it belongs
  * to.
+ * @ingroup api
  */
 struct InlineKeyboardMarkup {
     using Ptr = std::shared_ptr<InlineKeyboardMarkup>;
@@ -4335,6 +4439,7 @@ TGBOT_API void to_json(nlohmann::json& json, const InlineKeyboardMarkup& value);
 /**
  * @brief This object represents an incoming inline query. When the user sends an empty query, your
  * bot could return some default or trending results.
+ * @ingroup api
  */
 struct InlineQuery {
     using Ptr = std::shared_ptr<InlineQuery>;
@@ -4387,6 +4492,7 @@ TGBOT_API void to_json(nlohmann::json& json, const InlineQuery& value);
  * InlineQueryResultPhoto InlineQueryResultVenue InlineQueryResultVideo InlineQueryResultVoice
  * Note: All URLs passed in inline query results will be available to end users and therefore
  * must be assumed to be public.
+ * @ingroup api
  */
 struct InlineQueryResult {
     using Ptr = std::shared_ptr<InlineQueryResult>;
@@ -4409,6 +4515,7 @@ TGBOT_API void to_json(nlohmann::json& json, const InlineQueryResult& value);
 
 /**
  * @brief Represents a link to an article or web page.
+ * @ingroup api
  */
 struct InlineQueryResultArticle {
     using Ptr = std::shared_ptr<InlineQueryResultArticle>;
@@ -4473,6 +4580,7 @@ TGBOT_API void to_json(nlohmann::json& json, const InlineQueryResultArticle& val
  * @brief Represents a link to an MP3 audio file. By default, this audio file will be sent by the
  * user. Alternatively, you can use input_message_content to send a message with the specified
  * content instead of the audio.
+ * @ingroup api
  */
 struct InlineQueryResultAudio {
     using Ptr = std::shared_ptr<InlineQueryResultAudio>;
@@ -4544,6 +4652,7 @@ TGBOT_API void to_json(nlohmann::json& json, const InlineQueryResultAudio& value
  * @brief Represents a link to an MP3 audio file stored on the Telegram servers. By default, this
  * audio file will be sent by the user. Alternatively, you can use input_message_content to
  * send a message with the specified content instead of the audio.
+ * @ingroup api
  */
 struct InlineQueryResultCachedAudio {
     using Ptr = std::shared_ptr<InlineQueryResultCachedAudio>;
@@ -4600,6 +4709,7 @@ TGBOT_API void to_json(nlohmann::json& json, const InlineQueryResultCachedAudio&
  * @brief Represents a link to a file stored on the Telegram servers. By default, this file will be
  * sent by the user with an optional caption. Alternatively, you can use input_message_content
  * to send a message with the specified content instead of the file.
+ * @ingroup api
  */
 struct InlineQueryResultCachedDocument {
     using Ptr = std::shared_ptr<InlineQueryResultCachedDocument>;
@@ -4666,6 +4776,7 @@ TGBOT_API void to_json(nlohmann::json& json, const InlineQueryResultCachedDocume
  * @brief Represents a link to an animated GIF file stored on the Telegram servers. By default, this
  * animated GIF file will be sent by the user with an optional caption. Alternatively, you can
  * use input_message_content to send a message with specified content instead of the animation.
+ * @ingroup api
  */
 struct InlineQueryResultCachedGif {
     using Ptr = std::shared_ptr<InlineQueryResultCachedGif>;
@@ -4733,6 +4844,7 @@ TGBOT_API void to_json(nlohmann::json& json, const InlineQueryResultCachedGif& v
  * Telegram servers. By default, this animated MPEG-4 file will be sent by the user with an
  * optional caption. Alternatively, you can use input_message_content to send a message with
  * the specified content instead of the animation.
+ * @ingroup api
  */
 struct InlineQueryResultCachedMpeg4Gif {
     using Ptr = std::shared_ptr<InlineQueryResultCachedMpeg4Gif>;
@@ -4800,6 +4912,7 @@ TGBOT_API void to_json(nlohmann::json& json, const InlineQueryResultCachedMpeg4G
  * @brief Represents a link to a photo stored on the Telegram servers. By default, this photo will be
  * sent by the user with an optional caption. Alternatively, you can use input_message_content
  * to send a message with the specified content instead of the photo.
+ * @ingroup api
  */
 struct InlineQueryResultCachedPhoto {
     using Ptr = std::shared_ptr<InlineQueryResultCachedPhoto>;
@@ -4871,6 +4984,7 @@ TGBOT_API void to_json(nlohmann::json& json, const InlineQueryResultCachedPhoto&
  * @brief Represents a link to a sticker stored on the Telegram servers. By default, this sticker will
  * be sent by the user. Alternatively, you can use input_message_content to send a message with
  * the specified content instead of the sticker.
+ * @ingroup api
  */
 struct InlineQueryResultCachedSticker {
     using Ptr = std::shared_ptr<InlineQueryResultCachedSticker>;
@@ -4910,6 +5024,7 @@ TGBOT_API void to_json(nlohmann::json& json, const InlineQueryResultCachedSticke
  * @brief Represents a link to a video file stored on the Telegram servers. By default, this video
  * file will be sent by the user with an optional caption. Alternatively, you can use
  * input_message_content to send a message with the specified content instead of the video.
+ * @ingroup api
  */
 struct InlineQueryResultCachedVideo {
     using Ptr = std::shared_ptr<InlineQueryResultCachedVideo>;
@@ -4981,6 +5096,7 @@ TGBOT_API void to_json(nlohmann::json& json, const InlineQueryResultCachedVideo&
  * @brief Represents a link to a voice message stored on the Telegram servers. By default, this voice
  * message will be sent by the user. Alternatively, you can use input_message_content to send a
  * message with the specified content instead of the voice message.
+ * @ingroup api
  */
 struct InlineQueryResultCachedVoice {
     using Ptr = std::shared_ptr<InlineQueryResultCachedVoice>;
@@ -5042,6 +5158,7 @@ TGBOT_API void to_json(nlohmann::json& json, const InlineQueryResultCachedVoice&
  * @brief Represents a contact with a phone number. By default, this contact will be sent by the user.
  * Alternatively, you can use input_message_content to send a message with the specified
  * content instead of the contact.
+ * @ingroup api
  */
 struct InlineQueryResultContact {
     using Ptr = std::shared_ptr<InlineQueryResultContact>;
@@ -5112,6 +5229,7 @@ TGBOT_API void to_json(nlohmann::json& json, const InlineQueryResultContact& val
  * caption. Alternatively, you can use input_message_content to send a message with the
  * specified content instead of the file. Currently, only .PDF and .ZIP files can be sent using
  * this method.
+ * @ingroup api
  */
 struct InlineQueryResultDocument {
     using Ptr = std::shared_ptr<InlineQueryResultDocument>;
@@ -5196,6 +5314,7 @@ TGBOT_API void to_json(nlohmann::json& json, const InlineQueryResultDocument& va
 
 /**
  * @brief Represents a Game.
+ * @ingroup api
  */
 struct InlineQueryResultGame {
     using Ptr = std::shared_ptr<InlineQueryResultGame>;
@@ -5230,6 +5349,7 @@ TGBOT_API void to_json(nlohmann::json& json, const InlineQueryResultGame& value)
  * @brief Represents a link to an animated GIF file. By default, this animated GIF file will be sent
  * by the user with optional caption. Alternatively, you can use input_message_content to send
  * a message with the specified content instead of the animation.
+ * @ingroup api
  */
 struct InlineQueryResultGif {
     using Ptr = std::shared_ptr<InlineQueryResultGif>;
@@ -5322,6 +5442,7 @@ TGBOT_API void to_json(nlohmann::json& json, const InlineQueryResultGif& value);
  * @brief Represents a location on a map. By default, the location will be sent by the user.
  * Alternatively, you can use input_message_content to send a message with the specified
  * content instead of the location.
+ * @ingroup api
  */
 struct InlineQueryResultLocation {
     using Ptr = std::shared_ptr<InlineQueryResultLocation>;
@@ -5410,6 +5531,7 @@ TGBOT_API void to_json(nlohmann::json& json, const InlineQueryResultLocation& va
  * this animated MPEG-4 file will be sent by the user with optional caption. Alternatively, you
  * can use input_message_content to send a message with the specified content instead of the
  * animation.
+ * @ingroup api
  */
 struct InlineQueryResultMpeg4Gif {
     using Ptr = std::shared_ptr<InlineQueryResultMpeg4Gif>;
@@ -5503,6 +5625,7 @@ TGBOT_API void to_json(nlohmann::json& json, const InlineQueryResultMpeg4Gif& va
  * @brief Represents a link to a photo. By default, this photo will be sent by the user with optional
  * caption. Alternatively, you can use input_message_content to send a message with the
  * specified content instead of the photo.
+ * @ingroup api
  */
 struct InlineQueryResultPhoto {
     using Ptr = std::shared_ptr<InlineQueryResultPhoto>;
@@ -5588,6 +5711,7 @@ TGBOT_API void to_json(nlohmann::json& json, const InlineQueryResultPhoto& value
 /**
  * @brief Represents a venue. By default, the venue will be sent by the user. Alternatively, you can
  * use input_message_content to send a message with the specified content instead of the venue.
+ * @ingroup api
  */
 struct InlineQueryResultVenue {
     using Ptr = std::shared_ptr<InlineQueryResultVenue>;
@@ -5678,6 +5802,7 @@ TGBOT_API void to_json(nlohmann::json& json, const InlineQueryResultVenue& value
  * @brief Represents a link to a page containing an embedded video player or a video file. By default,
  * this video file will be sent by the user with an optional caption. Alternatively, you can
  * use input_message_content to send a message with the specified content instead of the video.
+ * @ingroup api
  */
 struct InlineQueryResultVideo {
     using Ptr = std::shared_ptr<InlineQueryResultVideo>;
@@ -5777,6 +5902,7 @@ TGBOT_API void to_json(nlohmann::json& json, const InlineQueryResultVideo& value
  * this voice recording will be sent by the user. Alternatively, you can use
  * input_message_content to send a message with the specified content instead of the the voice
  * message.
+ * @ingroup api
  */
 struct InlineQueryResultVoice {
     using Ptr = std::shared_ptr<InlineQueryResultVoice>;
@@ -5842,6 +5968,7 @@ TGBOT_API void to_json(nlohmann::json& json, const InlineQueryResultVoice& value
 /**
  * @brief This object represents a button to be shown above inline query results. You must use exactly
  * one of the optional fields.
+ * @ingroup api
  */
 struct InlineQueryResultsButton {
     using Ptr = std::shared_ptr<InlineQueryResultsButton>;
@@ -5877,6 +6004,7 @@ TGBOT_API void to_json(nlohmann::json& json, const InlineQueryResultsButton& val
 
 /**
  * @brief Describes a checklist to create.
+ * @ingroup api
  */
 struct InputChecklist {
     using Ptr = std::shared_ptr<InputChecklist>;
@@ -5920,6 +6048,7 @@ TGBOT_API void to_json(nlohmann::json& json, const InputChecklist& value);
 
 /**
  * @brief Describes a task to add to a checklist.
+ * @ingroup api
  */
 struct InputChecklistTask {
     using Ptr = std::shared_ptr<InputChecklistTask>;
@@ -5954,6 +6083,7 @@ TGBOT_API void to_json(nlohmann::json& json, const InputChecklistTask& value);
 
 /**
  * @brief Represents the content of a contact message to be sent as the result of an inline query.
+ * @ingroup api
  */
 struct InputContactMessageContent {
     using Ptr = std::shared_ptr<InputContactMessageContent>;
@@ -5984,6 +6114,7 @@ TGBOT_API void to_json(nlohmann::json& json, const InputContactMessageContent& v
 
 /**
  * @brief Represents the content of an invoice message to be sent as the result of an inline query.
+ * @ingroup api
  */
 struct InputInvoiceMessageContent {
     using Ptr = std::shared_ptr<InputInvoiceMessageContent>;
@@ -6116,6 +6247,7 @@ TGBOT_API void to_json(nlohmann::json& json, const InputInvoiceMessageContent& v
 
 /**
  * @brief Represents the content of a location message to be sent as the result of an inline query.
+ * @ingroup api
  */
 struct InputLocationMessageContent {
     using Ptr = std::shared_ptr<InputLocationMessageContent>;
@@ -6161,6 +6293,7 @@ TGBOT_API void to_json(nlohmann::json& json, const InputLocationMessageContent& 
  * @brief This object represents the content of a media message to be sent. It should be one of
  * InputMediaAnimation InputMediaAudio InputMediaDocument InputMediaLivePhoto InputMediaPhoto
  * InputMediaVideo
+ * @ingroup api
  */
 struct InputMedia {
     using Ptr = std::shared_ptr<InputMedia>;
@@ -6176,6 +6309,7 @@ TGBOT_API void to_json(nlohmann::json& json, const InputMedia& value);
 
 /**
  * @brief Represents an animation file (GIF or H.264/MPEG-4 AVC video without sound) to be sent.
+ * @ingroup api
  */
 struct InputMediaAnimation {
     using Ptr = std::shared_ptr<InputMediaAnimation>;
@@ -6254,6 +6388,7 @@ TGBOT_API void to_json(nlohmann::json& json, const InputMediaAnimation& value);
 
 /**
  * @brief Represents an audio file to be treated as music to be sent.
+ * @ingroup api
  */
 struct InputMediaAudio {
     using Ptr = std::shared_ptr<InputMediaAudio>;
@@ -6322,6 +6457,7 @@ TGBOT_API void to_json(nlohmann::json& json, const InputMediaAudio& value);
 
 /**
  * @brief Represents a general file to be sent.
+ * @ingroup api
  */
 struct InputMediaDocument {
     using Ptr = std::shared_ptr<InputMediaDocument>;
@@ -6381,6 +6517,7 @@ TGBOT_API void to_json(nlohmann::json& json, const InputMediaDocument& value);
 
 /**
  * @brief Represents an HTTP link to be sent.
+ * @ingroup api
  */
 struct InputMediaLink {
     using Ptr = std::shared_ptr<InputMediaLink>;
@@ -6403,6 +6540,7 @@ TGBOT_API void to_json(nlohmann::json& json, const InputMediaLink& value);
 
 /**
  * @brief Represents a live photo to be sent.
+ * @ingroup api
  */
 struct InputMediaLivePhoto {
     using Ptr = std::shared_ptr<InputMediaLivePhoto>;
@@ -6463,6 +6601,7 @@ TGBOT_API void to_json(nlohmann::json& json, const InputMediaLivePhoto& value);
 
 /**
  * @brief Represents a location to be sent.
+ * @ingroup api
  */
 struct InputMediaLocation {
     using Ptr = std::shared_ptr<InputMediaLocation>;
@@ -6495,6 +6634,7 @@ TGBOT_API void to_json(nlohmann::json& json, const InputMediaLocation& value);
 
 /**
  * @brief Represents a photo to be sent.
+ * @ingroup api
  */
 struct InputMediaPhoto {
     using Ptr = std::shared_ptr<InputMediaPhoto>;
@@ -6547,6 +6687,7 @@ TGBOT_API void to_json(nlohmann::json& json, const InputMediaPhoto& value);
 
 /**
  * @brief Represents a sticker file to be sent.
+ * @ingroup api
  */
 struct InputMediaSticker {
     using Ptr = std::shared_ptr<InputMediaSticker>;
@@ -6578,6 +6719,7 @@ TGBOT_API void to_json(nlohmann::json& json, const InputMediaSticker& value);
 
 /**
  * @brief Represents a venue to be sent.
+ * @ingroup api
  */
 struct InputMediaVenue {
     using Ptr = std::shared_ptr<InputMediaVenue>;
@@ -6636,6 +6778,7 @@ TGBOT_API void to_json(nlohmann::json& json, const InputMediaVenue& value);
 
 /**
  * @brief Represents a video to be sent.
+ * @ingroup api
  */
 struct InputMediaVideo {
     using Ptr = std::shared_ptr<InputMediaVideo>;
@@ -6732,6 +6875,7 @@ TGBOT_API void to_json(nlohmann::json& json, const InputMediaVideo& value);
 
 /**
  * @brief Represents a voice message file to be sent.
+ * @ingroup api
  */
 struct InputMediaVoiceNote {
     using Ptr = std::shared_ptr<InputMediaVoiceNote>;
@@ -6783,6 +6927,7 @@ TGBOT_API void to_json(nlohmann::json& json, const InputMediaVoiceNote& value);
  * Telegram clients currently support the following types: InputTextMessageContent
  * InputRichMessageContent InputLocationMessageContent InputVenueMessageContent
  * InputContactMessageContent InputInvoiceMessageContent
+ * @ingroup api
  */
 struct InputMessageContent {
     using Ptr = std::shared_ptr<InputMessageContent>;
@@ -6799,6 +6944,7 @@ TGBOT_API void to_json(nlohmann::json& json, const InputMessageContent& value);
 /**
  * @brief This object describes the paid media to be sent. Currently, it can be one of
  * InputPaidMediaLivePhoto InputPaidMediaPhoto InputPaidMediaVideo
+ * @ingroup api
  */
 struct InputPaidMedia {
     using Ptr = std::shared_ptr<InputPaidMedia>;
@@ -6813,6 +6959,7 @@ TGBOT_API void to_json(nlohmann::json& json, const InputPaidMedia& value);
 
 /**
  * @brief The paid media to send is a live photo.
+ * @ingroup api
  */
 struct InputPaidMediaLivePhoto {
     using Ptr = std::shared_ptr<InputPaidMediaLivePhoto>;
@@ -6846,6 +6993,7 @@ TGBOT_API void to_json(nlohmann::json& json, const InputPaidMediaLivePhoto& valu
 
 /**
  * @brief The paid media to send is a photo.
+ * @ingroup api
  */
 struct InputPaidMediaPhoto {
     using Ptr = std::shared_ptr<InputPaidMediaPhoto>;
@@ -6871,6 +7019,7 @@ TGBOT_API void to_json(nlohmann::json& json, const InputPaidMediaPhoto& value);
 
 /**
  * @brief The paid media to send is a video.
+ * @ingroup api
  */
 struct InputPaidMediaVideo {
     using Ptr = std::shared_ptr<InputPaidMediaVideo>;
@@ -6942,6 +7091,7 @@ TGBOT_API void to_json(nlohmann::json& json, const InputPaidMediaVideo& value);
  * @brief This object represents the content of a poll description or a quiz explanation to be sent.
  * It should be one of InputMediaAnimation InputMediaAudio InputMediaDocument
  * InputMediaLivePhoto InputMediaLocation InputMediaPhoto InputMediaVenue InputMediaVideo
+ * @ingroup api
  */
 struct InputPollMedia {
     using Ptr = std::shared_ptr<InputPollMedia>;
@@ -6958,6 +7108,7 @@ TGBOT_API void to_json(nlohmann::json& json, const InputPollMedia& value);
 
 /**
  * @brief This object contains information about one answer option in a poll to be sent.
+ * @ingroup api
  */
 struct InputPollOption {
     using Ptr = std::shared_ptr<InputPollOption>;
@@ -6992,6 +7143,7 @@ TGBOT_API void to_json(nlohmann::json& json, const InputPollOption& value);
  * @brief This object represents the content of a poll option to be sent. It should be one of
  * InputMediaAnimation InputMediaLink InputMediaLivePhoto InputMediaLocation InputMediaPhoto
  * InputMediaSticker InputMediaVenue InputMediaVideo
+ * @ingroup api
  */
 struct InputPollOptionMedia {
     using Ptr = std::shared_ptr<InputPollOptionMedia>;
@@ -7009,6 +7161,7 @@ TGBOT_API void to_json(nlohmann::json& json, const InputPollOptionMedia& value);
 /**
  * @brief This object describes a profile photo to set. Currently, it can be one of
  * InputProfilePhotoStatic InputProfilePhotoAnimated
+ * @ingroup api
  */
 struct InputProfilePhoto {
     using Ptr = std::shared_ptr<InputProfilePhoto>;
@@ -7021,6 +7174,7 @@ TGBOT_API void to_json(nlohmann::json& json, const InputProfilePhoto& value);
 
 /**
  * @brief An animated profile photo in the MPEG4 format.
+ * @ingroup api
  */
 struct InputProfilePhotoAnimated {
     using Ptr = std::shared_ptr<InputProfilePhotoAnimated>;
@@ -7051,6 +7205,7 @@ TGBOT_API void to_json(nlohmann::json& json, const InputProfilePhotoAnimated& va
 
 /**
  * @brief A static profile photo in the .JPG format.
+ * @ingroup api
  */
 struct InputProfilePhotoStatic {
     using Ptr = std::shared_ptr<InputProfilePhotoStatic>;
@@ -7082,6 +7237,7 @@ TGBOT_API void to_json(nlohmann::json& json, const InputProfilePhotoStatic& valu
  * InputRichBlockSlideshow InputRichBlockTable InputRichBlockDetails InputRichBlockMap
  * InputRichBlockAnimation InputRichBlockAudio InputRichBlockPhoto InputRichBlockVideo
  * InputRichBlockVoiceNote InputRichBlockThinking
+ * @ingroup api
  */
 struct InputRichBlock {
     using Ptr = std::shared_ptr<InputRichBlock>;
@@ -7105,6 +7261,7 @@ TGBOT_API void to_json(nlohmann::json& json, const InputRichBlock& value);
 
 /**
  * @brief A block with an anchor, corresponding to the HTML tag <a> with the attribute name.
+ * @ingroup api
  */
 struct InputRichBlockAnchor {
     using Ptr = std::shared_ptr<InputRichBlockAnchor>;
@@ -7127,6 +7284,7 @@ TGBOT_API void to_json(nlohmann::json& json, const InputRichBlockAnchor& value);
 
 /**
  * @brief A block with an animation, corresponding to the HTML tag <video>.
+ * @ingroup api
  */
 struct InputRichBlockAnimation {
     using Ptr = std::shared_ptr<InputRichBlockAnimation>;
@@ -7154,6 +7312,7 @@ TGBOT_API void to_json(nlohmann::json& json, const InputRichBlockAnimation& valu
 
 /**
  * @brief A block with a music file, corresponding to the HTML tag <audio>.
+ * @ingroup api
  */
 struct InputRichBlockAudio {
     using Ptr = std::shared_ptr<InputRichBlockAudio>;
@@ -7181,6 +7340,7 @@ TGBOT_API void to_json(nlohmann::json& json, const InputRichBlockAudio& value);
 
 /**
  * @brief A block quotation, corresponding to the HTML tag <blockquote>.
+ * @ingroup api
  */
 struct InputRichBlockBlockQuotation {
     using Ptr = std::shared_ptr<InputRichBlockBlockQuotation>;
@@ -7208,6 +7368,7 @@ TGBOT_API void to_json(nlohmann::json& json, const InputRichBlockBlockQuotation&
 
 /**
  * @brief A collage, corresponding to the custom HTML tag <tg-collage>.
+ * @ingroup api
  */
 struct InputRichBlockCollage {
     using Ptr = std::shared_ptr<InputRichBlockCollage>;
@@ -7235,6 +7396,7 @@ TGBOT_API void to_json(nlohmann::json& json, const InputRichBlockCollage& value)
 
 /**
  * @brief An expandable block for details disclosure, corresponding to the HTML tag <details>.
+ * @ingroup api
  */
 struct InputRichBlockDetails {
     using Ptr = std::shared_ptr<InputRichBlockDetails>;
@@ -7267,6 +7429,7 @@ TGBOT_API void to_json(nlohmann::json& json, const InputRichBlockDetails& value)
 
 /**
  * @brief A divider, corresponding to the HTML tag <hr/>.
+ * @ingroup api
  */
 struct InputRichBlockDivider {
     using Ptr = std::shared_ptr<InputRichBlockDivider>;
@@ -7284,6 +7447,7 @@ TGBOT_API void to_json(nlohmann::json& json, const InputRichBlockDivider& value)
 
 /**
  * @brief A footer, corresponding to the HTML tag <footer>.
+ * @ingroup api
  */
 struct InputRichBlockFooter {
     using Ptr = std::shared_ptr<InputRichBlockFooter>;
@@ -7306,6 +7470,7 @@ TGBOT_API void to_json(nlohmann::json& json, const InputRichBlockFooter& value);
 
 /**
  * @brief A list of blocks, corresponding to the HTML tag <ul> or <ol> with multiple nested tags <li>.
+ * @ingroup api
  */
 struct InputRichBlockList {
     using Ptr = std::shared_ptr<InputRichBlockList>;
@@ -7328,6 +7493,7 @@ TGBOT_API void to_json(nlohmann::json& json, const InputRichBlockList& value);
 
 /**
  * @brief An item of a list to be sent.
+ * @ingroup api
  */
 struct InputRichBlockListItem {
     using Ptr = std::shared_ptr<InputRichBlockListItem>;
@@ -7366,6 +7532,7 @@ TGBOT_API void to_json(nlohmann::json& json, const InputRichBlockListItem& value
 /**
  * @brief A block with a map, corresponding to the custom HTML tag <tg-map>. The map's width and
  * height must not exceed 10000 in total. The width and height ratio must be at most 20.
+ * @ingroup api
  */
 struct InputRichBlockMap {
     using Ptr = std::shared_ptr<InputRichBlockMap>;
@@ -7409,6 +7576,7 @@ TGBOT_API void to_json(nlohmann::json& json, const InputRichBlockMap& value);
 /**
  * @brief A block with a mathematical expression in LaTeX format, corresponding to the custom HTML tag
  * <tg-math-block>.
+ * @ingroup api
  */
 struct InputRichBlockMathematicalExpression {
     using Ptr = std::shared_ptr<InputRichBlockMathematicalExpression>;
@@ -7431,6 +7599,7 @@ TGBOT_API void to_json(nlohmann::json& json, const InputRichBlockMathematicalExp
 
 /**
  * @brief A text paragraph, corresponding to the HTML tag <p>.
+ * @ingroup api
  */
 struct InputRichBlockParagraph {
     using Ptr = std::shared_ptr<InputRichBlockParagraph>;
@@ -7453,6 +7622,7 @@ TGBOT_API void to_json(nlohmann::json& json, const InputRichBlockParagraph& valu
 
 /**
  * @brief A block with a photo, corresponding to the HTML tag <img>.
+ * @ingroup api
  */
 struct InputRichBlockPhoto {
     using Ptr = std::shared_ptr<InputRichBlockPhoto>;
@@ -7480,6 +7650,7 @@ TGBOT_API void to_json(nlohmann::json& json, const InputRichBlockPhoto& value);
 
 /**
  * @brief A preformatted text block, corresponding to the nested HTML tags <pre> and <code>.
+ * @ingroup api
  */
 struct InputRichBlockPreformatted {
     using Ptr = std::shared_ptr<InputRichBlockPreformatted>;
@@ -7507,6 +7678,7 @@ TGBOT_API void to_json(nlohmann::json& json, const InputRichBlockPreformatted& v
 
 /**
  * @brief A quotation with centered text, loosely corresponding to the HTML tag <aside>.
+ * @ingroup api
  */
 struct InputRichBlockPullQuotation {
     using Ptr = std::shared_ptr<InputRichBlockPullQuotation>;
@@ -7534,6 +7706,7 @@ TGBOT_API void to_json(nlohmann::json& json, const InputRichBlockPullQuotation& 
 
 /**
  * @brief A section heading, corresponding to the HTML tags <h1>, <h2>, <h3>, <h4>, <h5>, or <h6>.
+ * @ingroup api
  */
 struct InputRichBlockSectionHeading {
     using Ptr = std::shared_ptr<InputRichBlockSectionHeading>;
@@ -7561,6 +7734,7 @@ TGBOT_API void to_json(nlohmann::json& json, const InputRichBlockSectionHeading&
 
 /**
  * @brief A slideshow, corresponding to the custom HTML tag <tg-slideshow>.
+ * @ingroup api
  */
 struct InputRichBlockSlideshow {
     using Ptr = std::shared_ptr<InputRichBlockSlideshow>;
@@ -7588,6 +7762,7 @@ TGBOT_API void to_json(nlohmann::json& json, const InputRichBlockSlideshow& valu
 
 /**
  * @brief A table, corresponding to the HTML tag <table>.
+ * @ingroup api
  */
 struct InputRichBlockTable {
     using Ptr = std::shared_ptr<InputRichBlockTable>;
@@ -7628,6 +7803,7 @@ TGBOT_API void to_json(nlohmann::json& json, const InputRichBlockTable& value);
  * The block may be used only in sendRichMessageDraft, therefore it can't be received in
  * messages. See https://t.me/addemoji/AIActions for examples of custom emoji that are
  * recommended for usage in the block.
+ * @ingroup api
  */
 struct InputRichBlockThinking {
     using Ptr = std::shared_ptr<InputRichBlockThinking>;
@@ -7651,6 +7827,7 @@ TGBOT_API void to_json(nlohmann::json& json, const InputRichBlockThinking& value
 
 /**
  * @brief A block with a video, corresponding to the HTML tag <video>.
+ * @ingroup api
  */
 struct InputRichBlockVideo {
     using Ptr = std::shared_ptr<InputRichBlockVideo>;
@@ -7678,6 +7855,7 @@ TGBOT_API void to_json(nlohmann::json& json, const InputRichBlockVideo& value);
 
 /**
  * @brief A block with a voice note, corresponding to the HTML tag <audio>.
+ * @ingroup api
  */
 struct InputRichBlockVoiceNote {
     using Ptr = std::shared_ptr<InputRichBlockVoiceNote>;
@@ -7706,6 +7884,7 @@ TGBOT_API void to_json(nlohmann::json& json, const InputRichBlockVoiceNote& valu
 /**
  * @brief Describes a rich message to be sent. Exactly one of the fields html, markdown, or blocks
  * must be used.
+ * @ingroup api
  */
 struct InputRichMessage {
     using Ptr = std::shared_ptr<InputRichMessage>;
@@ -7753,6 +7932,7 @@ TGBOT_API void to_json(nlohmann::json& json, const InputRichMessage& value);
 
 /**
  * @brief Represents the content of a rich message to be sent as the result of an inline query.
+ * @ingroup api
  */
 struct InputRichMessageContent {
     using Ptr = std::shared_ptr<InputRichMessageContent>;
@@ -7768,6 +7948,7 @@ TGBOT_API void to_json(nlohmann::json& json, const InputRichMessageContent& valu
 
 /**
  * @brief Describes a media element embedded in an outgoing rich message.
+ * @ingroup api
  */
 struct InputRichMessageMedia {
     using Ptr = std::shared_ptr<InputRichMessageMedia>;
@@ -7792,6 +7973,7 @@ TGBOT_API void to_json(nlohmann::json& json, const InputRichMessageMedia& value)
 
 /**
  * @brief This object describes a sticker to be added to a sticker set.
+ * @ingroup api
  */
 struct InputSticker {
     using Ptr = std::shared_ptr<InputSticker>;
@@ -7834,6 +8016,7 @@ TGBOT_API void to_json(nlohmann::json& json, const InputSticker& value);
 /**
  * @brief This object describes the content of a story to post. Currently, it can be one of
  * InputStoryContentPhoto InputStoryContentVideo
+ * @ingroup api
  */
 struct InputStoryContent {
     using Ptr = std::shared_ptr<InputStoryContent>;
@@ -7846,6 +8029,7 @@ TGBOT_API void to_json(nlohmann::json& json, const InputStoryContent& value);
 
 /**
  * @brief Describes a photo to post as a story.
+ * @ingroup api
  */
 struct InputStoryContentPhoto {
     using Ptr = std::shared_ptr<InputStoryContentPhoto>;
@@ -7871,6 +8055,7 @@ TGBOT_API void to_json(nlohmann::json& json, const InputStoryContentPhoto& value
 
 /**
  * @brief Describes a video to post as a story.
+ * @ingroup api
  */
 struct InputStoryContentVideo {
     using Ptr = std::shared_ptr<InputStoryContentVideo>;
@@ -7913,6 +8098,7 @@ TGBOT_API void to_json(nlohmann::json& json, const InputStoryContentVideo& value
 
 /**
  * @brief Represents the content of a text message to be sent as the result of an inline query.
+ * @ingroup api
  */
 struct InputTextMessageContent {
     using Ptr = std::shared_ptr<InputTextMessageContent>;
@@ -7945,6 +8131,7 @@ TGBOT_API void to_json(nlohmann::json& json, const InputTextMessageContent& valu
 
 /**
  * @brief Represents the content of a venue message to be sent as the result of an inline query.
+ * @ingroup api
  */
 struct InputVenueMessageContent {
     using Ptr = std::shared_ptr<InputVenueMessageContent>;
@@ -7996,6 +8183,7 @@ TGBOT_API void to_json(nlohmann::json& json, const InputVenueMessageContent& val
 
 /**
  * @brief This object contains basic information about an invoice.
+ * @ingroup api
  */
 struct Invoice {
     using Ptr = std::shared_ptr<Invoice>;
@@ -8037,6 +8225,7 @@ TGBOT_API void to_json(nlohmann::json& json, const Invoice& value);
  * than text, icon_custom_emoji_id, and style must be used to specify the type of the button.
  * For simple text buttons, String can be used instead of this object to specify the button
  * text.
+ * @ingroup api
  */
 struct KeyboardButton {
     using Ptr = std::shared_ptr<KeyboardButton>;
@@ -8114,6 +8303,7 @@ TGBOT_API void to_json(nlohmann::json& json, const KeyboardButton& value);
 /**
  * @brief This object represents type of a poll, which is allowed to be created and sent when the
  * corresponding button is pressed.
+ * @ingroup api
  */
 struct KeyboardButtonPollType {
     using Ptr = std::shared_ptr<KeyboardButtonPollType>;
@@ -8133,6 +8323,7 @@ TGBOT_API void to_json(nlohmann::json& json, const KeyboardButtonPollType& value
  * @brief This object defines the criteria used to request a suitable chat. Information about the
  * selected chat will be shared with the bot when the corresponding button is pressed. The bot
  * will be granted requested rights in the chat if appropriate. More about requesting chats ».
+ * @ingroup api
  */
 struct KeyboardButtonRequestChat {
     using Ptr = std::shared_ptr<KeyboardButtonRequestChat>;
@@ -8210,6 +8401,7 @@ TGBOT_API void to_json(nlohmann::json& json, const KeyboardButtonRequestChat& va
  * @brief This object defines the parameters for the creation of a managed bot. Information about the
  * created bot will be shared with the bot using the update managed_bot and a Message with the
  * field managed_bot_created.
+ * @ingroup api
  */
 struct KeyboardButtonRequestManagedBot {
     using Ptr = std::shared_ptr<KeyboardButtonRequestManagedBot>;
@@ -8237,6 +8429,7 @@ TGBOT_API void to_json(nlohmann::json& json, const KeyboardButtonRequestManagedB
  * @brief This object defines the criteria used to request suitable users. Information about the
  * selected users will be shared with the bot when the corresponding button is pressed. More
  * about requesting users »
+ * @ingroup api
  */
 struct KeyboardButtonRequestUsers {
     using Ptr = std::shared_ptr<KeyboardButtonRequestUsers>;
@@ -8285,6 +8478,7 @@ TGBOT_API void to_json(nlohmann::json& json, const KeyboardButtonRequestUsers& v
 
 /**
  * @brief This object represents a portion of the price for goods or services.
+ * @ingroup api
  */
 struct LabeledPrice {
     using Ptr = std::shared_ptr<LabeledPrice>;
@@ -8308,6 +8502,7 @@ TGBOT_API void to_json(nlohmann::json& json, const LabeledPrice& value);
 
 /**
  * @brief Represents an HTTP link.
+ * @ingroup api
  */
 struct Link {
     using Ptr = std::shared_ptr<Link>;
@@ -8323,6 +8518,7 @@ TGBOT_API void to_json(nlohmann::json& json, const Link& value);
 
 /**
  * @brief Describes the options used for link preview generation.
+ * @ingroup api
  */
 struct LinkPreviewOptions {
     using Ptr = std::shared_ptr<LinkPreviewOptions>;
@@ -8362,6 +8558,7 @@ TGBOT_API void to_json(nlohmann::json& json, const LinkPreviewOptions& value);
 
 /**
  * @brief This object represents a live photo.
+ * @ingroup api
  */
 struct LivePhoto {
     using Ptr = std::shared_ptr<LivePhoto>;
@@ -8416,6 +8613,7 @@ TGBOT_API void to_json(nlohmann::json& json, const LivePhoto& value);
 
 /**
  * @brief This object represents a point on the map.
+ * @ingroup api
  */
 struct Location {
     using Ptr = std::shared_ptr<Location>;
@@ -8459,6 +8657,7 @@ TGBOT_API void to_json(nlohmann::json& json, const Location& value);
 
 /**
  * @brief Describes the physical address of a location.
+ * @ingroup api
  */
 struct LocationAddress {
     using Ptr = std::shared_ptr<LocationAddress>;
@@ -8493,6 +8692,7 @@ TGBOT_API void to_json(nlohmann::json& json, const LocationAddress& value);
  * authorize a user. Serves as a great replacement for the Telegram Login Widget when the user
  * is coming from Telegram. All the user needs to do is tap/click a button and confirm that
  * they want to log in: Telegram apps support these buttons as of version 5.7.
+ * @ingroup api
  */
 struct LoginUrl {
     using Ptr = std::shared_ptr<LoginUrl>;
@@ -8532,6 +8732,7 @@ TGBOT_API void to_json(nlohmann::json& json, const LoginUrl& value);
 /**
  * @brief This object contains information about the bot that was created to be managed by the current
  * bot.
+ * @ingroup api
  */
 struct ManagedBotCreated {
     using Ptr = std::shared_ptr<ManagedBotCreated>;
@@ -8549,6 +8750,7 @@ TGBOT_API void to_json(nlohmann::json& json, const ManagedBotCreated& value);
 /**
  * @brief This object contains information about the creation, token update, or owner update of a bot
  * that is managed by the current bot.
+ * @ingroup api
  */
 struct ManagedBotUpdated {
     using Ptr = std::shared_ptr<ManagedBotUpdated>;
@@ -8570,6 +8772,7 @@ TGBOT_API void to_json(nlohmann::json& json, const ManagedBotUpdated& value);
 
 /**
  * @brief This object describes the position on faces where a mask should be placed by default.
+ * @ingroup api
  */
 struct MaskPosition {
     using Ptr = std::shared_ptr<MaskPosition>;
@@ -8605,6 +8808,7 @@ TGBOT_API void to_json(nlohmann::json& json, const MaskPosition& value);
 /**
  * @brief This object describes a message that can be inaccessible to the bot. It can be one of
  * Message InaccessibleMessage
+ * @ingroup api
  */
 struct MaybeInaccessibleMessage {
     using Ptr = std::shared_ptr<MaybeInaccessibleMessage>;
@@ -8620,6 +8824,7 @@ TGBOT_API void to_json(nlohmann::json& json, const MaybeInaccessibleMessage& val
  * MenuButtonCommands MenuButtonWebApp MenuButtonDefault If a menu button other than
  * MenuButtonDefault is set for a private chat, then it is applied in the chat. Otherwise the
  * default menu button is applied. By default, the menu button opens the list of bot commands.
+ * @ingroup api
  */
 struct MenuButton {
     using Ptr = std::shared_ptr<MenuButton>;
@@ -8634,6 +8839,7 @@ TGBOT_API void to_json(nlohmann::json& json, const MenuButton& value);
 
 /**
  * @brief Represents a menu button, which opens the bot's list of commands.
+ * @ingroup api
  */
 struct MenuButtonCommands {
     using Ptr = std::shared_ptr<MenuButtonCommands>;
@@ -8651,6 +8857,7 @@ TGBOT_API void to_json(nlohmann::json& json, const MenuButtonCommands& value);
 
 /**
  * @brief Describes that no specific value for the menu button was set.
+ * @ingroup api
  */
 struct MenuButtonDefault {
     using Ptr = std::shared_ptr<MenuButtonDefault>;
@@ -8668,6 +8875,7 @@ TGBOT_API void to_json(nlohmann::json& json, const MenuButtonDefault& value);
 
 /**
  * @brief Represents a menu button, which launches a Web App.
+ * @ingroup api
  */
 struct MenuButtonWebApp {
     using Ptr = std::shared_ptr<MenuButtonWebApp>;
@@ -8699,6 +8907,7 @@ TGBOT_API void to_json(nlohmann::json& json, const MenuButtonWebApp& value);
 
 /**
  * @brief This object represents a message.
+ * @ingroup api
  */
 struct Message {
     using Ptr = std::shared_ptr<Message>;
@@ -9373,6 +9582,7 @@ TGBOT_API void to_json(nlohmann::json& json, const Message& value);
 
 /**
  * @brief This object represents a service message about a change in auto-delete timer settings.
+ * @ingroup api
  */
 struct MessageAutoDeleteTimerChanged {
     using Ptr = std::shared_ptr<MessageAutoDeleteTimerChanged>;
@@ -9389,6 +9599,7 @@ TGBOT_API void to_json(nlohmann::json& json, const MessageAutoDeleteTimerChanged
 /**
  * @brief This object represents one special entity in a text message. For example, hashtags,
  * usernames, URLs, etc.
+ * @ingroup api
  */
 struct MessageEntity {
     using Ptr = std::shared_ptr<MessageEntity>;
@@ -9480,6 +9691,7 @@ TGBOT_API void to_json(nlohmann::json& json, const MessageEntity& value);
 
 /**
  * @brief This object represents a unique message identifier.
+ * @ingroup api
  */
 struct MessageId {
     using Ptr = std::shared_ptr<MessageId>;
@@ -9499,6 +9711,7 @@ TGBOT_API void to_json(nlohmann::json& json, const MessageId& value);
 /**
  * @brief This object describes the origin of a message. It can be one of MessageOriginUser
  * MessageOriginHiddenUser MessageOriginChat MessageOriginChannel
+ * @ingroup api
  */
 struct MessageOrigin {
     using Ptr = std::shared_ptr<MessageOrigin>;
@@ -9513,6 +9726,7 @@ TGBOT_API void to_json(nlohmann::json& json, const MessageOrigin& value);
 
 /**
  * @brief The message was originally sent to a channel chat.
+ * @ingroup api
  */
 struct MessageOriginChannel {
     using Ptr = std::shared_ptr<MessageOriginChannel>;
@@ -9550,6 +9764,7 @@ TGBOT_API void to_json(nlohmann::json& json, const MessageOriginChannel& value);
 
 /**
  * @brief The message was originally sent on behalf of a chat to a group chat.
+ * @ingroup api
  */
 struct MessageOriginChat {
     using Ptr = std::shared_ptr<MessageOriginChat>;
@@ -9583,6 +9798,7 @@ TGBOT_API void to_json(nlohmann::json& json, const MessageOriginChat& value);
 
 /**
  * @brief The message was originally sent by an unknown user.
+ * @ingroup api
  */
 struct MessageOriginHiddenUser {
     using Ptr = std::shared_ptr<MessageOriginHiddenUser>;
@@ -9610,6 +9826,7 @@ TGBOT_API void to_json(nlohmann::json& json, const MessageOriginHiddenUser& valu
 
 /**
  * @brief The message was originally sent by a known user.
+ * @ingroup api
  */
 struct MessageOriginUser {
     using Ptr = std::shared_ptr<MessageOriginUser>;
@@ -9637,6 +9854,7 @@ TGBOT_API void to_json(nlohmann::json& json, const MessageOriginUser& value);
 
 /**
  * @brief This object represents reaction changes on a message with anonymous reactions.
+ * @ingroup api
  */
 struct MessageReactionCountUpdated {
     using Ptr = std::shared_ptr<MessageReactionCountUpdated>;
@@ -9667,6 +9885,7 @@ TGBOT_API void to_json(nlohmann::json& json, const MessageReactionCountUpdated& 
 
 /**
  * @brief This object represents a change of a reaction on a message performed by a user.
+ * @ingroup api
  */
 struct MessageReactionUpdated {
     using Ptr = std::shared_ptr<MessageReactionUpdated>;
@@ -9712,6 +9931,7 @@ TGBOT_API void to_json(nlohmann::json& json, const MessageReactionUpdated& value
 
 /**
  * @brief This object represents information about an order.
+ * @ingroup api
  */
 struct OrderInfo {
     using Ptr = std::shared_ptr<OrderInfo>;
@@ -9743,6 +9963,7 @@ TGBOT_API void to_json(nlohmann::json& json, const OrderInfo& value);
 /**
  * @brief This object describes a gift received and owned by a user or a chat. Currently, it can be
  * one of OwnedGiftRegular OwnedGiftUnique
+ * @ingroup api
  */
 struct OwnedGift {
     using Ptr = std::shared_ptr<OwnedGift>;
@@ -9755,6 +9976,7 @@ TGBOT_API void to_json(nlohmann::json& json, const OwnedGift& value);
 
 /**
  * @brief Describes a regular gift owned by a user or a chat.
+ * @ingroup api
  */
 struct OwnedGiftRegular {
     using Ptr = std::shared_ptr<OwnedGiftRegular>;
@@ -9850,6 +10072,7 @@ TGBOT_API void to_json(nlohmann::json& json, const OwnedGiftRegular& value);
 
 /**
  * @brief Describes a unique gift received and owned by a user or a chat.
+ * @ingroup api
  */
 struct OwnedGiftUnique {
     using Ptr = std::shared_ptr<OwnedGiftUnique>;
@@ -9912,6 +10135,7 @@ TGBOT_API void to_json(nlohmann::json& json, const OwnedGiftUnique& value);
 
 /**
  * @brief Contains the list of gifts received and owned by a user or a chat.
+ * @ingroup api
  */
 struct OwnedGifts {
     using Ptr = std::shared_ptr<OwnedGifts>;
@@ -9938,6 +10162,7 @@ TGBOT_API void to_json(nlohmann::json& json, const OwnedGifts& value);
 /**
  * @brief This object describes paid media. Currently, it can be one of PaidMediaLivePhoto
  * PaidMediaPhoto PaidMediaPreview PaidMediaVideo
+ * @ingroup api
  */
 struct PaidMedia {
     using Ptr = std::shared_ptr<PaidMedia>;
@@ -9952,6 +10177,7 @@ TGBOT_API void to_json(nlohmann::json& json, const PaidMedia& value);
 
 /**
  * @brief Describes the paid media added to a message.
+ * @ingroup api
  */
 struct PaidMediaInfo {
     using Ptr = std::shared_ptr<PaidMediaInfo>;
@@ -9972,6 +10198,7 @@ TGBOT_API void to_json(nlohmann::json& json, const PaidMediaInfo& value);
 
 /**
  * @brief The paid media is a live photo.
+ * @ingroup api
  */
 struct PaidMediaLivePhoto {
     using Ptr = std::shared_ptr<PaidMediaLivePhoto>;
@@ -9994,6 +10221,7 @@ TGBOT_API void to_json(nlohmann::json& json, const PaidMediaLivePhoto& value);
 
 /**
  * @brief The paid media is a photo.
+ * @ingroup api
  */
 struct PaidMediaPhoto {
     using Ptr = std::shared_ptr<PaidMediaPhoto>;
@@ -10016,6 +10244,7 @@ TGBOT_API void to_json(nlohmann::json& json, const PaidMediaPhoto& value);
 
 /**
  * @brief The paid media isn't available before the payment.
+ * @ingroup api
  */
 struct PaidMediaPreview {
     using Ptr = std::shared_ptr<PaidMediaPreview>;
@@ -10048,6 +10277,7 @@ TGBOT_API void to_json(nlohmann::json& json, const PaidMediaPreview& value);
 
 /**
  * @brief This object contains information about a paid media purchase.
+ * @ingroup api
  */
 struct PaidMediaPurchased {
     using Ptr = std::shared_ptr<PaidMediaPurchased>;
@@ -10068,6 +10298,7 @@ TGBOT_API void to_json(nlohmann::json& json, const PaidMediaPurchased& value);
 
 /**
  * @brief The paid media is a video.
+ * @ingroup api
  */
 struct PaidMediaVideo {
     using Ptr = std::shared_ptr<PaidMediaVideo>;
@@ -10090,6 +10321,7 @@ TGBOT_API void to_json(nlohmann::json& json, const PaidMediaVideo& value);
 
 /**
  * @brief Describes a service message about a change in the price of paid messages within a chat.
+ * @ingroup api
  */
 struct PaidMessagePriceChanged {
     using Ptr = std::shared_ptr<PaidMessagePriceChanged>;
@@ -10106,6 +10338,7 @@ TGBOT_API void to_json(nlohmann::json& json, const PaidMessagePriceChanged& valu
 
 /**
  * @brief Describes Telegram Passport data shared with the bot by the user.
+ * @ingroup api
  */
 struct PassportData {
     using Ptr = std::shared_ptr<PassportData>;
@@ -10131,6 +10364,7 @@ TGBOT_API void to_json(nlohmann::json& json, const PassportData& value);
  * PassportElementErrorFrontSide PassportElementErrorReverseSide PassportElementErrorSelfie
  * PassportElementErrorFile PassportElementErrorFiles PassportElementErrorTranslationFile
  * PassportElementErrorTranslationFiles PassportElementErrorUnspecified
+ * @ingroup api
  */
 struct PassportElementError {
     using Ptr = std::shared_ptr<PassportElementError>;
@@ -10150,6 +10384,7 @@ TGBOT_API void to_json(nlohmann::json& json, const PassportElementError& value);
 /**
  * @brief Represents an issue in one of the data fields that was provided by the user. The error is
  * considered resolved when the field's value changes.
+ * @ingroup api
  */
 struct PassportElementErrorDataField {
     using Ptr = std::shared_ptr<PassportElementErrorDataField>;
@@ -10190,6 +10425,7 @@ TGBOT_API void to_json(nlohmann::json& json, const PassportElementErrorDataField
 /**
  * @brief Represents an issue with a document scan. The error is considered resolved when the file
  * with the document scan changes.
+ * @ingroup api
  */
 struct PassportElementErrorFile {
     using Ptr = std::shared_ptr<PassportElementErrorFile>;
@@ -10224,6 +10460,7 @@ TGBOT_API void to_json(nlohmann::json& json, const PassportElementErrorFile& val
 /**
  * @brief Represents an issue with a list of scans. The error is considered resolved when the list of
  * files containing the scans changes.
+ * @ingroup api
  */
 struct PassportElementErrorFiles {
     using Ptr = std::shared_ptr<PassportElementErrorFiles>;
@@ -10258,6 +10495,7 @@ TGBOT_API void to_json(nlohmann::json& json, const PassportElementErrorFiles& va
 /**
  * @brief Represents an issue with the front side of a document. The error is considered resolved when
  * the file with the front side of the document changes.
+ * @ingroup api
  */
 struct PassportElementErrorFrontSide {
     using Ptr = std::shared_ptr<PassportElementErrorFrontSide>;
@@ -10292,6 +10530,7 @@ TGBOT_API void to_json(nlohmann::json& json, const PassportElementErrorFrontSide
 /**
  * @brief Represents an issue with the reverse side of a document. The error is considered resolved
  * when the file with reverse side of the document changes.
+ * @ingroup api
  */
 struct PassportElementErrorReverseSide {
     using Ptr = std::shared_ptr<PassportElementErrorReverseSide>;
@@ -10326,6 +10565,7 @@ TGBOT_API void to_json(nlohmann::json& json, const PassportElementErrorReverseSi
 /**
  * @brief Represents an issue with the selfie with a document. The error is considered resolved when
  * the file with the selfie changes.
+ * @ingroup api
  */
 struct PassportElementErrorSelfie {
     using Ptr = std::shared_ptr<PassportElementErrorSelfie>;
@@ -10360,6 +10600,7 @@ TGBOT_API void to_json(nlohmann::json& json, const PassportElementErrorSelfie& v
 /**
  * @brief Represents an issue with one of the files that constitute the translation of a document. The
  * error is considered resolved when the file changes.
+ * @ingroup api
  */
 struct PassportElementErrorTranslationFile {
     using Ptr = std::shared_ptr<PassportElementErrorTranslationFile>;
@@ -10395,6 +10636,7 @@ TGBOT_API void to_json(nlohmann::json& json, const PassportElementErrorTranslati
 /**
  * @brief Represents an issue with the translated version of a document. The error is considered
  * resolved when a file with the document translation change.
+ * @ingroup api
  */
 struct PassportElementErrorTranslationFiles {
     using Ptr = std::shared_ptr<PassportElementErrorTranslationFiles>;
@@ -10430,6 +10672,7 @@ TGBOT_API void to_json(nlohmann::json& json, const PassportElementErrorTranslati
 /**
  * @brief Represents an issue in an unspecified place. The error is considered resolved when new data
  * is added.
+ * @ingroup api
  */
 struct PassportElementErrorUnspecified {
     using Ptr = std::shared_ptr<PassportElementErrorUnspecified>;
@@ -10463,6 +10706,7 @@ TGBOT_API void to_json(nlohmann::json& json, const PassportElementErrorUnspecifi
 /**
  * @brief This object represents a file uploaded to Telegram Passport. Currently all Telegram Passport
  * files are in JPEG format when decrypted and don't exceed 10MB.
+ * @ingroup api
  */
 struct PassportFile {
     using Ptr = std::shared_ptr<PassportFile>;
@@ -10494,6 +10738,7 @@ TGBOT_API void to_json(nlohmann::json& json, const PassportFile& value);
 
 /**
  * @brief This object represents one size of a photo or a file / sticker thumbnail.
+ * @ingroup api
  */
 struct PhotoSize {
     using Ptr = std::shared_ptr<PhotoSize>;
@@ -10530,6 +10775,7 @@ TGBOT_API void to_json(nlohmann::json& json, const PhotoSize& value);
 
 /**
  * @brief This object contains information about a poll.
+ * @ingroup api
  */
 struct Poll {
     using Ptr = std::shared_ptr<Poll>;
@@ -10654,6 +10900,7 @@ TGBOT_API void to_json(nlohmann::json& json, const Poll& value);
 
 /**
  * @brief This object represents an answer of a user in a non-anonymous poll.
+ * @ingroup api
  */
 struct PollAnswer {
     using Ptr = std::shared_ptr<PollAnswer>;
@@ -10690,6 +10937,7 @@ TGBOT_API void to_json(nlohmann::json& json, const PollAnswer& value);
 
 /**
  * @brief At most one of the optional fields can be present in any given object.
+ * @ingroup api
  */
 struct PollMedia {
     using Ptr = std::shared_ptr<PollMedia>;
@@ -10753,6 +11001,7 @@ TGBOT_API void to_json(nlohmann::json& json, const PollMedia& value);
 
 /**
  * @brief This object contains information about one answer option in a poll.
+ * @ingroup api
  */
 struct PollOption {
     using Ptr = std::shared_ptr<PollOption>;
@@ -10807,6 +11056,7 @@ TGBOT_API void to_json(nlohmann::json& json, const PollOption& value);
 
 /**
  * @brief Describes a service message about an option added to a poll.
+ * @ingroup api
  */
 struct PollOptionAdded {
     using Ptr = std::shared_ptr<PollOptionAdded>;
@@ -10839,6 +11089,7 @@ TGBOT_API void to_json(nlohmann::json& json, const PollOptionAdded& value);
 
 /**
  * @brief Describes a service message about an option deleted from a poll.
+ * @ingroup api
  */
 struct PollOptionDeleted {
     using Ptr = std::shared_ptr<PollOptionDeleted>;
@@ -10871,6 +11122,7 @@ TGBOT_API void to_json(nlohmann::json& json, const PollOptionDeleted& value);
 
 /**
  * @brief This object contains information about an incoming pre-checkout query.
+ * @ingroup api
  */
 struct PreCheckoutQuery {
     using Ptr = std::shared_ptr<PreCheckoutQuery>;
@@ -10919,6 +11171,7 @@ TGBOT_API void to_json(nlohmann::json& json, const PreCheckoutQuery& value);
 
 /**
  * @brief Describes an inline message to be sent by a user of a Mini App.
+ * @ingroup api
  */
 struct PreparedInlineMessage {
     using Ptr = std::shared_ptr<PreparedInlineMessage>;
@@ -10940,6 +11193,7 @@ TGBOT_API void to_json(nlohmann::json& json, const PreparedInlineMessage& value)
 
 /**
  * @brief Describes a keyboard button to be used by a user of a Mini App.
+ * @ingroup api
  */
 struct PreparedKeyboardButton {
     using Ptr = std::shared_ptr<PreparedKeyboardButton>;
@@ -10956,6 +11210,7 @@ TGBOT_API void to_json(nlohmann::json& json, const PreparedKeyboardButton& value
 /**
  * @brief This object represents the content of a service message, sent whenever a user in the chat
  * triggers a proximity alert set by another user.
+ * @ingroup api
  */
 struct ProximityAlertTriggered {
     using Ptr = std::shared_ptr<ProximityAlertTriggered>;
@@ -10981,6 +11236,7 @@ TGBOT_API void to_json(nlohmann::json& json, const ProximityAlertTriggered& valu
 
 /**
  * @brief Represents a reaction added to a message along with the number of times it was added.
+ * @ingroup api
  */
 struct ReactionCount {
     using Ptr = std::shared_ptr<ReactionCount>;
@@ -11002,6 +11258,7 @@ TGBOT_API void to_json(nlohmann::json& json, const ReactionCount& value);
 /**
  * @brief This object describes the type of a reaction. Currently, it can be one of ReactionTypeEmoji
  * ReactionTypeCustomEmoji ReactionTypePaid
+ * @ingroup api
  */
 struct ReactionType {
     using Ptr = std::shared_ptr<ReactionType>;
@@ -11016,6 +11273,7 @@ TGBOT_API void to_json(nlohmann::json& json, const ReactionType& value);
 
 /**
  * @brief The reaction is based on a custom emoji.
+ * @ingroup api
  */
 struct ReactionTypeCustomEmoji {
     using Ptr = std::shared_ptr<ReactionTypeCustomEmoji>;
@@ -11038,6 +11296,7 @@ TGBOT_API void to_json(nlohmann::json& json, const ReactionTypeCustomEmoji& valu
 
 /**
  * @brief The reaction is based on an emoji.
+ * @ingroup api
  */
 struct ReactionTypeEmoji {
     using Ptr = std::shared_ptr<ReactionTypeEmoji>;
@@ -11063,6 +11322,7 @@ TGBOT_API void to_json(nlohmann::json& json, const ReactionTypeEmoji& value);
 
 /**
  * @brief The reaction is paid.
+ * @ingroup api
  */
 struct ReactionTypePaid {
     using Ptr = std::shared_ptr<ReactionTypePaid>;
@@ -11080,6 +11340,7 @@ TGBOT_API void to_json(nlohmann::json& json, const ReactionTypePaid& value);
 
 /**
  * @brief This object contains basic information about a refunded payment.
+ * @ingroup api
  */
 struct RefundedPayment {
     using Ptr = std::shared_ptr<RefundedPayment>;
@@ -11121,6 +11382,7 @@ TGBOT_API void to_json(nlohmann::json& json, const RefundedPayment& value);
  * @brief This object represents a custom keyboard with reply options (see Introduction to bots for
  * details and examples). Not supported in channels and for messages sent on behalf of a
  * business account.
+ * @ingroup api
  */
 struct ReplyKeyboardMarkup {
     using Ptr = std::shared_ptr<ReplyKeyboardMarkup>;
@@ -11178,6 +11440,7 @@ TGBOT_API void to_json(nlohmann::json& json, const ReplyKeyboardMarkup& value);
  * until a new keyboard is sent by a bot. An exception is made for one-time keyboards that are
  * hidden immediately after the user presses a button (see ReplyKeyboardMarkup). Not supported
  * in channels and for messages sent on behalf of a business account.
+ * @ingroup api
  */
 struct ReplyKeyboardRemove {
     using Ptr = std::shared_ptr<ReplyKeyboardRemove>;
@@ -11205,6 +11468,7 @@ TGBOT_API void to_json(nlohmann::json& json, const ReplyKeyboardRemove& value);
 
 /**
  * @brief Describes reply parameters for the message that is being sent.
+ * @ingroup api
  */
 struct ReplyParameters {
     using Ptr = std::shared_ptr<ReplyParameters>;
@@ -11280,6 +11544,7 @@ TGBOT_API void to_json(nlohmann::json& json, const ReplyParameters& value);
 
 /**
  * @brief Describes why a request was unsuccessful.
+ * @ingroup api
  */
 struct ResponseParameters {
     using Ptr = std::shared_ptr<ResponseParameters>;
@@ -11307,6 +11572,7 @@ TGBOT_API void to_json(nlohmann::json& json, const ResponseParameters& value);
  * @brief This object describes the state of a revenue withdrawal operation. Currently, it can be one
  * of RevenueWithdrawalStatePending RevenueWithdrawalStateSucceeded
  * RevenueWithdrawalStateFailed
+ * @ingroup api
  */
 struct RevenueWithdrawalState {
     using Ptr = std::shared_ptr<RevenueWithdrawalState>;
@@ -11321,6 +11587,7 @@ TGBOT_API void to_json(nlohmann::json& json, const RevenueWithdrawalState& value
 
 /**
  * @brief The withdrawal failed and the transaction was refunded.
+ * @ingroup api
  */
 struct RevenueWithdrawalStateFailed {
     using Ptr = std::shared_ptr<RevenueWithdrawalStateFailed>;
@@ -11338,6 +11605,7 @@ TGBOT_API void to_json(nlohmann::json& json, const RevenueWithdrawalStateFailed&
 
 /**
  * @brief The withdrawal is in progress.
+ * @ingroup api
  */
 struct RevenueWithdrawalStatePending {
     using Ptr = std::shared_ptr<RevenueWithdrawalStatePending>;
@@ -11355,6 +11623,7 @@ TGBOT_API void to_json(nlohmann::json& json, const RevenueWithdrawalStatePending
 
 /**
  * @brief The withdrawal succeeded.
+ * @ingroup api
  */
 struct RevenueWithdrawalStateSucceeded {
     using Ptr = std::shared_ptr<RevenueWithdrawalStateSucceeded>;
@@ -11387,6 +11656,7 @@ TGBOT_API void to_json(nlohmann::json& json, const RevenueWithdrawalStateSucceed
  * RichBlockList RichBlockBlockQuotation RichBlockPullQuotation RichBlockCollage
  * RichBlockSlideshow RichBlockTable RichBlockDetails RichBlockMap RichBlockAnimation
  * RichBlockAudio RichBlockPhoto RichBlockVideo RichBlockVoiceNote RichBlockThinking
+ * @ingroup api
  */
 struct RichBlock {
     using Ptr = std::shared_ptr<RichBlock>;
@@ -11408,6 +11678,7 @@ TGBOT_API void to_json(nlohmann::json& json, const RichBlock& value);
 
 /**
  * @brief A block with an anchor, corresponding to the HTML tag <a> with the attribute name.
+ * @ingroup api
  */
 struct RichBlockAnchor {
     using Ptr = std::shared_ptr<RichBlockAnchor>;
@@ -11430,6 +11701,7 @@ TGBOT_API void to_json(nlohmann::json& json, const RichBlockAnchor& value);
 
 /**
  * @brief A block with an animation, corresponding to the HTML tag <video>.
+ * @ingroup api
  */
 struct RichBlockAnimation {
     using Ptr = std::shared_ptr<RichBlockAnimation>;
@@ -11462,6 +11734,7 @@ TGBOT_API void to_json(nlohmann::json& json, const RichBlockAnimation& value);
 
 /**
  * @brief A block with a music file, corresponding to the HTML tag <audio>.
+ * @ingroup api
  */
 struct RichBlockAudio {
     using Ptr = std::shared_ptr<RichBlockAudio>;
@@ -11489,6 +11762,7 @@ TGBOT_API void to_json(nlohmann::json& json, const RichBlockAudio& value);
 
 /**
  * @brief A block quotation, corresponding to the HTML tag <blockquote>.
+ * @ingroup api
  */
 struct RichBlockBlockQuotation {
     using Ptr = std::shared_ptr<RichBlockBlockQuotation>;
@@ -11516,6 +11790,7 @@ TGBOT_API void to_json(nlohmann::json& json, const RichBlockBlockQuotation& valu
 
 /**
  * @brief Caption of a rich formatted block.
+ * @ingroup api
  */
 struct RichBlockCaption {
     using Ptr = std::shared_ptr<RichBlockCaption>;
@@ -11536,6 +11811,7 @@ TGBOT_API void to_json(nlohmann::json& json, const RichBlockCaption& value);
 
 /**
  * @brief A collage, corresponding to the custom HTML tag <tg-collage>.
+ * @ingroup api
  */
 struct RichBlockCollage {
     using Ptr = std::shared_ptr<RichBlockCollage>;
@@ -11563,6 +11839,7 @@ TGBOT_API void to_json(nlohmann::json& json, const RichBlockCollage& value);
 
 /**
  * @brief An expandable block for details disclosure, corresponding to the HTML tag <details>.
+ * @ingroup api
  */
 struct RichBlockDetails {
     using Ptr = std::shared_ptr<RichBlockDetails>;
@@ -11595,6 +11872,7 @@ TGBOT_API void to_json(nlohmann::json& json, const RichBlockDetails& value);
 
 /**
  * @brief A divider, corresponding to the HTML tag <hr/>.
+ * @ingroup api
  */
 struct RichBlockDivider {
     using Ptr = std::shared_ptr<RichBlockDivider>;
@@ -11612,6 +11890,7 @@ TGBOT_API void to_json(nlohmann::json& json, const RichBlockDivider& value);
 
 /**
  * @brief A footer, corresponding to the HTML tag <footer>.
+ * @ingroup api
  */
 struct RichBlockFooter {
     using Ptr = std::shared_ptr<RichBlockFooter>;
@@ -11634,6 +11913,7 @@ TGBOT_API void to_json(nlohmann::json& json, const RichBlockFooter& value);
 
 /**
  * @brief A list of blocks, corresponding to the HTML tag <ul> or <ol> with multiple nested tags <li>.
+ * @ingroup api
  */
 struct RichBlockList {
     using Ptr = std::shared_ptr<RichBlockList>;
@@ -11656,6 +11936,7 @@ TGBOT_API void to_json(nlohmann::json& json, const RichBlockList& value);
 
 /**
  * @brief An item of a list.
+ * @ingroup api
  */
 struct RichBlockListItem {
     using Ptr = std::shared_ptr<RichBlockListItem>;
@@ -11698,6 +11979,7 @@ TGBOT_API void to_json(nlohmann::json& json, const RichBlockListItem& value);
 
 /**
  * @brief A block with a map, corresponding to the custom HTML tag <tg-map>.
+ * @ingroup api
  */
 struct RichBlockMap {
     using Ptr = std::shared_ptr<RichBlockMap>;
@@ -11741,6 +12023,7 @@ TGBOT_API void to_json(nlohmann::json& json, const RichBlockMap& value);
 /**
  * @brief A block with a mathematical expression in LaTeX format, corresponding to the custom HTML tag
  * <tg-math-block>.
+ * @ingroup api
  */
 struct RichBlockMathematicalExpression {
     using Ptr = std::shared_ptr<RichBlockMathematicalExpression>;
@@ -11763,6 +12046,7 @@ TGBOT_API void to_json(nlohmann::json& json, const RichBlockMathematicalExpressi
 
 /**
  * @brief A text paragraph, corresponding to the HTML tag <p>.
+ * @ingroup api
  */
 struct RichBlockParagraph {
     using Ptr = std::shared_ptr<RichBlockParagraph>;
@@ -11785,6 +12069,7 @@ TGBOT_API void to_json(nlohmann::json& json, const RichBlockParagraph& value);
 
 /**
  * @brief A block with a photo, corresponding to the HTML tag <img>.
+ * @ingroup api
  */
 struct RichBlockPhoto {
     using Ptr = std::shared_ptr<RichBlockPhoto>;
@@ -11817,6 +12102,7 @@ TGBOT_API void to_json(nlohmann::json& json, const RichBlockPhoto& value);
 
 /**
  * @brief A preformatted text block, corresponding to the nested HTML tags <pre> and <code>.
+ * @ingroup api
  */
 struct RichBlockPreformatted {
     using Ptr = std::shared_ptr<RichBlockPreformatted>;
@@ -11844,6 +12130,7 @@ TGBOT_API void to_json(nlohmann::json& json, const RichBlockPreformatted& value)
 
 /**
  * @brief A quotation with centered text, loosely corresponding to the HTML tag <aside>.
+ * @ingroup api
  */
 struct RichBlockPullQuotation {
     using Ptr = std::shared_ptr<RichBlockPullQuotation>;
@@ -11871,6 +12158,7 @@ TGBOT_API void to_json(nlohmann::json& json, const RichBlockPullQuotation& value
 
 /**
  * @brief A section heading, corresponding to the HTML tags <h1>, <h2>, <h3>, <h4>, <h5>, or <h6>.
+ * @ingroup api
  */
 struct RichBlockSectionHeading {
     using Ptr = std::shared_ptr<RichBlockSectionHeading>;
@@ -11898,6 +12186,7 @@ TGBOT_API void to_json(nlohmann::json& json, const RichBlockSectionHeading& valu
 
 /**
  * @brief A slideshow, corresponding to the custom HTML tag <tg-slideshow>.
+ * @ingroup api
  */
 struct RichBlockSlideshow {
     using Ptr = std::shared_ptr<RichBlockSlideshow>;
@@ -11925,6 +12214,7 @@ TGBOT_API void to_json(nlohmann::json& json, const RichBlockSlideshow& value);
 
 /**
  * @brief A table, corresponding to the HTML tag <table>.
+ * @ingroup api
  */
 struct RichBlockTable {
     using Ptr = std::shared_ptr<RichBlockTable>;
@@ -11962,6 +12252,7 @@ TGBOT_API void to_json(nlohmann::json& json, const RichBlockTable& value);
 
 /**
  * @brief Cell in a table.
+ * @ingroup api
  */
 struct RichBlockTableCell {
     using Ptr = std::shared_ptr<RichBlockTableCell>;
@@ -12006,6 +12297,7 @@ TGBOT_API void to_json(nlohmann::json& json, const RichBlockTableCell& value);
  * The block may be used only in sendRichMessageDraft, therefore it can't be received in
  * messages. See https://t.me/addemoji/AIActions for examples of custom emoji that are
  * recommended for usage in the block.
+ * @ingroup api
  */
 struct RichBlockThinking {
     using Ptr = std::shared_ptr<RichBlockThinking>;
@@ -12029,6 +12321,7 @@ TGBOT_API void to_json(nlohmann::json& json, const RichBlockThinking& value);
 
 /**
  * @brief A block with a video, corresponding to the HTML tag <video>.
+ * @ingroup api
  */
 struct RichBlockVideo {
     using Ptr = std::shared_ptr<RichBlockVideo>;
@@ -12061,6 +12354,7 @@ TGBOT_API void to_json(nlohmann::json& json, const RichBlockVideo& value);
 
 /**
  * @brief A block with a voice note, corresponding to the HTML tag <audio>.
+ * @ingroup api
  */
 struct RichBlockVoiceNote {
     using Ptr = std::shared_ptr<RichBlockVoiceNote>;
@@ -12088,6 +12382,7 @@ TGBOT_API void to_json(nlohmann::json& json, const RichBlockVoiceNote& value);
 
 /**
  * @brief Rich formatted message.
+ * @ingroup api
  */
 struct RichMessage {
     using Ptr = std::shared_ptr<RichMessage>;
@@ -12114,6 +12409,7 @@ TGBOT_API void to_json(nlohmann::json& json, const RichMessage& value);
  * RichTextMathematicalExpression RichTextUrl RichTextEmailAddress RichTextPhoneNumber
  * RichTextBankCardNumber RichTextMention RichTextHashtag RichTextCashtag RichTextBotCommand
  * RichTextAnchor RichTextAnchorLink RichTextReference RichTextReferenceLink
+ * @ingroup api
  */
 struct RichText {
     using Ptr = std::shared_ptr<RichText>;
@@ -12136,6 +12432,7 @@ TGBOT_API void to_json(nlohmann::json& json, const RichText& value);
 
 /**
  * @brief An anchor.
+ * @ingroup api
  */
 struct RichTextAnchor {
     using Ptr = std::shared_ptr<RichTextAnchor>;
@@ -12158,6 +12455,7 @@ TGBOT_API void to_json(nlohmann::json& json, const RichTextAnchor& value);
 
 /**
  * @brief A link to an anchor.
+ * @ingroup api
  */
 struct RichTextAnchorLink {
     using Ptr = std::shared_ptr<RichTextAnchorLink>;
@@ -12186,6 +12484,7 @@ TGBOT_API void to_json(nlohmann::json& json, const RichTextAnchorLink& value);
 
 /**
  * @brief A text with a bank card number.
+ * @ingroup api
  */
 struct RichTextBankCardNumber {
     using Ptr = std::shared_ptr<RichTextBankCardNumber>;
@@ -12213,6 +12512,7 @@ TGBOT_API void to_json(nlohmann::json& json, const RichTextBankCardNumber& value
 
 /**
  * @brief A bold text.
+ * @ingroup api
  */
 struct RichTextBold {
     using Ptr = std::shared_ptr<RichTextBold>;
@@ -12235,6 +12535,7 @@ TGBOT_API void to_json(nlohmann::json& json, const RichTextBold& value);
 
 /**
  * @brief A bot command.
+ * @ingroup api
  */
 struct RichTextBotCommand {
     using Ptr = std::shared_ptr<RichTextBotCommand>;
@@ -12262,6 +12563,7 @@ TGBOT_API void to_json(nlohmann::json& json, const RichTextBotCommand& value);
 
 /**
  * @brief A cashtag.
+ * @ingroup api
  */
 struct RichTextCashtag {
     using Ptr = std::shared_ptr<RichTextCashtag>;
@@ -12289,6 +12591,7 @@ TGBOT_API void to_json(nlohmann::json& json, const RichTextCashtag& value);
 
 /**
  * @brief A monowidth text.
+ * @ingroup api
  */
 struct RichTextCode {
     using Ptr = std::shared_ptr<RichTextCode>;
@@ -12311,6 +12614,7 @@ TGBOT_API void to_json(nlohmann::json& json, const RichTextCode& value);
 
 /**
  * @brief A custom emoji.
+ * @ingroup api
  */
 struct RichTextCustomEmoji {
     using Ptr = std::shared_ptr<RichTextCustomEmoji>;
@@ -12339,6 +12643,7 @@ TGBOT_API void to_json(nlohmann::json& json, const RichTextCustomEmoji& value);
 
 /**
  * @brief Formatted date and time.
+ * @ingroup api
  */
 struct RichTextDateTime {
     using Ptr = std::shared_ptr<RichTextDateTime>;
@@ -12372,6 +12677,7 @@ TGBOT_API void to_json(nlohmann::json& json, const RichTextDateTime& value);
 
 /**
  * @brief A text with an email address.
+ * @ingroup api
  */
 struct RichTextEmailAddress {
     using Ptr = std::shared_ptr<RichTextEmailAddress>;
@@ -12399,6 +12705,7 @@ TGBOT_API void to_json(nlohmann::json& json, const RichTextEmailAddress& value);
 
 /**
  * @brief A hashtag.
+ * @ingroup api
  */
 struct RichTextHashtag {
     using Ptr = std::shared_ptr<RichTextHashtag>;
@@ -12426,6 +12733,7 @@ TGBOT_API void to_json(nlohmann::json& json, const RichTextHashtag& value);
 
 /**
  * @brief An italicized text.
+ * @ingroup api
  */
 struct RichTextItalic {
     using Ptr = std::shared_ptr<RichTextItalic>;
@@ -12448,6 +12756,7 @@ TGBOT_API void to_json(nlohmann::json& json, const RichTextItalic& value);
 
 /**
  * @brief A marked text.
+ * @ingroup api
  */
 struct RichTextMarked {
     using Ptr = std::shared_ptr<RichTextMarked>;
@@ -12470,6 +12779,7 @@ TGBOT_API void to_json(nlohmann::json& json, const RichTextMarked& value);
 
 /**
  * @brief A mathematical expression.
+ * @ingroup api
  */
 struct RichTextMathematicalExpression {
     using Ptr = std::shared_ptr<RichTextMathematicalExpression>;
@@ -12492,6 +12802,7 @@ TGBOT_API void to_json(nlohmann::json& json, const RichTextMathematicalExpressio
 
 /**
  * @brief A mention by a username.
+ * @ingroup api
  */
 struct RichTextMention {
     using Ptr = std::shared_ptr<RichTextMention>;
@@ -12519,6 +12830,7 @@ TGBOT_API void to_json(nlohmann::json& json, const RichTextMention& value);
 
 /**
  * @brief A text with a phone number.
+ * @ingroup api
  */
 struct RichTextPhoneNumber {
     using Ptr = std::shared_ptr<RichTextPhoneNumber>;
@@ -12546,6 +12858,7 @@ TGBOT_API void to_json(nlohmann::json& json, const RichTextPhoneNumber& value);
 
 /**
  * @brief A reference.
+ * @ingroup api
  */
 struct RichTextReference {
     using Ptr = std::shared_ptr<RichTextReference>;
@@ -12573,6 +12886,7 @@ TGBOT_API void to_json(nlohmann::json& json, const RichTextReference& value);
 
 /**
  * @brief A link to a reference.
+ * @ingroup api
  */
 struct RichTextReferenceLink {
     using Ptr = std::shared_ptr<RichTextReferenceLink>;
@@ -12600,6 +12914,7 @@ TGBOT_API void to_json(nlohmann::json& json, const RichTextReferenceLink& value)
 
 /**
  * @brief A text covered by a spoiler.
+ * @ingroup api
  */
 struct RichTextSpoiler {
     using Ptr = std::shared_ptr<RichTextSpoiler>;
@@ -12622,6 +12937,7 @@ TGBOT_API void to_json(nlohmann::json& json, const RichTextSpoiler& value);
 
 /**
  * @brief A strikethrough text.
+ * @ingroup api
  */
 struct RichTextStrikethrough {
     using Ptr = std::shared_ptr<RichTextStrikethrough>;
@@ -12644,6 +12960,7 @@ TGBOT_API void to_json(nlohmann::json& json, const RichTextStrikethrough& value)
 
 /**
  * @brief A subscript text.
+ * @ingroup api
  */
 struct RichTextSubscript {
     using Ptr = std::shared_ptr<RichTextSubscript>;
@@ -12666,6 +12983,7 @@ TGBOT_API void to_json(nlohmann::json& json, const RichTextSubscript& value);
 
 /**
  * @brief A superscript text.
+ * @ingroup api
  */
 struct RichTextSuperscript {
     using Ptr = std::shared_ptr<RichTextSuperscript>;
@@ -12688,6 +13006,7 @@ TGBOT_API void to_json(nlohmann::json& json, const RichTextSuperscript& value);
 
 /**
  * @brief A mention of a Telegram user by their identifier.
+ * @ingroup api
  */
 struct RichTextTextMention {
     using Ptr = std::shared_ptr<RichTextTextMention>;
@@ -12715,6 +13034,7 @@ TGBOT_API void to_json(nlohmann::json& json, const RichTextTextMention& value);
 
 /**
  * @brief An underlined text.
+ * @ingroup api
  */
 struct RichTextUnderline {
     using Ptr = std::shared_ptr<RichTextUnderline>;
@@ -12737,6 +13057,7 @@ TGBOT_API void to_json(nlohmann::json& json, const RichTextUnderline& value);
 
 /**
  * @brief A text with a link.
+ * @ingroup api
  */
 struct RichTextUrl {
     using Ptr = std::shared_ptr<RichTextUrl>;
@@ -12764,6 +13085,7 @@ TGBOT_API void to_json(nlohmann::json& json, const RichTextUrl& value);
 
 /**
  * @brief Describes an inline message sent by a guest bot.
+ * @ingroup api
  */
 struct SentGuestMessage {
     using Ptr = std::shared_ptr<SentGuestMessage>;
@@ -12779,6 +13101,7 @@ TGBOT_API void to_json(nlohmann::json& json, const SentGuestMessage& value);
 
 /**
  * @brief Describes an inline message sent by a Web App on behalf of a user.
+ * @ingroup api
  */
 struct SentWebAppMessage {
     using Ptr = std::shared_ptr<SentWebAppMessage>;
@@ -12796,6 +13119,7 @@ TGBOT_API void to_json(nlohmann::json& json, const SentWebAppMessage& value);
 /**
  * @brief This object contains information about a user that was shared with the bot using a
  * KeyboardButtonRequestUsers button.
+ * @ingroup api
  */
 struct SharedUser {
     using Ptr = std::shared_ptr<SharedUser>;
@@ -12836,6 +13160,7 @@ TGBOT_API void to_json(nlohmann::json& json, const SharedUser& value);
 
 /**
  * @brief This object represents a shipping address.
+ * @ingroup api
  */
 struct ShippingAddress {
     using Ptr = std::shared_ptr<ShippingAddress>;
@@ -12876,6 +13201,7 @@ TGBOT_API void to_json(nlohmann::json& json, const ShippingAddress& value);
 
 /**
  * @brief This object represents one shipping option.
+ * @ingroup api
  */
 struct ShippingOption {
     using Ptr = std::shared_ptr<ShippingOption>;
@@ -12901,6 +13227,7 @@ TGBOT_API void to_json(nlohmann::json& json, const ShippingOption& value);
 
 /**
  * @brief This object contains information about an incoming shipping query.
+ * @ingroup api
  */
 struct ShippingQuery {
     using Ptr = std::shared_ptr<ShippingQuery>;
@@ -12931,6 +13258,7 @@ TGBOT_API void to_json(nlohmann::json& json, const ShippingQuery& value);
 
 /**
  * @brief Describes an amount of Telegram Stars.
+ * @ingroup api
  */
 struct StarAmount {
     using Ptr = std::shared_ptr<StarAmount>;
@@ -12955,6 +13283,7 @@ TGBOT_API void to_json(nlohmann::json& json, const StarAmount& value);
  * the payment provider from whom they acquired Stars (e.g., Apple, Google) following this
  * transaction, the refunded Stars will be deducted from the bot's balance. This is outside of
  * Telegram's control.
+ * @ingroup api
  */
 struct StarTransaction {
     using Ptr = std::shared_ptr<StarTransaction>;
@@ -13001,6 +13330,7 @@ TGBOT_API void to_json(nlohmann::json& json, const StarTransaction& value);
 
 /**
  * @brief Contains a list of Telegram Star transactions.
+ * @ingroup api
  */
 struct StarTransactions {
     using Ptr = std::shared_ptr<StarTransactions>;
@@ -13016,6 +13346,7 @@ TGBOT_API void to_json(nlohmann::json& json, const StarTransactions& value);
 
 /**
  * @brief This object represents a sticker.
+ * @ingroup api
  */
 struct Sticker {
     using Ptr = std::shared_ptr<Sticker>;
@@ -13111,6 +13442,7 @@ TGBOT_API void to_json(nlohmann::json& json, const Sticker& value);
 
 /**
  * @brief This object represents a sticker set.
+ * @ingroup api
  */
 struct StickerSet {
     using Ptr = std::shared_ptr<StickerSet>;
@@ -13151,6 +13483,7 @@ TGBOT_API void to_json(nlohmann::json& json, const StickerSet& value);
 
 /**
  * @brief This object represents a story.
+ * @ingroup api
  */
 struct Story {
     using Ptr = std::shared_ptr<Story>;
@@ -13171,6 +13504,7 @@ TGBOT_API void to_json(nlohmann::json& json, const Story& value);
 
 /**
  * @brief Describes a clickable area on a story media.
+ * @ingroup api
  */
 struct StoryArea {
     using Ptr = std::shared_ptr<StoryArea>;
@@ -13191,6 +13525,7 @@ TGBOT_API void to_json(nlohmann::json& json, const StoryArea& value);
 
 /**
  * @brief Describes the position of a clickable area within a story.
+ * @ingroup api
  */
 struct StoryAreaPosition {
     using Ptr = std::shared_ptr<StoryAreaPosition>;
@@ -13233,6 +13568,7 @@ TGBOT_API void to_json(nlohmann::json& json, const StoryAreaPosition& value);
  * @brief Describes the type of a clickable area on a story. Currently, it can be one of
  * StoryAreaTypeLocation StoryAreaTypeSuggestedReaction StoryAreaTypeLink StoryAreaTypeWeather
  * StoryAreaTypeUniqueGift
+ * @ingroup api
  */
 struct StoryAreaType {
     using Ptr = std::shared_ptr<StoryAreaType>;
@@ -13249,6 +13585,7 @@ TGBOT_API void to_json(nlohmann::json& json, const StoryAreaType& value);
 /**
  * @brief Describes a story area pointing to an HTTP or tg:// link. Currently, a story can have up to
  * 3 link areas.
+ * @ingroup api
  */
 struct StoryAreaTypeLink {
     using Ptr = std::shared_ptr<StoryAreaTypeLink>;
@@ -13272,6 +13609,7 @@ TGBOT_API void to_json(nlohmann::json& json, const StoryAreaTypeLink& value);
 /**
  * @brief Describes a story area pointing to a location. Currently, a story can have up to 10 location
  * areas.
+ * @ingroup api
  */
 struct StoryAreaTypeLocation {
     using Ptr = std::shared_ptr<StoryAreaTypeLocation>;
@@ -13305,6 +13643,7 @@ TGBOT_API void to_json(nlohmann::json& json, const StoryAreaTypeLocation& value)
 /**
  * @brief Describes a story area pointing to a suggested reaction. Currently, a story can have up to 5
  * suggested reaction areas.
+ * @ingroup api
  */
 struct StoryAreaTypeSuggestedReaction {
     using Ptr = std::shared_ptr<StoryAreaTypeSuggestedReaction>;
@@ -13338,6 +13677,7 @@ TGBOT_API void to_json(nlohmann::json& json, const StoryAreaTypeSuggestedReactio
 /**
  * @brief Describes a story area pointing to a unique gift. Currently, a story can have at most 1
  * unique gift area.
+ * @ingroup api
  */
 struct StoryAreaTypeUniqueGift {
     using Ptr = std::shared_ptr<StoryAreaTypeUniqueGift>;
@@ -13361,6 +13701,7 @@ TGBOT_API void to_json(nlohmann::json& json, const StoryAreaTypeUniqueGift& valu
 /**
  * @brief Describes a story area containing weather information. Currently, a story can have up to 3
  * weather areas.
+ * @ingroup api
  */
 struct StoryAreaTypeWeather {
     using Ptr = std::shared_ptr<StoryAreaTypeWeather>;
@@ -13395,6 +13736,7 @@ TGBOT_API void to_json(nlohmann::json& json, const StoryAreaTypeWeather& value);
  * @brief This object contains basic information about a successful payment. Note that if the buyer
  * initiates a chargeback with the relevant payment provider following this transaction, the
  * funds may be debited from your balance. This is outside of Telegram's control.
+ * @ingroup api
  */
 struct SuccessfulPayment {
     using Ptr = std::shared_ptr<SuccessfulPayment>;
@@ -13459,6 +13801,7 @@ TGBOT_API void to_json(nlohmann::json& json, const SuccessfulPayment& value);
 /**
  * @brief Describes a service message about the failed approval of a suggested post. Currently, only
  * caused by insufficient user funds at the time of approval.
+ * @ingroup api
  */
 struct SuggestedPostApprovalFailed {
     using Ptr = std::shared_ptr<SuggestedPostApprovalFailed>;
@@ -13481,6 +13824,7 @@ TGBOT_API void to_json(nlohmann::json& json, const SuggestedPostApprovalFailed& 
 
 /**
  * @brief Describes a service message about the approval of a suggested post.
+ * @ingroup api
  */
 struct SuggestedPostApproved {
     using Ptr = std::shared_ptr<SuggestedPostApproved>;
@@ -13507,6 +13851,7 @@ TGBOT_API void to_json(nlohmann::json& json, const SuggestedPostApproved& value)
 
 /**
  * @brief Describes a service message about the rejection of a suggested post.
+ * @ingroup api
  */
 struct SuggestedPostDeclined {
     using Ptr = std::shared_ptr<SuggestedPostDeclined>;
@@ -13528,6 +13873,7 @@ TGBOT_API void to_json(nlohmann::json& json, const SuggestedPostDeclined& value)
 
 /**
  * @brief Contains information about a suggested post.
+ * @ingroup api
  */
 struct SuggestedPostInfo {
     using Ptr = std::shared_ptr<SuggestedPostInfo>;
@@ -13556,6 +13902,7 @@ TGBOT_API void to_json(nlohmann::json& json, const SuggestedPostInfo& value);
 
 /**
  * @brief Describes a service message about a successful payment for a suggested post.
+ * @ingroup api
  */
 struct SuggestedPostPaid {
     using Ptr = std::shared_ptr<SuggestedPostPaid>;
@@ -13590,6 +13937,7 @@ TGBOT_API void to_json(nlohmann::json& json, const SuggestedPostPaid& value);
 
 /**
  * @brief Contains parameters of a post that is being suggested by the bot.
+ * @ingroup api
  */
 struct SuggestedPostParameters {
     using Ptr = std::shared_ptr<SuggestedPostParameters>;
@@ -13613,6 +13961,7 @@ TGBOT_API void to_json(nlohmann::json& json, const SuggestedPostParameters& valu
 
 /**
  * @brief Describes the price of a suggested post.
+ * @ingroup api
  */
 struct SuggestedPostPrice {
     using Ptr = std::shared_ptr<SuggestedPostPrice>;
@@ -13637,6 +13986,7 @@ TGBOT_API void to_json(nlohmann::json& json, const SuggestedPostPrice& value);
 
 /**
  * @brief Describes a service message about a payment refund for a suggested post.
+ * @ingroup api
  */
 struct SuggestedPostRefunded {
     using Ptr = std::shared_ptr<SuggestedPostRefunded>;
@@ -13661,6 +14011,7 @@ TGBOT_API void to_json(nlohmann::json& json, const SuggestedPostRefunded& value)
 /**
  * @brief This object represents an inline button that switches the current user to inline mode in a
  * chosen chat, with an optional default inline query.
+ * @ingroup api
  */
 struct SwitchInlineQueryChosenChat {
     using Ptr = std::shared_ptr<SwitchInlineQueryChosenChat>;
@@ -13698,6 +14049,7 @@ TGBOT_API void to_json(nlohmann::json& json, const SwitchInlineQueryChosenChat& 
 /**
  * @brief This object contains information about the quoted part of a message that is replied to by
  * the given message.
+ * @ingroup api
  */
 struct TextQuote {
     using Ptr = std::shared_ptr<TextQuote>;
@@ -13735,6 +14087,7 @@ TGBOT_API void to_json(nlohmann::json& json, const TextQuote& value);
  * transactions. Currently, it can be one of TransactionPartnerUser TransactionPartnerChat
  * TransactionPartnerAffiliateProgram TransactionPartnerFragment TransactionPartnerTelegramAds
  * TransactionPartnerTelegramApi TransactionPartnerOther
+ * @ingroup api
  */
 struct TransactionPartner {
     using Ptr = std::shared_ptr<TransactionPartner>;
@@ -13752,6 +14105,7 @@ TGBOT_API void to_json(nlohmann::json& json, const TransactionPartner& value);
 /**
  * @brief Describes the affiliate program that issued the affiliate commission received via this
  * transaction.
+ * @ingroup api
  */
 struct TransactionPartnerAffiliateProgram {
     using Ptr = std::shared_ptr<TransactionPartnerAffiliateProgram>;
@@ -13780,6 +14134,7 @@ TGBOT_API void to_json(nlohmann::json& json, const TransactionPartnerAffiliatePr
 
 /**
  * @brief Describes a transaction with a chat.
+ * @ingroup api
  */
 struct TransactionPartnerChat {
     using Ptr = std::shared_ptr<TransactionPartnerChat>;
@@ -13807,6 +14162,7 @@ TGBOT_API void to_json(nlohmann::json& json, const TransactionPartnerChat& value
 
 /**
  * @brief Describes a withdrawal transaction with Fragment.
+ * @ingroup api
  */
 struct TransactionPartnerFragment {
     using Ptr = std::shared_ptr<TransactionPartnerFragment>;
@@ -13829,6 +14185,7 @@ TGBOT_API void to_json(nlohmann::json& json, const TransactionPartnerFragment& v
 
 /**
  * @brief Describes a transaction with an unknown source or recipient.
+ * @ingroup api
  */
 struct TransactionPartnerOther {
     using Ptr = std::shared_ptr<TransactionPartnerOther>;
@@ -13846,6 +14203,7 @@ TGBOT_API void to_json(nlohmann::json& json, const TransactionPartnerOther& valu
 
 /**
  * @brief Describes a withdrawal transaction to the Telegram Ads platform.
+ * @ingroup api
  */
 struct TransactionPartnerTelegramAds {
     using Ptr = std::shared_ptr<TransactionPartnerTelegramAds>;
@@ -13863,6 +14221,7 @@ TGBOT_API void to_json(nlohmann::json& json, const TransactionPartnerTelegramAds
 
 /**
  * @brief Describes a transaction with payment for paid broadcasting.
+ * @ingroup api
  */
 struct TransactionPartnerTelegramApi {
     using Ptr = std::shared_ptr<TransactionPartnerTelegramApi>;
@@ -13885,6 +14244,7 @@ TGBOT_API void to_json(nlohmann::json& json, const TransactionPartnerTelegramApi
 
 /**
  * @brief Describes a transaction with a user.
+ * @ingroup api
  */
 struct TransactionPartnerUser {
     using Ptr = std::shared_ptr<TransactionPartnerUser>;
@@ -13957,6 +14317,7 @@ TGBOT_API void to_json(nlohmann::json& json, const TransactionPartnerUser& value
 
 /**
  * @brief This object describes a unique gift that was upgraded from a regular gift.
+ * @ingroup api
  */
 struct UniqueGift {
     using Ptr = std::shared_ptr<UniqueGift>;
@@ -14032,6 +14393,7 @@ TGBOT_API void to_json(nlohmann::json& json, const UniqueGift& value);
 
 /**
  * @brief This object describes the backdrop of a unique gift.
+ * @ingroup api
  */
 struct UniqueGiftBackdrop {
     using Ptr = std::shared_ptr<UniqueGiftBackdrop>;
@@ -14057,6 +14419,7 @@ TGBOT_API void to_json(nlohmann::json& json, const UniqueGiftBackdrop& value);
 
 /**
  * @brief This object describes the colors of the backdrop of a unique gift.
+ * @ingroup api
  */
 struct UniqueGiftBackdropColors {
     using Ptr = std::shared_ptr<UniqueGiftBackdropColors>;
@@ -14088,6 +14451,7 @@ TGBOT_API void to_json(nlohmann::json& json, const UniqueGiftBackdropColors& val
 /**
  * @brief This object contains information about the color scheme for a user's name, message replies
  * and link previews based on a unique gift.
+ * @ingroup api
  */
 struct UniqueGiftColors {
     using Ptr = std::shared_ptr<UniqueGiftColors>;
@@ -14128,6 +14492,7 @@ TGBOT_API void to_json(nlohmann::json& json, const UniqueGiftColors& value);
 
 /**
  * @brief Describes a service message about a unique gift that was sent or received.
+ * @ingroup api
  */
 struct UniqueGiftInfo {
     using Ptr = std::shared_ptr<UniqueGiftInfo>;
@@ -14181,6 +14546,7 @@ TGBOT_API void to_json(nlohmann::json& json, const UniqueGiftInfo& value);
 
 /**
  * @brief This object describes the model of a unique gift.
+ * @ingroup api
  */
 struct UniqueGiftModel {
     using Ptr = std::shared_ptr<UniqueGiftModel>;
@@ -14213,6 +14579,7 @@ TGBOT_API void to_json(nlohmann::json& json, const UniqueGiftModel& value);
 
 /**
  * @brief This object describes the symbol shown on the pattern of a unique gift.
+ * @ingroup api
  */
 struct UniqueGiftSymbol {
     using Ptr = std::shared_ptr<UniqueGiftSymbol>;
@@ -14239,6 +14606,7 @@ TGBOT_API void to_json(nlohmann::json& json, const UniqueGiftSymbol& value);
 /**
  * @brief This object represents an incoming update.At most one of the optional fields can be present
  * in any given update.
+ * @ingroup api
  */
 struct Update {
     using Ptr = std::shared_ptr<Update>;
@@ -14413,6 +14781,7 @@ TGBOT_API void to_json(nlohmann::json& json, const Update& value);
 
 /**
  * @brief This object represents a Telegram user or bot.
+ * @ingroup api
  */
 struct User {
     using Ptr = std::shared_ptr<User>;
@@ -14522,6 +14891,7 @@ TGBOT_API void to_json(nlohmann::json& json, const User& value);
 
 /**
  * @brief This object represents a list of boosts added to a chat by a user.
+ * @ingroup api
  */
 struct UserChatBoosts {
     using Ptr = std::shared_ptr<UserChatBoosts>;
@@ -14537,6 +14907,7 @@ TGBOT_API void to_json(nlohmann::json& json, const UserChatBoosts& value);
 
 /**
  * @brief This object represents the audios displayed on a user's profile.
+ * @ingroup api
  */
 struct UserProfileAudios {
     using Ptr = std::shared_ptr<UserProfileAudios>;
@@ -14557,6 +14928,7 @@ TGBOT_API void to_json(nlohmann::json& json, const UserProfileAudios& value);
 
 /**
  * @brief This object represent a user's profile pictures.
+ * @ingroup api
  */
 struct UserProfilePhotos {
     using Ptr = std::shared_ptr<UserProfilePhotos>;
@@ -14577,6 +14949,7 @@ TGBOT_API void to_json(nlohmann::json& json, const UserProfilePhotos& value);
 
 /**
  * @brief This object describes the rating of a user based on their Telegram Star spendings.
+ * @ingroup api
  */
 struct UserRating {
     using Ptr = std::shared_ptr<UserRating>;
@@ -14611,6 +14984,7 @@ TGBOT_API void to_json(nlohmann::json& json, const UserRating& value);
 /**
  * @brief This object contains information about the users whose identifiers were shared with the bot
  * using a KeyboardButtonRequestUsers button.
+ * @ingroup api
  */
 struct UsersShared {
     using Ptr = std::shared_ptr<UsersShared>;
@@ -14631,6 +15005,7 @@ TGBOT_API void to_json(nlohmann::json& json, const UsersShared& value);
 
 /**
  * @brief This object represents a venue.
+ * @ingroup api
  */
 struct Venue {
     using Ptr = std::shared_ptr<Venue>;
@@ -14677,6 +15052,7 @@ TGBOT_API void to_json(nlohmann::json& json, const Venue& value);
 
 /**
  * @brief This object represents a video file.
+ * @ingroup api
  */
 struct Video {
     using Ptr = std::shared_ptr<Video>;
@@ -14751,6 +15127,7 @@ TGBOT_API void to_json(nlohmann::json& json, const Video& value);
 
 /**
  * @brief This object represents a service message about a video chat ended in the chat.
+ * @ingroup api
  */
 struct VideoChatEnded {
     using Ptr = std::shared_ptr<VideoChatEnded>;
@@ -14766,6 +15143,7 @@ TGBOT_API void to_json(nlohmann::json& json, const VideoChatEnded& value);
 
 /**
  * @brief This object represents a service message about new members invited to a video chat.
+ * @ingroup api
  */
 struct VideoChatParticipantsInvited {
     using Ptr = std::shared_ptr<VideoChatParticipantsInvited>;
@@ -14781,6 +15159,7 @@ TGBOT_API void to_json(nlohmann::json& json, const VideoChatParticipantsInvited&
 
 /**
  * @brief This object represents a service message about a video chat scheduled in the chat.
+ * @ingroup api
  */
 struct VideoChatScheduled {
     using Ptr = std::shared_ptr<VideoChatScheduled>;
@@ -14798,6 +15177,7 @@ TGBOT_API void to_json(nlohmann::json& json, const VideoChatScheduled& value);
 /**
  * @brief This object represents a service message about a video chat started in the chat. Currently
  * holds no information.
+ * @ingroup api
  */
 struct VideoChatStarted {
     using Ptr = std::shared_ptr<VideoChatStarted>;
@@ -14808,6 +15188,7 @@ TGBOT_API void to_json(nlohmann::json& json, const VideoChatStarted& value);
 
 /**
  * @brief This object represents a video message (available in Telegram apps as of v.4.0).
+ * @ingroup api
  */
 struct VideoNote {
     using Ptr = std::shared_ptr<VideoNote>;
@@ -14849,6 +15230,7 @@ TGBOT_API void to_json(nlohmann::json& json, const VideoNote& value);
 
 /**
  * @brief This object represents a video file of a specific quality.
+ * @ingroup api
  */
 struct VideoQuality {
     using Ptr = std::shared_ptr<VideoQuality>;
@@ -14893,6 +15275,7 @@ TGBOT_API void to_json(nlohmann::json& json, const VideoQuality& value);
 
 /**
  * @brief This object represents a voice note.
+ * @ingroup api
  */
 struct Voice {
     using Ptr = std::shared_ptr<Voice>;
@@ -14932,6 +15315,7 @@ TGBOT_API void to_json(nlohmann::json& json, const Voice& value);
 
 /**
  * @brief Describes data sent from a Web App to the bot.
+ * @ingroup api
  */
 struct WebAppData {
     using Ptr = std::shared_ptr<WebAppData>;
@@ -14953,6 +15337,7 @@ TGBOT_API void to_json(nlohmann::json& json, const WebAppData& value);
 
 /**
  * @brief Describes a Web App.
+ * @ingroup api
  */
 struct WebAppInfo {
     using Ptr = std::shared_ptr<WebAppInfo>;
@@ -14969,6 +15354,7 @@ TGBOT_API void to_json(nlohmann::json& json, const WebAppInfo& value);
 
 /**
  * @brief Describes the current status of a webhook.
+ * @ingroup api
  */
 struct WebhookInfo {
     using Ptr = std::shared_ptr<WebhookInfo>;
@@ -15031,6 +15417,7 @@ TGBOT_API void to_json(nlohmann::json& json, const WebhookInfo& value);
  * @brief This object represents a service message about a user allowing a bot to write messages after
  * adding it to the attachment menu, launching a Web App from a link, or accepting an explicit
  * request from a Web App sent by the method requestWriteAccess.
+ * @ingroup api
  */
 struct WriteAccessAllowed {
     using Ptr = std::shared_ptr<WriteAccessAllowed>;

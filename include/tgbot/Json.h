@@ -11,6 +11,8 @@
 #include <variant>
 #include <vector>
 
+/** @cond */
+
 namespace TgBot::Json {
 
 template<typename T>
@@ -189,3 +191,5 @@ void writeOptionalField(nlohmann::json& json, const char* name, const std::share
 }
 
 } // namespace TgBot::Json
+
+/** @endcond */

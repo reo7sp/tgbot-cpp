@@ -18,11 +18,18 @@
 #include "tgbot/TgWebhookTcpServer.h"
 #include "tgbot/Types.h"
 
-/**
- * @defgroup general
- * @defgroup types
- * @defgroup net
- *
- * @mainpage
+/** @defgroup general General
+ * @brief Bot lifecycle, event handling, and errors.
+ */
+
+/** @defgroup net Network
+ * @brief HTTP clients, servers, and update transports.
+ */
+
+/** @defgroup api API
+ * @brief API methods and objects defined by the Telegram Bot API.
+ */
+
+/** @mainpage
  * [Go to GitHub](https://github.com/reo7sp/tgbot-cpp)
  */

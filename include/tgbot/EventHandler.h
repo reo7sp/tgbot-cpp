@@ -6,6 +6,9 @@
 
 namespace TgBot {
 
+/**
+ * @ingroup general
+ */
 class TGBOT_API EventHandler {
 
 public:

@@ -13,6 +13,8 @@
 #include <variant>
 #include <vector>
 
+/** @cond */
+
 namespace TgBot::ApiRequest {
 
 void appendField(std::vector<HttpFormField>& fields, const char* name, const std::string& value);
@@ -152,3 +154,5 @@ std::shared_ptr<T> decodeObjectOrTrue(const nlohmann::json& json) {
 }
 
 } // namespace TgBot::ApiResponse
+
+/** @endcond */
