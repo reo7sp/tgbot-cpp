@@ -1,0 +1,37 @@
+[tool.poetry]
+name = "tgbot-cpp-codegen"
+version = "0.1.0"
+description = "Telegram Bot API schema downloader and C++ code generator"
+authors = ["tgbot-cpp contributors"]
+package-mode = false
+
+[tool.poetry.dependencies]
+python = "^3.10"
+pyyaml = "^6.0"
+jinja2 = "^3.1"
+pytest = "^8.3"
+ruff = "^0.16"
+tgbotspec = "^0.2.4"
+
+[build-system]
+requires = ["poetry-core>=2.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.pytest.ini_options]
+testpaths = ["api_codegen/tests"]
+pythonpath = ["."]
+
+[tool.ruff]
+target-version = "py310"
+line-length = 88
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F", "I", "B", "UP", "RUF"]
+
+[tool.ruff.lint.per-file-ignores]
+"conanfile.py" = ["RUF012"] # Conan recipes declare options as mutable class attributes.
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+line-ending = "lf"

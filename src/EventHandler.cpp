@@ -1,6 +1,14 @@
 #include "tgbot/EventHandler.h"
 
+#include <algorithm>
+#include <cstddef>
+#include <string>
+
 namespace TgBot {
+
+EventHandler::EventHandler(const EventBroadcaster& broadcaster)
+    : _broadcaster(broadcaster) {
+}
 
 void EventHandler::handleUpdate(const Update::Ptr& update) const {
     if (update->message != nullptr) {
@@ -56,13 +64,14 @@ void EventHandler::handleUpdate(const Update::Ptr& update) const {
 void EventHandler::handleMessage(const Message::Ptr& message) const {
     _broadcaster.broadcastAnyMessage(message);
 
-    if (StringTools::startsWith(message->text, "/")) {
+    const std::string text = message->text.value_or("");
+    if (text.starts_with('/')) {
         std::size_t splitPosition;
-        std::size_t spacePosition = message->text.find(' ');
-        std::size_t atSymbolPosition = message->text.find('@');
+        std::size_t spacePosition = text.find(' ');
+        std::size_t atSymbolPosition = text.find('@');
         if (spacePosition == std::string::npos) {
             if (atSymbolPosition == std::string::npos) {
-                splitPosition = message->text.size();
+                splitPosition = text.size();
             } else {
                 splitPosition = atSymbolPosition;
             }
@@ -71,18 +80,17 @@ void EventHandler::handleMessage(const Message::Ptr& message) const {
         } else {
             splitPosition = std::min(spacePosition, atSymbolPosition);
         }
-        std::string command = message->text.substr(1, splitPosition - 1);
+        std::string command = text.substr(1, splitPosition - 1);
         if (!_broadcaster.broadcastCommand(command, message)) {
             _broadcaster.broadcastUnknownCommand(message);
         }
     } else {
         _broadcaster.broadcastNonCommandMessage(message);
     }
-    
+
     if (message->successfulPayment != nullptr) {
         _broadcaster.broadcastSuccessfulPayment(message);
     }
-
 }
 
-}
+} // namespace TgBot

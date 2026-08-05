@@ -1,0 +1,12 @@
+@PACKAGE_INIT@
+
+include(CMakeFindDependencyMacro)
+
+find_dependency(Boost 1.65.1)
+find_dependency(CURL 7.58.0)
+find_dependency(nlohmann_json 3.7.3)
+find_dependency(Threads)
+
+include("${CMAKE_CURRENT_LIST_DIR}/TgBotTargets.cmake")
+
+check_required_components(TgBot)

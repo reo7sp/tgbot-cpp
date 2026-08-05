@@ -1,0 +1,45 @@
+name: Lint
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+permissions:
+  contents: read
+
+jobs:
+  lint:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v6
+      - id: python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: |
+            poetry.lock
+            .github/workflows/lint.yml
+      - name: Cache Poetry environment
+        uses: actions/cache@v5
+        with:
+          path: ~/.cache/pypoetry
+          key: poetry-${{ runner.os }}-${{ steps.python.outputs.python-version }}-${{ hashFiles('poetry.lock') }}
+          restore-keys: |
+            poetry-${{ runner.os }}-${{ steps.python.outputs.python-version }}-
+      - name: Install tools
+        run: |
+          pipx install clang-format==22.1.8
+          pipx install poetry==2.4.1
+      - name: Check generated files and formatting
+        run: |
+          make api-generate
+          make format
+          make lint
+          git diff --exit-code
+          test -z "$(git status --porcelain)"

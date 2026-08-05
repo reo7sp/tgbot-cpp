@@ -1,0 +1,102 @@
+x-example: &example
+  init: true
+  restart: unless-stopped
+
+x-example-build: &example-build
+  context: .
+  args:
+    TGBOT_CPP_IMAGE: ${TGBOT_CPP_IMAGE:-reo7sp/tgbot-cpp}
+
+services:
+  echobot:
+    <<: *example
+    image: tgbot-cpp-example-echobot
+    build:
+      <<: *example-build
+      dockerfile: examples/echobot/Dockerfile
+    environment:
+      TOKEN: ${EXAMPLE_ECHOBOT_TOKEN:?Set EXAMPLE_ECHOBOT_TOKEN in env}
+
+  echobot-proxy:
+    <<: *example
+    image: tgbot-cpp-example-echobot-proxy
+    build:
+      <<: *example-build
+      dockerfile: examples/echobot-proxy/Dockerfile
+    environment:
+      TOKEN: ${EXAMPLE_ECHOBOT_PROXY_TOKEN:?Set EXAMPLE_ECHOBOT_PROXY_TOKEN in env}
+
+  echobot-setmycommands:
+    <<: *example
+    image: tgbot-cpp-example-echobot-setmycommands
+    build:
+      <<: *example-build
+      dockerfile: examples/echobot-setmycommands/Dockerfile
+    environment:
+      TOKEN: ${EXAMPLE_ECHOBOT_SETMYCOMMANDS_TOKEN:?Set EXAMPLE_ECHOBOT_SETMYCOMMANDS_TOKEN in env}
+
+  echobot-submodule:
+    <<: *example
+    image: tgbot-cpp-example-echobot-submodule
+    build:
+      <<: *example-build
+      dockerfile: examples/echobot-submodule/Dockerfile
+    environment:
+      TOKEN: ${EXAMPLE_ECHOBOT_SUBMODULE_TOKEN:?Set EXAMPLE_ECHOBOT_SUBMODULE_TOKEN in env}
+
+  echobot-webhook-server:
+    <<: *example
+    image: tgbot-cpp-example-echobot-webhook-server
+    build:
+      <<: *example-build
+      dockerfile: examples/echobot-webhook-server/Dockerfile
+    environment:
+      TOKEN: ${EXAMPLE_ECHOBOT_WEBHOOK_SERVER_TOKEN:?Set EXAMPLE_ECHOBOT_WEBHOOK_SERVER_TOKEN in env}
+      WEBHOOK_URL: ${EXAMPLE_ECHOBOT_WEBHOOK_SERVER_URL:?Set EXAMPLE_ECHOBOT_WEBHOOK_SERVER_URL in env}
+    ports:
+      - "${EXAMPLE_ECHOBOT_WEBHOOK_SERVER_PORT:-8080}:8080"
+
+  inline-keyboard:
+    <<: *example
+    image: tgbot-cpp-example-inline-keyboard
+    build:
+      <<: *example-build
+      dockerfile: examples/inline-keyboard/Dockerfile
+    environment:
+      TOKEN: ${EXAMPLE_INLINE_KEYBOARD_TOKEN:?Set EXAMPLE_INLINE_KEYBOARD_TOKEN in env}
+
+  photo:
+    <<: *example
+    image: tgbot-cpp-example-photo
+    build:
+      <<: *example-build
+      dockerfile: examples/photo/Dockerfile
+    environment:
+      TOKEN: ${EXAMPLE_PHOTO_TOKEN:?Set EXAMPLE_PHOTO_TOKEN in env}
+
+  receive-file:
+    <<: *example
+    image: tgbot-cpp-example-receive-file
+    build:
+      <<: *example-build
+      dockerfile: examples/receive-file/Dockerfile
+    environment:
+      TOKEN: ${EXAMPLE_RECEIVE_FILE_TOKEN:?Set EXAMPLE_RECEIVE_FILE_TOKEN in env}
+
+  received-text-processing:
+    <<: *example
+    image: tgbot-cpp-example-received-text-processing
+    build:
+      <<: *example-build
+      dockerfile: examples/received-text-processing/Dockerfile
+    environment:
+      TOKEN: ${EXAMPLE_RECEIVED_TEXT_PROCESSING_TOKEN:?Set EXAMPLE_RECEIVED_TEXT_PROCESSING_TOKEN in env}
+
+  reply-keyboard:
+    <<: *example
+    image: tgbot-cpp-example-reply-keyboard
+    build:
+      <<: *example-build
+      dockerfile: examples/reply-keyboard/Dockerfile
+    environment:
+      TOKEN: ${EXAMPLE_REPLY_KEYBOARD_TOKEN:?Set EXAMPLE_REPLY_KEYBOARD_TOKEN in env}

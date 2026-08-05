@@ -9,19 +9,15 @@ Documentation is located [here](http://reo7sp.github.io/tgbot-cpp).
 
 ## State
 
-- [x] Telegram Bot API 7.2
-- [ ] [MaybeInaccessibleMessage](https://core.telegram.org/bots/api#maybeinaccessiblemessage)
-- [ ] [Message->pinnedMessage](https://core.telegram.org/bots/api#message)
-- [ ] [CallbackQuery->message](https://core.telegram.org/bots/api#callbackquery)
-- [ ] [Deep Linking](https://core.telegram.org/bots/features#deep-linking)
+- [x] Telegram Bot API 10.2.
 
 
-## Sample
+## Example
 
 Simple echo bot which sends everything it receives:
 
 ```cpp
-#include <stdio.h>
+#include <iostream>
 #include <tgbot/tgbot.h>
 
 int main() {
@@ -30,144 +26,172 @@ int main() {
         bot.getApi().sendMessage(message->chat->id, "Hi!");
     });
     bot.getEvents().onAnyMessage([&bot](TgBot::Message::Ptr message) {
-        printf("User wrote %s\n", message->text.c_str());
-        if (StringTools::startsWith(message->text, "/start")) {
+        const std::string text = message->text.value_or("");
+        std::cout << "User wrote " << text << std::endl;
+        if (text.starts_with("/start")) {
             return;
         }
-        bot.getApi().sendMessage(message->chat->id, "Your message is: " + message->text);
+        bot.getApi().sendMessage(message->chat->id, "Your message is: " + text);
     });
     try {
-        printf("Bot username: %s\n", bot.getApi().getMe()->username.c_str());
+        std::cout << "Bot username: " << bot.getApi().getMe()->username.value_or("") << std::endl;
         TgBot::TgLongPoll longPoll(bot);
         while (true) {
-            printf("Long poll started\n");
+            std::cout << "Long poll started" << std::endl;
             longPoll.start();
         }
     } catch (TgBot::TgException& e) {
-        printf("error: %s\n", e.what());
+        std::cout << "error: " << e.what() << std::endl;
     }
     return 0;
 }
 ```
 
-All other samples are located [here](samples).
+Other examples are available in [`examples`](examples): webhook server, custom
+curl client, proxy carousel, inline and reply keyboards, file upload/download,
+and command configuration.
+
+Build and run an example against a locally installed copy of the library:
+
+```sh
+make install INSTALL_PREFIX="$PWD/build/install"
+make example EXAMPLE=echobot INSTALL_PREFIX="$PWD/build/install"
+TOKEN=... ./build/Release/examples/echobot/echobot
+```
+
+Alternatively, build and run the example in Docker:
+
+```sh
+TOKEN=... make docker-run-example EXAMPLE=echobot
+```
+
+To run every example, copy `env.example` to `env`, fill in the values, then run:
+
+```sh
+make docker-compose-run-examples
+```
+
+Only `echobot-webhook-server` exposes an HTTP port. The other examples use
+Telegram long polling and do not listen on local ports.
+
+For your own bot image, use [reo7sp/tgbot-cpp](https://hub.docker.com/r/reo7sp/tgbot-cpp/) as the base image.
+
+
+## Usage in CMake
+
+For an installed tgbot-cpp package, add it to your `CMakeLists.txt`:
+
+```cmake
+find_package(TgBot CONFIG REQUIRED)
+target_link_libraries(your_bot PRIVATE TgBot::TgBot)
+```
+
+See the complete [echobot CMakeLists.txt](examples/echobot/CMakeLists.txt).
+
+The repository can also be added directly with `add_subdirectory`, for example
+when it is included as a Git submodule. See the
+[submodule example](examples/echobot-submodule/CMakeLists.txt).
 
 
 ## Dependencies
 
-Dependencies:
-- CMake
-- Boost
-- OpenSSL
-- ZLib
-- Libcurl (optional unless you want to use curl-based http client `CurlHttpClient`).
+Required to build the library:
+
+- C++20 compiler;
+- CMake 3.16 or newer;
+- Conan 2;
+- Make.
+
+Additionally required for code generation:
+
+- Python;
+- Poetry.
+
+Conan installs the library dependencies:
+
+- Boost;
+- nlohmann/json;
+- libcurl;
+- GoogleTest when tests are enabled.
+
+These libraries do not need to be installed separately.
 
 
-## Library installation on Linux
+## Installing dependencies
 
-You can install dependencies on Debian-based distibutives with these commands:
+### Linux
+
+On Debian or Ubuntu, install the build tools and the official Conan 2 package:
 
 ```sh
-sudo apt install g++ make binutils cmake libboost-system-dev libssl-dev zlib1g-dev libcurl4-openssl-dev
+sudo apt-get update
+sudo apt-get install -y build-essential cmake curl git
+CONAN_VERSION=2.31.2
+curl -fLO "https://github.com/conan-io/conan/releases/download/${CONAN_VERSION}/conan-${CONAN_VERSION}-$(dpkg --print-architecture).deb"
+sudo apt-get install -y "./conan-${CONAN_VERSION}-$(dpkg --print-architecture).deb"
 ```
 
-Optionally, install the dependencies for testing and documenting
+For development, also install Python, Poetry and clang-format:
+
 ```sh
-sudo apt install libboost-test-dev doxygen
+sudo apt-get install -y clang-format pipx python3
+pipx install poetry
 ```
 
-You can compile and install the library with these commands:
+### macOS
+
+```sh
+xcode-select --install
+brew install cmake conan
+```
+
+For development:
+
+```sh
+brew install clang-format pipx python
+pipx install poetry
+```
+
+### Windows
+
+Install Git, Make, CMake, Visual Studio 2022 with the Desktop development with
+C++ workload, and Conan 2 using its official Windows installer.
+
+For development, also install Python, Poetry and clang-format.
+
+
+## Building the library
+
+The Makefile wraps the Conan and CMake workflow on every supported platform:
 
 ```sh
 git clone https://github.com/reo7sp/tgbot-cpp
 cd tgbot-cpp
-cmake .
-make -j4
-sudo make install
+make
+make install INSTALL_PREFIX=build/install
 ```
 
-Alternatively, you can use Docker to build and run your bot. Set the base image of your's Dockerfile to [reo7sp/tgbot-cpp](https://hub.docker.com/r/reo7sp/tgbot-cpp/).
-
-
-## Library installation on MacOS
-
-You can install dependencies with these commands:
+Development checks are also exposed through the Makefile:
 
 ```sh
-brew install gcc cmake boost openssl zlib curl
+make test
+make format
+make lint
 ```
 
-You can compile and install the library like Linux instructions.
-
-
-## Library installation on Windows
-
-### Download vcpkg and tgbot-cpp
-
-Taken from [Vcpkg - Quick Start: Windows](https://github.com/Microsoft/vcpkg/#quick-start-windows).
-
-Prerequisites:
-- Windows 7 or newer
-- [Git](https://git-scm.com/downloads)
-- [Visual Studio](https://visualstudio.microsoft.com) 2015 Update 3 or greater with the English language pack
-
-First, download and bootstrap vcpkg itself; it can be installed anywhere, but generally we recommend using vcpkg as a submodule for CMake projects, and installing it globally for Visual Studio projects. We recommend somewhere like `C:\src\vcpkg` or `C:\dev\vcpkg`, since otherwise you may run into path issues for some port build systems.
-
-```cmd
-> git clone https://github.com/microsoft/vcpkg
-> .\vcpkg\bootstrap-vcpkg.bat
-```
-
-In order to use vcpkg with Visual Studio, run the following command (may require administrator elevation):
-
-```cmd
-> .\vcpkg\vcpkg integrate install
-```
-
-To install the libraries for Windows x64, run:
-
-```cmd
-> .\vcpkg\vcpkg install tgbot-cpp:x64-windows
-```
-
-To install for Windows x86, run:
-
-```cmd
-> .\vcpkg\vcpkg install tgbot-cpp
-```
-
-The library will now be installed and Visual Studio should be able to find the vcpkg installation.
-
-### Setup project with CMakeLists
-
-Use the [example CMakeLists.txt](samples/echobot/CMakeLists.txt) with changes:
-
-1. Remove `/usr/local/include`
-2. Change `/usr/local/lib/libTgBot.a` to `C:/src/vcpkg/installed/x64-windows/lib/TgBot.lib` or something simmilar according to your own installation path.
-
-
-## Bot compilation
-
-### With CMake
-
-[Example CMakeLists.txt](samples/echobot/CMakeLists.txt)
-
-Also, you can treat this repository as a submodule of your project, for example, see [echobot-submodule](samples/echobot-submodule/CMakeLists.txt).
-
-### Without CMake
+Alternatively, build and test the Docker images through the same Makefile:
 
 ```sh
-g++ telegram_bot.cpp -o telegram_bot --std=c++14 -I/usr/local/include -lTgBot -lboost_system -lssl -lcrypto -lpthread
+make docker-image
+make docker-test
 ```
 
-### Build options
 
-```
--DTGBOT_DISABLE_NAGLES_ALGORITHM   # Disable 'Nagle's algorithm'
--DTGBOT_CHANGE_SOCKET_BUFFER_SIZE  # Socket Buffer Size Expansion
--DTGBOT_CHANGE_READ_BUFFER_SIZE    # Read Buffer Size Expansion
-```
+## Updating Telegram Bot API types
+
+[HOW_TO_UPDATE_TELEGRAM_API.md](./HOW_TO_UPDATE_TELEGRAM_API.md)
 
 
 ## Licence
-[The MIT License](https://github.com/reo7sp/tgbot-cpp/blob/master/LICENSE).
+
+[The MIT License](./LICENSE).

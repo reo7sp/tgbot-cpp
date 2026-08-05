@@ -1,163 +1,106 @@
-cmake_minimum_required(VERSION 3.10.2)
-project(TgBot)
+cmake_minimum_required(VERSION 3.16)
+project(TgBot LANGUAGES CXX)
 
-if(POLICY CMP0074)
-    cmake_policy(SET CMP0074 NEW) # find_package() uses <PackageName>_ROOT variables
-endif()
+option(ENABLE_TESTS "Build tests" OFF)
+option(BUILD_SHARED_LIBS "Build shared libraries" OFF)
+option(BUILD_DOCUMENTATION "Build API documentation" OFF)
 
-# options
-option(ENABLE_TESTS "Set to ON to enable building of tests" OFF)
-option(BUILD_SHARED_LIBS "Build tgbot-cpp shared/static library." OFF)
-option(BUILD_DOCUMENTATION "Build doxygen API documentation." OFF)
+include(GNUInstallDirs)
+include(CMakePackageConfigHelpers)
 
-# sources
-set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(CMAKE_CXX_EXTENSIONS OFF)
-if(WIN32)
-    set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)
-    add_definitions(-D_WIN32_WINNT=0x0601)
-    add_definitions(-DWIN32_LEAN_AND_MEAN)
-    add_definitions(-DNOMINMAX)
-else()
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall")
-endif()
+find_package(Boost 1.65.1 REQUIRED)
+find_package(CURL 7.58.0 REQUIRED)
+find_package(nlohmann_json 3.7.3 REQUIRED)
+find_package(Threads REQUIRED)
 
-include_directories(include)
-set(SRC_LIST
+file(GLOB TYPE_SOURCES CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/src/types/*.cpp")
+
+add_library(TgBot
     src/Api.cpp
+    src/ApiCodec.cpp
+    src/ApiMethods.cpp
     src/Bot.cpp
     src/EventHandler.cpp
     src/TgException.cpp
-    src/TgTypeParser.cpp
-    src/net/BoostHttpOnlySslClient.cpp
-    src/net/CurlHttpClient.cpp
-    src/net/HttpParser.cpp
-    src/net/TgLongPoll.cpp
-    src/net/Url.cpp
-    src/tools/FileTools.cpp
-    src/tools/StringTools.cpp
-    src/types/BotCommandScope.cpp
-    src/types/ChatBoostSource.cpp
-    src/types/ChatMember.cpp
-    src/types/InlineQueryResult.cpp
-    src/types/InputFile.cpp
-    src/types/InputMedia.cpp 
-    src/types/InputMessageContent.cpp
-    src/types/MenuButton.cpp
-    src/types/MessageOrigin.cpp
-    src/types/PassportElementError.cpp
-    src/types/ReactionType.cpp)
+    src/CurlHttpClient.cpp
+    src/TgLongPoll.cpp
+    src/TgWebhookLocalServer.cpp
+    src/TgWebhookTcpServer.cpp
+    ${TYPE_SOURCES}
+)
+add_library(TgBot::TgBot ALIAS TgBot)
 
-# libs
-## threads
-find_package(Threads REQUIRED)
-
-## zlib
-find_package(ZLIB REQUIRED)
-
-## openssl
-find_package(OpenSSL REQUIRED)
-include_directories(${OPENSSL_INCLUDE_DIR})
-
-## curl
-find_package(CURL 7.58.0)
-if (CURL_FOUND)
-    include_directories(${CURL_INCLUDE_DIRS})
-    add_definitions(-DHAVE_CURL)
-endif()
-
-## boost
-set(Boost_USE_MULTITHREADED ON)
-if (ENABLE_TESTS)
-    find_package(Boost 1.65.1 REQUIRED COMPONENTS unit_test_framework)
-else()
-    find_package(Boost 1.65.1 REQUIRED)
-endif()
-
-# Check if Boost::system target exists (compatible with new and old versions)
-if(TARGET Boost::system)
-    set(BOOST_SYSTEM_TARGET Boost::system)
-    message(STATUS "Using Boost::system target")
-else()
-    set(BOOST_SYSTEM_TARGET "")
-    message(STATUS "Boost::system not available, using header-only")
-endif()
-
-include_directories(${Boost_INCLUDE_DIR})
-link_directories(${Boost_LIBRARY_DIR_RELEASE})
-if(NOT Boost_USE_STATIC_LIBS)
-    add_definitions(-DBOOST_ALL_DYN_LINK)
-endif()
-add_definitions(-DBOOST_BIND_GLOBAL_PLACEHOLDERS)
-
-set(LIB_LIST
-        ${CMAKE_THREAD_LIBS_INIT}
-        ${ZLIB_LIBRARIES}
-        ${OPENSSL_LIBRARIES}
-        ${Boost_LIBRARIES}
-        ${BOOST_SYSTEM_TARGET}
+target_compile_features(TgBot PUBLIC cxx_std_20)
+target_compile_options(TgBot PRIVATE
+    $<$<CXX_COMPILER_ID:GNU,Clang,AppleClang>:-Wall>
+)
+target_include_directories(TgBot PUBLIC
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+    $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
+)
+target_link_libraries(TgBot PUBLIC
+    Boost::boost
+    CURL::libcurl
+    nlohmann_json::nlohmann_json
+    Threads::Threads
+)
+set_target_properties(TgBot PROPERTIES
+    CXX_EXTENSIONS OFF
+    POSITION_INDEPENDENT_CODE ON
 )
 
-set(LIB_LIST
-    ${CMAKE_THREAD_LIBS_INIT}
-    ${ZLIB_LIBRARIES}
-    ${OPENSSL_LIBRARIES}
-    ${Boost_LIBRARIES}
+if(BUILD_SHARED_LIBS)
+    target_compile_definitions(TgBot PUBLIC TGBOT_DLL)
+endif()
+
+if(WIN32)
+    target_compile_definitions(TgBot PUBLIC
+        _WIN32_WINNT=0x0601
+        WIN32_LEAN_AND_MEAN
+        NOMINMAX
+    )
+    target_link_libraries(TgBot PRIVATE Ws2_32)
+endif()
+
+install(TARGETS TgBot
+    EXPORT TgBotTargets
+    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+    ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+    INCLUDES DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
 )
-
-if (CURL_FOUND)
-    set(LIB_LIST ${LIB_LIST} ${CURL_LIBRARIES})
-endif()
-
-if (WIN32)
-    set(LIB_LIST ${LIB_LIST} Ws2_32)
-endif()
-
-# building project
-add_library(${PROJECT_NAME} ${SRC_LIST})
-target_include_directories(${PROJECT_NAME} PUBLIC 
-                           $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
-                           $<INSTALL_INTERFACE:include>)
-target_link_libraries(${PROJECT_NAME} ${LIB_LIST})
-include(GNUInstallDirs)
-install(TARGETS ${PROJECT_NAME}
-        EXPORT ${PROJECT_NAME}-targets
-        RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
-        LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
-        ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR})
 install(DIRECTORY include/ DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
-install(EXPORT ${PROJECT_NAME}-targets
-        NAMESPACE ${PROJECT_NAME}::
-        FILE ${PROJECT_NAME}Config.cmake
-        DESTINATION lib/cmake/${PROJECT_NAME})
-set_property(TARGET ${PROJECT_NAME} PROPERTY POSITION_INDEPENDENT_CODE ON)
 
-# ABI version
-set_property(TARGET ${PROJECT_NAME} PROPERTY SOVERSION 1)
+set(TGBOT_INSTALL_CMAKEDIR "${CMAKE_INSTALL_LIBDIR}/cmake/TgBot")
+configure_package_config_file(
+    cmake/TgBotConfig.cmake.in
+    "${CMAKE_CURRENT_BINARY_DIR}/TgBotConfig.cmake"
+    INSTALL_DESTINATION "${TGBOT_INSTALL_CMAKEDIR}"
+)
+install(EXPORT TgBotTargets
+    NAMESPACE TgBot::
+    FILE TgBotTargets.cmake
+    DESTINATION "${TGBOT_INSTALL_CMAKEDIR}"
+)
+install(FILES
+    "${CMAKE_CURRENT_BINARY_DIR}/TgBotConfig.cmake"
+    DESTINATION "${TGBOT_INSTALL_CMAKEDIR}"
+)
 
-# tests
-if (ENABLE_TESTS)
-    message(STATUS "Building of tests is enabled")
+if(ENABLE_TESTS)
     enable_testing()
-    add_subdirectory(test)
+    add_subdirectory(tests)
 endif()
-#add_subdirectory(samples/echobot-webhook-server)
-#add_subdirectory(samples/inline-keyboard)
-#add_subdirectory(samples/reply-keyboard)
 
-
-# Documentation
 if(BUILD_DOCUMENTATION)
     find_package(Doxygen REQUIRED)
     add_custom_target(doc_doxygen ALL
-        COMMAND ${DOXYGEN_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Doxyfile
+        COMMAND Doxygen::doxygen ${CMAKE_CURRENT_SOURCE_DIR}/Doxyfile
         WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
         COMMENT "Generating API documentation with Doxygen"
-        VERBATIM)
-        install(DIRECTORY  ${CMAKE_CURRENT_SOURCE_DIR}/doc/html/ TYPE DOC)
-endif()
-
-if(BUILD_SHARED_LIBS)
-    add_definitions(-DTGBOT_DLL)
+        VERBATIM
+    )
+    install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/doc/html/
+        DESTINATION ${CMAKE_INSTALL_DOCDIR}
+    )
 endif()

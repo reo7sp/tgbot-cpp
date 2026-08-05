@@ -1,8 +1,0 @@
-#!/bin/bash
-set -e
-
-cd ..
-rm -rf doc docs || true
-doxygen
-mv doc/html docs
-touch docs/.nojekyll
