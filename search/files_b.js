@@ -1,19 +1,10 @@
 var searchData=
 [
-  ['maskposition_2eh_0',['MaskPosition.h',['../_mask_position_8h.html',1,'']]],
-  ['menubutton_2eh_1',['MenuButton.h',['../_menu_button_8h.html',1,'']]],
-  ['menubuttoncommands_2eh_2',['MenuButtonCommands.h',['../_menu_button_commands_8h.html',1,'']]],
-  ['menubuttondefault_2eh_3',['MenuButtonDefault.h',['../_menu_button_default_8h.html',1,'']]],
-  ['menubuttonwebapp_2eh_4',['MenuButtonWebApp.h',['../_menu_button_web_app_8h.html',1,'']]],
-  ['message_2eh_5',['Message.h',['../_message_8h.html',1,'']]],
-  ['messageautodeletetimerchanged_2eh_6',['MessageAutoDeleteTimerChanged.h',['../_message_auto_delete_timer_changed_8h.html',1,'']]],
-  ['messageentity_2eh_7',['MessageEntity.h',['../_message_entity_8h.html',1,'']]],
-  ['messageid_2eh_8',['MessageId.h',['../_message_id_8h.html',1,'']]],
-  ['messageorigin_2eh_9',['MessageOrigin.h',['../_message_origin_8h.html',1,'']]],
-  ['messageoriginchannel_2eh_10',['MessageOriginChannel.h',['../_message_origin_channel_8h.html',1,'']]],
-  ['messageoriginchat_2eh_11',['MessageOriginChat.h',['../_message_origin_chat_8h.html',1,'']]],
-  ['messageoriginhiddenuser_2eh_12',['MessageOriginHiddenUser.h',['../_message_origin_hidden_user_8h.html',1,'']]],
-  ['messageoriginuser_2eh_13',['MessageOriginUser.h',['../_message_origin_user_8h.html',1,'']]],
-  ['messagereactioncountupdated_2eh_14',['MessageReactionCountUpdated.h',['../_message_reaction_count_updated_8h.html',1,'']]],
-  ['messagereactionupdated_2eh_15',['MessageReactionUpdated.h',['../_message_reaction_updated_8h.html',1,'']]]
+  ['labeledprice_2eh_0',['LabeledPrice.h',['../_labeled_price_8h.html',1,'']]],
+  ['link_2eh_1',['Link.h',['../_link_8h.html',1,'']]],
+  ['linkpreviewoptions_2eh_2',['LinkPreviewOptions.h',['../_link_preview_options_8h.html',1,'']]],
+  ['livephoto_2eh_3',['LivePhoto.h',['../_live_photo_8h.html',1,'']]],
+  ['location_2eh_4',['Location.h',['../_location_8h.html',1,'']]],
+  ['locationaddress_2eh_5',['LocationAddress.h',['../_location_address_8h.html',1,'']]],
+  ['loginurl_2eh_6',['LoginUrl.h',['../_login_url_8h.html',1,'']]]
 ];

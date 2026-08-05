@@ -1,4 +1,22 @@
 var searchData=
 [
-  ['orderinfo_2eh_0',['OrderInfo.h',['../_order_info_8h.html',1,'']]]
+  ['managedbotcreated_2eh_0',['ManagedBotCreated.h',['../_managed_bot_created_8h.html',1,'']]],
+  ['managedbotupdated_2eh_1',['ManagedBotUpdated.h',['../_managed_bot_updated_8h.html',1,'']]],
+  ['maskposition_2eh_2',['MaskPosition.h',['../_mask_position_8h.html',1,'']]],
+  ['maybeinaccessiblemessage_2eh_3',['MaybeInaccessibleMessage.h',['../_maybe_inaccessible_message_8h.html',1,'']]],
+  ['menubutton_2eh_4',['MenuButton.h',['../_menu_button_8h.html',1,'']]],
+  ['menubuttoncommands_2eh_5',['MenuButtonCommands.h',['../_menu_button_commands_8h.html',1,'']]],
+  ['menubuttondefault_2eh_6',['MenuButtonDefault.h',['../_menu_button_default_8h.html',1,'']]],
+  ['menubuttonwebapp_2eh_7',['MenuButtonWebApp.h',['../_menu_button_web_app_8h.html',1,'']]],
+  ['message_2eh_8',['Message.h',['../_message_8h.html',1,'']]],
+  ['messageautodeletetimerchanged_2eh_9',['MessageAutoDeleteTimerChanged.h',['../_message_auto_delete_timer_changed_8h.html',1,'']]],
+  ['messageentity_2eh_10',['MessageEntity.h',['../_message_entity_8h.html',1,'']]],
+  ['messageid_2eh_11',['MessageId.h',['../_message_id_8h.html',1,'']]],
+  ['messageorigin_2eh_12',['MessageOrigin.h',['../_message_origin_8h.html',1,'']]],
+  ['messageoriginchannel_2eh_13',['MessageOriginChannel.h',['../_message_origin_channel_8h.html',1,'']]],
+  ['messageoriginchat_2eh_14',['MessageOriginChat.h',['../_message_origin_chat_8h.html',1,'']]],
+  ['messageoriginhiddenuser_2eh_15',['MessageOriginHiddenUser.h',['../_message_origin_hidden_user_8h.html',1,'']]],
+  ['messageoriginuser_2eh_16',['MessageOriginUser.h',['../_message_origin_user_8h.html',1,'']]],
+  ['messagereactioncountupdated_2eh_17',['MessageReactionCountUpdated.h',['../_message_reaction_count_updated_8h.html',1,'']]],
+  ['messagereactionupdated_2eh_18',['MessageReactionUpdated.h',['../_message_reaction_updated_8h.html',1,'']]]
 ];

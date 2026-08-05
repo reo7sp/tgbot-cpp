@@ -1,7 +1,8 @@
 var searchData=
 [
-  ['labeledprice_2eh_0',['LabeledPrice.h',['../_labeled_price_8h.html',1,'']]],
-  ['linkpreviewoptions_2eh_1',['LinkPreviewOptions.h',['../_link_preview_options_8h.html',1,'']]],
-  ['location_2eh_2',['Location.h',['../_location_8h.html',1,'']]],
-  ['loginurl_2eh_3',['LoginUrl.h',['../_login_url_8h.html',1,'']]]
+  ['keyboardbutton_2eh_0',['KeyboardButton.h',['../_keyboard_button_8h.html',1,'']]],
+  ['keyboardbuttonpolltype_2eh_1',['KeyboardButtonPollType.h',['../_keyboard_button_poll_type_8h.html',1,'']]],
+  ['keyboardbuttonrequestchat_2eh_2',['KeyboardButtonRequestChat.h',['../_keyboard_button_request_chat_8h.html',1,'']]],
+  ['keyboardbuttonrequestmanagedbot_2eh_3',['KeyboardButtonRequestManagedBot.h',['../_keyboard_button_request_managed_bot_8h.html',1,'']]],
+  ['keyboardbuttonrequestusers_2eh_4',['KeyboardButtonRequestUsers.h',['../_keyboard_button_request_users_8h.html',1,'']]]
 ];

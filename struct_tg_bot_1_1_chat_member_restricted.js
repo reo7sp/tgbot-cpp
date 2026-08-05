@@ -1,0 +1,25 @@
+var struct_tg_bot_1_1_chat_member_restricted =
+[
+    [ "Ptr", "struct_tg_bot_1_1_chat_member_restricted.html#a9d2b89fc3524604f1a0c233a3e5a54a8", null ],
+    [ "canAddWebPagePreviews", "struct_tg_bot_1_1_chat_member_restricted.html#a94e9d2405571c1bd03980d95036886cb", null ],
+    [ "canChangeInfo", "struct_tg_bot_1_1_chat_member_restricted.html#a08d30544eb1910706409da69d6692537", null ],
+    [ "canEditTag", "struct_tg_bot_1_1_chat_member_restricted.html#acbb3f393d5ae133e419edd0640579270", null ],
+    [ "canInviteUsers", "struct_tg_bot_1_1_chat_member_restricted.html#aedcd6665d9baf765c4c651de5cc7ded5", null ],
+    [ "canManageTopics", "struct_tg_bot_1_1_chat_member_restricted.html#ab018634e772c7c919fd2af7ff99090a2", null ],
+    [ "canPinMessages", "struct_tg_bot_1_1_chat_member_restricted.html#a2746db0c58783692a1846e981bfd5da6", null ],
+    [ "canReactToMessages", "struct_tg_bot_1_1_chat_member_restricted.html#afce4981cefe245e772de3de5ae449adc", null ],
+    [ "canSendAudios", "struct_tg_bot_1_1_chat_member_restricted.html#ad4aa08bac6b3c530ed4989057e8d50f8", null ],
+    [ "canSendDocuments", "struct_tg_bot_1_1_chat_member_restricted.html#a0cb3d3890e297c5d8df1d6a9987ad9ba", null ],
+    [ "canSendMessages", "struct_tg_bot_1_1_chat_member_restricted.html#ac85551e4197c09278ed8d95702677d8e", null ],
+    [ "canSendOtherMessages", "struct_tg_bot_1_1_chat_member_restricted.html#abfc63549cf6a823ee9b939839b80a70d", null ],
+    [ "canSendPhotos", "struct_tg_bot_1_1_chat_member_restricted.html#a8a4ebc08a251ec9d2e6248fd1feda116", null ],
+    [ "canSendPolls", "struct_tg_bot_1_1_chat_member_restricted.html#a10a5049b28f650c95edbcd0c46d2eb9f", null ],
+    [ "canSendVideoNotes", "struct_tg_bot_1_1_chat_member_restricted.html#a09c5da90af9aa65d638d27fe9cdbb7ea", null ],
+    [ "canSendVideos", "struct_tg_bot_1_1_chat_member_restricted.html#a4a73fedfdb47d29e4bb7d0fdd79347e7", null ],
+    [ "canSendVoiceNotes", "struct_tg_bot_1_1_chat_member_restricted.html#a92251ee52cbfa2d4f84778e9bb922664", null ],
+    [ "isMember", "struct_tg_bot_1_1_chat_member_restricted.html#a97ea6dea750a7cd723a8d1d780962da9", null ],
+    [ "status", "struct_tg_bot_1_1_chat_member_restricted.html#a156475b9a58e45cc9fe5f162b25b3d6a", null ],
+    [ "tag", "struct_tg_bot_1_1_chat_member_restricted.html#af196655030aeaa68adcf7fdfb5d3f25b", null ],
+    [ "untilDate", "struct_tg_bot_1_1_chat_member_restricted.html#aef3e66630aa1a399970d997f55b32bf0", null ],
+    [ "user", "struct_tg_bot_1_1_chat_member_restricted.html#a1133e89d570cd2c7c40068fba0e5df7f", null ]
+];

@@ -1,15 +1,9 @@
 var searchData=
 [
-  ['_5facceptor_0',['_acceptor',['../class_tg_bot_1_1_http_server.html#a1a48cb5e272aae75d3ee1b51fca445d5',1,'TgBot::HttpServer']]],
-  ['_5fcancelepoch_1',['_cancelEpoch',['../class_tg_bot_1_1_http_client.html#a5af0c3b59a2621721f8285c842968e40',1,'TgBot::HttpClient']]],
-  ['_5fhandler_2',['_handler',['../class_tg_bot_1_1_http_server_1_1_connection.html#ab630576fda90c3a33e563e44cd5a08dd',1,'TgBot::HttpServer::Connection::_handler'],['../class_tg_bot_1_1_http_server.html#a9af2cf386463a1f40d0d3e9d92d88eec',1,'TgBot::HttpServer::_handler']]],
-  ['_5fhttpclient_3',['_httpClient',['../class_tg_bot_1_1_api.html#a529228096544b44031672f749a02c2d0',1,'TgBot::Api']]],
-  ['_5fhttpparser_4',['_httpParser',['../class_tg_bot_1_1_http_server_1_1_connection.html#a3f41a81c73bc3b0257433892b11cf21e',1,'TgBot::HttpServer::Connection::_httpParser'],['../class_tg_bot_1_1_http_server.html#ac31bb13213ce451f0daa7e3cb13c9f73',1,'TgBot::HttpServer::_httpParser']]],
-  ['_5fioservice_5',['_ioService',['../class_tg_bot_1_1_http_server.html#ac65413c352b2a100457ffce897d7439f',1,'TgBot::HttpServer::_ioService'],['../class_tg_bot_1_1_http_server.html#a68812914f5c398331ee3ef8e77fe39b7',1,'TgBot::HttpServer::_ioService']]],
-  ['_5fiseternalcancel_6',['_isEternalCancel',['../class_tg_bot_1_1_http_client.html#ac65b8cec3ab6be487d8659b8dafbb540',1,'TgBot::HttpClient']]],
-  ['_5fsocket_7',['_socket',['../class_tg_bot_1_1_http_server_1_1_connection.html#a4fe506ad6a637c8ef5f58ef2aaefcbca',1,'TgBot::HttpServer::Connection::_socket'],['../class_tg_bot_1_1_http_server.html#a5bfd257760ccfc19ceecd0067c0b3df4',1,'TgBot::HttpServer::_socket']]],
-  ['_5ftgtypeparser_8',['_tgTypeParser',['../class_tg_bot_1_1_api.html#a080dc56a7fef4a0a2c3d7c39a18a145b',1,'TgBot::Api']]],
-  ['_5ftimeout_9',['_timeout',['../class_tg_bot_1_1_http_client.html#a7f12245fbf6b84f4024c768c5a643d4e',1,'TgBot::HttpClient']]],
-  ['_5ftoken_10',['_token',['../class_tg_bot_1_1_api.html#acafdff775d0f2aae706b3fa7e043b315',1,'TgBot::Api']]],
-  ['_5furl_11',['_url',['../class_tg_bot_1_1_api.html#a4727b16a25011fa6f647b64d7f67013b',1,'TgBot::Api']]]
+  ['_5fcancelepoch_0',['_cancelEpoch',['../class_tg_bot_1_1_http_client.html#a5af0c3b59a2621721f8285c842968e40',1,'TgBot::HttpClient']]],
+  ['_5fhttpclient_1',['_httpClient',['../class_tg_bot_1_1_api.html#a529228096544b44031672f749a02c2d0',1,'TgBot::Api']]],
+  ['_5fiseternalcancel_2',['_isEternalCancel',['../class_tg_bot_1_1_http_client.html#ac65b8cec3ab6be487d8659b8dafbb540',1,'TgBot::HttpClient']]],
+  ['_5ftimeout_3',['_timeout',['../class_tg_bot_1_1_http_client.html#a7f12245fbf6b84f4024c768c5a643d4e',1,'TgBot::HttpClient']]],
+  ['_5ftoken_4',['_token',['../class_tg_bot_1_1_api.html#acafdff775d0f2aae706b3fa7e043b315',1,'TgBot::Api']]],
+  ['_5furl_5',['_url',['../class_tg_bot_1_1_api.html#a4727b16a25011fa6f647b64d7f67013b',1,'TgBot::Api']]]
 ];

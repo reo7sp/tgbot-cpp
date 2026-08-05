@@ -1,0 +1,25 @@
+var struct_tg_bot_1_1_chat_member_administrator =
+[
+    [ "Ptr", "struct_tg_bot_1_1_chat_member_administrator.html#a4c338aec88316c853a7fc39eaf8e4124", null ],
+    [ "canBeEdited", "struct_tg_bot_1_1_chat_member_administrator.html#ac21dd80f3ca3896739b758fd1dbc7809", null ],
+    [ "canChangeInfo", "struct_tg_bot_1_1_chat_member_administrator.html#aad12845861ce5ae18541a87ec4ec4bf6", null ],
+    [ "canDeleteMessages", "struct_tg_bot_1_1_chat_member_administrator.html#ad0fac323deb8df71f0297f6d61940ca7", null ],
+    [ "canDeleteStories", "struct_tg_bot_1_1_chat_member_administrator.html#acf40332410f3301a35663f0f00d640a9", null ],
+    [ "canEditMessages", "struct_tg_bot_1_1_chat_member_administrator.html#ab3896959425eebb7bee9f16a49373fb5", null ],
+    [ "canEditStories", "struct_tg_bot_1_1_chat_member_administrator.html#a9eb1db9a1c83e9bad924b5e9040bed86", null ],
+    [ "canInviteUsers", "struct_tg_bot_1_1_chat_member_administrator.html#a0f6eb51b3b66c38eac84b521f3d29e6a", null ],
+    [ "canManageChat", "struct_tg_bot_1_1_chat_member_administrator.html#aabd5b60d25f721dc8b47481b24ab8cb9", null ],
+    [ "canManageDirectMessages", "struct_tg_bot_1_1_chat_member_administrator.html#a536c99b0419c1e93d6eda003b30e7302", null ],
+    [ "canManageTags", "struct_tg_bot_1_1_chat_member_administrator.html#a8d70265a8f43f1e303b90415969f7cd0", null ],
+    [ "canManageTopics", "struct_tg_bot_1_1_chat_member_administrator.html#a908d3c524e776e06f9d6e7e72e296bae", null ],
+    [ "canManageVideoChats", "struct_tg_bot_1_1_chat_member_administrator.html#a21df5545ca64384924c5c9d595c8b8dd", null ],
+    [ "canPinMessages", "struct_tg_bot_1_1_chat_member_administrator.html#acd80a486793c55805b2822b2497c58d5", null ],
+    [ "canPostMessages", "struct_tg_bot_1_1_chat_member_administrator.html#afa52b6e6bd17276d43c9112cb43fe7ca", null ],
+    [ "canPostStories", "struct_tg_bot_1_1_chat_member_administrator.html#aad1dd6d1cb81956cf132514ae8d864d4", null ],
+    [ "canPromoteMembers", "struct_tg_bot_1_1_chat_member_administrator.html#a27dceac59572ec63e5a933ef45bfc663", null ],
+    [ "canRestrictMembers", "struct_tg_bot_1_1_chat_member_administrator.html#ac8491cce893a049c0ed372b8e136e001", null ],
+    [ "customTitle", "struct_tg_bot_1_1_chat_member_administrator.html#a651d659cdf05d010e8e64ae2dfbafc44", null ],
+    [ "isAnonymous", "struct_tg_bot_1_1_chat_member_administrator.html#a735aac376e4f371feeae64714ea89186", null ],
+    [ "status", "struct_tg_bot_1_1_chat_member_administrator.html#a6f967c5f91c762fde8f8ca79a35cd1b5", null ],
+    [ "user", "struct_tg_bot_1_1_chat_member_administrator.html#a2a0d54c68137ec66ee1cc912ee25b8cc", null ]
+];

@@ -1,14 +1,22 @@
 var searchData=
 [
-  ['declinechatjoinrequest_0',['declineChatJoinRequest',['../class_tg_bot_1_1_api.html#a20e8cdbb4d9edf7413aab997e17332f4',1,'TgBot::Api']]],
-  ['deletechatphoto_1',['deleteChatPhoto',['../class_tg_bot_1_1_api.html#ab4a76535dac81e4ac89e65719143711c',1,'TgBot::Api']]],
-  ['deletechatstickerset_2',['deleteChatStickerSet',['../class_tg_bot_1_1_api.html#ae5ddfebfab86fd2875685851bd374129',1,'TgBot::Api']]],
-  ['deleteforumtopic_3',['deleteForumTopic',['../class_tg_bot_1_1_api.html#a60a21cb1f97290e051b366f6e7c6f540',1,'TgBot::Api']]],
-  ['deletemessage_4',['deleteMessage',['../class_tg_bot_1_1_api.html#ade815d30cd8ee22f04be1328dcd2f5da',1,'TgBot::Api']]],
-  ['deletemessages_5',['deleteMessages',['../class_tg_bot_1_1_api.html#aabe63fbddecb8e11b06b42af6a793c45',1,'TgBot::Api']]],
-  ['deletemycommands_6',['deleteMyCommands',['../class_tg_bot_1_1_api.html#a0822ecaf882c614ef6eae1a13d2d47e6',1,'TgBot::Api']]],
-  ['deletestickerfromset_7',['deleteStickerFromSet',['../class_tg_bot_1_1_api.html#a940093052e4bb98381c3336627bbb59d',1,'TgBot::Api']]],
-  ['deletestickerset_8',['deleteStickerSet',['../class_tg_bot_1_1_api.html#aefddd207c58562f9b7939f6c844f581f',1,'TgBot::Api']]],
-  ['deletewebhook_9',['deleteWebhook',['../class_tg_bot_1_1_api.html#a114a657771fe54e61eaa531605531ff4',1,'TgBot::Api']]],
-  ['downloadfile_10',['downloadFile',['../class_tg_bot_1_1_api.html#aa60ec06b9171d94ef717f1ac03190f07',1,'TgBot::Api']]]
+  ['editchatinvitelink_0',['editChatInviteLink',['../_api_methods_8inc_8h.html#ae78f384e2e50dd142b13a784f44225f6',1,'ApiMethods.inc.h']]],
+  ['editchatsubscriptioninvitelink_1',['editChatSubscriptionInviteLink',['../_api_methods_8inc_8h.html#a06b972b843f2e40c65fa4d71aa3096c4',1,'ApiMethods.inc.h']]],
+  ['editephemeralmessagecaption_2',['editEphemeralMessageCaption',['../_api_methods_8inc_8h.html#a8218f3eda4ca5bf78f529a41f1129fb1',1,'ApiMethods.inc.h']]],
+  ['editephemeralmessagemedia_3',['editEphemeralMessageMedia',['../_api_methods_8inc_8h.html#a69bb7177859dc71ed0fec44e1a8e0cb4',1,'ApiMethods.inc.h']]],
+  ['editephemeralmessagereplymarkup_4',['editEphemeralMessageReplyMarkup',['../_api_methods_8inc_8h.html#a12695b577b1703aa02fd10eb394f80bc',1,'ApiMethods.inc.h']]],
+  ['editephemeralmessagetext_5',['editEphemeralMessageText',['../_api_methods_8inc_8h.html#aeffbfe3cc8138f580f8632aa01a9e019',1,'ApiMethods.inc.h']]],
+  ['editforumtopic_6',['editForumTopic',['../_api_methods_8inc_8h.html#a1dded6ffa50fe9166c1aac7e4927a051',1,'ApiMethods.inc.h']]],
+  ['editgeneralforumtopic_7',['editGeneralForumTopic',['../_api_methods_8inc_8h.html#a144fb5c9d5a0333de01039a892d325cf',1,'ApiMethods.inc.h']]],
+  ['editmessagecaption_8',['editMessageCaption',['../_api_methods_8inc_8h.html#a3b984efdb696e5aa9d9d9ec0514189ca',1,'ApiMethods.inc.h']]],
+  ['editmessagechecklist_9',['editMessageChecklist',['../_api_methods_8inc_8h.html#a586adb68cbfd3cfa7ce03e6ecaccf02a',1,'ApiMethods.inc.h']]],
+  ['editmessagelivelocation_10',['editMessageLiveLocation',['../_api_methods_8inc_8h.html#abd30c85b426fe29849ccc5e154cd6250',1,'ApiMethods.inc.h']]],
+  ['editmessagemedia_11',['editMessageMedia',['../_api_methods_8inc_8h.html#a2ff05e70f050945091ef9f0d048c8487',1,'ApiMethods.inc.h']]],
+  ['editmessagereplymarkup_12',['editMessageReplyMarkup',['../_api_methods_8inc_8h.html#a0b78abed0d36bed531a4c21b0d73080a',1,'ApiMethods.inc.h']]],
+  ['editmessagetext_13',['editMessageText',['../_api_methods_8inc_8h.html#a04f9d300bc28a2bc6a97aa2347a28003',1,'ApiMethods.inc.h']]],
+  ['editstory_14',['editStory',['../_api_methods_8inc_8h.html#ad908260878cc2b9023a9b2be7c5e866d',1,'ApiMethods.inc.h']]],
+  ['edituserstarsubscription_15',['editUserStarSubscription',['../_api_methods_8inc_8h.html#a211d94ac3f350dd57dca81d5196cf4ad',1,'ApiMethods.inc.h']]],
+  ['encode_16',['encode',['../namespace_tg_bot_1_1_json.html#a586f9b229ade544d3873a5b1825a0256',1,'TgBot::Json::encode(const T &amp;value)'],['../namespace_tg_bot_1_1_json.html#a70a904ece93b8a76ecbd2c91481279e8',1,'TgBot::Json::encode(const std::shared_ptr&lt; T &gt; &amp;value)'],['../namespace_tg_bot_1_1_json.html#aa1cb5048774a40452ef90bc6860c3df2',1,'TgBot::Json::encode(const std::optional&lt; T &gt; &amp;value)'],['../namespace_tg_bot_1_1_json.html#a11d394d96aed677af300f43c51a77244',1,'TgBot::Json::encode(const std::vector&lt; T &gt; &amp;value)'],['../namespace_tg_bot_1_1_json.html#a6065feb9aec640d2debc88417232febf',1,'TgBot::Json::encode(const std::variant&lt; T... &gt; &amp;value)']]],
+  ['eventhandler_17',['EventHandler',['../class_tg_bot_1_1_event_handler.html#ae71500cae7d1ff3d40bb47b1e39b3642',1,'TgBot::EventHandler']]],
+  ['exportchatinvitelink_18',['exportChatInviteLink',['../_api_methods_8inc_8h.html#a12443d0b52e2646e4ffeeeab31b20114',1,'ApiMethods.inc.h']]]
 ];

@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['textlink_0',['TextLink',['../class_tg_bot_1_1_message_entity.html#a6cb87a43b52a982682c1e592fbc1f2c9a7f01c2ecef93cd509dab0bb85ff03f49',1,'TgBot::MessageEntity']]],
-  ['textmention_1',['TextMention',['../class_tg_bot_1_1_message_entity.html#a6cb87a43b52a982682c1e592fbc1f2c9a4ed8233defa4ad141a6a784b45a31c45',1,'TgBot::MessageEntity']]]
+  ['spoiler_0',['Spoiler',['../struct_tg_bot_1_1_message_entity.html#a6cb87a43b52a982682c1e592fbc1f2c9af7115e4891ab41c009017e95f47eb6e9',1,'TgBot::MessageEntity']]],
+  ['strikethrough_1',['Strikethrough',['../struct_tg_bot_1_1_message_entity.html#a6cb87a43b52a982682c1e592fbc1f2c9a926a51baad949d12035107e5d06e2fdb',1,'TgBot::MessageEntity']]],
+  ['supergroup_2',['Supergroup',['../struct_tg_bot_1_1_chat.html#a939946fe3181210f9e3f3d9610edb52ea9c306d98196730ac00fc621998b4a8f5',1,'TgBot::Chat']]]
 ];

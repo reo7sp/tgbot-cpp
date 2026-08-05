@@ -1,0 +1,35 @@
+var struct_tg_bot_1_1_message_entity =
+[
+    [ "Ptr", "struct_tg_bot_1_1_message_entity.html#a3c07152527f099674845b00cc9e9415b", null ],
+    [ "Type", "struct_tg_bot_1_1_message_entity.html#a6cb87a43b52a982682c1e592fbc1f2c9", [
+      [ "Mention", "struct_tg_bot_1_1_message_entity.html#a6cb87a43b52a982682c1e592fbc1f2c9a53463656b8197ce564e370d296827252", null ],
+      [ "Hashtag", "struct_tg_bot_1_1_message_entity.html#a6cb87a43b52a982682c1e592fbc1f2c9a6adba5b578887376a318ad96235cc0b4", null ],
+      [ "Cashtag", "struct_tg_bot_1_1_message_entity.html#a6cb87a43b52a982682c1e592fbc1f2c9a862f9cfbb211933b10e9427629db07db", null ],
+      [ "BotCommand", "struct_tg_bot_1_1_message_entity.html#a6cb87a43b52a982682c1e592fbc1f2c9a55b7b0bcd53700c861ad9e98f0b8ca9d", null ],
+      [ "Url", "struct_tg_bot_1_1_message_entity.html#a6cb87a43b52a982682c1e592fbc1f2c9a02a3a357710cc2a5dfdfb74ed012fb59", null ],
+      [ "Email", "struct_tg_bot_1_1_message_entity.html#a6cb87a43b52a982682c1e592fbc1f2c9ace8ae9da5b7cd6c3df2929543a9af92d", null ],
+      [ "PhoneNumber", "struct_tg_bot_1_1_message_entity.html#a6cb87a43b52a982682c1e592fbc1f2c9a677befbff0d2028b6eaf673212273a56", null ],
+      [ "Bold", "struct_tg_bot_1_1_message_entity.html#a6cb87a43b52a982682c1e592fbc1f2c9a114c3050111d8b8ddd830b99ccebd246", null ],
+      [ "Italic", "struct_tg_bot_1_1_message_entity.html#a6cb87a43b52a982682c1e592fbc1f2c9a1d874710ccdcd46b95397049d2e7500c", null ],
+      [ "Underline", "struct_tg_bot_1_1_message_entity.html#a6cb87a43b52a982682c1e592fbc1f2c9a852721aa5fc738dfedff2945d71da439", null ],
+      [ "Strikethrough", "struct_tg_bot_1_1_message_entity.html#a6cb87a43b52a982682c1e592fbc1f2c9a926a51baad949d12035107e5d06e2fdb", null ],
+      [ "Spoiler", "struct_tg_bot_1_1_message_entity.html#a6cb87a43b52a982682c1e592fbc1f2c9af7115e4891ab41c009017e95f47eb6e9", null ],
+      [ "Blockquote", "struct_tg_bot_1_1_message_entity.html#a6cb87a43b52a982682c1e592fbc1f2c9a146aaf1333c7e82829fe9c5c52340b56", null ],
+      [ "ExpandableBlockquote", "struct_tg_bot_1_1_message_entity.html#a6cb87a43b52a982682c1e592fbc1f2c9a2bcade4e54d691a3421c3934e6f1a6aa", null ],
+      [ "Code", "struct_tg_bot_1_1_message_entity.html#a6cb87a43b52a982682c1e592fbc1f2c9aca0dbad92a874b2f69b549293387925e", null ],
+      [ "Pre", "struct_tg_bot_1_1_message_entity.html#a6cb87a43b52a982682c1e592fbc1f2c9afb55a965b77791b31ffd2bb548f71080", null ],
+      [ "TextLink", "struct_tg_bot_1_1_message_entity.html#a6cb87a43b52a982682c1e592fbc1f2c9a7f01c2ecef93cd509dab0bb85ff03f49", null ],
+      [ "TextMention", "struct_tg_bot_1_1_message_entity.html#a6cb87a43b52a982682c1e592fbc1f2c9a4ed8233defa4ad141a6a784b45a31c45", null ],
+      [ "CustomEmoji", "struct_tg_bot_1_1_message_entity.html#a6cb87a43b52a982682c1e592fbc1f2c9af2ded25b30113452f7b15011b876ef8f", null ],
+      [ "DateTime", "struct_tg_bot_1_1_message_entity.html#a6cb87a43b52a982682c1e592fbc1f2c9a8cf10d2341ed01492506085688270c1e", null ]
+    ] ],
+    [ "customEmojiId", "struct_tg_bot_1_1_message_entity.html#a9e5adb2ffb2d02f1cca63d0ac50d7fc9", null ],
+    [ "dateTimeFormat", "struct_tg_bot_1_1_message_entity.html#aab8762dc9128a50915f63f5823f305b8", null ],
+    [ "language", "struct_tg_bot_1_1_message_entity.html#ae67f1186e0885020d3ee04d043262106", null ],
+    [ "length", "struct_tg_bot_1_1_message_entity.html#aeda0401744ef1b22b2059124fe940492", null ],
+    [ "offset", "struct_tg_bot_1_1_message_entity.html#a48d29c9fd3496b26e349d4d3049bad0d", null ],
+    [ "type", "struct_tg_bot_1_1_message_entity.html#aec6056a21555b9c50132c9c0ca5816b9", null ],
+    [ "unixTime", "struct_tg_bot_1_1_message_entity.html#a1e7523a94036460787c67fee5ecfc1b8", null ],
+    [ "url", "struct_tg_bot_1_1_message_entity.html#aed3751a61b7ff46e3486179f0d93d49b", null ],
+    [ "user", "struct_tg_bot_1_1_message_entity.html#ae4bfa51bbaac8de4215a87905c65a6d7", null ]
+];

@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['xshift_0',['xShift',['../class_tg_bot_1_1_mask_position.html#ac4e73bf83077bce72be0ee031f2f5d83',1,'TgBot::MaskPosition']]]
+  ['xpercentage_0',['xPercentage',['../struct_tg_bot_1_1_story_area_position.html#ae2da64b3bc784bc0a639ee95da3c6336',1,'TgBot::StoryAreaPosition']]],
+  ['xshift_1',['xShift',['../struct_tg_bot_1_1_mask_position.html#adc4e6b4fbe468c89981a28c0c6c3c771',1,'TgBot::MaskPosition']]]
 ];

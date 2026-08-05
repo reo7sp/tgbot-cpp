@@ -123,12 +123,17 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('_chat_member_8
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-nested-classes" class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
-<tr class="memitem:TgBot_3A_3AChatMember" id="r_TgBot_3A_3AChatMember"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="class_tg_bot_1_1_chat_member.html">TgBot::ChatMember</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">This abstract class is base of all chat members.  <a href="class_tg_bot_1_1_chat_member.html#details">More...</a><br /></td></tr>
+<tr class="memitem:TgBot_3A_3AChatMember" id="r_TgBot_3A_3AChatMember"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_tg_bot_1_1_chat_member.html">TgBot::ChatMember</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">This object contains information about one member of a chat. Currently, the following 6 types of chat members are supported: <a class="el" href="struct_tg_bot_1_1_chat_member_owner.html" title="Represents a chat member that owns the chat and has all administrator privileges.">ChatMemberOwner</a> <a class="el" href="struct_tg_bot_1_1_chat_member_administrator.html" title="Represents a chat member that has some additional privileges.">ChatMemberAdministrator</a> <a class="el" href="struct_tg_bot_1_1_chat_member_member.html" title="Represents a chat member that has no additional privileges or restrictions.">ChatMemberMember</a> <a class="el" href="struct_tg_bot_1_1_chat_member_restricted.html" title="Represents a chat member that is under certain restrictions in the chat. Supergroups only.">ChatMemberRestricted</a> <a class="el" href="struct_tg_bot_1_1_chat_member_left.html" title="Represents a chat member that isn&#39;t currently a member of the chat, but may join it themselves.">ChatMemberLeft</a> <a class="el" href="struct_tg_bot_1_1_chat_member_banned.html" title="Represents a chat member that was banned in the chat and can&#39;t return to the chat or view chat messag...">ChatMemberBanned</a>.  <a href="struct_tg_bot_1_1_chat_member.html#details">More...</a><br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-namespaces" class="groupheader"><a id="namespaces" name="namespaces"></a>
 Namespaces</h2></td></tr>
 <tr class="memitem:TgBot" id="r_TgBot"><td class="memItemLeft">namespace &#160;</td><td class="memItemRight"><a class="el" href="namespace_tg_bot.html">TgBot</a></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:a65426cce5c0a4e5a5ed9dfa63f614360" id="r_a65426cce5c0a4e5a5ed9dfa63f614360"><td class="memItemLeft">TGBOT_API void&#160;</td><td class="memItemRight"><a class="el" href="namespace_tg_bot.html#a65426cce5c0a4e5a5ed9dfa63f614360">TgBot::from_json</a> (const nlohmann::json &amp;json, <a class="el" href="struct_tg_bot_1_1_chat_member.html">ChatMember</a> &amp;value)</td></tr>
+<tr class="memitem:a1bac201dec0eb8d7e8d16c52f10c0a6b" id="r_a1bac201dec0eb8d7e8d16c52f10c0a6b"><td class="memItemLeft">TGBOT_API void&#160;</td><td class="memItemRight"><a class="el" href="namespace_tg_bot.html#a1bac201dec0eb8d7e8d16c52f10c0a6b">TgBot::to_json</a> (nlohmann::json &amp;json, const <a class="el" href="struct_tg_bot_1_1_chat_member.html">ChatMember</a> &amp;value)</td></tr>
 </table>
 </div><!-- contents -->
 </div><!-- doc-content -->

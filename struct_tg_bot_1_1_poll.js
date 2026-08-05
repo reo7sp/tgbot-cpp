@@ -1,0 +1,25 @@
+var struct_tg_bot_1_1_poll =
+[
+    [ "Ptr", "struct_tg_bot_1_1_poll.html#ae7412f2d93709fe0e6300d9bd0333dfb", null ],
+    [ "allowsMultipleAnswers", "struct_tg_bot_1_1_poll.html#ab46ee0bff2395c1a8548053598b28300", null ],
+    [ "allowsRevoting", "struct_tg_bot_1_1_poll.html#adc2492fd18b43e94e353c6e3913df23d", null ],
+    [ "closeDate", "struct_tg_bot_1_1_poll.html#a2b5448a9d3ceb7dce21bf79e571a7d7f", null ],
+    [ "correctOptionIds", "struct_tg_bot_1_1_poll.html#ab53f21c9e8c1b14eb5c2f1be91e47f5e", null ],
+    [ "countryCodes", "struct_tg_bot_1_1_poll.html#ae06ccc9dcc0165dae4c018f20d427637", null ],
+    [ "description", "struct_tg_bot_1_1_poll.html#a78cf27e56c87caacc4c204186c0fb474", null ],
+    [ "descriptionEntities", "struct_tg_bot_1_1_poll.html#a50d608e36834efaacc6e3589ff7a8019", null ],
+    [ "explanation", "struct_tg_bot_1_1_poll.html#a52ca39e1147d25477c8e5bd645663af7", null ],
+    [ "explanationEntities", "struct_tg_bot_1_1_poll.html#ada2244a5890b2668448d80c710580868", null ],
+    [ "explanationMedia", "struct_tg_bot_1_1_poll.html#ab79a105014f3e0cd104d1231ff60461b", null ],
+    [ "id", "struct_tg_bot_1_1_poll.html#a7e6294227d359ec09856d41fa5b6e8e0", null ],
+    [ "isAnonymous", "struct_tg_bot_1_1_poll.html#a1167c2888a7c06df4d259314c4822273", null ],
+    [ "isClosed", "struct_tg_bot_1_1_poll.html#a3f202c8542a0ba6478b63b55e412638a", null ],
+    [ "media", "struct_tg_bot_1_1_poll.html#ab7ca283d6b4b7c7d31a91367cbc7839e", null ],
+    [ "membersOnly", "struct_tg_bot_1_1_poll.html#aaa2ba789a1a920b006f9cd16ac2f5068", null ],
+    [ "openPeriod", "struct_tg_bot_1_1_poll.html#acba7c37d63840f8fff2752e6780da0f3", null ],
+    [ "options", "struct_tg_bot_1_1_poll.html#a6ec39d44e607254610b80c790ab8eeb5", null ],
+    [ "question", "struct_tg_bot_1_1_poll.html#aef1e91693da78e9a4c0d5bbb6e83ba3e", null ],
+    [ "questionEntities", "struct_tg_bot_1_1_poll.html#add565ed9193691f73ad648faabce5344", null ],
+    [ "totalVoterCount", "struct_tg_bot_1_1_poll.html#afcaba4e0539d01b8aa4e740b6ff19e33", null ],
+    [ "type", "struct_tg_bot_1_1_poll.html#ae564a719da71fdd32fc5061a81893d67", null ]
+];
