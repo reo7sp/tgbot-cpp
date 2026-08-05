@@ -1,5 +1,11 @@
 var NAVTREEINDEX8 =
 {
+"struct_tg_bot_1_1_forum_topic.html#a5f2b83cca31a8ef97142943183f5ffea":[0,2,86,2],
+"struct_tg_bot_1_1_forum_topic.html#a7145ec2f8f21a06930b8f493006e8195":[0,2,86,1],
+"struct_tg_bot_1_1_forum_topic.html#a89f00dffa0c1724957feec52fc32bb0f":[0,2,86,3],
+"struct_tg_bot_1_1_forum_topic.html#acc77c033dff66f56ace20a98cebf8a96":[0,2,86,0],
+"struct_tg_bot_1_1_forum_topic_closed.html":[0,2,87],
+"struct_tg_bot_1_1_forum_topic_closed.html#aeca603c22294dd7407694088df7776db":[0,2,87,0],
 "struct_tg_bot_1_1_forum_topic_created.html":[0,2,88],
 "struct_tg_bot_1_1_forum_topic_created.html#a37bcfbf5986cc5ba7a192e379db50751":[0,2,88,4],
 "struct_tg_bot_1_1_forum_topic_created.html#aa0d01ae3e39ab2cb5bc58035f1b34968":[0,2,88,2],
@@ -243,11 +249,5 @@ var NAVTREEINDEX8 =
 "struct_tg_bot_1_1_inline_query_result_cached_video.html#abea4deca4249a41cb3fbe999ed820fa0":[0,2,116,11],
 "struct_tg_bot_1_1_inline_query_result_cached_video.html#ac3942cfb23f0136fb532589a319769f9":[0,2,116,4],
 "struct_tg_bot_1_1_inline_query_result_cached_video.html#ac4f5a80ea05b557a2175a0d3e122c6f8":[0,2,116,5],
-"struct_tg_bot_1_1_inline_query_result_cached_voice.html":[0,2,117],
-"struct_tg_bot_1_1_inline_query_result_cached_voice.html#a08da46d6226795be1755d56e17ab8d77":[0,2,117,3],
-"struct_tg_bot_1_1_inline_query_result_cached_voice.html#a11680f18f29961de225ec0ea364b97e9":[0,2,117,6],
-"struct_tg_bot_1_1_inline_query_result_cached_voice.html#a642b585ddcd5850918407958ea30deee":[0,2,117,0],
-"struct_tg_bot_1_1_inline_query_result_cached_voice.html#a81dfb673c68e4edb2f03a15a9e3e3db5":[0,2,117,5],
-"struct_tg_bot_1_1_inline_query_result_cached_voice.html#aa9e124555c10f7be5723ecb3dd8474c8":[0,2,117,4],
-"struct_tg_bot_1_1_inline_query_result_cached_voice.html#ab3810efdb799663c6fa106b3d28fb759":[0,2,117,9]
+"struct_tg_bot_1_1_inline_query_result_cached_voice.html":[0,2,117]
 };

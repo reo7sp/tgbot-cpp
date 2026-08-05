@@ -136,12 +136,13 @@ Inheritance diagram for TgBot::HttpServer&lt; Protocol &gt;:</div>
 <tr class="heading"><td colspan="2"><h2 id="header-pub-types" class="groupheader"><a id="pub-types" name="pub-types"></a>
 Public Types</h2></td></tr>
 <tr class="memitem:afba74f0301a5174a1f287313a734f3b6" id="r_afba74f0301a5174a1f287313a734f3b6"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#afba74f0301a5174a1f287313a734f3b6">ServerHandler</a> = std::function&lt;std::string(const std::string&amp;, const std::unordered_map&lt;std::string, std::string&gt;&amp;)&gt;</td></tr>
+<tr class="memitem:a7b8f0d6076e370f41e5c2cdb153b369b" id="r_a7b8f0d6076e370f41e5c2cdb153b369b"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#a7b8f0d6076e370f41e5c2cdb153b369b">ErrorHandler</a> = std::function&lt;void(const std::exception&amp;)&gt;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a76f59ef0754327c437352aeb0b19a3f2" id="r_a76f59ef0754327c437352aeb0b19a3f2"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a76f59ef0754327c437352aeb0b19a3f2">HttpServer</a> (const typename boost::asio::basic_socket_acceptor&lt; Protocol &gt;::endpoint_type &amp;endpoint, <a class="el" href="#afba74f0301a5174a1f287313a734f3b6">ServerHandler</a> handler)</td></tr>
-<tr class="memitem:aa237b199d8a0712b983e4913970ad7f7" id="r_aa237b199d8a0712b983e4913970ad7f7"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#aa237b199d8a0712b983e4913970ad7f7">start</a> ()</td></tr>
-<tr class="memdesc:aa237b199d8a0712b983e4913970ad7f7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Starts receiving new connections.  <br /></td></tr>
+<tr class="memitem:ae2e75bebefad952ea2fcb50ef3c9712b" id="r_ae2e75bebefad952ea2fcb50ef3c9712b"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ae2e75bebefad952ea2fcb50ef3c9712b">start</a> (const <a class="el" href="#a7b8f0d6076e370f41e5c2cdb153b369b">ErrorHandler</a> &amp;errorHandler={ }, std::initializer_list&lt; int &gt; signals={ SIGINT, SIGTERM })</td></tr>
+<tr class="memdesc:ae2e75bebefad952ea2fcb50ef3c9712b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Starts receiving connections until <a class="el" href="#aeed8b9200cc2932126b9c27946751377" title="Stops receiving new connections. Connections already accepted are completed.">stop()</a> is called or one of the configured signals is received.  <br /></td></tr>
 <tr class="memitem:aeed8b9200cc2932126b9c27946751377" id="r_aeed8b9200cc2932126b9c27946751377"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#aeed8b9200cc2932126b9c27946751377">stop</a> ()</td></tr>
 <tr class="memdesc:aeed8b9200cc2932126b9c27946751377"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stops receiving new connections. Connections already accepted are completed.  <br /></td></tr>
 </table>
@@ -149,8 +150,26 @@ Public Member Functions</h2></td></tr>
 <div class="textblock"><div class="compoundTemplParams">template&lt;typename Protocol&gt;<br />
 class TgBot::HttpServer&lt; Protocol &gt;</div><p>This class handles HTTP requests from the Internet. </p>
 
-<p class="definition">Definition at line <a class="el" href="_http_server_8h_source.html#l00023">23</a> of file <a class="el" href="_http_server_8h_source.html">HttpServer.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_http_server_8h_source.html#l00027">27</a> of file <a class="el" href="_http_server_8h_source.html">HttpServer.h</a>.</p>
 </div><a name="doc-typedef-members" id="doc-typedef-members"></a><h2 id="header-doc-typedef-members" class="groupheader">Member Typedef Documentation</h2>
+<a id="a7b8f0d6076e370f41e5c2cdb153b369b" name="a7b8f0d6076e370f41e5c2cdb153b369b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7b8f0d6076e370f41e5c2cdb153b369b">&#9670;&#160;</a></span>ErrorHandler</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Protocol&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="class_tg_bot_1_1_http_server.html">TgBot::HttpServer</a>&lt; Protocol &gt;::ErrorHandler = std::function&lt;void(const std::exception&amp;)&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_http_server_8h_source.html#l00030">30</a> of file <a class="el" href="_http_server_8h_source.html">HttpServer.h</a>.</p>
+
+</div>
+</div>
 <a id="afba74f0301a5174a1f287313a734f3b6" name="afba74f0301a5174a1f287313a734f3b6"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#afba74f0301a5174a1f287313a734f3b6">&#9670;&#160;</a></span>ServerHandler</h2>
 
@@ -165,7 +184,7 @@ template&lt;typename Protocol&gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_http_server_8h_source.html#l00026">26</a> of file <a class="el" href="_http_server_8h_source.html">HttpServer.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_http_server_8h_source.html#l00029">29</a> of file <a class="el" href="_http_server_8h_source.html">HttpServer.h</a>.</p>
 
 </div>
 </div>
@@ -199,13 +218,13 @@ template&lt;typename Protocol&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_http_server_8h_source.html#l00028">28</a> of file <a class="el" href="_http_server_8h_source.html">HttpServer.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_http_server_8h_source.html#l00032">32</a> of file <a class="el" href="_http_server_8h_source.html">HttpServer.h</a>.</p>
 
 </div>
 </div>
 <a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
-<a id="aa237b199d8a0712b983e4913970ad7f7" name="aa237b199d8a0712b983e4913970ad7f7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa237b199d8a0712b983e4913970ad7f7">&#9670;&#160;</a></span>start()</h2>
+<a id="ae2e75bebefad952ea2fcb50ef3c9712b" name="ae2e75bebefad952ea2fcb50ef3c9712b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae2e75bebefad952ea2fcb50ef3c9712b">&#9670;&#160;</a></span>start()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -218,8 +237,12 @@ template&lt;typename Protocol&gt; </div>
         <tr>
           <td class="memname">void <a class="el" href="class_tg_bot_1_1_http_server.html">TgBot::HttpServer</a>&lt; Protocol &gt;::start </td>
           <td>(</td>
-          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td class="paramtype">const <a class="el" href="#a7b8f0d6076e370f41e5c2cdb153b369b">ErrorHandler</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>errorHandler</em></span><span class="paramdefsep"> = </span><span class="paramdefval">{&#160;}</span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">std::initializer_list&lt; int &gt;</td>          <td class="paramname"><span class="paramname"><em>signals</em></span><span class="paramdefsep"> = </span><span class="paramdefval">{&#160;SIGINT,&#160;SIGTERM&#160;}</span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -229,9 +252,16 @@ template&lt;typename Protocol&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Starts receiving new connections. </p>
+<p>Starts receiving connections until <a class="el" href="#aeed8b9200cc2932126b9c27946751377" title="Stops receiving new connections. Connections already accepted are completed.">stop()</a> is called or one of the configured signals is received. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">errorHandler</td><td>Called when receiving or handling a request fails. </td></tr>
+    <tr><td class="paramname">signals</td><td>Process signals that stop the server. Pass an empty list to disable signal handling. </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p class="definition">Definition at line <a class="el" href="_http_server_8h_source.html#l00037">37</a> of file <a class="el" href="_http_server_8h_source.html">HttpServer.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_http_server_8h_source.html#l00043">43</a> of file <a class="el" href="_http_server_8h_source.html">HttpServer.h</a>.</p>
 
 </div>
 </div>
@@ -262,7 +292,7 @@ template&lt;typename Protocol&gt; </div>
 
 <p>Stops receiving new connections. Connections already accepted are completed. </p>
 
-<p class="definition">Definition at line <a class="el" href="_http_server_8h_source.html#l00046">46</a> of file <a class="el" href="_http_server_8h_source.html">HttpServer.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_http_server_8h_source.html#l00072">72</a> of file <a class="el" href="_http_server_8h_source.html">HttpServer.h</a>.</p>
 
 </div>
 </div>

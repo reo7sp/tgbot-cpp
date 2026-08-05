@@ -1,5 +1,11 @@
 var NAVTREEINDEX16 =
 {
+"struct_tg_bot_1_1_user_rating.html#aefd671fcfe882ac2c1c389a7da2a3391":[0,2,374,4],
+"struct_tg_bot_1_1_users_shared.html":[0,2,375],
+"struct_tg_bot_1_1_users_shared.html#a409b1917c307161262f8ca74f085ab69":[0,2,375,2],
+"struct_tg_bot_1_1_users_shared.html#a95a0a3c6d78f5160ed7364c5cb9cc2c6":[0,2,375,0],
+"struct_tg_bot_1_1_users_shared.html#a9ce12328026861a8f83191fff0088a5a":[0,2,375,1],
+"struct_tg_bot_1_1_venue.html":[0,2,376],
 "struct_tg_bot_1_1_venue.html#a1f55df28d6c079d35f72a904c77e6c18":[0,2,376,2],
 "struct_tg_bot_1_1_venue.html#a411e85c19c38ad2b8922d60582f72459":[0,2,376,1],
 "struct_tg_bot_1_1_venue.html#a97701a6f05b3e0f43ff8a6ed22385c0d":[0,2,376,5],

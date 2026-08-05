@@ -30,15 +30,20 @@ var group__net =
       [ "value", "struct_tg_bot_1_1_http_form_field.html#abc545372f8f0bf9a6d1acc7cd214006f", null ]
     ] ],
     [ "TgBot::HttpServer&lt; Protocol &gt;", "class_tg_bot_1_1_http_server.html", [
+      [ "ErrorHandler", "class_tg_bot_1_1_http_server.html#a7b8f0d6076e370f41e5c2cdb153b369b", null ],
       [ "ServerHandler", "class_tg_bot_1_1_http_server.html#afba74f0301a5174a1f287313a734f3b6", null ],
       [ "HttpServer", "class_tg_bot_1_1_http_server.html#a76f59ef0754327c437352aeb0b19a3f2", null ],
-      [ "start", "class_tg_bot_1_1_http_server.html#aa237b199d8a0712b983e4913970ad7f7", null ],
+      [ "start", "class_tg_bot_1_1_http_server.html#ae2e75bebefad952ea2fcb50ef3c9712b", null ],
       [ "stop", "class_tg_bot_1_1_http_server.html#aeed8b9200cc2932126b9c27946751377", null ]
     ] ],
     [ "TgBot::TgLongPoll", "class_tg_bot_1_1_tg_long_poll.html", [
+      [ "ErrorHandler", "class_tg_bot_1_1_tg_long_poll.html#a65dde953de95e695e2f9db330d66151c", null ],
       [ "TgLongPoll", "class_tg_bot_1_1_tg_long_poll.html#a9039d9da985ae7717a85199c830e6c19", null ],
       [ "TgLongPoll", "class_tg_bot_1_1_tg_long_poll.html#a2cc4ebc5c87ab935d8fe72afe5023bbb", null ],
-      [ "start", "class_tg_bot_1_1_tg_long_poll.html#a8928ddad3b976a636a53bb066180cbaa", null ]
+      [ "isRunning", "class_tg_bot_1_1_tg_long_poll.html#a5b88c9ab9e1740654a946dd464bea4b4", null ],
+      [ "start", "class_tg_bot_1_1_tg_long_poll.html#a8928ddad3b976a636a53bb066180cbaa", null ],
+      [ "startLoop", "class_tg_bot_1_1_tg_long_poll.html#aff2682ca8f32a28c0afcc3fe554d0bf5", null ],
+      [ "stop", "class_tg_bot_1_1_tg_long_poll.html#a45fc24580b23fcfcfe1ad2fea38a6bcd", null ]
     ] ],
     [ "TgBot::TgWebhookServer&lt; Protocol &gt;", "class_tg_bot_1_1_tg_webhook_server.html", [
       [ "TgWebhookServer", "class_tg_bot_1_1_tg_webhook_server.html#ab097de93d1a3a238736d5d668ec54ed1", null ],

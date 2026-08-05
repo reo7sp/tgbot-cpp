@@ -61,21 +61,21 @@ var NAVTREEINDEX =
 [
 "_api_8h.html",
 "class_tg_bot_1_1_api.html#a216a043e299788de56d9e33a6d684e89",
-"class_tg_bot_1_1_tg_long_poll.html#a8928ddad3b976a636a53bb066180cbaa",
-"namespace_tg_bot.html#a2c5f1ef1138b4cd6f89e3b391066e0bc",
-"namespace_tg_bot.html#a7de2791f78ff71369e9a602e2be25958",
-"namespace_tg_bot.html#aca95736eea660c4f2ba9bde4a97368c0",
-"struct_tg_bot_1_1_bot_command_scope_all_group_chats.html",
-"struct_tg_bot_1_1_chat_member.html#a80e5200f6e52eac060eee5d65f97d048",
-"struct_tg_bot_1_1_forum_topic_created.html",
-"struct_tg_bot_1_1_inline_query_result_cached_voice.html#ab430d9d49a3c37a7d20637eccf2d8d14",
-"struct_tg_bot_1_1_input_media_live_photo.html#a2441a8ac5f1ee584bab768509deb6e2c",
-"struct_tg_bot_1_1_input_story_content_photo.html",
-"struct_tg_bot_1_1_message.html#ad8b1dc919757f6e6757297a609e1a4f9",
-"struct_tg_bot_1_1_poll.html#a1167c2888a7c06df4d259314c4822273",
-"struct_tg_bot_1_1_rich_block_table.html",
-"struct_tg_bot_1_1_story_area_type_link.html",
-"struct_tg_bot_1_1_venue.html#a1f55df28d6c079d35f72a904c77e6c18"
+"class_tg_bot_1_1_tg_long_poll.html#a2cc4ebc5c87ab935d8fe72afe5023bbb",
+"namespace_tg_bot.html#a2a7c0a3d57c524c5894204e6c216af9b",
+"namespace_tg_bot.html#a7c5a7570d333360555200524b7335b7d",
+"namespace_tg_bot.html#ac88bb5935e5ee2a6ce38a4c55942099b",
+"struct_tg_bot_1_1_bot_command_scope.html",
+"struct_tg_bot_1_1_chat_location.html",
+"struct_tg_bot_1_1_forum_topic.html#a5f2b83cca31a8ef97142943183f5ffea",
+"struct_tg_bot_1_1_inline_query_result_cached_voice.html#a08da46d6226795be1755d56e17ab8d77",
+"struct_tg_bot_1_1_input_media_link.html#a1a4d0ad369dace294347b2435198399b",
+"struct_tg_bot_1_1_input_sticker.html#aa0c51e901667ad7373463cc3d9d89d78",
+"struct_tg_bot_1_1_message.html#ad0012c8294577700767a86ff20779478",
+"struct_tg_bot_1_1_photo_size.html#a19ae17eb8674aa3efc481dbdb6d5603b",
+"struct_tg_bot_1_1_rich_block_section_heading.html#aaa8d531f29710dbb99b57166403a8a72",
+"struct_tg_bot_1_1_story_area_position.html#ab338beebf7a7e587a9d80561317515a4",
+"struct_tg_bot_1_1_user_rating.html#aefd671fcfe882ac2c1c389a7da2a3391"
 ];
 
 const SYNCONMSG = 'click to disable panel synchronization';

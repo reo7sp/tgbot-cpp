@@ -1,5 +1,11 @@
 var NAVTREEINDEX12 =
 {
+"struct_tg_bot_1_1_message.html#ad0012c8294577700767a86ff20779478":[0,2,210,23],
+"struct_tg_bot_1_1_message.html#ad15052d823e6522e4766c6649f99692f":[0,2,210,25],
+"struct_tg_bot_1_1_message.html#ad1f02328878162a908628592966978dc":[0,2,210,16],
+"struct_tg_bot_1_1_message.html#ad2973420feb9ef425a73e2c7ac9cc45b":[0,2,210,117],
+"struct_tg_bot_1_1_message.html#ad579d13a06c93b9e405187ba2900d686":[0,2,210,88],
+"struct_tg_bot_1_1_message.html#ad7f9712c9c62b94e85c49c467e1d0c1f":[0,2,210,85],
 "struct_tg_bot_1_1_message.html#ad8b1dc919757f6e6757297a609e1a4f9":[0,2,210,93],
 "struct_tg_bot_1_1_message.html#adac7b7e180a5caafc45f056a3f6b5cc3":[0,2,210,71],
 "struct_tg_bot_1_1_message.html#adb29d2e53977ccbc29d548f1c44a0664":[0,2,210,56],
@@ -243,11 +249,5 @@ var NAVTREEINDEX12 =
 "struct_tg_bot_1_1_passport_file.html#ad858d3fb6ce20c74d4001ba6b2a5950c":[0,2,245,0],
 "struct_tg_bot_1_1_passport_file.html#af4505824cbb8a620cf2921a38af51270":[0,2,245,4],
 "struct_tg_bot_1_1_photo_size.html":[0,2,246],
-"struct_tg_bot_1_1_photo_size.html#a16df78bbeb13cf4969031b42691c9b77":[0,2,246,5],
-"struct_tg_bot_1_1_photo_size.html#a19ae17eb8674aa3efc481dbdb6d5603b":[0,2,246,4],
-"struct_tg_bot_1_1_photo_size.html#a3dd2b4481a3e78336c3ccbadad1f4b77":[0,2,246,3],
-"struct_tg_bot_1_1_photo_size.html#a4bdb234592d1499572f4ca95968cec21":[0,2,246,2],
-"struct_tg_bot_1_1_photo_size.html#af3ffb8066db943a59156eb22e976165e":[0,2,246,1],
-"struct_tg_bot_1_1_photo_size.html#afba2074f688251e33453ee6395dfb0e2":[0,2,246,0],
-"struct_tg_bot_1_1_poll.html":[0,2,247]
+"struct_tg_bot_1_1_photo_size.html#a16df78bbeb13cf4969031b42691c9b77":[0,2,246,5]
 };

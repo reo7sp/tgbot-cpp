@@ -1,5 +1,11 @@
 var NAVTREEINDEX6 =
 {
+"struct_tg_bot_1_1_bot_command_scope.html":[0,2,18],
+"struct_tg_bot_1_1_bot_command_scope.html#a95db0e9b28338bc390e06f74d2234112":[0,2,18,0],
+"struct_tg_bot_1_1_bot_command_scope.html#ab2dfed699ebd75ff3d4ca15cbc0cb763":[0,2,18,1],
+"struct_tg_bot_1_1_bot_command_scope_all_chat_administrators.html":[0,2,19],
+"struct_tg_bot_1_1_bot_command_scope_all_chat_administrators.html#a1cfcc60575e314a37135e7e36ab32a25":[0,2,19,0],
+"struct_tg_bot_1_1_bot_command_scope_all_chat_administrators.html#a62f5924c3b04a96c0bc83db56695781f":[0,2,19,1],
 "struct_tg_bot_1_1_bot_command_scope_all_group_chats.html":[0,2,20],
 "struct_tg_bot_1_1_bot_command_scope_all_group_chats.html#a23ea1208e7dd65081efd113aa30aa3d0":[0,2,20,0],
 "struct_tg_bot_1_1_bot_command_scope_all_group_chats.html#a70e56f83bf09910ada10802b4466842a":[0,2,20,1],
@@ -243,11 +249,5 @@ var NAVTREEINDEX6 =
 "struct_tg_bot_1_1_chat_join_request.html#a58e285f589c130cd45d2d72df316997c":[0,2,52,4],
 "struct_tg_bot_1_1_chat_join_request.html#a5dc309f32dd7d269d59272659eb132aa":[0,2,52,7],
 "struct_tg_bot_1_1_chat_join_request.html#aca672ee588ea99998aa1ba8a290cd2be":[0,2,52,0],
-"struct_tg_bot_1_1_chat_join_request.html#af1644aabd9c5c6d43aeec688b0597897":[0,2,52,5],
-"struct_tg_bot_1_1_chat_location.html":[0,2,53],
-"struct_tg_bot_1_1_chat_location.html#a4537af9a4f0ef578306c0bdcacd08e95":[0,2,53,0],
-"struct_tg_bot_1_1_chat_location.html#aca7bbf12fca29db0b40bef8a65b05b51":[0,2,53,2],
-"struct_tg_bot_1_1_chat_location.html#ade8edfc9e7be76e7ef9fa5ac24176dd6":[0,2,53,1],
-"struct_tg_bot_1_1_chat_member.html":[0,2,54],
-"struct_tg_bot_1_1_chat_member.html#a78bcd165e0633c00f3f14044fa5669d6":[0,2,54,1]
+"struct_tg_bot_1_1_chat_join_request.html#af1644aabd9c5c6d43aeec688b0597897":[0,2,52,5]
 };

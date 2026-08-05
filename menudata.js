@@ -118,6 +118,7 @@ var menudata={children:[
 {text:"z",url:"functions_vars_z.html#index_z"}]},
 {text:"Typedefs",url:"functions_type.html",children:[
 {text:"c",url:"functions_type.html#index_c"},
+{text:"e",url:"functions_type_e.html#index_e"},
 {text:"i",url:"functions_type_i.html#index_i"},
 {text:"m",url:"functions_type_m.html#index_m"},
 {text:"p",url:"functions_type_p.html#index_p"},

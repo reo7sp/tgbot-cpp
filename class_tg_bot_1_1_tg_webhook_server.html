@@ -137,8 +137,8 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a40206b1a79434028578e597983f54027" id="r_a40206b1a79434028578e597983f54027"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a40206b1a79434028578e597983f54027">TgWebhookServer</a> (const typename boost::asio::basic_socket_acceptor&lt; Protocol &gt;::endpoint_type &amp;endpoint, const <a class="el" href="class_tg_bot_1_1_bot.html">Bot</a> &amp;bot)</td></tr>
 <tr class="inherit_header pub_methods_class_tg_bot_1_1_http_server"><td colspan="2">Public Member Functions inherited from <a class="el" href="class_tg_bot_1_1_http_server.html">TgBot::HttpServer&lt; Protocol &gt;</a></td></tr>
 <tr class="memitem:a76f59ef0754327c437352aeb0b19a3f2 pub_methods_class_tg_bot_1_1_http_server" id="r_a76f59ef0754327c437352aeb0b19a3f2"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="class_tg_bot_1_1_http_server.html#a76f59ef0754327c437352aeb0b19a3f2">HttpServer</a> (const typename boost::asio::basic_socket_acceptor&lt; Protocol &gt;::endpoint_type &amp;endpoint, <a class="el" href="class_tg_bot_1_1_http_server.html#afba74f0301a5174a1f287313a734f3b6">ServerHandler</a> handler)</td></tr>
-<tr class="memitem:aa237b199d8a0712b983e4913970ad7f7 pub_methods_class_tg_bot_1_1_http_server" id="r_aa237b199d8a0712b983e4913970ad7f7"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="class_tg_bot_1_1_http_server.html#aa237b199d8a0712b983e4913970ad7f7">start</a> ()</td></tr>
-<tr class="memdesc:aa237b199d8a0712b983e4913970ad7f7 pub_methods_class_tg_bot_1_1_http_server"><td class="mdescLeft">&#160;</td><td class="mdescRight">Starts receiving new connections.  <br /></td></tr>
+<tr class="memitem:ae2e75bebefad952ea2fcb50ef3c9712b pub_methods_class_tg_bot_1_1_http_server" id="r_ae2e75bebefad952ea2fcb50ef3c9712b"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="class_tg_bot_1_1_http_server.html#ae2e75bebefad952ea2fcb50ef3c9712b">start</a> (const <a class="el" href="class_tg_bot_1_1_http_server.html#a7b8f0d6076e370f41e5c2cdb153b369b">ErrorHandler</a> &amp;errorHandler={ }, std::initializer_list&lt; int &gt; signals={ SIGINT, SIGTERM })</td></tr>
+<tr class="memdesc:ae2e75bebefad952ea2fcb50ef3c9712b pub_methods_class_tg_bot_1_1_http_server"><td class="mdescLeft">&#160;</td><td class="mdescRight">Starts receiving connections until <a class="el" href="class_tg_bot_1_1_http_server.html#aeed8b9200cc2932126b9c27946751377" title="Stops receiving new connections. Connections already accepted are completed.">stop()</a> is called or one of the configured signals is received.  <br /></td></tr>
 <tr class="memitem:aeed8b9200cc2932126b9c27946751377 pub_methods_class_tg_bot_1_1_http_server" id="r_aeed8b9200cc2932126b9c27946751377"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="class_tg_bot_1_1_http_server.html#aeed8b9200cc2932126b9c27946751377">stop</a> ()</td></tr>
 <tr class="memdesc:aeed8b9200cc2932126b9c27946751377 pub_methods_class_tg_bot_1_1_http_server"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stops receiving new connections. Connections already accepted are completed.  <br /></td></tr>
 </table><table class="memberdecls">
@@ -146,6 +146,7 @@ Public Member Functions</h2></td></tr>
 Additional Inherited Members</h2></td></tr>
 <tr class="inherit_header pub_types_class_tg_bot_1_1_http_server"><td colspan="2">Public Types inherited from <a class="el" href="class_tg_bot_1_1_http_server.html">TgBot::HttpServer&lt; Protocol &gt;</a></td></tr>
 <tr class="memitem:afba74f0301a5174a1f287313a734f3b6 pub_types_class_tg_bot_1_1_http_server" id="r_afba74f0301a5174a1f287313a734f3b6"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="class_tg_bot_1_1_http_server.html#afba74f0301a5174a1f287313a734f3b6">ServerHandler</a> = std::function&lt;std::string(const std::string&amp;, const std::unordered_map&lt;std::string, std::string&gt;&amp;)&gt;</td></tr>
+<tr class="memitem:a7b8f0d6076e370f41e5c2cdb153b369b pub_types_class_tg_bot_1_1_http_server" id="r_a7b8f0d6076e370f41e5c2cdb153b369b"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="class_tg_bot_1_1_http_server.html#a7b8f0d6076e370f41e5c2cdb153b369b">ErrorHandler</a> = std::function&lt;void(const std::exception&amp;)&gt;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;typename Protocol&gt;<br />
@@ -217,7 +218,7 @@ template&lt;typename Protocol&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_tg_webhook_server_8h_source.html#l00026">26</a> of file <a class="el" href="_tg_webhook_server_8h_source.html">TgWebhookServer.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tg_webhook_server_8h_source.html#l00025">25</a> of file <a class="el" href="_tg_webhook_server_8h_source.html">TgWebhookServer.h</a>.</p>
 
 </div>
 </div>
@@ -250,7 +251,7 @@ template&lt;typename Protocol&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_tg_webhook_server_8h_source.html#l00036">36</a> of file <a class="el" href="_tg_webhook_server_8h_source.html">TgWebhookServer.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tg_webhook_server_8h_source.html#l00035">35</a> of file <a class="el" href="_tg_webhook_server_8h_source.html">TgWebhookServer.h</a>.</p>
 
 </div>
 </div>

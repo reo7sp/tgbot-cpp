@@ -1,5 +1,11 @@
 var NAVTREEINDEX5 =
 {
+"namespace_tg_bot.html#ac88bb5935e5ee2a6ce38a4c55942099b":[1,0,0,896],
+"namespace_tg_bot.html#ac8a62e5829fe3886b2147298a93ccc54":[1,0,0,927],
+"namespace_tg_bot.html#ac8c58cede2103c7161b115e1b19d6aa1":[1,0,0,430],
+"namespace_tg_bot.html#ac935c978f14f42203bae4a0d63132f1f":[1,0,0,526],
+"namespace_tg_bot.html#ac93dcaaa7ae2454bd0abee3252480f1e":[1,0,0,666],
+"namespace_tg_bot.html#ac99bcee174c0d0de25065e6ea77ef665":[1,0,0,1133],
 "namespace_tg_bot.html#aca95736eea660c4f2ba9bde4a97368c0":[1,0,0,696],
 "namespace_tg_bot.html#acb01657ac6a418d2c780c9837a1202b7":[1,0,0,813],
 "namespace_tg_bot.html#acb0b13f97adda888d4a2a6c094cb4fa9":[1,0,0,1105],
@@ -243,11 +249,5 @@ var NAVTREEINDEX5 =
 "struct_tg_bot_1_1_bot_command.html#a552f644edc9aebec5f274eb552202e6f":[0,2,17,1],
 "struct_tg_bot_1_1_bot_command.html#a61849e581240fa9d97677cf8c182a6d4":[0,2,17,0],
 "struct_tg_bot_1_1_bot_command.html#aefae2db896565637bb1667c3d507047c":[0,2,17,2],
-"struct_tg_bot_1_1_bot_command.html#afce76a713b356209e6e4373c0bb69083":[0,2,17,3],
-"struct_tg_bot_1_1_bot_command_scope.html":[0,2,18],
-"struct_tg_bot_1_1_bot_command_scope.html#a95db0e9b28338bc390e06f74d2234112":[0,2,18,0],
-"struct_tg_bot_1_1_bot_command_scope.html#ab2dfed699ebd75ff3d4ca15cbc0cb763":[0,2,18,1],
-"struct_tg_bot_1_1_bot_command_scope_all_chat_administrators.html":[0,2,19],
-"struct_tg_bot_1_1_bot_command_scope_all_chat_administrators.html#a1cfcc60575e314a37135e7e36ab32a25":[0,2,19,0],
-"struct_tg_bot_1_1_bot_command_scope_all_chat_administrators.html#a62f5924c3b04a96c0bc83db56695781f":[0,2,19,1]
+"struct_tg_bot_1_1_bot_command.html#afce76a713b356209e6e4373c0bb69083":[0,2,17,3]
 };

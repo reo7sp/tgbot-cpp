@@ -1,7 +1,12 @@
 var NAVTREEINDEX2 =
 {
-"class_tg_bot_1_1_tg_long_poll.html#a8928ddad3b976a636a53bb066180cbaa":[0,1,5,2],
-"class_tg_bot_1_1_tg_long_poll.html#a9039d9da985ae7717a85199c830e6c19":[0,1,5,0],
+"class_tg_bot_1_1_tg_long_poll.html#a2cc4ebc5c87ab935d8fe72afe5023bbb":[0,1,5,2],
+"class_tg_bot_1_1_tg_long_poll.html#a45fc24580b23fcfcfe1ad2fea38a6bcd":[0,1,5,6],
+"class_tg_bot_1_1_tg_long_poll.html#a5b88c9ab9e1740654a946dd464bea4b4":[0,1,5,3],
+"class_tg_bot_1_1_tg_long_poll.html#a65dde953de95e695e2f9db330d66151c":[0,1,5,0],
+"class_tg_bot_1_1_tg_long_poll.html#a8928ddad3b976a636a53bb066180cbaa":[0,1,5,4],
+"class_tg_bot_1_1_tg_long_poll.html#a9039d9da985ae7717a85199c830e6c19":[0,1,5,1],
+"class_tg_bot_1_1_tg_long_poll.html#aff2682ca8f32a28c0afcc3fe554d0bf5":[0,1,5,5],
 "class_tg_bot_1_1_tg_webhook_server.html":[0,1,6],
 "class_tg_bot_1_1_tg_webhook_server.html#a40206b1a79434028578e597983f54027":[0,1,6,2],
 "class_tg_bot_1_1_tg_webhook_server.html#a47e45f3c13bbbb52bdde15819f7de7f2":[0,1,6,1],
@@ -62,10 +67,11 @@ var NAVTREEINDEX2 =
 "functions_t.html":[2,3,0,20],
 "functions_type.html":[2,3,3],
 "functions_type.html":[2,3,3,0],
-"functions_type_i.html":[2,3,3,1],
-"functions_type_m.html":[2,3,3,2],
-"functions_type_p.html":[2,3,3,3],
-"functions_type_s.html":[2,3,3,4],
+"functions_type_e.html":[2,3,3,1],
+"functions_type_i.html":[2,3,3,2],
+"functions_type_m.html":[2,3,3,3],
+"functions_type_p.html":[2,3,3,4],
+"functions_type_s.html":[2,3,3,5],
 "functions_u.html":[2,3,0,21],
 "functions_v.html":[2,3,0,22],
 "functions_vars.html":[2,3,2],
@@ -243,11 +249,5 @@ var NAVTREEINDEX2 =
 "namespace_tg_bot.html#a290e3d8b97daa1ed78018c7c9f0121fa":[1,0,0,1019],
 "namespace_tg_bot.html#a29667ee7721ac5fcce860cb5efd27d47":[1,0,0,868],
 "namespace_tg_bot.html#a299fe96a77bd19c6bfd3f06cbd9f7120":[1,0,0,1082],
-"namespace_tg_bot.html#a29cc1857028efa4973f7e5af8ca9d08d":[1,0,0,904],
-"namespace_tg_bot.html#a2a7c0a3d57c524c5894204e6c216af9b":[1,0,0,566],
-"namespace_tg_bot.html#a2aee411102ad1282a889b6beaceda6de":[1,0,0,1131],
-"namespace_tg_bot.html#a2bbcf348b9b11df5dd232460e8fabff9":[1,0,0,717],
-"namespace_tg_bot.html#a2bd8048947c0daf08377accad2d449c2":[1,0,0,1036],
-"namespace_tg_bot.html#a2be179228f2cfe5174e20bbe04175f68":[1,0,0,878],
-"namespace_tg_bot.html#a2be95baa7cc9348d2ffc9676bdbdf263":[1,0,0,835]
+"namespace_tg_bot.html#a29cc1857028efa4973f7e5af8ca9d08d":[1,0,0,904]
 };

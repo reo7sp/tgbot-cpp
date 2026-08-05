@@ -143,13 +143,14 @@ var searchData=
   ['isrecurring_140',['isRecurring',['../struct_tg_bot_1_1_successful_payment.html#ae1a3b0e63e3ea896985bdb40e61b4ffb',1,'TgBot::SuccessfulPayment']]],
   ['isrevoked_141',['isRevoked',['../struct_tg_bot_1_1_chat_invite_link.html#a39d1eba729e882a3e3c82288fe70d8bf',1,'TgBot::ChatInviteLink']]],
   ['isrtl_142',['isRtl',['../struct_tg_bot_1_1_input_rich_message.html#ad1e6386afd45db80a1bd24665fbb5ad7',1,'TgBot::InputRichMessage::isRtl'],['../struct_tg_bot_1_1_rich_message.html#aa6d8e8f7810e0ad07731f251b2de2d71',1,'TgBot::RichMessage::isRtl']]],
-  ['issaved_143',['isSaved',['../struct_tg_bot_1_1_owned_gift_regular.html#a15016a5a001e9eb33fe08dceff3e58f2',1,'TgBot::OwnedGiftRegular::isSaved'],['../struct_tg_bot_1_1_owned_gift_unique.html#a580aaf78dacf51f68a8026a341e69ee5',1,'TgBot::OwnedGiftUnique::isSaved']]],
-  ['isstargiveaway_144',['isStarGiveaway',['../struct_tg_bot_1_1_giveaway_completed.html#aed830fd7b87597e930e3ddb6ecbdb9a9',1,'TgBot::GiveawayCompleted']]],
-  ['isstriped_145',['isStriped',['../struct_tg_bot_1_1_input_rich_block_table.html#af9d5a7c627383789e69842e8551cc61d',1,'TgBot::InputRichBlockTable::isStriped'],['../struct_tg_bot_1_1_rich_block_table.html#a88da5e29c49ebcce61058e3ffc3bfdf6',1,'TgBot::RichBlockTable::isStriped']]],
-  ['istopicmessage_146',['isTopicMessage',['../struct_tg_bot_1_1_message.html#ae9ba337b707668291f650531394a20c7',1,'TgBot::Message']]],
-  ['isunclaimed_147',['isUnclaimed',['../struct_tg_bot_1_1_chat_boost_source_giveaway.html#a5850d59939264b5dbd0fdd3f1e3b9168',1,'TgBot::ChatBoostSourceGiveaway']]],
-  ['isupgradeseparate_148',['isUpgradeSeparate',['../struct_tg_bot_1_1_gift_info.html#a764444306e8c7ee290c34624fa402ec7',1,'TgBot::GiftInfo::isUpgradeSeparate'],['../struct_tg_bot_1_1_owned_gift_regular.html#aa2992feba2928986b668aec5c1f3d6e3',1,'TgBot::OwnedGiftRegular::isUpgradeSeparate']]],
-  ['isvideo_149',['isVideo',['../struct_tg_bot_1_1_sticker.html#a6f1b557771bee5f4414efe53cb161b8f',1,'TgBot::Sticker']]],
-  ['italic_150',['Italic',['../struct_tg_bot_1_1_message_entity.html#a6cb87a43b52a982682c1e592fbc1f2c9a1d874710ccdcd46b95397049d2e7500c',1,'TgBot::MessageEntity']]],
-  ['items_151',['items',['../struct_tg_bot_1_1_input_rich_block_list.html#ad495651d117dc1e6d0c7ef519e48e337',1,'TgBot::InputRichBlockList::items'],['../struct_tg_bot_1_1_rich_block_list.html#a22086215335d79be09bf6c2b5714cc4c',1,'TgBot::RichBlockList::items']]]
+  ['isrunning_143',['isRunning',['../class_tg_bot_1_1_tg_long_poll.html#a5b88c9ab9e1740654a946dd464bea4b4',1,'TgBot::TgLongPoll']]],
+  ['issaved_144',['isSaved',['../struct_tg_bot_1_1_owned_gift_regular.html#a15016a5a001e9eb33fe08dceff3e58f2',1,'TgBot::OwnedGiftRegular::isSaved'],['../struct_tg_bot_1_1_owned_gift_unique.html#a580aaf78dacf51f68a8026a341e69ee5',1,'TgBot::OwnedGiftUnique::isSaved']]],
+  ['isstargiveaway_145',['isStarGiveaway',['../struct_tg_bot_1_1_giveaway_completed.html#aed830fd7b87597e930e3ddb6ecbdb9a9',1,'TgBot::GiveawayCompleted']]],
+  ['isstriped_146',['isStriped',['../struct_tg_bot_1_1_input_rich_block_table.html#af9d5a7c627383789e69842e8551cc61d',1,'TgBot::InputRichBlockTable::isStriped'],['../struct_tg_bot_1_1_rich_block_table.html#a88da5e29c49ebcce61058e3ffc3bfdf6',1,'TgBot::RichBlockTable::isStriped']]],
+  ['istopicmessage_147',['isTopicMessage',['../struct_tg_bot_1_1_message.html#ae9ba337b707668291f650531394a20c7',1,'TgBot::Message']]],
+  ['isunclaimed_148',['isUnclaimed',['../struct_tg_bot_1_1_chat_boost_source_giveaway.html#a5850d59939264b5dbd0fdd3f1e3b9168',1,'TgBot::ChatBoostSourceGiveaway']]],
+  ['isupgradeseparate_149',['isUpgradeSeparate',['../struct_tg_bot_1_1_gift_info.html#a764444306e8c7ee290c34624fa402ec7',1,'TgBot::GiftInfo::isUpgradeSeparate'],['../struct_tg_bot_1_1_owned_gift_regular.html#aa2992feba2928986b668aec5c1f3d6e3',1,'TgBot::OwnedGiftRegular::isUpgradeSeparate']]],
+  ['isvideo_150',['isVideo',['../struct_tg_bot_1_1_sticker.html#a6f1b557771bee5f4414efe53cb161b8f',1,'TgBot::Sticker']]],
+  ['italic_151',['Italic',['../struct_tg_bot_1_1_message_entity.html#a6cb87a43b52a982682c1e592fbc1f2c9a1d874710ccdcd46b95397049d2e7500c',1,'TgBot::MessageEntity']]],
+  ['items_152',['items',['../struct_tg_bot_1_1_input_rich_block_list.html#ad495651d117dc1e6d0c7ef519e48e337',1,'TgBot::InputRichBlockList::items'],['../struct_tg_bot_1_1_rich_block_list.html#a22086215335d79be09bf6c2b5714cc4c',1,'TgBot::RichBlockList::items']]]
 ];
