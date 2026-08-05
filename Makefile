@@ -16,7 +16,7 @@ EXAMPLE_CMAKE_ARGS = $(if $(filter echobot-submodule,$(EXAMPLE)),-DTGBOT_CPP_SOU
 PORT ?= 8080
 DOCS_WORKTREE := $(abspath build/gh-pages)
 
-.PHONY: all dependencies dependencies-python dependencies-test configure configure-test build build-test compile-commands example test test-only test-api-codegen install install-only api-update api-generate \
+.PHONY: all dependencies dependencies-python dependencies-with-test configure configure-with-system configure-with-test build build-with-system build-with-test compile-commands example test test-only test-api-codegen install install-with-system install-only api-update api-generate \
 	docker-image docker-test-image docker-test docker-example-image docker-compose-run-examples docker-push docker-run-example \
 	docker-run-example-webhook docs docs-publish list-includes list-srcs \
 	format format-cpp format-python lint lint-cpp lint-python
@@ -30,7 +30,7 @@ dependencies:
 dependencies-python:
 	poetry install --no-interaction
 
-dependencies-test: dependencies-python
+dependencies-with-test: dependencies-python
 	conan profile detect --exist-ok
 	conan install . $(CONAN_BUILD_ARGS) -s build_type=$(BUILD_TYPE) -o '&:with_tests=True'
 
@@ -41,7 +41,13 @@ configure: dependencies
 		-DCMAKE_EXPORT_COMPILE_COMMANDS=ON \
 		-DENABLE_TESTS=OFF
 
-configure-test: dependencies-test
+configure-with-system:
+	cmake -S . -B $(BUILD_DIR) \
+		-DCMAKE_BUILD_TYPE=$(BUILD_TYPE) \
+		-DCMAKE_EXPORT_COMPILE_COMMANDS=ON \
+		-DENABLE_TESTS=OFF
+
+configure-with-test: dependencies-with-test
 	cmake -S . -B $(BUILD_DIR) \
 		-DCMAKE_TOOLCHAIN_FILE=$(abspath $(BUILD_DIR)/generators/conan_toolchain.cmake) \
 		-DCMAKE_BUILD_TYPE=$(BUILD_TYPE) \
@@ -51,10 +57,13 @@ configure-test: dependencies-test
 build: configure
 	cmake --build $(BUILD_DIR) --parallel $(NPROC)
 
-build-test: configure-test
+build-with-system: configure-with-system
 	cmake --build $(BUILD_DIR) --parallel $(NPROC)
 
-compile-commands: configure-test
+build-with-test: configure-with-test
+	cmake --build $(BUILD_DIR) --parallel $(NPROC)
+
+compile-commands: configure-with-test
 	cmake -E copy_if_different $(BUILD_DIR)/compile_commands.json compile_commands.json
 
 example:
@@ -65,7 +74,7 @@ example:
 		$(EXAMPLE_CMAKE_ARGS)
 	cmake --build $(BUILD_DIR)/examples/$(EXAMPLE) --parallel $(NPROC)
 
-test: build-test
+test: build-with-test
 	$(MAKE) test-only
 	$(MAKE) test-api-codegen
 
@@ -76,6 +85,9 @@ test-api-codegen:
 	poetry run pytest -q api_codegen/tests
 
 install: build
+	$(MAKE) install-only
+
+install-with-system: build-with-system
 	$(MAKE) install-only
 
 install-only:

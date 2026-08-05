@@ -189,7 +189,7 @@ make docker-test
 
 ## Updating Telegram Bot API types
 
-[HOW_TO_UPDATE_TELEGRAM_API.md](./HOW_TO_UPDATE_TELEGRAM_API.md)
+[Help page](./HOW_TO_UPDATE_TELEGRAM_API.md).
 
 
 ## Licence
