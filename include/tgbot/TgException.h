@@ -13,7 +13,6 @@ namespace TgBot {
  * @ingroup general
  */
 class TGBOT_API TgException : public std::runtime_error {
-
 public:
     /**
      * @brief Enum of possible errors from Api requests 

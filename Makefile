@@ -139,12 +139,12 @@ docker-example-image: docker-image
 
 docker-run-example: docker-example-image
 	@test -n "$$TOKEN" || (echo "TOKEN is required" >&2; exit 2)
-	docker run --rm -it -e TOKEN $(EXAMPLE_IMAGE)
+	docker run --rm -it --init -e TOKEN $(EXAMPLE_IMAGE)
 
 docker-run-example-webhook: docker-example-image
 	@test -n "$$TOKEN" || (echo "TOKEN is required" >&2; exit 2)
 	@test -n "$$WEBHOOK_URL" || (echo "WEBHOOK_URL is required" >&2; exit 2)
-	docker run --rm -it -e TOKEN -e WEBHOOK_URL -p $(PORT):8080 $(EXAMPLE_IMAGE)
+	docker run --rm -it --init -e TOKEN -e WEBHOOK_URL -p $(PORT):8080 $(EXAMPLE_IMAGE)
 
 docker-compose-run-examples: docker-image
 	DOCKER_PLATFORM=$(DOCKER_PLATFORM) TGBOT_CPP_IMAGE=$(DOCKER_IMAGE) \

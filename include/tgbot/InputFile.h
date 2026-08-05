@@ -13,7 +13,6 @@ namespace TgBot {
  * @ingroup api
  */
 class TGBOT_API InputFile {
-
 public:
     using Ptr = std::shared_ptr<InputFile>;
 

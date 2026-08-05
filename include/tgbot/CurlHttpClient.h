@@ -19,7 +19,6 @@ namespace TgBot {
  * @ingroup net
  */
 class TGBOT_API CurlHttpClient : public HttpClient {
-
 public:
     CurlHttpClient();
     ~CurlHttpClient() override;

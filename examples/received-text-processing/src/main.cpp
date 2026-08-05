@@ -1,4 +1,3 @@
-#include <csignal>
 #include <cstdlib>
 #include <exception>
 #include <iostream>
@@ -8,16 +7,16 @@
 
 #include <tgbot/tgbot.h>
 
-std::vector<std::string> bot_commands = { "start", "test" };
+const std::vector<std::string> botCommands { "start", "test" };
 
 int main() {
-    std::string token(std::getenv("TOKEN"));
+    const auto token = std::string(std::getenv("TOKEN"));
     std::cout << "Token: " << token << std::endl;
 
-    bool test_text_state = false;
+    bool isWaitingForText = false;
 
     TgBot::Bot bot(token);
-    TgBot::TgLongPoll long_poll(bot);
+    TgBot::TgLongPoll longPoll(bot);
 
     bot.getEvents().onCommand("start", [&bot](std::shared_ptr<TgBot::Message> message) {
         bot.getApi().sendMessage(message->chat->id, "Hi!");
@@ -25,17 +24,17 @@ int main() {
 
     bot.getEvents().onCommand("test", [&](std::shared_ptr<TgBot::Message> message) {
         bot.getApi().sendMessage(message->chat->id, "Enter text");
-        test_text_state = true;
+        isWaitingForText = true;
     });
 
     bot.getEvents().onAnyMessage([&](std::shared_ptr<TgBot::Message> message) {
-        if (test_text_state) {
+        if (isWaitingForText) {
             bot.getApi().sendMessage(message->chat->id, message->text.value_or(""));
-            test_text_state = false;
+            isWaitingForText = false;
             return;
         }
 
-        for (const auto& command : bot_commands) {
+        for (const auto& command : botCommands) {
             if ("/" + command == message->text.value_or("")) {
                 return;
             }
@@ -44,17 +43,19 @@ int main() {
         bot.getApi().sendMessage(message->chat->id, "unknown command");
     });
 
+    const auto handleError = [](const std::exception& error) {
+        std::cout << "error: " << error.what() << std::endl;
+    };
+
     try {
         std::cout << "Bot username: " << bot.getApi().getMe()->username.value_or("") << std::endl;
         bot.getApi().deleteWebhook();
 
-        while (true) {
-            std::cout << "Long poll started" << std::endl;
-            long_poll.start();
-        }
-    } catch (std::exception& e) {
-        std::cout << "error: " << e.what() << std::endl;
+        longPoll.startLoop(handleError);
+    } catch (const std::exception& error) {
+        handleError(error);
+        return EXIT_FAILURE;
     }
 
-    return 0;
+    return EXIT_SUCCESS;
 }

@@ -153,7 +153,11 @@ nlohmann::json encode(const std::vector<T>& value) {
 
 template<typename... T>
 nlohmann::json encode(const std::variant<T...>& value) {
-    return std::visit([](const auto& item) { return encode(item); }, value);
+    return std::visit(
+        [](const auto& item) {
+            return encode(item);
+        },
+        value);
 }
 
 template<typename T>

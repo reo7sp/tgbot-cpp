@@ -45,7 +45,11 @@ void appendField(std::vector<HttpFormField>& fields, const char* name, const std
 
 template<typename... T>
 void appendField(std::vector<HttpFormField>& fields, const char* name, const std::variant<T...>& value) {
-    std::visit([&](const auto& item) { appendField(fields, name, item); }, value);
+    std::visit(
+        [&](const auto& item) {
+            appendField(fields, name, item);
+        },
+        value);
 }
 
 template<typename T>
@@ -75,7 +79,11 @@ void appendOptionalField(std::vector<HttpFormField>& fields, const char* name, c
 
 template<typename... T>
 void appendOptionalField(std::vector<HttpFormField>& fields, const char* name, const std::variant<T...>& value) {
-    std::visit([&](const auto& item) { appendOptionalField(fields, name, item); }, value);
+    std::visit(
+        [&](const auto& item) {
+            appendOptionalField(fields, name, item);
+        },
+        value);
 }
 
 template<bool Required, typename T>

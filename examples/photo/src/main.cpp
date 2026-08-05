@@ -1,4 +1,3 @@
-#include <csignal>
 #include <cstdlib>
 #include <exception>
 #include <iostream>
@@ -8,11 +7,11 @@
 #include <tgbot/tgbot.h>
 
 int main() {
-    std::string token(std::getenv("TOKEN"));
+    const auto token = std::string(std::getenv("TOKEN"));
     std::cout << "Token: " << token << std::endl;
 
-    const std::string photoFilePath = "example.jpg";
-    const std::string photoMimeType = "image/jpeg";
+    const auto photoFilePath = std::string("example.jpg");
+    const auto photoMimeType = std::string("image/jpeg");
 
     TgBot::Bot bot(token);
     bot.getEvents().onCommand("start", [&bot](std::shared_ptr<TgBot::Message> message) {
@@ -22,23 +21,20 @@ int main() {
         bot.getApi().sendPhoto(message->chat->id, TgBot::InputFile::fromFile(photoFilePath, photoMimeType));
     });
 
-    std::signal(SIGINT, [](int s) {
-        std::cout << "SIGINT got" << std::endl;
-        std::exit(0);
-    });
+    const auto handleError = [](const std::exception& error) {
+        std::cout << "error: " << error.what() << std::endl;
+    };
 
     try {
         std::cout << "Bot username: " << bot.getApi().getMe()->username.value_or("") << std::endl;
         bot.getApi().deleteWebhook();
 
         TgBot::TgLongPoll longPoll(bot);
-        while (true) {
-            std::cout << "Long poll started" << std::endl;
-            longPoll.start();
-        }
-    } catch (std::exception& e) {
-        std::cout << "error: " << e.what() << std::endl;
+        longPoll.startLoop(handleError);
+    } catch (const std::exception& error) {
+        handleError(error);
+        return EXIT_FAILURE;
     }
 
-    return 0;
+    return EXIT_SUCCESS;
 }

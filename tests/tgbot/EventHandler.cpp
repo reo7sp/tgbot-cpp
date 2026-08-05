@@ -27,10 +27,18 @@ TEST(EventHandler, KnownCommandNotifiesAnyAndMatchingCommandListeners) {
     int commands = 0;
     int unknownCommands = 0;
     int nonCommands = 0;
-    broadcaster.onAnyMessage([&](const auto&) { ++anyMessages; });
-    broadcaster.onCommand("start", [&](const auto&) { ++commands; });
-    broadcaster.onUnknownCommand([&](const auto&) { ++unknownCommands; });
-    broadcaster.onNonCommandMessage([&](const auto&) { ++nonCommands; });
+    broadcaster.onAnyMessage([&](const auto&) {
+        ++anyMessages;
+    });
+    broadcaster.onCommand("start", [&](const auto&) {
+        ++commands;
+    });
+    broadcaster.onUnknownCommand([&](const auto&) {
+        ++unknownCommands;
+    });
+    broadcaster.onNonCommandMessage([&](const auto&) {
+        ++nonCommands;
+    });
 
     handler.handleUpdate(messageUpdate("/start@my_bot argument"));
 
@@ -44,7 +52,9 @@ TEST(EventHandler, UnknownCommandNotifiesUnknownCommandListener) {
     TgBot::EventBroadcaster broadcaster;
     TgBot::EventHandler handler(broadcaster);
     int unknownCommands = 0;
-    broadcaster.onUnknownCommand([&](const auto&) { ++unknownCommands; });
+    broadcaster.onUnknownCommand([&](const auto&) {
+        ++unknownCommands;
+    });
 
     handler.handleUpdate(messageUpdate("/missing argument"));
 
@@ -55,7 +65,9 @@ TEST(EventHandler, PlainTextNotifiesNonCommandListener) {
     TgBot::EventBroadcaster broadcaster;
     TgBot::EventHandler handler(broadcaster);
     int nonCommands = 0;
-    broadcaster.onNonCommandMessage([&](const auto&) { ++nonCommands; });
+    broadcaster.onNonCommandMessage([&](const auto&) {
+        ++nonCommands;
+    });
 
     handler.handleUpdate(messageUpdate("hello"));
 
@@ -67,9 +79,13 @@ TEST(EventHandler, RemovedCommandListenerIsNotCalled) {
     TgBot::EventHandler handler(broadcaster);
     int commands = 0;
     int unknownCommands = 0;
-    broadcaster.onCommand("start", [&](const auto&) { ++commands; });
+    broadcaster.onCommand("start", [&](const auto&) {
+        ++commands;
+    });
     broadcaster.onCommand("start", nullptr);
-    broadcaster.onUnknownCommand([&](const auto&) { ++unknownCommands; });
+    broadcaster.onUnknownCommand([&](const auto&) {
+        ++unknownCommands;
+    });
 
     handler.handleUpdate(messageUpdate("/start"));
 

@@ -28,7 +28,7 @@ int main() {
         bot.getApi().sendMessage(message->chat->id, "Hi!");
     });
     bot.getEvents().onAnyMessage([&bot](std::shared_ptr<TgBot::Message> message) {
-        const std::string text = message->text.value_or("");
+        const auto text = message->text.value_or("");
         std::cout << "User wrote " << text << std::endl;
         if (text.starts_with("/start")) {
             return;
@@ -38,11 +38,8 @@ int main() {
     try {
         std::cout << "Bot username: " << bot.getApi().getMe()->username.value_or("") << std::endl;
         TgBot::TgLongPoll longPoll(bot);
-        while (true) {
-            std::cout << "Long poll started" << std::endl;
-            longPoll.start();
-        }
-    } catch (TgBot::TgException& e) {
+        longPoll.startLoop();
+    } catch (const TgBot::TgException& e) {
         std::cout << "error: " << e.what() << std::endl;
     }
     return 0;

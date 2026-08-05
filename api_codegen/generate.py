@@ -103,24 +103,14 @@ def run(schema_path: Path, root: Path) -> None:
 
 def generate_openapi(schema_path: Path, root: Path) -> GeneratedCount:
     document = yaml.safe_load(schema_path.read_text(encoding="utf-8"))
-    components = {
-        name: schema
-        for name, schema in document["components"]["schemas"].items()
-        if "x-tags" in schema
-    }
+    components = {name: schema for name, schema in document["components"]["schemas"].items() if "x-tags" in schema}
     objects = _build_objects(components)
     methods = _build_methods(document["paths"])
     outputs = {
-        root / "include" / "tgbot" / "Types.h": _render_template(
-            "types.h.j2", objects=objects
-        ),
+        root / "include" / "tgbot" / "Types.h": _render_template("types.h.j2", objects=objects),
         root / "src" / "Types.cpp": _render_template("types.cpp.j2", objects=objects),
-        root / "include" / "tgbot" / "ApiMethods.inc.h": _render_template(
-            "api_methods.inc.h.j2", methods=methods
-        ),
-        root / "src" / "ApiMethods.cpp": _render_template(
-            "api_methods.cpp.j2", methods=methods
-        ),
+        root / "include" / "tgbot" / "ApiMethods.inc.h": _render_template("api_methods.inc.h.j2", methods=methods),
+        root / "src" / "ApiMethods.cpp": _render_template("api_methods.cpp.j2", methods=methods),
     }
     for path, content in outputs.items():
         _write(path, content)
@@ -155,14 +145,10 @@ def _build_objects(components: dict[str, Schema]) -> tuple[ObjectModel, ...]:
     return tuple(objects)
 
 
-def _build_field(
-    object_name: str, name: str, schema: Schema, required: bool
-) -> FieldModel:
+def _build_field(object_name: str, name: str, schema: Schema, required: bool) -> FieldModel:
     enum = _field_enum(object_name, name)
     field_config = TYPE_CONFIG.get(object_name, {}).get("fields", {}).get(name, {})
-    cpp_type = field_config.get(
-        "type", enum.name if enum else _field_type(name, schema, required)
-    )
+    cpp_type = field_config.get("type", enum.name if enum else _field_type(name, schema, required))
     return FieldModel(
         wire_name=name,
         cpp_name=_snake_to_camel(name),
@@ -175,20 +161,13 @@ def _build_field(
 
 
 def _field_enum(object_name: str, field_name: str) -> EnumModel | None:
-    values = (
-        TYPE_CONFIG.get(object_name, {})
-        .get("fields", {})
-        .get(field_name, {})
-        .get("enum")
-    )
+    values = TYPE_CONFIG.get(object_name, {}).get("fields", {}).get(field_name, {}).get("enum")
     if not values:
         return None
 
     return EnumModel(
         name="Type",
-        values=tuple(
-            EnumValueModel(name=name, value=value) for name, value in values.items()
-        ),
+        values=tuple(EnumValueModel(name=name, value=value) for name, value in values.items()),
     )
 
 
@@ -214,9 +193,7 @@ def _object_dependencies(
     return tuple(sorted(dependencies))
 
 
-def _object_standard_headers(
-    fields: tuple[FieldModel, ...], union_members: tuple[str, ...]
-) -> tuple[str, ...]:
+def _object_standard_headers(fields: tuple[FieldModel, ...], union_members: tuple[str, ...]) -> tuple[str, ...]:
     cpp_types = " ".join(field.cpp_type for field in fields)
     headers = {"memory"}
     for cpp_type, header in (
@@ -271,16 +248,12 @@ def _build_methods(paths: dict[str, Schema]) -> tuple[MethodModel, ...]:
     return tuple(methods)
 
 
-def _ordered_parameter_names(
-    method_name: str, properties: dict[str, Schema], required: set[str]
-) -> list[str]:
+def _ordered_parameter_names(method_name: str, properties: dict[str, Schema], required: set[str]) -> list[str]:
     method_config = API_CONFIG.get(method_name, {})
     preferred = method_config.get("parameter_order", ())
     parameter_order = {name: index for index, name in enumerate(preferred)}
     declaration_required = required | {
-        name
-        for name in properties
-        if method_config.get("parameters", {}).get(name, {}).get("declaration_required")
+        name for name in properties if method_config.get("parameters", {}).get(name, {}).get("declaration_required")
     }
     required_names = sorted(
         (name for name in properties if name in declaration_required),
@@ -291,19 +264,13 @@ def _ordered_parameter_names(
         ),
     )
     optional_names = [name for name in properties if name not in declaration_required]
-    optional_names.sort(
-        key=lambda name: (parameter_order.get(name, len(parameter_order)), name)
-    )
+    optional_names.sort(key=lambda name: (parameter_order.get(name, len(parameter_order)), name))
 
     return required_names + optional_names
 
 
-def _build_parameter(
-    method_name: str, name: str, schema: Schema, required: bool, binary: bool
-) -> ParameterModel:
-    parameter_config = (
-        API_CONFIG.get(method_name, {}).get("parameters", {}).get(name, {})
-    )
+def _build_parameter(method_name: str, name: str, schema: Schema, required: bool, binary: bool) -> ParameterModel:
+    parameter_config = API_CONFIG.get(method_name, {}).get("parameters", {}).get(name, {})
     override = parameter_config.get("type")
     if override:
         cpp_type = override
@@ -329,9 +296,7 @@ def _build_parameter(
             else _parameter_default(cpp_type, method_name, name)
         ),
         wire_default_value=(
-            None
-            if parameter_config.get("always_send")
-            else _configured_parameter_default(method_name, name)
+            None if parameter_config.get("always_send") else _configured_parameter_default(method_name, name)
         ),
         description=_comment_lines(schema.get("description", ""), 72),
     )
@@ -347,9 +312,7 @@ def _parameter_declaration_type(cpp_type: str) -> str:
 
 
 def _parameter_default(cpp_type: str, method_name: str, parameter_name: str) -> str:
-    if (
-        default := _configured_parameter_default(method_name, parameter_name)
-    ) is not None:
+    if (default := _configured_parameter_default(method_name, parameter_name)) is not None:
         return default
     if cpp_type == "bool":
         return "false"
@@ -366,9 +329,7 @@ def _parameter_default(cpp_type: str, method_name: str, parameter_name: str) -> 
 
 
 def _configured_parameter_default(method_name: str, parameter_name: str) -> str | None:
-    parameter_config = (
-        API_CONFIG.get(method_name, {}).get("parameters", {}).get(parameter_name, {})
-    )
+    parameter_config = API_CONFIG.get(method_name, {}).get("parameters", {}).get(parameter_name, {})
     default = parameter_config.get("default")
     if default is None:
         return None
@@ -423,26 +384,16 @@ def _request_schema(operation: Schema) -> Schema:
     return (
         operation.get("requestBody", {})
         .get("content", {})
-        .get("application/json", {"schema": {"type": "object", "properties": {}}})[
-            "schema"
-        ]
+        .get("application/json", {"schema": {"type": "object", "properties": {}}})["schema"]
     )
 
 
 def _multipart_schema(operation: Schema) -> Schema:
-    return (
-        operation.get("requestBody", {})
-        .get("content", {})
-        .get("multipart/form-data", {"schema": {}})["schema"]
-    )
+    return operation.get("requestBody", {}).get("content", {}).get("multipart/form-data", {"schema": {}})["schema"]
 
 
 def _binary_parameters(operation: Schema) -> set[str]:
-    multipart = (
-        operation.get("requestBody", {})
-        .get("content", {})
-        .get("multipart/form-data", {})
-    )
+    multipart = operation.get("requestBody", {}).get("content", {}).get("multipart/form-data", {})
 
     return {
         name

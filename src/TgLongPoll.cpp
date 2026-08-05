@@ -5,6 +5,12 @@
 #include "tgbot/EventHandler.h"
 #include "tgbot/HttpClient.h"
 
+#include <boost/asio/io_context.hpp>
+#include <boost/asio/signal_set.hpp>
+
+#include <stdexcept>
+#include <stop_token>
+#include <thread>
 #include <utility>
 
 namespace TgBot {
@@ -37,6 +43,59 @@ void TgLongPoll::start() {
     // confirm handled updates
     _updates = _api->getUpdates(_lastUpdateId, _limit, _timeout,
                                 _allowUpdates ? *_allowUpdates : std::vector<std::string> { });
+}
+
+void TgLongPoll::startLoop(const ErrorHandler& errorHandler, std::initializer_list<int> signalNumbers) {
+    if (_isRunning.exchange(true)) {
+        throw std::logic_error("long poll is already running");
+    }
+
+    boost::asio::io_context signalContext;
+    boost::asio::signal_set signals(signalContext);
+    std::jthread signalThread;
+    if (signalNumbers.size() != 0) {
+        for (const int signalNumber : signalNumbers) {
+            signals.add(signalNumber);
+        }
+        signals.async_wait([this](const boost::system::error_code& error, int) {
+            if (!error) {
+                stop();
+            }
+        });
+        signalThread = std::jthread([&](std::stop_token stopToken) {
+            std::stop_callback stopCallback(stopToken, [&] {
+                signalContext.stop();
+            });
+            signalContext.run();
+        });
+    }
+
+    try {
+        while (_isRunning.load()) {
+            try {
+                start();
+            } catch (const std::exception& error) {
+                if (errorHandler) {
+                    errorHandler(error);
+                }
+                if (!_isRunning.load()) {
+                    break;
+                }
+                if (!errorHandler) {
+                    throw;
+                }
+            }
+        }
+    } catch (...) {
+        _isRunning.store(false);
+        throw;
+    }
+}
+
+void TgLongPoll::stop() {
+    if (_isRunning.exchange(false)) {
+        _api->_httpClient.cancel();
+    }
 }
 
 } // namespace TgBot

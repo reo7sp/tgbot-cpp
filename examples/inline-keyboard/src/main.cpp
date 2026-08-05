@@ -1,4 +1,3 @@
-#include <csignal>
 #include <cstdlib>
 #include <exception>
 #include <iostream>
@@ -9,15 +8,15 @@
 #include <tgbot/tgbot.h>
 
 int main() {
-    std::string token(std::getenv("TOKEN"));
+    const auto token = std::string(std::getenv("TOKEN"));
     std::cout << "Token: " << token << std::endl;
 
     TgBot::Bot bot(token);
 
     // Thanks Pietro Falessi for code
-    std::shared_ptr<TgBot::InlineKeyboardMarkup> keyboard = std::make_shared<TgBot::InlineKeyboardMarkup>();
+    auto keyboard = std::make_shared<TgBot::InlineKeyboardMarkup>();
     std::vector<std::shared_ptr<TgBot::InlineKeyboardButton>> row0;
-    std::shared_ptr<TgBot::InlineKeyboardButton> checkButton = std::make_shared<TgBot::InlineKeyboardButton>();
+    auto checkButton = std::make_shared<TgBot::InlineKeyboardButton>();
     checkButton->text = "check";
     checkButton->callbackData = "check";
     row0.push_back(checkButton);
@@ -39,23 +38,20 @@ int main() {
         }
     });
 
-    std::signal(SIGINT, [](int s) {
-        std::cout << "SIGINT got" << std::endl;
-        std::exit(0);
-    });
+    const auto handleError = [](const std::exception& error) {
+        std::cout << "error: " << error.what() << std::endl;
+    };
 
     try {
         std::cout << "Bot username: " << bot.getApi().getMe()->username.value_or("") << std::endl;
         bot.getApi().deleteWebhook();
 
         TgBot::TgLongPoll longPoll(bot);
-        while (true) {
-            std::cout << "Long poll started" << std::endl;
-            longPoll.start();
-        }
-    } catch (std::exception& e) {
-        std::cout << "error: " << e.what() << std::endl;
+        longPoll.startLoop(handleError);
+    } catch (const std::exception& error) {
+        handleError(error);
+        return EXIT_FAILURE;
     }
 
-    return 0;
+    return EXIT_SUCCESS;
 }

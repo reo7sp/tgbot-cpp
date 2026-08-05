@@ -18,7 +18,6 @@ namespace TgBot {
  */
 template<typename Protocol>
 class TgWebhookServer : public HttpServer<Protocol> {
-
 public:
     TgWebhookServer(const typename boost::asio::basic_socket_acceptor<Protocol>::endpoint_type& endpoint,
                     const typename HttpServer<Protocol>::ServerHandler& handler) = delete;

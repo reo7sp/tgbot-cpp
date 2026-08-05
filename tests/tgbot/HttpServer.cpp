@@ -7,6 +7,7 @@
 #include <boost/beast/http.hpp>
 
 #include <cstdint>
+#include <stdexcept>
 #include <string>
 #include <thread>
 
@@ -56,7 +57,9 @@ TEST(HttpServer, ClosesConnectionAndAcceptsNextClient) {
                                   });
     serverPointer = &server;
 
-    std::thread serverThread([&server] { server.start(); });
+    std::thread serverThread([&server] {
+        server.start({ }, { });
+    });
 
     try {
         const auto firstResponse = sendRequest(port, "first");
@@ -88,7 +91,9 @@ TEST(HttpServer, AcceptsAnotherClientWhileFirstRequestIsIncomplete) {
                                       return body;
                                   });
     serverPointer = &server;
-    std::thread serverThread([&server] { server.start(); });
+    std::thread serverThread([&server] {
+        server.start({ }, { });
+    });
 
     boost::asio::io_context ioContext;
     Tcp::socket incompleteClient(ioContext);
@@ -101,6 +106,32 @@ TEST(HttpServer, AcceptsAnotherClientWhileFirstRequestIsIncomplete) {
     boost::system::error_code error;
     incompleteClient.close(error);
     serverThread.join();
+}
+
+TEST(HttpServer, ReportsRequestHandlerErrors) {
+    const std::uint16_t port = findAvailablePort();
+    TgBot::HttpServer<Tcp>* serverPointer = nullptr;
+    TgBot::HttpServer<Tcp> server(Tcp::endpoint(boost::asio::ip::address_v4::loopback(), port),
+                                  [](const std::string&, const auto&) -> std::string {
+                                      throw std::runtime_error("request failed");
+                                  });
+    serverPointer = &server;
+    std::string errorMessage;
+
+    std::thread serverThread([&] {
+        server.start(
+            [&](const std::exception& error) {
+                errorMessage = error.what();
+                serverPointer->stop();
+            },
+            { });
+    });
+
+    const auto response = sendRequest(port, "request");
+    serverThread.join();
+
+    EXPECT_EQ(response.result(), boost::beast::http::status::internal_server_error);
+    EXPECT_EQ(errorMessage, "error handling HTTP request: request failed");
 }
 
 } // namespace

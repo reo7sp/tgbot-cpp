@@ -4,9 +4,7 @@ from subprocess import CompletedProcess
 from api_codegen import update
 
 
-def test_run_invokes_tgbotspec_with_resolved_output_in_temporary_directory(
-    tmp_path: Path, monkeypatch
-) -> None:
+def test_run_invokes_tgbotspec_with_resolved_output_in_temporary_directory(tmp_path: Path, monkeypatch) -> None:
     output_path = tmp_path / "api" / "telegram-bot-api.yaml"
     invocation = {}
 

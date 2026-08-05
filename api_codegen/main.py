@@ -12,13 +12,9 @@ DEFAULT_SCHEMA = ROOT / "api" / "telegram-bot-api.yaml"
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     subparsers = parser.add_subparsers(dest="command", required=True)
-    update_parser = subparsers.add_parser(
-        "update", help="download Telegram Bot API docs and create OpenAPI schema"
-    )
+    update_parser = subparsers.add_parser("update", help="download Telegram Bot API docs and create OpenAPI schema")
     update_parser.add_argument("--output", type=Path, default=DEFAULT_SCHEMA)
-    generate_parser = subparsers.add_parser(
-        "generate", help="generate C++ types, API methods and JSON codecs"
-    )
+    generate_parser = subparsers.add_parser("generate", help="generate C++ types, API methods and JSON codecs")
     generate_parser.add_argument("--schema", type=Path, default=DEFAULT_SCHEMA)
     args = parser.parse_args()
 
