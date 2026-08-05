@@ -66,17 +66,17 @@ var NAVTREEINDEX =
 "namespace_tg_bot.html#a140a01c2d24b436285c3dfa8fde49312",
 "namespace_tg_bot.html#a650c17fcb34bced3766e03e8541ac2e1",
 "namespace_tg_bot.html#ab4a4b9896ee1d47b1bf8059ffa600744",
-"struct_tg_bot_1_1_accepted_gift_types.html#a68c6fcf74744f316d62cbee8368006d1",
-"struct_tg_bot_1_1_chat_boost_source_giveaway.html#a1759afc3f69d486c5926694464f0f97a",
-"struct_tg_bot_1_1_community_chat_removed.html",
-"struct_tg_bot_1_1_inline_query_result_audio.html#a3fd9b0da7e60ec834adfb8ad54c1f801",
-"struct_tg_bot_1_1_inline_query_results_button.html#a09ec029c780937476e92477be97a9918",
-"struct_tg_bot_1_1_input_rich_block_list.html#a36c9af0be8c44dc179a908a8245a2974",
-"struct_tg_bot_1_1_message.html#a04e21bbaa15a05cd66e6bfa0485aad3d",
-"struct_tg_bot_1_1_paid_media_photo.html",
-"struct_tg_bot_1_1_rich_block.html#abebe85ae3d9d1952d94837282e625a7e",
-"struct_tg_bot_1_1_sent_guest_message.html#a426b3a82859db3eb0e3deb68e3d1bf93",
-"struct_tg_bot_1_1_unique_gift_colors.html#a508c15982c566891a52972f3a6da74cb"
+"struct_tg_bot_1_1_audio.html#a50823f02560e7d0a607291fd8bb9c02c",
+"struct_tg_bot_1_1_chat_full_info.html#a2751f391132039e0b7e373f53526583f",
+"struct_tg_bot_1_1_document.html#aa67870c6320092c13154abde7dcdf94c",
+"struct_tg_bot_1_1_inline_query_result_cached_document.html#a8bd7a289e0285293396df543cff3aa79",
+"struct_tg_bot_1_1_input_invoice_message_content.html#a15ba25845569d8ac77b62b9ee27e599b",
+"struct_tg_bot_1_1_input_rich_block_photo.html#a0facae4d5ccc61ebe8a4f5dc4fcfddba",
+"struct_tg_bot_1_1_message.html#a45900ef1ef40879b75dd7a9d078061e6",
+"struct_tg_bot_1_1_passport_element_error.html#a8924dcbaf0a7bd41a0b5b1b38bfe665a",
+"struct_tg_bot_1_1_rich_block_collage.html#a45ee39efa3fe05f67b12368b2db35f77",
+"struct_tg_bot_1_1_shipping_query.html#a725c107e71eef2f8e7107372c71fd275",
+"struct_tg_bot_1_1_update.html#a12ca7a1b6feef90cb6887347ac5fff6a"
 ];
 
 const SYNCONMSG = 'click to disable panel synchronization';

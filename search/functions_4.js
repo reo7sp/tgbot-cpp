@@ -16,7 +16,6 @@ var searchData=
   ['editmessagetext_13',['editMessageText',['../_api_methods_8inc_8h.html#a04f9d300bc28a2bc6a97aa2347a28003',1,'ApiMethods.inc.h']]],
   ['editstory_14',['editStory',['../_api_methods_8inc_8h.html#ad908260878cc2b9023a9b2be7c5e866d',1,'ApiMethods.inc.h']]],
   ['edituserstarsubscription_15',['editUserStarSubscription',['../_api_methods_8inc_8h.html#a211d94ac3f350dd57dca81d5196cf4ad',1,'ApiMethods.inc.h']]],
-  ['encode_16',['encode',['../namespace_tg_bot_1_1_json.html#a586f9b229ade544d3873a5b1825a0256',1,'TgBot::Json::encode(const T &amp;value)'],['../namespace_tg_bot_1_1_json.html#a70a904ece93b8a76ecbd2c91481279e8',1,'TgBot::Json::encode(const std::shared_ptr&lt; T &gt; &amp;value)'],['../namespace_tg_bot_1_1_json.html#aa1cb5048774a40452ef90bc6860c3df2',1,'TgBot::Json::encode(const std::optional&lt; T &gt; &amp;value)'],['../namespace_tg_bot_1_1_json.html#a11d394d96aed677af300f43c51a77244',1,'TgBot::Json::encode(const std::vector&lt; T &gt; &amp;value)'],['../namespace_tg_bot_1_1_json.html#a6065feb9aec640d2debc88417232febf',1,'TgBot::Json::encode(const std::variant&lt; T... &gt; &amp;value)']]],
-  ['eventhandler_17',['EventHandler',['../class_tg_bot_1_1_event_handler.html#ae71500cae7d1ff3d40bb47b1e39b3642',1,'TgBot::EventHandler']]],
-  ['exportchatinvitelink_18',['exportChatInviteLink',['../_api_methods_8inc_8h.html#a12443d0b52e2646e4ffeeeab31b20114',1,'ApiMethods.inc.h']]]
+  ['eventhandler_16',['EventHandler',['../class_tg_bot_1_1_event_handler.html#ae71500cae7d1ff3d40bb47b1e39b3642',1,'TgBot::EventHandler']]],
+  ['exportchatinvitelink_17',['exportChatInviteLink',['../_api_methods_8inc_8h.html#a12443d0b52e2646e4ffeeeab31b20114',1,'ApiMethods.inc.h']]]
 ];

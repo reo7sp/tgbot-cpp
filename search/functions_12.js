@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['writeoptionalfield_0',['writeOptionalField',['../namespace_tg_bot_1_1_json.html#add84c15c931629e9b7908fb3bd45b0a0',1,'TgBot::Json::writeOptionalField(nlohmann::json &amp;json, const char *name, const std::optional&lt; T &gt; &amp;value)'],['../namespace_tg_bot_1_1_json.html#a065a16b9c819e57ef045a4886ac1e49a',1,'TgBot::Json::writeOptionalField(nlohmann::json &amp;json, const char *name, const std::shared_ptr&lt; T &gt; &amp;value)']]],
-  ['writerequiredfield_1',['writeRequiredField',['../namespace_tg_bot_1_1_json.html#a25f7700aff2a1fc357acbd0b60cae790',1,'TgBot::Json']]]
+  ['_7ecurlhttpclient_0',['~CurlHttpClient',['../class_tg_bot_1_1_curl_http_client.html#aef991cad0f0113400a6dbee2f2e1c6c4',1,'TgBot::CurlHttpClient']]],
+  ['_7ehttpclient_1',['~HttpClient',['../class_tg_bot_1_1_http_client.html#a1593785b295457dcea0611033fbd0711',1,'TgBot::HttpClient']]]
 ];

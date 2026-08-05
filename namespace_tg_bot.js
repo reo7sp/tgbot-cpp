@@ -1,23 +1,5 @@
 var namespace_tg_bot =
 [
-    [ "Json", "namespace_tg_bot_1_1_json.html", [
-      [ "decode", "namespace_tg_bot_1_1_json.html#a73989baa6524653fc6ae30442740eabf", null ],
-      [ "decode", "namespace_tg_bot_1_1_json.html#a1e24d3fd37095b7d0a008f10d2c094c2", null ],
-      [ "decode", "namespace_tg_bot_1_1_json.html#aceb21936afa5edfcb5cc3b27172ba62d", null ],
-      [ "decode", "namespace_tg_bot_1_1_json.html#a85bb629fc8f0b5f166d6817ec25fc941", null ],
-      [ "decode", "namespace_tg_bot_1_1_json.html#a292138d9a359df637818639c79d3e071", null ],
-      [ "encode", "namespace_tg_bot_1_1_json.html#aa1cb5048774a40452ef90bc6860c3df2", null ],
-      [ "encode", "namespace_tg_bot_1_1_json.html#a70a904ece93b8a76ecbd2c91481279e8", null ],
-      [ "encode", "namespace_tg_bot_1_1_json.html#a6065feb9aec640d2debc88417232febf", null ],
-      [ "encode", "namespace_tg_bot_1_1_json.html#a11d394d96aed677af300f43c51a77244", null ],
-      [ "encode", "namespace_tg_bot_1_1_json.html#a586f9b229ade544d3873a5b1825a0256", null ],
-      [ "matchesDiscriminator", "namespace_tg_bot_1_1_json.html#adc6dde65d62c1c3cd218d12d2f949351", null ],
-      [ "readOptionalField", "namespace_tg_bot_1_1_json.html#a78f6f1a273b902c341f58c09f4fec267", null ],
-      [ "readRequiredField", "namespace_tg_bot_1_1_json.html#a240e1757ba1db20ebff8d8d9c6ffe046", null ],
-      [ "writeOptionalField", "namespace_tg_bot_1_1_json.html#add84c15c931629e9b7908fb3bd45b0a0", null ],
-      [ "writeOptionalField", "namespace_tg_bot_1_1_json.html#a065a16b9c819e57ef045a4886ac1e49a", null ],
-      [ "writeRequiredField", "namespace_tg_bot_1_1_json.html#a25f7700aff2a1fc357acbd0b60cae790", null ]
-    ] ],
     [ "AcceptedGiftTypes", "struct_tg_bot_1_1_accepted_gift_types.html", "struct_tg_bot_1_1_accepted_gift_types" ],
     [ "AffiliateInfo", "struct_tg_bot_1_1_affiliate_info.html", "struct_tg_bot_1_1_affiliate_info" ],
     [ "Animation", "struct_tg_bot_1_1_animation.html", "struct_tg_bot_1_1_animation" ],

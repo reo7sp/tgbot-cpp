@@ -19,7 +19,5 @@ var searchData=
   ['withdrawalstate_16',['withdrawalState',['../struct_tg_bot_1_1_transaction_partner_fragment.html#a5d9b60a611f45ace99edd96c896dfec9',1,'TgBot::TransactionPartnerFragment']]],
   ['writeaccessallowed_17',['WriteAccessAllowed',['../struct_tg_bot_1_1_write_access_allowed.html',1,'TgBot']]],
   ['writeaccessallowed_18',['writeAccessAllowed',['../struct_tg_bot_1_1_message.html#a9cc589c2edef09f985dc15069c9df7a9',1,'TgBot::Message']]],
-  ['writeaccessallowed_2eh_19',['WriteAccessAllowed.h',['../_write_access_allowed_8h.html',1,'']]],
-  ['writeoptionalfield_20',['writeOptionalField',['../namespace_tg_bot_1_1_json.html#add84c15c931629e9b7908fb3bd45b0a0',1,'TgBot::Json::writeOptionalField(nlohmann::json &amp;json, const char *name, const std::optional&lt; T &gt; &amp;value)'],['../namespace_tg_bot_1_1_json.html#a065a16b9c819e57ef045a4886ac1e49a',1,'TgBot::Json::writeOptionalField(nlohmann::json &amp;json, const char *name, const std::shared_ptr&lt; T &gt; &amp;value)']]],
-  ['writerequiredfield_21',['writeRequiredField',['../namespace_tg_bot_1_1_json.html#a25f7700aff2a1fc357acbd0b60cae790',1,'TgBot::Json']]]
+  ['writeaccessallowed_2eh_19',['WriteAccessAllowed.h',['../_write_access_allowed_8h.html',1,'']]]
 ];

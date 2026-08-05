@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['api_20types_0',['Telegram Bot API types',['../group__types.html',1,'']]]
+  ['api_0',['Telegram Bot API',['../group__api.html',1,'']]]
 ];

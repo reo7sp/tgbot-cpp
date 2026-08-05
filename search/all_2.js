@@ -43,7 +43,7 @@ var searchData=
   ['boosts_40',['boosts',['../struct_tg_bot_1_1_user_chat_boosts.html#a07dd234a60ed5b68cdb46e4d08686f2f',1,'TgBot::UserChatBoosts']]],
   ['bot_41',['Bot',['../class_tg_bot_1_1_bot.html',1,'TgBot::Bot'],['../class_tg_bot_1_1_api.html#afb5d57ac6b56fe83e7894e3b686c3339',1,'TgBot::Api::Bot()'],['../class_tg_bot_1_1_bot.html#aad9ae2e4f1117361c928b1d5ea69b51e',1,'TgBot::Bot::Bot()']]],
   ['bot_42',['bot',['../struct_tg_bot_1_1_managed_bot_created.html#a1f241a8aba67a6109adfe0442c82946c',1,'TgBot::ManagedBotCreated::bot'],['../struct_tg_bot_1_1_managed_bot_updated.html#a4fd8617466b6218251b74c9d64b29264',1,'TgBot::ManagedBotUpdated::bot']]],
-  ['bot_20api_20types_43',['Telegram Bot API types',['../group__types.html',1,'']]],
+  ['bot_20api_43',['Telegram Bot API',['../group__api.html',1,'']]],
   ['bot_2eh_44',['Bot.h',['../_bot_8h.html',1,'']]],
   ['botaccesssettings_45',['BotAccessSettings',['../struct_tg_bot_1_1_bot_access_settings.html',1,'TgBot']]],
   ['botaccesssettings_2eh_46',['BotAccessSettings.h',['../_bot_access_settings_8h.html',1,'']]],
