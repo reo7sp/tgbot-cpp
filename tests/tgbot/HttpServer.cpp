@@ -6,6 +6,7 @@
 #include <boost/beast/core/flat_buffer.hpp>
 #include <boost/beast/http.hpp>
 
+#include <csignal>
 #include <cstdint>
 #include <stdexcept>
 #include <string>
@@ -132,6 +133,29 @@ TEST(HttpServer, ReportsRequestHandlerErrors) {
 
     EXPECT_EQ(response.result(), boost::beast::http::status::internal_server_error);
     EXPECT_EQ(errorMessage, "error handling HTTP request: request failed");
+}
+
+TEST(HttpServer, SignalStopsServer) {
+    const std::uint16_t port = findAvailablePort();
+    TgBot::HttpServer<Tcp> server(Tcp::endpoint(boost::asio::ip::address_v4::loopback(), port),
+                                  [](const std::string& body, const auto&) {
+                                      return body;
+                                  });
+    std::exception_ptr exception;
+
+    std::thread serverThread([&] {
+        try {
+            server.start({ }, { SIGINT });
+        } catch (...) {
+            exception = std::current_exception();
+        }
+    });
+
+    EXPECT_EQ(sendRequest(port, "request").body(), "request");
+    std::raise(SIGINT);
+    serverThread.join();
+
+    EXPECT_EQ(exception, nullptr);
 }
 
 } // namespace

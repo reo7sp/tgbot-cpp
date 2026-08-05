@@ -5,6 +5,7 @@
 #include "tgbot/TgLongPoll.h"
 
 #include <atomic>
+#include <csignal>
 #include <exception>
 #include <span>
 #include <stdexcept>
@@ -82,6 +83,28 @@ TEST(TgLongPoll, StopReportsCancellationToErrorHandler) {
     thread.join();
 
     EXPECT_EQ(errorMessage, httpClient.getCancelExceptionText());
+}
+
+TEST(TgLongPoll, SignalStopsLoop) {
+    BlockingHttpClient httpClient;
+    TgBot::Bot bot("token", httpClient, "url");
+    TgBot::TgLongPoll longPoll(bot);
+    std::exception_ptr exception;
+
+    std::thread thread([&] {
+        try {
+            longPoll.startLoop({ }, { SIGINT });
+        } catch (...) {
+            exception = std::current_exception();
+        }
+    });
+
+    httpClient.requestStarted.wait(false);
+    std::raise(SIGINT);
+    thread.join();
+
+    EXPECT_FALSE(longPoll.isRunning());
+    EXPECT_EQ(exception, nullptr);
 }
 
 TEST(TgLongPoll, StartLoopPropagatesRequestErrors) {
