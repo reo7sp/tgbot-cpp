@@ -48,14 +48,14 @@ int main() {
 ```
 
 Other examples are available in [`examples`](examples): webhook server, custom
-curl client, proxy carousel, inline and reply keyboards, file upload/download,
+curl client, proxy usage, inline and reply keyboards, file upload/download,
 and command configuration.
 
 Build and run an example against a locally installed copy of the library:
 
 ```sh
-make install INSTALL_PREFIX="$PWD/build/install"
-make example EXAMPLE=echobot INSTALL_PREFIX="$PWD/build/install"
+make install INSTALL_PREFIX=build/install
+make example EXAMPLE=echobot INSTALL_PREFIX=build/install
 TOKEN=... ./build/Release/examples/echobot/echobot
 ```
 
@@ -65,15 +65,13 @@ Alternatively, build and run the example in Docker:
 TOKEN=... make docker-run-example EXAMPLE=echobot
 ```
 
-To run every example, copy `env.example` to `env`, fill in the values, then run:
+Also you can build and run all examples at once using Docker Compose. For this
+copy `env.example` to `env`, fill in the values, then run:
 
 ```sh
 make docker-compose-run-examples
 make docker-compose-stop-examples
 ```
-
-Only `echobot-webhook-server` exposes an HTTP port. The other examples use
-Telegram long polling and do not listen on local ports.
 
 For your own bot image, use [reo7sp/tgbot-cpp](https://hub.docker.com/r/reo7sp/tgbot-cpp/) as the base image.
 
@@ -161,29 +159,19 @@ C++ workload, and Conan 2 using its official Windows installer.
 For development, also install Python, Poetry and clang-format.
 
 
-## Building the library
+## Developing tgbot-cpp
 
-The Makefile wraps the Conan and CMake workflow on every supported platform:
-
-```sh
-git clone https://github.com/reo7sp/tgbot-cpp
-cd tgbot-cpp
-make
-make install INSTALL_PREFIX=build/install
-```
-
-Development checks are also exposed through the Makefile:
+Development checks are exposed through the Makefile:
 
 ```sh
-make test
 make format
 make lint
+make test
 ```
 
-Alternatively, build and test the Docker images through the same Makefile:
+Alternatively, via Docker:
 
 ```sh
-make docker-image
 make docker-test
 ```
 
