@@ -1,7 +1,6 @@
 var searchData=
 [
-  ['dice_2eh_0',['Dice.h',['../_dice_8h.html',1,'']]],
-  ['directmessagepricechanged_2eh_1',['DirectMessagePriceChanged.h',['../_direct_message_price_changed_8h.html',1,'']]],
-  ['directmessagestopic_2eh_2',['DirectMessagesTopic.h',['../_direct_messages_topic_8h.html',1,'']]],
-  ['document_2eh_3',['Document.h',['../_document_8h.html',1,'']]]
+  ['eventbroadcaster_2eh_0',['EventBroadcaster.h',['../_event_broadcaster_8h.html',1,'']]],
+  ['eventhandler_2eh_1',['EventHandler.h',['../_event_handler_8h.html',1,'']]],
+  ['export_2eh_2',['export.h',['../export_8h.html',1,'']]]
 ];

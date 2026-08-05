@@ -194,6 +194,12 @@ var group__api =
       [ "_token", "class_tg_bot_1_1_api.html#acafdff775d0f2aae706b3fa7e043b315", null ],
       [ "_url", "class_tg_bot_1_1_api.html#a4727b16a25011fa6f647b64d7f67013b", null ]
     ] ],
+    [ "TgBot::InputFile", "class_tg_bot_1_1_input_file.html", [
+      [ "Ptr", "class_tg_bot_1_1_input_file.html#a9b1b7a8f913d9c4d4a389d9a4353d94f", null ],
+      [ "data", "class_tg_bot_1_1_input_file.html#a1633c8f4a40274f53ee6aed3ecd42ef7", null ],
+      [ "fileName", "class_tg_bot_1_1_input_file.html#a47c113dd1cb4678d7ab14f1f033a5b1d", null ],
+      [ "mimeType", "class_tg_bot_1_1_input_file.html#a02575330b4deaa9d2cab5ebd8d8e2e5e", null ]
+    ] ],
     [ "TgBot::AcceptedGiftTypes", "struct_tg_bot_1_1_accepted_gift_types.html", [
       [ "Ptr", "struct_tg_bot_1_1_accepted_gift_types.html#a68c6fcf74744f316d62cbee8368006d1", null ],
       [ "giftsFromChannels", "struct_tg_bot_1_1_accepted_gift_types.html#a30e03931c2d748ebf1ae359037cd2845", null ],
@@ -1266,12 +1272,6 @@ var group__api =
       [ "title", "struct_tg_bot_1_1_inline_query_result_photo.html#a6ebae2354ff1cf73e4e173a6e8324854", null ],
       [ "type", "struct_tg_bot_1_1_inline_query_result_photo.html#a833cd20f856a74ef2aea868eb9cbc236", null ]
     ] ],
-    [ "TgBot::InlineQueryResultsButton", "struct_tg_bot_1_1_inline_query_results_button.html", [
-      [ "Ptr", "struct_tg_bot_1_1_inline_query_results_button.html#a09ec029c780937476e92477be97a9918", null ],
-      [ "startParameter", "struct_tg_bot_1_1_inline_query_results_button.html#a47bc45ad7be93322be162f23c4eba2b0", null ],
-      [ "text", "struct_tg_bot_1_1_inline_query_results_button.html#a30a2552539b53542ab484609ce9c5768", null ],
-      [ "webApp", "struct_tg_bot_1_1_inline_query_results_button.html#af3dffd5feb98fafee26c965cc75922ea", null ]
-    ] ],
     [ "TgBot::InlineQueryResultVenue", "struct_tg_bot_1_1_inline_query_result_venue.html", [
       [ "Ptr", "struct_tg_bot_1_1_inline_query_result_venue.html#aee344de2583f6d5da725b9bd6041a133", null ],
       [ "address", "struct_tg_bot_1_1_inline_query_result_venue.html#a065ae48c35a1fccad49e1dd9c143443b", null ],
@@ -1322,6 +1322,12 @@ var group__api =
       [ "voiceDuration", "struct_tg_bot_1_1_inline_query_result_voice.html#adfbd8bba5228dd33e25629922db9155d", null ],
       [ "voiceUrl", "struct_tg_bot_1_1_inline_query_result_voice.html#afc09fe61b4fcdce1644d55ec488ecda9", null ]
     ] ],
+    [ "TgBot::InlineQueryResultsButton", "struct_tg_bot_1_1_inline_query_results_button.html", [
+      [ "Ptr", "struct_tg_bot_1_1_inline_query_results_button.html#a09ec029c780937476e92477be97a9918", null ],
+      [ "startParameter", "struct_tg_bot_1_1_inline_query_results_button.html#a47bc45ad7be93322be162f23c4eba2b0", null ],
+      [ "text", "struct_tg_bot_1_1_inline_query_results_button.html#a30a2552539b53542ab484609ce9c5768", null ],
+      [ "webApp", "struct_tg_bot_1_1_inline_query_results_button.html#af3dffd5feb98fafee26c965cc75922ea", null ]
+    ] ],
     [ "TgBot::InputChecklist", "struct_tg_bot_1_1_input_checklist.html", [
       [ "Ptr", "struct_tg_bot_1_1_input_checklist.html#a6a5d0f2087a551c2172372c5532417e4", null ],
       [ "othersCanAddTasks", "struct_tg_bot_1_1_input_checklist.html#ae8edcf36b58c3055be22149a8eb6bcab", null ],
@@ -1344,12 +1350,6 @@ var group__api =
       [ "lastName", "struct_tg_bot_1_1_input_contact_message_content.html#a3ab228c0f9a4073c2a3f3223de3d91d0", null ],
       [ "phoneNumber", "struct_tg_bot_1_1_input_contact_message_content.html#a96fe449f5efd3f80c2dde6af364a7aa6", null ],
       [ "vcard", "struct_tg_bot_1_1_input_contact_message_content.html#ae7790d8592cd46bce028d1ce1c433e7c", null ]
-    ] ],
-    [ "TgBot::InputFile", "class_tg_bot_1_1_input_file.html", [
-      [ "Ptr", "class_tg_bot_1_1_input_file.html#a9b1b7a8f913d9c4d4a389d9a4353d94f", null ],
-      [ "data", "class_tg_bot_1_1_input_file.html#a1633c8f4a40274f53ee6aed3ecd42ef7", null ],
-      [ "fileName", "class_tg_bot_1_1_input_file.html#a47c113dd1cb4678d7ab14f1f033a5b1d", null ],
-      [ "mimeType", "class_tg_bot_1_1_input_file.html#a02575330b4deaa9d2cab5ebd8d8e2e5e", null ]
     ] ],
     [ "TgBot::InputInvoiceMessageContent", "struct_tg_bot_1_1_input_invoice_message_content.html", [
       [ "Ptr", "struct_tg_bot_1_1_input_invoice_message_content.html#a346439ff46d7ad9f3e9283c9fdd8699c", null ],
@@ -2143,12 +2143,6 @@ var group__api =
       [ "uniqueGiftNumber", "struct_tg_bot_1_1_owned_gift_regular.html#a49e41f98f25768215b67fb55aa7f2811", null ],
       [ "wasRefunded", "struct_tg_bot_1_1_owned_gift_regular.html#a01ec3b297e1faa7528db323d79d1c539", null ]
     ] ],
-    [ "TgBot::OwnedGifts", "struct_tg_bot_1_1_owned_gifts.html", [
-      [ "Ptr", "struct_tg_bot_1_1_owned_gifts.html#a9d51301ebfbe44cd88a25ea5df93f9ff", null ],
-      [ "gifts", "struct_tg_bot_1_1_owned_gifts.html#a56386ae62b06588a5af81a2961266c51", null ],
-      [ "nextOffset", "struct_tg_bot_1_1_owned_gifts.html#ae509e11e62f514cf3781632846dbf0fc", null ],
-      [ "totalCount", "struct_tg_bot_1_1_owned_gifts.html#a7b57431209e7b07a7a4f66e54657ab1e", null ]
-    ] ],
     [ "TgBot::OwnedGiftUnique", "struct_tg_bot_1_1_owned_gift_unique.html", [
       [ "Ptr", "struct_tg_bot_1_1_owned_gift_unique.html#a228119853ed7a98fcadba40dcbd054b4", null ],
       [ "canBeTransferred", "struct_tg_bot_1_1_owned_gift_unique.html#a5d6ab7b24d0bc73542e3aeebf1b83e23", null ],
@@ -2160,6 +2154,12 @@ var group__api =
       [ "senderUser", "struct_tg_bot_1_1_owned_gift_unique.html#a8b17084d672f895f669861d1f0009787", null ],
       [ "transferStarCount", "struct_tg_bot_1_1_owned_gift_unique.html#af4a62d9de769a8c97358ae004bccfb9a", null ],
       [ "type", "struct_tg_bot_1_1_owned_gift_unique.html#a2dab85d8bf6d3373d64eb3515a06f219", null ]
+    ] ],
+    [ "TgBot::OwnedGifts", "struct_tg_bot_1_1_owned_gifts.html", [
+      [ "Ptr", "struct_tg_bot_1_1_owned_gifts.html#a9d51301ebfbe44cd88a25ea5df93f9ff", null ],
+      [ "gifts", "struct_tg_bot_1_1_owned_gifts.html#a56386ae62b06588a5af81a2961266c51", null ],
+      [ "nextOffset", "struct_tg_bot_1_1_owned_gifts.html#ae509e11e62f514cf3781632846dbf0fc", null ],
+      [ "totalCount", "struct_tg_bot_1_1_owned_gifts.html#a7b57431209e7b07a7a4f66e54657ab1e", null ]
     ] ],
     [ "TgBot::PaidMedia", "struct_tg_bot_1_1_paid_media.html", [
       [ "Ptr", "struct_tg_bot_1_1_paid_media.html#a3960d7990ea1893bc83ffcecab8e924c", null ],
