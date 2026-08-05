@@ -6,7 +6,7 @@ void appendField(std::vector<HttpFormField>& fields, const char* name, const std
     fields.push_back({ name, value });
 }
 
-void appendField(std::vector<HttpFormField>& fields, const char* name, const InputFile::Ptr& value) {
+void appendField(std::vector<HttpFormField>& fields, const char* name, const std::shared_ptr<InputFile>& value) {
     if (value) {
         fields.push_back({
             name,

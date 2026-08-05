@@ -40,7 +40,7 @@ private:
     std::int32_t _timeout;
     std::shared_ptr<std::vector<std::string>> _allowUpdates;
 
-    std::vector<Update::Ptr> _updates;
+    std::vector<std::shared_ptr<Update>> _updates;
 };
 
 } // namespace TgBot

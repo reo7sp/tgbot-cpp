@@ -1,5 +1,6 @@
 x-example: &example
   init: true
+  platform: ${DOCKER_PLATFORM:-linux/amd64}
   restart: unless-stopped
 
 x-example-build: &example-build

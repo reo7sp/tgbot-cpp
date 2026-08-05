@@ -1021,9 +1021,10 @@ std::shared_ptr<PreparedKeyboardButton> Api::savePreparedKeyboardButton(std::sha
 }
 
 std::shared_ptr<Message>
-Api::sendAnimation(std::variant<std::int64_t, std::string> chatId, std::variant<InputFile::Ptr, std::string> animation,
-                   std::int32_t duration, std::int32_t width, std::int32_t height,
-                   std::variant<InputFile::Ptr, std::string> thumbnail, const std::string& caption,
+Api::sendAnimation(std::variant<std::int64_t, std::string> chatId,
+                   std::variant<std::shared_ptr<InputFile>, std::string> animation, std::int32_t duration,
+                   std::int32_t width, std::int32_t height,
+                   std::variant<std::shared_ptr<InputFile>, std::string> thumbnail, const std::string& caption,
                    std::shared_ptr<ReplyParameters> replyParameters,
                    std::variant<std::shared_ptr<InlineKeyboardMarkup>, std::shared_ptr<ReplyKeyboardMarkup>,
                                 std::shared_ptr<ReplyKeyboardRemove>, std::shared_ptr<ForceReply>>
@@ -1057,9 +1058,9 @@ Api::sendAnimation(std::variant<std::int64_t, std::string> chatId, std::variant<
 }
 
 std::shared_ptr<Message> Api::sendAudio(
-    std::variant<std::int64_t, std::string> chatId, std::variant<InputFile::Ptr, std::string> audio,
+    std::variant<std::int64_t, std::string> chatId, std::variant<std::shared_ptr<InputFile>, std::string> audio,
     const std::string& caption, std::int32_t duration, const std::string& performer, const std::string& title,
-    std::variant<InputFile::Ptr, std::string> thumbnail, std::shared_ptr<ReplyParameters> replyParameters,
+    std::variant<std::shared_ptr<InputFile>, std::string> thumbnail, std::shared_ptr<ReplyParameters> replyParameters,
     std::variant<std::shared_ptr<InlineKeyboardMarkup>, std::shared_ptr<ReplyKeyboardMarkup>,
                  std::shared_ptr<ReplyKeyboardRemove>, std::shared_ptr<ForceReply>>
         replyMarkup,
@@ -1178,19 +1179,18 @@ Api::sendDice(std::variant<std::int64_t, std::string> chatId, bool disableNotifi
                                ApiRequest::optional("suggested_post_parameters", suggestedPostParameters))));
 }
 
-std::shared_ptr<Message>
-Api::sendDocument(std::variant<std::int64_t, std::string> chatId, std::variant<InputFile::Ptr, std::string> document,
-                  std::variant<InputFile::Ptr, std::string> thumbnail, const std::string& caption,
-                  std::shared_ptr<ReplyParameters> replyParameters,
-                  std::variant<std::shared_ptr<InlineKeyboardMarkup>, std::shared_ptr<ReplyKeyboardMarkup>,
-                               std::shared_ptr<ReplyKeyboardRemove>, std::shared_ptr<ForceReply>>
-                      replyMarkup,
-                  const std::string& parseMode, bool disableNotification,
-                  const std::vector<std::shared_ptr<MessageEntity>>& captionEntities, bool disableContentTypeDetection,
-                  std::int32_t messageThreadId, bool protectContent, const std::string& businessConnectionId,
-                  bool allowPaidBroadcast, const std::string& callbackQueryId, std::int64_t directMessagesTopicId,
-                  const std::string& messageEffectId, std::int64_t receiverUserId,
-                  std::shared_ptr<SuggestedPostParameters> suggestedPostParameters) const {
+std::shared_ptr<Message> Api::sendDocument(
+    std::variant<std::int64_t, std::string> chatId, std::variant<std::shared_ptr<InputFile>, std::string> document,
+    std::variant<std::shared_ptr<InputFile>, std::string> thumbnail, const std::string& caption,
+    std::shared_ptr<ReplyParameters> replyParameters,
+    std::variant<std::shared_ptr<InlineKeyboardMarkup>, std::shared_ptr<ReplyKeyboardMarkup>,
+                 std::shared_ptr<ReplyKeyboardRemove>, std::shared_ptr<ForceReply>>
+        replyMarkup,
+    const std::string& parseMode, bool disableNotification,
+    const std::vector<std::shared_ptr<MessageEntity>>& captionEntities, bool disableContentTypeDetection,
+    std::int32_t messageThreadId, bool protectContent, const std::string& businessConnectionId, bool allowPaidBroadcast,
+    const std::string& callbackQueryId, std::int64_t directMessagesTopicId, const std::string& messageEffectId,
+    std::int64_t receiverUserId, std::shared_ptr<SuggestedPostParameters> suggestedPostParameters) const {
     return ApiResponse::decode<std::shared_ptr<Message>>(sendRequest(
         "sendDocument",
         ApiRequest::makeFields(ApiRequest::required("chat_id", chatId), ApiRequest::required("document", document),
@@ -1283,19 +1283,18 @@ std::shared_ptr<Message> Api::sendInvoice(
             ApiRequest::optional("suggested_post_parameters", suggestedPostParameters))));
 }
 
-std::shared_ptr<Message>
-Api::sendLivePhoto(std::variant<std::int64_t, std::string> chatId, std::variant<InputFile::Ptr, std::string> livePhoto,
-                   std::variant<InputFile::Ptr, std::string> photo, bool allowPaidBroadcast,
-                   const std::string& businessConnectionId, const std::string& callbackQueryId,
-                   const std::string& caption, const std::vector<std::shared_ptr<MessageEntity>>& captionEntities,
-                   std::int64_t directMessagesTopicId, bool disableNotification, bool hasSpoiler,
-                   const std::string& messageEffectId, std::int32_t messageThreadId, const std::string& parseMode,
-                   bool protectContent, std::int64_t receiverUserId,
-                   std::variant<std::shared_ptr<InlineKeyboardMarkup>, std::shared_ptr<ReplyKeyboardMarkup>,
-                                std::shared_ptr<ReplyKeyboardRemove>, std::shared_ptr<ForceReply>>
-                       replyMarkup,
-                   std::shared_ptr<ReplyParameters> replyParameters, bool showCaptionAboveMedia,
-                   std::shared_ptr<SuggestedPostParameters> suggestedPostParameters) const {
+std::shared_ptr<Message> Api::sendLivePhoto(
+    std::variant<std::int64_t, std::string> chatId, std::variant<std::shared_ptr<InputFile>, std::string> livePhoto,
+    std::variant<std::shared_ptr<InputFile>, std::string> photo, bool allowPaidBroadcast,
+    const std::string& businessConnectionId, const std::string& callbackQueryId, const std::string& caption,
+    const std::vector<std::shared_ptr<MessageEntity>>& captionEntities, std::int64_t directMessagesTopicId,
+    bool disableNotification, bool hasSpoiler, const std::string& messageEffectId, std::int32_t messageThreadId,
+    const std::string& parseMode, bool protectContent, std::int64_t receiverUserId,
+    std::variant<std::shared_ptr<InlineKeyboardMarkup>, std::shared_ptr<ReplyKeyboardMarkup>,
+                 std::shared_ptr<ReplyKeyboardRemove>, std::shared_ptr<ForceReply>>
+        replyMarkup,
+    std::shared_ptr<ReplyParameters> replyParameters, bool showCaptionAboveMedia,
+    std::shared_ptr<SuggestedPostParameters> suggestedPostParameters) const {
     return ApiResponse::decode<std::shared_ptr<Message>>(sendRequest(
         "sendLivePhoto",
         ApiRequest::makeFields(
@@ -1439,8 +1438,9 @@ Api::sendPaidMedia(std::variant<std::int64_t, std::string> chatId,
 }
 
 std::shared_ptr<Message>
-Api::sendPhoto(std::variant<std::int64_t, std::string> chatId, std::variant<InputFile::Ptr, std::string> photo,
-               const std::string& caption, std::shared_ptr<ReplyParameters> replyParameters,
+Api::sendPhoto(std::variant<std::int64_t, std::string> chatId,
+               std::variant<std::shared_ptr<InputFile>, std::string> photo, const std::string& caption,
+               std::shared_ptr<ReplyParameters> replyParameters,
                std::variant<std::shared_ptr<InlineKeyboardMarkup>, std::shared_ptr<ReplyKeyboardMarkup>,
                             std::shared_ptr<ReplyKeyboardRemove>, std::shared_ptr<ForceReply>>
                    replyMarkup,
@@ -1553,7 +1553,8 @@ bool Api::sendRichMessageDraft(std::variant<std::int64_t, std::string> chatId, s
 }
 
 std::shared_ptr<Message>
-Api::sendSticker(std::variant<std::int64_t, std::string> chatId, std::variant<InputFile::Ptr, std::string> sticker,
+Api::sendSticker(std::variant<std::int64_t, std::string> chatId,
+                 std::variant<std::shared_ptr<InputFile>, std::string> sticker,
                  std::shared_ptr<ReplyParameters> replyParameters,
                  std::variant<std::shared_ptr<InlineKeyboardMarkup>, std::shared_ptr<ReplyKeyboardMarkup>,
                               std::shared_ptr<ReplyKeyboardRemove>, std::shared_ptr<ForceReply>>
@@ -1614,9 +1615,10 @@ std::shared_ptr<Message> Api::sendVenue(
 }
 
 std::shared_ptr<Message>
-Api::sendVideo(std::variant<std::int64_t, std::string> chatId, std::variant<InputFile::Ptr, std::string> video,
-               bool supportsStreaming, std::int32_t duration, std::int32_t width, std::int32_t height,
-               std::variant<InputFile::Ptr, std::string> thumbnail, const std::string& caption,
+Api::sendVideo(std::variant<std::int64_t, std::string> chatId,
+               std::variant<std::shared_ptr<InputFile>, std::string> video, bool supportsStreaming,
+               std::int32_t duration, std::int32_t width, std::int32_t height,
+               std::variant<std::shared_ptr<InputFile>, std::string> thumbnail, const std::string& caption,
                std::shared_ptr<ReplyParameters> replyParameters,
                std::variant<std::shared_ptr<InlineKeyboardMarkup>, std::shared_ptr<ReplyKeyboardMarkup>,
                             std::shared_ptr<ReplyKeyboardRemove>, std::shared_ptr<ForceReply>>
@@ -1624,7 +1626,7 @@ Api::sendVideo(std::variant<std::int64_t, std::string> chatId, std::variant<Inpu
                const std::string& parseMode, bool disableNotification,
                const std::vector<std::shared_ptr<MessageEntity>>& captionEntities, std::int32_t messageThreadId,
                bool protectContent, bool hasSpoiler, const std::string& businessConnectionId, bool allowPaidBroadcast,
-               const std::string& callbackQueryId, std::variant<InputFile::Ptr, std::string> cover,
+               const std::string& callbackQueryId, std::variant<std::shared_ptr<InputFile>, std::string> cover,
                std::int64_t directMessagesTopicId, const std::string& messageEffectId, std::int64_t receiverUserId,
                bool showCaptionAboveMedia, std::int32_t startTimestamp,
                std::shared_ptr<SuggestedPostParameters> suggestedPostParameters) const {
@@ -1652,17 +1654,16 @@ Api::sendVideo(std::variant<std::int64_t, std::string> chatId, std::variant<Inpu
             ApiRequest::optional("suggested_post_parameters", suggestedPostParameters))));
 }
 
-std::shared_ptr<Message>
-Api::sendVideoNote(std::variant<std::int64_t, std::string> chatId, std::variant<InputFile::Ptr, std::string> videoNote,
-                   std::shared_ptr<ReplyParameters> replyParameters, bool disableNotification, std::int32_t duration,
-                   std::int32_t length, std::variant<InputFile::Ptr, std::string> thumbnail,
-                   std::variant<std::shared_ptr<InlineKeyboardMarkup>, std::shared_ptr<ReplyKeyboardMarkup>,
-                                std::shared_ptr<ReplyKeyboardRemove>, std::shared_ptr<ForceReply>>
-                       replyMarkup,
-                   std::int32_t messageThreadId, bool protectContent, const std::string& businessConnectionId,
-                   bool allowPaidBroadcast, const std::string& callbackQueryId, std::int64_t directMessagesTopicId,
-                   const std::string& messageEffectId, std::int64_t receiverUserId,
-                   std::shared_ptr<SuggestedPostParameters> suggestedPostParameters) const {
+std::shared_ptr<Message> Api::sendVideoNote(
+    std::variant<std::int64_t, std::string> chatId, std::variant<std::shared_ptr<InputFile>, std::string> videoNote,
+    std::shared_ptr<ReplyParameters> replyParameters, bool disableNotification, std::int32_t duration,
+    std::int32_t length, std::variant<std::shared_ptr<InputFile>, std::string> thumbnail,
+    std::variant<std::shared_ptr<InlineKeyboardMarkup>, std::shared_ptr<ReplyKeyboardMarkup>,
+                 std::shared_ptr<ReplyKeyboardRemove>, std::shared_ptr<ForceReply>>
+        replyMarkup,
+    std::int32_t messageThreadId, bool protectContent, const std::string& businessConnectionId, bool allowPaidBroadcast,
+    const std::string& callbackQueryId, std::int64_t directMessagesTopicId, const std::string& messageEffectId,
+    std::int64_t receiverUserId, std::shared_ptr<SuggestedPostParameters> suggestedPostParameters) const {
     return ApiResponse::decode<std::shared_ptr<Message>>(sendRequest(
         "sendVideoNote",
         ApiRequest::makeFields(ApiRequest::required("chat_id", chatId), ApiRequest::required("video_note", videoNote),
@@ -1682,18 +1683,17 @@ Api::sendVideoNote(std::variant<std::int64_t, std::string> chatId, std::variant<
                                ApiRequest::optional("suggested_post_parameters", suggestedPostParameters))));
 }
 
-std::shared_ptr<Message>
-Api::sendVoice(std::variant<std::int64_t, std::string> chatId, std::variant<InputFile::Ptr, std::string> voice,
-               const std::string& caption, std::int32_t duration, std::shared_ptr<ReplyParameters> replyParameters,
-               std::variant<std::shared_ptr<InlineKeyboardMarkup>, std::shared_ptr<ReplyKeyboardMarkup>,
-                            std::shared_ptr<ReplyKeyboardRemove>, std::shared_ptr<ForceReply>>
-                   replyMarkup,
-               const std::string& parseMode, bool disableNotification,
-               const std::vector<std::shared_ptr<MessageEntity>>& captionEntities, std::int32_t messageThreadId,
-               bool protectContent, const std::string& businessConnectionId, bool allowPaidBroadcast,
-               const std::string& callbackQueryId, std::int64_t directMessagesTopicId,
-               const std::string& messageEffectId, std::int64_t receiverUserId,
-               std::shared_ptr<SuggestedPostParameters> suggestedPostParameters) const {
+std::shared_ptr<Message> Api::sendVoice(
+    std::variant<std::int64_t, std::string> chatId, std::variant<std::shared_ptr<InputFile>, std::string> voice,
+    const std::string& caption, std::int32_t duration, std::shared_ptr<ReplyParameters> replyParameters,
+    std::variant<std::shared_ptr<InlineKeyboardMarkup>, std::shared_ptr<ReplyKeyboardMarkup>,
+                 std::shared_ptr<ReplyKeyboardRemove>, std::shared_ptr<ForceReply>>
+        replyMarkup,
+    const std::string& parseMode, bool disableNotification,
+    const std::vector<std::shared_ptr<MessageEntity>>& captionEntities, std::int32_t messageThreadId,
+    bool protectContent, const std::string& businessConnectionId, bool allowPaidBroadcast,
+    const std::string& callbackQueryId, std::int64_t directMessagesTopicId, const std::string& messageEffectId,
+    std::int64_t receiverUserId, std::shared_ptr<SuggestedPostParameters> suggestedPostParameters) const {
     return ApiResponse::decode<std::shared_ptr<Message>>(sendRequest(
         "sendVoice",
         ApiRequest::makeFields(ApiRequest::required("chat_id", chatId), ApiRequest::required("voice", voice),
@@ -1795,7 +1795,7 @@ bool Api::setChatPermissions(std::variant<std::int64_t, std::string> chatId,
 }
 
 bool Api::setChatPhoto(std::variant<std::int64_t, std::string> chatId,
-                       std::variant<InputFile::Ptr, std::string> photo) const {
+                       std::variant<std::shared_ptr<InputFile>, std::string> photo) const {
     return ApiResponse::decode<bool>(sendRequest(
         "setChatPhoto",
         ApiRequest::makeFields(ApiRequest::required("chat_id", chatId), ApiRequest::required("photo", photo))));
@@ -1925,7 +1925,7 @@ bool Api::setStickerPositionInSet(const std::string& sticker, std::int32_t posit
 }
 
 bool Api::setStickerSetThumbnail(const std::string& name, std::int64_t userId, const std::string& format,
-                                 std::variant<InputFile::Ptr, std::string> thumbnail) const {
+                                 std::variant<std::shared_ptr<InputFile>, std::string> thumbnail) const {
     return ApiResponse::decode<bool>(sendRequest(
         "setStickerSetThumbnail",
         ApiRequest::makeFields(ApiRequest::required("name", name), ApiRequest::required("user_id", userId),
@@ -1947,7 +1947,7 @@ bool Api::setUserEmojiStatus(std::int64_t userId, const std::string& emojiStatus
                                ApiRequest::optional("emoji_status_expiration_date", emojiStatusExpirationDate))));
 }
 
-bool Api::setWebhook(const std::string& url, InputFile::Ptr certificate, std::int32_t maxConnections,
+bool Api::setWebhook(const std::string& url, std::shared_ptr<InputFile> certificate, std::int32_t maxConnections,
                      const std::vector<std::string>& allowedUpdates, const std::string& ipAddress,
                      bool dropPendingUpdates, const std::string& secretToken) const {
     return ApiResponse::decode<bool>(sendRequest(
@@ -2056,7 +2056,8 @@ bool Api::upgradeGift(const std::string& businessConnectionId, const std::string
                                            ApiRequest::optional("star_count", starCount))));
 }
 
-std::shared_ptr<File> Api::uploadStickerFile(std::int64_t userId, std::variant<InputFile::Ptr, std::string> sticker,
+std::shared_ptr<File> Api::uploadStickerFile(std::int64_t userId,
+                                             std::variant<std::shared_ptr<InputFile>, std::string> sticker,
                                              const std::string& stickerFormat) const {
     return ApiResponse::decode<std::shared_ptr<File>>(sendRequest(
         "uploadStickerFile",

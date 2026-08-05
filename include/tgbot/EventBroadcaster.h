@@ -22,89 +22,63 @@ class TGBOT_API EventBroadcaster {
     friend EventHandler;
 
 public:
-    using MessageListener = std::function<void(Message::Ptr)>;
-    using InlineQueryListener = std::function<void(InlineQuery::Ptr)>;
-    using ChosenInlineResultListener = std::function<void(ChosenInlineResult::Ptr)>;
-    using CallbackQueryListener = std::function<void(CallbackQuery::Ptr)>;
-    using ShippingQueryListener = std::function<void(ShippingQuery::Ptr)>;
-    using PreCheckoutQueryListener = std::function<void(PreCheckoutQuery::Ptr)>;
-    using PollListener = std::function<void(Poll::Ptr)>;
-    using PollAnswerListener = std::function<void(PollAnswer::Ptr)>;
-    using ChatMemberUpdatedListener = std::function<void(ChatMemberUpdated::Ptr)>;
-    using ChatJoinRequestListener = std::function<void(ChatJoinRequest::Ptr)>;
-    using MessageReactionUpdatedListener = std::function<void(MessageReactionUpdated::Ptr)>;
-    using MessageReactionCountUpdatedListener = std::function<void(MessageReactionCountUpdated::Ptr)>;
-    using SuccessfulPaymentListener = std::function<void(Message::Ptr, SuccessfulPayment::Ptr)>;
+    using MessageListener = std::function<void(std::shared_ptr<Message>)>;
+    using InlineQueryListener = std::function<void(std::shared_ptr<InlineQuery>)>;
+    using ChosenInlineResultListener = std::function<void(std::shared_ptr<ChosenInlineResult>)>;
+    using CallbackQueryListener = std::function<void(std::shared_ptr<CallbackQuery>)>;
+    using ShippingQueryListener = std::function<void(std::shared_ptr<ShippingQuery>)>;
+    using PreCheckoutQueryListener = std::function<void(std::shared_ptr<PreCheckoutQuery>)>;
+    using PollListener = std::function<void(std::shared_ptr<Poll>)>;
+    using PollAnswerListener = std::function<void(std::shared_ptr<PollAnswer>)>;
+    using ChatMemberUpdatedListener = std::function<void(std::shared_ptr<ChatMemberUpdated>)>;
+    using ChatJoinRequestListener = std::function<void(std::shared_ptr<ChatJoinRequest>)>;
+    using MessageReactionUpdatedListener = std::function<void(std::shared_ptr<MessageReactionUpdated>)>;
+    using MessageReactionCountUpdatedListener = std::function<void(std::shared_ptr<MessageReactionCountUpdated>)>;
+    using SuccessfulPaymentListener = std::function<void(std::shared_ptr<Message>, std::shared_ptr<SuccessfulPayment>)>;
 
     /**
      * @brief Registers listener which receives new incoming message of any kind - text, photo, sticker, etc.
      * @param listener Listener.
      */
-    inline void onAnyMessage(const MessageListener& listener) {
-        _onAnyMessageListeners.push_back(listener);
-    }
+    void onAnyMessage(const MessageListener& listener);
 
     /**
      * @brief Registers listener which receives all messages with commands (messages with leading '/' char).
      * @param commandName Command name which listener can handle.
      * @param listener Listener. Pass nullptr to remove listener of command
      */
-    inline void onCommand(const std::string& commandName, const MessageListener& listener) {
-        if (listener) {
-            _onCommandListeners[commandName] = listener;
-        } else {
-            _onCommandListeners.erase(commandName);
-        }
-    }
+    void onCommand(const std::string& commandName, const MessageListener& listener);
 
     /**
     * @brief Registers listener which receives all messages with commands (messages with leading '/' char).
     * @param commandsList Commands names which listener can handle.
     * @param listener Listener. Pass nullptr to remove listener of commands
     */
-    inline void onCommand(const std::initializer_list<std::string>& commandsList, const MessageListener& listener) {
-        if (listener) {
-            for (const auto& command : commandsList) {
-                _onCommandListeners[command] = listener;
-            }
-        } else {
-            for (const auto& command : commandsList) {
-                _onCommandListeners.erase(command);
-            }
-        }
-    }
+    void onCommand(const std::initializer_list<std::string>& commandsList, const MessageListener& listener);
 
     /**
      * @brief Registers listener which receives all messages with commands (messages with leading '/' char) which haven't been handled by other listeners.
      * @param listener Listener.
      */
-    inline void onUnknownCommand(const MessageListener& listener) {
-        _onUnknownCommandListeners.push_back(listener);
-    }
+    void onUnknownCommand(const MessageListener& listener);
 
     /**
      * @brief Registers listener which receives all messages without commands (messages with no leading '/' char)
      * @param listener Listener.
      */
-    inline void onNonCommandMessage(const MessageListener& listener) {
-        _onNonCommandMessageListeners.push_back(listener);
-    }
+    void onNonCommandMessage(const MessageListener& listener);
 
     /**
      * @brief Registers listener which receives new versions of a message that is known to the bot and was edited
      * @param listener Listener.
      */
-    inline void onEditedMessage(const MessageListener& listener) {
-        _onEditedMessageListeners.push_back(listener);
-    }
+    void onEditedMessage(const MessageListener& listener);
 
     /**
      * @brief Registers listener which receives new incoming inline queries
      * @param listener Listener.
      */
-    inline void onInlineQuery(const InlineQueryListener& listener) {
-        _onInlineQueryListeners.push_back(listener);
-    }
+    void onInlineQuery(const InlineQueryListener& listener);
 
     /**
      * @brief Registers listener which receives the results of an inline query that was chosen by a user and sent to their chat partner.
@@ -112,17 +86,13 @@ public:
      * 
      * @param listener Listener.
      */
-    inline void onChosenInlineResult(const ChosenInlineResultListener& listener) {
-        _onChosenInlineResultListeners.push_back(listener);
-    }
+    void onChosenInlineResult(const ChosenInlineResultListener& listener);
 
     /**
      * @brief Registers listener which receives new incoming callback queries
      * @param listener Listener.
      */
-    inline void onCallbackQuery(const CallbackQueryListener& listener) {
-        _onCallbackQueryListeners.push_back(listener);
-    }
+    void onCallbackQuery(const CallbackQueryListener& listener);
 
     /**
      * @brief Registers listener which receives new incoming shipping queries.
@@ -130,9 +100,7 @@ public:
      * 
      * @param listener Listener.
      */
-    inline void onShippingQuery(const ShippingQueryListener& listener) {
-        _onShippingQueryListeners.push_back(listener);
-    }
+    void onShippingQuery(const ShippingQueryListener& listener);
 
     /**
      * @brief Registers listener which receives new incoming pre-checkout queries.
@@ -140,9 +108,7 @@ public:
      * 
      * @param listener Listener.
      */
-    inline void onPreCheckoutQuery(const PreCheckoutQueryListener& listener) {
-        _onPreCheckoutQueryListeners.push_back(listener);
-    }
+    void onPreCheckoutQuery(const PreCheckoutQueryListener& listener);
 
     /**
      * @brief Registers listener which receives new poll states.
@@ -150,9 +116,7 @@ public:
      * 
      * @param listener Listener.
      */
-    inline void onPoll(const PollListener& listener) {
-        _onPollListeners.push_back(listener);
-    }
+    void onPoll(const PollListener& listener);
 
     /**
      * @brief Registers listener which receives an answer if a user changed their answer in a non-anonymous poll.
@@ -160,9 +124,7 @@ public:
      * 
      * @param listener Listener.
      */
-    inline void onPollAnswer(const PollAnswerListener& listener) {
-        _onPollAnswerListeners.push_back(listener);
-    }
+    void onPollAnswer(const PollAnswerListener& listener);
 
     /**
      * @brief Registers listener which receives the bot's chat member status if it was updated in a chat.
@@ -170,9 +132,7 @@ public:
      * 
      * @param listener Listener.
      */
-    inline void onMyChatMember(const ChatMemberUpdatedListener& listener) {
-        _onMyChatMemberListeners.push_back(listener);
-    }
+    void onMyChatMember(const ChatMemberUpdatedListener& listener);
 
     /**
      * @brief Registers listener which receives a status if a chat member's status was updated in a chat.
@@ -180,9 +140,7 @@ public:
      * 
      * @param listener Listener.
      */
-    inline void onChatMember(const ChatMemberUpdatedListener& listener) {
-        _onChatMemberListeners.push_back(listener);
-    }
+    void onChatMember(const ChatMemberUpdatedListener& listener);
 
     /**
      * @brief Registers listener which receives requests to join the chat.
@@ -190,25 +148,19 @@ public:
      * 
      * @param listener Listener.
      */
-    inline void onChatJoinRequest(const ChatJoinRequestListener& listener) {
-        _onChatJoinRequestListeners.push_back(listener);
-    }
+    void onChatJoinRequest(const ChatJoinRequestListener& listener);
 
     /**
      * @brief Registers listener which receives new incoming message reaction update event.
      * @param listener Listener.
      */
-    inline void onMessageReaction(const MessageReactionUpdatedListener& listener) {
-        _onMessageReactionUpdatedListener.push_back(listener);
-    }
+    void onMessageReaction(const MessageReactionUpdatedListener& listener);
 
     /**
      * @brief Registers listener which receives new incoming message reaction count update event.
      * @param listener Listener.
      */
-    inline void onMessageReactionCount(const MessageReactionCountUpdatedListener& listener) {
-        _onMessageReactionCountUpdatedListener.push_back(listener);
-    }
+    void onMessageReactionCount(const MessageReactionCountUpdatedListener& listener);
 
     /**
     * @brief Registers listener which receives information about successful payments.
@@ -216,105 +168,31 @@ public:
     * 
     * @param listener Listener.
     */
-    inline void onSuccessfulPayment(const SuccessfulPaymentListener& listener) {
-        _onSuccessfulPaymentListeners.push_back(listener);
-    }
+    void onSuccessfulPayment(const SuccessfulPaymentListener& listener);
 
 private:
     template<typename ListenerType, typename ObjectType>
-    inline void broadcast(const std::vector<ListenerType>& listeners, const ObjectType object) const {
-        if (!object)
-            return;
+    void broadcast(const std::vector<ListenerType>& listeners, ObjectType object) const;
 
-        for (const ListenerType& item : listeners) {
-            item(object);
-        }
-    }
-
-    inline void broadcastAnyMessage(const Message::Ptr& message) const {
-        broadcast<MessageListener, Message::Ptr>(_onAnyMessageListeners, message);
-    }
-
-    inline bool broadcastCommand(const std::string& command, const Message::Ptr& message) const {
-        auto iter = _onCommandListeners.find(command);
-        if (iter == _onCommandListeners.end()) {
-            return false;
-        }
-        iter->second(message);
-        return true;
-    }
-
-    inline void broadcastUnknownCommand(const Message::Ptr& message) const {
-        broadcast<MessageListener, Message::Ptr>(_onUnknownCommandListeners, message);
-    }
-
-    inline void broadcastNonCommandMessage(const Message::Ptr& message) const {
-        broadcast<MessageListener, Message::Ptr>(_onNonCommandMessageListeners, message);
-    }
-
-    inline void broadcastEditedMessage(const Message::Ptr& message) const {
-        broadcast<MessageListener, Message::Ptr>(_onEditedMessageListeners, message);
-    }
-
-    inline void broadcastInlineQuery(const InlineQuery::Ptr& query) const {
-        broadcast<InlineQueryListener, InlineQuery::Ptr>(_onInlineQueryListeners, query);
-    }
-
-    inline void broadcastChosenInlineResult(const ChosenInlineResult::Ptr& result) const {
-        broadcast<ChosenInlineResultListener, ChosenInlineResult::Ptr>(_onChosenInlineResultListeners, result);
-    }
-
-    inline void broadcastCallbackQuery(const CallbackQuery::Ptr& result) const {
-        broadcast<CallbackQueryListener, CallbackQuery::Ptr>(_onCallbackQueryListeners, result);
-    }
-
-    inline void broadcastShippingQuery(const ShippingQuery::Ptr& result) const {
-        broadcast<ShippingQueryListener, ShippingQuery::Ptr>(_onShippingQueryListeners, result);
-    }
-
-    inline void broadcastPreCheckoutQuery(const PreCheckoutQuery::Ptr& result) const {
-        broadcast<PreCheckoutQueryListener, PreCheckoutQuery::Ptr>(_onPreCheckoutQueryListeners, result);
-    }
-
-    inline void broadcastPoll(const Poll::Ptr& result) const {
-        broadcast<PollListener, Poll::Ptr>(_onPollListeners, result);
-    }
-
-    inline void broadcastPollAnswer(const PollAnswer::Ptr& result) const {
-        broadcast<PollAnswerListener, PollAnswer::Ptr>(_onPollAnswerListeners, result);
-    }
-
-    inline void broadcastMyChatMember(const ChatMemberUpdated::Ptr& result) const {
-        broadcast<ChatMemberUpdatedListener, ChatMemberUpdated::Ptr>(_onMyChatMemberListeners, result);
-    }
-
-    inline void broadcastChatMember(const ChatMemberUpdated::Ptr& result) const {
-        broadcast<ChatMemberUpdatedListener, ChatMemberUpdated::Ptr>(_onChatMemberListeners, result);
-    }
-
-    inline void broadcastChatJoinRequest(const ChatJoinRequest::Ptr& result) const {
-        broadcast<ChatJoinRequestListener, ChatJoinRequest::Ptr>(_onChatJoinRequestListeners, result);
-    }
-
-    inline void broadcastMessageReactionUpdated(const MessageReactionUpdated::Ptr& messageReaction) const {
-        broadcast<MessageReactionUpdatedListener, MessageReactionUpdated::Ptr>(_onMessageReactionUpdatedListener,
-                                                                               messageReaction);
-    }
-
-    inline void
-    broadcastMessageReactionCountUpdated(const MessageReactionCountUpdated::Ptr& messageReactionCount) const {
-        broadcast<MessageReactionCountUpdatedListener, MessageReactionCountUpdated::Ptr>(
-            _onMessageReactionCountUpdatedListener, messageReactionCount);
-    }
-
-    inline void broadcastSuccessfulPayment(const Message::Ptr& message) const {
-        if (!message || !message->successfulPayment) {
-            return;
-        }
-        for (const auto& listener : _onSuccessfulPaymentListeners) {
-            listener(message, message->successfulPayment);
-        }
-    }
+    void broadcastAnyMessage(const std::shared_ptr<Message>& message) const;
+    bool broadcastCommand(const std::string& command, const std::shared_ptr<Message>& message) const;
+    void broadcastUnknownCommand(const std::shared_ptr<Message>& message) const;
+    void broadcastNonCommandMessage(const std::shared_ptr<Message>& message) const;
+    void broadcastEditedMessage(const std::shared_ptr<Message>& message) const;
+    void broadcastInlineQuery(const std::shared_ptr<InlineQuery>& query) const;
+    void broadcastChosenInlineResult(const std::shared_ptr<ChosenInlineResult>& result) const;
+    void broadcastCallbackQuery(const std::shared_ptr<CallbackQuery>& result) const;
+    void broadcastShippingQuery(const std::shared_ptr<ShippingQuery>& result) const;
+    void broadcastPreCheckoutQuery(const std::shared_ptr<PreCheckoutQuery>& result) const;
+    void broadcastPoll(const std::shared_ptr<Poll>& result) const;
+    void broadcastPollAnswer(const std::shared_ptr<PollAnswer>& result) const;
+    void broadcastMyChatMember(const std::shared_ptr<ChatMemberUpdated>& result) const;
+    void broadcastChatMember(const std::shared_ptr<ChatMemberUpdated>& result) const;
+    void broadcastChatJoinRequest(const std::shared_ptr<ChatJoinRequest>& result) const;
+    void broadcastMessageReactionUpdated(const std::shared_ptr<MessageReactionUpdated>& messageReaction) const;
+    void broadcastMessageReactionCountUpdated(
+        const std::shared_ptr<MessageReactionCountUpdated>& messageReactionCount) const;
+    void broadcastSuccessfulPayment(const std::shared_ptr<Message>& message) const;
 
     std::vector<MessageListener> _onAnyMessageListeners;
     std::unordered_map<std::string, MessageListener> _onCommandListeners;

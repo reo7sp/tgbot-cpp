@@ -69,6 +69,7 @@ To run every example, copy `env.example` to `env`, fill in the values, then run:
 
 ```sh
 make docker-compose-run-examples
+make docker-compose-stop-examples
 ```
 
 Only `echobot-webhook-server` exposes an HTTP port. The other examples use

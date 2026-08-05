@@ -2105,22 +2105,21 @@
      *
      * @return Telegram Bot API result.
      */
-    std::shared_ptr<Message>
-    sendAnimation(std::variant<std::int64_t, std::string> chatId, std::variant<InputFile::Ptr, std::string> animation,
-                  std::int32_t duration = 0, std::int32_t width = 0, std::int32_t height = 0,
-                  std::variant<InputFile::Ptr, std::string> thumbnail = { }, const std::string& caption = "",
-                  std::shared_ptr<ReplyParameters> replyParameters = nullptr,
-                  std::variant<std::shared_ptr<InlineKeyboardMarkup>, std::shared_ptr<ReplyKeyboardMarkup>,
-                               std::shared_ptr<ReplyKeyboardRemove>, std::shared_ptr<ForceReply>>
-                      replyMarkup = { },
-                  const std::string& parseMode = "", bool disableNotification = false,
-                  const std::vector<std::shared_ptr<MessageEntity>>& captionEntities = { },
-                  std::int32_t messageThreadId = 0, bool protectContent = false, bool hasSpoiler = false,
-                  const std::string& businessConnectionId = "", bool allowPaidBroadcast = false,
-                  const std::string& callbackQueryId = "", std::int64_t directMessagesTopicId = 0,
-                  const std::string& messageEffectId = "", std::int64_t receiverUserId = 0,
-                  bool showCaptionAboveMedia = false,
-                  std::shared_ptr<SuggestedPostParameters> suggestedPostParameters = nullptr) const;
+    std::shared_ptr<Message> sendAnimation(
+        std::variant<std::int64_t, std::string> chatId, std::variant<std::shared_ptr<InputFile>, std::string> animation,
+        std::int32_t duration = 0, std::int32_t width = 0, std::int32_t height = 0,
+        std::variant<std::shared_ptr<InputFile>, std::string> thumbnail = { }, const std::string& caption = "",
+        std::shared_ptr<ReplyParameters> replyParameters = nullptr,
+        std::variant<std::shared_ptr<InlineKeyboardMarkup>, std::shared_ptr<ReplyKeyboardMarkup>,
+                     std::shared_ptr<ReplyKeyboardRemove>, std::shared_ptr<ForceReply>>
+            replyMarkup = { },
+        const std::string& parseMode = "", bool disableNotification = false,
+        const std::vector<std::shared_ptr<MessageEntity>>& captionEntities = { }, std::int32_t messageThreadId = 0,
+        bool protectContent = false, bool hasSpoiler = false, const std::string& businessConnectionId = "",
+        bool allowPaidBroadcast = false, const std::string& callbackQueryId = "",
+        std::int64_t directMessagesTopicId = 0, const std::string& messageEffectId = "",
+        std::int64_t receiverUserId = 0, bool showCaptionAboveMedia = false,
+        std::shared_ptr<SuggestedPostParameters> suggestedPostParameters = nullptr) const;
 
     /**
      * @brief Use this method to send audio files, if you want Telegram clients to display them in the
@@ -2183,21 +2182,20 @@
      *
      * @return Telegram Bot API result.
      */
-    std::shared_ptr<Message>
-    sendAudio(std::variant<std::int64_t, std::string> chatId, std::variant<InputFile::Ptr, std::string> audio,
-              const std::string& caption = "", std::int32_t duration = 0, const std::string& performer = "",
-              const std::string& title = "", std::variant<InputFile::Ptr, std::string> thumbnail = { },
-              std::shared_ptr<ReplyParameters> replyParameters = nullptr,
-              std::variant<std::shared_ptr<InlineKeyboardMarkup>, std::shared_ptr<ReplyKeyboardMarkup>,
-                           std::shared_ptr<ReplyKeyboardRemove>, std::shared_ptr<ForceReply>>
-                  replyMarkup = { },
-              const std::string& parseMode = "", bool disableNotification = false,
-              const std::vector<std::shared_ptr<MessageEntity>>& captionEntities = { },
-              std::int32_t messageThreadId = 0, bool protectContent = false,
-              const std::string& businessConnectionId = "", bool allowPaidBroadcast = false,
-              const std::string& callbackQueryId = "", std::int64_t directMessagesTopicId = 0,
-              const std::string& messageEffectId = "", std::int64_t receiverUserId = 0,
-              std::shared_ptr<SuggestedPostParameters> suggestedPostParameters = nullptr) const;
+    std::shared_ptr<Message> sendAudio(
+        std::variant<std::int64_t, std::string> chatId, std::variant<std::shared_ptr<InputFile>, std::string> audio,
+        const std::string& caption = "", std::int32_t duration = 0, const std::string& performer = "",
+        const std::string& title = "", std::variant<std::shared_ptr<InputFile>, std::string> thumbnail = { },
+        std::shared_ptr<ReplyParameters> replyParameters = nullptr,
+        std::variant<std::shared_ptr<InlineKeyboardMarkup>, std::shared_ptr<ReplyKeyboardMarkup>,
+                     std::shared_ptr<ReplyKeyboardRemove>, std::shared_ptr<ForceReply>>
+            replyMarkup = { },
+        const std::string& parseMode = "", bool disableNotification = false,
+        const std::vector<std::shared_ptr<MessageEntity>>& captionEntities = { }, std::int32_t messageThreadId = 0,
+        bool protectContent = false, const std::string& businessConnectionId = "", bool allowPaidBroadcast = false,
+        const std::string& callbackQueryId = "", std::int64_t directMessagesTopicId = 0,
+        const std::string& messageEffectId = "", std::int64_t receiverUserId = 0,
+        std::shared_ptr<SuggestedPostParameters> suggestedPostParameters = nullptr) const;
 
     /**
      * @brief Use this method when you need to tell the user that something is happening on the bot's
@@ -2423,21 +2421,20 @@
      *
      * @return Telegram Bot API result.
      */
-    std::shared_ptr<Message>
-    sendDocument(std::variant<std::int64_t, std::string> chatId, std::variant<InputFile::Ptr, std::string> document,
-                 std::variant<InputFile::Ptr, std::string> thumbnail = { }, const std::string& caption = "",
-                 std::shared_ptr<ReplyParameters> replyParameters = nullptr,
-                 std::variant<std::shared_ptr<InlineKeyboardMarkup>, std::shared_ptr<ReplyKeyboardMarkup>,
-                              std::shared_ptr<ReplyKeyboardRemove>, std::shared_ptr<ForceReply>>
-                     replyMarkup = { },
-                 const std::string& parseMode = "", bool disableNotification = false,
-                 const std::vector<std::shared_ptr<MessageEntity>>& captionEntities = { },
-                 bool disableContentTypeDetection = false, std::int32_t messageThreadId = 0,
-                 bool protectContent = false, const std::string& businessConnectionId = "",
-                 bool allowPaidBroadcast = false, const std::string& callbackQueryId = "",
-                 std::int64_t directMessagesTopicId = 0, const std::string& messageEffectId = "",
-                 std::int64_t receiverUserId = 0,
-                 std::shared_ptr<SuggestedPostParameters> suggestedPostParameters = nullptr) const;
+    std::shared_ptr<Message> sendDocument(
+        std::variant<std::int64_t, std::string> chatId, std::variant<std::shared_ptr<InputFile>, std::string> document,
+        std::variant<std::shared_ptr<InputFile>, std::string> thumbnail = { }, const std::string& caption = "",
+        std::shared_ptr<ReplyParameters> replyParameters = nullptr,
+        std::variant<std::shared_ptr<InlineKeyboardMarkup>, std::shared_ptr<ReplyKeyboardMarkup>,
+                     std::shared_ptr<ReplyKeyboardRemove>, std::shared_ptr<ForceReply>>
+            replyMarkup = { },
+        const std::string& parseMode = "", bool disableNotification = false,
+        const std::vector<std::shared_ptr<MessageEntity>>& captionEntities = { },
+        bool disableContentTypeDetection = false, std::int32_t messageThreadId = 0, bool protectContent = false,
+        const std::string& businessConnectionId = "", bool allowPaidBroadcast = false,
+        const std::string& callbackQueryId = "", std::int64_t directMessagesTopicId = 0,
+        const std::string& messageEffectId = "", std::int64_t receiverUserId = 0,
+        std::shared_ptr<SuggestedPostParameters> suggestedPostParameters = nullptr) const;
 
     /**
      * @brief Use this method to send a game. On success, the sent Message is returned.
@@ -2652,20 +2649,19 @@
      *
      * @return Telegram Bot API result.
      */
-    std::shared_ptr<Message>
-    sendLivePhoto(std::variant<std::int64_t, std::string> chatId, std::variant<InputFile::Ptr, std::string> livePhoto,
-                  std::variant<InputFile::Ptr, std::string> photo, bool allowPaidBroadcast = false,
-                  const std::string& businessConnectionId = "", const std::string& callbackQueryId = "",
-                  const std::string& caption = "",
-                  const std::vector<std::shared_ptr<MessageEntity>>& captionEntities = { },
-                  std::int64_t directMessagesTopicId = 0, bool disableNotification = false, bool hasSpoiler = false,
-                  const std::string& messageEffectId = "", std::int32_t messageThreadId = 0,
-                  const std::string& parseMode = "", bool protectContent = false, std::int64_t receiverUserId = 0,
-                  std::variant<std::shared_ptr<InlineKeyboardMarkup>, std::shared_ptr<ReplyKeyboardMarkup>,
-                               std::shared_ptr<ReplyKeyboardRemove>, std::shared_ptr<ForceReply>>
-                      replyMarkup = { },
-                  std::shared_ptr<ReplyParameters> replyParameters = nullptr, bool showCaptionAboveMedia = false,
-                  std::shared_ptr<SuggestedPostParameters> suggestedPostParameters = nullptr) const;
+    std::shared_ptr<Message> sendLivePhoto(
+        std::variant<std::int64_t, std::string> chatId, std::variant<std::shared_ptr<InputFile>, std::string> livePhoto,
+        std::variant<std::shared_ptr<InputFile>, std::string> photo, bool allowPaidBroadcast = false,
+        const std::string& businessConnectionId = "", const std::string& callbackQueryId = "",
+        const std::string& caption = "", const std::vector<std::shared_ptr<MessageEntity>>& captionEntities = { },
+        std::int64_t directMessagesTopicId = 0, bool disableNotification = false, bool hasSpoiler = false,
+        const std::string& messageEffectId = "", std::int32_t messageThreadId = 0, const std::string& parseMode = "",
+        bool protectContent = false, std::int64_t receiverUserId = 0,
+        std::variant<std::shared_ptr<InlineKeyboardMarkup>, std::shared_ptr<ReplyKeyboardMarkup>,
+                     std::shared_ptr<ReplyKeyboardRemove>, std::shared_ptr<ForceReply>>
+            replyMarkup = { },
+        std::shared_ptr<ReplyParameters> replyParameters = nullptr, bool showCaptionAboveMedia = false,
+        std::shared_ptr<SuggestedPostParameters> suggestedPostParameters = nullptr) const;
 
     /**
      * @brief Use this method to send point on the map. On success, the sent Message is returned.
@@ -2954,20 +2950,19 @@
      *
      * @return Telegram Bot API result.
      */
-    std::shared_ptr<Message>
-    sendPhoto(std::variant<std::int64_t, std::string> chatId, std::variant<InputFile::Ptr, std::string> photo,
-              const std::string& caption = "", std::shared_ptr<ReplyParameters> replyParameters = nullptr,
-              std::variant<std::shared_ptr<InlineKeyboardMarkup>, std::shared_ptr<ReplyKeyboardMarkup>,
-                           std::shared_ptr<ReplyKeyboardRemove>, std::shared_ptr<ForceReply>>
-                  replyMarkup = { },
-              const std::string& parseMode = "", bool disableNotification = false,
-              const std::vector<std::shared_ptr<MessageEntity>>& captionEntities = { },
-              std::int32_t messageThreadId = 0, bool protectContent = false, bool hasSpoiler = false,
-              const std::string& businessConnectionId = "", bool allowPaidBroadcast = false,
-              const std::string& callbackQueryId = "", std::int64_t directMessagesTopicId = 0,
-              const std::string& messageEffectId = "", std::int64_t receiverUserId = 0,
-              bool showCaptionAboveMedia = false,
-              std::shared_ptr<SuggestedPostParameters> suggestedPostParameters = nullptr) const;
+    std::shared_ptr<Message> sendPhoto(
+        std::variant<std::int64_t, std::string> chatId, std::variant<std::shared_ptr<InputFile>, std::string> photo,
+        const std::string& caption = "", std::shared_ptr<ReplyParameters> replyParameters = nullptr,
+        std::variant<std::shared_ptr<InlineKeyboardMarkup>, std::shared_ptr<ReplyKeyboardMarkup>,
+                     std::shared_ptr<ReplyKeyboardRemove>, std::shared_ptr<ForceReply>>
+            replyMarkup = { },
+        const std::string& parseMode = "", bool disableNotification = false,
+        const std::vector<std::shared_ptr<MessageEntity>>& captionEntities = { }, std::int32_t messageThreadId = 0,
+        bool protectContent = false, bool hasSpoiler = false, const std::string& businessConnectionId = "",
+        bool allowPaidBroadcast = false, const std::string& callbackQueryId = "",
+        std::int64_t directMessagesTopicId = 0, const std::string& messageEffectId = "",
+        std::int64_t receiverUserId = 0, bool showCaptionAboveMedia = false,
+        std::shared_ptr<SuggestedPostParameters> suggestedPostParameters = nullptr) const;
 
     /**
      * @brief Use this method to send a native poll. On success, the sent Message is returned.
@@ -3174,18 +3169,17 @@
      *
      * @return Telegram Bot API result.
      */
-    std::shared_ptr<Message>
-    sendSticker(std::variant<std::int64_t, std::string> chatId, std::variant<InputFile::Ptr, std::string> sticker,
-                std::shared_ptr<ReplyParameters> replyParameters = nullptr,
-                std::variant<std::shared_ptr<InlineKeyboardMarkup>, std::shared_ptr<ReplyKeyboardMarkup>,
-                             std::shared_ptr<ReplyKeyboardRemove>, std::shared_ptr<ForceReply>>
-                    replyMarkup = { },
-                bool disableNotification = false, std::int32_t messageThreadId = 0, bool protectContent = false,
-                const std::string& emoji = "", const std::string& businessConnectionId = "",
-                bool allowPaidBroadcast = false, const std::string& callbackQueryId = "",
-                std::int64_t directMessagesTopicId = 0, const std::string& messageEffectId = "",
-                std::int64_t receiverUserId = 0,
-                std::shared_ptr<SuggestedPostParameters> suggestedPostParameters = nullptr) const;
+    std::shared_ptr<Message> sendSticker(
+        std::variant<std::int64_t, std::string> chatId, std::variant<std::shared_ptr<InputFile>, std::string> sticker,
+        std::shared_ptr<ReplyParameters> replyParameters = nullptr,
+        std::variant<std::shared_ptr<InlineKeyboardMarkup>, std::shared_ptr<ReplyKeyboardMarkup>,
+                     std::shared_ptr<ReplyKeyboardRemove>, std::shared_ptr<ForceReply>>
+            replyMarkup = { },
+        bool disableNotification = false, std::int32_t messageThreadId = 0, bool protectContent = false,
+        const std::string& emoji = "", const std::string& businessConnectionId = "", bool allowPaidBroadcast = false,
+        const std::string& callbackQueryId = "", std::int64_t directMessagesTopicId = 0,
+        const std::string& messageEffectId = "", std::int64_t receiverUserId = 0,
+        std::shared_ptr<SuggestedPostParameters> suggestedPostParameters = nullptr) const;
 
     /**
      * @brief Use this method to send information about a venue. On success, the sent Message is
@@ -3320,22 +3314,22 @@
      *
      * @return Telegram Bot API result.
      */
-    std::shared_ptr<Message>
-    sendVideo(std::variant<std::int64_t, std::string> chatId, std::variant<InputFile::Ptr, std::string> video,
-              bool supportsStreaming = false, std::int32_t duration = 0, std::int32_t width = 0,
-              std::int32_t height = 0, std::variant<InputFile::Ptr, std::string> thumbnail = { },
-              const std::string& caption = "", std::shared_ptr<ReplyParameters> replyParameters = nullptr,
-              std::variant<std::shared_ptr<InlineKeyboardMarkup>, std::shared_ptr<ReplyKeyboardMarkup>,
-                           std::shared_ptr<ReplyKeyboardRemove>, std::shared_ptr<ForceReply>>
-                  replyMarkup = { },
-              const std::string& parseMode = "", bool disableNotification = false,
-              const std::vector<std::shared_ptr<MessageEntity>>& captionEntities = { },
-              std::int32_t messageThreadId = 0, bool protectContent = false, bool hasSpoiler = false,
-              const std::string& businessConnectionId = "", bool allowPaidBroadcast = false,
-              const std::string& callbackQueryId = "", std::variant<InputFile::Ptr, std::string> cover = { },
-              std::int64_t directMessagesTopicId = 0, const std::string& messageEffectId = "",
-              std::int64_t receiverUserId = 0, bool showCaptionAboveMedia = false, std::int32_t startTimestamp = 0,
-              std::shared_ptr<SuggestedPostParameters> suggestedPostParameters = nullptr) const;
+    std::shared_ptr<Message> sendVideo(
+        std::variant<std::int64_t, std::string> chatId, std::variant<std::shared_ptr<InputFile>, std::string> video,
+        bool supportsStreaming = false, std::int32_t duration = 0, std::int32_t width = 0, std::int32_t height = 0,
+        std::variant<std::shared_ptr<InputFile>, std::string> thumbnail = { }, const std::string& caption = "",
+        std::shared_ptr<ReplyParameters> replyParameters = nullptr,
+        std::variant<std::shared_ptr<InlineKeyboardMarkup>, std::shared_ptr<ReplyKeyboardMarkup>,
+                     std::shared_ptr<ReplyKeyboardRemove>, std::shared_ptr<ForceReply>>
+            replyMarkup = { },
+        const std::string& parseMode = "", bool disableNotification = false,
+        const std::vector<std::shared_ptr<MessageEntity>>& captionEntities = { }, std::int32_t messageThreadId = 0,
+        bool protectContent = false, bool hasSpoiler = false, const std::string& businessConnectionId = "",
+        bool allowPaidBroadcast = false, const std::string& callbackQueryId = "",
+        std::variant<std::shared_ptr<InputFile>, std::string> cover = { }, std::int64_t directMessagesTopicId = 0,
+        const std::string& messageEffectId = "", std::int64_t receiverUserId = 0, bool showCaptionAboveMedia = false,
+        std::int32_t startTimestamp = 0,
+        std::shared_ptr<SuggestedPostParameters> suggestedPostParameters = nullptr) const;
 
     /**
      * @brief As of v.4.0, Telegram clients support rounded square MPEG4 videos of up to 1 minute
@@ -3390,10 +3384,11 @@
      * @return Telegram Bot API result.
      */
     std::shared_ptr<Message>
-    sendVideoNote(std::variant<std::int64_t, std::string> chatId, std::variant<InputFile::Ptr, std::string> videoNote,
+    sendVideoNote(std::variant<std::int64_t, std::string> chatId,
+                  std::variant<std::shared_ptr<InputFile>, std::string> videoNote,
                   std::shared_ptr<ReplyParameters> replyParameters = nullptr, bool disableNotification = false,
                   std::int32_t duration = 0, std::int32_t length = 0,
-                  std::variant<InputFile::Ptr, std::string> thumbnail = { },
+                  std::variant<std::shared_ptr<InputFile>, std::string> thumbnail = { },
                   std::variant<std::shared_ptr<InlineKeyboardMarkup>, std::shared_ptr<ReplyKeyboardMarkup>,
                                std::shared_ptr<ReplyKeyboardRemove>, std::shared_ptr<ForceReply>>
                       replyMarkup = { },
@@ -3455,9 +3450,9 @@
      * @return Telegram Bot API result.
      */
     std::shared_ptr<Message>
-    sendVoice(std::variant<std::int64_t, std::string> chatId, std::variant<InputFile::Ptr, std::string> voice,
-              const std::string& caption = "", std::int32_t duration = 0,
-              std::shared_ptr<ReplyParameters> replyParameters = nullptr,
+    sendVoice(std::variant<std::int64_t, std::string> chatId,
+              std::variant<std::shared_ptr<InputFile>, std::string> voice, const std::string& caption = "",
+              std::int32_t duration = 0, std::shared_ptr<ReplyParameters> replyParameters = nullptr,
               std::variant<std::shared_ptr<InlineKeyboardMarkup>, std::shared_ptr<ReplyKeyboardMarkup>,
                            std::shared_ptr<ReplyKeyboardRemove>, std::shared_ptr<ForceReply>>
                   replyMarkup = { },
@@ -3624,7 +3619,7 @@
      * @return Telegram Bot API result.
      */
     bool setChatPhoto(std::variant<std::int64_t, std::string> chatId,
-                      std::variant<InputFile::Ptr, std::string> photo) const;
+                      std::variant<std::shared_ptr<InputFile>, std::string> photo) const;
 
     /**
      * @brief Use this method to set a new group sticker set for a supergroup. The bot must be an
@@ -3903,7 +3898,7 @@
      * @return Telegram Bot API result.
      */
     bool setStickerSetThumbnail(const std::string& name, std::int64_t userId, const std::string& format,
-                                std::variant<InputFile::Ptr, std::string> thumbnail = { }) const;
+                                std::variant<std::shared_ptr<InputFile>, std::string> thumbnail = { }) const;
 
     /**
      * @brief Use this method to set the title of a created sticker set. Returns True on success.
@@ -3967,9 +3962,10 @@
      *
      * @return Telegram Bot API result.
      */
-    bool setWebhook(const std::string& url, InputFile::Ptr certificate = nullptr, std::int32_t maxConnections = 40,
-                    const std::vector<std::string>& allowedUpdates = { }, const std::string& ipAddress = "",
-                    bool dropPendingUpdates = false, const std::string& secretToken = "") const;
+    bool setWebhook(const std::string& url, std::shared_ptr<InputFile> certificate = nullptr,
+                    std::int32_t maxConnections = 40, const std::vector<std::string>& allowedUpdates = { },
+                    const std::string& ipAddress = "", bool dropPendingUpdates = false,
+                    const std::string& secretToken = "") const;
 
     /**
      * @brief Use this method to stop updating a live location message before live_period expires. On
@@ -4177,7 +4173,8 @@
      *
      * @return Telegram Bot API result.
      */
-    std::shared_ptr<File> uploadStickerFile(std::int64_t userId, std::variant<InputFile::Ptr, std::string> sticker,
+    std::shared_ptr<File> uploadStickerFile(std::int64_t userId,
+                                            std::variant<std::shared_ptr<InputFile>, std::string> sticker,
                                             const std::string& stickerFormat) const;
 
     /**

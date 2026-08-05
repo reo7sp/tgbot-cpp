@@ -14,12 +14,12 @@ class TGBOT_API EventHandler {
 public:
     explicit EventHandler(const EventBroadcaster& broadcaster);
 
-    void handleUpdate(const Update::Ptr& update) const;
+    void handleUpdate(const std::shared_ptr<Update>& update) const;
 
 private:
     const EventBroadcaster& _broadcaster;
 
-    void handleMessage(const Message::Ptr& message) const;
+    void handleMessage(const std::shared_ptr<Message>& message) const;
 };
 
 } // namespace TgBot

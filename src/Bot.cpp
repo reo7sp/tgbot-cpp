@@ -1,6 +1,5 @@
 #include "tgbot/Bot.h"
 #include "tgbot/CurlHttpClient.h"
-
 #include "tgbot/EventBroadcaster.h"
 
 #include <memory>

@@ -18,6 +18,7 @@ add_library(TgBot
     src/ApiCodec.cpp
     src/ApiMethods.cpp
     src/Bot.cpp
+    src/EventBroadcaster.cpp
     src/EventHandler.cpp
     src/TgException.cpp
     src/CurlHttpClient.cpp

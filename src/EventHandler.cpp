@@ -10,7 +10,7 @@ EventHandler::EventHandler(const EventBroadcaster& broadcaster)
     : _broadcaster(broadcaster) {
 }
 
-void EventHandler::handleUpdate(const Update::Ptr& update) const {
+void EventHandler::handleUpdate(const std::shared_ptr<Update>& update) const {
     if (update->message != nullptr) {
         handleMessage(update->message);
     }
@@ -61,7 +61,7 @@ void EventHandler::handleUpdate(const Update::Ptr& update) const {
     }
 }
 
-void EventHandler::handleMessage(const Message::Ptr& message) const {
+void EventHandler::handleMessage(const std::shared_ptr<Message>& message) const {
     _broadcaster.broadcastAnyMessage(message);
 
     const std::string text = message->text.value_or("");

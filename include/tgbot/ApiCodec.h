@@ -18,7 +18,7 @@
 namespace TgBot::ApiRequest {
 
 void appendField(std::vector<HttpFormField>& fields, const char* name, const std::string& value);
-void appendField(std::vector<HttpFormField>& fields, const char* name, const InputFile::Ptr& value);
+void appendField(std::vector<HttpFormField>& fields, const char* name, const std::shared_ptr<InputFile>& value);
 
 template<typename T>
 void appendField(std::vector<HttpFormField>& fields, const char* name, const T& value) {

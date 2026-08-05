@@ -17,7 +17,7 @@ PORT ?= 8080
 DOCS_WORKTREE := $(abspath build/gh-pages)
 
 .PHONY: all dependencies dependencies-python dependencies-with-test configure configure-with-system configure-with-test build build-with-system build-with-test compile-commands example test test-only test-api-codegen install install-with-system install-only api-update api-generate \
-	docker-image docker-test-image docker-test docker-example-image docker-compose-run-examples docker-push docker-run-example \
+	docker-image docker-test-image docker-test docker-example-image docker-compose-run-examples docker-compose-stop-examples docker-push docker-run-example \
 	docker-run-example-webhook docs docs-publish list-includes list-srcs \
 	format format-cpp format-python lint lint-cpp lint-python
 
@@ -146,8 +146,11 @@ docker-run-example-webhook: docker-example-image
 	docker run --rm -it -e TOKEN -e WEBHOOK_URL -p $(PORT):8080 $(EXAMPLE_IMAGE)
 
 docker-compose-run-examples: docker-image
-	TGBOT_CPP_IMAGE=$(DOCKER_IMAGE) \
+	DOCKER_PLATFORM=$(DOCKER_PLATFORM) TGBOT_CPP_IMAGE=$(DOCKER_IMAGE) \
 		docker compose --env-file env -f docker-compose.test.yaml up --build
+
+docker-compose-stop-examples:
+	docker compose --env-file env -f docker-compose.test.yaml down
 
 docs:
 	rm -rf -- doc docs

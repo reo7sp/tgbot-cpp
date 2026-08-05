@@ -15,7 +15,7 @@ namespace TgBot {
 class TGBOT_API InputFile {
 
 public:
-    typedef std::shared_ptr<InputFile> Ptr;
+    using Ptr = std::shared_ptr<InputFile>;
 
     /**
      * @brief Contents of a file.
@@ -33,9 +33,9 @@ public:
     std::string fileName;
 
     /**
-     * @brief Creates new InputFile::Ptr from an existing file.
+     * @brief Creates new std::shared_ptr<InputFile> from an existing file.
      */
-    static InputFile::Ptr fromFile(const std::string& filePath, const std::string& mimeType);
+    static std::shared_ptr<InputFile> fromFile(const std::string& filePath, const std::string& mimeType);
 };
 
 } // namespace TgBot

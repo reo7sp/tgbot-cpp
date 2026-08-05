@@ -26,28 +26,28 @@ public:
     /**
      * @return Token for accessing api.
      */
-    inline const std::string& getToken() const {
+    const std::string& getToken() const {
         return _token;
     }
 
     /**
      * @return Object which can execute Telegram Bot API methods.
      */
-    inline const Api& getApi() const {
+    const Api& getApi() const {
         return _api;
     }
 
     /**
      * @return Object which holds all event listeners.
      */
-    inline EventBroadcaster& getEvents() {
+    EventBroadcaster& getEvents() {
         return *_eventBroadcaster;
     }
 
     /**
      * @return Object which handles new update objects. Usually it's only needed for TgLongPoll, TgWebhookLocalServer and TgWebhookTcpServer objects.
      */
-    inline const EventHandler& getEventHandler() const {
+    const EventHandler& getEventHandler() const {
         return _eventHandler;
     }
 

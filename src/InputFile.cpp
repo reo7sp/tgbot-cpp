@@ -8,7 +8,7 @@
 
 namespace TgBot {
 
-InputFile::Ptr InputFile::fromFile(const std::string& filePath, const std::string& mimeType) {
+std::shared_ptr<InputFile> InputFile::fromFile(const std::string& filePath, const std::string& mimeType) {
     std::ifstream input(filePath, std::ios::binary);
     input.exceptions(std::ifstream::failbit | std::ifstream::badbit);
     std::ostringstream contents;

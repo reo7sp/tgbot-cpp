@@ -310,9 +310,9 @@ def _build_parameter(
     elif name in {"chat_id", "from_chat_id"}:
         cpp_type = "std::variant<std::int64_t, std::string>"
     elif name == "certificate" and binary:
-        cpp_type = "InputFile::Ptr"
+        cpp_type = "std::shared_ptr<InputFile>"
     elif binary:
-        cpp_type = "std::variant<InputFile::Ptr, std::string>"
+        cpp_type = "std::variant<std::shared_ptr<InputFile>, std::string>"
     else:
         cpp_type = _api_cpp_type(schema)
         cpp_type = _telegram_integer_type(name, cpp_type)
@@ -357,7 +357,7 @@ def _parameter_default(cpp_type: str, method_name: str, parameter_name: str) -> 
         return "0"
     if cpp_type == "std::string":
         return '""'
-    if cpp_type.startswith("std::shared_ptr<") or cpp_type.endswith("::Ptr"):
+    if cpp_type.startswith("std::shared_ptr<"):
         return "nullptr"
     if cpp_type == "nlohmann::json":
         return "nullptr"

@@ -41,7 +41,8 @@ def test_direct_api_keeps_legacy_parameter_order_and_defaults() -> None:
     ]
     assert _parameter_default("std::int32_t", "setWebhook", "max_connections") == "40"
     assert (
-        _parameter_default("InputFile::Ptr", "setWebhook", "certificate") == "nullptr"
+        _parameter_default("std::shared_ptr<InputFile>", "setWebhook", "certificate")
+        == "nullptr"
     )
 
 
@@ -223,7 +224,7 @@ def test_generate_openapi_renders_types_methods_and_documentation(
     assert "ApiRequest::makeFields(" in api_source
     assert "ApiResponse::decode<std::shared_ptr<User>>" in api_source
     assert "HttpReqArg" not in api_source
-    assert "InputFile::Ptr certificate = nullptr" in methods
+    assert "std::shared_ptr<InputFile> certificate = nullptr" in methods
     assert "std::int32_t maxConnections = 40" in methods
     assert 'ApiRequest::required("url", url)' in api_source
     assert 'ApiRequest::optional("certificate", certificate)' in api_source

@@ -27,7 +27,7 @@ TgLongPoll::TgLongPoll(const Bot& bot, std::int32_t limit, std::int32_t timeout,
 
 void TgLongPoll::start() {
     // handle updates
-    for (Update::Ptr& item : _updates) {
+    for (std::shared_ptr<Update>& item : _updates) {
         if (item->updateId >= _lastUpdateId) {
             _lastUpdateId = item->updateId + 1;
         }
