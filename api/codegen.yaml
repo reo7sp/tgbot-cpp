@@ -1,0 +1,201 @@
+types:
+  BotCommandScopeChatMember:
+    fields:
+      user_id: { type: std::int64_t }
+  Chat:
+    fields:
+      type:
+        enum:
+          Private: private
+          Group: group
+          Supergroup: supergroup
+          Channel: channel
+  MessageEntity:
+    fields:
+      type:
+        enum:
+          Mention: mention
+          Hashtag: hashtag
+          Cashtag: cashtag
+          BotCommand: bot_command
+          Url: url
+          Email: email
+          PhoneNumber: phone_number
+          Bold: bold
+          Italic: italic
+          Underline: underline
+          Strikethrough: strikethrough
+          Spoiler: spoiler
+          Blockquote: blockquote
+          ExpandableBlockquote: expandable_blockquote
+          Code: code
+          Pre: pre
+          TextLink: text_link
+          TextMention: text_mention
+          CustomEmoji: custom_emoji
+          DateTime: date_time
+  Sticker:
+    fields:
+      type:
+        enum:
+          Regular: regular
+          Mask: mask
+          CustomEmoji: custom_emoji
+  StickerSet:
+    fields:
+      sticker_type:
+        enum:
+          Regular: regular
+          Mask: mask
+          CustomEmoji: custom_emoji
+
+api:
+  addStickerToSet:
+    parameter_order: [user_id, name, sticker]
+  answerCallbackQuery:
+    parameter_order: [callback_query_id, text, show_alert, url, cache_time]
+  answerInlineQuery:
+    parameter_order: [inline_query_id, results, cache_time, is_personal, next_offset, button]
+    parameters:
+      cache_time: {default: 300}
+  answerPreCheckoutQuery:
+    parameter_order: [pre_checkout_query_id, ok, error_message]
+  answerShippingQuery:
+    parameter_order: [shipping_query_id, ok, shipping_options, error_message]
+  answerWebAppQuery:
+    parameter_order: [web_app_query_id, result]
+  banChatMember:
+    parameter_order: [chat_id, user_id, until_date, revoke_messages]
+    parameters:
+      revoke_messages: {default: true, always_send: true}
+  copyMessage:
+    parameter_order: [chat_id, from_chat_id, message_id, caption, parse_mode, caption_entities, disable_notification, reply_parameters, reply_markup, protect_content, message_thread_id]
+  copyMessages:
+    parameter_order: [chat_id, from_chat_id, message_ids, message_thread_id, disable_notification, protect_content, remove_caption]
+  createChatInviteLink:
+    parameter_order: [chat_id, expire_date, member_limit, name, creates_join_request]
+  createInvoiceLink:
+    parameter_order: [title, description, payload, provider_token, currency, prices, max_tip_amount, suggested_tip_amounts, provider_data, photo_url, photo_size, photo_width, photo_height, need_name, need_phone_number, need_email, need_shipping_address, send_phone_number_to_provider, send_email_to_provider, is_flexible]
+    parameters:
+      provider_token: {declaration_required: true}
+  createNewStickerSet:
+    parameter_order: [user_id, name, title, stickers, sticker_type, needs_repainting]
+    parameters:
+      sticker_type: {type: "Sticker::Type", default: "Sticker::Type::Regular"}
+  deleteMyCommands:
+    parameter_order: [scope, language_code]
+  editChatInviteLink:
+    parameter_order: [chat_id, invite_link, expire_date, member_limit, name, creates_join_request]
+  editForumTopic:
+    parameter_order: [chat_id, message_thread_id, name, icon_custom_emoji_id]
+  editMessageCaption:
+    return_type: std::shared_ptr<Message>
+    parameter_order: [chat_id, message_id, caption, inline_message_id, reply_markup, parse_mode, caption_entities]
+  editMessageLiveLocation:
+    return_type: std::shared_ptr<Message>
+    parameter_order: [latitude, longitude, chat_id, message_id, inline_message_id, reply_markup, horizontal_accuracy, heading, proximity_alert_radius]
+  editMessageMedia:
+    return_type: std::shared_ptr<Message>
+    parameter_order: [media, chat_id, message_id, inline_message_id, reply_markup]
+  editMessageReplyMarkup:
+    return_type: std::shared_ptr<Message>
+    parameter_order: [chat_id, message_id, inline_message_id, reply_markup]
+  editMessageText:
+    return_type: std::shared_ptr<Message>
+    parameter_order: [text, chat_id, message_id, inline_message_id, parse_mode, link_preview_options, reply_markup, entities]
+  forwardMessage:
+    parameter_order: [chat_id, from_chat_id, message_id, disable_notification, protect_content, message_thread_id]
+  forwardMessages:
+    parameter_order: [chat_id, from_chat_id, message_ids, message_thread_id, disable_notification, protect_content]
+  getGameHighScores:
+    parameter_order: [user_id, chat_id, message_id, inline_message_id]
+  getMyCommands:
+    parameter_order: [scope, language_code]
+  getUpdates:
+    parameter_order: [offset, limit, timeout, allowed_updates]
+    parameters:
+      limit: {default: 100}
+  getUserProfilePhotos:
+    parameter_order: [user_id, offset, limit]
+    parameters:
+      limit: {default: 100}
+  promoteChatMember:
+    parameter_order: [chat_id, user_id, can_change_info, can_post_messages, can_edit_messages, can_delete_messages, can_invite_users, can_pin_messages, can_promote_members, is_anonymous, can_manage_chat, can_manage_video_chats, can_restrict_members, can_manage_topics, can_post_stories, can_edit_stories, can_delete_stories]
+  replaceStickerInSet:
+    parameter_order: [user_id, name, old_sticker, sticker]
+  restrictChatMember:
+    parameter_order: [chat_id, user_id, permissions, until_date, use_independent_chat_permissions]
+  sendAnimation:
+    parameter_order: [chat_id, animation, duration, width, height, thumbnail, caption, reply_parameters, reply_markup, parse_mode, disable_notification, caption_entities, message_thread_id, protect_content, has_spoiler, business_connection_id]
+  sendAudio:
+    parameter_order: [chat_id, audio, caption, duration, performer, title, thumbnail, reply_parameters, reply_markup, parse_mode, disable_notification, caption_entities, message_thread_id, protect_content, business_connection_id]
+  sendChatAction:
+    parameter_order: [chat_id, action, message_thread_id, business_connection_id]
+  sendContact:
+    parameter_order: [chat_id, phone_number, first_name, last_name, vcard, disable_notification, reply_parameters, reply_markup, message_thread_id, protect_content, business_connection_id]
+  sendDice:
+    parameter_order: [chat_id, disable_notification, reply_parameters, reply_markup, emoji, message_thread_id, protect_content, business_connection_id]
+  sendDocument:
+    parameter_order: [chat_id, document, thumbnail, caption, reply_parameters, reply_markup, parse_mode, disable_notification, caption_entities, disable_content_type_detection, message_thread_id, protect_content, business_connection_id]
+  sendGame:
+    parameter_order: [chat_id, game_short_name, reply_parameters, reply_markup, disable_notification, message_thread_id, protect_content, business_connection_id]
+  sendInvoice:
+    parameter_order: [chat_id, title, description, payload, provider_token, currency, prices, provider_data, photo_url, photo_size, photo_width, photo_height, need_name, need_phone_number, need_email, need_shipping_address, send_phone_number_to_provider, send_email_to_provider, is_flexible, reply_parameters, reply_markup, disable_notification, message_thread_id, max_tip_amount, suggested_tip_amounts, start_parameter, protect_content]
+    parameters:
+      provider_token: {declaration_required: true}
+  sendLocation:
+    parameter_order: [chat_id, latitude, longitude, live_period, reply_parameters, reply_markup, disable_notification, horizontal_accuracy, heading, proximity_alert_radius, message_thread_id, protect_content, business_connection_id]
+  sendMediaGroup:
+    parameter_order: [chat_id, media, disable_notification, reply_parameters, message_thread_id, protect_content, business_connection_id]
+  sendMessage:
+    parameter_order: [chat_id, text, link_preview_options, reply_parameters, reply_markup, parse_mode, disable_notification, entities, message_thread_id, protect_content, business_connection_id]
+  sendPhoto:
+    parameter_order: [chat_id, photo, caption, reply_parameters, reply_markup, parse_mode, disable_notification, caption_entities, message_thread_id, protect_content, has_spoiler, business_connection_id]
+  sendPoll:
+    parameter_order: [chat_id, question, options, disable_notification, reply_parameters, reply_markup, is_anonymous, type, allows_multiple_answers, correct_option_id, explanation, explanation_parse_mode, explanation_entities, open_period, close_date, is_closed, message_thread_id, protect_content, business_connection_id]
+    parameters:
+      is_anonymous: {default: true}
+  sendSticker:
+    parameter_order: [chat_id, sticker, reply_parameters, reply_markup, disable_notification, message_thread_id, protect_content, emoji, business_connection_id]
+  sendVenue:
+    parameter_order: [chat_id, latitude, longitude, title, address, foursquare_id, foursquare_type, disable_notification, reply_parameters, reply_markup, google_place_id, google_place_type, message_thread_id, protect_content, business_connection_id]
+  sendVideo:
+    parameter_order: [chat_id, video, supports_streaming, duration, width, height, thumbnail, caption, reply_parameters, reply_markup, parse_mode, disable_notification, caption_entities, message_thread_id, protect_content, has_spoiler, business_connection_id]
+  sendVideoNote:
+    parameter_order: [chat_id, video_note, reply_parameters, disable_notification, duration, length, thumbnail, reply_markup, message_thread_id, protect_content, business_connection_id]
+  sendVoice:
+    parameter_order: [chat_id, voice, caption, duration, reply_parameters, reply_markup, parse_mode, disable_notification, caption_entities, message_thread_id, protect_content, business_connection_id]
+  setChatAdministratorCustomTitle:
+    parameter_order: [chat_id, user_id, custom_title]
+  setGameScore:
+    return_type: std::shared_ptr<Message>
+    parameter_order: [user_id, score, force, disable_edit_message, chat_id, message_id, inline_message_id]
+  setMessageReaction:
+    parameter_order: [chat_id, message_id, reaction, is_big]
+  setMyCommands:
+    parameter_order: [commands, scope, language_code]
+  setMyDefaultAdministratorRights:
+    parameter_order: [rights, for_channels]
+  setMyName:
+    parameter_order: [name, language_code]
+  setMyShortDescription:
+    parameter_order: [short_description, language_code]
+  setPassportDataErrors:
+    parameter_order: [user_id, errors]
+  setStickerEmojiList:
+    parameter_order: [sticker, emoji_list]
+  setStickerPositionInSet:
+    parameter_order: [sticker, position]
+  setStickerSetThumbnail:
+    parameter_order: [name, user_id, format, thumbnail]
+  setStickerSetTitle:
+    parameter_order: [name, title]
+  setWebhook:
+    parameter_order: [url, certificate, max_connections, allowed_updates, ip_address, drop_pending_updates, secret_token]
+    parameters:
+      max_connections: {default: 40}
+  stopMessageLiveLocation:
+    return_type: std::shared_ptr<Message>
+    parameter_order: [chat_id, message_id, inline_message_id, reply_markup]
+  uploadStickerFile:
+    parameter_order: [user_id, sticker, sticker_format]

@@ -1,0 +1,14 @@
+BasedOnStyle: WebKit
+Standard: c++17
+ColumnLimit: 120
+AllowShortFunctionsOnASingleLine: None
+AlwaysBreakTemplateDeclarations: Yes
+AlignAfterOpenBracket: Align
+BreakBeforeBraces: Attach
+NamespaceIndentation: None
+FixNamespaceComments: true
+IndentPPDirectives: AfterHash
+PPIndentWidth: 4
+SpaceAfterTemplateKeyword: false
+Cpp11BracedListStyle: false
+ReflowComments: false

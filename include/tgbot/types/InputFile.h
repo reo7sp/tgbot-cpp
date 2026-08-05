@@ -1,5 +1,4 @@
-#ifndef TGBOT_CPP_INPUTFILE_H
-#define TGBOT_CPP_INPUTFILE_H
+#pragma once
 
 #include "tgbot/export.h"
 
@@ -39,6 +38,4 @@ public:
     static InputFile::Ptr fromFile(const std::string& filePath, const std::string& mimeType);
 };
 
-}
-
-#endif //TGBOT_CPP_INPUTFILE_H
+} // namespace TgBot

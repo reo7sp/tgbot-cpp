@@ -1,12 +1,11 @@
-#ifndef TGBOT_CPP_BOT_H
-#define TGBOT_CPP_BOT_H
+#pragma once
 
 #include "tgbot/Api.h"
 #include "tgbot/EventHandler.h"
+#include "tgbot/export.h"
 
 #include <memory>
 #include <string>
-#include <utility>
 
 namespace TgBot {
 
@@ -21,7 +20,8 @@ class HttpClient;
 class TGBOT_API Bot {
 
 public:
-    explicit Bot(std::string token, const HttpClient &httpClient = _getDefaultHttpClient(), const std::string& url="https://api.telegram.org");
+    explicit Bot(std::string token, const HttpClient& httpClient = _getDefaultHttpClient(),
+                 const std::string& url = "https://api.telegram.org");
 
     /**
      * @return Token for accessing api.
@@ -52,7 +52,7 @@ public:
     }
 
 private:
-    static HttpClient &_getDefaultHttpClient();
+    static HttpClient& _getDefaultHttpClient();
 
     const std::string _token;
     const Api _api;
@@ -60,6 +60,4 @@ private:
     const EventHandler _eventHandler;
 };
 
-}
-
-#endif //TGBOT_CPP_BOT_H
+} // namespace TgBot

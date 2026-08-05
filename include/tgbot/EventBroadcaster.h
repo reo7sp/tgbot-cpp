@@ -1,19 +1,18 @@
-#ifndef TGBOT_EVENTBROADCASTER_H
-#define TGBOT_EVENTBROADCASTER_H
+#pragma once
 
 #include "tgbot/export.h"
-#include "tgbot/types/Message.h"
-#include "tgbot/types/InlineQuery.h"
-#include "tgbot/types/ChosenInlineResult.h"
 #include "tgbot/types/CallbackQuery.h"
-#include "tgbot/types/ShippingQuery.h"
-#include "tgbot/types/PreCheckoutQuery.h"
+#include "tgbot/types/ChatJoinRequest.h"
+#include "tgbot/types/ChatMemberUpdated.h"
+#include "tgbot/types/ChosenInlineResult.h"
+#include "tgbot/types/InlineQuery.h"
+#include "tgbot/types/Message.h"
+#include "tgbot/types/MessageReactionCountUpdated.h"
+#include "tgbot/types/MessageReactionUpdated.h"
 #include "tgbot/types/Poll.h"
 #include "tgbot/types/PollAnswer.h"
-#include "tgbot/types/ChatMemberUpdated.h"
-#include "tgbot/types/ChatJoinRequest.h"
-#include "tgbot/types/MessageReactionUpdated.h"
-#include "tgbot/types/MessageReactionCountUpdated.h"
+#include "tgbot/types/PreCheckoutQuery.h"
+#include "tgbot/types/ShippingQuery.h"
 #include "tgbot/types/SuccessfulPayment.h"
 
 #include <functional>
@@ -32,23 +31,22 @@ class EventHandler;
  * @ingroup general
  */
 class TGBOT_API EventBroadcaster {
-
-friend EventHandler;
+    friend EventHandler;
 
 public:
-    typedef std::function<void (const Message::Ptr)> MessageListener;
-    typedef std::function<void (const InlineQuery::Ptr)> InlineQueryListener;
-    typedef std::function<void (const ChosenInlineResult::Ptr)> ChosenInlineResultListener;
-    typedef std::function<void (const CallbackQuery::Ptr)> CallbackQueryListener;
-    typedef std::function<void (const ShippingQuery::Ptr)> ShippingQueryListener;
-    typedef std::function<void (const PreCheckoutQuery::Ptr)> PreCheckoutQueryListener;
-    typedef std::function<void (const Poll::Ptr)> PollListener;
-    typedef std::function<void (const PollAnswer::Ptr)> PollAnswerListener;
-    typedef std::function<void (const ChatMemberUpdated::Ptr)> ChatMemberUpdatedListener;
-    typedef std::function<void (const ChatJoinRequest::Ptr)> ChatJoinRequestListener;
-    typedef std::function<void (const MessageReactionUpdated::Ptr)> MessageReactionUpdatedListener;
-    typedef std::function<void (const MessageReactionCountUpdated::Ptr)> MessageReactionCountUpdatedListener;
-    typedef std::function<void (const Message::Ptr, const SuccessfulPayment::Ptr)> SuccessfulPaymentListener;
+    using MessageListener = std::function<void(Message::Ptr)>;
+    using InlineQueryListener = std::function<void(InlineQuery::Ptr)>;
+    using ChosenInlineResultListener = std::function<void(ChosenInlineResult::Ptr)>;
+    using CallbackQueryListener = std::function<void(CallbackQuery::Ptr)>;
+    using ShippingQueryListener = std::function<void(ShippingQuery::Ptr)>;
+    using PreCheckoutQueryListener = std::function<void(PreCheckoutQuery::Ptr)>;
+    using PollListener = std::function<void(Poll::Ptr)>;
+    using PollAnswerListener = std::function<void(PollAnswer::Ptr)>;
+    using ChatMemberUpdatedListener = std::function<void(ChatMemberUpdated::Ptr)>;
+    using ChatJoinRequestListener = std::function<void(ChatJoinRequest::Ptr)>;
+    using MessageReactionUpdatedListener = std::function<void(MessageReactionUpdated::Ptr)>;
+    using MessageReactionCountUpdatedListener = std::function<void(MessageReactionCountUpdated::Ptr)>;
+    using SuccessfulPaymentListener = std::function<void(Message::Ptr, SuccessfulPayment::Ptr)>;
 
     /**
      * @brief Registers listener which receives new incoming message of any kind - text, photo, sticker, etc.
@@ -126,7 +124,7 @@ public:
      * 
      * @param listener Listener.
      */
-    inline void onChosenInlineResult(const ChosenInlineResultListener& listener){
+    inline void onChosenInlineResult(const ChosenInlineResultListener& listener) {
         _onChosenInlineResultListeners.push_back(listener);
     }
 
@@ -134,7 +132,7 @@ public:
      * @brief Registers listener which receives new incoming callback queries
      * @param listener Listener.
      */
-    inline void onCallbackQuery(const CallbackQueryListener& listener){
+    inline void onCallbackQuery(const CallbackQueryListener& listener) {
         _onCallbackQueryListeners.push_back(listener);
     }
 
@@ -144,7 +142,7 @@ public:
      * 
      * @param listener Listener.
      */
-    inline void onShippingQuery(const ShippingQueryListener& listener){
+    inline void onShippingQuery(const ShippingQueryListener& listener) {
         _onShippingQueryListeners.push_back(listener);
     }
 
@@ -154,7 +152,7 @@ public:
      * 
      * @param listener Listener.
      */
-    inline void onPreCheckoutQuery(const PreCheckoutQueryListener& listener){
+    inline void onPreCheckoutQuery(const PreCheckoutQueryListener& listener) {
         _onPreCheckoutQueryListeners.push_back(listener);
     }
 
@@ -164,7 +162,7 @@ public:
      * 
      * @param listener Listener.
      */
-    inline void onPoll(const PollListener& listener){
+    inline void onPoll(const PollListener& listener) {
         _onPollListeners.push_back(listener);
     }
 
@@ -174,7 +172,7 @@ public:
      * 
      * @param listener Listener.
      */
-    inline void onPollAnswer(const PollAnswerListener& listener){
+    inline void onPollAnswer(const PollAnswerListener& listener) {
         _onPollAnswerListeners.push_back(listener);
     }
 
@@ -184,7 +182,7 @@ public:
      * 
      * @param listener Listener.
      */
-    inline void onMyChatMember(const ChatMemberUpdatedListener& listener){
+    inline void onMyChatMember(const ChatMemberUpdatedListener& listener) {
         _onMyChatMemberListeners.push_back(listener);
     }
 
@@ -194,7 +192,7 @@ public:
      * 
      * @param listener Listener.
      */
-    inline void onChatMember(const ChatMemberUpdatedListener& listener){
+    inline void onChatMember(const ChatMemberUpdatedListener& listener) {
         _onChatMemberListeners.push_back(listener);
     }
 
@@ -204,7 +202,7 @@ public:
      * 
      * @param listener Listener.
      */
-    inline void onChatJoinRequest(const ChatJoinRequestListener& listener){
+    inline void onChatJoinRequest(const ChatJoinRequestListener& listener) {
         _onChatJoinRequestListeners.push_back(listener);
     }
 
@@ -233,9 +231,6 @@ public:
     inline void onSuccessfulPayment(const SuccessfulPaymentListener& listener) {
         _onSuccessfulPaymentListeners.push_back(listener);
     }
-
-
-
 
 private:
     template<typename ListenerType, typename ObjectType>
@@ -314,11 +309,14 @@ private:
     }
 
     inline void broadcastMessageReactionUpdated(const MessageReactionUpdated::Ptr& messageReaction) const {
-        broadcast<MessageReactionUpdatedListener, MessageReactionUpdated::Ptr>(_onMessageReactionUpdatedListener, messageReaction);
+        broadcast<MessageReactionUpdatedListener, MessageReactionUpdated::Ptr>(_onMessageReactionUpdatedListener,
+                                                                               messageReaction);
     }
 
-    inline void broadcastMessageReactionCountUpdated(const MessageReactionCountUpdated::Ptr& messageReactionCount) const {
-        broadcast<MessageReactionCountUpdatedListener, MessageReactionCountUpdated::Ptr>(_onMessageReactionCountUpdatedListener, messageReactionCount);
+    inline void
+    broadcastMessageReactionCountUpdated(const MessageReactionCountUpdated::Ptr& messageReactionCount) const {
+        broadcast<MessageReactionCountUpdatedListener, MessageReactionCountUpdated::Ptr>(
+            _onMessageReactionCountUpdatedListener, messageReactionCount);
     }
 
     inline void broadcastSuccessfulPayment(const Message::Ptr& message) const {
@@ -329,7 +327,6 @@ private:
             listener(message, message->successfulPayment);
         }
     }
-
 
     std::vector<MessageListener> _onAnyMessageListeners;
     std::unordered_map<std::string, MessageListener> _onCommandListeners;
@@ -349,9 +346,6 @@ private:
     std::vector<MessageReactionUpdatedListener> _onMessageReactionUpdatedListener;
     std::vector<MessageReactionCountUpdatedListener> _onMessageReactionCountUpdatedListener;
     std::vector<SuccessfulPaymentListener> _onSuccessfulPaymentListeners;
-
 };
 
-}
-
-#endif //TGBOT_EVENTBROADCASTER_H
+} // namespace TgBot

@@ -1,7 +1,8 @@
 CMakeCache.txt
 CMakeFiles
 CMakeSettings.json
-Makefile
+CMakeUserPresets.json
+compile_commands.json
 *.cmake
 install_manifest.txt
 *.cbp
@@ -16,11 +17,19 @@ TgBot_test
 docs/
 cmake-build-*
 
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.venv/
+
 # Visual Studio
 .vs/
 .vscode/
 build/
 out/
+/env
 
 # MacOS dependecies
 .DS_Store
