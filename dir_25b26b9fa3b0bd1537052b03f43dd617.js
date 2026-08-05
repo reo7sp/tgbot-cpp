@@ -3,6 +3,7 @@ var dir_25b26b9fa3b0bd1537052b03f43dd617 =
     [ "types", "dir_edd914e3fbf8e89da3c33d1968dd487e.html", "dir_edd914e3fbf8e89da3c33d1968dd487e" ],
     [ "Api.h", "_api_8h.html", null ],
     [ "ApiCodec.h", "_api_codec_8h.html", null ],
+    [ "ApiMethods.inc.h", "_api_methods_8inc_8h.html", "_api_methods_8inc_8h" ],
     [ "Bot.h", "_bot_8h.html", null ],
     [ "CurlHttpClient.h", "_curl_http_client_8h.html", null ],
     [ "EventBroadcaster.h", "_event_broadcaster_8h.html", null ],

@@ -1,0 +1,12 @@
+var searchData=
+[
+  ['unbanchatmember_0',['unbanChatMember',['../class_tg_bot_1_1_api.html#a291c68851a08abbd13e26e6846d39d3e',1,'TgBot::Api::unbanChatMember()'],['../_api_methods_8inc_8h.html#a0a66f9c81163432f50599525499884d7',1,'unbanChatMember():&#160;ApiMethods.inc.h']]],
+  ['unbanchatsenderchat_1',['unbanChatSenderChat',['../class_tg_bot_1_1_api.html#a216a043e299788de56d9e33a6d684e89',1,'TgBot::Api::unbanChatSenderChat()'],['../_api_methods_8inc_8h.html#a6354dc20d48cba2aba5a56c08d587ce2',1,'unbanChatSenderChat():&#160;ApiMethods.inc.h']]],
+  ['unhidegeneralforumtopic_2',['unhideGeneralForumTopic',['../class_tg_bot_1_1_api.html#a60e30ed147c46c59ef7886d63f2fb676',1,'TgBot::Api::unhideGeneralForumTopic()'],['../_api_methods_8inc_8h.html#ab3f262afd8238f8e5e8563ea1c73f057',1,'unhideGeneralForumTopic():&#160;ApiMethods.inc.h']]],
+  ['unpinallchatmessages_3',['unpinAllChatMessages',['../class_tg_bot_1_1_api.html#afdbed78ee241f69a2e3a06a36065c951',1,'TgBot::Api::unpinAllChatMessages()'],['../_api_methods_8inc_8h.html#a2d72ece0dfedfedbb9f5cf717e146d19',1,'unpinAllChatMessages():&#160;ApiMethods.inc.h']]],
+  ['unpinallforumtopicmessages_4',['unpinAllForumTopicMessages',['../class_tg_bot_1_1_api.html#a9fd6d8df0b7b2df00f00909e5cd5b27e',1,'TgBot::Api::unpinAllForumTopicMessages()'],['../_api_methods_8inc_8h.html#a7d529e4adea67d62762fc27d68d3c4d2',1,'unpinAllForumTopicMessages():&#160;ApiMethods.inc.h']]],
+  ['unpinallgeneralforumtopicmessages_5',['unpinAllGeneralForumTopicMessages',['../class_tg_bot_1_1_api.html#a9a82e4dbb884c52470c47e39df4fcd1b',1,'TgBot::Api::unpinAllGeneralForumTopicMessages()'],['../_api_methods_8inc_8h.html#ae8a1629a0decd9ed8eb85208fcaf6613',1,'unpinAllGeneralForumTopicMessages():&#160;ApiMethods.inc.h']]],
+  ['unpinchatmessage_6',['unpinChatMessage',['../class_tg_bot_1_1_api.html#aedbeb8fb45b06b72cdced95cc6565cea',1,'TgBot::Api::unpinChatMessage()'],['../_api_methods_8inc_8h.html#a0d025183c8919318ff1c8d6b0efd7b9d',1,'unpinChatMessage():&#160;ApiMethods.inc.h']]],
+  ['upgradegift_7',['upgradeGift',['../class_tg_bot_1_1_api.html#ad22975192f8045c5beca6be976df7d89',1,'TgBot::Api::upgradeGift()'],['../_api_methods_8inc_8h.html#a7db8177ca017674b5cb4accff75f8b9a',1,'upgradeGift():&#160;ApiMethods.inc.h']]],
+  ['uploadstickerfile_8',['uploadStickerFile',['../class_tg_bot_1_1_api.html#a4020387ecc8e4f1330562b45a852efef',1,'TgBot::Api::uploadStickerFile()'],['../_api_methods_8inc_8h.html#a178d299e1a781d21123ee8652d9196e2',1,'uploadStickerFile():&#160;ApiMethods.inc.h']]]
+];

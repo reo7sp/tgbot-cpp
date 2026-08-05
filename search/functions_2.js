@@ -1,5 +1,16 @@
 var searchData=
 [
   ['cancel_0',['cancel',['../class_tg_bot_1_1_http_client.html#a0dcabc187f3642a9a8483d1202d91e40',1,'TgBot::HttpClient']]],
-  ['curlhttpclient_1',['CurlHttpClient',['../class_tg_bot_1_1_curl_http_client.html#a64fa7c2a4873cea91d955e4df2175b71',1,'TgBot::CurlHttpClient']]]
+  ['close_1',['close',['../class_tg_bot_1_1_api.html#aeb39b4a7389c71108f7e9eda0fad1af7',1,'TgBot::Api::close()'],['../_api_methods_8inc_8h.html#a1d4b9849433cef09a5e2de468ab5631d',1,'close():&#160;ApiMethods.inc.h']]],
+  ['closeforumtopic_2',['closeForumTopic',['../class_tg_bot_1_1_api.html#ab480b548e9b47f0a37a33757699fe5e0',1,'TgBot::Api::closeForumTopic()'],['../_api_methods_8inc_8h.html#a3141efe9c617db132796d18450723f73',1,'closeForumTopic():&#160;ApiMethods.inc.h']]],
+  ['closegeneralforumtopic_3',['closeGeneralForumTopic',['../class_tg_bot_1_1_api.html#a338016ac07ee85dcdb4a2761f36c4f75',1,'TgBot::Api::closeGeneralForumTopic()'],['../_api_methods_8inc_8h.html#ad3d2e0314f01eb8fd84d28cd7acd59dc',1,'closeGeneralForumTopic():&#160;ApiMethods.inc.h']]],
+  ['convertgifttostars_4',['convertGiftToStars',['../class_tg_bot_1_1_api.html#a4e9855d1ed76c6060a2c1c5ace089b6f',1,'TgBot::Api::convertGiftToStars()'],['../_api_methods_8inc_8h.html#aabc82fe49bbfa98efe2cc8143313cd65',1,'convertGiftToStars():&#160;ApiMethods.inc.h']]],
+  ['copymessage_5',['copyMessage',['../class_tg_bot_1_1_api.html#a4e11d424fc83c893662657bc6d2c2e5c',1,'TgBot::Api::copyMessage()'],['../_api_methods_8inc_8h.html#a9a78b0f870491f1988651d5faf3a5b2e',1,'copyMessage():&#160;ApiMethods.inc.h']]],
+  ['copymessages_6',['copyMessages',['../class_tg_bot_1_1_api.html#aa2fac3a547657ed356caa13fd1965bd5',1,'TgBot::Api::copyMessages()'],['../_api_methods_8inc_8h.html#a4ff588ebb190a9b39f35eb666ab5fbe7',1,'copyMessages():&#160;ApiMethods.inc.h']]],
+  ['createchatinvitelink_7',['createChatInviteLink',['../class_tg_bot_1_1_api.html#a6adabd04b77eaa045aef4bc4fcfdfe8c',1,'TgBot::Api::createChatInviteLink()'],['../_api_methods_8inc_8h.html#abf3a7a9cd6b480b8552366320489425d',1,'createChatInviteLink():&#160;ApiMethods.inc.h']]],
+  ['createchatsubscriptioninvitelink_8',['createChatSubscriptionInviteLink',['../class_tg_bot_1_1_api.html#ad262fa7060e671179f67374b583d28d8',1,'TgBot::Api::createChatSubscriptionInviteLink()'],['../_api_methods_8inc_8h.html#a36c7697436ad6724201ca3c679cab091',1,'createChatSubscriptionInviteLink():&#160;ApiMethods.inc.h']]],
+  ['createforumtopic_9',['createForumTopic',['../class_tg_bot_1_1_api.html#ab6745ba6439bfa71d3fb3af7b7bddc20',1,'TgBot::Api::createForumTopic()'],['../_api_methods_8inc_8h.html#a9d1ae22b076416062f1b464b2dfbdfd5',1,'createForumTopic():&#160;ApiMethods.inc.h']]],
+  ['createinvoicelink_10',['createInvoiceLink',['../class_tg_bot_1_1_api.html#ad620686f3f136f24d229762750ecd996',1,'TgBot::Api::createInvoiceLink()'],['../_api_methods_8inc_8h.html#a8f4d4b51ab4f72d1a122d0d89e5f3576',1,'createInvoiceLink():&#160;ApiMethods.inc.h']]],
+  ['createnewstickerset_11',['createNewStickerSet',['../class_tg_bot_1_1_api.html#aec5a2c9a71725680ee78b76fea0b0ed6',1,'TgBot::Api::createNewStickerSet()'],['../_api_methods_8inc_8h.html#a14d09f18caafb41cbed241bd99be757f',1,'createNewStickerSet():&#160;ApiMethods.inc.h']]],
+  ['curlhttpclient_12',['CurlHttpClient',['../class_tg_bot_1_1_curl_http_client.html#a64fa7c2a4873cea91d955e4df2175b71',1,'TgBot::CurlHttpClient']]]
 ];

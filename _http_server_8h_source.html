@@ -189,12 +189,12 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('_http_server_8
 <div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>            <span class="keyword">namespace </span>http = boost::beast::http;</div>
 <div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span> </div>
 <div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>            <span class="keywordflow">if</span> (error == http::error::end_of_stream) {</div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>                close();</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>                <a class="code hl_function" href="_api_methods_8inc_8h.html#a1d4b9849433cef09a5e2de468ab5631d">close</a>();</div>
 <div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>                <span class="keywordflow">return</span>;</div>
 <div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>            }</div>
 <div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>            <span class="keywordflow">if</span> (error) {</div>
 <div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>                std::cerr &lt;&lt; <span class="stringliteral">&quot;[TgBot] error reading HTTP request: &quot;</span> &lt;&lt; error.message() &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>                close();</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>                <a class="code hl_function" href="_api_methods_8inc_8h.html#a1d4b9849433cef09a5e2de468ab5631d">close</a>();</div>
 <div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>                <span class="keywordflow">return</span>;</div>
 <div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>            }</div>
 <div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span> </div>
@@ -226,7 +226,7 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('_http_server_8
 <div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>            });</div>
 <div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>        }</div>
 <div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span> </div>
-<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>        <span class="keywordtype">void</span> close() {</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="_api_methods_8inc_8h.html#a1d4b9849433cef09a5e2de468ab5631d">close</a>() {</div>
 <div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>            boost::system::error_code error;</div>
 <div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>            _socket.shutdown(boost::asio::socket_base::shutdown_both, error);</div>
 <div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>            _socket.close(error);</div>
@@ -264,6 +264,7 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('_http_server_8
 </div>
 <div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span> </div>
 <div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>} <span class="comment">// namespace TgBot</span></div>
+<div class="ttc" id="a_api_methods_8inc_8h_html_a1d4b9849433cef09a5e2de468ab5631d"><div class="ttname"><a href="_api_methods_8inc_8h.html#a1d4b9849433cef09a5e2de468ab5631d">close</a></div><div class="ttdeci">bool close() const</div><div class="ttdoc">Use this method to close the bot instance before moving it from one local server to another....</div></div>
 <div class="ttc" id="aclass_tg_bot_1_1_http_server_html_a76f59ef0754327c437352aeb0b19a3f2"><div class="ttname"><a href="class_tg_bot_1_1_http_server.html#a76f59ef0754327c437352aeb0b19a3f2">TgBot::HttpServer::HttpServer</a></div><div class="ttdeci">HttpServer(const typename boost::asio::basic_socket_acceptor&lt; Protocol &gt;::endpoint_type &amp;endpoint, ServerHandler handler)</div><div class="ttdef"><b>Definition</b> <a href="#l00028">HttpServer.h:28</a></div></div>
 <div class="ttc" id="aclass_tg_bot_1_1_http_server_html_aa237b199d8a0712b983e4913970ad7f7"><div class="ttname"><a href="class_tg_bot_1_1_http_server.html#aa237b199d8a0712b983e4913970ad7f7">TgBot::HttpServer::start</a></div><div class="ttdeci">void start()</div><div class="ttdoc">Starts receiving new connections.</div><div class="ttdef"><b>Definition</b> <a href="#l00037">HttpServer.h:37</a></div></div>
 <div class="ttc" id="aclass_tg_bot_1_1_http_server_html_aeed8b9200cc2932126b9c27946751377"><div class="ttname"><a href="class_tg_bot_1_1_http_server.html#aeed8b9200cc2932126b9c27946751377">TgBot::HttpServer::stop</a></div><div class="ttdeci">void stop()</div><div class="ttdoc">Stops receiving new connections. Connections already accepted are completed.</div><div class="ttdef"><b>Definition</b> <a href="#l00046">HttpServer.h:46</a></div></div>

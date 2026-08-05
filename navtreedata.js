@@ -39,7 +39,7 @@ var NAVTREE =
       [ "Class Hierarchy", "hierarchy.html", "hierarchy" ],
       [ "Class Members", "functions.html", [
         [ "All", "functions.html", "functions_dup" ],
-        [ "Functions", "functions_func.html", null ],
+        [ "Functions", "functions_func.html", "functions_func" ],
         [ "Variables", "functions_vars.html", "functions_vars" ],
         [ "Typedefs", "functions_type.html", "functions_type" ],
         [ "Enumerations", "functions_enum.html", null ],
@@ -50,6 +50,7 @@ var NAVTREE =
       [ "File List", "files.html", "files_dup" ],
       [ "File Members", "globals.html", [
         [ "All", "globals.html", null ],
+        [ "Functions", "globals_func.html", null ],
         [ "Macros", "globals_defs.html", null ]
       ] ]
     ] ]
@@ -59,23 +60,25 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "_accepted_gift_types_8h.html",
-"_inline_query_result_contact_8h.html",
-"_passport_element_error_selfie_8h.html",
-"_transaction_partner_user_8h.html",
-"namespace_tg_bot.html#a02c5df3ead1ce5b47db6bff3fc1c1b03",
-"namespace_tg_bot.html#a50d96a7d053a0b880fc9859abfbd1d16",
-"namespace_tg_bot.html#aa0b664750615dda3325c33b4f2e6f08b",
-"namespace_tg_bot.html#af96dd74734457d4ecd11850acf7a29cd",
-"struct_tg_bot_1_1_chat_administrator_rights.html#ab9198a8468396418dd1207bb6fe9b028",
-"struct_tg_bot_1_1_checklist.html#acaa7e3fa6605f5d72e257091dabc76f6",
-"struct_tg_bot_1_1_inline_keyboard_button.html#a8ab653f48a7733a70cacfaa58509ae0e",
-"struct_tg_bot_1_1_inline_query_result_venue.html#a9cd868747dd0c2ab9613ece5de3532b4",
-"struct_tg_bot_1_1_input_rich_block_animation.html",
-"struct_tg_bot_1_1_login_url.html#ab6bb8981b1e68bafb2d571844dab8c2d",
-"struct_tg_bot_1_1_owned_gift_regular.html#aa2992feba2928986b668aec5c1f3d6e3",
-"struct_tg_bot_1_1_reply_keyboard_remove.html#a1379e1dca61bd1b46d4fb9b6b0d86732",
-"struct_tg_bot_1_1_rich_text_reference_link.html#a97963d0920f809e7831b840beb4c5086",
-"struct_tg_bot_1_1_transaction_partner_user.html#a6e08e82de83a7b11014a0d7b02974f67"
+"_business_bot_rights_8h_source.html",
+"_input_paid_media_live_photo_8h_source.html",
+"_rich_block_anchor_8h_source.html",
+"class_tg_bot_1_1_api.html#a05fa5ea2d9f6a946f82c8459c79bc6b0",
+"class_tg_bot_1_1_http_server.html#aeed8b9200cc2932126b9c27946751377",
+"namespace_tg_bot.html#a242094d3abe4a84cf6f57d77762b6bec",
+"namespace_tg_bot.html#a76604c42926371d95f679f58e04072ed",
+"namespace_tg_bot.html#ac2dc163a53976a8f003480976711c03f",
+"struct_tg_bot_1_1_background_type_wallpaper.html#a7c8276ab8960a25c97e8e4aa9acf9b24",
+"struct_tg_bot_1_1_chat_invite_link.html#a5cbc5b0989d138dbedf1dfd70e746695",
+"struct_tg_bot_1_1_external_reply_info.html#ae980d5bde3e8e617e7808f1a445f7555",
+"struct_tg_bot_1_1_inline_query_result_cached_sticker.html#a64bd220c343ee8165afc4e079bcb52fb",
+"struct_tg_bot_1_1_input_media_audio.html#a48f1dd6d1c2a6393ee5678d9c41af27d",
+"struct_tg_bot_1_1_input_rich_message.html#a146e98811d44dec038a9c47a1210eac4",
+"struct_tg_bot_1_1_message.html#a9e67a5884da3d1f751b2761017904cf0",
+"struct_tg_bot_1_1_passport_element_error_translation_files.html#a818afc8ec910c8d468391b42329edb6e",
+"struct_tg_bot_1_1_rich_block_photo.html#ab6f1911ae86d8256ef8769715656ef68",
+"struct_tg_bot_1_1_sticker_set.html#a3bbd6e31417f2f2ac498858df9b03424",
+"struct_tg_bot_1_1_user.html#afcf38b3ecf55ad23edfd315f29a3dc56"
 ];
 
 const SYNCONMSG = 'click to disable panel synchronization';

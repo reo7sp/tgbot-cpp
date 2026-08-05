@@ -1,4 +1,14 @@
 var searchData=
 [
-  ['api_0',['Api',['../class_tg_bot_1_1_api.html#a563a4a178d39f8c9bcf45c3e89af66ca',1,'TgBot::Api']]]
+  ['addstickertoset_0',['addStickerToSet',['../class_tg_bot_1_1_api.html#a2cc0476d3b5cfcfb986d25e6cbf579cf',1,'TgBot::Api::addStickerToSet()'],['../_api_methods_8inc_8h.html#a4f9c47ad5e802c444b89ef2a9b18a700',1,'addStickerToSet():&#160;ApiMethods.inc.h']]],
+  ['answercallbackquery_1',['answerCallbackQuery',['../class_tg_bot_1_1_api.html#ae1876967bc75494654910684954936a8',1,'TgBot::Api::answerCallbackQuery()'],['../_api_methods_8inc_8h.html#aac368b879610a8f1b303313de795c618',1,'answerCallbackQuery():&#160;ApiMethods.inc.h']]],
+  ['answerchatjoinrequestquery_2',['answerChatJoinRequestQuery',['../class_tg_bot_1_1_api.html#aba03b5b1cb2543b131b6faa8eb48d498',1,'TgBot::Api::answerChatJoinRequestQuery()'],['../_api_methods_8inc_8h.html#af27d2696e3f399393c7984ea4be6e2c7',1,'answerChatJoinRequestQuery():&#160;ApiMethods.inc.h']]],
+  ['answerguestquery_3',['answerGuestQuery',['../class_tg_bot_1_1_api.html#a82893b1c5ea641b5e4cc9cf7d9db30f6',1,'TgBot::Api::answerGuestQuery()'],['../_api_methods_8inc_8h.html#a12bacb222cab9c9d4ef1aa4130deef1b',1,'answerGuestQuery():&#160;ApiMethods.inc.h']]],
+  ['answerinlinequery_4',['answerInlineQuery',['../class_tg_bot_1_1_api.html#a005590c404e6543ca2450b5d745b37f2',1,'TgBot::Api::answerInlineQuery()'],['../_api_methods_8inc_8h.html#af520f1cf78e6bd5c8f80c8cbc4b20aa2',1,'answerInlineQuery():&#160;ApiMethods.inc.h']]],
+  ['answerprecheckoutquery_5',['answerPreCheckoutQuery',['../class_tg_bot_1_1_api.html#ab64843611ce63196850a51735bd6e47c',1,'TgBot::Api::answerPreCheckoutQuery()'],['../_api_methods_8inc_8h.html#a082fdd009fd8aeb4a8a9241cb2edd876',1,'answerPreCheckoutQuery():&#160;ApiMethods.inc.h']]],
+  ['answershippingquery_6',['answerShippingQuery',['../class_tg_bot_1_1_api.html#af9b427427485d83acf07566f8c91c0ec',1,'TgBot::Api::answerShippingQuery()'],['../_api_methods_8inc_8h.html#a9f1e734106abcd670797dadf2b65aed3',1,'answerShippingQuery():&#160;ApiMethods.inc.h']]],
+  ['answerwebappquery_7',['answerWebAppQuery',['../class_tg_bot_1_1_api.html#aa68ac977c7e5177ff77b11a2c5b44adb',1,'TgBot::Api::answerWebAppQuery()'],['../_api_methods_8inc_8h.html#a79d9c2f8d12b51f703c40030e1343b2d',1,'answerWebAppQuery():&#160;ApiMethods.inc.h']]],
+  ['api_8',['Api',['../class_tg_bot_1_1_api.html#a563a4a178d39f8c9bcf45c3e89af66ca',1,'TgBot::Api']]],
+  ['approvechatjoinrequest_9',['approveChatJoinRequest',['../class_tg_bot_1_1_api.html#afd121248e44e79920b4e6bb172dbd779',1,'TgBot::Api::approveChatJoinRequest()'],['../_api_methods_8inc_8h.html#a1a425aeb4197730bb543eaaefb7be18c',1,'approveChatJoinRequest():&#160;ApiMethods.inc.h']]],
+  ['approvesuggestedpost_10',['approveSuggestedPost',['../class_tg_bot_1_1_api.html#aae12b3c1e7b5288f59e4da841ab632da',1,'TgBot::Api::approveSuggestedPost()'],['../_api_methods_8inc_8h.html#a06a7007a6fbbafed988bdfb249913823',1,'approveSuggestedPost():&#160;ApiMethods.inc.h']]]
 ];
