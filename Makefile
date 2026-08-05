@@ -5,7 +5,7 @@ CONAN_BUILD_ARGS ?= --build=missing
 INSTALL_PREFIX ?=
 INSTALL_PREFIX_ARG = $(if $(INSTALL_PREFIX),--prefix $(INSTALL_PREFIX),)
 CPP_FILES = $(shell find include src tests examples -type f \( -name '*.h' -o -name '*.cpp' \) ! -name '*.inc.h' | sort)
-PYTHON_FILES = conanfile.py api_codegen
+PYTHON_FILES = conanfile.py api_codegen conan-center
 DOCKER_IMAGE ?= reo7sp/tgbot-cpp
 DOCKER_TEST_IMAGE ?= reo7sp/tgbot-cpp-test
 DOCKER_PLATFORM ?= linux/amd64
@@ -16,10 +16,49 @@ EXAMPLE_CMAKE_ARGS = $(if $(filter echobot-submodule,$(EXAMPLE)),-DTGBOT_CPP_SOU
 PORT ?= 8080
 DOCS_WORKTREE := $(abspath build/gh-pages)
 
-.PHONY: all dependencies dependencies-python dependencies-with-test configure configure-with-system configure-with-test build build-with-system build-with-test compile-commands example test test-only test-api-codegen install install-with-system install-only api-update api-generate \
-	docker-image docker-test-image docker-test docker-test-only docker-test-api-codegen docker-example-image docker-compose-run-examples docker-compose-stop-examples docker-push docker-run-example \
-	docker-run-example-webhook docs docs-publish list-includes list-srcs \
-	format format-cpp format-python lint lint-cpp lint-python
+.PHONY: \
+	all \
+	dependencies \
+	dependencies-python \
+	dependencies-with-test \
+	configure \
+	configure-with-system \
+	configure-with-test \
+	build \
+	build-with-system \
+	build-with-test \
+	compile-commands \
+	example \
+	test \
+	test-only \
+	test-api-codegen \
+	install \
+	install-with-system \
+	install-only \
+	api-update \
+	api-generate \
+	format \
+	format-cpp \
+	format-python \
+	lint \
+	lint-cpp \
+	lint-python \
+	docker-image \
+	docker-test-image \
+	docker-test \
+	docker-test-only \
+	docker-test-api-codegen \
+	docker-push \
+	docker-example-image \
+	docker-run-example \
+	docker-run-example-webhook \
+	docker-compose-run-examples \
+	docker-compose-stop-examples \
+	docs \
+	docs-publish \
+	conan-publish \
+	list-includes \
+	list-srcs
 
 all: build
 
@@ -176,6 +215,46 @@ docs-publish: docs
 		git -C $(DOCS_WORKTREE) commit -m "Updated docs $$(date +%Y-%m-%d)"
 	git -C $(DOCS_WORKTREE) push origin HEAD:gh-pages
 	git worktree remove $(DOCS_WORKTREE)
+
+conan-publish:
+	@command -v gh >/dev/null || (echo "gh is required to create the Conan Center pull request" >&2; exit 2)
+	@set -eu; \
+		version=$$(git describe --tags --exact-match --match 'v*' 2>/dev/null | sed 's/^v//'); \
+		test -n "$$version" || { echo "Run this target on a v* release tag" >&2; exit 2; }; \
+		index="$(abspath build/conan-center-index)"; \
+		branch="package/tgbot-$$version"; \
+		owner=$$(gh api user --jq .login); \
+		if test ! -d "$$index/.git"; then \
+			gh repo view "$$owner/conan-center-index" >/dev/null 2>&1 || \
+				gh repo fork conan-io/conan-center-index --clone=false; \
+			gh repo clone "$$owner/conan-center-index" "$$index" -- --filter=blob:none --sparse; \
+		fi; \
+		git -C "$$index" sparse-checkout set recipes/tgbot; \
+		git -C "$$index" remote get-url upstream >/dev/null 2>&1 || \
+			git -C "$$index" remote add upstream https://github.com/conan-io/conan-center-index.git; \
+		test -z "$$(git -C "$$index" status --porcelain)" || \
+			{ echo "The conan-center-index checkout must be clean" >&2; exit 2; }; \
+		git -C "$$index" fetch upstream master; \
+		git -C "$$index" switch -c "$$branch" upstream/master; \
+		recipe="$$index/recipes/tgbot"; \
+		tag="v$$version"; \
+		url="https://github.com/reo7sp/tgbot-cpp/archive/$$tag.tar.gz"; \
+		archive=$$(mktemp); \
+		trap 'rm -f "$$archive"' EXIT; \
+		grep -q "\"$$version\"" "$$recipe/config.yml" && \
+			{ echo "tgbot/$$version already exists in Conan Center index" >&2; exit 2; }; \
+		curl -fL "$$url" -o "$$archive"; \
+		sha256=$$(shasum -a 256 "$$archive" | cut -d ' ' -f 1); \
+		cp conan-center/conanfile.py "$$recipe/all/conanfile.py"; \
+		printf '  "%s":\n    folder: all\n' "$$version" >> "$$recipe/config.yml"; \
+		printf '  "%s":\n    url: "%s"\n    sha256: "%s"\n' "$$version" "$$url" "$$sha256" >> "$$recipe/all/conandata.yml"; \
+		git -C "$$index" add recipes/tgbot; \
+		git -C "$$index" commit -m "tgbot/$$version"; \
+		git -C "$$index" push -u origin "$$branch"; \
+		gh pr create --repo conan-io/conan-center-index \
+			--head "$$owner:$$branch" \
+			--title "tgbot/$$version" \
+			--body "Updates tgbot to $$version."
 
 list-includes:
 	@find include -type f -name '*.h' -print | sort | \
