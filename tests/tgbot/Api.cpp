@@ -3,7 +3,7 @@
 #include "tgbot/Api.h"
 #include "tgbot/HttpClient.h"
 #include "tgbot/TgException.h"
-#include "tgbot/types/Message.h"
+#include "tgbot/Types.h"
 
 #include <span>
 #include <string>

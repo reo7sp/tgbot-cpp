@@ -1,19 +1,7 @@
 #pragma once
 
+#include "tgbot/Types.h"
 #include "tgbot/export.h"
-#include "tgbot/types/CallbackQuery.h"
-#include "tgbot/types/ChatJoinRequest.h"
-#include "tgbot/types/ChatMemberUpdated.h"
-#include "tgbot/types/ChosenInlineResult.h"
-#include "tgbot/types/InlineQuery.h"
-#include "tgbot/types/Message.h"
-#include "tgbot/types/MessageReactionCountUpdated.h"
-#include "tgbot/types/MessageReactionUpdated.h"
-#include "tgbot/types/Poll.h"
-#include "tgbot/types/PollAnswer.h"
-#include "tgbot/types/PreCheckoutQuery.h"
-#include "tgbot/types/ShippingQuery.h"
-#include "tgbot/types/SuccessfulPayment.h"
 
 #include <functional>
 #include <initializer_list>

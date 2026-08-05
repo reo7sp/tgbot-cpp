@@ -2,9 +2,7 @@
 
 #include "tgbot/Api.h"
 #include "tgbot/ApiCodec.h"
-{% for object in objects %}
-#include "tgbot/types/{{ object.name }}.h"
-{% endfor %}
+#include "tgbot/Types.h"
 
 namespace TgBot {
 

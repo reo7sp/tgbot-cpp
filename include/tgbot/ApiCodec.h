@@ -1,8 +1,8 @@
 #pragma once
 
 #include "tgbot/HttpFormField.h"
+#include "tgbot/InputFile.h"
 #include "tgbot/Json.h"
-#include "tgbot/types/InputFile.h"
 
 #include <nlohmann/json.hpp>
 

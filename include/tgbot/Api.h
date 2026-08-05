@@ -1,10 +1,9 @@
 #pragma once
 
 #include "tgbot/HttpFormField.h"
+#include "tgbot/InputFile.h"
+#include "tgbot/Types.h"
 #include "tgbot/export.h"
-#include "tgbot/types/InputFile.h"
-#include "tgbot/types/Sticker.h"
-#include "tgbot/types/types_fwd.h"
 
 #include <nlohmann/json_fwd.hpp>
 

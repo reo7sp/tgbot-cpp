@@ -13,8 +13,6 @@ find_package(CURL 7.58.0 REQUIRED)
 find_package(nlohmann_json 3.7.3 REQUIRED)
 find_package(Threads REQUIRED)
 
-file(GLOB TYPE_SOURCES CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/src/types/*.cpp")
-
 add_library(TgBot
     src/Api.cpp
     src/ApiCodec.cpp
@@ -26,7 +24,8 @@ add_library(TgBot
     src/TgLongPoll.cpp
     src/TgWebhookLocalServer.cpp
     src/TgWebhookTcpServer.cpp
-    ${TYPE_SOURCES}
+    src/InputFile.cpp
+    src/Types.cpp
 )
 add_library(TgBot::TgBot ALIAS TgBot)
 
