@@ -118,11 +118,6 @@ var hierarchy =
         [ "TgBot::TgWebhookTcpServer", "class_tg_bot_1_1_tg_webhook_tcp_server.html", null ]
       ] ]
     ] ],
-    [ "TgBot::HttpServer&lt; boost::asio::local::stream_protocol &gt;", "class_tg_bot_1_1_http_server.html", [
-      [ "TgBot::TgWebhookServer< boost::asio::local::stream_protocol >", "class_tg_bot_1_1_tg_webhook_server.html", [
-        [ "TgBot::TgWebhookLocalServer", "class_tg_bot_1_1_tg_webhook_local_server.html", null ]
-      ] ]
-    ] ],
     [ "TgBot::InaccessibleMessage", "struct_tg_bot_1_1_inaccessible_message.html", null ],
     [ "TgBot::InlineKeyboardButton", "struct_tg_bot_1_1_inline_keyboard_button.html", null ],
     [ "TgBot::InlineKeyboardMarkup", "struct_tg_bot_1_1_inline_keyboard_markup.html", null ],

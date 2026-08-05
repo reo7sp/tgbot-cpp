@@ -364,7 +364,6 @@ var namespace_tg_bot =
     [ "TextQuote", "struct_tg_bot_1_1_text_quote.html", "struct_tg_bot_1_1_text_quote" ],
     [ "TgException", "class_tg_bot_1_1_tg_exception.html", "class_tg_bot_1_1_tg_exception" ],
     [ "TgLongPoll", "class_tg_bot_1_1_tg_long_poll.html", "class_tg_bot_1_1_tg_long_poll" ],
-    [ "TgWebhookLocalServer", "class_tg_bot_1_1_tg_webhook_local_server.html", "class_tg_bot_1_1_tg_webhook_local_server" ],
     [ "TgWebhookServer", "class_tg_bot_1_1_tg_webhook_server.html", "class_tg_bot_1_1_tg_webhook_server" ],
     [ "TgWebhookTcpServer", "class_tg_bot_1_1_tg_webhook_tcp_server.html", "class_tg_bot_1_1_tg_webhook_tcp_server" ],
     [ "TransactionPartner", "struct_tg_bot_1_1_transaction_partner.html", "struct_tg_bot_1_1_transaction_partner" ],

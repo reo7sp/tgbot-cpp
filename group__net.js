@@ -40,10 +40,6 @@ var group__net =
       [ "TgLongPoll", "class_tg_bot_1_1_tg_long_poll.html#a2cc4ebc5c87ab935d8fe72afe5023bbb", null ],
       [ "start", "class_tg_bot_1_1_tg_long_poll.html#a8928ddad3b976a636a53bb066180cbaa", null ]
     ] ],
-    [ "TgBot::TgWebhookLocalServer", "class_tg_bot_1_1_tg_webhook_local_server.html", [
-      [ "TgWebhookLocalServer", "class_tg_bot_1_1_tg_webhook_local_server.html#aa3dd2084536f5f3f6c8a6fd5a441966a", null ],
-      [ "TgWebhookLocalServer", "class_tg_bot_1_1_tg_webhook_local_server.html#a330530faa3a3a163ec231352c5e2e341", null ]
-    ] ],
     [ "TgBot::TgWebhookServer&lt; Protocol &gt;", "class_tg_bot_1_1_tg_webhook_server.html", [
       [ "TgWebhookServer", "class_tg_bot_1_1_tg_webhook_server.html#ab097de93d1a3a238736d5d668ec54ed1", null ],
       [ "TgWebhookServer", "class_tg_bot_1_1_tg_webhook_server.html#a47e45f3c13bbbb52bdde15819f7de7f2", null ],

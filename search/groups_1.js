@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['bot_20api_0',['Telegram Bot API',['../group__api.html',1,'']]]
+  ['general_0',['General',['../group__general.html',1,'']]]
 ];

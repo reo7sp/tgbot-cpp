@@ -50,7 +50,7 @@ var NAVTREE =
       [ "File List", "files.html", "files_dup" ],
       [ "File Members", "globals.html", [
         [ "All", "globals.html", null ],
-        [ "Functions", "globals_func.html", null ]
+        [ "Macros", "globals_defs.html", null ]
       ] ]
     ] ]
   ] ]
@@ -59,24 +59,23 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "_accepted_gift_types_8h.html",
-"_business_bot_rights_8h_source.html",
-"_input_paid_media_live_photo_8h_source.html",
-"_rich_block_anchor_8h_source.html",
-"class_tg_bot_1_1_api.html#acafdff775d0f2aae706b3fa7e043b315",
-"namespace_tg_bot.html#a140a01c2d24b436285c3dfa8fde49312",
-"namespace_tg_bot.html#a650c17fcb34bced3766e03e8541ac2e1",
-"namespace_tg_bot.html#ab4a4b9896ee1d47b1bf8059ffa600744",
-"struct_tg_bot_1_1_audio.html#a50823f02560e7d0a607291fd8bb9c02c",
-"struct_tg_bot_1_1_chat_full_info.html#a2751f391132039e0b7e373f53526583f",
-"struct_tg_bot_1_1_document.html#aa67870c6320092c13154abde7dcdf94c",
-"struct_tg_bot_1_1_inline_query_result_cached_document.html#a8bd7a289e0285293396df543cff3aa79",
-"struct_tg_bot_1_1_input_invoice_message_content.html#a15ba25845569d8ac77b62b9ee27e599b",
-"struct_tg_bot_1_1_input_rich_block_photo.html#a0facae4d5ccc61ebe8a4f5dc4fcfddba",
-"struct_tg_bot_1_1_message.html#a45900ef1ef40879b75dd7a9d078061e6",
-"struct_tg_bot_1_1_passport_element_error.html#a8924dcbaf0a7bd41a0b5b1b38bfe665a",
-"struct_tg_bot_1_1_rich_block_collage.html#a45ee39efa3fe05f67b12368b2db35f77",
-"struct_tg_bot_1_1_shipping_query.html#a725c107e71eef2f8e7107372c71fd275",
-"struct_tg_bot_1_1_update.html#a12ca7a1b6feef90cb6887347ac5fff6a"
+"_inline_query_result_contact_8h.html",
+"_passport_element_error_selfie_8h.html",
+"_transaction_partner_user_8h.html",
+"namespace_tg_bot.html#a02c5df3ead1ce5b47db6bff3fc1c1b03",
+"namespace_tg_bot.html#a50d96a7d053a0b880fc9859abfbd1d16",
+"namespace_tg_bot.html#aa0b664750615dda3325c33b4f2e6f08b",
+"namespace_tg_bot.html#af96dd74734457d4ecd11850acf7a29cd",
+"struct_tg_bot_1_1_chat_administrator_rights.html#ab9198a8468396418dd1207bb6fe9b028",
+"struct_tg_bot_1_1_checklist.html#acaa7e3fa6605f5d72e257091dabc76f6",
+"struct_tg_bot_1_1_inline_keyboard_button.html#a8ab653f48a7733a70cacfaa58509ae0e",
+"struct_tg_bot_1_1_inline_query_result_venue.html#a9cd868747dd0c2ab9613ece5de3532b4",
+"struct_tg_bot_1_1_input_rich_block_animation.html",
+"struct_tg_bot_1_1_login_url.html#ab6bb8981b1e68bafb2d571844dab8c2d",
+"struct_tg_bot_1_1_owned_gift_regular.html#aa2992feba2928986b668aec5c1f3d6e3",
+"struct_tg_bot_1_1_reply_keyboard_remove.html#a1379e1dca61bd1b46d4fb9b6b0d86732",
+"struct_tg_bot_1_1_rich_text_reference_link.html#a97963d0920f809e7831b840beb4c5086",
+"struct_tg_bot_1_1_transaction_partner_user.html#a6e08e82de83a7b11014a0d7b02974f67"
 ];
 
 const SYNCONMSG = 'click to disable panel synchronization';
