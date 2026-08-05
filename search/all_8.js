@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['handleupdate_0',['handleUpdate',['../class_tg_bot_1_1_event_handler.html#a0e6279a53f59979a8546fc7c7a915862',1,'TgBot::EventHandler']]],
+  ['handleupdate_0',['handleUpdate',['../class_tg_bot_1_1_event_handler.html#a1b9c85bd564948c1f1dd0040864a849a',1,'TgBot::EventHandler']]],
   ['hasaggressiveantispamenabled_1',['hasAggressiveAntiSpamEnabled',['../struct_tg_bot_1_1_chat_full_info.html#aaa75baa54295b63bd8779815ec1893f0',1,'TgBot::ChatFullInfo']]],
   ['hascheckbox_2',['hasCheckbox',['../struct_tg_bot_1_1_input_rich_block_list_item.html#a74624bfa9ad65147cd7cc5632dd283a6',1,'TgBot::InputRichBlockListItem::hasCheckbox'],['../struct_tg_bot_1_1_rich_block_list_item.html#a1272dcdf43b8d80f1f06204c584edd02',1,'TgBot::RichBlockListItem::hasCheckbox']]],
   ['hascolors_3',['hasColors',['../struct_tg_bot_1_1_gift.html#acf15025727736bb0d5b7bbaaa9e9342b',1,'TgBot::Gift']]],

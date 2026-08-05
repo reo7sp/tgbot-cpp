@@ -60,7 +60,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "_api_8h.html",
-"class_tg_bot_1_1_api.html#a251ca32aea0e3e033a351408f3351933",
+"class_tg_bot_1_1_api.html#a216a043e299788de56d9e33a6d684e89",
 "class_tg_bot_1_1_tg_long_poll.html#a8928ddad3b976a636a53bb066180cbaa",
 "namespace_tg_bot.html#a2c5f1ef1138b4cd6f89e3b391066e0bc",
 "namespace_tg_bot.html#a7de2791f78ff71369e9a602e2be25958",

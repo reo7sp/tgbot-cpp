@@ -8,19 +8,19 @@ var group__general =
       [ "getToken", "class_tg_bot_1_1_bot.html#a791871aa800310f6263c5a29c8a09418", null ]
     ] ],
     [ "TgBot::EventBroadcaster", "class_tg_bot_1_1_event_broadcaster.html", [
-      [ "CallbackQueryListener", "class_tg_bot_1_1_event_broadcaster.html#a58fb5b123d1529e3053da31fd40b672c", null ],
-      [ "ChatJoinRequestListener", "class_tg_bot_1_1_event_broadcaster.html#a06c210a0b9e86210ed90ef57d776096a", null ],
-      [ "ChatMemberUpdatedListener", "class_tg_bot_1_1_event_broadcaster.html#a1cc8e72520ab25fd48cd5e1559b7ef3f", null ],
-      [ "ChosenInlineResultListener", "class_tg_bot_1_1_event_broadcaster.html#a97ab83e6dafc18eea65d6d44b01c6519", null ],
-      [ "InlineQueryListener", "class_tg_bot_1_1_event_broadcaster.html#a443497f2059418f1f8ce1d34f5b623a6", null ],
-      [ "MessageListener", "class_tg_bot_1_1_event_broadcaster.html#a7be0cca4c014d5c390bbceb43218cd5e", null ],
-      [ "MessageReactionCountUpdatedListener", "class_tg_bot_1_1_event_broadcaster.html#aa02d86c440316fce60cd35727f07f60b", null ],
-      [ "MessageReactionUpdatedListener", "class_tg_bot_1_1_event_broadcaster.html#a89483d23885d17a7b326235583d4ff5b", null ],
-      [ "PollAnswerListener", "class_tg_bot_1_1_event_broadcaster.html#af962cc8468f96bf61c98e04eeb148e46", null ],
-      [ "PollListener", "class_tg_bot_1_1_event_broadcaster.html#a242fb740b04bd0bf256eb5458f7769f2", null ],
-      [ "PreCheckoutQueryListener", "class_tg_bot_1_1_event_broadcaster.html#a32043d392b67c9d28180569d6fb434ff", null ],
-      [ "ShippingQueryListener", "class_tg_bot_1_1_event_broadcaster.html#a9ede2f727c28b49bded07fc5ed11f2ce", null ],
-      [ "SuccessfulPaymentListener", "class_tg_bot_1_1_event_broadcaster.html#ac5ca4c84a0cb5fa301626eb458d883a2", null ],
+      [ "CallbackQueryListener", "class_tg_bot_1_1_event_broadcaster.html#ad35b6aeaa1f9d053b0028ff49a4196e8", null ],
+      [ "ChatJoinRequestListener", "class_tg_bot_1_1_event_broadcaster.html#aebc62c5c0a45a5578f52d69a3cccc09d", null ],
+      [ "ChatMemberUpdatedListener", "class_tg_bot_1_1_event_broadcaster.html#a035b473093f94691c7048320bd5de58f", null ],
+      [ "ChosenInlineResultListener", "class_tg_bot_1_1_event_broadcaster.html#a2d89e114eb7d00fc759aa2b60807dfdf", null ],
+      [ "InlineQueryListener", "class_tg_bot_1_1_event_broadcaster.html#a47d19b3da94a7e6b05a4dc71267631d8", null ],
+      [ "MessageListener", "class_tg_bot_1_1_event_broadcaster.html#aa034d5b96a2f8359963e85aa74169053", null ],
+      [ "MessageReactionCountUpdatedListener", "class_tg_bot_1_1_event_broadcaster.html#af159f3d4b7f8c5678708f6db26611738", null ],
+      [ "MessageReactionUpdatedListener", "class_tg_bot_1_1_event_broadcaster.html#afa6aa0a5de920213d597f196b36d72ac", null ],
+      [ "PollAnswerListener", "class_tg_bot_1_1_event_broadcaster.html#a9c3eff2ad5a2726955755d68391b1ae8", null ],
+      [ "PollListener", "class_tg_bot_1_1_event_broadcaster.html#a9e249febe61f8d9843d92ae3b0d9a1ae", null ],
+      [ "PreCheckoutQueryListener", "class_tg_bot_1_1_event_broadcaster.html#a6c467182ea76d1a016be38b15f05f7c1", null ],
+      [ "ShippingQueryListener", "class_tg_bot_1_1_event_broadcaster.html#afa008a1a42377e1006130a8f15f20ff7", null ],
+      [ "SuccessfulPaymentListener", "class_tg_bot_1_1_event_broadcaster.html#ae666e4caf39a09dcc026b011b3e61e6e", null ],
       [ "onAnyMessage", "class_tg_bot_1_1_event_broadcaster.html#a21adc85e9ed2a08a186423a5231342a9", null ],
       [ "onCallbackQuery", "class_tg_bot_1_1_event_broadcaster.html#a3ec551ffdcf5be1b9b39ed081ea078d4", null ],
       [ "onChatJoinRequest", "class_tg_bot_1_1_event_broadcaster.html#a98dc2b9c40515adb956b913bf4957a23", null ],
@@ -43,7 +43,7 @@ var group__general =
     ] ],
     [ "TgBot::EventHandler", "class_tg_bot_1_1_event_handler.html", [
       [ "EventHandler", "class_tg_bot_1_1_event_handler.html#ae71500cae7d1ff3d40bb47b1e39b3642", null ],
-      [ "handleUpdate", "class_tg_bot_1_1_event_handler.html#a0e6279a53f59979a8546fc7c7a915862", null ]
+      [ "handleUpdate", "class_tg_bot_1_1_event_handler.html#a1b9c85bd564948c1f1dd0040864a849a", null ]
     ] ],
     [ "TgBot::TgException", "class_tg_bot_1_1_tg_exception.html", [
       [ "ErrorCode", "class_tg_bot_1_1_tg_exception.html#a88b4eb82d516cd897ace08c9cb4c5097", [

@@ -153,7 +153,7 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('_tg_long_poll_
 <div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    std::int32_t _timeout;</div>
 <div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    std::shared_ptr&lt;std::vector&lt;std::string&gt;&gt; _allowUpdates;</div>
 <div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    std::vector&lt;Update::Ptr&gt; _updates;</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    std::vector&lt;std::shared_ptr&lt;Update&gt;&gt; _updates;</div>
 <div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>};</div>
 </div>
 <div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
