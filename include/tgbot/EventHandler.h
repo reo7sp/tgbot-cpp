@@ -1,9 +1,8 @@
 #pragma once
 
 #include "tgbot/EventBroadcaster.h"
+#include "tgbot/Types.h"
 #include "tgbot/export.h"
-#include "tgbot/types/Message.h"
-#include "tgbot/types/Update.h"
 
 namespace TgBot {
 

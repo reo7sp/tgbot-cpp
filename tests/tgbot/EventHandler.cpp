@@ -2,8 +2,7 @@
 
 #include "tgbot/EventBroadcaster.h"
 #include "tgbot/EventHandler.h"
-#include "tgbot/types/Message.h"
-#include "tgbot/types/Update.h"
+#include "tgbot/Types.h"
 
 #include <memory>
 #include <string>

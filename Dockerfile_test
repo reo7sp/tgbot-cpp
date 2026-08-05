@@ -47,12 +47,12 @@ RUN make test && \
 RUN make example EXAMPLE=echobot
 RUN make example EXAMPLE=echobot-proxy
 RUN make example EXAMPLE=echobot-setmycommands
-RUN make example EXAMPLE=echobot-submodule
 RUN make example EXAMPLE=echobot-webhook-server
 RUN make example EXAMPLE=inline-keyboard
 RUN make example EXAMPLE=photo
 RUN make example EXAMPLE=receive-file
 RUN make example EXAMPLE=received-text-processing
 RUN make example EXAMPLE=reply-keyboard
+RUN make example EXAMPLE=echobot-submodule
 
 CMD ["make", "test-only"]

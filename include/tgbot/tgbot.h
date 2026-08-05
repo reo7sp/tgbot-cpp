@@ -9,14 +9,14 @@
 #include "tgbot/HttpClient.h"
 #include "tgbot/HttpFormField.h"
 #include "tgbot/HttpServer.h"
+#include "tgbot/InputFile.h"
 #include "tgbot/Json.h"
 #include "tgbot/TgException.h"
 #include "tgbot/TgLongPoll.h"
 #include "tgbot/TgWebhookLocalServer.h"
 #include "tgbot/TgWebhookServer.h"
 #include "tgbot/TgWebhookTcpServer.h"
-#include "tgbot/types/InputFile.h"
-#include "tgbot/types/types.h"
+#include "tgbot/Types.h"
 
 /**
  * @defgroup general

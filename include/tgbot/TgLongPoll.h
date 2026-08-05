@@ -1,7 +1,7 @@
 #pragma once
 
+#include "tgbot/Types.h"
 #include "tgbot/export.h"
-#include "tgbot/types/Update.h"
 
 #include <cstdint>
 #include <memory>

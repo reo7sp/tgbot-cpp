@@ -4,22 +4,7 @@
 #include <gtest/gtest.h>
 #include <nlohmann/json.hpp>
 
-#include "tgbot/types/Animation.h"
-#include "tgbot/types/BusinessOpeningHours.h"
-#include "tgbot/types/BusinessOpeningHoursInterval.h"
-#include "tgbot/types/Chat.h"
-#include "tgbot/types/ChatBoostSource.h"
-#include "tgbot/types/ChatBoostSourcePremium.h"
-#include "tgbot/types/ChatMember.h"
-#include "tgbot/types/ChatMemberMember.h"
-#include "tgbot/types/InlineQueryResultCachedAudio.h"
-#include "tgbot/types/Message.h"
-#include "tgbot/types/MessageEntity.h"
-#include "tgbot/types/PhotoSize.h"
-#include "tgbot/types/ReactionType.h"
-#include "tgbot/types/ReactionTypeCustomEmoji.h"
-#include "tgbot/types/ReactionTypePaid.h"
-#include "tgbot/types/Sticker.h"
+#include "tgbot/Types.h"
 
 TEST(TypesJson, GeneratedDiscriminatorHasLegacyConstantAndDefault) {
     TgBot::InlineQueryResultCachedAudio result;
