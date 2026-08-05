@@ -17,7 +17,7 @@ PORT ?= 8080
 DOCS_WORKTREE := $(abspath build/gh-pages)
 
 .PHONY: all dependencies dependencies-python dependencies-with-test configure configure-with-system configure-with-test build build-with-system build-with-test compile-commands example test test-only test-api-codegen install install-with-system install-only api-update api-generate \
-	docker-image docker-test-image docker-test docker-example-image docker-compose-run-examples docker-compose-stop-examples docker-push docker-run-example \
+	docker-image docker-test-image docker-test docker-test-only docker-test-api-codegen docker-example-image docker-compose-run-examples docker-compose-stop-examples docker-push docker-run-example \
 	docker-run-example-webhook docs docs-publish list-includes list-srcs \
 	format format-cpp format-python lint lint-cpp lint-python
 
@@ -125,7 +125,14 @@ docker-test-image:
 	docker build --platform=$(DOCKER_PLATFORM) -t $(DOCKER_TEST_IMAGE) -f Dockerfile_test .
 
 docker-test: docker-test-image
-	docker run --rm $(DOCKER_TEST_IMAGE)
+	$(MAKE) docker-test-only
+	$(MAKE) docker-test-api-codegen
+
+docker-test-only:
+	docker run --rm $(DOCKER_TEST_IMAGE) make test-only
+
+docker-test-api-codegen:
+	docker run --rm $(DOCKER_TEST_IMAGE) make test-api-codegen
 
 docker-push: docker-image
 	docker push $(DOCKER_IMAGE)

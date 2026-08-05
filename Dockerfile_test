@@ -36,7 +36,7 @@ COPY cmake cmake
 COPY .clang-format ./
 COPY CMakeLists.txt ./
 
-RUN make test && \
+RUN make build-with-test && \
     make install-only
 
 RUN make example EXAMPLE=echobot
@@ -50,4 +50,4 @@ RUN make example EXAMPLE=received-text-processing
 RUN make example EXAMPLE=reply-keyboard
 RUN make example EXAMPLE=echobot-submodule
 
-CMD ["make", "test-only"]
+CMD ["make", "test-only", "test-api-codegen"]
