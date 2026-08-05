@@ -218,6 +218,7 @@ def test_generate_openapi_renders_types_methods_and_documentation(
     assert "\n    /**\n     * @brief Returns information about the bot.\n" in methods
     assert "\n    std::shared_ptr<User> getMe() const" in methods
     assert "Returns information about the bot." in methods
+    assert "@param url HTTPS URL for incoming updates." in methods
     assert '#include "tgbot/ApiCodec.h"' in api_source
     assert "ApiRequest::makeFields(" in api_source
     assert "ApiResponse::decode<std::shared_ptr<User>>" in api_source
@@ -322,7 +323,10 @@ def _schema() -> dict:
                                 "schema": {
                                     "type": "object",
                                     "properties": {
-                                        "url": {"type": "string"},
+                                        "url": {
+                                            "type": "string",
+                                            "description": "HTTPS URL for incoming updates.",
+                                        },
                                         "max_connections": {"type": "integer"},
                                         "allowed_updates": {
                                             "type": "array",

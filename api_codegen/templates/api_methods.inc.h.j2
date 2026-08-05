@@ -8,8 +8,8 @@
 {% endfor %}
      *
 {% for parameter in method.parameters %}
-     * @param {{ parameter.cpp_name }}
-{% for line in parameter.description %}
+     * @param {{ parameter.cpp_name }}{{ " " + parameter.description[0] if parameter.description else "" }}
+{% for line in parameter.description[1:] %}
      * {{ line }}
 {% endfor %}
 {% endfor %}
