@@ -12,7 +12,7 @@ permissions:
   contents: read
 
 jobs:
-  test:
+  test-linux:
     runs-on: ubuntu-24.04
     timeout-minutes: 30
     steps:
@@ -40,3 +40,39 @@ jobs:
         run: make docker-test-only
       - name: Run codegen tests
         run: make docker-test-api-codegen
+
+  test-windows:
+    runs-on: windows-2025
+    timeout-minutes: 30
+    env:
+      POETRY_VIRTUALENVS_IN_PROJECT: "true"
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: .github/workflows/test.yml
+      - name: Cache Conan packages
+        uses: actions/cache@v5
+        with:
+          path: ~/.conan2/p
+          key: conan-${{ runner.os }}-${{ hashFiles('conanfile.py') }}
+          restore-keys: conan-${{ runner.os }}-
+      - name: Cache Poetry environment
+        uses: actions/cache@v5
+        with:
+          path: .venv
+          key: poetry-${{ runner.os }}-3.12-${{ hashFiles('poetry.lock', 'pyproject.toml') }}
+          restore-keys: poetry-${{ runner.os }}-3.12-
+      - uses: ilammy/msvc-dev-cmd@v1
+      - name: Install tools
+        shell: pwsh
+        run: |
+          choco install make --no-progress --yes
+          python -m pip install "conan==2.31.1" "poetry==2.4.1"
+      - name: Build and test
+        shell: bash
+        env:
+          CONAN_BUILD_ARGS: --build=missing -c tools.cmake.cmaketoolchain:generator=Ninja
+        run: make test

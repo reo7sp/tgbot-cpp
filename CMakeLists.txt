@@ -46,7 +46,6 @@ target_link_libraries(TgBot PUBLIC
 )
 set_target_properties(TgBot PROPERTIES
     CXX_EXTENSIONS OFF
-    POSITION_INDEPENDENT_CODE ON
 )
 
 if(BUILD_SHARED_LIBS)
