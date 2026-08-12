@@ -53,8 +53,8 @@ void appendField(std::vector<HttpFormField>& fields, const char* name, const std
 }
 
 template<typename T>
-requires std::is_arithmetic_v<T> void appendOptionalField(std::vector<HttpFormField>& fields, const char* name,
-                                                          T value) {
+requires std::is_arithmetic_v<T>
+void appendOptionalField(std::vector<HttpFormField>& fields, const char* name, T value) {
     if (value != 0) {
         appendField(fields, name, value);
     }

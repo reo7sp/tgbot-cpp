@@ -1,9 +1,10 @@
 BasedOnStyle: WebKit
-Standard: c++17
+Standard: c++20
 ColumnLimit: 120
 AllowShortFunctionsOnASingleLine: None
 AllowShortLambdasOnASingleLine: None
 AlwaysBreakTemplateDeclarations: Yes
+IndentRequiresClause: false
 AlignAfterOpenBracket: Align
 BreakBeforeBraces: Attach
 NamespaceIndentation: None
