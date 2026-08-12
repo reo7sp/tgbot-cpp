@@ -268,6 +268,25 @@ conan-publish: test-conan-recipe
 		test -n "$$version" || { echo "Run this target on a v* release tag" >&2; exit 2; }; \
 		index="$(abspath build/conan-center-index)"; \
 		branch="package/tgbot-$$version"; \
+		title="tgbot: add version $$version"; \
+		body=$$(printf '%s\n' \
+			'### Summary' \
+			"Changes to recipe: **tgbot/$$version**" \
+			'' \
+			'#### Motivation' \
+			"Add tgbot-cpp $$version to Conan Center." \
+			'' \
+			'#### Details' \
+			"Add version $$version with its source checksum and the corresponding recipe and test package." \
+			'' \
+			'---' \
+			'- [x] Read the [contributing guidelines](https://github.com/conan-io/conan-center-index/blob/master/CONTRIBUTING.md)' \
+			'- [x] Checked that this PR is not a duplicate: [list of PRs by recipe](https://github.com/conan-io/conan-center-index/discussions/24240)' \
+			'- [ ] If this is a bug fix, please link related issue or provide bug details' \
+			'- [x] Tested locally with at least one configuration using a recent version of Conan' \
+			'' \
+			'---' \
+			'Add a :+1: reaction to pull requests you find [important](https://github.com/conan-io/conan-center-index/pulls?q=is%3Aopen+sort%3Areactions-%2B1-desc) to help the team prioritize, thanks!'); \
 		owner=$$(gh api user --jq .login); \
 		if test ! -d "$$index/.git"; then \
 			gh repo view "$$owner/conan-center-index" >/dev/null 2>&1 || \
@@ -294,12 +313,13 @@ conan-publish: test-conan-recipe
 		printf '  "%s":\n    folder: all\n' "$$version" >> "$$recipe/config.yml"; \
 		printf '  "%s":\n    url: "%s"\n    sha256: "%s"\n' "$$version" "$$url" "$$sha256" >> "$$recipe/all/conandata.yml"; \
 		git -C "$$index" add recipes/tgbot; \
-		git -C "$$index" commit -m "tgbot/$$version"; \
+		git -C "$$index" commit -m "$$title"; \
 		git -C "$$index" push -u origin "$$branch"; \
 		gh pr create --repo conan-io/conan-center-index \
 			--head "$$owner:$$branch" \
-			--title "tgbot: add version $$version" \
-			--body "Updates tgbot to $$version."
+			--title "$$title" \
+			--body "$$body" \
+			--draft
 
 list-includes:
 	@find include -type f -name '*.h' -print | sort | sed 's|^include/|#include "|; s|$$|"|'
