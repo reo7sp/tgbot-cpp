@@ -2,6 +2,8 @@ BUILD_TYPE ?= Release
 BUILD_DIR ?= build/$(BUILD_TYPE)
 NPROC ?= $(shell nproc 2>/dev/null || sysctl -n hw.ncpu 2>/dev/null || echo 1)
 CONAN_BUILD_ARGS ?= --build=missing
+CONAN_RECIPE_VERSION ?= $(shell git describe --tags --abbrev=0 --match 'v*' 2>/dev/null | sed 's/^v//')
+CONAN_RECIPE_ARGS ?=
 INSTALL_PREFIX ?=
 INSTALL_PREFIX_ARG = $(if $(INSTALL_PREFIX),--prefix $(INSTALL_PREFIX),)
 CPP_FILES = $(shell find include src tests examples -type f \( -name '*.h' -o -name '*.cpp' \) ! -name '*.inc.h' | sort)
@@ -58,6 +60,7 @@ DOCS_WORKTREE := $(abspath build/gh-pages)
 	docker-compose-stop-examples \
 	docs \
 	docs-publish \
+	test-conan-recipe \
 	conan-publish \
 	list-includes \
 	list-srcs
@@ -223,7 +226,30 @@ docs-publish: docs
 	git -C $(DOCS_WORKTREE) push origin HEAD:gh-pages
 	git worktree remove $(DOCS_WORKTREE)
 
-conan-publish:
+test-conan-recipe:
+	@test -n "$(CONAN_RECIPE_VERSION)" || { echo "CONAN_RECIPE_VERSION is required" >&2; exit 2; }
+	@set -eu; \
+		recipe=$$(mktemp -d); \
+		archive=$$(mktemp); \
+		trap 'rm -rf "$$recipe"; rm -f "$$archive"' EXIT; \
+		url="https://github.com/reo7sp/tgbot-cpp/archive/v$(CONAN_RECIPE_VERSION).tar.gz"; \
+		curl -fL "$$url" -o "$$archive"; \
+		sha256=$$(shasum -a 256 "$$archive" | cut -d ' ' -f 1); \
+		cp conan-center/conanfile.py "$$recipe/conanfile.py"; \
+		printf 'sources:\n  "%s":\n    url: "%s"\n    sha256: "%s"\n' \
+			"$(CONAN_RECIPE_VERSION)" "$$url" "$$sha256" > "$$recipe/conandata.yml"; \
+		conan profile detect --exist-ok; \
+		conan create "$$recipe" --version="$(CONAN_RECIPE_VERSION)" \
+			--build='tgbot/*' $(CONAN_BUILD_ARGS) \
+			-s build_type=Release -s compiler.cppstd=20 \
+			$(CONAN_RECIPE_ARGS); \
+		conan create "$$recipe" --version="$(CONAN_RECIPE_VERSION)" \
+			--build='tgbot/*' $(CONAN_BUILD_ARGS) \
+			-s build_type=Debug -s compiler.cppstd=20 \
+			-o '*/*:shared=True' \
+			$(CONAN_RECIPE_ARGS)
+
+conan-publish: test-conan-recipe
 	@command -v gh >/dev/null || (echo "gh is required to create the Conan Center pull request" >&2; exit 2)
 	@set -eu; \
 		version=$$(git describe --tags --exact-match --match 'v*' 2>/dev/null | sed 's/^v//'); \
