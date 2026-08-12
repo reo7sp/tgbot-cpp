@@ -1,10 +1,9 @@
 import os
 
 from conan import ConanFile
-from conan.tools.apple import fix_apple_shared_install_name
 from conan.tools.build import check_min_cppstd
 from conan.tools.cmake import CMake, CMakeDeps, CMakeToolchain, cmake_layout
-from conan.tools.files import copy, get
+from conan.tools.files import copy, get, rmdir
 
 required_conan_version = ">=2.28"
 
@@ -72,7 +71,7 @@ class TgbotConan(ConanFile):
             src=self.source_folder,
             dst=os.path.join(self.package_folder, "licenses"),
         )
-        fix_apple_shared_install_name(self)
+        rmdir(self, os.path.join(self.package_folder, "lib", "cmake"))
 
     def package_info(self):
         self.cpp_info.libs = ["TgBot"]

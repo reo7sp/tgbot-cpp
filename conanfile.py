@@ -1,9 +1,14 @@
+import os
+
 from conan import ConanFile
+from conan.tools.build import check_min_cppstd
 from conan.tools.cmake import CMake, CMakeDeps, CMakeToolchain, cmake_layout
+from conan.tools.files import copy, rmdir
+
+required_conan_version = ">=2.28"
 
 
 class TgBotCppConan(ConanFile):
-    required_conan_version = ">=2.0"
     name = "tgbot-cpp"
     package_type = "library"
     license = "MIT"
@@ -40,11 +45,16 @@ class TgBotCppConan(ConanFile):
             self.options.rm_safe("fPIC")
 
     def requirements(self):
-        self.requires("boost/1.91.0", options={"header_only": True})
-        self.requires("nlohmann_json/3.12.0")
-        self.requires("libcurl/8.21.0")
+        self.requires("boost/1.91.0", options={"header_only": True}, transitive_headers=True)
+        self.requires("libcurl/8.21.0", transitive_headers=True, transitive_libs=True)
+        self.requires("nlohmann_json/3.12.0", transitive_headers=True)
+
+    def build_requirements(self):
         if self.options.with_tests:
-            self.requires("gtest/1.17.0")
+            self.test_requires("gtest/1.17.0")
+
+    def validate(self):
+        check_min_cppstd(self, 20)
 
     def layout(self):
         cmake_layout(self)
@@ -54,7 +64,6 @@ class TgBotCppConan(ConanFile):
         dependencies.generate()
 
         toolchain = CMakeToolchain(self)
-        toolchain.variables["BUILD_SHARED_LIBS"] = bool(self.options.shared)
         toolchain.variables["ENABLE_TESTS"] = bool(self.options.with_tests)
         toolchain.generate()
 
@@ -68,6 +77,13 @@ class TgBotCppConan(ConanFile):
     def package(self):
         cmake = CMake(self)
         cmake.install()
+        copy(
+            self,
+            "LICENSE",
+            src=self.source_folder,
+            dst=os.path.join(self.package_folder, "licenses"),
+        )
+        rmdir(self, os.path.join(self.package_folder, "lib", "cmake"))
 
     def package_info(self):
         self.cpp_info.libs = ["TgBot"]
