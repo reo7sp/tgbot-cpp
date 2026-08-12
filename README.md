@@ -185,7 +185,7 @@ winget install --exact --id Python.Python.3.12
 python -m pip install --user pipx
 python -m pipx ensurepath
 python -m pipx install poetry
-python -m pipx install clang-format
+python -m pipx install "clang-format>=22.1.8"
 ```
 
 

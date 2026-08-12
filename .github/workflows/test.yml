@@ -57,7 +57,7 @@ jobs:
         uses: actions/cache@v5
         with:
           path: .ci-tools
-          key: python-tools-windows-2022-${{ steps.python.outputs.python-version }}-conan-2.31.1-poetry-2.4.1
+          key: python-tools-windows-2022-${{ steps.python.outputs.python-version }}-clang-format-22.1.8-conan-2.31.1-poetry-2.4.1
       - name: Cache Poetry environment
         uses: actions/cache@v5
         with:
@@ -76,7 +76,7 @@ jobs:
         shell: pwsh
         run: |
           python -m venv .ci-tools
-          .ci-tools/Scripts/python -m pip install "conan==2.31.1" "poetry==2.4.1"
+          .ci-tools/Scripts/python -m pip install "clang-format==22.1.8" "conan==2.31.1" "poetry==2.4.1"
       - name: Add Python tools to PATH
         shell: pwsh
         run: Resolve-Path .ci-tools/Scripts | Out-File -FilePath $env:GITHUB_PATH -Append
