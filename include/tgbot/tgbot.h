@@ -31,5 +31,7 @@
  */
 
 /** @mainpage
- * [Go to GitHub](https://github.com/reo7sp/tgbot-cpp)
+ * Documentation for the tgbot-cpp library.
+ *
+ * [GitHub](https://github.com/reo7sp/tgbot-cpp)
  */

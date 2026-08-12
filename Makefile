@@ -189,8 +189,14 @@ docker-test-only:
 docker-test-api-codegen:
 	docker run --rm -t --platform=$(DOCKER_PLATFORM) $(DOCKER_TEST_IMAGE) make test-api-codegen
 
-docker-push: docker-image
-	docker push $(DOCKER_IMAGE)
+docker-push:
+	@set -eu; \
+		version=$$(git describe --tags --exact-match --match 'v*' 2>/dev/null | sed 's/^v//'); \
+		test -n "$$version" || { echo "Run this target on a v* release tag" >&2; exit 2; }; \
+		$(MAKE) docker-image; \
+		docker tag "$(DOCKER_IMAGE)" "$(DOCKER_IMAGE):$$version"; \
+		docker push "$(DOCKER_IMAGE)"; \
+		docker push "$(DOCKER_IMAGE):$$version"
 
 docker-example-image: docker-image
 	docker build --platform=$(DOCKER_PLATFORM) \
