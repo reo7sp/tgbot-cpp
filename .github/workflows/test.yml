@@ -55,30 +55,24 @@ jobs:
           python-version: "3.12"
       - name: Cache Python tools
         id: python-tools-cache
-        uses: actions/cache/restore@v5
+        uses: actions/cache@v5
         with:
           path: .ci-tools
           key: python-tools-windows-2022-${{ steps.python.outputs.python-version }}-conan-2.31.1-poetry-2.4.1
       - name: Cache Conan packages
-        id: conan-cache
-        uses: actions/cache/restore@v5
+        uses: actions/cache@v5
         with:
           path: ~/.conan2/p
           key: conan-windows-2022-2.31.1-cpp20-${{ hashFiles('conanfile.py') }}
           restore-keys: conan-windows-2022-2.31.1-cpp20-
       - name: Cache Poetry environment
-        id: poetry-cache
-        uses: actions/cache/restore@v5
+        uses: actions/cache@v5
         with:
           path: .venv
           key: poetry-${{ runner.os }}-${{ steps.python.outputs.python-version }}-${{ hashFiles('poetry.lock', 'pyproject.toml') }}
           restore-keys: poetry-${{ runner.os }}-${{ steps.python.outputs.python-version }}-
       - uses: ilammy/msvc-dev-cmd@v1
-      - name: Install make
-        shell: pwsh
-        run: choco install make --no-progress --yes
       - name: Install Python tools
-        id: install-python-tools
         if: steps.python-tools-cache.outputs.cache-hit != 'true'
         shell: pwsh
         run: |
@@ -100,21 +94,3 @@ jobs:
       - name: Test tgbot-cpp
         shell: bash
         run: make test-only
-      - name: Save Conan packages
-        if: ${{ always() && steps.conan-cache.outputs.cache-hit != 'true' }}
-        uses: actions/cache/save@v5
-        with:
-          path: ~/.conan2/p
-          key: ${{ steps.conan-cache.outputs.cache-primary-key }}
-      - name: Save Python tools
-        if: ${{ always() && steps.python-tools-cache.outputs.cache-hit != 'true' && steps.install-python-tools.outcome == 'success' }}
-        uses: actions/cache/save@v5
-        with:
-          path: .ci-tools
-          key: ${{ steps.python-tools-cache.outputs.cache-primary-key }}
-      - name: Save Poetry environment
-        if: ${{ always() && steps.poetry-cache.outputs.cache-hit != 'true' }}
-        uses: actions/cache/save@v5
-        with:
-          path: .venv
-          key: ${{ steps.poetry-cache.outputs.cache-primary-key }}
