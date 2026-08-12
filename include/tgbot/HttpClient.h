@@ -6,9 +6,21 @@
 #include <atomic>
 #include <cstdint>
 #include <span>
+#include <stdexcept>
 #include <string>
 
 namespace TgBot {
+
+/**
+ * @brief Exception thrown when an HTTP request is cancelled.
+ *
+ * @ingroup net
+ */
+class TGBOT_API RequestCancelled : public std::runtime_error {
+public:
+    RequestCancelled();
+    explicit RequestCancelled(const std::string& request);
+};
 
 /**
  * @brief This class makes http requests.
@@ -38,8 +50,8 @@ public:
     /**
      * @brief Get the makeRequest() backoff duration between retries, in seconds.
      */
-    virtual int getRequestBackoff() const {
-        return requestBackoff;
+    virtual int getRequestBackoffSeconds() const {
+        return requestBackoffSeconds;
     }
 
     /**
@@ -63,13 +75,6 @@ public:
         return _isEternalCancel.load();
     }
 
-    /**
-     *  @brief Get the exception message that occurs when the request is aborted.
-     */
-    virtual const std::string& getCancelExceptionText() const {
-        return cancelExceptionText;
-    }
-
 protected:
     /**
      *  @brief Flag indicating whether the HTTP client is permanently disabled.
@@ -83,8 +88,7 @@ protected:
 
 private:
     int requestMaxRetries = 3;
-    int requestBackoff = 1;
-    const std::string cancelExceptionText = "request cancelled";
+    int requestBackoffSeconds = 1;
 };
 
 } // namespace TgBot

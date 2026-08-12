@@ -8,7 +8,6 @@
 
 int main() {
     const auto token = std::string(std::getenv("TOKEN"));
-    std::cout << "Token: " << token << std::endl;
 
     const auto photoFilePath = std::string("example.jpg");
     const auto photoMimeType = std::string("image/jpeg");

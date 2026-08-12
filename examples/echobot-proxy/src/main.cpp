@@ -1,7 +1,3 @@
-// Example of using an array of proxies with tgbot-cpp.
-// Based on original code (c) Oleg Morozenkov [reo7sp] https://github.com/reo7sp
-// https://github.com/reo7sp/tgbot-cpp/blob/master/examples/echobot/src/main.cpp
-
 #include <array>
 #include <cstdlib>
 #include <exception>
@@ -24,7 +20,6 @@ int main() {
     std::size_t proxyIndex = 0;
 
     const auto token = std::string(std::getenv("TOKEN"));
-    std::cout << "Token: " << token << std::endl;
 
     TgBot::CurlHttpClient curlHttpClient;
     TgBot::Bot bot(token, curlHttpClient);

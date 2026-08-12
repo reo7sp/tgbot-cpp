@@ -8,7 +8,6 @@
 
 int main() {
     const auto token = std::string(std::getenv("TOKEN"));
-    std::cout << "Token: " << token << std::endl;
 
     TgBot::Bot bot(token);
     bot.getEvents().onCommand("start", [&bot](std::shared_ptr<TgBot::Message> message) {

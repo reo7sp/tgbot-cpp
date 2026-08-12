@@ -8,7 +8,6 @@
 
 int main() {
     const auto token = std::string(std::getenv("TOKEN"));
-    std::cout << "Token: " << token << std::endl;
     const auto webhookUrl = std::string(std::getenv("WEBHOOK_URL"));
     std::cout << "Webhook URL: " << webhookUrl << std::endl;
 

@@ -25,7 +25,7 @@ public:
             std::this_thread::yield();
         }
 
-        throw std::runtime_error(getCancelExceptionText());
+        throw TgBot::RequestCancelled();
     }
 
     mutable std::atomic<bool> requestStarted { false };
@@ -82,7 +82,7 @@ TEST(TgLongPoll, StopReportsCancellationToErrorHandler) {
     longPoll.stop();
     thread.join();
 
-    EXPECT_EQ(errorMessage, httpClient.getCancelExceptionText());
+    EXPECT_EQ(errorMessage, "request cancelled");
 }
 
 TEST(TgLongPoll, SignalStopsLoop) {

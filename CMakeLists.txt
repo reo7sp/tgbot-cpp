@@ -20,6 +20,7 @@ add_library(TgBot
     src/Bot.cpp
     src/EventBroadcaster.cpp
     src/EventHandler.cpp
+    src/HttpClient.cpp
     src/TgException.cpp
     src/CurlHttpClient.cpp
     src/TgLongPoll.cpp

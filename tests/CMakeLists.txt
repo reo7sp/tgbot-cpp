@@ -2,6 +2,7 @@ find_package(GTest REQUIRED)
 
 add_executable(TgBot_test
     tgbot/Api.cpp
+    tgbot/CurlHttpClient.cpp
     tgbot/EventHandler.cpp
     tgbot/HttpFormField.cpp
     tgbot/HttpServer.cpp

@@ -123,9 +123,10 @@ std::string CurlHttpClient::makeRequest(const std::string& url, std::span<const 
             || (state.globalCancelEpoch && state.currentCancelEpoch < state.globalCancelEpoch->load()))) {
         const size_t slashPos = url.rfind('/');
 
-        throw std::runtime_error(slashPos == std::string::npos
-                                     ? getCancelExceptionText()
-                                     : getCancelExceptionText() + ": " + url.substr(slashPos + 1));
+        if (slashPos == std::string::npos) {
+            throw RequestCancelled();
+        }
+        throw RequestCancelled(url.substr(slashPos + 1));
     }
 
     // If the request did not complete correctly, show the error

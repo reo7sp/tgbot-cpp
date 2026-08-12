@@ -11,7 +11,6 @@ const std::vector<std::string> botCommands { "start", "test" };
 
 int main() {
     const auto token = std::string(std::getenv("TOKEN"));
-    std::cout << "Token: " << token << std::endl;
 
     bool isWaitingForText = false;
 

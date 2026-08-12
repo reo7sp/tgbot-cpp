@@ -9,11 +9,9 @@
 
 int main() {
     const auto token = std::string(std::getenv("TOKEN"));
-    std::cout << "Token: " << token << std::endl;
 
     TgBot::Bot bot(token);
 
-    // Thanks Pietro Falessi for code
     auto keyboard = std::make_shared<TgBot::InlineKeyboardMarkup>();
     std::vector<std::shared_ptr<TgBot::InlineKeyboardButton>> row0;
     auto checkButton = std::make_shared<TgBot::InlineKeyboardButton>();
