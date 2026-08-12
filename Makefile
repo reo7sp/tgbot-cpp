@@ -10,6 +10,7 @@ DOCKER_IMAGE ?= reo7sp/tgbot-cpp
 DOCKER_TEST_IMAGE ?= reo7sp/tgbot-cpp-test
 DOCKER_PLATFORM ?= linux/amd64
 EXAMPLE ?= echobot
+EXAMPLES := $(sort $(notdir $(patsubst %/,%,$(dir $(wildcard examples/*/CMakeLists.txt)))))
 EXAMPLE_IMAGE ?= tgbot-cpp-example-$(EXAMPLE)
 EXAMPLE_CMAKE_ARGS = $(if $(filter echobot-submodule,$(EXAMPLE)),-DTGBOT_CPP_SOURCE_DIR=$(CURDIR),) \
 	$(if $(INSTALL_PREFIX),-DCMAKE_PREFIX_PATH=$(INSTALL_PREFIX),)
@@ -29,6 +30,7 @@ DOCS_WORKTREE := $(abspath build/gh-pages)
 	build-with-test \
 	compile-commands \
 	example \
+	examples \
 	test \
 	test-only \
 	test-api-codegen \
@@ -112,6 +114,11 @@ example:
 		-DENABLE_TESTS=OFF \
 		$(EXAMPLE_CMAKE_ARGS)
 	cmake --build $(BUILD_DIR)/examples/$(EXAMPLE) --parallel $(NPROC)
+
+examples:
+	@set -e; for example in $(EXAMPLES); do \
+		$(MAKE) example EXAMPLE=$$example; \
+	done
 
 test: build-with-test
 	$(MAKE) test-only
