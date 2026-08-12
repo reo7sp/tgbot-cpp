@@ -18,7 +18,7 @@ jobs:
     steps:
       - uses: actions/checkout@v6
       - uses: docker/setup-buildx-action@v4
-      - name: Build runtime Docker image
+      - name: Build Docker image
         uses: docker/build-push-action@v7
         with:
           context: .
@@ -36,31 +36,38 @@ jobs:
           tags: reo7sp/tgbot-cpp-test
           cache-from: type=gha,scope=test
           cache-to: type=gha,mode=max,scope=test
-      - name: Run tgbot-cpp tests
+      - name: Test tgbot-cpp
         run: make docker-test-only
-      - name: Run codegen tests
+      - name: Test codegen
         run: make docker-test-api-codegen
 
   test-windows:
-    runs-on: windows-2025
+    runs-on: windows-2022
     timeout-minutes: 30
     env:
+      PIP_CACHE_DIR: ${{ runner.temp }}/pip-cache
       POETRY_VIRTUALENVS_IN_PROJECT: "true"
     steps:
       - uses: actions/checkout@v6
       - uses: actions/setup-python@v6
         with:
           python-version: "3.12"
-          cache: pip
-          cache-dependency-path: .github/workflows/test.yml
+      - name: Cache Python tools
+        id: pip-cache
+        uses: actions/cache/restore@v5
+        with:
+          path: ${{ env.PIP_CACHE_DIR }}
+          key: pip-windows-2022-x64-python-3.12-conan-2.31.1-poetry-2.4.1
       - name: Cache Conan packages
-        uses: actions/cache@v5
+        id: conan-cache
+        uses: actions/cache/restore@v5
         with:
           path: ~/.conan2/p
-          key: conan-${{ runner.os }}-${{ hashFiles('conanfile.py') }}
-          restore-keys: conan-${{ runner.os }}-
+          key: conan-windows-2022-2.31.1-cpp20-${{ hashFiles('conanfile.py') }}
+          restore-keys: conan-windows-2022-2.31.1-cpp20-
       - name: Cache Poetry environment
-        uses: actions/cache@v5
+        id: poetry-cache
+        uses: actions/cache/restore@v5
         with:
           path: .venv
           key: poetry-${{ runner.os }}-3.12-${{ hashFiles('poetry.lock', 'pyproject.toml') }}
@@ -71,8 +78,29 @@ jobs:
         run: |
           choco install make --no-progress --yes
           python -m pip install "conan==2.31.1" "poetry==2.4.1"
-      - name: Build and test
+      - name: Build
         shell: bash
         env:
-          CONAN_BUILD_ARGS: --build=missing -c tools.cmake.cmaketoolchain:generator=Ninja
-        run: make test
+          CONAN_BUILD_ARGS: --build=missing -s compiler.cppstd=20 -c tools.cmake.cmaketoolchain:generator=Ninja
+        run: make build-with-test
+      - name: Test tgbot-cpp
+        shell: bash
+        run: make test-only
+      - name: Save Conan packages
+        if: ${{ always() && steps.conan-cache.outputs.cache-hit != 'true' }}
+        uses: actions/cache/save@v5
+        with:
+          path: ~/.conan2/p
+          key: ${{ steps.conan-cache.outputs.cache-primary-key }}
+      - name: Save Python tools
+        if: ${{ always() && steps.pip-cache.outputs.cache-hit != 'true' }}
+        uses: actions/cache/save@v5
+        with:
+          path: ${{ env.PIP_CACHE_DIR }}
+          key: ${{ steps.pip-cache.outputs.cache-primary-key }}
+      - name: Save Poetry environment
+        if: ${{ always() && steps.poetry-cache.outputs.cache-hit != 'true' }}
+        uses: actions/cache/save@v5
+        with:
+          path: .venv
+          key: ${{ steps.poetry-cache.outputs.cache-primary-key }}

@@ -36,7 +36,7 @@ jobs:
         run: |
           pipx install clang-format==22.1.8
           pipx install poetry==2.4.1
-      - name: Check generated files and formatting
+      - name: Lint
         run: |
           make api-generate
           make format
