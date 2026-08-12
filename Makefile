@@ -128,7 +128,7 @@ test-only:
 	ctest --test-dir $(BUILD_DIR) --output-on-failure
 
 test-api-codegen:
-	poetry run pytest -q api_codegen/tests
+	poetry run pytest api_codegen/tests
 
 install: build
 	$(MAKE) install-only
@@ -175,10 +175,10 @@ docker-test: docker-test-image
 	$(MAKE) docker-test-api-codegen
 
 docker-test-only:
-	docker run --rm $(DOCKER_TEST_IMAGE) make test-only
+	docker run --rm -t --platform=$(DOCKER_PLATFORM) $(DOCKER_TEST_IMAGE) make test-only
 
 docker-test-api-codegen:
-	docker run --rm $(DOCKER_TEST_IMAGE) make test-api-codegen
+	docker run --rm -t --platform=$(DOCKER_PLATFORM) $(DOCKER_TEST_IMAGE) make test-api-codegen
 
 docker-push: docker-image
 	docker push $(DOCKER_IMAGE)
@@ -192,12 +192,12 @@ docker-example-image: docker-image
 
 docker-run-example: docker-example-image
 	@test -n "$$TOKEN" || (echo "TOKEN is required" >&2; exit 2)
-	docker run --rm -it --init -e TOKEN $(EXAMPLE_IMAGE)
+	docker run --rm -it --init --platform=$(DOCKER_PLATFORM) -e TOKEN $(EXAMPLE_IMAGE)
 
 docker-run-example-webhook: docker-example-image
 	@test -n "$$TOKEN" || (echo "TOKEN is required" >&2; exit 2)
 	@test -n "$$WEBHOOK_URL" || (echo "WEBHOOK_URL is required" >&2; exit 2)
-	docker run --rm -it --init -e TOKEN -e WEBHOOK_URL -p $(PORT):8080 $(EXAMPLE_IMAGE)
+	docker run --rm -it --init --platform=$(DOCKER_PLATFORM) -e TOKEN -e WEBHOOK_URL -p $(PORT):8080 $(EXAMPLE_IMAGE)
 
 docker-compose-run-examples: docker-image
 	DOCKER_PLATFORM=$(DOCKER_PLATFORM) TGBOT_CPP_IMAGE=$(DOCKER_IMAGE) \

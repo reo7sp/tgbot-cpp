@@ -18,6 +18,7 @@ requires = ["poetry-core>=2.0"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.pytest.ini_options]
+addopts = "-v"
 testpaths = ["api_codegen/tests"]
 pythonpath = ["."]
 
