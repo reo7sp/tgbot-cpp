@@ -45,7 +45,6 @@ jobs:
     runs-on: windows-2022
     timeout-minutes: 30
     env:
-      PIP_CACHE_DIR: ${{ runner.temp }}/pip-cache
       POETRY_VIRTUALENVS_IN_PROJECT: "true"
     steps:
       - uses: actions/checkout@v6
@@ -56,7 +55,7 @@ jobs:
         id: pip-cache
         uses: actions/cache/restore@v5
         with:
-          path: ${{ env.PIP_CACHE_DIR }}
+          path: ${{ runner.temp }}/pip-cache
           key: pip-windows-2022-x64-python-3.12-conan-2.31.1-poetry-2.4.1
       - name: Cache Conan packages
         id: conan-cache
@@ -75,6 +74,8 @@ jobs:
       - uses: ilammy/msvc-dev-cmd@v1
       - name: Install tools
         shell: pwsh
+        env:
+          PIP_CACHE_DIR: ${{ runner.temp }}/pip-cache
         run: |
           choco install make --no-progress --yes
           python -m pip install "conan==2.31.1" "poetry==2.4.1"
@@ -96,7 +97,7 @@ jobs:
         if: ${{ always() && steps.pip-cache.outputs.cache-hit != 'true' }}
         uses: actions/cache/save@v5
         with:
-          path: ${{ env.PIP_CACHE_DIR }}
+          path: ${{ runner.temp }}/pip-cache
           key: ${{ steps.pip-cache.outputs.cache-primary-key }}
       - name: Save Poetry environment
         if: ${{ always() && steps.poetry-cache.outputs.cache-hit != 'true' }}
