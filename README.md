@@ -125,7 +125,7 @@ These libraries do not need to be installed separately.
 
 ### Linux
 
-On Debian or Ubuntu, install the build tools and the official Conan 2 package:
+On Debian or Ubuntu, install the build tools and the official Conan package:
 
 ```sh
 sudo apt-get update
@@ -144,6 +144,8 @@ pipx install poetry
 
 ### macOS
 
+Install the build tools with Homebrew:
+
 ```sh
 xcode-select --install
 brew install cmake conan
@@ -158,10 +160,33 @@ pipx install poetry
 
 ### Windows
 
-Install Git, Make, CMake, Visual Studio 2022 with the Desktop development with
-C++ workload, and Conan 2 using its official Windows installer.
+Run PowerShell and install the build tools:
 
-For development, also install Python, Poetry and clang-format.
+```powershell
+winget install --exact --id Git.Git
+winget install --exact --id GnuWin32.Make
+winget install --exact --id Kitware.CMake
+winget install --exact --id Ninja-build.Ninja
+winget install --exact --id Microsoft.VisualStudio.2022.Community --override "--wait --passive --add Microsoft.VisualStudio.Workload.NativeDesktop --includeRecommended"
+
+$ConanVersion = "2.31.1"
+$ConanInstaller = "conan-$ConanVersion-windows-x86_64-installer.exe"
+Invoke-WebRequest "https://github.com/conan-io/conan/releases/download/$ConanVersion/$ConanInstaller" -OutFile $ConanInstaller
+Start-Process -Wait ".\$ConanInstaller"
+Remove-Item $ConanInstaller
+```
+
+Run Makefile targets from Git Bash.
+
+For development, also install Python, Poetry and clang-format:
+
+```powershell
+winget install --exact --id Python.Python.3.12
+winget install --exact --id LLVM.LLVM
+py -3.12 -m pip install --user pipx
+py -3.12 -m pipx ensurepath
+py -3.12 -m pipx install poetry
+```
 
 
 ## Developing tgbot-cpp

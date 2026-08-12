@@ -49,4 +49,5 @@ jobs:
           make format
           make lint
           git diff --exit-code
+          git status --short
           test -z "$(git status --porcelain)"

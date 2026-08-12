@@ -45,7 +45,6 @@ jobs:
     runs-on: windows-2022
     timeout-minutes: 30
     env:
-      CMAKE_GENERATOR: Ninja
       POETRY_VIRTUALENVS_IN_PROJECT: "true"
     steps:
       - uses: actions/checkout@v6
@@ -59,18 +58,18 @@ jobs:
         with:
           path: .ci-tools
           key: python-tools-windows-2022-${{ steps.python.outputs.python-version }}-conan-2.31.1-poetry-2.4.1
-      - name: Cache Conan packages
-        uses: actions/cache@v5
-        with:
-          path: ~/.conan2/p
-          key: conan-windows-2022-2.31.1-cpp20-${{ hashFiles('conanfile.py') }}
-          restore-keys: conan-windows-2022-2.31.1-cpp20-
       - name: Cache Poetry environment
         uses: actions/cache@v5
         with:
           path: .venv
           key: poetry-${{ runner.os }}-${{ steps.python.outputs.python-version }}-${{ hashFiles('poetry.lock', 'pyproject.toml') }}
           restore-keys: poetry-${{ runner.os }}-${{ steps.python.outputs.python-version }}-
+      - name: Cache Conan packages
+        uses: actions/cache@v5
+        with:
+          path: ~/.conan2/p
+          key: conan-windows-2022-2.31.1-cpp20-${{ hashFiles('conanfile.py') }}
+          restore-keys: conan-windows-2022-2.31.1-cpp20-
       - uses: ilammy/msvc-dev-cmd@v1
       - name: Install Python tools
         if: steps.python-tools-cache.outputs.cache-hit != 'true'
@@ -83,8 +82,6 @@ jobs:
         run: Resolve-Path .ci-tools/Scripts | Out-File -FilePath $env:GITHUB_PATH -Append
       - name: Build tgbot-cpp
         shell: bash
-        env:
-          CONAN_BUILD_ARGS: --build=missing -s compiler.cppstd=20 -c tools.cmake.cmaketoolchain:generator=Ninja
         run: |
           make build-with-test
           make install-only

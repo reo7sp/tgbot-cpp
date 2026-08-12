@@ -16,6 +16,11 @@ EXAMPLE_IMAGE ?= tgbot-cpp-example-$(EXAMPLE)
 PORT ?= 8080
 DOCS_WORKTREE := $(abspath build/gh-pages)
 
+ifeq ($(OS),Windows_NT)
+export CMAKE_GENERATOR ?= Ninja
+CONAN_BUILD_ARGS += -c tools.cmake.cmaketoolchain:generator=Ninja
+endif
+
 .PHONY: \
 	all \
 	dependencies \
@@ -67,14 +72,14 @@ all: build
 
 dependencies:
 	conan profile detect --exist-ok
-	conan install . $(CONAN_BUILD_ARGS) -s build_type=$(BUILD_TYPE)
+	conan install . $(CONAN_BUILD_ARGS) -s build_type=$(BUILD_TYPE) -s compiler.cppstd=20
 
 dependencies-python:
 	poetry install --no-interaction
 
 dependencies-with-test: dependencies-python
 	conan profile detect --exist-ok
-	conan install . $(CONAN_BUILD_ARGS) -s build_type=$(BUILD_TYPE) -o '&:with_tests=True'
+	conan install . $(CONAN_BUILD_ARGS) -s build_type=$(BUILD_TYPE) -s compiler.cppstd=20 -o '&:with_tests=True'
 
 configure: dependencies
 	cmake -S . -B $(BUILD_DIR) \
