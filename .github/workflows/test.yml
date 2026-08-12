@@ -91,3 +91,6 @@ jobs:
       - name: Test tgbot-cpp
         shell: bash
         run: make test-only
+      - name: Test codegen
+        shell: bash
+        run: make test-api-codegen

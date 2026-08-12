@@ -78,8 +78,6 @@ make docker-compose-run-examples
 make docker-compose-stop-examples
 ```
 
-For your own bot image, use [reo7sp/tgbot-cpp](https://hub.docker.com/r/reo7sp/tgbot-cpp/) as the base image.
-
 
 ## Usage in CMake
 
@@ -95,6 +93,8 @@ See the complete [echobot CMakeLists.txt](examples/echobot/CMakeLists.txt).
 The repository can also be added directly with `add_subdirectory`, for example
 when it is included as a Git submodule. See the
 [submodule example](examples/echobot-submodule/CMakeLists.txt).
+
+For Docker, you can use [reo7sp/tgbot-cpp](https://hub.docker.com/r/reo7sp/tgbot-cpp/) as the base image.
 
 
 ## Dependencies
@@ -182,10 +182,10 @@ For development, also install Python, Poetry and clang-format:
 
 ```powershell
 winget install --exact --id Python.Python.3.12
-winget install --exact --id LLVM.LLVM
-py -3.12 -m pip install --user pipx
-py -3.12 -m pipx ensurepath
-py -3.12 -m pipx install poetry
+python -m pip install --user pipx
+python -m pipx ensurepath
+python -m pipx install poetry
+python -m pipx install clang-format
 ```
 
 
