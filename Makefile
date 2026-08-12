@@ -44,6 +44,7 @@ DOCS_WORKTREE := $(abspath build/gh-pages)
 	lint \
 	lint-cpp \
 	lint-python \
+	lint-ci \
 	docker-image \
 	docker-test-image \
 	docker-test \
@@ -137,7 +138,7 @@ install-with-system: build-with-system
 	$(MAKE) install-only
 
 install-only:
-	cmake --install $(BUILD_DIR) $(if $(INSTALL_PREFIX),--prefix $(INSTALL_PREFIX),)
+	cmake --install $(BUILD_DIR) $(if $(INSTALL_PREFIX),--prefix $(abspath $(INSTALL_PREFIX)),)
 
 api-update: dependencies-python
 	poetry run python -m api_codegen.main update
@@ -163,6 +164,9 @@ lint-cpp:
 lint-python:
 	poetry run ruff check $(PYTHON_FILES)
 	poetry run ruff format --check $(PYTHON_FILES)
+
+lint-ci:
+	go run github.com/rhysd/actionlint/cmd/actionlint@v1.7.12
 
 docker-image:
 	docker build --platform=$(DOCKER_PLATFORM) -t $(DOCKER_IMAGE) -f Dockerfile .

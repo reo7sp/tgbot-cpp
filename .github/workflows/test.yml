@@ -45,6 +45,7 @@ jobs:
     runs-on: windows-2022
     timeout-minutes: 30
     env:
+      CMAKE_GENERATOR: Ninja
       POETRY_VIRTUALENVS_IN_PROJECT: "true"
     steps:
       - uses: actions/checkout@v6
@@ -79,11 +80,16 @@ jobs:
         run: |
           choco install make --no-progress --yes
           python -m pip install "conan==2.31.1" "poetry==2.4.1"
-      - name: Build
+      - name: Build tgbot-cpp
         shell: bash
         env:
           CONAN_BUILD_ARGS: --build=missing -s compiler.cppstd=20 -c tools.cmake.cmaketoolchain:generator=Ninja
-        run: make build-with-test
+        run: |
+          make build-with-test
+          make install-only
+      - name: Build examples
+        shell: bash
+        run: make examples
       - name: Test tgbot-cpp
         shell: bash
         run: make test-only
