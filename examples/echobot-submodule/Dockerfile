@@ -11,13 +11,11 @@ COPY src src
 
 WORKDIR /usr/src/echobot-submodule
 
-COPY examples/echobot-submodule/CMakeLists.txt ./
+COPY examples/echobot-submodule/CMakeLists.txt examples/echobot-submodule/Makefile ./
 COPY examples/echobot-submodule/src src
 
-RUN cmake -S . -B build \
-        -DCMAKE_BUILD_TYPE=Release \
-        -DTGBOT_CPP_SOURCE_DIR=/usr/src/tgbot-cpp
-RUN cmake --build build --parallel $(nproc)
-RUN cmake --install build --prefix /usr
+RUN make install \
+        INSTALL_PREFIX=/usr \
+        TGBOT_CPP_SOURCE_DIR=/usr/src/tgbot-cpp
 
 CMD ["/usr/bin/echobot-submodule"]

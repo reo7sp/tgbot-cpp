@@ -1,11 +1,10 @@
 BUILD_TYPE ?= Release
 BUILD_DIR ?= build/$(BUILD_TYPE)
-NPROC ?= $(shell nproc 2>/dev/null || sysctl -n hw.ncpu 2>/dev/null || echo 1)
+NPROC ?= $(shell nproc 2>/dev/null || sysctl -n hw.ncpu 2>/dev/null || getconf _NPROCESSORS_ONLN 2>/dev/null || echo 1)
 CONAN_BUILD_ARGS ?= --build=missing
 CONAN_RECIPE_VERSION ?= $(shell git describe --tags --abbrev=0 --match 'v*' 2>/dev/null | sed 's/^v//')
 CONAN_RECIPE_ARGS ?=
 INSTALL_PREFIX ?=
-INSTALL_PREFIX_ARG = $(if $(INSTALL_PREFIX),--prefix $(INSTALL_PREFIX),)
 CPP_FILES = $(shell find include src tests examples -type f \( -name '*.h' -o -name '*.cpp' \) ! -name '*.inc.h' | sort)
 PYTHON_FILES = conanfile.py api_codegen conan-center
 DOCKER_IMAGE ?= reo7sp/tgbot-cpp
@@ -14,8 +13,6 @@ DOCKER_PLATFORM ?= linux/amd64
 EXAMPLE ?= echobot
 EXAMPLES := $(sort $(notdir $(patsubst %/,%,$(dir $(wildcard examples/*/CMakeLists.txt)))))
 EXAMPLE_IMAGE ?= tgbot-cpp-example-$(EXAMPLE)
-EXAMPLE_CMAKE_ARGS = $(if $(filter echobot-submodule,$(EXAMPLE)),-DTGBOT_CPP_SOURCE_DIR=$(CURDIR),) \
-	$(if $(INSTALL_PREFIX),-DCMAKE_PREFIX_PATH=$(INSTALL_PREFIX),)
 PORT ?= 8080
 DOCS_WORKTREE := $(abspath build/gh-pages)
 
@@ -111,12 +108,12 @@ compile-commands: configure-with-test
 	cmake -E copy_if_different $(BUILD_DIR)/compile_commands.json compile_commands.json
 
 example:
-	cmake -S examples/$(EXAMPLE) -B $(BUILD_DIR)/examples/$(EXAMPLE) \
-		-DCMAKE_TOOLCHAIN_FILE=$(abspath $(BUILD_DIR)/generators/conan_toolchain.cmake) \
-		-DCMAKE_BUILD_TYPE=$(BUILD_TYPE) \
-		-DENABLE_TESTS=OFF \
-		$(EXAMPLE_CMAKE_ARGS)
-	cmake --build $(BUILD_DIR)/examples/$(EXAMPLE) --parallel $(NPROC)
+	$(MAKE) -C examples/$(EXAMPLE) \
+		BUILD_TYPE=$(BUILD_TYPE) \
+		BUILD_DIR=$(abspath $(BUILD_DIR)/examples/$(EXAMPLE)) \
+		TOOLCHAIN_FILE=$(abspath $(BUILD_DIR)/generators/conan_toolchain.cmake) \
+		INSTALL_PREFIX=$(INSTALL_PREFIX) \
+		NPROC=$(NPROC)
 
 examples:
 	@set -e; for example in $(EXAMPLES); do \
@@ -140,7 +137,7 @@ install-with-system: build-with-system
 	$(MAKE) install-only
 
 install-only:
-	cmake --install $(BUILD_DIR) $(INSTALL_PREFIX_ARG)
+	cmake --install $(BUILD_DIR) $(if $(INSTALL_PREFIX),--prefix $(INSTALL_PREFIX),)
 
 api-update: dependencies-python
 	poetry run python -m api_codegen.main update
@@ -235,7 +232,7 @@ test-conan-recipe:
 		url="https://github.com/reo7sp/tgbot-cpp/archive/v$(CONAN_RECIPE_VERSION).tar.gz"; \
 		curl -fL "$$url" -o "$$archive"; \
 		sha256=$$(shasum -a 256 "$$archive" | cut -d ' ' -f 1); \
-		cp conan-center/conanfile.py "$$recipe/conanfile.py"; \
+		cp -R conan-center/. "$$recipe/"; \
 		printf 'sources:\n  "%s":\n    url: "%s"\n    sha256: "%s"\n' \
 			"$(CONAN_RECIPE_VERSION)" "$$url" "$$sha256" > "$$recipe/conandata.yml"; \
 		conan profile detect --exist-ok; \
@@ -278,7 +275,7 @@ conan-publish: test-conan-recipe
 			{ echo "tgbot/$$version already exists in Conan Center index" >&2; exit 2; }; \
 		curl -fL "$$url" -o "$$archive"; \
 		sha256=$$(shasum -a 256 "$$archive" | cut -d ' ' -f 1); \
-		cp conan-center/conanfile.py "$$recipe/all/conanfile.py"; \
+		cp -R conan-center/. "$$recipe/all/"; \
 		printf '  "%s":\n    folder: all\n' "$$version" >> "$$recipe/config.yml"; \
 		printf '  "%s":\n    url: "%s"\n    sha256: "%s"\n' "$$version" "$$url" "$$sha256" >> "$$recipe/all/conandata.yml"; \
 		git -C "$$index" add recipes/tgbot; \
@@ -286,12 +283,11 @@ conan-publish: test-conan-recipe
 		git -C "$$index" push -u origin "$$branch"; \
 		gh pr create --repo conan-io/conan-center-index \
 			--head "$$owner:$$branch" \
-			--title "tgbot/$$version" \
+			--title "tgbot: add version $$version" \
 			--body "Updates tgbot to $$version."
 
 list-includes:
-	@find include -type f -name '*.h' -print | sort | \
-		sed 's|^include/|#include "|; s|$$|"|'
+	@find include -type f -name '*.h' -print | sort | sed 's|^include/|#include "|; s|$$|"|'
 
 list-srcs:
 	@find src -type f -name '*.cpp' -print | sort

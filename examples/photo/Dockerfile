@@ -4,12 +4,10 @@ LABEL org.opencontainers.image.authors="Oleg Morozenkov <m@oleg.rocks>"
 
 WORKDIR /usr/src/photo
 
-COPY CMakeLists.txt ./
+COPY CMakeLists.txt Makefile ./
 COPY src src
 COPY example.jpg ./
 
-RUN cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
-RUN cmake --build build --parallel $(nproc)
-RUN cmake --install build --prefix /usr
+RUN make install INSTALL_PREFIX=/usr
 
 CMD ["/usr/bin/photo"]
