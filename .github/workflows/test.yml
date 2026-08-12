@@ -49,15 +49,16 @@ jobs:
       POETRY_VIRTUALENVS_IN_PROJECT: "true"
     steps:
       - uses: actions/checkout@v6
-      - uses: actions/setup-python@v6
+      - id: python
+        uses: actions/setup-python@v6
         with:
           python-version: "3.12"
       - name: Cache Python tools
-        id: pip-cache
+        id: python-tools-cache
         uses: actions/cache/restore@v5
         with:
-          path: ${{ runner.temp }}/pip-cache
-          key: pip-windows-2022-x64-python-3.12-conan-2.31.1-poetry-2.4.1
+          path: .ci-tools
+          key: python-tools-windows-2022-${{ steps.python.outputs.python-version }}-conan-2.31.1-poetry-2.4.1
       - name: Cache Conan packages
         id: conan-cache
         uses: actions/cache/restore@v5
@@ -70,16 +71,22 @@ jobs:
         uses: actions/cache/restore@v5
         with:
           path: .venv
-          key: poetry-${{ runner.os }}-3.12-${{ hashFiles('poetry.lock', 'pyproject.toml') }}
-          restore-keys: poetry-${{ runner.os }}-3.12-
+          key: poetry-${{ runner.os }}-${{ steps.python.outputs.python-version }}-${{ hashFiles('poetry.lock', 'pyproject.toml') }}
+          restore-keys: poetry-${{ runner.os }}-${{ steps.python.outputs.python-version }}-
       - uses: ilammy/msvc-dev-cmd@v1
-      - name: Install tools
+      - name: Install make
         shell: pwsh
-        env:
-          PIP_CACHE_DIR: ${{ runner.temp }}/pip-cache
+        run: choco install make --no-progress --yes
+      - name: Install Python tools
+        id: install-python-tools
+        if: steps.python-tools-cache.outputs.cache-hit != 'true'
+        shell: pwsh
         run: |
-          choco install make --no-progress --yes
-          python -m pip install "conan==2.31.1" "poetry==2.4.1"
+          python -m venv .ci-tools
+          .ci-tools/Scripts/python -m pip install "conan==2.31.1" "poetry==2.4.1"
+      - name: Add Python tools to PATH
+        shell: pwsh
+        run: Resolve-Path .ci-tools/Scripts | Out-File -FilePath $env:GITHUB_PATH -Append
       - name: Build tgbot-cpp
         shell: bash
         env:
@@ -100,11 +107,11 @@ jobs:
           path: ~/.conan2/p
           key: ${{ steps.conan-cache.outputs.cache-primary-key }}
       - name: Save Python tools
-        if: ${{ always() && steps.pip-cache.outputs.cache-hit != 'true' }}
+        if: ${{ always() && steps.python-tools-cache.outputs.cache-hit != 'true' && steps.install-python-tools.outcome == 'success' }}
         uses: actions/cache/save@v5
         with:
-          path: ${{ runner.temp }}/pip-cache
-          key: ${{ steps.pip-cache.outputs.cache-primary-key }}
+          path: .ci-tools
+          key: ${{ steps.python-tools-cache.outputs.cache-primary-key }}
       - name: Save Poetry environment
         if: ${{ always() && steps.poetry-cache.outputs.cache-hit != 'true' }}
         uses: actions/cache/save@v5

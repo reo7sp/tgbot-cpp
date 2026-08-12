@@ -30,6 +30,10 @@ add_library(TgBot
 )
 add_library(TgBot::TgBot ALIAS TgBot)
 
+set_source_files_properties(src/Types.cpp PROPERTIES
+    COMPILE_OPTIONS "$<$<CXX_COMPILER_ID:MSVC>:/bigobj>"
+)
+
 target_compile_features(TgBot PUBLIC cxx_std_20)
 target_compile_options(TgBot PRIVATE
     $<$<CXX_COMPILER_ID:GNU,Clang,AppleClang>:-Wall>
