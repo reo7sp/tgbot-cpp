@@ -58,14 +58,20 @@ make example EXAMPLE=echobot INSTALL_PREFIX=build/install
 TOKEN=... ./build/Release/examples/echobot/echobot
 ```
 
+To build all examples:
+```sh
+make install INSTALL_PREFIX=build/install
+make examples INSTALL_PREFIX=build/install
+```
+
 Alternatively, build and run the example in Docker:
 
 ```sh
 TOKEN=... make docker-run-example EXAMPLE=echobot
 ```
 
-Also you can build and run all examples at once using Docker Compose. For this
-copy `env.example` to `env`, fill in the values, then run:
+To build and run all examples at once use Docker Compose. You need to copy
+`env.example` to `env`, fill in the values and then run:
 
 ```sh
 make docker-compose-run-examples

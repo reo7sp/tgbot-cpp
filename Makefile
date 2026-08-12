@@ -112,7 +112,7 @@ example:
 		BUILD_TYPE=$(BUILD_TYPE) \
 		BUILD_DIR=$(abspath $(BUILD_DIR)/examples/$(EXAMPLE)) \
 		TOOLCHAIN_FILE=$(abspath $(BUILD_DIR)/generators/conan_toolchain.cmake) \
-		INSTALL_PREFIX=$(INSTALL_PREFIX) \
+		INSTALL_PREFIX=$(if $(INSTALL_PREFIX),$(abspath $(INSTALL_PREFIX)),) \
 		NPROC=$(NPROC)
 
 examples:
