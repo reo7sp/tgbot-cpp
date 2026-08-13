@@ -5,7 +5,6 @@
 #include <memory>
 #include <string>
 
-#include <tgbot/CurlHttpClient.h>
 #include <tgbot/tgbot.h>
 
 int main() {
