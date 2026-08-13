@@ -170,7 +170,7 @@ winget install --exact --id Kitware.CMake
 winget install --exact --id Ninja-build.Ninja
 winget install --exact --id Microsoft.VisualStudio.2022.Community --override "--wait --passive --add Microsoft.VisualStudio.Workload.NativeDesktop --includeRecommended"
 
-$ConanVersion = "2.31.1"
+$ConanVersion = "2.31.2"
 $ConanInstaller = "conan-$ConanVersion-windows-x86_64-installer.exe"
 Invoke-WebRequest "https://github.com/conan-io/conan/releases/download/$ConanVersion/$ConanInstaller" -OutFile $ConanInstaller
 Start-Process -Wait ".\$ConanInstaller"
