@@ -13,7 +13,7 @@ class TgBotCppConan(ConanFile):
     package_type = "library"
     license = "MIT"
     url = "https://github.com/reo7sp/tgbot-cpp"
-    description = "C++ library for the Telegram Bot API"
+    description = "C++ library for Telegram Bot API"
 
     settings = "os", "arch", "compiler", "build_type"
     options = {
@@ -45,8 +45,8 @@ class TgBotCppConan(ConanFile):
             self.options.rm_safe("fPIC")
 
     def requirements(self):
-        self.requires("boost/1.91.0", options={"header_only": True}, transitive_headers=True)
-        self.requires("libcurl/8.21.0", transitive_headers=True, transitive_libs=True)
+        self.requires("boost/[>=1.83.0 <1.90.0]", options={"header_only": True}, transitive_headers=True)
+        self.requires("libcurl/[>=7.78 <9]", transitive_headers=True, transitive_libs=True)
         self.requires("nlohmann_json/3.12.0", transitive_headers=True)
 
     def build_requirements(self):
@@ -77,21 +77,17 @@ class TgBotCppConan(ConanFile):
     def package(self):
         cmake = CMake(self)
         cmake.install()
-        copy(
-            self,
-            "LICENSE",
-            src=self.source_folder,
-            dst=os.path.join(self.package_folder, "licenses"),
-        )
+        copy(self, "LICENSE", src=self.source_folder, dst=os.path.join(self.package_folder, "licenses"))
         rmdir(self, os.path.join(self.package_folder, "lib", "cmake"))
 
     def package_info(self):
         self.cpp_info.libs = ["TgBot"]
+        self.cpp_info.set_property("cmake_file_name", "TgBot")
+        self.cpp_info.set_property("cmake_target_name", "TgBot::TgBot")
+        self.cpp_info.set_property("cmake_target_aliases", ["tgbot::tgbot"])
         if self.options.shared:
             self.cpp_info.defines.append("TGBOT_DLL")
         if self.settings.os == "Windows":
             self.cpp_info.defines.extend(["_WIN32_WINNT=0x0601", "WIN32_LEAN_AND_MEAN", "NOMINMAX"])
             if not self.options.shared:
                 self.cpp_info.system_libs.append("ws2_32")
-        self.cpp_info.set_property("cmake_file_name", "TgBot")
-        self.cpp_info.set_property("cmake_target_name", "TgBot::TgBot")
