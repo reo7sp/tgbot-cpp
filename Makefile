@@ -2,10 +2,18 @@ BUILD_TYPE ?= Release
 BUILD_DIR ?= build/$(BUILD_TYPE)
 NPROC ?= $(shell nproc 2>/dev/null || sysctl -n hw.ncpu 2>/dev/null || getconf _NPROCESSORS_ONLN 2>/dev/null || echo 1)
 CONAN_BUILD_ARGS ?= --build=missing
+CONAN_VERBOSITY ?= quiet
 CONAN_RECIPE_VERSION ?= $(shell git describe --tags --abbrev=0 --match 'v*' 2>/dev/null | sed 's/^v//')
 CONAN_RECIPE_ARGS ?=
+CMAKE_LOG_LEVEL ?= STATUS
+CMAKE_INSTALL_MESSAGE ?= ALWAYS
+CMAKE_BUILD_ARGS ?=
+POETRY_INSTALL_ARGS ?= --no-interaction --quiet
 INSTALL_PREFIX ?=
-CPP_FILES = $(shell find include src tests examples -type f \( -name '*.h' -o -name '*.cpp' \) ! -name '*.inc.h' | sort)
+API_METHODS_CPP = src/ApiMethods.cpp
+API_METHODS_INC = include/tgbot/ApiMethods.inc.h
+API_METHODS_CLANG_FORMAT_CONFIG = api_codegen/clang-format-api-methods.yaml
+CPP_FILES = $(shell find include src tests examples -type f \( -name '*.h' -o -name '*.cpp' \) ! -name '*.inc.h' ! -path '$(API_METHODS_CPP)' | sort)
 PYTHON_FILES = conanfile.py api_codegen
 DOCKER_IMAGE ?= reo7sp/tgbot-cpp
 DOCKER_TEST_IMAGE ?= reo7sp/tgbot-cpp-test
@@ -71,44 +79,47 @@ endif
 all: build
 
 dependencies:
-	conan profile detect --exist-ok
-	conan install . $(CONAN_BUILD_ARGS) -s build_type=$(BUILD_TYPE) -s compiler.cppstd=20
+	conan profile detect --exist-ok -v$(CONAN_VERBOSITY)
+	conan install . $(CONAN_BUILD_ARGS) -v$(CONAN_VERBOSITY) -s build_type=$(BUILD_TYPE) -s compiler.cppstd=20
 
 dependencies-python:
-	poetry install --no-interaction
+	poetry install $(POETRY_INSTALL_ARGS)
 
 dependencies-with-test: dependencies-python
-	conan profile detect --exist-ok
-	conan install . $(CONAN_BUILD_ARGS) -s build_type=$(BUILD_TYPE) -s compiler.cppstd=20 -o '&:with_tests=True'
+	conan profile detect --exist-ok -v$(CONAN_VERBOSITY)
+	conan install . $(CONAN_BUILD_ARGS) -v$(CONAN_VERBOSITY) -s build_type=$(BUILD_TYPE) -s compiler.cppstd=20 -o '&:with_tests=True'
 
 configure: dependencies
-	cmake -S . -B $(BUILD_DIR) \
+	cmake --log-level=$(CMAKE_LOG_LEVEL) -S . -B $(BUILD_DIR) \
 		-DCMAKE_TOOLCHAIN_FILE=$(abspath $(BUILD_DIR)/generators/conan_toolchain.cmake) \
 		-DCMAKE_BUILD_TYPE=$(BUILD_TYPE) \
+		-DCMAKE_INSTALL_MESSAGE=$(CMAKE_INSTALL_MESSAGE) \
 		-DCMAKE_EXPORT_COMPILE_COMMANDS=ON \
 		-DENABLE_TESTS=OFF
 
 configure-with-system:
-	cmake -S . -B $(BUILD_DIR) \
+	cmake --log-level=$(CMAKE_LOG_LEVEL) -S . -B $(BUILD_DIR) \
 		-DCMAKE_BUILD_TYPE=$(BUILD_TYPE) \
+		-DCMAKE_INSTALL_MESSAGE=$(CMAKE_INSTALL_MESSAGE) \
 		-DCMAKE_EXPORT_COMPILE_COMMANDS=ON \
 		-DENABLE_TESTS=OFF
 
 configure-with-test: dependencies-with-test
-	cmake -S . -B $(BUILD_DIR) \
+	cmake --log-level=$(CMAKE_LOG_LEVEL) -S . -B $(BUILD_DIR) \
 		-DCMAKE_TOOLCHAIN_FILE=$(abspath $(BUILD_DIR)/generators/conan_toolchain.cmake) \
 		-DCMAKE_BUILD_TYPE=$(BUILD_TYPE) \
+		-DCMAKE_INSTALL_MESSAGE=$(CMAKE_INSTALL_MESSAGE) \
 		-DCMAKE_EXPORT_COMPILE_COMMANDS=ON \
 		-DENABLE_TESTS=ON
 
 build: configure
-	cmake --build $(BUILD_DIR) --parallel $(NPROC)
+	cmake --build $(BUILD_DIR) --parallel $(NPROC) $(CMAKE_BUILD_ARGS)
 
 build-with-system: configure-with-system
-	cmake --build $(BUILD_DIR) --parallel $(NPROC)
+	cmake --build $(BUILD_DIR) --parallel $(NPROC) $(CMAKE_BUILD_ARGS)
 
 build-with-test: configure-with-test
-	cmake --build $(BUILD_DIR) --parallel $(NPROC)
+	cmake --build $(BUILD_DIR) --parallel $(NPROC) $(CMAKE_BUILD_ARGS)
 
 compile-commands: configure-with-test
 	cmake -E copy_if_different $(BUILD_DIR)/compile_commands.json compile_commands.json
@@ -156,6 +167,8 @@ format: format-cpp format-python
 
 format-cpp:
 	clang-format -i $(CPP_FILES)
+	clang-format -i --style='file:$(API_METHODS_CLANG_FORMAT_CONFIG)' $(API_METHODS_CPP)
+	sh api_codegen/format-api-methods-inc.sh --write $(API_METHODS_INC) $(API_METHODS_CLANG_FORMAT_CONFIG)
 
 format-python:
 	poetry run ruff check --fix $(PYTHON_FILES)
@@ -165,6 +178,8 @@ lint: lint-cpp lint-python
 
 lint-cpp:
 	clang-format --dry-run --Werror $(CPP_FILES)
+	clang-format --dry-run --Werror --style='file:$(API_METHODS_CLANG_FORMAT_CONFIG)' $(API_METHODS_CPP)
+	sh api_codegen/format-api-methods-inc.sh --check $(API_METHODS_INC) $(API_METHODS_CLANG_FORMAT_CONFIG)
 
 lint-python:
 	poetry run ruff check $(PYTHON_FILES)
@@ -184,10 +199,10 @@ docker-test: docker-test-image
 	$(MAKE) docker-test-api-codegen
 
 docker-test-only:
-	docker run --rm -t --platform=$(DOCKER_PLATFORM) $(DOCKER_TEST_IMAGE) make test-only
+	docker run --rm -t --platform=$(DOCKER_PLATFORM) -e MAKEFLAGS $(DOCKER_TEST_IMAGE) make test-only
 
 docker-test-api-codegen:
-	docker run --rm -t --platform=$(DOCKER_PLATFORM) $(DOCKER_TEST_IMAGE) make test-api-codegen
+	docker run --rm -t --platform=$(DOCKER_PLATFORM) -e MAKEFLAGS $(DOCKER_TEST_IMAGE) make test-api-codegen
 
 docker-push:
 	@set -eu; \

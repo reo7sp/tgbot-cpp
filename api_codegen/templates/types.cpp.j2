@@ -7,57 +7,57 @@
 
 namespace TgBot {
 
-{% for object in objects %}
-{% for constant in object.constants %}
-const std::string {{ object.name }}::{{ constant.name }} = "{{ constant.value }}";
-{% endfor %}
-{% if object.constants %}
+{% for type in types %}
 
-{% endif %}
-{% for enum in object.enums %}
-void from_json(const nlohmann::json& json, {{ object.name }}::{{ enum.name }}& value) {
+{% for constant in type.constants %}
+const std::string {{ type.name }}::{{ constant.name }} = "{{ constant.value }}";
+{% endfor %}
+
+{% for enum in type.enums %}
+void from_json(const nlohmann::json& json, {{ type.name }}::{{ enum.name }}& value) {
     const auto text = json.get<std::string>();
 {% for enum_value in enum.values %}
     if (text == "{{ enum_value.value }}") {
-        value = {{ object.name }}::{{ enum.name }}::{{ enum_value.name }};
+        value = {{ type.name }}::{{ enum.name }}::{{ enum_value.name }};
         return;
     }
 {% endfor %}
-    throw std::invalid_argument("Unknown {{ object.name }}.{{ enum.name }} value: " + text);
+    throw std::invalid_argument("Unknown {{ type.name }}.{{ enum.name }} value: " + text);
 }
 
-void to_json(nlohmann::json& json, const {{ object.name }}::{{ enum.name }}& value) {
+void to_json(nlohmann::json& json, const {{ type.name }}::{{ enum.name }}& value) {
     switch (value) {
 {% for enum_value in enum.values %}
-    case {{ object.name }}::{{ enum.name }}::{{ enum_value.name }}:
+    case {{ type.name }}::{{ enum.name }}::{{ enum_value.name }}:
         json = "{{ enum_value.value }}";
         return;
 {% endfor %}
     }
-    throw std::invalid_argument("Unknown {{ object.name }}.{{ enum.name }} value");
+    throw std::invalid_argument("Unknown {{ type.name }}.{{ enum.name }} value");
 }
-
 {% endfor %}
-void from_json(const nlohmann::json& json, {{ object.name }}& value) {
-{% if object.union_members %}
+
+void from_json(const nlohmann::json& json, {{ type.name }}& value) {
+{% if type.union_members %}
     Json::decode(json, value.value);
 {% else %}
-{% for field in object.fields %}
+{% for field in type.fields %}
     Json::{{ "readRequiredField" if field.required else "readOptionalField" }}(json, "{{ field.wire_name }}", value.{{ field.cpp_name }});
 {% endfor %}
 {% endif %}
 }
 
-void to_json(nlohmann::json& json, const {{ object.name }}& value) {
-{% if object.union_members %}
+void to_json(nlohmann::json& json, const {{ type.name }}& value) {
+{% if type.union_members %}
     json = Json::encode(value.value);
 {% else %}
     json = nlohmann::json::object();
-{% for field in object.fields %}
+{% for field in type.fields %}
     Json::{{ "writeRequiredField" if field.required else "writeOptionalField" }}(json, "{{ field.wire_name }}", value.{{ field.cpp_name }});
 {% endfor %}
 {% endif %}
 }
 
 {% endfor %}
+
 } // namespace TgBot

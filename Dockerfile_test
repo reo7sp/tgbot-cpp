@@ -2,19 +2,23 @@
 FROM ubuntu:24.04
 LABEL org.opencontainers.image.authors="Oleg Morozenkov <m@oleg.rocks>"
 
+ARG MAKEFLAGS
+ARG CMAKE_INSTALL_MESSAGE
+ARG CMAKE_LOG_LEVEL
+
 RUN apt-get -qq update && \
-    apt-get -qq install -y \
+    DEBIAN_FRONTEND=noninteractive apt-get -qq install -y \
         build-essential \
         cmake \
         python3 \
         python3-pip \
-        python3-venv && \
+        python3-venv >/dev/null && \
     rm -rf /var/lib/apt/lists/*
 
 ENV CONAN_BUILD_ARGS="--build=missing:gtest/*"
 
 RUN python3 -m venv /opt/conan && \
-    /opt/conan/bin/pip install --no-cache-dir \
+    /opt/conan/bin/pip install --quiet --disable-pip-version-check --no-cache-dir \
         "clang-format==22.1.8" \
         "conan==2.31.1" \
         "poetry==2.4.1"

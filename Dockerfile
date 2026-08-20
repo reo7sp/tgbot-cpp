@@ -1,16 +1,20 @@
 FROM debian:trixie AS dependencies
 
 RUN apt-get -qq update && \
-    apt-get -qq install -y \
+    DEBIAN_FRONTEND=noninteractive apt-get -qq install -y \
         build-essential \
         cmake \
         libboost-dev \
         libcurl4-openssl-dev \
-        nlohmann-json3-dev && \
+        nlohmann-json3-dev >/dev/null && \
     rm -rf /var/lib/apt/lists/*
 
 
 FROM dependencies AS builder
+
+ARG MAKEFLAGS
+ARG CMAKE_INSTALL_MESSAGE
+ARG CMAKE_LOG_LEVEL
 
 WORKDIR /usr/src/tgbot-cpp
 

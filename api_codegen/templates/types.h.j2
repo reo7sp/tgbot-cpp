@@ -15,44 +15,45 @@
 
 namespace TgBot {
 
-{% for object in objects %}
-struct {{ object.name }};
+struct InputFile;
+
+{% for type in types %}
+struct {{ type.name }};
 {% endfor %}
 
-{% for object in objects %}
+{% for type in types %}
+
 /**
- * @brief{{ " " + object.description[0] if object.description else "" }}
-{% for line in object.description[1:] %}
+ * @brief{{ " " + type.description[0] if type.description else "" }}
+{% for line in type.description[1:] %}
  * {{ line }}
 {% endfor %}
  * @ingroup api
  */
-struct {{ object.name }} {
-    using Ptr = std::shared_ptr<{{ object.name }}>;
+struct {{ type.name }} {
+    using Ptr = std::shared_ptr<{{ type.name }}>;
 
-{% for constant in object.constants %}
+{% for constant in type.constants %}
     static TGBOT_API const std::string {{ constant.name }};
 {% endfor %}
-{% if object.constants %}
 
-{% endif %}
-{% for enum in object.enums %}
+{% for enum in type.enums %}
     enum class {{ enum.name }} {
 {% for value in enum.values %}
         {{ value.name }}{{ "," if not loop.last else "" }}
 {% endfor %}
     };
-
 {% endfor %}
-{% if object.union_members %}
+
+{% if type.union_members %}
     std::variant<
-{% for member in object.union_members %}
+{% for member in type.union_members %}
         std::shared_ptr<{{ member }}>{{ "," if not loop.last else "" }}
 {% endfor %}
         >
         value;
 {% else %}
-{% for field in object.fields %}
+{% for field in type.fields %}
     /**
      * @brief{{ " " + field.description[0] if field.description else "" }}
 {% for line in field.description[1:] %}
@@ -60,20 +61,39 @@ struct {{ object.name }} {
 {% endfor %}
     */
     {{ field.cpp_type }} {{ field.cpp_name }} { {{ field.constant.name if field.constant else "" }} };
-
 {% endfor %}
 {% endif %}
 };
 
-{% for enum in object.enums %}
-TGBOT_API void from_json(const nlohmann::json& json, {{ object.name }}::{{ enum.name }}& value);
-TGBOT_API void to_json(nlohmann::json& json, const {{ object.name }}::{{ enum.name }}& value);
+{% for enum in type.enums %}
+TGBOT_API void from_json(const nlohmann::json& json, {{ type.name }}::{{ enum.name }}& value);
+TGBOT_API void to_json(nlohmann::json& json, const {{ type.name }}::{{ enum.name }}& value);
 {% endfor %}
-{% if object.enums %}
 
-{% endif %}
-TGBOT_API void from_json(const nlohmann::json& json, {{ object.name }}& value);
-TGBOT_API void to_json(nlohmann::json& json, const {{ object.name }}& value);
+TGBOT_API void from_json(const nlohmann::json& json, {{ type.name }}& value);
+TGBOT_API void to_json(nlohmann::json& json, const {{ type.name }}& value);
 
 {% endfor %}
+
+{% for method in methods if method.args_name %}
+
+/**
+ * @brief Arguments for Api::{{ method.name }}.
+ * @ingroup api
+ */
+struct {{ method.args_name }} {
+{% for arg in method.args %}
+    /**
+     * @brief{{ " " + arg.description[0] if arg.description else "" }}
+{% for line in arg.description[1:] %}
+     * {{ line }}
+{% endfor %}
+     */
+    {{ arg.cpp_type }} {{ arg.cpp_name }}{% if arg.default_value is none %} { }{% else %} = {{ arg.default_value }}{% endif %};
+
+{% endfor %}
+};
+
+{% endfor %}
+
 } // namespace TgBot
