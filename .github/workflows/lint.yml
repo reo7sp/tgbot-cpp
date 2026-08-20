@@ -11,6 +11,11 @@ on:
 permissions:
   contents: read
 
+env:
+  CMAKE_INSTALL_MESSAGE: NEVER
+  CMAKE_LOG_LEVEL: WARNING
+  MAKEFLAGS: --silent
+
 jobs:
   lint:
     runs-on: ubuntu-24.04
@@ -40,7 +45,7 @@ jobs:
         if: steps.python-tools-cache.outputs.cache-hit != 'true'
         run: |
           python -m venv .ci-tools
-          .ci-tools/bin/python -m pip install "clang-format==22.1.8" "poetry==2.4.1"
+          .ci-tools/bin/python -m pip install --quiet --disable-pip-version-check "clang-format==22.1.8" "poetry==2.4.1"
       - name: Add Python tools to PATH
         run: echo "$GITHUB_WORKSPACE/.ci-tools/bin" >> "$GITHUB_PATH"
       - name: Lint

@@ -1,0 +1,8 @@
+BasedOnStyle: InheritParentConfig
+ColumnLimit: 116
+BinPackArguments: false
+BinPackParameters: OnePerLine
+AllowAllArgumentsOnNextLine: false
+WhitespaceSensitiveMacros:
+  - makeFields
+  - sendRequest

@@ -2,6 +2,8 @@ BUILD_TYPE ?= Release
 BUILD_DIR ?= build/$(BUILD_TYPE)
 TOOLCHAIN_FILE ?=
 INSTALL_PREFIX ?=
+CMAKE_LOG_LEVEL ?= STATUS
+CMAKE_BUILD_ARGS ?=
 TGBOT_CPP_SOURCE_DIR ?= ../..
 NPROC ?= $(shell nproc 2>/dev/null || sysctl -n hw.ncpu 2>/dev/null || getconf _NPROCESSORS_ONLN 2>/dev/null || echo 1)
 
@@ -10,7 +12,7 @@ NPROC ?= $(shell nproc 2>/dev/null || sysctl -n hw.ncpu 2>/dev/null || getconf _
 all: build
 
 configure:
-	cmake -S . -B $(BUILD_DIR) \
+	cmake --log-level=$(CMAKE_LOG_LEVEL) -S . -B $(BUILD_DIR) \
 		$(if $(TOOLCHAIN_FILE),-DCMAKE_TOOLCHAIN_FILE=$(TOOLCHAIN_FILE),) \
 		-DCMAKE_BUILD_TYPE=$(BUILD_TYPE) \
 		-DENABLE_TESTS=OFF \
@@ -18,7 +20,7 @@ configure:
 		$(if $(INSTALL_PREFIX),-DCMAKE_PREFIX_PATH=$(INSTALL_PREFIX),)
 
 build: configure
-	cmake --build $(BUILD_DIR) --parallel $(NPROC)
+	cmake --build $(BUILD_DIR) --parallel $(NPROC) $(CMAKE_BUILD_ARGS)
 
 install: build
 	cmake --install $(BUILD_DIR) $(if $(INSTALL_PREFIX),--prefix $(INSTALL_PREFIX),)

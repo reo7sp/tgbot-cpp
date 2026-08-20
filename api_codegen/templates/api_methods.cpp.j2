@@ -4,24 +4,58 @@
 #include "tgbot/ApiCodec.h"
 #include "tgbot/Types.h"
 
+{% macro decoder(method) -%}
+{{ "decodeObjectOrTrue<Message>" if method.return_type != method.response_type else "decode<" + method.return_type + ">" }}
+{%- endmacro %}
+
+{% macro request_field(arg) -%}
+{% set factory = "required" if arg.required or arg.always_send else "optional" -%}
+{% set wire_default = ", " + arg.wire_default_value if arg.wire_default_value is not none else "" -%}
+ApiRequest::{{ factory }}("{{ arg.wire_name }}", {{ arg.cpp_name }}{{ wire_default }})
+{%- endmacro %}
+
+{% macro method_definition(method, argument_object=false) -%}
+{{ method.return_type }} Api::{{ method.name }}(
+{% if argument_object %}
+    const {{ method.args_name }}& args
+{% else %}
+{% for arg in method.args %}
+    {{ arg.declaration_type }} {{ arg.cpp_name }}{{ "," if not loop.last else "" }}
+{% endfor %}
+{% endif %}
+) const
+{%- endmacro %}
+
 namespace TgBot {
 
 {% for method in methods %}
-{% if method.parameters %}
-{{ method.return_type }} Api::{{ method.name }}({{ method.parameters[0].declaration_type }} {{ method.parameters[0].cpp_name }}{{ "," if method.parameters | length > 1 else "" }}
-{% for parameter in method.parameters[1:] %}
-    {{ parameter.declaration_type }} {{ parameter.cpp_name }}{{ "," if not loop.last else "" }}
-{% endfor %}) const {
+
+{{ method_definition(method) }} {
+    return ApiResponse::{{ decoder(method) }}(
+        sendRequest(
+            "{{ method.name }}",
+{% if method.args %}
+            ApiRequest::makeFields(
+{% for arg in method.args %}
+                {{ request_field(arg) }}{{ "," if not loop.last else "" }}
+{% endfor %}
+            )
 {% else %}
-{{ method.return_type }} Api::{{ method.name }}() const {
+            ApiRequest::makeFields()
 {% endif %}
-    return ApiResponse::{{ "decodeObjectOrTrue<Message>" if method.return_type != method.response_type else "decode<" + method.return_type + ">" }}(sendRequest(
-        "{{ method.name }}",
-        ApiRequest::makeFields(
-{% for parameter in method.parameters %}
-            ApiRequest::{{ "required" if parameter.required or parameter.always_send else "optional" }}("{{ parameter.wire_name }}", {{ parameter.cpp_name }}{% if parameter.wire_default_value is not none %}, {{ parameter.wire_default_value }}{% endif %}){{ "," if not loop.last else "" }}
-{% endfor %})));
+        )
+    );
 }
+
+{% if method.args_name %}
+{{ method_definition(method, argument_object=true) }} {
+    return {{ method.name }}(
+{% for arg in method.args %}
+        args.{{ arg.cpp_name }}{{ "," if not loop.last else "" }}
+{% endfor %}
+    );
+}
+{% endif %}
 
 {% endfor %}
 

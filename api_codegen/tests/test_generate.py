@@ -1,3 +1,4 @@
+import re
 from pathlib import Path
 
 import pytest
@@ -6,24 +7,21 @@ import yaml
 from api_codegen.generate import (
     API_CONFIG,
     TYPE_CONFIG,
-    _build_field,
-    _build_parameter,
-    _cpp_type,
-    _field_constant,
-    _object_standard_headers,
-    _ordered_parameter_names,
-    _parameter_default,
-    _snake_to_camel,
-    generate_openapi,
+    _BaseModelBuilder,
+    _CppTypeResolver,
+    _MethodModelBuilder,
+    _OpenApiGenerator,
+    _TypeModelBuilder,
 )
 
 
 def test_snake_to_camel_converts_telegram_names() -> None:
-    assert _snake_to_camel("id") == "id"
-    assert _snake_to_camel("file_unique_id") == "fileUniqueId"
+    assert _BaseModelBuilder._cpp_name("id") == "id"
+    assert _BaseModelBuilder._cpp_name("file_unique_id") == "fileUniqueId"
 
 
-def test_direct_api_keeps_legacy_parameter_order_and_defaults() -> None:
+def test_direct_api_keeps_legacy_args_order_and_defaults() -> None:
+    builder = _MethodModelBuilder({})
     properties = {
         "audio": {},
         "business_connection_id": {},
@@ -32,71 +30,73 @@ def test_direct_api_keeps_legacy_parameter_order_and_defaults() -> None:
         "duration": {},
     }
 
-    assert _ordered_parameter_names("sendAudio", properties, {"audio", "chat_id"}) == [
+    assert builder._ordered_arg_names("sendAudio", properties, {"audio", "chat_id"}) == [
         "chat_id",
         "audio",
         "caption",
         "duration",
         "business_connection_id",
     ]
-    assert _parameter_default("std::int32_t", "setWebhook", "max_connections") == "40"
-    assert _parameter_default("std::shared_ptr<InputFile>", "setWebhook", "certificate") == "nullptr"
+    assert builder._arg_default("std::int32_t", "setWebhook", "max_connections") == "40"
+    assert builder._arg_default("std::shared_ptr<InputFile>", "setWebhook", "certificate") == "nullptr"
 
 
 def test_compatibility_config_is_grouped_by_telegram_entity() -> None:
-    assert API_CONFIG["setStickerSetTitle"]["parameter_order"] == ["name", "title"]
+    assert API_CONFIG["setStickerSetTitle"]["args_order"] == ["name", "title"]
     assert API_CONFIG["editMessageText"]["return_type"] == "std::shared_ptr<Message>"
-    assert API_CONFIG["getUpdates"]["parameters"]["limit"]["default"] == 100
+    assert API_CONFIG["getUpdates"]["args"]["limit"]["default"] == 100
     assert TYPE_CONFIG["BotCommandScopeChatMember"]["fields"]["user_id"]["type"] == "std::int64_t"
     assert TYPE_CONFIG["Chat"]["fields"]["type"]["enum"]["Private"] == "private"
 
 
 def test_integer_widths_follow_schema_and_telegram_id_rules() -> None:
-    assert _cpp_type({"type": "integer", "format": "int64"}) == "std::int64_t"
-    assert _cpp_type({"type": "integer", "format": "int32"}) == "std::int32_t"
-    assert _cpp_type({"type": "integer"}) == "std::int32_t"
+    method_builder = _MethodModelBuilder({})
+    type_builder = _TypeModelBuilder({})
+    assert _CppTypeResolver.type({"type": "integer", "format": "int64"}) == "std::int64_t"
+    assert _CppTypeResolver.type({"type": "integer", "format": "int32"}) == "std::int32_t"
+    assert _CppTypeResolver.type({"type": "integer"}) == "std::int32_t"
 
-    user_id = _build_parameter(
+    user_id = method_builder._build_arg(
         "giftPremiumSubscription",
         "receiver_user_id",
         {"type": "integer", "format": "int32"},
         True,
         False,
     )
-    limit = _build_parameter(
+    limit = method_builder._build_arg(
         "getUpdates",
         "limit",
         {"type": "integer", "format": "int32"},
         False,
         False,
     )
-    chat_id = _build_parameter(
+    chat_id = method_builder._build_arg(
         "sendMessage",
         "chat_id",
         {"type": "integer", "format": "int64"},
         True,
         False,
     )
-    direct_messages_topic_id = _build_parameter(
+    direct_messages_topic_id = method_builder._build_arg(
         "sendMessage",
         "direct_messages_topic_id",
         {"type": "integer", "format": "int32"},
         False,
         False,
     )
-    configured_user_id = _build_field(
+    configured_user_id = type_builder._build_field(
         "BotCommandScopeChatMember",
         "user_id",
         {"type": "integer", "format": "int32"},
         True,
     )
-    shared_user_id = _build_field(
+    shared_user_id = type_builder._build_field(
         "SharedUser",
         "user_id",
         {"type": "integer", "format": "int32"},
         True,
     )
-    message_id = _build_field(
+    message_id = type_builder._build_field(
         "Message",
         "message_id",
         {"type": "integer", "format": "int32"},
@@ -112,7 +112,8 @@ def test_integer_widths_follow_schema_and_telegram_id_rules() -> None:
     assert message_id.cpp_type == "std::int32_t"
 
 
-def test_high_risk_methods_keep_legacy_parameter_order() -> None:
+def test_high_risk_methods_keep_legacy_args_order() -> None:
+    builder = _MethodModelBuilder({})
     properties = {
         "chat_id": {},
         "user_id": {},
@@ -124,7 +125,7 @@ def test_high_risk_methods_keep_legacy_parameter_order() -> None:
         "can_manage_tags": {},
     }
 
-    assert _ordered_parameter_names("promoteChatMember", properties, {"chat_id", "user_id"}) == [
+    assert builder._ordered_arg_names("promoteChatMember", properties, {"chat_id", "user_id"}) == [
         "chat_id",
         "user_id",
         "can_change_info",
@@ -137,7 +138,7 @@ def test_high_risk_methods_keep_legacy_parameter_order() -> None:
 
 
 def test_field_constant_recognizes_only_fixed_discriminators() -> None:
-    constant = _field_constant(
+    constant = _TypeModelBuilder._field_constant(
         "status",
         {
             "type": "string",
@@ -150,7 +151,7 @@ def test_field_constant_recognizes_only_fixed_discriminators() -> None:
     assert constant.name == "STATUS"
     assert constant.value == "creator"
     assert (
-        _field_constant(
+        _TypeModelBuilder._field_constant(
             "type",
             {
                 "type": "string",
@@ -163,10 +164,10 @@ def test_field_constant_recognizes_only_fixed_discriminators() -> None:
 
 
 def test_union_header_includes_variant() -> None:
-    assert "variant" in _object_standard_headers((), ("Message",))
+    assert "variant" in _TypeModelBuilder._standard_headers((), ("Message",))
 
 
-def test_generate_openapi_renders_types_methods_and_documentation(
+def test_generator_renders_types_methods_and_documentation(
     tmp_path: Path,
 ) -> None:
     schema_path = tmp_path / "schema.yaml"
@@ -175,13 +176,14 @@ def test_generate_openapi_renders_types_methods_and_documentation(
     source_dir.mkdir()
     source_dir.joinpath("Api.cpp").write_text("", encoding="utf-8")
 
-    generated = generate_openapi(schema_path, tmp_path)
+    generated = _OpenApiGenerator(schema_path, tmp_path).generate()
 
-    types = tmp_path.joinpath("include/tgbot/Types.h").read_text()
-    types_source = tmp_path.joinpath("src/Types.cpp").read_text()
-    api_source = tmp_path.joinpath("src/ApiMethods.cpp").read_text()
-    methods = tmp_path.joinpath("include/tgbot/ApiMethods.inc.h").read_text()
-    assert generated.objects == 2
+    types = tmp_path.joinpath("include/tgbot/Types.h").read_text(encoding="utf-8")
+    types_source = tmp_path.joinpath("src/Types.cpp").read_text(encoding="utf-8")
+    api_source = tmp_path.joinpath("src/ApiMethods.cpp").read_text(encoding="utf-8")
+    methods = tmp_path.joinpath("include/tgbot/ApiMethods.inc.h").read_text(encoding="utf-8")
+    normalized_methods = " ".join(methods.split())
+    assert generated.types == 2
     assert generated.methods == 2
     assert types.startswith("// Generated by `make api-generate`. Do not edit.\n\n#pragma once")
     assert "struct User;" in types
@@ -196,36 +198,48 @@ def test_generate_openapi_renders_types_methods_and_documentation(
     assert "TGBOT_API void from_json" in types
     assert "TGBOT_API void to_json" in types
     assert "std::string type { TYPE };" in types
-    assert "std::string id { };\n\n    /**" in types
+    assert "std::string id" in types
     assert 'const std::string InlineQueryResultCachedAudio::TYPE = "audio";' in types_source
     assert '#include "tgbot/Json.h"' in types_source
     assert '#include "tgbot/Types.h"' in types_source
     assert 'Json::readRequiredField(json, "id", value.id);' in types_source
     assert not tmp_path.joinpath("include/tgbot/types").exists()
     assert not tmp_path.joinpath("src/types").exists()
-    assert "\n    /**\n     * @brief Returns information about the bot.\n" in methods
-    assert "\n    std::shared_ptr<User> getMe() const" in methods
+    assert "@brief Returns information about the bot." in normalized_methods
+    assert "std::shared_ptr<User> getMe( ) const;" in normalized_methods
     assert "Returns information about the bot." in methods
     assert "@param url HTTPS URL for incoming updates." in methods
     assert '#include "tgbot/ApiCodec.h"' in api_source
     assert "ApiRequest::makeFields(" in api_source
     assert "ApiResponse::decode<std::shared_ptr<User>>" in api_source
-    assert "HttpReqArg" not in api_source
     assert "std::shared_ptr<InputFile> certificate = nullptr" in methods
     assert "std::int32_t maxConnections = 40" in methods
     assert 'ApiRequest::required("url", url)' in api_source
     assert 'ApiRequest::optional("certificate", certificate)' in api_source
     assert 'ApiRequest::optional("allowed_updates", allowedUpdates)' in api_source
+    assert "struct SetWebhookArgs" in types
+    assert "std::string url { };" in types
+    assert "std::int32_t maxConnections = 40;" in types
+    assert "std::shared_ptr<InputFile> certificate = nullptr;" in types
+    assert "setWebhook( const SetWebhookArgs& args ) const;" in normalized_methods
+    assert methods.count("@brief Specify a URL and receive incoming updates.") == 2
+    assert "@return True on success." in methods
+    assert "@return The resulting User object." in methods
+    assert "return setWebhook(" in api_source
+    assert "args.url" in api_source
+    assert "args.certificate" in api_source
+    assert "args.maxConnections" in api_source
+    assert "args.allowedUpdates" in api_source
 
-    generated_again = generate_openapi(schema_path, tmp_path)
+    generated_again = _OpenApiGenerator(schema_path, tmp_path).generate()
 
     assert generated_again == generated
-    assert tmp_path.joinpath("include/tgbot/Types.h").read_text() == types
-    assert tmp_path.joinpath("src/Types.cpp").read_text() == types_source
-    assert tmp_path.joinpath("src/ApiMethods.cpp").read_text() == api_source
+    assert tmp_path.joinpath("include/tgbot/Types.h").read_text(encoding="utf-8") == types
+    assert tmp_path.joinpath("src/Types.cpp").read_text(encoding="utf-8") == types_source
+    assert tmp_path.joinpath("src/ApiMethods.cpp").read_text(encoding="utf-8") == api_source
 
 
-def test_generate_openapi_rejects_method_without_result_schema(tmp_path: Path) -> None:
+def test_generator_rejects_method_without_result_schema(tmp_path: Path) -> None:
     schema = _schema()
     response_parts = schema["paths"]["/getMe"]["post"]["responses"]["200"]["content"]["application/json"]["schema"][
         "allOf"
@@ -235,7 +249,51 @@ def test_generate_openapi_rejects_method_without_result_schema(tmp_path: Path) -
     schema_path.write_text(yaml.safe_dump(schema), encoding="utf-8")
 
     with pytest.raises(ValueError, match="Response type is missing for getMe"):
-        generate_openapi(schema_path, tmp_path)
+        _OpenApiGenerator(schema_path, tmp_path).generate()
+
+
+def test_every_method_with_args_generates_ordered_argument_object_delegation(tmp_path: Path) -> None:
+    schema_path = Path(__file__).parents[2] / "api" / "telegram-bot-api.yaml"
+    document = yaml.safe_load(schema_path.read_text(encoding="utf-8"))
+    methods = _MethodModelBuilder(document["paths"]).build()
+
+    _OpenApiGenerator(schema_path, tmp_path).generate()
+
+    types = tmp_path.joinpath("include/tgbot/Types.h").read_text(encoding="utf-8")
+    declarations = tmp_path.joinpath("include/tgbot/ApiMethods.inc.h").read_text(encoding="utf-8")
+    normalized_declarations = " ".join(declarations.split())
+    definitions = tmp_path.joinpath("src/ApiMethods.cpp").read_text(encoding="utf-8")
+
+    for method in methods:
+        if not method.args:
+            assert method.args_name is None
+            continue
+
+        expected_args_name = f"{method.name[0].upper()}{method.name[1:]}Args"
+        assert method.args_name == expected_args_name
+        assert f"struct {expected_args_name} {{" in types
+        assert f"{method.name}( const {expected_args_name}& args ) const;" in normalized_declarations
+
+        classic_start = definitions.index(f"Api::{method.name}(")
+        classic_end = definitions.index("\n}", classic_start)
+        classic_body = definitions[classic_start:classic_end]
+        normalized_classic_body = " ".join(classic_body.split())
+        assert f'sendRequest( "{method.name}", ApiRequest::makeFields(' in normalized_classic_body
+        for arg in method.args:
+            field_factory = "required" if arg.required or arg.always_send else "optional"
+            assert f'ApiRequest::{field_factory}("{arg.wire_name}", {arg.cpp_name}' in classic_body
+
+        args_signature = re.search(
+            rf"Api::{method.name}\(\s*const {expected_args_name}& args\s*\) const \{{",
+            definitions,
+        )
+        assert args_signature is not None
+        args_start = args_signature.start()
+        args_end = definitions.index("\n}", args_start)
+        args_body = definitions[args_start:args_end]
+        assert f"return {method.name}(" in args_body
+        positions = [args_body.index(f"args.{arg.cpp_name}") for arg in method.args]
+        assert positions == sorted(positions)
 
 
 def _schema() -> dict:

@@ -11,6 +11,11 @@ on:
 permissions:
   contents: read
 
+env:
+  CMAKE_INSTALL_MESSAGE: NEVER
+  CMAKE_LOG_LEVEL: WARNING
+  MAKEFLAGS: --silent
+
 jobs:
   test-linux:
     runs-on: ubuntu-24.04
@@ -23,6 +28,10 @@ jobs:
         with:
           context: .
           file: Dockerfile
+          build-args: |
+            CMAKE_INSTALL_MESSAGE=NEVER
+            CMAKE_LOG_LEVEL=WARNING
+            MAKEFLAGS=--silent
           load: true
           tags: reo7sp/tgbot-cpp
           cache-from: type=gha,scope=runtime
@@ -32,6 +41,10 @@ jobs:
         with:
           context: .
           file: Dockerfile_test
+          build-args: |
+            CMAKE_INSTALL_MESSAGE=NEVER
+            CMAKE_LOG_LEVEL=WARNING
+            MAKEFLAGS=--silent
           load: true
           tags: reo7sp/tgbot-cpp-test
           cache-from: type=gha,scope=test
@@ -45,6 +58,7 @@ jobs:
     runs-on: windows-2022
     timeout-minutes: 30
     env:
+      CMAKE_BUILD_ARGS: -- --quiet
       POETRY_VIRTUALENVS_IN_PROJECT: "true"
     steps:
       - uses: actions/checkout@v6
@@ -76,7 +90,7 @@ jobs:
         shell: pwsh
         run: |
           python -m venv .ci-tools
-          .ci-tools/Scripts/python -m pip install "clang-format==22.1.8" "conan==2.31.1" "poetry==2.4.1"
+          .ci-tools/Scripts/python -m pip install --quiet --disable-pip-version-check "clang-format==22.1.8" "conan==2.31.1" "poetry==2.4.1"
       - name: Add Python tools to PATH
         shell: pwsh
         run: Resolve-Path .ci-tools/Scripts | Out-File -FilePath $env:GITHUB_PATH -Append

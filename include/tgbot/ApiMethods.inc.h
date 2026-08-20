@@ -11,9 +11,20 @@
      * exactly the same sticker had already been added to the set, then the set
      * isn't changed.
      *
-     * @return Telegram Bot API result.
+     * @return True on success.
      */
     bool addStickerToSet(std::int64_t userId, const std::string& name, std::shared_ptr<InputSticker> sticker) const;
+
+    /**
+     * @brief Use this method to add a new sticker to a set created by the bot. Emoji sticker sets can
+     * have up to 200 stickers. Other sticker sets can have up to 120 stickers. Returns True on
+     * success.
+     *
+     * @param args Method arguments.
+     *
+     * @return True on success.
+     */
+    bool addStickerToSet(const AddStickerToSetArgs& args) const;
 
     /**
      * @brief Use this method to send answers to callback queries sent from inline keyboards. The
@@ -34,10 +45,24 @@
      * query may be cached client-side. Telegram apps will support caching
      * starting in version 3.14. Defaults to 0.
      *
-     * @return Telegram Bot API result.
+     * @return True on success.
      */
-    bool answerCallbackQuery(const std::string& callbackQueryId, const std::string& text = "", bool showAlert = false,
-                             const std::string& url = "", std::int32_t cacheTime = 0) const;
+    bool answerCallbackQuery(const std::string& callbackQueryId,
+                             const std::string& text = "",
+                             bool showAlert = false,
+                             const std::string& url = "",
+                             std::int32_t cacheTime = 0) const;
+
+    /**
+     * @brief Use this method to send answers to callback queries sent from inline keyboards. The
+     * answer will be displayed to the user as a notification at the top of the chat screen or
+     * as an alert. On success, True is returned.
+     *
+     * @param args Method arguments.
+     *
+     * @return True on success.
+     */
+    bool answerCallbackQuery(const AnswerCallbackQueryArgs& args) const;
 
     /**
      * @brief Use this method to process a received chat join request query. Returns True on success.
@@ -47,9 +72,18 @@
      * the chat, “decline” to disallow the user to join the chat, or “queue” to
      * leave the decision to other administrators.
      *
-     * @return Telegram Bot API result.
+     * @return True on success.
      */
     bool answerChatJoinRequestQuery(const std::string& chatJoinRequestQueryId, const std::string& result) const;
+
+    /**
+     * @brief Use this method to process a received chat join request query. Returns True on success.
+     *
+     * @param args Method arguments.
+     *
+     * @return True on success.
+     */
+    bool answerChatJoinRequestQuery(const AnswerChatJoinRequestQueryArgs& args) const;
 
     /**
      * @brief Use this method to reply to a received guest message. On success, a SentGuestMessage
@@ -58,10 +92,20 @@
      * @param guestQueryId Unique identifier for the query to be answered
      * @param result A JSON-serialized object describing the message to be sent
      *
-     * @return Telegram Bot API result.
+     * @return The resulting SentGuestMessage object.
      */
     std::shared_ptr<SentGuestMessage> answerGuestQuery(const std::string& guestQueryId,
                                                        std::shared_ptr<InlineQueryResult> result) const;
+
+    /**
+     * @brief Use this method to reply to a received guest message. On success, a SentGuestMessage
+     * object is returned.
+     *
+     * @param args Method arguments.
+     *
+     * @return The resulting SentGuestMessage object.
+     */
+    std::shared_ptr<SentGuestMessage> answerGuestQuery(const AnswerGuestQueryArgs& args) const;
 
     /**
      * @brief Use this method to send answers to an inline query. On success, True is returned.No more
@@ -81,12 +125,24 @@
      * @param button A JSON-serialized object describing a button to be shown above inline
      * query results
      *
-     * @return Telegram Bot API result.
+     * @return True on success.
      */
     bool answerInlineQuery(const std::string& inlineQueryId,
-                           const std::vector<std::shared_ptr<InlineQueryResult>>& results, std::int32_t cacheTime = 300,
-                           bool isPersonal = false, const std::string& nextOffset = "",
+                           const std::vector<std::shared_ptr<InlineQueryResult>>& results,
+                           std::int32_t cacheTime = 300,
+                           bool isPersonal = false,
+                           const std::string& nextOffset = "",
                            std::shared_ptr<InlineQueryResultsButton> button = nullptr) const;
+
+    /**
+     * @brief Use this method to send answers to an inline query. On success, True is returned.No more
+     * than 50 results per query are allowed.
+     *
+     * @param args Method arguments.
+     *
+     * @return True on success.
+     */
+    bool answerInlineQuery(const AnswerInlineQueryArgs& args) const;
 
     /**
      * @brief Once the user has confirmed their payment and shipping details, the Bot API sends the
@@ -105,10 +161,23 @@
      * different color or garment!"). Telegram will display this message to the
      * user.
      *
-     * @return Telegram Bot API result.
+     * @return True on success.
      */
-    bool answerPreCheckoutQuery(const std::string& preCheckoutQueryId, bool ok,
+    bool answerPreCheckoutQuery(const std::string& preCheckoutQueryId,
+                                bool ok,
                                 const std::string& errorMessage = "") const;
+
+    /**
+     * @brief Once the user has confirmed their payment and shipping details, the Bot API sends the
+     * final confirmation in the form of an Update with the field pre_checkout_query. Use this
+     * method to respond to such pre-checkout queries. On success, True is returned. Note: The
+     * Bot API must receive an answer within 10 seconds after the pre-checkout query was sent.
+     *
+     * @param args Method arguments.
+     *
+     * @return True on success.
+     */
+    bool answerPreCheckoutQuery(const AnswerPreCheckoutQueryArgs& args) const;
 
     /**
      * @brief If you sent an invoice requesting a shipping address and the parameter is_flexible was
@@ -126,11 +195,23 @@
      * delivery to your desired address is unavailable”). Telegram will display
      * this message to the user.
      *
-     * @return Telegram Bot API result.
+     * @return True on success.
      */
-    bool answerShippingQuery(const std::string& shippingQueryId, bool ok,
+    bool answerShippingQuery(const std::string& shippingQueryId,
+                             bool ok,
                              const std::vector<std::shared_ptr<ShippingOption>>& shippingOptions = { },
                              const std::string& errorMessage = "") const;
+
+    /**
+     * @brief If you sent an invoice requesting a shipping address and the parameter is_flexible was
+     * specified, the Bot API will send an Update with a shipping_query field to the bot. Use
+     * this method to reply to shipping queries. On success, True is returned.
+     *
+     * @param args Method arguments.
+     *
+     * @return True on success.
+     */
+    bool answerShippingQuery(const AnswerShippingQueryArgs& args) const;
 
     /**
      * @brief Use this method to set the result of an interaction with a Web App and send a
@@ -140,10 +221,21 @@
      * @param webAppQueryId Unique identifier for the query to be answered
      * @param result A JSON-serialized object describing the message to be sent
      *
-     * @return Telegram Bot API result.
+     * @return The resulting SentWebAppMessage object.
      */
     std::shared_ptr<SentWebAppMessage> answerWebAppQuery(const std::string& webAppQueryId,
                                                          std::shared_ptr<InlineQueryResult> result) const;
+
+    /**
+     * @brief Use this method to set the result of an interaction with a Web App and send a
+     * corresponding message on behalf of the user to the chat from which the query originated.
+     * On success, a SentWebAppMessage object is returned.
+     *
+     * @param args Method arguments.
+     *
+     * @return The resulting SentWebAppMessage object.
+     */
+    std::shared_ptr<SentWebAppMessage> answerWebAppQuery(const AnswerWebAppQueryArgs& args) const;
 
     /**
      * @brief Use this method to approve a chat join request. The bot must be an administrator in the
@@ -154,9 +246,20 @@
      * in the format @username
      * @param userId Unique identifier of the target user
      *
-     * @return Telegram Bot API result.
+     * @return True on success.
      */
     bool approveChatJoinRequest(std::variant<std::int64_t, std::string> chatId, std::int64_t userId) const;
+
+    /**
+     * @brief Use this method to approve a chat join request. The bot must be an administrator in the
+     * chat for this to work and must have the can_invite_users administrator right. Returns
+     * True on success.
+     *
+     * @param args Method arguments.
+     *
+     * @return True on success.
+     */
+    bool approveChatJoinRequest(const ApproveChatJoinRequestArgs& args) const;
 
     /**
      * @brief Use this method to approve a suggested post in a direct messages chat. The bot must have
@@ -170,10 +273,22 @@
      * suggested post was created. If specified, then the date must be not more
      * than 2678400 seconds (30 days) in the future.
      *
-     * @return Telegram Bot API result.
+     * @return True on success.
      */
-    bool approveSuggestedPost(std::variant<std::int64_t, std::string> chatId, std::int32_t messageId,
+    bool approveSuggestedPost(std::variant<std::int64_t, std::string> chatId,
+                              std::int32_t messageId,
                               std::int32_t sendDate = 0) const;
+
+    /**
+     * @brief Use this method to approve a suggested post in a direct messages chat. The bot must have
+     * the 'can_post_messages' administrator right in the corresponding channel chat. Returns
+     * True on success.
+     *
+     * @param args Method arguments.
+     *
+     * @return True on success.
+     */
+    bool approveSuggestedPost(const ApproveSuggestedPostArgs& args) const;
 
     /**
      * @brief Use this method to ban a user in a group, a supergroup or a channel. In the case of
@@ -194,10 +309,25 @@
      * group that were sent before the user was removed. Always True for
      * supergroups and channels.
      *
-     * @return Telegram Bot API result.
+     * @return True on success.
      */
-    bool banChatMember(std::variant<std::int64_t, std::string> chatId, std::int64_t userId, std::int32_t untilDate = 0,
+    bool banChatMember(std::variant<std::int64_t, std::string> chatId,
+                       std::int64_t userId,
+                       std::int32_t untilDate = 0,
                        bool revokeMessages = true) const;
+
+    /**
+     * @brief Use this method to ban a user in a group, a supergroup or a channel. In the case of
+     * supergroups and channels, the user will not be able to return to the chat on their own
+     * using invite links, etc., unless unbanned first. The bot must be an administrator in the
+     * chat for this to work and must have the appropriate administrator rights. Returns True
+     * on success.
+     *
+     * @param args Method arguments.
+     *
+     * @return True on success.
+     */
+    bool banChatMember(const BanChatMemberArgs& args) const;
 
     /**
      * @brief Use this method to ban a channel chat in a supergroup or a channel. Until the chat is
@@ -210,9 +340,22 @@
      * in the format @username
      * @param senderChatId Unique identifier of the target sender chat
      *
-     * @return Telegram Bot API result.
+     * @return True on success.
      */
     bool banChatSenderChat(std::variant<std::int64_t, std::string> chatId, std::int64_t senderChatId) const;
+
+    /**
+     * @brief Use this method to ban a channel chat in a supergroup or a channel. Until the chat is
+     * unbanned, the owner of the banned chat won't be able to send messages on behalf of any
+     * of their channels. The bot must be an administrator in the supergroup or channel for
+     * this to work and must have the appropriate administrator rights. Returns True on
+     * success.
+     *
+     * @param args Method arguments.
+     *
+     * @return True on success.
+     */
+    bool banChatSenderChat(const BanChatSenderChatArgs& args) const;
 
     /**
      * @brief Use this method to close the bot instance before moving it from one local server to
@@ -222,7 +365,7 @@
      * parameters.
      *
      *
-     * @return Telegram Bot API result.
+     * @return True on success.
      */
     bool close() const;
 
@@ -235,9 +378,20 @@
      * supergroup in the format @username
      * @param messageThreadId Unique identifier for the target message thread of the forum topic
      *
-     * @return Telegram Bot API result.
+     * @return True on success.
      */
     bool closeForumTopic(std::variant<std::int64_t, std::string> chatId, std::int32_t messageThreadId) const;
+
+    /**
+     * @brief Use this method to close an open topic in a forum supergroup chat. The bot must be an
+     * administrator in the chat for this to work and must have the can_manage_topics
+     * administrator rights, unless it is the creator of the topic. Returns True on success.
+     *
+     * @param args Method arguments.
+     *
+     * @return True on success.
+     */
+    bool closeForumTopic(const CloseForumTopicArgs& args) const;
 
     /**
      * @brief Use this method to close an open 'General' topic in a forum supergroup chat. The bot
@@ -247,9 +401,20 @@
      * @param chatId Unique identifier for the target chat or username of the target
      * supergroup in the format @username
      *
-     * @return Telegram Bot API result.
+     * @return True on success.
      */
     bool closeGeneralForumTopic(std::variant<std::int64_t, std::string> chatId) const;
+
+    /**
+     * @brief Use this method to close an open 'General' topic in a forum supergroup chat. The bot
+     * must be an administrator in the chat for this to work and must have the
+     * can_manage_topics administrator rights. Returns True on success.
+     *
+     * @param args Method arguments.
+     *
+     * @return True on success.
+     */
+    bool closeGeneralForumTopic(const CloseGeneralForumTopicArgs& args) const;
 
     /**
      * @brief Converts a given regular gift to Telegram Stars. Requires the can_convert_gifts_to_stars
@@ -259,9 +424,19 @@
      * @param ownedGiftId Unique identifier of the regular gift that should be converted to
      * Telegram Stars
      *
-     * @return Telegram Bot API result.
+     * @return True on success.
      */
     bool convertGiftToStars(const std::string& businessConnectionId, const std::string& ownedGiftId) const;
+
+    /**
+     * @brief Converts a given regular gift to Telegram Stars. Requires the can_convert_gifts_to_stars
+     * business bot right. Returns True on success.
+     *
+     * @param args Method arguments.
+     *
+     * @return True on success.
+     */
+    bool convertGiftToStars(const ConvertGiftToStarsArgs& args) const;
 
     /**
      * @brief Use this method to copy messages of any kind. Service messages, paid media messages,
@@ -308,21 +483,43 @@
      * automatically declined.
      * @param videoStartTimestamp New start timestamp for the copied video in the message
      *
-     * @return Telegram Bot API result.
+     * @return The resulting MessageId object.
      */
-    std::shared_ptr<MessageId>
-    copyMessage(std::variant<std::int64_t, std::string> chatId, std::variant<std::int64_t, std::string> fromChatId,
-                std::int32_t messageId, const std::string& caption = "", const std::string& parseMode = "",
-                const std::vector<std::shared_ptr<MessageEntity>>& captionEntities = { },
-                bool disableNotification = false, std::shared_ptr<ReplyParameters> replyParameters = nullptr,
-                std::variant<std::shared_ptr<InlineKeyboardMarkup>, std::shared_ptr<ReplyKeyboardMarkup>,
-                             std::shared_ptr<ReplyKeyboardRemove>, std::shared_ptr<ForceReply>>
-                    replyMarkup = { },
-                bool protectContent = false, std::int32_t messageThreadId = 0, bool allowPaidBroadcast = false,
-                std::int64_t directMessagesTopicId = 0, const std::string& messageEffectId = "",
-                bool showCaptionAboveMedia = false,
-                std::shared_ptr<SuggestedPostParameters> suggestedPostParameters = nullptr,
-                std::int32_t videoStartTimestamp = 0) const;
+    std::shared_ptr<MessageId> copyMessage(std::variant<std::int64_t, std::string> chatId,
+                                           std::variant<std::int64_t, std::string> fromChatId,
+                                           std::int32_t messageId,
+                                           const std::string& caption = "",
+                                           const std::string& parseMode = "",
+                                           const std::vector<std::shared_ptr<MessageEntity>>& captionEntities = { },
+                                           bool disableNotification = false,
+                                           std::shared_ptr<ReplyParameters> replyParameters = nullptr,
+                                           std::variant<std::shared_ptr<InlineKeyboardMarkup>,
+                                                        std::shared_ptr<ReplyKeyboardMarkup>,
+                                                        std::shared_ptr<ReplyKeyboardRemove>,
+                                                        std::shared_ptr<ForceReply>> replyMarkup = { },
+                                           bool protectContent = false,
+                                           std::int32_t messageThreadId = 0,
+                                           bool allowPaidBroadcast = false,
+                                           std::int64_t directMessagesTopicId = 0,
+                                           const std::string& messageEffectId = "",
+                                           bool showCaptionAboveMedia = false,
+                                           std::shared_ptr<SuggestedPostParameters> suggestedPostParameters
+                                           = nullptr,
+                                           std::int32_t videoStartTimestamp = 0) const;
+
+    /**
+     * @brief Use this method to copy messages of any kind. Service messages, paid media messages,
+     * giveaway messages, giveaway winners messages, and invoice messages can't be copied. A
+     * quiz poll can be copied only if the value of the field correct_option_ids is known to
+     * the bot. The method is analogous to the method forwardMessage, but the copied message
+     * doesn't have a link to the original message. Returns the MessageId of the sent message
+     * on success.
+     *
+     * @param args Method arguments.
+     *
+     * @return The resulting MessageId object.
+     */
+    std::shared_ptr<MessageId> copyMessage(const CopyMessageArgs& args) const;
 
     /**
      * @brief Use this method to copy messages of any kind. If some of the specified messages can't be
@@ -351,13 +548,31 @@
      * @param directMessagesTopicId Identifier of the direct messages topic to which the messages will be
      * sent; required if the messages are sent to a direct messages chat
      *
-     * @return Telegram Bot API result.
+     * @return The resulting list of MessageId objects.
      */
-    std::vector<std::shared_ptr<MessageId>>
-    copyMessages(std::variant<std::int64_t, std::string> chatId, std::variant<std::int64_t, std::string> fromChatId,
-                 const std::vector<std::int32_t>& messageIds, std::int32_t messageThreadId = 0,
-                 bool disableNotification = false, bool protectContent = false, bool removeCaption = false,
-                 std::int64_t directMessagesTopicId = 0) const;
+    std::vector<std::shared_ptr<MessageId>> copyMessages(std::variant<std::int64_t, std::string> chatId,
+                                                         std::variant<std::int64_t, std::string> fromChatId,
+                                                         const std::vector<std::int32_t>& messageIds,
+                                                         std::int32_t messageThreadId = 0,
+                                                         bool disableNotification = false,
+                                                         bool protectContent = false,
+                                                         bool removeCaption = false,
+                                                         std::int64_t directMessagesTopicId = 0) const;
+
+    /**
+     * @brief Use this method to copy messages of any kind. If some of the specified messages can't be
+     * found or copied, they are skipped. Service messages, paid media messages, giveaway
+     * messages, giveaway winners messages, and invoice messages can't be copied. A quiz poll
+     * can be copied only if the value of the field correct_option_ids is known to the bot. The
+     * method is analogous to the method forwardMessages, but the copied messages don't have a
+     * link to the original message. Album grouping is kept for copied messages. On success, an
+     * Array of MessageId of the sent messages is returned.
+     *
+     * @param args Method arguments.
+     *
+     * @return The resulting list of MessageId objects.
+     */
+    std::vector<std::shared_ptr<MessageId>> copyMessages(const CopyMessagesArgs& args) const;
 
     /**
      * @brief Use this method to create an additional invite link for a chat. The bot must be an
@@ -374,12 +589,25 @@
      * @param createsJoinRequest True, if users joining the chat via the link need to be approved by chat
      * administrators. If True, member_limit can't be specified.
      *
-     * @return Telegram Bot API result.
+     * @return The resulting ChatInviteLink object.
      */
     std::shared_ptr<ChatInviteLink> createChatInviteLink(std::variant<std::int64_t, std::string> chatId,
-                                                         std::int32_t expireDate = 0, std::int32_t memberLimit = 0,
+                                                         std::int32_t expireDate = 0,
+                                                         std::int32_t memberLimit = 0,
                                                          const std::string& name = "",
                                                          bool createsJoinRequest = false) const;
+
+    /**
+     * @brief Use this method to create an additional invite link for a chat. The bot must be an
+     * administrator in the chat for this to work and must have the appropriate administrator
+     * rights. The link can be revoked using the method revokeChatInviteLink. Returns the new
+     * invite link as ChatInviteLink object.
+     *
+     * @param args Method arguments.
+     *
+     * @return The resulting ChatInviteLink object.
+     */
+    std::shared_ptr<ChatInviteLink> createChatInviteLink(const CreateChatInviteLinkArgs& args) const;
 
     /**
      * @brief Use this method to create a subscription invite link for a channel chat. The bot must
@@ -395,12 +623,25 @@
      * subsequent subscription period to be a member of the chat; 1-10000
      * @param name Invite link name; 0-32 characters
      *
-     * @return Telegram Bot API result.
+     * @return The resulting ChatInviteLink object.
      */
     std::shared_ptr<ChatInviteLink> createChatSubscriptionInviteLink(std::variant<std::int64_t, std::string> chatId,
                                                                      std::int32_t subscriptionPeriod,
                                                                      std::int32_t subscriptionPrice,
                                                                      const std::string& name = "") const;
+
+    /**
+     * @brief Use this method to create a subscription invite link for a channel chat. The bot must
+     * have the can_invite_users administrator rights. The link can be edited using the method
+     * editChatSubscriptionInviteLink or revoked using the method revokeChatInviteLink. Returns
+     * the new invite link as a ChatInviteLink object.
+     *
+     * @param args Method arguments.
+     *
+     * @return The resulting ChatInviteLink object.
+     */
+    std::shared_ptr<ChatInviteLink>
+    createChatSubscriptionInviteLink(const CreateChatSubscriptionInviteLinkArgs& args) const;
 
     /**
      * @brief Use this method to create a topic in a forum supergroup chat or a private chat with a
@@ -417,11 +658,24 @@
      * @param iconCustomEmojiId Unique identifier of the custom emoji shown as the topic icon. Use
      * getForumTopicIconStickers to get all allowed custom emoji identifiers.
      *
-     * @return Telegram Bot API result.
+     * @return The resulting ForumTopic object.
      */
     std::shared_ptr<ForumTopic> createForumTopic(std::variant<std::int64_t, std::string> chatId,
-                                                 const std::string& name, std::int32_t iconColor = 0,
+                                                 const std::string& name,
+                                                 std::int32_t iconColor = 0,
                                                  const std::string& iconCustomEmojiId = "") const;
+
+    /**
+     * @brief Use this method to create a topic in a forum supergroup chat or a private chat with a
+     * user. In the case of a supergroup chat the bot must be an administrator in the chat for
+     * this to work and must have the can_manage_topics administrator right. Returns
+     * information about the created topic as a ForumTopic object.
+     *
+     * @param args Method arguments.
+     *
+     * @return The resulting ForumTopic object.
+     */
+    std::shared_ptr<ForumTopic> createForumTopic(const CreateForumTopicArgs& args) const;
 
     /**
      * @brief Use this method to create a link for an invoice. Returns the created invoice link as
@@ -480,18 +734,40 @@
      * the same time, including multiple concurrent subscriptions from the same
      * user. Subscription price must no exceed 10000 Telegram Stars.
      *
-     * @return Telegram Bot API result.
+     * @return The resulting string.
      */
-    std::string
-    createInvoiceLink(const std::string& title, const std::string& description, const std::string& payload,
-                      const std::string& providerToken, const std::string& currency,
-                      const std::vector<std::shared_ptr<LabeledPrice>>& prices, std::int32_t maxTipAmount = 0,
-                      const std::vector<std::int32_t>& suggestedTipAmounts = { }, const std::string& providerData = "",
-                      const std::string& photoUrl = "", std::int32_t photoSize = 0, std::int32_t photoWidth = 0,
-                      std::int32_t photoHeight = 0, bool needName = false, bool needPhoneNumber = false,
-                      bool needEmail = false, bool needShippingAddress = false, bool sendPhoneNumberToProvider = false,
-                      bool sendEmailToProvider = false, bool isFlexible = false,
-                      const std::string& businessConnectionId = "", std::int32_t subscriptionPeriod = 0) const;
+    std::string createInvoiceLink(const std::string& title,
+                                  const std::string& description,
+                                  const std::string& payload,
+                                  const std::string& providerToken,
+                                  const std::string& currency,
+                                  const std::vector<std::shared_ptr<LabeledPrice>>& prices,
+                                  std::int32_t maxTipAmount = 0,
+                                  const std::vector<std::int32_t>& suggestedTipAmounts = { },
+                                  const std::string& providerData = "",
+                                  const std::string& photoUrl = "",
+                                  std::int32_t photoSize = 0,
+                                  std::int32_t photoWidth = 0,
+                                  std::int32_t photoHeight = 0,
+                                  bool needName = false,
+                                  bool needPhoneNumber = false,
+                                  bool needEmail = false,
+                                  bool needShippingAddress = false,
+                                  bool sendPhoneNumberToProvider = false,
+                                  bool sendEmailToProvider = false,
+                                  bool isFlexible = false,
+                                  const std::string& businessConnectionId = "",
+                                  std::int32_t subscriptionPeriod = 0) const;
+
+    /**
+     * @brief Use this method to create a link for an invoice. Returns the created invoice link as
+     * String on success.
+     *
+     * @param args Method arguments.
+     *
+     * @return The resulting string.
+     */
+    std::string createInvoiceLink(const CreateInvoiceLinkArgs& args) const;
 
     /**
      * @brief Use this method to create a new sticker set owned by a user. The bot will be able to
@@ -513,11 +789,24 @@
      * white on chat photos, or another appropriate color based on context; for
      * custom emoji sticker sets only
      *
-     * @return Telegram Bot API result.
+     * @return True on success.
      */
-    bool createNewStickerSet(std::int64_t userId, const std::string& name, const std::string& title,
+    bool createNewStickerSet(std::int64_t userId,
+                             const std::string& name,
+                             const std::string& title,
                              const std::vector<std::shared_ptr<InputSticker>>& stickers,
-                             Sticker::Type stickerType = Sticker::Type::Regular, bool needsRepainting = false) const;
+                             Sticker::Type stickerType = Sticker::Type::Regular,
+                             bool needsRepainting = false) const;
+
+    /**
+     * @brief Use this method to create a new sticker set owned by a user. The bot will be able to
+     * edit the sticker set thus created. Returns True on success.
+     *
+     * @param args Method arguments.
+     *
+     * @return True on success.
+     */
+    bool createNewStickerSet(const CreateNewStickerSetArgs& args) const;
 
     /**
      * @brief Use this method to decline a chat join request. The bot must be an administrator in the
@@ -528,9 +817,20 @@
      * in the format @username
      * @param userId Unique identifier of the target user
      *
-     * @return Telegram Bot API result.
+     * @return True on success.
      */
     bool declineChatJoinRequest(std::variant<std::int64_t, std::string> chatId, std::int64_t userId) const;
+
+    /**
+     * @brief Use this method to decline a chat join request. The bot must be an administrator in the
+     * chat for this to work and must have the can_invite_users administrator right. Returns
+     * True on success.
+     *
+     * @param args Method arguments.
+     *
+     * @return True on success.
+     */
+    bool declineChatJoinRequest(const DeclineChatJoinRequestArgs& args) const;
 
     /**
      * @brief Use this method to decline a suggested post in a direct messages chat. The bot must have
@@ -541,10 +841,22 @@
      * @param messageId Identifier of a suggested post message to decline
      * @param comment Comment for the creator of the suggested post; 0-128 characters
      *
-     * @return Telegram Bot API result.
+     * @return True on success.
      */
-    bool declineSuggestedPost(std::variant<std::int64_t, std::string> chatId, std::int32_t messageId,
+    bool declineSuggestedPost(std::variant<std::int64_t, std::string> chatId,
+                              std::int32_t messageId,
                               const std::string& comment = "") const;
+
+    /**
+     * @brief Use this method to decline a suggested post in a direct messages chat. The bot must have
+     * the 'can_manage_direct_messages' administrator right in the corresponding channel chat.
+     * Returns True on success.
+     *
+     * @param args Method arguments.
+     *
+     * @return True on success.
+     */
+    bool declineSuggestedPost(const DeclineSuggestedPostArgs& args) const;
 
     /**
      * @brief Use this method to remove up to 10000 recent reactions in a group or a supergroup chat
@@ -559,10 +871,23 @@
      * @param userId Identifier of the user whose reactions will be removed, if the reactions
      * were added by a user
      *
-     * @return Telegram Bot API result.
+     * @return True on success.
      */
-    bool deleteAllMessageReactions(std::variant<std::int64_t, std::string> chatId, std::int64_t actorChatId = 0,
+    bool deleteAllMessageReactions(std::variant<std::int64_t, std::string> chatId,
+                                   std::int64_t actorChatId = 0,
                                    std::int64_t userId = 0) const;
+
+    /**
+     * @brief Use this method to remove up to 10000 recent reactions in a group or a supergroup chat
+     * added by a given user or chat. The bot must have the 'can_delete_messages' administrator
+     * right in the chat. Returns True on success. The following methods and objects allow your
+     * bot to handle stickers and sticker sets.
+     *
+     * @param args Method arguments.
+     *
+     * @return True on success.
+     */
+    bool deleteAllMessageReactions(const DeleteAllMessageReactionsArgs& args) const;
 
     /**
      * @brief Delete messages on behalf of a business account. Requires the can_delete_sent_messages
@@ -576,10 +901,22 @@
      * messages must be from the same chat. See deleteMessage for limitations
      * on which messages can be deleted.
      *
-     * @return Telegram Bot API result.
+     * @return True on success.
      */
     bool deleteBusinessMessages(const std::string& businessConnectionId,
                                 const std::vector<std::int32_t>& messageIds) const;
+
+    /**
+     * @brief Delete messages on behalf of a business account. Requires the can_delete_sent_messages
+     * business bot right to delete messages sent by the bot itself, or the
+     * can_delete_all_messages business bot right to delete any message. Returns True on
+     * success.
+     *
+     * @param args Method arguments.
+     *
+     * @return True on success.
+     */
+    bool deleteBusinessMessages(const DeleteBusinessMessagesArgs& args) const;
 
     /**
      * @brief Use this method to delete a chat photo. Photos can't be changed for private chats. The
@@ -589,9 +926,20 @@
      * @param chatId Unique identifier for the target chat or username of the target channel
      * in the format @username
      *
-     * @return Telegram Bot API result.
+     * @return True on success.
      */
     bool deleteChatPhoto(std::variant<std::int64_t, std::string> chatId) const;
+
+    /**
+     * @brief Use this method to delete a chat photo. Photos can't be changed for private chats. The
+     * bot must be an administrator in the chat for this to work and must have the appropriate
+     * administrator rights. Returns True on success.
+     *
+     * @param args Method arguments.
+     *
+     * @return True on success.
+     */
+    bool deleteChatPhoto(const DeleteChatPhotoArgs& args) const;
 
     /**
      * @brief Use this method to delete a group sticker set from a supergroup. The bot must be an
@@ -602,9 +950,21 @@
      * @param chatId Unique identifier for the target chat or username of the target
      * supergroup in the format @username
      *
-     * @return Telegram Bot API result.
+     * @return True on success.
      */
     bool deleteChatStickerSet(std::variant<std::int64_t, std::string> chatId) const;
+
+    /**
+     * @brief Use this method to delete a group sticker set from a supergroup. The bot must be an
+     * administrator in the chat for this to work and must have the appropriate administrator
+     * rights. Use the field can_set_sticker_set optionally returned in getChat requests to
+     * check if the bot can use this method. Returns True on success.
+     *
+     * @param args Method arguments.
+     *
+     * @return True on success.
+     */
+    bool deleteChatStickerSet(const DeleteChatStickerSetArgs& args) const;
 
     /**
      * @brief Use this method to delete an ephemeral message. Note that it is not guaranteed that the
@@ -616,10 +976,22 @@
      * @param ephemeralMessageId Identifier of the ephemeral message to delete
      * @param receiverUserId Identifier of the user who received the message
      *
-     * @return Telegram Bot API result.
+     * @return True on success.
      */
-    bool deleteEphemeralMessage(std::variant<std::int64_t, std::string> chatId, std::int32_t ephemeralMessageId,
+    bool deleteEphemeralMessage(std::variant<std::int64_t, std::string> chatId,
+                                std::int32_t ephemeralMessageId,
                                 std::int64_t receiverUserId) const;
+
+    /**
+     * @brief Use this method to delete an ephemeral message. Note that it is not guaranteed that the
+     * user will receive the message deletion event, especially if they are offline. Returns
+     * True on success.
+     *
+     * @param args Method arguments.
+     *
+     * @return True on success.
+     */
+    bool deleteEphemeralMessage(const DeleteEphemeralMessageArgs& args) const;
 
     /**
      * @brief Use this method to delete a forum topic along with all its messages in a forum
@@ -631,9 +1003,21 @@
      * supergroup in the format @username
      * @param messageThreadId Unique identifier for the target message thread of the forum topic
      *
-     * @return Telegram Bot API result.
+     * @return True on success.
      */
     bool deleteForumTopic(std::variant<std::int64_t, std::string> chatId, std::int32_t messageThreadId) const;
+
+    /**
+     * @brief Use this method to delete a forum topic along with all its messages in a forum
+     * supergroup chat or a private chat with a user. In the case of a supergroup chat the bot
+     * must be an administrator in the chat for this to work and must have the
+     * can_delete_messages administrator rights. Returns True on success.
+     *
+     * @param args Method arguments.
+     *
+     * @return True on success.
+     */
+    bool deleteForumTopic(const DeleteForumTopicArgs& args) const;
 
     /**
      * @brief Use this method to delete a message, including service messages, with the following
@@ -652,9 +1036,28 @@
      * supergroup or channel in the format @username
      * @param messageId Identifier of the message to delete
      *
-     * @return Telegram Bot API result.
+     * @return True on success.
      */
     bool deleteMessage(std::variant<std::int64_t, std::string> chatId, std::int32_t messageId) const;
+
+    /**
+     * @brief Use this method to delete a message, including service messages, with the following
+     * limitations:- A message can only be deleted if it was sent less than 48 hours ago.-
+     * Service messages about a supergroup, channel, or forum topic creation can't be deleted.-
+     * A dice message in a private chat can only be deleted if it was sent more than 24 hours
+     * ago.- Bots can delete outgoing messages in private chats, groups, and supergroups.- Bots
+     * can delete incoming messages in private chats.- Bots granted can_post_messages
+     * permissions can delete outgoing messages in channels.- If the bot is an administrator of
+     * a group, it can delete any message there.- If the bot has can_delete_messages
+     * administrator right in a supergroup or a channel, it can delete any message there.- If
+     * the bot has can_manage_direct_messages administrator right in a channel, it can delete
+     * any message in the corresponding direct messages chat.Returns True on success.
+     *
+     * @param args Method arguments.
+     *
+     * @return True on success.
+     */
+    bool deleteMessage(const DeleteMessageArgs& args) const;
 
     /**
      * @brief Use this method to remove a reaction from a message in a group or a supergroup chat. The
@@ -669,10 +1072,23 @@
      * @param userId Identifier of the user whose reaction will be removed, if the reaction
      * was added by a user
      *
-     * @return Telegram Bot API result.
+     * @return True on success.
      */
-    bool deleteMessageReaction(std::variant<std::int64_t, std::string> chatId, std::int32_t messageId,
-                               std::int64_t actorChatId = 0, std::int64_t userId = 0) const;
+    bool deleteMessageReaction(std::variant<std::int64_t, std::string> chatId,
+                               std::int32_t messageId,
+                               std::int64_t actorChatId = 0,
+                               std::int64_t userId = 0) const;
+
+    /**
+     * @brief Use this method to remove a reaction from a message in a group or a supergroup chat. The
+     * bot must have the 'can_delete_messages' administrator right in the chat. Returns True on
+     * success.
+     *
+     * @param args Method arguments.
+     *
+     * @return True on success.
+     */
+    bool deleteMessageReaction(const DeleteMessageReactionArgs& args) const;
 
     /**
      * @brief Use this method to delete multiple messages simultaneously. If some of the specified
@@ -683,10 +1099,20 @@
      * @param messageIds A JSON-serialized list of 1-100 identifiers of messages to delete. See
      * deleteMessage for limitations on which messages can be deleted.
      *
-     * @return Telegram Bot API result.
+     * @return True on success.
      */
     bool deleteMessages(std::variant<std::int64_t, std::string> chatId,
                         const std::vector<std::int32_t>& messageIds) const;
+
+    /**
+     * @brief Use this method to delete multiple messages simultaneously. If some of the specified
+     * messages can't be found, they are skipped. Returns True on success.
+     *
+     * @param args Method arguments.
+     *
+     * @return True on success.
+     */
+    bool deleteMessages(const DeleteMessagesArgs& args) const;
 
     /**
      * @brief Use this method to delete the list of the bot's commands for the given scope and user
@@ -699,9 +1125,21 @@
      * to all users from the given scope, for whose language there are no
      * dedicated commands.
      *
-     * @return Telegram Bot API result.
+     * @return True on success.
      */
-    bool deleteMyCommands(std::shared_ptr<BotCommandScope> scope = nullptr, const std::string& languageCode = "") const;
+    bool deleteMyCommands(std::shared_ptr<BotCommandScope> scope = nullptr,
+                          const std::string& languageCode = "") const;
+
+    /**
+     * @brief Use this method to delete the list of the bot's commands for the given scope and user
+     * language. After deletion, higher level commands will be shown to affected users. Returns
+     * True on success.
+     *
+     * @param args Method arguments.
+     *
+     * @return True on success.
+     */
+    bool deleteMyCommands(const DeleteMyCommandsArgs& args) const;
 
     /**
      * @brief Use this method to delete a sticker from a set created by the bot. Returns True on
@@ -709,9 +1147,19 @@
      *
      * @param sticker File identifier of the sticker
      *
-     * @return Telegram Bot API result.
+     * @return True on success.
      */
     bool deleteStickerFromSet(const std::string& sticker) const;
+
+    /**
+     * @brief Use this method to delete a sticker from a set created by the bot. Returns True on
+     * success.
+     *
+     * @param args Method arguments.
+     *
+     * @return True on success.
+     */
+    bool deleteStickerFromSet(const DeleteStickerFromSetArgs& args) const;
 
     /**
      * @brief Use this method to delete a sticker set that was created by the bot. Returns True on
@@ -720,9 +1168,20 @@
      *
      * @param name Sticker set name
      *
-     * @return Telegram Bot API result.
+     * @return True on success.
      */
     bool deleteStickerSet(const std::string& name) const;
+
+    /**
+     * @brief Use this method to delete a sticker set that was created by the bot. Returns True on
+     * success. The following methods and objects allow your bot to handle and send rich
+     * messages.
+     *
+     * @param args Method arguments.
+     *
+     * @return True on success.
+     */
+    bool deleteStickerSet(const DeleteStickerSetArgs& args) const;
 
     /**
      * @brief Deletes a story previously posted by the bot on behalf of a managed business account.
@@ -731,9 +1190,19 @@
      * @param businessConnectionId Unique identifier of the business connection
      * @param storyId Unique identifier of the story to delete
      *
-     * @return Telegram Bot API result.
+     * @return True on success.
      */
     bool deleteStory(const std::string& businessConnectionId, std::int32_t storyId) const;
+
+    /**
+     * @brief Deletes a story previously posted by the bot on behalf of a managed business account.
+     * Requires the can_manage_stories business bot right. Returns True on success.
+     *
+     * @param args Method arguments.
+     *
+     * @return True on success.
+     */
+    bool deleteStory(const DeleteStoryArgs& args) const;
 
     /**
      * @brief Use this method to remove webhook integration if you decide to switch back to
@@ -741,9 +1210,19 @@
      *
      * @param dropPendingUpdates Pass True to drop all pending updates
      *
-     * @return Telegram Bot API result.
+     * @return True on success.
      */
     bool deleteWebhook(bool dropPendingUpdates = false) const;
+
+    /**
+     * @brief Use this method to remove webhook integration if you decide to switch back to
+     * getUpdates. Returns True on success.
+     *
+     * @param args Method arguments.
+     *
+     * @return True on success.
+     */
+    bool deleteWebhook(const DeleteWebhookArgs& args) const;
 
     /**
      * @brief Use this method to edit a non-primary invite link created by the bot. The bot must be an
@@ -760,12 +1239,25 @@
      * @param createsJoinRequest True, if users joining the chat via the link need to be approved by chat
      * administrators. If True, member_limit can't be specified.
      *
-     * @return Telegram Bot API result.
+     * @return The resulting ChatInviteLink object.
      */
     std::shared_ptr<ChatInviteLink> editChatInviteLink(std::variant<std::int64_t, std::string> chatId,
-                                                       const std::string& inviteLink, std::int32_t expireDate = 0,
-                                                       std::int32_t memberLimit = 0, const std::string& name = "",
+                                                       const std::string& inviteLink,
+                                                       std::int32_t expireDate = 0,
+                                                       std::int32_t memberLimit = 0,
+                                                       const std::string& name = "",
                                                        bool createsJoinRequest = false) const;
+
+    /**
+     * @brief Use this method to edit a non-primary invite link created by the bot. The bot must be an
+     * administrator in the chat for this to work and must have the appropriate administrator
+     * rights. Returns the edited invite link as a ChatInviteLink object.
+     *
+     * @param args Method arguments.
+     *
+     * @return The resulting ChatInviteLink object.
+     */
+    std::shared_ptr<ChatInviteLink> editChatInviteLink(const EditChatInviteLinkArgs& args) const;
 
     /**
      * @brief Use this method to edit a subscription invite link created by the bot. The bot must have
@@ -777,11 +1269,23 @@
      * @param inviteLink The invite link to edit
      * @param name Invite link name; 0-32 characters
      *
-     * @return Telegram Bot API result.
+     * @return The resulting ChatInviteLink object.
      */
     std::shared_ptr<ChatInviteLink> editChatSubscriptionInviteLink(std::variant<std::int64_t, std::string> chatId,
                                                                    const std::string& inviteLink,
                                                                    const std::string& name = "") const;
+
+    /**
+     * @brief Use this method to edit a subscription invite link created by the bot. The bot must have
+     * the can_invite_users administrator rights. Returns the edited invite link as a
+     * ChatInviteLink object.
+     *
+     * @param args Method arguments.
+     *
+     * @return The resulting ChatInviteLink object.
+     */
+    std::shared_ptr<ChatInviteLink>
+    editChatSubscriptionInviteLink(const EditChatSubscriptionInviteLinkArgs& args) const;
 
     /**
      * @brief Use this method to edit the caption of an ephemeral message. Note that it is not
@@ -799,13 +1303,26 @@
      * for more details.
      * @param replyMarkup A JSON-serialized object for an inline keyboard
      *
-     * @return Telegram Bot API result.
+     * @return True on success.
      */
-    bool editEphemeralMessageCaption(std::variant<std::int64_t, std::string> chatId, std::int32_t ephemeralMessageId,
-                                     std::int64_t receiverUserId, const std::string& caption = "",
+    bool editEphemeralMessageCaption(std::variant<std::int64_t, std::string> chatId,
+                                     std::int32_t ephemeralMessageId,
+                                     std::int64_t receiverUserId,
+                                     const std::string& caption = "",
                                      const std::vector<std::shared_ptr<MessageEntity>>& captionEntities = { },
                                      const std::string& parseMode = "",
                                      std::shared_ptr<InlineKeyboardMarkup> replyMarkup = nullptr) const;
+
+    /**
+     * @brief Use this method to edit the caption of an ephemeral message. Note that it is not
+     * guaranteed that the user will receive the message edit event, especially if they are
+     * offline. On success, True is returned.
+     *
+     * @param args Method arguments.
+     *
+     * @return True on success.
+     */
+    bool editEphemeralMessageCaption(const EditEphemeralMessageCaptionArgs& args) const;
 
     /**
      * @brief Use this method to edit the media of an ephemeral message. Note that it is not
@@ -821,11 +1338,24 @@
      * @param receiverUserId Identifier of the user who received the message
      * @param replyMarkup A JSON-serialized object for an inline keyboard
      *
-     * @return Telegram Bot API result.
+     * @return True on success.
      */
-    bool editEphemeralMessageMedia(std::variant<std::int64_t, std::string> chatId, std::int32_t ephemeralMessageId,
-                                   std::shared_ptr<InputMedia> media, std::int64_t receiverUserId,
+    bool editEphemeralMessageMedia(std::variant<std::int64_t, std::string> chatId,
+                                   std::int32_t ephemeralMessageId,
+                                   std::shared_ptr<InputMedia> media,
+                                   std::int64_t receiverUserId,
                                    std::shared_ptr<InlineKeyboardMarkup> replyMarkup = nullptr) const;
+
+    /**
+     * @brief Use this method to edit the media of an ephemeral message. Note that it is not
+     * guaranteed that the user will receive the message edit event, especially if they are
+     * offline. On success, True is returned.
+     *
+     * @param args Method arguments.
+     *
+     * @return True on success.
+     */
+    bool editEphemeralMessageMedia(const EditEphemeralMessageMediaArgs& args) const;
 
     /**
      * @brief Use this method to edit only the reply markup of an ephemeral message. Note that it is
@@ -838,11 +1368,23 @@
      * @param receiverUserId Identifier of the user who received the message
      * @param replyMarkup A JSON-serialized object for an inline keyboard
      *
-     * @return Telegram Bot API result.
+     * @return True on success.
      */
     bool editEphemeralMessageReplyMarkup(std::variant<std::int64_t, std::string> chatId,
-                                         std::int32_t ephemeralMessageId, std::int64_t receiverUserId,
+                                         std::int32_t ephemeralMessageId,
+                                         std::int64_t receiverUserId,
                                          std::shared_ptr<InlineKeyboardMarkup> replyMarkup = nullptr) const;
+
+    /**
+     * @brief Use this method to edit only the reply markup of an ephemeral message. Note that it is
+     * not guaranteed that the user will receive the message edit event, especially if they are
+     * offline. On success, True is returned.
+     *
+     * @param args Method arguments.
+     *
+     * @return True on success.
+     */
+    bool editEphemeralMessageReplyMarkup(const EditEphemeralMessageReplyMarkupArgs& args) const;
 
     /**
      * @brief Use this method to edit an ephemeral text message. Note that it is not guaranteed that
@@ -861,14 +1403,27 @@
      * for more details.
      * @param replyMarkup A JSON-serialized object for an inline keyboard
      *
-     * @return Telegram Bot API result.
+     * @return True on success.
      */
-    bool editEphemeralMessageText(std::variant<std::int64_t, std::string> chatId, std::int32_t ephemeralMessageId,
-                                  std::int64_t receiverUserId, const std::string& text,
+    bool editEphemeralMessageText(std::variant<std::int64_t, std::string> chatId,
+                                  std::int32_t ephemeralMessageId,
+                                  std::int64_t receiverUserId,
+                                  const std::string& text,
                                   const std::vector<std::shared_ptr<MessageEntity>>& entities = { },
                                   std::shared_ptr<LinkPreviewOptions> linkPreviewOptions = nullptr,
                                   const std::string& parseMode = "",
                                   std::shared_ptr<InlineKeyboardMarkup> replyMarkup = nullptr) const;
+
+    /**
+     * @brief Use this method to edit an ephemeral text message. Note that it is not guaranteed that
+     * the user will receive the message edit event, especially if they are offline. On
+     * success, True is returned.
+     *
+     * @param args Method arguments.
+     *
+     * @return True on success.
+     */
+    bool editEphemeralMessageText(const EditEphemeralMessageTextArgs& args) const;
 
     /**
      * @brief Use this method to edit name and icon of a topic in a forum supergroup chat or a private
@@ -886,10 +1441,24 @@
      * Pass an empty string to remove the icon. If not specified, the current
      * icon will be kept.
      *
-     * @return Telegram Bot API result.
+     * @return True on success.
      */
-    bool editForumTopic(std::variant<std::int64_t, std::string> chatId, std::int32_t messageThreadId,
-                        const std::string& name = "", const std::string& iconCustomEmojiId = "") const;
+    bool editForumTopic(std::variant<std::int64_t, std::string> chatId,
+                        std::int32_t messageThreadId,
+                        const std::string& name = "",
+                        const std::string& iconCustomEmojiId = "") const;
+
+    /**
+     * @brief Use this method to edit name and icon of a topic in a forum supergroup chat or a private
+     * chat with a user. In the case of a supergroup chat the bot must be an administrator in
+     * the chat for this to work and must have the can_manage_topics administrator rights,
+     * unless it is the creator of the topic. Returns True on success.
+     *
+     * @param args Method arguments.
+     *
+     * @return True on success.
+     */
+    bool editForumTopic(const EditForumTopicArgs& args) const;
 
     /**
      * @brief Use this method to edit the name of the 'General' topic in a forum supergroup chat. The
@@ -900,9 +1469,20 @@
      * supergroup in the format @username
      * @param name New topic name, 1-128 characters
      *
-     * @return Telegram Bot API result.
+     * @return True on success.
      */
     bool editGeneralForumTopic(std::variant<std::int64_t, std::string> chatId, const std::string& name) const;
+
+    /**
+     * @brief Use this method to edit the name of the 'General' topic in a forum supergroup chat. The
+     * bot must be an administrator in the chat for this to work and must have the
+     * can_manage_topics administrator rights. Returns True on success.
+     *
+     * @param args Method arguments.
+     *
+     * @return True on success.
+     */
+    bool editGeneralForumTopic(const EditGeneralForumTopicArgs& args) const;
 
     /**
      * @brief Use this method to edit captions of messages. On success, if the edited message is not
@@ -928,14 +1508,30 @@
      * @param showCaptionAboveMedia Pass True if the caption must be shown above the message media.
      * Supported only for animation, photo and video messages.
      *
-     * @return Telegram Bot API result.
+     * @return The resulting Message object, or nullptr if Telegram returns True.
      */
-    std::shared_ptr<Message>
-    editMessageCaption(std::variant<std::int64_t, std::string> chatId = { }, std::int32_t messageId = 0,
-                       const std::string& caption = "", const std::string& inlineMessageId = "",
-                       std::shared_ptr<InlineKeyboardMarkup> replyMarkup = nullptr, const std::string& parseMode = "",
-                       const std::vector<std::shared_ptr<MessageEntity>>& captionEntities = { },
-                       const std::string& businessConnectionId = "", bool showCaptionAboveMedia = false) const;
+    std::shared_ptr<Message> editMessageCaption(std::variant<std::int64_t, std::string> chatId = { },
+                                                std::int32_t messageId = 0,
+                                                const std::string& caption = "",
+                                                const std::string& inlineMessageId = "",
+                                                std::shared_ptr<InlineKeyboardMarkup> replyMarkup = nullptr,
+                                                const std::string& parseMode = "",
+                                                const std::vector<std::shared_ptr<MessageEntity>>& captionEntities
+                                                = { },
+                                                const std::string& businessConnectionId = "",
+                                                bool showCaptionAboveMedia = false) const;
+
+    /**
+     * @brief Use this method to edit captions of messages. On success, if the edited message is not
+     * an inline message, the edited Message is returned, otherwise True is returned. Note that
+     * business messages that were not sent by the bot and do not contain an inline keyboard
+     * can only be edited within 48 hours from the time they were sent.
+     *
+     * @param args Method arguments.
+     *
+     * @return The resulting Message object, or nullptr if Telegram returns True.
+     */
+    std::shared_ptr<Message> editMessageCaption(const EditMessageCaptionArgs& args) const;
 
     /**
      * @brief Use this method to edit a checklist on behalf of a connected business account. On
@@ -949,12 +1545,24 @@
      * @param messageId Unique identifier for the target message
      * @param replyMarkup A JSON-serialized object for the new inline keyboard for the message
      *
-     * @return Telegram Bot API result.
+     * @return The resulting Message object.
      */
     std::shared_ptr<Message> editMessageChecklist(std::variant<std::int64_t, std::string> chatId,
                                                   const std::string& businessConnectionId,
-                                                  std::shared_ptr<InputChecklist> checklist, std::int32_t messageId,
-                                                  std::shared_ptr<InlineKeyboardMarkup> replyMarkup = nullptr) const;
+                                                  std::shared_ptr<InputChecklist> checklist,
+                                                  std::int32_t messageId,
+                                                  std::shared_ptr<InlineKeyboardMarkup> replyMarkup
+                                                  = nullptr) const;
+
+    /**
+     * @brief Use this method to edit a checklist on behalf of a connected business account. On
+     * success, the edited Message is returned.
+     *
+     * @param args Method arguments.
+     *
+     * @return The resulting Message object.
+     */
+    std::shared_ptr<Message> editMessageChecklist(const EditMessageChecklistArgs& args) const;
 
     /**
      * @brief Use this method to edit live location messages. A location can be edited until its
@@ -986,14 +1594,31 @@
      * expiration date must remain within the next 90 days. If not specified,
      * then live_period remains unchanged.
      *
-     * @return Telegram Bot API result.
+     * @return The resulting Message object, or nullptr if Telegram returns True.
      */
-    std::shared_ptr<Message>
-    editMessageLiveLocation(double latitude, double longitude, std::variant<std::int64_t, std::string> chatId = { },
-                            std::int32_t messageId = 0, const std::string& inlineMessageId = "",
-                            std::shared_ptr<InlineKeyboardMarkup> replyMarkup = nullptr, double horizontalAccuracy = 0,
-                            std::int32_t heading = 0, std::int32_t proximityAlertRadius = 0,
-                            const std::string& businessConnectionId = "", std::int32_t livePeriod = 0) const;
+    std::shared_ptr<Message> editMessageLiveLocation(double latitude,
+                                                     double longitude,
+                                                     std::variant<std::int64_t, std::string> chatId = { },
+                                                     std::int32_t messageId = 0,
+                                                     const std::string& inlineMessageId = "",
+                                                     std::shared_ptr<InlineKeyboardMarkup> replyMarkup = nullptr,
+                                                     double horizontalAccuracy = 0,
+                                                     std::int32_t heading = 0,
+                                                     std::int32_t proximityAlertRadius = 0,
+                                                     const std::string& businessConnectionId = "",
+                                                     std::int32_t livePeriod = 0) const;
+
+    /**
+     * @brief Use this method to edit live location messages. A location can be edited until its
+     * live_period expires or editing is explicitly disabled by a call to
+     * stopMessageLiveLocation. On success, if the edited message is not an inline message, the
+     * edited Message is returned, otherwise True is returned.
+     *
+     * @param args Method arguments.
+     *
+     * @return The resulting Message object, or nullptr if Telegram returns True.
+     */
+    std::shared_ptr<Message> editMessageLiveLocation(const EditMessageLiveLocationArgs& args) const;
 
     /**
      * @brief Use this method to edit animation, audio, document, live photo, photo, or video
@@ -1018,13 +1643,31 @@
      * @param businessConnectionId Unique identifier of the business connection on behalf of which the
      * message to be edited was sent
      *
-     * @return Telegram Bot API result.
+     * @return The resulting Message object, or nullptr if Telegram returns True.
      */
     std::shared_ptr<Message> editMessageMedia(std::shared_ptr<InputMedia> media,
                                               std::variant<std::int64_t, std::string> chatId = { },
-                                              std::int32_t messageId = 0, const std::string& inlineMessageId = "",
+                                              std::int32_t messageId = 0,
+                                              const std::string& inlineMessageId = "",
                                               std::shared_ptr<InlineKeyboardMarkup> replyMarkup = nullptr,
                                               const std::string& businessConnectionId = "") const;
+
+    /**
+     * @brief Use this method to edit animation, audio, document, live photo, photo, or video
+     * messages, or to replace a text or a rich message with a media. If a message is part of a
+     * message album, then it can be edited only to an audio for audio albums, only to a
+     * document for document albums and to a photo, a live photo, or a video otherwise. When an
+     * inline message is edited, a new file can't be uploaded; use a previously uploaded file
+     * via its file_id or specify a URL. On success, if the edited message is not an inline
+     * message, the edited Message is returned, otherwise True is returned. Note that business
+     * messages that were not sent by the bot and do not contain an inline keyboard can only be
+     * edited within 48 hours from the time they were sent.
+     *
+     * @param args Method arguments.
+     *
+     * @return The resulting Message object, or nullptr if Telegram returns True.
+     */
+    std::shared_ptr<Message> editMessageMedia(const EditMessageMediaArgs& args) const;
 
     /**
      * @brief Use this method to edit only the reply markup of messages. On success, if the edited
@@ -1043,12 +1686,25 @@
      * @param businessConnectionId Unique identifier of the business connection on behalf of which the
      * message to be edited was sent
      *
-     * @return Telegram Bot API result.
+     * @return The resulting Message object, or nullptr if Telegram returns True.
      */
     std::shared_ptr<Message> editMessageReplyMarkup(std::variant<std::int64_t, std::string> chatId = { },
-                                                    std::int32_t messageId = 0, const std::string& inlineMessageId = "",
+                                                    std::int32_t messageId = 0,
+                                                    const std::string& inlineMessageId = "",
                                                     std::shared_ptr<InlineKeyboardMarkup> replyMarkup = nullptr,
                                                     const std::string& businessConnectionId = "") const;
+
+    /**
+     * @brief Use this method to edit only the reply markup of messages. On success, if the edited
+     * message is not an inline message, the edited Message is returned, otherwise True is
+     * returned. Note that business messages that were not sent by the bot and do not contain
+     * an inline keyboard can only be edited within 48 hours from the time they were sent.
+     *
+     * @param args Method arguments.
+     *
+     * @return The resulting Message object, or nullptr if Telegram returns True.
+     */
+    std::shared_ptr<Message> editMessageReplyMarkup(const EditMessageReplyMarkupArgs& args) const;
 
     /**
      * @brief Use this method to edit text, rich and game messages. On success, if the edited message
@@ -1077,17 +1733,30 @@
      * Direct upload of new files isn't supported when an inline message is
      * edited.
      *
-     * @return Telegram Bot API result.
+     * @return The resulting Message object, or nullptr if Telegram returns True.
      */
     std::shared_ptr<Message> editMessageText(const std::string& text = "",
                                              std::variant<std::int64_t, std::string> chatId = { },
-                                             std::int32_t messageId = 0, const std::string& inlineMessageId = "",
+                                             std::int32_t messageId = 0,
+                                             const std::string& inlineMessageId = "",
                                              const std::string& parseMode = "",
                                              std::shared_ptr<LinkPreviewOptions> linkPreviewOptions = nullptr,
                                              std::shared_ptr<InlineKeyboardMarkup> replyMarkup = nullptr,
                                              const std::vector<std::shared_ptr<MessageEntity>>& entities = { },
                                              const std::string& businessConnectionId = "",
                                              std::shared_ptr<InputRichMessage> richMessage = nullptr) const;
+
+    /**
+     * @brief Use this method to edit text, rich and game messages. On success, if the edited message
+     * is not an inline message, the edited Message is returned, otherwise True is returned.
+     * Note that business messages that were not sent by the bot and do not contain an inline
+     * keyboard can only be edited within 48 hours from the time they were sent.
+     *
+     * @param args Method arguments.
+     *
+     * @return The resulting Message object, or nullptr if Telegram returns True.
+     */
+    std::shared_ptr<Message> editMessageText(const EditMessageTextArgs& args) const;
 
     /**
      * @brief Edits a story previously posted by the bot on behalf of a managed business account.
@@ -1103,14 +1772,25 @@
      * @param parseMode Mode for parsing entities in the story caption. See formatting options
      * for more details.
      *
-     * @return Telegram Bot API result.
+     * @return The resulting Story object.
      */
     std::shared_ptr<Story> editStory(const std::string& businessConnectionId,
-                                     std::shared_ptr<InputStoryContent> content, std::int32_t storyId,
+                                     std::shared_ptr<InputStoryContent> content,
+                                     std::int32_t storyId,
                                      const std::vector<std::shared_ptr<StoryArea>>& areas = { },
                                      const std::string& caption = "",
                                      const std::vector<std::shared_ptr<MessageEntity>>& captionEntities = { },
                                      const std::string& parseMode = "") const;
+
+    /**
+     * @brief Edits a story previously posted by the bot on behalf of a managed business account.
+     * Requires the can_manage_stories business bot right. Returns Story on success.
+     *
+     * @param args Method arguments.
+     *
+     * @return The resulting Story object.
+     */
+    std::shared_ptr<Story> editStory(const EditStoryArgs& args) const;
 
     /**
      * @brief Allows the bot to cancel or re-enable extension of a subscription paid in Telegram
@@ -1123,10 +1803,21 @@
      * @param telegramPaymentChargeId Telegram payment identifier for the subscription
      * @param userId Identifier of the user whose subscription will be edited
      *
-     * @return Telegram Bot API result.
+     * @return True on success.
      */
-    bool editUserStarSubscription(bool isCanceled, const std::string& telegramPaymentChargeId,
+    bool editUserStarSubscription(bool isCanceled,
+                                  const std::string& telegramPaymentChargeId,
                                   std::int64_t userId) const;
+
+    /**
+     * @brief Allows the bot to cancel or re-enable extension of a subscription paid in Telegram
+     * Stars. Returns True on success.
+     *
+     * @param args Method arguments.
+     *
+     * @return True on success.
+     */
+    bool editUserStarSubscription(const EditUserStarSubscriptionArgs& args) const;
 
     /**
      * @brief Use this method to generate a new primary invite link for a chat; any previously
@@ -1137,9 +1828,21 @@
      * @param chatId Unique identifier for the target chat or username of the target channel
      * in the format @username
      *
-     * @return Telegram Bot API result.
+     * @return The resulting string.
      */
     std::string exportChatInviteLink(std::variant<std::int64_t, std::string> chatId) const;
+
+    /**
+     * @brief Use this method to generate a new primary invite link for a chat; any previously
+     * generated primary link is revoked. The bot must be an administrator in the chat for this
+     * to work and must have the appropriate administrator rights. Returns the new invite link
+     * as String on success.
+     *
+     * @param args Method arguments.
+     *
+     * @return The resulting string.
+     */
+    std::string exportChatInviteLink(const ExportChatInviteLinkArgs& args) const;
 
     /**
      * @brief Use this method to forward messages of any kind. Service messages and messages with
@@ -1167,15 +1870,29 @@
      * to send; for direct messages chats only
      * @param videoStartTimestamp New start timestamp for the forwarded video in the message
      *
-     * @return Telegram Bot API result.
+     * @return The resulting Message object.
      */
     std::shared_ptr<Message> forwardMessage(std::variant<std::int64_t, std::string> chatId,
-                                            std::variant<std::int64_t, std::string> fromChatId, std::int32_t messageId,
-                                            bool disableNotification = false, bool protectContent = false,
-                                            std::int32_t messageThreadId = 0, std::int64_t directMessagesTopicId = 0,
+                                            std::variant<std::int64_t, std::string> fromChatId,
+                                            std::int32_t messageId,
+                                            bool disableNotification = false,
+                                            bool protectContent = false,
+                                            std::int32_t messageThreadId = 0,
+                                            std::int64_t directMessagesTopicId = 0,
                                             const std::string& messageEffectId = "",
-                                            std::shared_ptr<SuggestedPostParameters> suggestedPostParameters = nullptr,
+                                            std::shared_ptr<SuggestedPostParameters> suggestedPostParameters
+                                            = nullptr,
                                             std::int32_t videoStartTimestamp = 0) const;
+
+    /**
+     * @brief Use this method to forward messages of any kind. Service messages and messages with
+     * protected content can't be forwarded. On success, the sent Message is returned.
+     *
+     * @param args Method arguments.
+     *
+     * @return The resulting Message object.
+     */
+    std::shared_ptr<Message> forwardMessage(const ForwardMessageArgs& args) const;
 
     /**
      * @brief Use this method to forward multiple messages of any kind. If some of the specified
@@ -1202,20 +1919,34 @@
      * forwarded; required if the messages are forwarded to a direct messages
      * chat
      *
-     * @return Telegram Bot API result.
+     * @return The resulting list of MessageId objects.
      */
-    std::vector<std::shared_ptr<MessageId>>
-    forwardMessages(std::variant<std::int64_t, std::string> chatId, std::variant<std::int64_t, std::string> fromChatId,
-                    const std::vector<std::int32_t>& messageIds, std::int32_t messageThreadId = 0,
-                    bool disableNotification = false, bool protectContent = false,
-                    std::int64_t directMessagesTopicId = 0) const;
+    std::vector<std::shared_ptr<MessageId>> forwardMessages(std::variant<std::int64_t, std::string> chatId,
+                                                            std::variant<std::int64_t, std::string> fromChatId,
+                                                            const std::vector<std::int32_t>& messageIds,
+                                                            std::int32_t messageThreadId = 0,
+                                                            bool disableNotification = false,
+                                                            bool protectContent = false,
+                                                            std::int64_t directMessagesTopicId = 0) const;
+
+    /**
+     * @brief Use this method to forward multiple messages of any kind. If some of the specified
+     * messages can't be found or forwarded, they are skipped. Service messages and messages
+     * with protected content can't be forwarded. Album grouping is kept for forwarded
+     * messages. On success, an Array of MessageId of the sent messages is returned.
+     *
+     * @param args Method arguments.
+     *
+     * @return The resulting list of MessageId objects.
+     */
+    std::vector<std::shared_ptr<MessageId>> forwardMessages(const ForwardMessagesArgs& args) const;
 
     /**
      * @brief Returns the list of gifts that can be sent by the bot to users and channel chats.
      * Requires no parameters. Returns a Gifts object.
      *
      *
-     * @return Telegram Bot API result.
+     * @return The resulting Gifts object.
      */
     std::shared_ptr<Gifts> getAvailableGifts() const;
 
@@ -1242,14 +1973,29 @@
      * @param sortByPrice Pass True to sort results by gift price instead of send date. Sorting is
      * applied before pagination.
      *
-     * @return Telegram Bot API result.
+     * @return The resulting OwnedGifts object.
      */
-    std::shared_ptr<OwnedGifts>
-    getBusinessAccountGifts(const std::string& businessConnectionId, bool excludeFromBlockchain = false,
-                            bool excludeLimitedNonUpgradable = false, bool excludeLimitedUpgradable = false,
-                            bool excludeSaved = false, bool excludeUnique = false, bool excludeUnlimited = false,
-                            bool excludeUnsaved = false, std::int32_t limit = 0, const std::string& offset = "",
-                            bool sortByPrice = false) const;
+    std::shared_ptr<OwnedGifts> getBusinessAccountGifts(const std::string& businessConnectionId,
+                                                        bool excludeFromBlockchain = false,
+                                                        bool excludeLimitedNonUpgradable = false,
+                                                        bool excludeLimitedUpgradable = false,
+                                                        bool excludeSaved = false,
+                                                        bool excludeUnique = false,
+                                                        bool excludeUnlimited = false,
+                                                        bool excludeUnsaved = false,
+                                                        std::int32_t limit = 0,
+                                                        const std::string& offset = "",
+                                                        bool sortByPrice = false) const;
+
+    /**
+     * @brief Returns the gifts received and owned by a managed business account. Requires the
+     * can_view_gifts_and_stars business bot right. Returns OwnedGifts on success.
+     *
+     * @param args Method arguments.
+     *
+     * @return The resulting OwnedGifts object.
+     */
+    std::shared_ptr<OwnedGifts> getBusinessAccountGifts(const GetBusinessAccountGiftsArgs& args) const;
 
     /**
      * @brief Returns the amount of Telegram Stars owned by a managed business account. Requires the
@@ -1257,9 +2003,19 @@
      *
      * @param businessConnectionId Unique identifier of the business connection
      *
-     * @return Telegram Bot API result.
+     * @return The resulting StarAmount object.
      */
     std::shared_ptr<StarAmount> getBusinessAccountStarBalance(const std::string& businessConnectionId) const;
+
+    /**
+     * @brief Returns the amount of Telegram Stars owned by a managed business account. Requires the
+     * can_view_gifts_and_stars business bot right. Returns StarAmount on success.
+     *
+     * @param args Method arguments.
+     *
+     * @return The resulting StarAmount object.
+     */
+    std::shared_ptr<StarAmount> getBusinessAccountStarBalance(const GetBusinessAccountStarBalanceArgs& args) const;
 
     /**
      * @brief Use this method to get information about the connection of the bot with a business
@@ -1267,9 +2023,19 @@
      *
      * @param businessConnectionId Unique identifier of the business connection
      *
-     * @return Telegram Bot API result.
+     * @return The resulting BusinessConnection object.
      */
     std::shared_ptr<BusinessConnection> getBusinessConnection(const std::string& businessConnectionId) const;
+
+    /**
+     * @brief Use this method to get information about the connection of the bot with a business
+     * account. Returns a BusinessConnection object on success.
+     *
+     * @param args Method arguments.
+     *
+     * @return The resulting BusinessConnection object.
+     */
+    std::shared_ptr<BusinessConnection> getBusinessConnection(const GetBusinessConnectionArgs& args) const;
 
     /**
      * @brief Use this method to get up-to-date information about the chat. Returns a ChatFullInfo
@@ -1278,9 +2044,19 @@
      * @param chatId Unique identifier for the target chat or username of the target
      * supergroup or channel in the format @username
      *
-     * @return Telegram Bot API result.
+     * @return The resulting ChatFullInfo object.
      */
     std::shared_ptr<ChatFullInfo> getChat(std::variant<std::int64_t, std::string> chatId) const;
+
+    /**
+     * @brief Use this method to get up-to-date information about the chat. Returns a ChatFullInfo
+     * object on success.
+     *
+     * @param args Method arguments.
+     *
+     * @return The resulting ChatFullInfo object.
+     */
+    std::shared_ptr<ChatFullInfo> getChat(const GetChatArgs& args) const;
 
     /**
      * @brief Use this method to get a list of administrators in a chat. Returns an Array of
@@ -1291,10 +2067,20 @@
      * @param returnBots Pass True to additionally receive all bots that are administrators of
      * the chat. By default, bots other than the current bot are omitted.
      *
-     * @return Telegram Bot API result.
+     * @return The resulting list of ChatMember objects.
      */
     std::vector<std::shared_ptr<ChatMember>> getChatAdministrators(std::variant<std::int64_t, std::string> chatId,
                                                                    bool returnBots = false) const;
+
+    /**
+     * @brief Use this method to get a list of administrators in a chat. Returns an Array of
+     * ChatMember objects.
+     *
+     * @param args Method arguments.
+     *
+     * @return The resulting list of ChatMember objects.
+     */
+    std::vector<std::shared_ptr<ChatMember>> getChatAdministrators(const GetChatAdministratorsArgs& args) const;
 
     /**
      * @brief Returns the gifts owned by a chat. Returns OwnedGifts on success.
@@ -1322,15 +2108,28 @@
      * @param sortByPrice Pass True to sort results by gift price instead of send date. Sorting is
      * applied before pagination.
      *
-     * @return Telegram Bot API result.
+     * @return The resulting OwnedGifts object.
      */
     std::shared_ptr<OwnedGifts> getChatGifts(std::variant<std::int64_t, std::string> chatId,
                                              bool excludeFromBlockchain = false,
                                              bool excludeLimitedNonUpgradable = false,
-                                             bool excludeLimitedUpgradable = false, bool excludeSaved = false,
-                                             bool excludeUnique = false, bool excludeUnlimited = false,
-                                             bool excludeUnsaved = false, std::int32_t limit = 0,
-                                             const std::string& offset = "", bool sortByPrice = false) const;
+                                             bool excludeLimitedUpgradable = false,
+                                             bool excludeSaved = false,
+                                             bool excludeUnique = false,
+                                             bool excludeUnlimited = false,
+                                             bool excludeUnsaved = false,
+                                             std::int32_t limit = 0,
+                                             const std::string& offset = "",
+                                             bool sortByPrice = false) const;
+
+    /**
+     * @brief Returns the gifts owned by a chat. Returns OwnedGifts on success.
+     *
+     * @param args Method arguments.
+     *
+     * @return The resulting OwnedGifts object.
+     */
+    std::shared_ptr<OwnedGifts> getChatGifts(const GetChatGiftsArgs& args) const;
 
     /**
      * @brief Use this method to get information about a member of a chat. The method is only
@@ -1341,10 +2140,21 @@
      * supergroup or channel in the format @username
      * @param userId Unique identifier of the target user
      *
-     * @return Telegram Bot API result.
+     * @return The resulting ChatMember object.
      */
     std::shared_ptr<ChatMember> getChatMember(std::variant<std::int64_t, std::string> chatId,
                                               std::int64_t userId) const;
+
+    /**
+     * @brief Use this method to get information about a member of a chat. The method is only
+     * guaranteed to work for other users if the bot is an administrator in the chat. Returns a
+     * ChatMember object on success.
+     *
+     * @param args Method arguments.
+     *
+     * @return The resulting ChatMember object.
+     */
+    std::shared_ptr<ChatMember> getChatMember(const GetChatMemberArgs& args) const;
 
     /**
      * @brief Use this method to get the number of members in a chat. Returns Integer on success.
@@ -1352,9 +2162,18 @@
      * @param chatId Unique identifier for the target chat or username of the target
      * supergroup or channel in the format @username
      *
-     * @return Telegram Bot API result.
+     * @return The resulting integer.
      */
     std::int32_t getChatMemberCount(std::variant<std::int64_t, std::string> chatId) const;
+
+    /**
+     * @brief Use this method to get the number of members in a chat. Returns Integer on success.
+     *
+     * @param args Method arguments.
+     *
+     * @return The resulting integer.
+     */
+    std::int32_t getChatMemberCount(const GetChatMemberCountArgs& args) const;
 
     /**
      * @brief Use this method to get the current value of the bot's menu button in a private chat, or
@@ -1363,9 +2182,19 @@
      * @param chatId Unique identifier for the target private chat. If not specified, the
      * bot's default menu button will be returned.
      *
-     * @return Telegram Bot API result.
+     * @return The resulting MenuButton object.
      */
     std::shared_ptr<MenuButton> getChatMenuButton(std::variant<std::int64_t, std::string> chatId = { }) const;
+
+    /**
+     * @brief Use this method to get the current value of the bot's menu button in a private chat, or
+     * the default menu button. Returns MenuButton on success.
+     *
+     * @param args Method arguments.
+     *
+     * @return The resulting MenuButton object.
+     */
+    std::shared_ptr<MenuButton> getChatMenuButton(const GetChatMenuButtonArgs& args) const;
 
     /**
      * @brief Use this method to get information about custom emoji stickers by their identifiers.
@@ -1374,9 +2203,20 @@
      * @param customEmojiIds A JSON-serialized list of custom emoji identifiers. At most 200 custom
      * emoji identifiers can be specified.
      *
-     * @return Telegram Bot API result.
+     * @return The resulting list of Sticker objects.
      */
-    std::vector<std::shared_ptr<Sticker>> getCustomEmojiStickers(const std::vector<std::string>& customEmojiIds) const;
+    std::vector<std::shared_ptr<Sticker>>
+    getCustomEmojiStickers(const std::vector<std::string>& customEmojiIds) const;
+
+    /**
+     * @brief Use this method to get information about custom emoji stickers by their identifiers.
+     * Returns an Array of Sticker objects.
+     *
+     * @param args Method arguments.
+     *
+     * @return The resulting list of Sticker objects.
+     */
+    std::vector<std::shared_ptr<Sticker>> getCustomEmojiStickers(const GetCustomEmojiStickersArgs& args) const;
 
     /**
      * @brief Use this method to get basic information about a file and prepare it for downloading.
@@ -1390,16 +2230,32 @@
      *
      * @param fileId File identifier to get information about
      *
-     * @return Telegram Bot API result.
+     * @return The resulting File object.
      */
     std::shared_ptr<File> getFile(const std::string& fileId) const;
+
+    /**
+     * @brief Use this method to get basic information about a file and prepare it for downloading.
+     * For the moment, bots can download files of up to 20MB in size. On success, a File object
+     * is returned. The file can then be downloaded via the link
+     * https://api.telegram.org/file/bot<token>/<file_path>, where <file_path> is taken from
+     * the response. It is guaranteed that the link will be valid for at least 1 hour. When the
+     * link expires, a new one can be requested by calling getFile again. Note: This function
+     * may not preserve the original file name and MIME type. You should save the file's MIME
+     * type and name (if available) when the File object is received.
+     *
+     * @param args Method arguments.
+     *
+     * @return The resulting File object.
+     */
+    std::shared_ptr<File> getFile(const GetFileArgs& args) const;
 
     /**
      * @brief Use this method to get custom emoji stickers, which can be used as a forum topic icon by
      * any user. Requires no parameters. Returns an Array of Sticker objects.
      *
      *
-     * @return Telegram Bot API result.
+     * @return The resulting list of Sticker objects.
      */
     std::vector<std::shared_ptr<Sticker>> getForumTopicIconStickers() const;
 
@@ -1416,12 +2272,24 @@
      * @param inlineMessageId Required if chat_id and message_id are not specified. Identifier of the
      * inline message.
      *
-     * @return Telegram Bot API result.
+     * @return The resulting list of GameHighScore objects.
      */
     std::vector<std::shared_ptr<GameHighScore>> getGameHighScores(std::int64_t userId,
-                                                                  std::variant<std::int64_t, std::string> chatId = { },
+                                                                  std::variant<std::int64_t, std::string> chatId
+                                                                  = { },
                                                                   std::int32_t messageId = 0,
                                                                   const std::string& inlineMessageId = "") const;
+
+    /**
+     * @brief Use this method to get data for high score tables. Will return the score of the
+     * specified user and several of their neighbors in a game. Returns an Array of
+     * GameHighScore objects.
+     *
+     * @param args Method arguments.
+     *
+     * @return The resulting list of GameHighScore objects.
+     */
+    std::vector<std::shared_ptr<GameHighScore>> getGameHighScores(const GetGameHighScoresArgs& args) const;
 
     /**
      * @brief Use this method to get the access settings of a managed bot. Returns a BotAccessSettings
@@ -1430,9 +2298,20 @@
      * @param userId User identifier of the managed bot whose access settings will be
      * returned
      *
-     * @return Telegram Bot API result.
+     * @return The resulting BotAccessSettings object.
      */
     std::shared_ptr<BotAccessSettings> getManagedBotAccessSettings(std::int64_t userId) const;
+
+    /**
+     * @brief Use this method to get the access settings of a managed bot. Returns a BotAccessSettings
+     * object on success.
+     *
+     * @param args Method arguments.
+     *
+     * @return The resulting BotAccessSettings object.
+     */
+    std::shared_ptr<BotAccessSettings>
+    getManagedBotAccessSettings(const GetManagedBotAccessSettingsArgs& args) const;
 
     /**
      * @brief Use this method to get the token of a managed bot. Returns the token as String on
@@ -1440,16 +2319,26 @@
      *
      * @param userId User identifier of the managed bot whose token will be returned
      *
-     * @return Telegram Bot API result.
+     * @return The resulting string.
      */
     std::string getManagedBotToken(std::int64_t userId) const;
+
+    /**
+     * @brief Use this method to get the token of a managed bot. Returns the token as String on
+     * success.
+     *
+     * @param args Method arguments.
+     *
+     * @return The resulting string.
+     */
+    std::string getManagedBotToken(const GetManagedBotTokenArgs& args) const;
 
     /**
      * @brief A simple method for testing your bot's authentication token. Requires no parameters.
      * Returns basic information about the bot in form of a User object.
      *
      *
-     * @return Telegram Bot API result.
+     * @return The resulting User object.
      */
     std::shared_ptr<User> getMe() const;
 
@@ -1462,10 +2351,21 @@
      * BotCommandScopeDefault.
      * @param languageCode A two-letter ISO 639-1 language code or an empty string
      *
-     * @return Telegram Bot API result.
+     * @return The resulting list of BotCommand objects.
      */
     std::vector<std::shared_ptr<BotCommand>> getMyCommands(std::shared_ptr<BotCommandScope> scope = nullptr,
                                                            const std::string& languageCode = "") const;
+
+    /**
+     * @brief Use this method to get the current list of the bot's commands for the given scope and
+     * user language. Returns an Array of BotCommand objects. If commands aren't set, an empty
+     * list is returned.
+     *
+     * @param args Method arguments.
+     *
+     * @return The resulting list of BotCommand objects.
+     */
+    std::vector<std::shared_ptr<BotCommand>> getMyCommands(const GetMyCommandsArgs& args) const;
 
     /**
      * @brief Use this method to get the current default administrator rights of the bot. Returns
@@ -1475,9 +2375,20 @@
      * Otherwise, default administrator rights of the bot for groups and
      * supergroups will be returned.
      *
-     * @return Telegram Bot API result.
+     * @return The resulting ChatAdministratorRights object.
      */
     std::shared_ptr<ChatAdministratorRights> getMyDefaultAdministratorRights(bool forChannels = false) const;
+
+    /**
+     * @brief Use this method to get the current default administrator rights of the bot. Returns
+     * ChatAdministratorRights on success.
+     *
+     * @param args Method arguments.
+     *
+     * @return The resulting ChatAdministratorRights object.
+     */
+    std::shared_ptr<ChatAdministratorRights>
+    getMyDefaultAdministratorRights(const GetMyDefaultAdministratorRightsArgs& args) const;
 
     /**
      * @brief Use this method to get the current bot description for the given user language. Returns
@@ -1485,9 +2396,19 @@
      *
      * @param languageCode A two-letter ISO 639-1 language code or an empty string
      *
-     * @return Telegram Bot API result.
+     * @return The resulting BotDescription object.
      */
     std::shared_ptr<BotDescription> getMyDescription(const std::string& languageCode = "") const;
+
+    /**
+     * @brief Use this method to get the current bot description for the given user language. Returns
+     * BotDescription on success.
+     *
+     * @param args Method arguments.
+     *
+     * @return The resulting BotDescription object.
+     */
+    std::shared_ptr<BotDescription> getMyDescription(const GetMyDescriptionArgs& args) const;
 
     /**
      * @brief Use this method to get the current bot name for the given user language. Returns BotName
@@ -1495,9 +2416,19 @@
      *
      * @param languageCode A two-letter ISO 639-1 language code or an empty string
      *
-     * @return Telegram Bot API result.
+     * @return The resulting BotName object.
      */
     std::shared_ptr<BotName> getMyName(const std::string& languageCode = "") const;
+
+    /**
+     * @brief Use this method to get the current bot name for the given user language. Returns BotName
+     * on success.
+     *
+     * @param args Method arguments.
+     *
+     * @return The resulting BotName object.
+     */
+    std::shared_ptr<BotName> getMyName(const GetMyNameArgs& args) const;
 
     /**
      * @brief Use this method to get the current bot short description for the given user language.
@@ -1505,16 +2436,26 @@
      *
      * @param languageCode A two-letter ISO 639-1 language code or an empty string
      *
-     * @return Telegram Bot API result.
+     * @return The resulting BotShortDescription object.
      */
     std::shared_ptr<BotShortDescription> getMyShortDescription(const std::string& languageCode = "") const;
+
+    /**
+     * @brief Use this method to get the current bot short description for the given user language.
+     * Returns BotShortDescription on success.
+     *
+     * @param args Method arguments.
+     *
+     * @return The resulting BotShortDescription object.
+     */
+    std::shared_ptr<BotShortDescription> getMyShortDescription(const GetMyShortDescriptionArgs& args) const;
 
     /**
      * @brief A method to get the current Telegram Stars balance of the bot. Requires no parameters.
      * On success, returns a StarAmount object.
      *
      *
-     * @return Telegram Bot API result.
+     * @return The resulting StarAmount object.
      */
     std::shared_ptr<StarAmount> getMyStarBalance() const;
 
@@ -1526,18 +2467,37 @@
      * are accepted. Defaults to 100.
      * @param offset Number of transactions to skip in the response
      *
-     * @return Telegram Bot API result.
+     * @return The resulting StarTransactions object.
      */
     std::shared_ptr<StarTransactions> getStarTransactions(std::int32_t limit = 0, std::int32_t offset = 0) const;
+
+    /**
+     * @brief Returns the bot's Telegram Star transactions in chronological order. On success, returns
+     * a StarTransactions object.
+     *
+     * @param args Method arguments.
+     *
+     * @return The resulting StarTransactions object.
+     */
+    std::shared_ptr<StarTransactions> getStarTransactions(const GetStarTransactionsArgs& args) const;
 
     /**
      * @brief Use this method to get a sticker set. On success, a StickerSet object is returned.
      *
      * @param name Name of the sticker set
      *
-     * @return Telegram Bot API result.
+     * @return The resulting StickerSet object.
      */
     std::shared_ptr<StickerSet> getStickerSet(const std::string& name) const;
+
+    /**
+     * @brief Use this method to get a sticker set. On success, a StickerSet object is returned.
+     *
+     * @param args Method arguments.
+     *
+     * @return The resulting StickerSet object.
+     */
+    std::shared_ptr<StickerSet> getStickerSet(const GetStickerSetArgs& args) const;
 
     /**
      * @brief Use this method to receive incoming updates using long polling (wiki). Returns an Array
@@ -1565,11 +2525,22 @@
      * created before the call to getUpdates, so unwanted updates may be
      * received for a short period of time.
      *
-     * @return Telegram Bot API result.
+     * @return The resulting list of Update objects.
      */
-    std::vector<std::shared_ptr<Update>> getUpdates(std::int32_t offset = 0, std::int32_t limit = 100,
+    std::vector<std::shared_ptr<Update>> getUpdates(std::int32_t offset = 0,
+                                                    std::int32_t limit = 100,
                                                     std::int32_t timeout = 0,
                                                     const std::vector<std::string>& allowedUpdates = { }) const;
+
+    /**
+     * @brief Use this method to receive incoming updates using long polling (wiki). Returns an Array
+     * of Update objects.
+     *
+     * @param args Method arguments.
+     *
+     * @return The resulting list of Update objects.
+     */
+    std::vector<std::shared_ptr<Update>> getUpdates(const GetUpdatesArgs& args) const;
 
     /**
      * @brief Use this method to get the list of boosts added to a chat by a user. Requires
@@ -1579,10 +2550,20 @@
      * @username
      * @param userId Unique identifier of the target user
      *
-     * @return Telegram Bot API result.
+     * @return The resulting UserChatBoosts object.
      */
     std::shared_ptr<UserChatBoosts> getUserChatBoosts(std::variant<std::int64_t, std::string> chatId,
                                                       std::int64_t userId) const;
+
+    /**
+     * @brief Use this method to get the list of boosts added to a chat by a user. Requires
+     * administrator rights in the chat. Returns a UserChatBoosts object.
+     *
+     * @param args Method arguments.
+     *
+     * @return The resulting UserChatBoosts object.
+     */
+    std::shared_ptr<UserChatBoosts> getUserChatBoosts(const GetUserChatBoostsArgs& args) const;
 
     /**
      * @brief Returns the gifts owned and hosted by a user. Returns OwnedGifts on success.
@@ -1603,13 +2584,26 @@
      * @param sortByPrice Pass True to sort results by gift price instead of send date. Sorting is
      * applied before pagination.
      *
-     * @return Telegram Bot API result.
+     * @return The resulting OwnedGifts object.
      */
-    std::shared_ptr<OwnedGifts> getUserGifts(std::int64_t userId, bool excludeFromBlockchain = false,
+    std::shared_ptr<OwnedGifts> getUserGifts(std::int64_t userId,
+                                             bool excludeFromBlockchain = false,
                                              bool excludeLimitedNonUpgradable = false,
-                                             bool excludeLimitedUpgradable = false, bool excludeUnique = false,
-                                             bool excludeUnlimited = false, std::int32_t limit = 0,
-                                             const std::string& offset = "", bool sortByPrice = false) const;
+                                             bool excludeLimitedUpgradable = false,
+                                             bool excludeUnique = false,
+                                             bool excludeUnlimited = false,
+                                             std::int32_t limit = 0,
+                                             const std::string& offset = "",
+                                             bool sortByPrice = false) const;
+
+    /**
+     * @brief Returns the gifts owned and hosted by a user. Returns OwnedGifts on success.
+     *
+     * @param args Method arguments.
+     *
+     * @return The resulting OwnedGifts object.
+     */
+    std::shared_ptr<OwnedGifts> getUserGifts(const GetUserGiftsArgs& args) const;
 
     /**
      * @brief Use this method to get the last messages from the personal chat (i.e., the chat
@@ -1619,9 +2613,22 @@
      * @param limit The maximum number of messages to return; 1-20
      * @param userId Unique identifier for the target user
      *
-     * @return Telegram Bot API result.
+     * @return The resulting list of Message objects.
      */
-    std::vector<std::shared_ptr<Message>> getUserPersonalChatMessages(std::int32_t limit, std::int64_t userId) const;
+    std::vector<std::shared_ptr<Message>> getUserPersonalChatMessages(std::int32_t limit,
+                                                                      std::int64_t userId) const;
+
+    /**
+     * @brief Use this method to get the last messages from the personal chat (i.e., the chat
+     * currently added to their profile) of a given user. On success, an Array of Message
+     * objects is returned.
+     *
+     * @param args Method arguments.
+     *
+     * @return The resulting list of Message objects.
+     */
+    std::vector<std::shared_ptr<Message>>
+    getUserPersonalChatMessages(const GetUserPersonalChatMessagesArgs& args) const;
 
     /**
      * @brief Use this method to get a list of profile audios for a user. Returns a UserProfileAudios
@@ -1633,10 +2640,20 @@
      * @param offset Sequential number of the first audio to be returned. By default, all
      * audios are returned.
      *
-     * @return Telegram Bot API result.
+     * @return The resulting UserProfileAudios object.
      */
-    std::shared_ptr<UserProfileAudios> getUserProfileAudios(std::int64_t userId, std::int32_t limit = 0,
-                                                            std::int32_t offset = 0) const;
+    std::shared_ptr<UserProfileAudios>
+    getUserProfileAudios(std::int64_t userId, std::int32_t limit = 0, std::int32_t offset = 0) const;
+
+    /**
+     * @brief Use this method to get a list of profile audios for a user. Returns a UserProfileAudios
+     * object.
+     *
+     * @param args Method arguments.
+     *
+     * @return The resulting UserProfileAudios object.
+     */
+    std::shared_ptr<UserProfileAudios> getUserProfileAudios(const GetUserProfileAudiosArgs& args) const;
 
     /**
      * @brief Use this method to get a list of profile pictures for a user. Returns a
@@ -1648,10 +2665,20 @@
      * @param limit Limits the number of photos to be retrieved. Values between 1-100 are
      * accepted. Defaults to 100.
      *
-     * @return Telegram Bot API result.
+     * @return The resulting UserProfilePhotos object.
      */
-    std::shared_ptr<UserProfilePhotos> getUserProfilePhotos(std::int64_t userId, std::int32_t offset = 0,
-                                                            std::int32_t limit = 100) const;
+    std::shared_ptr<UserProfilePhotos>
+    getUserProfilePhotos(std::int64_t userId, std::int32_t offset = 0, std::int32_t limit = 100) const;
+
+    /**
+     * @brief Use this method to get a list of profile pictures for a user. Returns a
+     * UserProfilePhotos object.
+     *
+     * @param args Method arguments.
+     *
+     * @return The resulting UserProfilePhotos object.
+     */
+    std::shared_ptr<UserProfilePhotos> getUserProfilePhotos(const GetUserProfilePhotosArgs& args) const;
 
     /**
      * @brief Use this method to get current webhook status. Requires no parameters. On success,
@@ -1659,7 +2686,7 @@
      * the url field empty.
      *
      *
-     * @return Telegram Bot API result.
+     * @return The resulting WebhookInfo object.
      */
     std::shared_ptr<WebhookInfo> getWebhookInfo() const;
 
@@ -1682,12 +2709,23 @@
      * details. Entities other than “bold”, “italic”, “underline”,
      * “strikethrough”, “spoiler”, “custom_emoji”, and “date_time” are ignored.
      *
-     * @return Telegram Bot API result.
+     * @return True on success.
      */
-    bool giftPremiumSubscription(std::int32_t monthCount, std::int32_t starCount, std::int64_t userId,
+    bool giftPremiumSubscription(std::int32_t monthCount,
+                                 std::int32_t starCount,
+                                 std::int64_t userId,
                                  const std::string& text = "",
                                  const std::vector<std::shared_ptr<MessageEntity>>& textEntities = { },
                                  const std::string& textParseMode = "") const;
+
+    /**
+     * @brief Gifts a Telegram Premium subscription to the given user. Returns True on success.
+     *
+     * @param args Method arguments.
+     *
+     * @return True on success.
+     */
+    bool giftPremiumSubscription(const GiftPremiumSubscriptionArgs& args) const;
 
     /**
      * @brief Use this method to hide the 'General' topic in a forum supergroup chat. The bot must be
@@ -1698,9 +2736,21 @@
      * @param chatId Unique identifier for the target chat or username of the target
      * supergroup in the format @username
      *
-     * @return Telegram Bot API result.
+     * @return True on success.
      */
     bool hideGeneralForumTopic(std::variant<std::int64_t, std::string> chatId) const;
+
+    /**
+     * @brief Use this method to hide the 'General' topic in a forum supergroup chat. The bot must be
+     * an administrator in the chat for this to work and must have the can_manage_topics
+     * administrator rights. The topic will be automatically closed if it was open. Returns
+     * True on success.
+     *
+     * @param args Method arguments.
+     *
+     * @return True on success.
+     */
+    bool hideGeneralForumTopic(const HideGeneralForumTopicArgs& args) const;
 
     /**
      * @brief Use this method for your bot to leave a group, supergroup or channel. Returns True on
@@ -1710,9 +2760,19 @@
      * supergroup or channel in the format @username. Channel direct messages
      * chats aren't supported; leave the corresponding channel instead.
      *
-     * @return Telegram Bot API result.
+     * @return True on success.
      */
     bool leaveChat(std::variant<std::int64_t, std::string> chatId) const;
+
+    /**
+     * @brief Use this method for your bot to leave a group, supergroup or channel. Returns True on
+     * success.
+     *
+     * @param args Method arguments.
+     *
+     * @return True on success.
+     */
+    bool leaveChat(const LeaveChatArgs& args) const;
 
     /**
      * @brief Use this method to log out from the cloud Bot API server before launching the bot
@@ -1722,7 +2782,7 @@
      * Bot API server for 10 minutes. Returns True on success. Requires no parameters.
      *
      *
-     * @return Telegram Bot API result.
+     * @return True on success.
      */
     bool logOut() const;
 
@@ -1742,10 +2802,25 @@
      * members about the new pinned message. Notifications are always disabled
      * in channels and private chats.
      *
-     * @return Telegram Bot API result.
+     * @return True on success.
      */
-    bool pinChatMessage(std::variant<std::int64_t, std::string> chatId, std::int32_t messageId,
-                        const std::string& businessConnectionId = "", bool disableNotification = false) const;
+    bool pinChatMessage(std::variant<std::int64_t, std::string> chatId,
+                        std::int32_t messageId,
+                        const std::string& businessConnectionId = "",
+                        bool disableNotification = false) const;
+
+    /**
+     * @brief Use this method to add a message to the list of pinned messages in a chat. In private
+     * chats and channel direct messages chats, all non-service messages can be pinned.
+     * Conversely, the bot must be an administrator with the 'can_pin_messages' right or the
+     * 'can_edit_messages' right to pin messages in groups and channels respectively. Returns
+     * True on success.
+     *
+     * @param args Method arguments.
+     *
+     * @return True on success.
+     */
+    bool pinChatMessage(const PinChatMessageArgs& args) const;
 
     /**
      * @brief Posts a story on behalf of a managed business account. Requires the can_manage_stories
@@ -1765,13 +2840,27 @@
      * @param protectContent Pass True if the content of the story must be protected from forwarding
      * and screenshotting
      *
-     * @return Telegram Bot API result.
+     * @return The resulting Story object.
      */
-    std::shared_ptr<Story>
-    postStory(std::int32_t activePeriod, const std::string& businessConnectionId,
-              std::shared_ptr<InputStoryContent> content, const std::vector<std::shared_ptr<StoryArea>>& areas = { },
-              const std::string& caption = "", const std::vector<std::shared_ptr<MessageEntity>>& captionEntities = { },
-              const std::string& parseMode = "", bool postToChatPage = false, bool protectContent = false) const;
+    std::shared_ptr<Story> postStory(std::int32_t activePeriod,
+                                     const std::string& businessConnectionId,
+                                     std::shared_ptr<InputStoryContent> content,
+                                     const std::vector<std::shared_ptr<StoryArea>>& areas = { },
+                                     const std::string& caption = "",
+                                     const std::vector<std::shared_ptr<MessageEntity>>& captionEntities = { },
+                                     const std::string& parseMode = "",
+                                     bool postToChatPage = false,
+                                     bool protectContent = false) const;
+
+    /**
+     * @brief Posts a story on behalf of a managed business account. Requires the can_manage_stories
+     * business bot right. Returns Story on success.
+     *
+     * @param args Method arguments.
+     *
+     * @return The resulting Story object.
+     */
+    std::shared_ptr<Story> postStory(const PostStoryArgs& args) const;
 
     /**
      * @brief Use this method to promote or demote a user in a supergroup or a channel. The bot must
@@ -1816,16 +2905,39 @@
      * @param canManageTags Pass True if the administrator can edit the tags of regular members; for
      * groups and supergroups only
      *
-     * @return Telegram Bot API result.
+     * @return True on success.
      */
-    bool promoteChatMember(std::variant<std::int64_t, std::string> chatId, std::int64_t userId,
-                           bool canChangeInfo = false, bool canPostMessages = false, bool canEditMessages = false,
-                           bool canDeleteMessages = false, bool canInviteUsers = false, bool canPinMessages = false,
-                           bool canPromoteMembers = false, bool isAnonymous = false, bool canManageChat = false,
-                           bool canManageVideoChats = false, bool canRestrictMembers = false,
-                           bool canManageTopics = false, bool canPostStories = false, bool canEditStories = false,
-                           bool canDeleteStories = false, bool canManageDirectMessages = false,
+    bool promoteChatMember(std::variant<std::int64_t, std::string> chatId,
+                           std::int64_t userId,
+                           bool canChangeInfo = false,
+                           bool canPostMessages = false,
+                           bool canEditMessages = false,
+                           bool canDeleteMessages = false,
+                           bool canInviteUsers = false,
+                           bool canPinMessages = false,
+                           bool canPromoteMembers = false,
+                           bool isAnonymous = false,
+                           bool canManageChat = false,
+                           bool canManageVideoChats = false,
+                           bool canRestrictMembers = false,
+                           bool canManageTopics = false,
+                           bool canPostStories = false,
+                           bool canEditStories = false,
+                           bool canDeleteStories = false,
+                           bool canManageDirectMessages = false,
                            bool canManageTags = false) const;
+
+    /**
+     * @brief Use this method to promote or demote a user in a supergroup or a channel. The bot must
+     * be an administrator in the chat for this to work and must have the appropriate
+     * administrator rights. Pass False for all boolean parameters to demote a user. Returns
+     * True on success.
+     *
+     * @param args Method arguments.
+     *
+     * @return True on success.
+     */
+    bool promoteChatMember(const PromoteChatMemberArgs& args) const;
 
     /**
      * @brief Marks incoming message as read on behalf of a business account. Requires the
@@ -1837,10 +2949,21 @@
      * the message
      * @param messageId Unique identifier of the message to mark as read
      *
-     * @return Telegram Bot API result.
+     * @return True on success.
      */
-    bool readBusinessMessage(std::variant<std::int64_t, std::string> chatId, const std::string& businessConnectionId,
+    bool readBusinessMessage(std::variant<std::int64_t, std::string> chatId,
+                             const std::string& businessConnectionId,
                              std::int32_t messageId) const;
+
+    /**
+     * @brief Marks incoming message as read on behalf of a business account. Requires the
+     * can_read_messages business bot right. Returns True on success.
+     *
+     * @param args Method arguments.
+     *
+     * @return True on success.
+     */
+    bool readBusinessMessage(const ReadBusinessMessageArgs& args) const;
 
     /**
      * @brief Refunds a successful payment in Telegram Stars. Returns True on success.
@@ -1848,9 +2971,18 @@
      * @param telegramPaymentChargeId Telegram payment identifier
      * @param userId Identifier of the user whose payment will be refunded
      *
-     * @return Telegram Bot API result.
+     * @return True on success.
      */
     bool refundStarPayment(const std::string& telegramPaymentChargeId, std::int64_t userId) const;
+
+    /**
+     * @brief Refunds a successful payment in Telegram Stars. Returns True on success.
+     *
+     * @param args Method arguments.
+     *
+     * @return True on success.
+     */
+    bool refundStarPayment(const RefundStarPaymentArgs& args) const;
 
     /**
      * @brief Removes the current profile photo of a managed business account. Requires the
@@ -1862,9 +2994,19 @@
      * main photo is removed, the previous profile photo (if present) becomes
      * the main photo.
      *
-     * @return Telegram Bot API result.
+     * @return True on success.
      */
     bool removeBusinessAccountProfilePhoto(const std::string& businessConnectionId, bool isPublic = false) const;
+
+    /**
+     * @brief Removes the current profile photo of a managed business account. Requires the
+     * can_edit_profile_photo business bot right. Returns True on success.
+     *
+     * @param args Method arguments.
+     *
+     * @return True on success.
+     */
+    bool removeBusinessAccountProfilePhoto(const RemoveBusinessAccountProfilePhotoArgs& args) const;
 
     /**
      * @brief Removes verification from a chat that is currently verified on behalf of the
@@ -1873,15 +3015,25 @@
      * @param chatId Unique identifier for the target chat or username of the target bot or
      * channel in the format @username
      *
-     * @return Telegram Bot API result.
+     * @return True on success.
      */
     bool removeChatVerification(std::variant<std::int64_t, std::string> chatId) const;
+
+    /**
+     * @brief Removes verification from a chat that is currently verified on behalf of the
+     * organization represented by the bot. Returns True on success.
+     *
+     * @param args Method arguments.
+     *
+     * @return True on success.
+     */
+    bool removeChatVerification(const RemoveChatVerificationArgs& args) const;
 
     /**
      * @brief Removes the profile photo of the bot. Requires no parameters. Returns True on success.
      *
      *
-     * @return Telegram Bot API result.
+     * @return True on success.
      */
     bool removeMyProfilePhoto() const;
 
@@ -1891,9 +3043,19 @@
      *
      * @param userId Unique identifier of the target user
      *
-     * @return Telegram Bot API result.
+     * @return True on success.
      */
     bool removeUserVerification(std::int64_t userId) const;
+
+    /**
+     * @brief Removes verification from a user who is currently verified on behalf of the organization
+     * represented by the bot. Returns True on success.
+     *
+     * @param args Method arguments.
+     *
+     * @return True on success.
+     */
+    bool removeUserVerification(const RemoveUserVerificationArgs& args) const;
 
     /**
      * @brief Use this method to reopen a closed topic in a forum supergroup chat. The bot must be an
@@ -1904,9 +3066,20 @@
      * supergroup in the format @username
      * @param messageThreadId Unique identifier for the target message thread of the forum topic
      *
-     * @return Telegram Bot API result.
+     * @return True on success.
      */
     bool reopenForumTopic(std::variant<std::int64_t, std::string> chatId, std::int32_t messageThreadId) const;
+
+    /**
+     * @brief Use this method to reopen a closed topic in a forum supergroup chat. The bot must be an
+     * administrator in the chat for this to work and must have the can_manage_topics
+     * administrator rights, unless it is the creator of the topic. Returns True on success.
+     *
+     * @param args Method arguments.
+     *
+     * @return True on success.
+     */
+    bool reopenForumTopic(const ReopenForumTopicArgs& args) const;
 
     /**
      * @brief Use this method to reopen a closed 'General' topic in a forum supergroup chat. The bot
@@ -1917,9 +3090,21 @@
      * @param chatId Unique identifier for the target chat or username of the target
      * supergroup in the format @username
      *
-     * @return Telegram Bot API result.
+     * @return True on success.
      */
     bool reopenGeneralForumTopic(std::variant<std::int64_t, std::string> chatId) const;
+
+    /**
+     * @brief Use this method to reopen a closed 'General' topic in a forum supergroup chat. The bot
+     * must be an administrator in the chat for this to work and must have the
+     * can_manage_topics administrator rights. The topic will be automatically unhidden if it
+     * was hidden. Returns True on success.
+     *
+     * @param args Method arguments.
+     *
+     * @return True on success.
+     */
+    bool reopenGeneralForumTopic(const ReopenGeneralForumTopicArgs& args) const;
 
     /**
      * @brief Use this method to revoke the current token of a managed bot and generate a new one.
@@ -1927,9 +3112,19 @@
      *
      * @param userId User identifier of the managed bot whose token will be replaced
      *
-     * @return Telegram Bot API result.
+     * @return The resulting string.
      */
     std::string replaceManagedBotToken(std::int64_t userId) const;
+
+    /**
+     * @brief Use this method to revoke the current token of a managed bot and generate a new one.
+     * Returns the new token as String on success.
+     *
+     * @param args Method arguments.
+     *
+     * @return The resulting string.
+     */
+    std::string replaceManagedBotToken(const ReplaceManagedBotTokenArgs& args) const;
 
     /**
      * @brief Use this method to replace an existing sticker in a sticker set with a new one. The
@@ -1943,10 +3138,23 @@
      * exactly the same sticker had already been added to the set, then the set
      * remains unchanged.
      *
-     * @return Telegram Bot API result.
+     * @return True on success.
      */
-    bool replaceStickerInSet(std::int64_t userId, const std::string& name, const std::string& oldSticker,
+    bool replaceStickerInSet(std::int64_t userId,
+                             const std::string& name,
+                             const std::string& oldSticker,
                              std::shared_ptr<InputSticker> sticker) const;
+
+    /**
+     * @brief Use this method to replace an existing sticker in a sticker set with a new one. The
+     * method is equivalent to calling deleteStickerFromSet, then addStickerToSet, then
+     * setStickerPositionInSet. Returns True on success.
+     *
+     * @param args Method arguments.
+     *
+     * @return True on success.
+     */
+    bool replaceStickerInSet(const ReplaceStickerInSetArgs& args) const;
 
     /**
      * @brief Reposts a story on behalf of a business account from another business account. Both
@@ -1964,11 +3172,26 @@
      * @param protectContent Pass True if the content of the story must be protected from forwarding
      * and screenshotting
      *
-     * @return Telegram Bot API result.
+     * @return The resulting Story object.
      */
-    std::shared_ptr<Story> repostStory(std::int32_t activePeriod, const std::string& businessConnectionId,
-                                       std::variant<std::int64_t, std::string> fromChatId, std::int32_t fromStoryId,
-                                       bool postToChatPage = false, bool protectContent = false) const;
+    std::shared_ptr<Story> repostStory(std::int32_t activePeriod,
+                                       const std::string& businessConnectionId,
+                                       std::variant<std::int64_t, std::string> fromChatId,
+                                       std::int32_t fromStoryId,
+                                       bool postToChatPage = false,
+                                       bool protectContent = false) const;
+
+    /**
+     * @brief Reposts a story on behalf of a business account from another business account. Both
+     * business accounts must be managed by the same bot, and the story on the source account
+     * must have been posted (or reposted) by the bot. Requires the can_manage_stories business
+     * bot right for both business accounts. Returns Story on success.
+     *
+     * @param args Method arguments.
+     *
+     * @return The resulting Story object.
+     */
+    std::shared_ptr<Story> repostStory(const RepostStoryArgs& args) const;
 
     /**
      * @brief Use this method to restrict a user in a supergroup. The bot must be an administrator in
@@ -1989,11 +3212,24 @@
      * can_send_voice_notes permissions; the can_send_polls permission will
      * imply the can_send_messages permission.
      *
-     * @return Telegram Bot API result.
+     * @return True on success.
      */
-    bool restrictChatMember(std::variant<std::int64_t, std::string> chatId, std::int64_t userId,
-                            std::shared_ptr<ChatPermissions> permissions, std::int32_t untilDate = 0,
+    bool restrictChatMember(std::variant<std::int64_t, std::string> chatId,
+                            std::int64_t userId,
+                            std::shared_ptr<ChatPermissions> permissions,
+                            std::int32_t untilDate = 0,
                             bool useIndependentChatPermissions = false) const;
+
+    /**
+     * @brief Use this method to restrict a user in a supergroup. The bot must be an administrator in
+     * the supergroup for this to work and must have the appropriate administrator rights. Pass
+     * True for all permissions to lift restrictions from a user. Returns True on success.
+     *
+     * @param args Method arguments.
+     *
+     * @return True on success.
+     */
+    bool restrictChatMember(const RestrictChatMemberArgs& args) const;
 
     /**
      * @brief Use this method to revoke an invite link created by the bot. If the primary link is
@@ -2005,10 +3241,22 @@
      * in the format @username
      * @param inviteLink The invite link to revoke
      *
-     * @return Telegram Bot API result.
+     * @return The resulting ChatInviteLink object.
      */
     std::shared_ptr<ChatInviteLink> revokeChatInviteLink(std::variant<std::int64_t, std::string> chatId,
                                                          const std::string& inviteLink) const;
+
+    /**
+     * @brief Use this method to revoke an invite link created by the bot. If the primary link is
+     * revoked, a new link is automatically generated. The bot must be an administrator in the
+     * chat for this to work and must have the appropriate administrator rights. Returns the
+     * revoked invite link as ChatInviteLink object.
+     *
+     * @param args Method arguments.
+     *
+     * @return The resulting ChatInviteLink object.
+     */
+    std::shared_ptr<ChatInviteLink> revokeChatInviteLink(const RevokeChatInviteLinkArgs& args) const;
 
     /**
      * @brief Stores a message that can be sent by a user of a Mini App. Returns a
@@ -2021,13 +3269,25 @@
      * @param allowGroupChats Pass True if the message can be sent to group and supergroup chats
      * @param allowUserChats Pass True if the message can be sent to private chats with users
      *
-     * @return Telegram Bot API result.
+     * @return The resulting PreparedInlineMessage object.
      */
     std::shared_ptr<PreparedInlineMessage> savePreparedInlineMessage(std::shared_ptr<InlineQueryResult> result,
-                                                                     std::int64_t userId, bool allowBotChats = false,
+                                                                     std::int64_t userId,
+                                                                     bool allowBotChats = false,
                                                                      bool allowChannelChats = false,
                                                                      bool allowGroupChats = false,
                                                                      bool allowUserChats = false) const;
+
+    /**
+     * @brief Stores a message that can be sent by a user of a Mini App. Returns a
+     * PreparedInlineMessage object.
+     *
+     * @param args Method arguments.
+     *
+     * @return The resulting PreparedInlineMessage object.
+     */
+    std::shared_ptr<PreparedInlineMessage>
+    savePreparedInlineMessage(const SavePreparedInlineMessageArgs& args) const;
 
     /**
      * @brief Stores a keyboard button that can be used by a user within a Mini App. Returns a
@@ -2037,10 +3297,21 @@
      * must be of the type request_users, request_chat, or request_managed_bot.
      * @param userId Unique identifier of the target user that can use the button
      *
-     * @return Telegram Bot API result.
+     * @return The resulting PreparedKeyboardButton object.
      */
     std::shared_ptr<PreparedKeyboardButton> savePreparedKeyboardButton(std::shared_ptr<KeyboardButton> button,
                                                                        std::int64_t userId) const;
+
+    /**
+     * @brief Stores a keyboard button that can be used by a user within a Mini App. Returns a
+     * PreparedKeyboardButton object.
+     *
+     * @param args Method arguments.
+     *
+     * @return The resulting PreparedKeyboardButton object.
+     */
+    std::shared_ptr<PreparedKeyboardButton>
+    savePreparedKeyboardButton(const SavePreparedKeyboardButtonArgs& args) const;
 
     /**
      * @brief Use this method to send animation files (GIF or H.264/MPEG-4 AVC video without sound).
@@ -2103,23 +3374,46 @@
      * reply to another suggested post, then that suggested post is
      * automatically declined.
      *
-     * @return Telegram Bot API result.
+     * @return The resulting Message object.
      */
-    std::shared_ptr<Message> sendAnimation(
-        std::variant<std::int64_t, std::string> chatId, std::variant<std::shared_ptr<InputFile>, std::string> animation,
-        std::int32_t duration = 0, std::int32_t width = 0, std::int32_t height = 0,
-        std::variant<std::shared_ptr<InputFile>, std::string> thumbnail = { }, const std::string& caption = "",
-        std::shared_ptr<ReplyParameters> replyParameters = nullptr,
-        std::variant<std::shared_ptr<InlineKeyboardMarkup>, std::shared_ptr<ReplyKeyboardMarkup>,
-                     std::shared_ptr<ReplyKeyboardRemove>, std::shared_ptr<ForceReply>>
-            replyMarkup = { },
-        const std::string& parseMode = "", bool disableNotification = false,
-        const std::vector<std::shared_ptr<MessageEntity>>& captionEntities = { }, std::int32_t messageThreadId = 0,
-        bool protectContent = false, bool hasSpoiler = false, const std::string& businessConnectionId = "",
-        bool allowPaidBroadcast = false, const std::string& callbackQueryId = "",
-        std::int64_t directMessagesTopicId = 0, const std::string& messageEffectId = "",
-        std::int64_t receiverUserId = 0, bool showCaptionAboveMedia = false,
-        std::shared_ptr<SuggestedPostParameters> suggestedPostParameters = nullptr) const;
+    std::shared_ptr<Message> sendAnimation(std::variant<std::int64_t, std::string> chatId,
+                                           std::variant<std::shared_ptr<InputFile>, std::string> animation,
+                                           std::int32_t duration = 0,
+                                           std::int32_t width = 0,
+                                           std::int32_t height = 0,
+                                           std::variant<std::shared_ptr<InputFile>, std::string> thumbnail = { },
+                                           const std::string& caption = "",
+                                           std::shared_ptr<ReplyParameters> replyParameters = nullptr,
+                                           std::variant<std::shared_ptr<InlineKeyboardMarkup>,
+                                                        std::shared_ptr<ReplyKeyboardMarkup>,
+                                                        std::shared_ptr<ReplyKeyboardRemove>,
+                                                        std::shared_ptr<ForceReply>> replyMarkup = { },
+                                           const std::string& parseMode = "",
+                                           bool disableNotification = false,
+                                           const std::vector<std::shared_ptr<MessageEntity>>& captionEntities = { },
+                                           std::int32_t messageThreadId = 0,
+                                           bool protectContent = false,
+                                           bool hasSpoiler = false,
+                                           const std::string& businessConnectionId = "",
+                                           bool allowPaidBroadcast = false,
+                                           const std::string& callbackQueryId = "",
+                                           std::int64_t directMessagesTopicId = 0,
+                                           const std::string& messageEffectId = "",
+                                           std::int64_t receiverUserId = 0,
+                                           bool showCaptionAboveMedia = false,
+                                           std::shared_ptr<SuggestedPostParameters> suggestedPostParameters
+                                           = nullptr) const;
+
+    /**
+     * @brief Use this method to send animation files (GIF or H.264/MPEG-4 AVC video without sound).
+     * On success, the sent Message is returned. Bots can currently send animation files of up
+     * to 50 MB in size, this limit may be changed in the future.
+     *
+     * @param args Method arguments.
+     *
+     * @return The resulting Message object.
+     */
+    std::shared_ptr<Message> sendAnimation(const SendAnimationArgs& args) const;
 
     /**
      * @brief Use this method to send audio files, if you want Telegram clients to display them in the
@@ -2180,22 +3474,46 @@
      * reply to another suggested post, then that suggested post is
      * automatically declined.
      *
-     * @return Telegram Bot API result.
+     * @return The resulting Message object.
      */
-    std::shared_ptr<Message> sendAudio(
-        std::variant<std::int64_t, std::string> chatId, std::variant<std::shared_ptr<InputFile>, std::string> audio,
-        const std::string& caption = "", std::int32_t duration = 0, const std::string& performer = "",
-        const std::string& title = "", std::variant<std::shared_ptr<InputFile>, std::string> thumbnail = { },
-        std::shared_ptr<ReplyParameters> replyParameters = nullptr,
-        std::variant<std::shared_ptr<InlineKeyboardMarkup>, std::shared_ptr<ReplyKeyboardMarkup>,
-                     std::shared_ptr<ReplyKeyboardRemove>, std::shared_ptr<ForceReply>>
-            replyMarkup = { },
-        const std::string& parseMode = "", bool disableNotification = false,
-        const std::vector<std::shared_ptr<MessageEntity>>& captionEntities = { }, std::int32_t messageThreadId = 0,
-        bool protectContent = false, const std::string& businessConnectionId = "", bool allowPaidBroadcast = false,
-        const std::string& callbackQueryId = "", std::int64_t directMessagesTopicId = 0,
-        const std::string& messageEffectId = "", std::int64_t receiverUserId = 0,
-        std::shared_ptr<SuggestedPostParameters> suggestedPostParameters = nullptr) const;
+    std::shared_ptr<Message> sendAudio(std::variant<std::int64_t, std::string> chatId,
+                                       std::variant<std::shared_ptr<InputFile>, std::string> audio,
+                                       const std::string& caption = "",
+                                       std::int32_t duration = 0,
+                                       const std::string& performer = "",
+                                       const std::string& title = "",
+                                       std::variant<std::shared_ptr<InputFile>, std::string> thumbnail = { },
+                                       std::shared_ptr<ReplyParameters> replyParameters = nullptr,
+                                       std::variant<std::shared_ptr<InlineKeyboardMarkup>,
+                                                    std::shared_ptr<ReplyKeyboardMarkup>,
+                                                    std::shared_ptr<ReplyKeyboardRemove>,
+                                                    std::shared_ptr<ForceReply>> replyMarkup = { },
+                                       const std::string& parseMode = "",
+                                       bool disableNotification = false,
+                                       const std::vector<std::shared_ptr<MessageEntity>>& captionEntities = { },
+                                       std::int32_t messageThreadId = 0,
+                                       bool protectContent = false,
+                                       const std::string& businessConnectionId = "",
+                                       bool allowPaidBroadcast = false,
+                                       const std::string& callbackQueryId = "",
+                                       std::int64_t directMessagesTopicId = 0,
+                                       const std::string& messageEffectId = "",
+                                       std::int64_t receiverUserId = 0,
+                                       std::shared_ptr<SuggestedPostParameters> suggestedPostParameters
+                                       = nullptr) const;
+
+    /**
+     * @brief Use this method to send audio files, if you want Telegram clients to display them in the
+     * music player. Your audio must be in the .MP3 or .M4A format. On success, the sent
+     * Message is returned. Bots can currently send audio files of up to 50 MB in size, this
+     * limit may be changed in the future. For sending voice messages, use the sendVoice method
+     * instead.
+     *
+     * @param args Method arguments.
+     *
+     * @return The resulting Message object.
+     */
+    std::shared_ptr<Message> sendAudio(const SendAudioArgs& args) const;
 
     /**
      * @brief Use this method when you need to tell the user that something is happening on the bot's
@@ -2218,10 +3536,25 @@
      * @param businessConnectionId Unique identifier of the business connection on behalf of which the
      * action will be sent
      *
-     * @return Telegram Bot API result.
+     * @return True on success.
      */
-    bool sendChatAction(std::variant<std::int64_t, std::string> chatId, const std::string& action,
-                        std::int32_t messageThreadId = 0, const std::string& businessConnectionId = "") const;
+    bool sendChatAction(std::variant<std::int64_t, std::string> chatId,
+                        const std::string& action,
+                        std::int32_t messageThreadId = 0,
+                        const std::string& businessConnectionId = "") const;
+
+    /**
+     * @brief Use this method when you need to tell the user that something is happening on the bot's
+     * side. The status is set for 5 seconds or less (when a message arrives from your bot,
+     * Telegram clients clear its typing status). Returns True on success. We only recommend
+     * using this method when a response from the bot will take a noticeable amount of time to
+     * arrive.
+     *
+     * @param args Method arguments.
+     *
+     * @return True on success.
+     */
+    bool sendChatAction(const SendChatActionArgs& args) const;
 
     /**
      * @brief Use this method to process a received chat join request query by showing a Mini App to
@@ -2233,9 +3566,21 @@
      * @param webAppUrl An HTTPS URL of a Web App to be opened with additional data as specified
      * in Initializing Web Apps
      *
-     * @return Telegram Bot API result.
+     * @return True on success.
      */
     bool sendChatJoinRequestWebApp(const std::string& chatJoinRequestQueryId, const std::string& webAppUrl) const;
+
+    /**
+     * @brief Use this method to process a received chat join request query by showing a Mini App to
+     * the user before deciding the outcome. Call answerChatJoinRequestQuery to resolve the
+     * join request query based on the user interaction with the Mini App. Returns True on
+     * success.
+     *
+     * @param args Method arguments.
+     *
+     * @return True on success.
+     */
+    bool sendChatJoinRequestWebApp(const SendChatJoinRequestWebAppArgs& args) const;
 
     /**
      * @brief Use this method to send a checklist on behalf of a connected business account. On
@@ -2253,14 +3598,26 @@
      * @param replyMarkup A JSON-serialized object for an inline keyboard
      * @param replyParameters A JSON-serialized object for description of the message to reply to
      *
-     * @return Telegram Bot API result.
+     * @return The resulting Message object.
      */
     std::shared_ptr<Message> sendChecklist(std::variant<std::int64_t, std::string> chatId,
                                            const std::string& businessConnectionId,
-                                           std::shared_ptr<InputChecklist> checklist, bool disableNotification = false,
-                                           const std::string& messageEffectId = "", bool protectContent = false,
+                                           std::shared_ptr<InputChecklist> checklist,
+                                           bool disableNotification = false,
+                                           const std::string& messageEffectId = "",
+                                           bool protectContent = false,
                                            std::shared_ptr<InlineKeyboardMarkup> replyMarkup = nullptr,
                                            std::shared_ptr<ReplyParameters> replyParameters = nullptr) const;
+
+    /**
+     * @brief Use this method to send a checklist on behalf of a connected business account. On
+     * success, the sent Message is returned.
+     *
+     * @param args Method arguments.
+     *
+     * @return The resulting Message object.
+     */
+    std::shared_ptr<Message> sendChecklist(const SendChecklistArgs& args) const;
 
     /**
      * @brief Use this method to send phone contacts. On success, the sent Message is returned.
@@ -2301,20 +3658,38 @@
      * reply to another suggested post, then that suggested post is
      * automatically declined.
      *
-     * @return Telegram Bot API result.
+     * @return The resulting Message object.
      */
-    std::shared_ptr<Message>
-    sendContact(std::variant<std::int64_t, std::string> chatId, const std::string& phoneNumber,
-                const std::string& firstName, const std::string& lastName = "", const std::string& vcard = "",
-                bool disableNotification = false, std::shared_ptr<ReplyParameters> replyParameters = nullptr,
-                std::variant<std::shared_ptr<InlineKeyboardMarkup>, std::shared_ptr<ReplyKeyboardMarkup>,
-                             std::shared_ptr<ReplyKeyboardRemove>, std::shared_ptr<ForceReply>>
-                    replyMarkup = { },
-                std::int32_t messageThreadId = 0, bool protectContent = false,
-                const std::string& businessConnectionId = "", bool allowPaidBroadcast = false,
-                const std::string& callbackQueryId = "", std::int64_t directMessagesTopicId = 0,
-                const std::string& messageEffectId = "", std::int64_t receiverUserId = 0,
-                std::shared_ptr<SuggestedPostParameters> suggestedPostParameters = nullptr) const;
+    std::shared_ptr<Message> sendContact(std::variant<std::int64_t, std::string> chatId,
+                                         const std::string& phoneNumber,
+                                         const std::string& firstName,
+                                         const std::string& lastName = "",
+                                         const std::string& vcard = "",
+                                         bool disableNotification = false,
+                                         std::shared_ptr<ReplyParameters> replyParameters = nullptr,
+                                         std::variant<std::shared_ptr<InlineKeyboardMarkup>,
+                                                      std::shared_ptr<ReplyKeyboardMarkup>,
+                                                      std::shared_ptr<ReplyKeyboardRemove>,
+                                                      std::shared_ptr<ForceReply>> replyMarkup = { },
+                                         std::int32_t messageThreadId = 0,
+                                         bool protectContent = false,
+                                         const std::string& businessConnectionId = "",
+                                         bool allowPaidBroadcast = false,
+                                         const std::string& callbackQueryId = "",
+                                         std::int64_t directMessagesTopicId = 0,
+                                         const std::string& messageEffectId = "",
+                                         std::int64_t receiverUserId = 0,
+                                         std::shared_ptr<SuggestedPostParameters> suggestedPostParameters
+                                         = nullptr) const;
+
+    /**
+     * @brief Use this method to send phone contacts. On success, the sent Message is returned.
+     *
+     * @param args Method arguments.
+     *
+     * @return The resulting Message object.
+     */
+    std::shared_ptr<Message> sendContact(const SendContactArgs& args) const;
 
     /**
      * @brief Use this method to send an animated emoji that will display a random value. On success,
@@ -2349,18 +3724,34 @@
      * reply to another suggested post, then that suggested post is
      * automatically declined.
      *
-     * @return Telegram Bot API result.
+     * @return The resulting Message object.
      */
-    std::shared_ptr<Message>
-    sendDice(std::variant<std::int64_t, std::string> chatId, bool disableNotification = false,
-             std::shared_ptr<ReplyParameters> replyParameters = nullptr,
-             std::variant<std::shared_ptr<InlineKeyboardMarkup>, std::shared_ptr<ReplyKeyboardMarkup>,
-                          std::shared_ptr<ReplyKeyboardRemove>, std::shared_ptr<ForceReply>>
-                 replyMarkup = { },
-             const std::string& emoji = "", std::int32_t messageThreadId = 0, bool protectContent = false,
-             const std::string& businessConnectionId = "", bool allowPaidBroadcast = false,
-             std::int64_t directMessagesTopicId = 0, const std::string& messageEffectId = "",
-             std::shared_ptr<SuggestedPostParameters> suggestedPostParameters = nullptr) const;
+    std::shared_ptr<Message> sendDice(std::variant<std::int64_t, std::string> chatId,
+                                      bool disableNotification = false,
+                                      std::shared_ptr<ReplyParameters> replyParameters = nullptr,
+                                      std::variant<std::shared_ptr<InlineKeyboardMarkup>,
+                                                   std::shared_ptr<ReplyKeyboardMarkup>,
+                                                   std::shared_ptr<ReplyKeyboardRemove>,
+                                                   std::shared_ptr<ForceReply>> replyMarkup = { },
+                                      const std::string& emoji = "",
+                                      std::int32_t messageThreadId = 0,
+                                      bool protectContent = false,
+                                      const std::string& businessConnectionId = "",
+                                      bool allowPaidBroadcast = false,
+                                      std::int64_t directMessagesTopicId = 0,
+                                      const std::string& messageEffectId = "",
+                                      std::shared_ptr<SuggestedPostParameters> suggestedPostParameters
+                                      = nullptr) const;
+
+    /**
+     * @brief Use this method to send an animated emoji that will display a random value. On success,
+     * the sent Message is returned.
+     *
+     * @param args Method arguments.
+     *
+     * @return The resulting Message object.
+     */
+    std::shared_ptr<Message> sendDice(const SendDiceArgs& args) const;
 
     /**
      * @brief Use this method to send general files. On success, the sent Message is returned. Bots
@@ -2419,22 +3810,42 @@
      * reply to another suggested post, then that suggested post is
      * automatically declined.
      *
-     * @return Telegram Bot API result.
+     * @return The resulting Message object.
      */
-    std::shared_ptr<Message> sendDocument(
-        std::variant<std::int64_t, std::string> chatId, std::variant<std::shared_ptr<InputFile>, std::string> document,
-        std::variant<std::shared_ptr<InputFile>, std::string> thumbnail = { }, const std::string& caption = "",
-        std::shared_ptr<ReplyParameters> replyParameters = nullptr,
-        std::variant<std::shared_ptr<InlineKeyboardMarkup>, std::shared_ptr<ReplyKeyboardMarkup>,
-                     std::shared_ptr<ReplyKeyboardRemove>, std::shared_ptr<ForceReply>>
-            replyMarkup = { },
-        const std::string& parseMode = "", bool disableNotification = false,
-        const std::vector<std::shared_ptr<MessageEntity>>& captionEntities = { },
-        bool disableContentTypeDetection = false, std::int32_t messageThreadId = 0, bool protectContent = false,
-        const std::string& businessConnectionId = "", bool allowPaidBroadcast = false,
-        const std::string& callbackQueryId = "", std::int64_t directMessagesTopicId = 0,
-        const std::string& messageEffectId = "", std::int64_t receiverUserId = 0,
-        std::shared_ptr<SuggestedPostParameters> suggestedPostParameters = nullptr) const;
+    std::shared_ptr<Message> sendDocument(std::variant<std::int64_t, std::string> chatId,
+                                          std::variant<std::shared_ptr<InputFile>, std::string> document,
+                                          std::variant<std::shared_ptr<InputFile>, std::string> thumbnail = { },
+                                          const std::string& caption = "",
+                                          std::shared_ptr<ReplyParameters> replyParameters = nullptr,
+                                          std::variant<std::shared_ptr<InlineKeyboardMarkup>,
+                                                       std::shared_ptr<ReplyKeyboardMarkup>,
+                                                       std::shared_ptr<ReplyKeyboardRemove>,
+                                                       std::shared_ptr<ForceReply>> replyMarkup = { },
+                                          const std::string& parseMode = "",
+                                          bool disableNotification = false,
+                                          const std::vector<std::shared_ptr<MessageEntity>>& captionEntities = { },
+                                          bool disableContentTypeDetection = false,
+                                          std::int32_t messageThreadId = 0,
+                                          bool protectContent = false,
+                                          const std::string& businessConnectionId = "",
+                                          bool allowPaidBroadcast = false,
+                                          const std::string& callbackQueryId = "",
+                                          std::int64_t directMessagesTopicId = 0,
+                                          const std::string& messageEffectId = "",
+                                          std::int64_t receiverUserId = 0,
+                                          std::shared_ptr<SuggestedPostParameters> suggestedPostParameters
+                                          = nullptr) const;
+
+    /**
+     * @brief Use this method to send general files. On success, the sent Message is returned. Bots
+     * can currently send files of any type of up to 50 MB in size, this limit may be changed
+     * in the future.
+     *
+     * @param args Method arguments.
+     *
+     * @return The resulting Message object.
+     */
+    std::shared_ptr<Message> sendDocument(const SendDocumentArgs& args) const;
 
     /**
      * @brief Use this method to send a game. On success, the sent Message is returned.
@@ -2462,14 +3873,27 @@
      * @param messageEffectId Unique identifier of the message effect to be added to the message; for
      * private chats only
      *
-     * @return Telegram Bot API result.
+     * @return The resulting Message object.
      */
-    std::shared_ptr<Message> sendGame(std::variant<std::int64_t, std::string> chatId, const std::string& gameShortName,
+    std::shared_ptr<Message> sendGame(std::variant<std::int64_t, std::string> chatId,
+                                      const std::string& gameShortName,
                                       std::shared_ptr<ReplyParameters> replyParameters = nullptr,
                                       std::shared_ptr<InlineKeyboardMarkup> replyMarkup = nullptr,
-                                      bool disableNotification = false, std::int32_t messageThreadId = 0,
-                                      bool protectContent = false, const std::string& businessConnectionId = "",
-                                      bool allowPaidBroadcast = false, const std::string& messageEffectId = "") const;
+                                      bool disableNotification = false,
+                                      std::int32_t messageThreadId = 0,
+                                      bool protectContent = false,
+                                      const std::string& businessConnectionId = "",
+                                      bool allowPaidBroadcast = false,
+                                      const std::string& messageEffectId = "") const;
+
+    /**
+     * @brief Use this method to send a game. On success, the sent Message is returned.
+     *
+     * @param args Method arguments.
+     *
+     * @return The resulting Message object.
+     */
+    std::shared_ptr<Message> sendGame(const SendGameArgs& args) const;
 
     /**
      * @brief Sends a gift to the given user or channel chat. The gift can't be converted to Telegram
@@ -2492,12 +3916,25 @@
      * @param userId Required if chat_id is not specified. Unique identifier of the target
      * user who will receive the gift.
      *
-     * @return Telegram Bot API result.
+     * @return True on success.
      */
-    bool sendGift(const std::string& giftId, std::variant<std::int64_t, std::string> chatId = { },
-                  bool payForUpgrade = false, const std::string& text = "",
+    bool sendGift(const std::string& giftId,
+                  std::variant<std::int64_t, std::string> chatId = { },
+                  bool payForUpgrade = false,
+                  const std::string& text = "",
                   const std::vector<std::shared_ptr<MessageEntity>>& textEntities = { },
-                  const std::string& textParseMode = "", std::int64_t userId = 0) const;
+                  const std::string& textParseMode = "",
+                  std::int64_t userId = 0) const;
+
+    /**
+     * @brief Sends a gift to the given user or channel chat. The gift can't be converted to Telegram
+     * Stars by the receiver. Returns True on success.
+     *
+     * @param args Method arguments.
+     *
+     * @return True on success.
+     */
+    bool sendGift(const SendGiftArgs& args) const;
 
     /**
      * @brief Use this method to send invoices. On success, the sent Message is returned.
@@ -2577,23 +4014,49 @@
      * reply to another suggested post, then that suggested post is
      * automatically declined.
      *
-     * @return Telegram Bot API result.
+     * @return The resulting Message object.
      */
-    std::shared_ptr<Message>
-    sendInvoice(std::variant<std::int64_t, std::string> chatId, const std::string& title,
-                const std::string& description, const std::string& payload, const std::string& providerToken,
-                const std::string& currency, const std::vector<std::shared_ptr<LabeledPrice>>& prices,
-                const std::string& providerData = "", const std::string& photoUrl = "", std::int32_t photoSize = 0,
-                std::int32_t photoWidth = 0, std::int32_t photoHeight = 0, bool needName = false,
-                bool needPhoneNumber = false, bool needEmail = false, bool needShippingAddress = false,
-                bool sendPhoneNumberToProvider = false, bool sendEmailToProvider = false, bool isFlexible = false,
-                std::shared_ptr<ReplyParameters> replyParameters = nullptr,
-                std::shared_ptr<InlineKeyboardMarkup> replyMarkup = nullptr, bool disableNotification = false,
-                std::int32_t messageThreadId = 0, std::int32_t maxTipAmount = 0,
-                const std::vector<std::int32_t>& suggestedTipAmounts = { }, const std::string& startParameter = "",
-                bool protectContent = false, bool allowPaidBroadcast = false, std::int64_t directMessagesTopicId = 0,
-                const std::string& messageEffectId = "",
-                std::shared_ptr<SuggestedPostParameters> suggestedPostParameters = nullptr) const;
+    std::shared_ptr<Message> sendInvoice(std::variant<std::int64_t, std::string> chatId,
+                                         const std::string& title,
+                                         const std::string& description,
+                                         const std::string& payload,
+                                         const std::string& providerToken,
+                                         const std::string& currency,
+                                         const std::vector<std::shared_ptr<LabeledPrice>>& prices,
+                                         const std::string& providerData = "",
+                                         const std::string& photoUrl = "",
+                                         std::int32_t photoSize = 0,
+                                         std::int32_t photoWidth = 0,
+                                         std::int32_t photoHeight = 0,
+                                         bool needName = false,
+                                         bool needPhoneNumber = false,
+                                         bool needEmail = false,
+                                         bool needShippingAddress = false,
+                                         bool sendPhoneNumberToProvider = false,
+                                         bool sendEmailToProvider = false,
+                                         bool isFlexible = false,
+                                         std::shared_ptr<ReplyParameters> replyParameters = nullptr,
+                                         std::shared_ptr<InlineKeyboardMarkup> replyMarkup = nullptr,
+                                         bool disableNotification = false,
+                                         std::int32_t messageThreadId = 0,
+                                         std::int32_t maxTipAmount = 0,
+                                         const std::vector<std::int32_t>& suggestedTipAmounts = { },
+                                         const std::string& startParameter = "",
+                                         bool protectContent = false,
+                                         bool allowPaidBroadcast = false,
+                                         std::int64_t directMessagesTopicId = 0,
+                                         const std::string& messageEffectId = "",
+                                         std::shared_ptr<SuggestedPostParameters> suggestedPostParameters
+                                         = nullptr) const;
+
+    /**
+     * @brief Use this method to send invoices. On success, the sent Message is returned.
+     *
+     * @param args Method arguments.
+     *
+     * @return The resulting Message object.
+     */
+    std::shared_ptr<Message> sendInvoice(const SendInvoiceArgs& args) const;
 
     /**
      * @brief Use this method to send live photos. On success, the sent Message is returned.
@@ -2647,21 +4110,41 @@
      * reply to another suggested post, then that suggested post is
      * automatically declined.
      *
-     * @return Telegram Bot API result.
+     * @return The resulting Message object.
      */
-    std::shared_ptr<Message> sendLivePhoto(
-        std::variant<std::int64_t, std::string> chatId, std::variant<std::shared_ptr<InputFile>, std::string> livePhoto,
-        std::variant<std::shared_ptr<InputFile>, std::string> photo, bool allowPaidBroadcast = false,
-        const std::string& businessConnectionId = "", const std::string& callbackQueryId = "",
-        const std::string& caption = "", const std::vector<std::shared_ptr<MessageEntity>>& captionEntities = { },
-        std::int64_t directMessagesTopicId = 0, bool disableNotification = false, bool hasSpoiler = false,
-        const std::string& messageEffectId = "", std::int32_t messageThreadId = 0, const std::string& parseMode = "",
-        bool protectContent = false, std::int64_t receiverUserId = 0,
-        std::variant<std::shared_ptr<InlineKeyboardMarkup>, std::shared_ptr<ReplyKeyboardMarkup>,
-                     std::shared_ptr<ReplyKeyboardRemove>, std::shared_ptr<ForceReply>>
-            replyMarkup = { },
-        std::shared_ptr<ReplyParameters> replyParameters = nullptr, bool showCaptionAboveMedia = false,
-        std::shared_ptr<SuggestedPostParameters> suggestedPostParameters = nullptr) const;
+    std::shared_ptr<Message> sendLivePhoto(std::variant<std::int64_t, std::string> chatId,
+                                           std::variant<std::shared_ptr<InputFile>, std::string> livePhoto,
+                                           std::variant<std::shared_ptr<InputFile>, std::string> photo,
+                                           bool allowPaidBroadcast = false,
+                                           const std::string& businessConnectionId = "",
+                                           const std::string& callbackQueryId = "",
+                                           const std::string& caption = "",
+                                           const std::vector<std::shared_ptr<MessageEntity>>& captionEntities = { },
+                                           std::int64_t directMessagesTopicId = 0,
+                                           bool disableNotification = false,
+                                           bool hasSpoiler = false,
+                                           const std::string& messageEffectId = "",
+                                           std::int32_t messageThreadId = 0,
+                                           const std::string& parseMode = "",
+                                           bool protectContent = false,
+                                           std::int64_t receiverUserId = 0,
+                                           std::variant<std::shared_ptr<InlineKeyboardMarkup>,
+                                                        std::shared_ptr<ReplyKeyboardMarkup>,
+                                                        std::shared_ptr<ReplyKeyboardRemove>,
+                                                        std::shared_ptr<ForceReply>> replyMarkup = { },
+                                           std::shared_ptr<ReplyParameters> replyParameters = nullptr,
+                                           bool showCaptionAboveMedia = false,
+                                           std::shared_ptr<SuggestedPostParameters> suggestedPostParameters
+                                           = nullptr) const;
+
+    /**
+     * @brief Use this method to send live photos. On success, the sent Message is returned.
+     *
+     * @param args Method arguments.
+     *
+     * @return The resulting Message object.
+     */
+    std::shared_ptr<Message> sendLivePhoto(const SendLivePhotoArgs& args) const;
 
     /**
      * @brief Use this method to send point on the map. On success, the sent Message is returned.
@@ -2710,20 +4193,40 @@
      * reply to another suggested post, then that suggested post is
      * automatically declined.
      *
-     * @return Telegram Bot API result.
+     * @return The resulting Message object.
      */
-    std::shared_ptr<Message>
-    sendLocation(std::variant<std::int64_t, std::string> chatId, double latitude, double longitude,
-                 std::int32_t livePeriod = 0, std::shared_ptr<ReplyParameters> replyParameters = nullptr,
-                 std::variant<std::shared_ptr<InlineKeyboardMarkup>, std::shared_ptr<ReplyKeyboardMarkup>,
-                              std::shared_ptr<ReplyKeyboardRemove>, std::shared_ptr<ForceReply>>
-                     replyMarkup = { },
-                 bool disableNotification = false, double horizontalAccuracy = 0, std::int32_t heading = 0,
-                 std::int32_t proximityAlertRadius = 0, std::int32_t messageThreadId = 0, bool protectContent = false,
-                 const std::string& businessConnectionId = "", bool allowPaidBroadcast = false,
-                 const std::string& callbackQueryId = "", std::int64_t directMessagesTopicId = 0,
-                 const std::string& messageEffectId = "", std::int64_t receiverUserId = 0,
-                 std::shared_ptr<SuggestedPostParameters> suggestedPostParameters = nullptr) const;
+    std::shared_ptr<Message> sendLocation(std::variant<std::int64_t, std::string> chatId,
+                                          double latitude,
+                                          double longitude,
+                                          std::int32_t livePeriod = 0,
+                                          std::shared_ptr<ReplyParameters> replyParameters = nullptr,
+                                          std::variant<std::shared_ptr<InlineKeyboardMarkup>,
+                                                       std::shared_ptr<ReplyKeyboardMarkup>,
+                                                       std::shared_ptr<ReplyKeyboardRemove>,
+                                                       std::shared_ptr<ForceReply>> replyMarkup = { },
+                                          bool disableNotification = false,
+                                          double horizontalAccuracy = 0,
+                                          std::int32_t heading = 0,
+                                          std::int32_t proximityAlertRadius = 0,
+                                          std::int32_t messageThreadId = 0,
+                                          bool protectContent = false,
+                                          const std::string& businessConnectionId = "",
+                                          bool allowPaidBroadcast = false,
+                                          const std::string& callbackQueryId = "",
+                                          std::int64_t directMessagesTopicId = 0,
+                                          const std::string& messageEffectId = "",
+                                          std::int64_t receiverUserId = 0,
+                                          std::shared_ptr<SuggestedPostParameters> suggestedPostParameters
+                                          = nullptr) const;
+
+    /**
+     * @brief Use this method to send point on the map. On success, the sent Message is returned.
+     *
+     * @param args Method arguments.
+     *
+     * @return The resulting Message object.
+     */
+    std::shared_ptr<Message> sendLocation(const SendLocationArgs& args) const;
 
     /**
      * @brief Use this method to send a group of photos, live photos, videos, documents or audios as
@@ -2751,17 +4254,34 @@
      * @param messageEffectId Unique identifier of the message effect to be added to the message; for
      * private chats only
      *
-     * @return Telegram Bot API result.
+     * @return The resulting list of Message objects.
      */
-    std::vector<std::shared_ptr<Message>> sendMediaGroup(
-        std::variant<std::int64_t, std::string> chatId,
-        const std::vector<std::variant<std::shared_ptr<InputMediaAudio>, std::shared_ptr<InputMediaDocument>,
-                                       std::shared_ptr<InputMediaLivePhoto>, std::shared_ptr<InputMediaPhoto>,
-                                       std::shared_ptr<InputMediaVideo>>>& media,
-        bool disableNotification = false, std::shared_ptr<ReplyParameters> replyParameters = nullptr,
-        std::int32_t messageThreadId = 0, bool protectContent = false, const std::string& businessConnectionId = "",
-        bool allowPaidBroadcast = false, std::int64_t directMessagesTopicId = 0,
-        const std::string& messageEffectId = "") const;
+    std::vector<std::shared_ptr<Message>>
+    sendMediaGroup(std::variant<std::int64_t, std::string> chatId,
+                   const std::vector<std::variant<std::shared_ptr<InputMediaAudio>,
+                                                  std::shared_ptr<InputMediaDocument>,
+                                                  std::shared_ptr<InputMediaLivePhoto>,
+                                                  std::shared_ptr<InputMediaPhoto>,
+                                                  std::shared_ptr<InputMediaVideo>>>& media,
+                   bool disableNotification = false,
+                   std::shared_ptr<ReplyParameters> replyParameters = nullptr,
+                   std::int32_t messageThreadId = 0,
+                   bool protectContent = false,
+                   const std::string& businessConnectionId = "",
+                   bool allowPaidBroadcast = false,
+                   std::int64_t directMessagesTopicId = 0,
+                   const std::string& messageEffectId = "") const;
+
+    /**
+     * @brief Use this method to send a group of photos, live photos, videos, documents or audios as
+     * an album. Documents and audio files can be only grouped in an album with messages of the
+     * same type. On success, an Array of Message objects that were sent is returned.
+     *
+     * @param args Method arguments.
+     *
+     * @return The resulting list of Message objects.
+     */
+    std::vector<std::shared_ptr<Message>> sendMediaGroup(const SendMediaGroupArgs& args) const;
 
     /**
      * @brief Use this method to send text messages. On success, the sent Message is returned.
@@ -2804,22 +4324,38 @@
      * reply to another suggested post, then that suggested post is
      * automatically declined.
      *
-     * @return Telegram Bot API result.
+     * @return The resulting Message object.
      */
-    std::shared_ptr<Message>
-    sendMessage(std::variant<std::int64_t, std::string> chatId, const std::string& text,
-                std::shared_ptr<LinkPreviewOptions> linkPreviewOptions = nullptr,
-                std::shared_ptr<ReplyParameters> replyParameters = nullptr,
-                std::variant<std::shared_ptr<InlineKeyboardMarkup>, std::shared_ptr<ReplyKeyboardMarkup>,
-                             std::shared_ptr<ReplyKeyboardRemove>, std::shared_ptr<ForceReply>>
-                    replyMarkup = { },
-                const std::string& parseMode = "", bool disableNotification = false,
-                const std::vector<std::shared_ptr<MessageEntity>>& entities = { }, std::int32_t messageThreadId = 0,
-                bool protectContent = false, const std::string& businessConnectionId = "",
-                bool allowPaidBroadcast = false, const std::string& callbackQueryId = "",
-                std::int64_t directMessagesTopicId = 0, const std::string& messageEffectId = "",
-                std::int64_t receiverUserId = 0,
-                std::shared_ptr<SuggestedPostParameters> suggestedPostParameters = nullptr) const;
+    std::shared_ptr<Message> sendMessage(std::variant<std::int64_t, std::string> chatId,
+                                         const std::string& text,
+                                         std::shared_ptr<LinkPreviewOptions> linkPreviewOptions = nullptr,
+                                         std::shared_ptr<ReplyParameters> replyParameters = nullptr,
+                                         std::variant<std::shared_ptr<InlineKeyboardMarkup>,
+                                                      std::shared_ptr<ReplyKeyboardMarkup>,
+                                                      std::shared_ptr<ReplyKeyboardRemove>,
+                                                      std::shared_ptr<ForceReply>> replyMarkup = { },
+                                         const std::string& parseMode = "",
+                                         bool disableNotification = false,
+                                         const std::vector<std::shared_ptr<MessageEntity>>& entities = { },
+                                         std::int32_t messageThreadId = 0,
+                                         bool protectContent = false,
+                                         const std::string& businessConnectionId = "",
+                                         bool allowPaidBroadcast = false,
+                                         const std::string& callbackQueryId = "",
+                                         std::int64_t directMessagesTopicId = 0,
+                                         const std::string& messageEffectId = "",
+                                         std::int64_t receiverUserId = 0,
+                                         std::shared_ptr<SuggestedPostParameters> suggestedPostParameters
+                                         = nullptr) const;
+
+    /**
+     * @brief Use this method to send text messages. On success, the sent Message is returned.
+     *
+     * @param args Method arguments.
+     *
+     * @return The resulting Message object.
+     */
+    std::shared_ptr<Message> sendMessage(const SendMessageArgs& args) const;
 
     /**
      * @brief Use this method to stream a partial message to a user while the message is being
@@ -2838,12 +4374,26 @@
      * @param text Text of the message to be sent, 0-4096 characters after entities
      * parsing. Pass an empty text to show a “Thinking…” placeholder.
      *
-     * @return Telegram Bot API result.
+     * @return True on success.
      */
-    bool sendMessageDraft(std::variant<std::int64_t, std::string> chatId, std::int32_t draftId,
+    bool sendMessageDraft(std::variant<std::int64_t, std::string> chatId,
+                          std::int32_t draftId,
                           const std::vector<std::shared_ptr<MessageEntity>>& entities = { },
-                          std::int32_t messageThreadId = 0, const std::string& parseMode = "",
+                          std::int32_t messageThreadId = 0,
+                          const std::string& parseMode = "",
                           const std::string& text = "") const;
+
+    /**
+     * @brief Use this method to stream a partial message to a user while the message is being
+     * generated. Note that the streamed draft is ephemeral and acts as a temporary 30-second
+     * preview - once the output is finalized, you must call sendMessage with the complete
+     * message to persist it in the user's chat. Returns True on success.
+     *
+     * @param args Method arguments.
+     *
+     * @return True on success.
+     */
+    bool sendMessageDraft(const SendMessageDraftArgs& args) const;
 
     /**
      * @brief Use this method to send paid media. On success, the sent Message is returned.
@@ -2885,19 +4435,38 @@
      * reply to another suggested post, then that suggested post is
      * automatically declined.
      *
-     * @return Telegram Bot API result.
+     * @return The resulting Message object.
      */
-    std::shared_ptr<Message> sendPaidMedia(
-        std::variant<std::int64_t, std::string> chatId, const std::vector<std::shared_ptr<InputPaidMedia>>& media,
-        std::int32_t starCount, bool allowPaidBroadcast = false, const std::string& businessConnectionId = "",
-        const std::string& caption = "", const std::vector<std::shared_ptr<MessageEntity>>& captionEntities = { },
-        std::int64_t directMessagesTopicId = 0, bool disableNotification = false, std::int32_t messageThreadId = 0,
-        const std::string& parseMode = "", const std::string& payload = "", bool protectContent = false,
-        std::variant<std::shared_ptr<InlineKeyboardMarkup>, std::shared_ptr<ReplyKeyboardMarkup>,
-                     std::shared_ptr<ReplyKeyboardRemove>, std::shared_ptr<ForceReply>>
-            replyMarkup = { },
-        std::shared_ptr<ReplyParameters> replyParameters = nullptr, bool showCaptionAboveMedia = false,
-        std::shared_ptr<SuggestedPostParameters> suggestedPostParameters = nullptr) const;
+    std::shared_ptr<Message> sendPaidMedia(std::variant<std::int64_t, std::string> chatId,
+                                           const std::vector<std::shared_ptr<InputPaidMedia>>& media,
+                                           std::int32_t starCount,
+                                           bool allowPaidBroadcast = false,
+                                           const std::string& businessConnectionId = "",
+                                           const std::string& caption = "",
+                                           const std::vector<std::shared_ptr<MessageEntity>>& captionEntities = { },
+                                           std::int64_t directMessagesTopicId = 0,
+                                           bool disableNotification = false,
+                                           std::int32_t messageThreadId = 0,
+                                           const std::string& parseMode = "",
+                                           const std::string& payload = "",
+                                           bool protectContent = false,
+                                           std::variant<std::shared_ptr<InlineKeyboardMarkup>,
+                                                        std::shared_ptr<ReplyKeyboardMarkup>,
+                                                        std::shared_ptr<ReplyKeyboardRemove>,
+                                                        std::shared_ptr<ForceReply>> replyMarkup = { },
+                                           std::shared_ptr<ReplyParameters> replyParameters = nullptr,
+                                           bool showCaptionAboveMedia = false,
+                                           std::shared_ptr<SuggestedPostParameters> suggestedPostParameters
+                                           = nullptr) const;
+
+    /**
+     * @brief Use this method to send paid media. On success, the sent Message is returned.
+     *
+     * @param args Method arguments.
+     *
+     * @return The resulting Message object.
+     */
+    std::shared_ptr<Message> sendPaidMedia(const SendPaidMediaArgs& args) const;
 
     /**
      * @brief Use this method to send photos. On success, the sent Message is returned.
@@ -2948,21 +4517,40 @@
      * reply to another suggested post, then that suggested post is
      * automatically declined.
      *
-     * @return Telegram Bot API result.
+     * @return The resulting Message object.
      */
-    std::shared_ptr<Message> sendPhoto(
-        std::variant<std::int64_t, std::string> chatId, std::variant<std::shared_ptr<InputFile>, std::string> photo,
-        const std::string& caption = "", std::shared_ptr<ReplyParameters> replyParameters = nullptr,
-        std::variant<std::shared_ptr<InlineKeyboardMarkup>, std::shared_ptr<ReplyKeyboardMarkup>,
-                     std::shared_ptr<ReplyKeyboardRemove>, std::shared_ptr<ForceReply>>
-            replyMarkup = { },
-        const std::string& parseMode = "", bool disableNotification = false,
-        const std::vector<std::shared_ptr<MessageEntity>>& captionEntities = { }, std::int32_t messageThreadId = 0,
-        bool protectContent = false, bool hasSpoiler = false, const std::string& businessConnectionId = "",
-        bool allowPaidBroadcast = false, const std::string& callbackQueryId = "",
-        std::int64_t directMessagesTopicId = 0, const std::string& messageEffectId = "",
-        std::int64_t receiverUserId = 0, bool showCaptionAboveMedia = false,
-        std::shared_ptr<SuggestedPostParameters> suggestedPostParameters = nullptr) const;
+    std::shared_ptr<Message> sendPhoto(std::variant<std::int64_t, std::string> chatId,
+                                       std::variant<std::shared_ptr<InputFile>, std::string> photo,
+                                       const std::string& caption = "",
+                                       std::shared_ptr<ReplyParameters> replyParameters = nullptr,
+                                       std::variant<std::shared_ptr<InlineKeyboardMarkup>,
+                                                    std::shared_ptr<ReplyKeyboardMarkup>,
+                                                    std::shared_ptr<ReplyKeyboardRemove>,
+                                                    std::shared_ptr<ForceReply>> replyMarkup = { },
+                                       const std::string& parseMode = "",
+                                       bool disableNotification = false,
+                                       const std::vector<std::shared_ptr<MessageEntity>>& captionEntities = { },
+                                       std::int32_t messageThreadId = 0,
+                                       bool protectContent = false,
+                                       bool hasSpoiler = false,
+                                       const std::string& businessConnectionId = "",
+                                       bool allowPaidBroadcast = false,
+                                       const std::string& callbackQueryId = "",
+                                       std::int64_t directMessagesTopicId = 0,
+                                       const std::string& messageEffectId = "",
+                                       std::int64_t receiverUserId = 0,
+                                       bool showCaptionAboveMedia = false,
+                                       std::shared_ptr<SuggestedPostParameters> suggestedPostParameters
+                                       = nullptr) const;
+
+    /**
+     * @brief Use this method to send photos. On success, the sent Message is returned.
+     *
+     * @param args Method arguments.
+     *
+     * @return The resulting Message object.
+     */
+    std::shared_ptr<Message> sendPhoto(const SendPhotoArgs& args) const;
 
     /**
      * @brief Use this method to send a native poll. On success, the sent Message is returned.
@@ -3035,29 +4623,54 @@
      * more details. Currently, only custom emoji entities are allowed.
      * @param shuffleOptions Pass True if the poll options must be shown in random order
      *
-     * @return Telegram Bot API result.
+     * @return The resulting Message object.
      */
-    std::shared_ptr<Message>
-    sendPoll(std::variant<std::int64_t, std::string> chatId, const std::string& question,
-             const std::vector<std::shared_ptr<InputPollOption>>& options, bool disableNotification = false,
-             std::shared_ptr<ReplyParameters> replyParameters = nullptr,
-             std::variant<std::shared_ptr<InlineKeyboardMarkup>, std::shared_ptr<ReplyKeyboardMarkup>,
-                          std::shared_ptr<ReplyKeyboardRemove>, std::shared_ptr<ForceReply>>
-                 replyMarkup = { },
-             bool isAnonymous = true, const std::string& type = "", bool allowsMultipleAnswers = false,
-             const std::string& explanation = "", const std::string& explanationParseMode = "",
-             const std::vector<std::shared_ptr<MessageEntity>>& explanationEntities = { }, std::int32_t openPeriod = 0,
-             std::int32_t closeDate = 0, bool isClosed = false, std::int32_t messageThreadId = 0,
-             bool protectContent = false, const std::string& businessConnectionId = "", bool allowAddingOptions = false,
-             bool allowPaidBroadcast = false, bool allowsRevoting = false,
-             const std::vector<std::int32_t>& correctOptionIds = { },
-             const std::vector<std::string>& countryCodes = { }, const std::string& description = "",
-             const std::vector<std::shared_ptr<MessageEntity>>& descriptionEntities = { },
-             const std::string& descriptionParseMode = "", std::shared_ptr<InputPollMedia> explanationMedia = nullptr,
-             bool hideResultsUntilCloses = false, std::shared_ptr<InputPollMedia> media = nullptr,
-             bool membersOnly = false, const std::string& messageEffectId = "",
-             const std::vector<std::shared_ptr<MessageEntity>>& questionEntities = { },
-             const std::string& questionParseMode = "", bool shuffleOptions = false) const;
+    std::shared_ptr<Message> sendPoll(std::variant<std::int64_t, std::string> chatId,
+                                      const std::string& question,
+                                      const std::vector<std::shared_ptr<InputPollOption>>& options,
+                                      bool disableNotification = false,
+                                      std::shared_ptr<ReplyParameters> replyParameters = nullptr,
+                                      std::variant<std::shared_ptr<InlineKeyboardMarkup>,
+                                                   std::shared_ptr<ReplyKeyboardMarkup>,
+                                                   std::shared_ptr<ReplyKeyboardRemove>,
+                                                   std::shared_ptr<ForceReply>> replyMarkup = { },
+                                      bool isAnonymous = true,
+                                      const std::string& type = "",
+                                      bool allowsMultipleAnswers = false,
+                                      const std::string& explanation = "",
+                                      const std::string& explanationParseMode = "",
+                                      const std::vector<std::shared_ptr<MessageEntity>>& explanationEntities = { },
+                                      std::int32_t openPeriod = 0,
+                                      std::int32_t closeDate = 0,
+                                      bool isClosed = false,
+                                      std::int32_t messageThreadId = 0,
+                                      bool protectContent = false,
+                                      const std::string& businessConnectionId = "",
+                                      bool allowAddingOptions = false,
+                                      bool allowPaidBroadcast = false,
+                                      bool allowsRevoting = false,
+                                      const std::vector<std::int32_t>& correctOptionIds = { },
+                                      const std::vector<std::string>& countryCodes = { },
+                                      const std::string& description = "",
+                                      const std::vector<std::shared_ptr<MessageEntity>>& descriptionEntities = { },
+                                      const std::string& descriptionParseMode = "",
+                                      std::shared_ptr<InputPollMedia> explanationMedia = nullptr,
+                                      bool hideResultsUntilCloses = false,
+                                      std::shared_ptr<InputPollMedia> media = nullptr,
+                                      bool membersOnly = false,
+                                      const std::string& messageEffectId = "",
+                                      const std::vector<std::shared_ptr<MessageEntity>>& questionEntities = { },
+                                      const std::string& questionParseMode = "",
+                                      bool shuffleOptions = false) const;
+
+    /**
+     * @brief Use this method to send a native poll. On success, the sent Message is returned.
+     *
+     * @param args Method arguments.
+     *
+     * @return The resulting Message object.
+     */
+    std::shared_ptr<Message> sendPoll(const SendPollArgs& args) const;
 
     /**
      * @brief Use this method to send rich messages. If the message contains a block with a media
@@ -3092,19 +4705,35 @@
      * reply to another suggested post, then that suggested post is
      * automatically declined.
      *
-     * @return Telegram Bot API result.
+     * @return The resulting Message object.
      */
-    std::shared_ptr<Message>
-    sendRichMessage(std::variant<std::int64_t, std::string> chatId, std::shared_ptr<InputRichMessage> richMessage,
-                    bool allowPaidBroadcast = false, const std::string& businessConnectionId = "",
-                    std::int64_t directMessagesTopicId = 0, bool disableNotification = false,
-                    const std::string& messageEffectId = "", std::int32_t messageThreadId = 0,
-                    bool protectContent = false,
-                    std::variant<std::shared_ptr<InlineKeyboardMarkup>, std::shared_ptr<ReplyKeyboardMarkup>,
-                                 std::shared_ptr<ReplyKeyboardRemove>, std::shared_ptr<ForceReply>>
-                        replyMarkup = { },
-                    std::shared_ptr<ReplyParameters> replyParameters = nullptr,
-                    std::shared_ptr<SuggestedPostParameters> suggestedPostParameters = nullptr) const;
+    std::shared_ptr<Message> sendRichMessage(std::variant<std::int64_t, std::string> chatId,
+                                             std::shared_ptr<InputRichMessage> richMessage,
+                                             bool allowPaidBroadcast = false,
+                                             const std::string& businessConnectionId = "",
+                                             std::int64_t directMessagesTopicId = 0,
+                                             bool disableNotification = false,
+                                             const std::string& messageEffectId = "",
+                                             std::int32_t messageThreadId = 0,
+                                             bool protectContent = false,
+                                             std::variant<std::shared_ptr<InlineKeyboardMarkup>,
+                                                          std::shared_ptr<ReplyKeyboardMarkup>,
+                                                          std::shared_ptr<ReplyKeyboardRemove>,
+                                                          std::shared_ptr<ForceReply>> replyMarkup = { },
+                                             std::shared_ptr<ReplyParameters> replyParameters = nullptr,
+                                             std::shared_ptr<SuggestedPostParameters> suggestedPostParameters
+                                             = nullptr) const;
+
+    /**
+     * @brief Use this method to send rich messages. If the message contains a block with a media
+     * element, then the bot must have the right to send the media to the chat. On success, the
+     * sent Message is returned.
+     *
+     * @param args Method arguments.
+     *
+     * @return The resulting Message object.
+     */
+    std::shared_ptr<Message> sendRichMessage(const SendRichMessageArgs& args) const;
 
     /**
      * @brief Use this method to stream a partial rich message to a user while the message is being
@@ -3119,10 +4748,24 @@
      * supported.
      * @param messageThreadId Unique identifier for the target message thread
      *
-     * @return Telegram Bot API result.
+     * @return True on success.
      */
-    bool sendRichMessageDraft(std::variant<std::int64_t, std::string> chatId, std::int32_t draftId,
-                              std::shared_ptr<InputRichMessage> richMessage, std::int32_t messageThreadId = 0) const;
+    bool sendRichMessageDraft(std::variant<std::int64_t, std::string> chatId,
+                              std::int32_t draftId,
+                              std::shared_ptr<InputRichMessage> richMessage,
+                              std::int32_t messageThreadId = 0) const;
+
+    /**
+     * @brief Use this method to stream a partial rich message to a user while the message is being
+     * generated. Note that the streamed draft is ephemeral and acts as a temporary 30-second
+     * preview - once the output is finalized, you must call sendRichMessage with the complete
+     * message to persist it in the user's chat. Returns True on success.
+     *
+     * @param args Method arguments.
+     *
+     * @return True on success.
+     */
+    bool sendRichMessageDraft(const SendRichMessageDraftArgs& args) const;
 
     /**
      * @brief Use this method to send static .WEBP, animated .TGS, or video .WEBM stickers. On
@@ -3167,19 +4810,37 @@
      * reply to another suggested post, then that suggested post is
      * automatically declined.
      *
-     * @return Telegram Bot API result.
+     * @return The resulting Message object.
      */
-    std::shared_ptr<Message> sendSticker(
-        std::variant<std::int64_t, std::string> chatId, std::variant<std::shared_ptr<InputFile>, std::string> sticker,
-        std::shared_ptr<ReplyParameters> replyParameters = nullptr,
-        std::variant<std::shared_ptr<InlineKeyboardMarkup>, std::shared_ptr<ReplyKeyboardMarkup>,
-                     std::shared_ptr<ReplyKeyboardRemove>, std::shared_ptr<ForceReply>>
-            replyMarkup = { },
-        bool disableNotification = false, std::int32_t messageThreadId = 0, bool protectContent = false,
-        const std::string& emoji = "", const std::string& businessConnectionId = "", bool allowPaidBroadcast = false,
-        const std::string& callbackQueryId = "", std::int64_t directMessagesTopicId = 0,
-        const std::string& messageEffectId = "", std::int64_t receiverUserId = 0,
-        std::shared_ptr<SuggestedPostParameters> suggestedPostParameters = nullptr) const;
+    std::shared_ptr<Message> sendSticker(std::variant<std::int64_t, std::string> chatId,
+                                         std::variant<std::shared_ptr<InputFile>, std::string> sticker,
+                                         std::shared_ptr<ReplyParameters> replyParameters = nullptr,
+                                         std::variant<std::shared_ptr<InlineKeyboardMarkup>,
+                                                      std::shared_ptr<ReplyKeyboardMarkup>,
+                                                      std::shared_ptr<ReplyKeyboardRemove>,
+                                                      std::shared_ptr<ForceReply>> replyMarkup = { },
+                                         bool disableNotification = false,
+                                         std::int32_t messageThreadId = 0,
+                                         bool protectContent = false,
+                                         const std::string& emoji = "",
+                                         const std::string& businessConnectionId = "",
+                                         bool allowPaidBroadcast = false,
+                                         const std::string& callbackQueryId = "",
+                                         std::int64_t directMessagesTopicId = 0,
+                                         const std::string& messageEffectId = "",
+                                         std::int64_t receiverUserId = 0,
+                                         std::shared_ptr<SuggestedPostParameters> suggestedPostParameters
+                                         = nullptr) const;
+
+    /**
+     * @brief Use this method to send static .WEBP, animated .TGS, or video .WEBM stickers. On
+     * success, the sent Message is returned.
+     *
+     * @param args Method arguments.
+     *
+     * @return The resulting Message object.
+     */
+    std::shared_ptr<Message> sendSticker(const SendStickerArgs& args) const;
 
     /**
      * @brief Use this method to send information about a venue. On success, the sent Message is
@@ -3227,22 +4888,43 @@
      * reply to another suggested post, then that suggested post is
      * automatically declined.
      *
-     * @return Telegram Bot API result.
+     * @return The resulting Message object.
      */
-    std::shared_ptr<Message>
-    sendVenue(std::variant<std::int64_t, std::string> chatId, double latitude, double longitude,
-              const std::string& title, const std::string& address, const std::string& foursquareId = "",
-              const std::string& foursquareType = "", bool disableNotification = false,
-              std::shared_ptr<ReplyParameters> replyParameters = nullptr,
-              std::variant<std::shared_ptr<InlineKeyboardMarkup>, std::shared_ptr<ReplyKeyboardMarkup>,
-                           std::shared_ptr<ReplyKeyboardRemove>, std::shared_ptr<ForceReply>>
-                  replyMarkup = { },
-              const std::string& googlePlaceId = "", const std::string& googlePlaceType = "",
-              std::int32_t messageThreadId = 0, bool protectContent = false,
-              const std::string& businessConnectionId = "", bool allowPaidBroadcast = false,
-              const std::string& callbackQueryId = "", std::int64_t directMessagesTopicId = 0,
-              const std::string& messageEffectId = "", std::int64_t receiverUserId = 0,
-              std::shared_ptr<SuggestedPostParameters> suggestedPostParameters = nullptr) const;
+    std::shared_ptr<Message> sendVenue(std::variant<std::int64_t, std::string> chatId,
+                                       double latitude,
+                                       double longitude,
+                                       const std::string& title,
+                                       const std::string& address,
+                                       const std::string& foursquareId = "",
+                                       const std::string& foursquareType = "",
+                                       bool disableNotification = false,
+                                       std::shared_ptr<ReplyParameters> replyParameters = nullptr,
+                                       std::variant<std::shared_ptr<InlineKeyboardMarkup>,
+                                                    std::shared_ptr<ReplyKeyboardMarkup>,
+                                                    std::shared_ptr<ReplyKeyboardRemove>,
+                                                    std::shared_ptr<ForceReply>> replyMarkup = { },
+                                       const std::string& googlePlaceId = "",
+                                       const std::string& googlePlaceType = "",
+                                       std::int32_t messageThreadId = 0,
+                                       bool protectContent = false,
+                                       const std::string& businessConnectionId = "",
+                                       bool allowPaidBroadcast = false,
+                                       const std::string& callbackQueryId = "",
+                                       std::int64_t directMessagesTopicId = 0,
+                                       const std::string& messageEffectId = "",
+                                       std::int64_t receiverUserId = 0,
+                                       std::shared_ptr<SuggestedPostParameters> suggestedPostParameters
+                                       = nullptr) const;
+
+    /**
+     * @brief Use this method to send information about a venue. On success, the sent Message is
+     * returned.
+     *
+     * @param args Method arguments.
+     *
+     * @return The resulting Message object.
+     */
+    std::shared_ptr<Message> sendVenue(const SendVenueArgs& args) const;
 
     /**
      * @brief Use this method to send video files, Telegram clients support MPEG4 videos (other
@@ -3312,24 +4994,50 @@
      * reply to another suggested post, then that suggested post is
      * automatically declined.
      *
-     * @return Telegram Bot API result.
+     * @return The resulting Message object.
      */
-    std::shared_ptr<Message> sendVideo(
-        std::variant<std::int64_t, std::string> chatId, std::variant<std::shared_ptr<InputFile>, std::string> video,
-        bool supportsStreaming = false, std::int32_t duration = 0, std::int32_t width = 0, std::int32_t height = 0,
-        std::variant<std::shared_ptr<InputFile>, std::string> thumbnail = { }, const std::string& caption = "",
-        std::shared_ptr<ReplyParameters> replyParameters = nullptr,
-        std::variant<std::shared_ptr<InlineKeyboardMarkup>, std::shared_ptr<ReplyKeyboardMarkup>,
-                     std::shared_ptr<ReplyKeyboardRemove>, std::shared_ptr<ForceReply>>
-            replyMarkup = { },
-        const std::string& parseMode = "", bool disableNotification = false,
-        const std::vector<std::shared_ptr<MessageEntity>>& captionEntities = { }, std::int32_t messageThreadId = 0,
-        bool protectContent = false, bool hasSpoiler = false, const std::string& businessConnectionId = "",
-        bool allowPaidBroadcast = false, const std::string& callbackQueryId = "",
-        std::variant<std::shared_ptr<InputFile>, std::string> cover = { }, std::int64_t directMessagesTopicId = 0,
-        const std::string& messageEffectId = "", std::int64_t receiverUserId = 0, bool showCaptionAboveMedia = false,
-        std::int32_t startTimestamp = 0,
-        std::shared_ptr<SuggestedPostParameters> suggestedPostParameters = nullptr) const;
+    std::shared_ptr<Message> sendVideo(std::variant<std::int64_t, std::string> chatId,
+                                       std::variant<std::shared_ptr<InputFile>, std::string> video,
+                                       bool supportsStreaming = false,
+                                       std::int32_t duration = 0,
+                                       std::int32_t width = 0,
+                                       std::int32_t height = 0,
+                                       std::variant<std::shared_ptr<InputFile>, std::string> thumbnail = { },
+                                       const std::string& caption = "",
+                                       std::shared_ptr<ReplyParameters> replyParameters = nullptr,
+                                       std::variant<std::shared_ptr<InlineKeyboardMarkup>,
+                                                    std::shared_ptr<ReplyKeyboardMarkup>,
+                                                    std::shared_ptr<ReplyKeyboardRemove>,
+                                                    std::shared_ptr<ForceReply>> replyMarkup = { },
+                                       const std::string& parseMode = "",
+                                       bool disableNotification = false,
+                                       const std::vector<std::shared_ptr<MessageEntity>>& captionEntities = { },
+                                       std::int32_t messageThreadId = 0,
+                                       bool protectContent = false,
+                                       bool hasSpoiler = false,
+                                       const std::string& businessConnectionId = "",
+                                       bool allowPaidBroadcast = false,
+                                       const std::string& callbackQueryId = "",
+                                       std::variant<std::shared_ptr<InputFile>, std::string> cover = { },
+                                       std::int64_t directMessagesTopicId = 0,
+                                       const std::string& messageEffectId = "",
+                                       std::int64_t receiverUserId = 0,
+                                       bool showCaptionAboveMedia = false,
+                                       std::int32_t startTimestamp = 0,
+                                       std::shared_ptr<SuggestedPostParameters> suggestedPostParameters
+                                       = nullptr) const;
+
+    /**
+     * @brief Use this method to send video files, Telegram clients support MPEG4 videos (other
+     * formats may be sent as Document). On success, the sent Message is returned. Bots can
+     * currently send video files of up to 50 MB in size, this limit may be changed in the
+     * future.
+     *
+     * @param args Method arguments.
+     *
+     * @return The resulting Message object.
+     */
+    std::shared_ptr<Message> sendVideo(const SendVideoArgs& args) const;
 
     /**
      * @brief As of v.4.0, Telegram clients support rounded square MPEG4 videos of up to 1 minute
@@ -3381,22 +5089,39 @@
      * reply to another suggested post, then that suggested post is
      * automatically declined.
      *
-     * @return Telegram Bot API result.
+     * @return The resulting Message object.
      */
-    std::shared_ptr<Message>
-    sendVideoNote(std::variant<std::int64_t, std::string> chatId,
-                  std::variant<std::shared_ptr<InputFile>, std::string> videoNote,
-                  std::shared_ptr<ReplyParameters> replyParameters = nullptr, bool disableNotification = false,
-                  std::int32_t duration = 0, std::int32_t length = 0,
-                  std::variant<std::shared_ptr<InputFile>, std::string> thumbnail = { },
-                  std::variant<std::shared_ptr<InlineKeyboardMarkup>, std::shared_ptr<ReplyKeyboardMarkup>,
-                               std::shared_ptr<ReplyKeyboardRemove>, std::shared_ptr<ForceReply>>
-                      replyMarkup = { },
-                  std::int32_t messageThreadId = 0, bool protectContent = false,
-                  const std::string& businessConnectionId = "", bool allowPaidBroadcast = false,
-                  const std::string& callbackQueryId = "", std::int64_t directMessagesTopicId = 0,
-                  const std::string& messageEffectId = "", std::int64_t receiverUserId = 0,
-                  std::shared_ptr<SuggestedPostParameters> suggestedPostParameters = nullptr) const;
+    std::shared_ptr<Message> sendVideoNote(std::variant<std::int64_t, std::string> chatId,
+                                           std::variant<std::shared_ptr<InputFile>, std::string> videoNote,
+                                           std::shared_ptr<ReplyParameters> replyParameters = nullptr,
+                                           bool disableNotification = false,
+                                           std::int32_t duration = 0,
+                                           std::int32_t length = 0,
+                                           std::variant<std::shared_ptr<InputFile>, std::string> thumbnail = { },
+                                           std::variant<std::shared_ptr<InlineKeyboardMarkup>,
+                                                        std::shared_ptr<ReplyKeyboardMarkup>,
+                                                        std::shared_ptr<ReplyKeyboardRemove>,
+                                                        std::shared_ptr<ForceReply>> replyMarkup = { },
+                                           std::int32_t messageThreadId = 0,
+                                           bool protectContent = false,
+                                           const std::string& businessConnectionId = "",
+                                           bool allowPaidBroadcast = false,
+                                           const std::string& callbackQueryId = "",
+                                           std::int64_t directMessagesTopicId = 0,
+                                           const std::string& messageEffectId = "",
+                                           std::int64_t receiverUserId = 0,
+                                           std::shared_ptr<SuggestedPostParameters> suggestedPostParameters
+                                           = nullptr) const;
+
+    /**
+     * @brief As of v.4.0, Telegram clients support rounded square MPEG4 videos of up to 1 minute
+     * long. Use this method to send video messages. On success, the sent Message is returned.
+     *
+     * @param args Method arguments.
+     *
+     * @return The resulting Message object.
+     */
+    std::shared_ptr<Message> sendVideoNote(const SendVideoNoteArgs& args) const;
 
     /**
      * @brief Use this method to send audio files, if you want Telegram clients to display the file as
@@ -3447,22 +5172,43 @@
      * reply to another suggested post, then that suggested post is
      * automatically declined.
      *
-     * @return Telegram Bot API result.
+     * @return The resulting Message object.
      */
-    std::shared_ptr<Message>
-    sendVoice(std::variant<std::int64_t, std::string> chatId,
-              std::variant<std::shared_ptr<InputFile>, std::string> voice, const std::string& caption = "",
-              std::int32_t duration = 0, std::shared_ptr<ReplyParameters> replyParameters = nullptr,
-              std::variant<std::shared_ptr<InlineKeyboardMarkup>, std::shared_ptr<ReplyKeyboardMarkup>,
-                           std::shared_ptr<ReplyKeyboardRemove>, std::shared_ptr<ForceReply>>
-                  replyMarkup = { },
-              const std::string& parseMode = "", bool disableNotification = false,
-              const std::vector<std::shared_ptr<MessageEntity>>& captionEntities = { },
-              std::int32_t messageThreadId = 0, bool protectContent = false,
-              const std::string& businessConnectionId = "", bool allowPaidBroadcast = false,
-              const std::string& callbackQueryId = "", std::int64_t directMessagesTopicId = 0,
-              const std::string& messageEffectId = "", std::int64_t receiverUserId = 0,
-              std::shared_ptr<SuggestedPostParameters> suggestedPostParameters = nullptr) const;
+    std::shared_ptr<Message> sendVoice(std::variant<std::int64_t, std::string> chatId,
+                                       std::variant<std::shared_ptr<InputFile>, std::string> voice,
+                                       const std::string& caption = "",
+                                       std::int32_t duration = 0,
+                                       std::shared_ptr<ReplyParameters> replyParameters = nullptr,
+                                       std::variant<std::shared_ptr<InlineKeyboardMarkup>,
+                                                    std::shared_ptr<ReplyKeyboardMarkup>,
+                                                    std::shared_ptr<ReplyKeyboardRemove>,
+                                                    std::shared_ptr<ForceReply>> replyMarkup = { },
+                                       const std::string& parseMode = "",
+                                       bool disableNotification = false,
+                                       const std::vector<std::shared_ptr<MessageEntity>>& captionEntities = { },
+                                       std::int32_t messageThreadId = 0,
+                                       bool protectContent = false,
+                                       const std::string& businessConnectionId = "",
+                                       bool allowPaidBroadcast = false,
+                                       const std::string& callbackQueryId = "",
+                                       std::int64_t directMessagesTopicId = 0,
+                                       const std::string& messageEffectId = "",
+                                       std::int64_t receiverUserId = 0,
+                                       std::shared_ptr<SuggestedPostParameters> suggestedPostParameters
+                                       = nullptr) const;
+
+    /**
+     * @brief Use this method to send audio files, if you want Telegram clients to display the file as
+     * a playable voice message. For this to work, your audio must be in an .OGG file encoded
+     * with OPUS, or in .MP3 format, or in .M4A format (other formats may be sent as Audio or
+     * Document). On success, the sent Message is returned. Bots can currently send voice
+     * messages of up to 50 MB in size, this limit may be changed in the future.
+     *
+     * @param args Method arguments.
+     *
+     * @return The resulting Message object.
+     */
+    std::shared_ptr<Message> sendVoice(const SendVoiceArgs& args) const;
 
     /**
      * @brief Changes the bio of a managed business account. Requires the can_change_bio business bot
@@ -3471,9 +5217,19 @@
      * @param businessConnectionId Unique identifier of the business connection
      * @param bio The new value of the bio for the business account; 0-140 characters
      *
-     * @return Telegram Bot API result.
+     * @return True on success.
      */
     bool setBusinessAccountBio(const std::string& businessConnectionId, const std::string& bio = "") const;
+
+    /**
+     * @brief Changes the bio of a managed business account. Requires the can_change_bio business bot
+     * right. Returns True on success.
+     *
+     * @param args Method arguments.
+     *
+     * @return True on success.
+     */
+    bool setBusinessAccountBio(const SetBusinessAccountBioArgs& args) const;
 
     /**
      * @brief Changes the privacy settings pertaining to incoming gifts in a managed business account.
@@ -3484,10 +5240,21 @@
      * @param showGiftButton Pass True if a button for sending a gift to the user or by the business
      * account must always be shown in the input field
      *
-     * @return Telegram Bot API result.
+     * @return True on success.
      */
     bool setBusinessAccountGiftSettings(std::shared_ptr<AcceptedGiftTypes> acceptedGiftTypes,
-                                        const std::string& businessConnectionId, bool showGiftButton) const;
+                                        const std::string& businessConnectionId,
+                                        bool showGiftButton) const;
+
+    /**
+     * @brief Changes the privacy settings pertaining to incoming gifts in a managed business account.
+     * Requires the can_change_gift_settings business bot right. Returns True on success.
+     *
+     * @param args Method arguments.
+     *
+     * @return True on success.
+     */
+    bool setBusinessAccountGiftSettings(const SetBusinessAccountGiftSettingsArgs& args) const;
 
     /**
      * @brief Changes the first and last name of a managed business account. Requires the
@@ -3498,10 +5265,21 @@
      * characters
      * @param lastName The new value of the last name for the business account; 0-64 characters
      *
-     * @return Telegram Bot API result.
+     * @return True on success.
      */
-    bool setBusinessAccountName(const std::string& businessConnectionId, const std::string& firstName,
+    bool setBusinessAccountName(const std::string& businessConnectionId,
+                                const std::string& firstName,
                                 const std::string& lastName = "") const;
+
+    /**
+     * @brief Changes the first and last name of a managed business account. Requires the
+     * can_change_name business bot right. Returns True on success.
+     *
+     * @param args Method arguments.
+     *
+     * @return True on success.
+     */
+    bool setBusinessAccountName(const SetBusinessAccountNameArgs& args) const;
 
     /**
      * @brief Changes the profile photo of a managed business account. Requires the
@@ -3513,10 +5291,21 @@
      * main photo is hidden by the business account's privacy settings. An
      * account can have only one public photo.
      *
-     * @return Telegram Bot API result.
+     * @return True on success.
      */
     bool setBusinessAccountProfilePhoto(const std::string& businessConnectionId,
-                                        std::shared_ptr<InputProfilePhoto> photo, bool isPublic = false) const;
+                                        std::shared_ptr<InputProfilePhoto> photo,
+                                        bool isPublic = false) const;
+
+    /**
+     * @brief Changes the profile photo of a managed business account. Requires the
+     * can_edit_profile_photo business bot right. Returns True on success.
+     *
+     * @param args Method arguments.
+     *
+     * @return True on success.
+     */
+    bool setBusinessAccountProfilePhoto(const SetBusinessAccountProfilePhotoArgs& args) const;
 
     /**
      * @brief Changes the username of a managed business account. Requires the can_change_username
@@ -3525,9 +5314,20 @@
      * @param businessConnectionId Unique identifier of the business connection
      * @param username The new value of the username for the business account; 0-32 characters
      *
-     * @return Telegram Bot API result.
+     * @return True on success.
      */
-    bool setBusinessAccountUsername(const std::string& businessConnectionId, const std::string& username = "") const;
+    bool setBusinessAccountUsername(const std::string& businessConnectionId,
+                                    const std::string& username = "") const;
+
+    /**
+     * @brief Changes the username of a managed business account. Requires the can_change_username
+     * business bot right. Returns True on success.
+     *
+     * @param args Method arguments.
+     *
+     * @return True on success.
+     */
+    bool setBusinessAccountUsername(const SetBusinessAccountUsernameArgs& args) const;
 
     /**
      * @brief Use this method to set a custom title for an administrator in a supergroup promoted by
@@ -3539,10 +5339,21 @@
      * @param customTitle New custom title for the administrator; 0-16 characters, emoji are not
      * allowed
      *
-     * @return Telegram Bot API result.
+     * @return True on success.
      */
-    bool setChatAdministratorCustomTitle(std::variant<std::int64_t, std::string> chatId, std::int64_t userId,
+    bool setChatAdministratorCustomTitle(std::variant<std::int64_t, std::string> chatId,
+                                         std::int64_t userId,
                                          const std::string& customTitle) const;
+
+    /**
+     * @brief Use this method to set a custom title for an administrator in a supergroup promoted by
+     * the bot. Returns True on success.
+     *
+     * @param args Method arguments.
+     *
+     * @return True on success.
+     */
+    bool setChatAdministratorCustomTitle(const SetChatAdministratorCustomTitleArgs& args) const;
 
     /**
      * @brief Use this method to change the description of a group, a supergroup or a channel. The bot
@@ -3553,9 +5364,21 @@
      * in the format @username
      * @param description New chat description, 0-255 characters
      *
-     * @return Telegram Bot API result.
+     * @return True on success.
      */
-    bool setChatDescription(std::variant<std::int64_t, std::string> chatId, const std::string& description = "") const;
+    bool setChatDescription(std::variant<std::int64_t, std::string> chatId,
+                            const std::string& description = "") const;
+
+    /**
+     * @brief Use this method to change the description of a group, a supergroup or a channel. The bot
+     * must be an administrator in the chat for this to work and must have the appropriate
+     * administrator rights. Returns True on success.
+     *
+     * @param args Method arguments.
+     *
+     * @return True on success.
+     */
+    bool setChatDescription(const SetChatDescriptionArgs& args) const;
 
     /**
      * @brief Use this method to set a tag for a regular member in a group or a supergroup. The bot
@@ -3567,10 +5390,22 @@
      * @param userId Unique identifier of the target user
      * @param tag New tag for the member; 0-16 characters, emoji are not allowed
      *
-     * @return Telegram Bot API result.
+     * @return True on success.
      */
-    bool setChatMemberTag(std::variant<std::int64_t, std::string> chatId, std::int64_t userId,
+    bool setChatMemberTag(std::variant<std::int64_t, std::string> chatId,
+                          std::int64_t userId,
                           const std::string& tag = "") const;
+
+    /**
+     * @brief Use this method to set a tag for a regular member in a group or a supergroup. The bot
+     * must be an administrator in the chat for this to work and must have the can_manage_tags
+     * administrator right. Returns True on success.
+     *
+     * @param args Method arguments.
+     *
+     * @return True on success.
+     */
+    bool setChatMemberTag(const SetChatMemberTagArgs& args) const;
 
     /**
      * @brief Use this method to change the bot's menu button in a private chat, or the default menu
@@ -3581,10 +5416,20 @@
      * @param menuButton A JSON-serialized object for the bot's new menu button. Defaults to
      * MenuButtonDefault.
      *
-     * @return Telegram Bot API result.
+     * @return True on success.
      */
     bool setChatMenuButton(std::variant<std::int64_t, std::string> chatId = { },
                            std::shared_ptr<MenuButton> menuButton = nullptr) const;
+
+    /**
+     * @brief Use this method to change the bot's menu button in a private chat, or the default menu
+     * button. Returns True on success.
+     *
+     * @param args Method arguments.
+     *
+     * @return True on success.
+     */
+    bool setChatMenuButton(const SetChatMenuButtonArgs& args) const;
 
     /**
      * @brief Use this method to set default chat permissions for all members. The bot must be an
@@ -3601,11 +5446,22 @@
      * can_send_voice_notes permissions; the can_send_polls permission will
      * imply the can_send_messages permission.
      *
-     * @return Telegram Bot API result.
+     * @return True on success.
      */
     bool setChatPermissions(std::variant<std::int64_t, std::string> chatId,
                             std::shared_ptr<ChatPermissions> permissions,
                             bool useIndependentChatPermissions = false) const;
+
+    /**
+     * @brief Use this method to set default chat permissions for all members. The bot must be an
+     * administrator in the group or a supergroup for this to work and must have the
+     * can_restrict_members administrator rights. Returns True on success.
+     *
+     * @param args Method arguments.
+     *
+     * @return True on success.
+     */
+    bool setChatPermissions(const SetChatPermissionsArgs& args) const;
 
     /**
      * @brief Use this method to set a new profile photo for the chat. Photos can't be changed for
@@ -3616,10 +5472,21 @@
      * in the format @username
      * @param photo New chat photo, uploaded using multipart/form-data
      *
-     * @return Telegram Bot API result.
+     * @return True on success.
      */
     bool setChatPhoto(std::variant<std::int64_t, std::string> chatId,
                       std::variant<std::shared_ptr<InputFile>, std::string> photo) const;
+
+    /**
+     * @brief Use this method to set a new profile photo for the chat. Photos can't be changed for
+     * private chats. The bot must be an administrator in the chat for this to work and must
+     * have the appropriate administrator rights. Returns True on success.
+     *
+     * @param args Method arguments.
+     *
+     * @return True on success.
+     */
+    bool setChatPhoto(const SetChatPhotoArgs& args) const;
 
     /**
      * @brief Use this method to set a new group sticker set for a supergroup. The bot must be an
@@ -3631,9 +5498,21 @@
      * supergroup in the format @username
      * @param stickerSetName Name of the sticker set to be set as the group sticker set
      *
-     * @return Telegram Bot API result.
+     * @return True on success.
      */
     bool setChatStickerSet(std::variant<std::int64_t, std::string> chatId, const std::string& stickerSetName) const;
+
+    /**
+     * @brief Use this method to set a new group sticker set for a supergroup. The bot must be an
+     * administrator in the chat for this to work and must have the appropriate administrator
+     * rights. Use the field can_set_sticker_set optionally returned in getChat requests to
+     * check if the bot can use this method. Returns True on success.
+     *
+     * @param args Method arguments.
+     *
+     * @return True on success.
+     */
+    bool setChatStickerSet(const SetChatStickerSetArgs& args) const;
 
     /**
      * @brief Use this method to change the title of a chat. Titles can't be changed for private
@@ -3644,9 +5523,20 @@
      * in the format @username
      * @param title New chat title, 1-128 characters
      *
-     * @return Telegram Bot API result.
+     * @return True on success.
      */
     bool setChatTitle(std::variant<std::int64_t, std::string> chatId, const std::string& title) const;
+
+    /**
+     * @brief Use this method to change the title of a chat. Titles can't be changed for private
+     * chats. The bot must be an administrator in the chat for this to work and must have the
+     * appropriate administrator rights. Returns True on success.
+     *
+     * @param args Method arguments.
+     *
+     * @return True on success.
+     */
+    bool setChatTitle(const SetChatTitleArgs& args) const;
 
     /**
      * @brief Use this method to set the thumbnail of a custom emoji sticker set. Returns True on
@@ -3656,9 +5546,19 @@
      * @param customEmojiId Custom emoji identifier of a sticker from the sticker set; pass an empty
      * string to drop the thumbnail and use the first sticker as the thumbnail
      *
-     * @return Telegram Bot API result.
+     * @return True on success.
      */
     bool setCustomEmojiStickerSetThumbnail(const std::string& name, const std::string& customEmojiId = "") const;
+
+    /**
+     * @brief Use this method to set the thumbnail of a custom emoji sticker set. Returns True on
+     * success.
+     *
+     * @param args Method arguments.
+     *
+     * @return True on success.
+     */
+    bool setCustomEmojiStickerSetThumbnail(const SetCustomEmojiStickerSetThumbnailArgs& args) const;
 
     /**
      * @brief Use this method to set the score of the specified user in a game message. On success, if
@@ -3679,12 +5579,27 @@
      * @param inlineMessageId Required if chat_id and message_id are not specified. Identifier of the
      * inline message.
      *
-     * @return Telegram Bot API result.
+     * @return The resulting Message object, or nullptr if Telegram returns True.
      */
-    std::shared_ptr<Message> setGameScore(std::int64_t userId, std::int32_t score, bool force = false,
+    std::shared_ptr<Message> setGameScore(std::int64_t userId,
+                                          std::int32_t score,
+                                          bool force = false,
                                           bool disableEditMessage = false,
                                           std::variant<std::int64_t, std::string> chatId = { },
-                                          std::int32_t messageId = 0, const std::string& inlineMessageId = "") const;
+                                          std::int32_t messageId = 0,
+                                          const std::string& inlineMessageId = "") const;
+
+    /**
+     * @brief Use this method to set the score of the specified user in a game message. On success, if
+     * the message is not an inline message, the Message is returned, otherwise True is
+     * returned. Returns an error, if the new score is not greater than the user's current
+     * score in the chat and force is False.
+     *
+     * @param args Method arguments.
+     *
+     * @return The resulting Message object, or nullptr if Telegram returns True.
+     */
+    std::shared_ptr<Message> setGameScore(const SetGameScoreArgs& args) const;
 
     /**
      * @brief Use this method to change the access settings of a managed bot. Returns True on success.
@@ -3696,10 +5611,20 @@
      * access to the bot in addition to its owner. Ignored if
      * is_access_restricted is False.
      *
-     * @return Telegram Bot API result.
+     * @return True on success.
      */
-    bool setManagedBotAccessSettings(bool isAccessRestricted, std::int64_t userId,
+    bool setManagedBotAccessSettings(bool isAccessRestricted,
+                                     std::int64_t userId,
                                      const std::vector<std::int32_t>& addedUserIds = { }) const;
+
+    /**
+     * @brief Use this method to change the access settings of a managed bot. Returns True on success.
+     *
+     * @param args Method arguments.
+     *
+     * @return True on success.
+     */
+    bool setManagedBotAccessSettings(const SetManagedBotAccessSettingsArgs& args) const;
 
     /**
      * @brief Use this method to change the chosen reactions on a message. Service messages of some
@@ -3719,10 +5644,24 @@
      * Paid reactions can't be used by bots.
      * @param isBig Pass True to set the reaction with a big animation
      *
-     * @return Telegram Bot API result.
+     * @return True on success.
      */
-    bool setMessageReaction(std::variant<std::int64_t, std::string> chatId, std::int32_t messageId,
-                            const std::vector<std::shared_ptr<ReactionType>>& reaction = { }, bool isBig = false) const;
+    bool setMessageReaction(std::variant<std::int64_t, std::string> chatId,
+                            std::int32_t messageId,
+                            const std::vector<std::shared_ptr<ReactionType>>& reaction = { },
+                            bool isBig = false) const;
+
+    /**
+     * @brief Use this method to change the chosen reactions on a message. Service messages of some
+     * types can't be reacted to. Automatically forwarded messages from a channel to its
+     * discussion group have the same available reactions as messages in the channel. Bots
+     * can't use paid reactions. Returns True on success.
+     *
+     * @param args Method arguments.
+     *
+     * @return True on success.
+     */
+    bool setMessageReaction(const SetMessageReactionArgs& args) const;
 
     /**
      * @brief Use this method to change the list of the bot's commands. See this manual for more
@@ -3736,10 +5675,21 @@
      * to all users from the given scope, for whose language there are no
      * dedicated commands.
      *
-     * @return Telegram Bot API result.
+     * @return True on success.
      */
     bool setMyCommands(const std::vector<std::shared_ptr<BotCommand>>& commands,
-                       std::shared_ptr<BotCommandScope> scope = nullptr, const std::string& languageCode = "") const;
+                       std::shared_ptr<BotCommandScope> scope = nullptr,
+                       const std::string& languageCode = "") const;
+
+    /**
+     * @brief Use this method to change the list of the bot's commands. See this manual for more
+     * details about bot commands. Returns True on success.
+     *
+     * @param args Method arguments.
+     *
+     * @return True on success.
+     */
+    bool setMyCommands(const SetMyCommandsArgs& args) const;
 
     /**
      * @brief Use this method to change the default administrator rights requested by the bot when
@@ -3753,10 +5703,22 @@
      * channels. Otherwise, the default administrator rights of the bot for
      * groups and supergroups will be changed.
      *
-     * @return Telegram Bot API result.
+     * @return True on success.
      */
     bool setMyDefaultAdministratorRights(std::shared_ptr<ChatAdministratorRights> rights = nullptr,
                                          bool forChannels = false) const;
+
+    /**
+     * @brief Use this method to change the default administrator rights requested by the bot when
+     * it's added as an administrator to groups or channels. These rights will be suggested to
+     * users, but they are free to modify the list before adding the bot. Returns True on
+     * success.
+     *
+     * @param args Method arguments.
+     *
+     * @return True on success.
+     */
+    bool setMyDefaultAdministratorRights(const SetMyDefaultAdministratorRightsArgs& args) const;
 
     /**
      * @brief Use this method to change the bot's description, which is shown in the chat with the bot
@@ -3768,9 +5730,19 @@
      * applied to all users for whose language there is no dedicated
      * description.
      *
-     * @return Telegram Bot API result.
+     * @return True on success.
      */
     bool setMyDescription(const std::string& description = "", const std::string& languageCode = "") const;
+
+    /**
+     * @brief Use this method to change the bot's description, which is shown in the chat with the bot
+     * if the chat is empty. Returns True on success.
+     *
+     * @param args Method arguments.
+     *
+     * @return True on success.
+     */
+    bool setMyDescription(const SetMyDescriptionArgs& args) const;
 
     /**
      * @brief Use this method to change the bot's name. Returns True on success.
@@ -3780,18 +5752,36 @@
      * @param languageCode A two-letter ISO 639-1 language code. If empty, the name will be shown
      * to all users for whose language there is no dedicated name.
      *
-     * @return Telegram Bot API result.
+     * @return True on success.
      */
     bool setMyName(const std::string& name = "", const std::string& languageCode = "") const;
+
+    /**
+     * @brief Use this method to change the bot's name. Returns True on success.
+     *
+     * @param args Method arguments.
+     *
+     * @return True on success.
+     */
+    bool setMyName(const SetMyNameArgs& args) const;
 
     /**
      * @brief Changes the profile photo of the bot. Returns True on success.
      *
      * @param photo The new profile photo to set
      *
-     * @return Telegram Bot API result.
+     * @return True on success.
      */
     bool setMyProfilePhoto(std::shared_ptr<InputProfilePhoto> photo) const;
+
+    /**
+     * @brief Changes the profile photo of the bot. Returns True on success.
+     *
+     * @param args Method arguments.
+     *
+     * @return True on success.
+     */
+    bool setMyProfilePhoto(const SetMyProfilePhotoArgs& args) const;
 
     /**
      * @brief Use this method to change the bot's short description, which is shown on the bot's
@@ -3804,9 +5794,21 @@
      * will be applied to all users for whose language there is no dedicated
      * short description.
      *
-     * @return Telegram Bot API result.
+     * @return True on success.
      */
-    bool setMyShortDescription(const std::string& shortDescription = "", const std::string& languageCode = "") const;
+    bool setMyShortDescription(const std::string& shortDescription = "",
+                               const std::string& languageCode = "") const;
+
+    /**
+     * @brief Use this method to change the bot's short description, which is shown on the bot's
+     * profile page and is sent together with the link when users share the bot. Returns True
+     * on success.
+     *
+     * @param args Method arguments.
+     *
+     * @return True on success.
+     */
+    bool setMyShortDescription(const SetMyShortDescriptionArgs& args) const;
 
     /**
      * @brief Informs a user that some of the Telegram Passport elements they provided contains
@@ -3820,10 +5822,25 @@
      * @param userId User identifier
      * @param errors A JSON-serialized Array describing the errors
      *
-     * @return Telegram Bot API result.
+     * @return True on success.
      */
     bool setPassportDataErrors(std::int64_t userId,
                                const std::vector<std::shared_ptr<PassportElementError>>& errors) const;
+
+    /**
+     * @brief Informs a user that some of the Telegram Passport elements they provided contains
+     * errors. The user will not be able to re-submit their Passport to you until the errors
+     * are fixed (the contents of the field for which you returned the error must change).
+     * Returns True on success. Use this if the data submitted by the user doesn't satisfy the
+     * standards your service requires for any reason. For example, if a birthday date seems
+     * invalid, a submitted document is blurry, a scan shows evidence of tampering, etc. Supply
+     * some details in the error message to make sure the user knows how to correct the issues.
+     *
+     * @param args Method arguments.
+     *
+     * @return True on success.
+     */
+    bool setPassportDataErrors(const SetPassportDataErrorsArgs& args) const;
 
     /**
      * @brief Use this method to change the list of emoji assigned to a regular or custom emoji
@@ -3833,9 +5850,20 @@
      * @param sticker File identifier of the sticker
      * @param emojiList A JSON-serialized list of 1-20 emoji associated with the sticker
      *
-     * @return Telegram Bot API result.
+     * @return True on success.
      */
     bool setStickerEmojiList(const std::string& sticker, const std::vector<std::string>& emojiList) const;
+
+    /**
+     * @brief Use this method to change the list of emoji assigned to a regular or custom emoji
+     * sticker. The sticker must belong to a sticker set created by the bot. Returns True on
+     * success.
+     *
+     * @param args Method arguments.
+     *
+     * @return True on success.
+     */
+    bool setStickerEmojiList(const SetStickerEmojiListArgs& args) const;
 
     /**
      * @brief Use this method to change search keywords assigned to a regular or custom emoji sticker.
@@ -3845,9 +5873,19 @@
      * @param keywords A JSON-serialized list of 0-20 search keywords for the sticker with
      * total length of up to 64 characters
      *
-     * @return Telegram Bot API result.
+     * @return True on success.
      */
     bool setStickerKeywords(const std::string& sticker, const std::vector<std::string>& keywords = { }) const;
+
+    /**
+     * @brief Use this method to change search keywords assigned to a regular or custom emoji sticker.
+     * The sticker must belong to a sticker set created by the bot. Returns True on success.
+     *
+     * @param args Method arguments.
+     *
+     * @return True on success.
+     */
+    bool setStickerKeywords(const SetStickerKeywordsArgs& args) const;
 
     /**
      * @brief Use this method to change the mask position of a mask sticker. The sticker must belong
@@ -3857,9 +5895,20 @@
      * @param maskPosition A JSON-serialized object with the position where the mask should be
      * placed on faces. Omit the parameter to remove the mask position.
      *
-     * @return Telegram Bot API result.
+     * @return True on success.
      */
-    bool setStickerMaskPosition(const std::string& sticker, std::shared_ptr<MaskPosition> maskPosition = nullptr) const;
+    bool setStickerMaskPosition(const std::string& sticker,
+                                std::shared_ptr<MaskPosition> maskPosition = nullptr) const;
+
+    /**
+     * @brief Use this method to change the mask position of a mask sticker. The sticker must belong
+     * to a sticker set that was created by the bot. Returns True on success.
+     *
+     * @param args Method arguments.
+     *
+     * @return True on success.
+     */
+    bool setStickerMaskPosition(const SetStickerMaskPositionArgs& args) const;
 
     /**
      * @brief Use this method to move a sticker in a set created by the bot to a specific position.
@@ -3868,9 +5917,19 @@
      * @param sticker File identifier of the sticker
      * @param position New sticker position in the set, zero-based
      *
-     * @return Telegram Bot API result.
+     * @return True on success.
      */
     bool setStickerPositionInSet(const std::string& sticker, std::int32_t position) const;
+
+    /**
+     * @brief Use this method to move a sticker in a set created by the bot to a specific position.
+     * Returns True on success.
+     *
+     * @param args Method arguments.
+     *
+     * @return True on success.
+     */
+    bool setStickerPositionInSet(const SetStickerPositionInSetArgs& args) const;
 
     /**
      * @brief Use this method to set the thumbnail of a regular or mask sticker set. The format of the
@@ -3895,10 +5954,23 @@
      * thumbnails can't be uploaded via HTTP URL. If omitted, then the
      * thumbnail is dropped and the first sticker is used as the thumbnail.
      *
-     * @return Telegram Bot API result.
+     * @return True on success.
      */
-    bool setStickerSetThumbnail(const std::string& name, std::int64_t userId, const std::string& format,
+    bool setStickerSetThumbnail(const std::string& name,
+                                std::int64_t userId,
+                                const std::string& format,
                                 std::variant<std::shared_ptr<InputFile>, std::string> thumbnail = { }) const;
+
+    /**
+     * @brief Use this method to set the thumbnail of a regular or mask sticker set. The format of the
+     * thumbnail file must match the format of the stickers in the set. Returns True on
+     * success.
+     *
+     * @param args Method arguments.
+     *
+     * @return True on success.
+     */
+    bool setStickerSetThumbnail(const SetStickerSetThumbnailArgs& args) const;
 
     /**
      * @brief Use this method to set the title of a created sticker set. Returns True on success.
@@ -3906,9 +5978,18 @@
      * @param name Sticker set name
      * @param title Sticker set title, 1-64 characters
      *
-     * @return Telegram Bot API result.
+     * @return True on success.
      */
     bool setStickerSetTitle(const std::string& name, const std::string& title) const;
+
+    /**
+     * @brief Use this method to set the title of a created sticker set. Returns True on success.
+     *
+     * @param args Method arguments.
+     *
+     * @return True on success.
+     */
+    bool setStickerSetTitle(const SetStickerSetTitleArgs& args) const;
 
     /**
      * @brief Changes the emoji status for a given user that previously allowed the bot to manage
@@ -3920,10 +6001,22 @@
      * to remove the status.
      * @param emojiStatusExpirationDate Expiration date of the emoji status, if any
      *
-     * @return Telegram Bot API result.
+     * @return True on success.
      */
-    bool setUserEmojiStatus(std::int64_t userId, const std::string& emojiStatusCustomEmojiId = "",
+    bool setUserEmojiStatus(std::int64_t userId,
+                            const std::string& emojiStatusCustomEmojiId = "",
                             std::int32_t emojiStatusExpirationDate = 0) const;
+
+    /**
+     * @brief Changes the emoji status for a given user that previously allowed the bot to manage
+     * their emoji status via the Mini App method requestEmojiStatusAccess. Returns True on
+     * success.
+     *
+     * @param args Method arguments.
+     *
+     * @return True on success.
+     */
+    bool setUserEmojiStatus(const SetUserEmojiStatusArgs& args) const;
 
     /**
      * @brief Use this method to specify a URL and receive incoming updates via an outgoing webhook.
@@ -3960,12 +6053,31 @@
      * 0-9, _ and - are allowed. The header is useful to ensure that the
      * request comes from a webhook set by you.
      *
-     * @return Telegram Bot API result.
+     * @return True on success.
      */
-    bool setWebhook(const std::string& url, std::shared_ptr<InputFile> certificate = nullptr,
-                    std::int32_t maxConnections = 40, const std::vector<std::string>& allowedUpdates = { },
-                    const std::string& ipAddress = "", bool dropPendingUpdates = false,
+    bool setWebhook(const std::string& url,
+                    std::shared_ptr<InputFile> certificate = nullptr,
+                    std::int32_t maxConnections = 40,
+                    const std::vector<std::string>& allowedUpdates = { },
+                    const std::string& ipAddress = "",
+                    bool dropPendingUpdates = false,
                     const std::string& secretToken = "") const;
+
+    /**
+     * @brief Use this method to specify a URL and receive incoming updates via an outgoing webhook.
+     * Whenever there is an update for the bot, we will send an HTTPS POST request to the
+     * specified URL, containing a JSON-serialized Update. In case of an unsuccessful request
+     * (a request with response HTTP status code different from 2XY), we will repeat the
+     * request and give up after a reasonable amount of attempts. Returns True on success. If
+     * you'd like to make sure that the webhook was set by you, you can specify secret data in
+     * the parameter secret_token. If specified, the request will contain a header “X-Telegram-
+     * Bot-Api-Secret-Token” with the secret token as content.
+     *
+     * @param args Method arguments.
+     *
+     * @return True on success.
+     */
+    bool setWebhook(const SetWebhookArgs& args) const;
 
     /**
      * @brief Use this method to stop updating a live location message before live_period expires. On
@@ -3983,13 +6095,24 @@
      * @param businessConnectionId Unique identifier of the business connection on behalf of which the
      * message to be edited was sent
      *
-     * @return Telegram Bot API result.
+     * @return The resulting Message object, or nullptr if Telegram returns True.
      */
     std::shared_ptr<Message> stopMessageLiveLocation(std::variant<std::int64_t, std::string> chatId = { },
                                                      std::int32_t messageId = 0,
                                                      const std::string& inlineMessageId = "",
                                                      std::shared_ptr<InlineKeyboardMarkup> replyMarkup = nullptr,
                                                      const std::string& businessConnectionId = "") const;
+
+    /**
+     * @brief Use this method to stop updating a live location message before live_period expires. On
+     * success, if the message is not an inline message, the edited Message is returned,
+     * otherwise True is returned.
+     *
+     * @param args Method arguments.
+     *
+     * @return The resulting Message object, or nullptr if Telegram returns True.
+     */
+    std::shared_ptr<Message> stopMessageLiveLocation(const StopMessageLiveLocationArgs& args) const;
 
     /**
      * @brief Use this method to stop a poll which was sent by the bot. On success, the stopped Poll
@@ -4002,11 +6125,22 @@
      * message to be edited was sent
      * @param replyMarkup A JSON-serialized object for a new message inline keyboard
      *
-     * @return Telegram Bot API result.
+     * @return The resulting Poll object.
      */
-    std::shared_ptr<Poll> stopPoll(std::variant<std::int64_t, std::string> chatId, std::int32_t messageId,
+    std::shared_ptr<Poll> stopPoll(std::variant<std::int64_t, std::string> chatId,
+                                   std::int32_t messageId,
                                    const std::string& businessConnectionId = "",
                                    std::shared_ptr<InlineKeyboardMarkup> replyMarkup = nullptr) const;
+
+    /**
+     * @brief Use this method to stop a poll which was sent by the bot. On success, the stopped Poll
+     * is returned.
+     *
+     * @param args Method arguments.
+     *
+     * @return The resulting Poll object.
+     */
+    std::shared_ptr<Poll> stopPoll(const StopPollArgs& args) const;
 
     /**
      * @brief Transfers Telegram Stars from the business account balance to the bot's balance.
@@ -4015,9 +6149,19 @@
      * @param businessConnectionId Unique identifier of the business connection
      * @param starCount Number of Telegram Stars to transfer; 1-10000
      *
-     * @return Telegram Bot API result.
+     * @return True on success.
      */
     bool transferBusinessAccountStars(const std::string& businessConnectionId, std::int32_t starCount) const;
+
+    /**
+     * @brief Transfers Telegram Stars from the business account balance to the bot's balance.
+     * Requires the can_transfer_stars business bot right. Returns True on success.
+     *
+     * @param args Method arguments.
+     *
+     * @return True on success.
+     */
+    bool transferBusinessAccountStars(const TransferBusinessAccountStarsArgs& args) const;
 
     /**
      * @brief Transfers an owned unique gift to another user. Requires the
@@ -4032,10 +6176,23 @@
      * business account balance. If positive, then the can_transfer_stars
      * business bot right is required.
      *
-     * @return Telegram Bot API result.
+     * @return True on success.
      */
-    bool transferGift(const std::string& businessConnectionId, std::int64_t newOwnerChatId,
-                      const std::string& ownedGiftId, std::int32_t starCount = 0) const;
+    bool transferGift(const std::string& businessConnectionId,
+                      std::int64_t newOwnerChatId,
+                      const std::string& ownedGiftId,
+                      std::int32_t starCount = 0) const;
+
+    /**
+     * @brief Transfers an owned unique gift to another user. Requires the
+     * can_transfer_and_upgrade_gifts business bot right. Requires can_transfer_stars business
+     * bot right if the transfer is paid. Returns True on success.
+     *
+     * @param args Method arguments.
+     *
+     * @return True on success.
+     */
+    bool transferGift(const TransferGiftArgs& args) const;
 
     /**
      * @brief Use this method to unban a previously banned user in a supergroup or channel. The user
@@ -4050,10 +6207,25 @@
      * @param userId Unique identifier of the target user
      * @param onlyIfBanned Do nothing if the user is not banned
      *
-     * @return Telegram Bot API result.
+     * @return True on success.
      */
-    bool unbanChatMember(std::variant<std::int64_t, std::string> chatId, std::int64_t userId,
+    bool unbanChatMember(std::variant<std::int64_t, std::string> chatId,
+                         std::int64_t userId,
                          bool onlyIfBanned = false) const;
+
+    /**
+     * @brief Use this method to unban a previously banned user in a supergroup or channel. The user
+     * will not return to the group or channel automatically, but will be able to join via
+     * link, etc. The bot must be an administrator for this to work. By default, this method
+     * guarantees that after the call the user is not a member of the chat, but will be able to
+     * join it. So if the user is a member of the chat they will also be removed from the chat.
+     * If you don't want this, use the parameter only_if_banned. Returns True on success.
+     *
+     * @param args Method arguments.
+     *
+     * @return True on success.
+     */
+    bool unbanChatMember(const UnbanChatMemberArgs& args) const;
 
     /**
      * @brief Use this method to unban a previously banned channel chat in a supergroup or channel.
@@ -4064,9 +6236,20 @@
      * in the format @username
      * @param senderChatId Unique identifier of the target sender chat
      *
-     * @return Telegram Bot API result.
+     * @return True on success.
      */
     bool unbanChatSenderChat(std::variant<std::int64_t, std::string> chatId, std::int64_t senderChatId) const;
+
+    /**
+     * @brief Use this method to unban a previously banned channel chat in a supergroup or channel.
+     * The bot must be an administrator for this to work and must have the appropriate
+     * administrator rights. Returns True on success.
+     *
+     * @param args Method arguments.
+     *
+     * @return True on success.
+     */
+    bool unbanChatSenderChat(const UnbanChatSenderChatArgs& args) const;
 
     /**
      * @brief Use this method to unhide the 'General' topic in a forum supergroup chat. The bot must
@@ -4076,9 +6259,20 @@
      * @param chatId Unique identifier for the target chat or username of the target
      * supergroup in the format @username
      *
-     * @return Telegram Bot API result.
+     * @return True on success.
      */
     bool unhideGeneralForumTopic(std::variant<std::int64_t, std::string> chatId) const;
+
+    /**
+     * @brief Use this method to unhide the 'General' topic in a forum supergroup chat. The bot must
+     * be an administrator in the chat for this to work and must have the can_manage_topics
+     * administrator rights. Returns True on success.
+     *
+     * @param args Method arguments.
+     *
+     * @return True on success.
+     */
+    bool unhideGeneralForumTopic(const UnhideGeneralForumTopicArgs& args) const;
 
     /**
      * @brief Use this method to clear the list of pinned messages in a chat. In private chats and
@@ -4090,9 +6284,22 @@
      * @param chatId Unique identifier for the target chat or username of the target channel
      * in the format @username
      *
-     * @return Telegram Bot API result.
+     * @return True on success.
      */
     bool unpinAllChatMessages(std::variant<std::int64_t, std::string> chatId) const;
+
+    /**
+     * @brief Use this method to clear the list of pinned messages in a chat. In private chats and
+     * channel direct messages chats, no additional rights are required to unpin all pinned
+     * messages. Conversely, the bot must be an administrator with the 'can_pin_messages' right
+     * or the 'can_edit_messages' right to unpin all pinned messages in groups and channels
+     * respectively. Returns True on success.
+     *
+     * @param args Method arguments.
+     *
+     * @return True on success.
+     */
+    bool unpinAllChatMessages(const UnpinAllChatMessagesArgs& args) const;
 
     /**
      * @brief Use this method to clear the list of pinned messages in a forum topic in a forum
@@ -4104,9 +6311,22 @@
      * supergroup in the format @username
      * @param messageThreadId Unique identifier for the target message thread of the forum topic
      *
-     * @return Telegram Bot API result.
+     * @return True on success.
      */
-    bool unpinAllForumTopicMessages(std::variant<std::int64_t, std::string> chatId, std::int32_t messageThreadId) const;
+    bool unpinAllForumTopicMessages(std::variant<std::int64_t, std::string> chatId,
+                                    std::int32_t messageThreadId) const;
+
+    /**
+     * @brief Use this method to clear the list of pinned messages in a forum topic in a forum
+     * supergroup chat or a private chat with a user. In the case of a supergroup chat the bot
+     * must be an administrator in the chat for this to work and must have the can_pin_messages
+     * administrator right in the supergroup. Returns True on success.
+     *
+     * @param args Method arguments.
+     *
+     * @return True on success.
+     */
+    bool unpinAllForumTopicMessages(const UnpinAllForumTopicMessagesArgs& args) const;
 
     /**
      * @brief Use this method to clear the list of pinned messages in a General forum topic. The bot
@@ -4116,9 +6336,20 @@
      * @param chatId Unique identifier for the target chat or username of the target
      * supergroup in the format @username
      *
-     * @return Telegram Bot API result.
+     * @return True on success.
      */
     bool unpinAllGeneralForumTopicMessages(std::variant<std::int64_t, std::string> chatId) const;
+
+    /**
+     * @brief Use this method to clear the list of pinned messages in a General forum topic. The bot
+     * must be an administrator in the chat for this to work and must have the can_pin_messages
+     * administrator right in the supergroup. Returns True on success.
+     *
+     * @param args Method arguments.
+     *
+     * @return True on success.
+     */
+    bool unpinAllGeneralForumTopicMessages(const UnpinAllGeneralForumTopicMessagesArgs& args) const;
 
     /**
      * @brief Use this method to remove a message from the list of pinned messages in a chat. In
@@ -4135,10 +6366,24 @@
      * is specified. If not specified, the most recent pinned message (by
      * sending date) will be unpinned.
      *
-     * @return Telegram Bot API result.
+     * @return True on success.
      */
-    bool unpinChatMessage(std::variant<std::int64_t, std::string> chatId, const std::string& businessConnectionId = "",
+    bool unpinChatMessage(std::variant<std::int64_t, std::string> chatId,
+                          const std::string& businessConnectionId = "",
                           std::int32_t messageId = 0) const;
+
+    /**
+     * @brief Use this method to remove a message from the list of pinned messages in a chat. In
+     * private chats and channel direct messages chats, all messages can be unpinned.
+     * Conversely, the bot must be an administrator with the 'can_pin_messages' right or the
+     * 'can_edit_messages' right to unpin messages in groups and channels respectively. Returns
+     * True on success.
+     *
+     * @param args Method arguments.
+     *
+     * @return True on success.
+     */
+    bool unpinChatMessage(const UnpinChatMessageArgs& args) const;
 
     /**
      * @brief Upgrades a given regular gift to a unique gift. Requires the
@@ -4155,10 +6400,23 @@
      * pass 0, otherwise, the can_transfer_stars business bot right is required
      * and gift.upgrade_star_count must be passed.
      *
-     * @return Telegram Bot API result.
+     * @return True on success.
      */
-    bool upgradeGift(const std::string& businessConnectionId, const std::string& ownedGiftId,
-                     bool keepOriginalDetails = false, std::int32_t starCount = 0) const;
+    bool upgradeGift(const std::string& businessConnectionId,
+                     const std::string& ownedGiftId,
+                     bool keepOriginalDetails = false,
+                     std::int32_t starCount = 0) const;
+
+    /**
+     * @brief Upgrades a given regular gift to a unique gift. Requires the
+     * can_transfer_and_upgrade_gifts business bot right. Additionally requires the
+     * can_transfer_stars business bot right if the upgrade is paid. Returns True on success.
+     *
+     * @param args Method arguments.
+     *
+     * @return True on success.
+     */
+    bool upgradeGift(const UpgradeGiftArgs& args) const;
 
     /**
      * @brief Use this method to upload a file with a sticker for later use in the
@@ -4171,11 +6429,22 @@
      * information on Sending Files »
      * @param stickerFormat Format of the sticker, must be one of “static”, “animated”, “video”
      *
-     * @return Telegram Bot API result.
+     * @return The resulting File object.
      */
     std::shared_ptr<File> uploadStickerFile(std::int64_t userId,
                                             std::variant<std::shared_ptr<InputFile>, std::string> sticker,
                                             const std::string& stickerFormat) const;
+
+    /**
+     * @brief Use this method to upload a file with a sticker for later use in the
+     * createNewStickerSet, addStickerToSet, or replaceStickerInSet methods (the file can be
+     * used multiple times). Returns the uploaded File on success.
+     *
+     * @param args Method arguments.
+     *
+     * @return The resulting File object.
+     */
+    std::shared_ptr<File> uploadStickerFile(const UploadStickerFileArgs& args) const;
 
     /**
      * @brief Verifies a chat on behalf of the organization which is represented by the bot. Returns
@@ -4188,9 +6457,20 @@
      * if the organization isn't allowed to provide a custom verification
      * description.
      *
-     * @return Telegram Bot API result.
+     * @return True on success.
      */
-    bool verifyChat(std::variant<std::int64_t, std::string> chatId, const std::string& customDescription = "") const;
+    bool verifyChat(std::variant<std::int64_t, std::string> chatId,
+                    const std::string& customDescription = "") const;
+
+    /**
+     * @brief Verifies a chat on behalf of the organization which is represented by the bot. Returns
+     * True on success.
+     *
+     * @param args Method arguments.
+     *
+     * @return True on success.
+     */
+    bool verifyChat(const VerifyChatArgs& args) const;
 
     /**
      * @brief Verifies a user on behalf of the organization which is represented by the bot. Returns
@@ -4201,6 +6481,16 @@
      * if the organization isn't allowed to provide a custom verification
      * description.
      *
-     * @return Telegram Bot API result.
+     * @return True on success.
      */
     bool verifyUser(std::int64_t userId, const std::string& customDescription = "") const;
+
+    /**
+     * @brief Verifies a user on behalf of the organization which is represented by the bot. Returns
+     * True on success.
+     *
+     * @param args Method arguments.
+     *
+     * @return True on success.
+     */
+    bool verifyUser(const VerifyUserArgs& args) const;

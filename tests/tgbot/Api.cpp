@@ -7,6 +7,7 @@
 
 #include <span>
 #include <string>
+#include <utility>
 #include <variant>
 #include <vector>
 
@@ -96,6 +97,84 @@ TEST(Api, SerializesStringVariantAndPresentOptionalArguments) {
     EXPECT_EQ(std::get<std::string>(httpClient.requestFields[2].value), "7");
     EXPECT_EQ(httpClient.requestFields[3].name, "business_connection_id");
     EXPECT_EQ(std::get<std::string>(httpClient.requestFields[3].value), "business-id");
+}
+
+TEST(Api, SerializesArgumentObject) {
+    HttpClientMock httpClient;
+    httpClient.response = R"({"ok":true,"result":{"message_id":1,"date":2,"chat":{"id":3,"type":"private"}}})";
+    TgBot::Api api("token", httpClient, "https://api.telegram.org");
+    TgBot::SendMessageArgs args;
+    args.chatId = std::int64_t { 42 };
+    args.text = "text";
+    args.businessConnectionId = "business-id";
+
+    const auto message = api.sendMessage(args);
+
+    ASSERT_TRUE(message);
+    ASSERT_EQ(httpClient.requestFields.size(), 3);
+    EXPECT_EQ(httpClient.requestFields[0].name, "chat_id");
+    EXPECT_EQ(httpClient.requestFields[1].name, "text");
+    EXPECT_EQ(httpClient.requestFields[2].name, "business_connection_id");
+    EXPECT_EQ(std::get<std::string>(httpClient.requestFields[2].value), "business-id");
+}
+
+TEST(Api, ArgumentObjectPreservesAdjacentBooleanParameterOrder) {
+    using Args = TgBot::PromoteChatMemberArgs;
+
+    HttpClientMock httpClient;
+    httpClient.response = R"({"ok":true,"result":true})";
+    TgBot::Api api("token", httpClient, "https://api.telegram.org");
+    const std::vector<std::pair<bool Args::*, std::string>> cases {
+        { &Args::canChangeInfo, "can_change_info" },
+        { &Args::canPostMessages, "can_post_messages" },
+        { &Args::canEditMessages, "can_edit_messages" },
+        { &Args::canDeleteMessages, "can_delete_messages" },
+        { &Args::canInviteUsers, "can_invite_users" },
+        { &Args::canPinMessages, "can_pin_messages" },
+        { &Args::canPromoteMembers, "can_promote_members" },
+        { &Args::isAnonymous, "is_anonymous" },
+        { &Args::canManageChat, "can_manage_chat" },
+        { &Args::canManageVideoChats, "can_manage_video_chats" },
+        { &Args::canRestrictMembers, "can_restrict_members" },
+        { &Args::canManageTopics, "can_manage_topics" },
+        { &Args::canPostStories, "can_post_stories" },
+        { &Args::canEditStories, "can_edit_stories" },
+        { &Args::canDeleteStories, "can_delete_stories" },
+        { &Args::canManageDirectMessages, "can_manage_direct_messages" },
+        { &Args::canManageTags, "can_manage_tags" },
+    };
+
+    for (const auto& [member, wireName] : cases) {
+        Args args;
+        args.chatId = std::int64_t { 42 };
+        args.userId = 7;
+        args.*member = true;
+
+        EXPECT_TRUE(api.promoteChatMember(args));
+
+        ASSERT_EQ(httpClient.requestFields.size(), 3) << wireName;
+        EXPECT_EQ(httpClient.requestFields[0].name, "chat_id") << wireName;
+        EXPECT_EQ(httpClient.requestFields[1].name, "user_id") << wireName;
+        EXPECT_EQ(httpClient.requestFields[2].name, wireName) << wireName;
+        EXPECT_EQ(std::get<std::string>(httpClient.requestFields[2].value), "1") << wireName;
+    }
+}
+
+TEST(Api, ArgumentObjectPreservesLegacyDefaults) {
+    HttpClientMock httpClient;
+    httpClient.response = R"({"ok":true,"result":true})";
+    TgBot::Api api("token", httpClient, "https://api.telegram.org");
+    TgBot::BanChatMemberArgs args;
+    args.chatId = std::int64_t { 42 };
+    args.userId = 7;
+
+    EXPECT_TRUE(api.banChatMember(args));
+
+    ASSERT_EQ(httpClient.requestFields.size(), 3);
+    EXPECT_EQ(httpClient.requestFields[0].name, "chat_id");
+    EXPECT_EQ(httpClient.requestFields[1].name, "user_id");
+    EXPECT_EQ(httpClient.requestFields[2].name, "revoke_messages");
+    EXPECT_EQ(std::get<std::string>(httpClient.requestFields[2].value), "1");
 }
 
 TEST(Api, SerializesWebhookFileAndStructuredArguments) {

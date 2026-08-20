@@ -15,6 +15,8 @@
 
 namespace TgBot {
 
+struct InputFile;
+
 struct AcceptedGiftTypes;
 struct AffiliateInfo;
 struct Animation;
@@ -414,22 +416,18 @@ struct AcceptedGiftTypes {
      * @brief True, if unlimited regular gifts are accepted
     */
     bool unlimitedGifts { };
-
     /**
      * @brief True, if limited regular gifts are accepted
     */
     bool limitedGifts { };
-
     /**
      * @brief True, if unique gifts or gifts that can be upgraded to unique for free are accepted
     */
     bool uniqueGifts { };
-
     /**
      * @brief True, if a Telegram Premium subscription is accepted
     */
     bool premiumSubscription { };
-
     /**
      * @brief True, if transfers of unique gifts from channels are accepted
     */
@@ -451,24 +449,20 @@ struct AffiliateInfo {
      * by a bot or a user
     */
     std::shared_ptr<User> affiliateUser { };
-
     /**
      * @brief Optional. The chat that received an affiliate commission if it was received by a chat
     */
     std::shared_ptr<Chat> affiliateChat { };
-
     /**
      * @brief The number of Telegram Stars received by the affiliate for each 1000 Telegram Stars
      * received by the bot from referred users
     */
     std::int32_t commissionPerMille { };
-
     /**
      * @brief Integer amount of Telegram Stars received by the affiliate from the transaction, rounded
      * to 0; can be negative for refunds
     */
     std::int32_t amount { };
-
     /**
      * @brief Optional. The number of 1/1000000000 shares of Telegram Stars received by the affiliate;
      * from -999999999 to 999999999; can be negative for refunds
@@ -490,43 +484,35 @@ struct Animation {
      * @brief Identifier for this file, which can be used to download or reuse the file
     */
     std::string fileId { };
-
     /**
      * @brief Unique identifier for this file, which is supposed to be the same over time and for
      * different bots. Can't be used to download or reuse the file.
     */
     std::string fileUniqueId { };
-
     /**
      * @brief Video width as defined by the sender
     */
     std::int32_t width { };
-
     /**
      * @brief Video height as defined by the sender
     */
     std::int32_t height { };
-
     /**
      * @brief Duration of the video in seconds as defined by the sender
     */
     std::int32_t duration { };
-
     /**
      * @brief Optional. Animation thumbnail as defined by the sender
     */
     std::shared_ptr<PhotoSize> thumbnail { };
-
     /**
      * @brief Optional. Original animation filename as defined by the sender
     */
     std::optional<std::string> fileName { };
-
     /**
      * @brief Optional. MIME type of the file as defined by the sender
     */
     std::optional<std::string> mimeType { };
-
     /**
      * @brief Optional. File size in bytes. It can be bigger than 2^31 and some programming languages
      * may have difficulty/silent defects in interpreting it. But it has at most 52 significant
@@ -550,38 +536,31 @@ struct Audio {
      * @brief Identifier for this file, which can be used to download or reuse the file
     */
     std::string fileId { };
-
     /**
      * @brief Unique identifier for this file, which is supposed to be the same over time and for
      * different bots. Can't be used to download or reuse the file.
     */
     std::string fileUniqueId { };
-
     /**
      * @brief Duration of the audio in seconds as defined by the sender
     */
     std::int32_t duration { };
-
     /**
      * @brief Optional. Performer of the audio as defined by the sender or by audio tags
     */
     std::optional<std::string> performer { };
-
     /**
      * @brief Optional. Title of the audio as defined by the sender or by audio tags
     */
     std::optional<std::string> title { };
-
     /**
      * @brief Optional. Original filename as defined by the sender
     */
     std::optional<std::string> fileName { };
-
     /**
      * @brief Optional. MIME type of the file as defined by the sender
     */
     std::optional<std::string> mimeType { };
-
     /**
      * @brief Optional. File size in bytes. It can be bigger than 2^31 and some programming languages
      * may have difficulty/silent defects in interpreting it. But it has at most 52 significant
@@ -589,7 +568,6 @@ struct Audio {
      * this value.
     */
     std::optional<std::int64_t> fileSize { };
-
     /**
      * @brief Optional. Thumbnail of the album cover to which the music file belongs
     */
@@ -629,7 +607,6 @@ struct BackgroundFillFreeformGradient {
      * @brief Type of the background fill, always “freeform_gradient”
     */
     std::string type { TYPE };
-
     /**
      * @brief A list of the 3 or 4 base colors that are used to generate the freeform gradient in the
      * RGB24 format
@@ -653,17 +630,14 @@ struct BackgroundFillGradient {
      * @brief Type of the background fill, always “gradient”
     */
     std::string type { TYPE };
-
     /**
      * @brief Top color of the gradient in the RGB24 format
     */
     std::int32_t topColor { };
-
     /**
      * @brief Bottom color of the gradient in the RGB24 format
     */
     std::int32_t bottomColor { };
-
     /**
      * @brief Clockwise rotation angle of the background fill in degrees; 0-359
     */
@@ -686,7 +660,6 @@ struct BackgroundFillSolid {
      * @brief Type of the background fill, always “solid”
     */
     std::string type { TYPE };
-
     /**
      * @brief The color of the background fill in the RGB24 format
     */
@@ -725,7 +698,6 @@ struct BackgroundTypeChatTheme {
      * @brief Type of the background, always “chat_theme”
     */
     std::string type { TYPE };
-
     /**
      * @brief Name of the chat theme, which is usually an emoji
     */
@@ -748,12 +720,10 @@ struct BackgroundTypeFill {
      * @brief Type of the background, always “fill”
     */
     std::string type { TYPE };
-
     /**
      * @brief The background fill
     */
     std::shared_ptr<BackgroundFill> fill { };
-
     /**
      * @brief Dimming of the background in dark themes, as a percentage; 0-100
     */
@@ -778,28 +748,23 @@ struct BackgroundTypePattern {
      * @brief Type of the background, always “pattern”
     */
     std::string type { TYPE };
-
     /**
      * @brief Document with the pattern
     */
     std::shared_ptr<Document> document { };
-
     /**
      * @brief The background fill that is combined with the pattern
     */
     std::shared_ptr<BackgroundFill> fill { };
-
     /**
      * @brief Intensity of the pattern when it is shown above the filled background; 0-100
     */
     std::int32_t intensity { };
-
     /**
      * @brief Optional. True, if the background fill must be applied only to the pattern itself. All
      * other pixels are black in this case. For dark themes only.
     */
     std::optional<bool> isInverted { };
-
     /**
      * @brief Optional. True, if the background moves slightly when the device is tilted
     */
@@ -822,23 +787,19 @@ struct BackgroundTypeWallpaper {
      * @brief Type of the background, always “wallpaper”
     */
     std::string type { TYPE };
-
     /**
      * @brief Document with the wallpaper
     */
     std::shared_ptr<Document> document { };
-
     /**
      * @brief Dimming of the background in dark themes, as a percentage; 0-100
     */
     std::int32_t darkThemeDimming { };
-
     /**
      * @brief Optional. True, if the wallpaper is downscaled to fit in a 450x450 square and then box-
      * blurred with radius 12
     */
     std::optional<bool> isBlurred { };
-
     /**
      * @brief Optional. True, if the background moves slightly when the device is tilted
     */
@@ -859,12 +820,10 @@ struct Birthdate {
      * @brief Day of the user's birth; 1-31
     */
     std::int32_t day { };
-
     /**
      * @brief Month of the user's birth; 1-12
     */
     std::int32_t month { };
-
     /**
      * @brief Optional. Year of the user's birth
     */
@@ -885,7 +844,6 @@ struct BotAccessSettings {
      * @brief True, if only selected users can access the bot. The bot's owner can always access it.
     */
     bool isAccessRestricted { };
-
     /**
      * @brief Optional. The list of other users who have access to the bot if the access is restricted
     */
@@ -907,12 +865,10 @@ struct BotCommand {
      * and underscores.
     */
     std::string command { };
-
     /**
      * @brief Description of the command; 1-256 characters
     */
     std::string description { };
-
     /**
      * @brief Optional. True, if the command sends an ephemeral message, which can be seen only by the
      * sender of the message and the bot
@@ -1010,7 +966,6 @@ struct BotCommandScopeChat {
      * @brief Scope type, must be chat
     */
     std::string type { TYPE };
-
     /**
      * @brief Unique identifier for the target chat or username of the target supergroup in the format
      * @username. Channel direct messages chats and channel chats aren't supported.
@@ -1035,7 +990,6 @@ struct BotCommandScopeChatAdministrators {
      * @brief Scope type, must be chat_administrators
     */
     std::string type { TYPE };
-
     /**
      * @brief Unique identifier for the target chat or username of the target supergroup in the format
      * @username. Channel direct messages chats and channel chats aren't supported.
@@ -1060,13 +1014,11 @@ struct BotCommandScopeChatMember {
      * @brief Scope type, must be chat_member
     */
     std::string type { TYPE };
-
     /**
      * @brief Unique identifier for the target chat or username of the target supergroup in the format
      * @username. Channel direct messages chats and channel chats aren't supported.
     */
     std::int64_t chatId { };
-
     /**
      * @brief Unique identifier of the target user
     */
@@ -1155,12 +1107,10 @@ struct BotSubscriptionUpdated {
      * @brief User who subscribed for payments toward the bot
     */
     std::shared_ptr<User> user { };
-
     /**
      * @brief Bot-specified invoice payload
     */
     std::string invoicePayload { };
-
     /**
      * @brief The new state of the subscription. Currently, it can be one of “canceled” if the user
      * canceled the subscription, “active” if the user re-enabled a previously canceled
@@ -1184,71 +1134,58 @@ struct BusinessBotRights {
      * incoming messages in the last 24 hours
     */
     std::optional<bool> canReply { };
-
     /**
      * @brief Optional. True, if the bot can mark incoming private messages as read
     */
     std::optional<bool> canReadMessages { };
-
     /**
      * @brief Optional. True, if the bot can delete messages sent by the bot
     */
     std::optional<bool> canDeleteSentMessages { };
-
     /**
      * @brief Optional. True, if the bot can delete all private messages in managed chats
     */
     std::optional<bool> canDeleteAllMessages { };
-
     /**
      * @brief Optional. True, if the bot can edit the first and last name of the business account
     */
     std::optional<bool> canEditName { };
-
     /**
      * @brief Optional. True, if the bot can edit the bio of the business account
     */
     std::optional<bool> canEditBio { };
-
     /**
      * @brief Optional. True, if the bot can edit the profile photo of the business account
     */
     std::optional<bool> canEditProfilePhoto { };
-
     /**
      * @brief Optional. True, if the bot can edit the username of the business account
     */
     std::optional<bool> canEditUsername { };
-
     /**
      * @brief Optional. True, if the bot can change the privacy settings pertaining to gifts for the
      * business account
     */
     std::optional<bool> canChangeGiftSettings { };
-
     /**
      * @brief Optional. True, if the bot can view gifts and the amount of Telegram Stars owned by the
      * business account
     */
     std::optional<bool> canViewGiftsAndStars { };
-
     /**
      * @brief Optional. True, if the bot can convert regular gifts owned by the business account to
      * Telegram Stars
     */
     std::optional<bool> canConvertGiftsToStars { };
-
     /**
      * @brief Optional. True, if the bot can transfer and upgrade gifts owned by the business account
     */
     std::optional<bool> canTransferAndUpgradeGifts { };
-
     /**
      * @brief Optional. True, if the bot can transfer Telegram Stars received by the business account
      * to its own account, or use them to upgrade and transfer gifts
     */
     std::optional<bool> canTransferStars { };
-
     /**
      * @brief Optional. True, if the bot can post, edit and delete stories on behalf of the business
      * account
@@ -1270,12 +1207,10 @@ struct BusinessConnection {
      * @brief Unique identifier of the business connection
     */
     std::string id { };
-
     /**
      * @brief Business account user that created the business connection
     */
     std::shared_ptr<User> user { };
-
     /**
      * @brief Identifier of a private chat with the user who created the business connection. This
      * number may have more than 32 significant bits and some programming languages may have
@@ -1283,17 +1218,14 @@ struct BusinessConnection {
      * a 64-bit integer or double-precision float type are safe for storing this identifier.
     */
     std::int64_t userChatId { };
-
     /**
      * @brief Date the connection was established in Unix time
     */
     std::int32_t date { };
-
     /**
      * @brief Optional. Rights of the business bot
     */
     std::shared_ptr<BusinessBotRights> rights { };
-
     /**
      * @brief True, if the connection is active
     */
@@ -1314,12 +1246,10 @@ struct BusinessIntro {
      * @brief Optional. Title text of the business intro
     */
     std::optional<std::string> title { };
-
     /**
      * @brief Optional. Message text of the business intro
     */
     std::optional<std::string> message { };
-
     /**
      * @brief Optional. Sticker of the business intro
     */
@@ -1340,7 +1270,6 @@ struct BusinessLocation {
      * @brief Address of the business
     */
     std::string address { };
-
     /**
      * @brief Optional. Location of the business
     */
@@ -1361,13 +1290,11 @@ struct BusinessMessagesDeleted {
      * @brief Unique identifier of the business connection
     */
     std::string businessConnectionId { };
-
     /**
      * @brief Information about a chat in the business account. The bot may not have access to the
      * chat or the corresponding user.
     */
     std::shared_ptr<Chat> chat { };
-
     /**
      * @brief The list of identifiers of deleted messages in the chat of the business account
     */
@@ -1388,7 +1315,6 @@ struct BusinessOpeningHours {
      * @brief Unique name of the time zone for which the opening hours are defined
     */
     std::string timeZoneName { };
-
     /**
      * @brief List of time intervals describing business opening hours
     */
@@ -1410,7 +1336,6 @@ struct BusinessOpeningHoursInterval {
      * time interval during which the business is open; 0 - 7 * 24 * 60
     */
     std::int32_t openingMinute { };
-
     /**
      * @brief The minute's sequence number in a week, starting on Monday, marking the end of the time
      * interval during which the business is open; 0 - 8 * 24 * 60
@@ -1447,35 +1372,29 @@ struct CallbackQuery {
      * @brief Unique identifier for this query
     */
     std::string id { };
-
     /**
      * @brief Sender
     */
     std::shared_ptr<User> from { };
-
     /**
      * @brief Optional. Message sent by the bot with the callback button that originated the query
     */
     std::shared_ptr<MaybeInaccessibleMessage> message { };
-
     /**
      * @brief Optional. Identifier of the message sent via the bot in inline mode, that originated the
      * query
     */
     std::optional<std::string> inlineMessageId { };
-
     /**
      * @brief Global identifier, uniquely corresponding to the chat to which the message with the
      * callback button was sent. Useful for high scores in games.
     */
     std::string chatInstance { };
-
     /**
      * @brief Optional. Data associated with the callback button. Be aware that the message originated
      * the query can contain no callback buttons with this data.
     */
     std::optional<std::string> data { };
-
     /**
      * @brief Optional. Short name of a Game to be returned, serves as the unique identifier for the
      * game
@@ -1502,37 +1421,30 @@ struct Chat {
      * type are safe for storing this identifier.
     */
     std::int64_t id { };
-
     /**
      * @brief Type of the chat, can be either “private”, “group”, “supergroup” or “channel”
     */
     Type type { };
-
     /**
      * @brief Optional. Title, for supergroups, channels and group chats
     */
     std::optional<std::string> title { };
-
     /**
      * @brief Optional. Username, for private chats, supergroups and channels if available
     */
     std::optional<std::string> username { };
-
     /**
      * @brief Optional. First name of the other party in a private chat
     */
     std::optional<std::string> firstName { };
-
     /**
      * @brief Optional. Last name of the other party in a private chat
     */
     std::optional<std::string> lastName { };
-
     /**
      * @brief Optional. True, if the supergroup chat is a forum (has topics enabled)
     */
     std::optional<bool> isForum { };
-
     /**
      * @brief Optional. True, if the chat is the direct messages chat of a channel
     */
@@ -1556,7 +1468,6 @@ struct ChatAdministratorRights {
      * @brief True, if the user's presence in the chat is hidden
     */
     bool isAnonymous { };
-
     /**
      * @brief True, if the administrator can access the chat event log, get boost list, see hidden
      * supergroup and channel members, report spam messages, ignore slow mode, and send
@@ -1564,85 +1475,70 @@ struct ChatAdministratorRights {
      * privilege.
     */
     bool canManageChat { };
-
     /**
      * @brief True, if the administrator can delete messages of other users
     */
     bool canDeleteMessages { };
-
     /**
      * @brief True, if the administrator can manage video chats
     */
     bool canManageVideoChats { };
-
     /**
      * @brief True, if the administrator can restrict, ban or unban chat members, or access supergroup
      * statistics
     */
     bool canRestrictMembers { };
-
     /**
      * @brief True, if the administrator can add new administrators with a subset of their own
      * privileges or demote administrators that they have promoted, directly or indirectly
      * (promoted by administrators that were appointed by the user)
     */
     bool canPromoteMembers { };
-
     /**
      * @brief True, if the user is allowed to change the chat title, photo and other settings
     */
     bool canChangeInfo { };
-
     /**
      * @brief True, if the user is allowed to invite new users to the chat
     */
     bool canInviteUsers { };
-
     /**
      * @brief True, if the administrator can post stories to the chat
     */
     bool canPostStories { };
-
     /**
      * @brief True, if the administrator can edit stories posted by other users, post stories to the
      * chat page, pin chat stories, and access the chat's story archive
     */
     bool canEditStories { };
-
     /**
      * @brief True, if the administrator can delete stories posted by other users
     */
     bool canDeleteStories { };
-
     /**
      * @brief Optional. True, if the administrator can post messages in the channel, approve suggested
      * posts, or access channel statistics; for channels only
     */
     std::optional<bool> canPostMessages { };
-
     /**
      * @brief Optional. True, if the administrator can edit messages of other users and can pin
      * messages; for channels only
     */
     std::optional<bool> canEditMessages { };
-
     /**
      * @brief Optional. True, if the user is allowed to pin messages; for groups and supergroups only
     */
     std::optional<bool> canPinMessages { };
-
     /**
      * @brief Optional. True, if the user is allowed to create, rename, close, and reopen forum
      * topics; for supergroups only
     */
     std::optional<bool> canManageTopics { };
-
     /**
      * @brief Optional. True, if the administrator can manage direct messages of the channel and
      * decline suggested posts; for channels only
     */
     std::optional<bool> canManageDirectMessages { };
-
     /**
      * @brief Optional. True, if the administrator can edit the tags of regular members; for groups
      * and supergroups only. If omitted, defaults to the value of can_pin_messages.
@@ -1680,18 +1576,15 @@ struct ChatBoost {
      * @brief Unique identifier of the boost
     */
     std::string boostId { };
-
     /**
      * @brief Point in time (Unix timestamp) when the chat was boosted
     */
     std::int32_t addDate { };
-
     /**
      * @brief Point in time (Unix timestamp) when the boost will automatically expire, unless the
      * booster's Telegram Premium subscription is prolonged
     */
     std::int32_t expirationDate { };
-
     /**
      * @brief Source of the added boost
     */
@@ -1728,17 +1621,14 @@ struct ChatBoostRemoved {
      * @brief Chat which was boosted
     */
     std::shared_ptr<Chat> chat { };
-
     /**
      * @brief Unique identifier of the boost
     */
     std::string boostId { };
-
     /**
      * @brief Point in time (Unix timestamp) when the boost was removed
     */
     std::int32_t removeDate { };
-
     /**
      * @brief Source of the removed boost
     */
@@ -1779,7 +1669,6 @@ struct ChatBoostSourceGiftCode {
      * @brief Source of the boost, always “gift_code”
     */
     std::string source { SOURCE };
-
     /**
      * @brief User for which the gift code was created
     */
@@ -1805,25 +1694,21 @@ struct ChatBoostSourceGiveaway {
      * @brief Source of the boost, always “giveaway”
     */
     std::string source { SOURCE };
-
     /**
      * @brief Identifier of a message in the chat with the giveaway; the message could have been
      * deleted already. May be 0 if the message isn't sent yet.
     */
     std::int32_t giveawayMessageId { };
-
     /**
      * @brief Optional. User that won the prize in the giveaway if any; for Telegram Premium giveaways
      * only
     */
     std::shared_ptr<User> user { };
-
     /**
      * @brief Optional. The number of Telegram Stars to be split between giveaway winners; for
      * Telegram Star giveaways only
     */
     std::optional<std::int32_t> prizeStarCount { };
-
     /**
      * @brief Optional. True, if the giveaway was completed, but there was no user to win the prize
     */
@@ -1847,7 +1732,6 @@ struct ChatBoostSourcePremium {
      * @brief Source of the boost, always “premium”
     */
     std::string source { SOURCE };
-
     /**
      * @brief User that boosted the chat
     */
@@ -1868,7 +1752,6 @@ struct ChatBoostUpdated {
      * @brief Chat which was boosted
     */
     std::shared_ptr<Chat> chat { };
-
     /**
      * @brief Information about the chat boost
     */
@@ -1892,248 +1775,203 @@ struct ChatFullInfo {
      * type are safe for storing this identifier.
     */
     std::int64_t id { };
-
     /**
      * @brief Type of the chat, can be either “private”, “group”, “supergroup” or “channel”
     */
     std::string type { };
-
     /**
      * @brief Optional. Title, for supergroups, channels and group chats
     */
     std::optional<std::string> title { };
-
     /**
      * @brief Optional. Username, for private chats, supergroups and channels if available
     */
     std::optional<std::string> username { };
-
     /**
      * @brief Optional. First name of the other party in a private chat
     */
     std::optional<std::string> firstName { };
-
     /**
      * @brief Optional. Last name of the other party in a private chat
     */
     std::optional<std::string> lastName { };
-
     /**
      * @brief Optional. True, if the supergroup chat is a forum (has topics enabled)
     */
     std::optional<bool> isForum { };
-
     /**
      * @brief Optional. True, if the chat is the direct messages chat of a channel
     */
     std::optional<bool> isDirectMessages { };
-
     /**
      * @brief Identifier of the accent color for the chat name and backgrounds of the chat photo,
      * reply header, and link preview. See accent colors for more details.
     */
     std::int32_t accentColorId { };
-
     /**
      * @brief The maximum number of reactions that can be set on a message in the chat
     */
     std::int32_t maxReactionCount { };
-
     /**
      * @brief Optional. Chat photo
     */
     std::shared_ptr<ChatPhoto> photo { };
-
     /**
      * @brief Optional. If non-empty, the list of all active chat usernames; for private chats,
      * supergroups and channels
     */
     std::optional<std::vector<std::string>> activeUsernames { };
-
     /**
      * @brief Optional. For private chats, the date of birth of the user
     */
     std::shared_ptr<Birthdate> birthdate { };
-
     /**
      * @brief Optional. For private chats with business accounts, the intro of the business
     */
     std::shared_ptr<BusinessIntro> businessIntro { };
-
     /**
      * @brief Optional. For private chats with business accounts, the location of the business
     */
     std::shared_ptr<BusinessLocation> businessLocation { };
-
     /**
      * @brief Optional. For private chats with business accounts, the opening hours of the business
     */
     std::shared_ptr<BusinessOpeningHours> businessOpeningHours { };
-
     /**
      * @brief Optional. For private chats, the personal channel of the user
     */
     std::shared_ptr<Chat> personalChat { };
-
     /**
      * @brief Optional. Information about the corresponding channel chat; for direct messages chats
      * only
     */
     std::shared_ptr<Chat> parentChat { };
-
     /**
      * @brief Optional. List of available reactions allowed in the chat. If omitted, then all emoji
      * reactions are allowed.
     */
     std::optional<std::vector<std::shared_ptr<ReactionType>>> availableReactions { };
-
     /**
      * @brief Optional. Custom emoji identifier of the emoji chosen by the chat for the reply header
      * and link preview background
     */
     std::optional<std::string> backgroundCustomEmojiId { };
-
     /**
      * @brief Optional. Identifier of the accent color for the chat's profile background. See profile
      * accent colors for more details.
     */
     std::optional<std::int32_t> profileAccentColorId { };
-
     /**
      * @brief Optional. Custom emoji identifier of the emoji chosen by the chat for its profile
      * background
     */
     std::optional<std::string> profileBackgroundCustomEmojiId { };
-
     /**
      * @brief Optional. Custom emoji identifier of the emoji status of the chat or the other party in
      * a private chat
     */
     std::optional<std::string> emojiStatusCustomEmojiId { };
-
     /**
      * @brief Optional. Expiration date of the emoji status of the chat or the other party in a
      * private chat, in Unix time, if any
     */
     std::optional<std::int32_t> emojiStatusExpirationDate { };
-
     /**
      * @brief Optional. Bio of the other party in a private chat
     */
     std::optional<std::string> bio { };
-
     /**
      * @brief Optional. True, if privacy settings of the other party in the private chat allows to use
      * tg://user?id=<user_id> links only in chats with the user
     */
     std::optional<bool> hasPrivateForwards { };
-
     /**
      * @brief Optional. True, if the privacy settings of the other party restrict sending voice and
      * video note messages in the private chat
     */
     std::optional<bool> hasRestrictedVoiceAndVideoMessages { };
-
     /**
      * @brief Optional. True, if users need to join the supergroup before they can send messages
     */
     std::optional<bool> joinToSendMessages { };
-
     /**
      * @brief Optional. True, if all users directly joining the supergroup without using an invite
      * link need to be approved by supergroup administrators
     */
     std::optional<bool> joinByRequest { };
-
     /**
      * @brief Optional. Description, for groups, supergroups and channel chats
     */
     std::optional<std::string> description { };
-
     /**
      * @brief Optional. Primary invite link, for groups, supergroups and channel chats
     */
     std::optional<std::string> inviteLink { };
-
     /**
      * @brief Optional. The most recent pinned message (by sending date)
     */
     std::shared_ptr<Message> pinnedMessage { };
-
     /**
      * @brief Optional. Default chat member permissions, for groups and supergroups
     */
     std::shared_ptr<ChatPermissions> permissions { };
-
     /**
      * @brief Information about types of gifts that are accepted by the chat or by the corresponding
      * user for private chats
     */
     std::shared_ptr<AcceptedGiftTypes> acceptedGiftTypes { };
-
     /**
      * @brief Optional. True, if paid media messages can be sent or forwarded to the channel chat. The
      * field is available only for channel chats.
     */
     std::optional<bool> canSendPaidMedia { };
-
     /**
      * @brief Optional. For supergroups, the minimum allowed delay between consecutive messages sent
      * by each unprivileged user; in seconds
     */
     std::optional<std::int32_t> slowModeDelay { };
-
     /**
      * @brief Optional. For supergroups, the minimum number of boosts that a non-administrator user
      * needs to add in order to ignore slow mode and chat permissions
     */
     std::optional<std::int32_t> unrestrictBoostCount { };
-
     /**
      * @brief Optional. The time after which all messages sent to the chat will be automatically
      * deleted; in seconds
     */
     std::optional<std::int32_t> messageAutoDeleteTime { };
-
     /**
      * @brief Optional. True, if aggressive anti-spam checks are enabled in the supergroup. The field
      * is only available to chat administrators.
     */
     std::optional<bool> hasAggressiveAntiSpamEnabled { };
-
     /**
      * @brief Optional. True, if non-administrators can only get the list of bots and administrators
      * in the chat
     */
     std::optional<bool> hasHiddenMembers { };
-
     /**
      * @brief Optional. True, if messages from the chat can't be forwarded to other chats
     */
     std::optional<bool> hasProtectedContent { };
-
     /**
      * @brief Optional. True, if new chat members will have access to old messages; available only to
      * chat administrators
     */
     std::optional<bool> hasVisibleHistory { };
-
     /**
      * @brief Optional. For supergroups, name of the group sticker set
     */
     std::optional<std::string> stickerSetName { };
-
     /**
      * @brief Optional. True, if the bot can change the group sticker set
     */
     std::optional<bool> canSetStickerSet { };
-
     /**
      * @brief Optional. For supergroups, the name of the group's custom emoji sticker set. Custom
      * emoji from this set can be used by all users and bots in the group.
     */
     std::optional<std::string> customEmojiStickerSetName { };
-
     /**
      * @brief Optional. Unique identifier for the linked chat, i.e. the discussion group identifier
      * for a channel and vice versa; for supergroups and channel chats. This identifier may be
@@ -2142,40 +1980,33 @@ struct ChatFullInfo {
      * double-precision float type are safe for storing this identifier.
     */
     std::optional<std::int64_t> linkedChatId { };
-
     /**
      * @brief Optional. For supergroups, the location to which the supergroup is connected
     */
     std::shared_ptr<ChatLocation> location { };
-
     /**
      * @brief Optional. For private chats, the rating of the user if any
     */
     std::shared_ptr<UserRating> rating { };
-
     /**
      * @brief Optional. For private chats, the first audio added to the profile of the user
     */
     std::shared_ptr<Audio> firstProfileAudio { };
-
     /**
      * @brief Optional. The color scheme based on a unique gift that must be used for the chat's name,
      * message replies and link previews
     */
     std::shared_ptr<UniqueGiftColors> uniqueGiftColors { };
-
     /**
      * @brief Optional. The number of Telegram Stars a general user has to pay to send a message to
      * the chat
     */
     std::optional<std::int32_t> paidMessageStarCount { };
-
     /**
      * @brief Optional. The bot that processes join request queries in the chat. The field is only
      * available to chat administrators.
     */
     std::shared_ptr<User> guardBot { };
-
     /**
      * @brief Optional. The Community to which the chat belongs
     */
@@ -2197,54 +2028,44 @@ struct ChatInviteLink {
      * part of the link will be replaced with “…”.
     */
     std::string inviteLink { };
-
     /**
      * @brief Creator of the link
     */
     std::shared_ptr<User> creator { };
-
     /**
      * @brief True, if users joining the chat via the link need to be approved by chat administrators
     */
     bool createsJoinRequest { };
-
     /**
      * @brief True, if the link is primary
     */
     bool isPrimary { };
-
     /**
      * @brief True, if the link is revoked
     */
     bool isRevoked { };
-
     /**
      * @brief Optional. Invite link name
     */
     std::optional<std::string> name { };
-
     /**
      * @brief Optional. Point in time (Unix timestamp) when the link will expire or has been expired
     */
     std::optional<std::int32_t> expireDate { };
-
     /**
      * @brief Optional. The maximum number of users that can be members of the chat simultaneously
      * after joining the chat via this invite link; 1-99999
     */
     std::optional<std::int32_t> memberLimit { };
-
     /**
      * @brief Optional. Number of pending join requests created using this link
     */
     std::optional<std::int32_t> pendingJoinRequestCount { };
-
     /**
      * @brief Optional. The number of seconds the subscription will be active for before the next
      * payment
     */
     std::optional<std::int32_t> subscriptionPeriod { };
-
     /**
      * @brief Optional. The amount of Telegram Stars a user must pay initially and after each
      * subsequent subscription period to be a member of the chat using the link
@@ -2266,12 +2087,10 @@ struct ChatJoinRequest {
      * @brief Chat to which the request was sent
     */
     std::shared_ptr<Chat> chat { };
-
     /**
      * @brief User that sent the join request
     */
     std::shared_ptr<User> from { };
-
     /**
      * @brief Identifier of a private chat with the user who sent the join request. This number may
      * have more than 32 significant bits and some programming languages may have
@@ -2281,22 +2100,18 @@ struct ChatJoinRequest {
      * processed, assuming no other administrator contacted the user.
     */
     std::int64_t userChatId { };
-
     /**
      * @brief Date the request was sent in Unix time
     */
     std::int32_t date { };
-
     /**
      * @brief Optional. Bio of the user
     */
     std::optional<std::string> bio { };
-
     /**
      * @brief Optional. Chat invite link that was used by the user to send the join request
     */
     std::shared_ptr<ChatInviteLink> inviteLink { };
-
     /**
      * @brief Optional. Identifier of the join request query; for bots assigned to process join
      * requests only. If present, then the bot must call sendChatJoinRequestWebApp or directly
@@ -2319,7 +2134,6 @@ struct ChatLocation {
      * @brief The location to which the supergroup is connected. Can't be a live location.
     */
     std::shared_ptr<Location> location { };
-
     /**
      * @brief Location address; 1-64 characters, as defined by the chat owner
     */
@@ -2360,22 +2174,18 @@ struct ChatMemberAdministrator {
      * @brief The member's status in the chat, always “administrator”
     */
     std::string status { STATUS };
-
     /**
      * @brief Information about the user
     */
     std::shared_ptr<User> user { };
-
     /**
      * @brief True, if the bot is allowed to edit administrator privileges of that user
     */
     bool canBeEdited { };
-
     /**
      * @brief True, if the user's presence in the chat is hidden
     */
     bool isAnonymous { };
-
     /**
      * @brief True, if the administrator can access the chat event log, get boost list, see hidden
      * supergroup and channel members, report spam messages, ignore slow mode, and send
@@ -2383,91 +2193,75 @@ struct ChatMemberAdministrator {
      * privilege.
     */
     bool canManageChat { };
-
     /**
      * @brief True, if the administrator can delete messages of other users
     */
     bool canDeleteMessages { };
-
     /**
      * @brief True, if the administrator can manage video chats
     */
     bool canManageVideoChats { };
-
     /**
      * @brief True, if the administrator can restrict, ban or unban chat members, or access supergroup
      * statistics
     */
     bool canRestrictMembers { };
-
     /**
      * @brief True, if the administrator can add new administrators with a subset of their own
      * privileges or demote administrators that they have promoted, directly or indirectly
      * (promoted by administrators that were appointed by the user)
     */
     bool canPromoteMembers { };
-
     /**
      * @brief True, if the user is allowed to change the chat title, photo and other settings
     */
     bool canChangeInfo { };
-
     /**
      * @brief True, if the user is allowed to invite new users to the chat
     */
     bool canInviteUsers { };
-
     /**
      * @brief True, if the administrator can post stories to the chat
     */
     bool canPostStories { };
-
     /**
      * @brief True, if the administrator can edit stories posted by other users, post stories to the
      * chat page, pin chat stories, and access the chat's story archive
     */
     bool canEditStories { };
-
     /**
      * @brief True, if the administrator can delete stories posted by other users
     */
     bool canDeleteStories { };
-
     /**
      * @brief Optional. True, if the administrator can post messages in the channel, approve suggested
      * posts, or access channel statistics; for channels only
     */
     std::optional<bool> canPostMessages { };
-
     /**
      * @brief Optional. True, if the administrator can edit messages of other users and can pin
      * messages; for channels only
     */
     std::optional<bool> canEditMessages { };
-
     /**
      * @brief Optional. True, if the user is allowed to pin messages; for groups and supergroups only
     */
     std::optional<bool> canPinMessages { };
-
     /**
      * @brief Optional. True, if the user is allowed to create, rename, close, and reopen forum
      * topics; for supergroups only
     */
     std::optional<bool> canManageTopics { };
-
     /**
      * @brief Optional. True, if the administrator can manage direct messages of the channel and
      * decline suggested posts; for channels only
     */
     std::optional<bool> canManageDirectMessages { };
-
     /**
      * @brief Optional. True, if the administrator can edit the tags of regular members; for groups
      * and supergroups only. If omitted, defaults to the value of can_pin_messages.
     */
     std::optional<bool> canManageTags { };
-
     /**
      * @brief Optional. Custom title for this user
     */
@@ -2491,12 +2285,10 @@ struct ChatMemberBanned {
      * @brief The member's status in the chat, always “kicked”
     */
     std::string status { STATUS };
-
     /**
      * @brief Information about the user
     */
     std::shared_ptr<User> user { };
-
     /**
      * @brief Date when restrictions will be lifted for this user; Unix time. If 0, then the user is
      * banned forever.
@@ -2521,7 +2313,6 @@ struct ChatMemberLeft {
      * @brief The member's status in the chat, always “left”
     */
     std::string status { STATUS };
-
     /**
      * @brief Information about the user
     */
@@ -2544,17 +2335,14 @@ struct ChatMemberMember {
      * @brief The member's status in the chat, always “member”
     */
     std::string status { STATUS };
-
     /**
      * @brief Optional. Tag of the member
     */
     std::optional<std::string> tag { };
-
     /**
      * @brief Information about the user
     */
     std::shared_ptr<User> user { };
-
     /**
      * @brief Optional. Date when the user's subscription will expire; Unix time
     */
@@ -2577,17 +2365,14 @@ struct ChatMemberOwner {
      * @brief The member's status in the chat, always “creator”
     */
     std::string status { STATUS };
-
     /**
      * @brief Information about the user
     */
     std::shared_ptr<User> user { };
-
     /**
      * @brief True, if the user's presence in the chat is hidden
     */
     bool isAnonymous { };
-
     /**
      * @brief Optional. Custom title for this user
     */
@@ -2610,103 +2395,83 @@ struct ChatMemberRestricted {
      * @brief The member's status in the chat, always “restricted”
     */
     std::string status { STATUS };
-
     /**
      * @brief Optional. Tag of the member
     */
     std::optional<std::string> tag { };
-
     /**
      * @brief Information about the user
     */
     std::shared_ptr<User> user { };
-
     /**
      * @brief True, if the user is a member of the chat at the moment of the request
     */
     bool isMember { };
-
     /**
      * @brief True, if the user is allowed to send text messages, rich messages, contacts, giveaways,
      * giveaway winners, invoices, locations and venues
     */
     bool canSendMessages { };
-
     /**
      * @brief True, if the user is allowed to send audios
     */
     bool canSendAudios { };
-
     /**
      * @brief True, if the user is allowed to send documents
     */
     bool canSendDocuments { };
-
     /**
      * @brief True, if the user is allowed to send photos
     */
     bool canSendPhotos { };
-
     /**
      * @brief True, if the user is allowed to send videos
     */
     bool canSendVideos { };
-
     /**
      * @brief True, if the user is allowed to send video notes
     */
     bool canSendVideoNotes { };
-
     /**
      * @brief True, if the user is allowed to send voice notes
     */
     bool canSendVoiceNotes { };
-
     /**
      * @brief True, if the user is allowed to send polls and checklists
     */
     bool canSendPolls { };
-
     /**
      * @brief True, if the user is allowed to send animations, games, stickers and use inline bots
     */
     bool canSendOtherMessages { };
-
     /**
      * @brief True, if the user is allowed to add web page previews to their messages
     */
     bool canAddWebPagePreviews { };
-
     /**
      * @brief True, if the user is allowed to react to messages
     */
     bool canReactToMessages { };
-
     /**
      * @brief True, if the user is allowed to edit their own tag
     */
     bool canEditTag { };
-
     /**
      * @brief True, if the user is allowed to change the chat title, photo and other settings
     */
     bool canChangeInfo { };
-
     /**
      * @brief True, if the user is allowed to invite new users to the chat
     */
     bool canInviteUsers { };
-
     /**
      * @brief True, if the user is allowed to pin messages
     */
     bool canPinMessages { };
-
     /**
      * @brief True, if the user is allowed to create forum topics
     */
     bool canManageTopics { };
-
     /**
      * @brief Date when restrictions will be lifted for this user; Unix time. If 0, then the user is
      * restricted forever.
@@ -2728,39 +2493,32 @@ struct ChatMemberUpdated {
      * @brief Chat the user belongs to
     */
     std::shared_ptr<Chat> chat { };
-
     /**
      * @brief Performer of the action, which resulted in the change
     */
     std::shared_ptr<User> from { };
-
     /**
      * @brief Date the change was done in Unix time
     */
     std::int32_t date { };
-
     /**
      * @brief Previous information about the chat member
     */
     std::shared_ptr<ChatMember> oldChatMember { };
-
     /**
      * @brief New information about the chat member
     */
     std::shared_ptr<ChatMember> newChatMember { };
-
     /**
      * @brief Optional. Chat invite link, which was used by the user to join the chat; for joining by
      * invite link events only
     */
     std::shared_ptr<ChatInviteLink> inviteLink { };
-
     /**
      * @brief Optional. True, if the user joined the chat after sending a direct join request without
      * using an invite link and being approved by an administrator
     */
     std::optional<bool> viaJoinRequest { };
-
     /**
      * @brief Optional. True, if the user joined the chat via a chat folder invite link
     */
@@ -2815,81 +2573,66 @@ struct ChatPermissions {
      * giveaways, giveaway winners, invoices, locations and venues
     */
     std::optional<bool> canSendMessages { };
-
     /**
      * @brief Optional. True, if the user is allowed to send audios
     */
     std::optional<bool> canSendAudios { };
-
     /**
      * @brief Optional. True, if the user is allowed to send documents
     */
     std::optional<bool> canSendDocuments { };
-
     /**
      * @brief Optional. True, if the user is allowed to send photos
     */
     std::optional<bool> canSendPhotos { };
-
     /**
      * @brief Optional. True, if the user is allowed to send videos
     */
     std::optional<bool> canSendVideos { };
-
     /**
      * @brief Optional. True, if the user is allowed to send video notes
     */
     std::optional<bool> canSendVideoNotes { };
-
     /**
      * @brief Optional. True, if the user is allowed to send voice notes
     */
     std::optional<bool> canSendVoiceNotes { };
-
     /**
      * @brief Optional. True, if the user is allowed to send polls and checklists
     */
     std::optional<bool> canSendPolls { };
-
     /**
      * @brief Optional. True, if the user is allowed to send animations, games, stickers and use
      * inline bots
     */
     std::optional<bool> canSendOtherMessages { };
-
     /**
      * @brief Optional. True, if the user is allowed to add web page previews to their messages
     */
     std::optional<bool> canAddWebPagePreviews { };
-
     /**
      * @brief Optional. True, if the user is allowed to react to messages. If omitted, defaults to the
      * value of can_send_messages.
     */
     std::optional<bool> canReactToMessages { };
-
     /**
      * @brief Optional. True, if the user is allowed to edit their own tag. If omitted, defaults to
      * the value of can_pin_messages.
     */
     std::optional<bool> canEditTag { };
-
     /**
      * @brief Optional. True, if the user is allowed to change the chat title, photo and other
      * settings. Ignored in public supergroups.
     */
     std::optional<bool> canChangeInfo { };
-
     /**
      * @brief Optional. True, if the user is allowed to invite new users to the chat
     */
     std::optional<bool> canInviteUsers { };
-
     /**
      * @brief Optional. True, if the user is allowed to pin messages. Ignored in public supergroups.
     */
     std::optional<bool> canPinMessages { };
-
     /**
      * @brief Optional. True, if the user is allowed to create forum topics. If omitted, defaults to
      * the value of can_pin_messages.
@@ -2912,19 +2655,16 @@ struct ChatPhoto {
      * download and only for as long as the photo is not changed.
     */
     std::string smallFileId { };
-
     /**
      * @brief Unique file identifier of small (160x160) chat photo, which is supposed to be the same
      * over time and for different bots. Can't be used to download or reuse the file.
     */
     std::string smallFileUniqueId { };
-
     /**
      * @brief File identifier of big (640x640) chat photo. This file_id can be used only for photo
      * download and only for as long as the photo is not changed.
     */
     std::string bigFileId { };
-
     /**
      * @brief Unique file identifier of big (640x640) chat photo, which is supposed to be the same
      * over time and for different bots. Can't be used to download or reuse the file.
@@ -2947,7 +2687,6 @@ struct ChatShared {
      * @brief Identifier of the request
     */
     std::int32_t requestId { };
-
     /**
      * @brief Identifier of the shared chat. This number may have more than 32 significant bits and
      * some programming languages may have difficulty/silent defects in interpreting it. But it
@@ -2957,17 +2696,14 @@ struct ChatShared {
      * means.
     */
     std::int64_t chatId { };
-
     /**
      * @brief Optional. Title of the chat, if the title was requested by the bot
     */
     std::optional<std::string> title { };
-
     /**
      * @brief Optional. Username of the chat, if the username was requested by the bot and available
     */
     std::optional<std::string> username { };
-
     /**
      * @brief Optional. Available sizes of the chat photo, if the photo was requested by the bot
     */
@@ -2988,22 +2724,18 @@ struct Checklist {
      * @brief Title of the checklist
     */
     std::string title { };
-
     /**
      * @brief Optional. Special entities that appear in the checklist title
     */
     std::optional<std::vector<std::shared_ptr<MessageEntity>>> titleEntities { };
-
     /**
      * @brief List of tasks in the checklist
     */
     std::vector<std::shared_ptr<ChecklistTask>> tasks { };
-
     /**
      * @brief Optional. True, if users other than the creator of the list can add tasks to the list
     */
     std::optional<bool> othersCanAddTasks { };
-
     /**
      * @brief Optional. True, if users other than the creator of the list can mark tasks as done or
      * not done
@@ -3025,27 +2757,22 @@ struct ChecklistTask {
      * @brief Unique identifier of the task
     */
     std::int32_t id { };
-
     /**
      * @brief Text of the task
     */
     std::string text { };
-
     /**
      * @brief Optional. Special entities that appear in the task text
     */
     std::optional<std::vector<std::shared_ptr<MessageEntity>>> textEntities { };
-
     /**
      * @brief Optional. User that completed the task; omitted if the task wasn't completed by a user
     */
     std::shared_ptr<User> completedByUser { };
-
     /**
      * @brief Optional. Chat that completed the task; omitted if the task wasn't completed by a chat
     */
     std::shared_ptr<Chat> completedByChat { };
-
     /**
      * @brief Optional. Point in time (Unix timestamp) when the task was completed; 0 if the task
      * wasn't completed
@@ -3069,7 +2796,6 @@ struct ChecklistTasksAdded {
      * itself is a reply.
     */
     std::shared_ptr<Message> checklistMessage { };
-
     /**
      * @brief List of tasks added to the checklist
     */
@@ -3092,12 +2818,10 @@ struct ChecklistTasksDone {
      * even if it itself is a reply.
     */
     std::shared_ptr<Message> checklistMessage { };
-
     /**
      * @brief Optional. Identifiers of the tasks that were marked as done
     */
     std::optional<std::vector<std::int32_t>> markedAsDoneTaskIds { };
-
     /**
      * @brief Optional. Identifiers of the tasks that were marked as not done
     */
@@ -3119,24 +2843,20 @@ struct ChosenInlineResult {
      * @brief The unique identifier for the result that was chosen
     */
     std::string resultId { };
-
     /**
      * @brief The user that chose the result
     */
     std::shared_ptr<User> from { };
-
     /**
      * @brief Optional. Sender location, only for bots that require user location
     */
     std::shared_ptr<Location> location { };
-
     /**
      * @brief Optional. Identifier of the sent inline message. Available only if there is an inline
      * keyboard attached to the message. Will be also received in callback queries and can be
      * used to edit the message.
     */
     std::optional<std::string> inlineMessageId { };
-
     /**
      * @brief The query that was used to obtain the result
     */
@@ -3160,7 +2880,6 @@ struct Community {
      * float type are safe for storing this identifier.
     */
     std::int64_t id { };
-
     /**
      * @brief Name of the community
     */
@@ -3209,17 +2928,14 @@ struct Contact {
      * @brief Contact's phone number
     */
     std::string phoneNumber { };
-
     /**
      * @brief Contact's first name
     */
     std::string firstName { };
-
     /**
      * @brief Optional. Contact's last name
     */
     std::optional<std::string> lastName { };
-
     /**
      * @brief Optional. Contact's user identifier in Telegram. This number may have more than 32
      * significant bits and some programming languages may have difficulty/silent defects in
@@ -3227,7 +2943,6 @@ struct Contact {
      * precision float type are safe for storing this identifier.
     */
     std::optional<std::int64_t> userId { };
-
     /**
      * @brief Optional. Additional data about the contact in the form of a vCard
     */
@@ -3265,7 +2980,6 @@ struct Dice {
      * @brief Emoji on which the dice throw animation is based
     */
     std::string emoji { };
-
     /**
      * @brief Value of the dice, 1-6 for “”, “” and “” base emoji, 1-5 for “” and “” base emoji, 1-64
      * for “” base emoji
@@ -3288,7 +3002,6 @@ struct DirectMessagePriceChanged {
      * @brief True, if direct messages are enabled for the channel chat; False otherwise
     */
     bool areDirectMessagesEnabled { };
-
     /**
      * @brief Optional. The new number of Telegram Stars that must be paid by users for each direct
      * message sent to the channel. Does not apply to users who have been exempted by
@@ -3314,7 +3027,6 @@ struct DirectMessagesTopic {
      * safe for storing this identifier.
     */
     std::int64_t topicId { };
-
     /**
      * @brief Optional. Information about the user that created the topic. Currently, it is always
      * present.
@@ -3337,28 +3049,23 @@ struct Document {
      * @brief Identifier for this file, which can be used to download or reuse the file
     */
     std::string fileId { };
-
     /**
      * @brief Unique identifier for this file, which is supposed to be the same over time and for
      * different bots. Can't be used to download or reuse the file.
     */
     std::string fileUniqueId { };
-
     /**
      * @brief Optional. Document thumbnail as defined by the sender
     */
     std::shared_ptr<PhotoSize> thumbnail { };
-
     /**
      * @brief Optional. Original filename as defined by the sender
     */
     std::optional<std::string> fileName { };
-
     /**
      * @brief Optional. MIME type of the file as defined by the sender
     */
     std::optional<std::string> mimeType { };
-
     /**
      * @brief Optional. File size in bytes. It can be bigger than 2^31 and some programming languages
      * may have difficulty/silent defects in interpreting it. But it has at most 52 significant
@@ -3385,12 +3092,10 @@ struct EncryptedCredentials {
      * and secrets required for EncryptedPassportElement decryption and authentication
     */
     std::string data { };
-
     /**
      * @brief Base64-encoded data hash for data authentication
     */
     std::string hash { };
-
     /**
      * @brief Base64-encoded secret, encrypted with the bot's public RSA key, required for data
      * decryption
@@ -3414,7 +3119,6 @@ struct EncryptedPassportElement {
      * “passport_registration”, “temporary_registration”, “phone_number”, “email”.
     */
     std::string type { };
-
     /**
      * @brief Optional. Base64-encoded encrypted Telegram Passport element data provided by the user;
      * available only for “personal_details”, “passport”, “driver_license”, “identity_card”,
@@ -3422,17 +3126,14 @@ struct EncryptedPassportElement {
      * accompanying EncryptedCredentials.
     */
     std::optional<std::string> data { };
-
     /**
      * @brief Optional. User's verified phone number; available only for “phone_number” type
     */
     std::optional<std::string> phoneNumber { };
-
     /**
      * @brief Optional. User's verified email address; available only for “email” type
     */
     std::optional<std::string> email { };
-
     /**
      * @brief Optional. Array of encrypted files with documents provided by the user; available only
      * for “utility_bill”, “bank_statement”, “rental_agreement”, “passport_registration” and
@@ -3440,7 +3141,6 @@ struct EncryptedPassportElement {
      * accompanying EncryptedCredentials.
     */
     std::optional<std::vector<std::shared_ptr<PassportFile>>> files { };
-
     /**
      * @brief Optional. Encrypted file with the front side of the document, provided by the user;
      * available only for “passport”, “driver_license”, “identity_card” and
@@ -3448,14 +3148,12 @@ struct EncryptedPassportElement {
      * EncryptedCredentials.
     */
     std::shared_ptr<PassportFile> frontSide { };
-
     /**
      * @brief Optional. Encrypted file with the reverse side of the document, provided by the user;
      * available only for “driver_license” and “identity_card”. The file can be decrypted and
      * verified using the accompanying EncryptedCredentials.
     */
     std::shared_ptr<PassportFile> reverseSide { };
-
     /**
      * @brief Optional. Encrypted file with the selfie of the user holding a document, provided by the
      * user; available if requested for “passport”, “driver_license”, “identity_card” and
@@ -3463,7 +3161,6 @@ struct EncryptedPassportElement {
      * EncryptedCredentials.
     */
     std::shared_ptr<PassportFile> selfie { };
-
     /**
      * @brief Optional. Array of encrypted files with translated versions of documents provided by the
      * user; available if requested for “passport”, “driver_license”, “identity_card”,
@@ -3472,7 +3169,6 @@ struct EncryptedPassportElement {
      * verified using the accompanying EncryptedCredentials.
     */
     std::optional<std::vector<std::shared_ptr<PassportFile>>> translation { };
-
     /**
      * @brief Base64-encoded element hash for using in PassportElementErrorUnspecified
     */
@@ -3494,131 +3190,106 @@ struct ExternalReplyInfo {
      * @brief Origin of the message replied to by the given message
     */
     std::shared_ptr<MessageOrigin> origin { };
-
     /**
      * @brief Optional. Chat the original message belongs to. Available only if the chat is a
      * supergroup or a channel.
     */
     std::shared_ptr<Chat> chat { };
-
     /**
      * @brief Optional. Unique message identifier inside the original chat. Available only if the
      * original chat is a supergroup or a channel.
     */
     std::optional<std::int32_t> messageId { };
-
     /**
      * @brief Optional. Options used for link preview generation for the original message, if it is a
      * text message
     */
     std::shared_ptr<LinkPreviewOptions> linkPreviewOptions { };
-
     /**
      * @brief Optional. Message is an animation, information about the animation
     */
     std::shared_ptr<Animation> animation { };
-
     /**
      * @brief Optional. Message is an audio file, information about the file
     */
     std::shared_ptr<Audio> audio { };
-
     /**
      * @brief Optional. Message is a general file, information about the file
     */
     std::shared_ptr<Document> document { };
-
     /**
      * @brief Optional. Message is a live photo, information about the live photo
     */
     std::shared_ptr<LivePhoto> livePhoto { };
-
     /**
      * @brief Optional. Message contains paid media; information about the paid media
     */
     std::shared_ptr<PaidMediaInfo> paidMedia { };
-
     /**
      * @brief Optional. Message is a photo, available sizes of the photo
     */
     std::optional<std::vector<std::shared_ptr<PhotoSize>>> photo { };
-
     /**
      * @brief Optional. Message is a sticker, information about the sticker
     */
     std::shared_ptr<Sticker> sticker { };
-
     /**
      * @brief Optional. Message is a forwarded story
     */
     std::shared_ptr<Story> story { };
-
     /**
      * @brief Optional. Message is a video, information about the video
     */
     std::shared_ptr<Video> video { };
-
     /**
      * @brief Optional. Message is a video note, information about the video message
     */
     std::shared_ptr<VideoNote> videoNote { };
-
     /**
      * @brief Optional. Message is a voice message, information about the file
     */
     std::shared_ptr<Voice> voice { };
-
     /**
      * @brief Optional. True, if the message media is covered by a spoiler animation
     */
     std::optional<bool> hasMediaSpoiler { };
-
     /**
      * @brief Optional. Message is a checklist
     */
     std::shared_ptr<Checklist> checklist { };
-
     /**
      * @brief Optional. Message is a shared contact, information about the contact
     */
     std::shared_ptr<Contact> contact { };
-
     /**
      * @brief Optional. Message is a dice with random value
     */
     std::shared_ptr<Dice> dice { };
-
     /**
      * @brief Optional. Message is a game, information about the game. More about games »
     */
     std::shared_ptr<Game> game { };
-
     /**
      * @brief Optional. Message is a scheduled giveaway, information about the giveaway
     */
     std::shared_ptr<Giveaway> giveaway { };
-
     /**
      * @brief Optional. A giveaway with public winners was completed
     */
     std::shared_ptr<GiveawayWinners> giveawayWinners { };
-
     /**
      * @brief Optional. Message is an invoice for a payment, information about the invoice. More about
      * payments »
     */
     std::shared_ptr<Invoice> invoice { };
-
     /**
      * @brief Optional. Message is a shared location, information about the location
     */
     std::shared_ptr<Location> location { };
-
     /**
      * @brief Optional. Message is a native poll, information about the poll
     */
     std::shared_ptr<Poll> poll { };
-
     /**
      * @brief Optional. Message is a venue, information about the venue
     */
@@ -3642,13 +3313,11 @@ struct File {
      * @brief Identifier for this file, which can be used to download or reuse the file
     */
     std::string fileId { };
-
     /**
      * @brief Unique identifier for this file, which is supposed to be the same over time and for
      * different bots. Can't be used to download or reuse the file.
     */
     std::string fileUniqueId { };
-
     /**
      * @brief Optional. File size in bytes. It can be bigger than 2^31 and some programming languages
      * may have difficulty/silent defects in interpreting it. But it has at most 52 significant
@@ -3656,7 +3325,6 @@ struct File {
      * this value.
     */
     std::optional<std::int64_t> fileSize { };
-
     /**
      * @brief Optional. File path. Use https://api.telegram.org/file/bot<token>/<file_path> to get the
      * file.
@@ -3683,13 +3351,11 @@ struct ForceReply {
      * tapped 'Reply'
     */
     bool forceReply { };
-
     /**
      * @brief Optional. The placeholder to be shown in the input field when the reply is active; 1-64
      * characters
     */
     std::optional<std::string> inputFieldPlaceholder { };
-
     /**
      * @brief Optional. Use this parameter if you want to force reply from specific users only.
      * Targets: 1) users that are @mentioned in the text of the Message object; 2) if the bot's
@@ -3713,22 +3379,18 @@ struct ForumTopic {
      * @brief Unique identifier of the forum topic
     */
     std::int32_t messageThreadId { };
-
     /**
      * @brief Name of the topic
     */
     std::string name { };
-
     /**
      * @brief Color of the topic icon in RGB format
     */
     std::int32_t iconColor { };
-
     /**
      * @brief Optional. Unique identifier of the custom emoji shown as the topic icon
     */
     std::optional<std::string> iconCustomEmojiId { };
-
     /**
      * @brief Optional. True, if the name of the topic wasn't specified explicitly by its creator and
      * likely needs to be changed by the bot
@@ -3762,17 +3424,14 @@ struct ForumTopicCreated {
      * @brief Name of the topic
     */
     std::string name { };
-
     /**
      * @brief Color of the topic icon in RGB format
     */
     std::int32_t iconColor { };
-
     /**
      * @brief Optional. Unique identifier of the custom emoji shown as the topic icon
     */
     std::optional<std::string> iconCustomEmojiId { };
-
     /**
      * @brief Optional. True, if the name of the topic wasn't specified explicitly by its creator and
      * likely needs to be changed by the bot
@@ -3794,7 +3453,6 @@ struct ForumTopicEdited {
      * @brief Optional. New name of the topic, if it was edited
     */
     std::optional<std::string> name { };
-
     /**
      * @brief Optional. New identifier of the custom emoji shown as the topic icon, if it was edited;
      * an empty string if the icon was removed
@@ -3829,30 +3487,25 @@ struct Game {
      * @brief Title of the game
     */
     std::string title { };
-
     /**
      * @brief Description of the game
     */
     std::string description { };
-
     /**
      * @brief Photo that will be displayed in the game message in chats
     */
     std::vector<std::shared_ptr<PhotoSize>> photo { };
-
     /**
      * @brief Optional. Brief description of the game or high scores included in the game message. Can
      * be automatically edited to include current high scores for the game when the bot calls
      * setGameScore, or manually edited using editMessageText. 0-4096 characters.
     */
     std::optional<std::string> text { };
-
     /**
      * @brief Optional. Special entities that appear in text, such as usernames, URLs, bot commands,
      * etc.
     */
     std::optional<std::vector<std::shared_ptr<MessageEntity>>> textEntities { };
-
     /**
      * @brief Optional. Animation that will be displayed in the game message in chats. Upload via
      * BotFather.
@@ -3874,12 +3527,10 @@ struct GameHighScore {
      * @brief Position in high score table for the game
     */
     std::int32_t position { };
-
     /**
      * @brief User
     */
     std::shared_ptr<User> user { };
-
     /**
      * @brief Score
     */
@@ -3924,69 +3575,57 @@ struct Gift {
      * @brief Unique identifier of the gift
     */
     std::string id { };
-
     /**
      * @brief The sticker that represents the gift
     */
     std::shared_ptr<Sticker> sticker { };
-
     /**
      * @brief The number of Telegram Stars that must be paid to send the sticker
     */
     std::int32_t starCount { };
-
     /**
      * @brief Optional. The number of Telegram Stars that must be paid to upgrade the gift to a unique
      * one
     */
     std::optional<std::int32_t> upgradeStarCount { };
-
     /**
      * @brief Optional. True, if the gift can only be purchased by Telegram Premium subscribers
     */
     std::optional<bool> isPremium { };
-
     /**
      * @brief Optional. True, if the gift can be used (after being upgraded) to customize a user's
      * appearance
     */
     std::optional<bool> hasColors { };
-
     /**
      * @brief Optional. The total number of gifts of this type that can be sent by all users; for
      * limited gifts only
     */
     std::optional<std::int32_t> totalCount { };
-
     /**
      * @brief Optional. The number of remaining gifts of this type that can be sent by all users; for
      * limited gifts only
     */
     std::optional<std::int32_t> remainingCount { };
-
     /**
      * @brief Optional. The total number of gifts of this type that can be sent by the bot; for
      * limited gifts only
     */
     std::optional<std::int32_t> personalTotalCount { };
-
     /**
      * @brief Optional. The number of remaining gifts of this type that can be sent by the bot; for
      * limited gifts only
     */
     std::optional<std::int32_t> personalRemainingCount { };
-
     /**
      * @brief Optional. Background of the gift
     */
     std::shared_ptr<GiftBackground> background { };
-
     /**
      * @brief Optional. The total number of different unique gifts that can be obtained by upgrading
      * the gift
     */
     std::optional<std::int32_t> uniqueGiftVariantCount { };
-
     /**
      * @brief Optional. Information about the chat that published the gift
     */
@@ -4007,12 +3646,10 @@ struct GiftBackground {
      * @brief Center color of the background in RGB format
     */
     std::int32_t centerColor { };
-
     /**
      * @brief Edge color of the background in RGB format
     */
     std::int32_t edgeColor { };
-
     /**
      * @brief Text color of the background in RGB format
     */
@@ -4033,50 +3670,41 @@ struct GiftInfo {
      * @brief Information about the gift
     */
     std::shared_ptr<Gift> gift { };
-
     /**
      * @brief Optional. Unique identifier of the received gift for the bot; only present for gifts
      * received on behalf of business accounts
     */
     std::optional<std::string> ownedGiftId { };
-
     /**
      * @brief Optional. Number of Telegram Stars that can be claimed by the receiver by converting the
      * gift; omitted if conversion to Telegram Stars is impossible
     */
     std::optional<std::int32_t> convertStarCount { };
-
     /**
      * @brief Optional. Number of Telegram Stars that were prepaid for the ability to upgrade the gift
     */
     std::optional<std::int32_t> prepaidUpgradeStarCount { };
-
     /**
      * @brief Optional. True, if the gift's upgrade was purchased after the gift was sent
     */
     std::optional<bool> isUpgradeSeparate { };
-
     /**
      * @brief Optional. True, if the gift can be upgraded to a unique gift
     */
     std::optional<bool> canBeUpgraded { };
-
     /**
      * @brief Optional. Text of the message that was added to the gift
     */
     std::optional<std::string> text { };
-
     /**
      * @brief Optional. Special entities that appear in the text
     */
     std::optional<std::vector<std::shared_ptr<MessageEntity>>> entities { };
-
     /**
      * @brief Optional. True, if the sender and gift text are shown only to the gift receiver;
      * otherwise, everyone will be able to see them
     */
     std::optional<bool> isPrivate { };
-
     /**
      * @brief Optional. Unique number reserved for this gift when upgraded. See the number field in
      * UniqueGift.
@@ -4114,33 +3742,27 @@ struct Giveaway {
      * @brief The list of chats which the user must join to participate in the giveaway
     */
     std::vector<std::shared_ptr<Chat>> chats { };
-
     /**
      * @brief Point in time (Unix timestamp) when winners of the giveaway will be selected
     */
     std::int32_t winnersSelectionDate { };
-
     /**
      * @brief The number of users which are supposed to be selected as winners of the giveaway
     */
     std::int32_t winnerCount { };
-
     /**
      * @brief Optional. True, if only users who join the chats after the giveaway started should be
      * eligible to win
     */
     std::optional<bool> onlyNewMembers { };
-
     /**
      * @brief Optional. True, if the list of giveaway winners will be visible to everyone
     */
     std::optional<bool> hasPublicWinners { };
-
     /**
      * @brief Optional. Description of additional giveaway prize
     */
     std::optional<std::string> prizeDescription { };
-
     /**
      * @brief Optional. A list of two-letter ISO 3166-1 alpha-2 country codes indicating the countries
      * from which eligible users for the giveaway must come. If empty, then all users can
@@ -4148,13 +3770,11 @@ struct Giveaway {
      * always participate in giveaways.
     */
     std::optional<std::vector<std::string>> countryCodes { };
-
     /**
      * @brief Optional. The number of Telegram Stars to be split between giveaway winners; for
      * Telegram Star giveaways only
     */
     std::optional<std::int32_t> prizeStarCount { };
-
     /**
      * @brief Optional. The number of months the Telegram Premium subscription won from the giveaway
      * will be active for; for Telegram Premium giveaways only
@@ -4177,17 +3797,14 @@ struct GiveawayCompleted {
      * @brief Number of winners in the giveaway
     */
     std::int32_t winnerCount { };
-
     /**
      * @brief Optional. Number of undistributed prizes
     */
     std::optional<std::int32_t> unclaimedPrizeCount { };
-
     /**
      * @brief Optional. Message with the giveaway that was completed, if it wasn't deleted
     */
     std::shared_ptr<Message> giveawayMessage { };
-
     /**
      * @brief Optional. True, if the giveaway is a Telegram Star giveaway. Otherwise, currently, the
      * giveaway is a Telegram Premium giveaway.
@@ -4226,61 +3843,50 @@ struct GiveawayWinners {
      * @brief The chat that created the giveaway
     */
     std::shared_ptr<Chat> chat { };
-
     /**
      * @brief Identifier of the message with the giveaway in the chat
     */
     std::int32_t giveawayMessageId { };
-
     /**
      * @brief Point in time (Unix timestamp) when winners of the giveaway were selected
     */
     std::int32_t winnersSelectionDate { };
-
     /**
      * @brief Total number of winners in the giveaway
     */
     std::int32_t winnerCount { };
-
     /**
      * @brief List of up to 100 winners of the giveaway
     */
     std::vector<std::shared_ptr<User>> winners { };
-
     /**
      * @brief Optional. The number of other chats the user had to join in order to be eligible for the
      * giveaway
     */
     std::optional<std::int32_t> additionalChatCount { };
-
     /**
      * @brief Optional. The number of Telegram Stars that were split between giveaway winners; for
      * Telegram Star giveaways only
     */
     std::optional<std::int32_t> prizeStarCount { };
-
     /**
      * @brief Optional. The number of months the Telegram Premium subscription won from the giveaway
      * will be active for; for Telegram Premium giveaways only
     */
     std::optional<std::int32_t> premiumSubscriptionMonthCount { };
-
     /**
      * @brief Optional. Number of undistributed prizes
     */
     std::optional<std::int32_t> unclaimedPrizeCount { };
-
     /**
      * @brief Optional. True, if only users who had joined the chats after the giveaway started were
      * eligible to win
     */
     std::optional<bool> onlyNewMembers { };
-
     /**
      * @brief Optional. True, if the giveaway was canceled because the payment for it was refunded
     */
     std::optional<bool> wasRefunded { };
-
     /**
      * @brief Optional. Description of additional giveaway prize
     */
@@ -4301,12 +3907,10 @@ struct InaccessibleMessage {
      * @brief Chat the message belonged to
     */
     std::shared_ptr<Chat> chat { };
-
     /**
      * @brief Unique message identifier inside the chat
     */
     std::int32_t messageId { };
-
     /**
      * @brief Always 0. The field can be used to differentiate regular and inaccessible messages.
     */
@@ -4328,7 +3932,6 @@ struct InlineKeyboardButton {
      * @brief Label text on the button
     */
     std::string text { };
-
     /**
      * @brief Optional. Unique identifier of the custom emoji shown before the text of the button. Can
      * only be used by bots that purchased additional usernames on Fragment or in the messages
@@ -4336,26 +3939,22 @@ struct InlineKeyboardButton {
      * has a Telegram Premium subscription.
     */
     std::optional<std::string> iconCustomEmojiId { };
-
     /**
      * @brief Optional. Style of the button. Must be one of “danger” (red), “success” (green) or
      * “primary” (blue). If omitted, then an app-specific style is used.
     */
     std::optional<std::string> style { };
-
     /**
      * @brief Optional. HTTP or tg:// URL to be opened when the button is pressed. Links
      * tg://user?id=<user_id> can be used to mention a user by their identifier without using a
      * username, if this is allowed by their privacy settings.
     */
     std::optional<std::string> url { };
-
     /**
      * @brief Optional. Data to be sent in a callback query to the bot when the button is pressed,
      * 1-64 bytes
     */
     std::optional<std::string> callbackData { };
-
     /**
      * @brief Optional. Description of the Web App that will be launched when the user presses the
      * button. The Web App will be able to send an arbitrary message on behalf of the user
@@ -4363,13 +3962,11 @@ struct InlineKeyboardButton {
      * the bot. Not supported for messages sent on behalf of a business account.
     */
     std::shared_ptr<WebAppInfo> webApp { };
-
     /**
      * @brief Optional. An HTTPS URL used to automatically authorize the user. Can be used as a
      * replacement for the Telegram Login Widget.
     */
     std::shared_ptr<LoginUrl> loginUrl { };
-
     /**
      * @brief Optional. If set, pressing the button will prompt the user to select one of their chats,
      * open that chat and insert the bot's username and the specified inline query in the input
@@ -4378,7 +3975,6 @@ struct InlineKeyboardButton {
      * account.
     */
     std::optional<std::string> switchInlineQuery { };
-
     /**
      * @brief Optional. If set, pressing the button will insert the bot's username and the specified
      * inline query in the current chat's input field. May be empty, in which case only the
@@ -4388,7 +3984,6 @@ struct InlineKeyboardButton {
      * behalf of a business account.
     */
     std::optional<std::string> switchInlineQueryCurrentChat { };
-
     /**
      * @brief Optional. If set, pressing the button will prompt the user to select one of their chats
      * of the specified type, open that chat and insert the bot's username and the specified
@@ -4396,18 +3991,15 @@ struct InlineKeyboardButton {
      * messages chats and on behalf of a business account.
     */
     std::shared_ptr<SwitchInlineQueryChosenChat> switchInlineQueryChosenChat { };
-
     /**
      * @brief Optional. Description of the button that copies the specified text to the clipboard
     */
     std::shared_ptr<CopyTextButton> copyText { };
-
     /**
      * @brief Optional. Description of the game that will be launched when the user presses the
      * button.NOTE: This type of button must always be the first button in the first row.
     */
     std::shared_ptr<CallbackGame> callbackGame { };
-
     /**
      * @brief Optional. Specify True, to send a Pay button. Substrings “” and “XTR” in the buttons's
      * text will be replaced with a Telegram Star icon.NOTE: This type of button must always be
@@ -4448,22 +4040,18 @@ struct InlineQuery {
      * @brief Unique identifier for this query
     */
     std::string id { };
-
     /**
      * @brief Sender
     */
     std::shared_ptr<User> from { };
-
     /**
      * @brief Text of the query (up to 256 characters)
     */
     std::string query { };
-
     /**
      * @brief Offset of the results to be returned, can be controlled by the bot
     */
     std::string offset { };
-
     /**
      * @brief Optional. Type of the chat from which the inline query was sent. Can be either “sender”
      * for a private chat with the inline query sender, “private”, “group”, “supergroup”, or
@@ -4471,7 +4059,6 @@ struct InlineQuery {
      * and most third-party clients, unless the request was sent from a secret chat.
     */
     std::optional<std::string> chatType { };
-
     /**
      * @brief Optional. Sender location, only for bots that request user location
     */
@@ -4526,47 +4113,38 @@ struct InlineQueryResultArticle {
      * @brief Type of the result, must be article
     */
     std::string type { TYPE };
-
     /**
      * @brief Unique identifier for this result, 1-64 Bytes
     */
     std::string id { };
-
     /**
      * @brief Title of the result
     */
     std::string title { };
-
     /**
      * @brief Content of the message to be sent
     */
     std::shared_ptr<InputMessageContent> inputMessageContent { };
-
     /**
      * @brief Optional. Inline keyboard attached to the message
     */
     std::shared_ptr<InlineKeyboardMarkup> replyMarkup { };
-
     /**
      * @brief Optional. URL of the result
     */
     std::optional<std::string> url { };
-
     /**
      * @brief Optional. Short description of the result
     */
     std::optional<std::string> description { };
-
     /**
      * @brief Optional. Url of the thumbnail for the result
     */
     std::optional<std::string> thumbnailUrl { };
-
     /**
      * @brief Optional. Thumbnail width
     */
     std::optional<std::int32_t> thumbnailWidth { };
-
     /**
      * @brief Optional. Thumbnail height
     */
@@ -4591,54 +4169,44 @@ struct InlineQueryResultAudio {
      * @brief Type of the result, must be audio
     */
     std::string type { TYPE };
-
     /**
      * @brief Unique identifier for this result, 1-64 bytes
     */
     std::string id { };
-
     /**
      * @brief A valid URL for the audio file
     */
     std::string audioUrl { };
-
     /**
      * @brief Title
     */
     std::string title { };
-
     /**
      * @brief Optional. Caption, 0-1024 characters after entities parsing
     */
     std::optional<std::string> caption { };
-
     /**
      * @brief Optional. Mode for parsing entities in the audio caption. See formatting options for
      * more details.
     */
     std::optional<std::string> parseMode { };
-
     /**
      * @brief Optional. List of special entities that appear in the caption, which can be specified
      * instead of parse_mode
     */
     std::optional<std::vector<std::shared_ptr<MessageEntity>>> captionEntities { };
-
     /**
      * @brief Optional. Performer
     */
     std::optional<std::string> performer { };
-
     /**
      * @brief Optional. Audio duration in seconds
     */
     std::optional<std::int32_t> audioDuration { };
-
     /**
      * @brief Optional. Inline keyboard attached to the message
     */
     std::shared_ptr<InlineKeyboardMarkup> replyMarkup { };
-
     /**
      * @brief Optional. Content of the message to be sent instead of the audio
     */
@@ -4663,39 +4231,32 @@ struct InlineQueryResultCachedAudio {
      * @brief Type of the result, must be audio
     */
     std::string type { TYPE };
-
     /**
      * @brief Unique identifier for this result, 1-64 bytes
     */
     std::string id { };
-
     /**
      * @brief A valid file identifier for the audio file
     */
     std::string audioFileId { };
-
     /**
      * @brief Optional. Caption, 0-1024 characters after entities parsing
     */
     std::optional<std::string> caption { };
-
     /**
      * @brief Optional. Mode for parsing entities in the audio caption. See formatting options for
      * more details.
     */
     std::optional<std::string> parseMode { };
-
     /**
      * @brief Optional. List of special entities that appear in the caption, which can be specified
      * instead of parse_mode
     */
     std::optional<std::vector<std::shared_ptr<MessageEntity>>> captionEntities { };
-
     /**
      * @brief Optional. Inline keyboard attached to the message
     */
     std::shared_ptr<InlineKeyboardMarkup> replyMarkup { };
-
     /**
      * @brief Optional. Content of the message to be sent instead of the audio
     */
@@ -4720,49 +4281,40 @@ struct InlineQueryResultCachedDocument {
      * @brief Type of the result, must be document
     */
     std::string type { TYPE };
-
     /**
      * @brief Unique identifier for this result, 1-64 bytes
     */
     std::string id { };
-
     /**
      * @brief Title for the result
     */
     std::string title { };
-
     /**
      * @brief A valid file identifier for the file
     */
     std::string documentFileId { };
-
     /**
      * @brief Optional. Short description of the result
     */
     std::optional<std::string> description { };
-
     /**
      * @brief Optional. Caption of the document to be sent, 0-1024 characters after entities parsing
     */
     std::optional<std::string> caption { };
-
     /**
      * @brief Optional. Mode for parsing entities in the document caption. See formatting options for
      * more details.
     */
     std::optional<std::string> parseMode { };
-
     /**
      * @brief Optional. List of special entities that appear in the caption, which can be specified
      * instead of parse_mode
     */
     std::optional<std::vector<std::shared_ptr<MessageEntity>>> captionEntities { };
-
     /**
      * @brief Optional. Inline keyboard attached to the message
     */
     std::shared_ptr<InlineKeyboardMarkup> replyMarkup { };
-
     /**
      * @brief Optional. Content of the message to be sent instead of the file
     */
@@ -4787,49 +4339,40 @@ struct InlineQueryResultCachedGif {
      * @brief Type of the result, must be gif
     */
     std::string type { TYPE };
-
     /**
      * @brief Unique identifier for this result, 1-64 bytes
     */
     std::string id { };
-
     /**
      * @brief A valid file identifier for the GIF file
     */
     std::string gifFileId { };
-
     /**
      * @brief Optional. Title for the result
     */
     std::optional<std::string> title { };
-
     /**
      * @brief Optional. Caption of the GIF file to be sent, 0-1024 characters after entities parsing
     */
     std::optional<std::string> caption { };
-
     /**
      * @brief Optional. Mode for parsing entities in the caption. See formatting options for more
      * details.
     */
     std::optional<std::string> parseMode { };
-
     /**
      * @brief Optional. List of special entities that appear in the caption, which can be specified
      * instead of parse_mode
     */
     std::optional<std::vector<std::shared_ptr<MessageEntity>>> captionEntities { };
-
     /**
      * @brief Optional. Pass True if the caption must be shown above the message media
     */
     std::optional<bool> showCaptionAboveMedia { };
-
     /**
      * @brief Optional. Inline keyboard attached to the message
     */
     std::shared_ptr<InlineKeyboardMarkup> replyMarkup { };
-
     /**
      * @brief Optional. Content of the message to be sent instead of the GIF animation
     */
@@ -4855,50 +4398,41 @@ struct InlineQueryResultCachedMpeg4Gif {
      * @brief Type of the result, must be mpeg4_gif
     */
     std::string type { TYPE };
-
     /**
      * @brief Unique identifier for this result, 1-64 bytes
     */
     std::string id { };
-
     /**
      * @brief A valid file identifier for the MPEG4 file
     */
     std::string mpeg4FileId { };
-
     /**
      * @brief Optional. Title for the result
     */
     std::optional<std::string> title { };
-
     /**
      * @brief Optional. Caption of the MPEG-4 file to be sent, 0-1024 characters after entities
      * parsing
     */
     std::optional<std::string> caption { };
-
     /**
      * @brief Optional. Mode for parsing entities in the caption. See formatting options for more
      * details.
     */
     std::optional<std::string> parseMode { };
-
     /**
      * @brief Optional. List of special entities that appear in the caption, which can be specified
      * instead of parse_mode
     */
     std::optional<std::vector<std::shared_ptr<MessageEntity>>> captionEntities { };
-
     /**
      * @brief Optional. Pass True if the caption must be shown above the message media
     */
     std::optional<bool> showCaptionAboveMedia { };
-
     /**
      * @brief Optional. Inline keyboard attached to the message
     */
     std::shared_ptr<InlineKeyboardMarkup> replyMarkup { };
-
     /**
      * @brief Optional. Content of the message to be sent instead of the video animation
     */
@@ -4923,54 +4457,44 @@ struct InlineQueryResultCachedPhoto {
      * @brief Type of the result, must be photo
     */
     std::string type { TYPE };
-
     /**
      * @brief Unique identifier for this result, 1-64 bytes
     */
     std::string id { };
-
     /**
      * @brief A valid file identifier of the photo
     */
     std::string photoFileId { };
-
     /**
      * @brief Optional. Title for the result
     */
     std::optional<std::string> title { };
-
     /**
      * @brief Optional. Short description of the result
     */
     std::optional<std::string> description { };
-
     /**
      * @brief Optional. Caption of the photo to be sent, 0-1024 characters after entities parsing
     */
     std::optional<std::string> caption { };
-
     /**
      * @brief Optional. Mode for parsing entities in the photo caption. See formatting options for
      * more details.
     */
     std::optional<std::string> parseMode { };
-
     /**
      * @brief Optional. List of special entities that appear in the caption, which can be specified
      * instead of parse_mode
     */
     std::optional<std::vector<std::shared_ptr<MessageEntity>>> captionEntities { };
-
     /**
      * @brief Optional. Pass True if the caption must be shown above the message media
     */
     std::optional<bool> showCaptionAboveMedia { };
-
     /**
      * @brief Optional. Inline keyboard attached to the message
     */
     std::shared_ptr<InlineKeyboardMarkup> replyMarkup { };
-
     /**
      * @brief Optional. Content of the message to be sent instead of the photo
     */
@@ -4995,22 +4519,18 @@ struct InlineQueryResultCachedSticker {
      * @brief Type of the result, must be sticker
     */
     std::string type { TYPE };
-
     /**
      * @brief Unique identifier for this result, 1-64 bytes
     */
     std::string id { };
-
     /**
      * @brief A valid file identifier of the sticker
     */
     std::string stickerFileId { };
-
     /**
      * @brief Optional. Inline keyboard attached to the message
     */
     std::shared_ptr<InlineKeyboardMarkup> replyMarkup { };
-
     /**
      * @brief Optional. Content of the message to be sent instead of the sticker
     */
@@ -5035,54 +4555,44 @@ struct InlineQueryResultCachedVideo {
      * @brief Type of the result, must be video
     */
     std::string type { TYPE };
-
     /**
      * @brief Unique identifier for this result, 1-64 bytes
     */
     std::string id { };
-
     /**
      * @brief A valid file identifier for the video file
     */
     std::string videoFileId { };
-
     /**
      * @brief Title for the result
     */
     std::string title { };
-
     /**
      * @brief Optional. Short description of the result
     */
     std::optional<std::string> description { };
-
     /**
      * @brief Optional. Caption of the video to be sent, 0-1024 characters after entities parsing
     */
     std::optional<std::string> caption { };
-
     /**
      * @brief Optional. Mode for parsing entities in the video caption. See formatting options for
      * more details.
     */
     std::optional<std::string> parseMode { };
-
     /**
      * @brief Optional. List of special entities that appear in the caption, which can be specified
      * instead of parse_mode
     */
     std::optional<std::vector<std::shared_ptr<MessageEntity>>> captionEntities { };
-
     /**
      * @brief Optional. Pass True if the caption must be shown above the message media
     */
     std::optional<bool> showCaptionAboveMedia { };
-
     /**
      * @brief Optional. Inline keyboard attached to the message
     */
     std::shared_ptr<InlineKeyboardMarkup> replyMarkup { };
-
     /**
      * @brief Optional. Content of the message to be sent instead of the video
     */
@@ -5107,44 +4617,36 @@ struct InlineQueryResultCachedVoice {
      * @brief Type of the result, must be voice
     */
     std::string type { TYPE };
-
     /**
      * @brief Unique identifier for this result, 1-64 bytes
     */
     std::string id { };
-
     /**
      * @brief A valid file identifier for the voice message
     */
     std::string voiceFileId { };
-
     /**
      * @brief Voice message title
     */
     std::string title { };
-
     /**
      * @brief Optional. Caption, 0-1024 characters after entities parsing
     */
     std::optional<std::string> caption { };
-
     /**
      * @brief Optional. Mode for parsing entities in the voice message caption. See formatting options
      * for more details.
     */
     std::optional<std::string> parseMode { };
-
     /**
      * @brief Optional. List of special entities that appear in the caption, which can be specified
      * instead of parse_mode
     */
     std::optional<std::vector<std::shared_ptr<MessageEntity>>> captionEntities { };
-
     /**
      * @brief Optional. Inline keyboard attached to the message
     */
     std::shared_ptr<InlineKeyboardMarkup> replyMarkup { };
-
     /**
      * @brief Optional. Content of the message to be sent instead of the voice message
     */
@@ -5169,52 +4671,42 @@ struct InlineQueryResultContact {
      * @brief Type of the result, must be contact
     */
     std::string type { TYPE };
-
     /**
      * @brief Unique identifier for this result, 1-64 Bytes
     */
     std::string id { };
-
     /**
      * @brief Contact's phone number
     */
     std::string phoneNumber { };
-
     /**
      * @brief Contact's first name
     */
     std::string firstName { };
-
     /**
      * @brief Optional. Contact's last name
     */
     std::optional<std::string> lastName { };
-
     /**
      * @brief Optional. Additional data about the contact in the form of a vCard, 0-2048 bytes
     */
     std::optional<std::string> vcard { };
-
     /**
      * @brief Optional. Inline keyboard attached to the message
     */
     std::shared_ptr<InlineKeyboardMarkup> replyMarkup { };
-
     /**
      * @brief Optional. Content of the message to be sent instead of the contact
     */
     std::shared_ptr<InputMessageContent> inputMessageContent { };
-
     /**
      * @brief Optional. Url of the thumbnail for the result
     */
     std::optional<std::string> thumbnailUrl { };
-
     /**
      * @brief Optional. Thumbnail width
     */
     std::optional<std::int32_t> thumbnailWidth { };
-
     /**
      * @brief Optional. Thumbnail height
     */
@@ -5240,69 +4732,56 @@ struct InlineQueryResultDocument {
      * @brief Type of the result, must be document
     */
     std::string type { TYPE };
-
     /**
      * @brief Unique identifier for this result, 1-64 bytes
     */
     std::string id { };
-
     /**
      * @brief Title for the result
     */
     std::string title { };
-
     /**
      * @brief Optional. Caption of the document to be sent, 0-1024 characters after entities parsing
     */
     std::optional<std::string> caption { };
-
     /**
      * @brief Optional. Mode for parsing entities in the document caption. See formatting options for
      * more details.
     */
     std::optional<std::string> parseMode { };
-
     /**
      * @brief Optional. List of special entities that appear in the caption, which can be specified
      * instead of parse_mode
     */
     std::optional<std::vector<std::shared_ptr<MessageEntity>>> captionEntities { };
-
     /**
      * @brief A valid URL for the file
     */
     std::string documentUrl { };
-
     /**
      * @brief MIME type of the content of the file, either “application/pdf” or “application/zip”
     */
     std::string mimeType { };
-
     /**
      * @brief Optional. Short description of the result
     */
     std::optional<std::string> description { };
-
     /**
      * @brief Optional. Inline keyboard attached to the message
     */
     std::shared_ptr<InlineKeyboardMarkup> replyMarkup { };
-
     /**
      * @brief Optional. Content of the message to be sent instead of the file
     */
     std::shared_ptr<InputMessageContent> inputMessageContent { };
-
     /**
      * @brief Optional. URL of the thumbnail (JPEG only) for the file
     */
     std::optional<std::string> thumbnailUrl { };
-
     /**
      * @brief Optional. Thumbnail width
     */
     std::optional<std::int32_t> thumbnailWidth { };
-
     /**
      * @brief Optional. Thumbnail height
     */
@@ -5325,17 +4804,14 @@ struct InlineQueryResultGame {
      * @brief Type of the result, must be game
     */
     std::string type { TYPE };
-
     /**
      * @brief Unique identifier for this result, 1-64 bytes
     */
     std::string id { };
-
     /**
      * @brief Short name of the game
     */
     std::string gameShortName { };
-
     /**
      * @brief Optional. Inline keyboard attached to the message
     */
@@ -5360,75 +4836,61 @@ struct InlineQueryResultGif {
      * @brief Type of the result, must be gif
     */
     std::string type { TYPE };
-
     /**
      * @brief Unique identifier for this result, 1-64 bytes
     */
     std::string id { };
-
     /**
      * @brief A valid URL for the GIF file
     */
     std::string gifUrl { };
-
     /**
      * @brief Optional. Width of the GIF
     */
     std::optional<std::int32_t> gifWidth { };
-
     /**
      * @brief Optional. Height of the GIF
     */
     std::optional<std::int32_t> gifHeight { };
-
     /**
      * @brief Optional. Duration of the GIF in seconds
     */
     std::optional<std::int32_t> gifDuration { };
-
     /**
      * @brief URL of the static (JPEG or GIF) or animated (MPEG4) thumbnail for the result
     */
     std::string thumbnailUrl { };
-
     /**
      * @brief Optional. MIME type of the thumbnail, must be one of “image/jpeg”, “image/gif”, or
      * “video/mp4”. Defaults to “image/jpeg”.
     */
     std::optional<std::string> thumbnailMimeType { };
-
     /**
      * @brief Optional. Title for the result
     */
     std::optional<std::string> title { };
-
     /**
      * @brief Optional. Caption of the GIF file to be sent, 0-1024 characters after entities parsing
     */
     std::optional<std::string> caption { };
-
     /**
      * @brief Optional. Mode for parsing entities in the caption. See formatting options for more
      * details.
     */
     std::optional<std::string> parseMode { };
-
     /**
      * @brief Optional. List of special entities that appear in the caption, which can be specified
      * instead of parse_mode
     */
     std::optional<std::vector<std::shared_ptr<MessageEntity>>> captionEntities { };
-
     /**
      * @brief Optional. Pass True if the caption must be shown above the message media
     */
     std::optional<bool> showCaptionAboveMedia { };
-
     /**
      * @brief Optional. Inline keyboard attached to the message
     */
     std::shared_ptr<InlineKeyboardMarkup> replyMarkup { };
-
     /**
      * @brief Optional. Content of the message to be sent instead of the GIF animation
     */
@@ -5453,70 +4915,57 @@ struct InlineQueryResultLocation {
      * @brief Type of the result, must be location
     */
     std::string type { TYPE };
-
     /**
      * @brief Unique identifier for this result, 1-64 Bytes
     */
     std::string id { };
-
     /**
      * @brief Location latitude in degrees
     */
     double latitude { };
-
     /**
      * @brief Location longitude in degrees
     */
     double longitude { };
-
     /**
      * @brief Location title
     */
     std::string title { };
-
     /**
      * @brief Optional. The radius of uncertainty for the location, measured in meters; 0-1500
     */
     std::optional<double> horizontalAccuracy { };
-
     /**
      * @brief Optional. Period in seconds during which the location can be updated, must be between 60
      * and 86400, or 0x7FFFFFFF for live locations that can be edited indefinitely
     */
     std::optional<std::int32_t> livePeriod { };
-
     /**
      * @brief Optional. For live locations, a direction in which the user is moving, in degrees. Must
      * be between 1 and 360 if specified.
     */
     std::optional<std::int32_t> heading { };
-
     /**
      * @brief Optional. For live locations, a maximum distance for proximity alerts about approaching
      * another chat member, in meters. Must be between 1 and 100000 if specified.
     */
     std::optional<std::int32_t> proximityAlertRadius { };
-
     /**
      * @brief Optional. Inline keyboard attached to the message
     */
     std::shared_ptr<InlineKeyboardMarkup> replyMarkup { };
-
     /**
      * @brief Optional. Content of the message to be sent instead of the location
     */
     std::shared_ptr<InputMessageContent> inputMessageContent { };
-
     /**
      * @brief Optional. Url of the thumbnail for the result
     */
     std::optional<std::string> thumbnailUrl { };
-
     /**
      * @brief Optional. Thumbnail width
     */
     std::optional<std::int32_t> thumbnailWidth { };
-
     /**
      * @brief Optional. Thumbnail height
     */
@@ -5542,76 +4991,62 @@ struct InlineQueryResultMpeg4Gif {
      * @brief Type of the result, must be mpeg4_gif
     */
     std::string type { TYPE };
-
     /**
      * @brief Unique identifier for this result, 1-64 bytes
     */
     std::string id { };
-
     /**
      * @brief A valid URL for the MPEG4 file
     */
     std::string mpeg4Url { };
-
     /**
      * @brief Optional. Video width
     */
     std::optional<std::int32_t> mpeg4Width { };
-
     /**
      * @brief Optional. Video height
     */
     std::optional<std::int32_t> mpeg4Height { };
-
     /**
      * @brief Optional. Video duration in seconds
     */
     std::optional<std::int32_t> mpeg4Duration { };
-
     /**
      * @brief URL of the static (JPEG or GIF) or animated (MPEG4) thumbnail for the result
     */
     std::string thumbnailUrl { };
-
     /**
      * @brief Optional. MIME type of the thumbnail, must be one of “image/jpeg”, “image/gif”, or
      * “video/mp4”. Defaults to “image/jpeg”.
     */
     std::optional<std::string> thumbnailMimeType { };
-
     /**
      * @brief Optional. Title for the result
     */
     std::optional<std::string> title { };
-
     /**
      * @brief Optional. Caption of the MPEG-4 file to be sent, 0-1024 characters after entities
      * parsing
     */
     std::optional<std::string> caption { };
-
     /**
      * @brief Optional. Mode for parsing entities in the caption. See formatting options for more
      * details.
     */
     std::optional<std::string> parseMode { };
-
     /**
      * @brief Optional. List of special entities that appear in the caption, which can be specified
      * instead of parse_mode
     */
     std::optional<std::vector<std::shared_ptr<MessageEntity>>> captionEntities { };
-
     /**
      * @brief Optional. Pass True if the caption must be shown above the message media
     */
     std::optional<bool> showCaptionAboveMedia { };
-
     /**
      * @brief Optional. Inline keyboard attached to the message
     */
     std::shared_ptr<InlineKeyboardMarkup> replyMarkup { };
-
     /**
      * @brief Optional. Content of the message to be sent instead of the video animation
     */
@@ -5636,69 +5071,56 @@ struct InlineQueryResultPhoto {
      * @brief Type of the result, must be photo
     */
     std::string type { TYPE };
-
     /**
      * @brief Unique identifier for this result, 1-64 bytes
     */
     std::string id { };
-
     /**
      * @brief A valid URL of the photo. Photo must be in JPEG format. Photo size must not exceed 5MB.
     */
     std::string photoUrl { };
-
     /**
      * @brief URL of the thumbnail for the photo
     */
     std::string thumbnailUrl { };
-
     /**
      * @brief Optional. Width of the photo
     */
     std::optional<std::int32_t> photoWidth { };
-
     /**
      * @brief Optional. Height of the photo
     */
     std::optional<std::int32_t> photoHeight { };
-
     /**
      * @brief Optional. Title for the result
     */
     std::optional<std::string> title { };
-
     /**
      * @brief Optional. Short description of the result
     */
     std::optional<std::string> description { };
-
     /**
      * @brief Optional. Caption of the photo to be sent, 0-1024 characters after entities parsing
     */
     std::optional<std::string> caption { };
-
     /**
      * @brief Optional. Mode for parsing entities in the photo caption. See formatting options for
      * more details.
     */
     std::optional<std::string> parseMode { };
-
     /**
      * @brief Optional. List of special entities that appear in the caption, which can be specified
      * instead of parse_mode
     */
     std::optional<std::vector<std::shared_ptr<MessageEntity>>> captionEntities { };
-
     /**
      * @brief Optional. Pass True if the caption must be shown above the message media
     */
     std::optional<bool> showCaptionAboveMedia { };
-
     /**
      * @brief Optional. Inline keyboard attached to the message
     */
     std::shared_ptr<InlineKeyboardMarkup> replyMarkup { };
-
     /**
      * @brief Optional. Content of the message to be sent instead of the photo
     */
@@ -5722,73 +5144,59 @@ struct InlineQueryResultVenue {
      * @brief Type of the result, must be venue
     */
     std::string type { TYPE };
-
     /**
      * @brief Unique identifier for this result, 1-64 Bytes
     */
     std::string id { };
-
     /**
      * @brief Latitude of the venue location in degrees
     */
     double latitude { };
-
     /**
      * @brief Longitude of the venue location in degrees
     */
     double longitude { };
-
     /**
      * @brief Title of the venue
     */
     std::string title { };
-
     /**
      * @brief Address of the venue
     */
     std::string address { };
-
     /**
      * @brief Optional. Foursquare identifier of the venue if known
     */
     std::optional<std::string> foursquareId { };
-
     /**
      * @brief Optional. Foursquare type of the venue, if known. (For example,
      * “arts_entertainment/default”, “arts_entertainment/aquarium” or “food/icecream”.)
     */
     std::optional<std::string> foursquareType { };
-
     /**
      * @brief Optional. Google Places identifier of the venue
     */
     std::optional<std::string> googlePlaceId { };
-
     /**
      * @brief Optional. Google Places type of the venue. (See supported types.)
     */
     std::optional<std::string> googlePlaceType { };
-
     /**
      * @brief Optional. Inline keyboard attached to the message
     */
     std::shared_ptr<InlineKeyboardMarkup> replyMarkup { };
-
     /**
      * @brief Optional. Content of the message to be sent instead of the venue
     */
     std::shared_ptr<InputMessageContent> inputMessageContent { };
-
     /**
      * @brief Optional. Url of the thumbnail for the result
     */
     std::optional<std::string> thumbnailUrl { };
-
     /**
      * @brief Optional. Thumbnail width
     */
     std::optional<std::int32_t> thumbnailWidth { };
-
     /**
      * @brief Optional. Thumbnail height
     */
@@ -5813,79 +5221,64 @@ struct InlineQueryResultVideo {
      * @brief Type of the result, must be video
     */
     std::string type { TYPE };
-
     /**
      * @brief Unique identifier for this result, 1-64 bytes
     */
     std::string id { };
-
     /**
      * @brief A valid URL for the embedded video player or video file
     */
     std::string videoUrl { };
-
     /**
      * @brief MIME type of the content of the video URL, “text/html” or “video/mp4”
     */
     std::string mimeType { };
-
     /**
      * @brief URL of the thumbnail (JPEG only) for the video
     */
     std::string thumbnailUrl { };
-
     /**
      * @brief Title for the result
     */
     std::string title { };
-
     /**
      * @brief Optional. Caption of the video to be sent, 0-1024 characters after entities parsing
     */
     std::optional<std::string> caption { };
-
     /**
      * @brief Optional. Mode for parsing entities in the video caption. See formatting options for
      * more details.
     */
     std::optional<std::string> parseMode { };
-
     /**
      * @brief Optional. List of special entities that appear in the caption, which can be specified
      * instead of parse_mode
     */
     std::optional<std::vector<std::shared_ptr<MessageEntity>>> captionEntities { };
-
     /**
      * @brief Optional. Pass True if the caption must be shown above the message media
     */
     std::optional<bool> showCaptionAboveMedia { };
-
     /**
      * @brief Optional. Video width
     */
     std::optional<std::int32_t> videoWidth { };
-
     /**
      * @brief Optional. Video height
     */
     std::optional<std::int32_t> videoHeight { };
-
     /**
      * @brief Optional. Video duration in seconds
     */
     std::optional<std::int32_t> videoDuration { };
-
     /**
      * @brief Optional. Short description of the result
     */
     std::optional<std::string> description { };
-
     /**
      * @brief Optional. Inline keyboard attached to the message
     */
     std::shared_ptr<InlineKeyboardMarkup> replyMarkup { };
-
     /**
      * @brief Optional. Content of the message to be sent instead of the video. This field is required
      * if InlineQueryResultVideo is used to send an HTML-page as a result (e.g., a YouTube
@@ -5913,49 +5306,40 @@ struct InlineQueryResultVoice {
      * @brief Type of the result, must be voice
     */
     std::string type { TYPE };
-
     /**
      * @brief Unique identifier for this result, 1-64 bytes
     */
     std::string id { };
-
     /**
      * @brief A valid URL for the voice recording
     */
     std::string voiceUrl { };
-
     /**
      * @brief Recording title
     */
     std::string title { };
-
     /**
      * @brief Optional. Caption, 0-1024 characters after entities parsing
     */
     std::optional<std::string> caption { };
-
     /**
      * @brief Optional. Mode for parsing entities in the voice message caption. See formatting options
      * for more details.
     */
     std::optional<std::string> parseMode { };
-
     /**
      * @brief Optional. List of special entities that appear in the caption, which can be specified
      * instead of parse_mode
     */
     std::optional<std::vector<std::shared_ptr<MessageEntity>>> captionEntities { };
-
     /**
      * @brief Optional. Recording duration in seconds
     */
     std::optional<std::int32_t> voiceDuration { };
-
     /**
      * @brief Optional. Inline keyboard attached to the message
     */
     std::shared_ptr<InlineKeyboardMarkup> replyMarkup { };
-
     /**
      * @brief Optional. Content of the message to be sent instead of the voice recording
     */
@@ -5977,14 +5361,12 @@ struct InlineQueryResultsButton {
      * @brief Label text on the button
     */
     std::string text { };
-
     /**
      * @brief Optional. Description of the Web App that will be launched when the user presses the
      * button. The Web App will be able to switch back to the inline mode using the method
      * switchInlineQuery inside the Web App.
     */
     std::shared_ptr<WebAppInfo> webApp { };
-
     /**
      * @brief Optional. Deep-linking parameter for the /start message sent to the bot when a user
      * presses the button. 1-64 characters, only A-Z, a-z, 0-9, _ and - are allowed.Example: An
@@ -6013,30 +5395,25 @@ struct InputChecklist {
      * @brief Title of the checklist; 1-255 characters after entities parsing
     */
     std::string title { };
-
     /**
      * @brief Optional. Mode for parsing entities in the title. See formatting options for more
      * details.
     */
     std::optional<std::string> parseMode { };
-
     /**
      * @brief Optional. List of special entities that appear in the title, which can be specified
      * instead of parse_mode. Currently, only bold, italic, underline, strikethrough, spoiler,
      * custom_emoji, and date_time entities are allowed.
     */
     std::optional<std::vector<std::shared_ptr<MessageEntity>>> titleEntities { };
-
     /**
      * @brief List of 1-30 tasks in the checklist
     */
     std::vector<std::shared_ptr<InputChecklistTask>> tasks { };
-
     /**
      * @brief Optional. Pass True if other users can add tasks to the checklist
     */
     std::optional<bool> othersCanAddTasks { };
-
     /**
      * @brief Optional. Pass True if other users can mark tasks as done or not done in the checklist
     */
@@ -6058,18 +5435,15 @@ struct InputChecklistTask {
      * currently present in the checklist
     */
     std::int32_t id { };
-
     /**
      * @brief Text of the task; 1-100 characters after entities parsing
     */
     std::string text { };
-
     /**
      * @brief Optional. Mode for parsing entities in the text. See formatting options for more
      * details.
     */
     std::optional<std::string> parseMode { };
-
     /**
      * @brief Optional. List of special entities that appear in the text, which can be specified
      * instead of parse_mode. Currently, only bold, italic, underline, strikethrough, spoiler,
@@ -6092,17 +5466,14 @@ struct InputContactMessageContent {
      * @brief Contact's phone number
     */
     std::string phoneNumber { };
-
     /**
      * @brief Contact's first name
     */
     std::string firstName { };
-
     /**
      * @brief Optional. Contact's last name
     */
     std::optional<std::string> lastName { };
-
     /**
      * @brief Optional. Additional data about the contact in the form of a vCard, 0-2048 bytes
     */
@@ -6123,37 +5494,31 @@ struct InputInvoiceMessageContent {
      * @brief Product name, 1-32 characters
     */
     std::string title { };
-
     /**
      * @brief Product description, 1-255 characters
     */
     std::string description { };
-
     /**
      * @brief Bot-defined invoice payload, 1-128 bytes. This will not be displayed to the user, use it
      * for your internal processes.
     */
     std::string payload { };
-
     /**
      * @brief Optional. Payment provider token, obtained via @BotFather. Pass an empty string for
      * payments in Telegram Stars.
     */
     std::optional<std::string> providerToken { };
-
     /**
      * @brief Three-letter ISO 4217 currency code, see more on currencies. Pass “XTR” for payments in
      * Telegram Stars.
     */
     std::string currency { };
-
     /**
      * @brief Price breakdown, a JSON-serialized list of components (e.g. product price, tax,
      * discount, delivery cost, delivery tax, bonus, etc.). Must contain exactly one item for
      * payments in Telegram Stars.
     */
     std::vector<std::shared_ptr<LabeledPrice>> prices { };
-
     /**
      * @brief Optional. The maximum accepted amount for tips in the smallest units of the currency
      * (integer, not float/double). For example, for a maximum tip of US$ 1.45 pass
@@ -6162,7 +5527,6 @@ struct InputInvoiceMessageContent {
      * Defaults to 0. Not supported for payments in Telegram Stars.
     */
     std::optional<std::int32_t> maxTipAmount { };
-
     /**
      * @brief Optional. A JSON-serialized Array of suggested amounts of tip in the smallest units of
      * the currency (integer, not float/double). At most 4 suggested tip amounts can be
@@ -6170,71 +5534,59 @@ struct InputInvoiceMessageContent {
      * order and must not exceed max_tip_amount.
     */
     std::optional<std::vector<std::int32_t>> suggestedTipAmounts { };
-
     /**
      * @brief Optional. A JSON-serialized object for data about the invoice, which will be shared with
      * the payment provider. A detailed description of the required fields should be provided
      * by the payment provider.
     */
     std::optional<std::string> providerData { };
-
     /**
      * @brief Optional. URL of the product photo for the invoice. Can be a photo of the goods or a
      * marketing image for a service.
     */
     std::optional<std::string> photoUrl { };
-
     /**
      * @brief Optional. Photo size in bytes
     */
     std::optional<std::int32_t> photoSize { };
-
     /**
      * @brief Optional. Photo width
     */
     std::optional<std::int32_t> photoWidth { };
-
     /**
      * @brief Optional. Photo height
     */
     std::optional<std::int32_t> photoHeight { };
-
     /**
      * @brief Optional. Pass True if you require the user's full name to complete the order. Ignored
      * for payments in Telegram Stars.
     */
     std::optional<bool> needName { };
-
     /**
      * @brief Optional. Pass True if you require the user's phone number to complete the order.
      * Ignored for payments in Telegram Stars.
     */
     std::optional<bool> needPhoneNumber { };
-
     /**
      * @brief Optional. Pass True if you require the user's email address to complete the order.
      * Ignored for payments in Telegram Stars.
     */
     std::optional<bool> needEmail { };
-
     /**
      * @brief Optional. Pass True if you require the user's shipping address to complete the order.
      * Ignored for payments in Telegram Stars.
     */
     std::optional<bool> needShippingAddress { };
-
     /**
      * @brief Optional. Pass True if the user's phone number should be sent to the provider. Ignored
      * for payments in Telegram Stars.
     */
     std::optional<bool> sendPhoneNumberToProvider { };
-
     /**
      * @brief Optional. Pass True if the user's email address should be sent to the provider. Ignored
      * for payments in Telegram Stars.
     */
     std::optional<bool> sendEmailToProvider { };
-
     /**
      * @brief Optional. Pass True if the final price depends on the shipping method. Ignored for
      * payments in Telegram Stars.
@@ -6256,29 +5608,24 @@ struct InputLocationMessageContent {
      * @brief Latitude of the location in degrees
     */
     double latitude { };
-
     /**
      * @brief Longitude of the location in degrees
     */
     double longitude { };
-
     /**
      * @brief Optional. The radius of uncertainty for the location, measured in meters; 0-1500
     */
     std::optional<double> horizontalAccuracy { };
-
     /**
      * @brief Optional. Period in seconds during which the location can be updated, must be between 60
      * and 86400, or 0x7FFFFFFF for live locations that can be edited indefinitely
     */
     std::optional<std::int32_t> livePeriod { };
-
     /**
      * @brief Optional. For live locations, a direction in which the user is moving, in degrees. Must
      * be between 1 and 360 if specified.
     */
     std::optional<std::int32_t> heading { };
-
     /**
      * @brief Optional. For live locations, a maximum distance for proximity alerts about approaching
      * another chat member, in meters. Must be between 1 and 100000 if specified.
@@ -6320,7 +5667,6 @@ struct InputMediaAnimation {
      * @brief Type of the media, must be animation
     */
     std::string type { TYPE };
-
     /**
      * @brief File to send. Pass a file_id to send a file that exists on the Telegram servers
      * (recommended), pass an HTTP URL for Telegram to get a file from the Internet, or pass
@@ -6328,7 +5674,6 @@ struct InputMediaAnimation {
      * <file_attach_name> name. More information on Sending Files »
     */
     std::string media { };
-
     /**
      * @brief Optional. Thumbnail of the file sent; can be ignored if thumbnail generation for the
      * file is supported server-side. The thumbnail should be in JPEG format and less than 200
@@ -6339,44 +5684,36 @@ struct InputMediaAnimation {
      * Sending Files »
     */
     std::optional<std::string> thumbnail { };
-
     /**
      * @brief Optional. Caption of the animation to be sent, 0-1024 characters after entities parsing
     */
     std::optional<std::string> caption { };
-
     /**
      * @brief Optional. Mode for parsing entities in the animation caption. See formatting options for
      * more details.
     */
     std::optional<std::string> parseMode { };
-
     /**
      * @brief Optional. List of special entities that appear in the caption, which can be specified
      * instead of parse_mode
     */
     std::optional<std::vector<std::shared_ptr<MessageEntity>>> captionEntities { };
-
     /**
      * @brief Optional. Pass True if the caption must be shown above the message media
     */
     std::optional<bool> showCaptionAboveMedia { };
-
     /**
      * @brief Optional. Animation width
     */
     std::optional<std::int32_t> width { };
-
     /**
      * @brief Optional. Animation height
     */
     std::optional<std::int32_t> height { };
-
     /**
      * @brief Optional. Animation duration in seconds
     */
     std::optional<std::int32_t> duration { };
-
     /**
      * @brief Optional. Pass True if the animation needs to be covered with a spoiler animation
     */
@@ -6399,7 +5736,6 @@ struct InputMediaAudio {
      * @brief Type of the media, must be audio
     */
     std::string type { TYPE };
-
     /**
      * @brief File to send. Pass a file_id to send a file that exists on the Telegram servers
      * (recommended), pass an HTTP URL for Telegram to get a file from the Internet, or pass
@@ -6407,7 +5743,6 @@ struct InputMediaAudio {
      * <file_attach_name> name. More information on Sending Files »
     */
     std::string media { };
-
     /**
      * @brief Optional. Thumbnail of the file sent; can be ignored if thumbnail generation for the
      * file is supported server-side. The thumbnail should be in JPEG format and less than 200
@@ -6418,34 +5753,28 @@ struct InputMediaAudio {
      * Sending Files »
     */
     std::optional<std::string> thumbnail { };
-
     /**
      * @brief Optional. Caption of the audio to be sent, 0-1024 characters after entities parsing
     */
     std::optional<std::string> caption { };
-
     /**
      * @brief Optional. Mode for parsing entities in the audio caption. See formatting options for
      * more details.
     */
     std::optional<std::string> parseMode { };
-
     /**
      * @brief Optional. List of special entities that appear in the caption, which can be specified
      * instead of parse_mode
     */
     std::optional<std::vector<std::shared_ptr<MessageEntity>>> captionEntities { };
-
     /**
      * @brief Optional. Duration of the audio in seconds
     */
     std::optional<std::int32_t> duration { };
-
     /**
      * @brief Optional. Performer of the audio
     */
     std::optional<std::string> performer { };
-
     /**
      * @brief Optional. Title of the audio
     */
@@ -6468,7 +5797,6 @@ struct InputMediaDocument {
      * @brief Type of the media, must be document
     */
     std::string type { TYPE };
-
     /**
      * @brief File to send. Pass a file_id to send a file that exists on the Telegram servers
      * (recommended), pass an HTTP URL for Telegram to get a file from the Internet, or pass
@@ -6476,7 +5804,6 @@ struct InputMediaDocument {
      * <file_attach_name> name. More information on Sending Files »
     */
     std::string media { };
-
     /**
      * @brief Optional. Thumbnail of the file sent; can be ignored if thumbnail generation for the
      * file is supported server-side. The thumbnail should be in JPEG format and less than 200
@@ -6487,24 +5814,20 @@ struct InputMediaDocument {
      * Sending Files »
     */
     std::optional<std::string> thumbnail { };
-
     /**
      * @brief Optional. Caption of the document to be sent, 0-1024 characters after entities parsing
     */
     std::optional<std::string> caption { };
-
     /**
      * @brief Optional. Mode for parsing entities in the document caption. See formatting options for
      * more details.
     */
     std::optional<std::string> parseMode { };
-
     /**
      * @brief Optional. List of special entities that appear in the caption, which can be specified
      * instead of parse_mode
     */
     std::optional<std::vector<std::shared_ptr<MessageEntity>>> captionEntities { };
-
     /**
      * @brief Optional. Disables automatic server-side content type detection for files uploaded using
      * multipart/form-data. Always True, if the document is sent as part of an album.
@@ -6528,7 +5851,6 @@ struct InputMediaLink {
      * @brief Type of the media, must be link
     */
     std::string type { TYPE };
-
     /**
      * @brief HTTP URL of the link
     */
@@ -6551,7 +5873,6 @@ struct InputMediaLivePhoto {
      * @brief Type of the media, must be live_photo
     */
     std::string type { TYPE };
-
     /**
      * @brief Video of the live photo to send. Pass a file_id to send a file that exists on the
      * Telegram servers (recommended) or pass “attach://<file_attach_name>” to upload a new one
@@ -6559,7 +5880,6 @@ struct InputMediaLivePhoto {
      * Files ». Sending live photos by a URL is currently unsupported.
     */
     std::string media { };
-
     /**
      * @brief The static photo to send. Pass a file_id to send a file that exists on the Telegram
      * servers (recommended) or pass “attach://<file_attach_name>” to upload a new one using
@@ -6567,29 +5887,24 @@ struct InputMediaLivePhoto {
      * Sending live photos by a URL is currently unsupported.
     */
     std::string photo { };
-
     /**
      * @brief Optional. Caption of the live photo to be sent, 0-1024 characters after entities parsing
     */
     std::optional<std::string> caption { };
-
     /**
      * @brief Optional. Mode for parsing entities in the live photo caption. See formatting options
      * for more details.
     */
     std::optional<std::string> parseMode { };
-
     /**
      * @brief Optional. List of special entities that appear in the caption, which can be specified
      * instead of parse_mode
     */
     std::optional<std::vector<std::shared_ptr<MessageEntity>>> captionEntities { };
-
     /**
      * @brief Optional. Pass True if the caption must be shown above the message media
     */
     std::optional<bool> showCaptionAboveMedia { };
-
     /**
      * @brief Optional. Pass True if the live photo needs to be covered with a spoiler animation
     */
@@ -6612,17 +5927,14 @@ struct InputMediaLocation {
      * @brief Type of the media, must be location
     */
     std::string type { TYPE };
-
     /**
      * @brief Latitude of the location
     */
     double latitude { };
-
     /**
      * @brief Longitude of the location
     */
     double longitude { };
-
     /**
      * @brief Optional. The radius of uncertainty for the location, measured in meters; 0-1500
     */
@@ -6645,7 +5957,6 @@ struct InputMediaPhoto {
      * @brief Type of the media, must be photo
     */
     std::string type { TYPE };
-
     /**
      * @brief File to send. Pass a file_id to send a file that exists on the Telegram servers
      * (recommended), pass an HTTP URL for Telegram to get a file from the Internet, or pass
@@ -6653,29 +5964,24 @@ struct InputMediaPhoto {
      * <file_attach_name> name. More information on Sending Files »
     */
     std::string media { };
-
     /**
      * @brief Optional. Caption of the photo to be sent, 0-1024 characters after entities parsing
     */
     std::optional<std::string> caption { };
-
     /**
      * @brief Optional. Mode for parsing entities in the photo caption. See formatting options for
      * more details.
     */
     std::optional<std::string> parseMode { };
-
     /**
      * @brief Optional. List of special entities that appear in the caption, which can be specified
      * instead of parse_mode
     */
     std::optional<std::vector<std::shared_ptr<MessageEntity>>> captionEntities { };
-
     /**
      * @brief Optional. Pass True if the caption must be shown above the message media
     */
     std::optional<bool> showCaptionAboveMedia { };
-
     /**
      * @brief Optional. Pass True if the photo needs to be covered with a spoiler animation
     */
@@ -6698,7 +6004,6 @@ struct InputMediaSticker {
      * @brief Type of the media, must be sticker
     */
     std::string type { TYPE };
-
     /**
      * @brief File to send. Pass a file_id to send a file that exists on the Telegram servers
      * (recommended), pass an HTTP URL for Telegram to get a .WEBP sticker from the Internet,
@@ -6707,7 +6012,6 @@ struct InputMediaSticker {
      * Files »
     */
     std::string media { };
-
     /**
      * @brief Optional. Emoji associated with the sticker; only for just uploaded stickers
     */
@@ -6730,43 +6034,35 @@ struct InputMediaVenue {
      * @brief Type of the media, must be venue
     */
     std::string type { TYPE };
-
     /**
      * @brief Latitude of the location
     */
     double latitude { };
-
     /**
      * @brief Longitude of the location
     */
     double longitude { };
-
     /**
      * @brief Name of the venue
     */
     std::string title { };
-
     /**
      * @brief Address of the venue
     */
     std::string address { };
-
     /**
      * @brief Optional. Foursquare identifier of the venue
     */
     std::optional<std::string> foursquareId { };
-
     /**
      * @brief Optional. Foursquare type of the venue, if known. (For example,
      * “arts_entertainment/default”, “arts_entertainment/aquarium” or “food/icecream”.)
     */
     std::optional<std::string> foursquareType { };
-
     /**
      * @brief Optional. Google Places identifier of the venue
     */
     std::optional<std::string> googlePlaceId { };
-
     /**
      * @brief Optional. Google Places type of the venue. (See supported types.)
     */
@@ -6789,7 +6085,6 @@ struct InputMediaVideo {
      * @brief Type of the media, must be video
     */
     std::string type { TYPE };
-
     /**
      * @brief File to send. Pass a file_id to send a file that exists on the Telegram servers
      * (recommended), pass an HTTP URL for Telegram to get a file from the Internet, or pass
@@ -6797,7 +6092,6 @@ struct InputMediaVideo {
      * <file_attach_name> name. More information on Sending Files »
     */
     std::string media { };
-
     /**
      * @brief Optional. Thumbnail of the file sent; can be ignored if thumbnail generation for the
      * file is supported server-side. The thumbnail should be in JPEG format and less than 200
@@ -6808,7 +6102,6 @@ struct InputMediaVideo {
      * Sending Files »
     */
     std::optional<std::string> thumbnail { };
-
     /**
      * @brief Optional. Cover for the video in the message. Pass a file_id to send a file that exists
      * on the Telegram servers (recommended), pass an HTTP URL for Telegram to get a file from
@@ -6816,54 +6109,44 @@ struct InputMediaVideo {
      * multipart/form-data under <file_attach_name> name. More information on Sending Files »
     */
     std::optional<std::string> cover { };
-
     /**
      * @brief Optional. Start timestamp for the video in the message
     */
     std::optional<std::int32_t> startTimestamp { };
-
     /**
      * @brief Optional. Caption of the video to be sent, 0-1024 characters after entities parsing
     */
     std::optional<std::string> caption { };
-
     /**
      * @brief Optional. Mode for parsing entities in the video caption. See formatting options for
      * more details.
     */
     std::optional<std::string> parseMode { };
-
     /**
      * @brief Optional. List of special entities that appear in the caption, which can be specified
      * instead of parse_mode
     */
     std::optional<std::vector<std::shared_ptr<MessageEntity>>> captionEntities { };
-
     /**
      * @brief Optional. Pass True if the caption must be shown above the message media
     */
     std::optional<bool> showCaptionAboveMedia { };
-
     /**
      * @brief Optional. Video width
     */
     std::optional<std::int32_t> width { };
-
     /**
      * @brief Optional. Video height
     */
     std::optional<std::int32_t> height { };
-
     /**
      * @brief Optional. Video duration in seconds
     */
     std::optional<std::int32_t> duration { };
-
     /**
      * @brief Optional. Pass True if the uploaded video is suitable for streaming
     */
     std::optional<bool> supportsStreaming { };
-
     /**
      * @brief Optional. Pass True if the video needs to be covered with a spoiler animation
     */
@@ -6886,7 +6169,6 @@ struct InputMediaVoiceNote {
      * @brief Type of the media, must be voice_note
     */
     std::string type { TYPE };
-
     /**
      * @brief File to send. Pass a file_id to send a file that exists on the Telegram servers
      * (recommended), pass an HTTP URL for Telegram to get a file from the Internet, or pass
@@ -6894,25 +6176,21 @@ struct InputMediaVoiceNote {
      * <file_attach_name> name. More information on Sending Files »
     */
     std::string media { };
-
     /**
      * @brief Optional. Caption of the voice message to be sent, 0-1024 characters after entities
      * parsing
     */
     std::optional<std::string> caption { };
-
     /**
      * @brief Optional. Mode for parsing entities in the voice message caption. See formatting options
      * for more details.
     */
     std::optional<std::string> parseMode { };
-
     /**
      * @brief Optional. List of special entities that appear in the caption, which can be specified
      * instead of parse_mode
     */
     std::optional<std::vector<std::shared_ptr<MessageEntity>>> captionEntities { };
-
     /**
      * @brief Optional. Duration of the voice message in seconds
     */
@@ -6970,7 +6248,6 @@ struct InputPaidMediaLivePhoto {
      * @brief Type of the media, must be live_photo
     */
     std::string type { TYPE };
-
     /**
      * @brief Video of the live photo to send. Pass a file_id to send a file that exists on the
      * Telegram servers (recommended) or pass “attach://<file_attach_name>” to upload a new one
@@ -6978,7 +6255,6 @@ struct InputPaidMediaLivePhoto {
      * Files ». Sending live photos by a URL is currently unsupported.
     */
     std::string media { };
-
     /**
      * @brief The static photo to send. Pass a file_id to send a file that exists on the Telegram
      * servers (recommended) or pass “attach://<file_attach_name>” to upload a new one using
@@ -7004,7 +6280,6 @@ struct InputPaidMediaPhoto {
      * @brief Type of the media, must be photo
     */
     std::string type { TYPE };
-
     /**
      * @brief File to send. Pass a file_id to send a file that exists on the Telegram servers
      * (recommended), pass an HTTP URL for Telegram to get a file from the Internet, or pass
@@ -7030,7 +6305,6 @@ struct InputPaidMediaVideo {
      * @brief Type of the media, must be video
     */
     std::string type { TYPE };
-
     /**
      * @brief File to send. Pass a file_id to send a file that exists on the Telegram servers
      * (recommended), pass an HTTP URL for Telegram to get a file from the Internet, or pass
@@ -7038,7 +6312,6 @@ struct InputPaidMediaVideo {
      * <file_attach_name> name. More information on Sending Files »
     */
     std::string media { };
-
     /**
      * @brief Optional. Thumbnail of the file sent; can be ignored if thumbnail generation for the
      * file is supported server-side. The thumbnail should be in JPEG format and less than 200
@@ -7049,7 +6322,6 @@ struct InputPaidMediaVideo {
      * Sending Files »
     */
     std::optional<std::string> thumbnail { };
-
     /**
      * @brief Optional. Cover for the video in the message. Pass a file_id to send a file that exists
      * on the Telegram servers (recommended), pass an HTTP URL for Telegram to get a file from
@@ -7057,27 +6329,22 @@ struct InputPaidMediaVideo {
      * multipart/form-data under <file_attach_name> name. More information on Sending Files »
     */
     std::optional<std::string> cover { };
-
     /**
      * @brief Optional. Start timestamp for the video in the message
     */
     std::optional<std::int32_t> startTimestamp { };
-
     /**
      * @brief Optional. Video width
     */
     std::optional<std::int32_t> width { };
-
     /**
      * @brief Optional. Video height
     */
     std::optional<std::int32_t> height { };
-
     /**
      * @brief Optional. Video duration in seconds
     */
     std::optional<std::int32_t> duration { };
-
     /**
      * @brief Optional. Pass True if the uploaded video is suitable for streaming
     */
@@ -7117,19 +6384,16 @@ struct InputPollOption {
      * @brief Option text, 1-100 characters
     */
     std::string text { };
-
     /**
      * @brief Optional. Mode for parsing entities in the text. See formatting options for more
      * details. Currently, only custom emoji entities are allowed.
     */
     std::optional<std::string> textParseMode { };
-
     /**
      * @brief Optional. A JSON-serialized list of special entities that appear in the poll option
      * text. It can be specified instead of text_parse_mode.
     */
     std::optional<std::vector<std::shared_ptr<MessageEntity>>> textEntities { };
-
     /**
      * @brief Optional. Media added to the poll option
     */
@@ -7185,14 +6449,12 @@ struct InputProfilePhotoAnimated {
      * @brief Type of the profile photo, must be animated
     */
     std::string type { TYPE };
-
     /**
      * @brief The animated profile photo. Profile photos can't be reused and can only be uploaded as a
      * new file, so you can pass “attach://<file_attach_name>” if the photo was uploaded using
      * multipart/form-data under <file_attach_name>. More information on Sending Files »
     */
     std::string animation { };
-
     /**
      * @brief Optional. Timestamp in seconds of the frame that will be used as the static profile
      * photo. Defaults to 0.0.
@@ -7216,7 +6478,6 @@ struct InputProfilePhotoStatic {
      * @brief Type of the profile photo, must be static
     */
     std::string type { TYPE };
-
     /**
      * @brief The static profile photo. Profile photos can't be reused and can only be uploaded as a
      * new file, so you can pass “attach://<file_attach_name>” if the photo was uploaded using
@@ -7272,7 +6533,6 @@ struct InputRichBlockAnchor {
      * @brief Type of the block, always “anchor”
     */
     std::string type { TYPE };
-
     /**
      * @brief The name of the anchor
     */
@@ -7295,12 +6555,10 @@ struct InputRichBlockAnimation {
      * @brief Type of the block, always “animation”
     */
     std::string type { TYPE };
-
     /**
      * @brief The animation. Caption is ignored.
     */
     std::shared_ptr<InputMediaAnimation> animation { };
-
     /**
      * @brief Optional. Caption of the block
     */
@@ -7323,12 +6581,10 @@ struct InputRichBlockAudio {
      * @brief Type of the block, always “audio”
     */
     std::string type { TYPE };
-
     /**
      * @brief The audio. Caption is ignored.
     */
     std::shared_ptr<InputMediaAudio> audio { };
-
     /**
      * @brief Optional. Caption of the block
     */
@@ -7351,12 +6607,10 @@ struct InputRichBlockBlockQuotation {
      * @brief Type of the block, always “blockquote”
     */
     std::string type { TYPE };
-
     /**
      * @brief Content of the block
     */
     std::vector<std::shared_ptr<InputRichBlock>> blocks { };
-
     /**
      * @brief Optional. Credit of the block
     */
@@ -7379,12 +6633,10 @@ struct InputRichBlockCollage {
      * @brief Type of the block, always “collage”
     */
     std::string type { TYPE };
-
     /**
      * @brief Elements of the collage
     */
     std::vector<std::shared_ptr<InputRichBlock>> blocks { };
-
     /**
      * @brief Optional. Caption of the block
     */
@@ -7407,17 +6659,14 @@ struct InputRichBlockDetails {
      * @brief Type of the block, always “details”
     */
     std::string type { TYPE };
-
     /**
      * @brief Always shown summary of the block
     */
     std::shared_ptr<RichText> summary { };
-
     /**
      * @brief Content of the block
     */
     std::vector<std::shared_ptr<InputRichBlock>> blocks { };
-
     /**
      * @brief Optional. Pass True if the content of the block is visible by default
     */
@@ -7458,7 +6707,6 @@ struct InputRichBlockFooter {
      * @brief Type of the block, always “footer”
     */
     std::string type { TYPE };
-
     /**
      * @brief Text of the block
     */
@@ -7481,7 +6729,6 @@ struct InputRichBlockList {
      * @brief Type of the block, always “list”
     */
     std::string type { TYPE };
-
     /**
      * @brief Items of the list
     */
@@ -7502,22 +6749,18 @@ struct InputRichBlockListItem {
      * @brief The content of the item
     */
     std::vector<std::shared_ptr<InputRichBlock>> blocks { };
-
     /**
      * @brief Optional. Pass True if the item has a checkbox
     */
     std::optional<bool> hasCheckbox { };
-
     /**
      * @brief Optional. Pass True if the item has a checked checkbox
     */
     std::optional<bool> isChecked { };
-
     /**
      * @brief Optional. For ordered lists, the numeric value of the item label
     */
     std::optional<std::int32_t> value { };
-
     /**
      * @brief Optional. For ordered lists, the type of the item label; must be one of “a” for
      * lowercase letters, “A” for uppercase letters, “i” for lowercase Roman numerals, “I” for
@@ -7543,27 +6786,22 @@ struct InputRichBlockMap {
      * @brief Type of the block, always “map”
     */
     std::string type { TYPE };
-
     /**
      * @brief Location of the center of the map
     */
     std::shared_ptr<Location> location { };
-
     /**
      * @brief Map zoom level; 0-24
     */
     std::int32_t zoom { };
-
     /**
      * @brief Map width; 0-10000
     */
     std::int32_t width { };
-
     /**
      * @brief Map height; 0-10000
     */
     std::int32_t height { };
-
     /**
      * @brief Optional. Caption of the block
     */
@@ -7587,7 +6825,6 @@ struct InputRichBlockMathematicalExpression {
      * @brief Type of the block, always “mathematical_expression”
     */
     std::string type { TYPE };
-
     /**
      * @brief The mathematical expression in LaTeX format
     */
@@ -7610,7 +6847,6 @@ struct InputRichBlockParagraph {
      * @brief Type of the block, always “paragraph”
     */
     std::string type { TYPE };
-
     /**
      * @brief Text of the block
     */
@@ -7633,12 +6869,10 @@ struct InputRichBlockPhoto {
      * @brief Type of the block, always “photo”
     */
     std::string type { TYPE };
-
     /**
      * @brief The photo. Caption is ignored.
     */
     std::shared_ptr<InputMediaPhoto> photo { };
-
     /**
      * @brief Optional. Caption of the block
     */
@@ -7661,12 +6895,10 @@ struct InputRichBlockPreformatted {
      * @brief Type of the block, always “pre”
     */
     std::string type { TYPE };
-
     /**
      * @brief Text of the block
     */
     std::shared_ptr<RichText> text { };
-
     /**
      * @brief Optional. The programming language of the text
     */
@@ -7689,12 +6921,10 @@ struct InputRichBlockPullQuotation {
      * @brief Type of the block, always “pullquote”
     */
     std::string type { TYPE };
-
     /**
      * @brief Text of the block
     */
     std::shared_ptr<RichText> text { };
-
     /**
      * @brief Optional. Credit of the block
     */
@@ -7717,12 +6947,10 @@ struct InputRichBlockSectionHeading {
      * @brief Type of the block, always “heading”
     */
     std::string type { TYPE };
-
     /**
      * @brief Text of the block
     */
     std::shared_ptr<RichText> text { };
-
     /**
      * @brief Relative size of the text font; 1-6, 1 is the largest, 6 is the smallest
     */
@@ -7745,12 +6973,10 @@ struct InputRichBlockSlideshow {
      * @brief Type of the block, always “slideshow”
     */
     std::string type { TYPE };
-
     /**
      * @brief Elements of the slideshow
     */
     std::vector<std::shared_ptr<InputRichBlock>> blocks { };
-
     /**
      * @brief Optional. Caption of the block
     */
@@ -7773,22 +6999,18 @@ struct InputRichBlockTable {
      * @brief Type of the block, always “table”
     */
     std::string type { TYPE };
-
     /**
      * @brief Cells of the table
     */
     std::vector<std::vector<std::shared_ptr<RichBlockTableCell>>> cells { };
-
     /**
      * @brief Optional. Pass True if the table has borders
     */
     std::optional<bool> isBordered { };
-
     /**
      * @brief Optional. Pass True if the table is striped
     */
     std::optional<bool> isStriped { };
-
     /**
      * @brief Optional. Caption of the table
     */
@@ -7814,7 +7036,6 @@ struct InputRichBlockThinking {
      * @brief Type of the block, always “thinking”
     */
     std::string type { TYPE };
-
     /**
      * @brief Text of the block. See https://t.me/addemoji/AIActions for examples of custom emoji that
      * are recommended for usage in the block.
@@ -7838,12 +7059,10 @@ struct InputRichBlockVideo {
      * @brief Type of the block, always “video”
     */
     std::string type { TYPE };
-
     /**
      * @brief The video. Caption is ignored.
     */
     std::shared_ptr<InputMediaVideo> video { };
-
     /**
      * @brief Optional. Caption of the block
     */
@@ -7866,12 +7085,10 @@ struct InputRichBlockVoiceNote {
      * @brief Type of the block, always “voice_note”
     */
     std::string type { TYPE };
-
     /**
      * @brief The voice note. Caption is ignored.
     */
     std::shared_ptr<InputMediaVoiceNote> voiceNote { };
-
     /**
      * @brief Optional. Caption of the block
     */
@@ -7893,32 +7110,27 @@ struct InputRichMessage {
      * @brief Optional. Content of the rich message to send described as a list of blocks
     */
     std::optional<std::vector<std::shared_ptr<InputRichBlock>>> blocks { };
-
     /**
      * @brief Optional. Content of the rich message to send described using HTML formatting. See rich
      * message formatting options for more details. Use media field to specify the media used
      * in the message.
     */
     std::optional<std::string> html { };
-
     /**
      * @brief Optional. Content of the rich message to send described using Markdown formatting. See
      * rich message formatting options for more details. Use media field to specify the media
      * used in the message.
     */
     std::optional<std::string> markdown { };
-
     /**
      * @brief Optional. List of media that are specified in the markdown or html fields using
      * tg://photo?id=, tg://video?id=, and tg://audio?id= links
     */
     std::optional<std::vector<std::shared_ptr<InputRichMessageMedia>>> media { };
-
     /**
      * @brief Optional. Pass True if the rich message must be shown right-to-left
     */
     std::optional<bool> isRtl { };
-
     /**
      * @brief Optional. Pass True to skip automatic detection of entities (e.g., URLs, email
      * addresses, username mentions, hashtags, cashtags, bot commands, or phone numbers) in the
@@ -7958,7 +7170,6 @@ struct InputRichMessageMedia {
      * tg://audio?id= link. 1-64 characters, only A-Z, a-z, 0-9, _ and - are allowed.
     */
     std::string id { };
-
     /**
      * @brief The media to be sent. Everything except the media itself and its properties is ignored.
     */
@@ -7986,23 +7197,19 @@ struct InputSticker {
      * uploaded via HTTP URL. More information on Sending Files »
     */
     std::string sticker { };
-
     /**
      * @brief Format of the added sticker, must be one of “static” for a .WEBP or .PNG image,
      * “animated” for a .TGS animation, “video” for a .WEBM video
     */
     std::string format { };
-
     /**
      * @brief List of 1-20 emoji associated with the sticker
     */
     std::vector<std::string> emojiList { };
-
     /**
      * @brief Optional. Position where the mask should be placed on faces. For “mask” stickers only.
     */
     std::shared_ptr<MaskPosition> maskPosition { };
-
     /**
      * @brief Optional. List of 0-20 search keywords for the sticker with total length of up to 64
      * characters. For “regular” and “custom_emoji” stickers only.
@@ -8040,7 +7247,6 @@ struct InputStoryContentPhoto {
      * @brief Type of the content, must be photo
     */
     std::string type { TYPE };
-
     /**
      * @brief The photo to post as a story. The photo must be of the size 1080x1920 and must not
      * exceed 10 MB. The photo can't be reused and can only be uploaded as a new file, so you
@@ -8066,7 +7272,6 @@ struct InputStoryContentVideo {
      * @brief Type of the content, must be video
     */
     std::string type { TYPE };
-
     /**
      * @brief The video to post as a story. The video must be of the size 720x1280, streamable,
      * encoded with H.265 codec, with key frames added each second in the MPEG4 format, and
@@ -8075,18 +7280,15 @@ struct InputStoryContentVideo {
      * multipart/form-data under <file_attach_name>. More information on Sending Files »
     */
     std::string video { };
-
     /**
      * @brief Optional. Precise duration of the video in seconds; 0-60
     */
     std::optional<double> duration { };
-
     /**
      * @brief Optional. Timestamp in seconds of the frame that will be used as the static cover for
      * the story. Defaults to 0.0.
     */
     std::optional<double> coverFrameTimestamp { };
-
     /**
      * @brief Optional. Pass True if the video has no sound
     */
@@ -8107,19 +7309,16 @@ struct InputTextMessageContent {
      * @brief Text of the message to be sent, 1-4096 characters
     */
     std::string messageText { };
-
     /**
      * @brief Optional. Mode for parsing entities in the message text. See formatting options for more
      * details.
     */
     std::optional<std::string> parseMode { };
-
     /**
      * @brief Optional. List of special entities that appear in message text, which can be specified
      * instead of parse_mode
     */
     std::optional<std::vector<std::shared_ptr<MessageEntity>>> entities { };
-
     /**
      * @brief Optional. Link preview generation options for the message
     */
@@ -8140,38 +7339,31 @@ struct InputVenueMessageContent {
      * @brief Latitude of the venue in degrees
     */
     double latitude { };
-
     /**
      * @brief Longitude of the venue in degrees
     */
     double longitude { };
-
     /**
      * @brief Name of the venue
     */
     std::string title { };
-
     /**
      * @brief Address of the venue
     */
     std::string address { };
-
     /**
      * @brief Optional. Foursquare identifier of the venue, if known
     */
     std::optional<std::string> foursquareId { };
-
     /**
      * @brief Optional. Foursquare type of the venue, if known. (For example,
      * “arts_entertainment/default”, “arts_entertainment/aquarium” or “food/icecream”.)
     */
     std::optional<std::string> foursquareType { };
-
     /**
      * @brief Optional. Google Places identifier of the venue
     */
     std::optional<std::string> googlePlaceId { };
-
     /**
      * @brief Optional. Google Places type of the venue. (See supported types.)
     */
@@ -8192,22 +7384,18 @@ struct Invoice {
      * @brief Product name
     */
     std::string title { };
-
     /**
      * @brief Product description
     */
     std::string description { };
-
     /**
      * @brief Unique bot deep-linking parameter that can be used to generate this invoice
     */
     std::string startParameter { };
-
     /**
      * @brief Three-letter ISO 4217 currency code, or “XTR” for payments in Telegram Stars
     */
     std::string currency { };
-
     /**
      * @brief Total price in the smallest units of the currency (integer, not float/double). For
      * example, for a price of US$ 1.45 pass amount = 145. See the exp parameter in
@@ -8235,7 +7423,6 @@ struct KeyboardButton {
      * style are used, it will be sent as a message when the button is pressed.
     */
     std::string text { };
-
     /**
      * @brief Optional. Unique identifier of the custom emoji shown before the text of the button. Can
      * only be used by bots that purchased additional usernames on Fragment or in the messages
@@ -8243,52 +7430,44 @@ struct KeyboardButton {
      * has a Telegram Premium subscription.
     */
     std::optional<std::string> iconCustomEmojiId { };
-
     /**
      * @brief Optional. Style of the button. Must be one of “danger” (red), “success” (green) or
      * “primary” (blue). If omitted, then an app-specific style is used.
     */
     std::optional<std::string> style { };
-
     /**
      * @brief Optional. If specified, pressing the button will open a list of suitable users.
      * Identifiers of selected users will be sent to the bot in a “users_shared” service
      * message. Available in private chats only.
     */
     std::shared_ptr<KeyboardButtonRequestUsers> requestUsers { };
-
     /**
      * @brief Optional. If specified, pressing the button will open a list of suitable chats. Tapping
      * on a chat will send its identifier to the bot in a “chat_shared” service message.
      * Available in private chats only.
     */
     std::shared_ptr<KeyboardButtonRequestChat> requestChat { };
-
     /**
      * @brief Optional. If specified, pressing the button will ask the user to create and share a bot
      * that will be managed by the current bot. Available for bots that enabled management of
      * other bots in the @BotFather Mini App. Available in private chats only.
     */
     std::shared_ptr<KeyboardButtonRequestManagedBot> requestManagedBot { };
-
     /**
      * @brief Optional. If True, the user's phone number will be sent as a contact when the button is
      * pressed. Available in private chats only.
     */
     std::optional<bool> requestContact { };
-
     /**
      * @brief Optional. If True, the user's current location will be sent when the button is pressed.
      * Available in private chats only.
     */
     std::optional<bool> requestLocation { };
-
     /**
      * @brief Optional. If specified, the user will be asked to create a poll and send it to the bot
      * when the button is pressed. Available in private chats only.
     */
     std::shared_ptr<KeyboardButtonPollType> requestPoll { };
-
     /**
      * @brief Optional. If specified, the described Web App will be launched when the button is
      * pressed. The Web App will be able to send a “web_app_data” service message. Available in
@@ -8333,61 +7512,51 @@ struct KeyboardButtonRequestChat {
      * object. Must be unique within the message.
     */
     std::int32_t requestId { };
-
     /**
      * @brief Pass True to request a channel chat, pass False to request a group or a supergroup chat
     */
     bool chatIsChannel { };
-
     /**
      * @brief Optional. Pass True to request a forum supergroup, pass False to request a non-forum
      * chat. If not specified, no additional restrictions are applied.
     */
     std::optional<bool> chatIsForum { };
-
     /**
      * @brief Optional. Pass True to request a supergroup or a channel with a username, pass False to
      * request a chat without a username. If not specified, no additional restrictions are
      * applied.
     */
     std::optional<bool> chatHasUsername { };
-
     /**
      * @brief Optional. Pass True to request a chat owned by the user. Otherwise, no additional
      * restrictions are applied.
     */
     std::optional<bool> chatIsCreated { };
-
     /**
      * @brief Optional. A JSON-serialized object listing the required administrator rights of the user
      * in the chat. The rights must be a superset of bot_administrator_rights. If not
      * specified, no additional restrictions are applied.
     */
     std::shared_ptr<ChatAdministratorRights> userAdministratorRights { };
-
     /**
      * @brief Optional. A JSON-serialized object listing the required administrator rights of the bot
      * in the chat. The rights must be a subset of user_administrator_rights. If not specified,
      * no additional restrictions are applied.
     */
     std::shared_ptr<ChatAdministratorRights> botAdministratorRights { };
-
     /**
      * @brief Optional. Pass True to request a chat with the bot as a member. Otherwise, no additional
      * restrictions are applied.
     */
     std::optional<bool> botIsMember { };
-
     /**
      * @brief Optional. Pass True to request the chat's title
     */
     std::optional<bool> requestTitle { };
-
     /**
      * @brief Optional. Pass True to request the chat's username
     */
     std::optional<bool> requestUsername { };
-
     /**
      * @brief Optional. Pass True to request the chat's photo
     */
@@ -8410,12 +7579,10 @@ struct KeyboardButtonRequestManagedBot {
      * @brief Signed 32-bit identifier of the request. Must be unique within the message.
     */
     std::int32_t requestId { };
-
     /**
      * @brief Optional. Suggested name for the bot
     */
     std::optional<std::string> suggestedName { };
-
     /**
      * @brief Optional. Suggested username for the bot
     */
@@ -8439,34 +7606,28 @@ struct KeyboardButtonRequestUsers {
      * object. Must be unique within the message.
     */
     std::int32_t requestId { };
-
     /**
      * @brief Optional. Pass True to request bots, pass False to request regular users. If not
      * specified, no additional restrictions are applied.
     */
     std::optional<bool> userIsBot { };
-
     /**
      * @brief Optional. Pass True to request premium users, pass False to request non-premium users.
      * If not specified, no additional restrictions are applied.
     */
     std::optional<bool> userIsPremium { };
-
     /**
      * @brief Optional. The maximum number of users to be selected; 1-10. Defaults to 1.
     */
     std::optional<std::int32_t> maxQuantity { };
-
     /**
      * @brief Optional. Pass True to request the users' first and last names
     */
     std::optional<bool> requestName { };
-
     /**
      * @brief Optional. Pass True to request the users' usernames
     */
     std::optional<bool> requestUsername { };
-
     /**
      * @brief Optional. Pass True to request the users' photos
     */
@@ -8487,7 +7648,6 @@ struct LabeledPrice {
      * @brief Portion label
     */
     std::string label { };
-
     /**
      * @brief Price of the product in the smallest units of the currency (integer, not float/double).
      * For example, for a price of US$ 1.45 pass amount = 145. See the exp parameter in
@@ -8527,25 +7687,21 @@ struct LinkPreviewOptions {
      * @brief Optional. True, if the link preview is disabled
     */
     std::optional<bool> isDisabled { };
-
     /**
      * @brief Optional. URL to use for the link preview. If empty, then the first URL found in the
      * message text will be used.
     */
     std::optional<std::string> url { };
-
     /**
      * @brief Optional. True, if the media in the link preview is supposed to be shrunk; ignored if
      * the URL isn't explicitly specified or media size change isn't supported for the preview
     */
     std::optional<bool> preferSmallMedia { };
-
     /**
      * @brief Optional. True, if the media in the link preview is supposed to be enlarged; ignored if
      * the URL isn't explicitly specified or media size change isn't supported for the preview
     */
     std::optional<bool> preferLargeMedia { };
-
     /**
      * @brief Optional. True, if the link preview must be shown above the message text; otherwise, the
      * link preview will be shown below the message text
@@ -8567,38 +7723,31 @@ struct LivePhoto {
      * @brief Optional. Available sizes of the corresponding static photo
     */
     std::optional<std::vector<std::shared_ptr<PhotoSize>>> photo { };
-
     /**
      * @brief Identifier for the video file which can be used to download or reuse the file
     */
     std::string fileId { };
-
     /**
      * @brief Unique identifier for the video file which is supposed to be the same over time and for
      * different bots. Can't be used to download or reuse the file.
     */
     std::string fileUniqueId { };
-
     /**
      * @brief Video width as defined by the sender
     */
     std::int32_t width { };
-
     /**
      * @brief Video height as defined by the sender
     */
     std::int32_t height { };
-
     /**
      * @brief Duration of the video in seconds as defined by the sender
     */
     std::int32_t duration { };
-
     /**
      * @brief Optional. MIME type of the file as defined by the sender
     */
     std::optional<std::string> mimeType { };
-
     /**
      * @brief Optional. File size in bytes. It can be bigger than 2^31 and some programming languages
      * may have difficulty/silent defects in interpreting it. But it has at most 52 significant
@@ -8622,29 +7771,24 @@ struct Location {
      * @brief Latitude as defined by the sender
     */
     double latitude { };
-
     /**
      * @brief Longitude as defined by the sender
     */
     double longitude { };
-
     /**
      * @brief Optional. The radius of uncertainty for the location, measured in meters; 0-1500
     */
     std::optional<double> horizontalAccuracy { };
-
     /**
      * @brief Optional. Time relative to the message sending date, during which the location can be
      * updated; in seconds. For active live locations only.
     */
     std::optional<std::int32_t> livePeriod { };
-
     /**
      * @brief Optional. The direction in which user is moving, in degrees; 1-360. For active live
      * locations only.
     */
     std::optional<std::int32_t> heading { };
-
     /**
      * @brief Optional. The maximum distance for proximity alerts about approaching another chat
      * member, in meters. For sent live locations only.
@@ -8667,17 +7811,14 @@ struct LocationAddress {
      * located
     */
     std::string countryCode { };
-
     /**
      * @brief Optional. State of the location
     */
     std::optional<std::string> state { };
-
     /**
      * @brief Optional. City of the location
     */
     std::optional<std::string> city { };
-
     /**
      * @brief Optional. Street address of the location
     */
@@ -8706,12 +7847,10 @@ struct LoginUrl {
      * Checking authorization.
     */
     std::string url { };
-
     /**
      * @brief Optional. New text of the button in forwarded messages
     */
     std::optional<std::string> forwardText { };
-
     /**
      * @brief Optional. Username of a bot, which will be used for user authorization. See Setting up a
      * bot for more details. If not specified, the current bot's username will be assumed. The
@@ -8719,7 +7858,6 @@ struct LoginUrl {
      * to the bot for more details.
     */
     std::optional<std::string> botUsername { };
-
     /**
      * @brief Optional. Pass True to request the permission for your bot to send messages to the user
     */
@@ -8759,7 +7897,6 @@ struct ManagedBotUpdated {
      * @brief User that created the bot
     */
     std::shared_ptr<User> user { };
-
     /**
      * @brief Information about the bot. Token of the bot can be fetched using the method
      * getManagedBotToken.
@@ -8782,20 +7919,17 @@ struct MaskPosition {
      * “eyes”, “mouth”, or “chin”.
     */
     std::string point { };
-
     /**
      * @brief Shift by X-axis measured in widths of the mask scaled to the face size, from left to
      * right. For example, choosing -1.0 will place mask just to the left of the default mask
      * position.
     */
     double xShift { };
-
     /**
      * @brief Shift by Y-axis measured in heights of the mask scaled to the face size, from top to
      * bottom. For example, 1.0 will place the mask just below the default mask position.
     */
     double yShift { };
-
     /**
      * @brief Mask scaling coefficient. For example, 2.0 means double size.
     */
@@ -8886,12 +8020,10 @@ struct MenuButtonWebApp {
      * @brief Type of the button, must be web_app
     */
     std::string type { TYPE };
-
     /**
      * @brief Text on the button
     */
     std::string text { };
-
     /**
      * @brief Description of the Web App that will be launched when the user presses the button. The
      * Web App will be able to send an arbitrary message on behalf of the user using the method
@@ -8919,25 +8051,21 @@ struct Message {
      * field will be 0 and the relevant message will be unusable until it is actually sent.
     */
     std::int32_t messageId { };
-
     /**
      * @brief Optional. Unique identifier of a message thread or forum topic to which the message
      * belongs; for supergroups and private chats only
     */
     std::optional<std::int32_t> messageThreadId { };
-
     /**
      * @brief Optional. Information about the direct messages chat topic that contains the message
     */
     std::shared_ptr<DirectMessagesTopic> directMessagesTopic { };
-
     /**
      * @brief Optional. Sender of the message; may be empty for messages sent to channels. For
      * backward compatibility, if the message was sent on behalf of a chat, the field contains
      * a fake sender user in non-channel chats.
     */
     std::shared_ptr<User> from { };
-
     /**
      * @brief Optional. Sender of the message when sent on behalf of a chat. For example, the
      * supergroup itself for messages sent by its anonymous administrators or a linked channel
@@ -8946,42 +8074,35 @@ struct Message {
      * fake sender user in non-channel chats.
     */
     std::shared_ptr<Chat> senderChat { };
-
     /**
      * @brief Optional. If the sender of the message boosted the chat, the number of boosts added by
      * the user
     */
     std::optional<std::int32_t> senderBoostCount { };
-
     /**
      * @brief Optional. The bot that actually sent the message on behalf of the business account.
      * Available only for outgoing messages sent on behalf of the connected business account.
     */
     std::shared_ptr<User> senderBusinessBot { };
-
     /**
      * @brief Optional. Tag or custom title of the sender of the message; for supergroups only
     */
     std::optional<std::string> senderTag { };
-
     /**
      * @brief Optional. For ephemeral messages, the user who received the message
     */
     std::shared_ptr<User> receiverUser { };
-
     /**
      * @brief Optional. For ephemeral messages, identifier of the ephemeral message inside this chat.
      * The identifier may be reused for another ephemeral message after the message is deleted
      * or expires.
     */
     std::optional<std::int32_t> ephemeralMessageId { };
-
     /**
      * @brief Date the message was sent in Unix time. It is always a positive number, representing a
      * valid date.
     */
     std::int32_t date { };
-
     /**
      * @brief Optional. The unique identifier for the guest query. Use this identifier with the method
      * answerGuestQuery to send a response message. If non-empty, the message belongs to the
@@ -8989,7 +8110,6 @@ struct Message {
      * chats sharing the same identifier.
     */
     std::optional<std::string> guestQueryId { };
-
     /**
      * @brief Optional. Unique identifier of the business connection from which the message was
      * received. If non-empty, the message belongs to a chat of the corresponding business
@@ -8997,29 +8117,24 @@ struct Message {
      * identifier.
     */
     std::optional<std::string> businessConnectionId { };
-
     /**
      * @brief Chat the message belongs to
     */
     std::shared_ptr<Chat> chat { };
-
     /**
      * @brief Optional. Information about the original message for forwarded messages
     */
     std::shared_ptr<MessageOrigin> forwardOrigin { };
-
     /**
      * @brief Optional. True, if the message is sent to a topic in a forum supergroup or a private
      * chat with the bot
     */
     std::optional<bool> isTopicMessage { };
-
     /**
      * @brief Optional. True, if the message is a channel post that was automatically forwarded to the
      * connected discussion group
     */
     std::optional<bool> isAutomaticForward { };
-
     /**
      * @brief Optional. For replies in the same chat and message thread, the original message. Note
      * that the Message object in this field will not contain further reply_to_message fields
@@ -9027,281 +8142,229 @@ struct Message {
      * this field may be omitted.
     */
     std::shared_ptr<Message> replyToMessage { };
-
     /**
      * @brief Optional. Information about the message that is being replied to, which may come from
      * another chat or forum topic
     */
     std::shared_ptr<ExternalReplyInfo> externalReply { };
-
     /**
      * @brief Optional. For replies that quote part of the original message, the quoted part of the
      * message
     */
     std::shared_ptr<TextQuote> quote { };
-
     /**
      * @brief Optional. For replies to a story, the original story
     */
     std::shared_ptr<Story> replyToStory { };
-
     /**
      * @brief Optional. Identifier of the specific checklist task that is being replied to
     */
     std::optional<std::int32_t> replyToChecklistTaskId { };
-
     /**
      * @brief Optional. Persistent identifier of the specific poll option that is being replied to
     */
     std::optional<std::string> replyToPollOptionId { };
-
     /**
      * @brief Optional. Bot through which the message was sent
     */
     std::shared_ptr<User> viaBot { };
-
     /**
      * @brief Optional. For a message sent by a guest bot, this is the user whose original message
      * triggered the bot's response
     */
     std::shared_ptr<User> guestBotCallerUser { };
-
     /**
      * @brief Optional. For a message sent by a guest bot, this is the chat whose original message
      * triggered the bot's response
     */
     std::shared_ptr<Chat> guestBotCallerChat { };
-
     /**
      * @brief Optional. Date the message was last edited in Unix time
     */
     std::optional<std::int32_t> editDate { };
-
     /**
      * @brief Optional. True, if the message can't be forwarded
     */
     std::optional<bool> hasProtectedContent { };
-
     /**
      * @brief Optional. True, if the message was sent by an implicit action, for example, as an away
      * or a greeting business message, or as a scheduled message
     */
     std::optional<bool> isFromOffline { };
-
     /**
      * @brief Optional. True, if the message is a paid post. Note that such posts must not be deleted
      * for 24 hours to receive the payment and can't be edited.
     */
     std::optional<bool> isPaidPost { };
-
     /**
      * @brief Optional. The unique identifier inside this chat of a media message group this message
      * belongs to
     */
     std::optional<std::string> mediaGroupId { };
-
     /**
      * @brief Optional. Signature of the post author for messages in channels, or the custom title of
      * an anonymous group administrator
     */
     std::optional<std::string> authorSignature { };
-
     /**
      * @brief Optional. The number of Telegram Stars that were paid by the sender of the message to
      * send it
     */
     std::optional<std::int32_t> paidStarCount { };
-
     /**
      * @brief Optional. For text messages, the actual UTF-8 text of the message
     */
     std::optional<std::string> text { };
-
     /**
      * @brief Optional. For text messages, special entities like usernames, URLs, bot commands, etc.
      * that appear in the text
     */
     std::optional<std::vector<std::shared_ptr<MessageEntity>>> entities { };
-
     /**
      * @brief Optional. Options used for link preview generation for the message, if it is a text
      * message and link preview options were changed
     */
     std::shared_ptr<LinkPreviewOptions> linkPreviewOptions { };
-
     /**
      * @brief Optional. Information about suggested post parameters if the message is a suggested post
      * in a channel direct messages chat. If the message is an approved or declined suggested
      * post, then it can't be edited.
     */
     std::shared_ptr<SuggestedPostInfo> suggestedPostInfo { };
-
     /**
      * @brief Optional. Unique identifier of the message effect added to the message
     */
     std::optional<std::string> effectId { };
-
     /**
      * @brief Optional. Message is a rich formatted message
     */
     std::shared_ptr<RichMessage> richMessage { };
-
     /**
      * @brief Optional. Message is an animation, information about the animation. For backward
      * compatibility, when this field is set, the document field will also be set.
     */
     std::shared_ptr<Animation> animation { };
-
     /**
      * @brief Optional. Message is an audio file, information about the file
     */
     std::shared_ptr<Audio> audio { };
-
     /**
      * @brief Optional. Message is a general file, information about the file
     */
     std::shared_ptr<Document> document { };
-
     /**
      * @brief Optional. Message is a live photo, information about the live photo. For backward
      * compatibility, when this field is set, the photo field will also be set.
     */
     std::shared_ptr<LivePhoto> livePhoto { };
-
     /**
      * @brief Optional. Message contains paid media; information about the paid media
     */
     std::shared_ptr<PaidMediaInfo> paidMedia { };
-
     /**
      * @brief Optional. Message is a photo, available sizes of the photo
     */
     std::optional<std::vector<std::shared_ptr<PhotoSize>>> photo { };
-
     /**
      * @brief Optional. Message is a sticker, information about the sticker
     */
     std::shared_ptr<Sticker> sticker { };
-
     /**
      * @brief Optional. Message is a forwarded story
     */
     std::shared_ptr<Story> story { };
-
     /**
      * @brief Optional. Message is a video, information about the video
     */
     std::shared_ptr<Video> video { };
-
     /**
      * @brief Optional. Message is a video note, information about the video message
     */
     std::shared_ptr<VideoNote> videoNote { };
-
     /**
      * @brief Optional. Message is a voice message, information about the file
     */
     std::shared_ptr<Voice> voice { };
-
     /**
      * @brief Optional. Caption for the animation, audio, document, paid media, photo, video or voice
     */
     std::optional<std::string> caption { };
-
     /**
      * @brief Optional. For messages with a caption, special entities like usernames, URLs, bot
      * commands, etc. that appear in the caption
     */
     std::optional<std::vector<std::shared_ptr<MessageEntity>>> captionEntities { };
-
     /**
      * @brief Optional. True, if the caption must be shown above the message media
     */
     std::optional<bool> showCaptionAboveMedia { };
-
     /**
      * @brief Optional. True, if the message media is covered by a spoiler animation
     */
     std::optional<bool> hasMediaSpoiler { };
-
     /**
      * @brief Optional. Message is a checklist
     */
     std::shared_ptr<Checklist> checklist { };
-
     /**
      * @brief Optional. Message is a shared contact, information about the contact
     */
     std::shared_ptr<Contact> contact { };
-
     /**
      * @brief Optional. Message is a dice with random value
     */
     std::shared_ptr<Dice> dice { };
-
     /**
      * @brief Optional. Message is a game, information about the game. More about games »
     */
     std::shared_ptr<Game> game { };
-
     /**
      * @brief Optional. Message is a native poll, information about the poll
     */
     std::shared_ptr<Poll> poll { };
-
     /**
      * @brief Optional. Message is a venue, information about the venue. For backward compatibility,
      * when this field is set, the location field will also be set.
     */
     std::shared_ptr<Venue> venue { };
-
     /**
      * @brief Optional. Message is a shared location, information about the location
     */
     std::shared_ptr<Location> location { };
-
     /**
      * @brief Optional. New members that were added to the group or supergroup and information about
      * them (the bot itself may be one of these members)
     */
     std::optional<std::vector<std::shared_ptr<User>>> newChatMembers { };
-
     /**
      * @brief Optional. A member was removed from the group, information about them (this member may
      * be the bot itself)
     */
     std::shared_ptr<User> leftChatMember { };
-
     /**
      * @brief Optional. Service message: chat owner has left
     */
     std::shared_ptr<ChatOwnerLeft> chatOwnerLeft { };
-
     /**
      * @brief Optional. Service message: chat owner has changed
     */
     std::shared_ptr<ChatOwnerChanged> chatOwnerChanged { };
-
     /**
      * @brief Optional. A chat title was changed to this value
     */
     std::optional<std::string> newChatTitle { };
-
     /**
      * @brief Optional. A chat photo was change to this value
     */
     std::optional<std::vector<std::shared_ptr<PhotoSize>>> newChatPhoto { };
-
     /**
      * @brief Optional. Service message: the chat photo was deleted
     */
     std::optional<bool> deleteChatPhoto { };
-
     /**
      * @brief Optional. Service message: the group has been created
     */
     std::optional<bool> groupChatCreated { };
-
     /**
      * @brief Optional. Service message: the supergroup has been created. This field can't be received
      * in a message coming through updates, because bot can't be a member of a supergroup when
@@ -9309,7 +8372,6 @@ struct Message {
      * first message in a directly created supergroup.
     */
     std::optional<bool> supergroupChatCreated { };
-
     /**
      * @brief Optional. Service message: the channel has been created. This field can't be received in
      * a message coming through updates, because bot can't be a member of a channel when it is
@@ -9317,12 +8379,10 @@ struct Message {
      * message in a channel.
     */
     std::optional<bool> channelChatCreated { };
-
     /**
      * @brief Optional. Service message: auto-delete timer settings changed in the chat
     */
     std::shared_ptr<MessageAutoDeleteTimerChanged> messageAutoDeleteTimerChanged { };
-
     /**
      * @brief Optional. The group has been migrated to a supergroup with the specified identifier.
      * This number may have more than 32 significant bits and some programming languages may
@@ -9331,7 +8391,6 @@ struct Message {
      * this identifier.
     */
     std::optional<std::int64_t> migrateToChatId { };
-
     /**
      * @brief Optional. The supergroup has been migrated from a group with the specified identifier.
      * This number may have more than 32 significant bits and some programming languages may
@@ -9340,236 +8399,191 @@ struct Message {
      * this identifier.
     */
     std::optional<std::int64_t> migrateFromChatId { };
-
     /**
      * @brief Optional. Specified message was pinned. Note that the Message object in this field will
      * not contain further reply_to_message fields even if it itself is a reply.
     */
     std::shared_ptr<MaybeInaccessibleMessage> pinnedMessage { };
-
     /**
      * @brief Optional. Message is an invoice for a payment, information about the invoice. More about
      * payments »
     */
     std::shared_ptr<Invoice> invoice { };
-
     /**
      * @brief Optional. Message is a service message about a successful payment, information about the
      * payment. More about payments »
     */
     std::shared_ptr<SuccessfulPayment> successfulPayment { };
-
     /**
      * @brief Optional. Message is a service message about a refunded payment, information about the
      * payment. More about payments »
     */
     std::shared_ptr<RefundedPayment> refundedPayment { };
-
     /**
      * @brief Optional. Service message: users were shared with the bot
     */
     std::shared_ptr<UsersShared> usersShared { };
-
     /**
      * @brief Optional. Service message: a chat was shared with the bot
     */
     std::shared_ptr<ChatShared> chatShared { };
-
     /**
      * @brief Optional. Service message: a regular gift was sent or received
     */
     std::shared_ptr<GiftInfo> gift { };
-
     /**
      * @brief Optional. Service message: a unique gift was sent or received
     */
     std::shared_ptr<UniqueGiftInfo> uniqueGift { };
-
     /**
      * @brief Optional. Service message: upgrade of a gift was purchased after the gift was sent
     */
     std::shared_ptr<GiftInfo> giftUpgradeSent { };
-
     /**
      * @brief Optional. The domain name of the website on which the user has logged in. More about
      * Telegram Login »
     */
     std::optional<std::string> connectedWebsite { };
-
     /**
      * @brief Optional. Service message: the user allowed the bot to write messages after adding it to
      * the attachment or side menu, launching a Web App from a link, or accepting an explicit
      * request from a Web App sent by the method requestWriteAccess
     */
     std::shared_ptr<WriteAccessAllowed> writeAccessAllowed { };
-
     /**
      * @brief Optional. Telegram Passport data
     */
     std::shared_ptr<PassportData> passportData { };
-
     /**
      * @brief Optional. Service message: a user in the chat triggered another user's proximity alert
      * while sharing Live Location
     */
     std::shared_ptr<ProximityAlertTriggered> proximityAlertTriggered { };
-
     /**
      * @brief Optional. Service message: user boosted the chat
     */
     std::shared_ptr<ChatBoostAdded> boostAdded { };
-
     /**
      * @brief Optional. Service message: chat background set
     */
     std::shared_ptr<ChatBackground> chatBackgroundSet { };
-
     /**
      * @brief Optional. Service message: some tasks in a checklist were marked as done or not done
     */
     std::shared_ptr<ChecklistTasksDone> checklistTasksDone { };
-
     /**
      * @brief Optional. Service message: tasks were added to a checklist
     */
     std::shared_ptr<ChecklistTasksAdded> checklistTasksAdded { };
-
     /**
      * @brief Optional. Service message: chat added to a Community
     */
     std::shared_ptr<CommunityChatAdded> communityChatAdded { };
-
     /**
      * @brief Optional. Service message: chat removed from a Community
     */
     std::shared_ptr<CommunityChatRemoved> communityChatRemoved { };
-
     /**
      * @brief Optional. Service message: the price for paid messages in the corresponding direct
      * messages chat of a channel has changed
     */
     std::shared_ptr<DirectMessagePriceChanged> directMessagePriceChanged { };
-
     /**
      * @brief Optional. Service message: forum topic created
     */
     std::shared_ptr<ForumTopicCreated> forumTopicCreated { };
-
     /**
      * @brief Optional. Service message: forum topic edited
     */
     std::shared_ptr<ForumTopicEdited> forumTopicEdited { };
-
     /**
      * @brief Optional. Service message: forum topic closed
     */
     std::shared_ptr<ForumTopicClosed> forumTopicClosed { };
-
     /**
      * @brief Optional. Service message: forum topic reopened
     */
     std::shared_ptr<ForumTopicReopened> forumTopicReopened { };
-
     /**
      * @brief Optional. Service message: the 'General' forum topic hidden
     */
     std::shared_ptr<GeneralForumTopicHidden> generalForumTopicHidden { };
-
     /**
      * @brief Optional. Service message: the 'General' forum topic unhidden
     */
     std::shared_ptr<GeneralForumTopicUnhidden> generalForumTopicUnhidden { };
-
     /**
      * @brief Optional. Service message: a scheduled giveaway was created
     */
     std::shared_ptr<GiveawayCreated> giveawayCreated { };
-
     /**
      * @brief Optional. The message is a scheduled giveaway message
     */
     std::shared_ptr<Giveaway> giveaway { };
-
     /**
      * @brief Optional. A giveaway with public winners was completed
     */
     std::shared_ptr<GiveawayWinners> giveawayWinners { };
-
     /**
      * @brief Optional. Service message: a giveaway without public winners was completed
     */
     std::shared_ptr<GiveawayCompleted> giveawayCompleted { };
-
     /**
      * @brief Optional. Service message: user created a bot that will be managed by the current bot
     */
     std::shared_ptr<ManagedBotCreated> managedBotCreated { };
-
     /**
      * @brief Optional. Service message: the price for paid messages has changed in the chat
     */
     std::shared_ptr<PaidMessagePriceChanged> paidMessagePriceChanged { };
-
     /**
      * @brief Optional. Service message: answer option was added to a poll
     */
     std::shared_ptr<PollOptionAdded> pollOptionAdded { };
-
     /**
      * @brief Optional. Service message: answer option was deleted from a poll
     */
     std::shared_ptr<PollOptionDeleted> pollOptionDeleted { };
-
     /**
      * @brief Optional. Service message: a suggested post was approved
     */
     std::shared_ptr<SuggestedPostApproved> suggestedPostApproved { };
-
     /**
      * @brief Optional. Service message: approval of a suggested post has failed
     */
     std::shared_ptr<SuggestedPostApprovalFailed> suggestedPostApprovalFailed { };
-
     /**
      * @brief Optional. Service message: a suggested post was declined
     */
     std::shared_ptr<SuggestedPostDeclined> suggestedPostDeclined { };
-
     /**
      * @brief Optional. Service message: payment for a suggested post was received
     */
     std::shared_ptr<SuggestedPostPaid> suggestedPostPaid { };
-
     /**
      * @brief Optional. Service message: payment for a suggested post was refunded
     */
     std::shared_ptr<SuggestedPostRefunded> suggestedPostRefunded { };
-
     /**
      * @brief Optional. Service message: video chat scheduled
     */
     std::shared_ptr<VideoChatScheduled> videoChatScheduled { };
-
     /**
      * @brief Optional. Service message: video chat started
     */
     std::shared_ptr<VideoChatStarted> videoChatStarted { };
-
     /**
      * @brief Optional. Service message: video chat ended
     */
     std::shared_ptr<VideoChatEnded> videoChatEnded { };
-
     /**
      * @brief Optional. Service message: new participants invited to a video chat
     */
     std::shared_ptr<VideoChatParticipantsInvited> videoChatParticipantsInvited { };
-
     /**
      * @brief Optional. Service message: data sent by a Web App
     */
     std::shared_ptr<WebAppData> webAppData { };
-
     /**
      * @brief Optional. Inline keyboard attached to the message. login_url buttons are represented as
      * ordinary url buttons.
@@ -9639,43 +8653,35 @@ struct MessageEntity {
      * inline custom emoji stickers), or “date_time” (for formatted date and time).
     */
     Type type { };
-
     /**
      * @brief Offset in UTF-16 code units to the start of the entity
     */
     std::int32_t offset { };
-
     /**
      * @brief Length of the entity in UTF-16 code units
     */
     std::int32_t length { };
-
     /**
      * @brief Optional. For “text_link” only, URL that will be opened after user taps on the text
     */
     std::optional<std::string> url { };
-
     /**
      * @brief Optional. For “text_mention” only, the mentioned user
     */
     std::shared_ptr<User> user { };
-
     /**
      * @brief Optional. For “pre” only, the programming language of the entity text
     */
     std::optional<std::string> language { };
-
     /**
      * @brief Optional. For “custom_emoji” only, unique identifier of the custom emoji. Use
      * getCustomEmojiStickers to get full information about the sticker.
     */
     std::optional<std::string> customEmojiId { };
-
     /**
      * @brief Optional. For “date_time” only, the Unix time associated with the entity
     */
     std::optional<std::int32_t> unixTime { };
-
     /**
      * @brief Optional. For “date_time” only, the string that defines the formatting of the date and
      * time. See date-time entity formatting for more details.
@@ -9737,22 +8743,18 @@ struct MessageOriginChannel {
      * @brief Type of the message origin, always “channel”
     */
     std::string type { TYPE };
-
     /**
      * @brief Date the message was sent originally in Unix time
     */
     std::int32_t date { };
-
     /**
      * @brief Channel chat to which the message was originally sent
     */
     std::shared_ptr<Chat> chat { };
-
     /**
      * @brief Unique message identifier inside the chat
     */
     std::int32_t messageId { };
-
     /**
      * @brief Optional. Signature of the original post author
     */
@@ -9775,17 +8777,14 @@ struct MessageOriginChat {
      * @brief Type of the message origin, always “chat”
     */
     std::string type { TYPE };
-
     /**
      * @brief Date the message was sent originally in Unix time
     */
     std::int32_t date { };
-
     /**
      * @brief Chat that sent the message originally
     */
     std::shared_ptr<Chat> senderChat { };
-
     /**
      * @brief Optional. For messages originally sent by an anonymous chat administrator, original
      * message author signature
@@ -9809,12 +8808,10 @@ struct MessageOriginHiddenUser {
      * @brief Type of the message origin, always “hidden_user”
     */
     std::string type { TYPE };
-
     /**
      * @brief Date the message was sent originally in Unix time
     */
     std::int32_t date { };
-
     /**
      * @brief Name of the user that sent the message originally
     */
@@ -9837,12 +8834,10 @@ struct MessageOriginUser {
      * @brief Type of the message origin, always “user”
     */
     std::string type { TYPE };
-
     /**
      * @brief Date the message was sent originally in Unix time
     */
     std::int32_t date { };
-
     /**
      * @brief User that sent the message originally
     */
@@ -9863,17 +8858,14 @@ struct MessageReactionCountUpdated {
      * @brief The chat containing the message
     */
     std::shared_ptr<Chat> chat { };
-
     /**
      * @brief Unique message identifier inside the chat
     */
     std::int32_t messageId { };
-
     /**
      * @brief Date of the change in Unix time
     */
     std::int32_t date { };
-
     /**
      * @brief List of reactions that are present on the message
     */
@@ -9894,32 +8886,26 @@ struct MessageReactionUpdated {
      * @brief The chat containing the message the user reacted to
     */
     std::shared_ptr<Chat> chat { };
-
     /**
      * @brief Unique identifier of the message inside the chat
     */
     std::int32_t messageId { };
-
     /**
      * @brief Optional. The user that changed the reaction, if the user isn't anonymous
     */
     std::shared_ptr<User> user { };
-
     /**
      * @brief Optional. The chat on behalf of which the reaction was changed, if the user is anonymous
     */
     std::shared_ptr<Chat> actorChat { };
-
     /**
      * @brief Date of the change in Unix time
     */
     std::int32_t date { };
-
     /**
      * @brief Previous list of reaction types that were set by the user
     */
     std::vector<std::shared_ptr<ReactionType>> oldReaction { };
-
     /**
      * @brief New list of reaction types that have been set by the user
     */
@@ -9940,17 +8926,14 @@ struct OrderInfo {
      * @brief Optional. User name
     */
     std::optional<std::string> name { };
-
     /**
      * @brief Optional. User's phone number
     */
     std::optional<std::string> phoneNumber { };
-
     /**
      * @brief Optional. User email
     */
     std::optional<std::string> email { };
-
     /**
      * @brief Optional. User shipping address
     */
@@ -9987,79 +8970,65 @@ struct OwnedGiftRegular {
      * @brief Type of the gift, always “regular”
     */
     std::string type { TYPE };
-
     /**
      * @brief Information about the regular gift
     */
     std::shared_ptr<Gift> gift { };
-
     /**
      * @brief Optional. Unique identifier of the gift for the bot; for gifts received on behalf of
      * business accounts only
     */
     std::optional<std::string> ownedGiftId { };
-
     /**
      * @brief Optional. Sender of the gift if it is a known user
     */
     std::shared_ptr<User> senderUser { };
-
     /**
      * @brief Date the gift was sent in Unix time
     */
     std::int32_t sendDate { };
-
     /**
      * @brief Optional. Text of the message that was added to the gift
     */
     std::optional<std::string> text { };
-
     /**
      * @brief Optional. Special entities that appear in the text
     */
     std::optional<std::vector<std::shared_ptr<MessageEntity>>> entities { };
-
     /**
      * @brief Optional. True, if the sender and gift text are shown only to the gift receiver;
      * otherwise, everyone will be able to see them
     */
     std::optional<bool> isPrivate { };
-
     /**
      * @brief Optional. True, if the gift is displayed on the account's profile page; for gifts
      * received on behalf of business accounts only
     */
     std::optional<bool> isSaved { };
-
     /**
      * @brief Optional. True, if the gift can be upgraded to a unique gift; for gifts received on
      * behalf of business accounts only
     */
     std::optional<bool> canBeUpgraded { };
-
     /**
      * @brief Optional. True, if the gift was refunded and isn't available anymore
     */
     std::optional<bool> wasRefunded { };
-
     /**
      * @brief Optional. Number of Telegram Stars that can be claimed by the receiver instead of the
      * gift; omitted if the gift cannot be converted to Telegram Stars; for gifts received on
      * behalf of business accounts only
     */
     std::optional<std::int32_t> convertStarCount { };
-
     /**
      * @brief Optional. Number of Telegram Stars that were paid for the ability to upgrade the gift
     */
     std::optional<std::int32_t> prepaidUpgradeStarCount { };
-
     /**
      * @brief Optional. True, if the gift's upgrade was purchased after the gift was sent; for gifts
      * received on behalf of business accounts only
     */
     std::optional<bool> isUpgradeSeparate { };
-
     /**
      * @brief Optional. Unique number reserved for this gift when upgraded. See the number field in
      * UniqueGift.
@@ -10083,46 +9052,38 @@ struct OwnedGiftUnique {
      * @brief Type of the gift, always “unique”
     */
     std::string type { TYPE };
-
     /**
      * @brief Information about the unique gift
     */
     std::shared_ptr<UniqueGift> gift { };
-
     /**
      * @brief Optional. Unique identifier of the received gift for the bot; for gifts received on
      * behalf of business accounts only
     */
     std::optional<std::string> ownedGiftId { };
-
     /**
      * @brief Optional. Sender of the gift if it is a known user
     */
     std::shared_ptr<User> senderUser { };
-
     /**
      * @brief Date the gift was sent in Unix time
     */
     std::int32_t sendDate { };
-
     /**
      * @brief Optional. True, if the gift is displayed on the account's profile page; for gifts
      * received on behalf of business accounts only
     */
     std::optional<bool> isSaved { };
-
     /**
      * @brief Optional. True, if the gift can be transferred to another owner; for gifts received on
      * behalf of business accounts only
     */
     std::optional<bool> canBeTransferred { };
-
     /**
      * @brief Optional. Number of Telegram Stars that must be paid to transfer the gift; omitted if
      * the bot cannot transfer the gift
     */
     std::optional<std::int32_t> transferStarCount { };
-
     /**
      * @brief Optional. Point in time (Unix timestamp) when the gift can be transferred. If it is in
      * the past, then the gift can be transferred now.
@@ -10144,12 +9105,10 @@ struct OwnedGifts {
      * @brief The total number of gifts owned by the user or the chat
     */
     std::int32_t totalCount { };
-
     /**
      * @brief The list of gifts
     */
     std::vector<std::shared_ptr<OwnedGift>> gifts { };
-
     /**
      * @brief Optional. Offset for the next request. If empty, then there are no more results.
     */
@@ -10186,7 +9145,6 @@ struct PaidMediaInfo {
      * @brief The number of Telegram Stars that must be paid to buy access to the media
     */
     std::int32_t starCount { };
-
     /**
      * @brief Information about the paid media
     */
@@ -10209,7 +9167,6 @@ struct PaidMediaLivePhoto {
      * @brief Type of the paid media, always “live_photo”
     */
     std::string type { TYPE };
-
     /**
      * @brief The photo
     */
@@ -10232,7 +9189,6 @@ struct PaidMediaPhoto {
      * @brief Type of the paid media, always “photo”
     */
     std::string type { TYPE };
-
     /**
      * @brief The photo
     */
@@ -10255,17 +9211,14 @@ struct PaidMediaPreview {
      * @brief Type of the paid media, always “preview”
     */
     std::string type { TYPE };
-
     /**
      * @brief Optional. Media width as defined by the sender
     */
     std::optional<std::int32_t> width { };
-
     /**
      * @brief Optional. Media height as defined by the sender
     */
     std::optional<std::int32_t> height { };
-
     /**
      * @brief Optional. Duration of the media in seconds as defined by the sender
     */
@@ -10286,7 +9239,6 @@ struct PaidMediaPurchased {
      * @brief User who purchased the media
     */
     std::shared_ptr<User> from { };
-
     /**
      * @brief Bot-specified paid media payload
     */
@@ -10309,7 +9261,6 @@ struct PaidMediaVideo {
      * @brief Type of the paid media, always “video”
     */
     std::string type { TYPE };
-
     /**
      * @brief The video
     */
@@ -10348,7 +9299,6 @@ struct PassportData {
      * shared with the bot
     */
     std::vector<std::shared_ptr<EncryptedPassportElement>> data { };
-
     /**
      * @brief Encrypted credentials required to decrypt the data
     */
@@ -10395,24 +9345,20 @@ struct PassportElementErrorDataField {
      * @brief Error source, must be data
     */
     std::string source { SOURCE };
-
     /**
      * @brief The section of the user's Telegram Passport which has the error, one of
      * “personal_details”, “passport”, “driver_license”, “identity_card”, “internal_passport”,
      * “address”
     */
     std::string type { };
-
     /**
      * @brief Name of the data field which has the error
     */
     std::string fieldName { };
-
     /**
      * @brief Base64-encoded data hash
     */
     std::string dataHash { };
-
     /**
      * @brief Error message
     */
@@ -10436,18 +9382,15 @@ struct PassportElementErrorFile {
      * @brief Error source, must be file
     */
     std::string source { SOURCE };
-
     /**
      * @brief The section of the user's Telegram Passport which has the issue, one of “utility_bill”,
      * “bank_statement”, “rental_agreement”, “passport_registration”, “temporary_registration”
     */
     std::string type { };
-
     /**
      * @brief Base64-encoded file hash
     */
     std::string fileHash { };
-
     /**
      * @brief Error message
     */
@@ -10471,18 +9414,15 @@ struct PassportElementErrorFiles {
      * @brief Error source, must be files
     */
     std::string source { SOURCE };
-
     /**
      * @brief The section of the user's Telegram Passport which has the issue, one of “utility_bill”,
      * “bank_statement”, “rental_agreement”, “passport_registration”, “temporary_registration”
     */
     std::string type { };
-
     /**
      * @brief List of base64-encoded file hashes
     */
     std::vector<std::string> fileHashes { };
-
     /**
      * @brief Error message
     */
@@ -10506,18 +9446,15 @@ struct PassportElementErrorFrontSide {
      * @brief Error source, must be front_side
     */
     std::string source { SOURCE };
-
     /**
      * @brief The section of the user's Telegram Passport which has the issue, one of “passport”,
      * “driver_license”, “identity_card”, “internal_passport”
     */
     std::string type { };
-
     /**
      * @brief Base64-encoded hash of the file with the front side of the document
     */
     std::string fileHash { };
-
     /**
      * @brief Error message
     */
@@ -10541,18 +9478,15 @@ struct PassportElementErrorReverseSide {
      * @brief Error source, must be reverse_side
     */
     std::string source { SOURCE };
-
     /**
      * @brief The section of the user's Telegram Passport which has the issue, one of
      * “driver_license”, “identity_card”
     */
     std::string type { };
-
     /**
      * @brief Base64-encoded hash of the file with the reverse side of the document
     */
     std::string fileHash { };
-
     /**
      * @brief Error message
     */
@@ -10576,18 +9510,15 @@ struct PassportElementErrorSelfie {
      * @brief Error source, must be selfie
     */
     std::string source { SOURCE };
-
     /**
      * @brief The section of the user's Telegram Passport which has the issue, one of “passport”,
      * “driver_license”, “identity_card”, “internal_passport”
     */
     std::string type { };
-
     /**
      * @brief Base64-encoded hash of the file with the selfie
     */
     std::string fileHash { };
-
     /**
      * @brief Error message
     */
@@ -10611,19 +9542,16 @@ struct PassportElementErrorTranslationFile {
      * @brief Error source, must be translation_file
     */
     std::string source { SOURCE };
-
     /**
      * @brief Type of element of the user's Telegram Passport which has the issue, one of “passport”,
      * “driver_license”, “identity_card”, “internal_passport”, “utility_bill”,
      * “bank_statement”, “rental_agreement”, “passport_registration”, “temporary_registration”
     */
     std::string type { };
-
     /**
      * @brief Base64-encoded file hash
     */
     std::string fileHash { };
-
     /**
      * @brief Error message
     */
@@ -10647,19 +9575,16 @@ struct PassportElementErrorTranslationFiles {
      * @brief Error source, must be translation_files
     */
     std::string source { SOURCE };
-
     /**
      * @brief Type of element of the user's Telegram Passport which has the issue, one of “passport”,
      * “driver_license”, “identity_card”, “internal_passport”, “utility_bill”,
      * “bank_statement”, “rental_agreement”, “passport_registration”, “temporary_registration”
     */
     std::string type { };
-
     /**
      * @brief List of base64-encoded file hashes
     */
     std::vector<std::string> fileHashes { };
-
     /**
      * @brief Error message
     */
@@ -10683,17 +9608,14 @@ struct PassportElementErrorUnspecified {
      * @brief Error source, must be unspecified
     */
     std::string source { SOURCE };
-
     /**
      * @brief Type of element of the user's Telegram Passport which has the issue
     */
     std::string type { };
-
     /**
      * @brief Base64-encoded element hash
     */
     std::string elementHash { };
-
     /**
      * @brief Error message
     */
@@ -10715,18 +9637,15 @@ struct PassportFile {
      * @brief Identifier for this file, which can be used to download or reuse the file
     */
     std::string fileId { };
-
     /**
      * @brief Unique identifier for this file, which is supposed to be the same over time and for
      * different bots. Can't be used to download or reuse the file.
     */
     std::string fileUniqueId { };
-
     /**
      * @brief File size in bytes
     */
     std::int32_t fileSize { };
-
     /**
      * @brief Unix time when the file was uploaded
     */
@@ -10747,23 +9666,19 @@ struct PhotoSize {
      * @brief Identifier for this file, which can be used to download or reuse the file
     */
     std::string fileId { };
-
     /**
      * @brief Unique identifier for this file, which is supposed to be the same over time and for
      * different bots. Can't be used to download or reuse the file.
     */
     std::string fileUniqueId { };
-
     /**
      * @brief Photo width
     */
     std::int32_t width { };
-
     /**
      * @brief Photo height
     */
     std::int32_t height { };
-
     /**
      * @brief Optional. File size in bytes
     */
@@ -10784,111 +9699,91 @@ struct Poll {
      * @brief Unique poll identifier
     */
     std::string id { };
-
     /**
      * @brief Poll question, 1-300 characters
     */
     std::string question { };
-
     /**
      * @brief Optional. Special entities that appear in the question. Currently, only custom emoji
      * entities are allowed in poll questions
     */
     std::optional<std::vector<std::shared_ptr<MessageEntity>>> questionEntities { };
-
     /**
      * @brief List of poll options
     */
     std::vector<std::shared_ptr<PollOption>> options { };
-
     /**
      * @brief Total number of users that voted in the poll
     */
     std::int32_t totalVoterCount { };
-
     /**
      * @brief True, if the poll is closed
     */
     bool isClosed { };
-
     /**
      * @brief True, if the poll is anonymous
     */
     bool isAnonymous { };
-
     /**
      * @brief Poll type, currently can be “regular” or “quiz”
     */
     std::string type { };
-
     /**
      * @brief True, if the poll allows multiple answers
     */
     bool allowsMultipleAnswers { };
-
     /**
      * @brief True, if the poll allows to change the chosen answer options
     */
     bool allowsRevoting { };
-
     /**
      * @brief True if voting is limited to users who have been members of the chat where the poll was
      * originally sent for more than 24 hours
     */
     bool membersOnly { };
-
     /**
      * @brief Optional. A list of two-letter ISO 3166-1 alpha-2 country codes indicating the countries
      * from which users can vote in the poll. The country code “FT” is used for users with
      * anonymous numbers. If omitted, then users from any country can participate in the poll.
     */
     std::optional<std::vector<std::string>> countryCodes { };
-
     /**
      * @brief Optional. Array of 0-based identifiers of the correct answer options. Available only for
      * polls in quiz mode which are closed or were sent (not forwarded) by the bot or to the
      * private chat with the bot.
     */
     std::optional<std::vector<std::int32_t>> correctOptionIds { };
-
     /**
      * @brief Optional. Text that is shown when a user chooses an incorrect answer or taps on the lamp
      * icon in a quiz-style poll, 0-200 characters
     */
     std::optional<std::string> explanation { };
-
     /**
      * @brief Optional. Special entities like usernames, URLs, bot commands, etc. that appear in the
      * explanation
     */
     std::optional<std::vector<std::shared_ptr<MessageEntity>>> explanationEntities { };
-
     /**
      * @brief Optional. Media added to the quiz explanation
     */
     std::shared_ptr<PollMedia> explanationMedia { };
-
     /**
      * @brief Optional. Amount of time in seconds the poll will be active after creation
     */
     std::optional<std::int32_t> openPeriod { };
-
     /**
      * @brief Optional. Point in time (Unix timestamp) when the poll will be automatically closed
     */
     std::optional<std::int32_t> closeDate { };
-
     /**
      * @brief Optional. Description of the poll; for polls inside the Message object only
     */
     std::optional<std::string> description { };
-
     /**
      * @brief Optional. Special entities like usernames, URLs, bot commands, etc. that appear in the
      * description
     */
     std::optional<std::vector<std::shared_ptr<MessageEntity>>> descriptionEntities { };
-
     /**
      * @brief Optional. Media added to the poll description; for polls inside the Message object only
     */
@@ -10909,22 +9804,18 @@ struct PollAnswer {
      * @brief Unique poll identifier
     */
     std::string pollId { };
-
     /**
      * @brief Optional. The chat that changed the answer to the poll, if the voter is anonymous
     */
     std::shared_ptr<Chat> voterChat { };
-
     /**
      * @brief Optional. The user that changed the answer to the poll, if the voter isn't anonymous
     */
     std::shared_ptr<User> user { };
-
     /**
      * @brief 0-based identifiers of chosen answer options. May be empty if the vote was retracted.
     */
     std::vector<std::int32_t> optionIds { };
-
     /**
      * @brief Persistent identifiers of the chosen answer options. May be empty if the vote was
      * retracted.
@@ -10946,50 +9837,41 @@ struct PollMedia {
      * @brief Optional. Media is an animation, information about the animation
     */
     std::shared_ptr<Animation> animation { };
-
     /**
      * @brief Optional. Media is an audio file, information about the file; currently, can't be
      * received in a poll option
     */
     std::shared_ptr<Audio> audio { };
-
     /**
      * @brief Optional. Media is a general file, information about the file; currently, can't be
      * received in a poll option
     */
     std::shared_ptr<Document> document { };
-
     /**
      * @brief Optional. The HTTP link attached to the poll option
     */
     std::shared_ptr<Link> link { };
-
     /**
      * @brief Optional. Media is a live photo, information about the live photo
     */
     std::shared_ptr<LivePhoto> livePhoto { };
-
     /**
      * @brief Optional. Media is a shared location, information about the location
     */
     std::shared_ptr<Location> location { };
-
     /**
      * @brief Optional. Media is a photo, available sizes of the photo
     */
     std::optional<std::vector<std::shared_ptr<PhotoSize>>> photo { };
-
     /**
      * @brief Optional. Media is a sticker, information about the sticker; currently, for poll options
      * only
     */
     std::shared_ptr<Sticker> sticker { };
-
     /**
      * @brief Optional. Media is a venue, information about the venue
     */
     std::shared_ptr<Venue> venue { };
-
     /**
      * @brief Optional. Media is a video, information about the video
     */
@@ -11010,40 +9892,33 @@ struct PollOption {
      * @brief Unique identifier of the option, persistent on option addition and deletion
     */
     std::string persistentId { };
-
     /**
      * @brief Option text, 1-100 characters
     */
     std::string text { };
-
     /**
      * @brief Optional. Special entities that appear in the option text. Currently, only custom emoji
      * entities are allowed in poll option texts
     */
     std::optional<std::vector<std::shared_ptr<MessageEntity>>> textEntities { };
-
     /**
      * @brief Optional. Media added to the poll option
     */
     std::shared_ptr<PollMedia> media { };
-
     /**
      * @brief Number of users who voted for this option; may be 0 if unknown
     */
     std::int32_t voterCount { };
-
     /**
      * @brief Optional. User who added the option; omitted if the option wasn't added by a user after
      * poll creation
     */
     std::shared_ptr<User> addedByUser { };
-
     /**
      * @brief Optional. Chat that added the option; omitted if the option wasn't added by a chat after
      * poll creation
     */
     std::shared_ptr<Chat> addedByChat { };
-
     /**
      * @brief Optional. Point in time (Unix timestamp) when the option was added; omitted if the
      * option existed in the original poll
@@ -11067,17 +9942,14 @@ struct PollOptionAdded {
      * itself is a reply.
     */
     std::shared_ptr<MaybeInaccessibleMessage> pollMessage { };
-
     /**
      * @brief Unique identifier of the added option
     */
     std::string optionPersistentId { };
-
     /**
      * @brief Option text
     */
     std::string optionText { };
-
     /**
      * @brief Optional. Special entities that appear in the option_text
     */
@@ -11100,17 +9972,14 @@ struct PollOptionDeleted {
      * if it itself is a reply.
     */
     std::shared_ptr<MaybeInaccessibleMessage> pollMessage { };
-
     /**
      * @brief Unique identifier of the deleted option
     */
     std::string optionPersistentId { };
-
     /**
      * @brief Option text
     */
     std::string optionText { };
-
     /**
      * @brief Optional. Special entities that appear in the option_text
     */
@@ -11131,17 +10000,14 @@ struct PreCheckoutQuery {
      * @brief Unique query identifier
     */
     std::string id { };
-
     /**
      * @brief User who sent the query
     */
     std::shared_ptr<User> from { };
-
     /**
      * @brief Three-letter ISO 4217 currency code, or “XTR” for payments in Telegram Stars
     */
     std::string currency { };
-
     /**
      * @brief Total price in the smallest units of the currency (integer, not float/double). For
      * example, for a price of US$ 1.45 pass amount = 145. See the exp parameter in
@@ -11149,17 +10015,14 @@ struct PreCheckoutQuery {
      * (2 for the majority of currencies).
     */
     std::int32_t totalAmount { };
-
     /**
      * @brief Bot-specified invoice payload
     */
     std::string invoicePayload { };
-
     /**
      * @brief Optional. Identifier of the shipping option chosen by the user
     */
     std::optional<std::string> shippingOptionId { };
-
     /**
      * @brief Optional. Order information provided by the user
     */
@@ -11180,7 +10043,6 @@ struct PreparedInlineMessage {
      * @brief Unique identifier of the prepared message
     */
     std::string id { };
-
     /**
      * @brief Expiration date of the prepared message, in Unix time. Expired prepared messages can no
      * longer be used.
@@ -11219,12 +10081,10 @@ struct ProximityAlertTriggered {
      * @brief User that triggered the alert
     */
     std::shared_ptr<User> traveler { };
-
     /**
      * @brief User that set the alert
     */
     std::shared_ptr<User> watcher { };
-
     /**
      * @brief The distance between the users
     */
@@ -11245,7 +10105,6 @@ struct ReactionCount {
      * @brief Type of the reaction
     */
     std::shared_ptr<ReactionType> type { };
-
     /**
      * @brief Number of times the reaction was added
     */
@@ -11284,7 +10143,6 @@ struct ReactionTypeCustomEmoji {
      * @brief Type of the reaction, always “custom_emoji”
     */
     std::string type { TYPE };
-
     /**
      * @brief Custom emoji identifier
     */
@@ -11307,7 +10165,6 @@ struct ReactionTypeEmoji {
      * @brief Type of the reaction, always “emoji”
     */
     std::string type { TYPE };
-
     /**
      * @brief Reaction emoji. Currently, it can be one of "", "", "", "", "", "", "", "", "", "", "",
      * "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "",
@@ -11350,7 +10207,6 @@ struct RefundedPayment {
      * always “XTR”.
     */
     std::string currency { };
-
     /**
      * @brief Total refunded price in the smallest units of the currency (integer, not float/double).
      * For example, for a price of US$ 1.45, total_amount = 145. See the exp parameter in
@@ -11358,17 +10214,14 @@ struct RefundedPayment {
      * (2 for the majority of currencies).
     */
     std::int32_t totalAmount { };
-
     /**
      * @brief Bot-specified invoice payload
     */
     std::string invoicePayload { };
-
     /**
      * @brief Telegram payment identifier
     */
     std::string telegramPaymentChargeId { };
-
     /**
      * @brief Optional. Provider payment identifier
     */
@@ -11391,21 +10244,18 @@ struct ReplyKeyboardMarkup {
      * @brief Array of button rows, each represented by an Array of KeyboardButton objects
     */
     std::vector<std::vector<std::shared_ptr<KeyboardButton>>> keyboard { };
-
     /**
      * @brief Optional. Requests clients to always show the keyboard when the regular keyboard is
      * hidden. Defaults to False, in which case the custom keyboard can be hidden and opened
      * with a keyboard icon.
     */
     std::optional<bool> isPersistent { };
-
     /**
      * @brief Optional. Requests clients to resize the keyboard vertically for optimal fit (e.g., make
      * the keyboard smaller if there are just two rows of buttons). Defaults to False, in which
      * case the custom keyboard is always of the same height as the app's standard keyboard.
     */
     std::optional<bool> resizeKeyboard { };
-
     /**
      * @brief Optional. Requests clients to hide the keyboard as soon as it's been used. The keyboard
      * will still be available, but clients will automatically display the usual letter-
@@ -11413,13 +10263,11 @@ struct ReplyKeyboardMarkup {
      * custom keyboard again. Defaults to False.
     */
     std::optional<bool> oneTimeKeyboard { };
-
     /**
      * @brief Optional. The placeholder to be shown in the input field when the keyboard is active;
      * 1-64 characters
     */
     std::optional<std::string> inputFieldPlaceholder { };
-
     /**
      * @brief Optional. Use this parameter if you want to show the keyboard to specific users only.
      * Targets: 1) users that are @mentioned in the text of the Message object; 2) if the bot's
@@ -11451,7 +10299,6 @@ struct ReplyKeyboardRemove {
      * one_time_keyboard in ReplyKeyboardMarkup)
     */
     bool removeKeyboard { };
-
     /**
      * @brief Optional. Use this parameter if you want to remove the keyboard for specific users only.
      * Targets: 1) users that are @mentioned in the text of the Message object; 2) if the bot's
@@ -11478,7 +10325,6 @@ struct ReplyParameters {
      * the chat chat_id if it is specified. Required if ephemeral_message_id isn't specified.
     */
     std::optional<std::int32_t> messageId { };
-
     /**
      * @brief Optional. If the message to be replied to is from a different chat, unique identifier
      * for the chat or username of the bot, supergroup or channel in the format @username. Not
@@ -11486,7 +10332,6 @@ struct ReplyParameters {
      * direct messages chats and ephemeral messages.
     */
     std::optional<std::int64_t> chatId { };
-
     /**
      * @brief Optional. Identifier of the incoming ephemeral message that will be replied to in the
      * current chat. A reply to an ephemeral message must itself be an ephemeral message. An
@@ -11494,14 +10339,12 @@ struct ReplyParameters {
      * message_id isn't specified.
     */
     std::optional<std::int32_t> ephemeralMessageId { };
-
     /**
      * @brief Optional. Pass True if the message should be sent even if the specified message to be
      * replied to is not found. Always False for replies in another chat or forum topic, and
      * sent ephemeral messages. Always True for messages sent on behalf of a business account.
     */
     std::optional<bool> allowSendingWithoutReply { };
-
     /**
      * @brief Optional. Quoted part of the message to be replied to; 0-1024 characters after entities
      * parsing. The quote must be an exact substring of the message to be replied to, including
@@ -11510,29 +10353,24 @@ struct ReplyParameters {
      * for ephemeral messages.
     */
     std::optional<std::string> quote { };
-
     /**
      * @brief Optional. Mode for parsing entities in the quote. See formatting options for more
      * details.
     */
     std::optional<std::string> quoteParseMode { };
-
     /**
      * @brief Optional. A JSON-serialized list of special entities that appear in the quote. It can be
      * specified instead of quote_parse_mode.
     */
     std::optional<std::vector<std::shared_ptr<MessageEntity>>> quoteEntities { };
-
     /**
      * @brief Optional. Position of the quote in the original message in UTF-16 code units
     */
     std::optional<std::int32_t> quotePosition { };
-
     /**
      * @brief Optional. Identifier of the specific checklist task to be replied to
     */
     std::optional<std::int32_t> checklistTaskId { };
-
     /**
      * @brief Optional. Persistent identifier of the specific poll option to be replied to
     */
@@ -11557,7 +10395,6 @@ struct ResponseParameters {
      * this identifier.
     */
     std::optional<std::int64_t> migrateToChatId { };
-
     /**
      * @brief Optional. In case of exceeding flood control, the number of seconds left to wait before
      * the request can be repeated
@@ -11634,12 +10471,10 @@ struct RevenueWithdrawalStateSucceeded {
      * @brief Type of the state, always “succeeded”
     */
     std::string type { TYPE };
-
     /**
      * @brief Date the withdrawal was completed in Unix time
     */
     std::int32_t date { };
-
     /**
      * @brief An HTTPS URL that can be used to see transaction details
     */
@@ -11689,7 +10524,6 @@ struct RichBlockAnchor {
      * @brief Type of the block, always “anchor”
     */
     std::string type { TYPE };
-
     /**
      * @brief The name of the anchor
     */
@@ -11712,17 +10546,14 @@ struct RichBlockAnimation {
      * @brief Type of the block, always “animation”
     */
     std::string type { TYPE };
-
     /**
      * @brief The animation
     */
     std::shared_ptr<Animation> animation { };
-
     /**
      * @brief Optional. True, if the media preview is covered by a spoiler animation
     */
     std::optional<bool> hasSpoiler { };
-
     /**
      * @brief Optional. Caption of the block
     */
@@ -11745,12 +10576,10 @@ struct RichBlockAudio {
      * @brief Type of the block, always “audio”
     */
     std::string type { TYPE };
-
     /**
      * @brief The audio
     */
     std::shared_ptr<Audio> audio { };
-
     /**
      * @brief Optional. Caption of the block
     */
@@ -11773,12 +10602,10 @@ struct RichBlockBlockQuotation {
      * @brief Type of the block, always “blockquote”
     */
     std::string type { TYPE };
-
     /**
      * @brief Content of the block
     */
     std::vector<std::shared_ptr<RichBlock>> blocks { };
-
     /**
      * @brief Optional. Credit of the block
     */
@@ -11799,7 +10626,6 @@ struct RichBlockCaption {
      * @brief Block caption
     */
     std::shared_ptr<RichText> text { };
-
     /**
      * @brief Optional. Block credit which corresponds to the HTML tag <cite>
     */
@@ -11822,12 +10648,10 @@ struct RichBlockCollage {
      * @brief Type of the block, always “collage”
     */
     std::string type { TYPE };
-
     /**
      * @brief Elements of the collage
     */
     std::vector<std::shared_ptr<RichBlock>> blocks { };
-
     /**
      * @brief Optional. Caption of the block
     */
@@ -11850,17 +10674,14 @@ struct RichBlockDetails {
      * @brief Type of the block, always “details”
     */
     std::string type { TYPE };
-
     /**
      * @brief Always shown summary of the block
     */
     std::shared_ptr<RichText> summary { };
-
     /**
      * @brief Content of the block
     */
     std::vector<std::shared_ptr<RichBlock>> blocks { };
-
     /**
      * @brief Optional. True, if the content of the block is visible by default
     */
@@ -11901,7 +10722,6 @@ struct RichBlockFooter {
      * @brief Type of the block, always “footer”
     */
     std::string type { TYPE };
-
     /**
      * @brief Text of the block
     */
@@ -11924,7 +10744,6 @@ struct RichBlockList {
      * @brief Type of the block, always “list”
     */
     std::string type { TYPE };
-
     /**
      * @brief Items of the list
     */
@@ -11945,27 +10764,22 @@ struct RichBlockListItem {
      * @brief Label of the item
     */
     std::string label { };
-
     /**
      * @brief The content of the item
     */
     std::vector<std::shared_ptr<RichBlock>> blocks { };
-
     /**
      * @brief Optional. True, if the item has a checkbox
     */
     std::optional<bool> hasCheckbox { };
-
     /**
      * @brief Optional. True, if the item has a checked checkbox
     */
     std::optional<bool> isChecked { };
-
     /**
      * @brief Optional. For ordered lists, the numeric value of the item label
     */
     std::optional<std::int32_t> value { };
-
     /**
      * @brief Optional. For ordered lists, the type of the item label; must be one of “a” for
      * lowercase letters, “A” for uppercase letters, “i” for lowercase Roman numerals, “I” for
@@ -11990,27 +10804,22 @@ struct RichBlockMap {
      * @brief Type of the block, always “map”
     */
     std::string type { TYPE };
-
     /**
      * @brief Location of the center of the map
     */
     std::shared_ptr<Location> location { };
-
     /**
      * @brief Map zoom level; 13-20
     */
     std::int32_t zoom { };
-
     /**
      * @brief Expected width of the map
     */
     std::int32_t width { };
-
     /**
      * @brief Expected height of the map
     */
     std::int32_t height { };
-
     /**
      * @brief Optional. Caption of the block
     */
@@ -12034,7 +10843,6 @@ struct RichBlockMathematicalExpression {
      * @brief Type of the block, always “mathematical_expression”
     */
     std::string type { TYPE };
-
     /**
      * @brief The mathematical expression in LaTeX format
     */
@@ -12057,7 +10865,6 @@ struct RichBlockParagraph {
      * @brief Type of the block, always “paragraph”
     */
     std::string type { TYPE };
-
     /**
      * @brief Text of the block
     */
@@ -12080,17 +10887,14 @@ struct RichBlockPhoto {
      * @brief Type of the block, always “photo”
     */
     std::string type { TYPE };
-
     /**
      * @brief Available sizes of the photo
     */
     std::vector<std::shared_ptr<PhotoSize>> photo { };
-
     /**
      * @brief Optional. True, if the media preview is covered by a spoiler animation
     */
     std::optional<bool> hasSpoiler { };
-
     /**
      * @brief Optional. Caption of the block
     */
@@ -12113,12 +10917,10 @@ struct RichBlockPreformatted {
      * @brief Type of the block, always “pre”
     */
     std::string type { TYPE };
-
     /**
      * @brief Text of the block
     */
     std::shared_ptr<RichText> text { };
-
     /**
      * @brief Optional. The programming language of the text
     */
@@ -12141,12 +10943,10 @@ struct RichBlockPullQuotation {
      * @brief Type of the block, always “pullquote”
     */
     std::string type { TYPE };
-
     /**
      * @brief Text of the block
     */
     std::shared_ptr<RichText> text { };
-
     /**
      * @brief Optional. Credit of the block
     */
@@ -12169,12 +10969,10 @@ struct RichBlockSectionHeading {
      * @brief Type of the block, always “heading”
     */
     std::string type { TYPE };
-
     /**
      * @brief Text of the block
     */
     std::shared_ptr<RichText> text { };
-
     /**
      * @brief Relative size of the text font; 1-6, 1 is the largest, 6 is the smallest
     */
@@ -12197,12 +10995,10 @@ struct RichBlockSlideshow {
      * @brief Type of the block, always “slideshow”
     */
     std::string type { TYPE };
-
     /**
      * @brief Elements of the slideshow
     */
     std::vector<std::shared_ptr<RichBlock>> blocks { };
-
     /**
      * @brief Optional. Caption of the block
     */
@@ -12225,22 +11021,18 @@ struct RichBlockTable {
      * @brief Type of the block, always “table”
     */
     std::string type { TYPE };
-
     /**
      * @brief Cells of the table
     */
     std::vector<std::vector<std::shared_ptr<RichBlockTableCell>>> cells { };
-
     /**
      * @brief Optional. True, if the table has borders
     */
     std::optional<bool> isBordered { };
-
     /**
      * @brief Optional. True, if the table is striped
     */
     std::optional<bool> isStriped { };
-
     /**
      * @brief Optional. Caption of the table
     */
@@ -12261,28 +11053,23 @@ struct RichBlockTableCell {
      * @brief Optional. Text in the cell. If omitted, then the cell is invisible.
     */
     std::shared_ptr<RichText> text { };
-
     /**
      * @brief Optional. True, if the cell is a header cell
     */
     std::optional<bool> isHeader { };
-
     /**
      * @brief Optional. The number of columns the cell spans if it is bigger than 1
     */
     std::optional<std::int32_t> colspan { };
-
     /**
      * @brief Optional. The number of rows the cell spans if it is bigger than 1
     */
     std::optional<std::int32_t> rowspan { };
-
     /**
      * @brief Horizontal cell content alignment. Currently, must be one of “left”, “center”, or
      * “right”.
     */
     std::string align { };
-
     /**
      * @brief Vertical cell content alignment. Currently, must be one of “top”, “middle”, or “bottom”.
     */
@@ -12308,7 +11095,6 @@ struct RichBlockThinking {
      * @brief Type of the block, always “thinking”
     */
     std::string type { TYPE };
-
     /**
      * @brief Text of the block. See https://t.me/addemoji/AIActions for examples of custom emoji that
      * are recommended for usage in the block.
@@ -12332,17 +11118,14 @@ struct RichBlockVideo {
      * @brief Type of the block, always “video”
     */
     std::string type { TYPE };
-
     /**
      * @brief The video
     */
     std::shared_ptr<Video> video { };
-
     /**
      * @brief Optional. True, if the media preview is covered by a spoiler animation
     */
     std::optional<bool> hasSpoiler { };
-
     /**
      * @brief Optional. Caption of the block
     */
@@ -12365,12 +11148,10 @@ struct RichBlockVoiceNote {
      * @brief Type of the block, always “voice_note”
     */
     std::string type { TYPE };
-
     /**
      * @brief The voice note
     */
     std::shared_ptr<Voice> voiceNote { };
-
     /**
      * @brief Optional. Caption of the block
     */
@@ -12391,7 +11172,6 @@ struct RichMessage {
      * @brief Content of the message
     */
     std::vector<std::shared_ptr<RichBlock>> blocks { };
-
     /**
      * @brief Optional. True, if the rich message must be shown right-to-left
     */
@@ -12443,7 +11223,6 @@ struct RichTextAnchor {
      * @brief Type of the rich text, always “anchor”
     */
     std::string type { TYPE };
-
     /**
      * @brief The name of the anchor
     */
@@ -12466,12 +11245,10 @@ struct RichTextAnchorLink {
      * @brief Type of the rich text, always “anchor_link”
     */
     std::string type { TYPE };
-
     /**
      * @brief The link text
     */
     std::shared_ptr<RichText> text { };
-
     /**
      * @brief The name of the anchor. If the name is empty, then the link brings back to the top of
      * the message.
@@ -12495,12 +11272,10 @@ struct RichTextBankCardNumber {
      * @brief Type of the rich text, always “bank_card_number”
     */
     std::string type { TYPE };
-
     /**
      * @brief The text
     */
     std::shared_ptr<RichText> text { };
-
     /**
      * @brief The bank card number
     */
@@ -12523,7 +11298,6 @@ struct RichTextBold {
      * @brief Type of the rich text, always “bold”
     */
     std::string type { TYPE };
-
     /**
      * @brief The text
     */
@@ -12546,12 +11320,10 @@ struct RichTextBotCommand {
      * @brief Type of the rich text, always “bot_command”
     */
     std::string type { TYPE };
-
     /**
      * @brief The text
     */
     std::shared_ptr<RichText> text { };
-
     /**
      * @brief The bot command
     */
@@ -12574,12 +11346,10 @@ struct RichTextCashtag {
      * @brief Type of the rich text, always “cashtag”
     */
     std::string type { TYPE };
-
     /**
      * @brief The text
     */
     std::shared_ptr<RichText> text { };
-
     /**
      * @brief The cashtag
     */
@@ -12602,7 +11372,6 @@ struct RichTextCode {
      * @brief Type of the rich text, always “code”
     */
     std::string type { TYPE };
-
     /**
      * @brief The text
     */
@@ -12625,13 +11394,11 @@ struct RichTextCustomEmoji {
      * @brief Type of the rich text, always “custom_emoji”
     */
     std::string type { TYPE };
-
     /**
      * @brief Unique identifier of the custom emoji. Use getCustomEmojiStickers to get full
      * information about the sticker.
     */
     std::string customEmojiId { };
-
     /**
      * @brief Alternative emoji for the custom emoji
     */
@@ -12654,17 +11421,14 @@ struct RichTextDateTime {
      * @brief Type of the rich text, always “date_time”
     */
     std::string type { TYPE };
-
     /**
      * @brief The text
     */
     std::shared_ptr<RichText> text { };
-
     /**
      * @brief The Unix time associated with the entity
     */
     std::int32_t unixTime { };
-
     /**
      * @brief The string that defines the formatting of the date and time. See date-time entity
      * formatting for more details.
@@ -12688,12 +11452,10 @@ struct RichTextEmailAddress {
      * @brief Type of the rich text, always “email_address”
     */
     std::string type { TYPE };
-
     /**
      * @brief The text
     */
     std::shared_ptr<RichText> text { };
-
     /**
      * @brief The email address
     */
@@ -12716,12 +11478,10 @@ struct RichTextHashtag {
      * @brief Type of the rich text, always “hashtag”
     */
     std::string type { TYPE };
-
     /**
      * @brief The text
     */
     std::shared_ptr<RichText> text { };
-
     /**
      * @brief The hashtag
     */
@@ -12744,7 +11504,6 @@ struct RichTextItalic {
      * @brief Type of the rich text, always “italic”
     */
     std::string type { TYPE };
-
     /**
      * @brief The text
     */
@@ -12767,7 +11526,6 @@ struct RichTextMarked {
      * @brief Type of the rich text, always “marked”
     */
     std::string type { TYPE };
-
     /**
      * @brief The text
     */
@@ -12790,7 +11548,6 @@ struct RichTextMathematicalExpression {
      * @brief Type of the rich text, always “mathematical_expression”
     */
     std::string type { TYPE };
-
     /**
      * @brief The expression in LaTeX format
     */
@@ -12813,12 +11570,10 @@ struct RichTextMention {
      * @brief Type of the rich text, always “mention”
     */
     std::string type { TYPE };
-
     /**
      * @brief The text
     */
     std::shared_ptr<RichText> text { };
-
     /**
      * @brief The username
     */
@@ -12841,12 +11596,10 @@ struct RichTextPhoneNumber {
      * @brief Type of the rich text, always “phone_number”
     */
     std::string type { TYPE };
-
     /**
      * @brief The text
     */
     std::shared_ptr<RichText> text { };
-
     /**
      * @brief The phone number
     */
@@ -12869,12 +11622,10 @@ struct RichTextReference {
      * @brief Type of the rich text, always “reference”
     */
     std::string type { TYPE };
-
     /**
      * @brief Text of the reference
     */
     std::shared_ptr<RichText> text { };
-
     /**
      * @brief The name of the reference
     */
@@ -12897,12 +11648,10 @@ struct RichTextReferenceLink {
      * @brief Type of the rich text, always “reference_link”
     */
     std::string type { TYPE };
-
     /**
      * @brief The link text
     */
     std::shared_ptr<RichText> text { };
-
     /**
      * @brief The name of the reference
     */
@@ -12925,7 +11674,6 @@ struct RichTextSpoiler {
      * @brief Type of the rich text, always “spoiler”
     */
     std::string type { TYPE };
-
     /**
      * @brief The text
     */
@@ -12948,7 +11696,6 @@ struct RichTextStrikethrough {
      * @brief Type of the rich text, always “strikethrough”
     */
     std::string type { TYPE };
-
     /**
      * @brief The text
     */
@@ -12971,7 +11718,6 @@ struct RichTextSubscript {
      * @brief Type of the rich text, always “subscript”
     */
     std::string type { TYPE };
-
     /**
      * @brief The text
     */
@@ -12994,7 +11740,6 @@ struct RichTextSuperscript {
      * @brief Type of the rich text, always “superscript”
     */
     std::string type { TYPE };
-
     /**
      * @brief The text
     */
@@ -13017,12 +11762,10 @@ struct RichTextTextMention {
      * @brief Type of the rich text, always “text_mention”
     */
     std::string type { TYPE };
-
     /**
      * @brief The text
     */
     std::shared_ptr<RichText> text { };
-
     /**
      * @brief The mentioned user
     */
@@ -13045,7 +11788,6 @@ struct RichTextUnderline {
      * @brief Type of the rich text, always “underline”
     */
     std::string type { TYPE };
-
     /**
      * @brief The text
     */
@@ -13068,12 +11810,10 @@ struct RichTextUrl {
      * @brief Type of the rich text, always “url”
     */
     std::string type { TYPE };
-
     /**
      * @brief The text
     */
     std::shared_ptr<RichText> text { };
-
     /**
      * @brief URL of the link
     */
@@ -13133,22 +11873,18 @@ struct SharedUser {
      * means.
     */
     std::int64_t userId { };
-
     /**
      * @brief Optional. First name of the user, if the name was requested by the bot
     */
     std::optional<std::string> firstName { };
-
     /**
      * @brief Optional. Last name of the user, if the name was requested by the bot
     */
     std::optional<std::string> lastName { };
-
     /**
      * @brief Optional. Username of the user, if the username was requested by the bot
     */
     std::optional<std::string> username { };
-
     /**
      * @brief Optional. Available sizes of the chat photo, if the photo was requested by the bot
     */
@@ -13169,27 +11905,22 @@ struct ShippingAddress {
      * @brief Two-letter ISO 3166-1 alpha-2 country code
     */
     std::string countryCode { };
-
     /**
      * @brief State, if applicable
     */
     std::string state { };
-
     /**
      * @brief City
     */
     std::string city { };
-
     /**
      * @brief First line for the address
     */
     std::string streetLine1 { };
-
     /**
      * @brief Second line for the address
     */
     std::string streetLine2 { };
-
     /**
      * @brief Address post code
     */
@@ -13210,12 +11941,10 @@ struct ShippingOption {
      * @brief Shipping option identifier
     */
     std::string id { };
-
     /**
      * @brief Option title
     */
     std::string title { };
-
     /**
      * @brief List of price portions
     */
@@ -13236,17 +11965,14 @@ struct ShippingQuery {
      * @brief Unique query identifier
     */
     std::string id { };
-
     /**
      * @brief User who sent the query
     */
     std::shared_ptr<User> from { };
-
     /**
      * @brief Bot-specified invoice payload
     */
     std::string invoicePayload { };
-
     /**
      * @brief User specified shipping address
     */
@@ -13267,7 +11993,6 @@ struct StarAmount {
      * @brief Integer amount of Telegram Stars, rounded to 0; can be negative
     */
     std::int32_t amount { };
-
     /**
      * @brief Optional. The number of 1/1000000000 shares of Telegram Stars; from -999999999 to
      * 999999999; can be negative if and only if amount is non-positive
@@ -13295,29 +12020,24 @@ struct StarTransaction {
      * users.
     */
     std::string id { };
-
     /**
      * @brief Integer amount of Telegram Stars transferred by the transaction
     */
     std::int32_t amount { };
-
     /**
      * @brief Optional. The number of 1/1000000000 shares of Telegram Stars transferred by the
      * transaction; from 0 to 999999999
     */
     std::optional<std::int32_t> nanostarAmount { };
-
     /**
      * @brief Date the transaction was created in Unix time
     */
     std::int32_t date { };
-
     /**
      * @brief Optional. Source of an incoming transaction (e.g., a user purchasing goods or services,
      * Fragment refunding a failed withdrawal). Only for incoming transactions.
     */
     std::shared_ptr<TransactionPartner> source { };
-
     /**
      * @brief Optional. Receiver of an outgoing transaction (e.g., a user for a purchase refund,
      * Fragment for a withdrawal). Only for outgoing transactions.
@@ -13357,77 +12077,63 @@ struct Sticker {
      * @brief Identifier for this file, which can be used to download or reuse the file
     */
     std::string fileId { };
-
     /**
      * @brief Unique identifier for this file, which is supposed to be the same over time and for
      * different bots. Can't be used to download or reuse the file.
     */
     std::string fileUniqueId { };
-
     /**
      * @brief Type of the sticker, currently one of “regular”, “mask”, “custom_emoji”. The type of the
      * sticker is independent from its format, which is determined by the fields is_animated
      * and is_video.
     */
     Type type { };
-
     /**
      * @brief Sticker width
     */
     std::int32_t width { };
-
     /**
      * @brief Sticker height
     */
     std::int32_t height { };
-
     /**
      * @brief True, if the sticker is animated
     */
     bool isAnimated { };
-
     /**
      * @brief True, if the sticker is a video sticker
     */
     bool isVideo { };
-
     /**
      * @brief Optional. Sticker thumbnail in the .WEBP or .JPG format
     */
     std::shared_ptr<PhotoSize> thumbnail { };
-
     /**
      * @brief Optional. Emoji associated with the sticker
     */
     std::optional<std::string> emoji { };
-
     /**
      * @brief Optional. Name of the sticker set to which the sticker belongs
     */
     std::optional<std::string> setName { };
-
     /**
      * @brief Optional. For premium regular stickers, premium animation for the sticker
     */
     std::shared_ptr<File> premiumAnimation { };
-
     /**
      * @brief Optional. For mask stickers, the position where the mask should be placed
     */
     std::shared_ptr<MaskPosition> maskPosition { };
-
     /**
      * @brief Optional. For custom emoji stickers, unique identifier of the custom emoji
     */
     std::optional<std::string> customEmojiId { };
-
     /**
      * @brief Optional. True, if the sticker must be repainted to a text color in messages, the color
      * of the Telegram Premium badge in emoji status, white color on chat photos, or another
      * appropriate color in other places
     */
     std::optional<bool> needsRepainting { };
-
     /**
      * @brief Optional. File size in bytes
     */
@@ -13453,22 +12159,18 @@ struct StickerSet {
      * @brief Sticker set name
     */
     std::string name { };
-
     /**
      * @brief Sticker set title
     */
     std::string title { };
-
     /**
      * @brief Type of stickers in the set, currently one of “regular”, “mask”, “custom_emoji”
     */
     Type stickerType { };
-
     /**
      * @brief List of all set stickers
     */
     std::vector<std::shared_ptr<Sticker>> stickers { };
-
     /**
      * @brief Optional. Sticker set thumbnail in the .WEBP, .TGS, or .WEBM format
     */
@@ -13492,7 +12194,6 @@ struct Story {
      * @brief Chat that posted the story
     */
     std::shared_ptr<Chat> chat { };
-
     /**
      * @brief Unique identifier for the story in the chat
     */
@@ -13513,7 +12214,6 @@ struct StoryArea {
      * @brief Position of the area
     */
     std::shared_ptr<StoryAreaPosition> position { };
-
     /**
      * @brief Type of the area
     */
@@ -13534,27 +12234,22 @@ struct StoryAreaPosition {
      * @brief The abscissa of the area's center, as a percentage of the media width
     */
     double xPercentage { };
-
     /**
      * @brief The ordinate of the area's center, as a percentage of the media height
     */
     double yPercentage { };
-
     /**
      * @brief The width of the area's rectangle, as a percentage of the media width
     */
     double widthPercentage { };
-
     /**
      * @brief The height of the area's rectangle, as a percentage of the media height
     */
     double heightPercentage { };
-
     /**
      * @brief The clockwise rotation angle of the rectangle, in degrees; 0-360
     */
     double rotationAngle { };
-
     /**
      * @brief The radius of the rectangle corner rounding, as a percentage of the media width
     */
@@ -13596,7 +12291,6 @@ struct StoryAreaTypeLink {
      * @brief Type of the area, always “link”
     */
     std::string type { TYPE };
-
     /**
      * @brief HTTP or tg:// URL to be opened when the area is clicked
     */
@@ -13620,17 +12314,14 @@ struct StoryAreaTypeLocation {
      * @brief Type of the area, always “location”
     */
     std::string type { TYPE };
-
     /**
      * @brief Location latitude in degrees
     */
     double latitude { };
-
     /**
      * @brief Location longitude in degrees
     */
     double longitude { };
-
     /**
      * @brief Optional. Address of the location
     */
@@ -13654,17 +12345,14 @@ struct StoryAreaTypeSuggestedReaction {
      * @brief Type of the area, always “suggested_reaction”
     */
     std::string type { TYPE };
-
     /**
      * @brief Type of the reaction
     */
     std::shared_ptr<ReactionType> reactionType { };
-
     /**
      * @brief Optional. Pass True if the reaction area has a dark background
     */
     std::optional<bool> isDark { };
-
     /**
      * @brief Optional. Pass True if reaction area corner is flipped
     */
@@ -13688,7 +12376,6 @@ struct StoryAreaTypeUniqueGift {
      * @brief Type of the area, always “unique_gift”
     */
     std::string type { TYPE };
-
     /**
      * @brief Unique name of the gift
     */
@@ -13712,17 +12399,14 @@ struct StoryAreaTypeWeather {
      * @brief Type of the area, always “weather”
     */
     std::string type { TYPE };
-
     /**
      * @brief Temperature, in degree Celsius
     */
     double temperature { };
-
     /**
      * @brief Emoji representing the weather
     */
     std::string emoji { };
-
     /**
      * @brief A color of the area background in the ARGB format
     */
@@ -13745,7 +12429,6 @@ struct SuccessfulPayment {
      * @brief Three-letter ISO 4217 currency code, or “XTR” for payments in Telegram Stars
     */
     std::string currency { };
-
     /**
      * @brief Total price in the smallest units of the currency (integer, not float/double). For
      * example, for a price of US$ 1.45 pass amount = 145. See the exp parameter in
@@ -13753,42 +12436,34 @@ struct SuccessfulPayment {
      * (2 for the majority of currencies).
     */
     std::int32_t totalAmount { };
-
     /**
      * @brief Bot-specified invoice payload
     */
     std::string invoicePayload { };
-
     /**
      * @brief Optional. Expiration date of the subscription, in Unix time; for recurring payments only
     */
     std::optional<std::int32_t> subscriptionExpirationDate { };
-
     /**
      * @brief Optional. True, if the payment is a recurring payment for a subscription
     */
     std::optional<bool> isRecurring { };
-
     /**
      * @brief Optional. True, if the payment is the first payment for a subscription
     */
     std::optional<bool> isFirstRecurring { };
-
     /**
      * @brief Optional. Identifier of the shipping option chosen by the user
     */
     std::optional<std::string> shippingOptionId { };
-
     /**
      * @brief Optional. Order information provided by the user
     */
     std::shared_ptr<OrderInfo> orderInfo { };
-
     /**
      * @brief Telegram payment identifier
     */
     std::string telegramPaymentChargeId { };
-
     /**
      * @brief Provider payment identifier
     */
@@ -13812,7 +12487,6 @@ struct SuggestedPostApprovalFailed {
      * itself is a reply.
     */
     std::shared_ptr<Message> suggestedPostMessage { };
-
     /**
      * @brief Expected price of the post
     */
@@ -13834,12 +12508,10 @@ struct SuggestedPostApproved {
      * field will not contain the reply_to_message field even if it itself is a reply.
     */
     std::shared_ptr<Message> suggestedPostMessage { };
-
     /**
      * @brief Optional. Amount paid for the post
     */
     std::shared_ptr<SuggestedPostPrice> price { };
-
     /**
      * @brief Date when the post will be published
     */
@@ -13861,7 +12533,6 @@ struct SuggestedPostDeclined {
      * field will not contain the reply_to_message field even if it itself is a reply.
     */
     std::shared_ptr<Message> suggestedPostMessage { };
-
     /**
      * @brief Optional. Comment with which the post was declined
     */
@@ -13883,12 +12554,10 @@ struct SuggestedPostInfo {
      * “declined”.
     */
     std::string state { };
-
     /**
      * @brief Optional. Proposed price of the post. If the field is omitted, then the post is unpaid.
     */
     std::shared_ptr<SuggestedPostPrice> price { };
-
     /**
      * @brief Optional. Proposed send date of the post. If the field is omitted, then the post can be
      * published at any time within 30 days at the sole discretion of the user or administrator
@@ -13912,19 +12581,16 @@ struct SuggestedPostPaid {
      * field will not contain the reply_to_message field even if it itself is a reply.
     */
     std::shared_ptr<Message> suggestedPostMessage { };
-
     /**
      * @brief Currency in which the payment was made. Currently, one of “XTR” for Telegram Stars or
      * “TON” for TON grams.
     */
     std::string currency { };
-
     /**
      * @brief Optional. The amount of the currency that was received by the channel in nanograms; for
      * payments in TON grams only
     */
     std::optional<std::int32_t> amount { };
-
     /**
      * @brief Optional. The amount of Telegram Stars that was received by the channel; for payments in
      * Telegram Stars only
@@ -13946,7 +12612,6 @@ struct SuggestedPostParameters {
      * @brief Optional. Proposed price for the post. If the field is omitted, then the post is unpaid.
     */
     std::shared_ptr<SuggestedPostPrice> price { };
-
     /**
      * @brief Optional. Proposed send date of the post. If specified, then the date must be between
      * 300 second and 2678400 seconds (30 days) in the future. If the field is omitted, then
@@ -13971,7 +12636,6 @@ struct SuggestedPostPrice {
      * Stars or “TON” for TON grams.
     */
     std::string currency { };
-
     /**
      * @brief The amount of the currency that will be paid for the post in the smallest units of the
      * currency, i.e. Telegram Stars or nanograms. Currently, price in Telegram Stars must be
@@ -13996,7 +12660,6 @@ struct SuggestedPostRefunded {
      * field will not contain the reply_to_message field even if it itself is a reply.
     */
     std::shared_ptr<Message> suggestedPostMessage { };
-
     /**
      * @brief Reason for the refund. Currently, one of “post_deleted” if the post was deleted within
      * 24 hours of being posted or removed from scheduled messages without being posted, or
@@ -14021,22 +12684,18 @@ struct SwitchInlineQueryChosenChat {
      * only the bot's username will be inserted.
     */
     std::optional<std::string> query { };
-
     /**
      * @brief Optional. True, if private chats with users can be chosen
     */
     std::optional<bool> allowUserChats { };
-
     /**
      * @brief Optional. True, if private chats with bots can be chosen
     */
     std::optional<bool> allowBotChats { };
-
     /**
      * @brief Optional. True, if group and supergroup chats can be chosen
     */
     std::optional<bool> allowGroupChats { };
-
     /**
      * @brief Optional. True, if channel chats can be chosen
     */
@@ -14058,20 +12717,17 @@ struct TextQuote {
      * @brief Text of the quoted part of a message that is replied to by the given message
     */
     std::string text { };
-
     /**
      * @brief Optional. Special entities that appear in the quote. Currently, only bold, italic,
      * underline, strikethrough, spoiler, custom_emoji, and date_time entities are kept in
      * quotes.
     */
     std::optional<std::vector<std::shared_ptr<MessageEntity>>> entities { };
-
     /**
      * @brief Approximate quote position in the original message in UTF-16 code units as specified by
      * the sender
     */
     std::int32_t position { };
-
     /**
      * @brief Optional. True, if the quote was chosen manually by the message sender. Otherwise, the
      * quote was added automatically by the server.
@@ -14116,12 +12772,10 @@ struct TransactionPartnerAffiliateProgram {
      * @brief Type of the transaction partner, always “affiliate_program”
     */
     std::string type { TYPE };
-
     /**
      * @brief Optional. Information about the bot that sponsored the affiliate program
     */
     std::shared_ptr<User> sponsorUser { };
-
     /**
      * @brief The number of Telegram Stars received by the bot for each 1000 Telegram Stars received
      * by the affiliate program sponsor from referred users
@@ -14145,12 +12799,10 @@ struct TransactionPartnerChat {
      * @brief Type of the transaction partner, always “chat”
     */
     std::string type { TYPE };
-
     /**
      * @brief Information about the chat
     */
     std::shared_ptr<Chat> chat { };
-
     /**
      * @brief Optional. The gift sent to the chat by the bot
     */
@@ -14173,7 +12825,6 @@ struct TransactionPartnerFragment {
      * @brief Type of the transaction partner, always “fragment”
     */
     std::string type { TYPE };
-
     /**
      * @brief Optional. State of the transaction if the transaction is outgoing
     */
@@ -14232,7 +12883,6 @@ struct TransactionPartnerTelegramApi {
      * @brief Type of the transaction partner, always “telegram_api”
     */
     std::string type { TYPE };
-
     /**
      * @brief The number of successful requests that exceeded regular limits and were therefore billed
     */
@@ -14255,7 +12905,6 @@ struct TransactionPartnerUser {
      * @brief Type of the transaction partner, always “user”
     */
     std::string type { TYPE };
-
     /**
      * @brief Type of the transaction, currently one of “invoice_payment” for payments via invoices,
      * “paid_media_payment” for payments for paid media, “gift_purchase” for gifts sent by the
@@ -14263,48 +12912,40 @@ struct TransactionPartnerUser {
      * “business_account_transfer” for direct transfers from managed business accounts
     */
     std::string transactionType { };
-
     /**
      * @brief Information about the user
     */
     std::shared_ptr<User> user { };
-
     /**
      * @brief Optional. Information about the affiliate that received a commission via this
      * transaction. Can be available only for “invoice_payment” and “paid_media_payment”
      * transactions.
     */
     std::shared_ptr<AffiliateInfo> affiliate { };
-
     /**
      * @brief Optional. Bot-specified invoice payload. Can be available only for “invoice_payment”
      * transactions.
     */
     std::optional<std::string> invoicePayload { };
-
     /**
      * @brief Optional. The duration of the paid subscription. Can be available only for
      * “invoice_payment” transactions.
     */
     std::optional<std::int32_t> subscriptionPeriod { };
-
     /**
      * @brief Optional. Information about the paid media bought by the user; for “paid_media_payment”
      * transactions only
     */
     std::optional<std::vector<std::shared_ptr<PaidMedia>>> paidMedia { };
-
     /**
      * @brief Optional. Bot-specified paid media payload. Can be available only for
      * “paid_media_payment” transactions.
     */
     std::optional<std::string> paidMediaPayload { };
-
     /**
      * @brief Optional. The gift sent to the user by the bot; for “gift_purchase” transactions only
     */
     std::shared_ptr<Gift> gift { };
-
     /**
      * @brief Optional. Number of months the gifted Telegram Premium subscription will be active for;
      * for “premium_purchase” transactions only
@@ -14326,62 +12967,51 @@ struct UniqueGift {
      * @brief Identifier of the regular gift from which the gift was upgraded
     */
     std::string giftId { };
-
     /**
      * @brief Human-readable name of the regular gift from which this unique gift was upgraded
     */
     std::string baseName { };
-
     /**
      * @brief Unique name of the gift. This name can be used in https://t.me/nft/... links and story
      * areas.
     */
     std::string name { };
-
     /**
      * @brief Unique number of the upgraded gift among gifts upgraded from the same regular gift
     */
     std::int32_t number { };
-
     /**
      * @brief Model of the gift
     */
     std::shared_ptr<UniqueGiftModel> model { };
-
     /**
      * @brief Symbol of the gift
     */
     std::shared_ptr<UniqueGiftSymbol> symbol { };
-
     /**
      * @brief Backdrop of the gift
     */
     std::shared_ptr<UniqueGiftBackdrop> backdrop { };
-
     /**
      * @brief Optional. True, if the original regular gift was exclusively purchaseable by Telegram
      * Premium subscribers
     */
     std::optional<bool> isPremium { };
-
     /**
      * @brief Optional. True, if the gift was used to craft another gift and isn't available anymore
     */
     std::optional<bool> isBurned { };
-
     /**
      * @brief Optional. True, if the gift is assigned from the TON blockchain and can't be resold or
      * transferred in Telegram
     */
     std::optional<bool> isFromBlockchain { };
-
     /**
      * @brief Optional. The color scheme that can be used by the gift's owner for the chat's name,
      * replies to messages and link previews; for business account gifts and gifts that are
      * currently on sale only
     */
     std::shared_ptr<UniqueGiftColors> colors { };
-
     /**
      * @brief Optional. Information about the chat that published the gift
     */
@@ -14402,12 +13032,10 @@ struct UniqueGiftBackdrop {
      * @brief Name of the backdrop
     */
     std::string name { };
-
     /**
      * @brief Colors of the backdrop
     */
     std::shared_ptr<UniqueGiftBackdropColors> colors { };
-
     /**
      * @brief The number of unique gifts that receive this backdrop for every 1000 gifts upgraded
     */
@@ -14428,17 +13056,14 @@ struct UniqueGiftBackdropColors {
      * @brief The color in the center of the backdrop in RGB format
     */
     std::int32_t centerColor { };
-
     /**
      * @brief The color on the edges of the backdrop in RGB format
     */
     std::int32_t edgeColor { };
-
     /**
      * @brief The color to be applied to the symbol in RGB format
     */
     std::int32_t symbolColor { };
-
     /**
      * @brief The color for the text on the backdrop in RGB format
     */
@@ -14460,27 +13085,22 @@ struct UniqueGiftColors {
      * @brief Custom emoji identifier of the unique gift's model
     */
     std::string modelCustomEmojiId { };
-
     /**
      * @brief Custom emoji identifier of the unique gift's symbol
     */
     std::string symbolCustomEmojiId { };
-
     /**
      * @brief Main color used in light themes; RGB format
     */
     std::int32_t lightThemeMainColor { };
-
     /**
      * @brief List of 1-3 additional colors used in light themes; RGB format
     */
     std::vector<std::int32_t> lightThemeOtherColors { };
-
     /**
      * @brief Main color used in dark themes; RGB format
     */
     std::int32_t darkThemeMainColor { };
-
     /**
      * @brief List of 1-3 additional colors used in dark themes; RGB format
     */
@@ -14501,7 +13121,6 @@ struct UniqueGiftInfo {
      * @brief Information about the gift
     */
     std::shared_ptr<UniqueGift> gift { };
-
     /**
      * @brief Origin of the gift. Currently, either “upgrade” for gifts upgraded from regular gifts,
      * “transfer” for gifts transferred from other users or channels, “resale” for gifts bought
@@ -14509,31 +13128,26 @@ struct UniqueGiftInfo {
      * “offer” for gifts bought or sold through gift purchase offers.
     */
     std::string origin { };
-
     /**
      * @brief Optional. For gifts bought from other users, the currency in which the payment for the
      * gift was done. Currently, one of “XTR” for Telegram Stars or “TON” for TON grams.
     */
     std::optional<std::string> lastResaleCurrency { };
-
     /**
      * @brief Optional. For gifts bought from other users, the price paid for the gift in either
      * Telegram Stars or nanograms
     */
     std::optional<std::int32_t> lastResaleAmount { };
-
     /**
      * @brief Optional. Unique identifier of the received gift for the bot; only present for gifts
      * received on behalf of business accounts
     */
     std::optional<std::string> ownedGiftId { };
-
     /**
      * @brief Optional. Number of Telegram Stars that must be paid to transfer the gift; omitted if
      * the bot cannot transfer the gift
     */
     std::optional<std::int32_t> transferStarCount { };
-
     /**
      * @brief Optional. Point in time (Unix timestamp) when the gift can be transferred. If it is in
      * the past, then the gift can be transferred now.
@@ -14555,18 +13169,15 @@ struct UniqueGiftModel {
      * @brief Name of the model
     */
     std::string name { };
-
     /**
      * @brief The sticker that represents the unique gift
     */
     std::shared_ptr<Sticker> sticker { };
-
     /**
      * @brief The number of unique gifts that receive this model for every 1000 gift upgrades. Always
      * 0 for crafted gifts.
     */
     std::int32_t rarityPerMille { };
-
     /**
      * @brief Optional. Rarity of the model if it is a crafted model. Currently, can be “uncommon”,
      * “rare”, “epic”, or “legendary”.
@@ -14588,12 +13199,10 @@ struct UniqueGiftSymbol {
      * @brief Name of the symbol
     */
     std::string name { };
-
     /**
      * @brief The sticker that represents the unique gift
     */
     std::shared_ptr<Sticker> sticker { };
-
     /**
      * @brief The number of unique gifts that receive this model for every 1000 gifts upgraded
     */
@@ -14620,58 +13229,48 @@ struct Update {
      * sequentially.
     */
     std::int32_t updateId { };
-
     /**
      * @brief Optional. New incoming message of any kind - text, photo, sticker, etc.
     */
     std::shared_ptr<Message> message { };
-
     /**
      * @brief Optional. New version of a message that is known to the bot and was edited. This update
      * may at times be triggered by changes to message fields that are either unavailable or
      * not actively used by your bot.
     */
     std::shared_ptr<Message> editedMessage { };
-
     /**
      * @brief Optional. New incoming channel post of any kind - text, photo, sticker, etc.
     */
     std::shared_ptr<Message> channelPost { };
-
     /**
      * @brief Optional. New version of a channel post that is known to the bot and was edited. This
      * update may at times be triggered by changes to message fields that are either
      * unavailable or not actively used by your bot.
     */
     std::shared_ptr<Message> editedChannelPost { };
-
     /**
      * @brief Optional. The bot was connected to or disconnected from a business account, or a user
      * edited an existing connection with the bot
     */
     std::shared_ptr<BusinessConnection> businessConnection { };
-
     /**
      * @brief Optional. New message from a connected business account
     */
     std::shared_ptr<Message> businessMessage { };
-
     /**
      * @brief Optional. New version of a message from a connected business account
     */
     std::shared_ptr<Message> editedBusinessMessage { };
-
     /**
      * @brief Optional. Messages were deleted from a connected business account
     */
     std::shared_ptr<BusinessMessagesDeleted> deletedBusinessMessages { };
-
     /**
      * @brief Optional. New guest message. The bot can use the field Message.guest_query_id and the
      * method answerGuestQuery to send a message in response.
     */
     std::shared_ptr<Message> guestMessage { };
-
     /**
      * @brief Optional. A reaction to a message was changed by a user. The bot must be an
      * administrator in the chat and must explicitly specify "message_reaction" in the list of
@@ -14679,7 +13278,6 @@ struct Update {
      * bots.
     */
     std::shared_ptr<MessageReactionUpdated> messageReaction { };
-
     /**
      * @brief Optional. Reactions to a message with anonymous reactions were changed. The bot must be
      * an administrator in the chat and must explicitly specify "message_reaction_count" in the
@@ -14687,89 +13285,74 @@ struct Update {
      * sent with delay up to a few minutes.
     */
     std::shared_ptr<MessageReactionCountUpdated> messageReactionCount { };
-
     /**
      * @brief Optional. New incoming inline query
     */
     std::shared_ptr<InlineQuery> inlineQuery { };
-
     /**
      * @brief Optional. The result of an inline query that was chosen by a user and sent to their chat
      * partner. Please see our documentation on the feedback collecting for details on how to
      * enable these updates for your bot.
     */
     std::shared_ptr<ChosenInlineResult> chosenInlineResult { };
-
     /**
      * @brief Optional. New incoming callback query
     */
     std::shared_ptr<CallbackQuery> callbackQuery { };
-
     /**
      * @brief Optional. New incoming shipping query. Only for invoices with flexible price.
     */
     std::shared_ptr<ShippingQuery> shippingQuery { };
-
     /**
      * @brief Optional. New incoming pre-checkout query. Contains full information about checkout.
     */
     std::shared_ptr<PreCheckoutQuery> preCheckoutQuery { };
-
     /**
      * @brief Optional. A user purchased paid media with a non-empty payload sent by the bot in a non-
      * channel chat
     */
     std::shared_ptr<PaidMediaPurchased> purchasedPaidMedia { };
-
     /**
      * @brief Optional. New poll state. Bots receive only updates about manually stopped polls and
      * polls, which are sent by the bot.
     */
     std::shared_ptr<Poll> poll { };
-
     /**
      * @brief Optional. A user changed their answer in a non-anonymous poll. Bots receive new votes
      * only in polls that were sent by the bot itself.
     */
     std::shared_ptr<PollAnswer> pollAnswer { };
-
     /**
      * @brief Optional. The bot's chat member status was updated in a chat. For private chats, this
      * update is received only when the bot is blocked or unblocked by the user.
     */
     std::shared_ptr<ChatMemberUpdated> myChatMember { };
-
     /**
      * @brief Optional. A chat member's status was updated in a chat. The bot must be an administrator
      * in the chat and must explicitly specify "chat_member" in the list of allowed_updates to
      * receive these updates.
     */
     std::shared_ptr<ChatMemberUpdated> chatMember { };
-
     /**
      * @brief Optional. A request to join the chat has been sent. The bot must have the
      * can_invite_users administrator right in the chat to receive these updates.
     */
     std::shared_ptr<ChatJoinRequest> chatJoinRequest { };
-
     /**
      * @brief Optional. A chat boost was added or changed. The bot must be an administrator in the
      * chat to receive these updates.
     */
     std::shared_ptr<ChatBoostUpdated> chatBoost { };
-
     /**
      * @brief Optional. A boost was removed from a chat. The bot must be an administrator in the chat
      * to receive these updates.
     */
     std::shared_ptr<ChatBoostRemoved> removedChatBoost { };
-
     /**
      * @brief Optional. A new bot was created to be managed by the bot, or token or owner of a managed
      * bot was changed
     */
     std::shared_ptr<ManagedBotUpdated> managedBot { };
-
     /**
      * @brief Optional. User payment subscription has changed
     */
@@ -14793,92 +13376,75 @@ struct User {
      * float type are safe for storing this identifier.
     */
     std::int64_t id { };
-
     /**
      * @brief True, if this user is a bot
     */
     bool isBot { };
-
     /**
      * @brief User's or bot's first name
     */
     std::string firstName { };
-
     /**
      * @brief Optional. User's or bot's last name
     */
     std::optional<std::string> lastName { };
-
     /**
      * @brief Optional. User's or bot's username
     */
     std::optional<std::string> username { };
-
     /**
      * @brief Optional. IETF language tag of the user's language
     */
     std::optional<std::string> languageCode { };
-
     /**
      * @brief Optional. True, if this user is a Telegram Premium user
     */
     std::optional<bool> isPremium { };
-
     /**
      * @brief Optional. True, if this user added the bot to the attachment menu
     */
     std::optional<bool> addedToAttachmentMenu { };
-
     /**
      * @brief Optional. True, if the bot can be invited to groups. Returned only in getMe.
     */
     std::optional<bool> canJoinGroups { };
-
     /**
      * @brief Optional. True, if privacy mode is disabled for the bot. Returned only in getMe.
     */
     std::optional<bool> canReadAllGroupMessages { };
-
     /**
      * @brief Optional. True, if the bot supports guest queries from chats it is not a member of.
      * Returned only in getMe.
     */
     std::optional<bool> supportsGuestQueries { };
-
     /**
      * @brief Optional. True, if the bot supports inline queries. Returned only in getMe.
     */
     std::optional<bool> supportsInlineQueries { };
-
     /**
      * @brief Optional. True, if the bot can be connected to a user account to manage it. Returned
      * only in getMe.
     */
     std::optional<bool> canConnectToBusiness { };
-
     /**
      * @brief Optional. True, if the bot has a main Web App. Returned only in getMe.
     */
     std::optional<bool> hasMainWebApp { };
-
     /**
      * @brief Optional. True, if the bot has forum topic mode enabled in private chats. Returned only
      * in getMe.
     */
     std::optional<bool> hasTopicsEnabled { };
-
     /**
      * @brief Optional. True, if the bot allows users to create and delete topics in private chats.
      * Returned only in getMe.
     */
     std::optional<bool> allowsUsersToCreateTopics { };
-
     /**
      * @brief Optional. True, if other bots can be created to be controlled by the bot. Returned only
      * in getMe.
     */
     std::optional<bool> canManageBots { };
-
     /**
      * @brief Optional. True, if the bot supports join request queries and can be assigned to process
      * them. Returned only in getMe.
@@ -14916,7 +13482,6 @@ struct UserProfileAudios {
      * @brief Total number of profile audios for the target user
     */
     std::int32_t totalCount { };
-
     /**
      * @brief Requested profile audios
     */
@@ -14937,7 +13502,6 @@ struct UserProfilePhotos {
      * @brief Total number of profile pictures the target user has
     */
     std::int32_t totalCount { };
-
     /**
      * @brief Requested profile pictures (in up to 4 sizes each)
     */
@@ -14960,17 +13524,14 @@ struct UserRating {
      * likely reason for concern.
     */
     std::int32_t level { };
-
     /**
      * @brief Numerical value of the user's rating; the higher the rating, the better
     */
     std::int32_t rating { };
-
     /**
      * @brief The rating value required to get the current level
     */
     std::int32_t currentLevelRating { };
-
     /**
      * @brief Optional. The rating value required to get to the next level; omitted if the maximum
      * level was reached
@@ -14993,7 +13554,6 @@ struct UsersShared {
      * @brief Identifier of the request
     */
     std::int32_t requestId { };
-
     /**
      * @brief Information about users shared with the bot
     */
@@ -15014,33 +13574,27 @@ struct Venue {
      * @brief Venue location. Can't be a live location.
     */
     std::shared_ptr<Location> location { };
-
     /**
      * @brief Name of the venue
     */
     std::string title { };
-
     /**
      * @brief Address of the venue
     */
     std::string address { };
-
     /**
      * @brief Optional. Foursquare identifier of the venue
     */
     std::optional<std::string> foursquareId { };
-
     /**
      * @brief Optional. Foursquare type of the venue. (For example, “arts_entertainment/default”,
      * “arts_entertainment/aquarium” or “food/icecream”.)
     */
     std::optional<std::string> foursquareType { };
-
     /**
      * @brief Optional. Google Places identifier of the venue
     */
     std::optional<std::string> googlePlaceId { };
-
     /**
      * @brief Optional. Google Places type of the venue. (See supported types.)
     */
@@ -15061,58 +13615,47 @@ struct Video {
      * @brief Identifier for this file, which can be used to download or reuse the file
     */
     std::string fileId { };
-
     /**
      * @brief Unique identifier for this file, which is supposed to be the same over time and for
      * different bots. Can't be used to download or reuse the file.
     */
     std::string fileUniqueId { };
-
     /**
      * @brief Video width as defined by the sender
     */
     std::int32_t width { };
-
     /**
      * @brief Video height as defined by the sender
     */
     std::int32_t height { };
-
     /**
      * @brief Duration of the video in seconds as defined by the sender
     */
     std::int32_t duration { };
-
     /**
      * @brief Optional. Video thumbnail
     */
     std::shared_ptr<PhotoSize> thumbnail { };
-
     /**
      * @brief Optional. Available sizes of the cover of the video in the message
     */
     std::optional<std::vector<std::shared_ptr<PhotoSize>>> cover { };
-
     /**
      * @brief Optional. Timestamp in seconds from which the video will play in the message
     */
     std::optional<std::int32_t> startTimestamp { };
-
     /**
      * @brief Optional. List of available qualities of the video
     */
     std::optional<std::vector<std::shared_ptr<VideoQuality>>> qualities { };
-
     /**
      * @brief Optional. Original filename as defined by the sender
     */
     std::optional<std::string> fileName { };
-
     /**
      * @brief Optional. MIME type of the file as defined by the sender
     */
     std::optional<std::string> mimeType { };
-
     /**
      * @brief Optional. File size in bytes. It can be bigger than 2^31 and some programming languages
      * may have difficulty/silent defects in interpreting it. But it has at most 52 significant
@@ -15197,28 +13740,23 @@ struct VideoNote {
      * @brief Identifier for this file, which can be used to download or reuse the file
     */
     std::string fileId { };
-
     /**
      * @brief Unique identifier for this file, which is supposed to be the same over time and for
      * different bots. Can't be used to download or reuse the file.
     */
     std::string fileUniqueId { };
-
     /**
      * @brief Video width and height (diameter of the video message) as defined by the sender
     */
     std::int32_t length { };
-
     /**
      * @brief Duration of the video in seconds as defined by the sender
     */
     std::int32_t duration { };
-
     /**
      * @brief Optional. Video thumbnail
     */
     std::shared_ptr<PhotoSize> thumbnail { };
-
     /**
      * @brief Optional. File size in bytes
     */
@@ -15239,28 +13777,23 @@ struct VideoQuality {
      * @brief Identifier for this file, which can be used to download or reuse the file
     */
     std::string fileId { };
-
     /**
      * @brief Unique identifier for this file, which is supposed to be the same over time and for
      * different bots. Can't be used to download or reuse the file.
     */
     std::string fileUniqueId { };
-
     /**
      * @brief Video width
     */
     std::int32_t width { };
-
     /**
      * @brief Video height
     */
     std::int32_t height { };
-
     /**
      * @brief Codec that was used to encode the video, for example, “h264”, “h265”, or “av01”
     */
     std::string codec { };
-
     /**
      * @brief Optional. File size in bytes. It can be bigger than 2^31 and some programming languages
      * may have difficulty/silent defects in interpreting it. But it has at most 52 significant
@@ -15284,23 +13817,19 @@ struct Voice {
      * @brief Identifier for this file, which can be used to download or reuse the file
     */
     std::string fileId { };
-
     /**
      * @brief Unique identifier for this file, which is supposed to be the same over time and for
      * different bots. Can't be used to download or reuse the file.
     */
     std::string fileUniqueId { };
-
     /**
      * @brief Duration of the audio in seconds as defined by the sender
     */
     std::int32_t duration { };
-
     /**
      * @brief Optional. MIME type of the file as defined by the sender
     */
     std::optional<std::string> mimeType { };
-
     /**
      * @brief Optional. File size in bytes. It can be bigger than 2^31 and some programming languages
      * may have difficulty/silent defects in interpreting it. But it has at most 52 significant
@@ -15324,7 +13853,6 @@ struct WebAppData {
      * @brief The data. Be aware that a bad client can send arbitrary data in this field.
     */
     std::string data { };
-
     /**
      * @brief Text of the web_app keyboard button from which the Web App was opened. Be aware that a
      * bad client can send arbitrary data in this field.
@@ -15363,46 +13891,38 @@ struct WebhookInfo {
      * @brief Webhook URL, may be empty if webhook is not set up
     */
     std::string url { };
-
     /**
      * @brief True, if a custom certificate was provided for webhook certificate checks
     */
     bool hasCustomCertificate { };
-
     /**
      * @brief Number of updates awaiting delivery
     */
     std::int32_t pendingUpdateCount { };
-
     /**
      * @brief Optional. Currently used webhook IP address
     */
     std::optional<std::string> ipAddress { };
-
     /**
      * @brief Optional. Unix time for the most recent error that happened when trying to deliver an
      * update via webhook
     */
     std::optional<std::int32_t> lastErrorDate { };
-
     /**
      * @brief Optional. Error message in human-readable format for the most recent error that happened
      * when trying to deliver an update via webhook
     */
     std::optional<std::string> lastErrorMessage { };
-
     /**
      * @brief Optional. Unix time of the most recent error that happened when trying to synchronize
      * available updates with Telegram datacenters
     */
     std::optional<std::int32_t> lastSynchronizationErrorDate { };
-
     /**
      * @brief Optional. The maximum allowed number of simultaneous HTTPS connections to the webhook
      * for update delivery
     */
     std::optional<std::int32_t> maxConnections { };
-
     /**
      * @brief Optional. A list of update types the bot is subscribed to. Defaults to all update types
      * except chat_member, message_reaction, and message_reaction_count.
@@ -15427,13 +13947,11 @@ struct WriteAccessAllowed {
      * from a Web App sent by the method requestWriteAccess
     */
     std::optional<bool> fromRequest { };
-
     /**
      * @brief Optional. Name of the Web App, if the access was granted when the Web App was launched
      * from a link
     */
     std::optional<std::string> webAppName { };
-
     /**
      * @brief Optional. True, if the access was granted when the bot was added to the attachment or
      * side menu
@@ -15443,5 +13961,6777 @@ struct WriteAccessAllowed {
 
 TGBOT_API void from_json(const nlohmann::json& json, WriteAccessAllowed& value);
 TGBOT_API void to_json(nlohmann::json& json, const WriteAccessAllowed& value);
+
+/**
+ * @brief Arguments for Api::addStickerToSet.
+ * @ingroup api
+ */
+struct AddStickerToSetArgs {
+    /**
+     * @brief User identifier of sticker set owner
+     */
+    std::int64_t userId { };
+
+    /**
+     * @brief Sticker set name
+     */
+    std::string name { };
+
+    /**
+     * @brief A JSON-serialized object with information about the added sticker. If
+     * exactly the same sticker had already been added to the set, then the set
+     * isn't changed.
+     */
+    std::shared_ptr<InputSticker> sticker { };
+};
+
+/**
+ * @brief Arguments for Api::answerCallbackQuery.
+ * @ingroup api
+ */
+struct AnswerCallbackQueryArgs {
+    /**
+     * @brief Unique identifier for the query to be answered
+     */
+    std::string callbackQueryId { };
+
+    /**
+     * @brief Text of the notification. If not specified, nothing will be shown to the
+     * user, 0-200 characters.
+     */
+    std::string text = "";
+
+    /**
+     * @brief If True, an alert will be shown by the client instead of a notification
+     * at the top of the chat screen. Defaults to False.
+     */
+    bool showAlert = false;
+
+    /**
+     * @brief URL that will be opened by the user's client. If you have created a Game
+     * and accepted the conditions via @BotFather, specify the URL that opens
+     * your game - note that this will only work if the query comes from a
+     * callback_game button.Otherwise, you may use links like
+     * t.me/your_bot?start=XXXX that open your bot with a parameter.
+     */
+    std::string url = "";
+
+    /**
+     * @brief The maximum amount of time in seconds that the result of the callback
+     * query may be cached client-side. Telegram apps will support caching
+     * starting in version 3.14. Defaults to 0.
+     */
+    std::int32_t cacheTime = 0;
+};
+
+/**
+ * @brief Arguments for Api::answerChatJoinRequestQuery.
+ * @ingroup api
+ */
+struct AnswerChatJoinRequestQueryArgs {
+    /**
+     * @brief Unique identifier of the join request query
+     */
+    std::string chatJoinRequestQueryId { };
+
+    /**
+     * @brief Result of the query. Must be either “approve” to allow the user to join
+     * the chat, “decline” to disallow the user to join the chat, or “queue” to
+     * leave the decision to other administrators.
+     */
+    std::string result { };
+};
+
+/**
+ * @brief Arguments for Api::answerGuestQuery.
+ * @ingroup api
+ */
+struct AnswerGuestQueryArgs {
+    /**
+     * @brief Unique identifier for the query to be answered
+     */
+    std::string guestQueryId { };
+
+    /**
+     * @brief A JSON-serialized object describing the message to be sent
+     */
+    std::shared_ptr<InlineQueryResult> result { };
+};
+
+/**
+ * @brief Arguments for Api::answerInlineQuery.
+ * @ingroup api
+ */
+struct AnswerInlineQueryArgs {
+    /**
+     * @brief Unique identifier for the answered query
+     */
+    std::string inlineQueryId { };
+
+    /**
+     * @brief A JSON-serialized Array of results for the inline query
+     */
+    std::vector<std::shared_ptr<InlineQueryResult>> results { };
+
+    /**
+     * @brief The maximum amount of time in seconds that the result of the inline
+     * query may be cached on the server. Defaults to 300.
+     */
+    std::int32_t cacheTime = 300;
+
+    /**
+     * @brief Pass True if results may be cached on the server side only for the user
+     * that sent the query. By default, results may be returned to any user who
+     * sends the same query.
+     */
+    bool isPersonal = false;
+
+    /**
+     * @brief Pass the offset that a client should send in the next query with the
+     * same text to receive more results. Pass an empty string if there are no
+     * more results or if you don't support pagination. Offset length can't
+     * exceed 64 bytes.
+     */
+    std::string nextOffset = "";
+
+    /**
+     * @brief A JSON-serialized object describing a button to be shown above inline
+     * query results
+     */
+    std::shared_ptr<InlineQueryResultsButton> button = nullptr;
+};
+
+/**
+ * @brief Arguments for Api::answerPreCheckoutQuery.
+ * @ingroup api
+ */
+struct AnswerPreCheckoutQueryArgs {
+    /**
+     * @brief Unique identifier for the query to be answered
+     */
+    std::string preCheckoutQueryId { };
+
+    /**
+     * @brief Specify True if everything is alright (goods are available, etc.) and
+     * the bot is ready to proceed with the order. Use False if there are any
+     * problems.
+     */
+    bool ok { };
+
+    /**
+     * @brief Required if ok is False. Error message in human readable form that
+     * explains the reason for failure to proceed with the checkout (e.g.
+     * "Sorry, somebody just bought the last of our amazing black T-shirts
+     * while you were busy filling out your payment details. Please choose a
+     * different color or garment!"). Telegram will display this message to the
+     * user.
+     */
+    std::string errorMessage = "";
+};
+
+/**
+ * @brief Arguments for Api::answerShippingQuery.
+ * @ingroup api
+ */
+struct AnswerShippingQueryArgs {
+    /**
+     * @brief Unique identifier for the query to be answered
+     */
+    std::string shippingQueryId { };
+
+    /**
+     * @brief Pass True if delivery to the specified address is possible and False if
+     * there are any problems (for example, if delivery to the specified
+     * address is not possible)
+     */
+    bool ok { };
+
+    /**
+     * @brief Required if ok is True. A JSON-serialized Array of available shipping
+     * options.
+     */
+    std::vector<std::shared_ptr<ShippingOption>> shippingOptions = { };
+
+    /**
+     * @brief Required if ok is False. Error message in human readable form that
+     * explains why it is impossible to complete the order (e.g. “Sorry,
+     * delivery to your desired address is unavailable”). Telegram will display
+     * this message to the user.
+     */
+    std::string errorMessage = "";
+};
+
+/**
+ * @brief Arguments for Api::answerWebAppQuery.
+ * @ingroup api
+ */
+struct AnswerWebAppQueryArgs {
+    /**
+     * @brief Unique identifier for the query to be answered
+     */
+    std::string webAppQueryId { };
+
+    /**
+     * @brief A JSON-serialized object describing the message to be sent
+     */
+    std::shared_ptr<InlineQueryResult> result { };
+};
+
+/**
+ * @brief Arguments for Api::approveChatJoinRequest.
+ * @ingroup api
+ */
+struct ApproveChatJoinRequestArgs {
+    /**
+     * @brief Unique identifier for the target chat or username of the target channel
+     * in the format @username
+     */
+    std::variant<std::int64_t, std::string> chatId { };
+
+    /**
+     * @brief Unique identifier of the target user
+     */
+    std::int64_t userId { };
+};
+
+/**
+ * @brief Arguments for Api::approveSuggestedPost.
+ * @ingroup api
+ */
+struct ApproveSuggestedPostArgs {
+    /**
+     * @brief Unique identifier for the target direct messages chat
+     */
+    std::variant<std::int64_t, std::string> chatId { };
+
+    /**
+     * @brief Identifier of a suggested post message to approve
+     */
+    std::int32_t messageId { };
+
+    /**
+     * @brief Point in time (Unix timestamp) when the post is expected to be
+     * published; omit if the date has already been specified when the
+     * suggested post was created. If specified, then the date must be not more
+     * than 2678400 seconds (30 days) in the future.
+     */
+    std::int32_t sendDate = 0;
+};
+
+/**
+ * @brief Arguments for Api::banChatMember.
+ * @ingroup api
+ */
+struct BanChatMemberArgs {
+    /**
+     * @brief Unique identifier for the target group or username of the target
+     * supergroup or channel in the format @username
+     */
+    std::variant<std::int64_t, std::string> chatId { };
+
+    /**
+     * @brief Unique identifier of the target user
+     */
+    std::int64_t userId { };
+
+    /**
+     * @brief Date when the user will be unbanned; Unix time. If user is banned for
+     * more than 366 days or less than 30 seconds from the current time they
+     * are considered to be banned forever. Applied for supergroups and
+     * channels only.
+     */
+    std::int32_t untilDate = 0;
+
+    /**
+     * @brief Pass True to delete all messages from the chat for the user that is
+     * being removed. If False, the user will be able to see messages in the
+     * group that were sent before the user was removed. Always True for
+     * supergroups and channels.
+     */
+    bool revokeMessages = true;
+};
+
+/**
+ * @brief Arguments for Api::banChatSenderChat.
+ * @ingroup api
+ */
+struct BanChatSenderChatArgs {
+    /**
+     * @brief Unique identifier for the target chat or username of the target channel
+     * in the format @username
+     */
+    std::variant<std::int64_t, std::string> chatId { };
+
+    /**
+     * @brief Unique identifier of the target sender chat
+     */
+    std::int64_t senderChatId { };
+};
+
+/**
+ * @brief Arguments for Api::closeForumTopic.
+ * @ingroup api
+ */
+struct CloseForumTopicArgs {
+    /**
+     * @brief Unique identifier for the target chat or username of the target
+     * supergroup in the format @username
+     */
+    std::variant<std::int64_t, std::string> chatId { };
+
+    /**
+     * @brief Unique identifier for the target message thread of the forum topic
+     */
+    std::int32_t messageThreadId { };
+};
+
+/**
+ * @brief Arguments for Api::closeGeneralForumTopic.
+ * @ingroup api
+ */
+struct CloseGeneralForumTopicArgs {
+    /**
+     * @brief Unique identifier for the target chat or username of the target
+     * supergroup in the format @username
+     */
+    std::variant<std::int64_t, std::string> chatId { };
+};
+
+/**
+ * @brief Arguments for Api::convertGiftToStars.
+ * @ingroup api
+ */
+struct ConvertGiftToStarsArgs {
+    /**
+     * @brief Unique identifier of the business connection
+     */
+    std::string businessConnectionId { };
+
+    /**
+     * @brief Unique identifier of the regular gift that should be converted to
+     * Telegram Stars
+     */
+    std::string ownedGiftId { };
+};
+
+/**
+ * @brief Arguments for Api::copyMessage.
+ * @ingroup api
+ */
+struct CopyMessageArgs {
+    /**
+     * @brief Unique identifier for the target chat or username of the target bot,
+     * supergroup or channel in the format @username
+     */
+    std::variant<std::int64_t, std::string> chatId { };
+
+    /**
+     * @brief Unique identifier for the chat where the original message was sent (or
+     * username of the target bot, supergroup or channel in the format
+     * @username)
+     */
+    std::variant<std::int64_t, std::string> fromChatId { };
+
+    /**
+     * @brief Message identifier in the chat specified in from_chat_id
+     */
+    std::int32_t messageId { };
+
+    /**
+     * @brief New caption for media, 0-1024 characters after entities parsing. If not
+     * specified, the original caption is kept.
+     */
+    std::string caption = "";
+
+    /**
+     * @brief Mode for parsing entities in the new caption. See formatting options for
+     * more details.
+     */
+    std::string parseMode = "";
+
+    /**
+     * @brief A JSON-serialized list of special entities that appear in the new
+     * caption, which can be specified instead of parse_mode
+     */
+    std::vector<std::shared_ptr<MessageEntity>> captionEntities = { };
+
+    /**
+     * @brief Sends the message silently. Users will receive a notification with no
+     * sound.
+     */
+    bool disableNotification = false;
+
+    /**
+     * @brief Description of the message to reply to
+     */
+    std::shared_ptr<ReplyParameters> replyParameters = nullptr;
+
+    /**
+     * @brief Additional interface options. A JSON-serialized object for an inline
+     * keyboard, custom reply keyboard, instructions to remove a reply keyboard
+     * or to force a reply from the user.
+     */
+    std::variant<std::shared_ptr<InlineKeyboardMarkup>, std::shared_ptr<ReplyKeyboardMarkup>,
+                 std::shared_ptr<ReplyKeyboardRemove>, std::shared_ptr<ForceReply>>
+        replyMarkup = { };
+
+    /**
+     * @brief Protects the contents of the sent message from forwarding and saving
+     */
+    bool protectContent = false;
+
+    /**
+     * @brief Unique identifier for the target message thread (topic) of a forum; for
+     * forum supergroups and private chats of bots with forum topic mode
+     * enabled only
+     */
+    std::int32_t messageThreadId = 0;
+
+    /**
+     * @brief Pass True to allow up to 1000 messages per second, ignoring broadcasting
+     * limits for a fee of 0.1 Telegram Stars per message. The relevant Stars
+     * will be withdrawn from the bot's balance.
+     */
+    bool allowPaidBroadcast = false;
+
+    /**
+     * @brief Identifier of the direct messages topic to which the message will be
+     * sent; required if the message is sent to a direct messages chat
+     */
+    std::int64_t directMessagesTopicId = 0;
+
+    /**
+     * @brief Unique identifier of the message effect to be added to the message; only
+     * available when copying to private chats
+     */
+    std::string messageEffectId = "";
+
+    /**
+     * @brief Pass True if the caption must be shown above the message media. Ignored
+     * if a new caption isn't specified.
+     */
+    bool showCaptionAboveMedia = false;
+
+    /**
+     * @brief A JSON-serialized object containing the parameters of the suggested post
+     * to send; for direct messages chats only. If the message is sent as a
+     * reply to another suggested post, then that suggested post is
+     * automatically declined.
+     */
+    std::shared_ptr<SuggestedPostParameters> suggestedPostParameters = nullptr;
+
+    /**
+     * @brief New start timestamp for the copied video in the message
+     */
+    std::int32_t videoStartTimestamp = 0;
+};
+
+/**
+ * @brief Arguments for Api::copyMessages.
+ * @ingroup api
+ */
+struct CopyMessagesArgs {
+    /**
+     * @brief Unique identifier for the target chat or username of the target bot,
+     * supergroup or channel in the format @username
+     */
+    std::variant<std::int64_t, std::string> chatId { };
+
+    /**
+     * @brief Unique identifier for the chat where the original messages were sent (or
+     * username of the target bot, supergroup or channel in the format
+     * @username)
+     */
+    std::variant<std::int64_t, std::string> fromChatId { };
+
+    /**
+     * @brief A JSON-serialized list of 1-100 identifiers of messages in the chat
+     * from_chat_id to copy. The identifiers must be specified in a strictly
+     * increasing order.
+     */
+    std::vector<std::int32_t> messageIds { };
+
+    /**
+     * @brief Unique identifier for the target message thread (topic) of a forum; for
+     * forum supergroups and private chats of bots with forum topic mode
+     * enabled only
+     */
+    std::int32_t messageThreadId = 0;
+
+    /**
+     * @brief Sends the messages silently. Users will receive a notification with no
+     * sound.
+     */
+    bool disableNotification = false;
+
+    /**
+     * @brief Protects the contents of the sent messages from forwarding and saving
+     */
+    bool protectContent = false;
+
+    /**
+     * @brief Pass True to copy the messages without their captions
+     */
+    bool removeCaption = false;
+
+    /**
+     * @brief Identifier of the direct messages topic to which the messages will be
+     * sent; required if the messages are sent to a direct messages chat
+     */
+    std::int64_t directMessagesTopicId = 0;
+};
+
+/**
+ * @brief Arguments for Api::createChatInviteLink.
+ * @ingroup api
+ */
+struct CreateChatInviteLinkArgs {
+    /**
+     * @brief Unique identifier for the target chat or username of the target channel
+     * in the format @username
+     */
+    std::variant<std::int64_t, std::string> chatId { };
+
+    /**
+     * @brief Point in time (Unix timestamp) when the link will expire
+     */
+    std::int32_t expireDate = 0;
+
+    /**
+     * @brief The maximum number of users that can be members of the chat
+     * simultaneously after joining the chat via this invite link; 1-99999
+     */
+    std::int32_t memberLimit = 0;
+
+    /**
+     * @brief Invite link name; 0-32 characters
+     */
+    std::string name = "";
+
+    /**
+     * @brief True, if users joining the chat via the link need to be approved by chat
+     * administrators. If True, member_limit can't be specified.
+     */
+    bool createsJoinRequest = false;
+};
+
+/**
+ * @brief Arguments for Api::createChatSubscriptionInviteLink.
+ * @ingroup api
+ */
+struct CreateChatSubscriptionInviteLinkArgs {
+    /**
+     * @brief Unique identifier for the target channel chat or username of the target
+     * channel in the format @username
+     */
+    std::variant<std::int64_t, std::string> chatId { };
+
+    /**
+     * @brief The number of seconds the subscription will be active for before the
+     * next payment. Currently, it must always be 2592000 (30 days).
+     */
+    std::int32_t subscriptionPeriod { };
+
+    /**
+     * @brief The amount of Telegram Stars a user must pay initially and after each
+     * subsequent subscription period to be a member of the chat; 1-10000
+     */
+    std::int32_t subscriptionPrice { };
+
+    /**
+     * @brief Invite link name; 0-32 characters
+     */
+    std::string name = "";
+};
+
+/**
+ * @brief Arguments for Api::createForumTopic.
+ * @ingroup api
+ */
+struct CreateForumTopicArgs {
+    /**
+     * @brief Unique identifier for the target chat or username of the target
+     * supergroup in the format @username
+     */
+    std::variant<std::int64_t, std::string> chatId { };
+
+    /**
+     * @brief Topic name, 1-128 characters
+     */
+    std::string name { };
+
+    /**
+     * @brief Color of the topic icon in RGB format. Currently, must be one of 7322096
+     * (0x6FB9F0), 16766590 (0xFFD67E), 13338331 (0xCB86DB), 9367192
+     * (0x8EEE98), 16749490 (0xFF93B2), or 16478047 (0xFB6F5F).
+     */
+    std::int32_t iconColor = 0;
+
+    /**
+     * @brief Unique identifier of the custom emoji shown as the topic icon. Use
+     * getForumTopicIconStickers to get all allowed custom emoji identifiers.
+     */
+    std::string iconCustomEmojiId = "";
+};
+
+/**
+ * @brief Arguments for Api::createInvoiceLink.
+ * @ingroup api
+ */
+struct CreateInvoiceLinkArgs {
+    /**
+     * @brief Product name, 1-32 characters
+     */
+    std::string title { };
+
+    /**
+     * @brief Product description, 1-255 characters
+     */
+    std::string description { };
+
+    /**
+     * @brief Bot-defined invoice payload, 1-128 bytes. This will not be displayed to
+     * the user, use it for your internal processes.
+     */
+    std::string payload { };
+
+    /**
+     * @brief Payment provider token, obtained via @BotFather. Pass an empty string
+     * for payments in Telegram Stars.
+     */
+    std::string providerToken { };
+
+    /**
+     * @brief Three-letter ISO 4217 currency code, see more on currencies. Pass “XTR”
+     * for payments in Telegram Stars.
+     */
+    std::string currency { };
+
+    /**
+     * @brief Price breakdown, a JSON-serialized list of components (e.g. product
+     * price, tax, discount, delivery cost, delivery tax, bonus, etc.). Must
+     * contain exactly one item for payments in Telegram Stars.
+     */
+    std::vector<std::shared_ptr<LabeledPrice>> prices { };
+
+    /**
+     * @brief The maximum accepted amount for tips in the smallest units of the
+     * currency (integer, not float/double). For example, for a maximum tip of
+     * US$ 1.45 pass max_tip_amount = 145. See the exp parameter in
+     * currencies.json, it shows the number of digits past the decimal point
+     * for each currency (2 for the majority of currencies). Defaults to 0. Not
+     * supported for payments in Telegram Stars.
+     */
+    std::int32_t maxTipAmount = 0;
+
+    /**
+     * @brief A JSON-serialized Array of suggested amounts of tips in the smallest
+     * units of the currency (integer, not float/double). At most 4 suggested
+     * tip amounts can be specified. The suggested tip amounts must be
+     * positive, passed in a strictly increased order and must not exceed
+     * max_tip_amount.
+     */
+    std::vector<std::int32_t> suggestedTipAmounts = { };
+
+    /**
+     * @brief JSON-serialized data about the invoice, which will be shared with the
+     * payment provider. A detailed description of required fields should be
+     * provided by the payment provider.
+     */
+    std::string providerData = "";
+
+    /**
+     * @brief URL of the product photo for the invoice. Can be a photo of the goods or
+     * a marketing image for a service.
+     */
+    std::string photoUrl = "";
+
+    /**
+     * @brief Photo size in bytes
+     */
+    std::int32_t photoSize = 0;
+
+    /**
+     * @brief Photo width
+     */
+    std::int32_t photoWidth = 0;
+
+    /**
+     * @brief Photo height
+     */
+    std::int32_t photoHeight = 0;
+
+    /**
+     * @brief Pass True if you require the user's full name to complete the order.
+     * Ignored for payments in Telegram Stars.
+     */
+    bool needName = false;
+
+    /**
+     * @brief Pass True if you require the user's phone number to complete the order.
+     * Ignored for payments in Telegram Stars.
+     */
+    bool needPhoneNumber = false;
+
+    /**
+     * @brief Pass True if you require the user's email address to complete the order.
+     * Ignored for payments in Telegram Stars.
+     */
+    bool needEmail = false;
+
+    /**
+     * @brief Pass True if you require the user's shipping address to complete the
+     * order. Ignored for payments in Telegram Stars.
+     */
+    bool needShippingAddress = false;
+
+    /**
+     * @brief Pass True if the user's phone number should be sent to the provider.
+     * Ignored for payments in Telegram Stars.
+     */
+    bool sendPhoneNumberToProvider = false;
+
+    /**
+     * @brief Pass True if the user's email address should be sent to the provider.
+     * Ignored for payments in Telegram Stars.
+     */
+    bool sendEmailToProvider = false;
+
+    /**
+     * @brief Pass True if the final price depends on the shipping method. Ignored for
+     * payments in Telegram Stars.
+     */
+    bool isFlexible = false;
+
+    /**
+     * @brief Unique identifier of the business connection on behalf of which the link
+     * will be created. For payments in Telegram Stars only.
+     */
+    std::string businessConnectionId = "";
+
+    /**
+     * @brief The number of seconds the subscription will be active for before the
+     * next payment. The currency must be set to “XTR” (Telegram Stars) if the
+     * parameter is used. Currently, it must always be 2592000 (30 days) if
+     * specified. Any number of subscriptions can be active for a given bot at
+     * the same time, including multiple concurrent subscriptions from the same
+     * user. Subscription price must no exceed 10000 Telegram Stars.
+     */
+    std::int32_t subscriptionPeriod = 0;
+};
+
+/**
+ * @brief Arguments for Api::createNewStickerSet.
+ * @ingroup api
+ */
+struct CreateNewStickerSetArgs {
+    /**
+     * @brief User identifier of created sticker set owner
+     */
+    std::int64_t userId { };
+
+    /**
+     * @brief Short name of sticker set, to be used in t.me/addstickers/ URLs (e.g.,
+     * animals). Can contain only English letters, digits and underscores. Must
+     * begin with a letter, can't contain consecutive underscores and must end
+     * in "_by_<bot_username>". <bot_username> is case insensitive. 1-64
+     * characters.
+     */
+    std::string name { };
+
+    /**
+     * @brief Sticker set title, 1-64 characters
+     */
+    std::string title { };
+
+    /**
+     * @brief A JSON-serialized list of 1-50 initial stickers to be added to the
+     * sticker set
+     */
+    std::vector<std::shared_ptr<InputSticker>> stickers { };
+
+    /**
+     * @brief Type of stickers in the set, pass “regular”, “mask”, or “custom_emoji”.
+     * By default, a regular sticker set is created.
+     */
+    Sticker::Type stickerType = Sticker::Type::Regular;
+
+    /**
+     * @brief Pass True if stickers in the sticker set must be repainted to the color
+     * of text when used in messages, the accent color if used as emoji status,
+     * white on chat photos, or another appropriate color based on context; for
+     * custom emoji sticker sets only
+     */
+    bool needsRepainting = false;
+};
+
+/**
+ * @brief Arguments for Api::declineChatJoinRequest.
+ * @ingroup api
+ */
+struct DeclineChatJoinRequestArgs {
+    /**
+     * @brief Unique identifier for the target chat or username of the target channel
+     * in the format @username
+     */
+    std::variant<std::int64_t, std::string> chatId { };
+
+    /**
+     * @brief Unique identifier of the target user
+     */
+    std::int64_t userId { };
+};
+
+/**
+ * @brief Arguments for Api::declineSuggestedPost.
+ * @ingroup api
+ */
+struct DeclineSuggestedPostArgs {
+    /**
+     * @brief Unique identifier for the target direct messages chat
+     */
+    std::variant<std::int64_t, std::string> chatId { };
+
+    /**
+     * @brief Identifier of a suggested post message to decline
+     */
+    std::int32_t messageId { };
+
+    /**
+     * @brief Comment for the creator of the suggested post; 0-128 characters
+     */
+    std::string comment = "";
+};
+
+/**
+ * @brief Arguments for Api::deleteAllMessageReactions.
+ * @ingroup api
+ */
+struct DeleteAllMessageReactionsArgs {
+    /**
+     * @brief Unique identifier for the target chat or username of the target
+     * supergroup in the format @username
+     */
+    std::variant<std::int64_t, std::string> chatId { };
+
+    /**
+     * @brief Identifier of the chat whose reactions will be removed, if the reactions
+     * were added by a chat
+     */
+    std::int64_t actorChatId = 0;
+
+    /**
+     * @brief Identifier of the user whose reactions will be removed, if the reactions
+     * were added by a user
+     */
+    std::int64_t userId = 0;
+};
+
+/**
+ * @brief Arguments for Api::deleteBusinessMessages.
+ * @ingroup api
+ */
+struct DeleteBusinessMessagesArgs {
+    /**
+     * @brief Unique identifier of the business connection on behalf of which to
+     * delete the messages
+     */
+    std::string businessConnectionId { };
+
+    /**
+     * @brief A JSON-serialized list of 1-100 identifiers of messages to delete. All
+     * messages must be from the same chat. See deleteMessage for limitations
+     * on which messages can be deleted.
+     */
+    std::vector<std::int32_t> messageIds { };
+};
+
+/**
+ * @brief Arguments for Api::deleteChatPhoto.
+ * @ingroup api
+ */
+struct DeleteChatPhotoArgs {
+    /**
+     * @brief Unique identifier for the target chat or username of the target channel
+     * in the format @username
+     */
+    std::variant<std::int64_t, std::string> chatId { };
+};
+
+/**
+ * @brief Arguments for Api::deleteChatStickerSet.
+ * @ingroup api
+ */
+struct DeleteChatStickerSetArgs {
+    /**
+     * @brief Unique identifier for the target chat or username of the target
+     * supergroup in the format @username
+     */
+    std::variant<std::int64_t, std::string> chatId { };
+};
+
+/**
+ * @brief Arguments for Api::deleteEphemeralMessage.
+ * @ingroup api
+ */
+struct DeleteEphemeralMessageArgs {
+    /**
+     * @brief Unique identifier for the target chat or username of the target
+     * supergroup in the format @username
+     */
+    std::variant<std::int64_t, std::string> chatId { };
+
+    /**
+     * @brief Identifier of the ephemeral message to delete
+     */
+    std::int32_t ephemeralMessageId { };
+
+    /**
+     * @brief Identifier of the user who received the message
+     */
+    std::int64_t receiverUserId { };
+};
+
+/**
+ * @brief Arguments for Api::deleteForumTopic.
+ * @ingroup api
+ */
+struct DeleteForumTopicArgs {
+    /**
+     * @brief Unique identifier for the target chat or username of the target
+     * supergroup in the format @username
+     */
+    std::variant<std::int64_t, std::string> chatId { };
+
+    /**
+     * @brief Unique identifier for the target message thread of the forum topic
+     */
+    std::int32_t messageThreadId { };
+};
+
+/**
+ * @brief Arguments for Api::deleteMessage.
+ * @ingroup api
+ */
+struct DeleteMessageArgs {
+    /**
+     * @brief Unique identifier for the target chat or username of the target bot,
+     * supergroup or channel in the format @username
+     */
+    std::variant<std::int64_t, std::string> chatId { };
+
+    /**
+     * @brief Identifier of the message to delete
+     */
+    std::int32_t messageId { };
+};
+
+/**
+ * @brief Arguments for Api::deleteMessageReaction.
+ * @ingroup api
+ */
+struct DeleteMessageReactionArgs {
+    /**
+     * @brief Unique identifier for the target chat or username of the target
+     * supergroup in the format @username
+     */
+    std::variant<std::int64_t, std::string> chatId { };
+
+    /**
+     * @brief Identifier of the target message
+     */
+    std::int32_t messageId { };
+
+    /**
+     * @brief Identifier of the chat whose reaction will be removed, if the reaction
+     * was added by a chat
+     */
+    std::int64_t actorChatId = 0;
+
+    /**
+     * @brief Identifier of the user whose reaction will be removed, if the reaction
+     * was added by a user
+     */
+    std::int64_t userId = 0;
+};
+
+/**
+ * @brief Arguments for Api::deleteMessages.
+ * @ingroup api
+ */
+struct DeleteMessagesArgs {
+    /**
+     * @brief Unique identifier for the target chat or username of the target bot,
+     * supergroup or channel in the format @username
+     */
+    std::variant<std::int64_t, std::string> chatId { };
+
+    /**
+     * @brief A JSON-serialized list of 1-100 identifiers of messages to delete. See
+     * deleteMessage for limitations on which messages can be deleted.
+     */
+    std::vector<std::int32_t> messageIds { };
+};
+
+/**
+ * @brief Arguments for Api::deleteMyCommands.
+ * @ingroup api
+ */
+struct DeleteMyCommandsArgs {
+    /**
+     * @brief A JSON-serialized object, describing scope of users for which the
+     * commands are relevant. Defaults to BotCommandScopeDefault.
+     */
+    std::shared_ptr<BotCommandScope> scope = nullptr;
+
+    /**
+     * @brief A two-letter ISO 639-1 language code. If empty, commands will be applied
+     * to all users from the given scope, for whose language there are no
+     * dedicated commands.
+     */
+    std::string languageCode = "";
+};
+
+/**
+ * @brief Arguments for Api::deleteStickerFromSet.
+ * @ingroup api
+ */
+struct DeleteStickerFromSetArgs {
+    /**
+     * @brief File identifier of the sticker
+     */
+    std::string sticker { };
+};
+
+/**
+ * @brief Arguments for Api::deleteStickerSet.
+ * @ingroup api
+ */
+struct DeleteStickerSetArgs {
+    /**
+     * @brief Sticker set name
+     */
+    std::string name { };
+};
+
+/**
+ * @brief Arguments for Api::deleteStory.
+ * @ingroup api
+ */
+struct DeleteStoryArgs {
+    /**
+     * @brief Unique identifier of the business connection
+     */
+    std::string businessConnectionId { };
+
+    /**
+     * @brief Unique identifier of the story to delete
+     */
+    std::int32_t storyId { };
+};
+
+/**
+ * @brief Arguments for Api::deleteWebhook.
+ * @ingroup api
+ */
+struct DeleteWebhookArgs {
+    /**
+     * @brief Pass True to drop all pending updates
+     */
+    bool dropPendingUpdates = false;
+};
+
+/**
+ * @brief Arguments for Api::editChatInviteLink.
+ * @ingroup api
+ */
+struct EditChatInviteLinkArgs {
+    /**
+     * @brief Unique identifier for the target chat or username of the target channel
+     * in the format @username
+     */
+    std::variant<std::int64_t, std::string> chatId { };
+
+    /**
+     * @brief The invite link to edit
+     */
+    std::string inviteLink { };
+
+    /**
+     * @brief Point in time (Unix timestamp) when the link will expire
+     */
+    std::int32_t expireDate = 0;
+
+    /**
+     * @brief The maximum number of users that can be members of the chat
+     * simultaneously after joining the chat via this invite link; 1-99999
+     */
+    std::int32_t memberLimit = 0;
+
+    /**
+     * @brief Invite link name; 0-32 characters
+     */
+    std::string name = "";
+
+    /**
+     * @brief True, if users joining the chat via the link need to be approved by chat
+     * administrators. If True, member_limit can't be specified.
+     */
+    bool createsJoinRequest = false;
+};
+
+/**
+ * @brief Arguments for Api::editChatSubscriptionInviteLink.
+ * @ingroup api
+ */
+struct EditChatSubscriptionInviteLinkArgs {
+    /**
+     * @brief Unique identifier for the target chat or username of the target channel
+     * in the format @username
+     */
+    std::variant<std::int64_t, std::string> chatId { };
+
+    /**
+     * @brief The invite link to edit
+     */
+    std::string inviteLink { };
+
+    /**
+     * @brief Invite link name; 0-32 characters
+     */
+    std::string name = "";
+};
+
+/**
+ * @brief Arguments for Api::editEphemeralMessageCaption.
+ * @ingroup api
+ */
+struct EditEphemeralMessageCaptionArgs {
+    /**
+     * @brief Unique identifier for the target chat or username of the target
+     * supergroup in the format @username
+     */
+    std::variant<std::int64_t, std::string> chatId { };
+
+    /**
+     * @brief Identifier of the ephemeral message to edit
+     */
+    std::int32_t ephemeralMessageId { };
+
+    /**
+     * @brief Identifier of the user who received the message
+     */
+    std::int64_t receiverUserId { };
+
+    /**
+     * @brief New caption of the message, 0-1024 characters after entities parsing
+     */
+    std::string caption = "";
+
+    /**
+     * @brief A JSON-serialized list of special entities that appear in the caption,
+     * which can be specified instead of parse_mode
+     */
+    std::vector<std::shared_ptr<MessageEntity>> captionEntities = { };
+
+    /**
+     * @brief Mode for parsing entities in the message caption. See formatting options
+     * for more details.
+     */
+    std::string parseMode = "";
+
+    /**
+     * @brief A JSON-serialized object for an inline keyboard
+     */
+    std::shared_ptr<InlineKeyboardMarkup> replyMarkup = nullptr;
+};
+
+/**
+ * @brief Arguments for Api::editEphemeralMessageMedia.
+ * @ingroup api
+ */
+struct EditEphemeralMessageMediaArgs {
+    /**
+     * @brief Unique identifier for the target chat or username of the target
+     * supergroup in the format @username
+     */
+    std::variant<std::int64_t, std::string> chatId { };
+
+    /**
+     * @brief Identifier of the ephemeral message to edit
+     */
+    std::int32_t ephemeralMessageId { };
+
+    /**
+     * @brief A JSON-serialized object for the new media content of the message. A new
+     * file can't be uploaded; use a previously uploaded file via its file_id
+     * or specify a URL.
+     */
+    std::shared_ptr<InputMedia> media { };
+
+    /**
+     * @brief Identifier of the user who received the message
+     */
+    std::int64_t receiverUserId { };
+
+    /**
+     * @brief A JSON-serialized object for an inline keyboard
+     */
+    std::shared_ptr<InlineKeyboardMarkup> replyMarkup = nullptr;
+};
+
+/**
+ * @brief Arguments for Api::editEphemeralMessageReplyMarkup.
+ * @ingroup api
+ */
+struct EditEphemeralMessageReplyMarkupArgs {
+    /**
+     * @brief Unique identifier for the target chat or username of the target
+     * supergroup in the format @username
+     */
+    std::variant<std::int64_t, std::string> chatId { };
+
+    /**
+     * @brief Identifier of the ephemeral message to edit
+     */
+    std::int32_t ephemeralMessageId { };
+
+    /**
+     * @brief Identifier of the user who received the message
+     */
+    std::int64_t receiverUserId { };
+
+    /**
+     * @brief A JSON-serialized object for an inline keyboard
+     */
+    std::shared_ptr<InlineKeyboardMarkup> replyMarkup = nullptr;
+};
+
+/**
+ * @brief Arguments for Api::editEphemeralMessageText.
+ * @ingroup api
+ */
+struct EditEphemeralMessageTextArgs {
+    /**
+     * @brief Unique identifier for the target chat or username of the target
+     * supergroup in the format @username
+     */
+    std::variant<std::int64_t, std::string> chatId { };
+
+    /**
+     * @brief Identifier of the ephemeral message to edit
+     */
+    std::int32_t ephemeralMessageId { };
+
+    /**
+     * @brief Identifier of the user who received the message
+     */
+    std::int64_t receiverUserId { };
+
+    /**
+     * @brief New text of the message, 1-4096 characters after entity parsing
+     */
+    std::string text { };
+
+    /**
+     * @brief A JSON-serialized list of special entities that appear in message text,
+     * which can be specified instead of parse_mode
+     */
+    std::vector<std::shared_ptr<MessageEntity>> entities = { };
+
+    /**
+     * @brief Link preview generation options for the message
+     */
+    std::shared_ptr<LinkPreviewOptions> linkPreviewOptions = nullptr;
+
+    /**
+     * @brief Mode for parsing entities in the message text. See formatting options
+     * for more details.
+     */
+    std::string parseMode = "";
+
+    /**
+     * @brief A JSON-serialized object for an inline keyboard
+     */
+    std::shared_ptr<InlineKeyboardMarkup> replyMarkup = nullptr;
+};
+
+/**
+ * @brief Arguments for Api::editForumTopic.
+ * @ingroup api
+ */
+struct EditForumTopicArgs {
+    /**
+     * @brief Unique identifier for the target chat or username of the target
+     * supergroup in the format @username
+     */
+    std::variant<std::int64_t, std::string> chatId { };
+
+    /**
+     * @brief Unique identifier for the target message thread of the forum topic
+     */
+    std::int32_t messageThreadId { };
+
+    /**
+     * @brief New topic name, 0-128 characters. If not specified or empty, the current
+     * name of the topic will be kept.
+     */
+    std::string name = "";
+
+    /**
+     * @brief New unique identifier of the custom emoji shown as the topic icon. Use
+     * getForumTopicIconStickers to get all allowed custom emoji identifiers.
+     * Pass an empty string to remove the icon. If not specified, the current
+     * icon will be kept.
+     */
+    std::string iconCustomEmojiId = "";
+};
+
+/**
+ * @brief Arguments for Api::editGeneralForumTopic.
+ * @ingroup api
+ */
+struct EditGeneralForumTopicArgs {
+    /**
+     * @brief Unique identifier for the target chat or username of the target
+     * supergroup in the format @username
+     */
+    std::variant<std::int64_t, std::string> chatId { };
+
+    /**
+     * @brief New topic name, 1-128 characters
+     */
+    std::string name { };
+};
+
+/**
+ * @brief Arguments for Api::editMessageCaption.
+ * @ingroup api
+ */
+struct EditMessageCaptionArgs {
+    /**
+     * @brief Required if inline_message_id is not specified. Unique identifier for
+     * the target chat or username of the target bot, supergroup or channel in
+     * the format @username.
+     */
+    std::variant<std::int64_t, std::string> chatId = { };
+
+    /**
+     * @brief Required if inline_message_id is not specified. Identifier of the
+     * message to edit.
+     */
+    std::int32_t messageId = 0;
+
+    /**
+     * @brief New caption of the message, 0-1024 characters after entities parsing
+     */
+    std::string caption = "";
+
+    /**
+     * @brief Required if chat_id and message_id are not specified. Identifier of the
+     * inline message.
+     */
+    std::string inlineMessageId = "";
+
+    /**
+     * @brief A JSON-serialized object for an inline keyboard
+     */
+    std::shared_ptr<InlineKeyboardMarkup> replyMarkup = nullptr;
+
+    /**
+     * @brief Mode for parsing entities in the message caption. See formatting options
+     * for more details.
+     */
+    std::string parseMode = "";
+
+    /**
+     * @brief A JSON-serialized list of special entities that appear in the caption,
+     * which can be specified instead of parse_mode
+     */
+    std::vector<std::shared_ptr<MessageEntity>> captionEntities = { };
+
+    /**
+     * @brief Unique identifier of the business connection on behalf of which the
+     * message to be edited was sent
+     */
+    std::string businessConnectionId = "";
+
+    /**
+     * @brief Pass True if the caption must be shown above the message media.
+     * Supported only for animation, photo and video messages.
+     */
+    bool showCaptionAboveMedia = false;
+};
+
+/**
+ * @brief Arguments for Api::editMessageChecklist.
+ * @ingroup api
+ */
+struct EditMessageChecklistArgs {
+    /**
+     * @brief Unique identifier for the target chat or username of the target bot in
+     * the format @username
+     */
+    std::variant<std::int64_t, std::string> chatId { };
+
+    /**
+     * @brief Unique identifier of the business connection on behalf of which the
+     * message will be sent
+     */
+    std::string businessConnectionId { };
+
+    /**
+     * @brief A JSON-serialized object for the new checklist
+     */
+    std::shared_ptr<InputChecklist> checklist { };
+
+    /**
+     * @brief Unique identifier for the target message
+     */
+    std::int32_t messageId { };
+
+    /**
+     * @brief A JSON-serialized object for the new inline keyboard for the message
+     */
+    std::shared_ptr<InlineKeyboardMarkup> replyMarkup = nullptr;
+};
+
+/**
+ * @brief Arguments for Api::editMessageLiveLocation.
+ * @ingroup api
+ */
+struct EditMessageLiveLocationArgs {
+    /**
+     * @brief Latitude of new location
+     */
+    double latitude { };
+
+    /**
+     * @brief Longitude of new location
+     */
+    double longitude { };
+
+    /**
+     * @brief Required if inline_message_id is not specified. Unique identifier for
+     * the target chat or username of the target bot, supergroup or channel in
+     * the format @username.
+     */
+    std::variant<std::int64_t, std::string> chatId = { };
+
+    /**
+     * @brief Required if inline_message_id is not specified. Identifier of the
+     * message to edit.
+     */
+    std::int32_t messageId = 0;
+
+    /**
+     * @brief Required if chat_id and message_id are not specified. Identifier of the
+     * inline message.
+     */
+    std::string inlineMessageId = "";
+
+    /**
+     * @brief A JSON-serialized object for a new inline keyboard
+     */
+    std::shared_ptr<InlineKeyboardMarkup> replyMarkup = nullptr;
+
+    /**
+     * @brief The radius of uncertainty for the location, measured in meters; 0-1500
+     */
+    double horizontalAccuracy = 0;
+
+    /**
+     * @brief Direction in which the user is moving, in degrees. Must be between 1 and
+     * 360 if specified.
+     */
+    std::int32_t heading = 0;
+
+    /**
+     * @brief The maximum distance for proximity alerts about approaching another chat
+     * member, in meters. Must be between 1 and 100000 if specified.
+     */
+    std::int32_t proximityAlertRadius = 0;
+
+    /**
+     * @brief Unique identifier of the business connection on behalf of which the
+     * message to be edited was sent
+     */
+    std::string businessConnectionId = "";
+
+    /**
+     * @brief New period in seconds during which the location can be updated, starting
+     * from the message send date. If 0x7FFFFFFF is specified, then the
+     * location can be updated forever. Otherwise, the new value must not
+     * exceed the current live_period by more than a day, and the live location
+     * expiration date must remain within the next 90 days. If not specified,
+     * then live_period remains unchanged.
+     */
+    std::int32_t livePeriod = 0;
+};
+
+/**
+ * @brief Arguments for Api::editMessageMedia.
+ * @ingroup api
+ */
+struct EditMessageMediaArgs {
+    /**
+     * @brief A JSON-serialized object for the new media content of the message
+     */
+    std::shared_ptr<InputMedia> media { };
+
+    /**
+     * @brief Required if inline_message_id is not specified. Unique identifier for
+     * the target chat or username of the target bot, supergroup or channel in
+     * the format @username.
+     */
+    std::variant<std::int64_t, std::string> chatId = { };
+
+    /**
+     * @brief Required if inline_message_id is not specified. Identifier of the
+     * message to edit.
+     */
+    std::int32_t messageId = 0;
+
+    /**
+     * @brief Required if chat_id and message_id are not specified. Identifier of the
+     * inline message.
+     */
+    std::string inlineMessageId = "";
+
+    /**
+     * @brief A JSON-serialized object for a new inline keyboard
+     */
+    std::shared_ptr<InlineKeyboardMarkup> replyMarkup = nullptr;
+
+    /**
+     * @brief Unique identifier of the business connection on behalf of which the
+     * message to be edited was sent
+     */
+    std::string businessConnectionId = "";
+};
+
+/**
+ * @brief Arguments for Api::editMessageReplyMarkup.
+ * @ingroup api
+ */
+struct EditMessageReplyMarkupArgs {
+    /**
+     * @brief Required if inline_message_id is not specified. Unique identifier for
+     * the target chat or username of the target bot, supergroup or channel in
+     * the format @username.
+     */
+    std::variant<std::int64_t, std::string> chatId = { };
+
+    /**
+     * @brief Required if inline_message_id is not specified. Identifier of the
+     * message to edit.
+     */
+    std::int32_t messageId = 0;
+
+    /**
+     * @brief Required if chat_id and message_id are not specified. Identifier of the
+     * inline message.
+     */
+    std::string inlineMessageId = "";
+
+    /**
+     * @brief A JSON-serialized object for an inline keyboard
+     */
+    std::shared_ptr<InlineKeyboardMarkup> replyMarkup = nullptr;
+
+    /**
+     * @brief Unique identifier of the business connection on behalf of which the
+     * message to be edited was sent
+     */
+    std::string businessConnectionId = "";
+};
+
+/**
+ * @brief Arguments for Api::editMessageText.
+ * @ingroup api
+ */
+struct EditMessageTextArgs {
+    /**
+     * @brief New text of the message, 1-4096 characters after entity parsing;
+     * required if rich_message isn't specified
+     */
+    std::string text = "";
+
+    /**
+     * @brief Required if inline_message_id is not specified. Unique identifier for
+     * the target chat or username of the target bot, supergroup or channel in
+     * the format @username.
+     */
+    std::variant<std::int64_t, std::string> chatId = { };
+
+    /**
+     * @brief Required if inline_message_id is not specified. Identifier of the
+     * message to edit.
+     */
+    std::int32_t messageId = 0;
+
+    /**
+     * @brief Required if chat_id and message_id are not specified. Identifier of the
+     * inline message.
+     */
+    std::string inlineMessageId = "";
+
+    /**
+     * @brief Mode for parsing entities in the message text. See formatting options
+     * for more details.
+     */
+    std::string parseMode = "";
+
+    /**
+     * @brief Link preview generation options for the message
+     */
+    std::shared_ptr<LinkPreviewOptions> linkPreviewOptions = nullptr;
+
+    /**
+     * @brief A JSON-serialized object for an inline keyboard
+     */
+    std::shared_ptr<InlineKeyboardMarkup> replyMarkup = nullptr;
+
+    /**
+     * @brief A JSON-serialized list of special entities that appear in message text,
+     * which can be specified instead of parse_mode
+     */
+    std::vector<std::shared_ptr<MessageEntity>> entities = { };
+
+    /**
+     * @brief Unique identifier of the business connection on behalf of which the
+     * message to be edited was sent
+     */
+    std::string businessConnectionId = "";
+
+    /**
+     * @brief New rich content of the message; required if text isn't specified.
+     * Direct upload of new files isn't supported when an inline message is
+     * edited.
+     */
+    std::shared_ptr<InputRichMessage> richMessage = nullptr;
+};
+
+/**
+ * @brief Arguments for Api::editStory.
+ * @ingroup api
+ */
+struct EditStoryArgs {
+    /**
+     * @brief Unique identifier of the business connection
+     */
+    std::string businessConnectionId { };
+
+    /**
+     * @brief Content of the story
+     */
+    std::shared_ptr<InputStoryContent> content { };
+
+    /**
+     * @brief Unique identifier of the story to edit
+     */
+    std::int32_t storyId { };
+
+    /**
+     * @brief A JSON-serialized list of clickable areas to be shown on the story
+     */
+    std::vector<std::shared_ptr<StoryArea>> areas = { };
+
+    /**
+     * @brief Caption of the story, 0-2048 characters after entities parsing
+     */
+    std::string caption = "";
+
+    /**
+     * @brief A JSON-serialized list of special entities that appear in the caption,
+     * which can be specified instead of parse_mode
+     */
+    std::vector<std::shared_ptr<MessageEntity>> captionEntities = { };
+
+    /**
+     * @brief Mode for parsing entities in the story caption. See formatting options
+     * for more details.
+     */
+    std::string parseMode = "";
+};
+
+/**
+ * @brief Arguments for Api::editUserStarSubscription.
+ * @ingroup api
+ */
+struct EditUserStarSubscriptionArgs {
+    /**
+     * @brief Pass True to cancel extension of the user subscription; the subscription
+     * must be active up to the end of the current subscription period. Pass
+     * False to allow the user to re-enable a subscription that was previously
+     * canceled by the bot.
+     */
+    bool isCanceled { };
+
+    /**
+     * @brief Telegram payment identifier for the subscription
+     */
+    std::string telegramPaymentChargeId { };
+
+    /**
+     * @brief Identifier of the user whose subscription will be edited
+     */
+    std::int64_t userId { };
+};
+
+/**
+ * @brief Arguments for Api::exportChatInviteLink.
+ * @ingroup api
+ */
+struct ExportChatInviteLinkArgs {
+    /**
+     * @brief Unique identifier for the target chat or username of the target channel
+     * in the format @username
+     */
+    std::variant<std::int64_t, std::string> chatId { };
+};
+
+/**
+ * @brief Arguments for Api::forwardMessage.
+ * @ingroup api
+ */
+struct ForwardMessageArgs {
+    /**
+     * @brief Unique identifier for the target chat or username of the target bot,
+     * supergroup or channel in the format @username
+     */
+    std::variant<std::int64_t, std::string> chatId { };
+
+    /**
+     * @brief Unique identifier for the chat where the original message was sent (or
+     * username of the target bot, supergroup or channel in the format
+     * @username)
+     */
+    std::variant<std::int64_t, std::string> fromChatId { };
+
+    /**
+     * @brief Message identifier in the chat specified in from_chat_id
+     */
+    std::int32_t messageId { };
+
+    /**
+     * @brief Sends the message silently. Users will receive a notification with no
+     * sound.
+     */
+    bool disableNotification = false;
+
+    /**
+     * @brief Protects the contents of the forwarded message from forwarding and
+     * saving
+     */
+    bool protectContent = false;
+
+    /**
+     * @brief Unique identifier for the target message thread (topic) of a forum; for
+     * forum supergroups and private chats of bots with forum topic mode
+     * enabled only
+     */
+    std::int32_t messageThreadId = 0;
+
+    /**
+     * @brief Identifier of the direct messages topic to which the message will be
+     * forwarded; required if the message is forwarded to a direct messages
+     * chat
+     */
+    std::int64_t directMessagesTopicId = 0;
+
+    /**
+     * @brief Unique identifier of the message effect to be added to the message; only
+     * available when forwarding to private chats
+     */
+    std::string messageEffectId = "";
+
+    /**
+     * @brief A JSON-serialized object containing the parameters of the suggested post
+     * to send; for direct messages chats only
+     */
+    std::shared_ptr<SuggestedPostParameters> suggestedPostParameters = nullptr;
+
+    /**
+     * @brief New start timestamp for the forwarded video in the message
+     */
+    std::int32_t videoStartTimestamp = 0;
+};
+
+/**
+ * @brief Arguments for Api::forwardMessages.
+ * @ingroup api
+ */
+struct ForwardMessagesArgs {
+    /**
+     * @brief Unique identifier for the target chat or username of the target bot,
+     * supergroup or channel in the format @username
+     */
+    std::variant<std::int64_t, std::string> chatId { };
+
+    /**
+     * @brief Unique identifier for the chat where the original messages were sent (or
+     * username of the target bot, supergroup or channel in the format
+     * @username)
+     */
+    std::variant<std::int64_t, std::string> fromChatId { };
+
+    /**
+     * @brief A JSON-serialized list of 1-100 identifiers of messages in the chat
+     * from_chat_id to forward. The identifiers must be specified in a strictly
+     * increasing order.
+     */
+    std::vector<std::int32_t> messageIds { };
+
+    /**
+     * @brief Unique identifier for the target message thread (topic) of a forum; for
+     * forum supergroups and private chats of bots with forum topic mode
+     * enabled only
+     */
+    std::int32_t messageThreadId = 0;
+
+    /**
+     * @brief Sends the messages silently. Users will receive a notification with no
+     * sound.
+     */
+    bool disableNotification = false;
+
+    /**
+     * @brief Protects the contents of the forwarded messages from forwarding and
+     * saving
+     */
+    bool protectContent = false;
+
+    /**
+     * @brief Identifier of the direct messages topic to which the messages will be
+     * forwarded; required if the messages are forwarded to a direct messages
+     * chat
+     */
+    std::int64_t directMessagesTopicId = 0;
+};
+
+/**
+ * @brief Arguments for Api::getBusinessAccountGifts.
+ * @ingroup api
+ */
+struct GetBusinessAccountGiftsArgs {
+    /**
+     * @brief Unique identifier of the business connection
+     */
+    std::string businessConnectionId { };
+
+    /**
+     * @brief Pass True to exclude gifts that were assigned from the TON blockchain
+     * and can't be resold or transferred in Telegram
+     */
+    bool excludeFromBlockchain = false;
+
+    /**
+     * @brief Pass True to exclude gifts that can be purchased a limited number of
+     * times and can't be upgraded to unique
+     */
+    bool excludeLimitedNonUpgradable = false;
+
+    /**
+     * @brief Pass True to exclude gifts that can be purchased a limited number of
+     * times and can be upgraded to unique
+     */
+    bool excludeLimitedUpgradable = false;
+
+    /**
+     * @brief Pass True to exclude gifts that are saved to the account's profile page
+     */
+    bool excludeSaved = false;
+
+    /**
+     * @brief Pass True to exclude unique gifts
+     */
+    bool excludeUnique = false;
+
+    /**
+     * @brief Pass True to exclude gifts that can be purchased an unlimited number of
+     * times
+     */
+    bool excludeUnlimited = false;
+
+    /**
+     * @brief Pass True to exclude gifts that aren't saved to the account's profile
+     * page
+     */
+    bool excludeUnsaved = false;
+
+    /**
+     * @brief The maximum number of gifts to be returned; 1-100. Defaults to 100.
+     */
+    std::int32_t limit = 0;
+
+    /**
+     * @brief Offset of the first entry to return as received from the previous
+     * request; use empty string to get the first chunk of results
+     */
+    std::string offset = "";
+
+    /**
+     * @brief Pass True to sort results by gift price instead of send date. Sorting is
+     * applied before pagination.
+     */
+    bool sortByPrice = false;
+};
+
+/**
+ * @brief Arguments for Api::getBusinessAccountStarBalance.
+ * @ingroup api
+ */
+struct GetBusinessAccountStarBalanceArgs {
+    /**
+     * @brief Unique identifier of the business connection
+     */
+    std::string businessConnectionId { };
+};
+
+/**
+ * @brief Arguments for Api::getBusinessConnection.
+ * @ingroup api
+ */
+struct GetBusinessConnectionArgs {
+    /**
+     * @brief Unique identifier of the business connection
+     */
+    std::string businessConnectionId { };
+};
+
+/**
+ * @brief Arguments for Api::getChat.
+ * @ingroup api
+ */
+struct GetChatArgs {
+    /**
+     * @brief Unique identifier for the target chat or username of the target
+     * supergroup or channel in the format @username
+     */
+    std::variant<std::int64_t, std::string> chatId { };
+};
+
+/**
+ * @brief Arguments for Api::getChatAdministrators.
+ * @ingroup api
+ */
+struct GetChatAdministratorsArgs {
+    /**
+     * @brief Unique identifier for the target chat or username of the target
+     * supergroup or channel in the format @username
+     */
+    std::variant<std::int64_t, std::string> chatId { };
+
+    /**
+     * @brief Pass True to additionally receive all bots that are administrators of
+     * the chat. By default, bots other than the current bot are omitted.
+     */
+    bool returnBots = false;
+};
+
+/**
+ * @brief Arguments for Api::getChatGifts.
+ * @ingroup api
+ */
+struct GetChatGiftsArgs {
+    /**
+     * @brief Unique identifier for the target chat or username of the target channel
+     * in the format @username
+     */
+    std::variant<std::int64_t, std::string> chatId { };
+
+    /**
+     * @brief Pass True to exclude gifts that were assigned from the TON blockchain
+     * and can't be resold or transferred in Telegram
+     */
+    bool excludeFromBlockchain = false;
+
+    /**
+     * @brief Pass True to exclude gifts that can be purchased a limited number of
+     * times and can't be upgraded to unique
+     */
+    bool excludeLimitedNonUpgradable = false;
+
+    /**
+     * @brief Pass True to exclude gifts that can be purchased a limited number of
+     * times and can be upgraded to unique
+     */
+    bool excludeLimitedUpgradable = false;
+
+    /**
+     * @brief Pass True to exclude gifts that are saved to the chat's profile page.
+     * Always False, unless the bot has the can_post_messages administrator
+     * right in the channel.
+     */
+    bool excludeSaved = false;
+
+    /**
+     * @brief Pass True to exclude unique gifts
+     */
+    bool excludeUnique = false;
+
+    /**
+     * @brief Pass True to exclude gifts that can be purchased an unlimited number of
+     * times
+     */
+    bool excludeUnlimited = false;
+
+    /**
+     * @brief Pass True to exclude gifts that aren't saved to the chat's profile page.
+     * Always True, unless the bot has the can_post_messages administrator
+     * right in the channel.
+     */
+    bool excludeUnsaved = false;
+
+    /**
+     * @brief The maximum number of gifts to be returned; 1-100. Defaults to 100.
+     */
+    std::int32_t limit = 0;
+
+    /**
+     * @brief Offset of the first entry to return as received from the previous
+     * request; use an empty string to get the first chunk of results
+     */
+    std::string offset = "";
+
+    /**
+     * @brief Pass True to sort results by gift price instead of send date. Sorting is
+     * applied before pagination.
+     */
+    bool sortByPrice = false;
+};
+
+/**
+ * @brief Arguments for Api::getChatMember.
+ * @ingroup api
+ */
+struct GetChatMemberArgs {
+    /**
+     * @brief Unique identifier for the target chat or username of the target
+     * supergroup or channel in the format @username
+     */
+    std::variant<std::int64_t, std::string> chatId { };
+
+    /**
+     * @brief Unique identifier of the target user
+     */
+    std::int64_t userId { };
+};
+
+/**
+ * @brief Arguments for Api::getChatMemberCount.
+ * @ingroup api
+ */
+struct GetChatMemberCountArgs {
+    /**
+     * @brief Unique identifier for the target chat or username of the target
+     * supergroup or channel in the format @username
+     */
+    std::variant<std::int64_t, std::string> chatId { };
+};
+
+/**
+ * @brief Arguments for Api::getChatMenuButton.
+ * @ingroup api
+ */
+struct GetChatMenuButtonArgs {
+    /**
+     * @brief Unique identifier for the target private chat. If not specified, the
+     * bot's default menu button will be returned.
+     */
+    std::variant<std::int64_t, std::string> chatId = { };
+};
+
+/**
+ * @brief Arguments for Api::getCustomEmojiStickers.
+ * @ingroup api
+ */
+struct GetCustomEmojiStickersArgs {
+    /**
+     * @brief A JSON-serialized list of custom emoji identifiers. At most 200 custom
+     * emoji identifiers can be specified.
+     */
+    std::vector<std::string> customEmojiIds { };
+};
+
+/**
+ * @brief Arguments for Api::getFile.
+ * @ingroup api
+ */
+struct GetFileArgs {
+    /**
+     * @brief File identifier to get information about
+     */
+    std::string fileId { };
+};
+
+/**
+ * @brief Arguments for Api::getGameHighScores.
+ * @ingroup api
+ */
+struct GetGameHighScoresArgs {
+    /**
+     * @brief Target user id
+     */
+    std::int64_t userId { };
+
+    /**
+     * @brief Required if inline_message_id is not specified. Unique identifier for
+     * the target chat.
+     */
+    std::variant<std::int64_t, std::string> chatId = { };
+
+    /**
+     * @brief Required if inline_message_id is not specified. Identifier of the sent
+     * message.
+     */
+    std::int32_t messageId = 0;
+
+    /**
+     * @brief Required if chat_id and message_id are not specified. Identifier of the
+     * inline message.
+     */
+    std::string inlineMessageId = "";
+};
+
+/**
+ * @brief Arguments for Api::getManagedBotAccessSettings.
+ * @ingroup api
+ */
+struct GetManagedBotAccessSettingsArgs {
+    /**
+     * @brief User identifier of the managed bot whose access settings will be
+     * returned
+     */
+    std::int64_t userId { };
+};
+
+/**
+ * @brief Arguments for Api::getManagedBotToken.
+ * @ingroup api
+ */
+struct GetManagedBotTokenArgs {
+    /**
+     * @brief User identifier of the managed bot whose token will be returned
+     */
+    std::int64_t userId { };
+};
+
+/**
+ * @brief Arguments for Api::getMyCommands.
+ * @ingroup api
+ */
+struct GetMyCommandsArgs {
+    /**
+     * @brief A JSON-serialized object, describing scope of users. Defaults to
+     * BotCommandScopeDefault.
+     */
+    std::shared_ptr<BotCommandScope> scope = nullptr;
+
+    /**
+     * @brief A two-letter ISO 639-1 language code or an empty string
+     */
+    std::string languageCode = "";
+};
+
+/**
+ * @brief Arguments for Api::getMyDefaultAdministratorRights.
+ * @ingroup api
+ */
+struct GetMyDefaultAdministratorRightsArgs {
+    /**
+     * @brief Pass True to get default administrator rights of the bot in channels.
+     * Otherwise, default administrator rights of the bot for groups and
+     * supergroups will be returned.
+     */
+    bool forChannels = false;
+};
+
+/**
+ * @brief Arguments for Api::getMyDescription.
+ * @ingroup api
+ */
+struct GetMyDescriptionArgs {
+    /**
+     * @brief A two-letter ISO 639-1 language code or an empty string
+     */
+    std::string languageCode = "";
+};
+
+/**
+ * @brief Arguments for Api::getMyName.
+ * @ingroup api
+ */
+struct GetMyNameArgs {
+    /**
+     * @brief A two-letter ISO 639-1 language code or an empty string
+     */
+    std::string languageCode = "";
+};
+
+/**
+ * @brief Arguments for Api::getMyShortDescription.
+ * @ingroup api
+ */
+struct GetMyShortDescriptionArgs {
+    /**
+     * @brief A two-letter ISO 639-1 language code or an empty string
+     */
+    std::string languageCode = "";
+};
+
+/**
+ * @brief Arguments for Api::getStarTransactions.
+ * @ingroup api
+ */
+struct GetStarTransactionsArgs {
+    /**
+     * @brief The maximum number of transactions to be retrieved. Values between 1-100
+     * are accepted. Defaults to 100.
+     */
+    std::int32_t limit = 0;
+
+    /**
+     * @brief Number of transactions to skip in the response
+     */
+    std::int32_t offset = 0;
+};
+
+/**
+ * @brief Arguments for Api::getStickerSet.
+ * @ingroup api
+ */
+struct GetStickerSetArgs {
+    /**
+     * @brief Name of the sticker set
+     */
+    std::string name { };
+};
+
+/**
+ * @brief Arguments for Api::getUpdates.
+ * @ingroup api
+ */
+struct GetUpdatesArgs {
+    /**
+     * @brief Identifier of the first update to be returned. Must be greater by one
+     * than the highest among the identifiers of previously received updates.
+     * By default, updates starting with the earliest unconfirmed update are
+     * returned. An update is considered confirmed as soon as getUpdates is
+     * called with an offset higher than its update_id. The negative offset can
+     * be specified to retrieve updates starting from -offset update from the
+     * end of the updates queue. All previous updates will be forgotten.
+     */
+    std::int32_t offset = 0;
+
+    /**
+     * @brief Limits the number of updates to be retrieved. Values between 1-100 are
+     * accepted. Defaults to 100.
+     */
+    std::int32_t limit = 100;
+
+    /**
+     * @brief Timeout in seconds for long polling. Defaults to 0, i.e. usual short
+     * polling. Should be positive, short polling should be used for testing
+     * purposes only.
+     */
+    std::int32_t timeout = 0;
+
+    /**
+     * @brief A JSON-serialized list of the update types you want your bot to receive.
+     * For example, specify ["message", "edited_channel_post",
+     * "callback_query"] to only receive updates of these types. See Update for
+     * a complete list of available update types. Specify an empty list to
+     * receive all update types except chat_member, message_reaction, and
+     * message_reaction_count (default). If not specified, the previous setting
+     * will be used.Please note that this parameter doesn't affect updates
+     * created before the call to getUpdates, so unwanted updates may be
+     * received for a short period of time.
+     */
+    std::vector<std::string> allowedUpdates = { };
+};
+
+/**
+ * @brief Arguments for Api::getUserChatBoosts.
+ * @ingroup api
+ */
+struct GetUserChatBoostsArgs {
+    /**
+     * @brief Unique identifier for the chat or username of the channel in the format
+     * @username
+     */
+    std::variant<std::int64_t, std::string> chatId { };
+
+    /**
+     * @brief Unique identifier of the target user
+     */
+    std::int64_t userId { };
+};
+
+/**
+ * @brief Arguments for Api::getUserGifts.
+ * @ingroup api
+ */
+struct GetUserGiftsArgs {
+    /**
+     * @brief Unique identifier of the user
+     */
+    std::int64_t userId { };
+
+    /**
+     * @brief Pass True to exclude gifts that were assigned from the TON blockchain
+     * and can't be resold or transferred in Telegram
+     */
+    bool excludeFromBlockchain = false;
+
+    /**
+     * @brief Pass True to exclude gifts that can be purchased a limited number of
+     * times and can't be upgraded to unique
+     */
+    bool excludeLimitedNonUpgradable = false;
+
+    /**
+     * @brief Pass True to exclude gifts that can be purchased a limited number of
+     * times and can be upgraded to unique
+     */
+    bool excludeLimitedUpgradable = false;
+
+    /**
+     * @brief Pass True to exclude unique gifts
+     */
+    bool excludeUnique = false;
+
+    /**
+     * @brief Pass True to exclude gifts that can be purchased an unlimited number of
+     * times
+     */
+    bool excludeUnlimited = false;
+
+    /**
+     * @brief The maximum number of gifts to be returned; 1-100. Defaults to 100.
+     */
+    std::int32_t limit = 0;
+
+    /**
+     * @brief Offset of the first entry to return as received from the previous
+     * request; use an empty string to get the first chunk of results
+     */
+    std::string offset = "";
+
+    /**
+     * @brief Pass True to sort results by gift price instead of send date. Sorting is
+     * applied before pagination.
+     */
+    bool sortByPrice = false;
+};
+
+/**
+ * @brief Arguments for Api::getUserPersonalChatMessages.
+ * @ingroup api
+ */
+struct GetUserPersonalChatMessagesArgs {
+    /**
+     * @brief The maximum number of messages to return; 1-20
+     */
+    std::int32_t limit { };
+
+    /**
+     * @brief Unique identifier for the target user
+     */
+    std::int64_t userId { };
+};
+
+/**
+ * @brief Arguments for Api::getUserProfileAudios.
+ * @ingroup api
+ */
+struct GetUserProfileAudiosArgs {
+    /**
+     * @brief Unique identifier of the target user
+     */
+    std::int64_t userId { };
+
+    /**
+     * @brief Limits the number of audios to be retrieved. Values between 1-100 are
+     * accepted. Defaults to 100.
+     */
+    std::int32_t limit = 0;
+
+    /**
+     * @brief Sequential number of the first audio to be returned. By default, all
+     * audios are returned.
+     */
+    std::int32_t offset = 0;
+};
+
+/**
+ * @brief Arguments for Api::getUserProfilePhotos.
+ * @ingroup api
+ */
+struct GetUserProfilePhotosArgs {
+    /**
+     * @brief Unique identifier of the target user
+     */
+    std::int64_t userId { };
+
+    /**
+     * @brief Sequential number of the first photo to be returned. By default, all
+     * photos are returned.
+     */
+    std::int32_t offset = 0;
+
+    /**
+     * @brief Limits the number of photos to be retrieved. Values between 1-100 are
+     * accepted. Defaults to 100.
+     */
+    std::int32_t limit = 100;
+};
+
+/**
+ * @brief Arguments for Api::giftPremiumSubscription.
+ * @ingroup api
+ */
+struct GiftPremiumSubscriptionArgs {
+    /**
+     * @brief Number of months the Telegram Premium subscription will be active for
+     * the user; must be one of 3, 6, or 12
+     */
+    std::int32_t monthCount { };
+
+    /**
+     * @brief Number of Telegram Stars to pay for the Telegram Premium subscription;
+     * must be 1000 for 3 months, 1500 for 6 months, and 2500 for 12 months
+     */
+    std::int32_t starCount { };
+
+    /**
+     * @brief Unique identifier of the target user who will receive a Telegram Premium
+     * subscription
+     */
+    std::int64_t userId { };
+
+    /**
+     * @brief Text that will be shown along with the service message about the
+     * subscription; 0-128 characters
+     */
+    std::string text = "";
+
+    /**
+     * @brief A JSON-serialized list of special entities that appear in the gift text.
+     * It can be specified instead of text_parse_mode. Entities other than
+     * “bold”, “italic”, “underline”, “strikethrough”, “spoiler”,
+     * “custom_emoji”, and “date_time” are ignored.
+     */
+    std::vector<std::shared_ptr<MessageEntity>> textEntities = { };
+
+    /**
+     * @brief Mode for parsing entities in the text. See formatting options for more
+     * details. Entities other than “bold”, “italic”, “underline”,
+     * “strikethrough”, “spoiler”, “custom_emoji”, and “date_time” are ignored.
+     */
+    std::string textParseMode = "";
+};
+
+/**
+ * @brief Arguments for Api::hideGeneralForumTopic.
+ * @ingroup api
+ */
+struct HideGeneralForumTopicArgs {
+    /**
+     * @brief Unique identifier for the target chat or username of the target
+     * supergroup in the format @username
+     */
+    std::variant<std::int64_t, std::string> chatId { };
+};
+
+/**
+ * @brief Arguments for Api::leaveChat.
+ * @ingroup api
+ */
+struct LeaveChatArgs {
+    /**
+     * @brief Unique identifier for the target chat or username of the target
+     * supergroup or channel in the format @username. Channel direct messages
+     * chats aren't supported; leave the corresponding channel instead.
+     */
+    std::variant<std::int64_t, std::string> chatId { };
+};
+
+/**
+ * @brief Arguments for Api::pinChatMessage.
+ * @ingroup api
+ */
+struct PinChatMessageArgs {
+    /**
+     * @brief Unique identifier for the target chat or username of the target channel
+     * in the format @username
+     */
+    std::variant<std::int64_t, std::string> chatId { };
+
+    /**
+     * @brief Identifier of a message to pin
+     */
+    std::int32_t messageId { };
+
+    /**
+     * @brief Unique identifier of the business connection on behalf of which the
+     * message will be pinned
+     */
+    std::string businessConnectionId = "";
+
+    /**
+     * @brief Pass True if it is not necessary to send a notification to all chat
+     * members about the new pinned message. Notifications are always disabled
+     * in channels and private chats.
+     */
+    bool disableNotification = false;
+};
+
+/**
+ * @brief Arguments for Api::postStory.
+ * @ingroup api
+ */
+struct PostStoryArgs {
+    /**
+     * @brief Period after which the story is moved to the archive, in seconds; must
+     * be one of 6 * 3600, 12 * 3600, 86400, or 2 * 86400
+     */
+    std::int32_t activePeriod { };
+
+    /**
+     * @brief Unique identifier of the business connection
+     */
+    std::string businessConnectionId { };
+
+    /**
+     * @brief Content of the story
+     */
+    std::shared_ptr<InputStoryContent> content { };
+
+    /**
+     * @brief A JSON-serialized list of clickable areas to be shown on the story
+     */
+    std::vector<std::shared_ptr<StoryArea>> areas = { };
+
+    /**
+     * @brief Caption of the story, 0-2048 characters after entities parsing
+     */
+    std::string caption = "";
+
+    /**
+     * @brief A JSON-serialized list of special entities that appear in the caption,
+     * which can be specified instead of parse_mode
+     */
+    std::vector<std::shared_ptr<MessageEntity>> captionEntities = { };
+
+    /**
+     * @brief Mode for parsing entities in the story caption. See formatting options
+     * for more details.
+     */
+    std::string parseMode = "";
+
+    /**
+     * @brief Pass True to keep the story accessible after it expires
+     */
+    bool postToChatPage = false;
+
+    /**
+     * @brief Pass True if the content of the story must be protected from forwarding
+     * and screenshotting
+     */
+    bool protectContent = false;
+};
+
+/**
+ * @brief Arguments for Api::promoteChatMember.
+ * @ingroup api
+ */
+struct PromoteChatMemberArgs {
+    /**
+     * @brief Unique identifier for the target chat or username of the target channel
+     * in the format @username
+     */
+    std::variant<std::int64_t, std::string> chatId { };
+
+    /**
+     * @brief Unique identifier of the target user
+     */
+    std::int64_t userId { };
+
+    /**
+     * @brief Pass True if the administrator can change chat title, photo and other
+     * settings
+     */
+    bool canChangeInfo = false;
+
+    /**
+     * @brief Pass True if the administrator can post messages in the channel, approve
+     * suggested posts, or access channel statistics; for channels only
+     */
+    bool canPostMessages = false;
+
+    /**
+     * @brief Pass True if the administrator can edit messages of other users and can
+     * pin messages; for channels only
+     */
+    bool canEditMessages = false;
+
+    /**
+     * @brief Pass True if the administrator can delete messages of other users
+     */
+    bool canDeleteMessages = false;
+
+    /**
+     * @brief Pass True if the administrator can invite new users to the chat
+     */
+    bool canInviteUsers = false;
+
+    /**
+     * @brief Pass True if the administrator can pin messages; for supergroups only
+     */
+    bool canPinMessages = false;
+
+    /**
+     * @brief Pass True if the administrator can add new administrators with a subset
+     * of their own privileges or demote administrators that they have
+     * promoted, directly or indirectly (promoted by administrators that were
+     * appointed by him)
+     */
+    bool canPromoteMembers = false;
+
+    /**
+     * @brief Pass True if the administrator's presence in the chat is hidden
+     */
+    bool isAnonymous = false;
+
+    /**
+     * @brief Pass True if the administrator can access the chat event log, get boost
+     * list, see hidden supergroup and channel members, report spam messages,
+     * ignore slow mode, and send messages to the chat without paying Telegram
+     * Stars. Implied by any other administrator privilege.
+     */
+    bool canManageChat = false;
+
+    /**
+     * @brief Pass True if the administrator can manage video chats
+     */
+    bool canManageVideoChats = false;
+
+    /**
+     * @brief Pass True if the administrator can restrict, ban or unban chat members,
+     * or access supergroup statistics. For backward compatibility, defaults to
+     * True for promotions of channel administrators.
+     */
+    bool canRestrictMembers = false;
+
+    /**
+     * @brief Pass True if the user is allowed to create, rename, close, and reopen
+     * forum topics; for supergroups only
+     */
+    bool canManageTopics = false;
+
+    /**
+     * @brief Pass True if the administrator can post stories to the chat
+     */
+    bool canPostStories = false;
+
+    /**
+     * @brief Pass True if the administrator can edit stories posted by other users,
+     * post stories to the chat page, pin chat stories, and access the chat's
+     * story archive
+     */
+    bool canEditStories = false;
+
+    /**
+     * @brief Pass True if the administrator can delete stories posted by other users
+     */
+    bool canDeleteStories = false;
+
+    /**
+     * @brief Pass True if the administrator can manage direct messages within the
+     * channel and decline suggested posts; for channels only
+     */
+    bool canManageDirectMessages = false;
+
+    /**
+     * @brief Pass True if the administrator can edit the tags of regular members; for
+     * groups and supergroups only
+     */
+    bool canManageTags = false;
+};
+
+/**
+ * @brief Arguments for Api::readBusinessMessage.
+ * @ingroup api
+ */
+struct ReadBusinessMessageArgs {
+    /**
+     * @brief Unique identifier of the chat in which the message was received. The
+     * chat must have been active in the last 24 hours.
+     */
+    std::variant<std::int64_t, std::string> chatId { };
+
+    /**
+     * @brief Unique identifier of the business connection on behalf of which to read
+     * the message
+     */
+    std::string businessConnectionId { };
+
+    /**
+     * @brief Unique identifier of the message to mark as read
+     */
+    std::int32_t messageId { };
+};
+
+/**
+ * @brief Arguments for Api::refundStarPayment.
+ * @ingroup api
+ */
+struct RefundStarPaymentArgs {
+    /**
+     * @brief Telegram payment identifier
+     */
+    std::string telegramPaymentChargeId { };
+
+    /**
+     * @brief Identifier of the user whose payment will be refunded
+     */
+    std::int64_t userId { };
+};
+
+/**
+ * @brief Arguments for Api::removeBusinessAccountProfilePhoto.
+ * @ingroup api
+ */
+struct RemoveBusinessAccountProfilePhotoArgs {
+    /**
+     * @brief Unique identifier of the business connection
+     */
+    std::string businessConnectionId { };
+
+    /**
+     * @brief Pass True to remove the public photo, which is visible even if the main
+     * photo is hidden by the business account's privacy settings. After the
+     * main photo is removed, the previous profile photo (if present) becomes
+     * the main photo.
+     */
+    bool isPublic = false;
+};
+
+/**
+ * @brief Arguments for Api::removeChatVerification.
+ * @ingroup api
+ */
+struct RemoveChatVerificationArgs {
+    /**
+     * @brief Unique identifier for the target chat or username of the target bot or
+     * channel in the format @username
+     */
+    std::variant<std::int64_t, std::string> chatId { };
+};
+
+/**
+ * @brief Arguments for Api::removeUserVerification.
+ * @ingroup api
+ */
+struct RemoveUserVerificationArgs {
+    /**
+     * @brief Unique identifier of the target user
+     */
+    std::int64_t userId { };
+};
+
+/**
+ * @brief Arguments for Api::reopenForumTopic.
+ * @ingroup api
+ */
+struct ReopenForumTopicArgs {
+    /**
+     * @brief Unique identifier for the target chat or username of the target
+     * supergroup in the format @username
+     */
+    std::variant<std::int64_t, std::string> chatId { };
+
+    /**
+     * @brief Unique identifier for the target message thread of the forum topic
+     */
+    std::int32_t messageThreadId { };
+};
+
+/**
+ * @brief Arguments for Api::reopenGeneralForumTopic.
+ * @ingroup api
+ */
+struct ReopenGeneralForumTopicArgs {
+    /**
+     * @brief Unique identifier for the target chat or username of the target
+     * supergroup in the format @username
+     */
+    std::variant<std::int64_t, std::string> chatId { };
+};
+
+/**
+ * @brief Arguments for Api::replaceManagedBotToken.
+ * @ingroup api
+ */
+struct ReplaceManagedBotTokenArgs {
+    /**
+     * @brief User identifier of the managed bot whose token will be replaced
+     */
+    std::int64_t userId { };
+};
+
+/**
+ * @brief Arguments for Api::replaceStickerInSet.
+ * @ingroup api
+ */
+struct ReplaceStickerInSetArgs {
+    /**
+     * @brief User identifier of the sticker set owner
+     */
+    std::int64_t userId { };
+
+    /**
+     * @brief Sticker set name
+     */
+    std::string name { };
+
+    /**
+     * @brief File identifier of the replaced sticker
+     */
+    std::string oldSticker { };
+
+    /**
+     * @brief A JSON-serialized object with information about the added sticker. If
+     * exactly the same sticker had already been added to the set, then the set
+     * remains unchanged.
+     */
+    std::shared_ptr<InputSticker> sticker { };
+};
+
+/**
+ * @brief Arguments for Api::repostStory.
+ * @ingroup api
+ */
+struct RepostStoryArgs {
+    /**
+     * @brief Period after which the story is moved to the archive, in seconds; must
+     * be one of 6 * 3600, 12 * 3600, 86400, or 2 * 86400
+     */
+    std::int32_t activePeriod { };
+
+    /**
+     * @brief Unique identifier of the business connection
+     */
+    std::string businessConnectionId { };
+
+    /**
+     * @brief Unique identifier of the chat which posted the story that should be
+     * reposted
+     */
+    std::variant<std::int64_t, std::string> fromChatId { };
+
+    /**
+     * @brief Unique identifier of the story that should be reposted
+     */
+    std::int32_t fromStoryId { };
+
+    /**
+     * @brief Pass True to keep the story accessible after it expires
+     */
+    bool postToChatPage = false;
+
+    /**
+     * @brief Pass True if the content of the story must be protected from forwarding
+     * and screenshotting
+     */
+    bool protectContent = false;
+};
+
+/**
+ * @brief Arguments for Api::restrictChatMember.
+ * @ingroup api
+ */
+struct RestrictChatMemberArgs {
+    /**
+     * @brief Unique identifier for the target chat or username of the target
+     * supergroup in the format @username
+     */
+    std::variant<std::int64_t, std::string> chatId { };
+
+    /**
+     * @brief Unique identifier of the target user
+     */
+    std::int64_t userId { };
+
+    /**
+     * @brief A JSON-serialized object for new user permissions
+     */
+    std::shared_ptr<ChatPermissions> permissions { };
+
+    /**
+     * @brief Date when restrictions will be lifted for the user; Unix time. If user
+     * is restricted for more than 366 days or less than 30 seconds from the
+     * current time, they are considered to be restricted forever.
+     */
+    std::int32_t untilDate = 0;
+
+    /**
+     * @brief Pass True if chat permissions are set independently. Otherwise, the
+     * can_send_other_messages and can_add_web_page_previews permissions will
+     * imply the can_send_messages, can_send_audios, can_send_documents,
+     * can_send_photos, can_send_videos, can_send_video_notes, and
+     * can_send_voice_notes permissions; the can_send_polls permission will
+     * imply the can_send_messages permission.
+     */
+    bool useIndependentChatPermissions = false;
+};
+
+/**
+ * @brief Arguments for Api::revokeChatInviteLink.
+ * @ingroup api
+ */
+struct RevokeChatInviteLinkArgs {
+    /**
+     * @brief Unique identifier of the target chat or username of the target channel
+     * in the format @username
+     */
+    std::variant<std::int64_t, std::string> chatId { };
+
+    /**
+     * @brief The invite link to revoke
+     */
+    std::string inviteLink { };
+};
+
+/**
+ * @brief Arguments for Api::savePreparedInlineMessage.
+ * @ingroup api
+ */
+struct SavePreparedInlineMessageArgs {
+    /**
+     * @brief A JSON-serialized object describing the message to be sent
+     */
+    std::shared_ptr<InlineQueryResult> result { };
+
+    /**
+     * @brief Unique identifier of the target user that can use the prepared message
+     */
+    std::int64_t userId { };
+
+    /**
+     * @brief Pass True if the message can be sent to private chats with bots
+     */
+    bool allowBotChats = false;
+
+    /**
+     * @brief Pass True if the message can be sent to channel chats
+     */
+    bool allowChannelChats = false;
+
+    /**
+     * @brief Pass True if the message can be sent to group and supergroup chats
+     */
+    bool allowGroupChats = false;
+
+    /**
+     * @brief Pass True if the message can be sent to private chats with users
+     */
+    bool allowUserChats = false;
+};
+
+/**
+ * @brief Arguments for Api::savePreparedKeyboardButton.
+ * @ingroup api
+ */
+struct SavePreparedKeyboardButtonArgs {
+    /**
+     * @brief A JSON-serialized object describing the button to be saved. The button
+     * must be of the type request_users, request_chat, or request_managed_bot.
+     */
+    std::shared_ptr<KeyboardButton> button { };
+
+    /**
+     * @brief Unique identifier of the target user that can use the button
+     */
+    std::int64_t userId { };
+};
+
+/**
+ * @brief Arguments for Api::sendAnimation.
+ * @ingroup api
+ */
+struct SendAnimationArgs {
+    /**
+     * @brief Unique identifier for the target chat or username of the target bot,
+     * supergroup or channel in the format @username
+     */
+    std::variant<std::int64_t, std::string> chatId { };
+
+    /**
+     * @brief Animation to send. Pass a file_id as String to send an animation that
+     * exists on the Telegram servers (recommended), pass an HTTP URL as a
+     * String for Telegram to get an animation from the Internet, or upload a
+     * new animation using multipart/form-data. More information on Sending
+     * Files »
+     */
+    std::variant<std::shared_ptr<InputFile>, std::string> animation { };
+
+    /**
+     * @brief Duration of sent animation in seconds
+     */
+    std::int32_t duration = 0;
+
+    /**
+     * @brief Animation width
+     */
+    std::int32_t width = 0;
+
+    /**
+     * @brief Animation height
+     */
+    std::int32_t height = 0;
+
+    /**
+     * @brief Thumbnail of the file sent; can be ignored if thumbnail generation for
+     * the file is supported server-side. The thumbnail should be in JPEG
+     * format and less than 200 kB in size. A thumbnail's width and height
+     * should not exceed 320. Ignored if the file is not uploaded using
+     * multipart/form-data. Thumbnails can't be reused and can be only uploaded
+     * as a new file, so you can pass “attach://<file_attach_name>” if the
+     * thumbnail was uploaded using multipart/form-data under
+     * <file_attach_name>. More information on Sending Files »
+     */
+    std::variant<std::shared_ptr<InputFile>, std::string> thumbnail = { };
+
+    /**
+     * @brief Animation caption (may also be used when resending animation by
+     * file_id), 0-1024 characters after entities parsing
+     */
+    std::string caption = "";
+
+    /**
+     * @brief Description of the message to reply to
+     */
+    std::shared_ptr<ReplyParameters> replyParameters = nullptr;
+
+    /**
+     * @brief Additional interface options. A JSON-serialized object for an inline
+     * keyboard, custom reply keyboard, instructions to remove a reply keyboard
+     * or to force a reply from the user.
+     */
+    std::variant<std::shared_ptr<InlineKeyboardMarkup>, std::shared_ptr<ReplyKeyboardMarkup>,
+                 std::shared_ptr<ReplyKeyboardRemove>, std::shared_ptr<ForceReply>>
+        replyMarkup = { };
+
+    /**
+     * @brief Mode for parsing entities in the animation caption. See formatting
+     * options for more details.
+     */
+    std::string parseMode = "";
+
+    /**
+     * @brief Sends the message silently. Users will receive a notification with no
+     * sound.
+     */
+    bool disableNotification = false;
+
+    /**
+     * @brief A JSON-serialized list of special entities that appear in the caption,
+     * which can be specified instead of parse_mode
+     */
+    std::vector<std::shared_ptr<MessageEntity>> captionEntities = { };
+
+    /**
+     * @brief Unique identifier for the target message thread (topic) of a forum; for
+     * forum supergroups and private chats of bots with forum topic mode
+     * enabled only
+     */
+    std::int32_t messageThreadId = 0;
+
+    /**
+     * @brief Protects the contents of the sent message from forwarding and saving
+     */
+    bool protectContent = false;
+
+    /**
+     * @brief Pass True if the animation needs to be covered with a spoiler animation
+     */
+    bool hasSpoiler = false;
+
+    /**
+     * @brief Unique identifier of the business connection on behalf of which the
+     * message will be sent
+     */
+    std::string businessConnectionId = "";
+
+    /**
+     * @brief Pass True to allow up to 1000 messages per second, ignoring broadcasting
+     * limits for a fee of 0.1 Telegram Stars per message. The relevant Stars
+     * will be withdrawn from the bot's balance.
+     */
+    bool allowPaidBroadcast = false;
+
+    /**
+     * @brief For outgoing ephemeral messages, identifier of the callback query which
+     * triggered the message if any
+     */
+    std::string callbackQueryId = "";
+
+    /**
+     * @brief Identifier of the direct messages topic to which the message will be
+     * sent; required if the message is sent to a direct messages chat
+     */
+    std::int64_t directMessagesTopicId = 0;
+
+    /**
+     * @brief Unique identifier of the message effect to be added to the message; for
+     * private chats only
+     */
+    std::string messageEffectId = "";
+
+    /**
+     * @brief For outgoing ephemeral messages, unique identifier of the user who will
+     * receive the message; for group and supergroup chats only. It is not
+     * guaranteed that the user will receive the message, especially if they
+     * are offline. See ephemeral message sending for more details.
+     */
+    std::int64_t receiverUserId = 0;
+
+    /**
+     * @brief Pass True if the caption must be shown above the message media
+     */
+    bool showCaptionAboveMedia = false;
+
+    /**
+     * @brief A JSON-serialized object containing the parameters of the suggested post
+     * to send; for direct messages chats only. If the message is sent as a
+     * reply to another suggested post, then that suggested post is
+     * automatically declined.
+     */
+    std::shared_ptr<SuggestedPostParameters> suggestedPostParameters = nullptr;
+};
+
+/**
+ * @brief Arguments for Api::sendAudio.
+ * @ingroup api
+ */
+struct SendAudioArgs {
+    /**
+     * @brief Unique identifier for the target chat or username of the target bot,
+     * supergroup or channel in the format @username
+     */
+    std::variant<std::int64_t, std::string> chatId { };
+
+    /**
+     * @brief Audio file to send. Pass a file_id as String to send an audio file that
+     * exists on the Telegram servers (recommended), pass an HTTP URL as a
+     * String for Telegram to get an audio file from the Internet, or upload a
+     * new one using multipart/form-data. More information on Sending Files »
+     */
+    std::variant<std::shared_ptr<InputFile>, std::string> audio { };
+
+    /**
+     * @brief Audio caption, 0-1024 characters after entities parsing
+     */
+    std::string caption = "";
+
+    /**
+     * @brief Duration of the audio in seconds
+     */
+    std::int32_t duration = 0;
+
+    /**
+     * @brief Performer
+     */
+    std::string performer = "";
+
+    /**
+     * @brief Track name
+     */
+    std::string title = "";
+
+    /**
+     * @brief Thumbnail of the file sent; can be ignored if thumbnail generation for
+     * the file is supported server-side. The thumbnail should be in JPEG
+     * format and less than 200 kB in size. A thumbnail's width and height
+     * should not exceed 320. Ignored if the file is not uploaded using
+     * multipart/form-data. Thumbnails can't be reused and can be only uploaded
+     * as a new file, so you can pass “attach://<file_attach_name>” if the
+     * thumbnail was uploaded using multipart/form-data under
+     * <file_attach_name>. More information on Sending Files »
+     */
+    std::variant<std::shared_ptr<InputFile>, std::string> thumbnail = { };
+
+    /**
+     * @brief Description of the message to reply to
+     */
+    std::shared_ptr<ReplyParameters> replyParameters = nullptr;
+
+    /**
+     * @brief Additional interface options. A JSON-serialized object for an inline
+     * keyboard, custom reply keyboard, instructions to remove a reply keyboard
+     * or to force a reply from the user.
+     */
+    std::variant<std::shared_ptr<InlineKeyboardMarkup>, std::shared_ptr<ReplyKeyboardMarkup>,
+                 std::shared_ptr<ReplyKeyboardRemove>, std::shared_ptr<ForceReply>>
+        replyMarkup = { };
+
+    /**
+     * @brief Mode for parsing entities in the audio caption. See formatting options
+     * for more details.
+     */
+    std::string parseMode = "";
+
+    /**
+     * @brief Sends the message silently. Users will receive a notification with no
+     * sound.
+     */
+    bool disableNotification = false;
+
+    /**
+     * @brief A JSON-serialized list of special entities that appear in the caption,
+     * which can be specified instead of parse_mode
+     */
+    std::vector<std::shared_ptr<MessageEntity>> captionEntities = { };
+
+    /**
+     * @brief Unique identifier for the target message thread (topic) of a forum; for
+     * forum supergroups and private chats of bots with forum topic mode
+     * enabled only
+     */
+    std::int32_t messageThreadId = 0;
+
+    /**
+     * @brief Protects the contents of the sent message from forwarding and saving
+     */
+    bool protectContent = false;
+
+    /**
+     * @brief Unique identifier of the business connection on behalf of which the
+     * message will be sent
+     */
+    std::string businessConnectionId = "";
+
+    /**
+     * @brief Pass True to allow up to 1000 messages per second, ignoring broadcasting
+     * limits for a fee of 0.1 Telegram Stars per message. The relevant Stars
+     * will be withdrawn from the bot's balance.
+     */
+    bool allowPaidBroadcast = false;
+
+    /**
+     * @brief For outgoing ephemeral messages, identifier of the callback query which
+     * triggered the message if any
+     */
+    std::string callbackQueryId = "";
+
+    /**
+     * @brief Identifier of the direct messages topic to which the message will be
+     * sent; required if the message is sent to a direct messages chat
+     */
+    std::int64_t directMessagesTopicId = 0;
+
+    /**
+     * @brief Unique identifier of the message effect to be added to the message; for
+     * private chats only
+     */
+    std::string messageEffectId = "";
+
+    /**
+     * @brief For outgoing ephemeral messages, unique identifier of the user who will
+     * receive the message; for group and supergroup chats only. It is not
+     * guaranteed that the user will receive the message, especially if they
+     * are offline. See ephemeral message sending for more details.
+     */
+    std::int64_t receiverUserId = 0;
+
+    /**
+     * @brief A JSON-serialized object containing the parameters of the suggested post
+     * to send; for direct messages chats only. If the message is sent as a
+     * reply to another suggested post, then that suggested post is
+     * automatically declined.
+     */
+    std::shared_ptr<SuggestedPostParameters> suggestedPostParameters = nullptr;
+};
+
+/**
+ * @brief Arguments for Api::sendChatAction.
+ * @ingroup api
+ */
+struct SendChatActionArgs {
+    /**
+     * @brief Unique identifier for the target chat or username of the target bot or
+     * supergroup in the format @username. Channel chats and channel direct
+     * messages chats aren't supported.
+     */
+    std::variant<std::int64_t, std::string> chatId { };
+
+    /**
+     * @brief Type of action to broadcast. Choose one, depending on what the user is
+     * about to receive: typing for text messages, upload_photo for photos,
+     * record_video or upload_video for videos, record_voice or upload_voice
+     * for voice notes, upload_document for general files, choose_sticker for
+     * stickers, find_location for location data, record_video_note or
+     * upload_video_note for video notes.
+     */
+    std::string action { };
+
+    /**
+     * @brief Unique identifier for the target message thread or topic of a forum; for
+     * supergroups and private chats of bots with forum topic mode enabled only
+     */
+    std::int32_t messageThreadId = 0;
+
+    /**
+     * @brief Unique identifier of the business connection on behalf of which the
+     * action will be sent
+     */
+    std::string businessConnectionId = "";
+};
+
+/**
+ * @brief Arguments for Api::sendChatJoinRequestWebApp.
+ * @ingroup api
+ */
+struct SendChatJoinRequestWebAppArgs {
+    /**
+     * @brief Unique identifier of the join request query
+     */
+    std::string chatJoinRequestQueryId { };
+
+    /**
+     * @brief An HTTPS URL of a Web App to be opened with additional data as specified
+     * in Initializing Web Apps
+     */
+    std::string webAppUrl { };
+};
+
+/**
+ * @brief Arguments for Api::sendChecklist.
+ * @ingroup api
+ */
+struct SendChecklistArgs {
+    /**
+     * @brief Unique identifier for the target chat or username of the target bot in
+     * the format @username
+     */
+    std::variant<std::int64_t, std::string> chatId { };
+
+    /**
+     * @brief Unique identifier of the business connection on behalf of which the
+     * message will be sent
+     */
+    std::string businessConnectionId { };
+
+    /**
+     * @brief A JSON-serialized object for the checklist to send
+     */
+    std::shared_ptr<InputChecklist> checklist { };
+
+    /**
+     * @brief Sends the message silently. Users will receive a notification with no
+     * sound.
+     */
+    bool disableNotification = false;
+
+    /**
+     * @brief Unique identifier of the message effect to be added to the message
+     */
+    std::string messageEffectId = "";
+
+    /**
+     * @brief Protects the contents of the sent message from forwarding and saving
+     */
+    bool protectContent = false;
+
+    /**
+     * @brief A JSON-serialized object for an inline keyboard
+     */
+    std::shared_ptr<InlineKeyboardMarkup> replyMarkup = nullptr;
+
+    /**
+     * @brief A JSON-serialized object for description of the message to reply to
+     */
+    std::shared_ptr<ReplyParameters> replyParameters = nullptr;
+};
+
+/**
+ * @brief Arguments for Api::sendContact.
+ * @ingroup api
+ */
+struct SendContactArgs {
+    /**
+     * @brief Unique identifier for the target chat or username of the target bot,
+     * supergroup or channel in the format @username
+     */
+    std::variant<std::int64_t, std::string> chatId { };
+
+    /**
+     * @brief Contact's phone number
+     */
+    std::string phoneNumber { };
+
+    /**
+     * @brief Contact's first name
+     */
+    std::string firstName { };
+
+    /**
+     * @brief Contact's last name
+     */
+    std::string lastName = "";
+
+    /**
+     * @brief Additional data about the contact in the form of a vCard, 0-2048 bytes
+     */
+    std::string vcard = "";
+
+    /**
+     * @brief Sends the message silently. Users will receive a notification with no
+     * sound.
+     */
+    bool disableNotification = false;
+
+    /**
+     * @brief Description of the message to reply to
+     */
+    std::shared_ptr<ReplyParameters> replyParameters = nullptr;
+
+    /**
+     * @brief Additional interface options. A JSON-serialized object for an inline
+     * keyboard, custom reply keyboard, instructions to remove a reply keyboard
+     * or to force a reply from the user.
+     */
+    std::variant<std::shared_ptr<InlineKeyboardMarkup>, std::shared_ptr<ReplyKeyboardMarkup>,
+                 std::shared_ptr<ReplyKeyboardRemove>, std::shared_ptr<ForceReply>>
+        replyMarkup = { };
+
+    /**
+     * @brief Unique identifier for the target message thread (topic) of a forum; for
+     * forum supergroups and private chats of bots with forum topic mode
+     * enabled only
+     */
+    std::int32_t messageThreadId = 0;
+
+    /**
+     * @brief Protects the contents of the sent message from forwarding and saving
+     */
+    bool protectContent = false;
+
+    /**
+     * @brief Unique identifier of the business connection on behalf of which the
+     * message will be sent
+     */
+    std::string businessConnectionId = "";
+
+    /**
+     * @brief Pass True to allow up to 1000 messages per second, ignoring broadcasting
+     * limits for a fee of 0.1 Telegram Stars per message. The relevant Stars
+     * will be withdrawn from the bot's balance.
+     */
+    bool allowPaidBroadcast = false;
+
+    /**
+     * @brief For outgoing ephemeral messages, identifier of the callback query which
+     * triggered the message if any
+     */
+    std::string callbackQueryId = "";
+
+    /**
+     * @brief Identifier of the direct messages topic to which the message will be
+     * sent; required if the message is sent to a direct messages chat
+     */
+    std::int64_t directMessagesTopicId = 0;
+
+    /**
+     * @brief Unique identifier of the message effect to be added to the message; for
+     * private chats only
+     */
+    std::string messageEffectId = "";
+
+    /**
+     * @brief For outgoing ephemeral messages, unique identifier of the user who will
+     * receive the message; for group and supergroup chats only. It is not
+     * guaranteed that the user will receive the message, especially if they
+     * are offline. See ephemeral message sending for more details.
+     */
+    std::int64_t receiverUserId = 0;
+
+    /**
+     * @brief A JSON-serialized object containing the parameters of the suggested post
+     * to send; for direct messages chats only. If the message is sent as a
+     * reply to another suggested post, then that suggested post is
+     * automatically declined.
+     */
+    std::shared_ptr<SuggestedPostParameters> suggestedPostParameters = nullptr;
+};
+
+/**
+ * @brief Arguments for Api::sendDice.
+ * @ingroup api
+ */
+struct SendDiceArgs {
+    /**
+     * @brief Unique identifier for the target chat or username of the target bot,
+     * supergroup or channel in the format @username
+     */
+    std::variant<std::int64_t, std::string> chatId { };
+
+    /**
+     * @brief Sends the message silently. Users will receive a notification with no
+     * sound.
+     */
+    bool disableNotification = false;
+
+    /**
+     * @brief Description of the message to reply to
+     */
+    std::shared_ptr<ReplyParameters> replyParameters = nullptr;
+
+    /**
+     * @brief Additional interface options. A JSON-serialized object for an inline
+     * keyboard, custom reply keyboard, instructions to remove a reply keyboard
+     * or to force a reply from the user.
+     */
+    std::variant<std::shared_ptr<InlineKeyboardMarkup>, std::shared_ptr<ReplyKeyboardMarkup>,
+                 std::shared_ptr<ReplyKeyboardRemove>, std::shared_ptr<ForceReply>>
+        replyMarkup = { };
+
+    /**
+     * @brief Emoji on which the dice throw animation is based. Currently, must be one
+     * of “”, “”, “”, “”, “”, or “”. Dice can have values 1-6 for “”, “” and
+     * “”, values 1-5 for “” and “”, and values 1-64 for “”. Defaults to “”.
+     */
+    std::string emoji = "";
+
+    /**
+     * @brief Unique identifier for the target message thread (topic) of a forum; for
+     * forum supergroups and private chats of bots with forum topic mode
+     * enabled only
+     */
+    std::int32_t messageThreadId = 0;
+
+    /**
+     * @brief Protects the contents of the sent message from forwarding
+     */
+    bool protectContent = false;
+
+    /**
+     * @brief Unique identifier of the business connection on behalf of which the
+     * message will be sent
+     */
+    std::string businessConnectionId = "";
+
+    /**
+     * @brief Pass True to allow up to 1000 messages per second, ignoring broadcasting
+     * limits for a fee of 0.1 Telegram Stars per message. The relevant Stars
+     * will be withdrawn from the bot's balance.
+     */
+    bool allowPaidBroadcast = false;
+
+    /**
+     * @brief Identifier of the direct messages topic to which the message will be
+     * sent; required if the message is sent to a direct messages chat
+     */
+    std::int64_t directMessagesTopicId = 0;
+
+    /**
+     * @brief Unique identifier of the message effect to be added to the message; for
+     * private chats only
+     */
+    std::string messageEffectId = "";
+
+    /**
+     * @brief A JSON-serialized object containing the parameters of the suggested post
+     * to send; for direct messages chats only. If the message is sent as a
+     * reply to another suggested post, then that suggested post is
+     * automatically declined.
+     */
+    std::shared_ptr<SuggestedPostParameters> suggestedPostParameters = nullptr;
+};
+
+/**
+ * @brief Arguments for Api::sendDocument.
+ * @ingroup api
+ */
+struct SendDocumentArgs {
+    /**
+     * @brief Unique identifier for the target chat or username of the target bot,
+     * supergroup or channel in the format @username
+     */
+    std::variant<std::int64_t, std::string> chatId { };
+
+    /**
+     * @brief File to send. Pass a file_id as String to send a file that exists on the
+     * Telegram servers (recommended), pass an HTTP URL as a String for
+     * Telegram to get a file from the Internet, or upload a new one using
+     * multipart/form-data. More information on Sending Files »
+     */
+    std::variant<std::shared_ptr<InputFile>, std::string> document { };
+
+    /**
+     * @brief Thumbnail of the file sent; can be ignored if thumbnail generation for
+     * the file is supported server-side. The thumbnail should be in JPEG
+     * format and less than 200 kB in size. A thumbnail's width and height
+     * should not exceed 320. Ignored if the file is not uploaded using
+     * multipart/form-data. Thumbnails can't be reused and can be only uploaded
+     * as a new file, so you can pass “attach://<file_attach_name>” if the
+     * thumbnail was uploaded using multipart/form-data under
+     * <file_attach_name>. More information on Sending Files »
+     */
+    std::variant<std::shared_ptr<InputFile>, std::string> thumbnail = { };
+
+    /**
+     * @brief Document caption (may also be used when resending documents by file_id),
+     * 0-1024 characters after entities parsing
+     */
+    std::string caption = "";
+
+    /**
+     * @brief Description of the message to reply to
+     */
+    std::shared_ptr<ReplyParameters> replyParameters = nullptr;
+
+    /**
+     * @brief Additional interface options. A JSON-serialized object for an inline
+     * keyboard, custom reply keyboard, instructions to remove a reply keyboard
+     * or to force a reply from the user.
+     */
+    std::variant<std::shared_ptr<InlineKeyboardMarkup>, std::shared_ptr<ReplyKeyboardMarkup>,
+                 std::shared_ptr<ReplyKeyboardRemove>, std::shared_ptr<ForceReply>>
+        replyMarkup = { };
+
+    /**
+     * @brief Mode for parsing entities in the document caption. See formatting
+     * options for more details.
+     */
+    std::string parseMode = "";
+
+    /**
+     * @brief Sends the message silently. Users will receive a notification with no
+     * sound.
+     */
+    bool disableNotification = false;
+
+    /**
+     * @brief A JSON-serialized list of special entities that appear in the caption,
+     * which can be specified instead of parse_mode
+     */
+    std::vector<std::shared_ptr<MessageEntity>> captionEntities = { };
+
+    /**
+     * @brief Disables automatic server-side content type detection for files uploaded
+     * using multipart/form-data
+     */
+    bool disableContentTypeDetection = false;
+
+    /**
+     * @brief Unique identifier for the target message thread (topic) of a forum; for
+     * forum supergroups and private chats of bots with forum topic mode
+     * enabled only
+     */
+    std::int32_t messageThreadId = 0;
+
+    /**
+     * @brief Protects the contents of the sent message from forwarding and saving
+     */
+    bool protectContent = false;
+
+    /**
+     * @brief Unique identifier of the business connection on behalf of which the
+     * message will be sent
+     */
+    std::string businessConnectionId = "";
+
+    /**
+     * @brief Pass True to allow up to 1000 messages per second, ignoring broadcasting
+     * limits for a fee of 0.1 Telegram Stars per message. The relevant Stars
+     * will be withdrawn from the bot's balance.
+     */
+    bool allowPaidBroadcast = false;
+
+    /**
+     * @brief For outgoing ephemeral messages, identifier of the callback query which
+     * triggered the message if any
+     */
+    std::string callbackQueryId = "";
+
+    /**
+     * @brief Identifier of the direct messages topic to which the message will be
+     * sent; required if the message is sent to a direct messages chat
+     */
+    std::int64_t directMessagesTopicId = 0;
+
+    /**
+     * @brief Unique identifier of the message effect to be added to the message; for
+     * private chats only
+     */
+    std::string messageEffectId = "";
+
+    /**
+     * @brief For outgoing ephemeral messages, unique identifier of the user who will
+     * receive the message; for group and supergroup chats only. It is not
+     * guaranteed that the user will receive the message, especially if they
+     * are offline. See ephemeral message sending for more details.
+     */
+    std::int64_t receiverUserId = 0;
+
+    /**
+     * @brief A JSON-serialized object containing the parameters of the suggested post
+     * to send; for direct messages chats only. If the message is sent as a
+     * reply to another suggested post, then that suggested post is
+     * automatically declined.
+     */
+    std::shared_ptr<SuggestedPostParameters> suggestedPostParameters = nullptr;
+};
+
+/**
+ * @brief Arguments for Api::sendGame.
+ * @ingroup api
+ */
+struct SendGameArgs {
+    /**
+     * @brief Unique identifier for the target chat or username of the target bot in
+     * the format @username. Games can't be sent to channel direct messages
+     * chats and channel chats.
+     */
+    std::variant<std::int64_t, std::string> chatId { };
+
+    /**
+     * @brief Short name of the game, serves as the unique identifier for the game.
+     * Set up your games via @BotFather.
+     */
+    std::string gameShortName { };
+
+    /**
+     * @brief Description of the message to reply to
+     */
+    std::shared_ptr<ReplyParameters> replyParameters = nullptr;
+
+    /**
+     * @brief A JSON-serialized object for an inline keyboard. If empty, one 'Play
+     * game_title' button will be shown. If not empty, the first button must
+     * launch the game.
+     */
+    std::shared_ptr<InlineKeyboardMarkup> replyMarkup = nullptr;
+
+    /**
+     * @brief Sends the message silently. Users will receive a notification with no
+     * sound.
+     */
+    bool disableNotification = false;
+
+    /**
+     * @brief Unique identifier for the target message thread (topic) of a forum; for
+     * forum supergroups and private chats of bots with forum topic mode
+     * enabled only
+     */
+    std::int32_t messageThreadId = 0;
+
+    /**
+     * @brief Protects the contents of the sent message from forwarding and saving
+     */
+    bool protectContent = false;
+
+    /**
+     * @brief Unique identifier of the business connection on behalf of which the
+     * message will be sent
+     */
+    std::string businessConnectionId = "";
+
+    /**
+     * @brief Pass True to allow up to 1000 messages per second, ignoring broadcasting
+     * limits for a fee of 0.1 Telegram Stars per message. The relevant Stars
+     * will be withdrawn from the bot's balance.
+     */
+    bool allowPaidBroadcast = false;
+
+    /**
+     * @brief Unique identifier of the message effect to be added to the message; for
+     * private chats only
+     */
+    std::string messageEffectId = "";
+};
+
+/**
+ * @brief Arguments for Api::sendGift.
+ * @ingroup api
+ */
+struct SendGiftArgs {
+    /**
+     * @brief Identifier of the gift; limited gifts can't be sent to channel chats
+     */
+    std::string giftId { };
+
+    /**
+     * @brief Required if user_id is not specified. Unique identifier for the chat or
+     * username of the channel (in the format @username) that will receive the
+     * gift.
+     */
+    std::variant<std::int64_t, std::string> chatId = { };
+
+    /**
+     * @brief Pass True to pay for the gift upgrade from the bot's balance, thereby
+     * making the upgrade free for the receiver
+     */
+    bool payForUpgrade = false;
+
+    /**
+     * @brief Text that will be shown along with the gift; 0-128 characters
+     */
+    std::string text = "";
+
+    /**
+     * @brief A JSON-serialized list of special entities that appear in the gift text.
+     * It can be specified instead of text_parse_mode. Entities other than
+     * “bold”, “italic”, “underline”, “strikethrough”, “spoiler”,
+     * “custom_emoji”, and “date_time” are ignored.
+     */
+    std::vector<std::shared_ptr<MessageEntity>> textEntities = { };
+
+    /**
+     * @brief Mode for parsing entities in the text. See formatting options for more
+     * details. Entities other than “bold”, “italic”, “underline”,
+     * “strikethrough”, “spoiler”, “custom_emoji”, and “date_time” are ignored.
+     */
+    std::string textParseMode = "";
+
+    /**
+     * @brief Required if chat_id is not specified. Unique identifier of the target
+     * user who will receive the gift.
+     */
+    std::int64_t userId = 0;
+};
+
+/**
+ * @brief Arguments for Api::sendInvoice.
+ * @ingroup api
+ */
+struct SendInvoiceArgs {
+    /**
+     * @brief Unique identifier for the target chat or username of the target bot,
+     * supergroup or channel in the format @username
+     */
+    std::variant<std::int64_t, std::string> chatId { };
+
+    /**
+     * @brief Product name, 1-32 characters
+     */
+    std::string title { };
+
+    /**
+     * @brief Product description, 1-255 characters
+     */
+    std::string description { };
+
+    /**
+     * @brief Bot-defined invoice payload, 1-128 bytes. This will not be displayed to
+     * the user, use it for your internal processes.
+     */
+    std::string payload { };
+
+    /**
+     * @brief Payment provider token, obtained via @BotFather. Pass an empty string
+     * for payments in Telegram Stars.
+     */
+    std::string providerToken { };
+
+    /**
+     * @brief Three-letter ISO 4217 currency code, see more on currencies. Pass “XTR”
+     * for payments in Telegram Stars.
+     */
+    std::string currency { };
+
+    /**
+     * @brief Price breakdown, a JSON-serialized list of components (e.g. product
+     * price, tax, discount, delivery cost, delivery tax, bonus, etc.). Must
+     * contain exactly one item for payments in Telegram Stars.
+     */
+    std::vector<std::shared_ptr<LabeledPrice>> prices { };
+
+    /**
+     * @brief JSON-serialized data about the invoice, which will be shared with the
+     * payment provider. A detailed description of required fields should be
+     * provided by the payment provider.
+     */
+    std::string providerData = "";
+
+    /**
+     * @brief URL of the product photo for the invoice. Can be a photo of the goods or
+     * a marketing image for a service. People like it better when they see
+     * what they are paying for.
+     */
+    std::string photoUrl = "";
+
+    /**
+     * @brief Photo size in bytes
+     */
+    std::int32_t photoSize = 0;
+
+    /**
+     * @brief Photo width
+     */
+    std::int32_t photoWidth = 0;
+
+    /**
+     * @brief Photo height
+     */
+    std::int32_t photoHeight = 0;
+
+    /**
+     * @brief Pass True if you require the user's full name to complete the order.
+     * Ignored for payments in Telegram Stars.
+     */
+    bool needName = false;
+
+    /**
+     * @brief Pass True if you require the user's phone number to complete the order.
+     * Ignored for payments in Telegram Stars.
+     */
+    bool needPhoneNumber = false;
+
+    /**
+     * @brief Pass True if you require the user's email address to complete the order.
+     * Ignored for payments in Telegram Stars.
+     */
+    bool needEmail = false;
+
+    /**
+     * @brief Pass True if you require the user's shipping address to complete the
+     * order. Ignored for payments in Telegram Stars.
+     */
+    bool needShippingAddress = false;
+
+    /**
+     * @brief Pass True if the user's phone number should be sent to the provider.
+     * Ignored for payments in Telegram Stars.
+     */
+    bool sendPhoneNumberToProvider = false;
+
+    /**
+     * @brief Pass True if the user's email address should be sent to the provider.
+     * Ignored for payments in Telegram Stars.
+     */
+    bool sendEmailToProvider = false;
+
+    /**
+     * @brief Pass True if the final price depends on the shipping method. Ignored for
+     * payments in Telegram Stars.
+     */
+    bool isFlexible = false;
+
+    /**
+     * @brief Description of the message to reply to
+     */
+    std::shared_ptr<ReplyParameters> replyParameters = nullptr;
+
+    /**
+     * @brief A JSON-serialized object for an inline keyboard. If empty, one 'Pay
+     * total price' button will be shown. If not empty, the first button must
+     * be a Pay button.
+     */
+    std::shared_ptr<InlineKeyboardMarkup> replyMarkup = nullptr;
+
+    /**
+     * @brief Sends the message silently. Users will receive a notification with no
+     * sound.
+     */
+    bool disableNotification = false;
+
+    /**
+     * @brief Unique identifier for the target message thread (topic) of a forum; for
+     * forum supergroups and private chats of bots with forum topic mode
+     * enabled only
+     */
+    std::int32_t messageThreadId = 0;
+
+    /**
+     * @brief The maximum accepted amount for tips in the smallest units of the
+     * currency (integer, not float/double). For example, for a maximum tip of
+     * US$ 1.45 pass max_tip_amount = 145. See the exp parameter in
+     * currencies.json, it shows the number of digits past the decimal point
+     * for each currency (2 for the majority of currencies). Defaults to 0. Not
+     * supported for payments in Telegram Stars.
+     */
+    std::int32_t maxTipAmount = 0;
+
+    /**
+     * @brief A JSON-serialized Array of suggested amounts of tips in the smallest
+     * units of the currency (integer, not float/double). At most 4 suggested
+     * tip amounts can be specified. The suggested tip amounts must be
+     * positive, passed in a strictly increased order and must not exceed
+     * max_tip_amount.
+     */
+    std::vector<std::int32_t> suggestedTipAmounts = { };
+
+    /**
+     * @brief Unique deep-linking parameter. If left empty, forwarded copies of the
+     * sent message will have a Pay button, allowing multiple users to pay
+     * directly from the forwarded message, using the same invoice. If non-
+     * empty, forwarded copies of the sent message will have a URL button with
+     * a deep link to the bot (instead of a Pay button), with the value used as
+     * the start parameter.
+     */
+    std::string startParameter = "";
+
+    /**
+     * @brief Protects the contents of the sent message from forwarding and saving
+     */
+    bool protectContent = false;
+
+    /**
+     * @brief Pass True to allow up to 1000 messages per second, ignoring broadcasting
+     * limits for a fee of 0.1 Telegram Stars per message. The relevant Stars
+     * will be withdrawn from the bot's balance.
+     */
+    bool allowPaidBroadcast = false;
+
+    /**
+     * @brief Identifier of the direct messages topic to which the message will be
+     * sent; required if the message is sent to a direct messages chat
+     */
+    std::int64_t directMessagesTopicId = 0;
+
+    /**
+     * @brief Unique identifier of the message effect to be added to the message; for
+     * private chats only
+     */
+    std::string messageEffectId = "";
+
+    /**
+     * @brief A JSON-serialized object containing the parameters of the suggested post
+     * to send; for direct messages chats only. If the message is sent as a
+     * reply to another suggested post, then that suggested post is
+     * automatically declined.
+     */
+    std::shared_ptr<SuggestedPostParameters> suggestedPostParameters = nullptr;
+};
+
+/**
+ * @brief Arguments for Api::sendLivePhoto.
+ * @ingroup api
+ */
+struct SendLivePhotoArgs {
+    /**
+     * @brief Unique identifier for the target chat or username of the target channel
+     * (in the format @channelusername)
+     */
+    std::variant<std::int64_t, std::string> chatId { };
+
+    /**
+     * @brief Live photo video to send. The video must be no longer than 10 seconds
+     * and must not exceed 10 MB in size. Pass a file_id as String to send a
+     * video that exists on the Telegram servers (recommended) or upload a new
+     * video using multipart/form-data. More information on Sending Files ».
+     * Sending live photos by a URL is currently unsupported.
+     */
+    std::variant<std::shared_ptr<InputFile>, std::string> livePhoto { };
+
+    /**
+     * @brief The static photo to send. Pass a file_id as String to send a photo that
+     * exists on the Telegram servers (recommended) or upload a new video using
+     * multipart/form-data. More information on Sending Files ». Sending live
+     * photos by a URL is currently unsupported.
+     */
+    std::variant<std::shared_ptr<InputFile>, std::string> photo { };
+
+    /**
+     * @brief Pass True to allow up to 1000 messages per second, ignoring broadcasting
+     * limits for a fee of 0.1 Telegram Stars per message. The relevant Stars
+     * will be withdrawn from the bot's balance.
+     */
+    bool allowPaidBroadcast = false;
+
+    /**
+     * @brief Unique identifier of the business connection on behalf of which the
+     * message will be sent
+     */
+    std::string businessConnectionId = "";
+
+    /**
+     * @brief For outgoing ephemeral messages, identifier of the callback query which
+     * triggered the message if any
+     */
+    std::string callbackQueryId = "";
+
+    /**
+     * @brief Video caption (may also be used when resending videos by file_id),
+     * 0-1024 characters after entities parsing
+     */
+    std::string caption = "";
+
+    /**
+     * @brief A JSON-serialized list of special entities that appear in the caption,
+     * which can be specified instead of parse_mode
+     */
+    std::vector<std::shared_ptr<MessageEntity>> captionEntities = { };
+
+    /**
+     * @brief Identifier of the direct messages topic to which the message will be
+     * sent; required if the message is sent to a direct messages chat
+     */
+    std::int64_t directMessagesTopicId = 0;
+
+    /**
+     * @brief Sends the message silently. Users will receive a notification with no
+     * sound.
+     */
+    bool disableNotification = false;
+
+    /**
+     * @brief Pass True if the video needs to be covered with a spoiler animation
+     */
+    bool hasSpoiler = false;
+
+    /**
+     * @brief Unique identifier of the message effect to be added to the message; for
+     * private chats only
+     */
+    std::string messageEffectId = "";
+
+    /**
+     * @brief Unique identifier for the target message thread (topic) of a forum; for
+     * forum supergroups and private chats of bots with forum topic mode
+     * enabled only
+     */
+    std::int32_t messageThreadId = 0;
+
+    /**
+     * @brief Mode for parsing entities in the video caption. See formatting options
+     * for more details.
+     */
+    std::string parseMode = "";
+
+    /**
+     * @brief Protects the contents of the sent message from forwarding and saving
+     */
+    bool protectContent = false;
+
+    /**
+     * @brief For outgoing ephemeral messages, unique identifier of the user who will
+     * receive the message; for group and supergroup chats only. It is not
+     * guaranteed that the user will receive the message, especially if they
+     * are offline. See ephemeral message sending for more details.
+     */
+    std::int64_t receiverUserId = 0;
+
+    /**
+     * @brief Additional interface options. A JSON-serialized object for an inline
+     * keyboard, custom reply keyboard, instructions to remove a reply keyboard
+     * or to force a reply from the user.
+     */
+    std::variant<std::shared_ptr<InlineKeyboardMarkup>, std::shared_ptr<ReplyKeyboardMarkup>,
+                 std::shared_ptr<ReplyKeyboardRemove>, std::shared_ptr<ForceReply>>
+        replyMarkup = { };
+
+    /**
+     * @brief Description of the message to reply to
+     */
+    std::shared_ptr<ReplyParameters> replyParameters = nullptr;
+
+    /**
+     * @brief Pass True if the caption must be shown above the message media
+     */
+    bool showCaptionAboveMedia = false;
+
+    /**
+     * @brief A JSON-serialized object containing the parameters of the suggested post
+     * to send; for direct messages chats only. If the message is sent as a
+     * reply to another suggested post, then that suggested post is
+     * automatically declined.
+     */
+    std::shared_ptr<SuggestedPostParameters> suggestedPostParameters = nullptr;
+};
+
+/**
+ * @brief Arguments for Api::sendLocation.
+ * @ingroup api
+ */
+struct SendLocationArgs {
+    /**
+     * @brief Unique identifier for the target chat or username of the target bot,
+     * supergroup or channel in the format @username
+     */
+    std::variant<std::int64_t, std::string> chatId { };
+
+    /**
+     * @brief Latitude of the location
+     */
+    double latitude { };
+
+    /**
+     * @brief Longitude of the location
+     */
+    double longitude { };
+
+    /**
+     * @brief Period in seconds during which the location will be updated (see Live
+     * Locations), must be between 60 and 86400, or 0x7FFFFFFF for live
+     * locations that can be edited indefinitely. Must be 0 for ephemeral
+     * messages.
+     */
+    std::int32_t livePeriod = 0;
+
+    /**
+     * @brief Description of the message to reply to
+     */
+    std::shared_ptr<ReplyParameters> replyParameters = nullptr;
+
+    /**
+     * @brief Additional interface options. A JSON-serialized object for an inline
+     * keyboard, custom reply keyboard, instructions to remove a reply keyboard
+     * or to force a reply from the user.
+     */
+    std::variant<std::shared_ptr<InlineKeyboardMarkup>, std::shared_ptr<ReplyKeyboardMarkup>,
+                 std::shared_ptr<ReplyKeyboardRemove>, std::shared_ptr<ForceReply>>
+        replyMarkup = { };
+
+    /**
+     * @brief Sends the message silently. Users will receive a notification with no
+     * sound.
+     */
+    bool disableNotification = false;
+
+    /**
+     * @brief The radius of uncertainty for the location, measured in meters; 0-1500
+     */
+    double horizontalAccuracy = 0;
+
+    /**
+     * @brief For live locations, a direction in which the user is moving, in degrees.
+     * Must be between 1 and 360 if specified.
+     */
+    std::int32_t heading = 0;
+
+    /**
+     * @brief For live locations, a maximum distance for proximity alerts about
+     * approaching another chat member, in meters. Must be between 1 and 100000
+     * if specified.
+     */
+    std::int32_t proximityAlertRadius = 0;
+
+    /**
+     * @brief Unique identifier for the target message thread (topic) of a forum; for
+     * forum supergroups and private chats of bots with forum topic mode
+     * enabled only
+     */
+    std::int32_t messageThreadId = 0;
+
+    /**
+     * @brief Protects the contents of the sent message from forwarding and saving
+     */
+    bool protectContent = false;
+
+    /**
+     * @brief Unique identifier of the business connection on behalf of which the
+     * message will be sent
+     */
+    std::string businessConnectionId = "";
+
+    /**
+     * @brief Pass True to allow up to 1000 messages per second, ignoring broadcasting
+     * limits for a fee of 0.1 Telegram Stars per message. The relevant Stars
+     * will be withdrawn from the bot's balance.
+     */
+    bool allowPaidBroadcast = false;
+
+    /**
+     * @brief For outgoing ephemeral messages, identifier of the callback query which
+     * triggered the message if any
+     */
+    std::string callbackQueryId = "";
+
+    /**
+     * @brief Identifier of the direct messages topic to which the message will be
+     * sent; required if the message is sent to a direct messages chat
+     */
+    std::int64_t directMessagesTopicId = 0;
+
+    /**
+     * @brief Unique identifier of the message effect to be added to the message; for
+     * private chats only
+     */
+    std::string messageEffectId = "";
+
+    /**
+     * @brief For outgoing ephemeral messages, unique identifier of the user who will
+     * receive the message; for group and supergroup chats only. It is not
+     * guaranteed that the user will receive the message, especially if they
+     * are offline. See ephemeral message sending for more details.
+     */
+    std::int64_t receiverUserId = 0;
+
+    /**
+     * @brief A JSON-serialized object containing the parameters of the suggested post
+     * to send; for direct messages chats only. If the message is sent as a
+     * reply to another suggested post, then that suggested post is
+     * automatically declined.
+     */
+    std::shared_ptr<SuggestedPostParameters> suggestedPostParameters = nullptr;
+};
+
+/**
+ * @brief Arguments for Api::sendMediaGroup.
+ * @ingroup api
+ */
+struct SendMediaGroupArgs {
+    /**
+     * @brief Unique identifier for the target chat or username of the target bot,
+     * supergroup or channel in the format @username
+     */
+    std::variant<std::int64_t, std::string> chatId { };
+
+    /**
+     * @brief A JSON-serialized Array describing messages to be sent, must include
+     * 2-10 items
+     */
+    std::vector<std::variant<std::shared_ptr<InputMediaAudio>, std::shared_ptr<InputMediaDocument>,
+                             std::shared_ptr<InputMediaLivePhoto>, std::shared_ptr<InputMediaPhoto>,
+                             std::shared_ptr<InputMediaVideo>>>
+        media { };
+
+    /**
+     * @brief Sends messages silently. Users will receive a notification with no
+     * sound.
+     */
+    bool disableNotification = false;
+
+    /**
+     * @brief Description of the message to reply to
+     */
+    std::shared_ptr<ReplyParameters> replyParameters = nullptr;
+
+    /**
+     * @brief Unique identifier for the target message thread (topic) of a forum; for
+     * forum supergroups and private chats of bots with forum topic mode
+     * enabled only
+     */
+    std::int32_t messageThreadId = 0;
+
+    /**
+     * @brief Protects the contents of the sent messages from forwarding and saving
+     */
+    bool protectContent = false;
+
+    /**
+     * @brief Unique identifier of the business connection on behalf of which the
+     * message will be sent
+     */
+    std::string businessConnectionId = "";
+
+    /**
+     * @brief Pass True to allow up to 1000 messages per second, ignoring broadcasting
+     * limits for a fee of 0.1 Telegram Stars per message. The relevant Stars
+     * will be withdrawn from the bot's balance.
+     */
+    bool allowPaidBroadcast = false;
+
+    /**
+     * @brief Identifier of the direct messages topic to which the messages will be
+     * sent; required if the messages are sent to a direct messages chat
+     */
+    std::int64_t directMessagesTopicId = 0;
+
+    /**
+     * @brief Unique identifier of the message effect to be added to the message; for
+     * private chats only
+     */
+    std::string messageEffectId = "";
+};
+
+/**
+ * @brief Arguments for Api::sendMessage.
+ * @ingroup api
+ */
+struct SendMessageArgs {
+    /**
+     * @brief Unique identifier for the target chat or username of the target bot,
+     * supergroup or channel in the format @username
+     */
+    std::variant<std::int64_t, std::string> chatId { };
+
+    /**
+     * @brief Text of the message to be sent, 1-4096 characters after entities parsing
+     */
+    std::string text { };
+
+    /**
+     * @brief Link preview generation options for the message
+     */
+    std::shared_ptr<LinkPreviewOptions> linkPreviewOptions = nullptr;
+
+    /**
+     * @brief Description of the message to reply to
+     */
+    std::shared_ptr<ReplyParameters> replyParameters = nullptr;
+
+    /**
+     * @brief Additional interface options. A JSON-serialized object for an inline
+     * keyboard, custom reply keyboard, instructions to remove a reply keyboard
+     * or to force a reply from the user.
+     */
+    std::variant<std::shared_ptr<InlineKeyboardMarkup>, std::shared_ptr<ReplyKeyboardMarkup>,
+                 std::shared_ptr<ReplyKeyboardRemove>, std::shared_ptr<ForceReply>>
+        replyMarkup = { };
+
+    /**
+     * @brief Mode for parsing entities in the message text. See formatting options
+     * for more details.
+     */
+    std::string parseMode = "";
+
+    /**
+     * @brief Sends the message silently. Users will receive a notification with no
+     * sound.
+     */
+    bool disableNotification = false;
+
+    /**
+     * @brief A JSON-serialized list of special entities that appear in message text,
+     * which can be specified instead of parse_mode
+     */
+    std::vector<std::shared_ptr<MessageEntity>> entities = { };
+
+    /**
+     * @brief Unique identifier for the target message thread (topic) of a forum; for
+     * forum supergroups and private chats of bots with forum topic mode
+     * enabled only
+     */
+    std::int32_t messageThreadId = 0;
+
+    /**
+     * @brief Protects the contents of the sent message from forwarding and saving
+     */
+    bool protectContent = false;
+
+    /**
+     * @brief Unique identifier of the business connection on behalf of which the
+     * message will be sent
+     */
+    std::string businessConnectionId = "";
+
+    /**
+     * @brief Pass True to allow up to 1000 messages per second, ignoring broadcasting
+     * limits for a fee of 0.1 Telegram Stars per message. The relevant Stars
+     * will be withdrawn from the bot's balance.
+     */
+    bool allowPaidBroadcast = false;
+
+    /**
+     * @brief For outgoing ephemeral messages, identifier of the callback query which
+     * triggered the message if any
+     */
+    std::string callbackQueryId = "";
+
+    /**
+     * @brief Identifier of the direct messages topic to which the message will be
+     * sent; required if the message is sent to a direct messages chat
+     */
+    std::int64_t directMessagesTopicId = 0;
+
+    /**
+     * @brief Unique identifier of the message effect to be added to the message; for
+     * private chats only
+     */
+    std::string messageEffectId = "";
+
+    /**
+     * @brief For outgoing ephemeral messages, unique identifier of the user who will
+     * receive the message; for group and supergroup chats only. It is not
+     * guaranteed that the user will receive the message, especially if they
+     * are offline. See ephemeral message sending for more details.
+     */
+    std::int64_t receiverUserId = 0;
+
+    /**
+     * @brief A JSON-serialized object containing the parameters of the suggested post
+     * to send; for direct messages chats only. If the message is sent as a
+     * reply to another suggested post, then that suggested post is
+     * automatically declined.
+     */
+    std::shared_ptr<SuggestedPostParameters> suggestedPostParameters = nullptr;
+};
+
+/**
+ * @brief Arguments for Api::sendMessageDraft.
+ * @ingroup api
+ */
+struct SendMessageDraftArgs {
+    /**
+     * @brief Unique identifier for the target private chat
+     */
+    std::variant<std::int64_t, std::string> chatId { };
+
+    /**
+     * @brief Unique identifier of the message draft; must be non-zero. Changes to
+     * drafts with the same identifier are animated.
+     */
+    std::int32_t draftId { };
+
+    /**
+     * @brief A JSON-serialized list of special entities that appear in message text,
+     * which can be specified instead of parse_mode
+     */
+    std::vector<std::shared_ptr<MessageEntity>> entities = { };
+
+    /**
+     * @brief Unique identifier for the target message thread
+     */
+    std::int32_t messageThreadId = 0;
+
+    /**
+     * @brief Mode for parsing entities in the message text. See formatting options
+     * for more details.
+     */
+    std::string parseMode = "";
+
+    /**
+     * @brief Text of the message to be sent, 0-4096 characters after entities
+     * parsing. Pass an empty text to show a “Thinking…” placeholder.
+     */
+    std::string text = "";
+};
+
+/**
+ * @brief Arguments for Api::sendPaidMedia.
+ * @ingroup api
+ */
+struct SendPaidMediaArgs {
+    /**
+     * @brief Unique identifier for the target chat or username of the target bot,
+     * supergroup or channel in the format @username. If the chat is a channel,
+     * all Telegram Star proceeds from this media will be credited to the
+     * chat's balance. Otherwise, they will be credited to the bot's balance.
+     */
+    std::variant<std::int64_t, std::string> chatId { };
+
+    /**
+     * @brief A JSON-serialized Array describing the media to be sent; up to 10 items
+     */
+    std::vector<std::shared_ptr<InputPaidMedia>> media { };
+
+    /**
+     * @brief The number of Telegram Stars that must be paid to buy access to the
+     * media; 1-25000
+     */
+    std::int32_t starCount { };
+
+    /**
+     * @brief Pass True to allow up to 1000 messages per second, ignoring broadcasting
+     * limits for a fee of 0.1 Telegram Stars per message. The relevant Stars
+     * will be withdrawn from the bot's balance.
+     */
+    bool allowPaidBroadcast = false;
+
+    /**
+     * @brief Unique identifier of the business connection on behalf of which the
+     * message will be sent
+     */
+    std::string businessConnectionId = "";
+
+    /**
+     * @brief Media caption, 0-1024 characters after entities parsing
+     */
+    std::string caption = "";
+
+    /**
+     * @brief A JSON-serialized list of special entities that appear in the caption,
+     * which can be specified instead of parse_mode
+     */
+    std::vector<std::shared_ptr<MessageEntity>> captionEntities = { };
+
+    /**
+     * @brief Identifier of the direct messages topic to which the message will be
+     * sent; required if the message is sent to a direct messages chat
+     */
+    std::int64_t directMessagesTopicId = 0;
+
+    /**
+     * @brief Sends the message silently. Users will receive a notification with no
+     * sound.
+     */
+    bool disableNotification = false;
+
+    /**
+     * @brief Unique identifier for the target message thread (topic) of a forum; for
+     * forum supergroups and private chats of bots with forum topic mode
+     * enabled only
+     */
+    std::int32_t messageThreadId = 0;
+
+    /**
+     * @brief Mode for parsing entities in the media caption. See formatting options
+     * for more details.
+     */
+    std::string parseMode = "";
+
+    /**
+     * @brief Bot-defined paid media payload, 0-128 bytes. This will not be displayed
+     * to the user, use it for your internal processes.
+     */
+    std::string payload = "";
+
+    /**
+     * @brief Protects the contents of the sent message from forwarding and saving
+     */
+    bool protectContent = false;
+
+    /**
+     * @brief Additional interface options. A JSON-serialized object for an inline
+     * keyboard, custom reply keyboard, instructions to remove a reply keyboard
+     * or to force a reply from the user.
+     */
+    std::variant<std::shared_ptr<InlineKeyboardMarkup>, std::shared_ptr<ReplyKeyboardMarkup>,
+                 std::shared_ptr<ReplyKeyboardRemove>, std::shared_ptr<ForceReply>>
+        replyMarkup = { };
+
+    /**
+     * @brief Description of the message to reply to
+     */
+    std::shared_ptr<ReplyParameters> replyParameters = nullptr;
+
+    /**
+     * @brief Pass True if the caption must be shown above the message media
+     */
+    bool showCaptionAboveMedia = false;
+
+    /**
+     * @brief A JSON-serialized object containing the parameters of the suggested post
+     * to send; for direct messages chats only. If the message is sent as a
+     * reply to another suggested post, then that suggested post is
+     * automatically declined.
+     */
+    std::shared_ptr<SuggestedPostParameters> suggestedPostParameters = nullptr;
+};
+
+/**
+ * @brief Arguments for Api::sendPhoto.
+ * @ingroup api
+ */
+struct SendPhotoArgs {
+    /**
+     * @brief Unique identifier for the target chat or username of the target bot,
+     * supergroup or channel in the format @username
+     */
+    std::variant<std::int64_t, std::string> chatId { };
+
+    /**
+     * @brief Photo to send. Pass a file_id as String to send a photo that exists on
+     * the Telegram servers (recommended), pass an HTTP URL as a String for
+     * Telegram to get a photo from the Internet, or upload a new photo using
+     * multipart/form-data. The photo must be at most 10 MB in size. The
+     * photo's width and height must not exceed 10000 in total. Width and
+     * height ratio must be at most 20. More information on Sending Files »
+     */
+    std::variant<std::shared_ptr<InputFile>, std::string> photo { };
+
+    /**
+     * @brief Photo caption (may also be used when resending photos by file_id),
+     * 0-1024 characters after entities parsing
+     */
+    std::string caption = "";
+
+    /**
+     * @brief Description of the message to reply to
+     */
+    std::shared_ptr<ReplyParameters> replyParameters = nullptr;
+
+    /**
+     * @brief Additional interface options. A JSON-serialized object for an inline
+     * keyboard, custom reply keyboard, instructions to remove a reply keyboard
+     * or to force a reply from the user.
+     */
+    std::variant<std::shared_ptr<InlineKeyboardMarkup>, std::shared_ptr<ReplyKeyboardMarkup>,
+                 std::shared_ptr<ReplyKeyboardRemove>, std::shared_ptr<ForceReply>>
+        replyMarkup = { };
+
+    /**
+     * @brief Mode for parsing entities in the photo caption. See formatting options
+     * for more details.
+     */
+    std::string parseMode = "";
+
+    /**
+     * @brief Sends the message silently. Users will receive a notification with no
+     * sound.
+     */
+    bool disableNotification = false;
+
+    /**
+     * @brief A JSON-serialized list of special entities that appear in the caption,
+     * which can be specified instead of parse_mode
+     */
+    std::vector<std::shared_ptr<MessageEntity>> captionEntities = { };
+
+    /**
+     * @brief Unique identifier for the target message thread (topic) of a forum; for
+     * forum supergroups and private chats of bots with forum topic mode
+     * enabled only
+     */
+    std::int32_t messageThreadId = 0;
+
+    /**
+     * @brief Protects the contents of the sent message from forwarding and saving
+     */
+    bool protectContent = false;
+
+    /**
+     * @brief Pass True if the photo needs to be covered with a spoiler animation
+     */
+    bool hasSpoiler = false;
+
+    /**
+     * @brief Unique identifier of the business connection on behalf of which the
+     * message will be sent
+     */
+    std::string businessConnectionId = "";
+
+    /**
+     * @brief Pass True to allow up to 1000 messages per second, ignoring broadcasting
+     * limits for a fee of 0.1 Telegram Stars per message. The relevant Stars
+     * will be withdrawn from the bot's balance.
+     */
+    bool allowPaidBroadcast = false;
+
+    /**
+     * @brief For outgoing ephemeral messages, identifier of the callback query which
+     * triggered the message if any
+     */
+    std::string callbackQueryId = "";
+
+    /**
+     * @brief Identifier of the direct messages topic to which the message will be
+     * sent; required if the message is sent to a direct messages chat
+     */
+    std::int64_t directMessagesTopicId = 0;
+
+    /**
+     * @brief Unique identifier of the message effect to be added to the message; for
+     * private chats only
+     */
+    std::string messageEffectId = "";
+
+    /**
+     * @brief For outgoing ephemeral messages, unique identifier of the user who will
+     * receive the message; for group and supergroup chats only. It is not
+     * guaranteed that the user will receive the message, especially if they
+     * are offline. See ephemeral message sending for more details.
+     */
+    std::int64_t receiverUserId = 0;
+
+    /**
+     * @brief Pass True if the caption must be shown above the message media
+     */
+    bool showCaptionAboveMedia = false;
+
+    /**
+     * @brief A JSON-serialized object containing the parameters of the suggested post
+     * to send; for direct messages chats only. If the message is sent as a
+     * reply to another suggested post, then that suggested post is
+     * automatically declined.
+     */
+    std::shared_ptr<SuggestedPostParameters> suggestedPostParameters = nullptr;
+};
+
+/**
+ * @brief Arguments for Api::sendPoll.
+ * @ingroup api
+ */
+struct SendPollArgs {
+    /**
+     * @brief Unique identifier for the target chat or username of the target bot,
+     * supergroup or channel in the format @username. Polls can't be sent to
+     * channel direct messages chats.
+     */
+    std::variant<std::int64_t, std::string> chatId { };
+
+    /**
+     * @brief Poll question, 1-300 characters
+     */
+    std::string question { };
+
+    /**
+     * @brief A JSON-serialized list of 1-12 answer options
+     */
+    std::vector<std::shared_ptr<InputPollOption>> options { };
+
+    /**
+     * @brief Sends the message silently. Users will receive a notification with no
+     * sound.
+     */
+    bool disableNotification = false;
+
+    /**
+     * @brief Description of the message to reply to
+     */
+    std::shared_ptr<ReplyParameters> replyParameters = nullptr;
+
+    /**
+     * @brief Additional interface options. A JSON-serialized object for an inline
+     * keyboard, custom reply keyboard, instructions to remove a reply keyboard
+     * or to force a reply from the user.
+     */
+    std::variant<std::shared_ptr<InlineKeyboardMarkup>, std::shared_ptr<ReplyKeyboardMarkup>,
+                 std::shared_ptr<ReplyKeyboardRemove>, std::shared_ptr<ForceReply>>
+        replyMarkup = { };
+
+    /**
+     * @brief True, if the poll needs to be anonymous, defaults to True
+     */
+    bool isAnonymous = true;
+
+    /**
+     * @brief Poll type, “quiz” or “regular”, defaults to “regular”
+     */
+    std::string type = "";
+
+    /**
+     * @brief Pass True if the poll allows multiple answers, defaults to False
+     */
+    bool allowsMultipleAnswers = false;
+
+    /**
+     * @brief Text that is shown when a user chooses an incorrect answer or taps on
+     * the lamp icon in a quiz-style poll, 0-200 characters with at most 2 line
+     * feeds after entities parsing
+     */
+    std::string explanation = "";
+
+    /**
+     * @brief Mode for parsing entities in the explanation. See formatting options for
+     * more details.
+     */
+    std::string explanationParseMode = "";
+
+    /**
+     * @brief A JSON-serialized list of special entities that appear in the poll
+     * explanation. It can be specified instead of explanation_parse_mode.
+     */
+    std::vector<std::shared_ptr<MessageEntity>> explanationEntities = { };
+
+    /**
+     * @brief Amount of time in seconds the poll will be active after creation,
+     * 5-2628000. Can't be used together with close_date.
+     */
+    std::int32_t openPeriod = 0;
+
+    /**
+     * @brief Point in time (Unix timestamp) when the poll will be automatically
+     * closed. Must be at least 5 and no more than 2628000 seconds in the
+     * future. Can't be used together with open_period.
+     */
+    std::int32_t closeDate = 0;
+
+    /**
+     * @brief Pass True if the poll needs to be immediately closed. This can be useful
+     * for poll preview.
+     */
+    bool isClosed = false;
+
+    /**
+     * @brief Unique identifier for the target message thread (topic) of a forum; for
+     * forum supergroups and private chats of bots with forum topic mode
+     * enabled only
+     */
+    std::int32_t messageThreadId = 0;
+
+    /**
+     * @brief Protects the contents of the sent message from forwarding and saving
+     */
+    bool protectContent = false;
+
+    /**
+     * @brief Unique identifier of the business connection on behalf of which the
+     * message will be sent
+     */
+    std::string businessConnectionId = "";
+
+    /**
+     * @brief Pass True if answer options can be added to the poll after creation; not
+     * supported for anonymous polls and quizzes
+     */
+    bool allowAddingOptions = false;
+
+    /**
+     * @brief Pass True to allow up to 1000 messages per second, ignoring broadcasting
+     * limits for a fee of 0.1 Telegram Stars per message. The relevant Stars
+     * will be withdrawn from the bot's balance.
+     */
+    bool allowPaidBroadcast = false;
+
+    /**
+     * @brief Pass True if the poll allows to change chosen answer options, defaults
+     * to False for quizzes and to True for regular polls
+     */
+    bool allowsRevoting = false;
+
+    /**
+     * @brief A JSON-serialized list of monotonically increasing 0-based identifiers
+     * of the correct answer options, required for polls in quiz mode
+     */
+    std::vector<std::int32_t> correctOptionIds = { };
+
+    /**
+     * @brief A JSON-serialized list of 0-12 two-letter ISO 3166-1 alpha-2 country
+     * codes indicating the countries from which users can vote in the poll;
+     * for channel chats only. Use “FT” as a country code to allow users with
+     * anonymous numbers to vote. If omitted or empty, then users from any
+     * country can participate in the poll.
+     */
+    std::vector<std::string> countryCodes = { };
+
+    /**
+     * @brief Description of the poll to be sent, 0-1024 characters after entities
+     * parsing
+     */
+    std::string description = "";
+
+    /**
+     * @brief A JSON-serialized list of special entities that appear in the poll
+     * description, which can be specified instead of description_parse_mode
+     */
+    std::vector<std::shared_ptr<MessageEntity>> descriptionEntities = { };
+
+    /**
+     * @brief Mode for parsing entities in the poll description. See formatting
+     * options for more details.
+     */
+    std::string descriptionParseMode = "";
+
+    /**
+     * @brief Media added to the quiz explanation
+     */
+    std::shared_ptr<InputPollMedia> explanationMedia = nullptr;
+
+    /**
+     * @brief Pass True if poll results must be shown only after the poll closes
+     */
+    bool hideResultsUntilCloses = false;
+
+    /**
+     * @brief Media added to the poll description
+     */
+    std::shared_ptr<InputPollMedia> media = nullptr;
+
+    /**
+     * @brief Pass True if voting is limited to users who have been members of the
+     * chat where the poll is being sent for more than 24 hours; for channel
+     * chats only
+     */
+    bool membersOnly = false;
+
+    /**
+     * @brief Unique identifier of the message effect to be added to the message; for
+     * private chats only
+     */
+    std::string messageEffectId = "";
+
+    /**
+     * @brief A JSON-serialized list of special entities that appear in the poll
+     * question. It can be specified instead of question_parse_mode.
+     */
+    std::vector<std::shared_ptr<MessageEntity>> questionEntities = { };
+
+    /**
+     * @brief Mode for parsing entities in the question. See formatting options for
+     * more details. Currently, only custom emoji entities are allowed.
+     */
+    std::string questionParseMode = "";
+
+    /**
+     * @brief Pass True if the poll options must be shown in random order
+     */
+    bool shuffleOptions = false;
+};
+
+/**
+ * @brief Arguments for Api::sendRichMessage.
+ * @ingroup api
+ */
+struct SendRichMessageArgs {
+    /**
+     * @brief Unique identifier for the target chat or username of the target bot,
+     * supergroup or channel in the format @username
+     */
+    std::variant<std::int64_t, std::string> chatId { };
+
+    /**
+     * @brief The message to be sent
+     */
+    std::shared_ptr<InputRichMessage> richMessage { };
+
+    /**
+     * @brief Pass True to allow up to 1000 messages per second, ignoring broadcasting
+     * limits for a fee of 0.1 Telegram Stars per message. The relevant Stars
+     * will be withdrawn from the bot's balance.
+     */
+    bool allowPaidBroadcast = false;
+
+    /**
+     * @brief Unique identifier of the business connection on behalf of which the
+     * message will be sent. Bot can send rich messages on behalf of a business
+     * account only if the corresponding user can send rich messages.
+     */
+    std::string businessConnectionId = "";
+
+    /**
+     * @brief Identifier of the direct messages topic to which the message will be
+     * sent; required if the message is sent to a direct messages chat
+     */
+    std::int64_t directMessagesTopicId = 0;
+
+    /**
+     * @brief Sends the message silently. Users will receive a notification with no
+     * sound.
+     */
+    bool disableNotification = false;
+
+    /**
+     * @brief Unique identifier of the message effect to be added to the message; for
+     * private chats only
+     */
+    std::string messageEffectId = "";
+
+    /**
+     * @brief Unique identifier for the target message thread (topic) of a forum; for
+     * forum supergroups and private chats of bots with forum topic mode
+     * enabled only
+     */
+    std::int32_t messageThreadId = 0;
+
+    /**
+     * @brief Protects the contents of the sent message from forwarding and saving
+     */
+    bool protectContent = false;
+
+    /**
+     * @brief Additional interface options. A JSON-serialized object for an inline
+     * keyboard, custom reply keyboard, instructions to remove a reply keyboard
+     * or to force a reply from the user.
+     */
+    std::variant<std::shared_ptr<InlineKeyboardMarkup>, std::shared_ptr<ReplyKeyboardMarkup>,
+                 std::shared_ptr<ReplyKeyboardRemove>, std::shared_ptr<ForceReply>>
+        replyMarkup = { };
+
+    /**
+     * @brief Description of the message to reply to
+     */
+    std::shared_ptr<ReplyParameters> replyParameters = nullptr;
+
+    /**
+     * @brief A JSON-serialized object containing the parameters of the suggested post
+     * to send; for direct messages chats only. If the message is sent as a
+     * reply to another suggested post, then that suggested post is
+     * automatically declined.
+     */
+    std::shared_ptr<SuggestedPostParameters> suggestedPostParameters = nullptr;
+};
+
+/**
+ * @brief Arguments for Api::sendRichMessageDraft.
+ * @ingroup api
+ */
+struct SendRichMessageDraftArgs {
+    /**
+     * @brief Unique identifier for the target private chat
+     */
+    std::variant<std::int64_t, std::string> chatId { };
+
+    /**
+     * @brief Unique identifier of the message draft; must be non-zero. Changes to
+     * drafts with the same identifier are animated.
+     */
+    std::int32_t draftId { };
+
+    /**
+     * @brief The partial message to be streamed. Direct upload of new files isn't
+     * supported.
+     */
+    std::shared_ptr<InputRichMessage> richMessage { };
+
+    /**
+     * @brief Unique identifier for the target message thread
+     */
+    std::int32_t messageThreadId = 0;
+};
+
+/**
+ * @brief Arguments for Api::sendSticker.
+ * @ingroup api
+ */
+struct SendStickerArgs {
+    /**
+     * @brief Unique identifier for the target chat or username of the target bot,
+     * supergroup or channel in the format @username
+     */
+    std::variant<std::int64_t, std::string> chatId { };
+
+    /**
+     * @brief Sticker to send. Pass a file_id as String to send a file that exists on
+     * the Telegram servers (recommended), pass an HTTP URL as a String for
+     * Telegram to get a .WEBP sticker from the Internet, or upload a new
+     * .WEBP, .TGS, or .WEBM sticker using multipart/form-data. More
+     * information on Sending Files ». Video and animated stickers can't be
+     * sent via an HTTP URL.
+     */
+    std::variant<std::shared_ptr<InputFile>, std::string> sticker { };
+
+    /**
+     * @brief Description of the message to reply to
+     */
+    std::shared_ptr<ReplyParameters> replyParameters = nullptr;
+
+    /**
+     * @brief Additional interface options. A JSON-serialized object for an inline
+     * keyboard, custom reply keyboard, instructions to remove a reply keyboard
+     * or to force a reply from the user.
+     */
+    std::variant<std::shared_ptr<InlineKeyboardMarkup>, std::shared_ptr<ReplyKeyboardMarkup>,
+                 std::shared_ptr<ReplyKeyboardRemove>, std::shared_ptr<ForceReply>>
+        replyMarkup = { };
+
+    /**
+     * @brief Sends the message silently. Users will receive a notification with no
+     * sound.
+     */
+    bool disableNotification = false;
+
+    /**
+     * @brief Unique identifier for the target message thread (topic) of a forum; for
+     * forum supergroups and private chats of bots with forum topic mode
+     * enabled only
+     */
+    std::int32_t messageThreadId = 0;
+
+    /**
+     * @brief Protects the contents of the sent message from forwarding and saving
+     */
+    bool protectContent = false;
+
+    /**
+     * @brief Emoji associated with the sticker; only for just uploaded stickers
+     */
+    std::string emoji = "";
+
+    /**
+     * @brief Unique identifier of the business connection on behalf of which the
+     * message will be sent
+     */
+    std::string businessConnectionId = "";
+
+    /**
+     * @brief Pass True to allow up to 1000 messages per second, ignoring broadcasting
+     * limits for a fee of 0.1 Telegram Stars per message. The relevant Stars
+     * will be withdrawn from the bot's balance.
+     */
+    bool allowPaidBroadcast = false;
+
+    /**
+     * @brief For outgoing ephemeral messages, identifier of the callback query which
+     * triggered the message if any
+     */
+    std::string callbackQueryId = "";
+
+    /**
+     * @brief Identifier of the direct messages topic to which the message will be
+     * sent; required if the message is sent to a direct messages chat
+     */
+    std::int64_t directMessagesTopicId = 0;
+
+    /**
+     * @brief Unique identifier of the message effect to be added to the message; for
+     * private chats only
+     */
+    std::string messageEffectId = "";
+
+    /**
+     * @brief For outgoing ephemeral messages, unique identifier of the user who will
+     * receive the message; for group and supergroup chats only. It is not
+     * guaranteed that the user will receive the message, especially if they
+     * are offline. See ephemeral message sending for more details.
+     */
+    std::int64_t receiverUserId = 0;
+
+    /**
+     * @brief A JSON-serialized object containing the parameters of the suggested post
+     * to send; for direct messages chats only. If the message is sent as a
+     * reply to another suggested post, then that suggested post is
+     * automatically declined.
+     */
+    std::shared_ptr<SuggestedPostParameters> suggestedPostParameters = nullptr;
+};
+
+/**
+ * @brief Arguments for Api::sendVenue.
+ * @ingroup api
+ */
+struct SendVenueArgs {
+    /**
+     * @brief Unique identifier for the target chat or username of the target bot,
+     * supergroup or channel in the format @username
+     */
+    std::variant<std::int64_t, std::string> chatId { };
+
+    /**
+     * @brief Latitude of the venue
+     */
+    double latitude { };
+
+    /**
+     * @brief Longitude of the venue
+     */
+    double longitude { };
+
+    /**
+     * @brief Name of the venue
+     */
+    std::string title { };
+
+    /**
+     * @brief Address of the venue
+     */
+    std::string address { };
+
+    /**
+     * @brief Foursquare identifier of the venue
+     */
+    std::string foursquareId = "";
+
+    /**
+     * @brief Foursquare type of the venue, if known. (For example,
+     * “arts_entertainment/default”, “arts_entertainment/aquarium” or
+     * “food/icecream”.)
+     */
+    std::string foursquareType = "";
+
+    /**
+     * @brief Sends the message silently. Users will receive a notification with no
+     * sound.
+     */
+    bool disableNotification = false;
+
+    /**
+     * @brief Description of the message to reply to
+     */
+    std::shared_ptr<ReplyParameters> replyParameters = nullptr;
+
+    /**
+     * @brief Additional interface options. A JSON-serialized object for an inline
+     * keyboard, custom reply keyboard, instructions to remove a reply keyboard
+     * or to force a reply from the user.
+     */
+    std::variant<std::shared_ptr<InlineKeyboardMarkup>, std::shared_ptr<ReplyKeyboardMarkup>,
+                 std::shared_ptr<ReplyKeyboardRemove>, std::shared_ptr<ForceReply>>
+        replyMarkup = { };
+
+    /**
+     * @brief Google Places identifier of the venue
+     */
+    std::string googlePlaceId = "";
+
+    /**
+     * @brief Google Places type of the venue. (See supported types.)
+     */
+    std::string googlePlaceType = "";
+
+    /**
+     * @brief Unique identifier for the target message thread (topic) of a forum; for
+     * forum supergroups and private chats of bots with forum topic mode
+     * enabled only
+     */
+    std::int32_t messageThreadId = 0;
+
+    /**
+     * @brief Protects the contents of the sent message from forwarding and saving
+     */
+    bool protectContent = false;
+
+    /**
+     * @brief Unique identifier of the business connection on behalf of which the
+     * message will be sent
+     */
+    std::string businessConnectionId = "";
+
+    /**
+     * @brief Pass True to allow up to 1000 messages per second, ignoring broadcasting
+     * limits for a fee of 0.1 Telegram Stars per message. The relevant Stars
+     * will be withdrawn from the bot's balance.
+     */
+    bool allowPaidBroadcast = false;
+
+    /**
+     * @brief For outgoing ephemeral messages, identifier of the callback query which
+     * triggered the message if any
+     */
+    std::string callbackQueryId = "";
+
+    /**
+     * @brief Identifier of the direct messages topic to which the message will be
+     * sent; required if the message is sent to a direct messages chat
+     */
+    std::int64_t directMessagesTopicId = 0;
+
+    /**
+     * @brief Unique identifier of the message effect to be added to the message; for
+     * private chats only
+     */
+    std::string messageEffectId = "";
+
+    /**
+     * @brief For outgoing ephemeral messages, unique identifier of the user who will
+     * receive the message; for group and supergroup chats only. It is not
+     * guaranteed that the user will receive the message, especially if they
+     * are offline. See ephemeral message sending for more details.
+     */
+    std::int64_t receiverUserId = 0;
+
+    /**
+     * @brief A JSON-serialized object containing the parameters of the suggested post
+     * to send; for direct messages chats only. If the message is sent as a
+     * reply to another suggested post, then that suggested post is
+     * automatically declined.
+     */
+    std::shared_ptr<SuggestedPostParameters> suggestedPostParameters = nullptr;
+};
+
+/**
+ * @brief Arguments for Api::sendVideo.
+ * @ingroup api
+ */
+struct SendVideoArgs {
+    /**
+     * @brief Unique identifier for the target chat or username of the target bot,
+     * supergroup or channel in the format @username
+     */
+    std::variant<std::int64_t, std::string> chatId { };
+
+    /**
+     * @brief Video to send. Pass a file_id as String to send a video that exists on
+     * the Telegram servers (recommended), pass an HTTP URL as a String for
+     * Telegram to get a video from the Internet, or upload a new video using
+     * multipart/form-data. More information on Sending Files »
+     */
+    std::variant<std::shared_ptr<InputFile>, std::string> video { };
+
+    /**
+     * @brief Pass True if the uploaded video is suitable for streaming
+     */
+    bool supportsStreaming = false;
+
+    /**
+     * @brief Duration of sent video in seconds
+     */
+    std::int32_t duration = 0;
+
+    /**
+     * @brief Video width
+     */
+    std::int32_t width = 0;
+
+    /**
+     * @brief Video height
+     */
+    std::int32_t height = 0;
+
+    /**
+     * @brief Thumbnail of the file sent; can be ignored if thumbnail generation for
+     * the file is supported server-side. The thumbnail should be in JPEG
+     * format and less than 200 kB in size. A thumbnail's width and height
+     * should not exceed 320. Ignored if the file is not uploaded using
+     * multipart/form-data. Thumbnails can't be reused and can be only uploaded
+     * as a new file, so you can pass “attach://<file_attach_name>” if the
+     * thumbnail was uploaded using multipart/form-data under
+     * <file_attach_name>. More information on Sending Files »
+     */
+    std::variant<std::shared_ptr<InputFile>, std::string> thumbnail = { };
+
+    /**
+     * @brief Video caption (may also be used when resending videos by file_id),
+     * 0-1024 characters after entities parsing
+     */
+    std::string caption = "";
+
+    /**
+     * @brief Description of the message to reply to
+     */
+    std::shared_ptr<ReplyParameters> replyParameters = nullptr;
+
+    /**
+     * @brief Additional interface options. A JSON-serialized object for an inline
+     * keyboard, custom reply keyboard, instructions to remove a reply keyboard
+     * or to force a reply from the user.
+     */
+    std::variant<std::shared_ptr<InlineKeyboardMarkup>, std::shared_ptr<ReplyKeyboardMarkup>,
+                 std::shared_ptr<ReplyKeyboardRemove>, std::shared_ptr<ForceReply>>
+        replyMarkup = { };
+
+    /**
+     * @brief Mode for parsing entities in the video caption. See formatting options
+     * for more details.
+     */
+    std::string parseMode = "";
+
+    /**
+     * @brief Sends the message silently. Users will receive a notification with no
+     * sound.
+     */
+    bool disableNotification = false;
+
+    /**
+     * @brief A JSON-serialized list of special entities that appear in the caption,
+     * which can be specified instead of parse_mode
+     */
+    std::vector<std::shared_ptr<MessageEntity>> captionEntities = { };
+
+    /**
+     * @brief Unique identifier for the target message thread (topic) of a forum; for
+     * forum supergroups and private chats of bots with forum topic mode
+     * enabled only
+     */
+    std::int32_t messageThreadId = 0;
+
+    /**
+     * @brief Protects the contents of the sent message from forwarding and saving
+     */
+    bool protectContent = false;
+
+    /**
+     * @brief Pass True if the video needs to be covered with a spoiler animation
+     */
+    bool hasSpoiler = false;
+
+    /**
+     * @brief Unique identifier of the business connection on behalf of which the
+     * message will be sent
+     */
+    std::string businessConnectionId = "";
+
+    /**
+     * @brief Pass True to allow up to 1000 messages per second, ignoring broadcasting
+     * limits for a fee of 0.1 Telegram Stars per message. The relevant Stars
+     * will be withdrawn from the bot's balance.
+     */
+    bool allowPaidBroadcast = false;
+
+    /**
+     * @brief For outgoing ephemeral messages, identifier of the callback query which
+     * triggered the message if any
+     */
+    std::string callbackQueryId = "";
+
+    /**
+     * @brief Cover for the video in the message. Pass a file_id to send a file that
+     * exists on the Telegram servers (recommended), pass an HTTP URL for
+     * Telegram to get a file from the Internet, or pass
+     * “attach://<file_attach_name>” to upload a new one using multipart/form-
+     * data under <file_attach_name> name. More information on Sending Files »
+     */
+    std::variant<std::shared_ptr<InputFile>, std::string> cover = { };
+
+    /**
+     * @brief Identifier of the direct messages topic to which the message will be
+     * sent; required if the message is sent to a direct messages chat
+     */
+    std::int64_t directMessagesTopicId = 0;
+
+    /**
+     * @brief Unique identifier of the message effect to be added to the message; for
+     * private chats only
+     */
+    std::string messageEffectId = "";
+
+    /**
+     * @brief For outgoing ephemeral messages, unique identifier of the user who will
+     * receive the message; for group and supergroup chats only. It is not
+     * guaranteed that the user will receive the message, especially if they
+     * are offline. See ephemeral message sending for more details.
+     */
+    std::int64_t receiverUserId = 0;
+
+    /**
+     * @brief Pass True if the caption must be shown above the message media
+     */
+    bool showCaptionAboveMedia = false;
+
+    /**
+     * @brief Start timestamp for the video in the message
+     */
+    std::int32_t startTimestamp = 0;
+
+    /**
+     * @brief A JSON-serialized object containing the parameters of the suggested post
+     * to send; for direct messages chats only. If the message is sent as a
+     * reply to another suggested post, then that suggested post is
+     * automatically declined.
+     */
+    std::shared_ptr<SuggestedPostParameters> suggestedPostParameters = nullptr;
+};
+
+/**
+ * @brief Arguments for Api::sendVideoNote.
+ * @ingroup api
+ */
+struct SendVideoNoteArgs {
+    /**
+     * @brief Unique identifier for the target chat or username of the target bot,
+     * supergroup or channel in the format @username
+     */
+    std::variant<std::int64_t, std::string> chatId { };
+
+    /**
+     * @brief Video note to send. Pass a file_id as String to send a video note that
+     * exists on the Telegram servers (recommended) or upload a new video using
+     * multipart/form-data. More information on Sending Files ». Sending video
+     * notes by a URL is currently unsupported.
+     */
+    std::variant<std::shared_ptr<InputFile>, std::string> videoNote { };
+
+    /**
+     * @brief Description of the message to reply to
+     */
+    std::shared_ptr<ReplyParameters> replyParameters = nullptr;
+
+    /**
+     * @brief Sends the message silently. Users will receive a notification with no
+     * sound.
+     */
+    bool disableNotification = false;
+
+    /**
+     * @brief Duration of sent video in seconds
+     */
+    std::int32_t duration = 0;
+
+    /**
+     * @brief Video width and height, i.e. diameter of the video message
+     */
+    std::int32_t length = 0;
+
+    /**
+     * @brief Thumbnail of the file sent; can be ignored if thumbnail generation for
+     * the file is supported server-side. The thumbnail should be in JPEG
+     * format and less than 200 kB in size. A thumbnail's width and height
+     * should not exceed 320. Ignored if the file is not uploaded using
+     * multipart/form-data. Thumbnails can't be reused and can be only uploaded
+     * as a new file, so you can pass “attach://<file_attach_name>” if the
+     * thumbnail was uploaded using multipart/form-data under
+     * <file_attach_name>. More information on Sending Files »
+     */
+    std::variant<std::shared_ptr<InputFile>, std::string> thumbnail = { };
+
+    /**
+     * @brief Additional interface options. A JSON-serialized object for an inline
+     * keyboard, custom reply keyboard, instructions to remove a reply keyboard
+     * or to force a reply from the user.
+     */
+    std::variant<std::shared_ptr<InlineKeyboardMarkup>, std::shared_ptr<ReplyKeyboardMarkup>,
+                 std::shared_ptr<ReplyKeyboardRemove>, std::shared_ptr<ForceReply>>
+        replyMarkup = { };
+
+    /**
+     * @brief Unique identifier for the target message thread (topic) of a forum; for
+     * forum supergroups and private chats of bots with forum topic mode
+     * enabled only
+     */
+    std::int32_t messageThreadId = 0;
+
+    /**
+     * @brief Protects the contents of the sent message from forwarding and saving
+     */
+    bool protectContent = false;
+
+    /**
+     * @brief Unique identifier of the business connection on behalf of which the
+     * message will be sent
+     */
+    std::string businessConnectionId = "";
+
+    /**
+     * @brief Pass True to allow up to 1000 messages per second, ignoring broadcasting
+     * limits for a fee of 0.1 Telegram Stars per message. The relevant Stars
+     * will be withdrawn from the bot's balance.
+     */
+    bool allowPaidBroadcast = false;
+
+    /**
+     * @brief For outgoing ephemeral messages, identifier of the callback query which
+     * triggered the message if any
+     */
+    std::string callbackQueryId = "";
+
+    /**
+     * @brief Identifier of the direct messages topic to which the message will be
+     * sent; required if the message is sent to a direct messages chat
+     */
+    std::int64_t directMessagesTopicId = 0;
+
+    /**
+     * @brief Unique identifier of the message effect to be added to the message; for
+     * private chats only
+     */
+    std::string messageEffectId = "";
+
+    /**
+     * @brief For outgoing ephemeral messages, unique identifier of the user who will
+     * receive the message; for group and supergroup chats only. It is not
+     * guaranteed that the user will receive the message, especially if they
+     * are offline. See ephemeral message sending for more details.
+     */
+    std::int64_t receiverUserId = 0;
+
+    /**
+     * @brief A JSON-serialized object containing the parameters of the suggested post
+     * to send; for direct messages chats only. If the message is sent as a
+     * reply to another suggested post, then that suggested post is
+     * automatically declined.
+     */
+    std::shared_ptr<SuggestedPostParameters> suggestedPostParameters = nullptr;
+};
+
+/**
+ * @brief Arguments for Api::sendVoice.
+ * @ingroup api
+ */
+struct SendVoiceArgs {
+    /**
+     * @brief Unique identifier for the target chat or username of the target bot,
+     * supergroup or channel in the format @username
+     */
+    std::variant<std::int64_t, std::string> chatId { };
+
+    /**
+     * @brief Audio file to send. Pass a file_id as String to send a file that exists
+     * on the Telegram servers (recommended), pass an HTTP URL as a String for
+     * Telegram to get a file from the Internet, or upload a new one using
+     * multipart/form-data. More information on Sending Files »
+     */
+    std::variant<std::shared_ptr<InputFile>, std::string> voice { };
+
+    /**
+     * @brief Voice message caption, 0-1024 characters after entities parsing
+     */
+    std::string caption = "";
+
+    /**
+     * @brief Duration of the voice message in seconds
+     */
+    std::int32_t duration = 0;
+
+    /**
+     * @brief Description of the message to reply to
+     */
+    std::shared_ptr<ReplyParameters> replyParameters = nullptr;
+
+    /**
+     * @brief Additional interface options. A JSON-serialized object for an inline
+     * keyboard, custom reply keyboard, instructions to remove a reply keyboard
+     * or to force a reply from the user.
+     */
+    std::variant<std::shared_ptr<InlineKeyboardMarkup>, std::shared_ptr<ReplyKeyboardMarkup>,
+                 std::shared_ptr<ReplyKeyboardRemove>, std::shared_ptr<ForceReply>>
+        replyMarkup = { };
+
+    /**
+     * @brief Mode for parsing entities in the voice message caption. See formatting
+     * options for more details.
+     */
+    std::string parseMode = "";
+
+    /**
+     * @brief Sends the message silently. Users will receive a notification with no
+     * sound.
+     */
+    bool disableNotification = false;
+
+    /**
+     * @brief A JSON-serialized list of special entities that appear in the caption,
+     * which can be specified instead of parse_mode
+     */
+    std::vector<std::shared_ptr<MessageEntity>> captionEntities = { };
+
+    /**
+     * @brief Unique identifier for the target message thread (topic) of a forum; for
+     * forum supergroups and private chats of bots with forum topic mode
+     * enabled only
+     */
+    std::int32_t messageThreadId = 0;
+
+    /**
+     * @brief Protects the contents of the sent message from forwarding and saving
+     */
+    bool protectContent = false;
+
+    /**
+     * @brief Unique identifier of the business connection on behalf of which the
+     * message will be sent
+     */
+    std::string businessConnectionId = "";
+
+    /**
+     * @brief Pass True to allow up to 1000 messages per second, ignoring broadcasting
+     * limits for a fee of 0.1 Telegram Stars per message. The relevant Stars
+     * will be withdrawn from the bot's balance.
+     */
+    bool allowPaidBroadcast = false;
+
+    /**
+     * @brief For outgoing ephemeral messages, identifier of the callback query which
+     * triggered the message if any
+     */
+    std::string callbackQueryId = "";
+
+    /**
+     * @brief Identifier of the direct messages topic to which the message will be
+     * sent; required if the message is sent to a direct messages chat
+     */
+    std::int64_t directMessagesTopicId = 0;
+
+    /**
+     * @brief Unique identifier of the message effect to be added to the message; for
+     * private chats only
+     */
+    std::string messageEffectId = "";
+
+    /**
+     * @brief For outgoing ephemeral messages, unique identifier of the user who will
+     * receive the message; for group and supergroup chats only. It is not
+     * guaranteed that the user will receive the message, especially if they
+     * are offline. See ephemeral message sending for more details.
+     */
+    std::int64_t receiverUserId = 0;
+
+    /**
+     * @brief A JSON-serialized object containing the parameters of the suggested post
+     * to send; for direct messages chats only. If the message is sent as a
+     * reply to another suggested post, then that suggested post is
+     * automatically declined.
+     */
+    std::shared_ptr<SuggestedPostParameters> suggestedPostParameters = nullptr;
+};
+
+/**
+ * @brief Arguments for Api::setBusinessAccountBio.
+ * @ingroup api
+ */
+struct SetBusinessAccountBioArgs {
+    /**
+     * @brief Unique identifier of the business connection
+     */
+    std::string businessConnectionId { };
+
+    /**
+     * @brief The new value of the bio for the business account; 0-140 characters
+     */
+    std::string bio = "";
+};
+
+/**
+ * @brief Arguments for Api::setBusinessAccountGiftSettings.
+ * @ingroup api
+ */
+struct SetBusinessAccountGiftSettingsArgs {
+    /**
+     * @brief Types of gifts accepted by the business account
+     */
+    std::shared_ptr<AcceptedGiftTypes> acceptedGiftTypes { };
+
+    /**
+     * @brief Unique identifier of the business connection
+     */
+    std::string businessConnectionId { };
+
+    /**
+     * @brief Pass True if a button for sending a gift to the user or by the business
+     * account must always be shown in the input field
+     */
+    bool showGiftButton { };
+};
+
+/**
+ * @brief Arguments for Api::setBusinessAccountName.
+ * @ingroup api
+ */
+struct SetBusinessAccountNameArgs {
+    /**
+     * @brief Unique identifier of the business connection
+     */
+    std::string businessConnectionId { };
+
+    /**
+     * @brief The new value of the first name for the business account; 1-64
+     * characters
+     */
+    std::string firstName { };
+
+    /**
+     * @brief The new value of the last name for the business account; 0-64 characters
+     */
+    std::string lastName = "";
+};
+
+/**
+ * @brief Arguments for Api::setBusinessAccountProfilePhoto.
+ * @ingroup api
+ */
+struct SetBusinessAccountProfilePhotoArgs {
+    /**
+     * @brief Unique identifier of the business connection
+     */
+    std::string businessConnectionId { };
+
+    /**
+     * @brief The new profile photo to set
+     */
+    std::shared_ptr<InputProfilePhoto> photo { };
+
+    /**
+     * @brief Pass True to set the public photo, which will be visible even if the
+     * main photo is hidden by the business account's privacy settings. An
+     * account can have only one public photo.
+     */
+    bool isPublic = false;
+};
+
+/**
+ * @brief Arguments for Api::setBusinessAccountUsername.
+ * @ingroup api
+ */
+struct SetBusinessAccountUsernameArgs {
+    /**
+     * @brief Unique identifier of the business connection
+     */
+    std::string businessConnectionId { };
+
+    /**
+     * @brief The new value of the username for the business account; 0-32 characters
+     */
+    std::string username = "";
+};
+
+/**
+ * @brief Arguments for Api::setChatAdministratorCustomTitle.
+ * @ingroup api
+ */
+struct SetChatAdministratorCustomTitleArgs {
+    /**
+     * @brief Unique identifier for the target chat or username of the target
+     * supergroup in the format @username
+     */
+    std::variant<std::int64_t, std::string> chatId { };
+
+    /**
+     * @brief Unique identifier of the target user
+     */
+    std::int64_t userId { };
+
+    /**
+     * @brief New custom title for the administrator; 0-16 characters, emoji are not
+     * allowed
+     */
+    std::string customTitle { };
+};
+
+/**
+ * @brief Arguments for Api::setChatDescription.
+ * @ingroup api
+ */
+struct SetChatDescriptionArgs {
+    /**
+     * @brief Unique identifier for the target chat or username of the target channel
+     * in the format @username
+     */
+    std::variant<std::int64_t, std::string> chatId { };
+
+    /**
+     * @brief New chat description, 0-255 characters
+     */
+    std::string description = "";
+};
+
+/**
+ * @brief Arguments for Api::setChatMemberTag.
+ * @ingroup api
+ */
+struct SetChatMemberTagArgs {
+    /**
+     * @brief Unique identifier for the target chat or username of the target
+     * supergroup in the format @username
+     */
+    std::variant<std::int64_t, std::string> chatId { };
+
+    /**
+     * @brief Unique identifier of the target user
+     */
+    std::int64_t userId { };
+
+    /**
+     * @brief New tag for the member; 0-16 characters, emoji are not allowed
+     */
+    std::string tag = "";
+};
+
+/**
+ * @brief Arguments for Api::setChatMenuButton.
+ * @ingroup api
+ */
+struct SetChatMenuButtonArgs {
+    /**
+     * @brief Unique identifier for the target private chat. If not specified, the
+     * bot's default menu button will be changed.
+     */
+    std::variant<std::int64_t, std::string> chatId = { };
+
+    /**
+     * @brief A JSON-serialized object for the bot's new menu button. Defaults to
+     * MenuButtonDefault.
+     */
+    std::shared_ptr<MenuButton> menuButton = nullptr;
+};
+
+/**
+ * @brief Arguments for Api::setChatPermissions.
+ * @ingroup api
+ */
+struct SetChatPermissionsArgs {
+    /**
+     * @brief Unique identifier for the target chat or username of the target
+     * supergroup in the format @username
+     */
+    std::variant<std::int64_t, std::string> chatId { };
+
+    /**
+     * @brief A JSON-serialized object for new default chat permissions
+     */
+    std::shared_ptr<ChatPermissions> permissions { };
+
+    /**
+     * @brief Pass True if chat permissions are set independently. Otherwise, the
+     * can_send_other_messages and can_add_web_page_previews permissions will
+     * imply the can_send_messages, can_send_audios, can_send_documents,
+     * can_send_photos, can_send_videos, can_send_video_notes, and
+     * can_send_voice_notes permissions; the can_send_polls permission will
+     * imply the can_send_messages permission.
+     */
+    bool useIndependentChatPermissions = false;
+};
+
+/**
+ * @brief Arguments for Api::setChatPhoto.
+ * @ingroup api
+ */
+struct SetChatPhotoArgs {
+    /**
+     * @brief Unique identifier for the target chat or username of the target channel
+     * in the format @username
+     */
+    std::variant<std::int64_t, std::string> chatId { };
+
+    /**
+     * @brief New chat photo, uploaded using multipart/form-data
+     */
+    std::variant<std::shared_ptr<InputFile>, std::string> photo { };
+};
+
+/**
+ * @brief Arguments for Api::setChatStickerSet.
+ * @ingroup api
+ */
+struct SetChatStickerSetArgs {
+    /**
+     * @brief Unique identifier for the target chat or username of the target
+     * supergroup in the format @username
+     */
+    std::variant<std::int64_t, std::string> chatId { };
+
+    /**
+     * @brief Name of the sticker set to be set as the group sticker set
+     */
+    std::string stickerSetName { };
+};
+
+/**
+ * @brief Arguments for Api::setChatTitle.
+ * @ingroup api
+ */
+struct SetChatTitleArgs {
+    /**
+     * @brief Unique identifier for the target chat or username of the target channel
+     * in the format @username
+     */
+    std::variant<std::int64_t, std::string> chatId { };
+
+    /**
+     * @brief New chat title, 1-128 characters
+     */
+    std::string title { };
+};
+
+/**
+ * @brief Arguments for Api::setCustomEmojiStickerSetThumbnail.
+ * @ingroup api
+ */
+struct SetCustomEmojiStickerSetThumbnailArgs {
+    /**
+     * @brief Sticker set name
+     */
+    std::string name { };
+
+    /**
+     * @brief Custom emoji identifier of a sticker from the sticker set; pass an empty
+     * string to drop the thumbnail and use the first sticker as the thumbnail
+     */
+    std::string customEmojiId = "";
+};
+
+/**
+ * @brief Arguments for Api::setGameScore.
+ * @ingroup api
+ */
+struct SetGameScoreArgs {
+    /**
+     * @brief User identifier
+     */
+    std::int64_t userId { };
+
+    /**
+     * @brief New score, must be non-negative
+     */
+    std::int32_t score { };
+
+    /**
+     * @brief Pass True if the high score is allowed to decrease. This can be useful
+     * when fixing mistakes or banning cheaters.
+     */
+    bool force = false;
+
+    /**
+     * @brief Pass True if the game message should not be automatically edited to
+     * include the current scoreboard
+     */
+    bool disableEditMessage = false;
+
+    /**
+     * @brief Required if inline_message_id is not specified. Unique identifier for
+     * the target chat.
+     */
+    std::variant<std::int64_t, std::string> chatId = { };
+
+    /**
+     * @brief Required if inline_message_id is not specified. Identifier of the sent
+     * message.
+     */
+    std::int32_t messageId = 0;
+
+    /**
+     * @brief Required if chat_id and message_id are not specified. Identifier of the
+     * inline message.
+     */
+    std::string inlineMessageId = "";
+};
+
+/**
+ * @brief Arguments for Api::setManagedBotAccessSettings.
+ * @ingroup api
+ */
+struct SetManagedBotAccessSettingsArgs {
+    /**
+     * @brief Pass True if only selected users can access the bot. The bot's owner can
+     * always access it.
+     */
+    bool isAccessRestricted { };
+
+    /**
+     * @brief User identifier of the managed bot whose access settings will be changed
+     */
+    std::int64_t userId { };
+
+    /**
+     * @brief A JSON-serialized list of up to 10 identifiers of users who will have
+     * access to the bot in addition to its owner. Ignored if
+     * is_access_restricted is False.
+     */
+    std::vector<std::int32_t> addedUserIds = { };
+};
+
+/**
+ * @brief Arguments for Api::setMessageReaction.
+ * @ingroup api
+ */
+struct SetMessageReactionArgs {
+    /**
+     * @brief Unique identifier for the target chat or username of the target bot,
+     * supergroup or channel in the format @username
+     */
+    std::variant<std::int64_t, std::string> chatId { };
+
+    /**
+     * @brief Identifier of the target message. If the message belongs to a media
+     * group, the reaction is set to the first non-deleted message in the group
+     * instead.
+     */
+    std::int32_t messageId { };
+
+    /**
+     * @brief A JSON-serialized list of reaction types to set on the message.
+     * Currently, as non-premium users, bots can set up to one reaction per
+     * message. A custom emoji reaction can be used if it is either already
+     * present on the message or explicitly allowed by chat administrators.
+     * Paid reactions can't be used by bots.
+     */
+    std::vector<std::shared_ptr<ReactionType>> reaction = { };
+
+    /**
+     * @brief Pass True to set the reaction with a big animation
+     */
+    bool isBig = false;
+};
+
+/**
+ * @brief Arguments for Api::setMyCommands.
+ * @ingroup api
+ */
+struct SetMyCommandsArgs {
+    /**
+     * @brief A JSON-serialized list of bot commands to be set as the list of the
+     * bot's commands. At most 100 commands can be specified.
+     */
+    std::vector<std::shared_ptr<BotCommand>> commands { };
+
+    /**
+     * @brief A JSON-serialized object, describing scope of users for which the
+     * commands are relevant. Defaults to BotCommandScopeDefault.
+     */
+    std::shared_ptr<BotCommandScope> scope = nullptr;
+
+    /**
+     * @brief A two-letter ISO 639-1 language code. If empty, commands will be applied
+     * to all users from the given scope, for whose language there are no
+     * dedicated commands.
+     */
+    std::string languageCode = "";
+};
+
+/**
+ * @brief Arguments for Api::setMyDefaultAdministratorRights.
+ * @ingroup api
+ */
+struct SetMyDefaultAdministratorRightsArgs {
+    /**
+     * @brief A JSON-serialized object describing new default administrator rights. If
+     * not specified, the default administrator rights will be cleared.
+     */
+    std::shared_ptr<ChatAdministratorRights> rights = nullptr;
+
+    /**
+     * @brief Pass True to change the default administrator rights of the bot in
+     * channels. Otherwise, the default administrator rights of the bot for
+     * groups and supergroups will be changed.
+     */
+    bool forChannels = false;
+};
+
+/**
+ * @brief Arguments for Api::setMyDescription.
+ * @ingroup api
+ */
+struct SetMyDescriptionArgs {
+    /**
+     * @brief New bot description; 0-512 characters. Pass an empty string to remove
+     * the dedicated description for the given language.
+     */
+    std::string description = "";
+
+    /**
+     * @brief A two-letter ISO 639-1 language code. If empty, the description will be
+     * applied to all users for whose language there is no dedicated
+     * description.
+     */
+    std::string languageCode = "";
+};
+
+/**
+ * @brief Arguments for Api::setMyName.
+ * @ingroup api
+ */
+struct SetMyNameArgs {
+    /**
+     * @brief New bot name; 0-64 characters. Pass an empty string to remove the
+     * dedicated name for the given language.
+     */
+    std::string name = "";
+
+    /**
+     * @brief A two-letter ISO 639-1 language code. If empty, the name will be shown
+     * to all users for whose language there is no dedicated name.
+     */
+    std::string languageCode = "";
+};
+
+/**
+ * @brief Arguments for Api::setMyProfilePhoto.
+ * @ingroup api
+ */
+struct SetMyProfilePhotoArgs {
+    /**
+     * @brief The new profile photo to set
+     */
+    std::shared_ptr<InputProfilePhoto> photo { };
+};
+
+/**
+ * @brief Arguments for Api::setMyShortDescription.
+ * @ingroup api
+ */
+struct SetMyShortDescriptionArgs {
+    /**
+     * @brief New short description for the bot; 0-120 characters. Pass an empty
+     * string to remove the dedicated short description for the given language.
+     */
+    std::string shortDescription = "";
+
+    /**
+     * @brief A two-letter ISO 639-1 language code. If empty, the short description
+     * will be applied to all users for whose language there is no dedicated
+     * short description.
+     */
+    std::string languageCode = "";
+};
+
+/**
+ * @brief Arguments for Api::setPassportDataErrors.
+ * @ingroup api
+ */
+struct SetPassportDataErrorsArgs {
+    /**
+     * @brief User identifier
+     */
+    std::int64_t userId { };
+
+    /**
+     * @brief A JSON-serialized Array describing the errors
+     */
+    std::vector<std::shared_ptr<PassportElementError>> errors { };
+};
+
+/**
+ * @brief Arguments for Api::setStickerEmojiList.
+ * @ingroup api
+ */
+struct SetStickerEmojiListArgs {
+    /**
+     * @brief File identifier of the sticker
+     */
+    std::string sticker { };
+
+    /**
+     * @brief A JSON-serialized list of 1-20 emoji associated with the sticker
+     */
+    std::vector<std::string> emojiList { };
+};
+
+/**
+ * @brief Arguments for Api::setStickerKeywords.
+ * @ingroup api
+ */
+struct SetStickerKeywordsArgs {
+    /**
+     * @brief File identifier of the sticker
+     */
+    std::string sticker { };
+
+    /**
+     * @brief A JSON-serialized list of 0-20 search keywords for the sticker with
+     * total length of up to 64 characters
+     */
+    std::vector<std::string> keywords = { };
+};
+
+/**
+ * @brief Arguments for Api::setStickerMaskPosition.
+ * @ingroup api
+ */
+struct SetStickerMaskPositionArgs {
+    /**
+     * @brief File identifier of the sticker
+     */
+    std::string sticker { };
+
+    /**
+     * @brief A JSON-serialized object with the position where the mask should be
+     * placed on faces. Omit the parameter to remove the mask position.
+     */
+    std::shared_ptr<MaskPosition> maskPosition = nullptr;
+};
+
+/**
+ * @brief Arguments for Api::setStickerPositionInSet.
+ * @ingroup api
+ */
+struct SetStickerPositionInSetArgs {
+    /**
+     * @brief File identifier of the sticker
+     */
+    std::string sticker { };
+
+    /**
+     * @brief New sticker position in the set, zero-based
+     */
+    std::int32_t position { };
+};
+
+/**
+ * @brief Arguments for Api::setStickerSetThumbnail.
+ * @ingroup api
+ */
+struct SetStickerSetThumbnailArgs {
+    /**
+     * @brief Sticker set name
+     */
+    std::string name { };
+
+    /**
+     * @brief User identifier of the sticker set owner
+     */
+    std::int64_t userId { };
+
+    /**
+     * @brief Format of the thumbnail, must be one of “static” for a .WEBP or .PNG
+     * image, “animated” for a .TGS animation, or “video” for a .WEBM video
+     */
+    std::string format { };
+
+    /**
+     * @brief A .WEBP or .PNG image with the thumbnail, must be up to 128 kilobytes in
+     * size and have a width and height of exactly 100px, or a .TGS animation
+     * with a thumbnail up to 32 kilobytes in size (see
+     * https://core.telegram.org/stickers#animation-requirements for animated
+     * sticker technical requirements), or a .WEBM video with the thumbnail up
+     * to 32 kilobytes in size; see https://core.telegram.org/stickers#video-
+     * requirements for video sticker technical requirements. Pass a file_id as
+     * a String to send a file that already exists on the Telegram servers,
+     * pass an HTTP URL as a String for Telegram to get a file from the
+     * Internet, or upload a new one using multipart/form-data. More
+     * information on Sending Files ». Animated and video sticker set
+     * thumbnails can't be uploaded via HTTP URL. If omitted, then the
+     * thumbnail is dropped and the first sticker is used as the thumbnail.
+     */
+    std::variant<std::shared_ptr<InputFile>, std::string> thumbnail = { };
+};
+
+/**
+ * @brief Arguments for Api::setStickerSetTitle.
+ * @ingroup api
+ */
+struct SetStickerSetTitleArgs {
+    /**
+     * @brief Sticker set name
+     */
+    std::string name { };
+
+    /**
+     * @brief Sticker set title, 1-64 characters
+     */
+    std::string title { };
+};
+
+/**
+ * @brief Arguments for Api::setUserEmojiStatus.
+ * @ingroup api
+ */
+struct SetUserEmojiStatusArgs {
+    /**
+     * @brief Unique identifier of the target user
+     */
+    std::int64_t userId { };
+
+    /**
+     * @brief Custom emoji identifier of the emoji status to set. Pass an empty string
+     * to remove the status.
+     */
+    std::string emojiStatusCustomEmojiId = "";
+
+    /**
+     * @brief Expiration date of the emoji status, if any
+     */
+    std::int32_t emojiStatusExpirationDate = 0;
+};
+
+/**
+ * @brief Arguments for Api::setWebhook.
+ * @ingroup api
+ */
+struct SetWebhookArgs {
+    /**
+     * @brief HTTPS URL to send updates to. Use an empty string to remove webhook
+     * integration.
+     */
+    std::string url { };
+
+    /**
+     * @brief Upload your public key certificate so that the root certificate in use
+     * can be checked. See our self-signed guide for details.
+     */
+    std::shared_ptr<InputFile> certificate = nullptr;
+
+    /**
+     * @brief The maximum allowed number of simultaneous HTTPS connections to the
+     * webhook for update delivery, 1-100. Defaults to 40. Use lower values to
+     * limit the load on your bot's server, and higher values to increase your
+     * bot's throughput.
+     */
+    std::int32_t maxConnections = 40;
+
+    /**
+     * @brief A JSON-serialized list of the update types you want your bot to receive.
+     * For example, specify ["message", "edited_channel_post",
+     * "callback_query"] to only receive updates of these types. See Update for
+     * a complete list of available update types. Specify an empty list to
+     * receive all update types except chat_member, message_reaction, and
+     * message_reaction_count (default). If not specified, the previous setting
+     * will be used.Please note that this parameter doesn't affect updates
+     * created before the call to the setWebhook, so unwanted updates may be
+     * received for a short period of time.
+     */
+    std::vector<std::string> allowedUpdates = { };
+
+    /**
+     * @brief The fixed IP address which will be used to send webhook requests instead
+     * of the IP address resolved through DNS
+     */
+    std::string ipAddress = "";
+
+    /**
+     * @brief Pass True to drop all pending updates
+     */
+    bool dropPendingUpdates = false;
+
+    /**
+     * @brief A secret token to be sent in a header “X-Telegram-Bot-Api-Secret-Token”
+     * in every webhook request, 1-256 characters. Only characters A-Z, a-z,
+     * 0-9, _ and - are allowed. The header is useful to ensure that the
+     * request comes from a webhook set by you.
+     */
+    std::string secretToken = "";
+};
+
+/**
+ * @brief Arguments for Api::stopMessageLiveLocation.
+ * @ingroup api
+ */
+struct StopMessageLiveLocationArgs {
+    /**
+     * @brief Required if inline_message_id is not specified. Unique identifier for
+     * the target chat or username of the target bot, supergroup or channel in
+     * the format @username.
+     */
+    std::variant<std::int64_t, std::string> chatId = { };
+
+    /**
+     * @brief Required if inline_message_id is not specified. Identifier of the
+     * message with live location to stop.
+     */
+    std::int32_t messageId = 0;
+
+    /**
+     * @brief Required if chat_id and message_id are not specified. Identifier of the
+     * inline message.
+     */
+    std::string inlineMessageId = "";
+
+    /**
+     * @brief A JSON-serialized object for a new inline keyboard
+     */
+    std::shared_ptr<InlineKeyboardMarkup> replyMarkup = nullptr;
+
+    /**
+     * @brief Unique identifier of the business connection on behalf of which the
+     * message to be edited was sent
+     */
+    std::string businessConnectionId = "";
+};
+
+/**
+ * @brief Arguments for Api::stopPoll.
+ * @ingroup api
+ */
+struct StopPollArgs {
+    /**
+     * @brief Unique identifier for the target chat or username of the target bot,
+     * supergroup or channel in the format @username
+     */
+    std::variant<std::int64_t, std::string> chatId { };
+
+    /**
+     * @brief Identifier of the original message with the poll
+     */
+    std::int32_t messageId { };
+
+    /**
+     * @brief Unique identifier of the business connection on behalf of which the
+     * message to be edited was sent
+     */
+    std::string businessConnectionId = "";
+
+    /**
+     * @brief A JSON-serialized object for a new message inline keyboard
+     */
+    std::shared_ptr<InlineKeyboardMarkup> replyMarkup = nullptr;
+};
+
+/**
+ * @brief Arguments for Api::transferBusinessAccountStars.
+ * @ingroup api
+ */
+struct TransferBusinessAccountStarsArgs {
+    /**
+     * @brief Unique identifier of the business connection
+     */
+    std::string businessConnectionId { };
+
+    /**
+     * @brief Number of Telegram Stars to transfer; 1-10000
+     */
+    std::int32_t starCount { };
+};
+
+/**
+ * @brief Arguments for Api::transferGift.
+ * @ingroup api
+ */
+struct TransferGiftArgs {
+    /**
+     * @brief Unique identifier of the business connection
+     */
+    std::string businessConnectionId { };
+
+    /**
+     * @brief Unique identifier of the chat which will own the gift. The chat must be
+     * active in the last 24 hours.
+     */
+    std::int64_t newOwnerChatId { };
+
+    /**
+     * @brief Unique identifier of the regular gift that should be transferred
+     */
+    std::string ownedGiftId { };
+
+    /**
+     * @brief The amount of Telegram Stars that will be paid for the transfer from the
+     * business account balance. If positive, then the can_transfer_stars
+     * business bot right is required.
+     */
+    std::int32_t starCount = 0;
+};
+
+/**
+ * @brief Arguments for Api::unbanChatMember.
+ * @ingroup api
+ */
+struct UnbanChatMemberArgs {
+    /**
+     * @brief Unique identifier for the target group or username of the target
+     * supergroup or channel in the format @username
+     */
+    std::variant<std::int64_t, std::string> chatId { };
+
+    /**
+     * @brief Unique identifier of the target user
+     */
+    std::int64_t userId { };
+
+    /**
+     * @brief Do nothing if the user is not banned
+     */
+    bool onlyIfBanned = false;
+};
+
+/**
+ * @brief Arguments for Api::unbanChatSenderChat.
+ * @ingroup api
+ */
+struct UnbanChatSenderChatArgs {
+    /**
+     * @brief Unique identifier for the target chat or username of the target channel
+     * in the format @username
+     */
+    std::variant<std::int64_t, std::string> chatId { };
+
+    /**
+     * @brief Unique identifier of the target sender chat
+     */
+    std::int64_t senderChatId { };
+};
+
+/**
+ * @brief Arguments for Api::unhideGeneralForumTopic.
+ * @ingroup api
+ */
+struct UnhideGeneralForumTopicArgs {
+    /**
+     * @brief Unique identifier for the target chat or username of the target
+     * supergroup in the format @username
+     */
+    std::variant<std::int64_t, std::string> chatId { };
+};
+
+/**
+ * @brief Arguments for Api::unpinAllChatMessages.
+ * @ingroup api
+ */
+struct UnpinAllChatMessagesArgs {
+    /**
+     * @brief Unique identifier for the target chat or username of the target channel
+     * in the format @username
+     */
+    std::variant<std::int64_t, std::string> chatId { };
+};
+
+/**
+ * @brief Arguments for Api::unpinAllForumTopicMessages.
+ * @ingroup api
+ */
+struct UnpinAllForumTopicMessagesArgs {
+    /**
+     * @brief Unique identifier for the target chat or username of the target
+     * supergroup in the format @username
+     */
+    std::variant<std::int64_t, std::string> chatId { };
+
+    /**
+     * @brief Unique identifier for the target message thread of the forum topic
+     */
+    std::int32_t messageThreadId { };
+};
+
+/**
+ * @brief Arguments for Api::unpinAllGeneralForumTopicMessages.
+ * @ingroup api
+ */
+struct UnpinAllGeneralForumTopicMessagesArgs {
+    /**
+     * @brief Unique identifier for the target chat or username of the target
+     * supergroup in the format @username
+     */
+    std::variant<std::int64_t, std::string> chatId { };
+};
+
+/**
+ * @brief Arguments for Api::unpinChatMessage.
+ * @ingroup api
+ */
+struct UnpinChatMessageArgs {
+    /**
+     * @brief Unique identifier for the target chat or username of the target channel
+     * in the format @username
+     */
+    std::variant<std::int64_t, std::string> chatId { };
+
+    /**
+     * @brief Unique identifier of the business connection on behalf of which the
+     * message will be unpinned
+     */
+    std::string businessConnectionId = "";
+
+    /**
+     * @brief Identifier of the message to unpin. Required if business_connection_id
+     * is specified. If not specified, the most recent pinned message (by
+     * sending date) will be unpinned.
+     */
+    std::int32_t messageId = 0;
+};
+
+/**
+ * @brief Arguments for Api::upgradeGift.
+ * @ingroup api
+ */
+struct UpgradeGiftArgs {
+    /**
+     * @brief Unique identifier of the business connection
+     */
+    std::string businessConnectionId { };
+
+    /**
+     * @brief Unique identifier of the regular gift that should be upgraded to a
+     * unique one
+     */
+    std::string ownedGiftId { };
+
+    /**
+     * @brief Pass True to keep the original gift text, sender and receiver in the
+     * upgraded gift
+     */
+    bool keepOriginalDetails = false;
+
+    /**
+     * @brief The amount of Telegram Stars that will be paid for the upgrade from the
+     * business account balance. If gift.prepaid_upgrade_star_count > 0, then
+     * pass 0, otherwise, the can_transfer_stars business bot right is required
+     * and gift.upgrade_star_count must be passed.
+     */
+    std::int32_t starCount = 0;
+};
+
+/**
+ * @brief Arguments for Api::uploadStickerFile.
+ * @ingroup api
+ */
+struct UploadStickerFileArgs {
+    /**
+     * @brief User identifier of sticker file owner
+     */
+    std::int64_t userId { };
+
+    /**
+     * @brief A file with the sticker in .WEBP, .PNG, .TGS, or .WEBM format. See
+     * https://core.telegram.org/stickers for technical requirements. More
+     * information on Sending Files »
+     */
+    std::variant<std::shared_ptr<InputFile>, std::string> sticker { };
+
+    /**
+     * @brief Format of the sticker, must be one of “static”, “animated”, “video”
+     */
+    std::string stickerFormat { };
+};
+
+/**
+ * @brief Arguments for Api::verifyChat.
+ * @ingroup api
+ */
+struct VerifyChatArgs {
+    /**
+     * @brief Unique identifier for the target chat or username of the target bot,
+     * supergroup or channel in the format @username. Channel direct messages
+     * chats can't be verified.
+     */
+    std::variant<std::int64_t, std::string> chatId { };
+
+    /**
+     * @brief Custom description for the verification; 0-70 characters. Must be empty
+     * if the organization isn't allowed to provide a custom verification
+     * description.
+     */
+    std::string customDescription = "";
+};
+
+/**
+ * @brief Arguments for Api::verifyUser.
+ * @ingroup api
+ */
+struct VerifyUserArgs {
+    /**
+     * @brief Unique identifier of the target user
+     */
+    std::int64_t userId { };
+
+    /**
+     * @brief Custom description for the verification; 0-70 characters. Must be empty
+     * if the organization isn't allowed to provide a custom verification
+     * description.
+     */
+    std::string customDescription = "";
+};
 
 } // namespace TgBot
