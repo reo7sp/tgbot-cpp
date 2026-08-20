@@ -6,7 +6,7 @@ CONAN_RECIPE_VERSION ?= $(shell git describe --tags --abbrev=0 --match 'v*' 2>/d
 CONAN_RECIPE_ARGS ?=
 INSTALL_PREFIX ?=
 CPP_FILES = $(shell find include src tests examples -type f \( -name '*.h' -o -name '*.cpp' \) ! -name '*.inc.h' | sort)
-PYTHON_FILES = conanfile.py api_codegen conan-center
+PYTHON_FILES = conanfile.py api_codegen
 DOCKER_IMAGE ?= reo7sp/tgbot-cpp
 DOCKER_TEST_IMAGE ?= reo7sp/tgbot-cpp-test
 DOCKER_PLATFORM ?= linux/amd64

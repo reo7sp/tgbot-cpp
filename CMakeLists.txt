@@ -44,7 +44,7 @@ target_include_directories(TgBot PUBLIC
     $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
 )
 target_link_libraries(TgBot PUBLIC
-    Boost::boost
+    Boost::headers
     CURL::libcurl
     nlohmann_json::nlohmann_json
     Threads::Threads
