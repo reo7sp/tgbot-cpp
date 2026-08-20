@@ -8,13 +8,15 @@ CONAN_RECIPE_ARGS ?=
 CMAKE_LOG_LEVEL ?= STATUS
 CMAKE_INSTALL_MESSAGE ?= ALWAYS
 CMAKE_BUILD_ARGS ?=
+ENABLE_SANITIZERS ?= OFF
+ENABLE_COVERAGE ?= OFF
 POETRY_INSTALL_ARGS ?= --no-interaction --quiet
 INSTALL_PREFIX ?=
 API_METHODS_CPP = src/ApiMethods.cpp
 API_METHODS_INC = include/tgbot/ApiMethods.inc.h
 API_METHODS_CLANG_FORMAT_CONFIG = api_codegen/clang-format-api-methods.yaml
 CPP_FILES = $(shell find include src tests examples -type f \( -name '*.h' -o -name '*.cpp' \) ! -name '*.inc.h' ! -path '$(API_METHODS_CPP)' | sort)
-PYTHON_FILES = conanfile.py api_codegen
+PYTHON_FILES = conanfile.py coverage_summary.py api_codegen
 DOCKER_IMAGE ?= reo7sp/tgbot-cpp
 DOCKER_TEST_IMAGE ?= reo7sp/tgbot-cpp-test
 DOCKER_PLATFORM ?= linux/amd64
@@ -23,6 +25,7 @@ EXAMPLES := $(sort $(notdir $(patsubst %/,%,$(dir $(wildcard examples/*/CMakeLis
 EXAMPLE_IMAGE ?= tgbot-cpp-example-$(EXAMPLE)
 PORT ?= 8080
 DOCS_WORKTREE := $(abspath build/gh-pages)
+COVERAGE_REPORT_DIR ?= $(BUILD_DIR)/coverage
 
 ifeq ($(OS),Windows_NT)
 export CMAKE_GENERATOR ?= Ninja
@@ -46,6 +49,8 @@ endif
 	test \
 	test-only \
 	test-api-codegen \
+	coverage \
+	coverage-python \
 	install \
 	install-with-system \
 	install-only \
@@ -94,6 +99,8 @@ configure: dependencies
 		-DCMAKE_TOOLCHAIN_FILE=$(abspath $(BUILD_DIR)/generators/conan_toolchain.cmake) \
 		-DCMAKE_BUILD_TYPE=$(BUILD_TYPE) \
 		-DCMAKE_INSTALL_MESSAGE=$(CMAKE_INSTALL_MESSAGE) \
+		-DENABLE_SANITIZERS=$(ENABLE_SANITIZERS) \
+		-DENABLE_COVERAGE=$(ENABLE_COVERAGE) \
 		-DCMAKE_EXPORT_COMPILE_COMMANDS=ON \
 		-DENABLE_TESTS=OFF
 
@@ -101,6 +108,8 @@ configure-with-system:
 	cmake --log-level=$(CMAKE_LOG_LEVEL) -S . -B $(BUILD_DIR) \
 		-DCMAKE_BUILD_TYPE=$(BUILD_TYPE) \
 		-DCMAKE_INSTALL_MESSAGE=$(CMAKE_INSTALL_MESSAGE) \
+		-DENABLE_SANITIZERS=$(ENABLE_SANITIZERS) \
+		-DENABLE_COVERAGE=$(ENABLE_COVERAGE) \
 		-DCMAKE_EXPORT_COMPILE_COMMANDS=ON \
 		-DENABLE_TESTS=OFF
 
@@ -109,6 +118,8 @@ configure-with-test: dependencies-with-test
 		-DCMAKE_TOOLCHAIN_FILE=$(abspath $(BUILD_DIR)/generators/conan_toolchain.cmake) \
 		-DCMAKE_BUILD_TYPE=$(BUILD_TYPE) \
 		-DCMAKE_INSTALL_MESSAGE=$(CMAKE_INSTALL_MESSAGE) \
+		-DENABLE_SANITIZERS=$(ENABLE_SANITIZERS) \
+		-DENABLE_COVERAGE=$(ENABLE_COVERAGE) \
 		-DCMAKE_EXPORT_COMPILE_COMMANDS=ON \
 		-DENABLE_TESTS=ON
 
@@ -146,6 +157,35 @@ test-only:
 
 test-api-codegen:
 	poetry run pytest api_codegen/tests
+
+coverage:
+	cmake -E make_directory $(COVERAGE_REPORT_DIR)
+	gcovr $(BUILD_DIR) \
+		--root . \
+		--filter 'include/tgbot/' \
+		--filter 'src/' \
+		--gcov-ignore-parse-errors=negative_hits.warn_once_per_file \
+		--exclude-throw-branches \
+		--exclude-unreachable-branches \
+		--html-details $(COVERAGE_REPORT_DIR)/coverage.html
+	gcovr $(BUILD_DIR) \
+		--root . \
+		--filter 'include/tgbot/' \
+		--filter 'src/' \
+		--exclude 'src/ApiMethods\.cpp' \
+		--exclude 'src/Types\.cpp' \
+		--gcov-ignore-parse-errors=negative_hits.warn_once_per_file \
+		--exclude-throw-branches \
+		--exclude-unreachable-branches \
+		--coveralls $(COVERAGE_REPORT_DIR)/coveralls.json \
+		--lcov $(COVERAGE_REPORT_DIR)/lcov.info
+	python3 coverage_summary.py $(COVERAGE_REPORT_DIR)/coveralls.json
+
+coverage-python:
+	cmake -E make_directory $(BUILD_DIR)
+	COVERAGE_FILE=$(BUILD_DIR)/.coverage-python poetry run pytest api_codegen/tests \
+		--cov=api_codegen \
+		--cov-report=term-missing
 
 install: build
 	$(MAKE) install-only
@@ -230,8 +270,7 @@ docker-run-example-webhook: docker-example-image
 	docker run --rm -it --init --platform=$(DOCKER_PLATFORM) -e TOKEN -e WEBHOOK_URL -p $(PORT):8080 $(EXAMPLE_IMAGE)
 
 docker-compose-run-examples: docker-image
-	DOCKER_PLATFORM=$(DOCKER_PLATFORM) TGBOT_CPP_IMAGE=$(DOCKER_IMAGE) \
-		docker compose --env-file env -f docker-compose.test.yaml up --build
+	DOCKER_PLATFORM=$(DOCKER_PLATFORM) TGBOT_CPP_IMAGE=$(DOCKER_IMAGE) docker compose --env-file env -f docker-compose.test.yaml up --build
 
 docker-compose-stop-examples:
 	docker compose --env-file env -f docker-compose.test.yaml down

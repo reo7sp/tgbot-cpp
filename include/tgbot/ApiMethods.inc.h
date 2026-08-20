@@ -10,10 +10,16 @@
      * @param sticker A JSON-serialized object with information about the added sticker. If
      * exactly the same sticker had already been added to the set, then the set
      * isn't changed.
+     * @param attachments Files uploaded as named multipart parts. Reference each file from a
+     * composite Telegram API argument as attach://<name> and use the same name
+     * in InputFileAttachment.
      *
      * @return True on success.
      */
-    bool addStickerToSet(std::int64_t userId, const std::string& name, std::shared_ptr<InputSticker> sticker) const;
+    bool addStickerToSet(std::int64_t userId,
+                         std::string_view name,
+                         std::shared_ptr<InputSticker> sticker,
+                         const std::vector<InputFileAttachment>& attachments = { }) const;
 
     /**
      * @brief Use this method to add a new sticker to a set created by the bot. Emoji sticker sets can
@@ -47,10 +53,10 @@
      *
      * @return True on success.
      */
-    bool answerCallbackQuery(const std::string& callbackQueryId,
-                             const std::string& text = "",
+    bool answerCallbackQuery(std::string_view callbackQueryId,
+                             std::string_view text = "",
                              bool showAlert = false,
-                             const std::string& url = "",
+                             std::string_view url = "",
                              std::int32_t cacheTime = 0) const;
 
     /**
@@ -74,7 +80,7 @@
      *
      * @return True on success.
      */
-    bool answerChatJoinRequestQuery(const std::string& chatJoinRequestQueryId, const std::string& result) const;
+    bool answerChatJoinRequestQuery(std::string_view chatJoinRequestQueryId, std::string_view result) const;
 
     /**
      * @brief Use this method to process a received chat join request query. Returns True on success.
@@ -94,7 +100,7 @@
      *
      * @return The resulting SentGuestMessage object.
      */
-    std::shared_ptr<SentGuestMessage> answerGuestQuery(const std::string& guestQueryId,
+    std::shared_ptr<SentGuestMessage> answerGuestQuery(std::string_view guestQueryId,
                                                        std::shared_ptr<InlineQueryResult> result) const;
 
     /**
@@ -127,11 +133,11 @@
      *
      * @return True on success.
      */
-    bool answerInlineQuery(const std::string& inlineQueryId,
+    bool answerInlineQuery(std::string_view inlineQueryId,
                            const std::vector<std::shared_ptr<InlineQueryResult>>& results,
                            std::int32_t cacheTime = 300,
                            bool isPersonal = false,
-                           const std::string& nextOffset = "",
+                           std::string_view nextOffset = "",
                            std::shared_ptr<InlineQueryResultsButton> button = nullptr) const;
 
     /**
@@ -163,9 +169,8 @@
      *
      * @return True on success.
      */
-    bool answerPreCheckoutQuery(const std::string& preCheckoutQueryId,
-                                bool ok,
-                                const std::string& errorMessage = "") const;
+    bool
+    answerPreCheckoutQuery(std::string_view preCheckoutQueryId, bool ok, std::string_view errorMessage = "") const;
 
     /**
      * @brief Once the user has confirmed their payment and shipping details, the Bot API sends the
@@ -197,10 +202,10 @@
      *
      * @return True on success.
      */
-    bool answerShippingQuery(const std::string& shippingQueryId,
+    bool answerShippingQuery(std::string_view shippingQueryId,
                              bool ok,
                              const std::vector<std::shared_ptr<ShippingOption>>& shippingOptions = { },
-                             const std::string& errorMessage = "") const;
+                             std::string_view errorMessage = "") const;
 
     /**
      * @brief If you sent an invoice requesting a shipping address and the parameter is_flexible was
@@ -223,7 +228,7 @@
      *
      * @return The resulting SentWebAppMessage object.
      */
-    std::shared_ptr<SentWebAppMessage> answerWebAppQuery(const std::string& webAppQueryId,
+    std::shared_ptr<SentWebAppMessage> answerWebAppQuery(std::string_view webAppQueryId,
                                                          std::shared_ptr<InlineQueryResult> result) const;
 
     /**
@@ -426,7 +431,7 @@
      *
      * @return True on success.
      */
-    bool convertGiftToStars(const std::string& businessConnectionId, const std::string& ownedGiftId) const;
+    bool convertGiftToStars(std::string_view businessConnectionId, std::string_view ownedGiftId) const;
 
     /**
      * @brief Converts a given regular gift to Telegram Stars. Requires the can_convert_gifts_to_stars
@@ -488,8 +493,8 @@
     std::shared_ptr<MessageId> copyMessage(std::variant<std::int64_t, std::string> chatId,
                                            std::variant<std::int64_t, std::string> fromChatId,
                                            std::int32_t messageId,
-                                           const std::string& caption = "",
-                                           const std::string& parseMode = "",
+                                           std::string_view caption = "",
+                                           std::string_view parseMode = "",
                                            const std::vector<std::shared_ptr<MessageEntity>>& captionEntities = { },
                                            bool disableNotification = false,
                                            std::shared_ptr<ReplyParameters> replyParameters = nullptr,
@@ -501,7 +506,7 @@
                                            std::int32_t messageThreadId = 0,
                                            bool allowPaidBroadcast = false,
                                            std::int64_t directMessagesTopicId = 0,
-                                           const std::string& messageEffectId = "",
+                                           std::string_view messageEffectId = "",
                                            bool showCaptionAboveMedia = false,
                                            std::shared_ptr<SuggestedPostParameters> suggestedPostParameters
                                            = nullptr,
@@ -594,7 +599,7 @@
     std::shared_ptr<ChatInviteLink> createChatInviteLink(std::variant<std::int64_t, std::string> chatId,
                                                          std::int32_t expireDate = 0,
                                                          std::int32_t memberLimit = 0,
-                                                         const std::string& name = "",
+                                                         std::string_view name = "",
                                                          bool createsJoinRequest = false) const;
 
     /**
@@ -628,7 +633,7 @@
     std::shared_ptr<ChatInviteLink> createChatSubscriptionInviteLink(std::variant<std::int64_t, std::string> chatId,
                                                                      std::int32_t subscriptionPeriod,
                                                                      std::int32_t subscriptionPrice,
-                                                                     const std::string& name = "") const;
+                                                                     std::string_view name = "") const;
 
     /**
      * @brief Use this method to create a subscription invite link for a channel chat. The bot must
@@ -661,9 +666,9 @@
      * @return The resulting ForumTopic object.
      */
     std::shared_ptr<ForumTopic> createForumTopic(std::variant<std::int64_t, std::string> chatId,
-                                                 const std::string& name,
+                                                 std::string_view name,
                                                  std::int32_t iconColor = 0,
-                                                 const std::string& iconCustomEmojiId = "") const;
+                                                 std::string_view iconCustomEmojiId = "") const;
 
     /**
      * @brief Use this method to create a topic in a forum supergroup chat or a private chat with a
@@ -736,16 +741,16 @@
      *
      * @return The resulting string.
      */
-    std::string createInvoiceLink(const std::string& title,
-                                  const std::string& description,
-                                  const std::string& payload,
-                                  const std::string& providerToken,
-                                  const std::string& currency,
+    std::string createInvoiceLink(std::string_view title,
+                                  std::string_view description,
+                                  std::string_view payload,
+                                  std::string_view providerToken,
+                                  std::string_view currency,
                                   const std::vector<std::shared_ptr<LabeledPrice>>& prices,
                                   std::int32_t maxTipAmount = 0,
                                   const std::vector<std::int32_t>& suggestedTipAmounts = { },
-                                  const std::string& providerData = "",
-                                  const std::string& photoUrl = "",
+                                  std::string_view providerData = "",
+                                  std::string_view photoUrl = "",
                                   std::int32_t photoSize = 0,
                                   std::int32_t photoWidth = 0,
                                   std::int32_t photoHeight = 0,
@@ -756,7 +761,7 @@
                                   bool sendPhoneNumberToProvider = false,
                                   bool sendEmailToProvider = false,
                                   bool isFlexible = false,
-                                  const std::string& businessConnectionId = "",
+                                  std::string_view businessConnectionId = "",
                                   std::int32_t subscriptionPeriod = 0) const;
 
     /**
@@ -788,15 +793,19 @@
      * of text when used in messages, the accent color if used as emoji status,
      * white on chat photos, or another appropriate color based on context; for
      * custom emoji sticker sets only
+     * @param attachments Files uploaded as named multipart parts. Reference each file from a
+     * composite Telegram API argument as attach://<name> and use the same name
+     * in InputFileAttachment.
      *
      * @return True on success.
      */
     bool createNewStickerSet(std::int64_t userId,
-                             const std::string& name,
-                             const std::string& title,
+                             std::string_view name,
+                             std::string_view title,
                              const std::vector<std::shared_ptr<InputSticker>>& stickers,
                              Sticker::Type stickerType = Sticker::Type::Regular,
-                             bool needsRepainting = false) const;
+                             bool needsRepainting = false,
+                             const std::vector<InputFileAttachment>& attachments = { }) const;
 
     /**
      * @brief Use this method to create a new sticker set owned by a user. The bot will be able to
@@ -845,7 +854,7 @@
      */
     bool declineSuggestedPost(std::variant<std::int64_t, std::string> chatId,
                               std::int32_t messageId,
-                              const std::string& comment = "") const;
+                              std::string_view comment = "") const;
 
     /**
      * @brief Use this method to decline a suggested post in a direct messages chat. The bot must have
@@ -903,7 +912,7 @@
      *
      * @return True on success.
      */
-    bool deleteBusinessMessages(const std::string& businessConnectionId,
+    bool deleteBusinessMessages(std::string_view businessConnectionId,
                                 const std::vector<std::int32_t>& messageIds) const;
 
     /**
@@ -1128,7 +1137,7 @@
      * @return True on success.
      */
     bool deleteMyCommands(std::shared_ptr<BotCommandScope> scope = nullptr,
-                          const std::string& languageCode = "") const;
+                          std::string_view languageCode = "") const;
 
     /**
      * @brief Use this method to delete the list of the bot's commands for the given scope and user
@@ -1149,7 +1158,7 @@
      *
      * @return True on success.
      */
-    bool deleteStickerFromSet(const std::string& sticker) const;
+    bool deleteStickerFromSet(std::string_view sticker) const;
 
     /**
      * @brief Use this method to delete a sticker from a set created by the bot. Returns True on
@@ -1170,7 +1179,7 @@
      *
      * @return True on success.
      */
-    bool deleteStickerSet(const std::string& name) const;
+    bool deleteStickerSet(std::string_view name) const;
 
     /**
      * @brief Use this method to delete a sticker set that was created by the bot. Returns True on
@@ -1192,7 +1201,7 @@
      *
      * @return True on success.
      */
-    bool deleteStory(const std::string& businessConnectionId, std::int32_t storyId) const;
+    bool deleteStory(std::string_view businessConnectionId, std::int32_t storyId) const;
 
     /**
      * @brief Deletes a story previously posted by the bot on behalf of a managed business account.
@@ -1242,10 +1251,10 @@
      * @return The resulting ChatInviteLink object.
      */
     std::shared_ptr<ChatInviteLink> editChatInviteLink(std::variant<std::int64_t, std::string> chatId,
-                                                       const std::string& inviteLink,
+                                                       std::string_view inviteLink,
                                                        std::int32_t expireDate = 0,
                                                        std::int32_t memberLimit = 0,
-                                                       const std::string& name = "",
+                                                       std::string_view name = "",
                                                        bool createsJoinRequest = false) const;
 
     /**
@@ -1272,8 +1281,8 @@
      * @return The resulting ChatInviteLink object.
      */
     std::shared_ptr<ChatInviteLink> editChatSubscriptionInviteLink(std::variant<std::int64_t, std::string> chatId,
-                                                                   const std::string& inviteLink,
-                                                                   const std::string& name = "") const;
+                                                                   std::string_view inviteLink,
+                                                                   std::string_view name = "") const;
 
     /**
      * @brief Use this method to edit a subscription invite link created by the bot. The bot must have
@@ -1308,9 +1317,9 @@
     bool editEphemeralMessageCaption(std::variant<std::int64_t, std::string> chatId,
                                      std::int32_t ephemeralMessageId,
                                      std::int64_t receiverUserId,
-                                     const std::string& caption = "",
+                                     std::string_view caption = "",
                                      const std::vector<std::shared_ptr<MessageEntity>>& captionEntities = { },
-                                     const std::string& parseMode = "",
+                                     std::string_view parseMode = "",
                                      std::shared_ptr<InlineKeyboardMarkup> replyMarkup = nullptr) const;
 
     /**
@@ -1408,10 +1417,10 @@
     bool editEphemeralMessageText(std::variant<std::int64_t, std::string> chatId,
                                   std::int32_t ephemeralMessageId,
                                   std::int64_t receiverUserId,
-                                  const std::string& text,
+                                  std::string_view text,
                                   const std::vector<std::shared_ptr<MessageEntity>>& entities = { },
                                   std::shared_ptr<LinkPreviewOptions> linkPreviewOptions = nullptr,
-                                  const std::string& parseMode = "",
+                                  std::string_view parseMode = "",
                                   std::shared_ptr<InlineKeyboardMarkup> replyMarkup = nullptr) const;
 
     /**
@@ -1445,8 +1454,8 @@
      */
     bool editForumTopic(std::variant<std::int64_t, std::string> chatId,
                         std::int32_t messageThreadId,
-                        const std::string& name = "",
-                        const std::string& iconCustomEmojiId = "") const;
+                        std::string_view name = "",
+                        std::string_view iconCustomEmojiId = "") const;
 
     /**
      * @brief Use this method to edit name and icon of a topic in a forum supergroup chat or a private
@@ -1471,7 +1480,7 @@
      *
      * @return True on success.
      */
-    bool editGeneralForumTopic(std::variant<std::int64_t, std::string> chatId, const std::string& name) const;
+    bool editGeneralForumTopic(std::variant<std::int64_t, std::string> chatId, std::string_view name) const;
 
     /**
      * @brief Use this method to edit the name of the 'General' topic in a forum supergroup chat. The
@@ -1512,13 +1521,13 @@
      */
     std::shared_ptr<Message> editMessageCaption(std::variant<std::int64_t, std::string> chatId = { },
                                                 std::int32_t messageId = 0,
-                                                const std::string& caption = "",
-                                                const std::string& inlineMessageId = "",
+                                                std::string_view caption = "",
+                                                std::string_view inlineMessageId = "",
                                                 std::shared_ptr<InlineKeyboardMarkup> replyMarkup = nullptr,
-                                                const std::string& parseMode = "",
+                                                std::string_view parseMode = "",
                                                 const std::vector<std::shared_ptr<MessageEntity>>& captionEntities
                                                 = { },
-                                                const std::string& businessConnectionId = "",
+                                                std::string_view businessConnectionId = "",
                                                 bool showCaptionAboveMedia = false) const;
 
     /**
@@ -1548,7 +1557,7 @@
      * @return The resulting Message object.
      */
     std::shared_ptr<Message> editMessageChecklist(std::variant<std::int64_t, std::string> chatId,
-                                                  const std::string& businessConnectionId,
+                                                  std::string_view businessConnectionId,
                                                   std::shared_ptr<InputChecklist> checklist,
                                                   std::int32_t messageId,
                                                   std::shared_ptr<InlineKeyboardMarkup> replyMarkup
@@ -1600,12 +1609,12 @@
                                                      double longitude,
                                                      std::variant<std::int64_t, std::string> chatId = { },
                                                      std::int32_t messageId = 0,
-                                                     const std::string& inlineMessageId = "",
+                                                     std::string_view inlineMessageId = "",
                                                      std::shared_ptr<InlineKeyboardMarkup> replyMarkup = nullptr,
                                                      double horizontalAccuracy = 0,
                                                      std::int32_t heading = 0,
                                                      std::int32_t proximityAlertRadius = 0,
-                                                     const std::string& businessConnectionId = "",
+                                                     std::string_view businessConnectionId = "",
                                                      std::int32_t livePeriod = 0) const;
 
     /**
@@ -1642,15 +1651,19 @@
      * @param replyMarkup A JSON-serialized object for a new inline keyboard
      * @param businessConnectionId Unique identifier of the business connection on behalf of which the
      * message to be edited was sent
+     * @param attachments Files uploaded as named multipart parts. Reference each file from a
+     * composite Telegram API argument as attach://<name> and use the same name
+     * in InputFileAttachment.
      *
      * @return The resulting Message object, or nullptr if Telegram returns True.
      */
     std::shared_ptr<Message> editMessageMedia(std::shared_ptr<InputMedia> media,
                                               std::variant<std::int64_t, std::string> chatId = { },
                                               std::int32_t messageId = 0,
-                                              const std::string& inlineMessageId = "",
+                                              std::string_view inlineMessageId = "",
                                               std::shared_ptr<InlineKeyboardMarkup> replyMarkup = nullptr,
-                                              const std::string& businessConnectionId = "") const;
+                                              std::string_view businessConnectionId = "",
+                                              const std::vector<InputFileAttachment>& attachments = { }) const;
 
     /**
      * @brief Use this method to edit animation, audio, document, live photo, photo, or video
@@ -1690,9 +1703,9 @@
      */
     std::shared_ptr<Message> editMessageReplyMarkup(std::variant<std::int64_t, std::string> chatId = { },
                                                     std::int32_t messageId = 0,
-                                                    const std::string& inlineMessageId = "",
+                                                    std::string_view inlineMessageId = "",
                                                     std::shared_ptr<InlineKeyboardMarkup> replyMarkup = nullptr,
-                                                    const std::string& businessConnectionId = "") const;
+                                                    std::string_view businessConnectionId = "") const;
 
     /**
      * @brief Use this method to edit only the reply markup of messages. On success, if the edited
@@ -1732,19 +1745,23 @@
      * @param richMessage New rich content of the message; required if text isn't specified.
      * Direct upload of new files isn't supported when an inline message is
      * edited.
+     * @param attachments Files uploaded as named multipart parts. Reference each file from a
+     * composite Telegram API argument as attach://<name> and use the same name
+     * in InputFileAttachment.
      *
      * @return The resulting Message object, or nullptr if Telegram returns True.
      */
-    std::shared_ptr<Message> editMessageText(const std::string& text = "",
+    std::shared_ptr<Message> editMessageText(std::string_view text = "",
                                              std::variant<std::int64_t, std::string> chatId = { },
                                              std::int32_t messageId = 0,
-                                             const std::string& inlineMessageId = "",
-                                             const std::string& parseMode = "",
+                                             std::string_view inlineMessageId = "",
+                                             std::string_view parseMode = "",
                                              std::shared_ptr<LinkPreviewOptions> linkPreviewOptions = nullptr,
                                              std::shared_ptr<InlineKeyboardMarkup> replyMarkup = nullptr,
                                              const std::vector<std::shared_ptr<MessageEntity>>& entities = { },
-                                             const std::string& businessConnectionId = "",
-                                             std::shared_ptr<InputRichMessage> richMessage = nullptr) const;
+                                             std::string_view businessConnectionId = "",
+                                             std::shared_ptr<InputRichMessage> richMessage = nullptr,
+                                             const std::vector<InputFileAttachment>& attachments = { }) const;
 
     /**
      * @brief Use this method to edit text, rich and game messages. On success, if the edited message
@@ -1771,16 +1788,20 @@
      * which can be specified instead of parse_mode
      * @param parseMode Mode for parsing entities in the story caption. See formatting options
      * for more details.
+     * @param attachments Files uploaded as named multipart parts. Reference each file from a
+     * composite Telegram API argument as attach://<name> and use the same name
+     * in InputFileAttachment.
      *
      * @return The resulting Story object.
      */
-    std::shared_ptr<Story> editStory(const std::string& businessConnectionId,
+    std::shared_ptr<Story> editStory(std::string_view businessConnectionId,
                                      std::shared_ptr<InputStoryContent> content,
                                      std::int32_t storyId,
                                      const std::vector<std::shared_ptr<StoryArea>>& areas = { },
-                                     const std::string& caption = "",
+                                     std::string_view caption = "",
                                      const std::vector<std::shared_ptr<MessageEntity>>& captionEntities = { },
-                                     const std::string& parseMode = "") const;
+                                     std::string_view parseMode = "",
+                                     const std::vector<InputFileAttachment>& attachments = { }) const;
 
     /**
      * @brief Edits a story previously posted by the bot on behalf of a managed business account.
@@ -1805,9 +1826,8 @@
      *
      * @return True on success.
      */
-    bool editUserStarSubscription(bool isCanceled,
-                                  const std::string& telegramPaymentChargeId,
-                                  std::int64_t userId) const;
+    bool
+    editUserStarSubscription(bool isCanceled, std::string_view telegramPaymentChargeId, std::int64_t userId) const;
 
     /**
      * @brief Allows the bot to cancel or re-enable extension of a subscription paid in Telegram
@@ -1879,7 +1899,7 @@
                                             bool protectContent = false,
                                             std::int32_t messageThreadId = 0,
                                             std::int64_t directMessagesTopicId = 0,
-                                            const std::string& messageEffectId = "",
+                                            std::string_view messageEffectId = "",
                                             std::shared_ptr<SuggestedPostParameters> suggestedPostParameters
                                             = nullptr,
                                             std::int32_t videoStartTimestamp = 0) const;
@@ -1975,7 +1995,7 @@
      *
      * @return The resulting OwnedGifts object.
      */
-    std::shared_ptr<OwnedGifts> getBusinessAccountGifts(const std::string& businessConnectionId,
+    std::shared_ptr<OwnedGifts> getBusinessAccountGifts(std::string_view businessConnectionId,
                                                         bool excludeFromBlockchain = false,
                                                         bool excludeLimitedNonUpgradable = false,
                                                         bool excludeLimitedUpgradable = false,
@@ -1984,7 +2004,7 @@
                                                         bool excludeUnlimited = false,
                                                         bool excludeUnsaved = false,
                                                         std::int32_t limit = 0,
-                                                        const std::string& offset = "",
+                                                        std::string_view offset = "",
                                                         bool sortByPrice = false) const;
 
     /**
@@ -2005,7 +2025,7 @@
      *
      * @return The resulting StarAmount object.
      */
-    std::shared_ptr<StarAmount> getBusinessAccountStarBalance(const std::string& businessConnectionId) const;
+    std::shared_ptr<StarAmount> getBusinessAccountStarBalance(std::string_view businessConnectionId) const;
 
     /**
      * @brief Returns the amount of Telegram Stars owned by a managed business account. Requires the
@@ -2025,7 +2045,7 @@
      *
      * @return The resulting BusinessConnection object.
      */
-    std::shared_ptr<BusinessConnection> getBusinessConnection(const std::string& businessConnectionId) const;
+    std::shared_ptr<BusinessConnection> getBusinessConnection(std::string_view businessConnectionId) const;
 
     /**
      * @brief Use this method to get information about the connection of the bot with a business
@@ -2119,7 +2139,7 @@
                                              bool excludeUnlimited = false,
                                              bool excludeUnsaved = false,
                                              std::int32_t limit = 0,
-                                             const std::string& offset = "",
+                                             std::string_view offset = "",
                                              bool sortByPrice = false) const;
 
     /**
@@ -2232,7 +2252,7 @@
      *
      * @return The resulting File object.
      */
-    std::shared_ptr<File> getFile(const std::string& fileId) const;
+    std::shared_ptr<File> getFile(std::string_view fileId) const;
 
     /**
      * @brief Use this method to get basic information about a file and prepare it for downloading.
@@ -2278,7 +2298,7 @@
                                                                   std::variant<std::int64_t, std::string> chatId
                                                                   = { },
                                                                   std::int32_t messageId = 0,
-                                                                  const std::string& inlineMessageId = "") const;
+                                                                  std::string_view inlineMessageId = "") const;
 
     /**
      * @brief Use this method to get data for high score tables. Will return the score of the
@@ -2354,7 +2374,7 @@
      * @return The resulting list of BotCommand objects.
      */
     std::vector<std::shared_ptr<BotCommand>> getMyCommands(std::shared_ptr<BotCommandScope> scope = nullptr,
-                                                           const std::string& languageCode = "") const;
+                                                           std::string_view languageCode = "") const;
 
     /**
      * @brief Use this method to get the current list of the bot's commands for the given scope and
@@ -2398,7 +2418,7 @@
      *
      * @return The resulting BotDescription object.
      */
-    std::shared_ptr<BotDescription> getMyDescription(const std::string& languageCode = "") const;
+    std::shared_ptr<BotDescription> getMyDescription(std::string_view languageCode = "") const;
 
     /**
      * @brief Use this method to get the current bot description for the given user language. Returns
@@ -2418,7 +2438,7 @@
      *
      * @return The resulting BotName object.
      */
-    std::shared_ptr<BotName> getMyName(const std::string& languageCode = "") const;
+    std::shared_ptr<BotName> getMyName(std::string_view languageCode = "") const;
 
     /**
      * @brief Use this method to get the current bot name for the given user language. Returns BotName
@@ -2438,7 +2458,7 @@
      *
      * @return The resulting BotShortDescription object.
      */
-    std::shared_ptr<BotShortDescription> getMyShortDescription(const std::string& languageCode = "") const;
+    std::shared_ptr<BotShortDescription> getMyShortDescription(std::string_view languageCode = "") const;
 
     /**
      * @brief Use this method to get the current bot short description for the given user language.
@@ -2488,7 +2508,7 @@
      *
      * @return The resulting StickerSet object.
      */
-    std::shared_ptr<StickerSet> getStickerSet(const std::string& name) const;
+    std::shared_ptr<StickerSet> getStickerSet(std::string_view name) const;
 
     /**
      * @brief Use this method to get a sticker set. On success, a StickerSet object is returned.
@@ -2593,7 +2613,7 @@
                                              bool excludeUnique = false,
                                              bool excludeUnlimited = false,
                                              std::int32_t limit = 0,
-                                             const std::string& offset = "",
+                                             std::string_view offset = "",
                                              bool sortByPrice = false) const;
 
     /**
@@ -2714,9 +2734,9 @@
     bool giftPremiumSubscription(std::int32_t monthCount,
                                  std::int32_t starCount,
                                  std::int64_t userId,
-                                 const std::string& text = "",
+                                 std::string_view text = "",
                                  const std::vector<std::shared_ptr<MessageEntity>>& textEntities = { },
-                                 const std::string& textParseMode = "") const;
+                                 std::string_view textParseMode = "") const;
 
     /**
      * @brief Gifts a Telegram Premium subscription to the given user. Returns True on success.
@@ -2806,7 +2826,7 @@
      */
     bool pinChatMessage(std::variant<std::int64_t, std::string> chatId,
                         std::int32_t messageId,
-                        const std::string& businessConnectionId = "",
+                        std::string_view businessConnectionId = "",
                         bool disableNotification = false) const;
 
     /**
@@ -2839,18 +2859,22 @@
      * @param postToChatPage Pass True to keep the story accessible after it expires
      * @param protectContent Pass True if the content of the story must be protected from forwarding
      * and screenshotting
+     * @param attachments Files uploaded as named multipart parts. Reference each file from a
+     * composite Telegram API argument as attach://<name> and use the same name
+     * in InputFileAttachment.
      *
      * @return The resulting Story object.
      */
     std::shared_ptr<Story> postStory(std::int32_t activePeriod,
-                                     const std::string& businessConnectionId,
+                                     std::string_view businessConnectionId,
                                      std::shared_ptr<InputStoryContent> content,
                                      const std::vector<std::shared_ptr<StoryArea>>& areas = { },
-                                     const std::string& caption = "",
+                                     std::string_view caption = "",
                                      const std::vector<std::shared_ptr<MessageEntity>>& captionEntities = { },
-                                     const std::string& parseMode = "",
+                                     std::string_view parseMode = "",
                                      bool postToChatPage = false,
-                                     bool protectContent = false) const;
+                                     bool protectContent = false,
+                                     const std::vector<InputFileAttachment>& attachments = { }) const;
 
     /**
      * @brief Posts a story on behalf of a managed business account. Requires the can_manage_stories
@@ -2952,7 +2976,7 @@
      * @return True on success.
      */
     bool readBusinessMessage(std::variant<std::int64_t, std::string> chatId,
-                             const std::string& businessConnectionId,
+                             std::string_view businessConnectionId,
                              std::int32_t messageId) const;
 
     /**
@@ -2973,7 +2997,7 @@
      *
      * @return True on success.
      */
-    bool refundStarPayment(const std::string& telegramPaymentChargeId, std::int64_t userId) const;
+    bool refundStarPayment(std::string_view telegramPaymentChargeId, std::int64_t userId) const;
 
     /**
      * @brief Refunds a successful payment in Telegram Stars. Returns True on success.
@@ -2996,7 +3020,7 @@
      *
      * @return True on success.
      */
-    bool removeBusinessAccountProfilePhoto(const std::string& businessConnectionId, bool isPublic = false) const;
+    bool removeBusinessAccountProfilePhoto(std::string_view businessConnectionId, bool isPublic = false) const;
 
     /**
      * @brief Removes the current profile photo of a managed business account. Requires the
@@ -3137,13 +3161,17 @@
      * @param sticker A JSON-serialized object with information about the added sticker. If
      * exactly the same sticker had already been added to the set, then the set
      * remains unchanged.
+     * @param attachments Files uploaded as named multipart parts. Reference each file from a
+     * composite Telegram API argument as attach://<name> and use the same name
+     * in InputFileAttachment.
      *
      * @return True on success.
      */
     bool replaceStickerInSet(std::int64_t userId,
-                             const std::string& name,
-                             const std::string& oldSticker,
-                             std::shared_ptr<InputSticker> sticker) const;
+                             std::string_view name,
+                             std::string_view oldSticker,
+                             std::shared_ptr<InputSticker> sticker,
+                             const std::vector<InputFileAttachment>& attachments = { }) const;
 
     /**
      * @brief Use this method to replace an existing sticker in a sticker set with a new one. The
@@ -3175,7 +3203,7 @@
      * @return The resulting Story object.
      */
     std::shared_ptr<Story> repostStory(std::int32_t activePeriod,
-                                       const std::string& businessConnectionId,
+                                       std::string_view businessConnectionId,
                                        std::variant<std::int64_t, std::string> fromChatId,
                                        std::int32_t fromStoryId,
                                        bool postToChatPage = false,
@@ -3244,7 +3272,7 @@
      * @return The resulting ChatInviteLink object.
      */
     std::shared_ptr<ChatInviteLink> revokeChatInviteLink(std::variant<std::int64_t, std::string> chatId,
-                                                         const std::string& inviteLink) const;
+                                                         std::string_view inviteLink) const;
 
     /**
      * @brief Use this method to revoke an invite link created by the bot. If the primary link is
@@ -3382,23 +3410,23 @@
                                            std::int32_t width = 0,
                                            std::int32_t height = 0,
                                            std::variant<std::shared_ptr<InputFile>, std::string> thumbnail = { },
-                                           const std::string& caption = "",
+                                           std::string_view caption = "",
                                            std::shared_ptr<ReplyParameters> replyParameters = nullptr,
                                            std::variant<std::shared_ptr<InlineKeyboardMarkup>,
                                                         std::shared_ptr<ReplyKeyboardMarkup>,
                                                         std::shared_ptr<ReplyKeyboardRemove>,
                                                         std::shared_ptr<ForceReply>> replyMarkup = { },
-                                           const std::string& parseMode = "",
+                                           std::string_view parseMode = "",
                                            bool disableNotification = false,
                                            const std::vector<std::shared_ptr<MessageEntity>>& captionEntities = { },
                                            std::int32_t messageThreadId = 0,
                                            bool protectContent = false,
                                            bool hasSpoiler = false,
-                                           const std::string& businessConnectionId = "",
+                                           std::string_view businessConnectionId = "",
                                            bool allowPaidBroadcast = false,
-                                           const std::string& callbackQueryId = "",
+                                           std::string_view callbackQueryId = "",
                                            std::int64_t directMessagesTopicId = 0,
-                                           const std::string& messageEffectId = "",
+                                           std::string_view messageEffectId = "",
                                            std::int64_t receiverUserId = 0,
                                            bool showCaptionAboveMedia = false,
                                            std::shared_ptr<SuggestedPostParameters> suggestedPostParameters
@@ -3478,26 +3506,26 @@
      */
     std::shared_ptr<Message> sendAudio(std::variant<std::int64_t, std::string> chatId,
                                        std::variant<std::shared_ptr<InputFile>, std::string> audio,
-                                       const std::string& caption = "",
+                                       std::string_view caption = "",
                                        std::int32_t duration = 0,
-                                       const std::string& performer = "",
-                                       const std::string& title = "",
+                                       std::string_view performer = "",
+                                       std::string_view title = "",
                                        std::variant<std::shared_ptr<InputFile>, std::string> thumbnail = { },
                                        std::shared_ptr<ReplyParameters> replyParameters = nullptr,
                                        std::variant<std::shared_ptr<InlineKeyboardMarkup>,
                                                     std::shared_ptr<ReplyKeyboardMarkup>,
                                                     std::shared_ptr<ReplyKeyboardRemove>,
                                                     std::shared_ptr<ForceReply>> replyMarkup = { },
-                                       const std::string& parseMode = "",
+                                       std::string_view parseMode = "",
                                        bool disableNotification = false,
                                        const std::vector<std::shared_ptr<MessageEntity>>& captionEntities = { },
                                        std::int32_t messageThreadId = 0,
                                        bool protectContent = false,
-                                       const std::string& businessConnectionId = "",
+                                       std::string_view businessConnectionId = "",
                                        bool allowPaidBroadcast = false,
-                                       const std::string& callbackQueryId = "",
+                                       std::string_view callbackQueryId = "",
                                        std::int64_t directMessagesTopicId = 0,
-                                       const std::string& messageEffectId = "",
+                                       std::string_view messageEffectId = "",
                                        std::int64_t receiverUserId = 0,
                                        std::shared_ptr<SuggestedPostParameters> suggestedPostParameters
                                        = nullptr) const;
@@ -3539,9 +3567,9 @@
      * @return True on success.
      */
     bool sendChatAction(std::variant<std::int64_t, std::string> chatId,
-                        const std::string& action,
+                        std::string_view action,
                         std::int32_t messageThreadId = 0,
-                        const std::string& businessConnectionId = "") const;
+                        std::string_view businessConnectionId = "") const;
 
     /**
      * @brief Use this method when you need to tell the user that something is happening on the bot's
@@ -3568,7 +3596,7 @@
      *
      * @return True on success.
      */
-    bool sendChatJoinRequestWebApp(const std::string& chatJoinRequestQueryId, const std::string& webAppUrl) const;
+    bool sendChatJoinRequestWebApp(std::string_view chatJoinRequestQueryId, std::string_view webAppUrl) const;
 
     /**
      * @brief Use this method to process a received chat join request query by showing a Mini App to
@@ -3601,10 +3629,10 @@
      * @return The resulting Message object.
      */
     std::shared_ptr<Message> sendChecklist(std::variant<std::int64_t, std::string> chatId,
-                                           const std::string& businessConnectionId,
+                                           std::string_view businessConnectionId,
                                            std::shared_ptr<InputChecklist> checklist,
                                            bool disableNotification = false,
-                                           const std::string& messageEffectId = "",
+                                           std::string_view messageEffectId = "",
                                            bool protectContent = false,
                                            std::shared_ptr<InlineKeyboardMarkup> replyMarkup = nullptr,
                                            std::shared_ptr<ReplyParameters> replyParameters = nullptr) const;
@@ -3661,10 +3689,10 @@
      * @return The resulting Message object.
      */
     std::shared_ptr<Message> sendContact(std::variant<std::int64_t, std::string> chatId,
-                                         const std::string& phoneNumber,
-                                         const std::string& firstName,
-                                         const std::string& lastName = "",
-                                         const std::string& vcard = "",
+                                         std::string_view phoneNumber,
+                                         std::string_view firstName,
+                                         std::string_view lastName = "",
+                                         std::string_view vcard = "",
                                          bool disableNotification = false,
                                          std::shared_ptr<ReplyParameters> replyParameters = nullptr,
                                          std::variant<std::shared_ptr<InlineKeyboardMarkup>,
@@ -3673,11 +3701,11 @@
                                                       std::shared_ptr<ForceReply>> replyMarkup = { },
                                          std::int32_t messageThreadId = 0,
                                          bool protectContent = false,
-                                         const std::string& businessConnectionId = "",
+                                         std::string_view businessConnectionId = "",
                                          bool allowPaidBroadcast = false,
-                                         const std::string& callbackQueryId = "",
+                                         std::string_view callbackQueryId = "",
                                          std::int64_t directMessagesTopicId = 0,
-                                         const std::string& messageEffectId = "",
+                                         std::string_view messageEffectId = "",
                                          std::int64_t receiverUserId = 0,
                                          std::shared_ptr<SuggestedPostParameters> suggestedPostParameters
                                          = nullptr) const;
@@ -3733,13 +3761,13 @@
                                                    std::shared_ptr<ReplyKeyboardMarkup>,
                                                    std::shared_ptr<ReplyKeyboardRemove>,
                                                    std::shared_ptr<ForceReply>> replyMarkup = { },
-                                      const std::string& emoji = "",
+                                      std::string_view emoji = "",
                                       std::int32_t messageThreadId = 0,
                                       bool protectContent = false,
-                                      const std::string& businessConnectionId = "",
+                                      std::string_view businessConnectionId = "",
                                       bool allowPaidBroadcast = false,
                                       std::int64_t directMessagesTopicId = 0,
-                                      const std::string& messageEffectId = "",
+                                      std::string_view messageEffectId = "",
                                       std::shared_ptr<SuggestedPostParameters> suggestedPostParameters
                                       = nullptr) const;
 
@@ -3815,23 +3843,23 @@
     std::shared_ptr<Message> sendDocument(std::variant<std::int64_t, std::string> chatId,
                                           std::variant<std::shared_ptr<InputFile>, std::string> document,
                                           std::variant<std::shared_ptr<InputFile>, std::string> thumbnail = { },
-                                          const std::string& caption = "",
+                                          std::string_view caption = "",
                                           std::shared_ptr<ReplyParameters> replyParameters = nullptr,
                                           std::variant<std::shared_ptr<InlineKeyboardMarkup>,
                                                        std::shared_ptr<ReplyKeyboardMarkup>,
                                                        std::shared_ptr<ReplyKeyboardRemove>,
                                                        std::shared_ptr<ForceReply>> replyMarkup = { },
-                                          const std::string& parseMode = "",
+                                          std::string_view parseMode = "",
                                           bool disableNotification = false,
                                           const std::vector<std::shared_ptr<MessageEntity>>& captionEntities = { },
                                           bool disableContentTypeDetection = false,
                                           std::int32_t messageThreadId = 0,
                                           bool protectContent = false,
-                                          const std::string& businessConnectionId = "",
+                                          std::string_view businessConnectionId = "",
                                           bool allowPaidBroadcast = false,
-                                          const std::string& callbackQueryId = "",
+                                          std::string_view callbackQueryId = "",
                                           std::int64_t directMessagesTopicId = 0,
-                                          const std::string& messageEffectId = "",
+                                          std::string_view messageEffectId = "",
                                           std::int64_t receiverUserId = 0,
                                           std::shared_ptr<SuggestedPostParameters> suggestedPostParameters
                                           = nullptr) const;
@@ -3876,15 +3904,15 @@
      * @return The resulting Message object.
      */
     std::shared_ptr<Message> sendGame(std::variant<std::int64_t, std::string> chatId,
-                                      const std::string& gameShortName,
+                                      std::string_view gameShortName,
                                       std::shared_ptr<ReplyParameters> replyParameters = nullptr,
                                       std::shared_ptr<InlineKeyboardMarkup> replyMarkup = nullptr,
                                       bool disableNotification = false,
                                       std::int32_t messageThreadId = 0,
                                       bool protectContent = false,
-                                      const std::string& businessConnectionId = "",
+                                      std::string_view businessConnectionId = "",
                                       bool allowPaidBroadcast = false,
-                                      const std::string& messageEffectId = "") const;
+                                      std::string_view messageEffectId = "") const;
 
     /**
      * @brief Use this method to send a game. On success, the sent Message is returned.
@@ -3918,12 +3946,12 @@
      *
      * @return True on success.
      */
-    bool sendGift(const std::string& giftId,
+    bool sendGift(std::string_view giftId,
                   std::variant<std::int64_t, std::string> chatId = { },
                   bool payForUpgrade = false,
-                  const std::string& text = "",
+                  std::string_view text = "",
                   const std::vector<std::shared_ptr<MessageEntity>>& textEntities = { },
-                  const std::string& textParseMode = "",
+                  std::string_view textParseMode = "",
                   std::int64_t userId = 0) const;
 
     /**
@@ -4017,14 +4045,14 @@
      * @return The resulting Message object.
      */
     std::shared_ptr<Message> sendInvoice(std::variant<std::int64_t, std::string> chatId,
-                                         const std::string& title,
-                                         const std::string& description,
-                                         const std::string& payload,
-                                         const std::string& providerToken,
-                                         const std::string& currency,
+                                         std::string_view title,
+                                         std::string_view description,
+                                         std::string_view payload,
+                                         std::string_view providerToken,
+                                         std::string_view currency,
                                          const std::vector<std::shared_ptr<LabeledPrice>>& prices,
-                                         const std::string& providerData = "",
-                                         const std::string& photoUrl = "",
+                                         std::string_view providerData = "",
+                                         std::string_view photoUrl = "",
                                          std::int32_t photoSize = 0,
                                          std::int32_t photoWidth = 0,
                                          std::int32_t photoHeight = 0,
@@ -4041,11 +4069,11 @@
                                          std::int32_t messageThreadId = 0,
                                          std::int32_t maxTipAmount = 0,
                                          const std::vector<std::int32_t>& suggestedTipAmounts = { },
-                                         const std::string& startParameter = "",
+                                         std::string_view startParameter = "",
                                          bool protectContent = false,
                                          bool allowPaidBroadcast = false,
                                          std::int64_t directMessagesTopicId = 0,
-                                         const std::string& messageEffectId = "",
+                                         std::string_view messageEffectId = "",
                                          std::shared_ptr<SuggestedPostParameters> suggestedPostParameters
                                          = nullptr) const;
 
@@ -4116,16 +4144,16 @@
                                            std::variant<std::shared_ptr<InputFile>, std::string> livePhoto,
                                            std::variant<std::shared_ptr<InputFile>, std::string> photo,
                                            bool allowPaidBroadcast = false,
-                                           const std::string& businessConnectionId = "",
-                                           const std::string& callbackQueryId = "",
-                                           const std::string& caption = "",
+                                           std::string_view businessConnectionId = "",
+                                           std::string_view callbackQueryId = "",
+                                           std::string_view caption = "",
                                            const std::vector<std::shared_ptr<MessageEntity>>& captionEntities = { },
                                            std::int64_t directMessagesTopicId = 0,
                                            bool disableNotification = false,
                                            bool hasSpoiler = false,
-                                           const std::string& messageEffectId = "",
+                                           std::string_view messageEffectId = "",
                                            std::int32_t messageThreadId = 0,
-                                           const std::string& parseMode = "",
+                                           std::string_view parseMode = "",
                                            bool protectContent = false,
                                            std::int64_t receiverUserId = 0,
                                            std::variant<std::shared_ptr<InlineKeyboardMarkup>,
@@ -4210,11 +4238,11 @@
                                           std::int32_t proximityAlertRadius = 0,
                                           std::int32_t messageThreadId = 0,
                                           bool protectContent = false,
-                                          const std::string& businessConnectionId = "",
+                                          std::string_view businessConnectionId = "",
                                           bool allowPaidBroadcast = false,
-                                          const std::string& callbackQueryId = "",
+                                          std::string_view callbackQueryId = "",
                                           std::int64_t directMessagesTopicId = 0,
-                                          const std::string& messageEffectId = "",
+                                          std::string_view messageEffectId = "",
                                           std::int64_t receiverUserId = 0,
                                           std::shared_ptr<SuggestedPostParameters> suggestedPostParameters
                                           = nullptr) const;
@@ -4253,6 +4281,9 @@
      * sent; required if the messages are sent to a direct messages chat
      * @param messageEffectId Unique identifier of the message effect to be added to the message; for
      * private chats only
+     * @param attachments Files uploaded as named multipart parts. Reference each file from a
+     * composite Telegram API argument as attach://<name> and use the same name
+     * in InputFileAttachment.
      *
      * @return The resulting list of Message objects.
      */
@@ -4267,10 +4298,11 @@
                    std::shared_ptr<ReplyParameters> replyParameters = nullptr,
                    std::int32_t messageThreadId = 0,
                    bool protectContent = false,
-                   const std::string& businessConnectionId = "",
+                   std::string_view businessConnectionId = "",
                    bool allowPaidBroadcast = false,
                    std::int64_t directMessagesTopicId = 0,
-                   const std::string& messageEffectId = "") const;
+                   std::string_view messageEffectId = "",
+                   const std::vector<InputFileAttachment>& attachments = { }) const;
 
     /**
      * @brief Use this method to send a group of photos, live photos, videos, documents or audios as
@@ -4327,23 +4359,23 @@
      * @return The resulting Message object.
      */
     std::shared_ptr<Message> sendMessage(std::variant<std::int64_t, std::string> chatId,
-                                         const std::string& text,
+                                         std::string_view text,
                                          std::shared_ptr<LinkPreviewOptions> linkPreviewOptions = nullptr,
                                          std::shared_ptr<ReplyParameters> replyParameters = nullptr,
                                          std::variant<std::shared_ptr<InlineKeyboardMarkup>,
                                                       std::shared_ptr<ReplyKeyboardMarkup>,
                                                       std::shared_ptr<ReplyKeyboardRemove>,
                                                       std::shared_ptr<ForceReply>> replyMarkup = { },
-                                         const std::string& parseMode = "",
+                                         std::string_view parseMode = "",
                                          bool disableNotification = false,
                                          const std::vector<std::shared_ptr<MessageEntity>>& entities = { },
                                          std::int32_t messageThreadId = 0,
                                          bool protectContent = false,
-                                         const std::string& businessConnectionId = "",
+                                         std::string_view businessConnectionId = "",
                                          bool allowPaidBroadcast = false,
-                                         const std::string& callbackQueryId = "",
+                                         std::string_view callbackQueryId = "",
                                          std::int64_t directMessagesTopicId = 0,
-                                         const std::string& messageEffectId = "",
+                                         std::string_view messageEffectId = "",
                                          std::int64_t receiverUserId = 0,
                                          std::shared_ptr<SuggestedPostParameters> suggestedPostParameters
                                          = nullptr) const;
@@ -4380,8 +4412,8 @@
                           std::int32_t draftId,
                           const std::vector<std::shared_ptr<MessageEntity>>& entities = { },
                           std::int32_t messageThreadId = 0,
-                          const std::string& parseMode = "",
-                          const std::string& text = "") const;
+                          std::string_view parseMode = "",
+                          std::string_view text = "") const;
 
     /**
      * @brief Use this method to stream a partial message to a user while the message is being
@@ -4434,6 +4466,9 @@
      * to send; for direct messages chats only. If the message is sent as a
      * reply to another suggested post, then that suggested post is
      * automatically declined.
+     * @param attachments Files uploaded as named multipart parts. Reference each file from a
+     * composite Telegram API argument as attach://<name> and use the same name
+     * in InputFileAttachment.
      *
      * @return The resulting Message object.
      */
@@ -4441,14 +4476,14 @@
                                            const std::vector<std::shared_ptr<InputPaidMedia>>& media,
                                            std::int32_t starCount,
                                            bool allowPaidBroadcast = false,
-                                           const std::string& businessConnectionId = "",
-                                           const std::string& caption = "",
+                                           std::string_view businessConnectionId = "",
+                                           std::string_view caption = "",
                                            const std::vector<std::shared_ptr<MessageEntity>>& captionEntities = { },
                                            std::int64_t directMessagesTopicId = 0,
                                            bool disableNotification = false,
                                            std::int32_t messageThreadId = 0,
-                                           const std::string& parseMode = "",
-                                           const std::string& payload = "",
+                                           std::string_view parseMode = "",
+                                           std::string_view payload = "",
                                            bool protectContent = false,
                                            std::variant<std::shared_ptr<InlineKeyboardMarkup>,
                                                         std::shared_ptr<ReplyKeyboardMarkup>,
@@ -4457,7 +4492,8 @@
                                            std::shared_ptr<ReplyParameters> replyParameters = nullptr,
                                            bool showCaptionAboveMedia = false,
                                            std::shared_ptr<SuggestedPostParameters> suggestedPostParameters
-                                           = nullptr) const;
+                                           = nullptr,
+                                           const std::vector<InputFileAttachment>& attachments = { }) const;
 
     /**
      * @brief Use this method to send paid media. On success, the sent Message is returned.
@@ -4521,23 +4557,23 @@
      */
     std::shared_ptr<Message> sendPhoto(std::variant<std::int64_t, std::string> chatId,
                                        std::variant<std::shared_ptr<InputFile>, std::string> photo,
-                                       const std::string& caption = "",
+                                       std::string_view caption = "",
                                        std::shared_ptr<ReplyParameters> replyParameters = nullptr,
                                        std::variant<std::shared_ptr<InlineKeyboardMarkup>,
                                                     std::shared_ptr<ReplyKeyboardMarkup>,
                                                     std::shared_ptr<ReplyKeyboardRemove>,
                                                     std::shared_ptr<ForceReply>> replyMarkup = { },
-                                       const std::string& parseMode = "",
+                                       std::string_view parseMode = "",
                                        bool disableNotification = false,
                                        const std::vector<std::shared_ptr<MessageEntity>>& captionEntities = { },
                                        std::int32_t messageThreadId = 0,
                                        bool protectContent = false,
                                        bool hasSpoiler = false,
-                                       const std::string& businessConnectionId = "",
+                                       std::string_view businessConnectionId = "",
                                        bool allowPaidBroadcast = false,
-                                       const std::string& callbackQueryId = "",
+                                       std::string_view callbackQueryId = "",
                                        std::int64_t directMessagesTopicId = 0,
-                                       const std::string& messageEffectId = "",
+                                       std::string_view messageEffectId = "",
                                        std::int64_t receiverUserId = 0,
                                        bool showCaptionAboveMedia = false,
                                        std::shared_ptr<SuggestedPostParameters> suggestedPostParameters
@@ -4626,7 +4662,7 @@
      * @return The resulting Message object.
      */
     std::shared_ptr<Message> sendPoll(std::variant<std::int64_t, std::string> chatId,
-                                      const std::string& question,
+                                      std::string_view question,
                                       const std::vector<std::shared_ptr<InputPollOption>>& options,
                                       bool disableNotification = false,
                                       std::shared_ptr<ReplyParameters> replyParameters = nullptr,
@@ -4635,32 +4671,32 @@
                                                    std::shared_ptr<ReplyKeyboardRemove>,
                                                    std::shared_ptr<ForceReply>> replyMarkup = { },
                                       bool isAnonymous = true,
-                                      const std::string& type = "",
+                                      std::string_view type = "",
                                       bool allowsMultipleAnswers = false,
-                                      const std::string& explanation = "",
-                                      const std::string& explanationParseMode = "",
+                                      std::string_view explanation = "",
+                                      std::string_view explanationParseMode = "",
                                       const std::vector<std::shared_ptr<MessageEntity>>& explanationEntities = { },
                                       std::int32_t openPeriod = 0,
                                       std::int32_t closeDate = 0,
                                       bool isClosed = false,
                                       std::int32_t messageThreadId = 0,
                                       bool protectContent = false,
-                                      const std::string& businessConnectionId = "",
+                                      std::string_view businessConnectionId = "",
                                       bool allowAddingOptions = false,
                                       bool allowPaidBroadcast = false,
                                       bool allowsRevoting = false,
                                       const std::vector<std::int32_t>& correctOptionIds = { },
                                       const std::vector<std::string>& countryCodes = { },
-                                      const std::string& description = "",
+                                      std::string_view description = "",
                                       const std::vector<std::shared_ptr<MessageEntity>>& descriptionEntities = { },
-                                      const std::string& descriptionParseMode = "",
+                                      std::string_view descriptionParseMode = "",
                                       std::shared_ptr<InputPollMedia> explanationMedia = nullptr,
                                       bool hideResultsUntilCloses = false,
                                       std::shared_ptr<InputPollMedia> media = nullptr,
                                       bool membersOnly = false,
-                                      const std::string& messageEffectId = "",
+                                      std::string_view messageEffectId = "",
                                       const std::vector<std::shared_ptr<MessageEntity>>& questionEntities = { },
-                                      const std::string& questionParseMode = "",
+                                      std::string_view questionParseMode = "",
                                       bool shuffleOptions = false) const;
 
     /**
@@ -4704,16 +4740,19 @@
      * to send; for direct messages chats only. If the message is sent as a
      * reply to another suggested post, then that suggested post is
      * automatically declined.
+     * @param attachments Files uploaded as named multipart parts. Reference each file from a
+     * composite Telegram API argument as attach://<name> and use the same name
+     * in InputFileAttachment.
      *
      * @return The resulting Message object.
      */
     std::shared_ptr<Message> sendRichMessage(std::variant<std::int64_t, std::string> chatId,
                                              std::shared_ptr<InputRichMessage> richMessage,
                                              bool allowPaidBroadcast = false,
-                                             const std::string& businessConnectionId = "",
+                                             std::string_view businessConnectionId = "",
                                              std::int64_t directMessagesTopicId = 0,
                                              bool disableNotification = false,
-                                             const std::string& messageEffectId = "",
+                                             std::string_view messageEffectId = "",
                                              std::int32_t messageThreadId = 0,
                                              bool protectContent = false,
                                              std::variant<std::shared_ptr<InlineKeyboardMarkup>,
@@ -4722,7 +4761,8 @@
                                                           std::shared_ptr<ForceReply>> replyMarkup = { },
                                              std::shared_ptr<ReplyParameters> replyParameters = nullptr,
                                              std::shared_ptr<SuggestedPostParameters> suggestedPostParameters
-                                             = nullptr) const;
+                                             = nullptr,
+                                             const std::vector<InputFileAttachment>& attachments = { }) const;
 
     /**
      * @brief Use this method to send rich messages. If the message contains a block with a media
@@ -4822,12 +4862,12 @@
                                          bool disableNotification = false,
                                          std::int32_t messageThreadId = 0,
                                          bool protectContent = false,
-                                         const std::string& emoji = "",
-                                         const std::string& businessConnectionId = "",
+                                         std::string_view emoji = "",
+                                         std::string_view businessConnectionId = "",
                                          bool allowPaidBroadcast = false,
-                                         const std::string& callbackQueryId = "",
+                                         std::string_view callbackQueryId = "",
                                          std::int64_t directMessagesTopicId = 0,
-                                         const std::string& messageEffectId = "",
+                                         std::string_view messageEffectId = "",
                                          std::int64_t receiverUserId = 0,
                                          std::shared_ptr<SuggestedPostParameters> suggestedPostParameters
                                          = nullptr) const;
@@ -4893,25 +4933,25 @@
     std::shared_ptr<Message> sendVenue(std::variant<std::int64_t, std::string> chatId,
                                        double latitude,
                                        double longitude,
-                                       const std::string& title,
-                                       const std::string& address,
-                                       const std::string& foursquareId = "",
-                                       const std::string& foursquareType = "",
+                                       std::string_view title,
+                                       std::string_view address,
+                                       std::string_view foursquareId = "",
+                                       std::string_view foursquareType = "",
                                        bool disableNotification = false,
                                        std::shared_ptr<ReplyParameters> replyParameters = nullptr,
                                        std::variant<std::shared_ptr<InlineKeyboardMarkup>,
                                                     std::shared_ptr<ReplyKeyboardMarkup>,
                                                     std::shared_ptr<ReplyKeyboardRemove>,
                                                     std::shared_ptr<ForceReply>> replyMarkup = { },
-                                       const std::string& googlePlaceId = "",
-                                       const std::string& googlePlaceType = "",
+                                       std::string_view googlePlaceId = "",
+                                       std::string_view googlePlaceType = "",
                                        std::int32_t messageThreadId = 0,
                                        bool protectContent = false,
-                                       const std::string& businessConnectionId = "",
+                                       std::string_view businessConnectionId = "",
                                        bool allowPaidBroadcast = false,
-                                       const std::string& callbackQueryId = "",
+                                       std::string_view callbackQueryId = "",
                                        std::int64_t directMessagesTopicId = 0,
-                                       const std::string& messageEffectId = "",
+                                       std::string_view messageEffectId = "",
                                        std::int64_t receiverUserId = 0,
                                        std::shared_ptr<SuggestedPostParameters> suggestedPostParameters
                                        = nullptr) const;
@@ -5003,24 +5043,24 @@
                                        std::int32_t width = 0,
                                        std::int32_t height = 0,
                                        std::variant<std::shared_ptr<InputFile>, std::string> thumbnail = { },
-                                       const std::string& caption = "",
+                                       std::string_view caption = "",
                                        std::shared_ptr<ReplyParameters> replyParameters = nullptr,
                                        std::variant<std::shared_ptr<InlineKeyboardMarkup>,
                                                     std::shared_ptr<ReplyKeyboardMarkup>,
                                                     std::shared_ptr<ReplyKeyboardRemove>,
                                                     std::shared_ptr<ForceReply>> replyMarkup = { },
-                                       const std::string& parseMode = "",
+                                       std::string_view parseMode = "",
                                        bool disableNotification = false,
                                        const std::vector<std::shared_ptr<MessageEntity>>& captionEntities = { },
                                        std::int32_t messageThreadId = 0,
                                        bool protectContent = false,
                                        bool hasSpoiler = false,
-                                       const std::string& businessConnectionId = "",
+                                       std::string_view businessConnectionId = "",
                                        bool allowPaidBroadcast = false,
-                                       const std::string& callbackQueryId = "",
+                                       std::string_view callbackQueryId = "",
                                        std::variant<std::shared_ptr<InputFile>, std::string> cover = { },
                                        std::int64_t directMessagesTopicId = 0,
-                                       const std::string& messageEffectId = "",
+                                       std::string_view messageEffectId = "",
                                        std::int64_t receiverUserId = 0,
                                        bool showCaptionAboveMedia = false,
                                        std::int32_t startTimestamp = 0,
@@ -5104,11 +5144,11 @@
                                                         std::shared_ptr<ForceReply>> replyMarkup = { },
                                            std::int32_t messageThreadId = 0,
                                            bool protectContent = false,
-                                           const std::string& businessConnectionId = "",
+                                           std::string_view businessConnectionId = "",
                                            bool allowPaidBroadcast = false,
-                                           const std::string& callbackQueryId = "",
+                                           std::string_view callbackQueryId = "",
                                            std::int64_t directMessagesTopicId = 0,
-                                           const std::string& messageEffectId = "",
+                                           std::string_view messageEffectId = "",
                                            std::int64_t receiverUserId = 0,
                                            std::shared_ptr<SuggestedPostParameters> suggestedPostParameters
                                            = nullptr) const;
@@ -5176,23 +5216,23 @@
      */
     std::shared_ptr<Message> sendVoice(std::variant<std::int64_t, std::string> chatId,
                                        std::variant<std::shared_ptr<InputFile>, std::string> voice,
-                                       const std::string& caption = "",
+                                       std::string_view caption = "",
                                        std::int32_t duration = 0,
                                        std::shared_ptr<ReplyParameters> replyParameters = nullptr,
                                        std::variant<std::shared_ptr<InlineKeyboardMarkup>,
                                                     std::shared_ptr<ReplyKeyboardMarkup>,
                                                     std::shared_ptr<ReplyKeyboardRemove>,
                                                     std::shared_ptr<ForceReply>> replyMarkup = { },
-                                       const std::string& parseMode = "",
+                                       std::string_view parseMode = "",
                                        bool disableNotification = false,
                                        const std::vector<std::shared_ptr<MessageEntity>>& captionEntities = { },
                                        std::int32_t messageThreadId = 0,
                                        bool protectContent = false,
-                                       const std::string& businessConnectionId = "",
+                                       std::string_view businessConnectionId = "",
                                        bool allowPaidBroadcast = false,
-                                       const std::string& callbackQueryId = "",
+                                       std::string_view callbackQueryId = "",
                                        std::int64_t directMessagesTopicId = 0,
-                                       const std::string& messageEffectId = "",
+                                       std::string_view messageEffectId = "",
                                        std::int64_t receiverUserId = 0,
                                        std::shared_ptr<SuggestedPostParameters> suggestedPostParameters
                                        = nullptr) const;
@@ -5219,7 +5259,7 @@
      *
      * @return True on success.
      */
-    bool setBusinessAccountBio(const std::string& businessConnectionId, const std::string& bio = "") const;
+    bool setBusinessAccountBio(std::string_view businessConnectionId, std::string_view bio = "") const;
 
     /**
      * @brief Changes the bio of a managed business account. Requires the can_change_bio business bot
@@ -5243,7 +5283,7 @@
      * @return True on success.
      */
     bool setBusinessAccountGiftSettings(std::shared_ptr<AcceptedGiftTypes> acceptedGiftTypes,
-                                        const std::string& businessConnectionId,
+                                        std::string_view businessConnectionId,
                                         bool showGiftButton) const;
 
     /**
@@ -5267,9 +5307,9 @@
      *
      * @return True on success.
      */
-    bool setBusinessAccountName(const std::string& businessConnectionId,
-                                const std::string& firstName,
-                                const std::string& lastName = "") const;
+    bool setBusinessAccountName(std::string_view businessConnectionId,
+                                std::string_view firstName,
+                                std::string_view lastName = "") const;
 
     /**
      * @brief Changes the first and last name of a managed business account. Requires the
@@ -5290,12 +5330,16 @@
      * @param isPublic Pass True to set the public photo, which will be visible even if the
      * main photo is hidden by the business account's privacy settings. An
      * account can have only one public photo.
+     * @param attachments Files uploaded as named multipart parts. Reference each file from a
+     * composite Telegram API argument as attach://<name> and use the same name
+     * in InputFileAttachment.
      *
      * @return True on success.
      */
-    bool setBusinessAccountProfilePhoto(const std::string& businessConnectionId,
+    bool setBusinessAccountProfilePhoto(std::string_view businessConnectionId,
                                         std::shared_ptr<InputProfilePhoto> photo,
-                                        bool isPublic = false) const;
+                                        bool isPublic = false,
+                                        const std::vector<InputFileAttachment>& attachments = { }) const;
 
     /**
      * @brief Changes the profile photo of a managed business account. Requires the
@@ -5316,8 +5360,7 @@
      *
      * @return True on success.
      */
-    bool setBusinessAccountUsername(const std::string& businessConnectionId,
-                                    const std::string& username = "") const;
+    bool setBusinessAccountUsername(std::string_view businessConnectionId, std::string_view username = "") const;
 
     /**
      * @brief Changes the username of a managed business account. Requires the can_change_username
@@ -5343,7 +5386,7 @@
      */
     bool setChatAdministratorCustomTitle(std::variant<std::int64_t, std::string> chatId,
                                          std::int64_t userId,
-                                         const std::string& customTitle) const;
+                                         std::string_view customTitle) const;
 
     /**
      * @brief Use this method to set a custom title for an administrator in a supergroup promoted by
@@ -5367,7 +5410,7 @@
      * @return True on success.
      */
     bool setChatDescription(std::variant<std::int64_t, std::string> chatId,
-                            const std::string& description = "") const;
+                            std::string_view description = "") const;
 
     /**
      * @brief Use this method to change the description of a group, a supergroup or a channel. The bot
@@ -5394,7 +5437,7 @@
      */
     bool setChatMemberTag(std::variant<std::int64_t, std::string> chatId,
                           std::int64_t userId,
-                          const std::string& tag = "") const;
+                          std::string_view tag = "") const;
 
     /**
      * @brief Use this method to set a tag for a regular member in a group or a supergroup. The bot
@@ -5500,7 +5543,7 @@
      *
      * @return True on success.
      */
-    bool setChatStickerSet(std::variant<std::int64_t, std::string> chatId, const std::string& stickerSetName) const;
+    bool setChatStickerSet(std::variant<std::int64_t, std::string> chatId, std::string_view stickerSetName) const;
 
     /**
      * @brief Use this method to set a new group sticker set for a supergroup. The bot must be an
@@ -5525,7 +5568,7 @@
      *
      * @return True on success.
      */
-    bool setChatTitle(std::variant<std::int64_t, std::string> chatId, const std::string& title) const;
+    bool setChatTitle(std::variant<std::int64_t, std::string> chatId, std::string_view title) const;
 
     /**
      * @brief Use this method to change the title of a chat. Titles can't be changed for private
@@ -5548,7 +5591,7 @@
      *
      * @return True on success.
      */
-    bool setCustomEmojiStickerSetThumbnail(const std::string& name, const std::string& customEmojiId = "") const;
+    bool setCustomEmojiStickerSetThumbnail(std::string_view name, std::string_view customEmojiId = "") const;
 
     /**
      * @brief Use this method to set the thumbnail of a custom emoji sticker set. Returns True on
@@ -5587,7 +5630,7 @@
                                           bool disableEditMessage = false,
                                           std::variant<std::int64_t, std::string> chatId = { },
                                           std::int32_t messageId = 0,
-                                          const std::string& inlineMessageId = "") const;
+                                          std::string_view inlineMessageId = "") const;
 
     /**
      * @brief Use this method to set the score of the specified user in a game message. On success, if
@@ -5679,7 +5722,7 @@
      */
     bool setMyCommands(const std::vector<std::shared_ptr<BotCommand>>& commands,
                        std::shared_ptr<BotCommandScope> scope = nullptr,
-                       const std::string& languageCode = "") const;
+                       std::string_view languageCode = "") const;
 
     /**
      * @brief Use this method to change the list of the bot's commands. See this manual for more
@@ -5732,7 +5775,7 @@
      *
      * @return True on success.
      */
-    bool setMyDescription(const std::string& description = "", const std::string& languageCode = "") const;
+    bool setMyDescription(std::string_view description = "", std::string_view languageCode = "") const;
 
     /**
      * @brief Use this method to change the bot's description, which is shown in the chat with the bot
@@ -5754,7 +5797,7 @@
      *
      * @return True on success.
      */
-    bool setMyName(const std::string& name = "", const std::string& languageCode = "") const;
+    bool setMyName(std::string_view name = "", std::string_view languageCode = "") const;
 
     /**
      * @brief Use this method to change the bot's name. Returns True on success.
@@ -5769,10 +5812,14 @@
      * @brief Changes the profile photo of the bot. Returns True on success.
      *
      * @param photo The new profile photo to set
+     * @param attachments Files uploaded as named multipart parts. Reference each file from a
+     * composite Telegram API argument as attach://<name> and use the same name
+     * in InputFileAttachment.
      *
      * @return True on success.
      */
-    bool setMyProfilePhoto(std::shared_ptr<InputProfilePhoto> photo) const;
+    bool setMyProfilePhoto(std::shared_ptr<InputProfilePhoto> photo,
+                           const std::vector<InputFileAttachment>& attachments = { }) const;
 
     /**
      * @brief Changes the profile photo of the bot. Returns True on success.
@@ -5796,8 +5843,7 @@
      *
      * @return True on success.
      */
-    bool setMyShortDescription(const std::string& shortDescription = "",
-                               const std::string& languageCode = "") const;
+    bool setMyShortDescription(std::string_view shortDescription = "", std::string_view languageCode = "") const;
 
     /**
      * @brief Use this method to change the bot's short description, which is shown on the bot's
@@ -5852,7 +5898,7 @@
      *
      * @return True on success.
      */
-    bool setStickerEmojiList(const std::string& sticker, const std::vector<std::string>& emojiList) const;
+    bool setStickerEmojiList(std::string_view sticker, const std::vector<std::string>& emojiList) const;
 
     /**
      * @brief Use this method to change the list of emoji assigned to a regular or custom emoji
@@ -5875,7 +5921,7 @@
      *
      * @return True on success.
      */
-    bool setStickerKeywords(const std::string& sticker, const std::vector<std::string>& keywords = { }) const;
+    bool setStickerKeywords(std::string_view sticker, const std::vector<std::string>& keywords = { }) const;
 
     /**
      * @brief Use this method to change search keywords assigned to a regular or custom emoji sticker.
@@ -5897,7 +5943,7 @@
      *
      * @return True on success.
      */
-    bool setStickerMaskPosition(const std::string& sticker,
+    bool setStickerMaskPosition(std::string_view sticker,
                                 std::shared_ptr<MaskPosition> maskPosition = nullptr) const;
 
     /**
@@ -5919,7 +5965,7 @@
      *
      * @return True on success.
      */
-    bool setStickerPositionInSet(const std::string& sticker, std::int32_t position) const;
+    bool setStickerPositionInSet(std::string_view sticker, std::int32_t position) const;
 
     /**
      * @brief Use this method to move a sticker in a set created by the bot to a specific position.
@@ -5956,9 +6002,9 @@
      *
      * @return True on success.
      */
-    bool setStickerSetThumbnail(const std::string& name,
+    bool setStickerSetThumbnail(std::string_view name,
                                 std::int64_t userId,
-                                const std::string& format,
+                                std::string_view format,
                                 std::variant<std::shared_ptr<InputFile>, std::string> thumbnail = { }) const;
 
     /**
@@ -5980,7 +6026,7 @@
      *
      * @return True on success.
      */
-    bool setStickerSetTitle(const std::string& name, const std::string& title) const;
+    bool setStickerSetTitle(std::string_view name, std::string_view title) const;
 
     /**
      * @brief Use this method to set the title of a created sticker set. Returns True on success.
@@ -6004,7 +6050,7 @@
      * @return True on success.
      */
     bool setUserEmojiStatus(std::int64_t userId,
-                            const std::string& emojiStatusCustomEmojiId = "",
+                            std::string_view emojiStatusCustomEmojiId = "",
                             std::int32_t emojiStatusExpirationDate = 0) const;
 
     /**
@@ -6055,13 +6101,13 @@
      *
      * @return True on success.
      */
-    bool setWebhook(const std::string& url,
+    bool setWebhook(std::string_view url,
                     std::shared_ptr<InputFile> certificate = nullptr,
                     std::int32_t maxConnections = 40,
                     const std::vector<std::string>& allowedUpdates = { },
-                    const std::string& ipAddress = "",
+                    std::string_view ipAddress = "",
                     bool dropPendingUpdates = false,
-                    const std::string& secretToken = "") const;
+                    std::string_view secretToken = "") const;
 
     /**
      * @brief Use this method to specify a URL and receive incoming updates via an outgoing webhook.
@@ -6099,9 +6145,9 @@
      */
     std::shared_ptr<Message> stopMessageLiveLocation(std::variant<std::int64_t, std::string> chatId = { },
                                                      std::int32_t messageId = 0,
-                                                     const std::string& inlineMessageId = "",
+                                                     std::string_view inlineMessageId = "",
                                                      std::shared_ptr<InlineKeyboardMarkup> replyMarkup = nullptr,
-                                                     const std::string& businessConnectionId = "") const;
+                                                     std::string_view businessConnectionId = "") const;
 
     /**
      * @brief Use this method to stop updating a live location message before live_period expires. On
@@ -6129,7 +6175,7 @@
      */
     std::shared_ptr<Poll> stopPoll(std::variant<std::int64_t, std::string> chatId,
                                    std::int32_t messageId,
-                                   const std::string& businessConnectionId = "",
+                                   std::string_view businessConnectionId = "",
                                    std::shared_ptr<InlineKeyboardMarkup> replyMarkup = nullptr) const;
 
     /**
@@ -6151,7 +6197,7 @@
      *
      * @return True on success.
      */
-    bool transferBusinessAccountStars(const std::string& businessConnectionId, std::int32_t starCount) const;
+    bool transferBusinessAccountStars(std::string_view businessConnectionId, std::int32_t starCount) const;
 
     /**
      * @brief Transfers Telegram Stars from the business account balance to the bot's balance.
@@ -6178,9 +6224,9 @@
      *
      * @return True on success.
      */
-    bool transferGift(const std::string& businessConnectionId,
+    bool transferGift(std::string_view businessConnectionId,
                       std::int64_t newOwnerChatId,
-                      const std::string& ownedGiftId,
+                      std::string_view ownedGiftId,
                       std::int32_t starCount = 0) const;
 
     /**
@@ -6369,7 +6415,7 @@
      * @return True on success.
      */
     bool unpinChatMessage(std::variant<std::int64_t, std::string> chatId,
-                          const std::string& businessConnectionId = "",
+                          std::string_view businessConnectionId = "",
                           std::int32_t messageId = 0) const;
 
     /**
@@ -6402,8 +6448,8 @@
      *
      * @return True on success.
      */
-    bool upgradeGift(const std::string& businessConnectionId,
-                     const std::string& ownedGiftId,
+    bool upgradeGift(std::string_view businessConnectionId,
+                     std::string_view ownedGiftId,
                      bool keepOriginalDetails = false,
                      std::int32_t starCount = 0) const;
 
@@ -6433,7 +6479,7 @@
      */
     std::shared_ptr<File> uploadStickerFile(std::int64_t userId,
                                             std::variant<std::shared_ptr<InputFile>, std::string> sticker,
-                                            const std::string& stickerFormat) const;
+                                            std::string_view stickerFormat) const;
 
     /**
      * @brief Use this method to upload a file with a sticker for later use in the
@@ -6459,8 +6505,7 @@
      *
      * @return True on success.
      */
-    bool verifyChat(std::variant<std::int64_t, std::string> chatId,
-                    const std::string& customDescription = "") const;
+    bool verifyChat(std::variant<std::int64_t, std::string> chatId, std::string_view customDescription = "") const;
 
     /**
      * @brief Verifies a chat on behalf of the organization which is represented by the bot. Returns
@@ -6483,7 +6528,7 @@
      *
      * @return True on success.
      */
-    bool verifyUser(std::int64_t userId, const std::string& customDescription = "") const;
+    bool verifyUser(std::int64_t userId, std::string_view customDescription = "") const;
 
     /**
      * @brief Verifies a user on behalf of the organization which is represented by the bot. Returns

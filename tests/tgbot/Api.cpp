@@ -5,7 +5,10 @@
 #include "tgbot/TgException.h"
 #include "tgbot/Types.h"
 
+#include <nlohmann/json.hpp>
+
 #include <span>
+#include <stdexcept>
 #include <string>
 #include <utility>
 #include <variant>
@@ -67,6 +70,21 @@ TEST(Api, PassesCompleteUrlToHttpClient) {
     EXPECT_EQ(httpClient.requestUrl, "https://api.telegram.org/bottoken/getMe");
 }
 
+TEST(Api, DownloadFilePassesCompleteUrlAndFieldsToHttpClient) {
+    HttpClientMock httpClient;
+    httpClient.response = "file-data";
+    TgBot::Api api("token", httpClient, "https://api.telegram.org");
+    const std::vector<TgBot::HttpFormField> fields { { "range", "bytes=0-3" } };
+
+    const auto contents = api.downloadFile("documents/file.bin", fields);
+
+    EXPECT_EQ(contents, "file-data");
+    EXPECT_EQ(httpClient.requestUrl, "https://api.telegram.org/file/bottoken/documents/file.bin");
+    ASSERT_EQ(httpClient.requestFields.size(), 1);
+    EXPECT_EQ(httpClient.requestFields[0].name, "range");
+    EXPECT_EQ(std::get<std::string>(httpClient.requestFields[0].value), "bytes=0-3");
+}
+
 TEST(Api, GetChatAdministratorsPreservesAdministratorRights) {
     HttpClientMock httpClient;
     httpClient.response
@@ -118,6 +136,25 @@ TEST(Api, SerializesStringVariantAndPresentOptionalArguments) {
     EXPECT_EQ(std::get<std::string>(httpClient.requestFields[2].value), "7");
     EXPECT_EQ(httpClient.requestFields[3].name, "business_connection_id");
     EXPECT_EQ(std::get<std::string>(httpClient.requestFields[3].value), "business-id");
+}
+
+TEST(Api, SerializesOptionalFileIdStoredInsideVariant) {
+    HttpClientMock httpClient;
+    httpClient.response = R"({"ok":true,"result":{"message_id":1,"date":2,"chat":{"id":3,"type":"private"}}})";
+    TgBot::Api api("token", httpClient, "https://api.telegram.org");
+    const std::variant<std::shared_ptr<TgBot::InputFile>, std::string> animation { std::string("animation-id") };
+    const std::variant<std::shared_ptr<TgBot::InputFile>, std::string> thumbnail { std::string("thumbnail-id") };
+
+    const auto message = api.sendAnimation(std::int64_t { 42 }, animation, 0, 0, 0, thumbnail);
+
+    ASSERT_TRUE(message);
+    ASSERT_EQ(httpClient.requestFields.size(), 3);
+    EXPECT_EQ(httpClient.requestFields[0].name, "chat_id");
+    EXPECT_EQ(std::get<std::string>(httpClient.requestFields[0].value), "42");
+    EXPECT_EQ(httpClient.requestFields[1].name, "animation");
+    EXPECT_EQ(std::get<std::string>(httpClient.requestFields[1].value), "animation-id");
+    EXPECT_EQ(httpClient.requestFields[2].name, "thumbnail");
+    EXPECT_EQ(std::get<std::string>(httpClient.requestFields[2].value), "thumbnail-id");
 }
 
 TEST(Api, SerializesArgumentObject) {
@@ -230,6 +267,92 @@ TEST(Api, SerializesWebhookFileAndStructuredArguments) {
     EXPECT_EQ(std::get<std::string>(httpClient.requestFields[6].value), "secret");
 }
 
+TEST(Api, SendMediaGroupUploadsNamedAttachments) {
+    HttpClientMock httpClient;
+    httpClient.response = R"({"ok":true,"result":[]})";
+    TgBot::Api api("token", httpClient, "https://api.telegram.org");
+    auto media = std::make_shared<TgBot::InputMediaPhoto>();
+    media->media = "attach://photo";
+    auto file = std::make_shared<TgBot::InputFile>();
+    file->data = "photo-data";
+    file->mimeType = "image/jpeg";
+    file->fileName = "photo.jpg";
+    TgBot::SendMediaGroupArgs args;
+    args.chatId = std::int64_t { 42 };
+    args.media = { media };
+    args.attachments = { { "photo", file } };
+
+    EXPECT_TRUE(api.sendMediaGroup(args).empty());
+
+    ASSERT_EQ(httpClient.requestFields.size(), 3);
+    EXPECT_EQ(httpClient.requestFields[0].name, "chat_id");
+    EXPECT_EQ(httpClient.requestFields[1].name, "media");
+    const auto mediaJson = nlohmann::json::parse(std::get<std::string>(httpClient.requestFields[1].value));
+    ASSERT_EQ(mediaJson.size(), 1);
+    EXPECT_EQ(mediaJson[0].at("type"), "photo");
+    EXPECT_EQ(mediaJson[0].at("media"), "attach://photo");
+    EXPECT_EQ(httpClient.requestFields[2].name, "photo");
+    const auto& uploaded = std::get<TgBot::HttpFile>(httpClient.requestFields[2].value);
+    EXPECT_EQ(uploaded.data, "photo-data");
+    EXPECT_EQ(uploaded.mimeType, "image/jpeg");
+    EXPECT_EQ(uploaded.fileName, "photo.jpg");
+
+    EXPECT_TRUE(api.sendMediaGroup(std::int64_t { 42 }, args.media).empty());
+    ASSERT_EQ(httpClient.requestFields.size(), 2);
+}
+
+TEST(Api, EditMessageMediaUploadsNamedAttachment) {
+    HttpClientMock httpClient;
+    httpClient.response = R"({"ok":true,"result":{"message_id":1,"date":2,"chat":{"id":3,"type":"private"}}})";
+    TgBot::Api api("token", httpClient, "https://api.telegram.org");
+    auto photo = std::make_shared<TgBot::InputMediaPhoto>();
+    photo->media = "attach://photo";
+    auto media = std::make_shared<TgBot::InputMedia>();
+    media->value = photo;
+    auto file = std::make_shared<TgBot::InputFile>();
+    file->data = "photo-data";
+    file->mimeType = "image/jpeg";
+    file->fileName = "photo.jpg";
+
+    TgBot::EditMessageMediaArgs args;
+    args.media = media;
+    args.chatId = std::int64_t { 42 };
+    args.messageId = 7;
+    args.attachments = { { "photo", file } };
+
+    ASSERT_NE(api.editMessageMedia(args), nullptr);
+
+    ASSERT_EQ(httpClient.requestFields.size(), 4);
+    EXPECT_EQ(httpClient.requestFields[0].name, "media");
+    EXPECT_EQ(httpClient.requestFields[1].name, "chat_id");
+    EXPECT_EQ(httpClient.requestFields[2].name, "message_id");
+    EXPECT_EQ(httpClient.requestFields[3].name, "photo");
+}
+
+TEST(Api, RejectsInvalidNamedAttachments) {
+    HttpClientMock httpClient;
+    httpClient.response = R"({"ok":true,"result":[]})";
+    TgBot::Api api("token", httpClient, "https://api.telegram.org");
+    auto media = std::make_shared<TgBot::InputMediaPhoto>();
+    media->media = "attach://photo";
+    auto file = std::make_shared<TgBot::InputFile>();
+    TgBot::SendMediaGroupArgs args;
+    args.chatId = std::int64_t { 42 };
+    args.media = { media };
+
+    args.attachments = { { "", file } };
+    EXPECT_THROW(api.sendMediaGroup(args), std::invalid_argument);
+
+    args.attachments = { { "photo", nullptr } };
+    EXPECT_THROW(api.sendMediaGroup(args), std::invalid_argument);
+
+    args.attachments = { { "photo", file }, { "photo", file } };
+    EXPECT_THROW(api.sendMediaGroup(args), std::invalid_argument);
+
+    args.attachments = { { "chat_id", file } };
+    EXPECT_THROW(api.sendMediaGroup(args), std::invalid_argument);
+}
+
 TEST(Api, SerializesFileStoredInsideVariant) {
     HttpClientMock httpClient;
     httpClient.response = R"({"ok":true,"result":{"message_id":1,"date":2,"chat":{"id":3,"type":"private"}}})";
@@ -250,6 +373,23 @@ TEST(Api, SerializesFileStoredInsideVariant) {
     EXPECT_EQ(file.data, "audio-data");
     EXPECT_EQ(file.mimeType, "audio/mpeg");
     EXPECT_EQ(file.fileName, "audio.mp3");
+    EXPECT_FALSE(file.filePath);
+}
+
+TEST(Api, SerializesStreamingFilePathInsideVariant) {
+    HttpClientMock httpClient;
+    httpClient.response = R"({"ok":true,"result":{"message_id":1,"date":2,"chat":{"id":3,"type":"private"}}})";
+    TgBot::Api api("token", httpClient, "https://api.telegram.org");
+    const auto document = TgBot::InputFile::fromFile("files/document.pdf", "application/pdf");
+
+    ASSERT_TRUE(api.sendDocument(std::int64_t { 42 }, document));
+
+    ASSERT_EQ(httpClient.requestFields.size(), 2);
+    const auto& file = std::get<TgBot::HttpFile>(httpClient.requestFields[1].value);
+    EXPECT_TRUE(file.data.empty());
+    EXPECT_EQ(file.mimeType, "application/pdf");
+    EXPECT_EQ(file.fileName, "document.pdf");
+    EXPECT_EQ(file.filePath, "files/document.pdf");
 }
 
 TEST(Api, LeavesDocumentedWebhookDefaultToTelegram) {

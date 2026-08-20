@@ -13,7 +13,7 @@ namespace TgBot {
  */
 class TGBOT_API TgWebhookTcpServer : public TgWebhookServer<boost::asio::ip::tcp> {
 public:
-    TgWebhookTcpServer(unsigned short port, const std::string& path, const EventHandler& eventHandler);
+    TgWebhookTcpServer(unsigned short port, std::string path, const EventHandler& eventHandler);
 
     TgWebhookTcpServer(unsigned short port, const Bot& bot);
 };

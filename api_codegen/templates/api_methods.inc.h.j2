@@ -5,7 +5,8 @@
 {{ arg.declaration_type }} {{ arg.cpp_name }}{{ default }}
 {%- endmacro %}
 
-{% macro documentation(method, argument_object=false) -%}
+{% macro documentation(method, argument_object=false, args=none) -%}
+{% set documented_args = method.args if args is none else args -%}
     /**
      * @brief{{ " " + method.description[0] if method.description else "" }}
 {% for line in method.description[1:] %}
@@ -15,7 +16,7 @@
 {% if argument_object %}
      * @param args Method arguments.
 {% else %}
-{% for arg in method.args %}
+{% for arg in documented_args %}
      * @param {{ arg.cpp_name }}{{ " " + arg.description[0] if arg.description else "" }}
 {% for line in arg.description[1:] %}
      * {{ line }}
@@ -27,12 +28,13 @@
      */
 {%- endmacro %}
 
-{% macro method_declaration(method, argument_object=false) -%}
+{% macro method_declaration(method, argument_object=false, args=none) -%}
+{% set declared_args = method.args if args is none else args -%}
     {{ method.return_type }} {{ method.name }}(
 {% if argument_object %}
         const {{ method.args_name }}& args
 {% else %}
-{% for arg in method.args %}
+{% for arg in declared_args %}
         {{ arg_declaration(arg) }}{{ "," if not loop.last else "" }}
 {% endfor %}
 {% endif %}
@@ -44,6 +46,11 @@
 {{ documentation(method) }}
 {{ method_declaration(method) }}
 
+{% if method.compatibility_args != method.args %}
+{{ documentation(method, args=method.compatibility_args) }}
+{{ method_declaration(method, args=method.compatibility_args) }}
+
+{% endif %}
 {% if method.args_name %}
 {{ documentation(method, argument_object=true) }}
 {{ method_declaration(method, argument_object=true) }}

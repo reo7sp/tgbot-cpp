@@ -14,12 +14,13 @@
 ApiRequest::{{ factory }}("{{ arg.wire_name }}", {{ arg.cpp_name }}{{ wire_default }})
 {%- endmacro %}
 
-{% macro method_definition(method, argument_object=false) -%}
+{% macro method_definition(method, argument_object=false, args=none) -%}
+{% set definition_args = method.args if args is none else args -%}
 {{ method.return_type }} Api::{{ method.name }}(
 {% if argument_object %}
     const {{ method.args_name }}& args
 {% else %}
-{% for arg in method.args %}
+{% for arg in definition_args %}
     {{ arg.declaration_type }} {{ arg.cpp_name }}{{ "," if not loop.last else "" }}
 {% endfor %}
 {% endif %}
@@ -47,6 +48,16 @@ namespace TgBot {
     );
 }
 
+{% if method.compatibility_args != method.args %}
+{{ method_definition(method, args=method.compatibility_args) }} {
+    return {{ method.name }}(
+{% for arg in method.args %}
+        {{ arg.cpp_name if arg in method.compatibility_args else "{ }" }}{{ "," if not loop.last else "" }}
+{% endfor %}
+    );
+}
+
+{% endif %}
 {% if method.args_name %}
 {{ method_definition(method, argument_object=true) }} {
     return {{ method.name }}(

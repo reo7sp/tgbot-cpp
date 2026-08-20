@@ -52,6 +52,7 @@ types:
 api:
   addStickerToSet:
     args_order: [user_id, name, sticker]
+    supports_attach_references: true
   answerCallbackQuery:
     args_order: [callback_query_id, text, show_alert, url, cache_time]
   answerInlineQuery:
@@ -80,6 +81,7 @@ api:
       provider_token: {declaration_required: true}
   createNewStickerSet:
     args_order: [user_id, name, title, stickers, sticker_type, needs_repainting]
+    supports_attach_references: true
     args:
       sticker_type: {type: "Sticker::Type", default: "Sticker::Type::Regular"}
   deleteMyCommands:
@@ -97,12 +99,16 @@ api:
   editMessageMedia:
     return_type: std::shared_ptr<Message>
     args_order: [media, chat_id, message_id, inline_message_id, reply_markup]
+    supports_attach_references: true
   editMessageReplyMarkup:
     return_type: std::shared_ptr<Message>
     args_order: [chat_id, message_id, inline_message_id, reply_markup]
   editMessageText:
     return_type: std::shared_ptr<Message>
     args_order: [text, chat_id, message_id, inline_message_id, parse_mode, link_preview_options, reply_markup, entities]
+    supports_attach_references: true
+  editStory:
+    supports_attach_references: true
   forwardMessage:
     args_order: [chat_id, from_chat_id, message_id, disable_notification, protect_content, message_thread_id]
   forwardMessages:
@@ -123,6 +129,7 @@ api:
     args_order: [chat_id, user_id, can_change_info, can_post_messages, can_edit_messages, can_delete_messages, can_invite_users, can_pin_messages, can_promote_members, is_anonymous, can_manage_chat, can_manage_video_chats, can_restrict_members, can_manage_topics, can_post_stories, can_edit_stories, can_delete_stories]
   replaceStickerInSet:
     args_order: [user_id, name, old_sticker, sticker]
+    supports_attach_references: true
   restrictChatMember:
     args_order: [chat_id, user_id, permissions, until_date, use_independent_chat_permissions]
   sendAnimation:
@@ -146,7 +153,12 @@ api:
   sendLocation:
     args_order: [chat_id, latitude, longitude, live_period, reply_parameters, reply_markup, disable_notification, horizontal_accuracy, heading, proximity_alert_radius, message_thread_id, protect_content, business_connection_id]
   sendMediaGroup:
-    args_order: [chat_id, media, disable_notification, reply_parameters, message_thread_id, protect_content, business_connection_id]
+    args_order: [chat_id, media, disable_notification, reply_parameters, message_thread_id, protect_content, business_connection_id, allow_paid_broadcast, direct_messages_topic_id, message_effect_id]
+    supports_attach_references: true
+  sendPaidMedia:
+    supports_attach_references: true
+  sendRichMessage:
+    supports_attach_references: true
   sendMessage:
     args_order: [chat_id, text, link_preview_options, reply_parameters, reply_markup, parse_mode, disable_notification, entities, message_thread_id, protect_content, business_connection_id]
   sendPhoto:
@@ -165,11 +177,17 @@ api:
     args_order: [chat_id, video_note, reply_parameters, disable_notification, duration, length, thumbnail, reply_markup, message_thread_id, protect_content, business_connection_id]
   sendVoice:
     args_order: [chat_id, voice, caption, duration, reply_parameters, reply_markup, parse_mode, disable_notification, caption_entities, message_thread_id, protect_content, business_connection_id]
+  postStory:
+    supports_attach_references: true
+  setBusinessAccountProfilePhoto:
+    supports_attach_references: true
   setChatAdministratorCustomTitle:
     args_order: [chat_id, user_id, custom_title]
   setGameScore:
     return_type: std::shared_ptr<Message>
     args_order: [user_id, score, force, disable_edit_message, chat_id, message_id, inline_message_id]
+  setMyProfilePhoto:
+    supports_attach_references: true
   setMessageReaction:
     args_order: [chat_id, message_id, reaction, is_big]
   setMyCommands:

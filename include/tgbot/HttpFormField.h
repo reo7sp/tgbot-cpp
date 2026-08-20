@@ -1,5 +1,6 @@
 #pragma once
 
+#include <optional>
 #include <string>
 #include <variant>
 
@@ -12,6 +13,7 @@ struct HttpFile {
     std::string data;
     std::string mimeType;
     std::string fileName;
+    std::optional<std::string> filePath;
 };
 
 /**

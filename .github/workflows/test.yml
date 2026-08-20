@@ -8,6 +8,10 @@ on:
     branches:
       - master
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 permissions:
   contents: read
 
@@ -50,9 +54,26 @@ jobs:
           cache-from: type=gha,scope=test
           cache-to: type=gha,mode=max,scope=test
       - name: Test tgbot-cpp
-        run: make docker-test-only
+        run: |
+          docker run --name tgbot-cpp-coverage reo7sp/tgbot-cpp-test sh -eu -c '
+            make test-only
+            make coverage
+          '
+          docker cp tgbot-cpp-coverage:/usr/src/tgbot-cpp/build/Debug/coverage ./coverage
+          docker rm tgbot-cpp-coverage
       - name: Test codegen
         run: make docker-test-api-codegen
+      - name: Upload HTML coverage report
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-html
+          path: coverage
+      - name: Upload coverage to Coveralls
+        uses: coverallsapp/github-action@v2
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          file: coverage/coveralls.json
+          format: coveralls
 
   test-windows:
     runs-on: windows-2022

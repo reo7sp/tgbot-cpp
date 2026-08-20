@@ -1,6 +1,7 @@
 # tgbot-cpp
 
 [![GitHub contributors](https://img.shields.io/github/contributors/reo7sp/tgbot-cpp.svg)](https://github.com/reo7sp/tgbot-cpp/graphs/contributors)
+[![Coverage Status](https://coveralls.io/repos/github/reo7sp/tgbot-cpp/badge.svg?branch=master)](https://coveralls.io/github/reo7sp/tgbot-cpp?branch=master)
 
 C++ library for Telegram bot API.
 

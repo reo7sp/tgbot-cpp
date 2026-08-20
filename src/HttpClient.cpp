@@ -6,8 +6,8 @@ RequestCancelled::RequestCancelled()
     : std::runtime_error("request cancelled") {
 }
 
-RequestCancelled::RequestCancelled(const std::string& request)
-    : std::runtime_error("request cancelled: " + request) {
+RequestCancelled::RequestCancelled(std::string_view request)
+    : std::runtime_error(std::string("request cancelled: ").append(request)) {
 }
 
 } // namespace TgBot

@@ -13,6 +13,7 @@
 #include <optional>
 #include <stdexcept>
 #include <string>
+#include <string_view>
 #include <unordered_map>
 #include <utility>
 
@@ -171,8 +172,8 @@ private:
             });
     }
 
-    static void reportError(const ErrorHandler& errorHandler, const std::string& message) {
-        const std::runtime_error error(message);
+    static void reportError(const ErrorHandler& errorHandler, std::string_view message) {
+        const std::runtime_error error { std::string(message) };
         if (errorHandler) {
             errorHandler(error);
         }

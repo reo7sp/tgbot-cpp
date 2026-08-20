@@ -16,6 +16,7 @@
 !tests/**
 !CMakeLists.txt
 !conanfile.py
+!coverage_summary.py
 !Makefile
 !poetry.lock
 !pyproject.toml

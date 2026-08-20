@@ -2,6 +2,8 @@ cmake_minimum_required(VERSION 3.16)
 project(TgBot LANGUAGES CXX)
 
 option(ENABLE_TESTS "Build tests" OFF)
+option(ENABLE_SANITIZERS "Instrument the library and tests with address and undefined behavior sanitizers" OFF)
+option(ENABLE_COVERAGE "Instrument the library and tests for code coverage" OFF)
 option(BUILD_SHARED_LIBS "Build shared libraries" OFF)
 option(BUILD_DOCUMENTATION "Build API documentation" OFF)
 
@@ -39,6 +41,20 @@ target_compile_features(TgBot PUBLIC cxx_std_20)
 target_compile_options(TgBot PRIVATE
     $<$<CXX_COMPILER_ID:GNU,Clang,AppleClang>:-Wall>
 )
+if(ENABLE_SANITIZERS)
+    if(NOT CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang|AppleClang")
+        message(FATAL_ERROR "ENABLE_SANITIZERS requires GCC or Clang")
+    endif()
+    target_compile_options(TgBot PUBLIC -fsanitize=address,undefined -fno-omit-frame-pointer)
+    target_link_options(TgBot PUBLIC -fsanitize=address,undefined)
+endif()
+if(ENABLE_COVERAGE)
+    if(NOT CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
+        message(FATAL_ERROR "ENABLE_COVERAGE requires GCC")
+    endif()
+    target_compile_options(TgBot PRIVATE -O0 -g --coverage)
+    target_link_options(TgBot PUBLIC --coverage)
+endif()
 target_include_directories(TgBot PUBLIC
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
     $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>

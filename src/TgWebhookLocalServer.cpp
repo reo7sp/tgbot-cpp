@@ -4,9 +4,9 @@
 
 namespace TgBot {
 
-TgWebhookLocalServer::TgWebhookLocalServer(const std::string& unixSocketPath, const std::string& path,
+TgWebhookLocalServer::TgWebhookLocalServer(const std::string& unixSocketPath, std::string path,
                                            const EventHandler& eventHandler)
-    : TgWebhookServer(boost::asio::local::stream_protocol::endpoint(unixSocketPath), path, eventHandler) {
+    : TgWebhookServer(boost::asio::local::stream_protocol::endpoint(unixSocketPath), std::move(path), eventHandler) {
 }
 
 TgWebhookLocalServer::TgWebhookLocalServer(const std::string& unixSocketPath, const Bot& bot)

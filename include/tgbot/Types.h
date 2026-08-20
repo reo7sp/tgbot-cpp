@@ -2,6 +2,7 @@
 
 #pragma once
 
+#include "tgbot/InputFile.h"
 #include "tgbot/export.h"
 
 #include <nlohmann/json_fwd.hpp>
@@ -14,8 +15,6 @@
 #include <vector>
 
 namespace TgBot {
-
-struct InputFile;
 
 struct AcceptedGiftTypes;
 struct AffiliateInfo;
@@ -13983,6 +13982,13 @@ struct AddStickerToSetArgs {
      * isn't changed.
      */
     std::shared_ptr<InputSticker> sticker { };
+
+    /**
+     * @brief Files uploaded as named multipart parts. Reference each file from a
+     * composite Telegram API argument as attach://<name> and use the same name
+     * in InputFileAttachment.
+     */
+    std::vector<InputFileAttachment> attachments = { };
 };
 
 /**
@@ -14763,6 +14769,13 @@ struct CreateNewStickerSetArgs {
      * custom emoji sticker sets only
      */
     bool needsRepainting = false;
+
+    /**
+     * @brief Files uploaded as named multipart parts. Reference each file from a
+     * composite Telegram API argument as attach://<name> and use the same name
+     * in InputFileAttachment.
+     */
+    std::vector<InputFileAttachment> attachments = { };
 };
 
 /**
@@ -15508,6 +15521,13 @@ struct EditMessageMediaArgs {
      * message to be edited was sent
      */
     std::string businessConnectionId = "";
+
+    /**
+     * @brief Files uploaded as named multipart parts. Reference each file from a
+     * composite Telegram API argument as attach://<name> and use the same name
+     * in InputFileAttachment.
+     */
+    std::vector<InputFileAttachment> attachments = { };
 };
 
 /**
@@ -15610,6 +15630,13 @@ struct EditMessageTextArgs {
      * edited.
      */
     std::shared_ptr<InputRichMessage> richMessage = nullptr;
+
+    /**
+     * @brief Files uploaded as named multipart parts. Reference each file from a
+     * composite Telegram API argument as attach://<name> and use the same name
+     * in InputFileAttachment.
+     */
+    std::vector<InputFileAttachment> attachments = { };
 };
 
 /**
@@ -15653,6 +15680,13 @@ struct EditStoryArgs {
      * for more details.
      */
     std::string parseMode = "";
+
+    /**
+     * @brief Files uploaded as named multipart parts. Reference each file from a
+     * composite Telegram API argument as attach://<name> and use the same name
+     * in InputFileAttachment.
+     */
+    std::vector<InputFileAttachment> attachments = { };
 };
 
 /**
@@ -16541,6 +16575,13 @@ struct PostStoryArgs {
      * and screenshotting
      */
     bool protectContent = false;
+
+    /**
+     * @brief Files uploaded as named multipart parts. Reference each file from a
+     * composite Telegram API argument as attach://<name> and use the same name
+     * in InputFileAttachment.
+     */
+    std::vector<InputFileAttachment> attachments = { };
 };
 
 /**
@@ -16808,6 +16849,13 @@ struct ReplaceStickerInSetArgs {
      * remains unchanged.
      */
     std::shared_ptr<InputSticker> sticker { };
+
+    /**
+     * @brief Files uploaded as named multipart parts. Reference each file from a
+     * composite Telegram API argument as attach://<name> and use the same name
+     * in InputFileAttachment.
+     */
+    std::vector<InputFileAttachment> attachments = { };
 };
 
 /**
@@ -18339,6 +18387,13 @@ struct SendMediaGroupArgs {
      * private chats only
      */
     std::string messageEffectId = "";
+
+    /**
+     * @brief Files uploaded as named multipart parts. Reference each file from a
+     * composite Telegram API argument as attach://<name> and use the same name
+     * in InputFileAttachment.
+     */
+    std::vector<InputFileAttachment> attachments = { };
 };
 
 /**
@@ -18604,6 +18659,13 @@ struct SendPaidMediaArgs {
      * automatically declined.
      */
     std::shared_ptr<SuggestedPostParameters> suggestedPostParameters = nullptr;
+
+    /**
+     * @brief Files uploaded as named multipart parts. Reference each file from a
+     * composite Telegram API argument as attach://<name> and use the same name
+     * in InputFileAttachment.
+     */
+    std::vector<InputFileAttachment> attachments = { };
 };
 
 /**
@@ -19027,6 +19089,13 @@ struct SendRichMessageArgs {
      * automatically declined.
      */
     std::shared_ptr<SuggestedPostParameters> suggestedPostParameters = nullptr;
+
+    /**
+     * @brief Files uploaded as named multipart parts. Reference each file from a
+     * composite Telegram API argument as attach://<name> and use the same name
+     * in InputFileAttachment.
+     */
+    std::vector<InputFileAttachment> attachments = { };
 };
 
 /**
@@ -19792,6 +19861,13 @@ struct SetBusinessAccountProfilePhotoArgs {
      * account can have only one public photo.
      */
     bool isPublic = false;
+
+    /**
+     * @brief Files uploaded as named multipart parts. Reference each file from a
+     * composite Telegram API argument as attach://<name> and use the same name
+     * in InputFileAttachment.
+     */
+    std::vector<InputFileAttachment> attachments = { };
 };
 
 /**
@@ -20178,6 +20254,13 @@ struct SetMyProfilePhotoArgs {
      * @brief The new profile photo to set
      */
     std::shared_ptr<InputProfilePhoto> photo { };
+
+    /**
+     * @brief Files uploaded as named multipart parts. Reference each file from a
+     * composite Telegram API argument as attach://<name> and use the same name
+     * in InputFileAttachment.
+     */
+    std::vector<InputFileAttachment> attachments = { };
 };
 
 /**

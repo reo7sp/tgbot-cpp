@@ -2,7 +2,7 @@
 
 #include <algorithm>
 #include <cstddef>
-#include <string>
+#include <string_view>
 
 namespace TgBot {
 
@@ -64,23 +64,23 @@ void EventHandler::handleUpdate(const std::shared_ptr<Update>& update) const {
 void EventHandler::handleMessage(const std::shared_ptr<Message>& message) const {
     _broadcaster.broadcastAnyMessage(message);
 
-    const std::string text = message->text.value_or("");
+    const std::string_view text = message->text ? std::string_view(*message->text) : "";
     if (text.starts_with('/')) {
         std::size_t splitPosition;
         std::size_t spacePosition = text.find(' ');
         std::size_t atSymbolPosition = text.find('@');
-        if (spacePosition == std::string::npos) {
-            if (atSymbolPosition == std::string::npos) {
+        if (spacePosition == std::string_view::npos) {
+            if (atSymbolPosition == std::string_view::npos) {
                 splitPosition = text.size();
             } else {
                 splitPosition = atSymbolPosition;
             }
-        } else if (atSymbolPosition == std::string::npos) {
+        } else if (atSymbolPosition == std::string_view::npos) {
             splitPosition = spacePosition;
         } else {
             splitPosition = std::min(spacePosition, atSymbolPosition);
         }
-        std::string command = text.substr(1, splitPosition - 1);
+        const std::string_view command = text.substr(1, splitPosition - 1);
         if (!_broadcaster.broadcastCommand(command, message)) {
             _broadcaster.broadcastUnknownCommand(message);
         }
