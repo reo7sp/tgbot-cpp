@@ -67,6 +67,27 @@ TEST(Api, PassesCompleteUrlToHttpClient) {
     EXPECT_EQ(httpClient.requestUrl, "https://api.telegram.org/bottoken/getMe");
 }
 
+TEST(Api, GetChatAdministratorsPreservesAdministratorRights) {
+    HttpClientMock httpClient;
+    httpClient.response
+        = R"({"ok":true,"result":[{"status":"administrator","user":{"id":1,"is_bot":false,"first_name":"Admin"},"can_be_edited":true,"is_anonymous":false,"can_manage_chat":true,"can_delete_messages":true,"can_manage_video_chats":false,"can_restrict_members":true,"can_promote_members":false,"can_change_info":true,"can_invite_users":true,"can_post_stories":false,"can_edit_stories":false,"can_delete_stories":false}]})";
+    TgBot::Api api("token", httpClient, "https://api.telegram.org");
+
+    const auto members = api.getChatAdministrators(std::int64_t { 42 });
+
+    ASSERT_EQ(members.size(), 1);
+    ASSERT_TRUE(members.front());
+    ASSERT_TRUE(std::holds_alternative<std::shared_ptr<TgBot::ChatMemberAdministrator>>(members.front()->value));
+    const auto& administrator = std::get<std::shared_ptr<TgBot::ChatMemberAdministrator>>(members.front()->value);
+    ASSERT_TRUE(administrator);
+    EXPECT_TRUE(administrator->canBeEdited);
+    EXPECT_TRUE(administrator->canManageChat);
+    EXPECT_TRUE(administrator->canDeleteMessages);
+    EXPECT_TRUE(administrator->canRestrictMembers);
+    EXPECT_TRUE(administrator->canChangeInfo);
+    EXPECT_TRUE(administrator->canInviteUsers);
+}
+
 TEST(Api, SerializesRequiredVariantArgumentsAndOmitsEmptyOptionalArguments) {
     HttpClientMock httpClient;
     httpClient.response = R"({"ok":true,"result":true})";
