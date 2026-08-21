@@ -8,6 +8,7 @@
 #include <span>
 #include <stdexcept>
 #include <string>
+#include <string_view>
 
 namespace TgBot {
 
@@ -19,7 +20,7 @@ namespace TgBot {
 class TGBOT_API RequestCancelled : public std::runtime_error {
 public:
     RequestCancelled();
-    explicit RequestCancelled(const std::string& request);
+    explicit RequestCancelled(std::string_view request);
 };
 
 /**

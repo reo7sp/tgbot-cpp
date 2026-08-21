@@ -4,6 +4,7 @@
 
 #include <stdexcept>
 #include <string>
+#include <string_view>
 
 namespace TgBot {
 
@@ -29,7 +30,7 @@ public:
         InvalidJson = 101
     };
 
-    TgException(const std::string& description, ErrorCode errorCode);
+    TgException(std::string_view description, ErrorCode errorCode);
 
     const ErrorCode errorCode;
 };

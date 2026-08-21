@@ -20,7 +20,7 @@ class HttpClient;
 class TGBOT_API Bot {
 public:
     explicit Bot(std::string token, const HttpClient& httpClient = _getDefaultHttpClient(),
-                 const std::string& url = "https://api.telegram.org");
+                 std::string url = "https://api.telegram.org");
 
     /**
      * @return Token for accessing api.

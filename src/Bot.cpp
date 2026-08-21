@@ -7,9 +7,9 @@
 
 namespace TgBot {
 
-Bot::Bot(std::string token, const HttpClient& httpClient, const std::string& url)
+Bot::Bot(std::string token, const HttpClient& httpClient, std::string url)
     : _token(std::move(token))
-    , _api(_token, httpClient, url)
+    , _api(_token, httpClient, std::move(url))
     , _eventBroadcaster(std::make_unique<EventBroadcaster>())
     , _eventHandler(getEvents()) {
 }

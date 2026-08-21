@@ -6,6 +6,7 @@
 #include <functional>
 #include <initializer_list>
 #include <string>
+#include <string_view>
 #include <unordered_map>
 #include <vector>
 
@@ -47,14 +48,14 @@ public:
      * @param commandName Command name which listener can handle.
      * @param listener Listener. Pass nullptr to remove listener of command
      */
-    void onCommand(const std::string& commandName, const MessageListener& listener);
+    void onCommand(std::string_view commandName, const MessageListener& listener);
 
     /**
     * @brief Registers listener which receives all messages with commands (messages with leading '/' char).
     * @param commandsList Commands names which listener can handle.
     * @param listener Listener. Pass nullptr to remove listener of commands
     */
-    void onCommand(const std::initializer_list<std::string>& commandsList, const MessageListener& listener);
+    void onCommand(std::initializer_list<std::string_view> commandsList, const MessageListener& listener);
 
     /**
      * @brief Registers listener which receives all messages with commands (messages with leading '/' char) which haven't been handled by other listeners.
@@ -171,11 +172,19 @@ public:
     void onSuccessfulPayment(const SuccessfulPaymentListener& listener);
 
 private:
+    struct TransparentStringHash {
+        using is_transparent = void;
+
+        std::size_t operator()(std::string_view value) const noexcept {
+            return std::hash<std::string_view> { }(value);
+        }
+    };
+
     template<typename ListenerType, typename ObjectType>
     void broadcast(const std::vector<ListenerType>& listeners, ObjectType object) const;
 
     void broadcastAnyMessage(const std::shared_ptr<Message>& message) const;
-    bool broadcastCommand(const std::string& command, const std::shared_ptr<Message>& message) const;
+    bool broadcastCommand(std::string_view command, const std::shared_ptr<Message>& message) const;
     void broadcastUnknownCommand(const std::shared_ptr<Message>& message) const;
     void broadcastNonCommandMessage(const std::shared_ptr<Message>& message) const;
     void broadcastEditedMessage(const std::shared_ptr<Message>& message) const;
@@ -195,7 +204,7 @@ private:
     void broadcastSuccessfulPayment(const std::shared_ptr<Message>& message) const;
 
     std::vector<MessageListener> _onAnyMessageListeners;
-    std::unordered_map<std::string, MessageListener> _onCommandListeners;
+    std::unordered_map<std::string, MessageListener, TransparentStringHash, std::equal_to<>> _onCommandListeners;
     std::vector<MessageListener> _onUnknownCommandListeners;
     std::vector<MessageListener> _onNonCommandMessageListeners;
     std::vector<MessageListener> _onEditedMessageListeners;

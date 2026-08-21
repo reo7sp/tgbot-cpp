@@ -15,18 +15,23 @@ RUN apt-get -qq update && \
         python3-venv >/dev/null && \
     rm -rf /var/lib/apt/lists/*
 
-ENV CONAN_BUILD_ARGS="--build=missing:gtest/*"
-
 RUN python3 -m venv /opt/conan && \
     /opt/conan/bin/pip install --quiet --disable-pip-version-check --no-cache-dir \
         "clang-format==22.1.8" \
         "conan==2.31.1" \
+        "gcovr==8.6" \
         "poetry==2.4.1"
 ENV PATH="/opt/conan/bin:${PATH}"
 
 WORKDIR /usr/src/tgbot-cpp
 
 COPY conanfile.py Makefile poetry.lock pyproject.toml ./
+
+ENV BUILD_TYPE=Debug
+ENV ENABLE_SANITIZERS=ON
+ENV ENABLE_COVERAGE=ON
+ENV ASAN_OPTIONS=detect_leaks=1:halt_on_error=1
+ENV UBSAN_OPTIONS=print_stacktrace=1:halt_on_error=1
 
 RUN make dependencies-with-test
 
@@ -39,6 +44,7 @@ COPY api_codegen api_codegen
 COPY cmake cmake
 COPY .clang-format ./
 COPY CMakeLists.txt ./
+COPY coverage_summary.py ./
 
 RUN make build-with-test && \
     make install-only

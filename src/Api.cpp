@@ -15,12 +15,17 @@ Api::Api(std::string token, const HttpClient& httpClient, std::string url)
     , _url(std::move(url)) {
 }
 
-std::string Api::downloadFile(const std::string& filePath, const std::vector<HttpFormField>& fields) const {
-    return _httpClient.makeRequest(_url + "/file/bot" + _token + "/" + filePath, fields);
+std::string Api::downloadFile(std::string_view filePath, const std::vector<HttpFormField>& fields) const {
+    std::string url;
+    url.reserve(_url.size() + _token.size() + filePath.size() + 10);
+    url.append(_url).append("/file/bot").append(_token).append("/").append(filePath);
+    return _httpClient.makeRequest(url, fields);
 }
 
-nlohmann::json Api::sendRequest(const std::string& method, const std::vector<HttpFormField>& fields) const {
-    const std::string url = _url + "/bot" + _token + "/" + method;
+nlohmann::json Api::sendRequest(std::string_view method, const std::vector<HttpFormField>& fields) const {
+    std::string url;
+    url.reserve(_url.size() + _token.size() + method.size() + 6);
+    url.append(_url).append("/bot").append(_token).append("/").append(method);
     const std::string body = _httpClient.makeRequest(url, fields);
     if (body.starts_with("<html>")) {
         throw TgException("tgbot-cpp received HTML instead of a Telegram Bot API response",

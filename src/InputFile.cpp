@@ -1,23 +1,28 @@
 #include "tgbot/InputFile.h"
 
 #include <filesystem>
-#include <fstream>
 #include <memory>
-#include <sstream>
 #include <string>
+#include <utility>
 
 namespace TgBot {
 
-std::shared_ptr<InputFile> InputFile::fromFile(const std::string& filePath, const std::string& mimeType) {
-    std::ifstream input(filePath, std::ios::binary);
-    input.exceptions(std::ifstream::failbit | std::ifstream::badbit);
-    std::ostringstream contents;
-    contents << input.rdbuf();
+std::shared_ptr<InputFile> InputFile::fromData(std::string data, std::string mimeType, std::string fileName) {
+    auto result = std::make_shared<InputFile>();
+    result->data = std::move(data);
+    result->mimeType = std::move(mimeType);
+    result->fileName = std::move(fileName);
+
+    return result;
+}
+
+std::shared_ptr<InputFile> InputFile::fromFile(std::string_view filePath, std::string mimeType) {
+    const std::filesystem::path path(filePath);
 
     auto result(std::make_shared<InputFile>());
-    result->data = contents.str();
-    result->mimeType = mimeType;
-    result->fileName = std::filesystem::path(filePath).filename().string();
+    result->mimeType = std::move(mimeType);
+    result->fileName = path.filename().string();
+    result->filePath = path.string();
 
     return result;
 }

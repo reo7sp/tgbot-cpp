@@ -2,8 +2,8 @@
 
 namespace TgBot {
 
-TgException::TgException(const std::string& description, ErrorCode errorCode)
-    : runtime_error(description)
+TgException::TgException(std::string_view description, ErrorCode errorCode)
+    : runtime_error(std::string(description))
     , errorCode(errorCode) {
 }
 

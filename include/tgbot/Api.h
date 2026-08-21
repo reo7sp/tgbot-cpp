@@ -11,6 +11,7 @@
 #include <memory>
 #include <optional>
 #include <string>
+#include <string_view>
 #include <variant>
 #include <vector>
 
@@ -38,12 +39,12 @@ public:
     /**
      * @brief Downloads a Telegram file and returns its contents.
      */
-    std::string downloadFile(const std::string& filePath, const std::vector<HttpFormField>& fields = { }) const;
+    std::string downloadFile(std::string_view filePath, const std::vector<HttpFormField>& fields = { }) const;
 
     const HttpClient& _httpClient;
 
 protected:
-    nlohmann::json sendRequest(const std::string& method, const std::vector<HttpFormField>& fields) const;
+    nlohmann::json sendRequest(std::string_view method, const std::vector<HttpFormField>& fields) const;
 
     const std::string _token;
     const std::string _url;

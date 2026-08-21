@@ -39,12 +39,28 @@ def test_direct_api_keeps_legacy_args_order_and_defaults() -> None:
     ]
     assert builder._arg_default("std::int32_t", "setWebhook", "max_connections") == "40"
     assert builder._arg_default("std::shared_ptr<InputFile>", "setWebhook", "certificate") == "nullptr"
+    assert builder._arg_declaration_type("std::string") == "std::string_view"
 
 
 def test_compatibility_config_is_grouped_by_telegram_entity() -> None:
     assert API_CONFIG["setStickerSetTitle"]["args_order"] == ["name", "title"]
     assert API_CONFIG["editMessageText"]["return_type"] == "std::shared_ptr<Message>"
     assert API_CONFIG["getUpdates"]["args"]["limit"]["default"] == 100
+    assert API_CONFIG["sendMediaGroup"]["supports_attach_references"] is True
+    assert {name for name, config in API_CONFIG.items() if config.get("supports_attach_references")} == {
+        "addStickerToSet",
+        "createNewStickerSet",
+        "editMessageMedia",
+        "editMessageText",
+        "editStory",
+        "postStory",
+        "replaceStickerInSet",
+        "sendMediaGroup",
+        "sendPaidMedia",
+        "sendRichMessage",
+        "setBusinessAccountProfilePhoto",
+        "setMyProfilePhoto",
+    }
     assert TYPE_CONFIG["BotCommandScopeChatMember"]["fields"]["user_id"]["type"] == "std::int64_t"
     assert TYPE_CONFIG["Chat"]["fields"]["type"]["enum"]["Private"] == "private"
 
@@ -112,6 +128,21 @@ def test_integer_widths_follow_schema_and_telegram_id_rules() -> None:
     assert message_id.cpp_type == "std::int32_t"
 
 
+def test_type_resolver_handles_json_fallback_and_later_all_of_reference() -> None:
+    assert _CppTypeResolver.type({}) == "nlohmann::json"
+    assert (
+        _CppTypeResolver.ref_name(
+            {
+                "allOf": [
+                    {"type": "object"},
+                    {"$ref": "#/components/schemas/Message"},
+                ]
+            }
+        )
+        == "Message"
+    )
+
+
 def test_high_risk_methods_keep_legacy_args_order() -> None:
     builder = _MethodModelBuilder({})
     properties = {
@@ -161,6 +192,21 @@ def test_field_constant_recognizes_only_fixed_discriminators() -> None:
         )
         is None
     )
+
+
+def test_field_constant_uses_single_enum_value() -> None:
+    constant = _TypeModelBuilder._field_constant(
+        "type",
+        {
+            "type": "string",
+            "enum": ["audio"],
+        },
+        True,
+    )
+
+    assert constant is not None
+    assert constant.name == "TYPE"
+    assert constant.value == "audio"
 
 
 def test_union_header_includes_variant() -> None:
@@ -213,6 +259,7 @@ def test_generator_renders_types_methods_and_documentation(
     assert "ApiRequest::makeFields(" in api_source
     assert "ApiResponse::decode<std::shared_ptr<User>>" in api_source
     assert "std::shared_ptr<InputFile> certificate = nullptr" in methods
+    assert "std::string_view url" in methods
     assert "std::int32_t maxConnections = 40" in methods
     assert 'ApiRequest::required("url", url)' in api_source
     assert 'ApiRequest::optional("certificate", certificate)' in api_source
@@ -239,6 +286,22 @@ def test_generator_renders_types_methods_and_documentation(
     assert tmp_path.joinpath("src/ApiMethods.cpp").read_text(encoding="utf-8") == api_source
 
 
+@pytest.mark.parametrize(
+    "method_name",
+    [name for name, config in API_CONFIG.items() if config.get("supports_attach_references")],
+)
+def test_generator_renders_optional_attach_reference_argument(method_name: str) -> None:
+    document = yaml.safe_load((Path(__file__).parents[2] / "api/telegram-bot-api.yaml").read_text(encoding="utf-8"))
+    methods = _MethodModelBuilder(document["paths"]).build()
+    method = next(method for method in methods if method.name == method_name)
+
+    attachment = next(arg for arg in method.args if arg.wire_name == "attachments")
+    assert attachment.cpp_type == "std::vector<InputFileAttachment>"
+    assert attachment.default_value == "{ }"
+    assert method.args[-1] == attachment
+    assert method.compatibility_args == method.args
+
+
 def test_generator_rejects_method_without_result_schema(tmp_path: Path) -> None:
     schema = _schema()
     response_parts = schema["paths"]["/getMe"]["post"]["responses"]["200"]["content"]["application/json"]["schema"][
@@ -250,6 +313,15 @@ def test_generator_rejects_method_without_result_schema(tmp_path: Path) -> None:
 
     with pytest.raises(ValueError, match="Response type is missing for getMe"):
         _OpenApiGenerator(schema_path, tmp_path).generate()
+
+
+def test_json_argument_defaults_and_unsupported_return_type() -> None:
+    builder = _MethodModelBuilder({})
+
+    assert builder._arg_default("nlohmann::json", "method", "argument") == "nullptr"
+    assert builder._arg_declaration_type("nlohmann::json") == "const nlohmann::json&"
+    with pytest.raises(ValueError, match="Unsupported API return type: double"):
+        builder._return_description("double", "double")
 
 
 def test_every_method_with_args_generates_ordered_argument_object_delegation(tmp_path: Path) -> None:

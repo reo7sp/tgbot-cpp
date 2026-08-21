@@ -16,7 +16,7 @@ namespace TgBot {
  */
 class TGBOT_API TgWebhookLocalServer : public TgWebhookServer<boost::asio::local::stream_protocol> {
 public:
-    TgWebhookLocalServer(const std::string& unixSocketPath, const std::string& path, const EventHandler& eventHandler);
+    TgWebhookLocalServer(const std::string& unixSocketPath, std::string path, const EventHandler& eventHandler);
 
     TgWebhookLocalServer(const std::string& unixSocketPath, const Bot& bot);
 };

@@ -24,6 +24,10 @@ TEMPLATES = Environment(
 CONFIG = yaml.safe_load(DEFAULT_CONFIG.read_text(encoding="utf-8"))
 TYPE_CONFIG = CONFIG.get("types", {})
 API_CONFIG = CONFIG.get("api", {})
+ATTACH_REFERENCES_DESCRIPTION = (
+    "Files uploaded as named multipart parts. Reference each file from a composite "
+    "Telegram API argument as attach://<name> and use the same name in InputFileAttachment."
+)
 
 
 def run(schema_path: Path, root: Path) -> None:
@@ -99,6 +103,7 @@ class _MethodModel:
     return_description: str
     description: tuple[str, ...]
     args: tuple[_ArgModel, ...]
+    compatibility_args: tuple[_ArgModel, ...]
     args_name: str | None
 
 
@@ -364,11 +369,14 @@ class _MethodModelBuilder(_BaseModelBuilder):
         properties = dict(request.get("properties", {}))
         for arg_name, arg in multipart.get("properties", {}).items():
             properties.setdefault(arg_name, arg)
+        method_config = self._api_config.get(name, {})
+        if method_config.get("supports_attach_references"):
+            properties["attachments"] = {"description": ATTACH_REFERENCES_DESCRIPTION}
+        properties.update(method_config.get("extra_args", {}))
         required = set(request.get("required", [])) | set(multipart.get("required", []))
         binary = self._binary_args(operation)
         arg_names = self._ordered_arg_names(name, properties, required)
         response_type = _CppTypeResolver.api_type(self._response_schema(operation))
-        method_config = self._api_config.get(name, {})
         return_type = method_config.get("return_type", response_type)
         args = tuple(
             self._build_arg(
@@ -380,6 +388,7 @@ class _MethodModelBuilder(_BaseModelBuilder):
             )
             for arg_name in arg_names
         )
+        compatibility_without = set(method_config.get("compatibility_overload_without", ()))
         return _MethodModel(
             name=name,
             return_type=return_type,
@@ -387,6 +396,7 @@ class _MethodModelBuilder(_BaseModelBuilder):
             return_description=self._return_description(return_type, response_type),
             description=self._comment_lines(operation.get("description", ""), 88),
             args=args,
+            compatibility_args=tuple(arg for arg in args if arg.wire_name not in compatibility_without),
             args_name=f"{name[0].upper()}{name[1:]}Args" if args else None,
         )
 
@@ -411,7 +421,13 @@ class _MethodModelBuilder(_BaseModelBuilder):
             ),
         )
         optional_names = [name for name in properties if name not in declaration_required]
-        optional_names.sort(key=lambda name: (args_order.get(name, len(args_order)), name))
+        optional_names.sort(
+            key=lambda name: (
+                name == "attachments" and method_config.get("supports_attach_references"),
+                args_order.get(name, len(args_order)),
+                name,
+            )
+        )
 
         return required_names + optional_names
 
@@ -424,7 +440,9 @@ class _MethodModelBuilder(_BaseModelBuilder):
         binary: bool,
     ) -> _ArgModel:
         arg_config = self._api_config.get(method_name, {}).get("args", {}).get(name, {})
-        override = arg_config.get("type")
+        method_config = self._api_config.get(method_name, {})
+        attach_references_arg = name == "attachments" and method_config.get("supports_attach_references")
+        override = "std::vector<InputFileAttachment>" if attach_references_arg else arg_config.get("type")
         if override:
             cpp_type = override
         elif name in {"chat_id", "from_chat_id"}:
@@ -499,7 +517,9 @@ class _MethodModelBuilder(_BaseModelBuilder):
 
     @staticmethod
     def _arg_declaration_type(cpp_type: str) -> str:
-        if cpp_type == "std::string" or cpp_type.startswith("std::vector<"):
+        if cpp_type == "std::string":
+            return "std::string_view"
+        if cpp_type.startswith("std::vector<"):
             return f"const {cpp_type}&"
         if cpp_type == "nlohmann::json":
             return "const nlohmann::json&"

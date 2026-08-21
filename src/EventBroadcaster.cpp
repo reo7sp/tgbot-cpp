@@ -16,23 +16,29 @@ void EventBroadcaster::onAnyMessage(const MessageListener& listener) {
     _onAnyMessageListeners.push_back(listener);
 }
 
-void EventBroadcaster::onCommand(const std::string& commandName, const MessageListener& listener) {
+void EventBroadcaster::onCommand(std::string_view commandName, const MessageListener& listener) {
     if (listener) {
-        _onCommandListeners[commandName] = listener;
+        _onCommandListeners.insert_or_assign(std::string(commandName), listener);
     } else {
-        _onCommandListeners.erase(commandName);
+        const auto command = _onCommandListeners.find(commandName);
+        if (command != _onCommandListeners.end()) {
+            _onCommandListeners.erase(command);
+        }
     }
 }
 
-void EventBroadcaster::onCommand(const std::initializer_list<std::string>& commandsList,
+void EventBroadcaster::onCommand(std::initializer_list<std::string_view> commandsList,
                                  const MessageListener& listener) {
     if (listener) {
-        for (const auto& command : commandsList) {
-            _onCommandListeners[command] = listener;
+        for (const std::string_view command : commandsList) {
+            _onCommandListeners.insert_or_assign(std::string(command), listener);
         }
     } else {
-        for (const auto& command : commandsList) {
-            _onCommandListeners.erase(command);
+        for (const std::string_view command : commandsList) {
+            const auto item = _onCommandListeners.find(command);
+            if (item != _onCommandListeners.end()) {
+                _onCommandListeners.erase(item);
+            }
         }
     }
 }
@@ -105,7 +111,7 @@ void EventBroadcaster::broadcastAnyMessage(const std::shared_ptr<Message>& messa
     broadcast<MessageListener, std::shared_ptr<Message>>(_onAnyMessageListeners, message);
 }
 
-bool EventBroadcaster::broadcastCommand(const std::string& command, const std::shared_ptr<Message>& message) const {
+bool EventBroadcaster::broadcastCommand(std::string_view command, const std::shared_ptr<Message>& message) const {
     const auto iter = _onCommandListeners.find(command);
     if (iter == _onCommandListeners.end()) {
         return false;

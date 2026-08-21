@@ -96,7 +96,11 @@ std::string CurlHttpClient::makeRequest(const std::string& url, std::span<const 
 
             curl_mime_name(part, field.name.c_str());
             if (const auto* file = std::get_if<HttpFile>(&field.value)) {
-                curl_mime_data(part, file->data.c_str(), file->data.size());
+                if (file->filePath) {
+                    curl_mime_filedata(part, file->filePath->c_str());
+                } else {
+                    curl_mime_data(part, file->data.c_str(), file->data.size());
+                }
                 curl_mime_type(part, file->mimeType.c_str());
                 curl_mime_filename(part, file->fileName.c_str());
             } else {
@@ -126,7 +130,7 @@ std::string CurlHttpClient::makeRequest(const std::string& url, std::span<const 
         if (slashPos == std::string::npos) {
             throw RequestCancelled();
         }
-        throw RequestCancelled(url.substr(slashPos + 1));
+        throw RequestCancelled(std::string_view(url).substr(slashPos + 1));
     }
 
     // If the request did not complete correctly, show the error

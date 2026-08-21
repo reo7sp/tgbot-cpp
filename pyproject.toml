@@ -10,6 +10,7 @@ python = "^3.10"
 pyyaml = "^6.0"
 jinja2 = "^3.1"
 pytest = "^9.0.3"
+pytest-cov = "^7.0"
 ruff = "^0.16"
 tgbotspec = "^0.2.4"
 
@@ -21,6 +22,14 @@ build-backend = "poetry.core.masonry.api"
 addopts = "-v"
 testpaths = ["api_codegen/tests"]
 pythonpath = ["."]
+
+[tool.coverage.run]
+branch = true
+source = ["api_codegen"]
+omit = ["api_codegen/tests/*"]
+
+[tool.coverage.report]
+show_missing = true
 
 [tool.ruff]
 target-version = "py310"
