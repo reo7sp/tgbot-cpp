@@ -22,6 +22,12 @@ bool Api::answerCallbackQuery(const std::string& callbackQueryId, const std::str
                                ApiRequest::optional("url", url), ApiRequest::optional("cache_time", cacheTime))));
 }
 
+bool Api::answerCallbackQuery(const std::string& callbackQueryId,
+                              const AnswerCallbackQueryOptions& optionalParameters) const {
+    return answerCallbackQuery(callbackQueryId, optionalParameters.text, optionalParameters.showAlert,
+                               optionalParameters.url, optionalParameters.cacheTime);
+}
+
 bool Api::answerChatJoinRequestQuery(const std::string& chatJoinRequestQueryId, const std::string& result) const {
     return ApiResponse::decode<bool>(
         sendRequest("answerChatJoinRequestQuery",
@@ -47,6 +53,13 @@ bool Api::answerInlineQuery(const std::string& inlineQueryId,
             ApiRequest::required("inline_query_id", inlineQueryId), ApiRequest::required("results", results),
             ApiRequest::optional("cache_time", cacheTime, 300), ApiRequest::optional("is_personal", isPersonal),
             ApiRequest::optional("next_offset", nextOffset), ApiRequest::optional("button", button))));
+}
+
+bool Api::answerInlineQuery(const std::string& inlineQueryId,
+                            const std::vector<std::shared_ptr<InlineQueryResult>>& results,
+                            const AnswerInlineQueryOptions& optionalParameters) const {
+    return answerInlineQuery(inlineQueryId, results, optionalParameters.cacheTime, optionalParameters.isPersonal,
+                             optionalParameters.nextOffset, optionalParameters.button);
 }
 
 bool Api::answerPreCheckoutQuery(const std::string& preCheckoutQueryId, bool ok,
@@ -159,6 +172,18 @@ Api::copyMessage(std::variant<std::int64_t, std::string> chatId, std::variant<st
             ApiRequest::optional("video_start_timestamp", videoStartTimestamp))));
 }
 
+std::shared_ptr<MessageId> Api::copyMessage(std::variant<std::int64_t, std::string> chatId,
+                                            std::variant<std::int64_t, std::string> fromChatId, std::int32_t messageId,
+                                            const CopyMessageOptions& optionalParameters) const {
+    return copyMessage(chatId, fromChatId, messageId, optionalParameters.caption, optionalParameters.parseMode,
+                       optionalParameters.captionEntities, optionalParameters.disableNotification,
+                       optionalParameters.replyParameters, optionalParameters.replyMarkup,
+                       optionalParameters.protectContent, optionalParameters.messageThreadId,
+                       optionalParameters.allowPaidBroadcast, optionalParameters.directMessagesTopicId,
+                       optionalParameters.messageEffectId, optionalParameters.showCaptionAboveMedia,
+                       optionalParameters.suggestedPostParameters, optionalParameters.videoStartTimestamp);
+}
+
 std::vector<std::shared_ptr<MessageId>>
 Api::copyMessages(std::variant<std::int64_t, std::string> chatId, std::variant<std::int64_t, std::string> fromChatId,
                   const std::vector<std::int32_t>& messageIds, std::int32_t messageThreadId, bool disableNotification,
@@ -174,6 +199,15 @@ Api::copyMessages(std::variant<std::int64_t, std::string> chatId, std::variant<s
             ApiRequest::optional("direct_messages_topic_id", directMessagesTopicId))));
 }
 
+std::vector<std::shared_ptr<MessageId>> Api::copyMessages(std::variant<std::int64_t, std::string> chatId,
+                                                          std::variant<std::int64_t, std::string> fromChatId,
+                                                          const std::vector<std::int32_t>& messageIds,
+                                                          const CopyMessagesOptions& optionalParameters) const {
+    return copyMessages(chatId, fromChatId, messageIds, optionalParameters.messageThreadId,
+                        optionalParameters.disableNotification, optionalParameters.protectContent,
+                        optionalParameters.removeCaption, optionalParameters.directMessagesTopicId);
+}
+
 std::shared_ptr<ChatInviteLink> Api::createChatInviteLink(std::variant<std::int64_t, std::string> chatId,
                                                           std::int32_t expireDate, std::int32_t memberLimit,
                                                           const std::string& name, bool createsJoinRequest) const {
@@ -182,6 +216,12 @@ std::shared_ptr<ChatInviteLink> Api::createChatInviteLink(std::variant<std::int6
         ApiRequest::makeFields(ApiRequest::required("chat_id", chatId), ApiRequest::optional("expire_date", expireDate),
                                ApiRequest::optional("member_limit", memberLimit), ApiRequest::optional("name", name),
                                ApiRequest::optional("creates_join_request", createsJoinRequest))));
+}
+
+std::shared_ptr<ChatInviteLink> Api::createChatInviteLink(std::variant<std::int64_t, std::string> chatId,
+                                                          const CreateChatInviteLinkOptions& optionalParameters) const {
+    return createChatInviteLink(chatId, optionalParameters.expireDate, optionalParameters.memberLimit,
+                                optionalParameters.name, optionalParameters.createsJoinRequest);
 }
 
 std::shared_ptr<ChatInviteLink> Api::createChatSubscriptionInviteLink(std::variant<std::int64_t, std::string> chatId,
@@ -232,6 +272,20 @@ std::string Api::createInvoiceLink(const std::string& title, const std::string& 
             ApiRequest::optional("is_flexible", isFlexible),
             ApiRequest::optional("business_connection_id", businessConnectionId),
             ApiRequest::optional("subscription_period", subscriptionPeriod))));
+}
+
+std::string Api::createInvoiceLink(const std::string& title, const std::string& description, const std::string& payload,
+                                   const std::string& currency,
+                                   const std::vector<std::shared_ptr<LabeledPrice>>& prices,
+                                   const CreateInvoiceLinkOptions& optionalParameters) const {
+    return createInvoiceLink(title, description, payload, optionalParameters.providerToken, currency, prices,
+                             optionalParameters.maxTipAmount, optionalParameters.suggestedTipAmounts,
+                             optionalParameters.providerData, optionalParameters.photoUrl, optionalParameters.photoSize,
+                             optionalParameters.photoWidth, optionalParameters.photoHeight, optionalParameters.needName,
+                             optionalParameters.needPhoneNumber, optionalParameters.needEmail,
+                             optionalParameters.needShippingAddress, optionalParameters.sendPhoneNumberToProvider,
+                             optionalParameters.sendEmailToProvider, optionalParameters.isFlexible,
+                             optionalParameters.businessConnectionId, optionalParameters.subscriptionPeriod);
 }
 
 bool Api::createNewStickerSet(std::int64_t userId, const std::string& name, const std::string& title,
@@ -367,6 +421,13 @@ std::shared_ptr<ChatInviteLink> Api::editChatInviteLink(std::variant<std::int64_
                                ApiRequest::optional("creates_join_request", createsJoinRequest))));
 }
 
+std::shared_ptr<ChatInviteLink> Api::editChatInviteLink(std::variant<std::int64_t, std::string> chatId,
+                                                        const std::string& inviteLink,
+                                                        const EditChatInviteLinkOptions& optionalParameters) const {
+    return editChatInviteLink(chatId, inviteLink, optionalParameters.expireDate, optionalParameters.memberLimit,
+                              optionalParameters.name, optionalParameters.createsJoinRequest);
+}
+
 std::shared_ptr<ChatInviteLink> Api::editChatSubscriptionInviteLink(std::variant<std::int64_t, std::string> chatId,
                                                                     const std::string& inviteLink,
                                                                     const std::string& name) const {
@@ -388,6 +449,14 @@ bool Api::editEphemeralMessageCaption(std::variant<std::int64_t, std::string> ch
             ApiRequest::required("receiver_user_id", receiverUserId), ApiRequest::optional("caption", caption),
             ApiRequest::optional("caption_entities", captionEntities), ApiRequest::optional("parse_mode", parseMode),
             ApiRequest::optional("reply_markup", replyMarkup))));
+}
+
+bool Api::editEphemeralMessageCaption(std::variant<std::int64_t, std::string> chatId, std::int32_t ephemeralMessageId,
+                                      std::int64_t receiverUserId,
+                                      const EditEphemeralMessageCaptionOptions& optionalParameters) const {
+    return editEphemeralMessageCaption(chatId, ephemeralMessageId, receiverUserId, optionalParameters.caption,
+                                       optionalParameters.captionEntities, optionalParameters.parseMode,
+                                       optionalParameters.replyMarkup);
 }
 
 bool Api::editEphemeralMessageMedia(std::variant<std::int64_t, std::string> chatId, std::int32_t ephemeralMessageId,
@@ -427,6 +496,14 @@ bool Api::editEphemeralMessageText(std::variant<std::int64_t, std::string> chatI
             ApiRequest::optional("parse_mode", parseMode), ApiRequest::optional("reply_markup", replyMarkup))));
 }
 
+bool Api::editEphemeralMessageText(std::variant<std::int64_t, std::string> chatId, std::int32_t ephemeralMessageId,
+                                   std::int64_t receiverUserId, const std::string& text,
+                                   const EditEphemeralMessageTextOptions& optionalParameters) const {
+    return editEphemeralMessageText(chatId, ephemeralMessageId, receiverUserId, text, optionalParameters.entities,
+                                    optionalParameters.linkPreviewOptions, optionalParameters.parseMode,
+                                    optionalParameters.replyMarkup);
+}
+
 bool Api::editForumTopic(std::variant<std::int64_t, std::string> chatId, std::int32_t messageThreadId,
                          const std::string& name, const std::string& iconCustomEmojiId) const {
     return ApiResponse::decode<bool>(sendRequest(
@@ -458,6 +535,13 @@ std::shared_ptr<Message> Api::editMessageCaption(std::variant<std::int64_t, std:
             ApiRequest::optional("caption_entities", captionEntities),
             ApiRequest::optional("business_connection_id", businessConnectionId),
             ApiRequest::optional("show_caption_above_media", showCaptionAboveMedia))));
+}
+
+std::shared_ptr<Message> Api::editMessageCaption(const EditMessageCaptionOptions& optionalParameters) const {
+    return editMessageCaption(optionalParameters.chatId, optionalParameters.messageId, optionalParameters.caption,
+                              optionalParameters.inlineMessageId, optionalParameters.replyMarkup,
+                              optionalParameters.parseMode, optionalParameters.captionEntities,
+                              optionalParameters.businessConnectionId, optionalParameters.showCaptionAboveMedia);
 }
 
 std::shared_ptr<Message> Api::editMessageChecklist(std::variant<std::int64_t, std::string> chatId,
@@ -492,6 +576,15 @@ Api::editMessageLiveLocation(double latitude, double longitude, std::variant<std
                                ApiRequest::optional("live_period", livePeriod))));
 }
 
+std::shared_ptr<Message> Api::editMessageLiveLocation(double latitude, double longitude,
+                                                      const EditMessageLiveLocationOptions& optionalParameters) const {
+    return editMessageLiveLocation(latitude, longitude, optionalParameters.chatId, optionalParameters.messageId,
+                                   optionalParameters.inlineMessageId, optionalParameters.replyMarkup,
+                                   optionalParameters.horizontalAccuracy, optionalParameters.heading,
+                                   optionalParameters.proximityAlertRadius, optionalParameters.businessConnectionId,
+                                   optionalParameters.livePeriod);
+}
+
 std::shared_ptr<Message> Api::editMessageMedia(std::shared_ptr<InputMedia> media,
                                                std::variant<std::int64_t, std::string> chatId, std::int32_t messageId,
                                                const std::string& inlineMessageId,
@@ -506,6 +599,13 @@ std::shared_ptr<Message> Api::editMessageMedia(std::shared_ptr<InputMedia> media
                                ApiRequest::optional("business_connection_id", businessConnectionId))));
 }
 
+std::shared_ptr<Message> Api::editMessageMedia(std::shared_ptr<InputMedia> media,
+                                               const EditMessageMediaOptions& optionalParameters) const {
+    return editMessageMedia(media, optionalParameters.chatId, optionalParameters.messageId,
+                            optionalParameters.inlineMessageId, optionalParameters.replyMarkup,
+                            optionalParameters.businessConnectionId);
+}
+
 std::shared_ptr<Message> Api::editMessageReplyMarkup(std::variant<std::int64_t, std::string> chatId,
                                                      std::int32_t messageId, const std::string& inlineMessageId,
                                                      std::shared_ptr<InlineKeyboardMarkup> replyMarkup,
@@ -516,6 +616,12 @@ std::shared_ptr<Message> Api::editMessageReplyMarkup(std::variant<std::int64_t, 
                                ApiRequest::optional("inline_message_id", inlineMessageId),
                                ApiRequest::optional("reply_markup", replyMarkup),
                                ApiRequest::optional("business_connection_id", businessConnectionId))));
+}
+
+std::shared_ptr<Message> Api::editMessageReplyMarkup(const EditMessageReplyMarkupOptions& optionalParameters) const {
+    return editMessageReplyMarkup(optionalParameters.chatId, optionalParameters.messageId,
+                                  optionalParameters.inlineMessageId, optionalParameters.replyMarkup,
+                                  optionalParameters.businessConnectionId);
 }
 
 std::shared_ptr<Message> Api::editMessageText(const std::string& text, std::variant<std::int64_t, std::string> chatId,
@@ -538,6 +644,14 @@ std::shared_ptr<Message> Api::editMessageText(const std::string& text, std::vari
             ApiRequest::optional("rich_message", richMessage))));
 }
 
+std::shared_ptr<Message> Api::editMessageText(const EditMessageTextOptions& optionalParameters) const {
+    return editMessageText(optionalParameters.text, optionalParameters.chatId, optionalParameters.messageId,
+                           optionalParameters.inlineMessageId, optionalParameters.parseMode,
+                           optionalParameters.linkPreviewOptions, optionalParameters.replyMarkup,
+                           optionalParameters.entities, optionalParameters.businessConnectionId,
+                           optionalParameters.richMessage);
+}
+
 std::shared_ptr<Story> Api::editStory(const std::string& businessConnectionId,
                                       std::shared_ptr<InputStoryContent> content, std::int32_t storyId,
                                       const std::vector<std::shared_ptr<StoryArea>>& areas, const std::string& caption,
@@ -550,6 +664,13 @@ std::shared_ptr<Story> Api::editStory(const std::string& businessConnectionId,
                                ApiRequest::optional("areas", areas), ApiRequest::optional("caption", caption),
                                ApiRequest::optional("caption_entities", captionEntities),
                                ApiRequest::optional("parse_mode", parseMode))));
+}
+
+std::shared_ptr<Story> Api::editStory(const std::string& businessConnectionId,
+                                      std::shared_ptr<InputStoryContent> content, std::int32_t storyId,
+                                      const EditStoryOptions& optionalParameters) const {
+    return editStory(businessConnectionId, content, storyId, optionalParameters.areas, optionalParameters.caption,
+                     optionalParameters.captionEntities, optionalParameters.parseMode);
 }
 
 bool Api::editUserStarSubscription(bool isCanceled, const std::string& telegramPaymentChargeId,
@@ -587,6 +708,15 @@ std::shared_ptr<Message> Api::forwardMessage(std::variant<std::int64_t, std::str
                                            ApiRequest::optional("video_start_timestamp", videoStartTimestamp))));
 }
 
+std::shared_ptr<Message> Api::forwardMessage(std::variant<std::int64_t, std::string> chatId,
+                                             std::variant<std::int64_t, std::string> fromChatId, std::int32_t messageId,
+                                             const ForwardMessageOptions& optionalParameters) const {
+    return forwardMessage(chatId, fromChatId, messageId, optionalParameters.disableNotification,
+                          optionalParameters.protectContent, optionalParameters.messageThreadId,
+                          optionalParameters.directMessagesTopicId, optionalParameters.messageEffectId,
+                          optionalParameters.suggestedPostParameters, optionalParameters.videoStartTimestamp);
+}
+
 std::vector<std::shared_ptr<MessageId>>
 Api::forwardMessages(std::variant<std::int64_t, std::string> chatId, std::variant<std::int64_t, std::string> fromChatId,
                      const std::vector<std::int32_t>& messageIds, std::int32_t messageThreadId,
@@ -599,6 +729,15 @@ Api::forwardMessages(std::variant<std::int64_t, std::string> chatId, std::varian
             ApiRequest::optional("disable_notification", disableNotification),
             ApiRequest::optional("protect_content", protectContent),
             ApiRequest::optional("direct_messages_topic_id", directMessagesTopicId))));
+}
+
+std::vector<std::shared_ptr<MessageId>> Api::forwardMessages(std::variant<std::int64_t, std::string> chatId,
+                                                             std::variant<std::int64_t, std::string> fromChatId,
+                                                             const std::vector<std::int32_t>& messageIds,
+                                                             const ForwardMessagesOptions& optionalParameters) const {
+    return forwardMessages(chatId, fromChatId, messageIds, optionalParameters.messageThreadId,
+                           optionalParameters.disableNotification, optionalParameters.protectContent,
+                           optionalParameters.directMessagesTopicId);
 }
 
 std::shared_ptr<Gifts> Api::getAvailableGifts() const {
@@ -622,6 +761,16 @@ std::shared_ptr<OwnedGifts> Api::getBusinessAccountGifts(const std::string& busi
             ApiRequest::optional("exclude_unlimited", excludeUnlimited),
             ApiRequest::optional("exclude_unsaved", excludeUnsaved), ApiRequest::optional("limit", limit),
             ApiRequest::optional("offset", offset), ApiRequest::optional("sort_by_price", sortByPrice))));
+}
+
+std::shared_ptr<OwnedGifts>
+Api::getBusinessAccountGifts(const std::string& businessConnectionId,
+                             const GetBusinessAccountGiftsOptions& optionalParameters) const {
+    return getBusinessAccountGifts(
+        businessConnectionId, optionalParameters.excludeFromBlockchain, optionalParameters.excludeLimitedNonUpgradable,
+        optionalParameters.excludeLimitedUpgradable, optionalParameters.excludeSaved, optionalParameters.excludeUnique,
+        optionalParameters.excludeUnlimited, optionalParameters.excludeUnsaved, optionalParameters.limit,
+        optionalParameters.offset, optionalParameters.sortByPrice);
 }
 
 std::shared_ptr<StarAmount> Api::getBusinessAccountStarBalance(const std::string& businessConnectionId) const {
@@ -667,6 +816,15 @@ std::shared_ptr<OwnedGifts> Api::getChatGifts(std::variant<std::int64_t, std::st
             ApiRequest::optional("offset", offset), ApiRequest::optional("sort_by_price", sortByPrice))));
 }
 
+std::shared_ptr<OwnedGifts> Api::getChatGifts(std::variant<std::int64_t, std::string> chatId,
+                                              const GetChatGiftsOptions& optionalParameters) const {
+    return getChatGifts(chatId, optionalParameters.excludeFromBlockchain,
+                        optionalParameters.excludeLimitedNonUpgradable, optionalParameters.excludeLimitedUpgradable,
+                        optionalParameters.excludeSaved, optionalParameters.excludeUnique,
+                        optionalParameters.excludeUnlimited, optionalParameters.excludeUnsaved,
+                        optionalParameters.limit, optionalParameters.offset, optionalParameters.sortByPrice);
+}
+
 std::shared_ptr<ChatMember> Api::getChatMember(std::variant<std::int64_t, std::string> chatId,
                                                std::int64_t userId) const {
     return ApiResponse::decode<std::shared_ptr<ChatMember>>(sendRequest(
@@ -709,6 +867,12 @@ std::vector<std::shared_ptr<GameHighScore>> Api::getGameHighScores(std::int64_t 
         ApiRequest::makeFields(ApiRequest::required("user_id", userId), ApiRequest::optional("chat_id", chatId),
                                ApiRequest::optional("message_id", messageId),
                                ApiRequest::optional("inline_message_id", inlineMessageId))));
+}
+
+std::vector<std::shared_ptr<GameHighScore>>
+Api::getGameHighScores(std::int64_t userId, const GetGameHighScoresOptions& optionalParameters) const {
+    return getGameHighScores(userId, optionalParameters.chatId, optionalParameters.messageId,
+                             optionalParameters.inlineMessageId);
 }
 
 std::shared_ptr<BotAccessSettings> Api::getManagedBotAccessSettings(std::int64_t userId) const {
@@ -777,6 +941,11 @@ std::vector<std::shared_ptr<Update>> Api::getUpdates(std::int32_t offset, std::i
                                ApiRequest::optional("allowed_updates", allowedUpdates))));
 }
 
+std::vector<std::shared_ptr<Update>> Api::getUpdates(const GetUpdatesOptions& optionalParameters) const {
+    return getUpdates(optionalParameters.offset, optionalParameters.limit, optionalParameters.timeout,
+                      optionalParameters.allowedUpdates);
+}
+
 std::shared_ptr<UserChatBoosts> Api::getUserChatBoosts(std::variant<std::int64_t, std::string> chatId,
                                                        std::int64_t userId) const {
     return ApiResponse::decode<std::shared_ptr<UserChatBoosts>>(sendRequest(
@@ -798,6 +967,14 @@ std::shared_ptr<OwnedGifts> Api::getUserGifts(std::int64_t userId, bool excludeF
                                ApiRequest::optional("exclude_unlimited", excludeUnlimited),
                                ApiRequest::optional("limit", limit), ApiRequest::optional("offset", offset),
                                ApiRequest::optional("sort_by_price", sortByPrice))));
+}
+
+std::shared_ptr<OwnedGifts> Api::getUserGifts(std::int64_t userId,
+                                              const GetUserGiftsOptions& optionalParameters) const {
+    return getUserGifts(userId, optionalParameters.excludeFromBlockchain,
+                        optionalParameters.excludeLimitedNonUpgradable, optionalParameters.excludeLimitedUpgradable,
+                        optionalParameters.excludeUnique, optionalParameters.excludeUnlimited, optionalParameters.limit,
+                        optionalParameters.offset, optionalParameters.sortByPrice);
 }
 
 std::vector<std::shared_ptr<Message>> Api::getUserPersonalChatMessages(std::int32_t limit, std::int64_t userId) const {
@@ -836,6 +1013,12 @@ bool Api::giftPremiumSubscription(std::int32_t monthCount, std::int32_t starCoun
                                ApiRequest::required("star_count", starCount), ApiRequest::required("user_id", userId),
                                ApiRequest::optional("text", text), ApiRequest::optional("text_entities", textEntities),
                                ApiRequest::optional("text_parse_mode", textParseMode))));
+}
+
+bool Api::giftPremiumSubscription(std::int32_t monthCount, std::int32_t starCount, std::int64_t userId,
+                                  const GiftPremiumSubscriptionOptions& optionalParameters) const {
+    return giftPremiumSubscription(monthCount, starCount, userId, optionalParameters.text,
+                                   optionalParameters.textEntities, optionalParameters.textParseMode);
 }
 
 bool Api::hideGeneralForumTopic(std::variant<std::int64_t, std::string> chatId) const {
@@ -877,6 +1060,14 @@ std::shared_ptr<Story> Api::postStory(std::int32_t activePeriod, const std::stri
             ApiRequest::optional("protect_content", protectContent))));
 }
 
+std::shared_ptr<Story> Api::postStory(std::int32_t activePeriod, const std::string& businessConnectionId,
+                                      std::shared_ptr<InputStoryContent> content,
+                                      const PostStoryOptions& optionalParameters) const {
+    return postStory(activePeriod, businessConnectionId, content, optionalParameters.areas, optionalParameters.caption,
+                     optionalParameters.captionEntities, optionalParameters.parseMode,
+                     optionalParameters.postToChatPage, optionalParameters.protectContent);
+}
+
 bool Api::promoteChatMember(std::variant<std::int64_t, std::string> chatId, std::int64_t userId, bool canChangeInfo,
                             bool canPostMessages, bool canEditMessages, bool canDeleteMessages, bool canInviteUsers,
                             bool canPinMessages, bool canPromoteMembers, bool isAnonymous, bool canManageChat,
@@ -903,6 +1094,18 @@ bool Api::promoteChatMember(std::variant<std::int64_t, std::string> chatId, std:
                                ApiRequest::optional("can_delete_stories", canDeleteStories),
                                ApiRequest::optional("can_manage_direct_messages", canManageDirectMessages),
                                ApiRequest::optional("can_manage_tags", canManageTags))));
+}
+
+bool Api::promoteChatMember(std::variant<std::int64_t, std::string> chatId, std::int64_t userId,
+                            const PromoteChatMemberOptions& optionalParameters) const {
+    return promoteChatMember(
+        chatId, userId, optionalParameters.canChangeInfo, optionalParameters.canPostMessages,
+        optionalParameters.canEditMessages, optionalParameters.canDeleteMessages, optionalParameters.canInviteUsers,
+        optionalParameters.canPinMessages, optionalParameters.canPromoteMembers, optionalParameters.isAnonymous,
+        optionalParameters.canManageChat, optionalParameters.canManageVideoChats, optionalParameters.canRestrictMembers,
+        optionalParameters.canManageTopics, optionalParameters.canPostStories, optionalParameters.canEditStories,
+        optionalParameters.canDeleteStories, optionalParameters.canManageDirectMessages,
+        optionalParameters.canManageTags);
 }
 
 bool Api::readBusinessMessage(std::variant<std::int64_t, std::string> chatId, const std::string& businessConnectionId,
@@ -1013,6 +1216,14 @@ std::shared_ptr<PreparedInlineMessage> Api::savePreparedInlineMessage(std::share
                                ApiRequest::optional("allow_user_chats", allowUserChats))));
 }
 
+std::shared_ptr<PreparedInlineMessage>
+Api::savePreparedInlineMessage(std::shared_ptr<InlineQueryResult> result, std::int64_t userId,
+                               const SavePreparedInlineMessageOptions& optionalParameters) const {
+    return savePreparedInlineMessage(result, userId, optionalParameters.allowBotChats,
+                                     optionalParameters.allowChannelChats, optionalParameters.allowGroupChats,
+                                     optionalParameters.allowUserChats);
+}
+
 std::shared_ptr<PreparedKeyboardButton> Api::savePreparedKeyboardButton(std::shared_ptr<KeyboardButton> button,
                                                                         std::int64_t userId) const {
     return ApiResponse::decode<std::shared_ptr<PreparedKeyboardButton>>(sendRequest(
@@ -1057,6 +1268,20 @@ Api::sendAnimation(std::variant<std::int64_t, std::string> chatId,
             ApiRequest::optional("suggested_post_parameters", suggestedPostParameters))));
 }
 
+std::shared_ptr<Message> Api::sendAnimation(std::variant<std::int64_t, std::string> chatId,
+                                            std::variant<std::shared_ptr<InputFile>, std::string> animation,
+                                            const SendAnimationOptions& optionalParameters) const {
+    return sendAnimation(
+        chatId, animation, optionalParameters.duration, optionalParameters.width, optionalParameters.height,
+        optionalParameters.thumbnail, optionalParameters.caption, optionalParameters.replyParameters,
+        optionalParameters.replyMarkup, optionalParameters.parseMode, optionalParameters.disableNotification,
+        optionalParameters.captionEntities, optionalParameters.messageThreadId, optionalParameters.protectContent,
+        optionalParameters.hasSpoiler, optionalParameters.businessConnectionId, optionalParameters.allowPaidBroadcast,
+        optionalParameters.callbackQueryId, optionalParameters.directMessagesTopicId,
+        optionalParameters.messageEffectId, optionalParameters.receiverUserId, optionalParameters.showCaptionAboveMedia,
+        optionalParameters.suggestedPostParameters);
+}
+
 std::shared_ptr<Message> Api::sendAudio(
     std::variant<std::int64_t, std::string> chatId, std::variant<std::shared_ptr<InputFile>, std::string> audio,
     const std::string& caption, std::int32_t duration, const std::string& performer, const std::string& title,
@@ -1088,6 +1313,20 @@ std::shared_ptr<Message> Api::sendAudio(
             ApiRequest::optional("message_effect_id", messageEffectId),
             ApiRequest::optional("receiver_user_id", receiverUserId),
             ApiRequest::optional("suggested_post_parameters", suggestedPostParameters))));
+}
+
+std::shared_ptr<Message> Api::sendAudio(std::variant<std::int64_t, std::string> chatId,
+                                        std::variant<std::shared_ptr<InputFile>, std::string> audio,
+                                        const SendAudioOptions& optionalParameters) const {
+    return sendAudio(chatId, audio, optionalParameters.caption, optionalParameters.duration,
+                     optionalParameters.performer, optionalParameters.title, optionalParameters.thumbnail,
+                     optionalParameters.replyParameters, optionalParameters.replyMarkup, optionalParameters.parseMode,
+                     optionalParameters.disableNotification, optionalParameters.captionEntities,
+                     optionalParameters.messageThreadId, optionalParameters.protectContent,
+                     optionalParameters.businessConnectionId, optionalParameters.allowPaidBroadcast,
+                     optionalParameters.callbackQueryId, optionalParameters.directMessagesTopicId,
+                     optionalParameters.messageEffectId, optionalParameters.receiverUserId,
+                     optionalParameters.suggestedPostParameters);
 }
 
 bool Api::sendChatAction(std::variant<std::int64_t, std::string> chatId, const std::string& action,
@@ -1124,6 +1363,15 @@ std::shared_ptr<Message> Api::sendChecklist(std::variant<std::int64_t, std::stri
                                            ApiRequest::optional("reply_parameters", replyParameters))));
 }
 
+std::shared_ptr<Message> Api::sendChecklist(std::variant<std::int64_t, std::string> chatId,
+                                            const std::string& businessConnectionId,
+                                            std::shared_ptr<InputChecklist> checklist,
+                                            const SendChecklistOptions& optionalParameters) const {
+    return sendChecklist(chatId, businessConnectionId, checklist, optionalParameters.disableNotification,
+                         optionalParameters.messageEffectId, optionalParameters.protectContent,
+                         optionalParameters.replyMarkup, optionalParameters.replyParameters);
+}
+
 std::shared_ptr<Message>
 Api::sendContact(std::variant<std::int64_t, std::string> chatId, const std::string& phoneNumber,
                  const std::string& firstName, const std::string& lastName, const std::string& vcard,
@@ -1154,6 +1402,18 @@ Api::sendContact(std::variant<std::int64_t, std::string> chatId, const std::stri
             ApiRequest::optional("suggested_post_parameters", suggestedPostParameters))));
 }
 
+std::shared_ptr<Message> Api::sendContact(std::variant<std::int64_t, std::string> chatId,
+                                          const std::string& phoneNumber, const std::string& firstName,
+                                          const SendContactOptions& optionalParameters) const {
+    return sendContact(chatId, phoneNumber, firstName, optionalParameters.lastName, optionalParameters.vcard,
+                       optionalParameters.disableNotification, optionalParameters.replyParameters,
+                       optionalParameters.replyMarkup, optionalParameters.messageThreadId,
+                       optionalParameters.protectContent, optionalParameters.businessConnectionId,
+                       optionalParameters.allowPaidBroadcast, optionalParameters.callbackQueryId,
+                       optionalParameters.directMessagesTopicId, optionalParameters.messageEffectId,
+                       optionalParameters.receiverUserId, optionalParameters.suggestedPostParameters);
+}
+
 std::shared_ptr<Message>
 Api::sendDice(std::variant<std::int64_t, std::string> chatId, bool disableNotification,
               std::shared_ptr<ReplyParameters> replyParameters,
@@ -1177,6 +1437,15 @@ Api::sendDice(std::variant<std::int64_t, std::string> chatId, bool disableNotifi
                                ApiRequest::optional("direct_messages_topic_id", directMessagesTopicId),
                                ApiRequest::optional("message_effect_id", messageEffectId),
                                ApiRequest::optional("suggested_post_parameters", suggestedPostParameters))));
+}
+
+std::shared_ptr<Message> Api::sendDice(std::variant<std::int64_t, std::string> chatId,
+                                       const SendDiceOptions& optionalParameters) const {
+    return sendDice(chatId, optionalParameters.disableNotification, optionalParameters.replyParameters,
+                    optionalParameters.replyMarkup, optionalParameters.emoji, optionalParameters.messageThreadId,
+                    optionalParameters.protectContent, optionalParameters.businessConnectionId,
+                    optionalParameters.allowPaidBroadcast, optionalParameters.directMessagesTopicId,
+                    optionalParameters.messageEffectId, optionalParameters.suggestedPostParameters);
 }
 
 std::shared_ptr<Message> Api::sendDocument(
@@ -1212,6 +1481,19 @@ std::shared_ptr<Message> Api::sendDocument(
                                ApiRequest::optional("suggested_post_parameters", suggestedPostParameters))));
 }
 
+std::shared_ptr<Message> Api::sendDocument(std::variant<std::int64_t, std::string> chatId,
+                                           std::variant<std::shared_ptr<InputFile>, std::string> document,
+                                           const SendDocumentOptions& optionalParameters) const {
+    return sendDocument(
+        chatId, document, optionalParameters.thumbnail, optionalParameters.caption, optionalParameters.replyParameters,
+        optionalParameters.replyMarkup, optionalParameters.parseMode, optionalParameters.disableNotification,
+        optionalParameters.captionEntities, optionalParameters.disableContentTypeDetection,
+        optionalParameters.messageThreadId, optionalParameters.protectContent, optionalParameters.businessConnectionId,
+        optionalParameters.allowPaidBroadcast, optionalParameters.callbackQueryId,
+        optionalParameters.directMessagesTopicId, optionalParameters.messageEffectId, optionalParameters.receiverUserId,
+        optionalParameters.suggestedPostParameters);
+}
+
 std::shared_ptr<Message> Api::sendGame(std::variant<std::int64_t, std::string> chatId, const std::string& gameShortName,
                                        std::shared_ptr<ReplyParameters> replyParameters,
                                        std::shared_ptr<InlineKeyboardMarkup> replyMarkup, bool disableNotification,
@@ -1232,6 +1514,14 @@ std::shared_ptr<Message> Api::sendGame(std::variant<std::int64_t, std::string> c
                                            ApiRequest::optional("message_effect_id", messageEffectId))));
 }
 
+std::shared_ptr<Message> Api::sendGame(std::variant<std::int64_t, std::string> chatId, const std::string& gameShortName,
+                                       const SendGameOptions& optionalParameters) const {
+    return sendGame(chatId, gameShortName, optionalParameters.replyParameters, optionalParameters.replyMarkup,
+                    optionalParameters.disableNotification, optionalParameters.messageThreadId,
+                    optionalParameters.protectContent, optionalParameters.businessConnectionId,
+                    optionalParameters.allowPaidBroadcast, optionalParameters.messageEffectId);
+}
+
 bool Api::sendGift(const std::string& giftId, std::variant<std::int64_t, std::string> chatId, bool payForUpgrade,
                    const std::string& text, const std::vector<std::shared_ptr<MessageEntity>>& textEntities,
                    const std::string& textParseMode, std::int64_t userId) const {
@@ -1242,6 +1532,11 @@ bool Api::sendGift(const std::string& giftId, std::variant<std::int64_t, std::st
                                ApiRequest::optional("text", text), ApiRequest::optional("text_entities", textEntities),
                                ApiRequest::optional("text_parse_mode", textParseMode),
                                ApiRequest::optional("user_id", userId))));
+}
+
+bool Api::sendGift(const std::string& giftId, const SendGiftOptions& optionalParameters) const {
+    return sendGift(giftId, optionalParameters.chatId, optionalParameters.payForUpgrade, optionalParameters.text,
+                    optionalParameters.textEntities, optionalParameters.textParseMode, optionalParameters.userId);
 }
 
 std::shared_ptr<Message> Api::sendInvoice(
@@ -1283,6 +1578,24 @@ std::shared_ptr<Message> Api::sendInvoice(
             ApiRequest::optional("suggested_post_parameters", suggestedPostParameters))));
 }
 
+std::shared_ptr<Message> Api::sendInvoice(std::variant<std::int64_t, std::string> chatId, const std::string& title,
+                                          const std::string& description, const std::string& payload,
+                                          const std::string& currency,
+                                          const std::vector<std::shared_ptr<LabeledPrice>>& prices,
+                                          const SendInvoiceOptions& optionalParameters) const {
+    return sendInvoice(
+        chatId, title, description, payload, optionalParameters.providerToken, currency, prices,
+        optionalParameters.providerData, optionalParameters.photoUrl, optionalParameters.photoSize,
+        optionalParameters.photoWidth, optionalParameters.photoHeight, optionalParameters.needName,
+        optionalParameters.needPhoneNumber, optionalParameters.needEmail, optionalParameters.needShippingAddress,
+        optionalParameters.sendPhoneNumberToProvider, optionalParameters.sendEmailToProvider,
+        optionalParameters.isFlexible, optionalParameters.replyParameters, optionalParameters.replyMarkup,
+        optionalParameters.disableNotification, optionalParameters.messageThreadId, optionalParameters.maxTipAmount,
+        optionalParameters.suggestedTipAmounts, optionalParameters.startParameter, optionalParameters.protectContent,
+        optionalParameters.allowPaidBroadcast, optionalParameters.directMessagesTopicId,
+        optionalParameters.messageEffectId, optionalParameters.suggestedPostParameters);
+}
+
 std::shared_ptr<Message> Api::sendLivePhoto(
     std::variant<std::int64_t, std::string> chatId, std::variant<std::shared_ptr<InputFile>, std::string> livePhoto,
     std::variant<std::shared_ptr<InputFile>, std::string> photo, bool allowPaidBroadcast,
@@ -1312,6 +1625,20 @@ std::shared_ptr<Message> Api::sendLivePhoto(
             ApiRequest::optional("reply_parameters", replyParameters),
             ApiRequest::optional("show_caption_above_media", showCaptionAboveMedia),
             ApiRequest::optional("suggested_post_parameters", suggestedPostParameters))));
+}
+
+std::shared_ptr<Message> Api::sendLivePhoto(std::variant<std::int64_t, std::string> chatId,
+                                            std::variant<std::shared_ptr<InputFile>, std::string> livePhoto,
+                                            std::variant<std::shared_ptr<InputFile>, std::string> photo,
+                                            const SendLivePhotoOptions& optionalParameters) const {
+    return sendLivePhoto(
+        chatId, livePhoto, photo, optionalParameters.allowPaidBroadcast, optionalParameters.businessConnectionId,
+        optionalParameters.callbackQueryId, optionalParameters.caption, optionalParameters.captionEntities,
+        optionalParameters.directMessagesTopicId, optionalParameters.disableNotification, optionalParameters.hasSpoiler,
+        optionalParameters.messageEffectId, optionalParameters.messageThreadId, optionalParameters.parseMode,
+        optionalParameters.protectContent, optionalParameters.receiverUserId, optionalParameters.replyMarkup,
+        optionalParameters.replyParameters, optionalParameters.showCaptionAboveMedia,
+        optionalParameters.suggestedPostParameters);
 }
 
 std::shared_ptr<Message>
@@ -1346,6 +1673,18 @@ Api::sendLocation(std::variant<std::int64_t, std::string> chatId, double latitud
             ApiRequest::optional("suggested_post_parameters", suggestedPostParameters))));
 }
 
+std::shared_ptr<Message> Api::sendLocation(std::variant<std::int64_t, std::string> chatId, double latitude,
+                                           double longitude, const SendLocationOptions& optionalParameters) const {
+    return sendLocation(chatId, latitude, longitude, optionalParameters.livePeriod, optionalParameters.replyParameters,
+                        optionalParameters.replyMarkup, optionalParameters.disableNotification,
+                        optionalParameters.horizontalAccuracy, optionalParameters.heading,
+                        optionalParameters.proximityAlertRadius, optionalParameters.messageThreadId,
+                        optionalParameters.protectContent, optionalParameters.businessConnectionId,
+                        optionalParameters.allowPaidBroadcast, optionalParameters.callbackQueryId,
+                        optionalParameters.directMessagesTopicId, optionalParameters.messageEffectId,
+                        optionalParameters.receiverUserId, optionalParameters.suggestedPostParameters);
+}
+
 std::vector<std::shared_ptr<Message>> Api::sendMediaGroup(
     std::variant<std::int64_t, std::string> chatId,
     const std::vector<std::variant<std::shared_ptr<InputMediaAudio>, std::shared_ptr<InputMediaDocument>,
@@ -1365,6 +1704,18 @@ std::vector<std::shared_ptr<Message>> Api::sendMediaGroup(
                                ApiRequest::optional("allow_paid_broadcast", allowPaidBroadcast),
                                ApiRequest::optional("direct_messages_topic_id", directMessagesTopicId),
                                ApiRequest::optional("message_effect_id", messageEffectId))));
+}
+
+std::vector<std::shared_ptr<Message>> Api::sendMediaGroup(
+    std::variant<std::int64_t, std::string> chatId,
+    const std::vector<std::variant<std::shared_ptr<InputMediaAudio>, std::shared_ptr<InputMediaDocument>,
+                                   std::shared_ptr<InputMediaLivePhoto>, std::shared_ptr<InputMediaPhoto>,
+                                   std::shared_ptr<InputMediaVideo>>>& media,
+    const SendMediaGroupOptions& optionalParameters) const {
+    return sendMediaGroup(chatId, media, optionalParameters.disableNotification, optionalParameters.replyParameters,
+                          optionalParameters.messageThreadId, optionalParameters.protectContent,
+                          optionalParameters.businessConnectionId, optionalParameters.allowPaidBroadcast,
+                          optionalParameters.directMessagesTopicId, optionalParameters.messageEffectId);
 }
 
 std::shared_ptr<Message> Api::sendMessage(
@@ -1396,6 +1747,18 @@ std::shared_ptr<Message> Api::sendMessage(
             ApiRequest::optional("suggested_post_parameters", suggestedPostParameters))));
 }
 
+std::shared_ptr<Message> Api::sendMessage(std::variant<std::int64_t, std::string> chatId, const std::string& text,
+                                          const SendMessageOptions& optionalParameters) const {
+    return sendMessage(chatId, text, optionalParameters.linkPreviewOptions, optionalParameters.replyParameters,
+                       optionalParameters.replyMarkup, optionalParameters.parseMode,
+                       optionalParameters.disableNotification, optionalParameters.entities,
+                       optionalParameters.messageThreadId, optionalParameters.protectContent,
+                       optionalParameters.businessConnectionId, optionalParameters.allowPaidBroadcast,
+                       optionalParameters.callbackQueryId, optionalParameters.directMessagesTopicId,
+                       optionalParameters.messageEffectId, optionalParameters.receiverUserId,
+                       optionalParameters.suggestedPostParameters);
+}
+
 bool Api::sendMessageDraft(std::variant<std::int64_t, std::string> chatId, std::int32_t draftId,
                            const std::vector<std::shared_ptr<MessageEntity>>& entities, std::int32_t messageThreadId,
                            const std::string& parseMode, const std::string& text) const {
@@ -1405,6 +1768,12 @@ bool Api::sendMessageDraft(std::variant<std::int64_t, std::string> chatId, std::
                                ApiRequest::optional("entities", entities),
                                ApiRequest::optional("message_thread_id", messageThreadId),
                                ApiRequest::optional("parse_mode", parseMode), ApiRequest::optional("text", text))));
+}
+
+bool Api::sendMessageDraft(std::variant<std::int64_t, std::string> chatId, std::int32_t draftId,
+                           const SendMessageDraftOptions& optionalParameters) const {
+    return sendMessageDraft(chatId, draftId, optionalParameters.entities, optionalParameters.messageThreadId,
+                            optionalParameters.parseMode, optionalParameters.text);
 }
 
 std::shared_ptr<Message>
@@ -1435,6 +1804,19 @@ Api::sendPaidMedia(std::variant<std::int64_t, std::string> chatId,
             ApiRequest::optional("reply_parameters", replyParameters),
             ApiRequest::optional("show_caption_above_media", showCaptionAboveMedia),
             ApiRequest::optional("suggested_post_parameters", suggestedPostParameters))));
+}
+
+std::shared_ptr<Message> Api::sendPaidMedia(std::variant<std::int64_t, std::string> chatId,
+                                            const std::vector<std::shared_ptr<InputPaidMedia>>& media,
+                                            std::int32_t starCount,
+                                            const SendPaidMediaOptions& optionalParameters) const {
+    return sendPaidMedia(chatId, media, starCount, optionalParameters.allowPaidBroadcast,
+                         optionalParameters.businessConnectionId, optionalParameters.caption,
+                         optionalParameters.captionEntities, optionalParameters.directMessagesTopicId,
+                         optionalParameters.disableNotification, optionalParameters.messageThreadId,
+                         optionalParameters.parseMode, optionalParameters.payload, optionalParameters.protectContent,
+                         optionalParameters.replyMarkup, optionalParameters.replyParameters,
+                         optionalParameters.showCaptionAboveMedia, optionalParameters.suggestedPostParameters);
 }
 
 std::shared_ptr<Message>
@@ -1468,6 +1850,19 @@ Api::sendPhoto(std::variant<std::int64_t, std::string> chatId,
             ApiRequest::optional("receiver_user_id", receiverUserId),
             ApiRequest::optional("show_caption_above_media", showCaptionAboveMedia),
             ApiRequest::optional("suggested_post_parameters", suggestedPostParameters))));
+}
+
+std::shared_ptr<Message> Api::sendPhoto(std::variant<std::int64_t, std::string> chatId,
+                                        std::variant<std::shared_ptr<InputFile>, std::string> photo,
+                                        const SendPhotoOptions& optionalParameters) const {
+    return sendPhoto(
+        chatId, photo, optionalParameters.caption, optionalParameters.replyParameters, optionalParameters.replyMarkup,
+        optionalParameters.parseMode, optionalParameters.disableNotification, optionalParameters.captionEntities,
+        optionalParameters.messageThreadId, optionalParameters.protectContent, optionalParameters.hasSpoiler,
+        optionalParameters.businessConnectionId, optionalParameters.allowPaidBroadcast,
+        optionalParameters.callbackQueryId, optionalParameters.directMessagesTopicId,
+        optionalParameters.messageEffectId, optionalParameters.receiverUserId, optionalParameters.showCaptionAboveMedia,
+        optionalParameters.suggestedPostParameters);
 }
 
 std::shared_ptr<Message> Api::sendPoll(
@@ -1518,6 +1913,24 @@ std::shared_ptr<Message> Api::sendPoll(
             ApiRequest::optional("shuffle_options", shuffleOptions))));
 }
 
+std::shared_ptr<Message> Api::sendPoll(std::variant<std::int64_t, std::string> chatId, const std::string& question,
+                                       const std::vector<std::shared_ptr<InputPollOption>>& options,
+                                       const SendPollOptions& optionalParameters) const {
+    return sendPoll(
+        chatId, question, options, optionalParameters.disableNotification, optionalParameters.replyParameters,
+        optionalParameters.replyMarkup, optionalParameters.isAnonymous, optionalParameters.type,
+        optionalParameters.allowsMultipleAnswers, optionalParameters.explanation,
+        optionalParameters.explanationParseMode, optionalParameters.explanationEntities, optionalParameters.openPeriod,
+        optionalParameters.closeDate, optionalParameters.isClosed, optionalParameters.messageThreadId,
+        optionalParameters.protectContent, optionalParameters.businessConnectionId,
+        optionalParameters.allowAddingOptions, optionalParameters.allowPaidBroadcast, optionalParameters.allowsRevoting,
+        optionalParameters.correctOptionIds, optionalParameters.countryCodes, optionalParameters.description,
+        optionalParameters.descriptionEntities, optionalParameters.descriptionParseMode,
+        optionalParameters.explanationMedia, optionalParameters.hideResultsUntilCloses, optionalParameters.media,
+        optionalParameters.membersOnly, optionalParameters.messageEffectId, optionalParameters.questionEntities,
+        optionalParameters.questionParseMode, optionalParameters.shuffleOptions);
+}
+
 std::shared_ptr<Message>
 Api::sendRichMessage(std::variant<std::int64_t, std::string> chatId, std::shared_ptr<InputRichMessage> richMessage,
                      bool allowPaidBroadcast, const std::string& businessConnectionId,
@@ -1541,6 +1954,16 @@ Api::sendRichMessage(std::variant<std::int64_t, std::string> chatId, std::shared
             ApiRequest::optional("protect_content", protectContent), ApiRequest::optional("reply_markup", replyMarkup),
             ApiRequest::optional("reply_parameters", replyParameters),
             ApiRequest::optional("suggested_post_parameters", suggestedPostParameters))));
+}
+
+std::shared_ptr<Message> Api::sendRichMessage(std::variant<std::int64_t, std::string> chatId,
+                                              std::shared_ptr<InputRichMessage> richMessage,
+                                              const SendRichMessageOptions& optionalParameters) const {
+    return sendRichMessage(
+        chatId, richMessage, optionalParameters.allowPaidBroadcast, optionalParameters.businessConnectionId,
+        optionalParameters.directMessagesTopicId, optionalParameters.disableNotification,
+        optionalParameters.messageEffectId, optionalParameters.messageThreadId, optionalParameters.protectContent,
+        optionalParameters.replyMarkup, optionalParameters.replyParameters, optionalParameters.suggestedPostParameters);
 }
 
 bool Api::sendRichMessageDraft(std::variant<std::int64_t, std::string> chatId, std::int32_t draftId,
@@ -1581,6 +2004,18 @@ Api::sendSticker(std::variant<std::int64_t, std::string> chatId,
                                ApiRequest::optional("suggested_post_parameters", suggestedPostParameters))));
 }
 
+std::shared_ptr<Message> Api::sendSticker(std::variant<std::int64_t, std::string> chatId,
+                                          std::variant<std::shared_ptr<InputFile>, std::string> sticker,
+                                          const SendStickerOptions& optionalParameters) const {
+    return sendSticker(chatId, sticker, optionalParameters.replyParameters, optionalParameters.replyMarkup,
+                       optionalParameters.disableNotification, optionalParameters.messageThreadId,
+                       optionalParameters.protectContent, optionalParameters.emoji,
+                       optionalParameters.businessConnectionId, optionalParameters.allowPaidBroadcast,
+                       optionalParameters.callbackQueryId, optionalParameters.directMessagesTopicId,
+                       optionalParameters.messageEffectId, optionalParameters.receiverUserId,
+                       optionalParameters.suggestedPostParameters);
+}
+
 std::shared_ptr<Message> Api::sendVenue(
     std::variant<std::int64_t, std::string> chatId, double latitude, double longitude, const std::string& title,
     const std::string& address, const std::string& foursquareId, const std::string& foursquareType,
@@ -1612,6 +2047,19 @@ std::shared_ptr<Message> Api::sendVenue(
             ApiRequest::optional("message_effect_id", messageEffectId),
             ApiRequest::optional("receiver_user_id", receiverUserId),
             ApiRequest::optional("suggested_post_parameters", suggestedPostParameters))));
+}
+
+std::shared_ptr<Message> Api::sendVenue(std::variant<std::int64_t, std::string> chatId, double latitude,
+                                        double longitude, const std::string& title, const std::string& address,
+                                        const SendVenueOptions& optionalParameters) const {
+    return sendVenue(
+        chatId, latitude, longitude, title, address, optionalParameters.foursquareId, optionalParameters.foursquareType,
+        optionalParameters.disableNotification, optionalParameters.replyParameters, optionalParameters.replyMarkup,
+        optionalParameters.googlePlaceId, optionalParameters.googlePlaceType, optionalParameters.messageThreadId,
+        optionalParameters.protectContent, optionalParameters.businessConnectionId,
+        optionalParameters.allowPaidBroadcast, optionalParameters.callbackQueryId,
+        optionalParameters.directMessagesTopicId, optionalParameters.messageEffectId, optionalParameters.receiverUserId,
+        optionalParameters.suggestedPostParameters);
 }
 
 std::shared_ptr<Message>
@@ -1654,6 +2102,21 @@ Api::sendVideo(std::variant<std::int64_t, std::string> chatId,
             ApiRequest::optional("suggested_post_parameters", suggestedPostParameters))));
 }
 
+std::shared_ptr<Message> Api::sendVideo(std::variant<std::int64_t, std::string> chatId,
+                                        std::variant<std::shared_ptr<InputFile>, std::string> video,
+                                        const SendVideoOptions& optionalParameters) const {
+    return sendVideo(
+        chatId, video, optionalParameters.supportsStreaming, optionalParameters.duration, optionalParameters.width,
+        optionalParameters.height, optionalParameters.thumbnail, optionalParameters.caption,
+        optionalParameters.replyParameters, optionalParameters.replyMarkup, optionalParameters.parseMode,
+        optionalParameters.disableNotification, optionalParameters.captionEntities, optionalParameters.messageThreadId,
+        optionalParameters.protectContent, optionalParameters.hasSpoiler, optionalParameters.businessConnectionId,
+        optionalParameters.allowPaidBroadcast, optionalParameters.callbackQueryId, optionalParameters.cover,
+        optionalParameters.directMessagesTopicId, optionalParameters.messageEffectId, optionalParameters.receiverUserId,
+        optionalParameters.showCaptionAboveMedia, optionalParameters.startTimestamp,
+        optionalParameters.suggestedPostParameters);
+}
+
 std::shared_ptr<Message> Api::sendVideoNote(
     std::variant<std::int64_t, std::string> chatId, std::variant<std::shared_ptr<InputFile>, std::string> videoNote,
     std::shared_ptr<ReplyParameters> replyParameters, bool disableNotification, std::int32_t duration,
@@ -1681,6 +2144,18 @@ std::shared_ptr<Message> Api::sendVideoNote(
                                ApiRequest::optional("message_effect_id", messageEffectId),
                                ApiRequest::optional("receiver_user_id", receiverUserId),
                                ApiRequest::optional("suggested_post_parameters", suggestedPostParameters))));
+}
+
+std::shared_ptr<Message> Api::sendVideoNote(std::variant<std::int64_t, std::string> chatId,
+                                            std::variant<std::shared_ptr<InputFile>, std::string> videoNote,
+                                            const SendVideoNoteOptions& optionalParameters) const {
+    return sendVideoNote(chatId, videoNote, optionalParameters.replyParameters, optionalParameters.disableNotification,
+                         optionalParameters.duration, optionalParameters.length, optionalParameters.thumbnail,
+                         optionalParameters.replyMarkup, optionalParameters.messageThreadId,
+                         optionalParameters.protectContent, optionalParameters.businessConnectionId,
+                         optionalParameters.allowPaidBroadcast, optionalParameters.callbackQueryId,
+                         optionalParameters.directMessagesTopicId, optionalParameters.messageEffectId,
+                         optionalParameters.receiverUserId, optionalParameters.suggestedPostParameters);
 }
 
 std::shared_ptr<Message> Api::sendVoice(
@@ -1712,6 +2187,19 @@ std::shared_ptr<Message> Api::sendVoice(
                                ApiRequest::optional("message_effect_id", messageEffectId),
                                ApiRequest::optional("receiver_user_id", receiverUserId),
                                ApiRequest::optional("suggested_post_parameters", suggestedPostParameters))));
+}
+
+std::shared_ptr<Message> Api::sendVoice(std::variant<std::int64_t, std::string> chatId,
+                                        std::variant<std::shared_ptr<InputFile>, std::string> voice,
+                                        const SendVoiceOptions& optionalParameters) const {
+    return sendVoice(chatId, voice, optionalParameters.caption, optionalParameters.duration,
+                     optionalParameters.replyParameters, optionalParameters.replyMarkup, optionalParameters.parseMode,
+                     optionalParameters.disableNotification, optionalParameters.captionEntities,
+                     optionalParameters.messageThreadId, optionalParameters.protectContent,
+                     optionalParameters.businessConnectionId, optionalParameters.allowPaidBroadcast,
+                     optionalParameters.callbackQueryId, optionalParameters.directMessagesTopicId,
+                     optionalParameters.messageEffectId, optionalParameters.receiverUserId,
+                     optionalParameters.suggestedPostParameters);
 }
 
 bool Api::setBusinessAccountBio(const std::string& businessConnectionId, const std::string& bio) const {
@@ -1831,6 +2319,12 @@ std::shared_ptr<Message> Api::setGameScore(std::int64_t userId, std::int32_t sco
                                ApiRequest::optional("disable_edit_message", disableEditMessage),
                                ApiRequest::optional("chat_id", chatId), ApiRequest::optional("message_id", messageId),
                                ApiRequest::optional("inline_message_id", inlineMessageId))));
+}
+
+std::shared_ptr<Message> Api::setGameScore(std::int64_t userId, std::int32_t score,
+                                           const SetGameScoreOptions& optionalParameters) const {
+    return setGameScore(userId, score, optionalParameters.force, optionalParameters.disableEditMessage,
+                        optionalParameters.chatId, optionalParameters.messageId, optionalParameters.inlineMessageId);
 }
 
 bool Api::setManagedBotAccessSettings(bool isAccessRestricted, std::int64_t userId,
@@ -1960,6 +2454,12 @@ bool Api::setWebhook(const std::string& url, std::shared_ptr<InputFile> certific
                                ApiRequest::optional("secret_token", secretToken))));
 }
 
+bool Api::setWebhook(const std::string& url, const SetWebhookOptions& optionalParameters) const {
+    return setWebhook(url, optionalParameters.certificate, optionalParameters.maxConnections,
+                      optionalParameters.allowedUpdates, optionalParameters.ipAddress,
+                      optionalParameters.dropPendingUpdates, optionalParameters.secretToken);
+}
+
 std::shared_ptr<Message> Api::stopMessageLiveLocation(std::variant<std::int64_t, std::string> chatId,
                                                       std::int32_t messageId, const std::string& inlineMessageId,
                                                       std::shared_ptr<InlineKeyboardMarkup> replyMarkup,
@@ -1970,6 +2470,12 @@ std::shared_ptr<Message> Api::stopMessageLiveLocation(std::variant<std::int64_t,
                                ApiRequest::optional("inline_message_id", inlineMessageId),
                                ApiRequest::optional("reply_markup", replyMarkup),
                                ApiRequest::optional("business_connection_id", businessConnectionId))));
+}
+
+std::shared_ptr<Message> Api::stopMessageLiveLocation(const StopMessageLiveLocationOptions& optionalParameters) const {
+    return stopMessageLiveLocation(optionalParameters.chatId, optionalParameters.messageId,
+                                   optionalParameters.inlineMessageId, optionalParameters.replyMarkup,
+                                   optionalParameters.businessConnectionId);
 }
 
 std::shared_ptr<Poll> Api::stopPoll(std::variant<std::int64_t, std::string> chatId, std::int32_t messageId,

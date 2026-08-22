@@ -94,6 +94,9 @@ class MethodModel:
     response_type: str
     description: tuple[str, ...]
     parameters: tuple[ParameterModel, ...]
+    required_params: tuple[ParameterModel, ...]
+    optional_params: tuple[ParameterModel, ...]
+    optional_struct_name: str
 
 
 def run(schema_path: Path, root: Path) -> None:
@@ -226,23 +229,27 @@ def _build_methods(paths: dict[str, Schema]) -> tuple[MethodModel, ...]:
         parameter_names = _ordered_parameter_names(name, properties, required)
         response_type = _api_cpp_type(_response_schema(operation))
         method_config = API_CONFIG.get(name, {})
+        parameters = tuple(
+            _build_parameter(
+                name,
+                parameter_name,
+                properties[parameter_name],
+                parameter_name in required,
+                parameter_name in binary,
+            )
+            for parameter_name in parameter_names
+        )
         methods.append(
             MethodModel(
                 name=name,
                 return_type=method_config.get("return_type", response_type),
                 response_type=response_type,
                 description=_comment_lines(operation.get("description", ""), 88),
-                parameters=tuple(
-                    _build_parameter(
-                        name,
-                        parameter_name,
-                        properties[parameter_name],
-                        parameter_name in required,
-                        parameter_name in binary,
-                    )
-                    for parameter_name in parameter_names
-                ),
-            )
+                parameters=parameters,
+                required_params=tuple(p for p in parameters if p.required),
+                optional_params=tuple(p for p in parameters if not p.required),
+                optional_struct_name=name[:1].upper() + name[1:] + "Options",
+            ),
         )
 
     return tuple(methods)
