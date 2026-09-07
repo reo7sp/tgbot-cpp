@@ -5,7 +5,7 @@ from conan.tools.build import check_min_cppstd
 from conan.tools.cmake import CMake, CMakeDeps, CMakeToolchain, cmake_layout
 from conan.tools.files import copy, get, rmdir
 
-required_conan_version = ">=2.28"
+required_conan_version = ">=2"
 
 
 class TgbotConan(ConanFile):
@@ -73,7 +73,7 @@ class TgbotConan(ConanFile):
 
     def package_info(self):
         self.cpp_info.libs = ["TgBot"]
-        self.cpp_info.set_property("cmake_file_name_variants", ["TgBot"])
+        self.cpp_info.set_property("cmake_file_name", "TgBot")
         self.cpp_info.set_property("cmake_target_name", "TgBot::TgBot")
         self.cpp_info.set_property("cmake_target_aliases", ["tgbot::tgbot"])
         if self.options.shared:
