@@ -60,6 +60,25 @@ TEST(Api, GeneratedMethodMapsTelegramErrors) {
     EXPECT_TRUE(requestThrows(ErrorCode::InvalidJson, "error_code:101"));
 }
 
+TEST(Api, GeneratedMethodPreservesTelegramErrorParameters) {
+    HttpClientMock httpClient;
+    httpClient.response
+        = R"({"ok":false,"error_code":400,"description":"migrated","parameters":{"migrate_to_chat_id":-1001234567890,"retry_after":42}})";
+    TgBot::Api api("token", httpClient, "url");
+
+    try {
+        api.getMe();
+        FAIL() << "Expected TgException";
+    } catch (const TgBot::TgException& exception) {
+        EXPECT_EQ(exception.errorCode, TgBot::TgException::ErrorCode::BadRequest);
+        ASSERT_TRUE(exception.parameters);
+        ASSERT_TRUE(exception.parameters->migrateToChatId);
+        EXPECT_EQ(*exception.parameters->migrateToChatId, -1001234567890);
+        ASSERT_TRUE(exception.parameters->retryAfter);
+        EXPECT_EQ(*exception.parameters->retryAfter, 42);
+    }
+}
+
 TEST(Api, PassesCompleteUrlToHttpClient) {
     HttpClientMock httpClient;
     httpClient.response = R"({"ok":true,"result":{"id":1,"is_bot":true,"first_name":"bot"}})";

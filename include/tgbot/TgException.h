@@ -1,5 +1,6 @@
 #pragma once
 
+#include "tgbot/Types.h"
 #include "tgbot/export.h"
 
 #include <stdexcept>
@@ -30,9 +31,15 @@ public:
         InvalidJson = 101
     };
 
-    TgException(std::string_view description, ErrorCode errorCode);
+    TgException(std::string_view description, ErrorCode errorCode,
+                std::shared_ptr<ResponseParameters> parameters = nullptr);
 
     const ErrorCode errorCode;
+
+    /**
+     * @brief Additional details about the error returned by Telegram, if any.
+     */
+    const std::shared_ptr<ResponseParameters> parameters;
 };
 
 } // namespace TgBot

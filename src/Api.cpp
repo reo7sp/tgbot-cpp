@@ -39,8 +39,12 @@ nlohmann::json Api::sendRequest(std::string_view method, const std::vector<HttpF
         throw TgException(exception.what(), TgException::ErrorCode::InvalidJson);
     }
     if (!response.value("ok", false)) {
+        std::shared_ptr<ResponseParameters> parameters;
+        if (const auto iterator = response.find("parameters"); iterator != response.end()) {
+            parameters = std::make_shared<ResponseParameters>(iterator->get<ResponseParameters>());
+        }
         throw TgException(response.value("description", "Telegram Bot API request failed"),
-                          static_cast<TgException::ErrorCode>(response.value("error_code", 0)));
+                          static_cast<TgException::ErrorCode>(response.value("error_code", 0)), std::move(parameters));
     }
 
     return response.at("result");
