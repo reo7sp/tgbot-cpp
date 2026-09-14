@@ -26,6 +26,7 @@ var struct_tg_bot_1_1_update =
     [ "purchasedPaidMedia", "struct_tg_bot_1_1_update.html#a7fd9e3efecdaea1127bb3c647a0ecc83", null ],
     [ "removedChatBoost", "struct_tg_bot_1_1_update.html#a4790256836d3128f5e107ba3a1bb9fbe", null ],
     [ "shippingQuery", "struct_tg_bot_1_1_update.html#a60be755bf83d9dd6767d3b62b82f9654", null ],
+    [ "stoppedMessageGeneration", "struct_tg_bot_1_1_update.html#ad09cace04c07ad974b47fbdde913781d", null ],
     [ "subscription", "struct_tg_bot_1_1_update.html#a3a251fcca2ce34860fab8e9a2a875f51", null ],
     [ "updateId", "struct_tg_bot_1_1_update.html#aa1f17980cc04fa62367620f922ff9fcb", null ]
 ];

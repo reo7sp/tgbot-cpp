@@ -4,6 +4,7 @@ var struct_tg_bot_1_1_inline_keyboard_button =
     [ "callbackData", "struct_tg_bot_1_1_inline_keyboard_button.html#a453d51b1edf3334da6a50ca64dfc709f", null ],
     [ "callbackGame", "struct_tg_bot_1_1_inline_keyboard_button.html#a8ab653f48a7733a70cacfaa58509ae0e", null ],
     [ "copyText", "struct_tg_bot_1_1_inline_keyboard_button.html#a25727b29d86e5478fbde887d419dd6e8", null ],
+    [ "disabled", "struct_tg_bot_1_1_inline_keyboard_button.html#ab1af0a3631db50a3ae0070893a6933ff", null ],
     [ "iconCustomEmojiId", "struct_tg_bot_1_1_inline_keyboard_button.html#a129ca5ec0133bca2c7ac1409110bc7ab", null ],
     [ "loginUrl", "struct_tg_bot_1_1_inline_keyboard_button.html#a0fe0cb1b6fd256404ae3a17ae3b6aafd", null ],
     [ "pay", "struct_tg_bot_1_1_inline_keyboard_button.html#a17e0bc976badd4f861266c5dd6bf6c1d", null ],

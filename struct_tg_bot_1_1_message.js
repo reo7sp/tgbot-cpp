@@ -18,6 +18,7 @@ var struct_tg_bot_1_1_message =
     [ "checklistTasksAdded", "struct_tg_bot_1_1_message.html#aec93efa1359567a579d5e2fe77f2d7c6", null ],
     [ "checklistTasksDone", "struct_tg_bot_1_1_message.html#ad1f02328878162a908628592966978dc", null ],
     [ "communityChatAdded", "struct_tg_bot_1_1_message.html#a514a51ee8a100328a575032bc1cf9cdd", null ],
+    [ "communityChatJoined", "struct_tg_bot_1_1_message.html#a707056bccd7357f03c40789ea1b919c5", null ],
     [ "communityChatRemoved", "struct_tg_bot_1_1_message.html#a06605fc6c376b927362aaeb78700b5a0", null ],
     [ "connectedWebsite", "struct_tg_bot_1_1_message.html#af6521c32385115c3d6ed1eb85eaba7ea", null ],
     [ "contact", "struct_tg_bot_1_1_message.html#a5c325d12747221af249c0070cddac103", null ],

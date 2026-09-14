@@ -17,5 +17,6 @@ var struct_tg_bot_1_1_chat_administrator_rights =
     [ "canPostStories", "struct_tg_bot_1_1_chat_administrator_rights.html#af1edefe35e2b61a572c525e229f60fc4", null ],
     [ "canPromoteMembers", "struct_tg_bot_1_1_chat_administrator_rights.html#aa6c8fcde13ecdae6096d3ca8e0065a92", null ],
     [ "canRestrictMembers", "struct_tg_bot_1_1_chat_administrator_rights.html#ae54793c77c5a125176c752a676488044", null ],
+    [ "canSendWelcomeMessages", "struct_tg_bot_1_1_chat_administrator_rights.html#a9aef98e435f4e2a76c9db9ea20104b71", null ],
     [ "isAnonymous", "struct_tg_bot_1_1_chat_administrator_rights.html#ad5280637c12fb66707da60cd67918b92", null ]
 ];

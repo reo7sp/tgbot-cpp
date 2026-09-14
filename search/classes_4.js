@@ -1,8 +1,26 @@
 var searchData=
 [
-  ['encryptedcredentials_0',['EncryptedCredentials',['../struct_tg_bot_1_1_encrypted_credentials.html',1,'TgBot']]],
-  ['encryptedpassportelement_1',['EncryptedPassportElement',['../struct_tg_bot_1_1_encrypted_passport_element.html',1,'TgBot']]],
-  ['eventbroadcaster_2',['EventBroadcaster',['../class_tg_bot_1_1_event_broadcaster.html',1,'TgBot']]],
-  ['eventhandler_3',['EventHandler',['../class_tg_bot_1_1_event_handler.html',1,'TgBot']]],
-  ['externalreplyinfo_4',['ExternalReplyInfo',['../struct_tg_bot_1_1_external_reply_info.html',1,'TgBot']]]
+  ['editchatinvitelinkargs_0',['EditChatInviteLinkArgs',['../struct_tg_bot_1_1_edit_chat_invite_link_args.html',1,'TgBot']]],
+  ['editchatsubscriptioninvitelinkargs_1',['EditChatSubscriptionInviteLinkArgs',['../struct_tg_bot_1_1_edit_chat_subscription_invite_link_args.html',1,'TgBot']]],
+  ['editephemeralmessagecaptionargs_2',['EditEphemeralMessageCaptionArgs',['../struct_tg_bot_1_1_edit_ephemeral_message_caption_args.html',1,'TgBot']]],
+  ['editephemeralmessagemediaargs_3',['EditEphemeralMessageMediaArgs',['../struct_tg_bot_1_1_edit_ephemeral_message_media_args.html',1,'TgBot']]],
+  ['editephemeralmessagereplymarkupargs_4',['EditEphemeralMessageReplyMarkupArgs',['../struct_tg_bot_1_1_edit_ephemeral_message_reply_markup_args.html',1,'TgBot']]],
+  ['editephemeralmessagetextargs_5',['EditEphemeralMessageTextArgs',['../struct_tg_bot_1_1_edit_ephemeral_message_text_args.html',1,'TgBot']]],
+  ['editforumtopicargs_6',['EditForumTopicArgs',['../struct_tg_bot_1_1_edit_forum_topic_args.html',1,'TgBot']]],
+  ['editgeneralforumtopicargs_7',['EditGeneralForumTopicArgs',['../struct_tg_bot_1_1_edit_general_forum_topic_args.html',1,'TgBot']]],
+  ['editmessagecaptionargs_8',['EditMessageCaptionArgs',['../struct_tg_bot_1_1_edit_message_caption_args.html',1,'TgBot']]],
+  ['editmessagechecklistargs_9',['EditMessageChecklistArgs',['../struct_tg_bot_1_1_edit_message_checklist_args.html',1,'TgBot']]],
+  ['editmessagelivelocationargs_10',['EditMessageLiveLocationArgs',['../struct_tg_bot_1_1_edit_message_live_location_args.html',1,'TgBot']]],
+  ['editmessagemediaargs_11',['EditMessageMediaArgs',['../struct_tg_bot_1_1_edit_message_media_args.html',1,'TgBot']]],
+  ['editmessagereplymarkupargs_12',['EditMessageReplyMarkupArgs',['../struct_tg_bot_1_1_edit_message_reply_markup_args.html',1,'TgBot']]],
+  ['editmessagetextargs_13',['EditMessageTextArgs',['../struct_tg_bot_1_1_edit_message_text_args.html',1,'TgBot']]],
+  ['editstoryargs_14',['EditStoryArgs',['../struct_tg_bot_1_1_edit_story_args.html',1,'TgBot']]],
+  ['edituserstarsubscriptionargs_15',['EditUserStarSubscriptionArgs',['../struct_tg_bot_1_1_edit_user_star_subscription_args.html',1,'TgBot']]],
+  ['encryptedcredentials_16',['EncryptedCredentials',['../struct_tg_bot_1_1_encrypted_credentials.html',1,'TgBot']]],
+  ['encryptedpassportelement_17',['EncryptedPassportElement',['../struct_tg_bot_1_1_encrypted_passport_element.html',1,'TgBot']]],
+  ['ephemeralmessageparameters_18',['EphemeralMessageParameters',['../struct_tg_bot_1_1_ephemeral_message_parameters.html',1,'TgBot']]],
+  ['eventbroadcaster_19',['EventBroadcaster',['../class_tg_bot_1_1_event_broadcaster.html',1,'TgBot']]],
+  ['eventhandler_20',['EventHandler',['../class_tg_bot_1_1_event_handler.html',1,'TgBot']]],
+  ['exportchatinvitelinkargs_21',['ExportChatInviteLinkArgs',['../struct_tg_bot_1_1_export_chat_invite_link_args.html',1,'TgBot']]],
+  ['externalreplyinfo_22',['ExternalReplyInfo',['../struct_tg_bot_1_1_external_reply_info.html',1,'TgBot']]]
 ];

@@ -1,0 +1,25 @@
+var struct_tg_bot_1_1_send_venue_args =
+[
+    [ "address", "struct_tg_bot_1_1_send_venue_args.html#a546a07ebbd09be840f995308a9dc6c98", null ],
+    [ "allowPaidBroadcast", "struct_tg_bot_1_1_send_venue_args.html#a0b4809ea5eb1de5a8b255c206925ec90", null ],
+    [ "businessConnectionId", "struct_tg_bot_1_1_send_venue_args.html#a875fa217b631d80c34f24c40a22c83b5", null ],
+    [ "callbackQueryId", "struct_tg_bot_1_1_send_venue_args.html#a9734e5f784786e9d46ecac35c570b887", null ],
+    [ "chatId", "struct_tg_bot_1_1_send_venue_args.html#a2e10689830bf9b68205791032b19096d", null ],
+    [ "directMessagesTopicId", "struct_tg_bot_1_1_send_venue_args.html#af39ab8b7e1023c2b871b5c2dd74044fe", null ],
+    [ "disableNotification", "struct_tg_bot_1_1_send_venue_args.html#a0e101ac188137caaf9612133d01db519", null ],
+    [ "ephemeralMessageParameters", "struct_tg_bot_1_1_send_venue_args.html#ace429a9e479fe4246c24ea2c0170283a", null ],
+    [ "foursquareId", "struct_tg_bot_1_1_send_venue_args.html#a2b0e16ff43b1f6566fb3705551631105", null ],
+    [ "foursquareType", "struct_tg_bot_1_1_send_venue_args.html#aa1edef77f79932ac37d9b69a52629514", null ],
+    [ "googlePlaceId", "struct_tg_bot_1_1_send_venue_args.html#a530948d8122fd76edf92dd9a6d0d2233", null ],
+    [ "googlePlaceType", "struct_tg_bot_1_1_send_venue_args.html#a26114169538d32c06743baed449ed31a", null ],
+    [ "latitude", "struct_tg_bot_1_1_send_venue_args.html#a24859a90abfdd683b9ed839ad7b7bc45", null ],
+    [ "longitude", "struct_tg_bot_1_1_send_venue_args.html#acf1a9c13e90fa388eea0e7301b56091f", null ],
+    [ "messageEffectId", "struct_tg_bot_1_1_send_venue_args.html#ab58c3c1af1bb800ac5b1a776223e5275", null ],
+    [ "messageThreadId", "struct_tg_bot_1_1_send_venue_args.html#aeeeb6583b8b6a685396d59f2ee6706ef", null ],
+    [ "protectContent", "struct_tg_bot_1_1_send_venue_args.html#a2b5d286e8fc1a96df632d41fce9b4e06", null ],
+    [ "receiverUserId", "struct_tg_bot_1_1_send_venue_args.html#a06b66b35f4678021440d0c1a928bea15", null ],
+    [ "replyMarkup", "struct_tg_bot_1_1_send_venue_args.html#aef570e9d00a48e82ff7c4ad8fe5b8cca", null ],
+    [ "replyParameters", "struct_tg_bot_1_1_send_venue_args.html#a8ab2350df28ecf1e83cb89a18a34d0f1", null ],
+    [ "suggestedPostParameters", "struct_tg_bot_1_1_send_venue_args.html#a1d19446f32e858d225fc8d09561919c9", null ],
+    [ "title", "struct_tg_bot_1_1_send_venue_args.html#aa0da079c147e9d259febfff0a7b3155a", null ]
+];

@@ -18,6 +18,7 @@ var struct_tg_bot_1_1_chat_member_administrator =
     [ "canPostStories", "struct_tg_bot_1_1_chat_member_administrator.html#aad1dd6d1cb81956cf132514ae8d864d4", null ],
     [ "canPromoteMembers", "struct_tg_bot_1_1_chat_member_administrator.html#a27dceac59572ec63e5a933ef45bfc663", null ],
     [ "canRestrictMembers", "struct_tg_bot_1_1_chat_member_administrator.html#ac8491cce893a049c0ed372b8e136e001", null ],
+    [ "canSendWelcomeMessages", "struct_tg_bot_1_1_chat_member_administrator.html#a500b281a4f4c60e45ed9a0f6094619f7", null ],
     [ "customTitle", "struct_tg_bot_1_1_chat_member_administrator.html#a651d659cdf05d010e8e64ae2dfbafc44", null ],
     [ "isAnonymous", "struct_tg_bot_1_1_chat_member_administrator.html#a735aac376e4f371feeae64714ea89186", null ],
     [ "status", "struct_tg_bot_1_1_chat_member_administrator.html#a6f967c5f91c762fde8f8ca79a35cd1b5", null ],

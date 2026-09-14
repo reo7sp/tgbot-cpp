@@ -1,0 +1,25 @@
+var struct_tg_bot_1_1_send_audio_args =
+[
+    [ "allowPaidBroadcast", "struct_tg_bot_1_1_send_audio_args.html#a2105b94c55984e895b9841b5a61d417f", null ],
+    [ "audio", "struct_tg_bot_1_1_send_audio_args.html#a21d4c8e5c93fd49f7139f3021161d683", null ],
+    [ "businessConnectionId", "struct_tg_bot_1_1_send_audio_args.html#aa169f1647b1d14e8d9b1265a97111036", null ],
+    [ "callbackQueryId", "struct_tg_bot_1_1_send_audio_args.html#ab19fb41ebb25028db360d21408c866ab", null ],
+    [ "caption", "struct_tg_bot_1_1_send_audio_args.html#a4c19fd86f08ef930aa016ffb8dcd11e3", null ],
+    [ "captionEntities", "struct_tg_bot_1_1_send_audio_args.html#a077640d9be7b3a4b285acc27577d11d3", null ],
+    [ "chatId", "struct_tg_bot_1_1_send_audio_args.html#afc734d8be34c266c89ebcc2f271e4a5a", null ],
+    [ "directMessagesTopicId", "struct_tg_bot_1_1_send_audio_args.html#ae8f80a2bdf4397ebe203251cf1e65706", null ],
+    [ "disableNotification", "struct_tg_bot_1_1_send_audio_args.html#aad2e733fff25dc074ee05088f09ad8f2", null ],
+    [ "duration", "struct_tg_bot_1_1_send_audio_args.html#aef83f184295433f0cee10f28e31e9bc5", null ],
+    [ "ephemeralMessageParameters", "struct_tg_bot_1_1_send_audio_args.html#a3da996a471bd7d0ff9dd7db5fa026525", null ],
+    [ "messageEffectId", "struct_tg_bot_1_1_send_audio_args.html#a0a68bd8ebdf7b86194c09eda4e44f3c7", null ],
+    [ "messageThreadId", "struct_tg_bot_1_1_send_audio_args.html#a5673b57f8a20d8d37d45f5ca7e4e30ed", null ],
+    [ "parseMode", "struct_tg_bot_1_1_send_audio_args.html#abadd80731b5eda3ca2c44efc908937ad", null ],
+    [ "performer", "struct_tg_bot_1_1_send_audio_args.html#ac95a4174a39fcb7a70d5712a5e854bd8", null ],
+    [ "protectContent", "struct_tg_bot_1_1_send_audio_args.html#a26edb295f140af0aea27fcbf2aafd00d", null ],
+    [ "receiverUserId", "struct_tg_bot_1_1_send_audio_args.html#a402569f60646d2f9b8174a5e4c39c0eb", null ],
+    [ "replyMarkup", "struct_tg_bot_1_1_send_audio_args.html#a1dac7b5d29303235d46954be3a83d6ed", null ],
+    [ "replyParameters", "struct_tg_bot_1_1_send_audio_args.html#aa2b90a0c4aacc5407a29761abc5dfe41", null ],
+    [ "suggestedPostParameters", "struct_tg_bot_1_1_send_audio_args.html#a443c2dae3ca6dfd7592ee9874d456de3", null ],
+    [ "thumbnail", "struct_tg_bot_1_1_send_audio_args.html#a00a01135464e4d42954523c70d03bc0c", null ],
+    [ "title", "struct_tg_bot_1_1_send_audio_args.html#aa1d6440c1bdc3f9857f5cb43b774e3ab", null ]
+];

@@ -1,7 +1,24 @@
 var searchData=
 [
-  ['dice_0',['Dice',['../struct_tg_bot_1_1_dice.html',1,'TgBot']]],
-  ['directmessagepricechanged_1',['DirectMessagePriceChanged',['../struct_tg_bot_1_1_direct_message_price_changed.html',1,'TgBot']]],
-  ['directmessagestopic_2',['DirectMessagesTopic',['../struct_tg_bot_1_1_direct_messages_topic.html',1,'TgBot']]],
-  ['document_3',['Document',['../struct_tg_bot_1_1_document.html',1,'TgBot']]]
+  ['declinechatjoinrequestargs_0',['DeclineChatJoinRequestArgs',['../struct_tg_bot_1_1_decline_chat_join_request_args.html',1,'TgBot']]],
+  ['declinesuggestedpostargs_1',['DeclineSuggestedPostArgs',['../struct_tg_bot_1_1_decline_suggested_post_args.html',1,'TgBot']]],
+  ['deleteallmessagereactionsargs_2',['DeleteAllMessageReactionsArgs',['../struct_tg_bot_1_1_delete_all_message_reactions_args.html',1,'TgBot']]],
+  ['deletebusinessmessagesargs_3',['DeleteBusinessMessagesArgs',['../struct_tg_bot_1_1_delete_business_messages_args.html',1,'TgBot']]],
+  ['deletechatphotoargs_4',['DeleteChatPhotoArgs',['../struct_tg_bot_1_1_delete_chat_photo_args.html',1,'TgBot']]],
+  ['deletechatstickersetargs_5',['DeleteChatStickerSetArgs',['../struct_tg_bot_1_1_delete_chat_sticker_set_args.html',1,'TgBot']]],
+  ['deleteephemeralmessageargs_6',['DeleteEphemeralMessageArgs',['../struct_tg_bot_1_1_delete_ephemeral_message_args.html',1,'TgBot']]],
+  ['deleteforumtopicargs_7',['DeleteForumTopicArgs',['../struct_tg_bot_1_1_delete_forum_topic_args.html',1,'TgBot']]],
+  ['deletemessageargs_8',['DeleteMessageArgs',['../struct_tg_bot_1_1_delete_message_args.html',1,'TgBot']]],
+  ['deletemessagereactionargs_9',['DeleteMessageReactionArgs',['../struct_tg_bot_1_1_delete_message_reaction_args.html',1,'TgBot']]],
+  ['deletemessagesargs_10',['DeleteMessagesArgs',['../struct_tg_bot_1_1_delete_messages_args.html',1,'TgBot']]],
+  ['deletemycommandsargs_11',['DeleteMyCommandsArgs',['../struct_tg_bot_1_1_delete_my_commands_args.html',1,'TgBot']]],
+  ['deletestickerfromsetargs_12',['DeleteStickerFromSetArgs',['../struct_tg_bot_1_1_delete_sticker_from_set_args.html',1,'TgBot']]],
+  ['deletestickersetargs_13',['DeleteStickerSetArgs',['../struct_tg_bot_1_1_delete_sticker_set_args.html',1,'TgBot']]],
+  ['deletestoryargs_14',['DeleteStoryArgs',['../struct_tg_bot_1_1_delete_story_args.html',1,'TgBot']]],
+  ['deletewebhookargs_15',['DeleteWebhookArgs',['../struct_tg_bot_1_1_delete_webhook_args.html',1,'TgBot']]],
+  ['dice_16',['Dice',['../struct_tg_bot_1_1_dice.html',1,'TgBot']]],
+  ['directmessagepricechanged_17',['DirectMessagePriceChanged',['../struct_tg_bot_1_1_direct_message_price_changed.html',1,'TgBot']]],
+  ['directmessagestopic_18',['DirectMessagesTopic',['../struct_tg_bot_1_1_direct_messages_topic.html',1,'TgBot']]],
+  ['disabledbutton_19',['DisabledButton',['../struct_tg_bot_1_1_disabled_button.html',1,'TgBot']]],
+  ['document_20',['Document',['../struct_tg_bot_1_1_document.html',1,'TgBot']]]
 ];

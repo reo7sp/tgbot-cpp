@@ -1,0 +1,25 @@
+var struct_tg_bot_1_1_create_invoice_link_args =
+[
+    [ "businessConnectionId", "struct_tg_bot_1_1_create_invoice_link_args.html#af796c569b5075d91cae31714a456330f", null ],
+    [ "currency", "struct_tg_bot_1_1_create_invoice_link_args.html#a898b2704dd6a1c5a49171b7e27cc1a98", null ],
+    [ "description", "struct_tg_bot_1_1_create_invoice_link_args.html#a5966ea4d082b11e7b433c26ee4fde414", null ],
+    [ "isFlexible", "struct_tg_bot_1_1_create_invoice_link_args.html#aeebfd4ee8e534f5c37194206af2df913", null ],
+    [ "maxTipAmount", "struct_tg_bot_1_1_create_invoice_link_args.html#ab8709dc0d6db3d9a6e6681b0950352b2", null ],
+    [ "needEmail", "struct_tg_bot_1_1_create_invoice_link_args.html#ab3c0d576cbf4c411135d558e93be1c11", null ],
+    [ "needName", "struct_tg_bot_1_1_create_invoice_link_args.html#aaa6abeec3cf8295de5c8a6ca637b2f06", null ],
+    [ "needPhoneNumber", "struct_tg_bot_1_1_create_invoice_link_args.html#a1ad81d30e83182165268e00911f7dcba", null ],
+    [ "needShippingAddress", "struct_tg_bot_1_1_create_invoice_link_args.html#a6388cfee068634737bec6f2fa164fcb1", null ],
+    [ "payload", "struct_tg_bot_1_1_create_invoice_link_args.html#a8d1f4fc98e36f367cea8afdb94a719bf", null ],
+    [ "photoHeight", "struct_tg_bot_1_1_create_invoice_link_args.html#a0be15f94b4dfbddd9d401af7b28ff8b6", null ],
+    [ "photoSize", "struct_tg_bot_1_1_create_invoice_link_args.html#a3cd34a80bdb839a3a1551b4370b1dbc4", null ],
+    [ "photoUrl", "struct_tg_bot_1_1_create_invoice_link_args.html#ab10f887c83533976353c29c6d738e57b", null ],
+    [ "photoWidth", "struct_tg_bot_1_1_create_invoice_link_args.html#a1c1b581ccf60be0dc39d790f561ab024", null ],
+    [ "prices", "struct_tg_bot_1_1_create_invoice_link_args.html#a2987d6b928b6fba52c7b2033b2751190", null ],
+    [ "providerData", "struct_tg_bot_1_1_create_invoice_link_args.html#a1864e2faef3e3f9b1e61a3c9d367e030", null ],
+    [ "providerToken", "struct_tg_bot_1_1_create_invoice_link_args.html#ab711eb32bcf9fc57c82b9ed1422a6ae6", null ],
+    [ "sendEmailToProvider", "struct_tg_bot_1_1_create_invoice_link_args.html#aa178cf5cf756ad2c3a5def1199721528", null ],
+    [ "sendPhoneNumberToProvider", "struct_tg_bot_1_1_create_invoice_link_args.html#a4c8e7355829f4a981de25f02b218b552", null ],
+    [ "subscriptionPeriod", "struct_tg_bot_1_1_create_invoice_link_args.html#ad214b5dba8250ac4478c9595d2e600e6", null ],
+    [ "suggestedTipAmounts", "struct_tg_bot_1_1_create_invoice_link_args.html#ae68d1411331da4a27695d77092c04539", null ],
+    [ "title", "struct_tg_bot_1_1_create_invoice_link_args.html#aea94aeeaa6a308bbc27fbaeec6c18676", null ]
+];

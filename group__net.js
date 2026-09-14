@@ -8,11 +8,14 @@ var group__net =
       [ "curlHandles", "class_tg_bot_1_1_curl_http_client.html#a417d0b86bf72b4d1f1701e3e15457c77", null ],
       [ "curlHandlesMutex", "class_tg_bot_1_1_curl_http_client.html#a57b43bfb470a3164c512cae6fd344e5c", null ]
     ] ],
+    [ "TgBot::RequestCancelled", "class_tg_bot_1_1_request_cancelled.html", [
+      [ "RequestCancelled", "class_tg_bot_1_1_request_cancelled.html#aa5cf88d38934267c5f2c522eaee2bb17", null ],
+      [ "RequestCancelled", "class_tg_bot_1_1_request_cancelled.html#a783091af176fa149b9475f1fbd6e1a3a", null ]
+    ] ],
     [ "TgBot::HttpClient", "class_tg_bot_1_1_http_client.html", [
       [ "~HttpClient", "class_tg_bot_1_1_http_client.html#a1593785b295457dcea0611033fbd0711", null ],
       [ "cancel", "class_tg_bot_1_1_http_client.html#a0dcabc187f3642a9a8483d1202d91e40", null ],
-      [ "getCancelExceptionText", "class_tg_bot_1_1_http_client.html#a29c8da381a345a383ba0d69c6c2b6e86", null ],
-      [ "getRequestBackoff", "class_tg_bot_1_1_http_client.html#a9cd4b3053cd7c6e60d0c0ed9a45530a8", null ],
+      [ "getRequestBackoffSeconds", "class_tg_bot_1_1_http_client.html#a071a09ae30ee221238e7651aa33acd92", null ],
       [ "getRequestMaxRetries", "class_tg_bot_1_1_http_client.html#ab5ecfc2262f493f62483d42fa904fa26", null ],
       [ "isEternalCancelled", "class_tg_bot_1_1_http_client.html#a68f4065ab0f5e5a4e1e9ef5da883f5ba", null ],
       [ "makeRequest", "class_tg_bot_1_1_http_client.html#a6aeda6ae513a30e31a6c99bf179034b9", null ],
@@ -23,6 +26,7 @@ var group__net =
     [ "TgBot::HttpFile", "struct_tg_bot_1_1_http_file.html", [
       [ "data", "struct_tg_bot_1_1_http_file.html#a003b7d87f23731339f4cce4b82190b6b", null ],
       [ "fileName", "struct_tg_bot_1_1_http_file.html#af4e4e638b0af55a9094e74f972d3898f", null ],
+      [ "filePath", "struct_tg_bot_1_1_http_file.html#ac357dd0c4509a0d1e53bd7f7f4b29083", null ],
       [ "mimeType", "struct_tg_bot_1_1_http_file.html#a63f90f3f8de709c281fbef39c6691107", null ]
     ] ],
     [ "TgBot::HttpFormField", "struct_tg_bot_1_1_http_form_field.html", [
@@ -51,7 +55,7 @@ var group__net =
       [ "TgWebhookServer", "class_tg_bot_1_1_tg_webhook_server.html#a40206b1a79434028578e597983f54027", null ]
     ] ],
     [ "TgBot::TgWebhookTcpServer", "class_tg_bot_1_1_tg_webhook_tcp_server.html", [
-      [ "TgWebhookTcpServer", "class_tg_bot_1_1_tg_webhook_tcp_server.html#a20e332c60eecb81d119bc932cf51f63b", null ],
+      [ "TgWebhookTcpServer", "class_tg_bot_1_1_tg_webhook_tcp_server.html#aaa7d44b10ed50b48f74159f19256e333", null ],
       [ "TgWebhookTcpServer", "class_tg_bot_1_1_tg_webhook_tcp_server.html#a4c58bd36ffc5d5dd1c888271c04918d5", null ]
     ] ]
 ];

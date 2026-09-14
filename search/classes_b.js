@@ -11,12 +11,13 @@ var searchData=
   ['message_8',['Message',['../struct_tg_bot_1_1_message.html',1,'TgBot']]],
   ['messageautodeletetimerchanged_9',['MessageAutoDeleteTimerChanged',['../struct_tg_bot_1_1_message_auto_delete_timer_changed.html',1,'TgBot']]],
   ['messageentity_10',['MessageEntity',['../struct_tg_bot_1_1_message_entity.html',1,'TgBot']]],
-  ['messageid_11',['MessageId',['../struct_tg_bot_1_1_message_id.html',1,'TgBot']]],
-  ['messageorigin_12',['MessageOrigin',['../struct_tg_bot_1_1_message_origin.html',1,'TgBot']]],
-  ['messageoriginchannel_13',['MessageOriginChannel',['../struct_tg_bot_1_1_message_origin_channel.html',1,'TgBot']]],
-  ['messageoriginchat_14',['MessageOriginChat',['../struct_tg_bot_1_1_message_origin_chat.html',1,'TgBot']]],
-  ['messageoriginhiddenuser_15',['MessageOriginHiddenUser',['../struct_tg_bot_1_1_message_origin_hidden_user.html',1,'TgBot']]],
-  ['messageoriginuser_16',['MessageOriginUser',['../struct_tg_bot_1_1_message_origin_user.html',1,'TgBot']]],
-  ['messagereactioncountupdated_17',['MessageReactionCountUpdated',['../struct_tg_bot_1_1_message_reaction_count_updated.html',1,'TgBot']]],
-  ['messagereactionupdated_18',['MessageReactionUpdated',['../struct_tg_bot_1_1_message_reaction_updated.html',1,'TgBot']]]
+  ['messagegenerationstopped_11',['MessageGenerationStopped',['../struct_tg_bot_1_1_message_generation_stopped.html',1,'TgBot']]],
+  ['messageid_12',['MessageId',['../struct_tg_bot_1_1_message_id.html',1,'TgBot']]],
+  ['messageorigin_13',['MessageOrigin',['../struct_tg_bot_1_1_message_origin.html',1,'TgBot']]],
+  ['messageoriginchannel_14',['MessageOriginChannel',['../struct_tg_bot_1_1_message_origin_channel.html',1,'TgBot']]],
+  ['messageoriginchat_15',['MessageOriginChat',['../struct_tg_bot_1_1_message_origin_chat.html',1,'TgBot']]],
+  ['messageoriginhiddenuser_16',['MessageOriginHiddenUser',['../struct_tg_bot_1_1_message_origin_hidden_user.html',1,'TgBot']]],
+  ['messageoriginuser_17',['MessageOriginUser',['../struct_tg_bot_1_1_message_origin_user.html',1,'TgBot']]],
+  ['messagereactioncountupdated_18',['MessageReactionCountUpdated',['../struct_tg_bot_1_1_message_reaction_count_updated.html',1,'TgBot']]],
+  ['messagereactionupdated_19',['MessageReactionUpdated',['../struct_tg_bot_1_1_message_reaction_updated.html',1,'TgBot']]]
 ];

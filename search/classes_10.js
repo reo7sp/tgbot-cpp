@@ -13,5 +13,7 @@ var searchData=
   ['transactionpartnerother_10',['TransactionPartnerOther',['../struct_tg_bot_1_1_transaction_partner_other.html',1,'TgBot']]],
   ['transactionpartnertelegramads_11',['TransactionPartnerTelegramAds',['../struct_tg_bot_1_1_transaction_partner_telegram_ads.html',1,'TgBot']]],
   ['transactionpartnertelegramapi_12',['TransactionPartnerTelegramApi',['../struct_tg_bot_1_1_transaction_partner_telegram_api.html',1,'TgBot']]],
-  ['transactionpartneruser_13',['TransactionPartnerUser',['../struct_tg_bot_1_1_transaction_partner_user.html',1,'TgBot']]]
+  ['transactionpartneruser_13',['TransactionPartnerUser',['../struct_tg_bot_1_1_transaction_partner_user.html',1,'TgBot']]],
+  ['transferbusinessaccountstarsargs_14',['TransferBusinessAccountStarsArgs',['../struct_tg_bot_1_1_transfer_business_account_stars_args.html',1,'TgBot']]],
+  ['transfergiftargs_15',['TransferGiftArgs',['../struct_tg_bot_1_1_transfer_gift_args.html',1,'TgBot']]]
 ];

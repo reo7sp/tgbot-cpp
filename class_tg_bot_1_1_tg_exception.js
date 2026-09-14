@@ -11,6 +11,7 @@ var class_tg_bot_1_1_tg_exception =
       [ "HtmlResponse", "class_tg_bot_1_1_tg_exception.html#a88b4eb82d516cd897ace08c9cb4c5097aef175244b78e28f8bf48443c5aba0969", null ],
       [ "InvalidJson", "class_tg_bot_1_1_tg_exception.html#a88b4eb82d516cd897ace08c9cb4c5097a4f67c44b93cc62755fee6051885d5e5a", null ]
     ] ],
-    [ "TgException", "class_tg_bot_1_1_tg_exception.html#af5b73173b5b8b655135c0c3b198d0caf", null ],
-    [ "errorCode", "class_tg_bot_1_1_tg_exception.html#a3e660db4ebe1576e7f54a3064e3a7144", null ]
+    [ "TgException", "class_tg_bot_1_1_tg_exception.html#ab7fe0c03c42553b0e8488423f70b0fbd", null ],
+    [ "errorCode", "class_tg_bot_1_1_tg_exception.html#a3e660db4ebe1576e7f54a3064e3a7144", null ],
+    [ "parameters", "class_tg_bot_1_1_tg_exception.html#aceb4e5b12e2da219badad33c3af51ac3", null ]
 ];

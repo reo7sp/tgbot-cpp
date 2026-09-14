@@ -1,7 +1,7 @@
 var group__general =
 [
     [ "TgBot::Bot", "class_tg_bot_1_1_bot.html", [
-      [ "Bot", "class_tg_bot_1_1_bot.html#aad9ae2e4f1117361c928b1d5ea69b51e", null ],
+      [ "Bot", "class_tg_bot_1_1_bot.html#a1a76ea8648066c04d2342babadff8fd1", null ],
       [ "getApi", "class_tg_bot_1_1_bot.html#a2432163a22e5a95197785afd5518a8f0", null ],
       [ "getEventHandler", "class_tg_bot_1_1_bot.html#ab4d01abdf6bbeec03ede589037e09195", null ],
       [ "getEvents", "class_tg_bot_1_1_bot.html#a6eff97ca5023423e01c88ff0387c3efe", null ],
@@ -13,6 +13,7 @@ var group__general =
       [ "ChatMemberUpdatedListener", "class_tg_bot_1_1_event_broadcaster.html#a035b473093f94691c7048320bd5de58f", null ],
       [ "ChosenInlineResultListener", "class_tg_bot_1_1_event_broadcaster.html#a2d89e114eb7d00fc759aa2b60807dfdf", null ],
       [ "InlineQueryListener", "class_tg_bot_1_1_event_broadcaster.html#a47d19b3da94a7e6b05a4dc71267631d8", null ],
+      [ "MessageGenerationStoppedListener", "class_tg_bot_1_1_event_broadcaster.html#a3f27714fb59a289a360b20b9e2846295", null ],
       [ "MessageListener", "class_tg_bot_1_1_event_broadcaster.html#aa034d5b96a2f8359963e85aa74169053", null ],
       [ "MessageReactionCountUpdatedListener", "class_tg_bot_1_1_event_broadcaster.html#af159f3d4b7f8c5678708f6db26611738", null ],
       [ "MessageReactionUpdatedListener", "class_tg_bot_1_1_event_broadcaster.html#afa6aa0a5de920213d597f196b36d72ac", null ],
@@ -26,10 +27,11 @@ var group__general =
       [ "onChatJoinRequest", "class_tg_bot_1_1_event_broadcaster.html#a98dc2b9c40515adb956b913bf4957a23", null ],
       [ "onChatMember", "class_tg_bot_1_1_event_broadcaster.html#a0eebe4f770c54e43a942f9d7bd1e4925", null ],
       [ "onChosenInlineResult", "class_tg_bot_1_1_event_broadcaster.html#a7397520ff294c863b306142e29030482", null ],
-      [ "onCommand", "class_tg_bot_1_1_event_broadcaster.html#ad8e56ab49dbe9b4960d454f8b408bf13", null ],
-      [ "onCommand", "class_tg_bot_1_1_event_broadcaster.html#a13e4a906203fe43a950f1420b68c7583", null ],
+      [ "onCommand", "class_tg_bot_1_1_event_broadcaster.html#aa2634acce0f76f1d15d050256fe54b44", null ],
+      [ "onCommand", "class_tg_bot_1_1_event_broadcaster.html#a110f2784720c3da18f3a9bb1a6b87623", null ],
       [ "onEditedMessage", "class_tg_bot_1_1_event_broadcaster.html#a76d485af06fe47ab56c9da264f355eac", null ],
       [ "onInlineQuery", "class_tg_bot_1_1_event_broadcaster.html#a9d3f31225ea84af8cb47ab2a53186ef0", null ],
+      [ "onMessageGenerationStopped", "class_tg_bot_1_1_event_broadcaster.html#a72a441c71ccecfe92246a43ec41e5d34", null ],
       [ "onMessageReaction", "class_tg_bot_1_1_event_broadcaster.html#a611e3e8950cdd73fb36b850d930f693e", null ],
       [ "onMessageReactionCount", "class_tg_bot_1_1_event_broadcaster.html#a78ffd5ada98fb70d29ed20c2c7386092", null ],
       [ "onMyChatMember", "class_tg_bot_1_1_event_broadcaster.html#a9d69b41590dc65b4c2eae33f87ef34ce", null ],
@@ -57,7 +59,8 @@ var group__general =
         [ "HtmlResponse", "class_tg_bot_1_1_tg_exception.html#a88b4eb82d516cd897ace08c9cb4c5097aef175244b78e28f8bf48443c5aba0969", null ],
         [ "InvalidJson", "class_tg_bot_1_1_tg_exception.html#a88b4eb82d516cd897ace08c9cb4c5097a4f67c44b93cc62755fee6051885d5e5a", null ]
       ] ],
-      [ "TgException", "class_tg_bot_1_1_tg_exception.html#af5b73173b5b8b655135c0c3b198d0caf", null ],
-      [ "errorCode", "class_tg_bot_1_1_tg_exception.html#a3e660db4ebe1576e7f54a3064e3a7144", null ]
+      [ "TgException", "class_tg_bot_1_1_tg_exception.html#ab7fe0c03c42553b0e8488423f70b0fbd", null ],
+      [ "errorCode", "class_tg_bot_1_1_tg_exception.html#a3e660db4ebe1576e7f54a3064e3a7144", null ],
+      [ "parameters", "class_tg_bot_1_1_tg_exception.html#aceb4e5b12e2da219badad33c3af51ac3", null ]
     ] ]
 ];

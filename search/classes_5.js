@@ -6,5 +6,7 @@ var searchData=
   ['forumtopicclosed_3',['ForumTopicClosed',['../struct_tg_bot_1_1_forum_topic_closed.html',1,'TgBot']]],
   ['forumtopiccreated_4',['ForumTopicCreated',['../struct_tg_bot_1_1_forum_topic_created.html',1,'TgBot']]],
   ['forumtopicedited_5',['ForumTopicEdited',['../struct_tg_bot_1_1_forum_topic_edited.html',1,'TgBot']]],
-  ['forumtopicreopened_6',['ForumTopicReopened',['../struct_tg_bot_1_1_forum_topic_reopened.html',1,'TgBot']]]
+  ['forumtopicreopened_6',['ForumTopicReopened',['../struct_tg_bot_1_1_forum_topic_reopened.html',1,'TgBot']]],
+  ['forwardmessageargs_7',['ForwardMessageArgs',['../struct_tg_bot_1_1_forward_message_args.html',1,'TgBot']]],
+  ['forwardmessagesargs_8',['ForwardMessagesArgs',['../struct_tg_bot_1_1_forward_messages_args.html',1,'TgBot']]]
 ];
