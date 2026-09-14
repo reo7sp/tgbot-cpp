@@ -48,8 +48,7 @@
      * callback_game button.Otherwise, you may use links like
      * t.me/your_bot?start=XXXX that open your bot with a parameter.
      * @param cacheTime The maximum amount of time in seconds that the result of the callback
-     * query may be cached client-side. Telegram apps will support caching
-     * starting in version 3.14. Defaults to 0.
+     * query may be cached client-side. Defaults to 0.
      *
      * @return True on success.
      */
@@ -1311,6 +1310,8 @@
      * @param parseMode Mode for parsing entities in the message caption. See formatting options
      * for more details.
      * @param replyMarkup A JSON-serialized object for an inline keyboard
+     * @param showCaptionAboveMedia Pass True if the caption must be shown above the message media.
+     * Supported only for animation, photo and video messages.
      *
      * @return True on success.
      */
@@ -1320,7 +1321,8 @@
                                      std::string_view caption = "",
                                      const std::vector<std::shared_ptr<MessageEntity>>& captionEntities = { },
                                      std::string_view parseMode = "",
-                                     std::shared_ptr<InlineKeyboardMarkup> replyMarkup = nullptr) const;
+                                     std::shared_ptr<InlineKeyboardMarkup> replyMarkup = nullptr,
+                                     bool showCaptionAboveMedia = false) const;
 
     /**
      * @brief Use this method to edit the caption of an ephemeral message. Note that it is not
@@ -1341,11 +1343,12 @@
      * @param chatId Unique identifier for the target chat or username of the target
      * supergroup in the format @username
      * @param ephemeralMessageId Identifier of the ephemeral message to edit
-     * @param media A JSON-serialized object for the new media content of the message. A new
-     * file can't be uploaded; use a previously uploaded file via its file_id
-     * or specify a URL.
+     * @param media A JSON-serialized object for the new media content of the message
      * @param receiverUserId Identifier of the user who received the message
      * @param replyMarkup A JSON-serialized object for an inline keyboard
+     * @param attachments Files uploaded as named multipart parts. Reference each file from a
+     * composite Telegram API argument as attach://<name> and use the same name
+     * in InputFileAttachment.
      *
      * @return True on success.
      */
@@ -1353,7 +1356,8 @@
                                    std::int32_t ephemeralMessageId,
                                    std::shared_ptr<InputMedia> media,
                                    std::int64_t receiverUserId,
-                                   std::shared_ptr<InlineKeyboardMarkup> replyMarkup = nullptr) const;
+                                   std::shared_ptr<InlineKeyboardMarkup> replyMarkup = nullptr,
+                                   const std::vector<InputFileAttachment>& attachments = { }) const;
 
     /**
      * @brief Use this method to edit the media of an ephemeral message. Note that it is not
@@ -1396,37 +1400,40 @@
     bool editEphemeralMessageReplyMarkup(const EditEphemeralMessageReplyMarkupArgs& args) const;
 
     /**
-     * @brief Use this method to edit an ephemeral text message. Note that it is not guaranteed that
-     * the user will receive the message edit event, especially if they are offline. On
-     * success, True is returned.
+     * @brief Use this method to edit an ephemeral text or rich message. Note that it is not
+     * guaranteed that the user will receive the message edit event, especially if they are
+     * offline. On success, True is returned.
      *
      * @param chatId Unique identifier for the target chat or username of the target
      * supergroup in the format @username
      * @param ephemeralMessageId Identifier of the ephemeral message to edit
      * @param receiverUserId Identifier of the user who received the message
-     * @param text New text of the message, 1-4096 characters after entity parsing
+     * @param text New text of the message, 1-4096 characters after entity parsing;
+     * required if rich_message isn't specified
      * @param entities A JSON-serialized list of special entities that appear in message text,
      * which can be specified instead of parse_mode
      * @param linkPreviewOptions Link preview generation options for the message
      * @param parseMode Mode for parsing entities in the message text. See formatting options
      * for more details.
      * @param replyMarkup A JSON-serialized object for an inline keyboard
+     * @param richMessage New rich content of the message; required if text isn't specified
      *
      * @return True on success.
      */
     bool editEphemeralMessageText(std::variant<std::int64_t, std::string> chatId,
                                   std::int32_t ephemeralMessageId,
                                   std::int64_t receiverUserId,
-                                  std::string_view text,
+                                  std::string_view text = "",
                                   const std::vector<std::shared_ptr<MessageEntity>>& entities = { },
                                   std::shared_ptr<LinkPreviewOptions> linkPreviewOptions = nullptr,
                                   std::string_view parseMode = "",
-                                  std::shared_ptr<InlineKeyboardMarkup> replyMarkup = nullptr) const;
+                                  std::shared_ptr<InlineKeyboardMarkup> replyMarkup = nullptr,
+                                  std::shared_ptr<InputRichMessage> richMessage = nullptr) const;
 
     /**
-     * @brief Use this method to edit an ephemeral text message. Note that it is not guaranteed that
-     * the user will receive the message edit event, especially if they are offline. On
-     * success, True is returned.
+     * @brief Use this method to edit an ephemeral text or rich message. Note that it is not
+     * guaranteed that the user will receive the message edit event, especially if they are
+     * offline. On success, True is returned.
      *
      * @param args Method arguments.
      *
@@ -1743,8 +1750,8 @@
      * @param businessConnectionId Unique identifier of the business connection on behalf of which the
      * message to be edited was sent
      * @param richMessage New rich content of the message; required if text isn't specified.
-     * Direct upload of new files isn't supported when an inline message is
-     * edited.
+     * Direct upload of new files and explicit upload of files by a URL isn't
+     * supported when an inline message is edited.
      * @param attachments Files uploaded as named multipart parts. Reference each file from a
      * composite Telegram API argument as attach://<name> and use the same name
      * in InputFileAttachment.
@@ -2928,6 +2935,8 @@
      * channel and decline suggested posts; for channels only
      * @param canManageTags Pass True if the administrator can edit the tags of regular members; for
      * groups and supergroups only
+     * @param canSendWelcomeMessages Pass True if the administrator can manage chat welcome messages or
+     * directly send them in the case of bots
      *
      * @return True on success.
      */
@@ -2949,7 +2958,8 @@
                            bool canEditStories = false,
                            bool canDeleteStories = false,
                            bool canManageDirectMessages = false,
-                           bool canManageTags = false) const;
+                           bool canManageTags = false,
+                           bool canSendWelcomeMessages = false) const;
 
     /**
      * @brief Use this method to promote or demote a user in a supergroup or a channel. The bot must
@@ -3386,16 +3396,12 @@
      * @param allowPaidBroadcast Pass True to allow up to 1000 messages per second, ignoring broadcasting
      * limits for a fee of 0.1 Telegram Stars per message. The relevant Stars
      * will be withdrawn from the bot's balance.
-     * @param callbackQueryId For outgoing ephemeral messages, identifier of the callback query which
-     * triggered the message if any
+     * @param callbackQueryId Identifier of the callback query which triggered the ephemeral message
      * @param directMessagesTopicId Identifier of the direct messages topic to which the message will be
      * sent; required if the message is sent to a direct messages chat
      * @param messageEffectId Unique identifier of the message effect to be added to the message; for
      * private chats only
-     * @param receiverUserId For outgoing ephemeral messages, unique identifier of the user who will
-     * receive the message; for group and supergroup chats only. It is not
-     * guaranteed that the user will receive the message, especially if they
-     * are offline. See ephemeral message sending for more details.
+     * @param receiverUserId Identifier of the user who will receive the ephemeral message
      * @param showCaptionAboveMedia Pass True if the caption must be shown above the message media
      * @param suggestedPostParameters A JSON-serialized object containing the parameters of the suggested post
      * to send; for direct messages chats only. If the message is sent as a
@@ -3487,16 +3493,12 @@
      * @param allowPaidBroadcast Pass True to allow up to 1000 messages per second, ignoring broadcasting
      * limits for a fee of 0.1 Telegram Stars per message. The relevant Stars
      * will be withdrawn from the bot's balance.
-     * @param callbackQueryId For outgoing ephemeral messages, identifier of the callback query which
-     * triggered the message if any
+     * @param callbackQueryId Identifier of the callback query which triggered the ephemeral message
      * @param directMessagesTopicId Identifier of the direct messages topic to which the message will be
      * sent; required if the message is sent to a direct messages chat
      * @param messageEffectId Unique identifier of the message effect to be added to the message; for
      * private chats only
-     * @param receiverUserId For outgoing ephemeral messages, unique identifier of the user who will
-     * receive the message; for group and supergroup chats only. It is not
-     * guaranteed that the user will receive the message, especially if they
-     * are offline. See ephemeral message sending for more details.
+     * @param receiverUserId Identifier of the user who will receive the ephemeral message
      * @param suggestedPostParameters A JSON-serialized object containing the parameters of the suggested post
      * to send; for direct messages chats only. If the message is sent as a
      * reply to another suggested post, then that suggested post is
@@ -3671,16 +3673,12 @@
      * @param allowPaidBroadcast Pass True to allow up to 1000 messages per second, ignoring broadcasting
      * limits for a fee of 0.1 Telegram Stars per message. The relevant Stars
      * will be withdrawn from the bot's balance.
-     * @param callbackQueryId For outgoing ephemeral messages, identifier of the callback query which
-     * triggered the message if any
+     * @param callbackQueryId Identifier of the callback query which triggered the ephemeral message
      * @param directMessagesTopicId Identifier of the direct messages topic to which the message will be
      * sent; required if the message is sent to a direct messages chat
      * @param messageEffectId Unique identifier of the message effect to be added to the message; for
      * private chats only
-     * @param receiverUserId For outgoing ephemeral messages, unique identifier of the user who will
-     * receive the message; for group and supergroup chats only. It is not
-     * guaranteed that the user will receive the message, especially if they
-     * are offline. See ephemeral message sending for more details.
+     * @param receiverUserId Identifier of the user who will receive the ephemeral message
      * @param suggestedPostParameters A JSON-serialized object containing the parameters of the suggested post
      * to send; for direct messages chats only. If the message is sent as a
      * reply to another suggested post, then that suggested post is
@@ -3823,16 +3821,12 @@
      * @param allowPaidBroadcast Pass True to allow up to 1000 messages per second, ignoring broadcasting
      * limits for a fee of 0.1 Telegram Stars per message. The relevant Stars
      * will be withdrawn from the bot's balance.
-     * @param callbackQueryId For outgoing ephemeral messages, identifier of the callback query which
-     * triggered the message if any
+     * @param callbackQueryId Identifier of the callback query which triggered the ephemeral message
      * @param directMessagesTopicId Identifier of the direct messages topic to which the message will be
      * sent; required if the message is sent to a direct messages chat
      * @param messageEffectId Unique identifier of the message effect to be added to the message; for
      * private chats only
-     * @param receiverUserId For outgoing ephemeral messages, unique identifier of the user who will
-     * receive the message; for group and supergroup chats only. It is not
-     * guaranteed that the user will receive the message, especially if they
-     * are offline. See ephemeral message sending for more details.
+     * @param receiverUserId Identifier of the user who will receive the ephemeral message
      * @param suggestedPostParameters A JSON-serialized object containing the parameters of the suggested post
      * to send; for direct messages chats only. If the message is sent as a
      * reply to another suggested post, then that suggested post is
@@ -4105,8 +4099,7 @@
      * will be withdrawn from the bot's balance.
      * @param businessConnectionId Unique identifier of the business connection on behalf of which the
      * message will be sent
-     * @param callbackQueryId For outgoing ephemeral messages, identifier of the callback query which
-     * triggered the message if any
+     * @param callbackQueryId Identifier of the callback query which triggered the ephemeral message
      * @param caption Video caption (may also be used when resending videos by file_id),
      * 0-1024 characters after entities parsing
      * @param captionEntities A JSON-serialized list of special entities that appear in the caption,
@@ -4124,10 +4117,7 @@
      * @param parseMode Mode for parsing entities in the video caption. See formatting options
      * for more details.
      * @param protectContent Protects the contents of the sent message from forwarding and saving
-     * @param receiverUserId For outgoing ephemeral messages, unique identifier of the user who will
-     * receive the message; for group and supergroup chats only. It is not
-     * guaranteed that the user will receive the message, especially if they
-     * are offline. See ephemeral message sending for more details.
+     * @param receiverUserId Identifier of the user who will receive the ephemeral message
      * @param replyMarkup Additional interface options. A JSON-serialized object for an inline
      * keyboard, custom reply keyboard, instructions to remove a reply keyboard
      * or to force a reply from the user.
@@ -4206,16 +4196,12 @@
      * @param allowPaidBroadcast Pass True to allow up to 1000 messages per second, ignoring broadcasting
      * limits for a fee of 0.1 Telegram Stars per message. The relevant Stars
      * will be withdrawn from the bot's balance.
-     * @param callbackQueryId For outgoing ephemeral messages, identifier of the callback query which
-     * triggered the message if any
+     * @param callbackQueryId Identifier of the callback query which triggered the ephemeral message
      * @param directMessagesTopicId Identifier of the direct messages topic to which the message will be
      * sent; required if the message is sent to a direct messages chat
      * @param messageEffectId Unique identifier of the message effect to be added to the message; for
      * private chats only
-     * @param receiverUserId For outgoing ephemeral messages, unique identifier of the user who will
-     * receive the message; for group and supergroup chats only. It is not
-     * guaranteed that the user will receive the message, especially if they
-     * are offline. See ephemeral message sending for more details.
+     * @param receiverUserId Identifier of the user who will receive the ephemeral message
      * @param suggestedPostParameters A JSON-serialized object containing the parameters of the suggested post
      * to send; for direct messages chats only. If the message is sent as a
      * reply to another suggested post, then that suggested post is
@@ -4341,16 +4327,12 @@
      * @param allowPaidBroadcast Pass True to allow up to 1000 messages per second, ignoring broadcasting
      * limits for a fee of 0.1 Telegram Stars per message. The relevant Stars
      * will be withdrawn from the bot's balance.
-     * @param callbackQueryId For outgoing ephemeral messages, identifier of the callback query which
-     * triggered the message if any
+     * @param callbackQueryId Identifier of the callback query which triggered the ephemeral message
      * @param directMessagesTopicId Identifier of the direct messages topic to which the message will be
      * sent; required if the message is sent to a direct messages chat
      * @param messageEffectId Unique identifier of the message effect to be added to the message; for
      * private chats only
-     * @param receiverUserId For outgoing ephemeral messages, unique identifier of the user who will
-     * receive the message; for group and supergroup chats only. It is not
-     * guaranteed that the user will receive the message, especially if they
-     * are offline. See ephemeral message sending for more details.
+     * @param receiverUserId Identifier of the user who will receive the ephemeral message
      * @param suggestedPostParameters A JSON-serialized object containing the parameters of the suggested post
      * to send; for direct messages chats only. If the message is sent as a
      * reply to another suggested post, then that suggested post is
@@ -4397,7 +4379,8 @@
      *
      * @param chatId Unique identifier for the target private chat
      * @param draftId Unique identifier of the message draft; must be non-zero. Changes to
-     * drafts with the same identifier are animated.
+     * drafts with the same identifier are animated. Otherwise, the draft is
+     * replaced without animation.
      * @param entities A JSON-serialized list of special entities that appear in message text,
      * which can be specified instead of parse_mode
      * @param messageThreadId Unique identifier for the target message thread
@@ -4405,6 +4388,13 @@
      * for more details.
      * @param text Text of the message to be sent, 0-4096 characters after entities
      * parsing. Pass an empty text to show a “Thinking…” placeholder.
+     * @param canStop Pass True to show the user a button to stop further drafts. The bot will
+     * receive an Update “stopped_message_generation” if the user presses the
+     * button.
+     * @param keepOnStop Pass True to keep the draft in the chat when the button is pressed. The
+     * draft will still disappear after a short time or if the bot sends a
+     * message. To fully preserve the partial draft, the bot should send it as
+     * a new message.
      *
      * @return True on success.
      */
@@ -4413,7 +4403,9 @@
                           const std::vector<std::shared_ptr<MessageEntity>>& entities = { },
                           std::int32_t messageThreadId = 0,
                           std::string_view parseMode = "",
-                          std::string_view text = "") const;
+                          std::string_view text = "",
+                          bool canStop = false,
+                          bool keepOnStop = false) const;
 
     /**
      * @brief Use this method to stream a partial message to a user while the message is being
@@ -4537,16 +4529,12 @@
      * @param allowPaidBroadcast Pass True to allow up to 1000 messages per second, ignoring broadcasting
      * limits for a fee of 0.1 Telegram Stars per message. The relevant Stars
      * will be withdrawn from the bot's balance.
-     * @param callbackQueryId For outgoing ephemeral messages, identifier of the callback query which
-     * triggered the message if any
+     * @param callbackQueryId Identifier of the callback query which triggered the ephemeral message
      * @param directMessagesTopicId Identifier of the direct messages topic to which the message will be
      * sent; required if the message is sent to a direct messages chat
      * @param messageEffectId Unique identifier of the message effect to be added to the message; for
      * private chats only
-     * @param receiverUserId For outgoing ephemeral messages, unique identifier of the user who will
-     * receive the message; for group and supergroup chats only. It is not
-     * guaranteed that the user will receive the message, especially if they
-     * are offline. See ephemeral message sending for more details.
+     * @param receiverUserId Identifier of the user who will receive the ephemeral message
      * @param showCaptionAboveMedia Pass True if the caption must be shown above the message media
      * @param suggestedPostParameters A JSON-serialized object containing the parameters of the suggested post
      * to send; for direct messages chats only. If the message is sent as a
@@ -4783,17 +4771,27 @@
      *
      * @param chatId Unique identifier for the target private chat
      * @param draftId Unique identifier of the message draft; must be non-zero. Changes to
-     * drafts with the same identifier are animated.
-     * @param richMessage The partial message to be streamed. Direct upload of new files isn't
-     * supported.
+     * drafts with the same identifier are animated. Otherwise, the draft is
+     * replaced without animation.
+     * @param richMessage The partial message to be streamed. Direct upload of new files and
+     * explicit upload of files by a URL isn't supported.
      * @param messageThreadId Unique identifier for the target message thread
+     * @param canStop Pass True to show the user a button to stop further drafts. The bot will
+     * receive an Update “stopped_message_generation” if the user presses the
+     * button.
+     * @param keepOnStop Pass True to keep the draft in the chat when the button is pressed. The
+     * draft will still disappear after a short time or if the bot sends a
+     * message. To fully preserve the partial draft, the bot should send it as
+     * a new message.
      *
      * @return True on success.
      */
     bool sendRichMessageDraft(std::variant<std::int64_t, std::string> chatId,
                               std::int32_t draftId,
                               std::shared_ptr<InputRichMessage> richMessage,
-                              std::int32_t messageThreadId = 0) const;
+                              std::int32_t messageThreadId = 0,
+                              bool canStop = false,
+                              bool keepOnStop = false) const;
 
     /**
      * @brief Use this method to stream a partial rich message to a user while the message is being
@@ -4835,16 +4833,12 @@
      * @param allowPaidBroadcast Pass True to allow up to 1000 messages per second, ignoring broadcasting
      * limits for a fee of 0.1 Telegram Stars per message. The relevant Stars
      * will be withdrawn from the bot's balance.
-     * @param callbackQueryId For outgoing ephemeral messages, identifier of the callback query which
-     * triggered the message if any
+     * @param callbackQueryId Identifier of the callback query which triggered the ephemeral message
      * @param directMessagesTopicId Identifier of the direct messages topic to which the message will be
      * sent; required if the message is sent to a direct messages chat
      * @param messageEffectId Unique identifier of the message effect to be added to the message; for
      * private chats only
-     * @param receiverUserId For outgoing ephemeral messages, unique identifier of the user who will
-     * receive the message; for group and supergroup chats only. It is not
-     * guaranteed that the user will receive the message, especially if they
-     * are offline. See ephemeral message sending for more details.
+     * @param receiverUserId Identifier of the user who will receive the ephemeral message
      * @param suggestedPostParameters A JSON-serialized object containing the parameters of the suggested post
      * to send; for direct messages chats only. If the message is sent as a
      * reply to another suggested post, then that suggested post is
@@ -4913,16 +4907,12 @@
      * @param allowPaidBroadcast Pass True to allow up to 1000 messages per second, ignoring broadcasting
      * limits for a fee of 0.1 Telegram Stars per message. The relevant Stars
      * will be withdrawn from the bot's balance.
-     * @param callbackQueryId For outgoing ephemeral messages, identifier of the callback query which
-     * triggered the message if any
+     * @param callbackQueryId Identifier of the callback query which triggered the ephemeral message
      * @param directMessagesTopicId Identifier of the direct messages topic to which the message will be
      * sent; required if the message is sent to a direct messages chat
      * @param messageEffectId Unique identifier of the message effect to be added to the message; for
      * private chats only
-     * @param receiverUserId For outgoing ephemeral messages, unique identifier of the user who will
-     * receive the message; for group and supergroup chats only. It is not
-     * guaranteed that the user will receive the message, especially if they
-     * are offline. See ephemeral message sending for more details.
+     * @param receiverUserId Identifier of the user who will receive the ephemeral message
      * @param suggestedPostParameters A JSON-serialized object containing the parameters of the suggested post
      * to send; for direct messages chats only. If the message is sent as a
      * reply to another suggested post, then that suggested post is
@@ -5012,8 +5002,7 @@
      * @param allowPaidBroadcast Pass True to allow up to 1000 messages per second, ignoring broadcasting
      * limits for a fee of 0.1 Telegram Stars per message. The relevant Stars
      * will be withdrawn from the bot's balance.
-     * @param callbackQueryId For outgoing ephemeral messages, identifier of the callback query which
-     * triggered the message if any
+     * @param callbackQueryId Identifier of the callback query which triggered the ephemeral message
      * @param cover Cover for the video in the message. Pass a file_id to send a file that
      * exists on the Telegram servers (recommended), pass an HTTP URL for
      * Telegram to get a file from the Internet, or pass
@@ -5023,10 +5012,7 @@
      * sent; required if the message is sent to a direct messages chat
      * @param messageEffectId Unique identifier of the message effect to be added to the message; for
      * private chats only
-     * @param receiverUserId For outgoing ephemeral messages, unique identifier of the user who will
-     * receive the message; for group and supergroup chats only. It is not
-     * guaranteed that the user will receive the message, especially if they
-     * are offline. See ephemeral message sending for more details.
+     * @param receiverUserId Identifier of the user who will receive the ephemeral message
      * @param showCaptionAboveMedia Pass True if the caption must be shown above the message media
      * @param startTimestamp Start timestamp for the video in the message
      * @param suggestedPostParameters A JSON-serialized object containing the parameters of the suggested post
@@ -5080,8 +5066,8 @@
     std::shared_ptr<Message> sendVideo(const SendVideoArgs& args) const;
 
     /**
-     * @brief As of v.4.0, Telegram clients support rounded square MPEG4 videos of up to 1 minute
-     * long. Use this method to send video messages. On success, the sent Message is returned.
+     * @brief Use this method to send a rounded square MPEG4 video of up to 1 minute long. On success,
+     * the sent Message is returned.
      *
      * @param chatId Unique identifier for the target chat or username of the target bot,
      * supergroup or channel in the format @username
@@ -5114,16 +5100,12 @@
      * @param allowPaidBroadcast Pass True to allow up to 1000 messages per second, ignoring broadcasting
      * limits for a fee of 0.1 Telegram Stars per message. The relevant Stars
      * will be withdrawn from the bot's balance.
-     * @param callbackQueryId For outgoing ephemeral messages, identifier of the callback query which
-     * triggered the message if any
+     * @param callbackQueryId Identifier of the callback query which triggered the ephemeral message
      * @param directMessagesTopicId Identifier of the direct messages topic to which the message will be
      * sent; required if the message is sent to a direct messages chat
      * @param messageEffectId Unique identifier of the message effect to be added to the message; for
      * private chats only
-     * @param receiverUserId For outgoing ephemeral messages, unique identifier of the user who will
-     * receive the message; for group and supergroup chats only. It is not
-     * guaranteed that the user will receive the message, especially if they
-     * are offline. See ephemeral message sending for more details.
+     * @param receiverUserId Identifier of the user who will receive the ephemeral message
      * @param suggestedPostParameters A JSON-serialized object containing the parameters of the suggested post
      * to send; for direct messages chats only. If the message is sent as a
      * reply to another suggested post, then that suggested post is
@@ -5154,8 +5136,8 @@
                                            = nullptr) const;
 
     /**
-     * @brief As of v.4.0, Telegram clients support rounded square MPEG4 videos of up to 1 minute
-     * long. Use this method to send video messages. On success, the sent Message is returned.
+     * @brief Use this method to send a rounded square MPEG4 video of up to 1 minute long. On success,
+     * the sent Message is returned.
      *
      * @param args Method arguments.
      *
@@ -5197,16 +5179,12 @@
      * @param allowPaidBroadcast Pass True to allow up to 1000 messages per second, ignoring broadcasting
      * limits for a fee of 0.1 Telegram Stars per message. The relevant Stars
      * will be withdrawn from the bot's balance.
-     * @param callbackQueryId For outgoing ephemeral messages, identifier of the callback query which
-     * triggered the message if any
+     * @param callbackQueryId Identifier of the callback query which triggered the ephemeral message
      * @param directMessagesTopicId Identifier of the direct messages topic to which the message will be
      * sent; required if the message is sent to a direct messages chat
      * @param messageEffectId Unique identifier of the message effect to be added to the message; for
      * private chats only
-     * @param receiverUserId For outgoing ephemeral messages, unique identifier of the user who will
-     * receive the message; for group and supergroup chats only. It is not
-     * guaranteed that the user will receive the message, especially if they
-     * are offline. See ephemeral message sending for more details.
+     * @param receiverUserId Identifier of the user who will receive the ephemeral message
      * @param suggestedPostParameters A JSON-serialized object containing the parameters of the suggested post
      * to send; for direct messages chats only. If the message is sent as a
      * reply to another suggested post, then that suggested post is

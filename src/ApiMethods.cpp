@@ -844,7 +844,8 @@ bool Api::editEphemeralMessageCaption(std::variant<std::int64_t, std::string> ch
                                       std::string_view caption,
                                       const std::vector<std::shared_ptr<MessageEntity>>& captionEntities,
                                       std::string_view parseMode,
-                                      std::shared_ptr<InlineKeyboardMarkup> replyMarkup) const {
+                                      std::shared_ptr<InlineKeyboardMarkup> replyMarkup,
+                                      bool showCaptionAboveMedia) const {
     return ApiResponse::decode<bool>(
         sendRequest(
             "editEphemeralMessageCaption",
@@ -855,7 +856,8 @@ bool Api::editEphemeralMessageCaption(std::variant<std::int64_t, std::string> ch
                 ApiRequest::optional("caption", caption),
                 ApiRequest::optional("caption_entities", captionEntities),
                 ApiRequest::optional("parse_mode", parseMode),
-                ApiRequest::optional("reply_markup", replyMarkup)
+                ApiRequest::optional("reply_markup", replyMarkup),
+                ApiRequest::optional("show_caption_above_media", showCaptionAboveMedia)
             )
         ) );
 }
@@ -867,14 +869,16 @@ bool Api::editEphemeralMessageCaption(const EditEphemeralMessageCaptionArgs& arg
                                        args.caption,
                                        args.captionEntities,
                                        args.parseMode,
-                                       args.replyMarkup);
+                                       args.replyMarkup,
+                                       args.showCaptionAboveMedia);
 }
 
 bool Api::editEphemeralMessageMedia(std::variant<std::int64_t, std::string> chatId,
                                     std::int32_t ephemeralMessageId,
                                     std::shared_ptr<InputMedia> media,
                                     std::int64_t receiverUserId,
-                                    std::shared_ptr<InlineKeyboardMarkup> replyMarkup) const {
+                                    std::shared_ptr<InlineKeyboardMarkup> replyMarkup,
+                                    const std::vector<InputFileAttachment>& attachments) const {
     return ApiResponse::decode<bool>(sendRequest(
             "editEphemeralMessageMedia",
             ApiRequest::makeFields(
@@ -882,7 +886,8 @@ bool Api::editEphemeralMessageMedia(std::variant<std::int64_t, std::string> chat
                 ApiRequest::required("ephemeral_message_id", ephemeralMessageId),
                 ApiRequest::required("media", media),
                 ApiRequest::required("receiver_user_id", receiverUserId),
-                ApiRequest::optional("reply_markup", replyMarkup)
+                ApiRequest::optional("reply_markup", replyMarkup),
+                ApiRequest::optional("attachments", attachments)
             )
         ) );
 }
@@ -892,7 +897,8 @@ bool Api::editEphemeralMessageMedia(const EditEphemeralMessageMediaArgs& args) c
                                      args.ephemeralMessageId,
                                      args.media,
                                      args.receiverUserId,
-                                     args.replyMarkup);
+                                     args.replyMarkup,
+                                     args.attachments);
 }
 
 bool Api::editEphemeralMessageReplyMarkup(std::variant<std::int64_t, std::string> chatId,
@@ -924,18 +930,20 @@ bool Api::editEphemeralMessageText(std::variant<std::int64_t, std::string> chatI
                                    const std::vector<std::shared_ptr<MessageEntity>>& entities,
                                    std::shared_ptr<LinkPreviewOptions> linkPreviewOptions,
                                    std::string_view parseMode,
-                                   std::shared_ptr<InlineKeyboardMarkup> replyMarkup) const {
+                                   std::shared_ptr<InlineKeyboardMarkup> replyMarkup,
+                                   std::shared_ptr<InputRichMessage> richMessage) const {
     return ApiResponse::decode<bool>(sendRequest(
             "editEphemeralMessageText",
             ApiRequest::makeFields(
                 ApiRequest::required("chat_id", chatId),
                 ApiRequest::required("ephemeral_message_id", ephemeralMessageId),
                 ApiRequest::required("receiver_user_id", receiverUserId),
-                ApiRequest::required("text", text),
+                ApiRequest::optional("text", text),
                 ApiRequest::optional("entities", entities),
                 ApiRequest::optional("link_preview_options", linkPreviewOptions),
                 ApiRequest::optional("parse_mode", parseMode),
-                ApiRequest::optional("reply_markup", replyMarkup)
+                ApiRequest::optional("reply_markup", replyMarkup),
+                ApiRequest::optional("rich_message", richMessage)
             )
         ) );
 }
@@ -948,7 +956,8 @@ bool Api::editEphemeralMessageText(const EditEphemeralMessageTextArgs& args) con
                                     args.entities,
                                     args.linkPreviewOptions,
                                     args.parseMode,
-                                    args.replyMarkup);
+                                    args.replyMarkup,
+                                    args.richMessage);
 }
 
 bool Api::editForumTopic(std::variant<std::int64_t, std::string> chatId,
@@ -1993,7 +2002,8 @@ bool Api::promoteChatMember(std::variant<std::int64_t, std::string> chatId,
                             bool canEditStories,
                             bool canDeleteStories,
                             bool canManageDirectMessages,
-                            bool canManageTags) const {
+                            bool canManageTags,
+                            bool canSendWelcomeMessages) const {
     return ApiResponse::decode<bool>(sendRequest(
             "promoteChatMember",
             ApiRequest::makeFields(
@@ -2015,7 +2025,8 @@ bool Api::promoteChatMember(std::variant<std::int64_t, std::string> chatId,
                 ApiRequest::optional("can_edit_stories", canEditStories),
                 ApiRequest::optional("can_delete_stories", canDeleteStories),
                 ApiRequest::optional("can_manage_direct_messages", canManageDirectMessages),
-                ApiRequest::optional("can_manage_tags", canManageTags)
+                ApiRequest::optional("can_manage_tags", canManageTags),
+                ApiRequest::optional("can_send_welcome_messages", canSendWelcomeMessages)
             )
         ) );
 }
@@ -2039,7 +2050,8 @@ bool Api::promoteChatMember(const PromoteChatMemberArgs& args) const {
                              args.canEditStories,
                              args.canDeleteStories,
                              args.canManageDirectMessages,
-                             args.canManageTags);
+                             args.canManageTags,
+                             args.canSendWelcomeMessages);
 }
 
 bool Api::readBusinessMessage(std::variant<std::int64_t, std::string> chatId,
@@ -2329,60 +2341,69 @@ Api::sendAnimation(std::variant<std::int64_t, std::string> chatId,
                    std::int64_t receiverUserId,
                    bool showCaptionAboveMedia,
                    std::shared_ptr<SuggestedPostParameters> suggestedPostParameters) const {
-    return ApiResponse::decode<std::shared_ptr<Message>>(sendRequest(
-            "sendAnimation",
-            ApiRequest::makeFields(
-                ApiRequest::required("chat_id", chatId),
-                ApiRequest::required("animation", animation),
-                ApiRequest::optional("duration", duration),
-                ApiRequest::optional("width", width),
-                ApiRequest::optional("height", height),
-                ApiRequest::optional("thumbnail", thumbnail),
-                ApiRequest::optional("caption", caption),
-                ApiRequest::optional("reply_parameters", replyParameters),
-                ApiRequest::optional("reply_markup", replyMarkup),
-                ApiRequest::optional("parse_mode", parseMode),
-                ApiRequest::optional("disable_notification", disableNotification),
-                ApiRequest::optional("caption_entities", captionEntities),
-                ApiRequest::optional("message_thread_id", messageThreadId),
-                ApiRequest::optional("protect_content", protectContent),
-                ApiRequest::optional("has_spoiler", hasSpoiler),
-                ApiRequest::optional("business_connection_id", businessConnectionId),
-                ApiRequest::optional("allow_paid_broadcast", allowPaidBroadcast),
-                ApiRequest::optional("callback_query_id", callbackQueryId),
-                ApiRequest::optional("direct_messages_topic_id", directMessagesTopicId),
-                ApiRequest::optional("message_effect_id", messageEffectId),
-                ApiRequest::optional("receiver_user_id", receiverUserId),
-                ApiRequest::optional("show_caption_above_media", showCaptionAboveMedia),
-                ApiRequest::optional("suggested_post_parameters", suggestedPostParameters)
-            )
-        ) );
+    SendAnimationArgs args;
+    args.chatId = chatId;
+    args.animation = animation;
+    args.duration = duration;
+    args.width = width;
+    args.height = height;
+    args.thumbnail = thumbnail;
+    args.caption = caption;
+    args.replyParameters = replyParameters;
+    args.replyMarkup = replyMarkup;
+    args.parseMode = parseMode;
+    args.disableNotification = disableNotification;
+    args.captionEntities = captionEntities;
+    args.messageThreadId = messageThreadId;
+    args.protectContent = protectContent;
+    args.hasSpoiler = hasSpoiler;
+    args.businessConnectionId = businessConnectionId;
+    args.allowPaidBroadcast = allowPaidBroadcast;
+    args.callbackQueryId = callbackQueryId;
+    args.directMessagesTopicId = directMessagesTopicId;
+    args.messageEffectId = messageEffectId;
+    args.receiverUserId = receiverUserId;
+    args.showCaptionAboveMedia = showCaptionAboveMedia;
+    args.suggestedPostParameters = suggestedPostParameters;
+    return sendAnimation(args);
 }
 
 std::shared_ptr<Message> Api::sendAnimation(const SendAnimationArgs& args) const {
-    return sendAnimation(args.chatId,
-                         args.animation,
-                         args.duration,
-                         args.width,
-                         args.height,
-                         args.thumbnail,
-                         args.caption,
-                         args.replyParameters,
-                         args.replyMarkup,
-                         args.parseMode,
-                         args.disableNotification,
-                         args.captionEntities,
-                         args.messageThreadId,
-                         args.protectContent,
-                         args.hasSpoiler,
-                         args.businessConnectionId,
-                         args.allowPaidBroadcast,
-                         args.callbackQueryId,
-                         args.directMessagesTopicId,
-                         args.messageEffectId,
-                         args.receiverUserId,
-                         args.showCaptionAboveMedia,
-                         args.suggestedPostParameters);
+    auto ephemeralMessageParameters = args.ephemeralMessageParameters;
+    if (!ephemeralMessageParameters && (args.receiverUserId != 0 || !args.callbackQueryId.empty())) {
+        ephemeralMessageParameters = std::make_shared<EphemeralMessageParameters>();
+        ephemeralMessageParameters->receiverUserId = args.receiverUserId;
+        if (!args.callbackQueryId.empty()) {
+            ephemeralMessageParameters->callbackQueryId = args.callbackQueryId;
+        }
+    }
+    return ApiResponse::decode<std::shared_ptr<Message>>(sendRequest(
+            "sendAnimation",
+            ApiRequest::makeFields(
+                ApiRequest::required("chat_id", args.chatId),
+                ApiRequest::required("animation", args.animation),
+                ApiRequest::optional("duration", args.duration),
+                ApiRequest::optional("width", args.width),
+                ApiRequest::optional("height", args.height),
+                ApiRequest::optional("thumbnail", args.thumbnail),
+                ApiRequest::optional("caption", args.caption),
+                ApiRequest::optional("reply_parameters", args.replyParameters),
+                ApiRequest::optional("reply_markup", args.replyMarkup),
+                ApiRequest::optional("parse_mode", args.parseMode),
+                ApiRequest::optional("disable_notification", args.disableNotification),
+                ApiRequest::optional("caption_entities", args.captionEntities),
+                ApiRequest::optional("message_thread_id", args.messageThreadId),
+                ApiRequest::optional("protect_content", args.protectContent),
+                ApiRequest::optional("has_spoiler", args.hasSpoiler),
+                ApiRequest::optional("business_connection_id", args.businessConnectionId),
+                ApiRequest::optional("allow_paid_broadcast", args.allowPaidBroadcast),
+                ApiRequest::optional("direct_messages_topic_id", args.directMessagesTopicId),
+                ApiRequest::optional("message_effect_id", args.messageEffectId),
+                ApiRequest::optional("show_caption_above_media", args.showCaptionAboveMedia),
+                ApiRequest::optional("suggested_post_parameters", args.suggestedPostParameters),
+                ApiRequest::optional("ephemeral_message_parameters", ephemeralMessageParameters)
+            )
+        ) );
 }
 
 std::shared_ptr<Message> Api::sendAudio(std::variant<std::int64_t, std::string> chatId,
@@ -2409,56 +2430,65 @@ std::shared_ptr<Message> Api::sendAudio(std::variant<std::int64_t, std::string> 
                                         std::string_view messageEffectId,
                                         std::int64_t receiverUserId,
                                         std::shared_ptr<SuggestedPostParameters> suggestedPostParameters) const {
-    return ApiResponse::decode<std::shared_ptr<Message>>(sendRequest(
-            "sendAudio",
-            ApiRequest::makeFields(
-                ApiRequest::required("chat_id", chatId),
-                ApiRequest::required("audio", audio),
-                ApiRequest::optional("caption", caption),
-                ApiRequest::optional("duration", duration),
-                ApiRequest::optional("performer", performer),
-                ApiRequest::optional("title", title),
-                ApiRequest::optional("thumbnail", thumbnail),
-                ApiRequest::optional("reply_parameters", replyParameters),
-                ApiRequest::optional("reply_markup", replyMarkup),
-                ApiRequest::optional("parse_mode", parseMode),
-                ApiRequest::optional("disable_notification", disableNotification),
-                ApiRequest::optional("caption_entities", captionEntities),
-                ApiRequest::optional("message_thread_id", messageThreadId),
-                ApiRequest::optional("protect_content", protectContent),
-                ApiRequest::optional("business_connection_id", businessConnectionId),
-                ApiRequest::optional("allow_paid_broadcast", allowPaidBroadcast),
-                ApiRequest::optional("callback_query_id", callbackQueryId),
-                ApiRequest::optional("direct_messages_topic_id", directMessagesTopicId),
-                ApiRequest::optional("message_effect_id", messageEffectId),
-                ApiRequest::optional("receiver_user_id", receiverUserId),
-                ApiRequest::optional("suggested_post_parameters", suggestedPostParameters)
-            )
-        ) );
+    SendAudioArgs args;
+    args.chatId = chatId;
+    args.audio = audio;
+    args.caption = caption;
+    args.duration = duration;
+    args.performer = performer;
+    args.title = title;
+    args.thumbnail = thumbnail;
+    args.replyParameters = replyParameters;
+    args.replyMarkup = replyMarkup;
+    args.parseMode = parseMode;
+    args.disableNotification = disableNotification;
+    args.captionEntities = captionEntities;
+    args.messageThreadId = messageThreadId;
+    args.protectContent = protectContent;
+    args.businessConnectionId = businessConnectionId;
+    args.allowPaidBroadcast = allowPaidBroadcast;
+    args.callbackQueryId = callbackQueryId;
+    args.directMessagesTopicId = directMessagesTopicId;
+    args.messageEffectId = messageEffectId;
+    args.receiverUserId = receiverUserId;
+    args.suggestedPostParameters = suggestedPostParameters;
+    return sendAudio(args);
 }
 
 std::shared_ptr<Message> Api::sendAudio(const SendAudioArgs& args) const {
-    return sendAudio(args.chatId,
-                     args.audio,
-                     args.caption,
-                     args.duration,
-                     args.performer,
-                     args.title,
-                     args.thumbnail,
-                     args.replyParameters,
-                     args.replyMarkup,
-                     args.parseMode,
-                     args.disableNotification,
-                     args.captionEntities,
-                     args.messageThreadId,
-                     args.protectContent,
-                     args.businessConnectionId,
-                     args.allowPaidBroadcast,
-                     args.callbackQueryId,
-                     args.directMessagesTopicId,
-                     args.messageEffectId,
-                     args.receiverUserId,
-                     args.suggestedPostParameters);
+    auto ephemeralMessageParameters = args.ephemeralMessageParameters;
+    if (!ephemeralMessageParameters && (args.receiverUserId != 0 || !args.callbackQueryId.empty())) {
+        ephemeralMessageParameters = std::make_shared<EphemeralMessageParameters>();
+        ephemeralMessageParameters->receiverUserId = args.receiverUserId;
+        if (!args.callbackQueryId.empty()) {
+            ephemeralMessageParameters->callbackQueryId = args.callbackQueryId;
+        }
+    }
+    return ApiResponse::decode<std::shared_ptr<Message>>(sendRequest(
+            "sendAudio",
+            ApiRequest::makeFields(
+                ApiRequest::required("chat_id", args.chatId),
+                ApiRequest::required("audio", args.audio),
+                ApiRequest::optional("caption", args.caption),
+                ApiRequest::optional("duration", args.duration),
+                ApiRequest::optional("performer", args.performer),
+                ApiRequest::optional("title", args.title),
+                ApiRequest::optional("thumbnail", args.thumbnail),
+                ApiRequest::optional("reply_parameters", args.replyParameters),
+                ApiRequest::optional("reply_markup", args.replyMarkup),
+                ApiRequest::optional("parse_mode", args.parseMode),
+                ApiRequest::optional("disable_notification", args.disableNotification),
+                ApiRequest::optional("caption_entities", args.captionEntities),
+                ApiRequest::optional("message_thread_id", args.messageThreadId),
+                ApiRequest::optional("protect_content", args.protectContent),
+                ApiRequest::optional("business_connection_id", args.businessConnectionId),
+                ApiRequest::optional("allow_paid_broadcast", args.allowPaidBroadcast),
+                ApiRequest::optional("direct_messages_topic_id", args.directMessagesTopicId),
+                ApiRequest::optional("message_effect_id", args.messageEffectId),
+                ApiRequest::optional("suggested_post_parameters", args.suggestedPostParameters),
+                ApiRequest::optional("ephemeral_message_parameters", ephemeralMessageParameters)
+            )
+        ) );
 }
 
 bool Api::sendChatAction(std::variant<std::int64_t, std::string> chatId,
@@ -2549,48 +2579,58 @@ std::shared_ptr<Message> Api::sendContact(std::variant<std::int64_t, std::string
                                           std::string_view messageEffectId,
                                           std::int64_t receiverUserId,
                                           std::shared_ptr<SuggestedPostParameters> suggestedPostParameters) const {
-    return ApiResponse::decode<std::shared_ptr<Message>>(sendRequest(
-            "sendContact",
-            ApiRequest::makeFields(
-                ApiRequest::required("chat_id", chatId),
-                ApiRequest::required("phone_number", phoneNumber),
-                ApiRequest::required("first_name", firstName),
-                ApiRequest::optional("last_name", lastName),
-                ApiRequest::optional("vcard", vcard),
-                ApiRequest::optional("disable_notification", disableNotification),
-                ApiRequest::optional("reply_parameters", replyParameters),
-                ApiRequest::optional("reply_markup", replyMarkup),
-                ApiRequest::optional("message_thread_id", messageThreadId),
-                ApiRequest::optional("protect_content", protectContent),
-                ApiRequest::optional("business_connection_id", businessConnectionId),
-                ApiRequest::optional("allow_paid_broadcast", allowPaidBroadcast),
-                ApiRequest::optional("callback_query_id", callbackQueryId),
-                ApiRequest::optional("direct_messages_topic_id", directMessagesTopicId),
-                ApiRequest::optional("message_effect_id", messageEffectId),
-                ApiRequest::optional("receiver_user_id", receiverUserId),
-                ApiRequest::optional("suggested_post_parameters", suggestedPostParameters)
-            )
-        ) );
+    SendContactArgs args;
+    args.chatId = chatId;
+    args.phoneNumber = phoneNumber;
+    args.firstName = firstName;
+    args.lastName = lastName;
+    args.vcard = vcard;
+    args.disableNotification = disableNotification;
+    args.replyParameters = replyParameters;
+    args.replyMarkup = replyMarkup;
+    args.messageThreadId = messageThreadId;
+    args.protectContent = protectContent;
+    args.businessConnectionId = businessConnectionId;
+    args.allowPaidBroadcast = allowPaidBroadcast;
+    args.callbackQueryId = callbackQueryId;
+    args.directMessagesTopicId = directMessagesTopicId;
+    args.messageEffectId = messageEffectId;
+    args.receiverUserId = receiverUserId;
+    args.suggestedPostParameters = suggestedPostParameters;
+    return sendContact(args);
 }
 
 std::shared_ptr<Message> Api::sendContact(const SendContactArgs& args) const {
-    return sendContact(args.chatId,
-                       args.phoneNumber,
-                       args.firstName,
-                       args.lastName,
-                       args.vcard,
-                       args.disableNotification,
-                       args.replyParameters,
-                       args.replyMarkup,
-                       args.messageThreadId,
-                       args.protectContent,
-                       args.businessConnectionId,
-                       args.allowPaidBroadcast,
-                       args.callbackQueryId,
-                       args.directMessagesTopicId,
-                       args.messageEffectId,
-                       args.receiverUserId,
-                       args.suggestedPostParameters);
+    auto ephemeralMessageParameters = args.ephemeralMessageParameters;
+    if (!ephemeralMessageParameters && (args.receiverUserId != 0 || !args.callbackQueryId.empty())) {
+        ephemeralMessageParameters = std::make_shared<EphemeralMessageParameters>();
+        ephemeralMessageParameters->receiverUserId = args.receiverUserId;
+        if (!args.callbackQueryId.empty()) {
+            ephemeralMessageParameters->callbackQueryId = args.callbackQueryId;
+        }
+    }
+    return ApiResponse::decode<std::shared_ptr<Message>>(
+        sendRequest(
+            "sendContact",
+            ApiRequest::makeFields(
+                ApiRequest::required("chat_id", args.chatId),
+                ApiRequest::required("phone_number", args.phoneNumber),
+                ApiRequest::required("first_name", args.firstName),
+                ApiRequest::optional("last_name", args.lastName),
+                ApiRequest::optional("vcard", args.vcard),
+                ApiRequest::optional("disable_notification", args.disableNotification),
+                ApiRequest::optional("reply_parameters", args.replyParameters),
+                ApiRequest::optional("reply_markup", args.replyMarkup),
+                ApiRequest::optional("message_thread_id", args.messageThreadId),
+                ApiRequest::optional("protect_content", args.protectContent),
+                ApiRequest::optional("business_connection_id", args.businessConnectionId),
+                ApiRequest::optional("allow_paid_broadcast", args.allowPaidBroadcast),
+                ApiRequest::optional("direct_messages_topic_id", args.directMessagesTopicId),
+                ApiRequest::optional("message_effect_id", args.messageEffectId),
+                ApiRequest::optional("suggested_post_parameters", args.suggestedPostParameters),
+                ApiRequest::optional("ephemeral_message_parameters", ephemeralMessageParameters)
+            )
+        ) );
 }
 
 std::shared_ptr<Message> Api::sendDice(std::variant<std::int64_t, std::string> chatId,
@@ -2665,52 +2705,61 @@ std::shared_ptr<Message> Api::sendDocument(std::variant<std::int64_t, std::strin
                                            std::string_view messageEffectId,
                                            std::int64_t receiverUserId,
                                            std::shared_ptr<SuggestedPostParameters> suggestedPostParameters) const {
-    return ApiResponse::decode<std::shared_ptr<Message>>(sendRequest(
-            "sendDocument",
-            ApiRequest::makeFields(
-                ApiRequest::required("chat_id", chatId),
-                ApiRequest::required("document", document),
-                ApiRequest::optional("thumbnail", thumbnail),
-                ApiRequest::optional("caption", caption),
-                ApiRequest::optional("reply_parameters", replyParameters),
-                ApiRequest::optional("reply_markup", replyMarkup),
-                ApiRequest::optional("parse_mode", parseMode),
-                ApiRequest::optional("disable_notification", disableNotification),
-                ApiRequest::optional("caption_entities", captionEntities),
-                ApiRequest::optional("disable_content_type_detection", disableContentTypeDetection),
-                ApiRequest::optional("message_thread_id", messageThreadId),
-                ApiRequest::optional("protect_content", protectContent),
-                ApiRequest::optional("business_connection_id", businessConnectionId),
-                ApiRequest::optional("allow_paid_broadcast", allowPaidBroadcast),
-                ApiRequest::optional("callback_query_id", callbackQueryId),
-                ApiRequest::optional("direct_messages_topic_id", directMessagesTopicId),
-                ApiRequest::optional("message_effect_id", messageEffectId),
-                ApiRequest::optional("receiver_user_id", receiverUserId),
-                ApiRequest::optional("suggested_post_parameters", suggestedPostParameters)
-            )
-        ) );
+    SendDocumentArgs args;
+    args.chatId = chatId;
+    args.document = document;
+    args.thumbnail = thumbnail;
+    args.caption = caption;
+    args.replyParameters = replyParameters;
+    args.replyMarkup = replyMarkup;
+    args.parseMode = parseMode;
+    args.disableNotification = disableNotification;
+    args.captionEntities = captionEntities;
+    args.disableContentTypeDetection = disableContentTypeDetection;
+    args.messageThreadId = messageThreadId;
+    args.protectContent = protectContent;
+    args.businessConnectionId = businessConnectionId;
+    args.allowPaidBroadcast = allowPaidBroadcast;
+    args.callbackQueryId = callbackQueryId;
+    args.directMessagesTopicId = directMessagesTopicId;
+    args.messageEffectId = messageEffectId;
+    args.receiverUserId = receiverUserId;
+    args.suggestedPostParameters = suggestedPostParameters;
+    return sendDocument(args);
 }
 
 std::shared_ptr<Message> Api::sendDocument(const SendDocumentArgs& args) const {
-    return sendDocument(args.chatId,
-                        args.document,
-                        args.thumbnail,
-                        args.caption,
-                        args.replyParameters,
-                        args.replyMarkup,
-                        args.parseMode,
-                        args.disableNotification,
-                        args.captionEntities,
-                        args.disableContentTypeDetection,
-                        args.messageThreadId,
-                        args.protectContent,
-                        args.businessConnectionId,
-                        args.allowPaidBroadcast,
-                        args.callbackQueryId,
-                        args.directMessagesTopicId,
-                        args.messageEffectId,
-                        args.receiverUserId,
-                        args.suggestedPostParameters);
+    auto ephemeralMessageParameters = args.ephemeralMessageParameters;
+    if (!ephemeralMessageParameters && (args.receiverUserId != 0 || !args.callbackQueryId.empty())) {
+        ephemeralMessageParameters = std::make_shared<EphemeralMessageParameters>();
+        ephemeralMessageParameters->receiverUserId = args.receiverUserId;
+        if (!args.callbackQueryId.empty()) {
+            ephemeralMessageParameters->callbackQueryId = args.callbackQueryId;
+        }
+    }
+    return ApiResponse::decode<std::shared_ptr<Message>>(sendRequest(
+            "sendDocument",
+            ApiRequest::makeFields(
+                ApiRequest::required("chat_id", args.chatId),
+                ApiRequest::required("document", args.document),
+                ApiRequest::optional("thumbnail", args.thumbnail),
+                ApiRequest::optional("caption", args.caption),
+                ApiRequest::optional("reply_parameters", args.replyParameters),
+                ApiRequest::optional("reply_markup", args.replyMarkup),
+                ApiRequest::optional("parse_mode", args.parseMode),
+                ApiRequest::optional("disable_notification", args.disableNotification),
+                ApiRequest::optional("caption_entities", args.captionEntities),
+                ApiRequest::optional("disable_content_type_detection", args.disableContentTypeDetection),
+                ApiRequest::optional("message_thread_id", args.messageThreadId),
+                ApiRequest::optional("protect_content", args.protectContent),
+                ApiRequest::optional("business_connection_id", args.businessConnectionId),
+                ApiRequest::optional("allow_paid_broadcast", args.allowPaidBroadcast),
+                ApiRequest::optional("direct_messages_topic_id", args.directMessagesTopicId),
+                ApiRequest::optional("message_effect_id", args.messageEffectId),
+                ApiRequest::optional("suggested_post_parameters", args.suggestedPostParameters),
+                ApiRequest::optional("ephemeral_message_parameters", ephemeralMessageParameters)
+            )
+        ) );
 }
 
 std::shared_ptr<Message> Api::sendGame(std::variant<std::int64_t, std::string> chatId,
@@ -2912,54 +2961,63 @@ Api::sendLivePhoto(std::variant<std::int64_t, std::string> chatId,
                    std::shared_ptr<ReplyParameters> replyParameters,
                    bool showCaptionAboveMedia,
                    std::shared_ptr<SuggestedPostParameters> suggestedPostParameters) const {
-    return ApiResponse::decode<std::shared_ptr<Message>>(sendRequest(
-            "sendLivePhoto",
-            ApiRequest::makeFields(
-                ApiRequest::required("chat_id", chatId),
-                ApiRequest::required("live_photo", livePhoto),
-                ApiRequest::required("photo", photo),
-                ApiRequest::optional("allow_paid_broadcast", allowPaidBroadcast),
-                ApiRequest::optional("business_connection_id", businessConnectionId),
-                ApiRequest::optional("callback_query_id", callbackQueryId),
-                ApiRequest::optional("caption", caption),
-                ApiRequest::optional("caption_entities", captionEntities),
-                ApiRequest::optional("direct_messages_topic_id", directMessagesTopicId),
-                ApiRequest::optional("disable_notification", disableNotification),
-                ApiRequest::optional("has_spoiler", hasSpoiler),
-                ApiRequest::optional("message_effect_id", messageEffectId),
-                ApiRequest::optional("message_thread_id", messageThreadId),
-                ApiRequest::optional("parse_mode", parseMode),
-                ApiRequest::optional("protect_content", protectContent),
-                ApiRequest::optional("receiver_user_id", receiverUserId),
-                ApiRequest::optional("reply_markup", replyMarkup),
-                ApiRequest::optional("reply_parameters", replyParameters),
-                ApiRequest::optional("show_caption_above_media", showCaptionAboveMedia),
-                ApiRequest::optional("suggested_post_parameters", suggestedPostParameters)
-            )
-        ) );
+    SendLivePhotoArgs args;
+    args.chatId = chatId;
+    args.livePhoto = livePhoto;
+    args.photo = photo;
+    args.allowPaidBroadcast = allowPaidBroadcast;
+    args.businessConnectionId = businessConnectionId;
+    args.callbackQueryId = callbackQueryId;
+    args.caption = caption;
+    args.captionEntities = captionEntities;
+    args.directMessagesTopicId = directMessagesTopicId;
+    args.disableNotification = disableNotification;
+    args.hasSpoiler = hasSpoiler;
+    args.messageEffectId = messageEffectId;
+    args.messageThreadId = messageThreadId;
+    args.parseMode = parseMode;
+    args.protectContent = protectContent;
+    args.receiverUserId = receiverUserId;
+    args.replyMarkup = replyMarkup;
+    args.replyParameters = replyParameters;
+    args.showCaptionAboveMedia = showCaptionAboveMedia;
+    args.suggestedPostParameters = suggestedPostParameters;
+    return sendLivePhoto(args);
 }
 
 std::shared_ptr<Message> Api::sendLivePhoto(const SendLivePhotoArgs& args) const {
-    return sendLivePhoto(args.chatId,
-                         args.livePhoto,
-                         args.photo,
-                         args.allowPaidBroadcast,
-                         args.businessConnectionId,
-                         args.callbackQueryId,
-                         args.caption,
-                         args.captionEntities,
-                         args.directMessagesTopicId,
-                         args.disableNotification,
-                         args.hasSpoiler,
-                         args.messageEffectId,
-                         args.messageThreadId,
-                         args.parseMode,
-                         args.protectContent,
-                         args.receiverUserId,
-                         args.replyMarkup,
-                         args.replyParameters,
-                         args.showCaptionAboveMedia,
-                         args.suggestedPostParameters);
+    auto ephemeralMessageParameters = args.ephemeralMessageParameters;
+    if (!ephemeralMessageParameters && (args.receiverUserId != 0 || !args.callbackQueryId.empty())) {
+        ephemeralMessageParameters = std::make_shared<EphemeralMessageParameters>();
+        ephemeralMessageParameters->receiverUserId = args.receiverUserId;
+        if (!args.callbackQueryId.empty()) {
+            ephemeralMessageParameters->callbackQueryId = args.callbackQueryId;
+        }
+    }
+    return ApiResponse::decode<std::shared_ptr<Message>>(sendRequest(
+            "sendLivePhoto",
+            ApiRequest::makeFields(
+                ApiRequest::required("chat_id", args.chatId),
+                ApiRequest::required("live_photo", args.livePhoto),
+                ApiRequest::required("photo", args.photo),
+                ApiRequest::optional("allow_paid_broadcast", args.allowPaidBroadcast),
+                ApiRequest::optional("business_connection_id", args.businessConnectionId),
+                ApiRequest::optional("caption", args.caption),
+                ApiRequest::optional("caption_entities", args.captionEntities),
+                ApiRequest::optional("direct_messages_topic_id", args.directMessagesTopicId),
+                ApiRequest::optional("disable_notification", args.disableNotification),
+                ApiRequest::optional("has_spoiler", args.hasSpoiler),
+                ApiRequest::optional("message_effect_id", args.messageEffectId),
+                ApiRequest::optional("message_thread_id", args.messageThreadId),
+                ApiRequest::optional("parse_mode", args.parseMode),
+                ApiRequest::optional("protect_content", args.protectContent),
+                ApiRequest::optional("reply_markup", args.replyMarkup),
+                ApiRequest::optional("reply_parameters", args.replyParameters),
+                ApiRequest::optional("show_caption_above_media", args.showCaptionAboveMedia),
+                ApiRequest::optional("suggested_post_parameters", args.suggestedPostParameters),
+                ApiRequest::optional("ephemeral_message_parameters", ephemeralMessageParameters)
+            )
+        ) );
 }
 
 std::shared_ptr<Message> Api::sendLocation(std::variant<std::int64_t, std::string> chatId,
@@ -2984,52 +3042,61 @@ std::shared_ptr<Message> Api::sendLocation(std::variant<std::int64_t, std::strin
                                            std::string_view messageEffectId,
                                            std::int64_t receiverUserId,
                                            std::shared_ptr<SuggestedPostParameters> suggestedPostParameters) const {
-    return ApiResponse::decode<std::shared_ptr<Message>>(sendRequest(
-            "sendLocation",
-            ApiRequest::makeFields(
-                ApiRequest::required("chat_id", chatId),
-                ApiRequest::required("latitude", latitude),
-                ApiRequest::required("longitude", longitude),
-                ApiRequest::optional("live_period", livePeriod),
-                ApiRequest::optional("reply_parameters", replyParameters),
-                ApiRequest::optional("reply_markup", replyMarkup),
-                ApiRequest::optional("disable_notification", disableNotification),
-                ApiRequest::optional("horizontal_accuracy", horizontalAccuracy),
-                ApiRequest::optional("heading", heading),
-                ApiRequest::optional("proximity_alert_radius", proximityAlertRadius),
-                ApiRequest::optional("message_thread_id", messageThreadId),
-                ApiRequest::optional("protect_content", protectContent),
-                ApiRequest::optional("business_connection_id", businessConnectionId),
-                ApiRequest::optional("allow_paid_broadcast", allowPaidBroadcast),
-                ApiRequest::optional("callback_query_id", callbackQueryId),
-                ApiRequest::optional("direct_messages_topic_id", directMessagesTopicId),
-                ApiRequest::optional("message_effect_id", messageEffectId),
-                ApiRequest::optional("receiver_user_id", receiverUserId),
-                ApiRequest::optional("suggested_post_parameters", suggestedPostParameters)
-            )
-        ) );
+    SendLocationArgs args;
+    args.chatId = chatId;
+    args.latitude = latitude;
+    args.longitude = longitude;
+    args.livePeriod = livePeriod;
+    args.replyParameters = replyParameters;
+    args.replyMarkup = replyMarkup;
+    args.disableNotification = disableNotification;
+    args.horizontalAccuracy = horizontalAccuracy;
+    args.heading = heading;
+    args.proximityAlertRadius = proximityAlertRadius;
+    args.messageThreadId = messageThreadId;
+    args.protectContent = protectContent;
+    args.businessConnectionId = businessConnectionId;
+    args.allowPaidBroadcast = allowPaidBroadcast;
+    args.callbackQueryId = callbackQueryId;
+    args.directMessagesTopicId = directMessagesTopicId;
+    args.messageEffectId = messageEffectId;
+    args.receiverUserId = receiverUserId;
+    args.suggestedPostParameters = suggestedPostParameters;
+    return sendLocation(args);
 }
 
 std::shared_ptr<Message> Api::sendLocation(const SendLocationArgs& args) const {
-    return sendLocation(args.chatId,
-                        args.latitude,
-                        args.longitude,
-                        args.livePeriod,
-                        args.replyParameters,
-                        args.replyMarkup,
-                        args.disableNotification,
-                        args.horizontalAccuracy,
-                        args.heading,
-                        args.proximityAlertRadius,
-                        args.messageThreadId,
-                        args.protectContent,
-                        args.businessConnectionId,
-                        args.allowPaidBroadcast,
-                        args.callbackQueryId,
-                        args.directMessagesTopicId,
-                        args.messageEffectId,
-                        args.receiverUserId,
-                        args.suggestedPostParameters);
+    auto ephemeralMessageParameters = args.ephemeralMessageParameters;
+    if (!ephemeralMessageParameters && (args.receiverUserId != 0 || !args.callbackQueryId.empty())) {
+        ephemeralMessageParameters = std::make_shared<EphemeralMessageParameters>();
+        ephemeralMessageParameters->receiverUserId = args.receiverUserId;
+        if (!args.callbackQueryId.empty()) {
+            ephemeralMessageParameters->callbackQueryId = args.callbackQueryId;
+        }
+    }
+    return ApiResponse::decode<std::shared_ptr<Message>>(sendRequest(
+            "sendLocation",
+            ApiRequest::makeFields(
+                ApiRequest::required("chat_id", args.chatId),
+                ApiRequest::required("latitude", args.latitude),
+                ApiRequest::required("longitude", args.longitude),
+                ApiRequest::optional("live_period", args.livePeriod),
+                ApiRequest::optional("reply_parameters", args.replyParameters),
+                ApiRequest::optional("reply_markup", args.replyMarkup),
+                ApiRequest::optional("disable_notification", args.disableNotification),
+                ApiRequest::optional("horizontal_accuracy", args.horizontalAccuracy),
+                ApiRequest::optional("heading", args.heading),
+                ApiRequest::optional("proximity_alert_radius", args.proximityAlertRadius),
+                ApiRequest::optional("message_thread_id", args.messageThreadId),
+                ApiRequest::optional("protect_content", args.protectContent),
+                ApiRequest::optional("business_connection_id", args.businessConnectionId),
+                ApiRequest::optional("allow_paid_broadcast", args.allowPaidBroadcast),
+                ApiRequest::optional("direct_messages_topic_id", args.directMessagesTopicId),
+                ApiRequest::optional("message_effect_id", args.messageEffectId),
+                ApiRequest::optional("suggested_post_parameters", args.suggestedPostParameters),
+                ApiRequest::optional("ephemeral_message_parameters", ephemeralMessageParameters)
+            )
+        ) );
 }
 
 std::vector<std::shared_ptr<Message>>
@@ -3100,48 +3167,58 @@ std::shared_ptr<Message> Api::sendMessage(std::variant<std::int64_t, std::string
                                           std::string_view messageEffectId,
                                           std::int64_t receiverUserId,
                                           std::shared_ptr<SuggestedPostParameters> suggestedPostParameters) const {
-    return ApiResponse::decode<std::shared_ptr<Message>>(sendRequest(
-            "sendMessage",
-            ApiRequest::makeFields(
-                ApiRequest::required("chat_id", chatId),
-                ApiRequest::required("text", text),
-                ApiRequest::optional("link_preview_options", linkPreviewOptions),
-                ApiRequest::optional("reply_parameters", replyParameters),
-                ApiRequest::optional("reply_markup", replyMarkup),
-                ApiRequest::optional("parse_mode", parseMode),
-                ApiRequest::optional("disable_notification", disableNotification),
-                ApiRequest::optional("entities", entities),
-                ApiRequest::optional("message_thread_id", messageThreadId),
-                ApiRequest::optional("protect_content", protectContent),
-                ApiRequest::optional("business_connection_id", businessConnectionId),
-                ApiRequest::optional("allow_paid_broadcast", allowPaidBroadcast),
-                ApiRequest::optional("callback_query_id", callbackQueryId),
-                ApiRequest::optional("direct_messages_topic_id", directMessagesTopicId),
-                ApiRequest::optional("message_effect_id", messageEffectId),
-                ApiRequest::optional("receiver_user_id", receiverUserId),
-                ApiRequest::optional("suggested_post_parameters", suggestedPostParameters)
-            )
-        ) );
+    SendMessageArgs args;
+    args.chatId = chatId;
+    args.text = text;
+    args.linkPreviewOptions = linkPreviewOptions;
+    args.replyParameters = replyParameters;
+    args.replyMarkup = replyMarkup;
+    args.parseMode = parseMode;
+    args.disableNotification = disableNotification;
+    args.entities = entities;
+    args.messageThreadId = messageThreadId;
+    args.protectContent = protectContent;
+    args.businessConnectionId = businessConnectionId;
+    args.allowPaidBroadcast = allowPaidBroadcast;
+    args.callbackQueryId = callbackQueryId;
+    args.directMessagesTopicId = directMessagesTopicId;
+    args.messageEffectId = messageEffectId;
+    args.receiverUserId = receiverUserId;
+    args.suggestedPostParameters = suggestedPostParameters;
+    return sendMessage(args);
 }
 
 std::shared_ptr<Message> Api::sendMessage(const SendMessageArgs& args) const {
-    return sendMessage(args.chatId,
-                       args.text,
-                       args.linkPreviewOptions,
-                       args.replyParameters,
-                       args.replyMarkup,
-                       args.parseMode,
-                       args.disableNotification,
-                       args.entities,
-                       args.messageThreadId,
-                       args.protectContent,
-                       args.businessConnectionId,
-                       args.allowPaidBroadcast,
-                       args.callbackQueryId,
-                       args.directMessagesTopicId,
-                       args.messageEffectId,
-                       args.receiverUserId,
-                       args.suggestedPostParameters);
+    auto ephemeralMessageParameters = args.ephemeralMessageParameters;
+    if (!ephemeralMessageParameters && (args.receiverUserId != 0 || !args.callbackQueryId.empty())) {
+        ephemeralMessageParameters = std::make_shared<EphemeralMessageParameters>();
+        ephemeralMessageParameters->receiverUserId = args.receiverUserId;
+        if (!args.callbackQueryId.empty()) {
+            ephemeralMessageParameters->callbackQueryId = args.callbackQueryId;
+        }
+    }
+    return ApiResponse::decode<std::shared_ptr<Message>>(
+        sendRequest(
+            "sendMessage",
+            ApiRequest::makeFields(
+                ApiRequest::required("chat_id", args.chatId),
+                ApiRequest::required("text", args.text),
+                ApiRequest::optional("link_preview_options", args.linkPreviewOptions),
+                ApiRequest::optional("reply_parameters", args.replyParameters),
+                ApiRequest::optional("reply_markup", args.replyMarkup),
+                ApiRequest::optional("parse_mode", args.parseMode),
+                ApiRequest::optional("disable_notification", args.disableNotification),
+                ApiRequest::optional("entities", args.entities),
+                ApiRequest::optional("message_thread_id", args.messageThreadId),
+                ApiRequest::optional("protect_content", args.protectContent),
+                ApiRequest::optional("business_connection_id", args.businessConnectionId),
+                ApiRequest::optional("allow_paid_broadcast", args.allowPaidBroadcast),
+                ApiRequest::optional("direct_messages_topic_id", args.directMessagesTopicId),
+                ApiRequest::optional("message_effect_id", args.messageEffectId),
+                ApiRequest::optional("suggested_post_parameters", args.suggestedPostParameters),
+                ApiRequest::optional("ephemeral_message_parameters", ephemeralMessageParameters)
+            )
+        ) );
 }
 
 bool Api::sendMessageDraft(std::variant<std::int64_t, std::string> chatId,
@@ -3149,7 +3226,9 @@ bool Api::sendMessageDraft(std::variant<std::int64_t, std::string> chatId,
                            const std::vector<std::shared_ptr<MessageEntity>>& entities,
                            std::int32_t messageThreadId,
                            std::string_view parseMode,
-                           std::string_view text) const {
+                           std::string_view text,
+                           bool canStop,
+                           bool keepOnStop) const {
     return ApiResponse::decode<bool>(sendRequest(
             "sendMessageDraft",
             ApiRequest::makeFields(
@@ -3158,7 +3237,9 @@ bool Api::sendMessageDraft(std::variant<std::int64_t, std::string> chatId,
                 ApiRequest::optional("entities", entities),
                 ApiRequest::optional("message_thread_id", messageThreadId),
                 ApiRequest::optional("parse_mode", parseMode),
-                ApiRequest::optional("text", text)
+                ApiRequest::optional("text", text),
+                ApiRequest::optional("can_stop", canStop),
+                ApiRequest::optional("keep_on_stop", keepOnStop)
             )
         ) );
 }
@@ -3169,7 +3250,9 @@ bool Api::sendMessageDraft(const SendMessageDraftArgs& args) const {
                             args.entities,
                             args.messageThreadId,
                             args.parseMode,
-                            args.text);
+                            args.text,
+                            args.canStop,
+                            args.keepOnStop);
 }
 
 std::shared_ptr<Message> Api::sendPaidMedia(std::variant<std::int64_t, std::string> chatId,
@@ -3261,52 +3344,61 @@ std::shared_ptr<Message> Api::sendPhoto(std::variant<std::int64_t, std::string> 
                                         std::int64_t receiverUserId,
                                         bool showCaptionAboveMedia,
                                         std::shared_ptr<SuggestedPostParameters> suggestedPostParameters) const {
-    return ApiResponse::decode<std::shared_ptr<Message>>(sendRequest(
-            "sendPhoto",
-            ApiRequest::makeFields(
-                ApiRequest::required("chat_id", chatId),
-                ApiRequest::required("photo", photo),
-                ApiRequest::optional("caption", caption),
-                ApiRequest::optional("reply_parameters", replyParameters),
-                ApiRequest::optional("reply_markup", replyMarkup),
-                ApiRequest::optional("parse_mode", parseMode),
-                ApiRequest::optional("disable_notification", disableNotification),
-                ApiRequest::optional("caption_entities", captionEntities),
-                ApiRequest::optional("message_thread_id", messageThreadId),
-                ApiRequest::optional("protect_content", protectContent),
-                ApiRequest::optional("has_spoiler", hasSpoiler),
-                ApiRequest::optional("business_connection_id", businessConnectionId),
-                ApiRequest::optional("allow_paid_broadcast", allowPaidBroadcast),
-                ApiRequest::optional("callback_query_id", callbackQueryId),
-                ApiRequest::optional("direct_messages_topic_id", directMessagesTopicId),
-                ApiRequest::optional("message_effect_id", messageEffectId),
-                ApiRequest::optional("receiver_user_id", receiverUserId),
-                ApiRequest::optional("show_caption_above_media", showCaptionAboveMedia),
-                ApiRequest::optional("suggested_post_parameters", suggestedPostParameters)
-            )
-        ) );
+    SendPhotoArgs args;
+    args.chatId = chatId;
+    args.photo = photo;
+    args.caption = caption;
+    args.replyParameters = replyParameters;
+    args.replyMarkup = replyMarkup;
+    args.parseMode = parseMode;
+    args.disableNotification = disableNotification;
+    args.captionEntities = captionEntities;
+    args.messageThreadId = messageThreadId;
+    args.protectContent = protectContent;
+    args.hasSpoiler = hasSpoiler;
+    args.businessConnectionId = businessConnectionId;
+    args.allowPaidBroadcast = allowPaidBroadcast;
+    args.callbackQueryId = callbackQueryId;
+    args.directMessagesTopicId = directMessagesTopicId;
+    args.messageEffectId = messageEffectId;
+    args.receiverUserId = receiverUserId;
+    args.showCaptionAboveMedia = showCaptionAboveMedia;
+    args.suggestedPostParameters = suggestedPostParameters;
+    return sendPhoto(args);
 }
 
 std::shared_ptr<Message> Api::sendPhoto(const SendPhotoArgs& args) const {
-    return sendPhoto(args.chatId,
-                     args.photo,
-                     args.caption,
-                     args.replyParameters,
-                     args.replyMarkup,
-                     args.parseMode,
-                     args.disableNotification,
-                     args.captionEntities,
-                     args.messageThreadId,
-                     args.protectContent,
-                     args.hasSpoiler,
-                     args.businessConnectionId,
-                     args.allowPaidBroadcast,
-                     args.callbackQueryId,
-                     args.directMessagesTopicId,
-                     args.messageEffectId,
-                     args.receiverUserId,
-                     args.showCaptionAboveMedia,
-                     args.suggestedPostParameters);
+    auto ephemeralMessageParameters = args.ephemeralMessageParameters;
+    if (!ephemeralMessageParameters && (args.receiverUserId != 0 || !args.callbackQueryId.empty())) {
+        ephemeralMessageParameters = std::make_shared<EphemeralMessageParameters>();
+        ephemeralMessageParameters->receiverUserId = args.receiverUserId;
+        if (!args.callbackQueryId.empty()) {
+            ephemeralMessageParameters->callbackQueryId = args.callbackQueryId;
+        }
+    }
+    return ApiResponse::decode<std::shared_ptr<Message>>(sendRequest(
+            "sendPhoto",
+            ApiRequest::makeFields(
+                ApiRequest::required("chat_id", args.chatId),
+                ApiRequest::required("photo", args.photo),
+                ApiRequest::optional("caption", args.caption),
+                ApiRequest::optional("reply_parameters", args.replyParameters),
+                ApiRequest::optional("reply_markup", args.replyMarkup),
+                ApiRequest::optional("parse_mode", args.parseMode),
+                ApiRequest::optional("disable_notification", args.disableNotification),
+                ApiRequest::optional("caption_entities", args.captionEntities),
+                ApiRequest::optional("message_thread_id", args.messageThreadId),
+                ApiRequest::optional("protect_content", args.protectContent),
+                ApiRequest::optional("has_spoiler", args.hasSpoiler),
+                ApiRequest::optional("business_connection_id", args.businessConnectionId),
+                ApiRequest::optional("allow_paid_broadcast", args.allowPaidBroadcast),
+                ApiRequest::optional("direct_messages_topic_id", args.directMessagesTopicId),
+                ApiRequest::optional("message_effect_id", args.messageEffectId),
+                ApiRequest::optional("show_caption_above_media", args.showCaptionAboveMedia),
+                ApiRequest::optional("suggested_post_parameters", args.suggestedPostParameters),
+                ApiRequest::optional("ephemeral_message_parameters", ephemeralMessageParameters)
+            )
+        ) );
 }
 
 std::shared_ptr<Message> Api::sendPoll(std::variant<std::int64_t, std::string> chatId,
@@ -3440,59 +3532,71 @@ std::shared_ptr<Message> Api::sendRichMessage(std::variant<std::int64_t, std::st
                                               std::shared_ptr<ReplyParameters> replyParameters,
                                               std::shared_ptr<SuggestedPostParameters> suggestedPostParameters,
                                               const std::vector<InputFileAttachment>& attachments) const {
-    return ApiResponse::decode<std::shared_ptr<Message>>(sendRequest(
-            "sendRichMessage",
-            ApiRequest::makeFields(
-                ApiRequest::required("chat_id", chatId),
-                ApiRequest::required("rich_message", richMessage),
-                ApiRequest::optional("allow_paid_broadcast", allowPaidBroadcast),
-                ApiRequest::optional("business_connection_id", businessConnectionId),
-                ApiRequest::optional("direct_messages_topic_id", directMessagesTopicId),
-                ApiRequest::optional("disable_notification", disableNotification),
-                ApiRequest::optional("message_effect_id", messageEffectId),
-                ApiRequest::optional("message_thread_id", messageThreadId),
-                ApiRequest::optional("protect_content", protectContent),
-                ApiRequest::optional("reply_markup", replyMarkup),
-                ApiRequest::optional("reply_parameters", replyParameters),
-                ApiRequest::optional("suggested_post_parameters", suggestedPostParameters),
-                ApiRequest::optional("attachments", attachments)
-            )
-        ) );
+    SendRichMessageArgs args;
+    args.chatId = chatId;
+    args.richMessage = richMessage;
+    args.allowPaidBroadcast = allowPaidBroadcast;
+    args.businessConnectionId = businessConnectionId;
+    args.directMessagesTopicId = directMessagesTopicId;
+    args.disableNotification = disableNotification;
+    args.messageEffectId = messageEffectId;
+    args.messageThreadId = messageThreadId;
+    args.protectContent = protectContent;
+    args.replyMarkup = replyMarkup;
+    args.replyParameters = replyParameters;
+    args.suggestedPostParameters = suggestedPostParameters;
+    args.attachments = attachments;
+    return sendRichMessage(args);
 }
 
 std::shared_ptr<Message> Api::sendRichMessage(const SendRichMessageArgs& args) const {
-    return sendRichMessage(args.chatId,
-                           args.richMessage,
-                           args.allowPaidBroadcast,
-                           args.businessConnectionId,
-                           args.directMessagesTopicId,
-                           args.disableNotification,
-                           args.messageEffectId,
-                           args.messageThreadId,
-                           args.protectContent,
-                           args.replyMarkup,
-                           args.replyParameters,
-                           args.suggestedPostParameters,
-                           args.attachments);
+    return ApiResponse::decode<std::shared_ptr<Message>>(sendRequest(
+            "sendRichMessage",
+            ApiRequest::makeFields(
+                ApiRequest::required("chat_id", args.chatId),
+                ApiRequest::required("rich_message", args.richMessage),
+                ApiRequest::optional("allow_paid_broadcast", args.allowPaidBroadcast),
+                ApiRequest::optional("business_connection_id", args.businessConnectionId),
+                ApiRequest::optional("direct_messages_topic_id", args.directMessagesTopicId),
+                ApiRequest::optional("disable_notification", args.disableNotification),
+                ApiRequest::optional("ephemeral_message_parameters", args.ephemeralMessageParameters),
+                ApiRequest::optional("message_effect_id", args.messageEffectId),
+                ApiRequest::optional("message_thread_id", args.messageThreadId),
+                ApiRequest::optional("protect_content", args.protectContent),
+                ApiRequest::optional("reply_markup", args.replyMarkup),
+                ApiRequest::optional("reply_parameters", args.replyParameters),
+                ApiRequest::optional("suggested_post_parameters", args.suggestedPostParameters),
+                ApiRequest::optional("attachments", args.attachments)
+            )
+        ) );
 }
 
 bool Api::sendRichMessageDraft(std::variant<std::int64_t, std::string> chatId,
                                std::int32_t draftId,
                                std::shared_ptr<InputRichMessage> richMessage,
-                               std::int32_t messageThreadId) const {
+                               std::int32_t messageThreadId,
+                               bool canStop,
+                               bool keepOnStop) const {
     return ApiResponse::decode<bool>(sendRequest(
             "sendRichMessageDraft",
             ApiRequest::makeFields(
                 ApiRequest::required("chat_id", chatId),
                 ApiRequest::required("draft_id", draftId),
                 ApiRequest::required("rich_message", richMessage),
-                ApiRequest::optional("message_thread_id", messageThreadId)
+                ApiRequest::optional("message_thread_id", messageThreadId),
+                ApiRequest::optional("can_stop", canStop),
+                ApiRequest::optional("keep_on_stop", keepOnStop)
             )
         ) );
 }
 
 bool Api::sendRichMessageDraft(const SendRichMessageDraftArgs& args) const {
-    return sendRichMessageDraft(args.chatId, args.draftId, args.richMessage, args.messageThreadId);
+    return sendRichMessageDraft(args.chatId,
+                                args.draftId,
+                                args.richMessage,
+                                args.messageThreadId,
+                                args.canStop,
+                                args.keepOnStop);
 }
 
 std::shared_ptr<Message> Api::sendSticker(std::variant<std::int64_t, std::string> chatId,
@@ -3513,44 +3617,53 @@ std::shared_ptr<Message> Api::sendSticker(std::variant<std::int64_t, std::string
                                           std::string_view messageEffectId,
                                           std::int64_t receiverUserId,
                                           std::shared_ptr<SuggestedPostParameters> suggestedPostParameters) const {
-    return ApiResponse::decode<std::shared_ptr<Message>>(sendRequest(
-            "sendSticker",
-            ApiRequest::makeFields(
-                ApiRequest::required("chat_id", chatId),
-                ApiRequest::required("sticker", sticker),
-                ApiRequest::optional("reply_parameters", replyParameters),
-                ApiRequest::optional("reply_markup", replyMarkup),
-                ApiRequest::optional("disable_notification", disableNotification),
-                ApiRequest::optional("message_thread_id", messageThreadId),
-                ApiRequest::optional("protect_content", protectContent),
-                ApiRequest::optional("emoji", emoji),
-                ApiRequest::optional("business_connection_id", businessConnectionId),
-                ApiRequest::optional("allow_paid_broadcast", allowPaidBroadcast),
-                ApiRequest::optional("callback_query_id", callbackQueryId),
-                ApiRequest::optional("direct_messages_topic_id", directMessagesTopicId),
-                ApiRequest::optional("message_effect_id", messageEffectId),
-                ApiRequest::optional("receiver_user_id", receiverUserId),
-                ApiRequest::optional("suggested_post_parameters", suggestedPostParameters)
-            )
-        ) );
+    SendStickerArgs args;
+    args.chatId = chatId;
+    args.sticker = sticker;
+    args.replyParameters = replyParameters;
+    args.replyMarkup = replyMarkup;
+    args.disableNotification = disableNotification;
+    args.messageThreadId = messageThreadId;
+    args.protectContent = protectContent;
+    args.emoji = emoji;
+    args.businessConnectionId = businessConnectionId;
+    args.allowPaidBroadcast = allowPaidBroadcast;
+    args.callbackQueryId = callbackQueryId;
+    args.directMessagesTopicId = directMessagesTopicId;
+    args.messageEffectId = messageEffectId;
+    args.receiverUserId = receiverUserId;
+    args.suggestedPostParameters = suggestedPostParameters;
+    return sendSticker(args);
 }
 
 std::shared_ptr<Message> Api::sendSticker(const SendStickerArgs& args) const {
-    return sendSticker(args.chatId,
-                       args.sticker,
-                       args.replyParameters,
-                       args.replyMarkup,
-                       args.disableNotification,
-                       args.messageThreadId,
-                       args.protectContent,
-                       args.emoji,
-                       args.businessConnectionId,
-                       args.allowPaidBroadcast,
-                       args.callbackQueryId,
-                       args.directMessagesTopicId,
-                       args.messageEffectId,
-                       args.receiverUserId,
-                       args.suggestedPostParameters);
+    auto ephemeralMessageParameters = args.ephemeralMessageParameters;
+    if (!ephemeralMessageParameters && (args.receiverUserId != 0 || !args.callbackQueryId.empty())) {
+        ephemeralMessageParameters = std::make_shared<EphemeralMessageParameters>();
+        ephemeralMessageParameters->receiverUserId = args.receiverUserId;
+        if (!args.callbackQueryId.empty()) {
+            ephemeralMessageParameters->callbackQueryId = args.callbackQueryId;
+        }
+    }
+    return ApiResponse::decode<std::shared_ptr<Message>>(sendRequest(
+            "sendSticker",
+            ApiRequest::makeFields(
+                ApiRequest::required("chat_id", args.chatId),
+                ApiRequest::required("sticker", args.sticker),
+                ApiRequest::optional("reply_parameters", args.replyParameters),
+                ApiRequest::optional("reply_markup", args.replyMarkup),
+                ApiRequest::optional("disable_notification", args.disableNotification),
+                ApiRequest::optional("message_thread_id", args.messageThreadId),
+                ApiRequest::optional("protect_content", args.protectContent),
+                ApiRequest::optional("emoji", args.emoji),
+                ApiRequest::optional("business_connection_id", args.businessConnectionId),
+                ApiRequest::optional("allow_paid_broadcast", args.allowPaidBroadcast),
+                ApiRequest::optional("direct_messages_topic_id", args.directMessagesTopicId),
+                ApiRequest::optional("message_effect_id", args.messageEffectId),
+                ApiRequest::optional("suggested_post_parameters", args.suggestedPostParameters),
+                ApiRequest::optional("ephemeral_message_parameters", ephemeralMessageParameters)
+            )
+        ) );
 }
 
 std::shared_ptr<Message> Api::sendVenue(std::variant<std::int64_t, std::string> chatId,
@@ -3577,56 +3690,65 @@ std::shared_ptr<Message> Api::sendVenue(std::variant<std::int64_t, std::string> 
                                         std::string_view messageEffectId,
                                         std::int64_t receiverUserId,
                                         std::shared_ptr<SuggestedPostParameters> suggestedPostParameters) const {
-    return ApiResponse::decode<std::shared_ptr<Message>>(sendRequest(
-            "sendVenue",
-            ApiRequest::makeFields(
-                ApiRequest::required("chat_id", chatId),
-                ApiRequest::required("latitude", latitude),
-                ApiRequest::required("longitude", longitude),
-                ApiRequest::required("title", title),
-                ApiRequest::required("address", address),
-                ApiRequest::optional("foursquare_id", foursquareId),
-                ApiRequest::optional("foursquare_type", foursquareType),
-                ApiRequest::optional("disable_notification", disableNotification),
-                ApiRequest::optional("reply_parameters", replyParameters),
-                ApiRequest::optional("reply_markup", replyMarkup),
-                ApiRequest::optional("google_place_id", googlePlaceId),
-                ApiRequest::optional("google_place_type", googlePlaceType),
-                ApiRequest::optional("message_thread_id", messageThreadId),
-                ApiRequest::optional("protect_content", protectContent),
-                ApiRequest::optional("business_connection_id", businessConnectionId),
-                ApiRequest::optional("allow_paid_broadcast", allowPaidBroadcast),
-                ApiRequest::optional("callback_query_id", callbackQueryId),
-                ApiRequest::optional("direct_messages_topic_id", directMessagesTopicId),
-                ApiRequest::optional("message_effect_id", messageEffectId),
-                ApiRequest::optional("receiver_user_id", receiverUserId),
-                ApiRequest::optional("suggested_post_parameters", suggestedPostParameters)
-            )
-        ) );
+    SendVenueArgs args;
+    args.chatId = chatId;
+    args.latitude = latitude;
+    args.longitude = longitude;
+    args.title = title;
+    args.address = address;
+    args.foursquareId = foursquareId;
+    args.foursquareType = foursquareType;
+    args.disableNotification = disableNotification;
+    args.replyParameters = replyParameters;
+    args.replyMarkup = replyMarkup;
+    args.googlePlaceId = googlePlaceId;
+    args.googlePlaceType = googlePlaceType;
+    args.messageThreadId = messageThreadId;
+    args.protectContent = protectContent;
+    args.businessConnectionId = businessConnectionId;
+    args.allowPaidBroadcast = allowPaidBroadcast;
+    args.callbackQueryId = callbackQueryId;
+    args.directMessagesTopicId = directMessagesTopicId;
+    args.messageEffectId = messageEffectId;
+    args.receiverUserId = receiverUserId;
+    args.suggestedPostParameters = suggestedPostParameters;
+    return sendVenue(args);
 }
 
 std::shared_ptr<Message> Api::sendVenue(const SendVenueArgs& args) const {
-    return sendVenue(args.chatId,
-                     args.latitude,
-                     args.longitude,
-                     args.title,
-                     args.address,
-                     args.foursquareId,
-                     args.foursquareType,
-                     args.disableNotification,
-                     args.replyParameters,
-                     args.replyMarkup,
-                     args.googlePlaceId,
-                     args.googlePlaceType,
-                     args.messageThreadId,
-                     args.protectContent,
-                     args.businessConnectionId,
-                     args.allowPaidBroadcast,
-                     args.callbackQueryId,
-                     args.directMessagesTopicId,
-                     args.messageEffectId,
-                     args.receiverUserId,
-                     args.suggestedPostParameters);
+    auto ephemeralMessageParameters = args.ephemeralMessageParameters;
+    if (!ephemeralMessageParameters && (args.receiverUserId != 0 || !args.callbackQueryId.empty())) {
+        ephemeralMessageParameters = std::make_shared<EphemeralMessageParameters>();
+        ephemeralMessageParameters->receiverUserId = args.receiverUserId;
+        if (!args.callbackQueryId.empty()) {
+            ephemeralMessageParameters->callbackQueryId = args.callbackQueryId;
+        }
+    }
+    return ApiResponse::decode<std::shared_ptr<Message>>(sendRequest(
+            "sendVenue",
+            ApiRequest::makeFields(
+                ApiRequest::required("chat_id", args.chatId),
+                ApiRequest::required("latitude", args.latitude),
+                ApiRequest::required("longitude", args.longitude),
+                ApiRequest::required("title", args.title),
+                ApiRequest::required("address", args.address),
+                ApiRequest::optional("foursquare_id", args.foursquareId),
+                ApiRequest::optional("foursquare_type", args.foursquareType),
+                ApiRequest::optional("disable_notification", args.disableNotification),
+                ApiRequest::optional("reply_parameters", args.replyParameters),
+                ApiRequest::optional("reply_markup", args.replyMarkup),
+                ApiRequest::optional("google_place_id", args.googlePlaceId),
+                ApiRequest::optional("google_place_type", args.googlePlaceType),
+                ApiRequest::optional("message_thread_id", args.messageThreadId),
+                ApiRequest::optional("protect_content", args.protectContent),
+                ApiRequest::optional("business_connection_id", args.businessConnectionId),
+                ApiRequest::optional("allow_paid_broadcast", args.allowPaidBroadcast),
+                ApiRequest::optional("direct_messages_topic_id", args.directMessagesTopicId),
+                ApiRequest::optional("message_effect_id", args.messageEffectId),
+                ApiRequest::optional("suggested_post_parameters", args.suggestedPostParameters),
+                ApiRequest::optional("ephemeral_message_parameters", ephemeralMessageParameters)
+            )
+        ) );
 }
 
 std::shared_ptr<Message> Api::sendVideo(std::variant<std::int64_t, std::string> chatId,
@@ -3658,66 +3780,75 @@ std::shared_ptr<Message> Api::sendVideo(std::variant<std::int64_t, std::string> 
                                         bool showCaptionAboveMedia,
                                         std::int32_t startTimestamp,
                                         std::shared_ptr<SuggestedPostParameters> suggestedPostParameters) const {
-    return ApiResponse::decode<std::shared_ptr<Message>>(sendRequest(
-            "sendVideo",
-            ApiRequest::makeFields(
-                ApiRequest::required("chat_id", chatId),
-                ApiRequest::required("video", video),
-                ApiRequest::optional("supports_streaming", supportsStreaming),
-                ApiRequest::optional("duration", duration),
-                ApiRequest::optional("width", width),
-                ApiRequest::optional("height", height),
-                ApiRequest::optional("thumbnail", thumbnail),
-                ApiRequest::optional("caption", caption),
-                ApiRequest::optional("reply_parameters", replyParameters),
-                ApiRequest::optional("reply_markup", replyMarkup),
-                ApiRequest::optional("parse_mode", parseMode),
-                ApiRequest::optional("disable_notification", disableNotification),
-                ApiRequest::optional("caption_entities", captionEntities),
-                ApiRequest::optional("message_thread_id", messageThreadId),
-                ApiRequest::optional("protect_content", protectContent),
-                ApiRequest::optional("has_spoiler", hasSpoiler),
-                ApiRequest::optional("business_connection_id", businessConnectionId),
-                ApiRequest::optional("allow_paid_broadcast", allowPaidBroadcast),
-                ApiRequest::optional("callback_query_id", callbackQueryId),
-                ApiRequest::optional("cover", cover),
-                ApiRequest::optional("direct_messages_topic_id", directMessagesTopicId),
-                ApiRequest::optional("message_effect_id", messageEffectId),
-                ApiRequest::optional("receiver_user_id", receiverUserId),
-                ApiRequest::optional("show_caption_above_media", showCaptionAboveMedia),
-                ApiRequest::optional("start_timestamp", startTimestamp),
-                ApiRequest::optional("suggested_post_parameters", suggestedPostParameters)
-            )
-        ) );
+    SendVideoArgs args;
+    args.chatId = chatId;
+    args.video = video;
+    args.supportsStreaming = supportsStreaming;
+    args.duration = duration;
+    args.width = width;
+    args.height = height;
+    args.thumbnail = thumbnail;
+    args.caption = caption;
+    args.replyParameters = replyParameters;
+    args.replyMarkup = replyMarkup;
+    args.parseMode = parseMode;
+    args.disableNotification = disableNotification;
+    args.captionEntities = captionEntities;
+    args.messageThreadId = messageThreadId;
+    args.protectContent = protectContent;
+    args.hasSpoiler = hasSpoiler;
+    args.businessConnectionId = businessConnectionId;
+    args.allowPaidBroadcast = allowPaidBroadcast;
+    args.callbackQueryId = callbackQueryId;
+    args.cover = cover;
+    args.directMessagesTopicId = directMessagesTopicId;
+    args.messageEffectId = messageEffectId;
+    args.receiverUserId = receiverUserId;
+    args.showCaptionAboveMedia = showCaptionAboveMedia;
+    args.startTimestamp = startTimestamp;
+    args.suggestedPostParameters = suggestedPostParameters;
+    return sendVideo(args);
 }
 
 std::shared_ptr<Message> Api::sendVideo(const SendVideoArgs& args) const {
-    return sendVideo(args.chatId,
-                     args.video,
-                     args.supportsStreaming,
-                     args.duration,
-                     args.width,
-                     args.height,
-                     args.thumbnail,
-                     args.caption,
-                     args.replyParameters,
-                     args.replyMarkup,
-                     args.parseMode,
-                     args.disableNotification,
-                     args.captionEntities,
-                     args.messageThreadId,
-                     args.protectContent,
-                     args.hasSpoiler,
-                     args.businessConnectionId,
-                     args.allowPaidBroadcast,
-                     args.callbackQueryId,
-                     args.cover,
-                     args.directMessagesTopicId,
-                     args.messageEffectId,
-                     args.receiverUserId,
-                     args.showCaptionAboveMedia,
-                     args.startTimestamp,
-                     args.suggestedPostParameters);
+    auto ephemeralMessageParameters = args.ephemeralMessageParameters;
+    if (!ephemeralMessageParameters && (args.receiverUserId != 0 || !args.callbackQueryId.empty())) {
+        ephemeralMessageParameters = std::make_shared<EphemeralMessageParameters>();
+        ephemeralMessageParameters->receiverUserId = args.receiverUserId;
+        if (!args.callbackQueryId.empty()) {
+            ephemeralMessageParameters->callbackQueryId = args.callbackQueryId;
+        }
+    }
+    return ApiResponse::decode<std::shared_ptr<Message>>(sendRequest(
+            "sendVideo",
+            ApiRequest::makeFields(
+                ApiRequest::required("chat_id", args.chatId),
+                ApiRequest::required("video", args.video),
+                ApiRequest::optional("supports_streaming", args.supportsStreaming),
+                ApiRequest::optional("duration", args.duration),
+                ApiRequest::optional("width", args.width),
+                ApiRequest::optional("height", args.height),
+                ApiRequest::optional("thumbnail", args.thumbnail),
+                ApiRequest::optional("caption", args.caption),
+                ApiRequest::optional("reply_parameters", args.replyParameters),
+                ApiRequest::optional("reply_markup", args.replyMarkup),
+                ApiRequest::optional("parse_mode", args.parseMode),
+                ApiRequest::optional("disable_notification", args.disableNotification),
+                ApiRequest::optional("caption_entities", args.captionEntities),
+                ApiRequest::optional("message_thread_id", args.messageThreadId),
+                ApiRequest::optional("protect_content", args.protectContent),
+                ApiRequest::optional("has_spoiler", args.hasSpoiler),
+                ApiRequest::optional("business_connection_id", args.businessConnectionId),
+                ApiRequest::optional("allow_paid_broadcast", args.allowPaidBroadcast),
+                ApiRequest::optional("cover", args.cover),
+                ApiRequest::optional("direct_messages_topic_id", args.directMessagesTopicId),
+                ApiRequest::optional("message_effect_id", args.messageEffectId),
+                ApiRequest::optional("show_caption_above_media", args.showCaptionAboveMedia),
+                ApiRequest::optional("start_timestamp", args.startTimestamp),
+                ApiRequest::optional("suggested_post_parameters", args.suggestedPostParameters),
+                ApiRequest::optional("ephemeral_message_parameters", ephemeralMessageParameters)
+            )
+        ) );
 }
 
 std::shared_ptr<Message>
@@ -3741,48 +3872,58 @@ Api::sendVideoNote(std::variant<std::int64_t, std::string> chatId,
                    std::string_view messageEffectId,
                    std::int64_t receiverUserId,
                    std::shared_ptr<SuggestedPostParameters> suggestedPostParameters) const {
-    return ApiResponse::decode<std::shared_ptr<Message>>(sendRequest(
-            "sendVideoNote",
-            ApiRequest::makeFields(
-                ApiRequest::required("chat_id", chatId),
-                ApiRequest::required("video_note", videoNote),
-                ApiRequest::optional("reply_parameters", replyParameters),
-                ApiRequest::optional("disable_notification", disableNotification),
-                ApiRequest::optional("duration", duration),
-                ApiRequest::optional("length", length),
-                ApiRequest::optional("thumbnail", thumbnail),
-                ApiRequest::optional("reply_markup", replyMarkup),
-                ApiRequest::optional("message_thread_id", messageThreadId),
-                ApiRequest::optional("protect_content", protectContent),
-                ApiRequest::optional("business_connection_id", businessConnectionId),
-                ApiRequest::optional("allow_paid_broadcast", allowPaidBroadcast),
-                ApiRequest::optional("callback_query_id", callbackQueryId),
-                ApiRequest::optional("direct_messages_topic_id", directMessagesTopicId),
-                ApiRequest::optional("message_effect_id", messageEffectId),
-                ApiRequest::optional("receiver_user_id", receiverUserId),
-                ApiRequest::optional("suggested_post_parameters", suggestedPostParameters)
-            )
-        ) );
+    SendVideoNoteArgs args;
+    args.chatId = chatId;
+    args.videoNote = videoNote;
+    args.replyParameters = replyParameters;
+    args.disableNotification = disableNotification;
+    args.duration = duration;
+    args.length = length;
+    args.thumbnail = thumbnail;
+    args.replyMarkup = replyMarkup;
+    args.messageThreadId = messageThreadId;
+    args.protectContent = protectContent;
+    args.businessConnectionId = businessConnectionId;
+    args.allowPaidBroadcast = allowPaidBroadcast;
+    args.callbackQueryId = callbackQueryId;
+    args.directMessagesTopicId = directMessagesTopicId;
+    args.messageEffectId = messageEffectId;
+    args.receiverUserId = receiverUserId;
+    args.suggestedPostParameters = suggestedPostParameters;
+    return sendVideoNote(args);
 }
 
 std::shared_ptr<Message> Api::sendVideoNote(const SendVideoNoteArgs& args) const {
-    return sendVideoNote(args.chatId,
-                         args.videoNote,
-                         args.replyParameters,
-                         args.disableNotification,
-                         args.duration,
-                         args.length,
-                         args.thumbnail,
-                         args.replyMarkup,
-                         args.messageThreadId,
-                         args.protectContent,
-                         args.businessConnectionId,
-                         args.allowPaidBroadcast,
-                         args.callbackQueryId,
-                         args.directMessagesTopicId,
-                         args.messageEffectId,
-                         args.receiverUserId,
-                         args.suggestedPostParameters);
+    auto ephemeralMessageParameters = args.ephemeralMessageParameters;
+    if (!ephemeralMessageParameters && (args.receiverUserId != 0 || !args.callbackQueryId.empty())) {
+        ephemeralMessageParameters = std::make_shared<EphemeralMessageParameters>();
+        ephemeralMessageParameters->receiverUserId = args.receiverUserId;
+        if (!args.callbackQueryId.empty()) {
+            ephemeralMessageParameters->callbackQueryId = args.callbackQueryId;
+        }
+    }
+    return ApiResponse::decode<std::shared_ptr<Message>>(
+        sendRequest(
+            "sendVideoNote",
+            ApiRequest::makeFields(
+                ApiRequest::required("chat_id", args.chatId),
+                ApiRequest::required("video_note", args.videoNote),
+                ApiRequest::optional("reply_parameters", args.replyParameters),
+                ApiRequest::optional("disable_notification", args.disableNotification),
+                ApiRequest::optional("duration", args.duration),
+                ApiRequest::optional("length", args.length),
+                ApiRequest::optional("thumbnail", args.thumbnail),
+                ApiRequest::optional("reply_markup", args.replyMarkup),
+                ApiRequest::optional("message_thread_id", args.messageThreadId),
+                ApiRequest::optional("protect_content", args.protectContent),
+                ApiRequest::optional("business_connection_id", args.businessConnectionId),
+                ApiRequest::optional("allow_paid_broadcast", args.allowPaidBroadcast),
+                ApiRequest::optional("direct_messages_topic_id", args.directMessagesTopicId),
+                ApiRequest::optional("message_effect_id", args.messageEffectId),
+                ApiRequest::optional("suggested_post_parameters", args.suggestedPostParameters),
+                ApiRequest::optional("ephemeral_message_parameters", ephemeralMessageParameters)
+            )
+        ) );
 }
 
 std::shared_ptr<Message> Api::sendVoice(std::variant<std::int64_t, std::string> chatId,
@@ -3806,50 +3947,59 @@ std::shared_ptr<Message> Api::sendVoice(std::variant<std::int64_t, std::string> 
                                         std::string_view messageEffectId,
                                         std::int64_t receiverUserId,
                                         std::shared_ptr<SuggestedPostParameters> suggestedPostParameters) const {
-    return ApiResponse::decode<std::shared_ptr<Message>>(sendRequest(
-            "sendVoice",
-            ApiRequest::makeFields(
-                ApiRequest::required("chat_id", chatId),
-                ApiRequest::required("voice", voice),
-                ApiRequest::optional("caption", caption),
-                ApiRequest::optional("duration", duration),
-                ApiRequest::optional("reply_parameters", replyParameters),
-                ApiRequest::optional("reply_markup", replyMarkup),
-                ApiRequest::optional("parse_mode", parseMode),
-                ApiRequest::optional("disable_notification", disableNotification),
-                ApiRequest::optional("caption_entities", captionEntities),
-                ApiRequest::optional("message_thread_id", messageThreadId),
-                ApiRequest::optional("protect_content", protectContent),
-                ApiRequest::optional("business_connection_id", businessConnectionId),
-                ApiRequest::optional("allow_paid_broadcast", allowPaidBroadcast),
-                ApiRequest::optional("callback_query_id", callbackQueryId),
-                ApiRequest::optional("direct_messages_topic_id", directMessagesTopicId),
-                ApiRequest::optional("message_effect_id", messageEffectId),
-                ApiRequest::optional("receiver_user_id", receiverUserId),
-                ApiRequest::optional("suggested_post_parameters", suggestedPostParameters)
-            )
-        ) );
+    SendVoiceArgs args;
+    args.chatId = chatId;
+    args.voice = voice;
+    args.caption = caption;
+    args.duration = duration;
+    args.replyParameters = replyParameters;
+    args.replyMarkup = replyMarkup;
+    args.parseMode = parseMode;
+    args.disableNotification = disableNotification;
+    args.captionEntities = captionEntities;
+    args.messageThreadId = messageThreadId;
+    args.protectContent = protectContent;
+    args.businessConnectionId = businessConnectionId;
+    args.allowPaidBroadcast = allowPaidBroadcast;
+    args.callbackQueryId = callbackQueryId;
+    args.directMessagesTopicId = directMessagesTopicId;
+    args.messageEffectId = messageEffectId;
+    args.receiverUserId = receiverUserId;
+    args.suggestedPostParameters = suggestedPostParameters;
+    return sendVoice(args);
 }
 
 std::shared_ptr<Message> Api::sendVoice(const SendVoiceArgs& args) const {
-    return sendVoice(args.chatId,
-                     args.voice,
-                     args.caption,
-                     args.duration,
-                     args.replyParameters,
-                     args.replyMarkup,
-                     args.parseMode,
-                     args.disableNotification,
-                     args.captionEntities,
-                     args.messageThreadId,
-                     args.protectContent,
-                     args.businessConnectionId,
-                     args.allowPaidBroadcast,
-                     args.callbackQueryId,
-                     args.directMessagesTopicId,
-                     args.messageEffectId,
-                     args.receiverUserId,
-                     args.suggestedPostParameters);
+    auto ephemeralMessageParameters = args.ephemeralMessageParameters;
+    if (!ephemeralMessageParameters && (args.receiverUserId != 0 || !args.callbackQueryId.empty())) {
+        ephemeralMessageParameters = std::make_shared<EphemeralMessageParameters>();
+        ephemeralMessageParameters->receiverUserId = args.receiverUserId;
+        if (!args.callbackQueryId.empty()) {
+            ephemeralMessageParameters->callbackQueryId = args.callbackQueryId;
+        }
+    }
+    return ApiResponse::decode<std::shared_ptr<Message>>(sendRequest(
+            "sendVoice",
+            ApiRequest::makeFields(
+                ApiRequest::required("chat_id", args.chatId),
+                ApiRequest::required("voice", args.voice),
+                ApiRequest::optional("caption", args.caption),
+                ApiRequest::optional("duration", args.duration),
+                ApiRequest::optional("reply_parameters", args.replyParameters),
+                ApiRequest::optional("reply_markup", args.replyMarkup),
+                ApiRequest::optional("parse_mode", args.parseMode),
+                ApiRequest::optional("disable_notification", args.disableNotification),
+                ApiRequest::optional("caption_entities", args.captionEntities),
+                ApiRequest::optional("message_thread_id", args.messageThreadId),
+                ApiRequest::optional("protect_content", args.protectContent),
+                ApiRequest::optional("business_connection_id", args.businessConnectionId),
+                ApiRequest::optional("allow_paid_broadcast", args.allowPaidBroadcast),
+                ApiRequest::optional("direct_messages_topic_id", args.directMessagesTopicId),
+                ApiRequest::optional("message_effect_id", args.messageEffectId),
+                ApiRequest::optional("suggested_post_parameters", args.suggestedPostParameters),
+                ApiRequest::optional("ephemeral_message_parameters", ephemeralMessageParameters)
+            )
+        ) );
 }
 
 bool Api::setBusinessAccountBio(std::string_view businessConnectionId, std::string_view bio) const {

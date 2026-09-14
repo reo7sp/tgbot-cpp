@@ -103,7 +103,10 @@ class _MethodModel:
     return_description: str
     description: tuple[str, ...]
     args: tuple[_ArgModel, ...]
+    direct_args: tuple[_ArgModel, ...]
+    struct_args: tuple[_ArgModel, ...]
     compatibility_args: tuple[_ArgModel, ...]
+    legacy_ephemeral_parameters: bool
     args_name: str | None
 
 
@@ -388,6 +391,40 @@ class _MethodModelBuilder(_BaseModelBuilder):
             )
             for arg_name in arg_names
         )
+        legacy_ephemeral_parameters = bool(method_config.get("legacy_ephemeral_parameters"))
+        direct_properties = {
+            arg_name: schema
+            for arg_name, schema in properties.items()
+            if arg_name not in method_config.get("direct_exclude", ())
+        }
+        if legacy_ephemeral_parameters:
+            direct_properties.pop("ephemeral_message_parameters", None)
+            direct_properties.update(
+                {
+                    "callback_query_id": {
+                        "type": "string",
+                        "description": "Identifier of the callback query which triggered the ephemeral message",
+                    },
+                    "receiver_user_id": {
+                        "type": "integer",
+                        "format": "int64",
+                        "description": "Identifier of the user who will receive the ephemeral message",
+                    },
+                }
+            )
+        direct_arg_names = self._ordered_arg_names(name, direct_properties, required & direct_properties.keys())
+        direct_args = tuple(
+            self._build_arg(
+                name,
+                arg_name,
+                direct_properties[arg_name],
+                arg_name in required,
+                arg_name in binary,
+            )
+            for arg_name in direct_arg_names
+        )
+        direct_arg_wire_names = {arg.wire_name for arg in direct_args}
+        struct_args = direct_args + tuple(arg for arg in args if arg.wire_name not in direct_arg_wire_names)
         compatibility_without = set(method_config.get("compatibility_overload_without", ()))
         return _MethodModel(
             name=name,
@@ -396,7 +433,10 @@ class _MethodModelBuilder(_BaseModelBuilder):
             return_description=self._return_description(return_type, response_type),
             description=self._comment_lines(operation.get("description", ""), 88),
             args=args,
-            compatibility_args=tuple(arg for arg in args if arg.wire_name not in compatibility_without),
+            direct_args=direct_args,
+            struct_args=struct_args,
+            compatibility_args=tuple(arg for arg in direct_args if arg.wire_name not in compatibility_without),
+            legacy_ephemeral_parameters=legacy_ephemeral_parameters,
             args_name=f"{name[0].upper()}{name[1:]}Args" if args else None,
         )
 

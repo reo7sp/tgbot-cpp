@@ -81,7 +81,7 @@ TGBOT_API void to_json(nlohmann::json& json, const {{ type.name }}& value);
  * @ingroup api
  */
 struct {{ method.args_name }} {
-{% for arg in method.args %}
+{% for arg in method.struct_args %}
     /**
      * @brief{{ " " + arg.description[0] if arg.description else "" }}
 {% for line in arg.description[1:] %}

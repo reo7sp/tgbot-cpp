@@ -103,6 +103,10 @@ void EventBroadcaster::onMessageReactionCount(const MessageReactionCountUpdatedL
     _onMessageReactionCountUpdatedListener.push_back(listener);
 }
 
+void EventBroadcaster::onMessageGenerationStopped(const MessageGenerationStoppedListener& listener) {
+    _onMessageGenerationStoppedListeners.push_back(listener);
+}
+
 void EventBroadcaster::onSuccessfulPayment(const SuccessfulPaymentListener& listener) {
     _onSuccessfulPaymentListeners.push_back(listener);
 }
@@ -182,6 +186,12 @@ void EventBroadcaster::broadcastMessageReactionCountUpdated(
     const std::shared_ptr<MessageReactionCountUpdated>& messageReactionCount) const {
     broadcast<MessageReactionCountUpdatedListener, std::shared_ptr<MessageReactionCountUpdated>>(
         _onMessageReactionCountUpdatedListener, messageReactionCount);
+}
+
+void EventBroadcaster::broadcastMessageGenerationStopped(
+    const std::shared_ptr<MessageGenerationStopped>& messageGenerationStopped) const {
+    broadcast<MessageGenerationStoppedListener, std::shared_ptr<MessageGenerationStopped>>(
+        _onMessageGenerationStoppedListeners, messageGenerationStopped);
 }
 
 void EventBroadcaster::broadcastSuccessfulPayment(const std::shared_ptr<Message>& message) const {

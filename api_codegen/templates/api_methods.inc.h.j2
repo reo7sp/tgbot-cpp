@@ -6,7 +6,7 @@
 {%- endmacro %}
 
 {% macro documentation(method, argument_object=false, args=none) -%}
-{% set documented_args = method.args if args is none else args -%}
+{% set documented_args = method.direct_args if args is none else args -%}
     /**
      * @brief{{ " " + method.description[0] if method.description else "" }}
 {% for line in method.description[1:] %}
@@ -29,7 +29,7 @@
 {%- endmacro %}
 
 {% macro method_declaration(method, argument_object=false, args=none) -%}
-{% set declared_args = method.args if args is none else args -%}
+{% set declared_args = method.direct_args if args is none else args -%}
     {{ method.return_type }} {{ method.name }}(
 {% if argument_object %}
         const {{ method.args_name }}& args
@@ -46,7 +46,7 @@
 {{ documentation(method) }}
 {{ method_declaration(method) }}
 
-{% if method.compatibility_args != method.args %}
+{% if method.compatibility_args != method.direct_args %}
 {{ documentation(method, args=method.compatibility_args) }}
 {{ method_declaration(method, args=method.compatibility_args) }}
 

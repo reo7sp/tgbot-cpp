@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: "Telegram Bot API"
-  version: "10.2"
+  version: "10.3"
   description: |-
     This OpenAPI specification was generated using the [tgbotspec](https://github.com/metalagman/tgbotspec) tool.
 servers:
@@ -102,7 +102,7 @@ paths:
               properties:
                 cache_time:
                   type: integer
-                  description: The maximum amount of time in seconds that the result of the callback query may be cached client-side. Telegram apps will support caching starting in version 3.14. Defaults to 0.
+                  description: The maximum amount of time in seconds that the result of the callback query may be cached client-side. Defaults to 0.
                 callback_query_id:
                   type: string
                   description: Unique identifier for the query to be answered
@@ -2388,6 +2388,9 @@ paths:
                   description: A JSON-serialized object for an inline keyboard
                   allOf:
                       - $ref: '#/components/schemas/InlineKeyboardMarkup'
+                show_caption_above_media:
+                  type: boolean
+                  description: Pass True if the caption must be shown above the message media. Supported only for animation, photo and video messages.
               required:
                 - chat_id
                 - ephemeral_message_id
@@ -2441,7 +2444,7 @@ paths:
                   type: integer
                   description: Identifier of the ephemeral message to edit
                 media:
-                  description: A JSON-serialized object for the new media content of the message. A new file can't be uploaded; use a previously uploaded file via its file_id or specify a URL.
+                  description: A JSON-serialized object for the new media content of the message
                   allOf:
                       - $ref: '#/components/schemas/InputMedia'
                 receiver_user_id:
@@ -2469,7 +2472,7 @@ paths:
                   description: Identifier of the ephemeral message to edit
                 media:
                   type: string
-                  description: A JSON-serialized object for the new media content of the message. A new file can't be uploaded; use a previously uploaded file via its file_id or specify a URL.
+                  description: A JSON-serialized object for the new media content of the message
                 receiver_user_id:
                   type: integer
                   description: Identifier of the user who received the message
@@ -2573,7 +2576,7 @@ paths:
       tags:
         - Updating messages
       description: |-
-        Use this method to edit an ephemeral text message. Note that it is not guaranteed that the user will receive the message edit event, especially if they are offline. On success, True is returned.
+        Use this method to edit an ephemeral text or rich message. Note that it is not guaranteed that the user will receive the message edit event, especially if they are offline. On success, True is returned.
       requestBody:
         required: true
         content:
@@ -2607,14 +2610,17 @@ paths:
                   description: A JSON-serialized object for an inline keyboard
                   allOf:
                       - $ref: '#/components/schemas/InlineKeyboardMarkup'
+                rich_message:
+                  description: New rich content of the message; required if text isn't specified
+                  allOf:
+                      - $ref: '#/components/schemas/InputRichMessage'
                 text:
                   type: string
-                  description: New text of the message, 1-4096 characters after entity parsing
+                  description: New text of the message, 1-4096 characters after entity parsing; required if rich_message isn't specified
               required:
                 - chat_id
                 - ephemeral_message_id
                 - receiver_user_id
-                - text
       responses:
         '200':
           description: OK
@@ -3163,7 +3169,7 @@ paths:
                   allOf:
                       - $ref: '#/components/schemas/InlineKeyboardMarkup'
                 rich_message:
-                  description: New rich content of the message; required if text isn't specified. Direct upload of new files isn't supported when an inline message is edited.
+                  description: New rich content of the message; required if text isn't specified. Direct upload of new files and explicit upload of files by a URL isn't supported when an inline message is edited.
                   allOf:
                       - $ref: '#/components/schemas/InputRichMessage'
                 text:
@@ -5431,6 +5437,9 @@ paths:
                 can_restrict_members:
                   type: boolean
                   description: Pass True if the administrator can restrict, ban or unban chat members, or access supergroup statistics. For backward compatibility, defaults to True for promotions of channel administrators.
+                can_send_welcome_messages:
+                  type: boolean
+                  description: Pass True if the administrator can manage chat welcome messages or directly send them in the case of bots
                 chat_id:
                   type: integer
                   format: int64
@@ -6286,9 +6295,6 @@ paths:
                 business_connection_id:
                   type: string
                   description: Unique identifier of the business connection on behalf of which the message will be sent
-                callback_query_id:
-                  type: string
-                  description: For outgoing ephemeral messages, identifier of the callback query which triggered the message if any
                 caption:
                   type: string
                   description: Animation caption (may also be used when resending animation by file_id), 0-1024 characters after entities parsing
@@ -6310,6 +6316,10 @@ paths:
                 duration:
                   type: integer
                   description: Duration of sent animation in seconds
+                ephemeral_message_parameters:
+                  description: A JSON-serialized object containing the parameters of the ephemeral message to send
+                  allOf:
+                      - $ref: '#/components/schemas/EphemeralMessageParameters'
                 has_spoiler:
                   type: boolean
                   description: Pass True if the animation needs to be covered with a spoiler animation
@@ -6328,9 +6338,6 @@ paths:
                 protect_content:
                   type: boolean
                   description: Protects the contents of the sent message from forwarding and saving
-                receiver_user_id:
-                  type: integer
-                  description: For outgoing ephemeral messages, unique identifier of the user who will receive the message; for group and supergroup chats only. It is not guaranteed that the user will receive the message, especially if they are offline. See ephemeral message sending for more details.
                 reply_markup:
                   description: Additional interface options. A JSON-serialized object for an inline keyboard, custom reply keyboard, instructions to remove a reply keyboard or to force a reply from the user.
                   oneOf:
@@ -6372,9 +6379,6 @@ paths:
                 business_connection_id:
                   type: string
                   description: Unique identifier of the business connection on behalf of which the message will be sent
-                callback_query_id:
-                  type: string
-                  description: For outgoing ephemeral messages, identifier of the callback query which triggered the message if any
                 caption:
                   type: string
                   description: Animation caption (may also be used when resending animation by file_id), 0-1024 characters after entities parsing
@@ -6394,6 +6398,9 @@ paths:
                 duration:
                   type: integer
                   description: Duration of sent animation in seconds
+                ephemeral_message_parameters:
+                  type: string
+                  description: A JSON-serialized object containing the parameters of the ephemeral message to send
                 has_spoiler:
                   type: boolean
                   description: Pass True if the animation needs to be covered with a spoiler animation
@@ -6412,9 +6419,6 @@ paths:
                 protect_content:
                   type: boolean
                   description: Protects the contents of the sent message from forwarding and saving
-                receiver_user_id:
-                  type: integer
-                  description: For outgoing ephemeral messages, unique identifier of the user who will receive the message; for group and supergroup chats only. It is not guaranteed that the user will receive the message, especially if they are offline. See ephemeral message sending for more details.
                 reply_markup:
                   description: Additional interface options. A JSON-serialized object for an inline keyboard, custom reply keyboard, instructions to remove a reply keyboard or to force a reply from the user.
                   oneOf:
@@ -6492,9 +6496,6 @@ paths:
                 business_connection_id:
                   type: string
                   description: Unique identifier of the business connection on behalf of which the message will be sent
-                callback_query_id:
-                  type: string
-                  description: For outgoing ephemeral messages, identifier of the callback query which triggered the message if any
                 caption:
                   type: string
                   description: Audio caption, 0-1024 characters after entities parsing
@@ -6516,6 +6517,10 @@ paths:
                 duration:
                   type: integer
                   description: Duration of the audio in seconds
+                ephemeral_message_parameters:
+                  description: A JSON-serialized object containing the parameters of the ephemeral message to send
+                  allOf:
+                      - $ref: '#/components/schemas/EphemeralMessageParameters'
                 message_effect_id:
                   type: string
                   description: Unique identifier of the message effect to be added to the message; for private chats only
@@ -6531,9 +6536,6 @@ paths:
                 protect_content:
                   type: boolean
                   description: Protects the contents of the sent message from forwarding and saving
-                receiver_user_id:
-                  type: integer
-                  description: For outgoing ephemeral messages, unique identifier of the user who will receive the message; for group and supergroup chats only. It is not guaranteed that the user will receive the message, especially if they are offline. See ephemeral message sending for more details.
                 reply_markup:
                   description: Additional interface options. A JSON-serialized object for an inline keyboard, custom reply keyboard, instructions to remove a reply keyboard or to force a reply from the user.
                   oneOf:
@@ -6572,9 +6574,6 @@ paths:
                 business_connection_id:
                   type: string
                   description: Unique identifier of the business connection on behalf of which the message will be sent
-                callback_query_id:
-                  type: string
-                  description: For outgoing ephemeral messages, identifier of the callback query which triggered the message if any
                 caption:
                   type: string
                   description: Audio caption, 0-1024 characters after entities parsing
@@ -6594,6 +6593,9 @@ paths:
                 duration:
                   type: integer
                   description: Duration of the audio in seconds
+                ephemeral_message_parameters:
+                  type: string
+                  description: A JSON-serialized object containing the parameters of the ephemeral message to send
                 message_effect_id:
                   type: string
                   description: Unique identifier of the message effect to be added to the message; for private chats only
@@ -6609,9 +6611,6 @@ paths:
                 protect_content:
                   type: boolean
                   description: Protects the contents of the sent message from forwarding and saving
-                receiver_user_id:
-                  type: integer
-                  description: For outgoing ephemeral messages, unique identifier of the user who will receive the message; for group and supergroup chats only. It is not guaranteed that the user will receive the message, especially if they are offline. See ephemeral message sending for more details.
                 reply_markup:
                   description: Additional interface options. A JSON-serialized object for an inline keyboard, custom reply keyboard, instructions to remove a reply keyboard or to force a reply from the user.
                   oneOf:
@@ -6862,9 +6861,6 @@ paths:
                 business_connection_id:
                   type: string
                   description: Unique identifier of the business connection on behalf of which the message will be sent
-                callback_query_id:
-                  type: string
-                  description: For outgoing ephemeral messages, identifier of the callback query which triggered the message if any
                 chat_id:
                   type: integer
                   format: int64
@@ -6875,6 +6871,10 @@ paths:
                 disable_notification:
                   type: boolean
                   description: Sends the message silently. Users will receive a notification with no sound.
+                ephemeral_message_parameters:
+                  description: A JSON-serialized object containing the parameters of the ephemeral message to send
+                  allOf:
+                      - $ref: '#/components/schemas/EphemeralMessageParameters'
                 first_name:
                   type: string
                   description: Contact's first name
@@ -6893,9 +6893,6 @@ paths:
                 protect_content:
                   type: boolean
                   description: Protects the contents of the sent message from forwarding and saving
-                receiver_user_id:
-                  type: integer
-                  description: For outgoing ephemeral messages, unique identifier of the user who will receive the message; for group and supergroup chats only. It is not guaranteed that the user will receive the message, especially if they are offline. See ephemeral message sending for more details.
                 reply_markup:
                   description: Additional interface options. A JSON-serialized object for an inline keyboard, custom reply keyboard, instructions to remove a reply keyboard or to force a reply from the user.
                   oneOf:
@@ -7049,9 +7046,6 @@ paths:
                 business_connection_id:
                   type: string
                   description: Unique identifier of the business connection on behalf of which the message will be sent
-                callback_query_id:
-                  type: string
-                  description: For outgoing ephemeral messages, identifier of the callback query which triggered the message if any
                 caption:
                   type: string
                   description: Document caption (may also be used when resending documents by file_id), 0-1024 characters after entities parsing
@@ -7076,6 +7070,10 @@ paths:
                 document:
                   type: string
                   description: File to send. Pass a file_id as String to send a file that exists on the Telegram servers (recommended), pass an HTTP URL as a String for Telegram to get a file from the Internet, or upload a new one using multipart/form-data. More information on Sending Files »
+                ephemeral_message_parameters:
+                  description: A JSON-serialized object containing the parameters of the ephemeral message to send
+                  allOf:
+                      - $ref: '#/components/schemas/EphemeralMessageParameters'
                 message_effect_id:
                   type: string
                   description: Unique identifier of the message effect to be added to the message; for private chats only
@@ -7088,9 +7086,6 @@ paths:
                 protect_content:
                   type: boolean
                   description: Protects the contents of the sent message from forwarding and saving
-                receiver_user_id:
-                  type: integer
-                  description: For outgoing ephemeral messages, unique identifier of the user who will receive the message; for group and supergroup chats only. It is not guaranteed that the user will receive the message, especially if they are offline. See ephemeral message sending for more details.
                 reply_markup:
                   description: Additional interface options. A JSON-serialized object for an inline keyboard, custom reply keyboard, instructions to remove a reply keyboard or to force a reply from the user.
                   oneOf:
@@ -7122,9 +7117,6 @@ paths:
                 business_connection_id:
                   type: string
                   description: Unique identifier of the business connection on behalf of which the message will be sent
-                callback_query_id:
-                  type: string
-                  description: For outgoing ephemeral messages, identifier of the callback query which triggered the message if any
                 caption:
                   type: string
                   description: Document caption (may also be used when resending documents by file_id), 0-1024 characters after entities parsing
@@ -7148,6 +7140,9 @@ paths:
                   type: string
                   format: binary
                   description: File to send. Pass a file_id as String to send a file that exists on the Telegram servers (recommended), pass an HTTP URL as a String for Telegram to get a file from the Internet, or upload a new one using multipart/form-data. More information on Sending Files »
+                ephemeral_message_parameters:
+                  type: string
+                  description: A JSON-serialized object containing the parameters of the ephemeral message to send
                 message_effect_id:
                   type: string
                   description: Unique identifier of the message effect to be added to the message; for private chats only
@@ -7160,9 +7155,6 @@ paths:
                 protect_content:
                   type: boolean
                   description: Protects the contents of the sent message from forwarding and saving
-                receiver_user_id:
-                  type: integer
-                  description: For outgoing ephemeral messages, unique identifier of the user who will receive the message; for group and supergroup chats only. It is not guaranteed that the user will receive the message, especially if they are offline. See ephemeral message sending for more details.
                 reply_markup:
                   description: Additional interface options. A JSON-serialized object for an inline keyboard, custom reply keyboard, instructions to remove a reply keyboard or to force a reply from the user.
                   oneOf:
@@ -7521,9 +7513,6 @@ paths:
                 business_connection_id:
                   type: string
                   description: Unique identifier of the business connection on behalf of which the message will be sent
-                callback_query_id:
-                  type: string
-                  description: For outgoing ephemeral messages, identifier of the callback query which triggered the message if any
                 caption:
                   type: string
                   description: Video caption (may also be used when resending videos by file_id), 0-1024 characters after entities parsing
@@ -7542,6 +7531,10 @@ paths:
                 disable_notification:
                   type: boolean
                   description: Sends the message silently. Users will receive a notification with no sound.
+                ephemeral_message_parameters:
+                  description: A JSON-serialized object containing the parameters of the ephemeral message to send
+                  allOf:
+                      - $ref: '#/components/schemas/EphemeralMessageParameters'
                 has_spoiler:
                   type: boolean
                   description: Pass True if the video needs to be covered with a spoiler animation
@@ -7563,9 +7556,6 @@ paths:
                 protect_content:
                   type: boolean
                   description: Protects the contents of the sent message from forwarding and saving
-                receiver_user_id:
-                  type: integer
-                  description: For outgoing ephemeral messages, unique identifier of the user who will receive the message; for group and supergroup chats only. It is not guaranteed that the user will receive the message, especially if they are offline. See ephemeral message sending for more details.
                 reply_markup:
                   description: Additional interface options. A JSON-serialized object for an inline keyboard, custom reply keyboard, instructions to remove a reply keyboard or to force a reply from the user.
                   oneOf:
@@ -7598,9 +7588,6 @@ paths:
                 business_connection_id:
                   type: string
                   description: Unique identifier of the business connection on behalf of which the message will be sent
-                callback_query_id:
-                  type: string
-                  description: For outgoing ephemeral messages, identifier of the callback query which triggered the message if any
                 caption:
                   type: string
                   description: Video caption (may also be used when resending videos by file_id), 0-1024 characters after entities parsing
@@ -7617,6 +7604,9 @@ paths:
                 disable_notification:
                   type: boolean
                   description: Sends the message silently. Users will receive a notification with no sound.
+                ephemeral_message_parameters:
+                  type: string
+                  description: A JSON-serialized object containing the parameters of the ephemeral message to send
                 has_spoiler:
                   type: boolean
                   description: Pass True if the video needs to be covered with a spoiler animation
@@ -7640,9 +7630,6 @@ paths:
                 protect_content:
                   type: boolean
                   description: Protects the contents of the sent message from forwarding and saving
-                receiver_user_id:
-                  type: integer
-                  description: For outgoing ephemeral messages, unique identifier of the user who will receive the message; for group and supergroup chats only. It is not guaranteed that the user will receive the message, especially if they are offline. See ephemeral message sending for more details.
                 reply_markup:
                   description: Additional interface options. A JSON-serialized object for an inline keyboard, custom reply keyboard, instructions to remove a reply keyboard or to force a reply from the user.
                   oneOf:
@@ -7710,9 +7697,6 @@ paths:
                 business_connection_id:
                   type: string
                   description: Unique identifier of the business connection on behalf of which the message will be sent
-                callback_query_id:
-                  type: string
-                  description: For outgoing ephemeral messages, identifier of the callback query which triggered the message if any
                 chat_id:
                   type: integer
                   format: int64
@@ -7723,6 +7707,10 @@ paths:
                 disable_notification:
                   type: boolean
                   description: Sends the message silently. Users will receive a notification with no sound.
+                ephemeral_message_parameters:
+                  description: A JSON-serialized object containing the parameters of the ephemeral message to send
+                  allOf:
+                      - $ref: '#/components/schemas/EphemeralMessageParameters'
                 heading:
                   type: integer
                   description: For live locations, a direction in which the user is moving, in degrees. Must be between 1 and 360 if specified.
@@ -7750,9 +7738,6 @@ paths:
                 proximity_alert_radius:
                   type: integer
                   description: For live locations, a maximum distance for proximity alerts about approaching another chat member, in meters. Must be between 1 and 100000 if specified.
-                receiver_user_id:
-                  type: integer
-                  description: For outgoing ephemeral messages, unique identifier of the user who will receive the message; for group and supergroup chats only. It is not guaranteed that the user will receive the message, especially if they are offline. See ephemeral message sending for more details.
                 reply_markup:
                   description: Additional interface options. A JSON-serialized object for an inline keyboard, custom reply keyboard, instructions to remove a reply keyboard or to force a reply from the user.
                   oneOf:
@@ -7941,9 +7926,6 @@ paths:
                 business_connection_id:
                   type: string
                   description: Unique identifier of the business connection on behalf of which the message will be sent
-                callback_query_id:
-                  type: string
-                  description: For outgoing ephemeral messages, identifier of the callback query which triggered the message if any
                 chat_id:
                   type: integer
                   format: int64
@@ -7959,6 +7941,10 @@ paths:
                   description: A JSON-serialized list of special entities that appear in message text, which can be specified instead of parse_mode
                   items:
                       $ref: '#/components/schemas/MessageEntity'
+                ephemeral_message_parameters:
+                  description: A JSON-serialized object containing the parameters of the ephemeral message to send
+                  allOf:
+                      - $ref: '#/components/schemas/EphemeralMessageParameters'
                 link_preview_options:
                   description: Link preview generation options for the message
                   allOf:
@@ -7975,9 +7961,6 @@ paths:
                 protect_content:
                   type: boolean
                   description: Protects the contents of the sent message from forwarding and saving
-                receiver_user_id:
-                  type: integer
-                  description: For outgoing ephemeral messages, unique identifier of the user who will receive the message; for group and supergroup chats only. It is not guaranteed that the user will receive the message, especially if they are offline. See ephemeral message sending for more details.
                 reply_markup:
                   description: Additional interface options. A JSON-serialized object for an inline keyboard, custom reply keyboard, instructions to remove a reply keyboard or to force a reply from the user.
                   oneOf:
@@ -8039,18 +8022,24 @@ paths:
             schema:
               type: object
               properties:
+                can_stop:
+                  type: boolean
+                  description: Pass True to show the user a button to stop further drafts. The bot will receive an Update “stopped_message_generation” if the user presses the button.
                 chat_id:
                   type: integer
                   format: int64
                   description: Unique identifier for the target private chat
                 draft_id:
                   type: integer
-                  description: Unique identifier of the message draft; must be non-zero. Changes to drafts with the same identifier are animated.
+                  description: Unique identifier of the message draft; must be non-zero. Changes to drafts with the same identifier are animated. Otherwise, the draft is replaced without animation.
                 entities:
                   type: array
                   description: A JSON-serialized list of special entities that appear in message text, which can be specified instead of parse_mode
                   items:
                       $ref: '#/components/schemas/MessageEntity'
+                keep_on_stop:
+                  type: boolean
+                  description: Pass True to keep the draft in the chat when the button is pressed. The draft will still disappear after a short time or if the bot sends a message. To fully preserve the partial draft, the bot should send it as a new message.
                 message_thread_id:
                   type: integer
                   description: Unique identifier for the target message thread
@@ -8216,9 +8205,6 @@ paths:
                 business_connection_id:
                   type: string
                   description: Unique identifier of the business connection on behalf of which the message will be sent
-                callback_query_id:
-                  type: string
-                  description: For outgoing ephemeral messages, identifier of the callback query which triggered the message if any
                 caption:
                   type: string
                   description: Photo caption (may also be used when resending photos by file_id), 0-1024 characters after entities parsing
@@ -8237,6 +8223,10 @@ paths:
                 disable_notification:
                   type: boolean
                   description: Sends the message silently. Users will receive a notification with no sound.
+                ephemeral_message_parameters:
+                  description: A JSON-serialized object containing the parameters of the ephemeral message to send
+                  allOf:
+                      - $ref: '#/components/schemas/EphemeralMessageParameters'
                 has_spoiler:
                   type: boolean
                   description: Pass True if the photo needs to be covered with a spoiler animation
@@ -8255,9 +8245,6 @@ paths:
                 protect_content:
                   type: boolean
                   description: Protects the contents of the sent message from forwarding and saving
-                receiver_user_id:
-                  type: integer
-                  description: For outgoing ephemeral messages, unique identifier of the user who will receive the message; for group and supergroup chats only. It is not guaranteed that the user will receive the message, especially if they are offline. See ephemeral message sending for more details.
                 reply_markup:
                   description: Additional interface options. A JSON-serialized object for an inline keyboard, custom reply keyboard, instructions to remove a reply keyboard or to force a reply from the user.
                   oneOf:
@@ -8289,9 +8276,6 @@ paths:
                 business_connection_id:
                   type: string
                   description: Unique identifier of the business connection on behalf of which the message will be sent
-                callback_query_id:
-                  type: string
-                  description: For outgoing ephemeral messages, identifier of the callback query which triggered the message if any
                 caption:
                   type: string
                   description: Photo caption (may also be used when resending photos by file_id), 0-1024 characters after entities parsing
@@ -8308,6 +8292,9 @@ paths:
                 disable_notification:
                   type: boolean
                   description: Sends the message silently. Users will receive a notification with no sound.
+                ephemeral_message_parameters:
+                  type: string
+                  description: A JSON-serialized object containing the parameters of the ephemeral message to send
                 has_spoiler:
                   type: boolean
                   description: Pass True if the photo needs to be covered with a spoiler animation
@@ -8327,9 +8314,6 @@ paths:
                 protect_content:
                   type: boolean
                   description: Protects the contents of the sent message from forwarding and saving
-                receiver_user_id:
-                  type: integer
-                  description: For outgoing ephemeral messages, unique identifier of the user who will receive the message; for group and supergroup chats only. It is not guaranteed that the user will receive the message, especially if they are offline. See ephemeral message sending for more details.
                 reply_markup:
                   description: Additional interface options. A JSON-serialized object for an inline keyboard, custom reply keyboard, instructions to remove a reply keyboard or to force a reply from the user.
                   oneOf:
@@ -8572,6 +8556,10 @@ paths:
                 disable_notification:
                   type: boolean
                   description: Sends the message silently. Users will receive a notification with no sound.
+                ephemeral_message_parameters:
+                  description: A JSON-serialized object containing the parameters of the ephemeral message to send
+                  allOf:
+                      - $ref: '#/components/schemas/EphemeralMessageParameters'
                 message_effect_id:
                   type: string
                   description: Unique identifier of the message effect to be added to the message; for private chats only
@@ -8643,18 +8631,24 @@ paths:
             schema:
               type: object
               properties:
+                can_stop:
+                  type: boolean
+                  description: Pass True to show the user a button to stop further drafts. The bot will receive an Update “stopped_message_generation” if the user presses the button.
                 chat_id:
                   type: integer
                   format: int64
                   description: Unique identifier for the target private chat
                 draft_id:
                   type: integer
-                  description: Unique identifier of the message draft; must be non-zero. Changes to drafts with the same identifier are animated.
+                  description: Unique identifier of the message draft; must be non-zero. Changes to drafts with the same identifier are animated. Otherwise, the draft is replaced without animation.
+                keep_on_stop:
+                  type: boolean
+                  description: Pass True to keep the draft in the chat when the button is pressed. The draft will still disappear after a short time or if the bot sends a message. To fully preserve the partial draft, the bot should send it as a new message.
                 message_thread_id:
                   type: integer
                   description: Unique identifier for the target message thread
                 rich_message:
-                  description: The partial message to be streamed. Direct upload of new files isn't supported.
+                  description: The partial message to be streamed. Direct upload of new files and explicit upload of files by a URL isn't supported.
                   allOf:
                       - $ref: '#/components/schemas/InputRichMessage'
               required:
@@ -8708,9 +8702,6 @@ paths:
                 business_connection_id:
                   type: string
                   description: Unique identifier of the business connection on behalf of which the message will be sent
-                callback_query_id:
-                  type: string
-                  description: For outgoing ephemeral messages, identifier of the callback query which triggered the message if any
                 chat_id:
                   type: integer
                   format: int64
@@ -8724,6 +8715,10 @@ paths:
                 emoji:
                   type: string
                   description: Emoji associated with the sticker; only for just uploaded stickers
+                ephemeral_message_parameters:
+                  description: A JSON-serialized object containing the parameters of the ephemeral message to send
+                  allOf:
+                      - $ref: '#/components/schemas/EphemeralMessageParameters'
                 message_effect_id:
                   type: string
                   description: Unique identifier of the message effect to be added to the message; for private chats only
@@ -8733,9 +8728,6 @@ paths:
                 protect_content:
                   type: boolean
                   description: Protects the contents of the sent message from forwarding and saving
-                receiver_user_id:
-                  type: integer
-                  description: For outgoing ephemeral messages, unique identifier of the user who will receive the message; for group and supergroup chats only. It is not guaranteed that the user will receive the message, especially if they are offline. See ephemeral message sending for more details.
                 reply_markup:
                   description: Additional interface options. A JSON-serialized object for an inline keyboard, custom reply keyboard, instructions to remove a reply keyboard or to force a reply from the user.
                   oneOf:
@@ -8767,9 +8759,6 @@ paths:
                 business_connection_id:
                   type: string
                   description: Unique identifier of the business connection on behalf of which the message will be sent
-                callback_query_id:
-                  type: string
-                  description: For outgoing ephemeral messages, identifier of the callback query which triggered the message if any
                 chat_id:
                   type: integer
                   format: int64
@@ -8783,6 +8772,9 @@ paths:
                 emoji:
                   type: string
                   description: Emoji associated with the sticker; only for just uploaded stickers
+                ephemeral_message_parameters:
+                  type: string
+                  description: A JSON-serialized object containing the parameters of the ephemeral message to send
                 message_effect_id:
                   type: string
                   description: Unique identifier of the message effect to be added to the message; for private chats only
@@ -8792,9 +8784,6 @@ paths:
                 protect_content:
                   type: boolean
                   description: Protects the contents of the sent message from forwarding and saving
-                receiver_user_id:
-                  type: integer
-                  description: For outgoing ephemeral messages, unique identifier of the user who will receive the message; for group and supergroup chats only. It is not guaranteed that the user will receive the message, especially if they are offline. See ephemeral message sending for more details.
                 reply_markup:
                   description: Additional interface options. A JSON-serialized object for an inline keyboard, custom reply keyboard, instructions to remove a reply keyboard or to force a reply from the user.
                   oneOf:
@@ -8865,9 +8854,6 @@ paths:
                 business_connection_id:
                   type: string
                   description: Unique identifier of the business connection on behalf of which the message will be sent
-                callback_query_id:
-                  type: string
-                  description: For outgoing ephemeral messages, identifier of the callback query which triggered the message if any
                 chat_id:
                   type: integer
                   format: int64
@@ -8878,6 +8864,10 @@ paths:
                 disable_notification:
                   type: boolean
                   description: Sends the message silently. Users will receive a notification with no sound.
+                ephemeral_message_parameters:
+                  description: A JSON-serialized object containing the parameters of the ephemeral message to send
+                  allOf:
+                      - $ref: '#/components/schemas/EphemeralMessageParameters'
                 foursquare_id:
                   type: string
                   description: Foursquare identifier of the venue
@@ -8905,9 +8895,6 @@ paths:
                 protect_content:
                   type: boolean
                   description: Protects the contents of the sent message from forwarding and saving
-                receiver_user_id:
-                  type: integer
-                  description: For outgoing ephemeral messages, unique identifier of the user who will receive the message; for group and supergroup chats only. It is not guaranteed that the user will receive the message, especially if they are offline. See ephemeral message sending for more details.
                 reply_markup:
                   description: Additional interface options. A JSON-serialized object for an inline keyboard, custom reply keyboard, instructions to remove a reply keyboard or to force a reply from the user.
                   oneOf:
@@ -8978,9 +8965,6 @@ paths:
                 business_connection_id:
                   type: string
                   description: Unique identifier of the business connection on behalf of which the message will be sent
-                callback_query_id:
-                  type: string
-                  description: For outgoing ephemeral messages, identifier of the callback query which triggered the message if any
                 caption:
                   type: string
                   description: Video caption (may also be used when resending videos by file_id), 0-1024 characters after entities parsing
@@ -9005,6 +8989,10 @@ paths:
                 duration:
                   type: integer
                   description: Duration of sent video in seconds
+                ephemeral_message_parameters:
+                  description: A JSON-serialized object containing the parameters of the ephemeral message to send
+                  allOf:
+                      - $ref: '#/components/schemas/EphemeralMessageParameters'
                 has_spoiler:
                   type: boolean
                   description: Pass True if the video needs to be covered with a spoiler animation
@@ -9023,9 +9011,6 @@ paths:
                 protect_content:
                   type: boolean
                   description: Protects the contents of the sent message from forwarding and saving
-                receiver_user_id:
-                  type: integer
-                  description: For outgoing ephemeral messages, unique identifier of the user who will receive the message; for group and supergroup chats only. It is not guaranteed that the user will receive the message, especially if they are offline. See ephemeral message sending for more details.
                 reply_markup:
                   description: Additional interface options. A JSON-serialized object for an inline keyboard, custom reply keyboard, instructions to remove a reply keyboard or to force a reply from the user.
                   oneOf:
@@ -9072,9 +9057,6 @@ paths:
                 business_connection_id:
                   type: string
                   description: Unique identifier of the business connection on behalf of which the message will be sent
-                callback_query_id:
-                  type: string
-                  description: For outgoing ephemeral messages, identifier of the callback query which triggered the message if any
                 caption:
                   type: string
                   description: Video caption (may also be used when resending videos by file_id), 0-1024 characters after entities parsing
@@ -9098,6 +9080,9 @@ paths:
                 duration:
                   type: integer
                   description: Duration of sent video in seconds
+                ephemeral_message_parameters:
+                  type: string
+                  description: A JSON-serialized object containing the parameters of the ephemeral message to send
                 has_spoiler:
                   type: boolean
                   description: Pass True if the video needs to be covered with a spoiler animation
@@ -9116,9 +9101,6 @@ paths:
                 protect_content:
                   type: boolean
                   description: Protects the contents of the sent message from forwarding and saving
-                receiver_user_id:
-                  type: integer
-                  description: For outgoing ephemeral messages, unique identifier of the user who will receive the message; for group and supergroup chats only. It is not guaranteed that the user will receive the message, especially if they are offline. See ephemeral message sending for more details.
                 reply_markup:
                   description: Additional interface options. A JSON-serialized object for an inline keyboard, custom reply keyboard, instructions to remove a reply keyboard or to force a reply from the user.
                   oneOf:
@@ -9188,7 +9170,7 @@ paths:
       tags:
         - Available methods
       description: |-
-        As of v.4.0, Telegram clients support rounded square MPEG4 videos of up to 1 minute long. Use this method to send video messages. On success, the sent Message is returned.
+        Use this method to send a rounded square MPEG4 video of up to 1 minute long. On success, the sent Message is returned.
       requestBody:
         required: true
         content:
@@ -9202,9 +9184,6 @@ paths:
                 business_connection_id:
                   type: string
                   description: Unique identifier of the business connection on behalf of which the message will be sent
-                callback_query_id:
-                  type: string
-                  description: For outgoing ephemeral messages, identifier of the callback query which triggered the message if any
                 chat_id:
                   type: integer
                   format: int64
@@ -9218,6 +9197,10 @@ paths:
                 duration:
                   type: integer
                   description: Duration of sent video in seconds
+                ephemeral_message_parameters:
+                  description: A JSON-serialized object containing the parameters of the ephemeral message to send
+                  allOf:
+                      - $ref: '#/components/schemas/EphemeralMessageParameters'
                 length:
                   type: integer
                   description: Video width and height, i.e. diameter of the video message
@@ -9230,9 +9213,6 @@ paths:
                 protect_content:
                   type: boolean
                   description: Protects the contents of the sent message from forwarding and saving
-                receiver_user_id:
-                  type: integer
-                  description: For outgoing ephemeral messages, unique identifier of the user who will receive the message; for group and supergroup chats only. It is not guaranteed that the user will receive the message, especially if they are offline. See ephemeral message sending for more details.
                 reply_markup:
                   description: Additional interface options. A JSON-serialized object for an inline keyboard, custom reply keyboard, instructions to remove a reply keyboard or to force a reply from the user.
                   oneOf:
@@ -9267,9 +9247,6 @@ paths:
                 business_connection_id:
                   type: string
                   description: Unique identifier of the business connection on behalf of which the message will be sent
-                callback_query_id:
-                  type: string
-                  description: For outgoing ephemeral messages, identifier of the callback query which triggered the message if any
                 chat_id:
                   type: integer
                   format: int64
@@ -9283,6 +9260,9 @@ paths:
                 duration:
                   type: integer
                   description: Duration of sent video in seconds
+                ephemeral_message_parameters:
+                  type: string
+                  description: A JSON-serialized object containing the parameters of the ephemeral message to send
                 length:
                   type: integer
                   description: Video width and height, i.e. diameter of the video message
@@ -9295,9 +9275,6 @@ paths:
                 protect_content:
                   type: boolean
                   description: Protects the contents of the sent message from forwarding and saving
-                receiver_user_id:
-                  type: integer
-                  description: For outgoing ephemeral messages, unique identifier of the user who will receive the message; for group and supergroup chats only. It is not guaranteed that the user will receive the message, especially if they are offline. See ephemeral message sending for more details.
                 reply_markup:
                   description: Additional interface options. A JSON-serialized object for an inline keyboard, custom reply keyboard, instructions to remove a reply keyboard or to force a reply from the user.
                   oneOf:
@@ -9369,9 +9346,6 @@ paths:
                 business_connection_id:
                   type: string
                   description: Unique identifier of the business connection on behalf of which the message will be sent
-                callback_query_id:
-                  type: string
-                  description: For outgoing ephemeral messages, identifier of the callback query which triggered the message if any
                 caption:
                   type: string
                   description: Voice message caption, 0-1024 characters after entities parsing
@@ -9393,6 +9367,10 @@ paths:
                 duration:
                   type: integer
                   description: Duration of the voice message in seconds
+                ephemeral_message_parameters:
+                  description: A JSON-serialized object containing the parameters of the ephemeral message to send
+                  allOf:
+                      - $ref: '#/components/schemas/EphemeralMessageParameters'
                 message_effect_id:
                   type: string
                   description: Unique identifier of the message effect to be added to the message; for private chats only
@@ -9405,9 +9383,6 @@ paths:
                 protect_content:
                   type: boolean
                   description: Protects the contents of the sent message from forwarding and saving
-                receiver_user_id:
-                  type: integer
-                  description: For outgoing ephemeral messages, unique identifier of the user who will receive the message; for group and supergroup chats only. It is not guaranteed that the user will receive the message, especially if they are offline. See ephemeral message sending for more details.
                 reply_markup:
                   description: Additional interface options. A JSON-serialized object for an inline keyboard, custom reply keyboard, instructions to remove a reply keyboard or to force a reply from the user.
                   oneOf:
@@ -9439,9 +9414,6 @@ paths:
                 business_connection_id:
                   type: string
                   description: Unique identifier of the business connection on behalf of which the message will be sent
-                callback_query_id:
-                  type: string
-                  description: For outgoing ephemeral messages, identifier of the callback query which triggered the message if any
                 caption:
                   type: string
                   description: Voice message caption, 0-1024 characters after entities parsing
@@ -9461,6 +9433,9 @@ paths:
                 duration:
                   type: integer
                   description: Duration of the voice message in seconds
+                ephemeral_message_parameters:
+                  type: string
+                  description: A JSON-serialized object containing the parameters of the ephemeral message to send
                 message_effect_id:
                   type: string
                   description: Unique identifier of the message effect to be added to the message; for private chats only
@@ -9473,9 +9448,6 @@ paths:
                 protect_content:
                   type: boolean
                   description: Protects the contents of the sent message from forwarding and saving
-                receiver_user_id:
-                  type: integer
-                  description: For outgoing ephemeral messages, unique identifier of the user who will receive the message; for group and supergroup chats only. It is not guaranteed that the user will receive the message, especially if they are offline. See ephemeral message sending for more details.
                 reply_markup:
                   description: Additional interface options. A JSON-serialized object for an inline keyboard, custom reply keyboard, instructions to remove a reply keyboard or to force a reply from the user.
                   oneOf:
@@ -12929,7 +12901,10 @@ components:
           description: Optional. True, if the administrator can manage direct messages of the channel and decline suggested posts; for channels only
         can_manage_tags:
           type: boolean
-          description: Optional. True, if the administrator can edit the tags of regular members; for groups and supergroups only. If omitted, defaults to the value of can_pin_messages.
+          description: Optional. True, if the administrator can edit the tags of regular members; for groups and supergroups only
+        can_send_welcome_messages:
+          type: boolean
+          description: True, if the administrator can manage chat welcome messages or directly send them in the case of bots
       required:
         - is_anonymous
         - can_manage_chat
@@ -12942,6 +12917,7 @@ components:
         - can_post_stories
         - can_edit_stories
         - can_delete_stories
+        - can_send_welcome_messages
    ChatBackground:
       type: object
       description: |-
@@ -13492,7 +13468,10 @@ components:
           description: Optional. True, if the administrator can manage direct messages of the channel and decline suggested posts; for channels only
         can_manage_tags:
           type: boolean
-          description: Optional. True, if the administrator can edit the tags of regular members; for groups and supergroups only. If omitted, defaults to the value of can_pin_messages.
+          description: Optional. True, if the administrator can edit the tags of regular members; for groups and supergroups only
+        can_send_welcome_messages:
+          type: boolean
+          description: True, if the administrator can manage chat welcome messages or directly send them in the case of bots
         custom_title:
           type: string
           description: Optional. Custom title for this user
@@ -13511,6 +13490,7 @@ components:
         - can_post_stories
         - can_edit_stories
         - can_delete_stories
+        - can_send_welcome_messages
    ChatMemberBanned:
       type: object
       description: |-
@@ -14011,12 +13991,25 @@ components:
    CommunityChatAdded:
       type: object
       description: |-
-        Describes a service message about a chat being added to a community.
+        Describes a service message about a chat or a bot being added to a community.
       x-tags:
         - Available types
       properties:
         community:
-          description: The new community to which the chat belongs
+          description: The new community to which the chat or the bot belongs
+          allOf:
+              - $ref: '#/components/schemas/Community'
+      required:
+        - community
+   CommunityChatJoined:
+      type: object
+      description: |-
+        Describes a service message about a chat being joined by a user from a community.
+      x-tags:
+        - Available types
+      properties:
+        community:
+          description: The community from which the chat was joined
           allOf:
               - $ref: '#/components/schemas/Community'
       required:
@@ -14024,7 +14017,7 @@ components:
    CommunityChatRemoved:
       type: object
       description: |-
-        Describes a service message about a chat being removed from a community. Currently holds no information.
+        Describes a service message about a chat or a bot being removed from a community. Currently holds no information.
       x-tags:
         - Available types
    Contact:
@@ -14113,6 +14106,12 @@ components:
               - $ref: '#/components/schemas/User'
       required:
         - topic_id
+   DisabledButton:
+      type: object
+      description: |-
+        This object represents a disabled button which does nothing. Currently holds no information.
+      x-tags:
+        - Available types
    Document:
       type: object
       description: |-
@@ -14210,6 +14209,23 @@ components:
       required:
         - type
         - hash
+   EphemeralMessageParameters:
+      type: object
+      description: |-
+      x-tags:
+        - Available types
+      properties:
+        receiver_user_id:
+          type: integer
+          description: Identifier of the user who will receive the message. It is not guaranteed that the user will receive the message, especially if they are offline. See here for more details.
+        callback_query_id:
+          type: string
+          description: Optional. Identifier of the callback query which triggered the message, if any
+        replace_callback_query_message:
+          type: boolean
+          description: Optional. Pass True if the ephemeral message must be shown in place of the original message. Must be False for callback queries from ephemeral messages, which must be edited using regular editEphemeralMessage… methods.
+      required:
+        - receiver_user_id
    ExternalReplyInfo:
       type: object
       description: |-
@@ -14355,7 +14371,7 @@ components:
       properties:
         force_reply:
           type: boolean
-          description: Shows reply interface to the user, as if they manually selected the bot's message and tapped 'Reply'
+          description: Shows reply interface to the user, as if they had manually selected the bot's message and tapped 'Reply'
           default: true
         input_field_placeholder:
           type: string
@@ -14820,7 +14836,7 @@ components:
           allOf:
               - $ref: '#/components/schemas/WebAppInfo'
         login_url:
-          description: Optional. An HTTPS URL used to automatically authorize the user. Can be used as a replacement for the Telegram Login Widget.
+          description: Optional. An HTTPS URL used to automatically authorize the user. Can be used as a replacement for the Telegram Login Widget. Not supported for ephemeral messages.
           allOf:
               - $ref: '#/components/schemas/LoginUrl'
         switch_inline_query:
@@ -14844,6 +14860,10 @@ components:
         pay:
           type: boolean
           description: 'Optional. Specify True, to send a Pay button. Substrings “” and “XTR” in the buttons''s text will be replaced with a Telegram Star icon.NOTE: This type of button must always be the first button in the first row and can only be used in invoice messages.'
+        disabled:
+          description: Optional. If set, then the button is disabled and does nothing
+          allOf:
+              - $ref: '#/components/schemas/DisabledButton'
       required:
         - text
    InlineKeyboardMarkup:
@@ -14860,6 +14880,9 @@ components:
               type: array
               items:
                   $ref: '#/components/schemas/InlineKeyboardButton'
+        force_reply:
+          type: boolean
+          description: Optional. Pass True if the reply interface must be shown to the user, as if they had manually selected the bot's message and tapped 'Reply'. The value of the field can't be changed when the inline keyboard is edited.
       required:
         - inline_keyboard
    InlineQuery:
@@ -16682,14 +16705,17 @@ components:
         InputRichBlockAnchor
         InputRichBlockList
         InputRichBlockBlockQuotation
+        InputRichBlockExpandableBlockQuotation
         InputRichBlockPullQuotation
         InputRichBlockCollage
         InputRichBlockSlideshow
         InputRichBlockTable
         InputRichBlockDetails
         InputRichBlockMap
+        InputRichBlockButtons
         InputRichBlockAnimation
         InputRichBlockAudio
+        InputRichBlockDocument
         InputRichBlockPhoto
         InputRichBlockVideo
         InputRichBlockVoiceNote
@@ -16776,6 +16802,27 @@ components:
       required:
         - type
         - blocks
+   InputRichBlockButtons:
+      type: object
+      description: |-
+        A block containing a list of buttons that are shown in one row, corresponding to the custom HTML tag <tg-button-row>.
+      x-tags:
+        - Rich messages
+      properties:
+        type:
+          type: string
+          description: Type of the block, always “buttons”
+        buttons:
+          type: array
+          description: List of 1-8 buttons to send
+          items:
+              $ref: '#/components/schemas/RichMessageButton'
+        align:
+          type: string
+          description: Optional. Horizontal alignment of the buttons. Currently, must be one of “left”, “center”, or “right”.
+      required:
+        - type
+        - buttons
    InputRichBlockCollage:
       type: object
       description: |-
@@ -16837,6 +16884,48 @@ components:
           description: Type of the block, always “divider”
       required:
         - type
+   InputRichBlockDocument:
+      type: object
+      description: |-
+        A block with a general file, corresponding to the custom HTML tag <tg-document>.
+      x-tags:
+        - Rich messages
+      properties:
+        type:
+          type: string
+          description: Type of the block, always “document”
+        document:
+          description: The document. Caption is ignored.
+          allOf:
+              - $ref: '#/components/schemas/InputMediaDocument'
+        caption:
+          description: Optional. Caption of the block
+          allOf:
+              - $ref: '#/components/schemas/RichBlockCaption'
+      required:
+        - type
+        - document
+   InputRichBlockExpandableBlockQuotation:
+      type: object
+      description: |-
+        A block quotation, corresponding to the HTML tag <blockquote> with custom attribute "expandable".
+      x-tags:
+        - Rich messages
+      properties:
+        type:
+          type: string
+          description: Type of the block, always “expandable_blockquote”
+        text:
+          description: Content of the block
+          allOf:
+              - $ref: '#/components/schemas/RichText'
+        credit:
+          description: Optional. Credit of the block
+          allOf:
+              - $ref: '#/components/schemas/RichText'
+      required:
+        - type
+        - text
    InputRichBlockFooter:
       type: object
       description: |-
@@ -16916,13 +17005,13 @@ components:
               - $ref: '#/components/schemas/Location'
         zoom:
           type: integer
-          description: Map zoom level; 0-24
+          description: Optional. Map zoom level; 0-24
         width:
           type: integer
-          description: Map width; 0-10000
+          description: Optional. Map width; 0-10000
         height:
           type: integer
-          description: Map height; 0-10000
+          description: Optional. Map height; 0-10000
         caption:
           description: Optional. Caption of the block
           allOf:
@@ -16930,9 +17019,6 @@ components:
       required:
         - type
         - location
-        - zoom
-        - width
-        - height
    InputRichBlockMathematicalExpression:
       type: object
       description: |-
@@ -17096,6 +17182,10 @@ components:
           type: boolean
           description: Optional. Pass True if the table is striped
           default: true
+        is_compact:
+          type: boolean
+          description: Optional. Pass True if table cells must have smaller indents
+          default: true
         caption:
           description: Optional. Caption of the table
           allOf:
@@ -17182,7 +17272,7 @@ components:
           description: Optional. Content of the rich message to send described using Markdown formatting. See rich message formatting options for more details. Use media field to specify the media used in the message.
         media:
           type: array
-          description: Optional. List of media that are specified in the markdown or html fields using tg://photo?id=, tg://video?id=, and tg://audio?id= links
+          description: Optional. List of media that are specified in the markdown or html fields using tg://photo?id=, tg://video?id=, tg://document?id=, and tg://audio?id= links
           items:
               $ref: '#/components/schemas/InputRichMessageMedia'
         is_rtl:
@@ -17199,7 +17289,7 @@ components:
         - Inline mode
       properties:
         rich_message:
-          description: The message to be sent
+          description: The message to be sent. Only previously uploaded files may be used in the message.
           allOf:
               - $ref: '#/components/schemas/InputRichMessage'
       required:
@@ -17213,12 +17303,13 @@ components:
       properties:
         id:
           type: string
-          description: Unique identifier of the media used in a tg://photo?id=, tg://video?id=, or tg://audio?id= link. 1-64 characters, only A-Z, a-z, 0-9, _ and - are allowed.
+          description: Unique identifier of the media used in a tg://photo?id=, tg://video?id=, tg://document?id=, or tg://audio?id= link. 1-64 characters, only A-Z, a-z, 0-9, _ and - are allowed.
         media:
           description: The media to be sent. Everything except the media itself and its properties is ignored.
           oneOf:
               - $ref: '#/components/schemas/InputMediaAnimation'
               - $ref: '#/components/schemas/InputMediaAudio'
+              - $ref: '#/components/schemas/InputMediaDocument'
               - $ref: '#/components/schemas/InputMediaPhoto'
               - $ref: '#/components/schemas/InputMediaVideo'
               - $ref: '#/components/schemas/InputMediaVoiceNote'
@@ -17682,8 +17773,7 @@ components:
    LoginUrl:
       type: object
       description: |-
-        This object represents a parameter of the inline keyboard button used to automatically authorize a user. Serves as a great replacement for the Telegram Login Widget when the user is coming from Telegram. All the user needs to do is tap/click a button and confirm that they want to log in:
-        Telegram apps support these buttons as of version 5.7.
+        This object represents a parameter of the inline keyboard button used to automatically authorize a user. It serves as a great replacement for the Telegram Login Widget when the user is coming from Telegram. All the user needs to do is tap/click a button and confirm that they want to log in:
       x-tags:
         - Available types
       properties:
@@ -17695,7 +17785,7 @@ components:
           description: Optional. New text of the button in forwarded messages
         bot_username:
           type: string
-          description: Optional. Username of a bot, which will be used for user authorization. See Setting up a bot for more details. If not specified, the current bot's username will be assumed. The url's domain must be the same as the domain linked with the bot. See Linking your domain to the bot for more details.
+          description: Optional. Username of a bot, which will be used for user authorization; not supported in RichMessageButton. See Setting up a bot for more details. If not specified, the current bot's username will be assumed. The url's domain must be the same as the domain linked with the bot. See Linking your domain to the bot for more details.
         request_write_access:
           type: boolean
           description: Optional. Pass True to request the permission for your bot to send messages to the user
@@ -18177,11 +18267,15 @@ components:
           allOf:
               - $ref: '#/components/schemas/ChecklistTasksAdded'
         community_chat_added:
-          description: 'Optional. Service message: chat added to a Community'
+          description: 'Optional. Service message: chat or bot added to a Community'
           allOf:
               - $ref: '#/components/schemas/CommunityChatAdded'
+        community_chat_joined:
+          description: 'Optional. Service message: chat was joined by a user from a Community'
+          allOf:
+              - $ref: '#/components/schemas/CommunityChatJoined'
         community_chat_removed:
-          description: 'Optional. Service message: chat removed from a Community'
+          description: 'Optional. Service message: chat or bot removed from a Community'
           allOf:
               - $ref: '#/components/schemas/CommunityChatRemoved'
         direct_message_price_changed:
@@ -18343,6 +18437,26 @@ components:
         - type
         - offset
         - length
+   MessageGenerationStopped:
+      type: object
+      description: |-
+        This object describes an update about a user stopping message generation.
+      x-tags:
+        - Available types
+      properties:
+        chat:
+          description: Chat in which the message is generated
+          allOf:
+              - $ref: '#/components/schemas/Chat'
+        message_thread_id:
+          type: integer
+          description: Optional. Unique identifier of the message thread in which the message is generated
+        draft_id:
+          type: integer
+          description: Unique identifier of the message draft which was stopped
+      required:
+        - chat
+        - draft_id
    MessageId:
       type: object
       description: |-
@@ -19598,6 +19712,9 @@ components:
         selective:
           type: boolean
           description: 'Optional. Use this parameter if you want to show the keyboard to specific users only. Targets: 1) users that are @mentioned in the text of the Message object; 2) if the bot''s message is a reply to a message in the same chat and forum topic, sender of the original message.Example: A user requests to change the bot''s language, bot replies to the request with a keyboard to select the new language. Other users in the group don''t see the keyboard.'
+        force_reply:
+          type: boolean
+          description: Optional. Pass True if the reply interface must be shown to the user, as if they had manually selected the bot's message and tapped 'Reply'
       required:
         - keyboard
    ReplyKeyboardRemove:
@@ -19736,14 +19853,17 @@ components:
         RichBlockAnchor
         RichBlockList
         RichBlockBlockQuotation
+        RichBlockExpandableBlockQuotation
         RichBlockPullQuotation
         RichBlockCollage
         RichBlockSlideshow
         RichBlockTable
         RichBlockDetails
         RichBlockMap
+        RichBlockButtons
         RichBlockAnimation
         RichBlockAudio
+        RichBlockDocument
         RichBlockPhoto
         RichBlockVideo
         RichBlockVoiceNote
@@ -19834,6 +19954,27 @@ components:
       required:
         - type
         - blocks
+   RichBlockButtons:
+      type: object
+      description: |-
+        A block containing a list of buttons that are shown in one row, corresponding to the custom HTML tag <tg-button-row>.
+      x-tags:
+        - Rich messages
+      properties:
+        type:
+          type: string
+          description: Type of the block, always “buttons”
+        buttons:
+          type: array
+          description: The buttons
+          items:
+              $ref: '#/components/schemas/RichMessageButton'
+        align:
+          type: string
+          description: Optional. Horizontal alignment of the buttons. Currently, must be one of “left”, “center”, or “right”.
+      required:
+        - type
+        - buttons
    RichBlockCaption:
       type: object
       description: |-
@@ -19912,6 +20053,48 @@ components:
           description: Type of the block, always “divider”
       required:
         - type
+   RichBlockDocument:
+      type: object
+      description: |-
+        A block with a general file, corresponding to the custom HTML tag <tg-document>.
+      x-tags:
+        - Rich messages
+      properties:
+        type:
+          type: string
+          description: Type of the block, always “document”
+        document:
+          description: The document
+          allOf:
+              - $ref: '#/components/schemas/Document'
+        caption:
+          description: Optional. Caption of the block
+          allOf:
+              - $ref: '#/components/schemas/RichBlockCaption'
+      required:
+        - type
+        - document
+   RichBlockExpandableBlockQuotation:
+      type: object
+      description: |-
+        A block quotation, corresponding to the HTML tag <blockquote> with custom attribute "expandable".
+      x-tags:
+        - Rich messages
+      properties:
+        type:
+          type: string
+          description: Type of the block, always “expandable_blockquote”
+        text:
+          description: Content of the block
+          allOf:
+              - $ref: '#/components/schemas/RichText'
+        credit:
+          description: Optional. Credit of the block
+          allOf:
+              - $ref: '#/components/schemas/RichText'
+      required:
+        - type
+        - text
    RichBlockFooter:
       type: object
       description: |-
@@ -19995,7 +20178,7 @@ components:
               - $ref: '#/components/schemas/Location'
         zoom:
           type: integer
-          description: Map zoom level; 13-20
+          description: Map zoom level
         width:
           type: integer
           description: Expected width of the map
@@ -20180,6 +20363,10 @@ components:
           type: boolean
           description: Optional. True, if the table is striped
           default: true
+        is_compact:
+          type: boolean
+          description: Optional. True, if table cells have smaller indents
+          default: true
         caption:
           description: Optional. Caption of the table
           allOf:
@@ -20297,6 +20484,54 @@ components:
           description: Optional. True, if the rich message must be shown right-to-left
       required:
         - blocks
+   RichMessageButton:
+      type: object
+      description: |-
+        This object represents a button in a RichMessage. Exactly one of the fields other than text and style must be used to specify the type of the button.
+      x-tags:
+        - Rich messages
+      properties:
+        text:
+          description: Text of the button. May contain only plain text, RichTextCustomEmoji and RichTextDateTime entities.
+          allOf:
+              - $ref: '#/components/schemas/RichText'
+        style:
+          type: string
+          description: Optional. Style of the button. Must be one of “danger”, “success”, “primary”, or “link” (the button is shown as a regular link without borders). Apps may use theme-specific colors for the button background and text based on the style. The style “link” is allowed only for callback buttons.
+        url:
+          type: string
+          description: Optional. HTTP or tg:// URL to be opened when the button is pressed. Links tg://user?id=<user_id> can be used to mention a user by their identifier without using a username, if this is allowed by their privacy settings.
+        callback_data:
+          type: string
+          description: Optional. Data to be sent in a callback query to the bot when the button is pressed, 1-64 bytes
+        web_app:
+          description: Optional. Description of the Web App that will be launched when the user presses the button. The Web App will be able to send an arbitrary message on behalf of the user using the method answerWebAppQuery. Available only in private chats between a user and the bot. Not supported for messages sent on behalf of a business account.
+          allOf:
+              - $ref: '#/components/schemas/WebAppInfo'
+        login_url:
+          description: Optional. An HTTPS URL used to automatically authorize the user. Can be used as a replacement for the Telegram Login Widget. Not supported for ephemeral messages.
+          allOf:
+              - $ref: '#/components/schemas/LoginUrl'
+        switch_inline_query:
+          type: string
+          description: Optional. If set, pressing the button will prompt the user to select one of their chats, open that chat and insert the bot's username and the specified inline query in the input field. May be empty, in which case just the bot's username will be inserted. Not supported for messages sent in channel direct messages chats and on behalf of a business account.
+        switch_inline_query_current_chat:
+          type: string
+          description: Optional. If set, pressing the button will insert the bot's username and the specified inline query in the current chat's input field. May be empty, in which case only the bot's username will be inserted. Not supported in channels and for messages sent in channel direct messages chats and on behalf of a business account.
+        switch_inline_query_chosen_chat:
+          description: Optional. If set, pressing the button will prompt the user to select one of their chats of the specified type, open that chat and insert the bot's username and the specified inline query in the input field. Not supported for messages sent in channel direct messages chats and on behalf of a business account.
+          allOf:
+              - $ref: '#/components/schemas/SwitchInlineQueryChosenChat'
+        copy_text:
+          description: Optional. A button that copies the specified text to the clipboard
+          allOf:
+              - $ref: '#/components/schemas/CopyTextButton'
+        disabled:
+          description: Optional. If set, then the button is disabled and does nothing
+          allOf:
+              - $ref: '#/components/schemas/DisabledButton'
+      required:
+        - text
    RichText:
       type: object
       description: |-
@@ -20322,6 +20557,7 @@ components:
         RichTextHashtag
         RichTextCashtag
         RichTextBotCommand
+        RichTextButton
         RichTextAnchor
         RichTextAnchorLink
         RichTextReference
@@ -20424,6 +20660,23 @@ components:
         - type
         - text
         - bot_command
+   RichTextButton:
+      type: object
+      description: |-
+        A button.
+      x-tags:
+        - Rich messages
+      properties:
+        type:
+          type: string
+          description: Type of the rich text, always “button”
+        button:
+          description: The button
+          allOf:
+              - $ref: '#/components/schemas/RichMessageButton'
+      required:
+        - type
+        - button
    RichTextCashtag:
       type: object
       description: |-
@@ -21817,6 +22070,18 @@ components:
         origin:
           type: string
           description: Origin of the gift. Currently, either “upgrade” for gifts upgraded from regular gifts, “transfer” for gifts transferred from other users or channels, “resale” for gifts bought from other users, “gifted_upgrade” for upgrades purchased after the gift was sent, or “offer” for gifts bought or sold through gift purchase offers.
+        text:
+          type: string
+          description: Optional. Text of the message that was added to the gift
+        entities:
+          type: array
+          description: Optional. Special entities that appear in the text
+          items:
+              $ref: '#/components/schemas/MessageEntity'
+        is_private:
+          type: boolean
+          description: Optional. True, if the sender and gift text are shown only to the gift receiver; otherwise, everyone will be able to see them
+          default: true
         last_resale_currency:
           type: string
           description: Optional. For gifts bought from other users, the currency in which the payment for the gift was done. Currently, one of “XTR” for Telegram Stars or “TON” for TON grams.
@@ -21994,6 +22259,10 @@ components:
           description: Optional. User payment subscription has changed
           allOf:
               - $ref: '#/components/schemas/BotSubscriptionUpdated'
+        stopped_message_generation:
+          description: Optional. A user asked the bot to stop the generation of a message
+          allOf:
+              - $ref: '#/components/schemas/MessageGenerationStopped'
       required:
         - update_id
    User:
@@ -22292,7 +22561,7 @@ components:
    VideoNote:
       type: object
       description: |-
-        This object represents a video message (available in Telegram apps as of v.4.0).
+        This object represents a video message.
       x-tags:
         - Available types
       properties:

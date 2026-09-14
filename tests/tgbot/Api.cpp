@@ -107,7 +107,7 @@ TEST(Api, DownloadFilePassesCompleteUrlAndFieldsToHttpClient) {
 TEST(Api, GetChatAdministratorsPreservesAdministratorRights) {
     HttpClientMock httpClient;
     httpClient.response
-        = R"({"ok":true,"result":[{"status":"administrator","user":{"id":1,"is_bot":false,"first_name":"Admin"},"can_be_edited":true,"is_anonymous":false,"can_manage_chat":true,"can_delete_messages":true,"can_manage_video_chats":false,"can_restrict_members":true,"can_promote_members":false,"can_change_info":true,"can_invite_users":true,"can_post_stories":false,"can_edit_stories":false,"can_delete_stories":false}]})";
+        = R"({"ok":true,"result":[{"status":"administrator","user":{"id":1,"is_bot":false,"first_name":"Admin"},"can_be_edited":true,"is_anonymous":false,"can_manage_chat":true,"can_delete_messages":true,"can_manage_video_chats":false,"can_restrict_members":true,"can_promote_members":false,"can_change_info":true,"can_invite_users":true,"can_post_stories":false,"can_edit_stories":false,"can_delete_stories":false,"can_send_welcome_messages":true}]})";
     TgBot::Api api("token", httpClient, "https://api.telegram.org");
 
     const auto members = api.getChatAdministrators(std::int64_t { 42 });
@@ -123,6 +123,7 @@ TEST(Api, GetChatAdministratorsPreservesAdministratorRights) {
     EXPECT_TRUE(administrator->canRestrictMembers);
     EXPECT_TRUE(administrator->canChangeInfo);
     EXPECT_TRUE(administrator->canInviteUsers);
+    EXPECT_TRUE(administrator->canSendWelcomeMessages);
 }
 
 TEST(Api, SerializesRequiredVariantArgumentsAndOmitsEmptyOptionalArguments) {
@@ -348,6 +349,75 @@ TEST(Api, EditMessageMediaUploadsNamedAttachment) {
     EXPECT_EQ(httpClient.requestFields[3].name, "photo");
 }
 
+TEST(Api, EditEphemeralMessageMediaUploadsNamedAttachment) {
+    HttpClientMock httpClient;
+    httpClient.response = R"({"ok":true,"result":true})";
+    TgBot::Api api("token", httpClient, "https://api.telegram.org");
+    auto photo = std::make_shared<TgBot::InputMediaPhoto>();
+    photo->media = "attach://photo";
+    auto media = std::make_shared<TgBot::InputMedia>();
+    media->value = photo;
+    auto file = std::make_shared<TgBot::InputFile>();
+    file->data = "photo-data";
+    file->mimeType = "image/jpeg";
+    file->fileName = "photo.jpg";
+
+    TgBot::EditEphemeralMessageMediaArgs args;
+    args.chatId = std::int64_t { 42 };
+    args.ephemeralMessageId = 7;
+    args.media = media;
+    args.receiverUserId = 43;
+    args.attachments = { { "photo", file } };
+
+    EXPECT_TRUE(api.editEphemeralMessageMedia(args));
+
+    ASSERT_EQ(httpClient.requestFields.size(), 5);
+    EXPECT_EQ(httpClient.requestFields[0].name, "chat_id");
+    EXPECT_EQ(httpClient.requestFields[1].name, "ephemeral_message_id");
+    EXPECT_EQ(httpClient.requestFields[2].name, "media");
+    EXPECT_EQ(httpClient.requestFields[3].name, "receiver_user_id");
+    EXPECT_EQ(httpClient.requestFields[4].name, "photo");
+}
+
+TEST(Api, SendRichMessageSerializesNestedMediaAndUploadsNamedAttachment) {
+    HttpClientMock httpClient;
+    httpClient.response = R"({"ok":true,"result":{"message_id":1,"date":2,"chat":{"id":3,"type":"private"}}})";
+    TgBot::Api api("token", httpClient, "https://api.telegram.org");
+    auto photo = std::make_shared<TgBot::InputMediaPhoto>();
+    photo->media = "attach://photo";
+    auto embeddedMedia = std::make_shared<TgBot::InputRichMessageMedia>();
+    embeddedMedia->id = "hero";
+    embeddedMedia->media = photo;
+    auto richMessage = std::make_shared<TgBot::InputRichMessage>();
+    richMessage->html = R"(<b>Photo</b><tg-media id="hero"/>)";
+    richMessage->media = { embeddedMedia };
+    auto file = std::make_shared<TgBot::InputFile>();
+    file->data = "photo-data";
+    file->mimeType = "image/jpeg";
+    file->fileName = "photo.jpg";
+    TgBot::SendRichMessageArgs args;
+    args.chatId = std::int64_t { 42 };
+    args.richMessage = richMessage;
+    args.attachments = { { "photo", file } };
+
+    ASSERT_NE(api.sendRichMessage(args), nullptr);
+
+    ASSERT_EQ(httpClient.requestFields.size(), 3);
+    EXPECT_EQ(httpClient.requestFields[0].name, "chat_id");
+    EXPECT_EQ(httpClient.requestFields[1].name, "rich_message");
+    const auto richMessageJson = nlohmann::json::parse(std::get<std::string>(httpClient.requestFields[1].value));
+    EXPECT_EQ(richMessageJson.at("html"), R"(<b>Photo</b><tg-media id="hero"/>)");
+    ASSERT_EQ(richMessageJson.at("media").size(), 1);
+    EXPECT_EQ(richMessageJson.at("media")[0].at("id"), "hero");
+    EXPECT_EQ(richMessageJson.at("media")[0].at("media").at("type"), "photo");
+    EXPECT_EQ(richMessageJson.at("media")[0].at("media").at("media"), "attach://photo");
+    EXPECT_EQ(httpClient.requestFields[2].name, "photo");
+    const auto& uploaded = std::get<TgBot::HttpFile>(httpClient.requestFields[2].value);
+    EXPECT_EQ(uploaded.data, "photo-data");
+    EXPECT_EQ(uploaded.mimeType, "image/jpeg");
+    EXPECT_EQ(uploaded.fileName, "photo.jpg");
+}
+
 TEST(Api, RejectsInvalidNamedAttachments) {
     HttpClientMock httpClient;
     httpClient.response = R"({"ok":true,"result":[]})";
@@ -434,6 +504,32 @@ TEST(Api, PreservesLegacyParameterOrder) {
     EXPECT_EQ(std::get<std::string>(httpClient.requestFields[0].value), "set-name");
     EXPECT_EQ(httpClient.requestFields[1].name, "title");
     EXPECT_EQ(std::get<std::string>(httpClient.requestFields[1].value), "Set title");
+}
+
+TEST(Api, MapsLegacyEphemeralArgumentsToBotApi10_3Parameters) {
+    HttpClientMock httpClient;
+    httpClient.response = R"({"ok":true,"result":{"message_id":1,"date":2,"chat":{"id":3,"type":"private"}}})";
+    TgBot::Api api("token", httpClient, "https://api.telegram.org");
+
+    ASSERT_TRUE(api.sendMessage(std::int64_t { 42 }, "text", nullptr, nullptr, { }, "", false, { }, 0, false, "", false,
+                                "callback", 0, "", 43, nullptr));
+
+    ASSERT_EQ(httpClient.requestFields.size(), 3);
+    EXPECT_EQ(httpClient.requestFields[2].name, "ephemeral_message_parameters");
+    const auto parameters = nlohmann::json::parse(std::get<std::string>(httpClient.requestFields[2].value));
+    EXPECT_EQ(parameters.at("receiver_user_id"), 43);
+    EXPECT_EQ(parameters.at("callback_query_id"), "callback");
+
+    TgBot::SendMessageArgs args;
+    args.chatId = std::int64_t { 42 };
+    args.text = "text";
+    args.callbackQueryId = "args-callback";
+    args.receiverUserId = 44;
+    ASSERT_TRUE(api.sendMessage(args));
+
+    const auto argsParameters = nlohmann::json::parse(std::get<std::string>(httpClient.requestFields[2].value));
+    EXPECT_EQ(argsParameters.at("receiver_user_id"), 44);
+    EXPECT_EQ(argsParameters.at("callback_query_id"), "args-callback");
 }
 
 TEST(Api, PreservesLegacyDefaults) {

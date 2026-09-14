@@ -50,6 +50,7 @@ def test_compatibility_config_is_grouped_by_telegram_entity() -> None:
     assert {name for name, config in API_CONFIG.items() if config.get("supports_attach_references")} == {
         "addStickerToSet",
         "createNewStickerSet",
+        "editEphemeralMessageMedia",
         "editMessageMedia",
         "editMessageText",
         "editStory",
@@ -165,6 +166,82 @@ def test_high_risk_methods_keep_legacy_args_order() -> None:
         "can_delete_messages",
         "can_manage_chat",
         "can_manage_tags",
+    ]
+
+
+def test_bot_api_10_3_keeps_legacy_ephemeral_arguments() -> None:
+    schema_path = Path(__file__).parents[2] / "api" / "telegram-bot-api.yaml"
+    document = yaml.safe_load(schema_path.read_text(encoding="utf-8"))
+    methods = {method.name: method for method in _MethodModelBuilder(document["paths"]).build()}
+    legacy_methods = {
+        "sendAnimation",
+        "sendAudio",
+        "sendContact",
+        "sendDocument",
+        "sendLivePhoto",
+        "sendLocation",
+        "sendMessage",
+        "sendPhoto",
+        "sendSticker",
+        "sendVenue",
+        "sendVideo",
+        "sendVideoNote",
+        "sendVoice",
+    }
+
+    assert {name for name, config in API_CONFIG.items() if config.get("legacy_ephemeral_parameters")} == legacy_methods
+    for name in legacy_methods:
+        method = methods[name]
+        direct_names = [arg.wire_name for arg in method.direct_args]
+        struct_names = [arg.wire_name for arg in method.struct_args]
+        wire_names = [arg.wire_name for arg in method.args]
+        assert direct_names == API_CONFIG[name]["args_order"]
+        assert struct_names == [*direct_names, "ephemeral_message_parameters"]
+        assert "callback_query_id" in direct_names
+        assert "receiver_user_id" in direct_names
+        assert "ephemeral_message_parameters" not in direct_names
+        assert "callback_query_id" not in wire_names
+        assert "receiver_user_id" not in wire_names
+        assert "ephemeral_message_parameters" in wire_names
+
+
+def test_bot_api_10_3_appends_new_direct_arguments() -> None:
+    schema_path = Path(__file__).parents[2] / "api" / "telegram-bot-api.yaml"
+    document = yaml.safe_load(schema_path.read_text(encoding="utf-8"))
+    methods = {method.name: method for method in _MethodModelBuilder(document["paths"]).build()}
+    legacy_prefixes = {
+        "editEphemeralMessageText": [
+            "chat_id",
+            "ephemeral_message_id",
+            "receiver_user_id",
+            "text",
+            "entities",
+            "link_preview_options",
+            "parse_mode",
+            "reply_markup",
+        ],
+        "sendMessageDraft": ["chat_id", "draft_id", "entities", "message_thread_id", "parse_mode", "text"],
+        "sendRichMessageDraft": ["chat_id", "draft_id", "rich_message", "message_thread_id"],
+    }
+
+    for name, legacy_prefix in legacy_prefixes.items():
+        direct_names = [arg.wire_name for arg in methods[name].direct_args]
+        assert direct_names[: len(legacy_prefix)] == legacy_prefix
+
+    assert [arg.wire_name for arg in methods["sendRichMessage"].direct_args] == [
+        "chat_id",
+        "rich_message",
+        "allow_paid_broadcast",
+        "business_connection_id",
+        "direct_messages_topic_id",
+        "disable_notification",
+        "message_effect_id",
+        "message_thread_id",
+        "protect_content",
+        "reply_markup",
+        "reply_parameters",
+        "suggested_post_parameters",
+        "attachments",
     ]
 
 
@@ -299,7 +376,7 @@ def test_generator_renders_optional_attach_reference_argument(method_name: str) 
     assert attachment.cpp_type == "std::vector<InputFileAttachment>"
     assert attachment.default_value == "{ }"
     assert method.args[-1] == attachment
-    assert method.compatibility_args == method.args
+    assert method.compatibility_args == method.direct_args
 
 
 def test_generator_rejects_method_without_result_schema(tmp_path: Path) -> None:
@@ -349,12 +426,6 @@ def test_every_method_with_args_generates_ordered_argument_object_delegation(tmp
         classic_start = definitions.index(f"Api::{method.name}(")
         classic_end = definitions.index("\n}", classic_start)
         classic_body = definitions[classic_start:classic_end]
-        normalized_classic_body = " ".join(classic_body.split())
-        assert f'sendRequest( "{method.name}", ApiRequest::makeFields(' in normalized_classic_body
-        for arg in method.args:
-            field_factory = "required" if arg.required or arg.always_send else "optional"
-            assert f'ApiRequest::{field_factory}("{arg.wire_name}", {arg.cpp_name}' in classic_body
-
         args_signature = re.search(
             rf"Api::{method.name}\(\s*const {expected_args_name}& args\s*\) const \{{",
             definitions,
@@ -363,9 +434,22 @@ def test_every_method_with_args_generates_ordered_argument_object_delegation(tmp
         args_start = args_signature.start()
         args_end = definitions.index("\n}", args_start)
         args_body = definitions[args_start:args_end]
-        assert f"return {method.name}(" in args_body
-        positions = [args_body.index(f"args.{arg.cpp_name}") for arg in method.args]
-        assert positions == sorted(positions)
+        if method.direct_args == method.args:
+            request_body = classic_body
+            assert f"return {method.name}(" in args_body
+            positions = [args_body.index(f"args.{arg.cpp_name}") for arg in method.args]
+            assert positions == sorted(positions)
+        else:
+            request_body = args_body
+            assert f"return {method.name}(args);" in classic_body
+            positions = [classic_body.index(f"args.{arg.cpp_name}") for arg in method.direct_args]
+            assert positions == sorted(positions)
+
+        normalized_request_body = " ".join(request_body.split())
+        assert f'sendRequest( "{method.name}", ApiRequest::makeFields(' in normalized_request_body
+        for arg in method.args:
+            field_factory = "required" if arg.required or arg.always_send else "optional"
+            assert f'ApiRequest::{field_factory}("{arg.wire_name}",' in request_body
 
 
 def _schema() -> dict:

@@ -35,6 +35,7 @@ public:
     using ChatJoinRequestListener = std::function<void(std::shared_ptr<ChatJoinRequest>)>;
     using MessageReactionUpdatedListener = std::function<void(std::shared_ptr<MessageReactionUpdated>)>;
     using MessageReactionCountUpdatedListener = std::function<void(std::shared_ptr<MessageReactionCountUpdated>)>;
+    using MessageGenerationStoppedListener = std::function<void(std::shared_ptr<MessageGenerationStopped>)>;
     using SuccessfulPaymentListener = std::function<void(std::shared_ptr<Message>, std::shared_ptr<SuccessfulPayment>)>;
 
     /**
@@ -164,6 +165,12 @@ public:
     void onMessageReactionCount(const MessageReactionCountUpdatedListener& listener);
 
     /**
+     * @brief Registers listener which receives updates when a user stops message generation.
+     * @param listener Listener.
+     */
+    void onMessageGenerationStopped(const MessageGenerationStoppedListener& listener);
+
+    /**
     * @brief Registers listener which receives information about successful payments.
     * This listener is triggered when a successful payment is received by the bot.
     * 
@@ -201,6 +208,8 @@ private:
     void broadcastMessageReactionUpdated(const std::shared_ptr<MessageReactionUpdated>& messageReaction) const;
     void broadcastMessageReactionCountUpdated(
         const std::shared_ptr<MessageReactionCountUpdated>& messageReactionCount) const;
+    void
+    broadcastMessageGenerationStopped(const std::shared_ptr<MessageGenerationStopped>& messageGenerationStopped) const;
     void broadcastSuccessfulPayment(const std::shared_ptr<Message>& message) const;
 
     std::vector<MessageListener> _onAnyMessageListeners;
@@ -220,6 +229,7 @@ private:
     std::vector<ChatJoinRequestListener> _onChatJoinRequestListeners;
     std::vector<MessageReactionUpdatedListener> _onMessageReactionUpdatedListener;
     std::vector<MessageReactionCountUpdatedListener> _onMessageReactionCountUpdatedListener;
+    std::vector<MessageGenerationStoppedListener> _onMessageGenerationStoppedListeners;
     std::vector<SuccessfulPaymentListener> _onSuccessfulPaymentListeners;
 };
 
