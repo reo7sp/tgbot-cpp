@@ -10,7 +10,7 @@ Documentation is located [here](http://reo7sp.github.io/tgbot-cpp).
 
 ## State
 
-- [x] Telegram Bot API 10.2.
+- [x] Telegram Bot API 10.3.
 
 
 ## Example

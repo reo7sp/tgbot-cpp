@@ -112,6 +112,44 @@ TEST(TypesJson, RoundTripPreservesNestedObjectArray) {
     EXPECT_EQ(parsed.openingHours.front()->closingMinute, 120);
 }
 
+TEST(TypesJson, ParsesMessageGenerationStoppedUpdate) {
+    const nlohmann::json json = {
+        { "update_id", 10 },
+        { "stopped_message_generation",
+          {
+              { "chat", { { "id", 42 }, { "type", "private" } } },
+              { "message_thread_id", 7 },
+              { "draft_id", 9 },
+          } },
+    };
+
+    const auto update = json.get<TgBot::Update>();
+
+    ASSERT_TRUE(update.stoppedMessageGeneration);
+    ASSERT_TRUE(update.stoppedMessageGeneration->chat);
+    EXPECT_EQ(update.stoppedMessageGeneration->chat->id, 42);
+    EXPECT_EQ(update.stoppedMessageGeneration->messageThreadId, 7);
+    EXPECT_EQ(update.stoppedMessageGeneration->draftId, 9);
+}
+
+TEST(TypesJson, ParsesRichMessageBlock) {
+    const nlohmann::json json = {
+        { "message_id", 1 },
+        { "date", 2 },
+        { "chat", { { "id", 3 }, { "type", "private" } } },
+        { "rich_message", { { "blocks", { { { "type", "divider" } } } }, { "is_rtl", true } } },
+    };
+
+    const auto message = json.get<TgBot::Message>();
+
+    ASSERT_TRUE(message.richMessage);
+    ASSERT_EQ(message.richMessage->blocks.size(), 1);
+    ASSERT_TRUE(message.richMessage->blocks.front());
+    EXPECT_TRUE(
+        std::holds_alternative<std::shared_ptr<TgBot::RichBlockDivider>>(message.richMessage->blocks.front()->value));
+    EXPECT_EQ(message.richMessage->isRtl, true);
+}
+
 TEST(TypesJson, ParseGeneratedObjectRejectsWrongFieldType) {
     const std::string input = R"({
         "file_id": "photo-id",

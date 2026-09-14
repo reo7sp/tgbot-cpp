@@ -88,15 +88,18 @@ struct ChecklistTasksDone;
 struct ChosenInlineResult;
 struct Community;
 struct CommunityChatAdded;
+struct CommunityChatJoined;
 struct CommunityChatRemoved;
 struct Contact;
 struct CopyTextButton;
 struct Dice;
 struct DirectMessagePriceChanged;
 struct DirectMessagesTopic;
+struct DisabledButton;
 struct Document;
 struct EncryptedCredentials;
 struct EncryptedPassportElement;
+struct EphemeralMessageParameters;
 struct ExternalReplyInfo;
 struct File;
 struct ForceReply;
@@ -176,9 +179,12 @@ struct InputRichBlockAnchor;
 struct InputRichBlockAnimation;
 struct InputRichBlockAudio;
 struct InputRichBlockBlockQuotation;
+struct InputRichBlockButtons;
 struct InputRichBlockCollage;
 struct InputRichBlockDetails;
 struct InputRichBlockDivider;
+struct InputRichBlockDocument;
+struct InputRichBlockExpandableBlockQuotation;
 struct InputRichBlockFooter;
 struct InputRichBlockList;
 struct InputRichBlockListItem;
@@ -227,6 +233,7 @@ struct MenuButtonWebApp;
 struct Message;
 struct MessageAutoDeleteTimerChanged;
 struct MessageEntity;
+struct MessageGenerationStopped;
 struct MessageId;
 struct MessageOrigin;
 struct MessageOriginChannel;
@@ -290,10 +297,13 @@ struct RichBlockAnchor;
 struct RichBlockAnimation;
 struct RichBlockAudio;
 struct RichBlockBlockQuotation;
+struct RichBlockButtons;
 struct RichBlockCaption;
 struct RichBlockCollage;
 struct RichBlockDetails;
 struct RichBlockDivider;
+struct RichBlockDocument;
+struct RichBlockExpandableBlockQuotation;
 struct RichBlockFooter;
 struct RichBlockList;
 struct RichBlockListItem;
@@ -311,12 +321,14 @@ struct RichBlockThinking;
 struct RichBlockVideo;
 struct RichBlockVoiceNote;
 struct RichMessage;
+struct RichMessageButton;
 struct RichText;
 struct RichTextAnchor;
 struct RichTextAnchorLink;
 struct RichTextBankCardNumber;
 struct RichTextBold;
 struct RichTextBotCommand;
+struct RichTextButton;
 struct RichTextCashtag;
 struct RichTextCode;
 struct RichTextCustomEmoji;
@@ -1540,9 +1552,14 @@ struct ChatAdministratorRights {
     std::optional<bool> canManageDirectMessages { };
     /**
      * @brief Optional. True, if the administrator can edit the tags of regular members; for groups
-     * and supergroups only. If omitted, defaults to the value of can_pin_messages.
+     * and supergroups only
     */
     std::optional<bool> canManageTags { };
+    /**
+     * @brief True, if the administrator can manage chat welcome messages or directly send them in the
+     * case of bots
+    */
+    bool canSendWelcomeMessages { };
 };
 
 TGBOT_API void from_json(const nlohmann::json& json, ChatAdministratorRights& value);
@@ -2258,9 +2275,14 @@ struct ChatMemberAdministrator {
     std::optional<bool> canManageDirectMessages { };
     /**
      * @brief Optional. True, if the administrator can edit the tags of regular members; for groups
-     * and supergroups only. If omitted, defaults to the value of can_pin_messages.
+     * and supergroups only
     */
     std::optional<bool> canManageTags { };
+    /**
+     * @brief True, if the administrator can manage chat welcome messages or directly send them in the
+     * case of bots
+    */
+    bool canSendWelcomeMessages { };
     /**
      * @brief Optional. Custom title for this user
     */
@@ -2889,14 +2911,14 @@ TGBOT_API void from_json(const nlohmann::json& json, Community& value);
 TGBOT_API void to_json(nlohmann::json& json, const Community& value);
 
 /**
- * @brief Describes a service message about a chat being added to a community.
+ * @brief Describes a service message about a chat or a bot being added to a community.
  * @ingroup api
  */
 struct CommunityChatAdded {
     using Ptr = std::shared_ptr<CommunityChatAdded>;
 
     /**
-     * @brief The new community to which the chat belongs
+     * @brief The new community to which the chat or the bot belongs
     */
     std::shared_ptr<Community> community { };
 };
@@ -2905,8 +2927,24 @@ TGBOT_API void from_json(const nlohmann::json& json, CommunityChatAdded& value);
 TGBOT_API void to_json(nlohmann::json& json, const CommunityChatAdded& value);
 
 /**
- * @brief Describes a service message about a chat being removed from a community. Currently holds no
- * information.
+ * @brief Describes a service message about a chat being joined by a user from a community.
+ * @ingroup api
+ */
+struct CommunityChatJoined {
+    using Ptr = std::shared_ptr<CommunityChatJoined>;
+
+    /**
+     * @brief The community from which the chat was joined
+    */
+    std::shared_ptr<Community> community { };
+};
+
+TGBOT_API void from_json(const nlohmann::json& json, CommunityChatJoined& value);
+TGBOT_API void to_json(nlohmann::json& json, const CommunityChatJoined& value);
+
+/**
+ * @brief Describes a service message about a chat or a bot being removed from a community. Currently
+ * holds no information.
  * @ingroup api
  */
 struct CommunityChatRemoved {
@@ -3035,6 +3073,17 @@ struct DirectMessagesTopic {
 
 TGBOT_API void from_json(const nlohmann::json& json, DirectMessagesTopic& value);
 TGBOT_API void to_json(nlohmann::json& json, const DirectMessagesTopic& value);
+
+/**
+ * @brief This object represents a disabled button which does nothing. Currently holds no information.
+ * @ingroup api
+ */
+struct DisabledButton {
+    using Ptr = std::shared_ptr<DisabledButton>;
+};
+
+TGBOT_API void from_json(const nlohmann::json& json, DisabledButton& value);
+TGBOT_API void to_json(nlohmann::json& json, const DisabledButton& value);
 
 /**
  * @brief This object represents a general file (as opposed to photos, voice messages and audio
@@ -3176,6 +3225,33 @@ struct EncryptedPassportElement {
 
 TGBOT_API void from_json(const nlohmann::json& json, EncryptedPassportElement& value);
 TGBOT_API void to_json(nlohmann::json& json, const EncryptedPassportElement& value);
+
+/**
+ * @brief
+ * @ingroup api
+ */
+struct EphemeralMessageParameters {
+    using Ptr = std::shared_ptr<EphemeralMessageParameters>;
+
+    /**
+     * @brief Identifier of the user who will receive the message. It is not guaranteed that the user
+     * will receive the message, especially if they are offline. See here for more details.
+    */
+    std::int64_t receiverUserId { };
+    /**
+     * @brief Optional. Identifier of the callback query which triggered the message, if any
+    */
+    std::optional<std::string> callbackQueryId { };
+    /**
+     * @brief Optional. Pass True if the ephemeral message must be shown in place of the original
+     * message. Must be False for callback queries from ephemeral messages, which must be
+     * edited using regular editEphemeralMessage… methods.
+    */
+    std::optional<bool> replaceCallbackQueryMessage { };
+};
+
+TGBOT_API void from_json(const nlohmann::json& json, EphemeralMessageParameters& value);
+TGBOT_API void to_json(nlohmann::json& json, const EphemeralMessageParameters& value);
 
 /**
  * @brief This object contains information about a message that is being replied to, which may come
@@ -3346,8 +3422,8 @@ struct ForceReply {
     using Ptr = std::shared_ptr<ForceReply>;
 
     /**
-     * @brief Shows reply interface to the user, as if they manually selected the bot's message and
-     * tapped 'Reply'
+     * @brief Shows reply interface to the user, as if they had manually selected the bot's message
+     * and tapped 'Reply'
     */
     bool forceReply { };
     /**
@@ -3963,7 +4039,7 @@ struct InlineKeyboardButton {
     std::shared_ptr<WebAppInfo> webApp { };
     /**
      * @brief Optional. An HTTPS URL used to automatically authorize the user. Can be used as a
-     * replacement for the Telegram Login Widget.
+     * replacement for the Telegram Login Widget. Not supported for ephemeral messages.
     */
     std::shared_ptr<LoginUrl> loginUrl { };
     /**
@@ -4005,6 +4081,10 @@ struct InlineKeyboardButton {
      * the first button in the first row and can only be used in invoice messages.
     */
     std::optional<bool> pay { };
+    /**
+     * @brief Optional. If set, then the button is disabled and does nothing
+    */
+    std::shared_ptr<DisabledButton> disabled { };
 };
 
 TGBOT_API void from_json(const nlohmann::json& json, InlineKeyboardButton& value);
@@ -4022,6 +4102,12 @@ struct InlineKeyboardMarkup {
      * @brief Array of button rows, each represented by an Array of InlineKeyboardButton objects
     */
     std::vector<std::vector<std::shared_ptr<InlineKeyboardButton>>> inlineKeyboard { };
+    /**
+     * @brief Optional. Pass True if the reply interface must be shown to the user, as if they had
+     * manually selected the bot's message and tapped 'Reply'. The value of the field can't be
+     * changed when the inline keyboard is edited.
+    */
+    std::optional<bool> forceReply { };
 };
 
 TGBOT_API void from_json(const nlohmann::json& json, InlineKeyboardMarkup& value);
@@ -6493,10 +6579,11 @@ TGBOT_API void to_json(nlohmann::json& json, const InputProfilePhotoStatic& valu
  * any of the following types: InputRichBlockParagraph InputRichBlockSectionHeading
  * InputRichBlockPreformatted InputRichBlockFooter InputRichBlockDivider
  * InputRichBlockMathematicalExpression InputRichBlockAnchor InputRichBlockList
- * InputRichBlockBlockQuotation InputRichBlockPullQuotation InputRichBlockCollage
- * InputRichBlockSlideshow InputRichBlockTable InputRichBlockDetails InputRichBlockMap
- * InputRichBlockAnimation InputRichBlockAudio InputRichBlockPhoto InputRichBlockVideo
- * InputRichBlockVoiceNote InputRichBlockThinking
+ * InputRichBlockBlockQuotation InputRichBlockExpandableBlockQuotation
+ * InputRichBlockPullQuotation InputRichBlockCollage InputRichBlockSlideshow
+ * InputRichBlockTable InputRichBlockDetails InputRichBlockMap InputRichBlockButtons
+ * InputRichBlockAnimation InputRichBlockAudio InputRichBlockDocument InputRichBlockPhoto
+ * InputRichBlockVideo InputRichBlockVoiceNote InputRichBlockThinking
  * @ingroup api
  */
 struct InputRichBlock {
@@ -6506,13 +6593,14 @@ struct InputRichBlock {
                  std::shared_ptr<InputRichBlockPreformatted>, std::shared_ptr<InputRichBlockFooter>,
                  std::shared_ptr<InputRichBlockDivider>, std::shared_ptr<InputRichBlockMathematicalExpression>,
                  std::shared_ptr<InputRichBlockAnchor>, std::shared_ptr<InputRichBlockList>,
-                 std::shared_ptr<InputRichBlockBlockQuotation>, std::shared_ptr<InputRichBlockPullQuotation>,
-                 std::shared_ptr<InputRichBlockCollage>, std::shared_ptr<InputRichBlockSlideshow>,
-                 std::shared_ptr<InputRichBlockTable>, std::shared_ptr<InputRichBlockDetails>,
-                 std::shared_ptr<InputRichBlockMap>, std::shared_ptr<InputRichBlockAnimation>,
-                 std::shared_ptr<InputRichBlockAudio>, std::shared_ptr<InputRichBlockPhoto>,
-                 std::shared_ptr<InputRichBlockVideo>, std::shared_ptr<InputRichBlockVoiceNote>,
-                 std::shared_ptr<InputRichBlockThinking>>
+                 std::shared_ptr<InputRichBlockBlockQuotation>, std::shared_ptr<InputRichBlockExpandableBlockQuotation>,
+                 std::shared_ptr<InputRichBlockPullQuotation>, std::shared_ptr<InputRichBlockCollage>,
+                 std::shared_ptr<InputRichBlockSlideshow>, std::shared_ptr<InputRichBlockTable>,
+                 std::shared_ptr<InputRichBlockDetails>, std::shared_ptr<InputRichBlockMap>,
+                 std::shared_ptr<InputRichBlockButtons>, std::shared_ptr<InputRichBlockAnimation>,
+                 std::shared_ptr<InputRichBlockAudio>, std::shared_ptr<InputRichBlockDocument>,
+                 std::shared_ptr<InputRichBlockPhoto>, std::shared_ptr<InputRichBlockVideo>,
+                 std::shared_ptr<InputRichBlockVoiceNote>, std::shared_ptr<InputRichBlockThinking>>
         value;
 };
 
@@ -6620,6 +6708,34 @@ TGBOT_API void from_json(const nlohmann::json& json, InputRichBlockBlockQuotatio
 TGBOT_API void to_json(nlohmann::json& json, const InputRichBlockBlockQuotation& value);
 
 /**
+ * @brief A block containing a list of buttons that are shown in one row, corresponding to the custom
+ * HTML tag <tg-button-row>.
+ * @ingroup api
+ */
+struct InputRichBlockButtons {
+    using Ptr = std::shared_ptr<InputRichBlockButtons>;
+
+    static TGBOT_API const std::string TYPE;
+
+    /**
+     * @brief Type of the block, always “buttons”
+    */
+    std::string type { TYPE };
+    /**
+     * @brief List of 1-8 buttons to send
+    */
+    std::vector<std::shared_ptr<RichMessageButton>> buttons { };
+    /**
+     * @brief Optional. Horizontal alignment of the buttons. Currently, must be one of “left”,
+     * “center”, or “right”.
+    */
+    std::optional<std::string> align { };
+};
+
+TGBOT_API void from_json(const nlohmann::json& json, InputRichBlockButtons& value);
+TGBOT_API void to_json(nlohmann::json& json, const InputRichBlockButtons& value);
+
+/**
  * @brief A collage, corresponding to the custom HTML tag <tg-collage>.
  * @ingroup api
  */
@@ -6692,6 +6808,59 @@ struct InputRichBlockDivider {
 
 TGBOT_API void from_json(const nlohmann::json& json, InputRichBlockDivider& value);
 TGBOT_API void to_json(nlohmann::json& json, const InputRichBlockDivider& value);
+
+/**
+ * @brief A block with a general file, corresponding to the custom HTML tag <tg-document>.
+ * @ingroup api
+ */
+struct InputRichBlockDocument {
+    using Ptr = std::shared_ptr<InputRichBlockDocument>;
+
+    static TGBOT_API const std::string TYPE;
+
+    /**
+     * @brief Type of the block, always “document”
+    */
+    std::string type { TYPE };
+    /**
+     * @brief The document. Caption is ignored.
+    */
+    std::shared_ptr<InputMediaDocument> document { };
+    /**
+     * @brief Optional. Caption of the block
+    */
+    std::shared_ptr<RichBlockCaption> caption { };
+};
+
+TGBOT_API void from_json(const nlohmann::json& json, InputRichBlockDocument& value);
+TGBOT_API void to_json(nlohmann::json& json, const InputRichBlockDocument& value);
+
+/**
+ * @brief A block quotation, corresponding to the HTML tag <blockquote> with custom attribute
+ * "expandable".
+ * @ingroup api
+ */
+struct InputRichBlockExpandableBlockQuotation {
+    using Ptr = std::shared_ptr<InputRichBlockExpandableBlockQuotation>;
+
+    static TGBOT_API const std::string TYPE;
+
+    /**
+     * @brief Type of the block, always “expandable_blockquote”
+    */
+    std::string type { TYPE };
+    /**
+     * @brief Content of the block
+    */
+    std::shared_ptr<RichText> text { };
+    /**
+     * @brief Optional. Credit of the block
+    */
+    std::shared_ptr<RichText> credit { };
+};
+
+TGBOT_API void from_json(const nlohmann::json& json, InputRichBlockExpandableBlockQuotation& value);
+TGBOT_API void to_json(nlohmann::json& json, const InputRichBlockExpandableBlockQuotation& value);
 
 /**
  * @brief A footer, corresponding to the HTML tag <footer>.
@@ -6790,17 +6959,17 @@ struct InputRichBlockMap {
     */
     std::shared_ptr<Location> location { };
     /**
-     * @brief Map zoom level; 0-24
+     * @brief Optional. Map zoom level; 0-24
     */
-    std::int32_t zoom { };
+    std::optional<std::int32_t> zoom { };
     /**
-     * @brief Map width; 0-10000
+     * @brief Optional. Map width; 0-10000
     */
-    std::int32_t width { };
+    std::optional<std::int32_t> width { };
     /**
-     * @brief Map height; 0-10000
+     * @brief Optional. Map height; 0-10000
     */
-    std::int32_t height { };
+    std::optional<std::int32_t> height { };
     /**
      * @brief Optional. Caption of the block
     */
@@ -7011,6 +7180,10 @@ struct InputRichBlockTable {
     */
     std::optional<bool> isStriped { };
     /**
+     * @brief Optional. Pass True if table cells must have smaller indents
+    */
+    std::optional<bool> isCompact { };
+    /**
      * @brief Optional. Caption of the table
     */
     std::shared_ptr<RichText> caption { };
@@ -7123,7 +7296,7 @@ struct InputRichMessage {
     std::optional<std::string> markdown { };
     /**
      * @brief Optional. List of media that are specified in the markdown or html fields using
-     * tg://photo?id=, tg://video?id=, and tg://audio?id= links
+     * tg://photo?id=, tg://video?id=, tg://document?id=, and tg://audio?id= links
     */
     std::optional<std::vector<std::shared_ptr<InputRichMessageMedia>>> media { };
     /**
@@ -7149,7 +7322,7 @@ struct InputRichMessageContent {
     using Ptr = std::shared_ptr<InputRichMessageContent>;
 
     /**
-     * @brief The message to be sent
+     * @brief The message to be sent. Only previously uploaded files may be used in the message.
     */
     std::shared_ptr<InputRichMessage> richMessage { };
 };
@@ -7165,16 +7338,17 @@ struct InputRichMessageMedia {
     using Ptr = std::shared_ptr<InputRichMessageMedia>;
 
     /**
-     * @brief Unique identifier of the media used in a tg://photo?id=, tg://video?id=, or
-     * tg://audio?id= link. 1-64 characters, only A-Z, a-z, 0-9, _ and - are allowed.
+     * @brief Unique identifier of the media used in a tg://photo?id=, tg://video?id=,
+     * tg://document?id=, or tg://audio?id= link. 1-64 characters, only A-Z, a-z, 0-9, _ and -
+     * are allowed.
     */
     std::string id { };
     /**
      * @brief The media to be sent. Everything except the media itself and its properties is ignored.
     */
     std::variant<std::shared_ptr<InputMediaAnimation>, std::shared_ptr<InputMediaAudio>,
-                 std::shared_ptr<InputMediaPhoto>, std::shared_ptr<InputMediaVideo>,
-                 std::shared_ptr<InputMediaVoiceNote>>
+                 std::shared_ptr<InputMediaDocument>, std::shared_ptr<InputMediaPhoto>,
+                 std::shared_ptr<InputMediaVideo>, std::shared_ptr<InputMediaVoiceNote>>
         media { };
 };
 
@@ -7829,9 +8003,9 @@ TGBOT_API void to_json(nlohmann::json& json, const LocationAddress& value);
 
 /**
  * @brief This object represents a parameter of the inline keyboard button used to automatically
- * authorize a user. Serves as a great replacement for the Telegram Login Widget when the user
- * is coming from Telegram. All the user needs to do is tap/click a button and confirm that
- * they want to log in: Telegram apps support these buttons as of version 5.7.
+ * authorize a user. It serves as a great replacement for the Telegram Login Widget when the
+ * user is coming from Telegram. All the user needs to do is tap/click a button and confirm
+ * that they want to log in:
  * @ingroup api
  */
 struct LoginUrl {
@@ -7851,10 +8025,10 @@ struct LoginUrl {
     */
     std::optional<std::string> forwardText { };
     /**
-     * @brief Optional. Username of a bot, which will be used for user authorization. See Setting up a
-     * bot for more details. If not specified, the current bot's username will be assumed. The
-     * url's domain must be the same as the domain linked with the bot. See Linking your domain
-     * to the bot for more details.
+     * @brief Optional. Username of a bot, which will be used for user authorization; not supported in
+     * RichMessageButton. See Setting up a bot for more details. If not specified, the current
+     * bot's username will be assumed. The url's domain must be the same as the domain linked
+     * with the bot. See Linking your domain to the bot for more details.
     */
     std::optional<std::string> botUsername { };
     /**
@@ -8475,11 +8649,15 @@ struct Message {
     */
     std::shared_ptr<ChecklistTasksAdded> checklistTasksAdded { };
     /**
-     * @brief Optional. Service message: chat added to a Community
+     * @brief Optional. Service message: chat or bot added to a Community
     */
     std::shared_ptr<CommunityChatAdded> communityChatAdded { };
     /**
-     * @brief Optional. Service message: chat removed from a Community
+     * @brief Optional. Service message: chat was joined by a user from a Community
+    */
+    std::shared_ptr<CommunityChatJoined> communityChatJoined { };
+    /**
+     * @brief Optional. Service message: chat or bot removed from a Community
     */
     std::shared_ptr<CommunityChatRemoved> communityChatRemoved { };
     /**
@@ -8693,6 +8871,30 @@ TGBOT_API void to_json(nlohmann::json& json, const MessageEntity::Type& value);
 
 TGBOT_API void from_json(const nlohmann::json& json, MessageEntity& value);
 TGBOT_API void to_json(nlohmann::json& json, const MessageEntity& value);
+
+/**
+ * @brief This object describes an update about a user stopping message generation.
+ * @ingroup api
+ */
+struct MessageGenerationStopped {
+    using Ptr = std::shared_ptr<MessageGenerationStopped>;
+
+    /**
+     * @brief Chat in which the message is generated
+    */
+    std::shared_ptr<Chat> chat { };
+    /**
+     * @brief Optional. Unique identifier of the message thread in which the message is generated
+    */
+    std::optional<std::int32_t> messageThreadId { };
+    /**
+     * @brief Unique identifier of the message draft which was stopped
+    */
+    std::int32_t draftId { };
+};
+
+TGBOT_API void from_json(const nlohmann::json& json, MessageGenerationStopped& value);
+TGBOT_API void to_json(nlohmann::json& json, const MessageGenerationStopped& value);
 
 /**
  * @brief This object represents a unique message identifier.
@@ -10276,6 +10478,11 @@ struct ReplyKeyboardMarkup {
      * the keyboard.
     */
     std::optional<bool> selective { };
+    /**
+     * @brief Optional. Pass True if the reply interface must be shown to the user, as if they had
+     * manually selected the bot's message and tapped 'Reply'
+    */
+    std::optional<bool> forceReply { };
 };
 
 TGBOT_API void from_json(const nlohmann::json& json, ReplyKeyboardMarkup& value);
@@ -10487,23 +10694,26 @@ TGBOT_API void to_json(nlohmann::json& json, const RevenueWithdrawalStateSucceed
  * @brief This object represents a block in a rich formatted message. Currently, it can be any of the
  * following types: RichBlockParagraph RichBlockSectionHeading RichBlockPreformatted
  * RichBlockFooter RichBlockDivider RichBlockMathematicalExpression RichBlockAnchor
- * RichBlockList RichBlockBlockQuotation RichBlockPullQuotation RichBlockCollage
- * RichBlockSlideshow RichBlockTable RichBlockDetails RichBlockMap RichBlockAnimation
- * RichBlockAudio RichBlockPhoto RichBlockVideo RichBlockVoiceNote RichBlockThinking
+ * RichBlockList RichBlockBlockQuotation RichBlockExpandableBlockQuotation
+ * RichBlockPullQuotation RichBlockCollage RichBlockSlideshow RichBlockTable RichBlockDetails
+ * RichBlockMap RichBlockButtons RichBlockAnimation RichBlockAudio RichBlockDocument
+ * RichBlockPhoto RichBlockVideo RichBlockVoiceNote RichBlockThinking
  * @ingroup api
  */
 struct RichBlock {
     using Ptr = std::shared_ptr<RichBlock>;
 
-    std::variant<
-        std::shared_ptr<RichBlockParagraph>, std::shared_ptr<RichBlockSectionHeading>,
-        std::shared_ptr<RichBlockPreformatted>, std::shared_ptr<RichBlockFooter>, std::shared_ptr<RichBlockDivider>,
-        std::shared_ptr<RichBlockMathematicalExpression>, std::shared_ptr<RichBlockAnchor>,
-        std::shared_ptr<RichBlockList>, std::shared_ptr<RichBlockBlockQuotation>,
-        std::shared_ptr<RichBlockPullQuotation>, std::shared_ptr<RichBlockCollage>, std::shared_ptr<RichBlockSlideshow>,
-        std::shared_ptr<RichBlockTable>, std::shared_ptr<RichBlockDetails>, std::shared_ptr<RichBlockMap>,
-        std::shared_ptr<RichBlockAnimation>, std::shared_ptr<RichBlockAudio>, std::shared_ptr<RichBlockPhoto>,
-        std::shared_ptr<RichBlockVideo>, std::shared_ptr<RichBlockVoiceNote>, std::shared_ptr<RichBlockThinking>>
+    std::variant<std::shared_ptr<RichBlockParagraph>, std::shared_ptr<RichBlockSectionHeading>,
+                 std::shared_ptr<RichBlockPreformatted>, std::shared_ptr<RichBlockFooter>,
+                 std::shared_ptr<RichBlockDivider>, std::shared_ptr<RichBlockMathematicalExpression>,
+                 std::shared_ptr<RichBlockAnchor>, std::shared_ptr<RichBlockList>,
+                 std::shared_ptr<RichBlockBlockQuotation>, std::shared_ptr<RichBlockExpandableBlockQuotation>,
+                 std::shared_ptr<RichBlockPullQuotation>, std::shared_ptr<RichBlockCollage>,
+                 std::shared_ptr<RichBlockSlideshow>, std::shared_ptr<RichBlockTable>,
+                 std::shared_ptr<RichBlockDetails>, std::shared_ptr<RichBlockMap>, std::shared_ptr<RichBlockButtons>,
+                 std::shared_ptr<RichBlockAnimation>, std::shared_ptr<RichBlockAudio>,
+                 std::shared_ptr<RichBlockDocument>, std::shared_ptr<RichBlockPhoto>, std::shared_ptr<RichBlockVideo>,
+                 std::shared_ptr<RichBlockVoiceNote>, std::shared_ptr<RichBlockThinking>>
         value;
 };
 
@@ -10615,6 +10825,34 @@ TGBOT_API void from_json(const nlohmann::json& json, RichBlockBlockQuotation& va
 TGBOT_API void to_json(nlohmann::json& json, const RichBlockBlockQuotation& value);
 
 /**
+ * @brief A block containing a list of buttons that are shown in one row, corresponding to the custom
+ * HTML tag <tg-button-row>.
+ * @ingroup api
+ */
+struct RichBlockButtons {
+    using Ptr = std::shared_ptr<RichBlockButtons>;
+
+    static TGBOT_API const std::string TYPE;
+
+    /**
+     * @brief Type of the block, always “buttons”
+    */
+    std::string type { TYPE };
+    /**
+     * @brief The buttons
+    */
+    std::vector<std::shared_ptr<RichMessageButton>> buttons { };
+    /**
+     * @brief Optional. Horizontal alignment of the buttons. Currently, must be one of “left”,
+     * “center”, or “right”.
+    */
+    std::optional<std::string> align { };
+};
+
+TGBOT_API void from_json(const nlohmann::json& json, RichBlockButtons& value);
+TGBOT_API void to_json(nlohmann::json& json, const RichBlockButtons& value);
+
+/**
  * @brief Caption of a rich formatted block.
  * @ingroup api
  */
@@ -10707,6 +10945,59 @@ struct RichBlockDivider {
 
 TGBOT_API void from_json(const nlohmann::json& json, RichBlockDivider& value);
 TGBOT_API void to_json(nlohmann::json& json, const RichBlockDivider& value);
+
+/**
+ * @brief A block with a general file, corresponding to the custom HTML tag <tg-document>.
+ * @ingroup api
+ */
+struct RichBlockDocument {
+    using Ptr = std::shared_ptr<RichBlockDocument>;
+
+    static TGBOT_API const std::string TYPE;
+
+    /**
+     * @brief Type of the block, always “document”
+    */
+    std::string type { TYPE };
+    /**
+     * @brief The document
+    */
+    std::shared_ptr<Document> document { };
+    /**
+     * @brief Optional. Caption of the block
+    */
+    std::shared_ptr<RichBlockCaption> caption { };
+};
+
+TGBOT_API void from_json(const nlohmann::json& json, RichBlockDocument& value);
+TGBOT_API void to_json(nlohmann::json& json, const RichBlockDocument& value);
+
+/**
+ * @brief A block quotation, corresponding to the HTML tag <blockquote> with custom attribute
+ * "expandable".
+ * @ingroup api
+ */
+struct RichBlockExpandableBlockQuotation {
+    using Ptr = std::shared_ptr<RichBlockExpandableBlockQuotation>;
+
+    static TGBOT_API const std::string TYPE;
+
+    /**
+     * @brief Type of the block, always “expandable_blockquote”
+    */
+    std::string type { TYPE };
+    /**
+     * @brief Content of the block
+    */
+    std::shared_ptr<RichText> text { };
+    /**
+     * @brief Optional. Credit of the block
+    */
+    std::shared_ptr<RichText> credit { };
+};
+
+TGBOT_API void from_json(const nlohmann::json& json, RichBlockExpandableBlockQuotation& value);
+TGBOT_API void to_json(nlohmann::json& json, const RichBlockExpandableBlockQuotation& value);
 
 /**
  * @brief A footer, corresponding to the HTML tag <footer>.
@@ -10808,7 +11099,7 @@ struct RichBlockMap {
     */
     std::shared_ptr<Location> location { };
     /**
-     * @brief Map zoom level; 13-20
+     * @brief Map zoom level
     */
     std::int32_t zoom { };
     /**
@@ -11033,6 +11324,10 @@ struct RichBlockTable {
     */
     std::optional<bool> isStriped { };
     /**
+     * @brief Optional. True, if table cells have smaller indents
+    */
+    std::optional<bool> isCompact { };
+    /**
      * @brief Optional. Caption of the table
     */
     std::shared_ptr<RichText> caption { };
@@ -11181,13 +11476,91 @@ TGBOT_API void from_json(const nlohmann::json& json, RichMessage& value);
 TGBOT_API void to_json(nlohmann::json& json, const RichMessage& value);
 
 /**
+ * @brief This object represents a button in a RichMessage. Exactly one of the fields other than text
+ * and style must be used to specify the type of the button.
+ * @ingroup api
+ */
+struct RichMessageButton {
+    using Ptr = std::shared_ptr<RichMessageButton>;
+
+    /**
+     * @brief Text of the button. May contain only plain text, RichTextCustomEmoji and
+     * RichTextDateTime entities.
+    */
+    std::shared_ptr<RichText> text { };
+    /**
+     * @brief Optional. Style of the button. Must be one of “danger”, “success”, “primary”, or “link”
+     * (the button is shown as a regular link without borders). Apps may use theme-specific
+     * colors for the button background and text based on the style. The style “link” is
+     * allowed only for callback buttons.
+    */
+    std::optional<std::string> style { };
+    /**
+     * @brief Optional. HTTP or tg:// URL to be opened when the button is pressed. Links
+     * tg://user?id=<user_id> can be used to mention a user by their identifier without using a
+     * username, if this is allowed by their privacy settings.
+    */
+    std::optional<std::string> url { };
+    /**
+     * @brief Optional. Data to be sent in a callback query to the bot when the button is pressed,
+     * 1-64 bytes
+    */
+    std::optional<std::string> callbackData { };
+    /**
+     * @brief Optional. Description of the Web App that will be launched when the user presses the
+     * button. The Web App will be able to send an arbitrary message on behalf of the user
+     * using the method answerWebAppQuery. Available only in private chats between a user and
+     * the bot. Not supported for messages sent on behalf of a business account.
+    */
+    std::shared_ptr<WebAppInfo> webApp { };
+    /**
+     * @brief Optional. An HTTPS URL used to automatically authorize the user. Can be used as a
+     * replacement for the Telegram Login Widget. Not supported for ephemeral messages.
+    */
+    std::shared_ptr<LoginUrl> loginUrl { };
+    /**
+     * @brief Optional. If set, pressing the button will prompt the user to select one of their chats,
+     * open that chat and insert the bot's username and the specified inline query in the input
+     * field. May be empty, in which case just the bot's username will be inserted. Not
+     * supported for messages sent in channel direct messages chats and on behalf of a business
+     * account.
+    */
+    std::optional<std::string> switchInlineQuery { };
+    /**
+     * @brief Optional. If set, pressing the button will insert the bot's username and the specified
+     * inline query in the current chat's input field. May be empty, in which case only the
+     * bot's username will be inserted. Not supported in channels and for messages sent in
+     * channel direct messages chats and on behalf of a business account.
+    */
+    std::optional<std::string> switchInlineQueryCurrentChat { };
+    /**
+     * @brief Optional. If set, pressing the button will prompt the user to select one of their chats
+     * of the specified type, open that chat and insert the bot's username and the specified
+     * inline query in the input field. Not supported for messages sent in channel direct
+     * messages chats and on behalf of a business account.
+    */
+    std::shared_ptr<SwitchInlineQueryChosenChat> switchInlineQueryChosenChat { };
+    /**
+     * @brief Optional. A button that copies the specified text to the clipboard
+    */
+    std::shared_ptr<CopyTextButton> copyText { };
+    /**
+     * @brief Optional. If set, then the button is disabled and does nothing
+    */
+    std::shared_ptr<DisabledButton> disabled { };
+};
+
+TGBOT_API void from_json(const nlohmann::json& json, RichMessageButton& value);
+TGBOT_API void to_json(nlohmann::json& json, const RichMessageButton& value);
+
+/**
  * @brief This object represents a rich formatted text. Currently, it can be either a String for plain
  * text, an Array of RichText, or any of the following types: RichTextBold RichTextItalic
  * RichTextUnderline RichTextStrikethrough RichTextSpoiler RichTextDateTime RichTextTextMention
  * RichTextSubscript RichTextSuperscript RichTextMarked RichTextCode RichTextCustomEmoji
  * RichTextMathematicalExpression RichTextUrl RichTextEmailAddress RichTextPhoneNumber
  * RichTextBankCardNumber RichTextMention RichTextHashtag RichTextCashtag RichTextBotCommand
- * RichTextAnchor RichTextAnchorLink RichTextReference RichTextReferenceLink
+ * RichTextButton RichTextAnchor RichTextAnchorLink RichTextReference RichTextReferenceLink
  * @ingroup api
  */
 struct RichText {
@@ -11201,8 +11574,9 @@ struct RichText {
         std::shared_ptr<RichTextMathematicalExpression>, std::shared_ptr<RichTextUrl>,
         std::shared_ptr<RichTextEmailAddress>, std::shared_ptr<RichTextPhoneNumber>,
         std::shared_ptr<RichTextBankCardNumber>, std::shared_ptr<RichTextMention>, std::shared_ptr<RichTextHashtag>,
-        std::shared_ptr<RichTextCashtag>, std::shared_ptr<RichTextBotCommand>, std::shared_ptr<RichTextAnchor>,
-        std::shared_ptr<RichTextAnchorLink>, std::shared_ptr<RichTextReference>, std::shared_ptr<RichTextReferenceLink>>
+        std::shared_ptr<RichTextCashtag>, std::shared_ptr<RichTextBotCommand>, std::shared_ptr<RichTextButton>,
+        std::shared_ptr<RichTextAnchor>, std::shared_ptr<RichTextAnchorLink>, std::shared_ptr<RichTextReference>,
+        std::shared_ptr<RichTextReferenceLink>>
         value;
 };
 
@@ -11331,6 +11705,28 @@ struct RichTextBotCommand {
 
 TGBOT_API void from_json(const nlohmann::json& json, RichTextBotCommand& value);
 TGBOT_API void to_json(nlohmann::json& json, const RichTextBotCommand& value);
+
+/**
+ * @brief A button.
+ * @ingroup api
+ */
+struct RichTextButton {
+    using Ptr = std::shared_ptr<RichTextButton>;
+
+    static TGBOT_API const std::string TYPE;
+
+    /**
+     * @brief Type of the rich text, always “button”
+    */
+    std::string type { TYPE };
+    /**
+     * @brief The button
+    */
+    std::shared_ptr<RichMessageButton> button { };
+};
+
+TGBOT_API void from_json(const nlohmann::json& json, RichTextButton& value);
+TGBOT_API void to_json(nlohmann::json& json, const RichTextButton& value);
 
 /**
  * @brief A cashtag.
@@ -13128,6 +13524,19 @@ struct UniqueGiftInfo {
     */
     std::string origin { };
     /**
+     * @brief Optional. Text of the message that was added to the gift
+    */
+    std::optional<std::string> text { };
+    /**
+     * @brief Optional. Special entities that appear in the text
+    */
+    std::optional<std::vector<std::shared_ptr<MessageEntity>>> entities { };
+    /**
+     * @brief Optional. True, if the sender and gift text are shown only to the gift receiver;
+     * otherwise, everyone will be able to see them
+    */
+    std::optional<bool> isPrivate { };
+    /**
      * @brief Optional. For gifts bought from other users, the currency in which the payment for the
      * gift was done. Currently, one of “XTR” for Telegram Stars or “TON” for TON grams.
     */
@@ -13356,6 +13765,10 @@ struct Update {
      * @brief Optional. User payment subscription has changed
     */
     std::shared_ptr<BotSubscriptionUpdated> subscription { };
+    /**
+     * @brief Optional. A user asked the bot to stop the generation of a message
+    */
+    std::shared_ptr<MessageGenerationStopped> stoppedMessageGeneration { };
 };
 
 TGBOT_API void from_json(const nlohmann::json& json, Update& value);
@@ -13729,7 +14142,7 @@ TGBOT_API void from_json(const nlohmann::json& json, VideoChatStarted& value);
 TGBOT_API void to_json(nlohmann::json& json, const VideoChatStarted& value);
 
 /**
- * @brief This object represents a video message (available in Telegram apps as of v.4.0).
+ * @brief This object represents a video message.
  * @ingroup api
  */
 struct VideoNote {
@@ -14024,8 +14437,7 @@ struct AnswerCallbackQueryArgs {
 
     /**
      * @brief The maximum amount of time in seconds that the result of the callback
-     * query may be cached client-side. Telegram apps will support caching
-     * starting in version 3.14. Defaults to 0.
+     * query may be cached client-side. Defaults to 0.
      */
     std::int32_t cacheTime = 0;
 };
@@ -15157,6 +15569,12 @@ struct EditEphemeralMessageCaptionArgs {
      * @brief A JSON-serialized object for an inline keyboard
      */
     std::shared_ptr<InlineKeyboardMarkup> replyMarkup = nullptr;
+
+    /**
+     * @brief Pass True if the caption must be shown above the message media.
+     * Supported only for animation, photo and video messages.
+     */
+    bool showCaptionAboveMedia = false;
 };
 
 /**
@@ -15176,9 +15594,7 @@ struct EditEphemeralMessageMediaArgs {
     std::int32_t ephemeralMessageId { };
 
     /**
-     * @brief A JSON-serialized object for the new media content of the message. A new
-     * file can't be uploaded; use a previously uploaded file via its file_id
-     * or specify a URL.
+     * @brief A JSON-serialized object for the new media content of the message
      */
     std::shared_ptr<InputMedia> media { };
 
@@ -15191,6 +15607,13 @@ struct EditEphemeralMessageMediaArgs {
      * @brief A JSON-serialized object for an inline keyboard
      */
     std::shared_ptr<InlineKeyboardMarkup> replyMarkup = nullptr;
+
+    /**
+     * @brief Files uploaded as named multipart parts. Reference each file from a
+     * composite Telegram API argument as attach://<name> and use the same name
+     * in InputFileAttachment.
+     */
+    std::vector<InputFileAttachment> attachments = { };
 };
 
 /**
@@ -15242,9 +15665,10 @@ struct EditEphemeralMessageTextArgs {
     std::int64_t receiverUserId { };
 
     /**
-     * @brief New text of the message, 1-4096 characters after entity parsing
+     * @brief New text of the message, 1-4096 characters after entity parsing;
+     * required if rich_message isn't specified
      */
-    std::string text { };
+    std::string text = "";
 
     /**
      * @brief A JSON-serialized list of special entities that appear in message text,
@@ -15267,6 +15691,11 @@ struct EditEphemeralMessageTextArgs {
      * @brief A JSON-serialized object for an inline keyboard
      */
     std::shared_ptr<InlineKeyboardMarkup> replyMarkup = nullptr;
+
+    /**
+     * @brief New rich content of the message; required if text isn't specified
+     */
+    std::shared_ptr<InputRichMessage> richMessage = nullptr;
 };
 
 /**
@@ -15626,8 +16055,8 @@ struct EditMessageTextArgs {
 
     /**
      * @brief New rich content of the message; required if text isn't specified.
-     * Direct upload of new files isn't supported when an inline message is
-     * edited.
+     * Direct upload of new files and explicit upload of files by a URL isn't
+     * supported when an inline message is edited.
      */
     std::shared_ptr<InputRichMessage> richMessage = nullptr;
 
@@ -16700,6 +17129,12 @@ struct PromoteChatMemberArgs {
      * groups and supergroups only
      */
     bool canManageTags = false;
+
+    /**
+     * @brief Pass True if the administrator can manage chat welcome messages or
+     * directly send them in the case of bots
+     */
+    bool canSendWelcomeMessages = false;
 };
 
 /**
@@ -17122,8 +17557,7 @@ struct SendAnimationArgs {
     bool allowPaidBroadcast = false;
 
     /**
-     * @brief For outgoing ephemeral messages, identifier of the callback query which
-     * triggered the message if any
+     * @brief Identifier of the callback query which triggered the ephemeral message
      */
     std::string callbackQueryId = "";
 
@@ -17140,10 +17574,7 @@ struct SendAnimationArgs {
     std::string messageEffectId = "";
 
     /**
-     * @brief For outgoing ephemeral messages, unique identifier of the user who will
-     * receive the message; for group and supergroup chats only. It is not
-     * guaranteed that the user will receive the message, especially if they
-     * are offline. See ephemeral message sending for more details.
+     * @brief Identifier of the user who will receive the ephemeral message
      */
     std::int64_t receiverUserId = 0;
 
@@ -17159,6 +17590,12 @@ struct SendAnimationArgs {
      * automatically declined.
      */
     std::shared_ptr<SuggestedPostParameters> suggestedPostParameters = nullptr;
+
+    /**
+     * @brief A JSON-serialized object containing the parameters of the ephemeral
+     * message to send
+     */
+    std::shared_ptr<EphemeralMessageParameters> ephemeralMessageParameters = nullptr;
 };
 
 /**
@@ -17270,8 +17707,7 @@ struct SendAudioArgs {
     bool allowPaidBroadcast = false;
 
     /**
-     * @brief For outgoing ephemeral messages, identifier of the callback query which
-     * triggered the message if any
+     * @brief Identifier of the callback query which triggered the ephemeral message
      */
     std::string callbackQueryId = "";
 
@@ -17288,10 +17724,7 @@ struct SendAudioArgs {
     std::string messageEffectId = "";
 
     /**
-     * @brief For outgoing ephemeral messages, unique identifier of the user who will
-     * receive the message; for group and supergroup chats only. It is not
-     * guaranteed that the user will receive the message, especially if they
-     * are offline. See ephemeral message sending for more details.
+     * @brief Identifier of the user who will receive the ephemeral message
      */
     std::int64_t receiverUserId = 0;
 
@@ -17302,6 +17735,12 @@ struct SendAudioArgs {
      * automatically declined.
      */
     std::shared_ptr<SuggestedPostParameters> suggestedPostParameters = nullptr;
+
+    /**
+     * @brief A JSON-serialized object containing the parameters of the ephemeral
+     * message to send
+     */
+    std::shared_ptr<EphemeralMessageParameters> ephemeralMessageParameters = nullptr;
 };
 
 /**
@@ -17482,8 +17921,7 @@ struct SendContactArgs {
     bool allowPaidBroadcast = false;
 
     /**
-     * @brief For outgoing ephemeral messages, identifier of the callback query which
-     * triggered the message if any
+     * @brief Identifier of the callback query which triggered the ephemeral message
      */
     std::string callbackQueryId = "";
 
@@ -17500,10 +17938,7 @@ struct SendContactArgs {
     std::string messageEffectId = "";
 
     /**
-     * @brief For outgoing ephemeral messages, unique identifier of the user who will
-     * receive the message; for group and supergroup chats only. It is not
-     * guaranteed that the user will receive the message, especially if they
-     * are offline. See ephemeral message sending for more details.
+     * @brief Identifier of the user who will receive the ephemeral message
      */
     std::int64_t receiverUserId = 0;
 
@@ -17514,6 +17949,12 @@ struct SendContactArgs {
      * automatically declined.
      */
     std::shared_ptr<SuggestedPostParameters> suggestedPostParameters = nullptr;
+
+    /**
+     * @brief A JSON-serialized object containing the parameters of the ephemeral
+     * message to send
+     */
+    std::shared_ptr<EphemeralMessageParameters> ephemeralMessageParameters = nullptr;
 };
 
 /**
@@ -17701,8 +18142,7 @@ struct SendDocumentArgs {
     bool allowPaidBroadcast = false;
 
     /**
-     * @brief For outgoing ephemeral messages, identifier of the callback query which
-     * triggered the message if any
+     * @brief Identifier of the callback query which triggered the ephemeral message
      */
     std::string callbackQueryId = "";
 
@@ -17719,10 +18159,7 @@ struct SendDocumentArgs {
     std::string messageEffectId = "";
 
     /**
-     * @brief For outgoing ephemeral messages, unique identifier of the user who will
-     * receive the message; for group and supergroup chats only. It is not
-     * guaranteed that the user will receive the message, especially if they
-     * are offline. See ephemeral message sending for more details.
+     * @brief Identifier of the user who will receive the ephemeral message
      */
     std::int64_t receiverUserId = 0;
 
@@ -17733,6 +18170,12 @@ struct SendDocumentArgs {
      * automatically declined.
      */
     std::shared_ptr<SuggestedPostParameters> suggestedPostParameters = nullptr;
+
+    /**
+     * @brief A JSON-serialized object containing the parameters of the ephemeral
+     * message to send
+     */
+    std::shared_ptr<EphemeralMessageParameters> ephemeralMessageParameters = nullptr;
 };
 
 /**
@@ -18099,8 +18542,7 @@ struct SendLivePhotoArgs {
     std::string businessConnectionId = "";
 
     /**
-     * @brief For outgoing ephemeral messages, identifier of the callback query which
-     * triggered the message if any
+     * @brief Identifier of the callback query which triggered the ephemeral message
      */
     std::string callbackQueryId = "";
 
@@ -18158,10 +18600,7 @@ struct SendLivePhotoArgs {
     bool protectContent = false;
 
     /**
-     * @brief For outgoing ephemeral messages, unique identifier of the user who will
-     * receive the message; for group and supergroup chats only. It is not
-     * guaranteed that the user will receive the message, especially if they
-     * are offline. See ephemeral message sending for more details.
+     * @brief Identifier of the user who will receive the ephemeral message
      */
     std::int64_t receiverUserId = 0;
 
@@ -18191,6 +18630,12 @@ struct SendLivePhotoArgs {
      * automatically declined.
      */
     std::shared_ptr<SuggestedPostParameters> suggestedPostParameters = nullptr;
+
+    /**
+     * @brief A JSON-serialized object containing the parameters of the ephemeral
+     * message to send
+     */
+    std::shared_ptr<EphemeralMessageParameters> ephemeralMessageParameters = nullptr;
 };
 
 /**
@@ -18286,8 +18731,7 @@ struct SendLocationArgs {
     bool allowPaidBroadcast = false;
 
     /**
-     * @brief For outgoing ephemeral messages, identifier of the callback query which
-     * triggered the message if any
+     * @brief Identifier of the callback query which triggered the ephemeral message
      */
     std::string callbackQueryId = "";
 
@@ -18304,10 +18748,7 @@ struct SendLocationArgs {
     std::string messageEffectId = "";
 
     /**
-     * @brief For outgoing ephemeral messages, unique identifier of the user who will
-     * receive the message; for group and supergroup chats only. It is not
-     * guaranteed that the user will receive the message, especially if they
-     * are offline. See ephemeral message sending for more details.
+     * @brief Identifier of the user who will receive the ephemeral message
      */
     std::int64_t receiverUserId = 0;
 
@@ -18318,6 +18759,12 @@ struct SendLocationArgs {
      * automatically declined.
      */
     std::shared_ptr<SuggestedPostParameters> suggestedPostParameters = nullptr;
+
+    /**
+     * @brief A JSON-serialized object containing the parameters of the ephemeral
+     * message to send
+     */
+    std::shared_ptr<EphemeralMessageParameters> ephemeralMessageParameters = nullptr;
 };
 
 /**
@@ -18475,8 +18922,7 @@ struct SendMessageArgs {
     bool allowPaidBroadcast = false;
 
     /**
-     * @brief For outgoing ephemeral messages, identifier of the callback query which
-     * triggered the message if any
+     * @brief Identifier of the callback query which triggered the ephemeral message
      */
     std::string callbackQueryId = "";
 
@@ -18493,10 +18939,7 @@ struct SendMessageArgs {
     std::string messageEffectId = "";
 
     /**
-     * @brief For outgoing ephemeral messages, unique identifier of the user who will
-     * receive the message; for group and supergroup chats only. It is not
-     * guaranteed that the user will receive the message, especially if they
-     * are offline. See ephemeral message sending for more details.
+     * @brief Identifier of the user who will receive the ephemeral message
      */
     std::int64_t receiverUserId = 0;
 
@@ -18507,6 +18950,12 @@ struct SendMessageArgs {
      * automatically declined.
      */
     std::shared_ptr<SuggestedPostParameters> suggestedPostParameters = nullptr;
+
+    /**
+     * @brief A JSON-serialized object containing the parameters of the ephemeral
+     * message to send
+     */
+    std::shared_ptr<EphemeralMessageParameters> ephemeralMessageParameters = nullptr;
 };
 
 /**
@@ -18521,7 +18970,8 @@ struct SendMessageDraftArgs {
 
     /**
      * @brief Unique identifier of the message draft; must be non-zero. Changes to
-     * drafts with the same identifier are animated.
+     * drafts with the same identifier are animated. Otherwise, the draft is
+     * replaced without animation.
      */
     std::int32_t draftId { };
 
@@ -18547,6 +18997,21 @@ struct SendMessageDraftArgs {
      * parsing. Pass an empty text to show a “Thinking…” placeholder.
      */
     std::string text = "";
+
+    /**
+     * @brief Pass True to show the user a button to stop further drafts. The bot will
+     * receive an Update “stopped_message_generation” if the user presses the
+     * button.
+     */
+    bool canStop = false;
+
+    /**
+     * @brief Pass True to keep the draft in the chat when the button is pressed. The
+     * draft will still disappear after a short time or if the bot sends a
+     * message. To fully preserve the partial draft, the bot should send it as
+     * a new message.
+     */
+    bool keepOnStop = false;
 };
 
 /**
@@ -18758,8 +19223,7 @@ struct SendPhotoArgs {
     bool allowPaidBroadcast = false;
 
     /**
-     * @brief For outgoing ephemeral messages, identifier of the callback query which
-     * triggered the message if any
+     * @brief Identifier of the callback query which triggered the ephemeral message
      */
     std::string callbackQueryId = "";
 
@@ -18776,10 +19240,7 @@ struct SendPhotoArgs {
     std::string messageEffectId = "";
 
     /**
-     * @brief For outgoing ephemeral messages, unique identifier of the user who will
-     * receive the message; for group and supergroup chats only. It is not
-     * guaranteed that the user will receive the message, especially if they
-     * are offline. See ephemeral message sending for more details.
+     * @brief Identifier of the user who will receive the ephemeral message
      */
     std::int64_t receiverUserId = 0;
 
@@ -18795,6 +19256,12 @@ struct SendPhotoArgs {
      * automatically declined.
      */
     std::shared_ptr<SuggestedPostParameters> suggestedPostParameters = nullptr;
+
+    /**
+     * @brief A JSON-serialized object containing the parameters of the ephemeral
+     * message to send
+     */
+    std::shared_ptr<EphemeralMessageParameters> ephemeralMessageParameters = nullptr;
 };
 
 /**
@@ -19096,6 +19563,12 @@ struct SendRichMessageArgs {
      * in InputFileAttachment.
      */
     std::vector<InputFileAttachment> attachments = { };
+
+    /**
+     * @brief A JSON-serialized object containing the parameters of the ephemeral
+     * message to send
+     */
+    std::shared_ptr<EphemeralMessageParameters> ephemeralMessageParameters = nullptr;
 };
 
 /**
@@ -19110,13 +19583,14 @@ struct SendRichMessageDraftArgs {
 
     /**
      * @brief Unique identifier of the message draft; must be non-zero. Changes to
-     * drafts with the same identifier are animated.
+     * drafts with the same identifier are animated. Otherwise, the draft is
+     * replaced without animation.
      */
     std::int32_t draftId { };
 
     /**
-     * @brief The partial message to be streamed. Direct upload of new files isn't
-     * supported.
+     * @brief The partial message to be streamed. Direct upload of new files and
+     * explicit upload of files by a URL isn't supported.
      */
     std::shared_ptr<InputRichMessage> richMessage { };
 
@@ -19124,6 +19598,21 @@ struct SendRichMessageDraftArgs {
      * @brief Unique identifier for the target message thread
      */
     std::int32_t messageThreadId = 0;
+
+    /**
+     * @brief Pass True to show the user a button to stop further drafts. The bot will
+     * receive an Update “stopped_message_generation” if the user presses the
+     * button.
+     */
+    bool canStop = false;
+
+    /**
+     * @brief Pass True to keep the draft in the chat when the button is pressed. The
+     * draft will still disappear after a short time or if the bot sends a
+     * message. To fully preserve the partial draft, the bot should send it as
+     * a new message.
+     */
+    bool keepOnStop = false;
 };
 
 /**
@@ -19198,8 +19687,7 @@ struct SendStickerArgs {
     bool allowPaidBroadcast = false;
 
     /**
-     * @brief For outgoing ephemeral messages, identifier of the callback query which
-     * triggered the message if any
+     * @brief Identifier of the callback query which triggered the ephemeral message
      */
     std::string callbackQueryId = "";
 
@@ -19216,10 +19704,7 @@ struct SendStickerArgs {
     std::string messageEffectId = "";
 
     /**
-     * @brief For outgoing ephemeral messages, unique identifier of the user who will
-     * receive the message; for group and supergroup chats only. It is not
-     * guaranteed that the user will receive the message, especially if they
-     * are offline. See ephemeral message sending for more details.
+     * @brief Identifier of the user who will receive the ephemeral message
      */
     std::int64_t receiverUserId = 0;
 
@@ -19230,6 +19715,12 @@ struct SendStickerArgs {
      * automatically declined.
      */
     std::shared_ptr<SuggestedPostParameters> suggestedPostParameters = nullptr;
+
+    /**
+     * @brief A JSON-serialized object containing the parameters of the ephemeral
+     * message to send
+     */
+    std::shared_ptr<EphemeralMessageParameters> ephemeralMessageParameters = nullptr;
 };
 
 /**
@@ -19331,8 +19822,7 @@ struct SendVenueArgs {
     bool allowPaidBroadcast = false;
 
     /**
-     * @brief For outgoing ephemeral messages, identifier of the callback query which
-     * triggered the message if any
+     * @brief Identifier of the callback query which triggered the ephemeral message
      */
     std::string callbackQueryId = "";
 
@@ -19349,10 +19839,7 @@ struct SendVenueArgs {
     std::string messageEffectId = "";
 
     /**
-     * @brief For outgoing ephemeral messages, unique identifier of the user who will
-     * receive the message; for group and supergroup chats only. It is not
-     * guaranteed that the user will receive the message, especially if they
-     * are offline. See ephemeral message sending for more details.
+     * @brief Identifier of the user who will receive the ephemeral message
      */
     std::int64_t receiverUserId = 0;
 
@@ -19363,6 +19850,12 @@ struct SendVenueArgs {
      * automatically declined.
      */
     std::shared_ptr<SuggestedPostParameters> suggestedPostParameters = nullptr;
+
+    /**
+     * @brief A JSON-serialized object containing the parameters of the ephemeral
+     * message to send
+     */
+    std::shared_ptr<EphemeralMessageParameters> ephemeralMessageParameters = nullptr;
 };
 
 /**
@@ -19485,8 +19978,7 @@ struct SendVideoArgs {
     bool allowPaidBroadcast = false;
 
     /**
-     * @brief For outgoing ephemeral messages, identifier of the callback query which
-     * triggered the message if any
+     * @brief Identifier of the callback query which triggered the ephemeral message
      */
     std::string callbackQueryId = "";
 
@@ -19512,10 +20004,7 @@ struct SendVideoArgs {
     std::string messageEffectId = "";
 
     /**
-     * @brief For outgoing ephemeral messages, unique identifier of the user who will
-     * receive the message; for group and supergroup chats only. It is not
-     * guaranteed that the user will receive the message, especially if they
-     * are offline. See ephemeral message sending for more details.
+     * @brief Identifier of the user who will receive the ephemeral message
      */
     std::int64_t receiverUserId = 0;
 
@@ -19536,6 +20025,12 @@ struct SendVideoArgs {
      * automatically declined.
      */
     std::shared_ptr<SuggestedPostParameters> suggestedPostParameters = nullptr;
+
+    /**
+     * @brief A JSON-serialized object containing the parameters of the ephemeral
+     * message to send
+     */
+    std::shared_ptr<EphemeralMessageParameters> ephemeralMessageParameters = nullptr;
 };
 
 /**
@@ -19625,8 +20120,7 @@ struct SendVideoNoteArgs {
     bool allowPaidBroadcast = false;
 
     /**
-     * @brief For outgoing ephemeral messages, identifier of the callback query which
-     * triggered the message if any
+     * @brief Identifier of the callback query which triggered the ephemeral message
      */
     std::string callbackQueryId = "";
 
@@ -19643,10 +20137,7 @@ struct SendVideoNoteArgs {
     std::string messageEffectId = "";
 
     /**
-     * @brief For outgoing ephemeral messages, unique identifier of the user who will
-     * receive the message; for group and supergroup chats only. It is not
-     * guaranteed that the user will receive the message, especially if they
-     * are offline. See ephemeral message sending for more details.
+     * @brief Identifier of the user who will receive the ephemeral message
      */
     std::int64_t receiverUserId = 0;
 
@@ -19657,6 +20148,12 @@ struct SendVideoNoteArgs {
      * automatically declined.
      */
     std::shared_ptr<SuggestedPostParameters> suggestedPostParameters = nullptr;
+
+    /**
+     * @brief A JSON-serialized object containing the parameters of the ephemeral
+     * message to send
+     */
+    std::shared_ptr<EphemeralMessageParameters> ephemeralMessageParameters = nullptr;
 };
 
 /**
@@ -19746,8 +20243,7 @@ struct SendVoiceArgs {
     bool allowPaidBroadcast = false;
 
     /**
-     * @brief For outgoing ephemeral messages, identifier of the callback query which
-     * triggered the message if any
+     * @brief Identifier of the callback query which triggered the ephemeral message
      */
     std::string callbackQueryId = "";
 
@@ -19764,10 +20260,7 @@ struct SendVoiceArgs {
     std::string messageEffectId = "";
 
     /**
-     * @brief For outgoing ephemeral messages, unique identifier of the user who will
-     * receive the message; for group and supergroup chats only. It is not
-     * guaranteed that the user will receive the message, especially if they
-     * are offline. See ephemeral message sending for more details.
+     * @brief Identifier of the user who will receive the ephemeral message
      */
     std::int64_t receiverUserId = 0;
 
@@ -19778,6 +20271,12 @@ struct SendVoiceArgs {
      * automatically declined.
      */
     std::shared_ptr<SuggestedPostParameters> suggestedPostParameters = nullptr;
+
+    /**
+     * @brief A JSON-serialized object containing the parameters of the ephemeral
+     * message to send
+     */
+    std::shared_ptr<EphemeralMessageParameters> ephemeralMessageParameters = nullptr;
 };
 
 /**

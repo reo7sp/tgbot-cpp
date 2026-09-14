@@ -142,6 +142,7 @@ TEST(EventHandler, DispatchesEverySupportedUpdateType) {
     update->chatJoinRequest = std::make_shared<TgBot::ChatJoinRequest>();
     update->messageReaction = std::make_shared<TgBot::MessageReactionUpdated>();
     update->messageReactionCount = std::make_shared<TgBot::MessageReactionCountUpdated>();
+    update->stoppedMessageGeneration = std::make_shared<TgBot::MessageGenerationStopped>();
 
     int anyMessages = 0;
     int editedMessages = 0;
@@ -157,6 +158,7 @@ TEST(EventHandler, DispatchesEverySupportedUpdateType) {
     int chatJoinRequests = 0;
     int messageReactions = 0;
     int messageReactionCounts = 0;
+    int stoppedMessageGenerations = 0;
     broadcaster.onAnyMessage([&](const auto&) {
         ++anyMessages;
     });
@@ -199,6 +201,9 @@ TEST(EventHandler, DispatchesEverySupportedUpdateType) {
     broadcaster.onMessageReactionCount([&](const auto&) {
         ++messageReactionCounts;
     });
+    broadcaster.onMessageGenerationStopped([&](const auto&) {
+        ++stoppedMessageGenerations;
+    });
 
     handler.handleUpdate(update);
 
@@ -216,6 +221,7 @@ TEST(EventHandler, DispatchesEverySupportedUpdateType) {
     EXPECT_EQ(chatJoinRequests, 1);
     EXPECT_EQ(messageReactions, 1);
     EXPECT_EQ(messageReactionCounts, 1);
+    EXPECT_EQ(stoppedMessageGenerations, 1);
 }
 
 TEST(EventHandler, SuccessfulPaymentNotifiesListener) {

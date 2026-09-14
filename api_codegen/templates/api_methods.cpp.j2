@@ -8,14 +8,14 @@
 {{ "decodeObjectOrTrue<Message>" if method.return_type != method.response_type else "decode<" + method.return_type + ">" }}
 {%- endmacro %}
 
-{% macro request_field(arg) -%}
+{% macro request_field(arg, value=none) -%}
 {% set factory = "required" if arg.required or arg.always_send else "optional" -%}
 {% set wire_default = ", " + arg.wire_default_value if arg.wire_default_value is not none else "" -%}
-ApiRequest::{{ factory }}("{{ arg.wire_name }}", {{ arg.cpp_name }}{{ wire_default }})
+ApiRequest::{{ factory }}("{{ arg.wire_name }}", {{ arg.cpp_name if value is none else value }}{{ wire_default }})
 {%- endmacro %}
 
 {% macro method_definition(method, argument_object=false, args=none) -%}
-{% set definition_args = method.args if args is none else args -%}
+{% set definition_args = method.direct_args if args is none else args -%}
 {{ method.return_type }} Api::{{ method.name }}(
 {% if argument_object %}
     const {{ method.args_name }}& args
@@ -32,6 +32,13 @@ namespace TgBot {
 {% for method in methods %}
 
 {{ method_definition(method) }} {
+{% if method.direct_args != method.args %}
+    {{ method.args_name }} args;
+{% for arg in method.direct_args %}
+    args.{{ arg.cpp_name }} = {{ arg.cpp_name }};
+{% endfor %}
+    return {{ method.name }}(args);
+{% else %}
     return ApiResponse::{{ decoder(method) }}(
         sendRequest(
             "{{ method.name }}",
@@ -46,12 +53,13 @@ namespace TgBot {
 {% endif %}
         )
     );
+{% endif %}
 }
 
-{% if method.compatibility_args != method.args %}
+{% if method.compatibility_args != method.direct_args %}
 {{ method_definition(method, args=method.compatibility_args) }} {
     return {{ method.name }}(
-{% for arg in method.args %}
+{% for arg in method.direct_args %}
         {{ arg.cpp_name if arg in method.compatibility_args else "{ }" }}{{ "," if not loop.last else "" }}
 {% endfor %}
     );
@@ -60,11 +68,34 @@ namespace TgBot {
 {% endif %}
 {% if method.args_name %}
 {{ method_definition(method, argument_object=true) }} {
+{% if method.direct_args != method.args %}
+{% if method.legacy_ephemeral_parameters %}
+    auto ephemeralMessageParameters = args.ephemeralMessageParameters;
+    if (!ephemeralMessageParameters && (args.receiverUserId != 0 || !args.callbackQueryId.empty())) {
+        ephemeralMessageParameters = std::make_shared<EphemeralMessageParameters>();
+        ephemeralMessageParameters->receiverUserId = args.receiverUserId;
+        if (!args.callbackQueryId.empty()) {
+            ephemeralMessageParameters->callbackQueryId = args.callbackQueryId;
+        }
+    }
+{% endif %}
+    return ApiResponse::{{ decoder(method) }}(
+        sendRequest(
+            "{{ method.name }}",
+            ApiRequest::makeFields(
+{% for arg in method.args %}
+                {{ request_field(arg, "ephemeralMessageParameters" if arg.wire_name == "ephemeral_message_parameters" and method.legacy_ephemeral_parameters else "args." + arg.cpp_name) }}{{ "," if not loop.last else "" }}
+{% endfor %}
+            )
+        )
+    );
+{% else %}
     return {{ method.name }}(
 {% for arg in method.args %}
         args.{{ arg.cpp_name }}{{ "," if not loop.last else "" }}
 {% endfor %}
     );
+{% endif %}
 }
 {% endif %}
 

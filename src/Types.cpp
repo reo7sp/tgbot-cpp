@@ -609,6 +609,7 @@ void from_json(const nlohmann::json& json, ChatAdministratorRights& value) {
     Json::readOptionalField(json, "can_manage_topics", value.canManageTopics);
     Json::readOptionalField(json, "can_manage_direct_messages", value.canManageDirectMessages);
     Json::readOptionalField(json, "can_manage_tags", value.canManageTags);
+    Json::readRequiredField(json, "can_send_welcome_messages", value.canSendWelcomeMessages);
 }
 
 void to_json(nlohmann::json& json, const ChatAdministratorRights& value) {
@@ -630,6 +631,7 @@ void to_json(nlohmann::json& json, const ChatAdministratorRights& value) {
     Json::writeOptionalField(json, "can_manage_topics", value.canManageTopics);
     Json::writeOptionalField(json, "can_manage_direct_messages", value.canManageDirectMessages);
     Json::writeOptionalField(json, "can_manage_tags", value.canManageTags);
+    Json::writeRequiredField(json, "can_send_welcome_messages", value.canSendWelcomeMessages);
 }
 
 void from_json(const nlohmann::json& json, ChatBackground& value) {
@@ -949,6 +951,7 @@ void from_json(const nlohmann::json& json, ChatMemberAdministrator& value) {
     Json::readOptionalField(json, "can_manage_topics", value.canManageTopics);
     Json::readOptionalField(json, "can_manage_direct_messages", value.canManageDirectMessages);
     Json::readOptionalField(json, "can_manage_tags", value.canManageTags);
+    Json::readRequiredField(json, "can_send_welcome_messages", value.canSendWelcomeMessages);
     Json::readOptionalField(json, "custom_title", value.customTitle);
 }
 
@@ -974,6 +977,7 @@ void to_json(nlohmann::json& json, const ChatMemberAdministrator& value) {
     Json::writeOptionalField(json, "can_manage_topics", value.canManageTopics);
     Json::writeOptionalField(json, "can_manage_direct_messages", value.canManageDirectMessages);
     Json::writeOptionalField(json, "can_manage_tags", value.canManageTags);
+    Json::writeRequiredField(json, "can_send_welcome_messages", value.canSendWelcomeMessages);
     Json::writeOptionalField(json, "custom_title", value.customTitle);
 }
 
@@ -1299,6 +1303,15 @@ void to_json(nlohmann::json& json, const CommunityChatAdded& value) {
     Json::writeRequiredField(json, "community", value.community);
 }
 
+void from_json(const nlohmann::json& json, CommunityChatJoined& value) {
+    Json::readRequiredField(json, "community", value.community);
+}
+
+void to_json(nlohmann::json& json, const CommunityChatJoined& value) {
+    json = nlohmann::json::object();
+    Json::writeRequiredField(json, "community", value.community);
+}
+
 void from_json(const nlohmann::json& json, CommunityChatRemoved& value) {
 }
 
@@ -1365,6 +1378,13 @@ void to_json(nlohmann::json& json, const DirectMessagesTopic& value) {
     Json::writeOptionalField(json, "user", value.user);
 }
 
+void from_json(const nlohmann::json& json, DisabledButton& value) {
+}
+
+void to_json(nlohmann::json& json, const DisabledButton& value) {
+    json = nlohmann::json::object();
+}
+
 void from_json(const nlohmann::json& json, Document& value) {
     Json::readRequiredField(json, "file_id", value.fileId);
     Json::readRequiredField(json, "file_unique_id", value.fileUniqueId);
@@ -1422,6 +1442,19 @@ void to_json(nlohmann::json& json, const EncryptedPassportElement& value) {
     Json::writeOptionalField(json, "selfie", value.selfie);
     Json::writeOptionalField(json, "translation", value.translation);
     Json::writeRequiredField(json, "hash", value.hash);
+}
+
+void from_json(const nlohmann::json& json, EphemeralMessageParameters& value) {
+    Json::readRequiredField(json, "receiver_user_id", value.receiverUserId);
+    Json::readOptionalField(json, "callback_query_id", value.callbackQueryId);
+    Json::readOptionalField(json, "replace_callback_query_message", value.replaceCallbackQueryMessage);
+}
+
+void to_json(nlohmann::json& json, const EphemeralMessageParameters& value) {
+    json = nlohmann::json::object();
+    Json::writeRequiredField(json, "receiver_user_id", value.receiverUserId);
+    Json::writeOptionalField(json, "callback_query_id", value.callbackQueryId);
+    Json::writeOptionalField(json, "replace_callback_query_message", value.replaceCallbackQueryMessage);
 }
 
 void from_json(const nlohmann::json& json, ExternalReplyInfo& value) {
@@ -1803,6 +1836,7 @@ void from_json(const nlohmann::json& json, InlineKeyboardButton& value) {
     Json::readOptionalField(json, "copy_text", value.copyText);
     Json::readOptionalField(json, "callback_game", value.callbackGame);
     Json::readOptionalField(json, "pay", value.pay);
+    Json::readOptionalField(json, "disabled", value.disabled);
 }
 
 void to_json(nlohmann::json& json, const InlineKeyboardButton& value) {
@@ -1820,15 +1854,18 @@ void to_json(nlohmann::json& json, const InlineKeyboardButton& value) {
     Json::writeOptionalField(json, "copy_text", value.copyText);
     Json::writeOptionalField(json, "callback_game", value.callbackGame);
     Json::writeOptionalField(json, "pay", value.pay);
+    Json::writeOptionalField(json, "disabled", value.disabled);
 }
 
 void from_json(const nlohmann::json& json, InlineKeyboardMarkup& value) {
     Json::readRequiredField(json, "inline_keyboard", value.inlineKeyboard);
+    Json::readOptionalField(json, "force_reply", value.forceReply);
 }
 
 void to_json(nlohmann::json& json, const InlineKeyboardMarkup& value) {
     json = nlohmann::json::object();
     Json::writeRequiredField(json, "inline_keyboard", value.inlineKeyboard);
+    Json::writeOptionalField(json, "force_reply", value.forceReply);
 }
 
 void from_json(const nlohmann::json& json, InlineQuery& value) {
@@ -3083,6 +3120,21 @@ void to_json(nlohmann::json& json, const InputRichBlockBlockQuotation& value) {
     Json::writeOptionalField(json, "credit", value.credit);
 }
 
+const std::string InputRichBlockButtons::TYPE = "buttons";
+
+void from_json(const nlohmann::json& json, InputRichBlockButtons& value) {
+    Json::readRequiredField(json, "type", value.type);
+    Json::readRequiredField(json, "buttons", value.buttons);
+    Json::readOptionalField(json, "align", value.align);
+}
+
+void to_json(nlohmann::json& json, const InputRichBlockButtons& value) {
+    json = nlohmann::json::object();
+    Json::writeRequiredField(json, "type", value.type);
+    Json::writeRequiredField(json, "buttons", value.buttons);
+    Json::writeOptionalField(json, "align", value.align);
+}
+
 const std::string InputRichBlockCollage::TYPE = "collage";
 
 void from_json(const nlohmann::json& json, InputRichBlockCollage& value) {
@@ -3124,6 +3176,36 @@ void from_json(const nlohmann::json& json, InputRichBlockDivider& value) {
 void to_json(nlohmann::json& json, const InputRichBlockDivider& value) {
     json = nlohmann::json::object();
     Json::writeRequiredField(json, "type", value.type);
+}
+
+const std::string InputRichBlockDocument::TYPE = "document";
+
+void from_json(const nlohmann::json& json, InputRichBlockDocument& value) {
+    Json::readRequiredField(json, "type", value.type);
+    Json::readRequiredField(json, "document", value.document);
+    Json::readOptionalField(json, "caption", value.caption);
+}
+
+void to_json(nlohmann::json& json, const InputRichBlockDocument& value) {
+    json = nlohmann::json::object();
+    Json::writeRequiredField(json, "type", value.type);
+    Json::writeRequiredField(json, "document", value.document);
+    Json::writeOptionalField(json, "caption", value.caption);
+}
+
+const std::string InputRichBlockExpandableBlockQuotation::TYPE = "expandable_blockquote";
+
+void from_json(const nlohmann::json& json, InputRichBlockExpandableBlockQuotation& value) {
+    Json::readRequiredField(json, "type", value.type);
+    Json::readRequiredField(json, "text", value.text);
+    Json::readOptionalField(json, "credit", value.credit);
+}
+
+void to_json(nlohmann::json& json, const InputRichBlockExpandableBlockQuotation& value) {
+    json = nlohmann::json::object();
+    Json::writeRequiredField(json, "type", value.type);
+    Json::writeRequiredField(json, "text", value.text);
+    Json::writeOptionalField(json, "credit", value.credit);
 }
 
 const std::string InputRichBlockFooter::TYPE = "footer";
@@ -3174,9 +3256,9 @@ const std::string InputRichBlockMap::TYPE = "map";
 void from_json(const nlohmann::json& json, InputRichBlockMap& value) {
     Json::readRequiredField(json, "type", value.type);
     Json::readRequiredField(json, "location", value.location);
-    Json::readRequiredField(json, "zoom", value.zoom);
-    Json::readRequiredField(json, "width", value.width);
-    Json::readRequiredField(json, "height", value.height);
+    Json::readOptionalField(json, "zoom", value.zoom);
+    Json::readOptionalField(json, "width", value.width);
+    Json::readOptionalField(json, "height", value.height);
     Json::readOptionalField(json, "caption", value.caption);
 }
 
@@ -3184,9 +3266,9 @@ void to_json(nlohmann::json& json, const InputRichBlockMap& value) {
     json = nlohmann::json::object();
     Json::writeRequiredField(json, "type", value.type);
     Json::writeRequiredField(json, "location", value.location);
-    Json::writeRequiredField(json, "zoom", value.zoom);
-    Json::writeRequiredField(json, "width", value.width);
-    Json::writeRequiredField(json, "height", value.height);
+    Json::writeOptionalField(json, "zoom", value.zoom);
+    Json::writeOptionalField(json, "width", value.width);
+    Json::writeOptionalField(json, "height", value.height);
     Json::writeOptionalField(json, "caption", value.caption);
 }
 
@@ -3298,6 +3380,7 @@ void from_json(const nlohmann::json& json, InputRichBlockTable& value) {
     Json::readRequiredField(json, "cells", value.cells);
     Json::readOptionalField(json, "is_bordered", value.isBordered);
     Json::readOptionalField(json, "is_striped", value.isStriped);
+    Json::readOptionalField(json, "is_compact", value.isCompact);
     Json::readOptionalField(json, "caption", value.caption);
 }
 
@@ -3307,6 +3390,7 @@ void to_json(nlohmann::json& json, const InputRichBlockTable& value) {
     Json::writeRequiredField(json, "cells", value.cells);
     Json::writeOptionalField(json, "is_bordered", value.isBordered);
     Json::writeOptionalField(json, "is_striped", value.isStriped);
+    Json::writeOptionalField(json, "is_compact", value.isCompact);
     Json::writeOptionalField(json, "caption", value.caption);
 }
 
@@ -3893,6 +3977,7 @@ void from_json(const nlohmann::json& json, Message& value) {
     Json::readOptionalField(json, "checklist_tasks_done", value.checklistTasksDone);
     Json::readOptionalField(json, "checklist_tasks_added", value.checklistTasksAdded);
     Json::readOptionalField(json, "community_chat_added", value.communityChatAdded);
+    Json::readOptionalField(json, "community_chat_joined", value.communityChatJoined);
     Json::readOptionalField(json, "community_chat_removed", value.communityChatRemoved);
     Json::readOptionalField(json, "direct_message_price_changed", value.directMessagePriceChanged);
     Json::readOptionalField(json, "forum_topic_created", value.forumTopicCreated);
@@ -4016,6 +4101,7 @@ void to_json(nlohmann::json& json, const Message& value) {
     Json::writeOptionalField(json, "checklist_tasks_done", value.checklistTasksDone);
     Json::writeOptionalField(json, "checklist_tasks_added", value.checklistTasksAdded);
     Json::writeOptionalField(json, "community_chat_added", value.communityChatAdded);
+    Json::writeOptionalField(json, "community_chat_joined", value.communityChatJoined);
     Json::writeOptionalField(json, "community_chat_removed", value.communityChatRemoved);
     Json::writeOptionalField(json, "direct_message_price_changed", value.directMessagePriceChanged);
     Json::writeOptionalField(json, "forum_topic_created", value.forumTopicCreated);
@@ -4228,6 +4314,19 @@ void to_json(nlohmann::json& json, const MessageEntity& value) {
     Json::writeOptionalField(json, "custom_emoji_id", value.customEmojiId);
     Json::writeOptionalField(json, "unix_time", value.unixTime);
     Json::writeOptionalField(json, "date_time_format", value.dateTimeFormat);
+}
+
+void from_json(const nlohmann::json& json, MessageGenerationStopped& value) {
+    Json::readRequiredField(json, "chat", value.chat);
+    Json::readOptionalField(json, "message_thread_id", value.messageThreadId);
+    Json::readRequiredField(json, "draft_id", value.draftId);
+}
+
+void to_json(nlohmann::json& json, const MessageGenerationStopped& value) {
+    json = nlohmann::json::object();
+    Json::writeRequiredField(json, "chat", value.chat);
+    Json::writeOptionalField(json, "message_thread_id", value.messageThreadId);
+    Json::writeRequiredField(json, "draft_id", value.draftId);
 }
 
 void from_json(const nlohmann::json& json, MessageId& value) {
@@ -5032,6 +5131,7 @@ void from_json(const nlohmann::json& json, ReplyKeyboardMarkup& value) {
     Json::readOptionalField(json, "one_time_keyboard", value.oneTimeKeyboard);
     Json::readOptionalField(json, "input_field_placeholder", value.inputFieldPlaceholder);
     Json::readOptionalField(json, "selective", value.selective);
+    Json::readOptionalField(json, "force_reply", value.forceReply);
 }
 
 void to_json(nlohmann::json& json, const ReplyKeyboardMarkup& value) {
@@ -5042,6 +5142,7 @@ void to_json(nlohmann::json& json, const ReplyKeyboardMarkup& value) {
     Json::writeOptionalField(json, "one_time_keyboard", value.oneTimeKeyboard);
     Json::writeOptionalField(json, "input_field_placeholder", value.inputFieldPlaceholder);
     Json::writeOptionalField(json, "selective", value.selective);
+    Json::writeOptionalField(json, "force_reply", value.forceReply);
 }
 
 void from_json(const nlohmann::json& json, ReplyKeyboardRemove& value) {
@@ -5206,6 +5307,21 @@ void to_json(nlohmann::json& json, const RichBlockBlockQuotation& value) {
     Json::writeOptionalField(json, "credit", value.credit);
 }
 
+const std::string RichBlockButtons::TYPE = "buttons";
+
+void from_json(const nlohmann::json& json, RichBlockButtons& value) {
+    Json::readRequiredField(json, "type", value.type);
+    Json::readRequiredField(json, "buttons", value.buttons);
+    Json::readOptionalField(json, "align", value.align);
+}
+
+void to_json(nlohmann::json& json, const RichBlockButtons& value) {
+    json = nlohmann::json::object();
+    Json::writeRequiredField(json, "type", value.type);
+    Json::writeRequiredField(json, "buttons", value.buttons);
+    Json::writeOptionalField(json, "align", value.align);
+}
+
 void from_json(const nlohmann::json& json, RichBlockCaption& value) {
     Json::readRequiredField(json, "text", value.text);
     Json::readOptionalField(json, "credit", value.credit);
@@ -5258,6 +5374,36 @@ void from_json(const nlohmann::json& json, RichBlockDivider& value) {
 void to_json(nlohmann::json& json, const RichBlockDivider& value) {
     json = nlohmann::json::object();
     Json::writeRequiredField(json, "type", value.type);
+}
+
+const std::string RichBlockDocument::TYPE = "document";
+
+void from_json(const nlohmann::json& json, RichBlockDocument& value) {
+    Json::readRequiredField(json, "type", value.type);
+    Json::readRequiredField(json, "document", value.document);
+    Json::readOptionalField(json, "caption", value.caption);
+}
+
+void to_json(nlohmann::json& json, const RichBlockDocument& value) {
+    json = nlohmann::json::object();
+    Json::writeRequiredField(json, "type", value.type);
+    Json::writeRequiredField(json, "document", value.document);
+    Json::writeOptionalField(json, "caption", value.caption);
+}
+
+const std::string RichBlockExpandableBlockQuotation::TYPE = "expandable_blockquote";
+
+void from_json(const nlohmann::json& json, RichBlockExpandableBlockQuotation& value) {
+    Json::readRequiredField(json, "type", value.type);
+    Json::readRequiredField(json, "text", value.text);
+    Json::readOptionalField(json, "credit", value.credit);
+}
+
+void to_json(nlohmann::json& json, const RichBlockExpandableBlockQuotation& value) {
+    json = nlohmann::json::object();
+    Json::writeRequiredField(json, "type", value.type);
+    Json::writeRequiredField(json, "text", value.text);
+    Json::writeOptionalField(json, "credit", value.credit);
 }
 
 const std::string RichBlockFooter::TYPE = "footer";
@@ -5436,6 +5582,7 @@ void from_json(const nlohmann::json& json, RichBlockTable& value) {
     Json::readRequiredField(json, "cells", value.cells);
     Json::readOptionalField(json, "is_bordered", value.isBordered);
     Json::readOptionalField(json, "is_striped", value.isStriped);
+    Json::readOptionalField(json, "is_compact", value.isCompact);
     Json::readOptionalField(json, "caption", value.caption);
 }
 
@@ -5445,6 +5592,7 @@ void to_json(nlohmann::json& json, const RichBlockTable& value) {
     Json::writeRequiredField(json, "cells", value.cells);
     Json::writeOptionalField(json, "is_bordered", value.isBordered);
     Json::writeOptionalField(json, "is_striped", value.isStriped);
+    Json::writeOptionalField(json, "is_compact", value.isCompact);
     Json::writeOptionalField(json, "caption", value.caption);
 }
 
@@ -5521,6 +5669,35 @@ void to_json(nlohmann::json& json, const RichMessage& value) {
     json = nlohmann::json::object();
     Json::writeRequiredField(json, "blocks", value.blocks);
     Json::writeOptionalField(json, "is_rtl", value.isRtl);
+}
+
+void from_json(const nlohmann::json& json, RichMessageButton& value) {
+    Json::readRequiredField(json, "text", value.text);
+    Json::readOptionalField(json, "style", value.style);
+    Json::readOptionalField(json, "url", value.url);
+    Json::readOptionalField(json, "callback_data", value.callbackData);
+    Json::readOptionalField(json, "web_app", value.webApp);
+    Json::readOptionalField(json, "login_url", value.loginUrl);
+    Json::readOptionalField(json, "switch_inline_query", value.switchInlineQuery);
+    Json::readOptionalField(json, "switch_inline_query_current_chat", value.switchInlineQueryCurrentChat);
+    Json::readOptionalField(json, "switch_inline_query_chosen_chat", value.switchInlineQueryChosenChat);
+    Json::readOptionalField(json, "copy_text", value.copyText);
+    Json::readOptionalField(json, "disabled", value.disabled);
+}
+
+void to_json(nlohmann::json& json, const RichMessageButton& value) {
+    json = nlohmann::json::object();
+    Json::writeRequiredField(json, "text", value.text);
+    Json::writeOptionalField(json, "style", value.style);
+    Json::writeOptionalField(json, "url", value.url);
+    Json::writeOptionalField(json, "callback_data", value.callbackData);
+    Json::writeOptionalField(json, "web_app", value.webApp);
+    Json::writeOptionalField(json, "login_url", value.loginUrl);
+    Json::writeOptionalField(json, "switch_inline_query", value.switchInlineQuery);
+    Json::writeOptionalField(json, "switch_inline_query_current_chat", value.switchInlineQueryCurrentChat);
+    Json::writeOptionalField(json, "switch_inline_query_chosen_chat", value.switchInlineQueryChosenChat);
+    Json::writeOptionalField(json, "copy_text", value.copyText);
+    Json::writeOptionalField(json, "disabled", value.disabled);
 }
 
 void from_json(const nlohmann::json& json, RichText& value) {
@@ -5600,6 +5777,19 @@ void to_json(nlohmann::json& json, const RichTextBotCommand& value) {
     Json::writeRequiredField(json, "type", value.type);
     Json::writeRequiredField(json, "text", value.text);
     Json::writeRequiredField(json, "bot_command", value.botCommand);
+}
+
+const std::string RichTextButton::TYPE = "button";
+
+void from_json(const nlohmann::json& json, RichTextButton& value) {
+    Json::readRequiredField(json, "type", value.type);
+    Json::readRequiredField(json, "button", value.button);
+}
+
+void to_json(nlohmann::json& json, const RichTextButton& value) {
+    json = nlohmann::json::object();
+    Json::writeRequiredField(json, "type", value.type);
+    Json::writeRequiredField(json, "button", value.button);
 }
 
 const std::string RichTextCashtag::TYPE = "cashtag";
@@ -6602,6 +6792,9 @@ void to_json(nlohmann::json& json, const UniqueGiftColors& value) {
 void from_json(const nlohmann::json& json, UniqueGiftInfo& value) {
     Json::readRequiredField(json, "gift", value.gift);
     Json::readRequiredField(json, "origin", value.origin);
+    Json::readOptionalField(json, "text", value.text);
+    Json::readOptionalField(json, "entities", value.entities);
+    Json::readOptionalField(json, "is_private", value.isPrivate);
     Json::readOptionalField(json, "last_resale_currency", value.lastResaleCurrency);
     Json::readOptionalField(json, "last_resale_amount", value.lastResaleAmount);
     Json::readOptionalField(json, "owned_gift_id", value.ownedGiftId);
@@ -6613,6 +6806,9 @@ void to_json(nlohmann::json& json, const UniqueGiftInfo& value) {
     json = nlohmann::json::object();
     Json::writeRequiredField(json, "gift", value.gift);
     Json::writeRequiredField(json, "origin", value.origin);
+    Json::writeOptionalField(json, "text", value.text);
+    Json::writeOptionalField(json, "entities", value.entities);
+    Json::writeOptionalField(json, "is_private", value.isPrivate);
     Json::writeOptionalField(json, "last_resale_currency", value.lastResaleCurrency);
     Json::writeOptionalField(json, "last_resale_amount", value.lastResaleAmount);
     Json::writeOptionalField(json, "owned_gift_id", value.ownedGiftId);
@@ -6676,6 +6872,7 @@ void from_json(const nlohmann::json& json, Update& value) {
     Json::readOptionalField(json, "removed_chat_boost", value.removedChatBoost);
     Json::readOptionalField(json, "managed_bot", value.managedBot);
     Json::readOptionalField(json, "subscription", value.subscription);
+    Json::readOptionalField(json, "stopped_message_generation", value.stoppedMessageGeneration);
 }
 
 void to_json(nlohmann::json& json, const Update& value) {
@@ -6707,6 +6904,7 @@ void to_json(nlohmann::json& json, const Update& value) {
     Json::writeOptionalField(json, "removed_chat_boost", value.removedChatBoost);
     Json::writeOptionalField(json, "managed_bot", value.managedBot);
     Json::writeOptionalField(json, "subscription", value.subscription);
+    Json::writeOptionalField(json, "stopped_message_generation", value.stoppedMessageGeneration);
 }
 
 void from_json(const nlohmann::json& json, User& value) {

@@ -88,6 +88,10 @@ api:
     args_order: [scope, language_code]
   editChatInviteLink:
     args_order: [chat_id, invite_link, expire_date, member_limit, name, creates_join_request]
+  editEphemeralMessageMedia:
+    supports_attach_references: true
+  editEphemeralMessageText:
+    args_order: [chat_id, ephemeral_message_id, receiver_user_id, text, entities, link_preview_options, parse_mode, reply_markup, rich_message]
   editForumTopic:
     args_order: [chat_id, message_thread_id, name, icon_custom_emoji_id]
   editMessageCaption:
@@ -133,17 +137,21 @@ api:
   restrictChatMember:
     args_order: [chat_id, user_id, permissions, until_date, use_independent_chat_permissions]
   sendAnimation:
-    args_order: [chat_id, animation, duration, width, height, thumbnail, caption, reply_parameters, reply_markup, parse_mode, disable_notification, caption_entities, message_thread_id, protect_content, has_spoiler, business_connection_id]
+    args_order: [chat_id, animation, duration, width, height, thumbnail, caption, reply_parameters, reply_markup, parse_mode, disable_notification, caption_entities, message_thread_id, protect_content, has_spoiler, business_connection_id, allow_paid_broadcast, callback_query_id, direct_messages_topic_id, message_effect_id, receiver_user_id, show_caption_above_media, suggested_post_parameters]
+    legacy_ephemeral_parameters: true
   sendAudio:
-    args_order: [chat_id, audio, caption, duration, performer, title, thumbnail, reply_parameters, reply_markup, parse_mode, disable_notification, caption_entities, message_thread_id, protect_content, business_connection_id]
+    args_order: [chat_id, audio, caption, duration, performer, title, thumbnail, reply_parameters, reply_markup, parse_mode, disable_notification, caption_entities, message_thread_id, protect_content, business_connection_id, allow_paid_broadcast, callback_query_id, direct_messages_topic_id, message_effect_id, receiver_user_id, suggested_post_parameters]
+    legacy_ephemeral_parameters: true
   sendChatAction:
     args_order: [chat_id, action, message_thread_id, business_connection_id]
   sendContact:
-    args_order: [chat_id, phone_number, first_name, last_name, vcard, disable_notification, reply_parameters, reply_markup, message_thread_id, protect_content, business_connection_id]
+    args_order: [chat_id, phone_number, first_name, last_name, vcard, disable_notification, reply_parameters, reply_markup, message_thread_id, protect_content, business_connection_id, allow_paid_broadcast, callback_query_id, direct_messages_topic_id, message_effect_id, receiver_user_id, suggested_post_parameters]
+    legacy_ephemeral_parameters: true
   sendDice:
     args_order: [chat_id, disable_notification, reply_parameters, reply_markup, emoji, message_thread_id, protect_content, business_connection_id]
   sendDocument:
-    args_order: [chat_id, document, thumbnail, caption, reply_parameters, reply_markup, parse_mode, disable_notification, caption_entities, disable_content_type_detection, message_thread_id, protect_content, business_connection_id]
+    args_order: [chat_id, document, thumbnail, caption, reply_parameters, reply_markup, parse_mode, disable_notification, caption_entities, disable_content_type_detection, message_thread_id, protect_content, business_connection_id, allow_paid_broadcast, callback_query_id, direct_messages_topic_id, message_effect_id, receiver_user_id, suggested_post_parameters]
+    legacy_ephemeral_parameters: true
   sendGame:
     args_order: [chat_id, game_short_name, reply_parameters, reply_markup, disable_notification, message_thread_id, protect_content, business_connection_id]
   sendInvoice:
@@ -151,7 +159,11 @@ api:
     args:
       provider_token: {declaration_required: true}
   sendLocation:
-    args_order: [chat_id, latitude, longitude, live_period, reply_parameters, reply_markup, disable_notification, horizontal_accuracy, heading, proximity_alert_radius, message_thread_id, protect_content, business_connection_id]
+    args_order: [chat_id, latitude, longitude, live_period, reply_parameters, reply_markup, disable_notification, horizontal_accuracy, heading, proximity_alert_radius, message_thread_id, protect_content, business_connection_id, allow_paid_broadcast, callback_query_id, direct_messages_topic_id, message_effect_id, receiver_user_id, suggested_post_parameters]
+    legacy_ephemeral_parameters: true
+  sendLivePhoto:
+    args_order: [chat_id, live_photo, photo, allow_paid_broadcast, business_connection_id, callback_query_id, caption, caption_entities, direct_messages_topic_id, disable_notification, has_spoiler, message_effect_id, message_thread_id, parse_mode, protect_content, receiver_user_id, reply_markup, reply_parameters, show_caption_above_media, suggested_post_parameters]
+    legacy_ephemeral_parameters: true
   sendMediaGroup:
     args_order: [chat_id, media, disable_notification, reply_parameters, message_thread_id, protect_content, business_connection_id, allow_paid_broadcast, direct_messages_topic_id, message_effect_id]
     supports_attach_references: true
@@ -159,24 +171,36 @@ api:
     supports_attach_references: true
   sendRichMessage:
     supports_attach_references: true
+    direct_exclude: [ephemeral_message_parameters]
+  sendRichMessageDraft:
+    args_order: [chat_id, draft_id, rich_message, message_thread_id, can_stop, keep_on_stop]
   sendMessage:
-    args_order: [chat_id, text, link_preview_options, reply_parameters, reply_markup, parse_mode, disable_notification, entities, message_thread_id, protect_content, business_connection_id]
+    args_order: [chat_id, text, link_preview_options, reply_parameters, reply_markup, parse_mode, disable_notification, entities, message_thread_id, protect_content, business_connection_id, allow_paid_broadcast, callback_query_id, direct_messages_topic_id, message_effect_id, receiver_user_id, suggested_post_parameters]
+    legacy_ephemeral_parameters: true
+  sendMessageDraft:
+    args_order: [chat_id, draft_id, entities, message_thread_id, parse_mode, text, can_stop, keep_on_stop]
   sendPhoto:
-    args_order: [chat_id, photo, caption, reply_parameters, reply_markup, parse_mode, disable_notification, caption_entities, message_thread_id, protect_content, has_spoiler, business_connection_id]
+    args_order: [chat_id, photo, caption, reply_parameters, reply_markup, parse_mode, disable_notification, caption_entities, message_thread_id, protect_content, has_spoiler, business_connection_id, allow_paid_broadcast, callback_query_id, direct_messages_topic_id, message_effect_id, receiver_user_id, show_caption_above_media, suggested_post_parameters]
+    legacy_ephemeral_parameters: true
   sendPoll:
     args_order: [chat_id, question, options, disable_notification, reply_parameters, reply_markup, is_anonymous, type, allows_multiple_answers, correct_option_id, explanation, explanation_parse_mode, explanation_entities, open_period, close_date, is_closed, message_thread_id, protect_content, business_connection_id]
     args:
       is_anonymous: {default: true}
   sendSticker:
-    args_order: [chat_id, sticker, reply_parameters, reply_markup, disable_notification, message_thread_id, protect_content, emoji, business_connection_id]
+    args_order: [chat_id, sticker, reply_parameters, reply_markup, disable_notification, message_thread_id, protect_content, emoji, business_connection_id, allow_paid_broadcast, callback_query_id, direct_messages_topic_id, message_effect_id, receiver_user_id, suggested_post_parameters]
+    legacy_ephemeral_parameters: true
   sendVenue:
-    args_order: [chat_id, latitude, longitude, title, address, foursquare_id, foursquare_type, disable_notification, reply_parameters, reply_markup, google_place_id, google_place_type, message_thread_id, protect_content, business_connection_id]
+    args_order: [chat_id, latitude, longitude, title, address, foursquare_id, foursquare_type, disable_notification, reply_parameters, reply_markup, google_place_id, google_place_type, message_thread_id, protect_content, business_connection_id, allow_paid_broadcast, callback_query_id, direct_messages_topic_id, message_effect_id, receiver_user_id, suggested_post_parameters]
+    legacy_ephemeral_parameters: true
   sendVideo:
-    args_order: [chat_id, video, supports_streaming, duration, width, height, thumbnail, caption, reply_parameters, reply_markup, parse_mode, disable_notification, caption_entities, message_thread_id, protect_content, has_spoiler, business_connection_id]
+    args_order: [chat_id, video, supports_streaming, duration, width, height, thumbnail, caption, reply_parameters, reply_markup, parse_mode, disable_notification, caption_entities, message_thread_id, protect_content, has_spoiler, business_connection_id, allow_paid_broadcast, callback_query_id, cover, direct_messages_topic_id, message_effect_id, receiver_user_id, show_caption_above_media, start_timestamp, suggested_post_parameters]
+    legacy_ephemeral_parameters: true
   sendVideoNote:
-    args_order: [chat_id, video_note, reply_parameters, disable_notification, duration, length, thumbnail, reply_markup, message_thread_id, protect_content, business_connection_id]
+    args_order: [chat_id, video_note, reply_parameters, disable_notification, duration, length, thumbnail, reply_markup, message_thread_id, protect_content, business_connection_id, allow_paid_broadcast, callback_query_id, direct_messages_topic_id, message_effect_id, receiver_user_id, suggested_post_parameters]
+    legacy_ephemeral_parameters: true
   sendVoice:
-    args_order: [chat_id, voice, caption, duration, reply_parameters, reply_markup, parse_mode, disable_notification, caption_entities, message_thread_id, protect_content, business_connection_id]
+    args_order: [chat_id, voice, caption, duration, reply_parameters, reply_markup, parse_mode, disable_notification, caption_entities, message_thread_id, protect_content, business_connection_id, allow_paid_broadcast, callback_query_id, direct_messages_topic_id, message_effect_id, receiver_user_id, suggested_post_parameters]
+    legacy_ephemeral_parameters: true
   postStory:
     supports_attach_references: true
   setBusinessAccountProfilePhoto:

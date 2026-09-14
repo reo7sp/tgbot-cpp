@@ -59,6 +59,9 @@ void EventHandler::handleUpdate(const std::shared_ptr<Update>& update) const {
     if (update->messageReactionCount != nullptr) {
         _broadcaster.broadcastMessageReactionCountUpdated(update->messageReactionCount);
     }
+    if (update->stoppedMessageGeneration != nullptr) {
+        _broadcaster.broadcastMessageGenerationStopped(update->stoppedMessageGeneration);
+    }
 }
 
 void EventHandler::handleMessage(const std::shared_ptr<Message>& message) const {
