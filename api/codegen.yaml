@@ -34,6 +34,10 @@ types:
           TextMention: text_mention
           CustomEmoji: custom_emoji
           DateTime: date_time
+  RichText:
+    extra_union_types:
+      - std::string
+      - std::vector<std::shared_ptr<RichText>>
   Sticker:
     fields:
       type:

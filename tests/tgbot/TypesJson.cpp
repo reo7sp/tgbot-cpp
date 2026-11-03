@@ -1,10 +1,57 @@
 #include <memory>
 #include <string>
+#include <type_traits>
 
 #include <gtest/gtest.h>
 #include <nlohmann/json.hpp>
 
 #include "tgbot/Types.h"
+
+TEST(TypesJson, RichTextPreservesExistingVariantIndicesAndDefault) {
+    using Value = decltype(TgBot::RichText::value);
+    static_assert(std::is_same_v<std::variant_alternative_t<0, Value>, std::shared_ptr<TgBot::RichTextBold>>);
+    static_assert(std::is_same_v<std::variant_alternative_t<25, Value>, std::shared_ptr<TgBot::RichTextReferenceLink>>);
+    const TgBot::RichText text;
+    EXPECT_EQ(text.value.index(), 0);
+}
+
+TEST(TypesJson, RichTextRoundTripsPlainText) {
+    for (const auto& text : { std::string(), std::string("plain text") }) {
+        const nlohmann::json json = text;
+        const auto richText = json.get<TgBot::RichText>();
+        ASSERT_TRUE(std::holds_alternative<std::string>(richText.value));
+        EXPECT_EQ(std::get<std::string>(richText.value), text);
+        EXPECT_EQ(nlohmann::json(richText), json);
+    }
+}
+
+TEST(TypesJson, RichTextRoundTripsRecursiveMixedArray) {
+    const auto json = nlohmann::json::parse(R"(["plain text", {"type":"bold","text":"bold text"}, ["nested", []]])");
+    const auto richText = json.get<TgBot::RichText>();
+    const auto& items = std::get<std::vector<TgBot::RichText::Ptr>>(richText.value);
+    ASSERT_EQ(items.size(), 3);
+    ASSERT_TRUE(items[0]);
+    EXPECT_EQ(std::get<std::string>(items[0]->value), "plain text");
+    EXPECT_EQ(nlohmann::json(richText), json);
+}
+
+TEST(TypesJson, RichTextRoundTripsFormattedObjectAndParagraph) {
+    const auto bold = nlohmann::json::parse(R"({"type":"bold","text":"plain text"})");
+    const auto richText = bold.get<TgBot::RichText>();
+    EXPECT_TRUE(std::holds_alternative<std::shared_ptr<TgBot::RichTextBold>>(richText.value));
+    EXPECT_EQ(nlohmann::json(richText), bold);
+
+    const auto paragraph = nlohmann::json::parse(R"({"type":"paragraph","text":"plain text"})");
+    EXPECT_EQ(nlohmann::json(paragraph.get<TgBot::RichBlockParagraph>()), paragraph);
+}
+
+TEST(TypesJson, RichTextRejectsInvalidRepresentations) {
+    for (const auto& input :
+         { "null", "42", "true", R"({"type":"unknown"})", "[null]", "[42]", R"({"type":"bold","text":false})" }) {
+        SCOPED_TRACE(input);
+        EXPECT_THROW(nlohmann::json::parse(input).get<TgBot::RichText>(), std::invalid_argument);
+    }
+}
 
 TEST(TypesJson, GeneratedDiscriminatorHasLegacyConstantAndDefault) {
     TgBot::InlineQueryResultCachedAudio result;

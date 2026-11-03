@@ -47,7 +47,7 @@ struct {{ type.name }} {
 {% if type.union_members %}
     std::variant<
 {% for member in type.union_members %}
-        std::shared_ptr<{{ member }}>{{ "," if not loop.last else "" }}
+        {{ member }}{{ "," if not loop.last else "" }}
 {% endfor %}
         >
         value;
