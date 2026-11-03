@@ -33,7 +33,7 @@ var NAVTREEINDEX18 =
 "struct_tg_bot_1_1_rich_message_button.html#ac09a517b1bfa4b092dad22bf67f5f097":[0,2,308,3],
 "struct_tg_bot_1_1_rich_message_button.html#af3f3b97ed38ad66fb0c071d87bdac68f":[0,2,308,5],
 "struct_tg_bot_1_1_rich_text.html":[0,2,309],
-"struct_tg_bot_1_1_rich_text.html#a91e91982851cfcf7250bb6cd45f6d9a8":[0,2,309,1],
+"struct_tg_bot_1_1_rich_text.html#a23052a3ae6a7fe124751d4637aa6b594":[0,2,309,1],
 "struct_tg_bot_1_1_rich_text.html#ad0c683070d47cdd7a33f400f3fb088cc":[0,2,309,0],
 "struct_tg_bot_1_1_rich_text_anchor.html":[0,2,310],
 "struct_tg_bot_1_1_rich_text_anchor.html#a1ba5f4e0bb39fb87ce458569dbad103e":[0,2,310,2],

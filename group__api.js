@@ -2885,7 +2885,7 @@ var group__api =
     ] ],
     [ "TgBot::RichText", "struct_tg_bot_1_1_rich_text.html", [
       [ "Ptr", "struct_tg_bot_1_1_rich_text.html#ad0c683070d47cdd7a33f400f3fb088cc", null ],
-      [ "value", "struct_tg_bot_1_1_rich_text.html#a91e91982851cfcf7250bb6cd45f6d9a8", null ]
+      [ "value", "struct_tg_bot_1_1_rich_text.html#a23052a3ae6a7fe124751d4637aa6b594", null ]
     ] ],
     [ "TgBot::RichTextAnchor", "struct_tg_bot_1_1_rich_text_anchor.html", [
       [ "Ptr", "struct_tg_bot_1_1_rich_text_anchor.html#a1de76750874920d45c4706e34a89ea9f", null ],
