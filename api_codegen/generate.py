@@ -307,7 +307,7 @@ class _TypeModelBuilder(_BaseModelBuilder):
 
     @staticmethod
     def _standard_headers(fields: tuple[_FieldModel, ...], union_members: tuple[str, ...]) -> tuple[str, ...]:
-        cpp_types = " ".join(field.cpp_type for field in fields)
+        cpp_types = " ".join([field.cpp_type for field in fields] + list(union_members))
         headers = {"memory"}
         for cpp_type, header in (
             ("std::int", "cstdint"),
@@ -348,13 +348,15 @@ class _TypeModelBuilder(_BaseModelBuilder):
         if schema.get("properties"):
             return ()
 
-        return tuple(
+        members = tuple(
             dict.fromkeys(
-                line.strip()
+                f"std::shared_ptr<{line.strip()}>"
                 for line in schema.get("description", "").splitlines()
                 if line.strip() in self._names and line.strip() != name
             )
         )
+        # Append extra representations to preserve existing variant indices and defaults.
+        return members + tuple(self._type_config.get(name, {}).get("extra_union_types", ()))
 
 
 class _MethodModelBuilder(_BaseModelBuilder):

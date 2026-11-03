@@ -11576,7 +11576,7 @@ struct RichText {
         std::shared_ptr<RichTextBankCardNumber>, std::shared_ptr<RichTextMention>, std::shared_ptr<RichTextHashtag>,
         std::shared_ptr<RichTextCashtag>, std::shared_ptr<RichTextBotCommand>, std::shared_ptr<RichTextButton>,
         std::shared_ptr<RichTextAnchor>, std::shared_ptr<RichTextAnchorLink>, std::shared_ptr<RichTextReference>,
-        std::shared_ptr<RichTextReferenceLink>>
+        std::shared_ptr<RichTextReferenceLink>, std::string, std::vector<std::shared_ptr<RichText>>>
         value;
 };
 

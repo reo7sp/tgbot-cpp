@@ -290,6 +290,27 @@ def test_union_header_includes_variant() -> None:
     assert "variant" in _TypeModelBuilder._standard_headers((), ("Message",))
 
 
+def test_rich_text_union_appends_plain_text_and_recursive_array() -> None:
+    components = {
+        "RichText": {"description": "String or Array of RichText, or:\nRichTextBold\nRichTextItalic"},
+        "RichTextBold": {},
+        "RichTextItalic": {},
+    }
+    rich_text = next(model for model in _TypeModelBuilder(components).build() if model.name == "RichText")
+
+    assert rich_text.union_members == (
+        "std::shared_ptr<RichTextBold>",
+        "std::shared_ptr<RichTextItalic>",
+        "std::string",
+        "std::vector<std::shared_ptr<RichText>>",
+    )
+    assert rich_text.dependencies == ("RichTextBold", "RichTextItalic")
+    assert {"string", "vector", "variant"} <= set(rich_text.standard_headers)
+    header = _OpenApiGenerator._render("types.h.j2", types=(rich_text,), methods=())
+    assert "std::vector<std::shared_ptr<RichText>>" in header
+    assert "std::shared_ptr<std::string>" not in header
+
+
 def test_generator_renders_types_methods_and_documentation(
     tmp_path: Path,
 ) -> None:
