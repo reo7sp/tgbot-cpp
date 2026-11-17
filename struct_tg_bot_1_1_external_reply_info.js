@@ -16,7 +16,7 @@ var struct_tg_bot_1_1_external_reply_info =
     [ "linkPreviewOptions", "struct_tg_bot_1_1_external_reply_info.html#a21ac30ff307a11f4a1c749461b45f26c", null ],
     [ "livePhoto", "struct_tg_bot_1_1_external_reply_info.html#ab5fa962747ebc263fbb2d30cb3a7ba68", null ],
     [ "location", "struct_tg_bot_1_1_external_reply_info.html#a3ce05e41958e373d7f8090233b2c2fda", null ],
-    [ "messageId", "struct_tg_bot_1_1_external_reply_info.html#a800bc27127a9117bef08f0d4e672bc88", null ],
+    [ "messageId", "struct_tg_bot_1_1_external_reply_info.html#a5337ffdef4dc1f3b87a9bcf9079bb09d", null ],
     [ "origin", "struct_tg_bot_1_1_external_reply_info.html#ae980d5bde3e8e617e7808f1a445f7555", null ],
     [ "paidMedia", "struct_tg_bot_1_1_external_reply_info.html#a3f1b1ee51bf81b1c3df6fd79cd14b958", null ],
     [ "photo", "struct_tg_bot_1_1_external_reply_info.html#a6cebef0cca2c469f09db68d445c44a4f", null ],
@@ -26,5 +26,6 @@ var struct_tg_bot_1_1_external_reply_info =
     [ "venue", "struct_tg_bot_1_1_external_reply_info.html#a9deeb98d7b904cf2c446e2063854dc64", null ],
     [ "video", "struct_tg_bot_1_1_external_reply_info.html#a8e93502a51b346741a50515df8cf2145", null ],
     [ "videoNote", "struct_tg_bot_1_1_external_reply_info.html#a637af4d4f46ff295e7014a3f41f03330", null ],
-    [ "voice", "struct_tg_bot_1_1_external_reply_info.html#a83b5a240eae587424a428d3fc38bc557", null ]
+    [ "voice", "struct_tg_bot_1_1_external_reply_info.html#a83b5a240eae587424a428d3fc38bc557", null ],
+    [ "widget", "struct_tg_bot_1_1_external_reply_info.html#a2d417cd211a8b5c5b6dd4933324b6583", null ]
 ];

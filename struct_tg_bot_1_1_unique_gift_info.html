@@ -136,19 +136,19 @@ Public Attributes</h2></td></tr>
 <tr class="memdesc:a98c5457b0ea928de69df9ad0bb9c8bff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. True, if the sender and gift text are shown only to the gift receiver; otherwise, everyone will be able to see them.  <br /></td></tr>
 <tr class="memitem:a10c1fec63a5e42a3c398ee6ca37db9df" id="r_a10c1fec63a5e42a3c398ee6ca37db9df"><td class="memItemLeft">std::optional&lt; std::string &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a10c1fec63a5e42a3c398ee6ca37db9df">lastResaleCurrency</a> { }</td></tr>
 <tr class="memdesc:a10c1fec63a5e42a3c398ee6ca37db9df"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. For gifts bought from other users, the currency in which the payment for the gift was done. Currently, one of “XTR” for Telegram Stars or “TON” for TON grams.  <br /></td></tr>
-<tr class="memitem:af98f9dce7805920f975144220b3f79d0" id="r_af98f9dce7805920f975144220b3f79d0"><td class="memItemLeft">std::optional&lt; std::int32_t &gt;&#160;</td><td class="memItemRight"><a class="el" href="#af98f9dce7805920f975144220b3f79d0">lastResaleAmount</a> { }</td></tr>
-<tr class="memdesc:af98f9dce7805920f975144220b3f79d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. For gifts bought from other users, the price paid for the gift in either Telegram Stars or nanograms.  <br /></td></tr>
+<tr class="memitem:aef498b98c3396b699b637e2d55e82246" id="r_aef498b98c3396b699b637e2d55e82246"><td class="memItemLeft">std::optional&lt; std::uint64_t &gt;&#160;</td><td class="memItemRight"><a class="el" href="#aef498b98c3396b699b637e2d55e82246">lastResaleAmount</a> { }</td></tr>
+<tr class="memdesc:aef498b98c3396b699b637e2d55e82246"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. For gifts bought from other users, the price paid for the gift in either Telegram Stars or nanograms.  <br /></td></tr>
 <tr class="memitem:a9bfbf4c74b8bfc14eb2e4e0d43265ff6" id="r_a9bfbf4c74b8bfc14eb2e4e0d43265ff6"><td class="memItemLeft">std::optional&lt; std::string &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a9bfbf4c74b8bfc14eb2e4e0d43265ff6">ownedGiftId</a> { }</td></tr>
 <tr class="memdesc:a9bfbf4c74b8bfc14eb2e4e0d43265ff6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. Unique identifier of the received gift for the bot; only present for gifts received on behalf of business accounts.  <br /></td></tr>
-<tr class="memitem:a87072900b3a67bbdc46b1b58189c79d8" id="r_a87072900b3a67bbdc46b1b58189c79d8"><td class="memItemLeft">std::optional&lt; std::int32_t &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a87072900b3a67bbdc46b1b58189c79d8">transferStarCount</a> { }</td></tr>
-<tr class="memdesc:a87072900b3a67bbdc46b1b58189c79d8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. Number of Telegram Stars that must be paid to transfer the gift; omitted if the bot cannot transfer the gift.  <br /></td></tr>
+<tr class="memitem:a675a2558afe5a921c78cdbfe83da29fc" id="r_a675a2558afe5a921c78cdbfe83da29fc"><td class="memItemLeft">std::optional&lt; std::uint32_t &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a675a2558afe5a921c78cdbfe83da29fc">transferStarCount</a> { }</td></tr>
+<tr class="memdesc:a675a2558afe5a921c78cdbfe83da29fc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. Number of Telegram Stars that must be paid to transfer the gift; omitted if the bot cannot transfer the gift.  <br /></td></tr>
 <tr class="memitem:afef8a5689b413c6993fdd3284853bae7" id="r_afef8a5689b413c6993fdd3284853bae7"><td class="memItemLeft">std::optional&lt; std::int32_t &gt;&#160;</td><td class="memItemRight"><a class="el" href="#afef8a5689b413c6993fdd3284853bae7">nextTransferDate</a> { }</td></tr>
 <tr class="memdesc:afef8a5689b413c6993fdd3284853bae7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. Point in time (Unix timestamp) when the gift can be transferred. If it is in the past, then the gift can be transferred now.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Describes a service message about a unique gift that was sent or received. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l13512">13512</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l14107">14107</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 </div><a name="doc-typedef-members" id="doc-typedef-members"></a><h2 id="header-doc-typedef-members" class="groupheader">Member Typedef Documentation</h2>
 <a id="a4d7119035996fc1900dcdf0a1c1d074b" name="a4d7119035996fc1900dcdf0a1c1d074b"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a4d7119035996fc1900dcdf0a1c1d074b">&#9670;&#160;</a></span>Ptr</h2>
@@ -162,7 +162,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l13513">13513</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l14108">14108</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -181,7 +181,7 @@ Public Attributes</h2></td></tr>
 
 <p>Optional. Special entities that appear in the text. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l13533">13533</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l14128">14128</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -199,7 +199,7 @@ Public Attributes</h2></td></tr>
 
 <p>Information about the gift. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l13518">13518</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l14113">14113</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -217,25 +217,25 @@ Public Attributes</h2></td></tr>
 
 <p>Optional. True, if the sender and gift text are shown only to the gift receiver; otherwise, everyone will be able to see them. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l13538">13538</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l14133">14133</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
-<a id="af98f9dce7805920f975144220b3f79d0" name="af98f9dce7805920f975144220b3f79d0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af98f9dce7805920f975144220b3f79d0">&#9670;&#160;</a></span>lastResaleAmount</h2>
+<a id="aef498b98c3396b699b637e2d55e82246" name="aef498b98c3396b699b637e2d55e82246"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aef498b98c3396b699b637e2d55e82246">&#9670;&#160;</a></span>lastResaleAmount</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::optional&lt;std::int32_t&gt; TgBot::UniqueGiftInfo::lastResaleAmount { }</td>
+          <td class="memname">std::optional&lt;std::uint64_t&gt; TgBot::UniqueGiftInfo::lastResaleAmount { }</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Optional. For gifts bought from other users, the price paid for the gift in either Telegram Stars or nanograms. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l13548">13548</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l14143">14143</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -253,7 +253,7 @@ Public Attributes</h2></td></tr>
 
 <p>Optional. For gifts bought from other users, the currency in which the payment for the gift was done. Currently, one of “XTR” for Telegram Stars or “TON” for TON grams. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l13543">13543</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l14138">14138</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -271,7 +271,7 @@ Public Attributes</h2></td></tr>
 
 <p>Optional. Point in time (Unix timestamp) when the gift can be transferred. If it is in the past, then the gift can be transferred now. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l13563">13563</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l14158">14158</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -289,7 +289,7 @@ Public Attributes</h2></td></tr>
 
 <p>Origin of the gift. Currently, either “upgrade” for gifts upgraded from regular gifts, “transfer” for gifts transferred from other users or channels, “resale” for gifts bought from other users, “gifted_upgrade” for upgrades purchased after the gift was sent, or “offer” for gifts bought or sold through gift purchase offers. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l13525">13525</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l14120">14120</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -307,7 +307,7 @@ Public Attributes</h2></td></tr>
 
 <p>Optional. Unique identifier of the received gift for the bot; only present for gifts received on behalf of business accounts. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l13553">13553</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l14148">14148</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -325,25 +325,25 @@ Public Attributes</h2></td></tr>
 
 <p>Optional. Text of the message that was added to the gift. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l13529">13529</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l14124">14124</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
-<a id="a87072900b3a67bbdc46b1b58189c79d8" name="a87072900b3a67bbdc46b1b58189c79d8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a87072900b3a67bbdc46b1b58189c79d8">&#9670;&#160;</a></span>transferStarCount</h2>
+<a id="a675a2558afe5a921c78cdbfe83da29fc" name="a675a2558afe5a921c78cdbfe83da29fc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a675a2558afe5a921c78cdbfe83da29fc">&#9670;&#160;</a></span>transferStarCount</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::optional&lt;std::int32_t&gt; TgBot::UniqueGiftInfo::transferStarCount { }</td>
+          <td class="memname">std::optional&lt;std::uint32_t&gt; TgBot::UniqueGiftInfo::transferStarCount { }</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Optional. Number of Telegram Stars that must be paid to transfer the gift; omitted if the bot cannot transfer the gift. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l13558">13558</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l14153">14153</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>

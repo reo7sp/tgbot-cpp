@@ -21,13 +21,15 @@ var struct_tg_bot_1_1_message_entity =
       [ "TextLink", "struct_tg_bot_1_1_message_entity.html#a6cb87a43b52a982682c1e592fbc1f2c9a7f01c2ecef93cd509dab0bb85ff03f49", null ],
       [ "TextMention", "struct_tg_bot_1_1_message_entity.html#a6cb87a43b52a982682c1e592fbc1f2c9a4ed8233defa4ad141a6a784b45a31c45", null ],
       [ "CustomEmoji", "struct_tg_bot_1_1_message_entity.html#a6cb87a43b52a982682c1e592fbc1f2c9af2ded25b30113452f7b15011b876ef8f", null ],
-      [ "DateTime", "struct_tg_bot_1_1_message_entity.html#a6cb87a43b52a982682c1e592fbc1f2c9a8cf10d2341ed01492506085688270c1e", null ]
+      [ "DateTime", "struct_tg_bot_1_1_message_entity.html#a6cb87a43b52a982682c1e592fbc1f2c9a8cf10d2341ed01492506085688270c1e", null ],
+      [ "TonAddress", "struct_tg_bot_1_1_message_entity.html#a6cb87a43b52a982682c1e592fbc1f2c9a2f6f4a3d37cfd13ef180ba00039a84b6", null ],
+      [ "BankCardNumber", "struct_tg_bot_1_1_message_entity.html#a6cb87a43b52a982682c1e592fbc1f2c9af77a46a92d2eef1f56f04d155fd37ccb", null ]
     ] ],
     [ "customEmojiId", "struct_tg_bot_1_1_message_entity.html#a9e5adb2ffb2d02f1cca63d0ac50d7fc9", null ],
     [ "dateTimeFormat", "struct_tg_bot_1_1_message_entity.html#aab8762dc9128a50915f63f5823f305b8", null ],
     [ "language", "struct_tg_bot_1_1_message_entity.html#ae67f1186e0885020d3ee04d043262106", null ],
-    [ "length", "struct_tg_bot_1_1_message_entity.html#aeda0401744ef1b22b2059124fe940492", null ],
-    [ "offset", "struct_tg_bot_1_1_message_entity.html#a48d29c9fd3496b26e349d4d3049bad0d", null ],
+    [ "length", "struct_tg_bot_1_1_message_entity.html#afe1d9038e099c09fd59a65ef305f7573", null ],
+    [ "offset", "struct_tg_bot_1_1_message_entity.html#abda7485811402f5a601f62ff8e80ee38", null ],
     [ "type", "struct_tg_bot_1_1_message_entity.html#aec6056a21555b9c50132c9c0ca5816b9", null ],
     [ "unixTime", "struct_tg_bot_1_1_message_entity.html#a1e7523a94036460787c67fee5ecfc1b8", null ],
     [ "url", "struct_tg_bot_1_1_message_entity.html#aed3751a61b7ff46e3486179f0d93d49b", null ],

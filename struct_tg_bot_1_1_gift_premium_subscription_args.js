@@ -1,9 +1,9 @@
 var struct_tg_bot_1_1_gift_premium_subscription_args =
 [
-    [ "monthCount", "struct_tg_bot_1_1_gift_premium_subscription_args.html#afed44cd6a9ef0007d9e7298b49269e41", null ],
-    [ "starCount", "struct_tg_bot_1_1_gift_premium_subscription_args.html#a0d2fb43781393f53265b4b473dd57d87", null ],
+    [ "monthCount", "struct_tg_bot_1_1_gift_premium_subscription_args.html#a36654edb95f4a0a09aca5ef226f47b38", null ],
+    [ "starCount", "struct_tg_bot_1_1_gift_premium_subscription_args.html#a34bb9fcf7846996d9044a6a24a69cf5b", null ],
     [ "text", "struct_tg_bot_1_1_gift_premium_subscription_args.html#abb66a1267e43b458bd3fc527c04d952f", null ],
     [ "textEntities", "struct_tg_bot_1_1_gift_premium_subscription_args.html#aa97346d4a217a61aa2808d9f023343f3", null ],
     [ "textParseMode", "struct_tg_bot_1_1_gift_premium_subscription_args.html#af6e297744de9310592028b336d216686", null ],
-    [ "userId", "struct_tg_bot_1_1_gift_premium_subscription_args.html#a2e675e8535ce0d8cece29c9ba7cedd8b", null ]
+    [ "userId", "struct_tg_bot_1_1_gift_premium_subscription_args.html#ad3ae5a0e50e4a90bb5f1ddf825609527", null ]
 ];

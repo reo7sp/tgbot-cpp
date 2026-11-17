@@ -8,6 +8,6 @@ var struct_tg_bot_1_1_owned_gift_unique =
     [ "ownedGiftId", "struct_tg_bot_1_1_owned_gift_unique.html#a2ab28908d37ce229897d4c43a40bbc83", null ],
     [ "sendDate", "struct_tg_bot_1_1_owned_gift_unique.html#a72ae067f90067e92b61b1d340874d586", null ],
     [ "senderUser", "struct_tg_bot_1_1_owned_gift_unique.html#a8b17084d672f895f669861d1f0009787", null ],
-    [ "transferStarCount", "struct_tg_bot_1_1_owned_gift_unique.html#af4a62d9de769a8c97358ae004bccfb9a", null ],
+    [ "transferStarCount", "struct_tg_bot_1_1_owned_gift_unique.html#a9e7ee558ec8f35f9d9e28536b29baab4", null ],
     [ "type", "struct_tg_bot_1_1_owned_gift_unique.html#a2dab85d8bf6d3373d64eb3515a06f219", null ]
 ];

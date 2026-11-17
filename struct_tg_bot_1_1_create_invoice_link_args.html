@@ -113,7 +113,7 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('struct_tg_bot_
 </div><!--header-->
 <div class="contents">
 
-<p>Arguments for <a class="el" href="class_tg_bot_1_1_api.html#a4ebb7dbbd05a58da280f3efd96cdc35a" title="Use this method to create a link for an invoice. Returns the created invoice link as String on succes...">Api::createInvoiceLink</a>.  
+<p>Arguments for <a class="el" href="class_tg_bot_1_1_api.html#abe3a5437369d2371d1d84aeee2575987" title="Use this method to create a link for an invoice. Returns the created invoice link as String on succes...">Api::createInvoiceLink</a>.  
  <a href="#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="_types_8h_source.html">Types.h</a>&gt;</code></p>
@@ -132,20 +132,20 @@ Public Attributes</h2></td></tr>
 <tr class="memdesc:a898b2704dd6a1c5a49171b7e27cc1a98"><td class="mdescLeft">&#160;</td><td class="mdescRight">Three-letter ISO 4217 currency code, see more on currencies. Pass “XTR” for payments in Telegram Stars.  <br /></td></tr>
 <tr class="memitem:a2987d6b928b6fba52c7b2033b2751190" id="r_a2987d6b928b6fba52c7b2033b2751190"><td class="memItemLeft">std::vector&lt; std::shared_ptr&lt; <a class="el" href="struct_tg_bot_1_1_labeled_price.html">LabeledPrice</a> &gt; &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a2987d6b928b6fba52c7b2033b2751190">prices</a> { }</td></tr>
 <tr class="memdesc:a2987d6b928b6fba52c7b2033b2751190"><td class="mdescLeft">&#160;</td><td class="mdescRight">Price breakdown, a JSON-serialized list of components (e.g. product price, tax, discount, delivery cost, delivery tax, bonus, etc.). Must contain exactly one item for payments in Telegram Stars.  <br /></td></tr>
-<tr class="memitem:ab8709dc0d6db3d9a6e6681b0950352b2" id="r_ab8709dc0d6db3d9a6e6681b0950352b2"><td class="memItemLeft">std::int32_t&#160;</td><td class="memItemRight"><a class="el" href="#ab8709dc0d6db3d9a6e6681b0950352b2">maxTipAmount</a> = 0</td></tr>
-<tr class="memdesc:ab8709dc0d6db3d9a6e6681b0950352b2"><td class="mdescLeft">&#160;</td><td class="mdescRight">The maximum accepted amount for tips in the smallest units of the currency (integer, not float/double). For example, for a maximum tip of US$ 1.45 pass max_tip_amount = 145. See the exp parameter in currencies.json, it shows the number of digits past the decimal point for each currency (2 for the majority of currencies). Defaults to 0. Not supported for payments in Telegram Stars.  <br /></td></tr>
-<tr class="memitem:ae68d1411331da4a27695d77092c04539" id="r_ae68d1411331da4a27695d77092c04539"><td class="memItemLeft">std::vector&lt; std::int32_t &gt;&#160;</td><td class="memItemRight"><a class="el" href="#ae68d1411331da4a27695d77092c04539">suggestedTipAmounts</a> = { }</td></tr>
-<tr class="memdesc:ae68d1411331da4a27695d77092c04539"><td class="mdescLeft">&#160;</td><td class="mdescRight">A JSON-serialized Array of suggested amounts of tips in the smallest units of the currency (integer, not float/double). At most 4 suggested tip amounts can be specified. The suggested tip amounts must be positive, passed in a strictly increased order and must not exceed max_tip_amount.  <br /></td></tr>
+<tr class="memitem:a1454ce1bf4f52f071b1991cbcf8e995f" id="r_a1454ce1bf4f52f071b1991cbcf8e995f"><td class="memItemLeft">std::uint64_t&#160;</td><td class="memItemRight"><a class="el" href="#a1454ce1bf4f52f071b1991cbcf8e995f">maxTipAmount</a> = 0</td></tr>
+<tr class="memdesc:a1454ce1bf4f52f071b1991cbcf8e995f"><td class="mdescLeft">&#160;</td><td class="mdescRight">The maximum accepted amount for tips in the smallest units of the currency (integer, not float/double). For example, for a maximum tip of US$ 1.45 pass max_tip_amount = 145. See the exp parameter in currencies.json, it shows the number of digits past the decimal point for each currency (2 for the majority of currencies). Defaults to 0. Not supported for payments in Telegram Stars.  <br /></td></tr>
+<tr class="memitem:ac10e6d2664dd42a247d61dbf48501fa7" id="r_ac10e6d2664dd42a247d61dbf48501fa7"><td class="memItemLeft">std::vector&lt; std::uint64_t &gt;&#160;</td><td class="memItemRight"><a class="el" href="#ac10e6d2664dd42a247d61dbf48501fa7">suggestedTipAmounts</a> = { }</td></tr>
+<tr class="memdesc:ac10e6d2664dd42a247d61dbf48501fa7"><td class="mdescLeft">&#160;</td><td class="mdescRight">A JSON-serialized Array of suggested amounts of tips in the smallest units of the currency (integer, not float/double). At most 4 suggested tip amounts can be specified. The suggested tip amounts must be positive, passed in a strictly increased order and must not exceed max_tip_amount.  <br /></td></tr>
 <tr class="memitem:a1864e2faef3e3f9b1e61a3c9d367e030" id="r_a1864e2faef3e3f9b1e61a3c9d367e030"><td class="memItemLeft">std::string&#160;</td><td class="memItemRight"><a class="el" href="#a1864e2faef3e3f9b1e61a3c9d367e030">providerData</a> = &quot;&quot;</td></tr>
 <tr class="memdesc:a1864e2faef3e3f9b1e61a3c9d367e030"><td class="mdescLeft">&#160;</td><td class="mdescRight">JSON-serialized data about the invoice, which will be shared with the payment provider. A detailed description of required fields should be provided by the payment provider.  <br /></td></tr>
 <tr class="memitem:ab10f887c83533976353c29c6d738e57b" id="r_ab10f887c83533976353c29c6d738e57b"><td class="memItemLeft">std::string&#160;</td><td class="memItemRight"><a class="el" href="#ab10f887c83533976353c29c6d738e57b">photoUrl</a> = &quot;&quot;</td></tr>
 <tr class="memdesc:ab10f887c83533976353c29c6d738e57b"><td class="mdescLeft">&#160;</td><td class="mdescRight">URL of the product photo for the invoice. Can be a photo of the goods or a marketing image for a service.  <br /></td></tr>
-<tr class="memitem:a3cd34a80bdb839a3a1551b4370b1dbc4" id="r_a3cd34a80bdb839a3a1551b4370b1dbc4"><td class="memItemLeft">std::int32_t&#160;</td><td class="memItemRight"><a class="el" href="#a3cd34a80bdb839a3a1551b4370b1dbc4">photoSize</a> = 0</td></tr>
-<tr class="memdesc:a3cd34a80bdb839a3a1551b4370b1dbc4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Photo size in bytes.  <br /></td></tr>
-<tr class="memitem:a1c1b581ccf60be0dc39d790f561ab024" id="r_a1c1b581ccf60be0dc39d790f561ab024"><td class="memItemLeft">std::int32_t&#160;</td><td class="memItemRight"><a class="el" href="#a1c1b581ccf60be0dc39d790f561ab024">photoWidth</a> = 0</td></tr>
-<tr class="memdesc:a1c1b581ccf60be0dc39d790f561ab024"><td class="mdescLeft">&#160;</td><td class="mdescRight">Photo width.  <br /></td></tr>
-<tr class="memitem:a0be15f94b4dfbddd9d401af7b28ff8b6" id="r_a0be15f94b4dfbddd9d401af7b28ff8b6"><td class="memItemLeft">std::int32_t&#160;</td><td class="memItemRight"><a class="el" href="#a0be15f94b4dfbddd9d401af7b28ff8b6">photoHeight</a> = 0</td></tr>
-<tr class="memdesc:a0be15f94b4dfbddd9d401af7b28ff8b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Photo height.  <br /></td></tr>
+<tr class="memitem:ac03abe8025ed545a5b90705d1827bcf9" id="r_ac03abe8025ed545a5b90705d1827bcf9"><td class="memItemLeft">std::uint32_t&#160;</td><td class="memItemRight"><a class="el" href="#ac03abe8025ed545a5b90705d1827bcf9">photoSize</a> = 0</td></tr>
+<tr class="memdesc:ac03abe8025ed545a5b90705d1827bcf9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Photo size in bytes.  <br /></td></tr>
+<tr class="memitem:af868fe7ed77eda98b084cbc62bae5ed1" id="r_af868fe7ed77eda98b084cbc62bae5ed1"><td class="memItemLeft">std::uint32_t&#160;</td><td class="memItemRight"><a class="el" href="#af868fe7ed77eda98b084cbc62bae5ed1">photoWidth</a> = 0</td></tr>
+<tr class="memdesc:af868fe7ed77eda98b084cbc62bae5ed1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Photo width.  <br /></td></tr>
+<tr class="memitem:abd249fcf0102adbfcbd6383eae84a219" id="r_abd249fcf0102adbfcbd6383eae84a219"><td class="memItemLeft">std::uint32_t&#160;</td><td class="memItemRight"><a class="el" href="#abd249fcf0102adbfcbd6383eae84a219">photoHeight</a> = 0</td></tr>
+<tr class="memdesc:abd249fcf0102adbfcbd6383eae84a219"><td class="mdescLeft">&#160;</td><td class="mdescRight">Photo height.  <br /></td></tr>
 <tr class="memitem:aaa6abeec3cf8295de5c8a6ca637b2f06" id="r_aaa6abeec3cf8295de5c8a6ca637b2f06"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#aaa6abeec3cf8295de5c8a6ca637b2f06">needName</a> = false</td></tr>
 <tr class="memdesc:aaa6abeec3cf8295de5c8a6ca637b2f06"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pass True if you require the user's full name to complete the order. Ignored for payments in Telegram Stars.  <br /></td></tr>
 <tr class="memitem:a1ad81d30e83182165268e00911f7dcba" id="r_a1ad81d30e83182165268e00911f7dcba"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a1ad81d30e83182165268e00911f7dcba">needPhoneNumber</a> = false</td></tr>
@@ -162,13 +162,13 @@ Public Attributes</h2></td></tr>
 <tr class="memdesc:aeebfd4ee8e534f5c37194206af2df913"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pass True if the final price depends on the shipping method. Ignored for payments in Telegram Stars.  <br /></td></tr>
 <tr class="memitem:af796c569b5075d91cae31714a456330f" id="r_af796c569b5075d91cae31714a456330f"><td class="memItemLeft">std::string&#160;</td><td class="memItemRight"><a class="el" href="#af796c569b5075d91cae31714a456330f">businessConnectionId</a> = &quot;&quot;</td></tr>
 <tr class="memdesc:af796c569b5075d91cae31714a456330f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unique identifier of the business connection on behalf of which the link will be created. For payments in Telegram Stars only.  <br /></td></tr>
-<tr class="memitem:ad214b5dba8250ac4478c9595d2e600e6" id="r_ad214b5dba8250ac4478c9595d2e600e6"><td class="memItemLeft">std::int32_t&#160;</td><td class="memItemRight"><a class="el" href="#ad214b5dba8250ac4478c9595d2e600e6">subscriptionPeriod</a> = 0</td></tr>
-<tr class="memdesc:ad214b5dba8250ac4478c9595d2e600e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">The number of seconds the subscription will be active for before the next payment. The currency must be set to “XTR” (Telegram Stars) if the parameter is used. Currently, it must always be 2592000 (30 days) if specified. Any number of subscriptions can be active for a given bot at the same time, including multiple concurrent subscriptions from the same user. Subscription price must no exceed 10000 Telegram Stars.  <br /></td></tr>
+<tr class="memitem:ae80d0bd0f7a1319e054d58209721d265" id="r_ae80d0bd0f7a1319e054d58209721d265"><td class="memItemLeft">std::uint32_t&#160;</td><td class="memItemRight"><a class="el" href="#ae80d0bd0f7a1319e054d58209721d265">subscriptionPeriod</a> = 0</td></tr>
+<tr class="memdesc:ae80d0bd0f7a1319e054d58209721d265"><td class="mdescLeft">&#160;</td><td class="mdescRight">The number of seconds the subscription will be active for before the next payment. The currency must be set to “XTR” (Telegram Stars) if the parameter is used. Currently, it must always be 2592000 (30 days) if specified. Any number of subscriptions can be active for a given bot at the same time, including multiple concurrent subscriptions from the same user. Subscription price must no exceed 10000 Telegram Stars.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Arguments for <a class="el" href="class_tg_bot_1_1_api.html#a4ebb7dbbd05a58da280f3efd96cdc35a" title="Use this method to create a link for an invoice. Returns the created invoice link as String on succes...">Api::createInvoiceLink</a>. </p>
+<div class="textblock"><p>Arguments for <a class="el" href="class_tg_bot_1_1_api.html#abe3a5437369d2371d1d84aeee2575987" title="Use this method to create a link for an invoice. Returns the created invoice link as String on succes...">Api::createInvoiceLink</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l14999">14999</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l15840">15840</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 </div><a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
 <a id="af796c569b5075d91cae31714a456330f" name="af796c569b5075d91cae31714a456330f"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#af796c569b5075d91cae31714a456330f">&#9670;&#160;</a></span>businessConnectionId</h2>
@@ -184,7 +184,7 @@ Public Attributes</h2></td></tr>
 
 <p>Unique identifier of the business connection on behalf of which the link will be created. For payments in Telegram Stars only. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l15128">15128</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l15969">15969</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -202,7 +202,7 @@ Public Attributes</h2></td></tr>
 
 <p>Three-letter ISO 4217 currency code, see more on currencies. Pass “XTR” for payments in Telegram Stars. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l15026">15026</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l15867">15867</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -220,7 +220,7 @@ Public Attributes</h2></td></tr>
 
 <p>Product description, 1-255 characters. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l15008">15008</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l15849">15849</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -238,25 +238,25 @@ Public Attributes</h2></td></tr>
 
 <p>Pass True if the final price depends on the shipping method. Ignored for payments in Telegram Stars. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l15122">15122</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l15963">15963</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
-<a id="ab8709dc0d6db3d9a6e6681b0950352b2" name="ab8709dc0d6db3d9a6e6681b0950352b2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab8709dc0d6db3d9a6e6681b0950352b2">&#9670;&#160;</a></span>maxTipAmount</h2>
+<a id="a1454ce1bf4f52f071b1991cbcf8e995f" name="a1454ce1bf4f52f071b1991cbcf8e995f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1454ce1bf4f52f071b1991cbcf8e995f">&#9670;&#160;</a></span>maxTipAmount</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::int32_t TgBot::CreateInvoiceLinkArgs::maxTipAmount = 0</td>
+          <td class="memname">std::uint64_t TgBot::CreateInvoiceLinkArgs::maxTipAmount = 0</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>The maximum accepted amount for tips in the smallest units of the currency (integer, not float/double). For example, for a maximum tip of US$ 1.45 pass max_tip_amount = 145. See the exp parameter in currencies.json, it shows the number of digits past the decimal point for each currency (2 for the majority of currencies). Defaults to 0. Not supported for payments in Telegram Stars. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l15043">15043</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l15884">15884</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -274,7 +274,7 @@ Public Attributes</h2></td></tr>
 
 <p>Pass True if you require the user's email address to complete the order. Ignored for payments in Telegram Stars. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l15098">15098</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l15939">15939</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -292,7 +292,7 @@ Public Attributes</h2></td></tr>
 
 <p>Pass True if you require the user's full name to complete the order. Ignored for payments in Telegram Stars. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l15086">15086</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l15927">15927</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -310,7 +310,7 @@ Public Attributes</h2></td></tr>
 
 <p>Pass True if you require the user's phone number to complete the order. Ignored for payments in Telegram Stars. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l15092">15092</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l15933">15933</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -328,7 +328,7 @@ Public Attributes</h2></td></tr>
 
 <p>Pass True if you require the user's shipping address to complete the order. Ignored for payments in Telegram Stars. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l15104">15104</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l15945">15945</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -346,43 +346,43 @@ Public Attributes</h2></td></tr>
 
 <p>Bot-defined invoice payload, 1-128 bytes. This will not be displayed to the user, use it for your internal processes. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l15014">15014</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l15855">15855</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
-<a id="a0be15f94b4dfbddd9d401af7b28ff8b6" name="a0be15f94b4dfbddd9d401af7b28ff8b6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0be15f94b4dfbddd9d401af7b28ff8b6">&#9670;&#160;</a></span>photoHeight</h2>
+<a id="abd249fcf0102adbfcbd6383eae84a219" name="abd249fcf0102adbfcbd6383eae84a219"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abd249fcf0102adbfcbd6383eae84a219">&#9670;&#160;</a></span>photoHeight</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::int32_t TgBot::CreateInvoiceLinkArgs::photoHeight = 0</td>
+          <td class="memname">std::uint32_t TgBot::CreateInvoiceLinkArgs::photoHeight = 0</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Photo height. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l15080">15080</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l15921">15921</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
-<a id="a3cd34a80bdb839a3a1551b4370b1dbc4" name="a3cd34a80bdb839a3a1551b4370b1dbc4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3cd34a80bdb839a3a1551b4370b1dbc4">&#9670;&#160;</a></span>photoSize</h2>
+<a id="ac03abe8025ed545a5b90705d1827bcf9" name="ac03abe8025ed545a5b90705d1827bcf9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac03abe8025ed545a5b90705d1827bcf9">&#9670;&#160;</a></span>photoSize</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::int32_t TgBot::CreateInvoiceLinkArgs::photoSize = 0</td>
+          <td class="memname">std::uint32_t TgBot::CreateInvoiceLinkArgs::photoSize = 0</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Photo size in bytes. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l15070">15070</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l15911">15911</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -400,25 +400,25 @@ Public Attributes</h2></td></tr>
 
 <p>URL of the product photo for the invoice. Can be a photo of the goods or a marketing image for a service. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l15065">15065</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l15906">15906</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
-<a id="a1c1b581ccf60be0dc39d790f561ab024" name="a1c1b581ccf60be0dc39d790f561ab024"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1c1b581ccf60be0dc39d790f561ab024">&#9670;&#160;</a></span>photoWidth</h2>
+<a id="af868fe7ed77eda98b084cbc62bae5ed1" name="af868fe7ed77eda98b084cbc62bae5ed1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af868fe7ed77eda98b084cbc62bae5ed1">&#9670;&#160;</a></span>photoWidth</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::int32_t TgBot::CreateInvoiceLinkArgs::photoWidth = 0</td>
+          <td class="memname">std::uint32_t TgBot::CreateInvoiceLinkArgs::photoWidth = 0</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Photo width. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l15075">15075</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l15916">15916</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -436,7 +436,7 @@ Public Attributes</h2></td></tr>
 
 <p>Price breakdown, a JSON-serialized list of components (e.g. product price, tax, discount, delivery cost, delivery tax, bonus, etc.). Must contain exactly one item for payments in Telegram Stars. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l15033">15033</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l15874">15874</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -454,7 +454,7 @@ Public Attributes</h2></td></tr>
 
 <p>JSON-serialized data about the invoice, which will be shared with the payment provider. A detailed description of required fields should be provided by the payment provider. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l15059">15059</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l15900">15900</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -472,7 +472,7 @@ Public Attributes</h2></td></tr>
 
 <p>Payment provider token, obtained via @BotFather. Pass an empty string for payments in Telegram Stars. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l15020">15020</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l15861">15861</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -490,7 +490,7 @@ Public Attributes</h2></td></tr>
 
 <p>Pass True if the user's email address should be sent to the provider. Ignored for payments in Telegram Stars. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l15116">15116</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l15957">15957</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -508,43 +508,43 @@ Public Attributes</h2></td></tr>
 
 <p>Pass True if the user's phone number should be sent to the provider. Ignored for payments in Telegram Stars. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l15110">15110</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l15951">15951</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
-<a id="ad214b5dba8250ac4478c9595d2e600e6" name="ad214b5dba8250ac4478c9595d2e600e6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad214b5dba8250ac4478c9595d2e600e6">&#9670;&#160;</a></span>subscriptionPeriod</h2>
+<a id="ae80d0bd0f7a1319e054d58209721d265" name="ae80d0bd0f7a1319e054d58209721d265"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae80d0bd0f7a1319e054d58209721d265">&#9670;&#160;</a></span>subscriptionPeriod</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::int32_t TgBot::CreateInvoiceLinkArgs::subscriptionPeriod = 0</td>
+          <td class="memname">std::uint32_t TgBot::CreateInvoiceLinkArgs::subscriptionPeriod = 0</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>The number of seconds the subscription will be active for before the next payment. The currency must be set to “XTR” (Telegram Stars) if the parameter is used. Currently, it must always be 2592000 (30 days) if specified. Any number of subscriptions can be active for a given bot at the same time, including multiple concurrent subscriptions from the same user. Subscription price must no exceed 10000 Telegram Stars. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l15138">15138</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l15979">15979</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
-<a id="ae68d1411331da4a27695d77092c04539" name="ae68d1411331da4a27695d77092c04539"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae68d1411331da4a27695d77092c04539">&#9670;&#160;</a></span>suggestedTipAmounts</h2>
+<a id="ac10e6d2664dd42a247d61dbf48501fa7" name="ac10e6d2664dd42a247d61dbf48501fa7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac10e6d2664dd42a247d61dbf48501fa7">&#9670;&#160;</a></span>suggestedTipAmounts</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::vector&lt;std::int32_t&gt; TgBot::CreateInvoiceLinkArgs::suggestedTipAmounts = { }</td>
+          <td class="memname">std::vector&lt;std::uint64_t&gt; TgBot::CreateInvoiceLinkArgs::suggestedTipAmounts = { }</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>A JSON-serialized Array of suggested amounts of tips in the smallest units of the currency (integer, not float/double). At most 4 suggested tip amounts can be specified. The suggested tip amounts must be positive, passed in a strictly increased order and must not exceed max_tip_amount. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l15052">15052</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l15893">15893</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -562,7 +562,7 @@ Public Attributes</h2></td></tr>
 
 <p>Product name, 1-32 characters. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l15003">15003</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l15844">15844</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>

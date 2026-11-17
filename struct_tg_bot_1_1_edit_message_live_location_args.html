@@ -113,7 +113,7 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('struct_tg_bot_
 </div><!--header-->
 <div class="contents">
 
-<p>Arguments for <a class="el" href="class_tg_bot_1_1_api.html#a42dfa0284d75988e274ec08026b4bad6" title="Use this method to edit live location messages. A location can be edited until its live_period expire...">Api::editMessageLiveLocation</a>.  
+<p>Arguments for <a class="el" href="class_tg_bot_1_1_api.html#aadeed39a24bfb44421329ef647811f66" title="Use this method to edit live location messages. A location can be edited until its live_period expire...">Api::editMessageLiveLocation</a>.  
  <a href="#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="_types_8h_source.html">Types.h</a>&gt;</code></p>
@@ -125,28 +125,28 @@ Public Attributes</h2></td></tr>
 <tr class="memitem:a72cb2261dbf79a5680e387ebd54df217" id="r_a72cb2261dbf79a5680e387ebd54df217"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#a72cb2261dbf79a5680e387ebd54df217">longitude</a> { }</td></tr>
 <tr class="memdesc:a72cb2261dbf79a5680e387ebd54df217"><td class="mdescLeft">&#160;</td><td class="mdescRight">Longitude of new location.  <br /></td></tr>
 <tr class="memitem:a59fc4da9eb0ae5bacde5400290f75c94" id="r_a59fc4da9eb0ae5bacde5400290f75c94"><td class="memItemLeft">std::variant&lt; std::int64_t, std::string &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a59fc4da9eb0ae5bacde5400290f75c94">chatId</a> = { }</td></tr>
-<tr class="memdesc:a59fc4da9eb0ae5bacde5400290f75c94"><td class="mdescLeft">&#160;</td><td class="mdescRight">Required if inline_message_id is not specified. Unique identifier for the target chat or username of the target bot, supergroup or channel in the format @username.  <br /></td></tr>
-<tr class="memitem:a03a447d24682979fd5dbce24d3cb777a" id="r_a03a447d24682979fd5dbce24d3cb777a"><td class="memItemLeft">std::int32_t&#160;</td><td class="memItemRight"><a class="el" href="#a03a447d24682979fd5dbce24d3cb777a">messageId</a> = 0</td></tr>
-<tr class="memdesc:a03a447d24682979fd5dbce24d3cb777a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Required if inline_message_id is not specified. Identifier of the message to edit.  <br /></td></tr>
+<tr class="memdesc:a59fc4da9eb0ae5bacde5400290f75c94"><td class="mdescLeft">&#160;</td><td class="mdescRight">Required if inline_message_id is not specified. Unique identifier for the target chat or username of the target bot, supergroup, or channel in the format @username.  <br /></td></tr>
+<tr class="memitem:a16d21b9209081ba3bc8dc334a941a9e9" id="r_a16d21b9209081ba3bc8dc334a941a9e9"><td class="memItemLeft">std::uint32_t&#160;</td><td class="memItemRight"><a class="el" href="#a16d21b9209081ba3bc8dc334a941a9e9">messageId</a> = 0</td></tr>
+<tr class="memdesc:a16d21b9209081ba3bc8dc334a941a9e9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Required if inline_message_id is not specified. Identifier of the message to edit.  <br /></td></tr>
 <tr class="memitem:a7714d9c69a7d39c205a18f4ca688b31d" id="r_a7714d9c69a7d39c205a18f4ca688b31d"><td class="memItemLeft">std::string&#160;</td><td class="memItemRight"><a class="el" href="#a7714d9c69a7d39c205a18f4ca688b31d">inlineMessageId</a> = &quot;&quot;</td></tr>
 <tr class="memdesc:a7714d9c69a7d39c205a18f4ca688b31d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Required if chat_id and message_id are not specified. Identifier of the inline message.  <br /></td></tr>
 <tr class="memitem:a6ccc5b0d6da7f4cb254b109ade895ad5" id="r_a6ccc5b0d6da7f4cb254b109ade895ad5"><td class="memItemLeft">std::shared_ptr&lt; <a class="el" href="struct_tg_bot_1_1_inline_keyboard_markup.html">InlineKeyboardMarkup</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a6ccc5b0d6da7f4cb254b109ade895ad5">replyMarkup</a> = nullptr</td></tr>
 <tr class="memdesc:a6ccc5b0d6da7f4cb254b109ade895ad5"><td class="mdescLeft">&#160;</td><td class="mdescRight">A JSON-serialized object for a new inline keyboard.  <br /></td></tr>
 <tr class="memitem:a23ed6c4fe348ae65dae12c001f85db7a" id="r_a23ed6c4fe348ae65dae12c001f85db7a"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#a23ed6c4fe348ae65dae12c001f85db7a">horizontalAccuracy</a> = 0</td></tr>
 <tr class="memdesc:a23ed6c4fe348ae65dae12c001f85db7a"><td class="mdescLeft">&#160;</td><td class="mdescRight">The radius of uncertainty for the location, measured in meters; 0-1500.  <br /></td></tr>
-<tr class="memitem:acc3dc859a9e1b93067ac6d30a0f32d8f" id="r_acc3dc859a9e1b93067ac6d30a0f32d8f"><td class="memItemLeft">std::int32_t&#160;</td><td class="memItemRight"><a class="el" href="#acc3dc859a9e1b93067ac6d30a0f32d8f">heading</a> = 0</td></tr>
-<tr class="memdesc:acc3dc859a9e1b93067ac6d30a0f32d8f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Direction in which the user is moving, in degrees. Must be between 1 and 360 if specified.  <br /></td></tr>
-<tr class="memitem:a56c2b0881d93b471a4c02a5edc2a442c" id="r_a56c2b0881d93b471a4c02a5edc2a442c"><td class="memItemLeft">std::int32_t&#160;</td><td class="memItemRight"><a class="el" href="#a56c2b0881d93b471a4c02a5edc2a442c">proximityAlertRadius</a> = 0</td></tr>
-<tr class="memdesc:a56c2b0881d93b471a4c02a5edc2a442c"><td class="mdescLeft">&#160;</td><td class="mdescRight">The maximum distance for proximity alerts about approaching another chat member, in meters. Must be between 1 and 100000 if specified.  <br /></td></tr>
+<tr class="memitem:a627b5a3644e2644be6c79cdcde63c90d" id="r_a627b5a3644e2644be6c79cdcde63c90d"><td class="memItemLeft">std::uint32_t&#160;</td><td class="memItemRight"><a class="el" href="#a627b5a3644e2644be6c79cdcde63c90d">heading</a> = 0</td></tr>
+<tr class="memdesc:a627b5a3644e2644be6c79cdcde63c90d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Direction in which the user is moving, in degrees. Must be between 1 and 360 if specified.  <br /></td></tr>
+<tr class="memitem:ae021de39aa2199fa37b8b6ba781f7221" id="r_ae021de39aa2199fa37b8b6ba781f7221"><td class="memItemLeft">std::uint32_t&#160;</td><td class="memItemRight"><a class="el" href="#ae021de39aa2199fa37b8b6ba781f7221">proximityAlertRadius</a> = 0</td></tr>
+<tr class="memdesc:ae021de39aa2199fa37b8b6ba781f7221"><td class="mdescLeft">&#160;</td><td class="mdescRight">The maximum distance for proximity alerts about approaching another chat member, in meters. Must be between 1 and 100000 if specified.  <br /></td></tr>
 <tr class="memitem:a3a4126a9aaa28d412d420642b2873006" id="r_a3a4126a9aaa28d412d420642b2873006"><td class="memItemLeft">std::string&#160;</td><td class="memItemRight"><a class="el" href="#a3a4126a9aaa28d412d420642b2873006">businessConnectionId</a> = &quot;&quot;</td></tr>
 <tr class="memdesc:a3a4126a9aaa28d412d420642b2873006"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unique identifier of the business connection on behalf of which the message to be edited was sent.  <br /></td></tr>
-<tr class="memitem:a5e7a238246451cf7d1beb85773ec3bd0" id="r_a5e7a238246451cf7d1beb85773ec3bd0"><td class="memItemLeft">std::int32_t&#160;</td><td class="memItemRight"><a class="el" href="#a5e7a238246451cf7d1beb85773ec3bd0">livePeriod</a> = 0</td></tr>
-<tr class="memdesc:a5e7a238246451cf7d1beb85773ec3bd0"><td class="mdescLeft">&#160;</td><td class="mdescRight">New period in seconds during which the location can be updated, starting from the message send date. If 0x7FFFFFFF is specified, then the location can be updated forever. Otherwise, the new value must not exceed the current live_period by more than a day, and the live location expiration date must remain within the next 90 days. If not specified, then live_period remains unchanged.  <br /></td></tr>
+<tr class="memitem:ac387d04ec93b4b6d44177226223c2bf8" id="r_ac387d04ec93b4b6d44177226223c2bf8"><td class="memItemLeft">std::uint32_t&#160;</td><td class="memItemRight"><a class="el" href="#ac387d04ec93b4b6d44177226223c2bf8">livePeriod</a> = 0</td></tr>
+<tr class="memdesc:ac387d04ec93b4b6d44177226223c2bf8"><td class="mdescLeft">&#160;</td><td class="mdescRight">New period in seconds during which the location can be updated, starting from the message send date. If 0x7FFFFFFF is specified, then the location can be updated forever. Otherwise, the new value must not exceed the current live_period by more than a day, and the live location expiration date must remain within the next 90 days. If not specified, then live_period remains unchanged.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Arguments for <a class="el" href="class_tg_bot_1_1_api.html#a42dfa0284d75988e274ec08026b4bad6" title="Use this method to edit live location messages. A location can be edited until its live_period expire...">Api::editMessageLiveLocation</a>. </p>
+<div class="textblock"><p>Arguments for <a class="el" href="class_tg_bot_1_1_api.html#aadeed39a24bfb44421329ef647811f66" title="Use this method to edit live location messages. A location can be edited until its live_period expire...">Api::editMessageLiveLocation</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l15845">15845</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l16702">16702</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 </div><a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
 <a id="a3a4126a9aaa28d412d420642b2873006" name="a3a4126a9aaa28d412d420642b2873006"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a3a4126a9aaa28d412d420642b2873006">&#9670;&#160;</a></span>businessConnectionId</h2>
@@ -162,7 +162,7 @@ Public Attributes</h2></td></tr>
 
 <p>Unique identifier of the business connection on behalf of which the message to be edited was sent. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l15901">15901</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l16758">16758</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -178,27 +178,27 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Required if inline_message_id is not specified. Unique identifier for the target chat or username of the target bot, supergroup or channel in the format @username. </p>
+<p>Required if inline_message_id is not specified. Unique identifier for the target chat or username of the target bot, supergroup, or channel in the format @username. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l15861">15861</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l16718">16718</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
-<a id="acc3dc859a9e1b93067ac6d30a0f32d8f" name="acc3dc859a9e1b93067ac6d30a0f32d8f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acc3dc859a9e1b93067ac6d30a0f32d8f">&#9670;&#160;</a></span>heading</h2>
+<a id="a627b5a3644e2644be6c79cdcde63c90d" name="a627b5a3644e2644be6c79cdcde63c90d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a627b5a3644e2644be6c79cdcde63c90d">&#9670;&#160;</a></span>heading</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::int32_t TgBot::EditMessageLiveLocationArgs::heading = 0</td>
+          <td class="memname">std::uint32_t TgBot::EditMessageLiveLocationArgs::heading = 0</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Direction in which the user is moving, in degrees. Must be between 1 and 360 if specified. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l15889">15889</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l16746">16746</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -216,7 +216,7 @@ Public Attributes</h2></td></tr>
 
 <p>The radius of uncertainty for the location, measured in meters; 0-1500. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l15883">15883</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l16740">16740</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -234,7 +234,7 @@ Public Attributes</h2></td></tr>
 
 <p>Required if chat_id and message_id are not specified. Identifier of the inline message. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l15873">15873</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l16730">16730</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -252,25 +252,25 @@ Public Attributes</h2></td></tr>
 
 <p>Latitude of new location. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l15849">15849</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l16706">16706</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
-<a id="a5e7a238246451cf7d1beb85773ec3bd0" name="a5e7a238246451cf7d1beb85773ec3bd0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5e7a238246451cf7d1beb85773ec3bd0">&#9670;&#160;</a></span>livePeriod</h2>
+<a id="ac387d04ec93b4b6d44177226223c2bf8" name="ac387d04ec93b4b6d44177226223c2bf8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac387d04ec93b4b6d44177226223c2bf8">&#9670;&#160;</a></span>livePeriod</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::int32_t TgBot::EditMessageLiveLocationArgs::livePeriod = 0</td>
+          <td class="memname">std::uint32_t TgBot::EditMessageLiveLocationArgs::livePeriod = 0</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>New period in seconds during which the location can be updated, starting from the message send date. If 0x7FFFFFFF is specified, then the location can be updated forever. Otherwise, the new value must not exceed the current live_period by more than a day, and the live location expiration date must remain within the next 90 days. If not specified, then live_period remains unchanged. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l15911">15911</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l16768">16768</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -288,43 +288,43 @@ Public Attributes</h2></td></tr>
 
 <p>Longitude of new location. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l15854">15854</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l16711">16711</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
-<a id="a03a447d24682979fd5dbce24d3cb777a" name="a03a447d24682979fd5dbce24d3cb777a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a03a447d24682979fd5dbce24d3cb777a">&#9670;&#160;</a></span>messageId</h2>
+<a id="a16d21b9209081ba3bc8dc334a941a9e9" name="a16d21b9209081ba3bc8dc334a941a9e9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a16d21b9209081ba3bc8dc334a941a9e9">&#9670;&#160;</a></span>messageId</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::int32_t TgBot::EditMessageLiveLocationArgs::messageId = 0</td>
+          <td class="memname">std::uint32_t TgBot::EditMessageLiveLocationArgs::messageId = 0</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Required if inline_message_id is not specified. Identifier of the message to edit. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l15867">15867</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l16724">16724</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
-<a id="a56c2b0881d93b471a4c02a5edc2a442c" name="a56c2b0881d93b471a4c02a5edc2a442c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a56c2b0881d93b471a4c02a5edc2a442c">&#9670;&#160;</a></span>proximityAlertRadius</h2>
+<a id="ae021de39aa2199fa37b8b6ba781f7221" name="ae021de39aa2199fa37b8b6ba781f7221"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae021de39aa2199fa37b8b6ba781f7221">&#9670;&#160;</a></span>proximityAlertRadius</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::int32_t TgBot::EditMessageLiveLocationArgs::proximityAlertRadius = 0</td>
+          <td class="memname">std::uint32_t TgBot::EditMessageLiveLocationArgs::proximityAlertRadius = 0</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>The maximum distance for proximity alerts about approaching another chat member, in meters. Must be between 1 and 100000 if specified. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l15895">15895</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l16752">16752</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -342,7 +342,7 @@ Public Attributes</h2></td></tr>
 
 <p>A JSON-serialized object for a new inline keyboard. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l15878">15878</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l16735">16735</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>

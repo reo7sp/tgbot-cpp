@@ -1,10 +1,10 @@
 var struct_tg_bot_1_1_audio =
 [
     [ "Ptr", "struct_tg_bot_1_1_audio.html#a7815c41ec847861a7cc5cdbc0688d2f5", null ],
-    [ "duration", "struct_tg_bot_1_1_audio.html#a34fee1211b2e86a69dc79e713ad42ea1", null ],
+    [ "duration", "struct_tg_bot_1_1_audio.html#ab80861d4eff8e07527cf2081ec490794", null ],
     [ "fileId", "struct_tg_bot_1_1_audio.html#accecab325a61cce4c4260923d21e2726", null ],
     [ "fileName", "struct_tg_bot_1_1_audio.html#a78fb015217a07974472a0a3f9d73fba1", null ],
-    [ "fileSize", "struct_tg_bot_1_1_audio.html#a50823f02560e7d0a607291fd8bb9c02c", null ],
+    [ "fileSize", "struct_tg_bot_1_1_audio.html#a739cbea2975fd8c6089c64ab2d932782", null ],
     [ "fileUniqueId", "struct_tg_bot_1_1_audio.html#ae40bca8fa2e720a40fe31d7203766187", null ],
     [ "mimeType", "struct_tg_bot_1_1_audio.html#a04b97feb2a96a26819ed17a2169ffe69", null ],
     [ "performer", "struct_tg_bot_1_1_audio.html#a340624a2d94277421f8128f2e9affaec", null ],

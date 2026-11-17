@@ -10,7 +10,7 @@ var struct_tg_bot_1_1_unique_gift =
     [ "isPremium", "struct_tg_bot_1_1_unique_gift.html#addbd498725153c5e8f87ef2e9dd8de1a", null ],
     [ "model", "struct_tg_bot_1_1_unique_gift.html#af75b0a820dce26e9c292922da0af0544", null ],
     [ "name", "struct_tg_bot_1_1_unique_gift.html#ae2f7ab92ce7d0927f07e2bcb6ae49ebf", null ],
-    [ "number", "struct_tg_bot_1_1_unique_gift.html#a6acf8565b04a1264df4058f69083c6d8", null ],
+    [ "number", "struct_tg_bot_1_1_unique_gift.html#a449bba4b80c7a52504d2287b48c7da77", null ],
     [ "publisherChat", "struct_tg_bot_1_1_unique_gift.html#a932232f8606644a95d7535d10df7adc1", null ],
     [ "symbol", "struct_tg_bot_1_1_unique_gift.html#a9b0758ec588ce43cc006dd0172e9c1d5", null ]
 ];

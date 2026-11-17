@@ -113,21 +113,21 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('struct_tg_bot_
 </div><!--header-->
 <div class="contents">
 
-<p>Arguments for <a class="el" href="class_tg_bot_1_1_api.html#a31472ae796d6ba46777d9d9ddaf42985" title="Use this method to stream a partial message to a user while the message is being generated....">Api::sendMessageDraft</a>.  
+<p>Arguments for <a class="el" href="class_tg_bot_1_1_api.html#abb6fb89371ec385962cfec7fc79efc22" title="Use this method to stream a partial message to a user while the message is being generated....">Api::sendMessageDraft</a>.  
  <a href="#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="_types_8h_source.html">Types.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-attribs" class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a5a8b39b988515626c9f9745654f953d2" id="r_a5a8b39b988515626c9f9745654f953d2"><td class="memItemLeft">std::variant&lt; std::int64_t, std::string &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a5a8b39b988515626c9f9745654f953d2">chatId</a> { }</td></tr>
-<tr class="memdesc:a5a8b39b988515626c9f9745654f953d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unique identifier for the target private chat.  <br /></td></tr>
-<tr class="memitem:a2d6b523dec5e9df1723f20ea0418d0e7" id="r_a2d6b523dec5e9df1723f20ea0418d0e7"><td class="memItemLeft">std::int32_t&#160;</td><td class="memItemRight"><a class="el" href="#a2d6b523dec5e9df1723f20ea0418d0e7">draftId</a> { }</td></tr>
-<tr class="memdesc:a2d6b523dec5e9df1723f20ea0418d0e7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unique identifier of the message draft; must be non-zero. Changes to drafts with the same identifier are animated. Otherwise, the draft is replaced without animation.  <br /></td></tr>
+<tr class="memitem:ab417a483444316319f033e6e7cd6b6ca" id="r_ab417a483444316319f033e6e7cd6b6ca"><td class="memItemLeft">std::variant&lt; std::uint64_t, std::string &gt;&#160;</td><td class="memItemRight"><a class="el" href="#ab417a483444316319f033e6e7cd6b6ca">chatId</a> { }</td></tr>
+<tr class="memdesc:ab417a483444316319f033e6e7cd6b6ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unique identifier for the target private chat.  <br /></td></tr>
+<tr class="memitem:a79a6869acef8d5f3e34f9dd45038bb3a" id="r_a79a6869acef8d5f3e34f9dd45038bb3a"><td class="memItemLeft">std::int64_t&#160;</td><td class="memItemRight"><a class="el" href="#a79a6869acef8d5f3e34f9dd45038bb3a">draftId</a> { }</td></tr>
+<tr class="memdesc:a79a6869acef8d5f3e34f9dd45038bb3a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unique identifier of the message draft; must be non-zero. Changes to drafts with the same identifier are animated. Otherwise, the draft is replaced without animation.  <br /></td></tr>
 <tr class="memitem:a1c2a3bb3b356e697dd290e1620bf5401" id="r_a1c2a3bb3b356e697dd290e1620bf5401"><td class="memItemLeft">std::vector&lt; std::shared_ptr&lt; <a class="el" href="struct_tg_bot_1_1_message_entity.html">MessageEntity</a> &gt; &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a1c2a3bb3b356e697dd290e1620bf5401">entities</a> = { }</td></tr>
 <tr class="memdesc:a1c2a3bb3b356e697dd290e1620bf5401"><td class="mdescLeft">&#160;</td><td class="mdescRight">A JSON-serialized list of special entities that appear in message text, which can be specified instead of parse_mode.  <br /></td></tr>
-<tr class="memitem:a6f36f61662745507058fdaaa644039ff" id="r_a6f36f61662745507058fdaaa644039ff"><td class="memItemLeft">std::int32_t&#160;</td><td class="memItemRight"><a class="el" href="#a6f36f61662745507058fdaaa644039ff">messageThreadId</a> = 0</td></tr>
-<tr class="memdesc:a6f36f61662745507058fdaaa644039ff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unique identifier for the target message thread.  <br /></td></tr>
+<tr class="memitem:aad9236d5a0055f1e86f8c7759caa063e" id="r_aad9236d5a0055f1e86f8c7759caa063e"><td class="memItemLeft">std::uint32_t&#160;</td><td class="memItemRight"><a class="el" href="#aad9236d5a0055f1e86f8c7759caa063e">messageThreadId</a> = 0</td></tr>
+<tr class="memdesc:aad9236d5a0055f1e86f8c7759caa063e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unique identifier for the target message thread.  <br /></td></tr>
 <tr class="memitem:a481f37e01ead1077512d83303e1efa1e" id="r_a481f37e01ead1077512d83303e1efa1e"><td class="memItemLeft">std::string&#160;</td><td class="memItemRight"><a class="el" href="#a481f37e01ead1077512d83303e1efa1e">parseMode</a> = &quot;&quot;</td></tr>
 <tr class="memdesc:a481f37e01ead1077512d83303e1efa1e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mode for parsing entities in the message text. See formatting options for more details.  <br /></td></tr>
 <tr class="memitem:a6d2032b5d6ddc0e23d951e297474456c" id="r_a6d2032b5d6ddc0e23d951e297474456c"><td class="memItemLeft">std::string&#160;</td><td class="memItemRight"><a class="el" href="#a6d2032b5d6ddc0e23d951e297474456c">text</a> = &quot;&quot;</td></tr>
@@ -138,9 +138,9 @@ Public Attributes</h2></td></tr>
 <tr class="memdesc:ab79a6880e6f0669687bacb782820d65d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pass True to keep the draft in the chat when the button is pressed. The draft will still disappear after a short time or if the bot sends a message. To fully preserve the partial draft, the bot should send it as a new message.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Arguments for <a class="el" href="class_tg_bot_1_1_api.html#a31472ae796d6ba46777d9d9ddaf42985" title="Use this method to stream a partial message to a user while the message is being generated....">Api::sendMessageDraft</a>. </p>
+<div class="textblock"><p>Arguments for <a class="el" href="class_tg_bot_1_1_api.html#abb6fb89371ec385962cfec7fc79efc22" title="Use this method to stream a partial message to a user while the message is being generated....">Api::sendMessageDraft</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l18965">18965</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l19902">19902</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 </div><a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
 <a id="ad1d261efde936cbf4e45a92b2ba6d793" name="ad1d261efde936cbf4e45a92b2ba6d793"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ad1d261efde936cbf4e45a92b2ba6d793">&#9670;&#160;</a></span>canStop</h2>
@@ -156,43 +156,43 @@ Public Attributes</h2></td></tr>
 
 <p>Pass True to show the user a button to stop further drafts. The bot will receive an <a class="el" href="struct_tg_bot_1_1_update.html" title="This object represents an incoming update.At most one of the optional fields can be present in any gi...">Update</a> “stopped_message_generation” if the user presses the button. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l19006">19006</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l19943">19943</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
-<a id="a5a8b39b988515626c9f9745654f953d2" name="a5a8b39b988515626c9f9745654f953d2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5a8b39b988515626c9f9745654f953d2">&#9670;&#160;</a></span>chatId</h2>
+<a id="ab417a483444316319f033e6e7cd6b6ca" name="ab417a483444316319f033e6e7cd6b6ca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab417a483444316319f033e6e7cd6b6ca">&#9670;&#160;</a></span>chatId</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::variant&lt;std::int64_t, std::string&gt; TgBot::SendMessageDraftArgs::chatId { }</td>
+          <td class="memname">std::variant&lt;std::uint64_t, std::string&gt; TgBot::SendMessageDraftArgs::chatId { }</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Unique identifier for the target private chat. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l18969">18969</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l19906">19906</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
-<a id="a2d6b523dec5e9df1723f20ea0418d0e7" name="a2d6b523dec5e9df1723f20ea0418d0e7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2d6b523dec5e9df1723f20ea0418d0e7">&#9670;&#160;</a></span>draftId</h2>
+<a id="a79a6869acef8d5f3e34f9dd45038bb3a" name="a79a6869acef8d5f3e34f9dd45038bb3a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a79a6869acef8d5f3e34f9dd45038bb3a">&#9670;&#160;</a></span>draftId</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::int32_t TgBot::SendMessageDraftArgs::draftId { }</td>
+          <td class="memname">std::int64_t TgBot::SendMessageDraftArgs::draftId { }</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Unique identifier of the message draft; must be non-zero. Changes to drafts with the same identifier are animated. Otherwise, the draft is replaced without animation. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l18976">18976</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l19913">19913</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -210,7 +210,7 @@ Public Attributes</h2></td></tr>
 
 <p>A JSON-serialized list of special entities that appear in message text, which can be specified instead of parse_mode. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l18982">18982</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l19919">19919</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -228,25 +228,25 @@ Public Attributes</h2></td></tr>
 
 <p>Pass True to keep the draft in the chat when the button is pressed. The draft will still disappear after a short time or if the bot sends a message. To fully preserve the partial draft, the bot should send it as a new message. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l19014">19014</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l19951">19951</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
-<a id="a6f36f61662745507058fdaaa644039ff" name="a6f36f61662745507058fdaaa644039ff"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6f36f61662745507058fdaaa644039ff">&#9670;&#160;</a></span>messageThreadId</h2>
+<a id="aad9236d5a0055f1e86f8c7759caa063e" name="aad9236d5a0055f1e86f8c7759caa063e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aad9236d5a0055f1e86f8c7759caa063e">&#9670;&#160;</a></span>messageThreadId</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::int32_t TgBot::SendMessageDraftArgs::messageThreadId = 0</td>
+          <td class="memname">std::uint32_t TgBot::SendMessageDraftArgs::messageThreadId = 0</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Unique identifier for the target message thread. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l18987">18987</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l19924">19924</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -264,7 +264,7 @@ Public Attributes</h2></td></tr>
 
 <p>Mode for parsing entities in the message text. See formatting options for more details. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l18993">18993</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l19930">19930</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -282,7 +282,7 @@ Public Attributes</h2></td></tr>
 
 <p>Text of the message to be sent, 0-4096 characters after entities parsing. Pass an empty text to show a “Thinking…” placeholder. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l18999">18999</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l19936">19936</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>

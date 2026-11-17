@@ -11,8 +11,10 @@ var searchData=
   ['answerprecheckoutqueryargs_8',['AnswerPreCheckoutQueryArgs',['../struct_tg_bot_1_1_answer_pre_checkout_query_args.html',1,'TgBot']]],
   ['answershippingqueryargs_9',['AnswerShippingQueryArgs',['../struct_tg_bot_1_1_answer_shipping_query_args.html',1,'TgBot']]],
   ['answerwebappqueryargs_10',['AnswerWebAppQueryArgs',['../struct_tg_bot_1_1_answer_web_app_query_args.html',1,'TgBot']]],
-  ['api_11',['Api',['../class_tg_bot_1_1_api.html',1,'TgBot']]],
-  ['approvechatjoinrequestargs_12',['ApproveChatJoinRequestArgs',['../struct_tg_bot_1_1_approve_chat_join_request_args.html',1,'TgBot']]],
-  ['approvesuggestedpostargs_13',['ApproveSuggestedPostArgs',['../struct_tg_bot_1_1_approve_suggested_post_args.html',1,'TgBot']]],
-  ['audio_14',['Audio',['../struct_tg_bot_1_1_audio.html',1,'TgBot']]]
+  ['answerwidgetqueryargs_11',['AnswerWidgetQueryArgs',['../struct_tg_bot_1_1_answer_widget_query_args.html',1,'TgBot']]],
+  ['api_12',['Api',['../class_tg_bot_1_1_api.html',1,'TgBot']]],
+  ['approvechatjoinrequestargs_13',['ApproveChatJoinRequestArgs',['../struct_tg_bot_1_1_approve_chat_join_request_args.html',1,'TgBot']]],
+  ['approvesuggestedpostargs_14',['ApproveSuggestedPostArgs',['../struct_tg_bot_1_1_approve_suggested_post_args.html',1,'TgBot']]],
+  ['areaposition_15',['AreaPosition',['../struct_tg_bot_1_1_area_position.html',1,'TgBot']]],
+  ['audio_16',['Audio',['../struct_tg_bot_1_1_audio.html',1,'TgBot']]]
 ];

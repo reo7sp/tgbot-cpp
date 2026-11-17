@@ -145,6 +145,9 @@ Public Types</h2></td></tr>
 , <a class="el" href="#a6cb87a43b52a982682c1e592fbc1f2c9a4ed8233defa4ad141a6a784b45a31c45">TextMention</a>
 , <a class="el" href="#a6cb87a43b52a982682c1e592fbc1f2c9af2ded25b30113452f7b15011b876ef8f">CustomEmoji</a>
 , <a class="el" href="#a6cb87a43b52a982682c1e592fbc1f2c9a8cf10d2341ed01492506085688270c1e">DateTime</a>
+, <br />
+&#160;&#160;<a class="el" href="#a6cb87a43b52a982682c1e592fbc1f2c9a2f6f4a3d37cfd13ef180ba00039a84b6">TonAddress</a>
+, <a class="el" href="#a6cb87a43b52a982682c1e592fbc1f2c9af77a46a92d2eef1f56f04d155fd37ccb">BankCardNumber</a>
 <br />
  }</td></tr>
 <tr class="memitem:a3c07152527f099674845b00cc9e9415b" id="r_a3c07152527f099674845b00cc9e9415b"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#a3c07152527f099674845b00cc9e9415b">Ptr</a> = std::shared_ptr&lt;<a class="el" href="struct_tg_bot_1_1_message_entity.html">MessageEntity</a>&gt;</td></tr>
@@ -152,11 +155,11 @@ Public Types</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 id="header-pub-attribs" class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:aec6056a21555b9c50132c9c0ca5816b9" id="r_aec6056a21555b9c50132c9c0ca5816b9"><td class="memItemLeft"><a class="el" href="#a6cb87a43b52a982682c1e592fbc1f2c9">Type</a>&#160;</td><td class="memItemRight"><a class="el" href="#aec6056a21555b9c50132c9c0ca5816b9">type</a> { }</td></tr>
-<tr class="memdesc:aec6056a21555b9c50132c9c0ca5816b9"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="#a6cb87a43b52a982682c1e592fbc1f2c9">Type</a> of the entity. Currently, can be “mention” (@username), “hashtag” (#hashtag or #hashtag@chatusername), “cashtag” ($USD or $USD@chatusername), “bot_command” (/start@jobs_bot), “url” (<a href="https://telegram.org">https://telegram.org</a>), “email” (<a href="mai'+'lto:+'do-'+'no'+'t-r'+'ep'+'ly@'+'te'+'leg'+'ra'+'m.o'+'rg'">do-no<span class="obfuscator">.nosp@m.</span>t-re<span class="obfuscator">.nosp@m.</span>ply@t<span class="obfuscator">.nosp@m.</span>eleg<span class="obfuscator">.nosp@m.</span>ram.o<span class="obfuscator">.nosp@m.</span>rg</a>), “phone_number” (+1-212-555-0123), “bold” (bold text), “italic” (italic text), “underline” (underlined text), “strikethrough” (strikethrough text), “spoiler” (spoiler message), “blockquote” (block quotation), “expandable_blockquote” (collapsed-by-default block quotation), “code” (monowidth string), “pre” (monowidth block), “text_link” (for clickable text URLs), “text_mention” (for users without usernames), “custom_emoji” (for inline custom emoji stickers), or “date_time” (for formatted date and time).  <br /></td></tr>
-<tr class="memitem:a48d29c9fd3496b26e349d4d3049bad0d" id="r_a48d29c9fd3496b26e349d4d3049bad0d"><td class="memItemLeft">std::int32_t&#160;</td><td class="memItemRight"><a class="el" href="#a48d29c9fd3496b26e349d4d3049bad0d">offset</a> { }</td></tr>
-<tr class="memdesc:a48d29c9fd3496b26e349d4d3049bad0d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Offset in UTF-16 code units to the start of the entity.  <br /></td></tr>
-<tr class="memitem:aeda0401744ef1b22b2059124fe940492" id="r_aeda0401744ef1b22b2059124fe940492"><td class="memItemLeft">std::int32_t&#160;</td><td class="memItemRight"><a class="el" href="#aeda0401744ef1b22b2059124fe940492">length</a> { }</td></tr>
-<tr class="memdesc:aeda0401744ef1b22b2059124fe940492"><td class="mdescLeft">&#160;</td><td class="mdescRight">Length of the entity in UTF-16 code units.  <br /></td></tr>
+<tr class="memdesc:aec6056a21555b9c50132c9c0ca5816b9"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="#a6cb87a43b52a982682c1e592fbc1f2c9">Type</a> of the entity. Currently, can be “mention” (@username), “hashtag” (#hashtag or #hashtag@chatusername), “cashtag” ($USD or $USD@chatusername), “bot_command” (/start@jobs_bot), “url” (<a href="https://telegram.org">https://telegram.org</a>), “email” (<a href="mai'+'lto:+'do-'+'no'+'t-r'+'ep'+'ly@'+'te'+'leg'+'ra'+'m.o'+'rg'">do-no<span class="obfuscator">.nosp@m.</span>t-re<span class="obfuscator">.nosp@m.</span>ply@t<span class="obfuscator">.nosp@m.</span>eleg<span class="obfuscator">.nosp@m.</span>ram.o<span class="obfuscator">.nosp@m.</span>rg</a>), “phone_number” (+1-212-555-0123), “bank_card_number” (bank card number), “ton_address” (address in the TON blockchain), “bold” (bold text), “italic” (italic text), “underline” (underlined text), “strikethrough” (strikethrough text), “spoiler” (spoiler message), “blockquote” (block quotation), “expandable_blockquote” (collapsed-by-default block quotation), “code” (monowidth string), “pre” (monowidth block), “text_link” (for clickable text URLs), “text_mention” (for users without usernames), “custom_emoji” (for inline custom emoji stickers), or “date_time” (for formatted date and time).  <br /></td></tr>
+<tr class="memitem:abda7485811402f5a601f62ff8e80ee38" id="r_abda7485811402f5a601f62ff8e80ee38"><td class="memItemLeft">std::uint32_t&#160;</td><td class="memItemRight"><a class="el" href="#abda7485811402f5a601f62ff8e80ee38">offset</a> { }</td></tr>
+<tr class="memdesc:abda7485811402f5a601f62ff8e80ee38"><td class="mdescLeft">&#160;</td><td class="mdescRight">Offset in UTF-16 code units to the start of the entity.  <br /></td></tr>
+<tr class="memitem:afe1d9038e099c09fd59a65ef305f7573" id="r_afe1d9038e099c09fd59a65ef305f7573"><td class="memItemLeft">std::uint32_t&#160;</td><td class="memItemRight"><a class="el" href="#afe1d9038e099c09fd59a65ef305f7573">length</a> { }</td></tr>
+<tr class="memdesc:afe1d9038e099c09fd59a65ef305f7573"><td class="mdescLeft">&#160;</td><td class="mdescRight">Length of the entity in UTF-16 code units.  <br /></td></tr>
 <tr class="memitem:aed3751a61b7ff46e3486179f0d93d49b" id="r_aed3751a61b7ff46e3486179f0d93d49b"><td class="memItemLeft">std::optional&lt; std::string &gt;&#160;</td><td class="memItemRight"><a class="el" href="#aed3751a61b7ff46e3486179f0d93d49b">url</a> { }</td></tr>
 <tr class="memdesc:aed3751a61b7ff46e3486179f0d93d49b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. For “text_link” only, URL that will be opened after user taps on the text.  <br /></td></tr>
 <tr class="memitem:ae4bfa51bbaac8de4215a87905c65a6d7" id="r_ae4bfa51bbaac8de4215a87905c65a6d7"><td class="memItemLeft">std::shared_ptr&lt; <a class="el" href="struct_tg_bot_1_1_user.html">User</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#ae4bfa51bbaac8de4215a87905c65a6d7">user</a> { }</td></tr>
@@ -173,7 +176,7 @@ Public Attributes</h2></td></tr>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>This object represents one special entity in a text message. For example, hashtags, usernames, URLs, etc. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l08795">8795</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l09177">9177</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 </div><a name="doc-typedef-members" id="doc-typedef-members"></a><h2 id="header-doc-typedef-members" class="groupheader">Member Typedef Documentation</h2>
 <a id="a3c07152527f099674845b00cc9e9415b" name="a3c07152527f099674845b00cc9e9415b"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a3c07152527f099674845b00cc9e9415b">&#9670;&#160;</a></span>Ptr</h2>
@@ -187,7 +190,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l08796">8796</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l09178">9178</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -232,9 +235,11 @@ Public Attributes</h2></td></tr>
 <tr><td class="fieldname"><a id="a6cb87a43b52a982682c1e592fbc1f2c9a4ed8233defa4ad141a6a784b45a31c45" name="a6cb87a43b52a982682c1e592fbc1f2c9a4ed8233defa4ad141a6a784b45a31c45"></a>TextMention&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="a6cb87a43b52a982682c1e592fbc1f2c9af2ded25b30113452f7b15011b876ef8f" name="a6cb87a43b52a982682c1e592fbc1f2c9af2ded25b30113452f7b15011b876ef8f"></a>CustomEmoji&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="a6cb87a43b52a982682c1e592fbc1f2c9a8cf10d2341ed01492506085688270c1e" name="a6cb87a43b52a982682c1e592fbc1f2c9a8cf10d2341ed01492506085688270c1e"></a>DateTime&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a6cb87a43b52a982682c1e592fbc1f2c9a2f6f4a3d37cfd13ef180ba00039a84b6" name="a6cb87a43b52a982682c1e592fbc1f2c9a2f6f4a3d37cfd13ef180ba00039a84b6"></a>TonAddress&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a6cb87a43b52a982682c1e592fbc1f2c9af77a46a92d2eef1f56f04d155fd37ccb" name="a6cb87a43b52a982682c1e592fbc1f2c9af77a46a92d2eef1f56f04d155fd37ccb"></a>BankCardNumber&#160;</td><td class="fielddoc"></td></tr>
 </table>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l08798">8798</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l09180">9180</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -253,7 +258,7 @@ Public Attributes</h2></td></tr>
 
 <p>Optional. For “custom_emoji” only, unique identifier of the custom emoji. Use getCustomEmojiStickers to get full information about the sticker. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l08857">8857</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l09242">9242</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -271,7 +276,7 @@ Public Attributes</h2></td></tr>
 
 <p>Optional. For “date_time” only, the string that defines the formatting of the date and time. See date-time entity formatting for more details. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l08866">8866</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l09251">9251</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -289,43 +294,43 @@ Public Attributes</h2></td></tr>
 
 <p>Optional. For “pre” only, the programming language of the entity text. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l08852">8852</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l09237">9237</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
-<a id="aeda0401744ef1b22b2059124fe940492" name="aeda0401744ef1b22b2059124fe940492"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aeda0401744ef1b22b2059124fe940492">&#9670;&#160;</a></span>length</h2>
+<a id="afe1d9038e099c09fd59a65ef305f7573" name="afe1d9038e099c09fd59a65ef305f7573"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afe1d9038e099c09fd59a65ef305f7573">&#9670;&#160;</a></span>length</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::int32_t TgBot::MessageEntity::length { }</td>
+          <td class="memname">std::uint32_t TgBot::MessageEntity::length { }</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Length of the entity in UTF-16 code units. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l08840">8840</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l09225">9225</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
-<a id="a48d29c9fd3496b26e349d4d3049bad0d" name="a48d29c9fd3496b26e349d4d3049bad0d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a48d29c9fd3496b26e349d4d3049bad0d">&#9670;&#160;</a></span>offset</h2>
+<a id="abda7485811402f5a601f62ff8e80ee38" name="abda7485811402f5a601f62ff8e80ee38"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abda7485811402f5a601f62ff8e80ee38">&#9670;&#160;</a></span>offset</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::int32_t TgBot::MessageEntity::offset { }</td>
+          <td class="memname">std::uint32_t TgBot::MessageEntity::offset { }</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Offset in UTF-16 code units to the start of the entity. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l08836">8836</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l09221">9221</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -341,9 +346,9 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p><a class="el" href="#a6cb87a43b52a982682c1e592fbc1f2c9">Type</a> of the entity. Currently, can be “mention” (@username), “hashtag” (#hashtag or #hashtag@chatusername), “cashtag” ($USD or $USD@chatusername), “bot_command” (/start@jobs_bot), “url” (<a href="https://telegram.org">https://telegram.org</a>), “email” (<a href="mai'+'lto:+'do-'+'no'+'t-r'+'ep'+'ly@'+'te'+'leg'+'ra'+'m.o'+'rg'">do-no<span class="obfuscator">.nosp@m.</span>t-re<span class="obfuscator">.nosp@m.</span>ply@t<span class="obfuscator">.nosp@m.</span>eleg<span class="obfuscator">.nosp@m.</span>ram.o<span class="obfuscator">.nosp@m.</span>rg</a>), “phone_number” (+1-212-555-0123), “bold” (bold text), “italic” (italic text), “underline” (underlined text), “strikethrough” (strikethrough text), “spoiler” (spoiler message), “blockquote” (block quotation), “expandable_blockquote” (collapsed-by-default block quotation), “code” (monowidth string), “pre” (monowidth block), “text_link” (for clickable text URLs), “text_mention” (for users without usernames), “custom_emoji” (for inline custom emoji stickers), or “date_time” (for formatted date and time). </p>
+<p><a class="el" href="#a6cb87a43b52a982682c1e592fbc1f2c9">Type</a> of the entity. Currently, can be “mention” (@username), “hashtag” (#hashtag or #hashtag@chatusername), “cashtag” ($USD or $USD@chatusername), “bot_command” (/start@jobs_bot), “url” (<a href="https://telegram.org">https://telegram.org</a>), “email” (<a href="mai'+'lto:+'do-'+'no'+'t-r'+'ep'+'ly@'+'te'+'leg'+'ra'+'m.o'+'rg'">do-no<span class="obfuscator">.nosp@m.</span>t-re<span class="obfuscator">.nosp@m.</span>ply@t<span class="obfuscator">.nosp@m.</span>eleg<span class="obfuscator">.nosp@m.</span>ram.o<span class="obfuscator">.nosp@m.</span>rg</a>), “phone_number” (+1-212-555-0123), “bank_card_number” (bank card number), “ton_address” (address in the TON blockchain), “bold” (bold text), “italic” (italic text), “underline” (underlined text), “strikethrough” (strikethrough text), “spoiler” (spoiler message), “blockquote” (block quotation), “expandable_blockquote” (collapsed-by-default block quotation), “code” (monowidth string), “pre” (monowidth block), “text_link” (for clickable text URLs), “text_mention” (for users without usernames), “custom_emoji” (for inline custom emoji stickers), or “date_time” (for formatted date and time). </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l08832">8832</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l09217">9217</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -361,7 +366,7 @@ Public Attributes</h2></td></tr>
 
 <p>Optional. For “date_time” only, the Unix time associated with the entity. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l08861">8861</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l09246">9246</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -379,7 +384,7 @@ Public Attributes</h2></td></tr>
 
 <p>Optional. For “text_link” only, URL that will be opened after user taps on the text. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l08844">8844</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l09229">9229</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -397,7 +402,7 @@ Public Attributes</h2></td></tr>
 
 <p>Optional. For “text_mention” only, the mentioned user. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l08848">8848</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l09233">9233</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>

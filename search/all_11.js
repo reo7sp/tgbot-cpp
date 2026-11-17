@@ -9,5 +9,6 @@ var searchData=
   ['quote_6',['quote',['../struct_tg_bot_1_1_message.html#a302cc07180ae563fe6db4c834cc90b5d',1,'TgBot::Message::quote'],['../struct_tg_bot_1_1_reply_parameters.html#a683be68490c2ae64322f0bf9e27bedc7',1,'TgBot::ReplyParameters::quote']]],
   ['quoteentities_7',['quoteEntities',['../struct_tg_bot_1_1_reply_parameters.html#a8c6a734f3cf85477318b69a794cabf7d',1,'TgBot::ReplyParameters']]],
   ['quoteparsemode_8',['quoteParseMode',['../struct_tg_bot_1_1_reply_parameters.html#a8d4afdab1e38f228953099b10cd54938',1,'TgBot::ReplyParameters']]],
-  ['quoteposition_9',['quotePosition',['../struct_tg_bot_1_1_reply_parameters.html#a3c3f1ed67a3e304494b27acc4d08a1c0',1,'TgBot::ReplyParameters']]]
+  ['quoteposition_9',['quotePosition',['../struct_tg_bot_1_1_reply_parameters.html#a5158491a7de91b053467ebd8789da84f',1,'TgBot::ReplyParameters']]],
+  ['quoterichtexts_10',['quoteRichTexts',['../struct_tg_bot_1_1_reply_parameters.html#a042e9a42e57e048086fd99f8c7127817',1,'TgBot::ReplyParameters']]]
 ];

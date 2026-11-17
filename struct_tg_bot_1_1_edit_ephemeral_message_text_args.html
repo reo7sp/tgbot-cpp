@@ -113,7 +113,7 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('struct_tg_bot_
 </div><!--header-->
 <div class="contents">
 
-<p>Arguments for <a class="el" href="class_tg_bot_1_1_api.html#abc963cd2b15a957102808fd490b2bd93" title="Use this method to edit an ephemeral text or rich message. Note that it is not guaranteed that the us...">Api::editEphemeralMessageText</a>.  
+<p>Arguments for <a class="el" href="class_tg_bot_1_1_api.html#a0c38c3b110082471197974d44d450702" title="Use this method to edit an ephemeral text or rich message. Note that it is not guaranteed that the us...">Api::editEphemeralMessageText</a>.  
  <a href="#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="_types_8h_source.html">Types.h</a>&gt;</code></p>
@@ -122,10 +122,10 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('struct_tg_bot_
 Public Attributes</h2></td></tr>
 <tr class="memitem:ad2318c639bba68d6eb3b276f0b4cbc0c" id="r_ad2318c639bba68d6eb3b276f0b4cbc0c"><td class="memItemLeft">std::variant&lt; std::int64_t, std::string &gt;&#160;</td><td class="memItemRight"><a class="el" href="#ad2318c639bba68d6eb3b276f0b4cbc0c">chatId</a> { }</td></tr>
 <tr class="memdesc:ad2318c639bba68d6eb3b276f0b4cbc0c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unique identifier for the target chat or username of the target supergroup in the format @username.  <br /></td></tr>
-<tr class="memitem:a3fcf834838cdac2b11a7b7da3b82cff0" id="r_a3fcf834838cdac2b11a7b7da3b82cff0"><td class="memItemLeft">std::int32_t&#160;</td><td class="memItemRight"><a class="el" href="#a3fcf834838cdac2b11a7b7da3b82cff0">ephemeralMessageId</a> { }</td></tr>
-<tr class="memdesc:a3fcf834838cdac2b11a7b7da3b82cff0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Identifier of the ephemeral message to edit.  <br /></td></tr>
-<tr class="memitem:a2b557fa749d0a641f58621b47ac469bc" id="r_a2b557fa749d0a641f58621b47ac469bc"><td class="memItemLeft">std::int64_t&#160;</td><td class="memItemRight"><a class="el" href="#a2b557fa749d0a641f58621b47ac469bc">receiverUserId</a> { }</td></tr>
-<tr class="memdesc:a2b557fa749d0a641f58621b47ac469bc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Identifier of the user who received the message.  <br /></td></tr>
+<tr class="memitem:a49326e2be4513f04fc5eafd6dd9e66cc" id="r_a49326e2be4513f04fc5eafd6dd9e66cc"><td class="memItemLeft">std::uint32_t&#160;</td><td class="memItemRight"><a class="el" href="#a49326e2be4513f04fc5eafd6dd9e66cc">ephemeralMessageId</a> { }</td></tr>
+<tr class="memdesc:a49326e2be4513f04fc5eafd6dd9e66cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Identifier of the ephemeral message to edit.  <br /></td></tr>
+<tr class="memitem:a3b7cba90f91ecdcc0a7a5486d7a3222e" id="r_a3b7cba90f91ecdcc0a7a5486d7a3222e"><td class="memItemLeft">std::uint64_t&#160;</td><td class="memItemRight"><a class="el" href="#a3b7cba90f91ecdcc0a7a5486d7a3222e">receiverUserId</a> { }</td></tr>
+<tr class="memdesc:a3b7cba90f91ecdcc0a7a5486d7a3222e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Identifier of the user who received the message.  <br /></td></tr>
 <tr class="memitem:a45882397cc0041fc5c0ab645b9f2cb41" id="r_a45882397cc0041fc5c0ab645b9f2cb41"><td class="memItemLeft">std::string&#160;</td><td class="memItemRight"><a class="el" href="#a45882397cc0041fc5c0ab645b9f2cb41">text</a> = &quot;&quot;</td></tr>
 <tr class="memdesc:a45882397cc0041fc5c0ab645b9f2cb41"><td class="mdescLeft">&#160;</td><td class="mdescRight">New text of the message, 1-4096 characters after entity parsing; required if rich_message isn't specified.  <br /></td></tr>
 <tr class="memitem:a48317eddeac9c410d9125bc9b02b5330" id="r_a48317eddeac9c410d9125bc9b02b5330"><td class="memItemLeft">std::vector&lt; std::shared_ptr&lt; <a class="el" href="struct_tg_bot_1_1_message_entity.html">MessageEntity</a> &gt; &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a48317eddeac9c410d9125bc9b02b5330">entities</a> = { }</td></tr>
@@ -140,9 +140,9 @@ Public Attributes</h2></td></tr>
 <tr class="memdesc:a22dd4134d4077310160faf7fb8102184"><td class="mdescLeft">&#160;</td><td class="mdescRight">New rich content of the message; required if text isn't specified.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Arguments for <a class="el" href="class_tg_bot_1_1_api.html#abc963cd2b15a957102808fd490b2bd93" title="Use this method to edit an ephemeral text or rich message. Note that it is not guaranteed that the us...">Api::editEphemeralMessageText</a>. </p>
+<div class="textblock"><p>Arguments for <a class="el" href="class_tg_bot_1_1_api.html#a0c38c3b110082471197974d44d450702" title="Use this method to edit an ephemeral text or rich message. Note that it is not guaranteed that the us...">Api::editEphemeralMessageText</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l15650">15650</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l16507">16507</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 </div><a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
 <a id="ad2318c639bba68d6eb3b276f0b4cbc0c" name="ad2318c639bba68d6eb3b276f0b4cbc0c"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ad2318c639bba68d6eb3b276f0b4cbc0c">&#9670;&#160;</a></span>chatId</h2>
@@ -158,7 +158,7 @@ Public Attributes</h2></td></tr>
 
 <p>Unique identifier for the target chat or username of the target supergroup in the format @username. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l15655">15655</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l16512">16512</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -176,25 +176,25 @@ Public Attributes</h2></td></tr>
 
 <p>A JSON-serialized list of special entities that appear in message text, which can be specified instead of parse_mode. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l15677">15677</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l16534">16534</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
-<a id="a3fcf834838cdac2b11a7b7da3b82cff0" name="a3fcf834838cdac2b11a7b7da3b82cff0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3fcf834838cdac2b11a7b7da3b82cff0">&#9670;&#160;</a></span>ephemeralMessageId</h2>
+<a id="a49326e2be4513f04fc5eafd6dd9e66cc" name="a49326e2be4513f04fc5eafd6dd9e66cc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a49326e2be4513f04fc5eafd6dd9e66cc">&#9670;&#160;</a></span>ephemeralMessageId</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::int32_t TgBot::EditEphemeralMessageTextArgs::ephemeralMessageId { }</td>
+          <td class="memname">std::uint32_t TgBot::EditEphemeralMessageTextArgs::ephemeralMessageId { }</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Identifier of the ephemeral message to edit. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l15660">15660</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l16517">16517</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -212,7 +212,7 @@ Public Attributes</h2></td></tr>
 
 <p><a class="el" href="struct_tg_bot_1_1_link.html" title="Represents an HTTP link.">Link</a> preview generation options for the message. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l15682">15682</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l16539">16539</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -230,25 +230,25 @@ Public Attributes</h2></td></tr>
 
 <p>Mode for parsing entities in the message text. See formatting options for more details. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l15688">15688</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l16545">16545</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
-<a id="a2b557fa749d0a641f58621b47ac469bc" name="a2b557fa749d0a641f58621b47ac469bc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2b557fa749d0a641f58621b47ac469bc">&#9670;&#160;</a></span>receiverUserId</h2>
+<a id="a3b7cba90f91ecdcc0a7a5486d7a3222e" name="a3b7cba90f91ecdcc0a7a5486d7a3222e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3b7cba90f91ecdcc0a7a5486d7a3222e">&#9670;&#160;</a></span>receiverUserId</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::int64_t TgBot::EditEphemeralMessageTextArgs::receiverUserId { }</td>
+          <td class="memname">std::uint64_t TgBot::EditEphemeralMessageTextArgs::receiverUserId { }</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Identifier of the user who received the message. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l15665">15665</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l16522">16522</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -266,7 +266,7 @@ Public Attributes</h2></td></tr>
 
 <p>A JSON-serialized object for an inline keyboard. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l15693">15693</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l16550">16550</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -284,7 +284,7 @@ Public Attributes</h2></td></tr>
 
 <p>New rich content of the message; required if text isn't specified. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l15698">15698</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l16555">16555</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -302,7 +302,7 @@ Public Attributes</h2></td></tr>
 
 <p>New text of the message, 1-4096 characters after entity parsing; required if rich_message isn't specified. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l15671">15671</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l16528">16528</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>

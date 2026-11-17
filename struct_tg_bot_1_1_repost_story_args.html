@@ -113,46 +113,46 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('struct_tg_bot_
 </div><!--header-->
 <div class="contents">
 
-<p>Arguments for <a class="el" href="class_tg_bot_1_1_api.html#afbe8ac7f566979f59a28311a508f0119" title="Reposts a story on behalf of a business account from another business account. Both business accounts...">Api::repostStory</a>.  
+<p>Arguments for <a class="el" href="class_tg_bot_1_1_api.html#a56b914f493f8278d2de73bcd9c3a1f7d" title="Reposts a story on behalf of a business account from another business account. Both business accounts...">Api::repostStory</a>.  
  <a href="#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="_types_8h_source.html">Types.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-attribs" class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:ac6e9928b6008825c8aac95c16528d50f" id="r_ac6e9928b6008825c8aac95c16528d50f"><td class="memItemLeft">std::int32_t&#160;</td><td class="memItemRight"><a class="el" href="#ac6e9928b6008825c8aac95c16528d50f">activePeriod</a> { }</td></tr>
-<tr class="memdesc:ac6e9928b6008825c8aac95c16528d50f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Period after which the story is moved to the archive, in seconds; must be one of 6 * 3600, 12 * 3600, 86400, or 2 * 86400.  <br /></td></tr>
+<tr class="memitem:a489ff56cbe77e588f6651fe258c0e65e" id="r_a489ff56cbe77e588f6651fe258c0e65e"><td class="memItemLeft">std::uint32_t&#160;</td><td class="memItemRight"><a class="el" href="#a489ff56cbe77e588f6651fe258c0e65e">activePeriod</a> { }</td></tr>
+<tr class="memdesc:a489ff56cbe77e588f6651fe258c0e65e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Period after which the story is moved to the archive, in seconds; must be one of 6 * 3600, 12 * 3600, 86400, or 2 * 86400.  <br /></td></tr>
 <tr class="memitem:ade35c989957a302f9a77498053a04d44" id="r_ade35c989957a302f9a77498053a04d44"><td class="memItemLeft">std::string&#160;</td><td class="memItemRight"><a class="el" href="#ade35c989957a302f9a77498053a04d44">businessConnectionId</a> { }</td></tr>
 <tr class="memdesc:ade35c989957a302f9a77498053a04d44"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unique identifier of the business connection.  <br /></td></tr>
 <tr class="memitem:afee0bf164c8feb43d02706af4c93f8b5" id="r_afee0bf164c8feb43d02706af4c93f8b5"><td class="memItemLeft">std::variant&lt; std::int64_t, std::string &gt;&#160;</td><td class="memItemRight"><a class="el" href="#afee0bf164c8feb43d02706af4c93f8b5">fromChatId</a> { }</td></tr>
 <tr class="memdesc:afee0bf164c8feb43d02706af4c93f8b5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unique identifier of the chat which posted the story that should be reposted.  <br /></td></tr>
-<tr class="memitem:ab31ed542b1fbf2913de9337ec3229b1e" id="r_ab31ed542b1fbf2913de9337ec3229b1e"><td class="memItemLeft">std::int32_t&#160;</td><td class="memItemRight"><a class="el" href="#ab31ed542b1fbf2913de9337ec3229b1e">fromStoryId</a> { }</td></tr>
-<tr class="memdesc:ab31ed542b1fbf2913de9337ec3229b1e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unique identifier of the story that should be reposted.  <br /></td></tr>
+<tr class="memitem:a90cb60c0e9c26ece5f270033b130c8aa" id="r_a90cb60c0e9c26ece5f270033b130c8aa"><td class="memItemLeft">std::uint32_t&#160;</td><td class="memItemRight"><a class="el" href="#a90cb60c0e9c26ece5f270033b130c8aa">fromStoryId</a> { }</td></tr>
+<tr class="memdesc:a90cb60c0e9c26ece5f270033b130c8aa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unique identifier of the story that should be reposted.  <br /></td></tr>
 <tr class="memitem:ab94c39c4e077b2f4f7a35a75e26547ee" id="r_ab94c39c4e077b2f4f7a35a75e26547ee"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#ab94c39c4e077b2f4f7a35a75e26547ee">postToChatPage</a> = false</td></tr>
 <tr class="memdesc:ab94c39c4e077b2f4f7a35a75e26547ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pass True to keep the story accessible after it expires.  <br /></td></tr>
 <tr class="memitem:ad602283e7e28faec44570afb67ece8ff" id="r_ad602283e7e28faec44570afb67ece8ff"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#ad602283e7e28faec44570afb67ece8ff">protectContent</a> = false</td></tr>
 <tr class="memdesc:ad602283e7e28faec44570afb67ece8ff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pass True if the content of the story must be protected from forwarding and screenshotting.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Arguments for <a class="el" href="class_tg_bot_1_1_api.html#afbe8ac7f566979f59a28311a508f0119" title="Reposts a story on behalf of a business account from another business account. Both business accounts...">Api::repostStory</a>. </p>
+<div class="textblock"><p>Arguments for <a class="el" href="class_tg_bot_1_1_api.html#a56b914f493f8278d2de73bcd9c3a1f7d" title="Reposts a story on behalf of a business account from another business account. Both business accounts...">Api::repostStory</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l17300">17300</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l18230">18230</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 </div><a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
-<a id="ac6e9928b6008825c8aac95c16528d50f" name="ac6e9928b6008825c8aac95c16528d50f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac6e9928b6008825c8aac95c16528d50f">&#9670;&#160;</a></span>activePeriod</h2>
+<a id="a489ff56cbe77e588f6651fe258c0e65e" name="a489ff56cbe77e588f6651fe258c0e65e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a489ff56cbe77e588f6651fe258c0e65e">&#9670;&#160;</a></span>activePeriod</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::int32_t TgBot::RepostStoryArgs::activePeriod { }</td>
+          <td class="memname">std::uint32_t TgBot::RepostStoryArgs::activePeriod { }</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Period after which the story is moved to the archive, in seconds; must be one of 6 * 3600, 12 * 3600, 86400, or 2 * 86400. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l17305">17305</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l18235">18235</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -170,7 +170,7 @@ Public Attributes</h2></td></tr>
 
 <p>Unique identifier of the business connection. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l17310">17310</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l18240">18240</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -188,25 +188,25 @@ Public Attributes</h2></td></tr>
 
 <p>Unique identifier of the chat which posted the story that should be reposted. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l17316">17316</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l18246">18246</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
-<a id="ab31ed542b1fbf2913de9337ec3229b1e" name="ab31ed542b1fbf2913de9337ec3229b1e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab31ed542b1fbf2913de9337ec3229b1e">&#9670;&#160;</a></span>fromStoryId</h2>
+<a id="a90cb60c0e9c26ece5f270033b130c8aa" name="a90cb60c0e9c26ece5f270033b130c8aa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a90cb60c0e9c26ece5f270033b130c8aa">&#9670;&#160;</a></span>fromStoryId</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::int32_t TgBot::RepostStoryArgs::fromStoryId { }</td>
+          <td class="memname">std::uint32_t TgBot::RepostStoryArgs::fromStoryId { }</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Unique identifier of the story that should be reposted. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l17321">17321</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l18251">18251</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -224,7 +224,7 @@ Public Attributes</h2></td></tr>
 
 <p>Pass True to keep the story accessible after it expires. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l17326">17326</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l18256">18256</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -242,7 +242,7 @@ Public Attributes</h2></td></tr>
 
 <p>Pass True if the content of the story must be protected from forwarding and screenshotting. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l17332">17332</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l18262">18262</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>

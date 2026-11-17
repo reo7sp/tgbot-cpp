@@ -113,7 +113,7 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('struct_tg_bot_
 </div><!--header-->
 <div class="contents">
 
-<p>Arguments for <a class="el" href="class_tg_bot_1_1_api.html#a1c308199132ff73609e49774765fc55b" title="Sends a gift to the given user or channel chat. The gift can&#39;t be converted to Telegram Stars by the ...">Api::sendGift</a>.  
+<p>Arguments for <a class="el" href="class_tg_bot_1_1_api.html#a19a119aa51efb2d5a88f069c27e4ee66" title="Sends a gift to the given user or channel chat. The gift can&#39;t be converted to Telegram Stars by the ...">Api::sendGift</a>.  
  <a href="#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="_types_8h_source.html">Types.h</a>&gt;</code></p>
@@ -123,7 +123,7 @@ Public Attributes</h2></td></tr>
 <tr class="memitem:ac54e14f2c1dd4be01dd09c10e8c954d7" id="r_ac54e14f2c1dd4be01dd09c10e8c954d7"><td class="memItemLeft">std::string&#160;</td><td class="memItemRight"><a class="el" href="#ac54e14f2c1dd4be01dd09c10e8c954d7">giftId</a> { }</td></tr>
 <tr class="memdesc:ac54e14f2c1dd4be01dd09c10e8c954d7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Identifier of the gift; limited gifts can't be sent to channel chats.  <br /></td></tr>
 <tr class="memitem:a55c497ea6e53a121bf80aa1d23365dce" id="r_a55c497ea6e53a121bf80aa1d23365dce"><td class="memItemLeft">std::variant&lt; std::int64_t, std::string &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a55c497ea6e53a121bf80aa1d23365dce">chatId</a> = { }</td></tr>
-<tr class="memdesc:a55c497ea6e53a121bf80aa1d23365dce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Required if user_id is not specified. Unique identifier for the chat or username of the channel (in the format @username) that will receive the gift.  <br /></td></tr>
+<tr class="memdesc:a55c497ea6e53a121bf80aa1d23365dce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Required if user_id is not specified. Unique identifier for the chat that will receive the gift or username of the channel in the format @username.  <br /></td></tr>
 <tr class="memitem:ac7598dd9dc9cdf2b59a1bada7bf1edca" id="r_ac7598dd9dc9cdf2b59a1bada7bf1edca"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#ac7598dd9dc9cdf2b59a1bada7bf1edca">payForUpgrade</a> = false</td></tr>
 <tr class="memdesc:ac7598dd9dc9cdf2b59a1bada7bf1edca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pass True to pay for the gift upgrade from the bot's balance, thereby making the upgrade free for the receiver.  <br /></td></tr>
 <tr class="memitem:a5360d58d5d9df4d66cac988f21a65a55" id="r_a5360d58d5d9df4d66cac988f21a65a55"><td class="memItemLeft">std::string&#160;</td><td class="memItemRight"><a class="el" href="#a5360d58d5d9df4d66cac988f21a65a55">text</a> = &quot;&quot;</td></tr>
@@ -132,13 +132,13 @@ Public Attributes</h2></td></tr>
 <tr class="memdesc:a834d66abf38f2714325bd0e2530f06e5"><td class="mdescLeft">&#160;</td><td class="mdescRight">A JSON-serialized list of special entities that appear in the gift text. It can be specified instead of text_parse_mode. Entities other than “bold”, “italic”, “underline”, “strikethrough”, “spoiler”, “custom_emoji”, and “date_time” are ignored.  <br /></td></tr>
 <tr class="memitem:ab82ad70aa82a96d411ad2110c5802f3f" id="r_ab82ad70aa82a96d411ad2110c5802f3f"><td class="memItemLeft">std::string&#160;</td><td class="memItemRight"><a class="el" href="#ab82ad70aa82a96d411ad2110c5802f3f">textParseMode</a> = &quot;&quot;</td></tr>
 <tr class="memdesc:ab82ad70aa82a96d411ad2110c5802f3f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mode for parsing entities in the text. See formatting options for more details. Entities other than “bold”, “italic”, “underline”, “strikethrough”, “spoiler”, “custom_emoji”, and “date_time” are ignored.  <br /></td></tr>
-<tr class="memitem:a1be506288d9bf88a074bd9fa7f881aea" id="r_a1be506288d9bf88a074bd9fa7f881aea"><td class="memItemLeft">std::int64_t&#160;</td><td class="memItemRight"><a class="el" href="#a1be506288d9bf88a074bd9fa7f881aea">userId</a> = 0</td></tr>
-<tr class="memdesc:a1be506288d9bf88a074bd9fa7f881aea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Required if chat_id is not specified. Unique identifier of the target user who will receive the gift.  <br /></td></tr>
+<tr class="memitem:ab8ad9cfd9a4c135714b0b6289da785a0" id="r_ab8ad9cfd9a4c135714b0b6289da785a0"><td class="memItemLeft">std::uint64_t&#160;</td><td class="memItemRight"><a class="el" href="#ab8ad9cfd9a4c135714b0b6289da785a0">userId</a> = 0</td></tr>
+<tr class="memdesc:ab8ad9cfd9a4c135714b0b6289da785a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Required if chat_id is not specified. Unique identifier of the target user who will receive the gift.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Arguments for <a class="el" href="class_tg_bot_1_1_api.html#a1c308199132ff73609e49774765fc55b" title="Sends a gift to the given user or channel chat. The gift can&#39;t be converted to Telegram Stars by the ...">Api::sendGift</a>. </p>
+<div class="textblock"><p>Arguments for <a class="el" href="class_tg_bot_1_1_api.html#a19a119aa51efb2d5a88f069c27e4ee66" title="Sends a gift to the given user or channel chat. The gift can&#39;t be converted to Telegram Stars by the ...">Api::sendGift</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l18253">18253</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l19187">19187</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 </div><a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
 <a id="a55c497ea6e53a121bf80aa1d23365dce" name="a55c497ea6e53a121bf80aa1d23365dce"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a55c497ea6e53a121bf80aa1d23365dce">&#9670;&#160;</a></span>chatId</h2>
@@ -152,9 +152,9 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Required if user_id is not specified. Unique identifier for the chat or username of the channel (in the format @username) that will receive the gift. </p>
+<p>Required if user_id is not specified. Unique identifier for the chat that will receive the gift or username of the channel in the format @username. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l18264">18264</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l19198">19198</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -172,7 +172,7 @@ Public Attributes</h2></td></tr>
 
 <p>Identifier of the gift; limited gifts can't be sent to channel chats. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l18257">18257</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l19191">19191</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -190,7 +190,7 @@ Public Attributes</h2></td></tr>
 
 <p>Pass True to pay for the gift upgrade from the bot's balance, thereby making the upgrade free for the receiver. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l18270">18270</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l19204">19204</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -208,7 +208,7 @@ Public Attributes</h2></td></tr>
 
 <p>Text that will be shown along with the gift; 0-128 characters. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l18275">18275</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l19209">19209</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -226,7 +226,7 @@ Public Attributes</h2></td></tr>
 
 <p>A JSON-serialized list of special entities that appear in the gift text. It can be specified instead of text_parse_mode. Entities other than “bold”, “italic”, “underline”, “strikethrough”, “spoiler”, “custom_emoji”, and “date_time” are ignored. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l18283">18283</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l19217">19217</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -244,25 +244,25 @@ Public Attributes</h2></td></tr>
 
 <p>Mode for parsing entities in the text. See formatting options for more details. Entities other than “bold”, “italic”, “underline”, “strikethrough”, “spoiler”, “custom_emoji”, and “date_time” are ignored. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l18290">18290</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l19224">19224</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
-<a id="a1be506288d9bf88a074bd9fa7f881aea" name="a1be506288d9bf88a074bd9fa7f881aea"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1be506288d9bf88a074bd9fa7f881aea">&#9670;&#160;</a></span>userId</h2>
+<a id="ab8ad9cfd9a4c135714b0b6289da785a0" name="ab8ad9cfd9a4c135714b0b6289da785a0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab8ad9cfd9a4c135714b0b6289da785a0">&#9670;&#160;</a></span>userId</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::int64_t TgBot::SendGiftArgs::userId = 0</td>
+          <td class="memname">std::uint64_t TgBot::SendGiftArgs::userId = 0</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Required if chat_id is not specified. Unique identifier of the target user who will receive the gift. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l18296">18296</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l19230">19230</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>

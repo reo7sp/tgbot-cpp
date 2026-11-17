@@ -113,30 +113,30 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('struct_tg_bot_
 </div><!--header-->
 <div class="contents">
 
-<p>Arguments for <a class="el" href="class_tg_bot_1_1_api.html#a67c654c37cbdfe85c8432b700db7209a" title="Use this method to stream a partial rich message to a user while the message is being generated....">Api::sendRichMessageDraft</a>.  
+<p>Arguments for <a class="el" href="class_tg_bot_1_1_api.html#a40f5ea2f09ddc8fd76298bf691e17cf9" title="Use this method to stream a partial rich message to a user while the message is being generated....">Api::sendRichMessageDraft</a>.  
  <a href="#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="_types_8h_source.html">Types.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-attribs" class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a9b4a18aa2ef1030bb512210f750cbf2d" id="r_a9b4a18aa2ef1030bb512210f750cbf2d"><td class="memItemLeft">std::variant&lt; std::int64_t, std::string &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a9b4a18aa2ef1030bb512210f750cbf2d">chatId</a> { }</td></tr>
-<tr class="memdesc:a9b4a18aa2ef1030bb512210f750cbf2d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unique identifier for the target private chat.  <br /></td></tr>
-<tr class="memitem:ad8cb0141113fb39c221f818a3eed66f5" id="r_ad8cb0141113fb39c221f818a3eed66f5"><td class="memItemLeft">std::int32_t&#160;</td><td class="memItemRight"><a class="el" href="#ad8cb0141113fb39c221f818a3eed66f5">draftId</a> { }</td></tr>
-<tr class="memdesc:ad8cb0141113fb39c221f818a3eed66f5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unique identifier of the message draft; must be non-zero. Changes to drafts with the same identifier are animated. Otherwise, the draft is replaced without animation.  <br /></td></tr>
+<tr class="memitem:aedb0d21054d05c7e85d967025caa7051" id="r_aedb0d21054d05c7e85d967025caa7051"><td class="memItemLeft">std::variant&lt; std::uint64_t, std::string &gt;&#160;</td><td class="memItemRight"><a class="el" href="#aedb0d21054d05c7e85d967025caa7051">chatId</a> { }</td></tr>
+<tr class="memdesc:aedb0d21054d05c7e85d967025caa7051"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unique identifier for the target private chat.  <br /></td></tr>
+<tr class="memitem:a1e8b533a514ae33a86d51d2da53d1bad" id="r_a1e8b533a514ae33a86d51d2da53d1bad"><td class="memItemLeft">std::int64_t&#160;</td><td class="memItemRight"><a class="el" href="#a1e8b533a514ae33a86d51d2da53d1bad">draftId</a> { }</td></tr>
+<tr class="memdesc:a1e8b533a514ae33a86d51d2da53d1bad"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unique identifier of the message draft; must be non-zero. Changes to drafts with the same identifier are animated. Otherwise, the draft is replaced without animation.  <br /></td></tr>
 <tr class="memitem:a849de0259daea9ec2edd9cb3830b4f7a" id="r_a849de0259daea9ec2edd9cb3830b4f7a"><td class="memItemLeft">std::shared_ptr&lt; <a class="el" href="struct_tg_bot_1_1_input_rich_message.html">InputRichMessage</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a849de0259daea9ec2edd9cb3830b4f7a">richMessage</a> { }</td></tr>
 <tr class="memdesc:a849de0259daea9ec2edd9cb3830b4f7a"><td class="mdescLeft">&#160;</td><td class="mdescRight">The partial message to be streamed. Direct upload of new files and explicit upload of files by a URL isn't supported.  <br /></td></tr>
-<tr class="memitem:a1d80539efe89137970921e484463fc53" id="r_a1d80539efe89137970921e484463fc53"><td class="memItemLeft">std::int32_t&#160;</td><td class="memItemRight"><a class="el" href="#a1d80539efe89137970921e484463fc53">messageThreadId</a> = 0</td></tr>
-<tr class="memdesc:a1d80539efe89137970921e484463fc53"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unique identifier for the target message thread.  <br /></td></tr>
+<tr class="memitem:aba1ecaa50031564322aa47a66a4cd762" id="r_aba1ecaa50031564322aa47a66a4cd762"><td class="memItemLeft">std::uint32_t&#160;</td><td class="memItemRight"><a class="el" href="#aba1ecaa50031564322aa47a66a4cd762">messageThreadId</a> = 0</td></tr>
+<tr class="memdesc:aba1ecaa50031564322aa47a66a4cd762"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unique identifier for the target message thread.  <br /></td></tr>
 <tr class="memitem:a3ddbf3a65365cbe046bfb5a41fc3bd41" id="r_a3ddbf3a65365cbe046bfb5a41fc3bd41"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a3ddbf3a65365cbe046bfb5a41fc3bd41">canStop</a> = false</td></tr>
 <tr class="memdesc:a3ddbf3a65365cbe046bfb5a41fc3bd41"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pass True to show the user a button to stop further drafts. The bot will receive an <a class="el" href="struct_tg_bot_1_1_update.html" title="This object represents an incoming update.At most one of the optional fields can be present in any gi...">Update</a> “stopped_message_generation” if the user presses the button.  <br /></td></tr>
 <tr class="memitem:a7783e2bf4c479c744fc905afe55e5db6" id="r_a7783e2bf4c479c744fc905afe55e5db6"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a7783e2bf4c479c744fc905afe55e5db6">keepOnStop</a> = false</td></tr>
 <tr class="memdesc:a7783e2bf4c479c744fc905afe55e5db6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pass True to keep the draft in the chat when the button is pressed. The draft will still disappear after a short time or if the bot sends a message. To fully preserve the partial draft, the bot should send it as a new message.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Arguments for <a class="el" href="class_tg_bot_1_1_api.html#a67c654c37cbdfe85c8432b700db7209a" title="Use this method to stream a partial rich message to a user while the message is being generated....">Api::sendRichMessageDraft</a>. </p>
+<div class="textblock"><p>Arguments for <a class="el" href="class_tg_bot_1_1_api.html#a40f5ea2f09ddc8fd76298bf691e17cf9" title="Use this method to stream a partial rich message to a user while the message is being generated....">Api::sendRichMessageDraft</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l19578">19578</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l20518">20518</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 </div><a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
 <a id="a3ddbf3a65365cbe046bfb5a41fc3bd41" name="a3ddbf3a65365cbe046bfb5a41fc3bd41"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a3ddbf3a65365cbe046bfb5a41fc3bd41">&#9670;&#160;</a></span>canStop</h2>
@@ -152,43 +152,43 @@ Public Attributes</h2></td></tr>
 
 <p>Pass True to show the user a button to stop further drafts. The bot will receive an <a class="el" href="struct_tg_bot_1_1_update.html" title="This object represents an incoming update.At most one of the optional fields can be present in any gi...">Update</a> “stopped_message_generation” if the user presses the button. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l19607">19607</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l20547">20547</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
-<a id="a9b4a18aa2ef1030bb512210f750cbf2d" name="a9b4a18aa2ef1030bb512210f750cbf2d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9b4a18aa2ef1030bb512210f750cbf2d">&#9670;&#160;</a></span>chatId</h2>
+<a id="aedb0d21054d05c7e85d967025caa7051" name="aedb0d21054d05c7e85d967025caa7051"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aedb0d21054d05c7e85d967025caa7051">&#9670;&#160;</a></span>chatId</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::variant&lt;std::int64_t, std::string&gt; TgBot::SendRichMessageDraftArgs::chatId { }</td>
+          <td class="memname">std::variant&lt;std::uint64_t, std::string&gt; TgBot::SendRichMessageDraftArgs::chatId { }</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Unique identifier for the target private chat. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l19582">19582</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l20522">20522</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
-<a id="ad8cb0141113fb39c221f818a3eed66f5" name="ad8cb0141113fb39c221f818a3eed66f5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad8cb0141113fb39c221f818a3eed66f5">&#9670;&#160;</a></span>draftId</h2>
+<a id="a1e8b533a514ae33a86d51d2da53d1bad" name="a1e8b533a514ae33a86d51d2da53d1bad"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1e8b533a514ae33a86d51d2da53d1bad">&#9670;&#160;</a></span>draftId</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::int32_t TgBot::SendRichMessageDraftArgs::draftId { }</td>
+          <td class="memname">std::int64_t TgBot::SendRichMessageDraftArgs::draftId { }</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Unique identifier of the message draft; must be non-zero. Changes to drafts with the same identifier are animated. Otherwise, the draft is replaced without animation. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l19589">19589</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l20529">20529</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -206,25 +206,25 @@ Public Attributes</h2></td></tr>
 
 <p>Pass True to keep the draft in the chat when the button is pressed. The draft will still disappear after a short time or if the bot sends a message. To fully preserve the partial draft, the bot should send it as a new message. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l19615">19615</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l20555">20555</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
-<a id="a1d80539efe89137970921e484463fc53" name="a1d80539efe89137970921e484463fc53"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1d80539efe89137970921e484463fc53">&#9670;&#160;</a></span>messageThreadId</h2>
+<a id="aba1ecaa50031564322aa47a66a4cd762" name="aba1ecaa50031564322aa47a66a4cd762"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aba1ecaa50031564322aa47a66a4cd762">&#9670;&#160;</a></span>messageThreadId</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::int32_t TgBot::SendRichMessageDraftArgs::messageThreadId = 0</td>
+          <td class="memname">std::uint32_t TgBot::SendRichMessageDraftArgs::messageThreadId = 0</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Unique identifier for the target message thread. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l19600">19600</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l20540">20540</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -242,7 +242,7 @@ Public Attributes</h2></td></tr>
 
 <p>The partial message to be streamed. Direct upload of new files and explicit upload of files by a URL isn't supported. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l19595">19595</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l20535">20535</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>

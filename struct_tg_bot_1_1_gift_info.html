@@ -128,10 +128,10 @@ Public Attributes</h2></td></tr>
 <tr class="memdesc:aeb8cd152a3c520d6c7091c044f7559f1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Information about the gift.  <br /></td></tr>
 <tr class="memitem:a0a90e3645f259a9a7868ef4e5b5e2c58" id="r_a0a90e3645f259a9a7868ef4e5b5e2c58"><td class="memItemLeft">std::optional&lt; std::string &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a0a90e3645f259a9a7868ef4e5b5e2c58">ownedGiftId</a> { }</td></tr>
 <tr class="memdesc:a0a90e3645f259a9a7868ef4e5b5e2c58"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. Unique identifier of the received gift for the bot; only present for gifts received on behalf of business accounts.  <br /></td></tr>
-<tr class="memitem:aada24b0ce76fe82c2c4afc8b661fdd29" id="r_aada24b0ce76fe82c2c4afc8b661fdd29"><td class="memItemLeft">std::optional&lt; std::int32_t &gt;&#160;</td><td class="memItemRight"><a class="el" href="#aada24b0ce76fe82c2c4afc8b661fdd29">convertStarCount</a> { }</td></tr>
-<tr class="memdesc:aada24b0ce76fe82c2c4afc8b661fdd29"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. Number of Telegram Stars that can be claimed by the receiver by converting the gift; omitted if conversion to Telegram Stars is impossible.  <br /></td></tr>
-<tr class="memitem:ab75d932ba20c921bfd7b9166a62f7eca" id="r_ab75d932ba20c921bfd7b9166a62f7eca"><td class="memItemLeft">std::optional&lt; std::int32_t &gt;&#160;</td><td class="memItemRight"><a class="el" href="#ab75d932ba20c921bfd7b9166a62f7eca">prepaidUpgradeStarCount</a> { }</td></tr>
-<tr class="memdesc:ab75d932ba20c921bfd7b9166a62f7eca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. Number of Telegram Stars that were prepaid for the ability to upgrade the gift.  <br /></td></tr>
+<tr class="memitem:af8ea0cd3233bca3001714a81617f2004" id="r_af8ea0cd3233bca3001714a81617f2004"><td class="memItemLeft">std::optional&lt; std::uint32_t &gt;&#160;</td><td class="memItemRight"><a class="el" href="#af8ea0cd3233bca3001714a81617f2004">convertStarCount</a> { }</td></tr>
+<tr class="memdesc:af8ea0cd3233bca3001714a81617f2004"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. Number of Telegram Stars that can be claimed by the receiver by converting the gift; omitted if conversion to Telegram Stars is impossible.  <br /></td></tr>
+<tr class="memitem:a5a0b131ff6a17fbad77c4f2b1c0f7566" id="r_a5a0b131ff6a17fbad77c4f2b1c0f7566"><td class="memItemLeft">std::optional&lt; std::uint32_t &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a5a0b131ff6a17fbad77c4f2b1c0f7566">prepaidUpgradeStarCount</a> { }</td></tr>
+<tr class="memdesc:a5a0b131ff6a17fbad77c4f2b1c0f7566"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. Number of Telegram Stars that were prepaid for the ability to upgrade the gift.  <br /></td></tr>
 <tr class="memitem:a764444306e8c7ee290c34624fa402ec7" id="r_a764444306e8c7ee290c34624fa402ec7"><td class="memItemLeft">std::optional&lt; bool &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a764444306e8c7ee290c34624fa402ec7">isUpgradeSeparate</a> { }</td></tr>
 <tr class="memdesc:a764444306e8c7ee290c34624fa402ec7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. True, if the gift's upgrade was purchased after the gift was sent.  <br /></td></tr>
 <tr class="memitem:a21d4bae914adc3befd6c636bc0c0bd5b" id="r_a21d4bae914adc3befd6c636bc0c0bd5b"><td class="memItemLeft">std::optional&lt; bool &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a21d4bae914adc3befd6c636bc0c0bd5b">canBeUpgraded</a> { }</td></tr>
@@ -142,13 +142,13 @@ Public Attributes</h2></td></tr>
 <tr class="memdesc:a23912c9b70d118373c908b320196cf08"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. Special entities that appear in the text.  <br /></td></tr>
 <tr class="memitem:adc9868d475cbd86f247811cfdc5602ba" id="r_adc9868d475cbd86f247811cfdc5602ba"><td class="memItemLeft">std::optional&lt; bool &gt;&#160;</td><td class="memItemRight"><a class="el" href="#adc9868d475cbd86f247811cfdc5602ba">isPrivate</a> { }</td></tr>
 <tr class="memdesc:adc9868d475cbd86f247811cfdc5602ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. True, if the sender and gift text are shown only to the gift receiver; otherwise, everyone will be able to see them.  <br /></td></tr>
-<tr class="memitem:a4aef12ce10feec584c9408899e604d19" id="r_a4aef12ce10feec584c9408899e604d19"><td class="memItemLeft">std::optional&lt; std::int32_t &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a4aef12ce10feec584c9408899e604d19">uniqueGiftNumber</a> { }</td></tr>
-<tr class="memdesc:a4aef12ce10feec584c9408899e604d19"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. Unique number reserved for this gift when upgraded. See the number field in <a class="el" href="struct_tg_bot_1_1_unique_gift.html" title="This object describes a unique gift that was upgraded from a regular gift.">UniqueGift</a>.  <br /></td></tr>
+<tr class="memitem:a7914fffabf73c6c699da458bb938eb01" id="r_a7914fffabf73c6c699da458bb938eb01"><td class="memItemLeft">std::optional&lt; std::uint32_t &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a7914fffabf73c6c699da458bb938eb01">uniqueGiftNumber</a> { }</td></tr>
+<tr class="memdesc:a7914fffabf73c6c699da458bb938eb01"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. Unique number reserved for this gift when upgraded. See the number field in <a class="el" href="struct_tg_bot_1_1_unique_gift.html" title="This object describes a unique gift that was upgraded from a regular gift.">UniqueGift</a>.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Describes a service message about a regular gift that was sent or received. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l03741">3741</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l03993">3993</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 </div><a name="doc-typedef-members" id="doc-typedef-members"></a><h2 id="header-doc-typedef-members" class="groupheader">Member Typedef Documentation</h2>
 <a id="ae77596595bc6b6ef92e8fb71c4d6163e" name="ae77596595bc6b6ef92e8fb71c4d6163e"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ae77596595bc6b6ef92e8fb71c4d6163e">&#9670;&#160;</a></span>Ptr</h2>
@@ -162,7 +162,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l03742">3742</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l03994">3994</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -181,25 +181,25 @@ Public Attributes</h2></td></tr>
 
 <p>Optional. True, if the gift can be upgraded to a unique gift. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l03769">3769</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l04021">4021</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
-<a id="aada24b0ce76fe82c2c4afc8b661fdd29" name="aada24b0ce76fe82c2c4afc8b661fdd29"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aada24b0ce76fe82c2c4afc8b661fdd29">&#9670;&#160;</a></span>convertStarCount</h2>
+<a id="af8ea0cd3233bca3001714a81617f2004" name="af8ea0cd3233bca3001714a81617f2004"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af8ea0cd3233bca3001714a81617f2004">&#9670;&#160;</a></span>convertStarCount</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::optional&lt;std::int32_t&gt; TgBot::GiftInfo::convertStarCount { }</td>
+          <td class="memname">std::optional&lt;std::uint32_t&gt; TgBot::GiftInfo::convertStarCount { }</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Optional. Number of Telegram Stars that can be claimed by the receiver by converting the gift; omitted if conversion to Telegram Stars is impossible. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l03757">3757</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l04009">4009</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -217,7 +217,7 @@ Public Attributes</h2></td></tr>
 
 <p>Optional. Special entities that appear in the text. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l03777">3777</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l04029">4029</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -235,7 +235,7 @@ Public Attributes</h2></td></tr>
 
 <p>Information about the gift. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l03747">3747</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l03999">3999</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -253,7 +253,7 @@ Public Attributes</h2></td></tr>
 
 <p>Optional. True, if the sender and gift text are shown only to the gift receiver; otherwise, everyone will be able to see them. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l03782">3782</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l04034">4034</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -271,7 +271,7 @@ Public Attributes</h2></td></tr>
 
 <p>Optional. True, if the gift's upgrade was purchased after the gift was sent. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l03765">3765</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l04017">4017</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -289,25 +289,25 @@ Public Attributes</h2></td></tr>
 
 <p>Optional. Unique identifier of the received gift for the bot; only present for gifts received on behalf of business accounts. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l03752">3752</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l04004">4004</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
-<a id="ab75d932ba20c921bfd7b9166a62f7eca" name="ab75d932ba20c921bfd7b9166a62f7eca"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab75d932ba20c921bfd7b9166a62f7eca">&#9670;&#160;</a></span>prepaidUpgradeStarCount</h2>
+<a id="a5a0b131ff6a17fbad77c4f2b1c0f7566" name="a5a0b131ff6a17fbad77c4f2b1c0f7566"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5a0b131ff6a17fbad77c4f2b1c0f7566">&#9670;&#160;</a></span>prepaidUpgradeStarCount</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::optional&lt;std::int32_t&gt; TgBot::GiftInfo::prepaidUpgradeStarCount { }</td>
+          <td class="memname">std::optional&lt;std::uint32_t&gt; TgBot::GiftInfo::prepaidUpgradeStarCount { }</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Optional. Number of Telegram Stars that were prepaid for the ability to upgrade the gift. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l03761">3761</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l04013">4013</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -325,25 +325,25 @@ Public Attributes</h2></td></tr>
 
 <p>Optional. Text of the message that was added to the gift. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l03773">3773</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l04025">4025</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
-<a id="a4aef12ce10feec584c9408899e604d19" name="a4aef12ce10feec584c9408899e604d19"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4aef12ce10feec584c9408899e604d19">&#9670;&#160;</a></span>uniqueGiftNumber</h2>
+<a id="a7914fffabf73c6c699da458bb938eb01" name="a7914fffabf73c6c699da458bb938eb01"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7914fffabf73c6c699da458bb938eb01">&#9670;&#160;</a></span>uniqueGiftNumber</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::optional&lt;std::int32_t&gt; TgBot::GiftInfo::uniqueGiftNumber { }</td>
+          <td class="memname">std::optional&lt;std::uint32_t&gt; TgBot::GiftInfo::uniqueGiftNumber { }</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Optional. Unique number reserved for this gift when upgraded. See the number field in <a class="el" href="struct_tg_bot_1_1_unique_gift.html" title="This object describes a unique gift that was upgraded from a regular gift.">UniqueGift</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l03787">3787</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l04039">4039</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>

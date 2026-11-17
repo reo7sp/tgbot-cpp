@@ -6,5 +6,5 @@ var struct_tg_bot_1_1_business_connection =
     [ "isEnabled", "struct_tg_bot_1_1_business_connection.html#a34bc24430072b85895c0318946544522", null ],
     [ "rights", "struct_tg_bot_1_1_business_connection.html#a98bb567cb8c19d5b830132bc766ed672", null ],
     [ "user", "struct_tg_bot_1_1_business_connection.html#a06e7a722661ef6fb08dcfc4b90426c79", null ],
-    [ "userChatId", "struct_tg_bot_1_1_business_connection.html#a154523c3629cc744deae6db0fde1c57e", null ]
+    [ "userChatId", "struct_tg_bot_1_1_business_connection.html#af4b75bacde7bf002c2330ca2f09d5d6c", null ]
 ];

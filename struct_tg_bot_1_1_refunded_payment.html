@@ -126,8 +126,8 @@ Public Types</h2></td></tr>
 Public Attributes</h2></td></tr>
 <tr class="memitem:a06dc19b3a4fbe1fea0ff2dd5428db2aa" id="r_a06dc19b3a4fbe1fea0ff2dd5428db2aa"><td class="memItemLeft">std::string&#160;</td><td class="memItemRight"><a class="el" href="#a06dc19b3a4fbe1fea0ff2dd5428db2aa">currency</a> { }</td></tr>
 <tr class="memdesc:a06dc19b3a4fbe1fea0ff2dd5428db2aa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Three-letter ISO 4217 currency code, or “XTR” for payments in Telegram Stars. Currently, always “XTR”.  <br /></td></tr>
-<tr class="memitem:a18bb46a4b6be42ba96958a045c91b88b" id="r_a18bb46a4b6be42ba96958a045c91b88b"><td class="memItemLeft">std::int32_t&#160;</td><td class="memItemRight"><a class="el" href="#a18bb46a4b6be42ba96958a045c91b88b">totalAmount</a> { }</td></tr>
-<tr class="memdesc:a18bb46a4b6be42ba96958a045c91b88b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Total refunded price in the smallest units of the currency (integer, not float/double). For example, for a price of US$ 1.45, total_amount = 145. See the exp parameter in currencies.json, it shows the number of digits past the decimal point for each currency (2 for the majority of currencies).  <br /></td></tr>
+<tr class="memitem:a620aeaaea338402bbb29e783822886d2" id="r_a620aeaaea338402bbb29e783822886d2"><td class="memItemLeft">std::uint64_t&#160;</td><td class="memItemRight"><a class="el" href="#a620aeaaea338402bbb29e783822886d2">totalAmount</a> { }</td></tr>
+<tr class="memdesc:a620aeaaea338402bbb29e783822886d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Total refunded price in the smallest units of the currency (integer, not float/double). For example, for a price of US$ 1.45, total_amount = 145. See the exp parameter in currencies.json, it shows the number of digits past the decimal point for each currency (2 for the majority of currencies).  <br /></td></tr>
 <tr class="memitem:a028543dc8d1096785789b98c0669a1e3" id="r_a028543dc8d1096785789b98c0669a1e3"><td class="memItemLeft">std::string&#160;</td><td class="memItemRight"><a class="el" href="#a028543dc8d1096785789b98c0669a1e3">invoicePayload</a> { }</td></tr>
 <tr class="memdesc:a028543dc8d1096785789b98c0669a1e3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Bot-specified invoice payload.  <br /></td></tr>
 <tr class="memitem:af1b4243e769c38eb1fc3fa11e537ce88" id="r_af1b4243e769c38eb1fc3fa11e537ce88"><td class="memItemLeft">std::string&#160;</td><td class="memItemRight"><a class="el" href="#af1b4243e769c38eb1fc3fa11e537ce88">telegramPaymentChargeId</a> { }</td></tr>
@@ -138,7 +138,7 @@ Public Attributes</h2></td></tr>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>This object contains basic information about a refunded payment. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l10403">10403</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l10801">10801</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 </div><a name="doc-typedef-members" id="doc-typedef-members"></a><h2 id="header-doc-typedef-members" class="groupheader">Member Typedef Documentation</h2>
 <a id="af66ef48c4347e9bdae9dd35a6fc9db76" name="af66ef48c4347e9bdae9dd35a6fc9db76"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#af66ef48c4347e9bdae9dd35a6fc9db76">&#9670;&#160;</a></span>Ptr</h2>
@@ -152,7 +152,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l10404">10404</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l10802">10802</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -171,7 +171,7 @@ Public Attributes</h2></td></tr>
 
 <p>Three-letter ISO 4217 currency code, or “XTR” for payments in Telegram Stars. Currently, always “XTR”. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l10410">10410</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l10808">10808</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -189,7 +189,7 @@ Public Attributes</h2></td></tr>
 
 <p>Bot-specified invoice payload. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l10421">10421</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l10819">10819</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -207,7 +207,7 @@ Public Attributes</h2></td></tr>
 
 <p>Optional. Provider payment identifier. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l10429">10429</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l10827">10827</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -225,25 +225,25 @@ Public Attributes</h2></td></tr>
 
 <p>Telegram payment identifier. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l10425">10425</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l10823">10823</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
-<a id="a18bb46a4b6be42ba96958a045c91b88b" name="a18bb46a4b6be42ba96958a045c91b88b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a18bb46a4b6be42ba96958a045c91b88b">&#9670;&#160;</a></span>totalAmount</h2>
+<a id="a620aeaaea338402bbb29e783822886d2" name="a620aeaaea338402bbb29e783822886d2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a620aeaaea338402bbb29e783822886d2">&#9670;&#160;</a></span>totalAmount</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::int32_t TgBot::RefundedPayment::totalAmount { }</td>
+          <td class="memname">std::uint64_t TgBot::RefundedPayment::totalAmount { }</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Total refunded price in the smallest units of the currency (integer, not float/double). For example, for a price of US$ 1.45, total_amount = 145. See the exp parameter in currencies.json, it shows the number of digits past the decimal point for each currency (2 for the majority of currencies). </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l10417">10417</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l10815">10815</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>

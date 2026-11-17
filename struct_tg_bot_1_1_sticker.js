@@ -9,9 +9,9 @@ var struct_tg_bot_1_1_sticker =
     [ "customEmojiId", "struct_tg_bot_1_1_sticker.html#a9152dbd4b00fe50d62b312697d0ca704", null ],
     [ "emoji", "struct_tg_bot_1_1_sticker.html#a34f98baa460652c97f9ea163c0992a4e", null ],
     [ "fileId", "struct_tg_bot_1_1_sticker.html#ace3bb46bbb491c1a9687cd14a37b25d1", null ],
-    [ "fileSize", "struct_tg_bot_1_1_sticker.html#ac15378cff8fedd016ef2ca4780733f8a", null ],
+    [ "fileSize", "struct_tg_bot_1_1_sticker.html#ac1710dfb52eb2ead430850c438e92ed9", null ],
     [ "fileUniqueId", "struct_tg_bot_1_1_sticker.html#aa6572c4f9ff27556de58af5855169b0a", null ],
-    [ "height", "struct_tg_bot_1_1_sticker.html#a738abffed8a0d6612ae93921fad044ac", null ],
+    [ "height", "struct_tg_bot_1_1_sticker.html#a0a0466a813b09649d142e2241587aac6", null ],
     [ "isAnimated", "struct_tg_bot_1_1_sticker.html#a98d7ea2d2917d544ecc2eddd02ca3a94", null ],
     [ "isVideo", "struct_tg_bot_1_1_sticker.html#a6f1b557771bee5f4414efe53cb161b8f", null ],
     [ "maskPosition", "struct_tg_bot_1_1_sticker.html#a685c00db622f24a0488e41224233deb8", null ],
@@ -20,5 +20,5 @@ var struct_tg_bot_1_1_sticker =
     [ "setName", "struct_tg_bot_1_1_sticker.html#a638666204e5f10e4fba13b3730e39319", null ],
     [ "thumbnail", "struct_tg_bot_1_1_sticker.html#ade8c6e277a6ac4dd377717b726553308", null ],
     [ "type", "struct_tg_bot_1_1_sticker.html#a0b730d358ba84e22ed6cac1a17a8c64e", null ],
-    [ "width", "struct_tg_bot_1_1_sticker.html#a5293cffae2125fdd6fc37a93b7a73f32", null ]
+    [ "width", "struct_tg_bot_1_1_sticker.html#a3f719078caeeea67427b67b54b5ed268", null ]
 ];

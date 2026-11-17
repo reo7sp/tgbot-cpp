@@ -130,12 +130,12 @@ Public Attributes</h2></td></tr>
 <tr class="memdesc:a517598f71f1266347726120de497f37d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unique identifier for this result, 1-64 bytes.  <br /></td></tr>
 <tr class="memitem:a7f38ad7e89d2e911f3b5b8e4f9209ad0" id="r_a7f38ad7e89d2e911f3b5b8e4f9209ad0"><td class="memItemLeft">std::string&#160;</td><td class="memItemRight"><a class="el" href="#a7f38ad7e89d2e911f3b5b8e4f9209ad0">gifUrl</a> { }</td></tr>
 <tr class="memdesc:a7f38ad7e89d2e911f3b5b8e4f9209ad0"><td class="mdescLeft">&#160;</td><td class="mdescRight">A valid URL for the GIF file.  <br /></td></tr>
-<tr class="memitem:aea99012b1c9822c9f566a961e5e78527" id="r_aea99012b1c9822c9f566a961e5e78527"><td class="memItemLeft">std::optional&lt; std::int32_t &gt;&#160;</td><td class="memItemRight"><a class="el" href="#aea99012b1c9822c9f566a961e5e78527">gifWidth</a> { }</td></tr>
-<tr class="memdesc:aea99012b1c9822c9f566a961e5e78527"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. Width of the GIF.  <br /></td></tr>
-<tr class="memitem:a755d8fde7c769852433d2e379f1f4ea7" id="r_a755d8fde7c769852433d2e379f1f4ea7"><td class="memItemLeft">std::optional&lt; std::int32_t &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a755d8fde7c769852433d2e379f1f4ea7">gifHeight</a> { }</td></tr>
-<tr class="memdesc:a755d8fde7c769852433d2e379f1f4ea7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. Height of the GIF.  <br /></td></tr>
-<tr class="memitem:ac3a0199e03fcb2ad1b3b15a28c5b686e" id="r_ac3a0199e03fcb2ad1b3b15a28c5b686e"><td class="memItemLeft">std::optional&lt; std::int32_t &gt;&#160;</td><td class="memItemRight"><a class="el" href="#ac3a0199e03fcb2ad1b3b15a28c5b686e">gifDuration</a> { }</td></tr>
-<tr class="memdesc:ac3a0199e03fcb2ad1b3b15a28c5b686e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. Duration of the GIF in seconds.  <br /></td></tr>
+<tr class="memitem:a55778923f3e46bc59c8895aaf52c1ac8" id="r_a55778923f3e46bc59c8895aaf52c1ac8"><td class="memItemLeft">std::optional&lt; std::uint32_t &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a55778923f3e46bc59c8895aaf52c1ac8">gifWidth</a> { }</td></tr>
+<tr class="memdesc:a55778923f3e46bc59c8895aaf52c1ac8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. Width of the GIF.  <br /></td></tr>
+<tr class="memitem:ad23ac2cc01dcc361415a5ed5726ee740" id="r_ad23ac2cc01dcc361415a5ed5726ee740"><td class="memItemLeft">std::optional&lt; std::uint32_t &gt;&#160;</td><td class="memItemRight"><a class="el" href="#ad23ac2cc01dcc361415a5ed5726ee740">gifHeight</a> { }</td></tr>
+<tr class="memdesc:ad23ac2cc01dcc361415a5ed5726ee740"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. Height of the GIF.  <br /></td></tr>
+<tr class="memitem:ab6505d901591d5eeb82c31566e84c909" id="r_ab6505d901591d5eeb82c31566e84c909"><td class="memItemLeft">std::optional&lt; std::uint32_t &gt;&#160;</td><td class="memItemRight"><a class="el" href="#ab6505d901591d5eeb82c31566e84c909">gifDuration</a> { }</td></tr>
+<tr class="memdesc:ab6505d901591d5eeb82c31566e84c909"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. Duration of the GIF in seconds.  <br /></td></tr>
 <tr class="memitem:abf9407826b1be2eebff869cde61e6419" id="r_abf9407826b1be2eebff869cde61e6419"><td class="memItemLeft">std::string&#160;</td><td class="memItemRight"><a class="el" href="#abf9407826b1be2eebff869cde61e6419">thumbnailUrl</a> { }</td></tr>
 <tr class="memdesc:abf9407826b1be2eebff869cde61e6419"><td class="mdescLeft">&#160;</td><td class="mdescRight">URL of the static (JPEG or GIF) or animated (MPEG4) thumbnail for the result.  <br /></td></tr>
 <tr class="memitem:ab4aa4927da75ee134abe9d709671dedd" id="r_ab4aa4927da75ee134abe9d709671dedd"><td class="memItemLeft">std::optional&lt; std::string &gt;&#160;</td><td class="memItemRight"><a class="el" href="#ab4aa4927da75ee134abe9d709671dedd">thumbnailMimeType</a> { }</td></tr>
@@ -162,7 +162,7 @@ Static Public Attributes</h2></td></tr>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Represents a link to an animated GIF file. By default, this animated GIF file will be sent by the user with optional caption. Alternatively, you can use input_message_content to send a message with the specified content instead of the animation. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l04915">4915</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l05168">5168</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 </div><a name="doc-typedef-members" id="doc-typedef-members"></a><h2 id="header-doc-typedef-members" class="groupheader">Member Typedef Documentation</h2>
 <a id="a749a19076c6970f68d89bba0b8670195" name="a749a19076c6970f68d89bba0b8670195"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a749a19076c6970f68d89bba0b8670195">&#9670;&#160;</a></span>Ptr</h2>
@@ -176,7 +176,7 @@ Static Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l04916">4916</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l05169">5169</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -195,7 +195,7 @@ Static Public Attributes</h2></td></tr>
 
 <p>Optional. Caption of the GIF file to be sent, 0-1024 characters after entities parsing. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l04960">4960</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l05213">5213</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -213,43 +213,43 @@ Static Public Attributes</h2></td></tr>
 
 <p>Optional. List of special entities that appear in the caption, which can be specified instead of parse_mode. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l04970">4970</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l05223">5223</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
-<a id="ac3a0199e03fcb2ad1b3b15a28c5b686e" name="ac3a0199e03fcb2ad1b3b15a28c5b686e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac3a0199e03fcb2ad1b3b15a28c5b686e">&#9670;&#160;</a></span>gifDuration</h2>
+<a id="ab6505d901591d5eeb82c31566e84c909" name="ab6505d901591d5eeb82c31566e84c909"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab6505d901591d5eeb82c31566e84c909">&#9670;&#160;</a></span>gifDuration</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::optional&lt;std::int32_t&gt; TgBot::InlineQueryResultGif::gifDuration { }</td>
+          <td class="memname">std::optional&lt;std::uint32_t&gt; TgBot::InlineQueryResultGif::gifDuration { }</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Optional. Duration of the GIF in seconds. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l04943">4943</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l05196">5196</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
-<a id="a755d8fde7c769852433d2e379f1f4ea7" name="a755d8fde7c769852433d2e379f1f4ea7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a755d8fde7c769852433d2e379f1f4ea7">&#9670;&#160;</a></span>gifHeight</h2>
+<a id="ad23ac2cc01dcc361415a5ed5726ee740" name="ad23ac2cc01dcc361415a5ed5726ee740"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad23ac2cc01dcc361415a5ed5726ee740">&#9670;&#160;</a></span>gifHeight</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::optional&lt;std::int32_t&gt; TgBot::InlineQueryResultGif::gifHeight { }</td>
+          <td class="memname">std::optional&lt;std::uint32_t&gt; TgBot::InlineQueryResultGif::gifHeight { }</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Optional. Height of the GIF. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l04939">4939</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l05192">5192</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -267,25 +267,25 @@ Static Public Attributes</h2></td></tr>
 
 <p>A valid URL for the GIF file. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l04931">4931</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l05184">5184</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
-<a id="aea99012b1c9822c9f566a961e5e78527" name="aea99012b1c9822c9f566a961e5e78527"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aea99012b1c9822c9f566a961e5e78527">&#9670;&#160;</a></span>gifWidth</h2>
+<a id="a55778923f3e46bc59c8895aaf52c1ac8" name="a55778923f3e46bc59c8895aaf52c1ac8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a55778923f3e46bc59c8895aaf52c1ac8">&#9670;&#160;</a></span>gifWidth</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::optional&lt;std::int32_t&gt; TgBot::InlineQueryResultGif::gifWidth { }</td>
+          <td class="memname">std::optional&lt;std::uint32_t&gt; TgBot::InlineQueryResultGif::gifWidth { }</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Optional. Width of the GIF. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l04935">4935</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l05188">5188</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -303,7 +303,7 @@ Static Public Attributes</h2></td></tr>
 
 <p>Unique identifier for this result, 1-64 bytes. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l04927">4927</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l05180">5180</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -321,7 +321,7 @@ Static Public Attributes</h2></td></tr>
 
 <p>Optional. Content of the message to be sent instead of the GIF animation. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l04982">4982</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l05235">5235</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -339,7 +339,7 @@ Static Public Attributes</h2></td></tr>
 
 <p>Optional. Mode for parsing entities in the caption. See formatting options for more details. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l04965">4965</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l05218">5218</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -357,7 +357,7 @@ Static Public Attributes</h2></td></tr>
 
 <p>Optional. Inline keyboard attached to the message. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l04978">4978</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l05231">5231</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -375,7 +375,7 @@ Static Public Attributes</h2></td></tr>
 
 <p>Optional. Pass True if the caption must be shown above the message media. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l04974">4974</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l05227">5227</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -393,7 +393,7 @@ Static Public Attributes</h2></td></tr>
 
 <p>Optional. MIME type of the thumbnail, must be one of “image/jpeg”, “image/gif”, or “video/mp4”. Defaults to “image/jpeg”. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l04952">4952</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l05205">5205</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -411,7 +411,7 @@ Static Public Attributes</h2></td></tr>
 
 <p>URL of the static (JPEG or GIF) or animated (MPEG4) thumbnail for the result. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l04947">4947</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l05200">5200</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -429,7 +429,7 @@ Static Public Attributes</h2></td></tr>
 
 <p>Optional. Title for the result. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l04956">4956</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l05209">5209</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -453,7 +453,7 @@ Static Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l04918">4918</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l05171">5171</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -471,7 +471,7 @@ Static Public Attributes</h2></td></tr>
 
 <p>Type of the result, must be gif. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l04923">4923</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l05176">5176</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>

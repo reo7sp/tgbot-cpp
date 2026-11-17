@@ -8,5 +8,5 @@ var struct_tg_bot_1_1_poll_option =
     [ "persistentId", "struct_tg_bot_1_1_poll_option.html#a1a40d5fb6e328b988bbe8a512300c3a4", null ],
     [ "text", "struct_tg_bot_1_1_poll_option.html#a0fc5824722ba1d38ef3547f447126047", null ],
     [ "textEntities", "struct_tg_bot_1_1_poll_option.html#a7c0cb5718b23fe96f60188c757732fb4", null ],
-    [ "voterCount", "struct_tg_bot_1_1_poll_option.html#ab2e7b05be854cf3a859a121226faa6f7", null ]
+    [ "voterCount", "struct_tg_bot_1_1_poll_option.html#a624b670d47a09fbdd8ea6391161228f8", null ]
 ];

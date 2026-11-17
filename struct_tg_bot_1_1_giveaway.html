@@ -128,8 +128,8 @@ Public Attributes</h2></td></tr>
 <tr class="memdesc:a219c34a4b2b4fc5cbb0150d45064912b"><td class="mdescLeft">&#160;</td><td class="mdescRight">The list of chats which the user must join to participate in the giveaway.  <br /></td></tr>
 <tr class="memitem:a4101dbab94cfed555fa136913d4a4684" id="r_a4101dbab94cfed555fa136913d4a4684"><td class="memItemLeft">std::int32_t&#160;</td><td class="memItemRight"><a class="el" href="#a4101dbab94cfed555fa136913d4a4684">winnersSelectionDate</a> { }</td></tr>
 <tr class="memdesc:a4101dbab94cfed555fa136913d4a4684"><td class="mdescLeft">&#160;</td><td class="mdescRight">Point in time (Unix timestamp) when winners of the giveaway will be selected.  <br /></td></tr>
-<tr class="memitem:a3a70b60af639e4ba6d57aa850d24d580" id="r_a3a70b60af639e4ba6d57aa850d24d580"><td class="memItemLeft">std::int32_t&#160;</td><td class="memItemRight"><a class="el" href="#a3a70b60af639e4ba6d57aa850d24d580">winnerCount</a> { }</td></tr>
-<tr class="memdesc:a3a70b60af639e4ba6d57aa850d24d580"><td class="mdescLeft">&#160;</td><td class="mdescRight">The number of users which are supposed to be selected as winners of the giveaway.  <br /></td></tr>
+<tr class="memitem:a454440e37d7ab2f086343ef8a8a9bde0" id="r_a454440e37d7ab2f086343ef8a8a9bde0"><td class="memItemLeft">std::uint32_t&#160;</td><td class="memItemRight"><a class="el" href="#a454440e37d7ab2f086343ef8a8a9bde0">winnerCount</a> { }</td></tr>
+<tr class="memdesc:a454440e37d7ab2f086343ef8a8a9bde0"><td class="mdescLeft">&#160;</td><td class="mdescRight">The number of users which are supposed to be selected as winners of the giveaway.  <br /></td></tr>
 <tr class="memitem:a33408fe65c5928c81e09e54102694f5d" id="r_a33408fe65c5928c81e09e54102694f5d"><td class="memItemLeft">std::optional&lt; bool &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a33408fe65c5928c81e09e54102694f5d">onlyNewMembers</a> { }</td></tr>
 <tr class="memdesc:a33408fe65c5928c81e09e54102694f5d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. True, if only users who join the chats after the giveaway started should be eligible to win.  <br /></td></tr>
 <tr class="memitem:a980318591d87aeb30e03e5f47aafadb2" id="r_a980318591d87aeb30e03e5f47aafadb2"><td class="memItemLeft">std::optional&lt; bool &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a980318591d87aeb30e03e5f47aafadb2">hasPublicWinners</a> { }</td></tr>
@@ -138,15 +138,15 @@ Public Attributes</h2></td></tr>
 <tr class="memdesc:aa24933bc89b813e4deb70d685c7806e3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. Description of additional giveaway prize.  <br /></td></tr>
 <tr class="memitem:a7c7f94265c54d44f5b4e9c31002c6dc5" id="r_a7c7f94265c54d44f5b4e9c31002c6dc5"><td class="memItemLeft">std::optional&lt; std::vector&lt; std::string &gt; &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a7c7f94265c54d44f5b4e9c31002c6dc5">countryCodes</a> { }</td></tr>
 <tr class="memdesc:a7c7f94265c54d44f5b4e9c31002c6dc5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. A list of two-letter ISO 3166-1 alpha-2 country codes indicating the countries from which eligible users for the giveaway must come. If empty, then all users can participate in the giveaway. Users with a phone number that was bought on Fragment can always participate in giveaways.  <br /></td></tr>
-<tr class="memitem:a2f4001d7a96a6821ad4090ccdfdbe6ca" id="r_a2f4001d7a96a6821ad4090ccdfdbe6ca"><td class="memItemLeft">std::optional&lt; std::int32_t &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a2f4001d7a96a6821ad4090ccdfdbe6ca">prizeStarCount</a> { }</td></tr>
-<tr class="memdesc:a2f4001d7a96a6821ad4090ccdfdbe6ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. The number of Telegram Stars to be split between giveaway winners; for Telegram Star giveaways only.  <br /></td></tr>
-<tr class="memitem:ae7988a439e95f5d1a83fb9f6bcaaee85" id="r_ae7988a439e95f5d1a83fb9f6bcaaee85"><td class="memItemLeft">std::optional&lt; std::int32_t &gt;&#160;</td><td class="memItemRight"><a class="el" href="#ae7988a439e95f5d1a83fb9f6bcaaee85">premiumSubscriptionMonthCount</a> { }</td></tr>
-<tr class="memdesc:ae7988a439e95f5d1a83fb9f6bcaaee85"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. The number of months the Telegram Premium subscription won from the giveaway will be active for; for Telegram Premium giveaways only.  <br /></td></tr>
+<tr class="memitem:af6e9d5e774777c8ef5e66203bbbcc7d2" id="r_af6e9d5e774777c8ef5e66203bbbcc7d2"><td class="memItemLeft">std::optional&lt; std::uint32_t &gt;&#160;</td><td class="memItemRight"><a class="el" href="#af6e9d5e774777c8ef5e66203bbbcc7d2">prizeStarCount</a> { }</td></tr>
+<tr class="memdesc:af6e9d5e774777c8ef5e66203bbbcc7d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. The number of Telegram Stars to be split between giveaway winners; for Telegram Star giveaways only.  <br /></td></tr>
+<tr class="memitem:a0da5165e73b8235fb81edd1b419c9823" id="r_a0da5165e73b8235fb81edd1b419c9823"><td class="memItemLeft">std::optional&lt; std::uint32_t &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a0da5165e73b8235fb81edd1b419c9823">premiumSubscriptionMonthCount</a> { }</td></tr>
+<tr class="memdesc:a0da5165e73b8235fb81edd1b419c9823"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. The number of months the Telegram Premium subscription won from the giveaway will be active for; for Telegram Premium giveaways only.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>This object represents a message about a scheduled giveaway. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l03813">3813</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l04065">4065</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 </div><a name="doc-typedef-members" id="doc-typedef-members"></a><h2 id="header-doc-typedef-members" class="groupheader">Member Typedef Documentation</h2>
 <a id="a85e716be48c6c1c32e553411db659806" name="a85e716be48c6c1c32e553411db659806"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a85e716be48c6c1c32e553411db659806">&#9670;&#160;</a></span>Ptr</h2>
@@ -160,7 +160,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l03814">3814</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l04066">4066</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -179,7 +179,7 @@ Public Attributes</h2></td></tr>
 
 <p>The list of chats which the user must join to participate in the giveaway. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l03819">3819</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l04071">4071</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -197,7 +197,7 @@ Public Attributes</h2></td></tr>
 
 <p>Optional. A list of two-letter ISO 3166-1 alpha-2 country codes indicating the countries from which eligible users for the giveaway must come. If empty, then all users can participate in the giveaway. Users with a phone number that was bought on Fragment can always participate in giveaways. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l03847">3847</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l04099">4099</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -215,7 +215,7 @@ Public Attributes</h2></td></tr>
 
 <p>Optional. True, if the list of giveaway winners will be visible to everyone. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l03836">3836</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l04088">4088</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -233,25 +233,25 @@ Public Attributes</h2></td></tr>
 
 <p>Optional. True, if only users who join the chats after the giveaway started should be eligible to win. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l03832">3832</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l04084">4084</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
-<a id="ae7988a439e95f5d1a83fb9f6bcaaee85" name="ae7988a439e95f5d1a83fb9f6bcaaee85"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae7988a439e95f5d1a83fb9f6bcaaee85">&#9670;&#160;</a></span>premiumSubscriptionMonthCount</h2>
+<a id="a0da5165e73b8235fb81edd1b419c9823" name="a0da5165e73b8235fb81edd1b419c9823"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0da5165e73b8235fb81edd1b419c9823">&#9670;&#160;</a></span>premiumSubscriptionMonthCount</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::optional&lt;std::int32_t&gt; TgBot::Giveaway::premiumSubscriptionMonthCount { }</td>
+          <td class="memname">std::optional&lt;std::uint32_t&gt; TgBot::Giveaway::premiumSubscriptionMonthCount { }</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Optional. The number of months the Telegram Premium subscription won from the giveaway will be active for; for Telegram Premium giveaways only. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l03857">3857</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l04109">4109</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -269,43 +269,43 @@ Public Attributes</h2></td></tr>
 
 <p>Optional. Description of additional giveaway prize. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l03840">3840</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l04092">4092</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
-<a id="a2f4001d7a96a6821ad4090ccdfdbe6ca" name="a2f4001d7a96a6821ad4090ccdfdbe6ca"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2f4001d7a96a6821ad4090ccdfdbe6ca">&#9670;&#160;</a></span>prizeStarCount</h2>
+<a id="af6e9d5e774777c8ef5e66203bbbcc7d2" name="af6e9d5e774777c8ef5e66203bbbcc7d2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af6e9d5e774777c8ef5e66203bbbcc7d2">&#9670;&#160;</a></span>prizeStarCount</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::optional&lt;std::int32_t&gt; TgBot::Giveaway::prizeStarCount { }</td>
+          <td class="memname">std::optional&lt;std::uint32_t&gt; TgBot::Giveaway::prizeStarCount { }</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Optional. The number of Telegram Stars to be split between giveaway winners; for Telegram Star giveaways only. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l03852">3852</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l04104">4104</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
-<a id="a3a70b60af639e4ba6d57aa850d24d580" name="a3a70b60af639e4ba6d57aa850d24d580"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3a70b60af639e4ba6d57aa850d24d580">&#9670;&#160;</a></span>winnerCount</h2>
+<a id="a454440e37d7ab2f086343ef8a8a9bde0" name="a454440e37d7ab2f086343ef8a8a9bde0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a454440e37d7ab2f086343ef8a8a9bde0">&#9670;&#160;</a></span>winnerCount</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::int32_t TgBot::Giveaway::winnerCount { }</td>
+          <td class="memname">std::uint32_t TgBot::Giveaway::winnerCount { }</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>The number of users which are supposed to be selected as winners of the giveaway. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l03827">3827</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l04079">4079</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -323,7 +323,7 @@ Public Attributes</h2></td></tr>
 
 <p>Point in time (Unix timestamp) when winners of the giveaway will be selected. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l03823">3823</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l04075">4075</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>

@@ -113,7 +113,7 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('struct_tg_bot_
 </div><!--header-->
 <div class="contents">
 
-<p>Arguments for <a class="el" href="class_tg_bot_1_1_api.html#a6a9d7d5b293d56635533fa2e20438d38" title="Verifies a chat on behalf of the organization which is represented by the bot. Returns True on succes...">Api::verifyChat</a>.  
+<p>Arguments for <a class="el" href="class_tg_bot_1_1_api.html#a0e7820dfefdea91372a55b48b5480179" title="Verifies a chat on behalf of the organization which is represented by the bot. Returns True on succes...">Api::verifyChat</a>.  
  <a href="#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="_types_8h_source.html">Types.h</a>&gt;</code></p>
@@ -121,14 +121,18 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('struct_tg_bot_
 <tr class="heading"><td colspan="2"><h2 id="header-pub-attribs" class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:a8cefe7963a2cf4ceff802d60385f8d4f" id="r_a8cefe7963a2cf4ceff802d60385f8d4f"><td class="memItemLeft">std::variant&lt; std::int64_t, std::string &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a8cefe7963a2cf4ceff802d60385f8d4f">chatId</a> { }</td></tr>
-<tr class="memdesc:a8cefe7963a2cf4ceff802d60385f8d4f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unique identifier for the target chat or username of the target bot, supergroup or channel in the format @username. Channel direct messages chats can't be verified.  <br /></td></tr>
+<tr class="memdesc:a8cefe7963a2cf4ceff802d60385f8d4f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unique identifier for the target chat or username of the target bot, supergroup, or channel in the format @username. Channel direct messages chats can't be verified.  <br /></td></tr>
 <tr class="memitem:a4407b37edb7316d0dd22311d0307a68e" id="r_a4407b37edb7316d0dd22311d0307a68e"><td class="memItemLeft">std::string&#160;</td><td class="memItemRight"><a class="el" href="#a4407b37edb7316d0dd22311d0307a68e">customDescription</a> = &quot;&quot;</td></tr>
 <tr class="memdesc:a4407b37edb7316d0dd22311d0307a68e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Custom description for the verification; 0-70 characters. Must be empty if the organization isn't allowed to provide a custom verification description.  <br /></td></tr>
+<tr class="memitem:aed8caa9256b55734db2194f55953601b" id="r_aed8caa9256b55734db2194f55953601b"><td class="memItemLeft">std::vector&lt; std::shared_ptr&lt; <a class="el" href="struct_tg_bot_1_1_message_entity.html">MessageEntity</a> &gt; &gt;&#160;</td><td class="memItemRight"><a class="el" href="#aed8caa9256b55734db2194f55953601b">customDescriptionEntities</a> = { }</td></tr>
+<tr class="memdesc:aed8caa9256b55734db2194f55953601b"><td class="mdescLeft">&#160;</td><td class="mdescRight">A JSON-serialized list of special entities that appear in the custom description, which can be specified instead of custom_description_parse_mode. Only “text_link” entities are supported.  <br /></td></tr>
+<tr class="memitem:a844b42d4d8f56a48e1506f50ad48c909" id="r_a844b42d4d8f56a48e1506f50ad48c909"><td class="memItemLeft">std::string&#160;</td><td class="memItemRight"><a class="el" href="#a844b42d4d8f56a48e1506f50ad48c909">customDescriptionParseMode</a> = &quot;&quot;</td></tr>
+<tr class="memdesc:a844b42d4d8f56a48e1506f50ad48c909"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mode for parsing entities in the custom description. See formatting options for more details. Only “text_link” entities are supported.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Arguments for <a class="el" href="class_tg_bot_1_1_api.html#a6a9d7d5b293d56635533fa2e20438d38" title="Verifies a chat on behalf of the organization which is represented by the bot. Returns True on succes...">Api::verifyChat</a>. </p>
+<div class="textblock"><p>Arguments for <a class="el" href="class_tg_bot_1_1_api.html#a0e7820dfefdea91372a55b48b5480179" title="Verifies a chat on behalf of the organization which is represented by the bot. Returns True on succes...">Api::verifyChat</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l21285">21285</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l22440">22440</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 </div><a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
 <a id="a8cefe7963a2cf4ceff802d60385f8d4f" name="a8cefe7963a2cf4ceff802d60385f8d4f"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a8cefe7963a2cf4ceff802d60385f8d4f">&#9670;&#160;</a></span>chatId</h2>
@@ -142,9 +146,9 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Unique identifier for the target chat or username of the target bot, supergroup or channel in the format @username. Channel direct messages chats can't be verified. </p>
+<p>Unique identifier for the target chat or username of the target bot, supergroup, or channel in the format @username. Channel direct messages chats can't be verified. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l21291">21291</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l22446">22446</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -162,7 +166,43 @@ Public Attributes</h2></td></tr>
 
 <p>Custom description for the verification; 0-70 characters. Must be empty if the organization isn't allowed to provide a custom verification description. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l21298">21298</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l22453">22453</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+
+</div>
+</div>
+<a id="aed8caa9256b55734db2194f55953601b" name="aed8caa9256b55734db2194f55953601b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aed8caa9256b55734db2194f55953601b">&#9670;&#160;</a></span>customDescriptionEntities</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;std::shared_ptr&lt;<a class="el" href="struct_tg_bot_1_1_message_entity.html">MessageEntity</a>&gt; &gt; TgBot::VerifyChatArgs::customDescriptionEntities = { }</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>A JSON-serialized list of special entities that appear in the custom description, which can be specified instead of custom_description_parse_mode. Only “text_link” entities are supported. </p>
+
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l22460">22460</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+
+</div>
+</div>
+<a id="a844b42d4d8f56a48e1506f50ad48c909" name="a844b42d4d8f56a48e1506f50ad48c909"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a844b42d4d8f56a48e1506f50ad48c909">&#9670;&#160;</a></span>customDescriptionParseMode</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string TgBot::VerifyChatArgs::customDescriptionParseMode = &quot;&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Mode for parsing entities in the custom description. See formatting options for more details. Only “text_link” entities are supported. </p>
+
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l22466">22466</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>

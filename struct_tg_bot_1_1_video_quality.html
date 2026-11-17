@@ -128,19 +128,19 @@ Public Attributes</h2></td></tr>
 <tr class="memdesc:ad99c3ebc1d5c564f773c08bad7d19ec3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Identifier for this file, which can be used to download or reuse the file.  <br /></td></tr>
 <tr class="memitem:a23d0eabace221515a4b757d488caff11" id="r_a23d0eabace221515a4b757d488caff11"><td class="memItemLeft">std::string&#160;</td><td class="memItemRight"><a class="el" href="#a23d0eabace221515a4b757d488caff11">fileUniqueId</a> { }</td></tr>
 <tr class="memdesc:a23d0eabace221515a4b757d488caff11"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unique identifier for this file, which is supposed to be the same over time and for different bots. Can't be used to download or reuse the file.  <br /></td></tr>
-<tr class="memitem:a057641a77b0f7437895242b493ff7512" id="r_a057641a77b0f7437895242b493ff7512"><td class="memItemLeft">std::int32_t&#160;</td><td class="memItemRight"><a class="el" href="#a057641a77b0f7437895242b493ff7512">width</a> { }</td></tr>
-<tr class="memdesc:a057641a77b0f7437895242b493ff7512"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="struct_tg_bot_1_1_video.html" title="This object represents a video file.">Video</a> width.  <br /></td></tr>
-<tr class="memitem:ad547147852a3d96ff18385194cc3fbbd" id="r_ad547147852a3d96ff18385194cc3fbbd"><td class="memItemLeft">std::int32_t&#160;</td><td class="memItemRight"><a class="el" href="#ad547147852a3d96ff18385194cc3fbbd">height</a> { }</td></tr>
-<tr class="memdesc:ad547147852a3d96ff18385194cc3fbbd"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="struct_tg_bot_1_1_video.html" title="This object represents a video file.">Video</a> height.  <br /></td></tr>
+<tr class="memitem:a04dfc1289d5d6533dd89c8e7187dccad" id="r_a04dfc1289d5d6533dd89c8e7187dccad"><td class="memItemLeft">std::uint32_t&#160;</td><td class="memItemRight"><a class="el" href="#a04dfc1289d5d6533dd89c8e7187dccad">width</a> { }</td></tr>
+<tr class="memdesc:a04dfc1289d5d6533dd89c8e7187dccad"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="struct_tg_bot_1_1_video.html" title="This object represents a video file.">Video</a> width.  <br /></td></tr>
+<tr class="memitem:a7d7c0228f0c7272ed5c338364ba1c5d4" id="r_a7d7c0228f0c7272ed5c338364ba1c5d4"><td class="memItemLeft">std::uint32_t&#160;</td><td class="memItemRight"><a class="el" href="#a7d7c0228f0c7272ed5c338364ba1c5d4">height</a> { }</td></tr>
+<tr class="memdesc:a7d7c0228f0c7272ed5c338364ba1c5d4"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="struct_tg_bot_1_1_video.html" title="This object represents a video file.">Video</a> height.  <br /></td></tr>
 <tr class="memitem:a72b0902022a5b466844240d2307af888" id="r_a72b0902022a5b466844240d2307af888"><td class="memItemLeft">std::string&#160;</td><td class="memItemRight"><a class="el" href="#a72b0902022a5b466844240d2307af888">codec</a> { }</td></tr>
 <tr class="memdesc:a72b0902022a5b466844240d2307af888"><td class="mdescLeft">&#160;</td><td class="mdescRight">Codec that was used to encode the video, for example, “h264”, “h265”, or “av01”  <br /></td></tr>
-<tr class="memitem:ad9e15f7b0e3ab33c7ede44d001a75c62" id="r_ad9e15f7b0e3ab33c7ede44d001a75c62"><td class="memItemLeft">std::optional&lt; std::int64_t &gt;&#160;</td><td class="memItemRight"><a class="el" href="#ad9e15f7b0e3ab33c7ede44d001a75c62">fileSize</a> { }</td></tr>
-<tr class="memdesc:ad9e15f7b0e3ab33c7ede44d001a75c62"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. <a class="el" href="struct_tg_bot_1_1_file.html" title="This object represents a file ready to be downloaded. The file can be downloaded via the link https:/...">File</a> size in bytes. It can be bigger than 2^31 and some programming languages may have difficulty/silent defects in interpreting it. But it has at most 52 significant bits, so a signed 64-bit integer or double-precision float type are safe for storing this value.  <br /></td></tr>
+<tr class="memitem:a66c19077b056604524652aaa8bbe012d" id="r_a66c19077b056604524652aaa8bbe012d"><td class="memItemLeft">std::optional&lt; std::uint64_t &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a66c19077b056604524652aaa8bbe012d">fileSize</a> { }</td></tr>
+<tr class="memdesc:a66c19077b056604524652aaa8bbe012d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. <a class="el" href="struct_tg_bot_1_1_file.html" title="This object represents a file ready to be downloaded. The file can be downloaded via the link https:/...">File</a> size in bytes. It can be bigger than 2^31 and some programming languages may have difficulty/silent defects in interpreting it. But it has at most 52 significant bits, so a signed 64-bit integer or double-precision float type are safe for storing this value.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>This object represents a video file of a specific quality. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l14185">14185</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l14788">14788</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 </div><a name="doc-typedef-members" id="doc-typedef-members"></a><h2 id="header-doc-typedef-members" class="groupheader">Member Typedef Documentation</h2>
 <a id="a01fdb8bd15cf0ec1e3b4464ecf293b6c" name="a01fdb8bd15cf0ec1e3b4464ecf293b6c"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a01fdb8bd15cf0ec1e3b4464ecf293b6c">&#9670;&#160;</a></span>Ptr</h2>
@@ -154,7 +154,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l14186">14186</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l14789">14789</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -173,7 +173,7 @@ Public Attributes</h2></td></tr>
 
 <p>Codec that was used to encode the video, for example, “h264”, “h265”, or “av01” </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l14208">14208</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l14811">14811</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -191,25 +191,25 @@ Public Attributes</h2></td></tr>
 
 <p>Identifier for this file, which can be used to download or reuse the file. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l14191">14191</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l14794">14794</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
-<a id="ad9e15f7b0e3ab33c7ede44d001a75c62" name="ad9e15f7b0e3ab33c7ede44d001a75c62"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad9e15f7b0e3ab33c7ede44d001a75c62">&#9670;&#160;</a></span>fileSize</h2>
+<a id="a66c19077b056604524652aaa8bbe012d" name="a66c19077b056604524652aaa8bbe012d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a66c19077b056604524652aaa8bbe012d">&#9670;&#160;</a></span>fileSize</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::optional&lt;std::int64_t&gt; TgBot::VideoQuality::fileSize { }</td>
+          <td class="memname">std::optional&lt;std::uint64_t&gt; TgBot::VideoQuality::fileSize { }</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Optional. <a class="el" href="struct_tg_bot_1_1_file.html" title="This object represents a file ready to be downloaded. The file can be downloaded via the link https:/...">File</a> size in bytes. It can be bigger than 2^31 and some programming languages may have difficulty/silent defects in interpreting it. But it has at most 52 significant bits, so a signed 64-bit integer or double-precision float type are safe for storing this value. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l14215">14215</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l14818">14818</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -227,43 +227,43 @@ Public Attributes</h2></td></tr>
 
 <p>Unique identifier for this file, which is supposed to be the same over time and for different bots. Can't be used to download or reuse the file. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l14196">14196</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l14799">14799</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
-<a id="ad547147852a3d96ff18385194cc3fbbd" name="ad547147852a3d96ff18385194cc3fbbd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad547147852a3d96ff18385194cc3fbbd">&#9670;&#160;</a></span>height</h2>
+<a id="a7d7c0228f0c7272ed5c338364ba1c5d4" name="a7d7c0228f0c7272ed5c338364ba1c5d4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7d7c0228f0c7272ed5c338364ba1c5d4">&#9670;&#160;</a></span>height</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::int32_t TgBot::VideoQuality::height { }</td>
+          <td class="memname">std::uint32_t TgBot::VideoQuality::height { }</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p><a class="el" href="struct_tg_bot_1_1_video.html" title="This object represents a video file.">Video</a> height. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l14204">14204</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l14807">14807</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
-<a id="a057641a77b0f7437895242b493ff7512" name="a057641a77b0f7437895242b493ff7512"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a057641a77b0f7437895242b493ff7512">&#9670;&#160;</a></span>width</h2>
+<a id="a04dfc1289d5d6533dd89c8e7187dccad" name="a04dfc1289d5d6533dd89c8e7187dccad"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a04dfc1289d5d6533dd89c8e7187dccad">&#9670;&#160;</a></span>width</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::int32_t TgBot::VideoQuality::width { }</td>
+          <td class="memname">std::uint32_t TgBot::VideoQuality::width { }</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p><a class="el" href="struct_tg_bot_1_1_video.html" title="This object represents a video file.">Video</a> width. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l14200">14200</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l14803">14803</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>

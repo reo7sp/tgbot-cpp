@@ -126,13 +126,13 @@ Public Types</h2></td></tr>
 Public Attributes</h2></td></tr>
 <tr class="memitem:a529c962b9b12386e4d268ce0e3a5c3a8" id="r_a529c962b9b12386e4d268ce0e3a5c3a8"><td class="memItemLeft">std::optional&lt; std::int64_t &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a529c962b9b12386e4d268ce0e3a5c3a8">migrateToChatId</a> { }</td></tr>
 <tr class="memdesc:a529c962b9b12386e4d268ce0e3a5c3a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. The group has been migrated to a supergroup with the specified identifier. This number may have more than 32 significant bits and some programming languages may have difficulty/silent defects in interpreting it. But it has at most 52 significant bits, so a signed 64-bit integer or double-precision float type are safe for storing this identifier.  <br /></td></tr>
-<tr class="memitem:a6607975b6b25710e004b4c624f2eb8d9" id="r_a6607975b6b25710e004b4c624f2eb8d9"><td class="memItemLeft">std::optional&lt; std::int32_t &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a6607975b6b25710e004b4c624f2eb8d9">retryAfter</a> { }</td></tr>
-<tr class="memdesc:a6607975b6b25710e004b4c624f2eb8d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. In case of exceeding flood control, the number of seconds left to wait before the request can be repeated.  <br /></td></tr>
+<tr class="memitem:a3c2da0cef20601b8108dd7b8dc5d7a74" id="r_a3c2da0cef20601b8108dd7b8dc5d7a74"><td class="memItemLeft">std::optional&lt; std::uint32_t &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a3c2da0cef20601b8108dd7b8dc5d7a74">retryAfter</a> { }</td></tr>
+<tr class="memdesc:a3c2da0cef20601b8108dd7b8dc5d7a74"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. In case of exceeding flood control, the number of seconds left to wait before the request can be repeated.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Describes why a request was unsuccessful. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l10593">10593</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l11014">11014</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 </div><a name="doc-typedef-members" id="doc-typedef-members"></a><h2 id="header-doc-typedef-members" class="groupheader">Member Typedef Documentation</h2>
 <a id="a7f1c61418d4567cf67bafb190c5abd16" name="a7f1c61418d4567cf67bafb190c5abd16"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a7f1c61418d4567cf67bafb190c5abd16">&#9670;&#160;</a></span>Ptr</h2>
@@ -146,7 +146,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l10594">10594</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l11015">11015</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -165,25 +165,25 @@ Public Attributes</h2></td></tr>
 
 <p>Optional. The group has been migrated to a supergroup with the specified identifier. This number may have more than 32 significant bits and some programming languages may have difficulty/silent defects in interpreting it. But it has at most 52 significant bits, so a signed 64-bit integer or double-precision float type are safe for storing this identifier. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l10603">10603</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l11024">11024</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
-<a id="a6607975b6b25710e004b4c624f2eb8d9" name="a6607975b6b25710e004b4c624f2eb8d9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6607975b6b25710e004b4c624f2eb8d9">&#9670;&#160;</a></span>retryAfter</h2>
+<a id="a3c2da0cef20601b8108dd7b8dc5d7a74" name="a3c2da0cef20601b8108dd7b8dc5d7a74"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3c2da0cef20601b8108dd7b8dc5d7a74">&#9670;&#160;</a></span>retryAfter</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::optional&lt;std::int32_t&gt; TgBot::ResponseParameters::retryAfter { }</td>
+          <td class="memname">std::optional&lt;std::uint32_t&gt; TgBot::ResponseParameters::retryAfter { }</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Optional. In case of exceeding flood control, the number of seconds left to wait before the request can be repeated. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l10608">10608</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l11029">11029</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>

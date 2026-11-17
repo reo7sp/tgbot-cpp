@@ -30,10 +30,12 @@ var menudata={children:[
 {text:"Namespace Members",url:"namespacemembers.html",children:[
 {text:"All",url:"namespacemembers.html",children:[
 {text:"f",url:"namespacemembers.html#index_f"},
+{text:"s",url:"namespacemembers_s.html#index_s"},
 {text:"t",url:"namespacemembers_t.html#index_t"}]},
 {text:"Functions",url:"namespacemembers_func.html",children:[
 {text:"f",url:"namespacemembers_func.html#index_f"},
-{text:"t",url:"namespacemembers_func_t.html#index_t"}]}]}]},
+{text:"t",url:"namespacemembers_func_t.html#index_t"}]},
+{text:"Typedefs",url:"namespacemembers_type.html"}]}]},
 {text:"Classes",url:"annotated.html",children:[
 {text:"Class List",url:"annotated.html"},
 {text:"Class Index",url:"classes.html"},

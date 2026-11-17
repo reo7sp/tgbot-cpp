@@ -7,9 +7,9 @@ var struct_tg_bot_1_1_inline_query_result_contact =
     [ "lastName", "struct_tg_bot_1_1_inline_query_result_contact.html#a6b9d7d1636f9aef3fdca1b994edf19fe", null ],
     [ "phoneNumber", "struct_tg_bot_1_1_inline_query_result_contact.html#a8bf9d71688e348b69876301a4422f228", null ],
     [ "replyMarkup", "struct_tg_bot_1_1_inline_query_result_contact.html#ab007cdad8d66ea99362931565b48bdce", null ],
-    [ "thumbnailHeight", "struct_tg_bot_1_1_inline_query_result_contact.html#a63f7181cec90948aaeb90ca6e2ac4589", null ],
+    [ "thumbnailHeight", "struct_tg_bot_1_1_inline_query_result_contact.html#adce1225f23f0576b9576637afb0dcfca", null ],
     [ "thumbnailUrl", "struct_tg_bot_1_1_inline_query_result_contact.html#ac6ae5fe1e49023a7cf584410d3df736e", null ],
-    [ "thumbnailWidth", "struct_tg_bot_1_1_inline_query_result_contact.html#a5dc8ccbbc4dba6cb65ee0f570c7a6639", null ],
+    [ "thumbnailWidth", "struct_tg_bot_1_1_inline_query_result_contact.html#a290ea4db93e7d43c8a9de01135a6d0ad", null ],
     [ "type", "struct_tg_bot_1_1_inline_query_result_contact.html#a2707eda076e1645c2ab2b5ef04c5f1c6", null ],
     [ "vcard", "struct_tg_bot_1_1_inline_query_result_contact.html#a3c1d9da16c599631567f5dc434be6acd", null ]
 ];

@@ -1,6 +1,6 @@
 var struct_tg_bot_1_1_post_story_args =
 [
-    [ "activePeriod", "struct_tg_bot_1_1_post_story_args.html#ae6dab8c8bef867c268c04589a245365b", null ],
+    [ "activePeriod", "struct_tg_bot_1_1_post_story_args.html#a54ab84c6d46dfa9dbb13fc03fcc6756a", null ],
     [ "areas", "struct_tg_bot_1_1_post_story_args.html#a15ef9b505392073091dc6eb91bf65d4a", null ],
     [ "attachments", "struct_tg_bot_1_1_post_story_args.html#ad35a5117ab9052eb31f350a2ee165a45", null ],
     [ "businessConnectionId", "struct_tg_bot_1_1_post_story_args.html#ae33477cdd2a2318e40489daf0ce39a9e", null ],

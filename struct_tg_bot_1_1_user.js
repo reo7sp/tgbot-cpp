@@ -10,7 +10,7 @@ var struct_tg_bot_1_1_user =
     [ "firstName", "struct_tg_bot_1_1_user.html#a7f7a9c98a98fdd7199d2c22c63dd75b0", null ],
     [ "hasMainWebApp", "struct_tg_bot_1_1_user.html#a1678373e4e869c0ca880cd3316ef102c", null ],
     [ "hasTopicsEnabled", "struct_tg_bot_1_1_user.html#a9403bf697546b51f0c4eba64aea5fcd1", null ],
-    [ "id", "struct_tg_bot_1_1_user.html#a13f239816528f24ccbd49f64decc4662", null ],
+    [ "id", "struct_tg_bot_1_1_user.html#a0d52e16d32f4a8a9e89ac276bc7298cd", null ],
     [ "isBot", "struct_tg_bot_1_1_user.html#a9adb4af3ddf68a3a518c32a13f9415bf", null ],
     [ "isPremium", "struct_tg_bot_1_1_user.html#a47cc22d26b825de4ab40d92d492204cb", null ],
     [ "languageCode", "struct_tg_bot_1_1_user.html#af07c0262fa19c9a0c6ca177935fd820c", null ],

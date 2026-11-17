@@ -113,7 +113,7 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('struct_tg_bot_
 </div><!--header-->
 <div class="contents">
 
-<p>Arguments for <a class="el" href="class_tg_bot_1_1_api.html#adf7b2cac365b1b55edfc858620b3ce02" title="Returns the gifts owned by a chat. Returns OwnedGifts on success.">Api::getChatGifts</a>.  
+<p>Arguments for <a class="el" href="class_tg_bot_1_1_api.html#a828e102e5f8b16cf293b5a0246edc0f0" title="Returns the gifts owned by a chat. Returns OwnedGifts on success.">Api::getChatGifts</a>.  
  <a href="#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="_types_8h_source.html">Types.h</a>&gt;</code></p>
@@ -136,17 +136,17 @@ Public Attributes</h2></td></tr>
 <tr class="memdesc:a23fecb2587cf13442cd27e7b1a4c5e77"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pass True to exclude gifts that can be purchased an unlimited number of times.  <br /></td></tr>
 <tr class="memitem:ac6b86461bd0d72fd1e1845b81ebe0b01" id="r_ac6b86461bd0d72fd1e1845b81ebe0b01"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#ac6b86461bd0d72fd1e1845b81ebe0b01">excludeUnsaved</a> = false</td></tr>
 <tr class="memdesc:ac6b86461bd0d72fd1e1845b81ebe0b01"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pass True to exclude gifts that aren't saved to the chat's profile page. Always True, unless the bot has the can_post_messages administrator right in the channel.  <br /></td></tr>
-<tr class="memitem:ab8d0755f40c5749901f0a3afd9b98e4a" id="r_ab8d0755f40c5749901f0a3afd9b98e4a"><td class="memItemLeft">std::int32_t&#160;</td><td class="memItemRight"><a class="el" href="#ab8d0755f40c5749901f0a3afd9b98e4a">limit</a> = 0</td></tr>
-<tr class="memdesc:ab8d0755f40c5749901f0a3afd9b98e4a"><td class="mdescLeft">&#160;</td><td class="mdescRight">The maximum number of gifts to be returned; 1-100. Defaults to 100.  <br /></td></tr>
+<tr class="memitem:a20a87e616594d5fa804d48e32dbc236f" id="r_a20a87e616594d5fa804d48e32dbc236f"><td class="memItemLeft">std::uint32_t&#160;</td><td class="memItemRight"><a class="el" href="#a20a87e616594d5fa804d48e32dbc236f">limit</a> = 0</td></tr>
+<tr class="memdesc:a20a87e616594d5fa804d48e32dbc236f"><td class="mdescLeft">&#160;</td><td class="mdescRight">The maximum number of gifts to be returned; 1-100. Defaults to 100.  <br /></td></tr>
 <tr class="memitem:a6acfde50083c98504de61166efc0adb9" id="r_a6acfde50083c98504de61166efc0adb9"><td class="memItemLeft">std::string&#160;</td><td class="memItemRight"><a class="el" href="#a6acfde50083c98504de61166efc0adb9">offset</a> = &quot;&quot;</td></tr>
 <tr class="memdesc:a6acfde50083c98504de61166efc0adb9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Offset of the first entry to return as received from the previous request; use an empty string to get the first chunk of results.  <br /></td></tr>
 <tr class="memitem:a64c4bbdccdf8fdad583aadb98a1b0273" id="r_a64c4bbdccdf8fdad583aadb98a1b0273"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a64c4bbdccdf8fdad583aadb98a1b0273">sortByPrice</a> = false</td></tr>
 <tr class="memdesc:a64c4bbdccdf8fdad583aadb98a1b0273"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pass True to sort results by gift price instead of send date. Sorting is applied before pagination.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Arguments for <a class="el" href="class_tg_bot_1_1_api.html#adf7b2cac365b1b55edfc858620b3ce02" title="Returns the gifts owned by a chat. Returns OwnedGifts on success.">Api::getChatGifts</a>. </p>
+<div class="textblock"><p>Arguments for <a class="el" href="class_tg_bot_1_1_api.html#a828e102e5f8b16cf293b5a0246edc0f0" title="Returns the gifts owned by a chat. Returns OwnedGifts on success.">Api::getChatGifts</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l16400">16400</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l17319">17319</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 </div><a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
 <a id="a9ef76d8db11551c22234c9dbe468468a" name="a9ef76d8db11551c22234c9dbe468468a"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a9ef76d8db11551c22234c9dbe468468a">&#9670;&#160;</a></span>chatId</h2>
@@ -162,7 +162,7 @@ Public Attributes</h2></td></tr>
 
 <p>Unique identifier for the target chat or username of the target channel in the format @username. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l16405">16405</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l17324">17324</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -180,7 +180,7 @@ Public Attributes</h2></td></tr>
 
 <p>Pass True to exclude gifts that were assigned from the TON blockchain and can't be resold or transferred in Telegram. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l16411">16411</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l17330">17330</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -198,7 +198,7 @@ Public Attributes</h2></td></tr>
 
 <p>Pass True to exclude gifts that can be purchased a limited number of times and can't be upgraded to unique. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l16417">16417</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l17336">17336</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -216,7 +216,7 @@ Public Attributes</h2></td></tr>
 
 <p>Pass True to exclude gifts that can be purchased a limited number of times and can be upgraded to unique. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l16423">16423</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l17342">17342</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -234,7 +234,7 @@ Public Attributes</h2></td></tr>
 
 <p>Pass True to exclude gifts that are saved to the chat's profile page. Always False, unless the bot has the can_post_messages administrator right in the channel. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l16430">16430</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l17349">17349</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -252,7 +252,7 @@ Public Attributes</h2></td></tr>
 
 <p>Pass True to exclude unique gifts. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l16435">16435</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l17354">17354</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -270,7 +270,7 @@ Public Attributes</h2></td></tr>
 
 <p>Pass True to exclude gifts that can be purchased an unlimited number of times. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l16441">16441</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l17360">17360</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -288,25 +288,25 @@ Public Attributes</h2></td></tr>
 
 <p>Pass True to exclude gifts that aren't saved to the chat's profile page. Always True, unless the bot has the can_post_messages administrator right in the channel. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l16448">16448</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l17367">17367</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
-<a id="ab8d0755f40c5749901f0a3afd9b98e4a" name="ab8d0755f40c5749901f0a3afd9b98e4a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab8d0755f40c5749901f0a3afd9b98e4a">&#9670;&#160;</a></span>limit</h2>
+<a id="a20a87e616594d5fa804d48e32dbc236f" name="a20a87e616594d5fa804d48e32dbc236f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a20a87e616594d5fa804d48e32dbc236f">&#9670;&#160;</a></span>limit</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::int32_t TgBot::GetChatGiftsArgs::limit = 0</td>
+          <td class="memname">std::uint32_t TgBot::GetChatGiftsArgs::limit = 0</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>The maximum number of gifts to be returned; 1-100. Defaults to 100. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l16453">16453</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l17372">17372</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -324,7 +324,7 @@ Public Attributes</h2></td></tr>
 
 <p>Offset of the first entry to return as received from the previous request; use an empty string to get the first chunk of results. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l16459">16459</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l17378">17378</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -342,7 +342,7 @@ Public Attributes</h2></td></tr>
 
 <p>Pass True to sort results by gift price instead of send date. Sorting is applied before pagination. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l16465">16465</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l17384">17384</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>

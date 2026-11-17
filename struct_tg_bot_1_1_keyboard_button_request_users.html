@@ -130,8 +130,8 @@ Public Attributes</h2></td></tr>
 <tr class="memdesc:a2124fcae223bc98e978f29d1bc34da10"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. Pass True to request bots, pass False to request regular users. If not specified, no additional restrictions are applied.  <br /></td></tr>
 <tr class="memitem:a92789cbefea55a32c8ae2208458b5b3a" id="r_a92789cbefea55a32c8ae2208458b5b3a"><td class="memItemLeft">std::optional&lt; bool &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a92789cbefea55a32c8ae2208458b5b3a">userIsPremium</a> { }</td></tr>
 <tr class="memdesc:a92789cbefea55a32c8ae2208458b5b3a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. Pass True to request premium users, pass False to request non-premium users. If not specified, no additional restrictions are applied.  <br /></td></tr>
-<tr class="memitem:a17d49a8b894de3fcf84c60b4a9a24e33" id="r_a17d49a8b894de3fcf84c60b4a9a24e33"><td class="memItemLeft">std::optional&lt; std::int32_t &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a17d49a8b894de3fcf84c60b4a9a24e33">maxQuantity</a> { }</td></tr>
-<tr class="memdesc:a17d49a8b894de3fcf84c60b4a9a24e33"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. The maximum number of users to be selected; 1-10. Defaults to 1.  <br /></td></tr>
+<tr class="memitem:a8319627b78db93eafac66be7401f8976" id="r_a8319627b78db93eafac66be7401f8976"><td class="memItemLeft">std::optional&lt; std::uint32_t &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a8319627b78db93eafac66be7401f8976">maxQuantity</a> { }</td></tr>
+<tr class="memdesc:a8319627b78db93eafac66be7401f8976"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. The maximum number of users to be selected; 1-10. Defaults to 1.  <br /></td></tr>
 <tr class="memitem:aaccb86aefb625340a34b5a47be4fa778" id="r_aaccb86aefb625340a34b5a47be4fa778"><td class="memItemLeft">std::optional&lt; bool &gt;&#160;</td><td class="memItemRight"><a class="el" href="#aaccb86aefb625340a34b5a47be4fa778">requestName</a> { }</td></tr>
 <tr class="memdesc:aaccb86aefb625340a34b5a47be4fa778"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. Pass True to request the users' first and last names.  <br /></td></tr>
 <tr class="memitem:adeb9900ae4fb11247a073e325f660293" id="r_adeb9900ae4fb11247a073e325f660293"><td class="memItemLeft">std::optional&lt; bool &gt;&#160;</td><td class="memItemRight"><a class="el" href="#adeb9900ae4fb11247a073e325f660293">requestUsername</a> { }</td></tr>
@@ -142,7 +142,7 @@ Public Attributes</h2></td></tr>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>This object defines the criteria used to request suitable users. Information about the selected users will be shared with the bot when the corresponding button is pressed. More about requesting users » </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l07774">7774</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l08142">8142</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 </div><a name="doc-typedef-members" id="doc-typedef-members"></a><h2 id="header-doc-typedef-members" class="groupheader">Member Typedef Documentation</h2>
 <a id="a2c2de7a585d64663ab2b5b3ef0d7f622" name="a2c2de7a585d64663ab2b5b3ef0d7f622"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a2c2de7a585d64663ab2b5b3ef0d7f622">&#9670;&#160;</a></span>Ptr</h2>
@@ -156,26 +156,26 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l07775">7775</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l08143">8143</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
 <a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
-<a id="a17d49a8b894de3fcf84c60b4a9a24e33" name="a17d49a8b894de3fcf84c60b4a9a24e33"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a17d49a8b894de3fcf84c60b4a9a24e33">&#9670;&#160;</a></span>maxQuantity</h2>
+<a id="a8319627b78db93eafac66be7401f8976" name="a8319627b78db93eafac66be7401f8976"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8319627b78db93eafac66be7401f8976">&#9670;&#160;</a></span>maxQuantity</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::optional&lt;std::int32_t&gt; TgBot::KeyboardButtonRequestUsers::maxQuantity { }</td>
+          <td class="memname">std::optional&lt;std::uint32_t&gt; TgBot::KeyboardButtonRequestUsers::maxQuantity { }</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Optional. The maximum number of users to be selected; 1-10. Defaults to 1. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l07795">7795</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l08163">8163</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -193,7 +193,7 @@ Public Attributes</h2></td></tr>
 
 <p>Signed 32-bit identifier of the request that will be received back in the <a class="el" href="struct_tg_bot_1_1_users_shared.html" title="This object contains information about the users whose identifiers were shared with the bot using a K...">UsersShared</a> object. Must be unique within the message. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l07781">7781</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l08149">8149</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -211,7 +211,7 @@ Public Attributes</h2></td></tr>
 
 <p>Optional. Pass True to request the users' first and last names. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l07799">7799</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l08167">8167</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -229,7 +229,7 @@ Public Attributes</h2></td></tr>
 
 <p>Optional. Pass True to request the users' photos. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l07807">7807</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l08175">8175</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -247,7 +247,7 @@ Public Attributes</h2></td></tr>
 
 <p>Optional. Pass True to request the users' usernames. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l07803">7803</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l08171">8171</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -265,7 +265,7 @@ Public Attributes</h2></td></tr>
 
 <p>Optional. Pass True to request bots, pass False to request regular users. If not specified, no additional restrictions are applied. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l07786">7786</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l08154">8154</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -283,7 +283,7 @@ Public Attributes</h2></td></tr>
 
 <p>Optional. Pass True to request premium users, pass False to request non-premium users. If not specified, no additional restrictions are applied. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l07791">7791</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l08159">8159</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>

@@ -85,11 +85,13 @@ var searchData=
   ['inputrichmessage_82',['InputRichMessage',['../struct_tg_bot_1_1_input_rich_message.html',1,'TgBot']]],
   ['inputrichmessagecontent_83',['InputRichMessageContent',['../struct_tg_bot_1_1_input_rich_message_content.html',1,'TgBot']]],
   ['inputrichmessagemedia_84',['InputRichMessageMedia',['../struct_tg_bot_1_1_input_rich_message_media.html',1,'TgBot']]],
-  ['inputsticker_85',['InputSticker',['../struct_tg_bot_1_1_input_sticker.html',1,'TgBot']]],
-  ['inputstorycontent_86',['InputStoryContent',['../struct_tg_bot_1_1_input_story_content.html',1,'TgBot']]],
-  ['inputstorycontentphoto_87',['InputStoryContentPhoto',['../struct_tg_bot_1_1_input_story_content_photo.html',1,'TgBot']]],
-  ['inputstorycontentvideo_88',['InputStoryContentVideo',['../struct_tg_bot_1_1_input_story_content_video.html',1,'TgBot']]],
-  ['inputtextmessagecontent_89',['InputTextMessageContent',['../struct_tg_bot_1_1_input_text_message_content.html',1,'TgBot']]],
-  ['inputvenuemessagecontent_90',['InputVenueMessageContent',['../struct_tg_bot_1_1_input_venue_message_content.html',1,'TgBot']]],
-  ['invoice_91',['Invoice',['../struct_tg_bot_1_1_invoice.html',1,'TgBot']]]
+  ['inputsharedwidgetmessagecontent_85',['InputSharedWidgetMessageContent',['../struct_tg_bot_1_1_input_shared_widget_message_content.html',1,'TgBot']]],
+  ['inputsticker_86',['InputSticker',['../struct_tg_bot_1_1_input_sticker.html',1,'TgBot']]],
+  ['inputstorycontent_87',['InputStoryContent',['../struct_tg_bot_1_1_input_story_content.html',1,'TgBot']]],
+  ['inputstorycontentphoto_88',['InputStoryContentPhoto',['../struct_tg_bot_1_1_input_story_content_photo.html',1,'TgBot']]],
+  ['inputstorycontentvideo_89',['InputStoryContentVideo',['../struct_tg_bot_1_1_input_story_content_video.html',1,'TgBot']]],
+  ['inputtextmessagecontent_90',['InputTextMessageContent',['../struct_tg_bot_1_1_input_text_message_content.html',1,'TgBot']]],
+  ['inputvenuemessagecontent_91',['InputVenueMessageContent',['../struct_tg_bot_1_1_input_venue_message_content.html',1,'TgBot']]],
+  ['inputwidgetmessagecontent_92',['InputWidgetMessageContent',['../struct_tg_bot_1_1_input_widget_message_content.html',1,'TgBot']]],
+  ['invoice_93',['Invoice',['../struct_tg_bot_1_1_invoice.html',1,'TgBot']]]
 ];

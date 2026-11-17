@@ -128,8 +128,8 @@ Public Attributes</h2></td></tr>
 <tr class="memdesc:a4f1f6efd16518a24e8c153f5e126a36f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Webhook URL, may be empty if webhook is not set up.  <br /></td></tr>
 <tr class="memitem:acf1dda44e0f4bf867cad1fd5b0099fca" id="r_acf1dda44e0f4bf867cad1fd5b0099fca"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#acf1dda44e0f4bf867cad1fd5b0099fca">hasCustomCertificate</a> { }</td></tr>
 <tr class="memdesc:acf1dda44e0f4bf867cad1fd5b0099fca"><td class="mdescLeft">&#160;</td><td class="mdescRight">True, if a custom certificate was provided for webhook certificate checks.  <br /></td></tr>
-<tr class="memitem:a61e3f91f8047af3b5293038ab05f0577" id="r_a61e3f91f8047af3b5293038ab05f0577"><td class="memItemLeft">std::int32_t&#160;</td><td class="memItemRight"><a class="el" href="#a61e3f91f8047af3b5293038ab05f0577">pendingUpdateCount</a> { }</td></tr>
-<tr class="memdesc:a61e3f91f8047af3b5293038ab05f0577"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of updates awaiting delivery.  <br /></td></tr>
+<tr class="memitem:ab949e899c5e3513e2cb5754ffaca766a" id="r_ab949e899c5e3513e2cb5754ffaca766a"><td class="memItemLeft">std::uint32_t&#160;</td><td class="memItemRight"><a class="el" href="#ab949e899c5e3513e2cb5754ffaca766a">pendingUpdateCount</a> { }</td></tr>
+<tr class="memdesc:ab949e899c5e3513e2cb5754ffaca766a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of updates awaiting delivery.  <br /></td></tr>
 <tr class="memitem:a31a16d40f11df0716cae52398e39570a" id="r_a31a16d40f11df0716cae52398e39570a"><td class="memItemLeft">std::optional&lt; std::string &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a31a16d40f11df0716cae52398e39570a">ipAddress</a> { }</td></tr>
 <tr class="memdesc:a31a16d40f11df0716cae52398e39570a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. Currently used webhook IP address.  <br /></td></tr>
 <tr class="memitem:a991a4b61909dc67b4f7fb26eef6a79fe" id="r_a991a4b61909dc67b4f7fb26eef6a79fe"><td class="memItemLeft">std::optional&lt; std::int32_t &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a991a4b61909dc67b4f7fb26eef6a79fe">lastErrorDate</a> { }</td></tr>
@@ -138,15 +138,15 @@ Public Attributes</h2></td></tr>
 <tr class="memdesc:a021628ea920b78b7b742334a238c3f66"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. Error message in human-readable format for the most recent error that happened when trying to deliver an update via webhook.  <br /></td></tr>
 <tr class="memitem:a55daf540d3a4f2191d38a40bfc8a4cf7" id="r_a55daf540d3a4f2191d38a40bfc8a4cf7"><td class="memItemLeft">std::optional&lt; std::int32_t &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a55daf540d3a4f2191d38a40bfc8a4cf7">lastSynchronizationErrorDate</a> { }</td></tr>
 <tr class="memdesc:a55daf540d3a4f2191d38a40bfc8a4cf7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. Unix time of the most recent error that happened when trying to synchronize available updates with Telegram datacenters.  <br /></td></tr>
-<tr class="memitem:a5b0877256db70ab5fcd655ee03fb97e3" id="r_a5b0877256db70ab5fcd655ee03fb97e3"><td class="memItemLeft">std::optional&lt; std::int32_t &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a5b0877256db70ab5fcd655ee03fb97e3">maxConnections</a> { }</td></tr>
-<tr class="memdesc:a5b0877256db70ab5fcd655ee03fb97e3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. The maximum allowed number of simultaneous HTTPS connections to the webhook for update delivery.  <br /></td></tr>
+<tr class="memitem:aac08b1f177c52c43411a28d20fba5fcd" id="r_aac08b1f177c52c43411a28d20fba5fcd"><td class="memItemLeft">std::optional&lt; std::uint32_t &gt;&#160;</td><td class="memItemRight"><a class="el" href="#aac08b1f177c52c43411a28d20fba5fcd">maxConnections</a> { }</td></tr>
+<tr class="memdesc:aac08b1f177c52c43411a28d20fba5fcd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. The maximum allowed number of simultaneous HTTPS connections to the webhook for update delivery.  <br /></td></tr>
 <tr class="memitem:a480c871402f4489a5f3dcdaf38d8c5c0" id="r_a480c871402f4489a5f3dcdaf38d8c5c0"><td class="memItemLeft">std::optional&lt; std::vector&lt; std::string &gt; &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a480c871402f4489a5f3dcdaf38d8c5c0">allowedUpdates</a> { }</td></tr>
 <tr class="memdesc:a480c871402f4489a5f3dcdaf38d8c5c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. A list of update types the bot is subscribed to. Defaults to all update types except chat_member, message_reaction, and message_reaction_count.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Describes the current status of a webhook. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l14299">14299</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l14902">14902</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 </div><a name="doc-typedef-members" id="doc-typedef-members"></a><h2 id="header-doc-typedef-members" class="groupheader">Member Typedef Documentation</h2>
 <a id="a990af86d827ccdb68236101c6d8a3936" name="a990af86d827ccdb68236101c6d8a3936"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a990af86d827ccdb68236101c6d8a3936">&#9670;&#160;</a></span>Ptr</h2>
@@ -160,7 +160,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l14300">14300</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l14903">14903</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -179,7 +179,7 @@ Public Attributes</h2></td></tr>
 
 <p>Optional. A list of update types the bot is subscribed to. Defaults to all update types except chat_member, message_reaction, and message_reaction_count. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l14342">14342</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l14945">14945</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -197,7 +197,7 @@ Public Attributes</h2></td></tr>
 
 <p>True, if a custom certificate was provided for webhook certificate checks. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l14309">14309</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l14912">14912</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -215,7 +215,7 @@ Public Attributes</h2></td></tr>
 
 <p>Optional. Currently used webhook IP address. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l14317">14317</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l14920">14920</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -233,7 +233,7 @@ Public Attributes</h2></td></tr>
 
 <p>Optional. Unix time for the most recent error that happened when trying to deliver an update via webhook. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l14322">14322</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l14925">14925</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -251,7 +251,7 @@ Public Attributes</h2></td></tr>
 
 <p>Optional. Error message in human-readable format for the most recent error that happened when trying to deliver an update via webhook. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l14327">14327</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l14930">14930</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -269,43 +269,43 @@ Public Attributes</h2></td></tr>
 
 <p>Optional. Unix time of the most recent error that happened when trying to synchronize available updates with Telegram datacenters. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l14332">14332</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l14935">14935</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
-<a id="a5b0877256db70ab5fcd655ee03fb97e3" name="a5b0877256db70ab5fcd655ee03fb97e3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5b0877256db70ab5fcd655ee03fb97e3">&#9670;&#160;</a></span>maxConnections</h2>
+<a id="aac08b1f177c52c43411a28d20fba5fcd" name="aac08b1f177c52c43411a28d20fba5fcd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aac08b1f177c52c43411a28d20fba5fcd">&#9670;&#160;</a></span>maxConnections</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::optional&lt;std::int32_t&gt; TgBot::WebhookInfo::maxConnections { }</td>
+          <td class="memname">std::optional&lt;std::uint32_t&gt; TgBot::WebhookInfo::maxConnections { }</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Optional. The maximum allowed number of simultaneous HTTPS connections to the webhook for update delivery. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l14337">14337</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l14940">14940</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
-<a id="a61e3f91f8047af3b5293038ab05f0577" name="a61e3f91f8047af3b5293038ab05f0577"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a61e3f91f8047af3b5293038ab05f0577">&#9670;&#160;</a></span>pendingUpdateCount</h2>
+<a id="ab949e899c5e3513e2cb5754ffaca766a" name="ab949e899c5e3513e2cb5754ffaca766a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab949e899c5e3513e2cb5754ffaca766a">&#9670;&#160;</a></span>pendingUpdateCount</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::int32_t TgBot::WebhookInfo::pendingUpdateCount { }</td>
+          <td class="memname">std::uint32_t TgBot::WebhookInfo::pendingUpdateCount { }</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Number of updates awaiting delivery. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l14313">14313</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l14916">14916</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -323,7 +323,7 @@ Public Attributes</h2></td></tr>
 
 <p>Webhook URL, may be empty if webhook is not set up. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l14305">14305</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l14908">14908</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>

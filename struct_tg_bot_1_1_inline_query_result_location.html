@@ -136,22 +136,22 @@ Public Attributes</h2></td></tr>
 <tr class="memdesc:a954b00a4353a9acf928a03a97c1be252"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="struct_tg_bot_1_1_location.html" title="This object represents a point on the map.">Location</a> title.  <br /></td></tr>
 <tr class="memitem:ac56b7638e65aef7a8eab141795c25a37" id="r_ac56b7638e65aef7a8eab141795c25a37"><td class="memItemLeft">std::optional&lt; double &gt;&#160;</td><td class="memItemRight"><a class="el" href="#ac56b7638e65aef7a8eab141795c25a37">horizontalAccuracy</a> { }</td></tr>
 <tr class="memdesc:ac56b7638e65aef7a8eab141795c25a37"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. The radius of uncertainty for the location, measured in meters; 0-1500.  <br /></td></tr>
-<tr class="memitem:ac0e12147d105b3948cb0cfc531b70384" id="r_ac0e12147d105b3948cb0cfc531b70384"><td class="memItemLeft">std::optional&lt; std::int32_t &gt;&#160;</td><td class="memItemRight"><a class="el" href="#ac0e12147d105b3948cb0cfc531b70384">livePeriod</a> { }</td></tr>
-<tr class="memdesc:ac0e12147d105b3948cb0cfc531b70384"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. Period in seconds during which the location can be updated, must be between 60 and 86400, or 0x7FFFFFFF for live locations that can be edited indefinitely.  <br /></td></tr>
-<tr class="memitem:a4579018f8dbd1d413b0c4e4c943ecef5" id="r_a4579018f8dbd1d413b0c4e4c943ecef5"><td class="memItemLeft">std::optional&lt; std::int32_t &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a4579018f8dbd1d413b0c4e4c943ecef5">heading</a> { }</td></tr>
-<tr class="memdesc:a4579018f8dbd1d413b0c4e4c943ecef5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. For live locations, a direction in which the user is moving, in degrees. Must be between 1 and 360 if specified.  <br /></td></tr>
-<tr class="memitem:a357d109ddf86e085fbb2c7327b1459fc" id="r_a357d109ddf86e085fbb2c7327b1459fc"><td class="memItemLeft">std::optional&lt; std::int32_t &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a357d109ddf86e085fbb2c7327b1459fc">proximityAlertRadius</a> { }</td></tr>
-<tr class="memdesc:a357d109ddf86e085fbb2c7327b1459fc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. For live locations, a maximum distance for proximity alerts about approaching another chat member, in meters. Must be between 1 and 100000 if specified.  <br /></td></tr>
+<tr class="memitem:a0f0ca7fe78c6407c67575c79456c8956" id="r_a0f0ca7fe78c6407c67575c79456c8956"><td class="memItemLeft">std::optional&lt; std::uint32_t &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a0f0ca7fe78c6407c67575c79456c8956">livePeriod</a> { }</td></tr>
+<tr class="memdesc:a0f0ca7fe78c6407c67575c79456c8956"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. Period in seconds during which the location can be updated, must be between 60 and 86400, or 0x7FFFFFFF for live locations that can be edited indefinitely.  <br /></td></tr>
+<tr class="memitem:a90bcffec0dde410768c1daf3ee4e94b6" id="r_a90bcffec0dde410768c1daf3ee4e94b6"><td class="memItemLeft">std::optional&lt; std::uint32_t &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a90bcffec0dde410768c1daf3ee4e94b6">heading</a> { }</td></tr>
+<tr class="memdesc:a90bcffec0dde410768c1daf3ee4e94b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. For live locations, a direction in which the user is moving, in degrees. Must be between 1 and 360 if specified.  <br /></td></tr>
+<tr class="memitem:a5353a43cd2b6a88bfe2f33acd86f15c6" id="r_a5353a43cd2b6a88bfe2f33acd86f15c6"><td class="memItemLeft">std::optional&lt; std::uint32_t &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a5353a43cd2b6a88bfe2f33acd86f15c6">proximityAlertRadius</a> { }</td></tr>
+<tr class="memdesc:a5353a43cd2b6a88bfe2f33acd86f15c6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. For live locations, a maximum distance for proximity alerts about approaching another chat member, in meters. Must be between 1 and 100000 if specified.  <br /></td></tr>
 <tr class="memitem:a0b8e8ba919243311844dd1d8f5732c4b" id="r_a0b8e8ba919243311844dd1d8f5732c4b"><td class="memItemLeft">std::shared_ptr&lt; <a class="el" href="struct_tg_bot_1_1_inline_keyboard_markup.html">InlineKeyboardMarkup</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a0b8e8ba919243311844dd1d8f5732c4b">replyMarkup</a> { }</td></tr>
 <tr class="memdesc:a0b8e8ba919243311844dd1d8f5732c4b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. Inline keyboard attached to the message.  <br /></td></tr>
 <tr class="memitem:a5728c604232e7118cc1a1bb3a7f7cdb7" id="r_a5728c604232e7118cc1a1bb3a7f7cdb7"><td class="memItemLeft">std::shared_ptr&lt; <a class="el" href="struct_tg_bot_1_1_input_message_content.html">InputMessageContent</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a5728c604232e7118cc1a1bb3a7f7cdb7">inputMessageContent</a> { }</td></tr>
 <tr class="memdesc:a5728c604232e7118cc1a1bb3a7f7cdb7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. Content of the message to be sent instead of the location.  <br /></td></tr>
 <tr class="memitem:a384d58984c48ce7c812830bd65ab5456" id="r_a384d58984c48ce7c812830bd65ab5456"><td class="memItemLeft">std::optional&lt; std::string &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a384d58984c48ce7c812830bd65ab5456">thumbnailUrl</a> { }</td></tr>
 <tr class="memdesc:a384d58984c48ce7c812830bd65ab5456"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. Url of the thumbnail for the result.  <br /></td></tr>
-<tr class="memitem:a2d6476b5247992314693041ff29c2b75" id="r_a2d6476b5247992314693041ff29c2b75"><td class="memItemLeft">std::optional&lt; std::int32_t &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a2d6476b5247992314693041ff29c2b75">thumbnailWidth</a> { }</td></tr>
-<tr class="memdesc:a2d6476b5247992314693041ff29c2b75"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. Thumbnail width.  <br /></td></tr>
-<tr class="memitem:a19c698338257a1f31c0a38a0077cfc85" id="r_a19c698338257a1f31c0a38a0077cfc85"><td class="memItemLeft">std::optional&lt; std::int32_t &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a19c698338257a1f31c0a38a0077cfc85">thumbnailHeight</a> { }</td></tr>
-<tr class="memdesc:a19c698338257a1f31c0a38a0077cfc85"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. Thumbnail height.  <br /></td></tr>
+<tr class="memitem:a45e80f9d7b4244052c364e00329cc369" id="r_a45e80f9d7b4244052c364e00329cc369"><td class="memItemLeft">std::optional&lt; std::uint32_t &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a45e80f9d7b4244052c364e00329cc369">thumbnailWidth</a> { }</td></tr>
+<tr class="memdesc:a45e80f9d7b4244052c364e00329cc369"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. Thumbnail width.  <br /></td></tr>
+<tr class="memitem:a81b686ab92961caf493db0410ef9f365" id="r_a81b686ab92961caf493db0410ef9f365"><td class="memItemLeft">std::optional&lt; std::uint32_t &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a81b686ab92961caf493db0410ef9f365">thumbnailHeight</a> { }</td></tr>
+<tr class="memdesc:a81b686ab92961caf493db0410ef9f365"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. Thumbnail height.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-static-attribs" class="groupheader"><a id="pub-static-attribs" name="pub-static-attribs"></a>
 Static Public Attributes</h2></td></tr>
@@ -160,7 +160,7 @@ Static Public Attributes</h2></td></tr>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Represents a location on a map. By default, the location will be sent by the user. Alternatively, you can use input_message_content to send a message with the specified content instead of the location. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l04994">4994</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l05247">5247</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 </div><a name="doc-typedef-members" id="doc-typedef-members"></a><h2 id="header-doc-typedef-members" class="groupheader">Member Typedef Documentation</h2>
 <a id="a97248712c2f09b41edb5e7bad6a7dd20" name="a97248712c2f09b41edb5e7bad6a7dd20"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a97248712c2f09b41edb5e7bad6a7dd20">&#9670;&#160;</a></span>Ptr</h2>
@@ -174,26 +174,26 @@ Static Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l04995">4995</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l05248">5248</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
 <a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
-<a id="a4579018f8dbd1d413b0c4e4c943ecef5" name="a4579018f8dbd1d413b0c4e4c943ecef5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4579018f8dbd1d413b0c4e4c943ecef5">&#9670;&#160;</a></span>heading</h2>
+<a id="a90bcffec0dde410768c1daf3ee4e94b6" name="a90bcffec0dde410768c1daf3ee4e94b6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a90bcffec0dde410768c1daf3ee4e94b6">&#9670;&#160;</a></span>heading</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::optional&lt;std::int32_t&gt; TgBot::InlineQueryResultLocation::heading { }</td>
+          <td class="memname">std::optional&lt;std::uint32_t&gt; TgBot::InlineQueryResultLocation::heading { }</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Optional. For live locations, a direction in which the user is moving, in degrees. Must be between 1 and 360 if specified. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l05032">5032</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l05285">5285</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -211,7 +211,7 @@ Static Public Attributes</h2></td></tr>
 
 <p>Optional. The radius of uncertainty for the location, measured in meters; 0-1500. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l05022">5022</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l05275">5275</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -229,7 +229,7 @@ Static Public Attributes</h2></td></tr>
 
 <p>Unique identifier for this result, 1-64 Bytes. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l05006">5006</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l05259">5259</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -247,7 +247,7 @@ Static Public Attributes</h2></td></tr>
 
 <p>Optional. Content of the message to be sent instead of the location. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l05045">5045</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l05298">5298</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -265,25 +265,25 @@ Static Public Attributes</h2></td></tr>
 
 <p><a class="el" href="struct_tg_bot_1_1_location.html" title="This object represents a point on the map.">Location</a> latitude in degrees. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l05010">5010</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l05263">5263</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
-<a id="ac0e12147d105b3948cb0cfc531b70384" name="ac0e12147d105b3948cb0cfc531b70384"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac0e12147d105b3948cb0cfc531b70384">&#9670;&#160;</a></span>livePeriod</h2>
+<a id="a0f0ca7fe78c6407c67575c79456c8956" name="a0f0ca7fe78c6407c67575c79456c8956"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0f0ca7fe78c6407c67575c79456c8956">&#9670;&#160;</a></span>livePeriod</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::optional&lt;std::int32_t&gt; TgBot::InlineQueryResultLocation::livePeriod { }</td>
+          <td class="memname">std::optional&lt;std::uint32_t&gt; TgBot::InlineQueryResultLocation::livePeriod { }</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Optional. Period in seconds during which the location can be updated, must be between 60 and 86400, or 0x7FFFFFFF for live locations that can be edited indefinitely. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l05027">5027</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l05280">5280</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -301,25 +301,25 @@ Static Public Attributes</h2></td></tr>
 
 <p><a class="el" href="struct_tg_bot_1_1_location.html" title="This object represents a point on the map.">Location</a> longitude in degrees. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l05014">5014</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l05267">5267</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
-<a id="a357d109ddf86e085fbb2c7327b1459fc" name="a357d109ddf86e085fbb2c7327b1459fc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a357d109ddf86e085fbb2c7327b1459fc">&#9670;&#160;</a></span>proximityAlertRadius</h2>
+<a id="a5353a43cd2b6a88bfe2f33acd86f15c6" name="a5353a43cd2b6a88bfe2f33acd86f15c6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5353a43cd2b6a88bfe2f33acd86f15c6">&#9670;&#160;</a></span>proximityAlertRadius</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::optional&lt;std::int32_t&gt; TgBot::InlineQueryResultLocation::proximityAlertRadius { }</td>
+          <td class="memname">std::optional&lt;std::uint32_t&gt; TgBot::InlineQueryResultLocation::proximityAlertRadius { }</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Optional. For live locations, a maximum distance for proximity alerts about approaching another chat member, in meters. Must be between 1 and 100000 if specified. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l05037">5037</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l05290">5290</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -337,25 +337,25 @@ Static Public Attributes</h2></td></tr>
 
 <p>Optional. Inline keyboard attached to the message. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l05041">5041</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l05294">5294</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
-<a id="a19c698338257a1f31c0a38a0077cfc85" name="a19c698338257a1f31c0a38a0077cfc85"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a19c698338257a1f31c0a38a0077cfc85">&#9670;&#160;</a></span>thumbnailHeight</h2>
+<a id="a81b686ab92961caf493db0410ef9f365" name="a81b686ab92961caf493db0410ef9f365"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a81b686ab92961caf493db0410ef9f365">&#9670;&#160;</a></span>thumbnailHeight</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::optional&lt;std::int32_t&gt; TgBot::InlineQueryResultLocation::thumbnailHeight { }</td>
+          <td class="memname">std::optional&lt;std::uint32_t&gt; TgBot::InlineQueryResultLocation::thumbnailHeight { }</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Optional. Thumbnail height. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l05057">5057</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l05310">5310</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -373,25 +373,25 @@ Static Public Attributes</h2></td></tr>
 
 <p>Optional. Url of the thumbnail for the result. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l05049">5049</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l05302">5302</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
-<a id="a2d6476b5247992314693041ff29c2b75" name="a2d6476b5247992314693041ff29c2b75"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2d6476b5247992314693041ff29c2b75">&#9670;&#160;</a></span>thumbnailWidth</h2>
+<a id="a45e80f9d7b4244052c364e00329cc369" name="a45e80f9d7b4244052c364e00329cc369"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a45e80f9d7b4244052c364e00329cc369">&#9670;&#160;</a></span>thumbnailWidth</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::optional&lt;std::int32_t&gt; TgBot::InlineQueryResultLocation::thumbnailWidth { }</td>
+          <td class="memname">std::optional&lt;std::uint32_t&gt; TgBot::InlineQueryResultLocation::thumbnailWidth { }</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Optional. Thumbnail width. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l05053">5053</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l05306">5306</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -409,7 +409,7 @@ Static Public Attributes</h2></td></tr>
 
 <p><a class="el" href="struct_tg_bot_1_1_location.html" title="This object represents a point on the map.">Location</a> title. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l05018">5018</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l05271">5271</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -433,7 +433,7 @@ Static Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l04997">4997</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l05250">5250</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -451,7 +451,7 @@ Static Public Attributes</h2></td></tr>
 
 <p>Type of the result, must be location. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l05002">5002</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l05255">5255</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>

@@ -113,15 +113,15 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('struct_tg_bot_
 </div><!--header-->
 <div class="contents">
 
-<p>Arguments for <a class="el" href="class_tg_bot_1_1_api.html#abac57802e28405e79d1bca0fcefe5310" title="Returns the gifts owned and hosted by a user. Returns OwnedGifts on success.">Api::getUserGifts</a>.  
+<p>Arguments for <a class="el" href="class_tg_bot_1_1_api.html#af975da83f1ada6c9563d7f8536854305" title="Returns the gifts owned and hosted by a user. Returns OwnedGifts on success.">Api::getUserGifts</a>.  
  <a href="#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="_types_8h_source.html">Types.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-attribs" class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a1ec57ce4aa803ce7e07f64a5809d7bfb" id="r_a1ec57ce4aa803ce7e07f64a5809d7bfb"><td class="memItemLeft">std::int64_t&#160;</td><td class="memItemRight"><a class="el" href="#a1ec57ce4aa803ce7e07f64a5809d7bfb">userId</a> { }</td></tr>
-<tr class="memdesc:a1ec57ce4aa803ce7e07f64a5809d7bfb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unique identifier of the user.  <br /></td></tr>
+<tr class="memitem:a517a39e228309803c2f4c4dff678ac3e" id="r_a517a39e228309803c2f4c4dff678ac3e"><td class="memItemLeft">std::uint64_t&#160;</td><td class="memItemRight"><a class="el" href="#a517a39e228309803c2f4c4dff678ac3e">userId</a> { }</td></tr>
+<tr class="memdesc:a517a39e228309803c2f4c4dff678ac3e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unique identifier of the user.  <br /></td></tr>
 <tr class="memitem:afad813d82a86357bb9daae1e0e47e454" id="r_afad813d82a86357bb9daae1e0e47e454"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#afad813d82a86357bb9daae1e0e47e454">excludeFromBlockchain</a> = false</td></tr>
 <tr class="memdesc:afad813d82a86357bb9daae1e0e47e454"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pass True to exclude gifts that were assigned from the TON blockchain and can't be resold or transferred in Telegram.  <br /></td></tr>
 <tr class="memitem:a97b772b31322e74fce5de198210647e6" id="r_a97b772b31322e74fce5de198210647e6"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a97b772b31322e74fce5de198210647e6">excludeLimitedNonUpgradable</a> = false</td></tr>
@@ -132,17 +132,17 @@ Public Attributes</h2></td></tr>
 <tr class="memdesc:aa90710d819912b412354fcb1dd7d7511"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pass True to exclude unique gifts.  <br /></td></tr>
 <tr class="memitem:aa81f6700044faf3a30cd4a5d2e002aeb" id="r_aa81f6700044faf3a30cd4a5d2e002aeb"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#aa81f6700044faf3a30cd4a5d2e002aeb">excludeUnlimited</a> = false</td></tr>
 <tr class="memdesc:aa81f6700044faf3a30cd4a5d2e002aeb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pass True to exclude gifts that can be purchased an unlimited number of times.  <br /></td></tr>
-<tr class="memitem:a63ece4bbeb2b65a119e006c832ba807a" id="r_a63ece4bbeb2b65a119e006c832ba807a"><td class="memItemLeft">std::int32_t&#160;</td><td class="memItemRight"><a class="el" href="#a63ece4bbeb2b65a119e006c832ba807a">limit</a> = 0</td></tr>
-<tr class="memdesc:a63ece4bbeb2b65a119e006c832ba807a"><td class="mdescLeft">&#160;</td><td class="mdescRight">The maximum number of gifts to be returned; 1-100. Defaults to 100.  <br /></td></tr>
+<tr class="memitem:acdb02980771a4ac38014774e8f1f6f43" id="r_acdb02980771a4ac38014774e8f1f6f43"><td class="memItemLeft">std::uint32_t&#160;</td><td class="memItemRight"><a class="el" href="#acdb02980771a4ac38014774e8f1f6f43">limit</a> = 0</td></tr>
+<tr class="memdesc:acdb02980771a4ac38014774e8f1f6f43"><td class="mdescLeft">&#160;</td><td class="mdescRight">The maximum number of gifts to be returned; 1-100. Defaults to 100.  <br /></td></tr>
 <tr class="memitem:adcf332982342e556b19d583a4354444d" id="r_adcf332982342e556b19d583a4354444d"><td class="memItemLeft">std::string&#160;</td><td class="memItemRight"><a class="el" href="#adcf332982342e556b19d583a4354444d">offset</a> = &quot;&quot;</td></tr>
 <tr class="memdesc:adcf332982342e556b19d583a4354444d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Offset of the first entry to return as received from the previous request; use an empty string to get the first chunk of results.  <br /></td></tr>
 <tr class="memitem:a0e54fbf37d63dffc4d2b8783374f847b" id="r_a0e54fbf37d63dffc4d2b8783374f847b"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a0e54fbf37d63dffc4d2b8783374f847b">sortByPrice</a> = false</td></tr>
 <tr class="memdesc:a0e54fbf37d63dffc4d2b8783374f847b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pass True to sort results by gift price instead of send date. Sorting is applied before pagination.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Arguments for <a class="el" href="class_tg_bot_1_1_api.html#abac57802e28405e79d1bca0fcefe5310" title="Returns the gifts owned and hosted by a user. Returns OwnedGifts on success.">Api::getUserGifts</a>. </p>
+<div class="textblock"><p>Arguments for <a class="el" href="class_tg_bot_1_1_api.html#af975da83f1ada6c9563d7f8536854305" title="Returns the gifts owned and hosted by a user. Returns OwnedGifts on success.">Api::getUserGifts</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l16739">16739</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l17669">17669</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 </div><a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
 <a id="afad813d82a86357bb9daae1e0e47e454" name="afad813d82a86357bb9daae1e0e47e454"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#afad813d82a86357bb9daae1e0e47e454">&#9670;&#160;</a></span>excludeFromBlockchain</h2>
@@ -158,7 +158,7 @@ Public Attributes</h2></td></tr>
 
 <p>Pass True to exclude gifts that were assigned from the TON blockchain and can't be resold or transferred in Telegram. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l16749">16749</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l17679">17679</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -176,7 +176,7 @@ Public Attributes</h2></td></tr>
 
 <p>Pass True to exclude gifts that can be purchased a limited number of times and can't be upgraded to unique. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l16755">16755</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l17685">17685</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -194,7 +194,7 @@ Public Attributes</h2></td></tr>
 
 <p>Pass True to exclude gifts that can be purchased a limited number of times and can be upgraded to unique. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l16761">16761</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l17691">17691</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -212,7 +212,7 @@ Public Attributes</h2></td></tr>
 
 <p>Pass True to exclude unique gifts. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l16766">16766</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l17696">17696</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -230,25 +230,25 @@ Public Attributes</h2></td></tr>
 
 <p>Pass True to exclude gifts that can be purchased an unlimited number of times. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l16772">16772</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l17702">17702</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
-<a id="a63ece4bbeb2b65a119e006c832ba807a" name="a63ece4bbeb2b65a119e006c832ba807a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a63ece4bbeb2b65a119e006c832ba807a">&#9670;&#160;</a></span>limit</h2>
+<a id="acdb02980771a4ac38014774e8f1f6f43" name="acdb02980771a4ac38014774e8f1f6f43"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acdb02980771a4ac38014774e8f1f6f43">&#9670;&#160;</a></span>limit</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::int32_t TgBot::GetUserGiftsArgs::limit = 0</td>
+          <td class="memname">std::uint32_t TgBot::GetUserGiftsArgs::limit = 0</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>The maximum number of gifts to be returned; 1-100. Defaults to 100. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l16777">16777</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l17707">17707</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -266,7 +266,7 @@ Public Attributes</h2></td></tr>
 
 <p>Offset of the first entry to return as received from the previous request; use an empty string to get the first chunk of results. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l16783">16783</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l17713">17713</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -284,25 +284,25 @@ Public Attributes</h2></td></tr>
 
 <p>Pass True to sort results by gift price instead of send date. Sorting is applied before pagination. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l16789">16789</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l17719">17719</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
-<a id="a1ec57ce4aa803ce7e07f64a5809d7bfb" name="a1ec57ce4aa803ce7e07f64a5809d7bfb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1ec57ce4aa803ce7e07f64a5809d7bfb">&#9670;&#160;</a></span>userId</h2>
+<a id="a517a39e228309803c2f4c4dff678ac3e" name="a517a39e228309803c2f4c4dff678ac3e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a517a39e228309803c2f4c4dff678ac3e">&#9670;&#160;</a></span>userId</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::int64_t TgBot::GetUserGiftsArgs::userId { }</td>
+          <td class="memname">std::uint64_t TgBot::GetUserGiftsArgs::userId { }</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Unique identifier of the user. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l16743">16743</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l17673">17673</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>

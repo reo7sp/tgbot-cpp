@@ -138,19 +138,19 @@ Public Attributes</h2></td></tr>
 <tr class="memdesc:a36966d0bb41d2604c29d424fddf45812"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. Invite link name.  <br /></td></tr>
 <tr class="memitem:a2a879d4ad8af5fe52cac3b489ccbba2f" id="r_a2a879d4ad8af5fe52cac3b489ccbba2f"><td class="memItemLeft">std::optional&lt; std::int32_t &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a2a879d4ad8af5fe52cac3b489ccbba2f">expireDate</a> { }</td></tr>
 <tr class="memdesc:a2a879d4ad8af5fe52cac3b489ccbba2f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. Point in time (Unix timestamp) when the link will expire or has been expired.  <br /></td></tr>
-<tr class="memitem:a91d37ae404c835d10f5c8ce30b704415" id="r_a91d37ae404c835d10f5c8ce30b704415"><td class="memItemLeft">std::optional&lt; std::int32_t &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a91d37ae404c835d10f5c8ce30b704415">memberLimit</a> { }</td></tr>
-<tr class="memdesc:a91d37ae404c835d10f5c8ce30b704415"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. The maximum number of users that can be members of the chat simultaneously after joining the chat via this invite link; 1-99999.  <br /></td></tr>
-<tr class="memitem:a62d26013400910aff0f751c78b65c8f8" id="r_a62d26013400910aff0f751c78b65c8f8"><td class="memItemLeft">std::optional&lt; std::int32_t &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a62d26013400910aff0f751c78b65c8f8">pendingJoinRequestCount</a> { }</td></tr>
-<tr class="memdesc:a62d26013400910aff0f751c78b65c8f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. Number of pending join requests created using this link.  <br /></td></tr>
-<tr class="memitem:a6ec03b8513261ef517a932689726c6e3" id="r_a6ec03b8513261ef517a932689726c6e3"><td class="memItemLeft">std::optional&lt; std::int32_t &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a6ec03b8513261ef517a932689726c6e3">subscriptionPeriod</a> { }</td></tr>
-<tr class="memdesc:a6ec03b8513261ef517a932689726c6e3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. The number of seconds the subscription will be active for before the next payment.  <br /></td></tr>
-<tr class="memitem:ab9082b0f0961d7a935a464d751b82fbf" id="r_ab9082b0f0961d7a935a464d751b82fbf"><td class="memItemLeft">std::optional&lt; std::int32_t &gt;&#160;</td><td class="memItemRight"><a class="el" href="#ab9082b0f0961d7a935a464d751b82fbf">subscriptionPrice</a> { }</td></tr>
-<tr class="memdesc:ab9082b0f0961d7a935a464d751b82fbf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. The amount of Telegram Stars a user must pay initially and after each subsequent subscription period to be a member of the chat using the link.  <br /></td></tr>
+<tr class="memitem:a1092974b1a4ad7586eddb90b329f60d7" id="r_a1092974b1a4ad7586eddb90b329f60d7"><td class="memItemLeft">std::optional&lt; std::uint32_t &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a1092974b1a4ad7586eddb90b329f60d7">memberLimit</a> { }</td></tr>
+<tr class="memdesc:a1092974b1a4ad7586eddb90b329f60d7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. The maximum number of users that can be members of the chat simultaneously after joining the chat via this invite link; 1-99999.  <br /></td></tr>
+<tr class="memitem:a60c4680a6676fedfb68a4f32af1c725e" id="r_a60c4680a6676fedfb68a4f32af1c725e"><td class="memItemLeft">std::optional&lt; std::uint32_t &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a60c4680a6676fedfb68a4f32af1c725e">pendingJoinRequestCount</a> { }</td></tr>
+<tr class="memdesc:a60c4680a6676fedfb68a4f32af1c725e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. Number of pending join requests created using this link.  <br /></td></tr>
+<tr class="memitem:aee23fa2884162371c7301b6d88547693" id="r_aee23fa2884162371c7301b6d88547693"><td class="memItemLeft">std::optional&lt; std::uint32_t &gt;&#160;</td><td class="memItemRight"><a class="el" href="#aee23fa2884162371c7301b6d88547693">subscriptionPeriod</a> { }</td></tr>
+<tr class="memdesc:aee23fa2884162371c7301b6d88547693"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. The number of seconds the subscription will be active for before the next payment.  <br /></td></tr>
+<tr class="memitem:aef5181bf6a3750c5934fb3c3a7a71883" id="r_aef5181bf6a3750c5934fb3c3a7a71883"><td class="memItemLeft">std::optional&lt; std::uint32_t &gt;&#160;</td><td class="memItemRight"><a class="el" href="#aef5181bf6a3750c5934fb3c3a7a71883">subscriptionPrice</a> { }</td></tr>
+<tr class="memdesc:aef5181bf6a3750c5934fb3c3a7a71883"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. The amount of Telegram Stars a user must pay initially and after each subsequent subscription period to be a member of the chat using the link.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Represents an invite link for a chat. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l02039">2039</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l02113">2113</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 </div><a name="doc-typedef-members" id="doc-typedef-members"></a><h2 id="header-doc-typedef-members" class="groupheader">Member Typedef Documentation</h2>
 <a id="ad9b4d6f1ee3fd759cfeefed113bf5508" name="ad9b4d6f1ee3fd759cfeefed113bf5508"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ad9b4d6f1ee3fd759cfeefed113bf5508">&#9670;&#160;</a></span>Ptr</h2>
@@ -164,7 +164,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l02040">2040</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l02114">2114</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -183,7 +183,7 @@ Public Attributes</h2></td></tr>
 
 <p>True, if users joining the chat via the link need to be approved by chat administrators. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l02054">2054</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l02128">2128</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -201,7 +201,7 @@ Public Attributes</h2></td></tr>
 
 <p>Creator of the link. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l02050">2050</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l02124">2124</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -219,7 +219,7 @@ Public Attributes</h2></td></tr>
 
 <p>Optional. Point in time (Unix timestamp) when the link will expire or has been expired. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l02070">2070</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l02144">2144</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -237,7 +237,7 @@ Public Attributes</h2></td></tr>
 
 <p>The invite link. If the link was created by another chat administrator, then the second part of the link will be replaced with “…”. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l02046">2046</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l02120">2120</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -255,7 +255,7 @@ Public Attributes</h2></td></tr>
 
 <p>True, if the link is primary. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l02058">2058</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l02132">2132</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -273,25 +273,25 @@ Public Attributes</h2></td></tr>
 
 <p>True, if the link is revoked. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l02062">2062</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l02136">2136</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
-<a id="a91d37ae404c835d10f5c8ce30b704415" name="a91d37ae404c835d10f5c8ce30b704415"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a91d37ae404c835d10f5c8ce30b704415">&#9670;&#160;</a></span>memberLimit</h2>
+<a id="a1092974b1a4ad7586eddb90b329f60d7" name="a1092974b1a4ad7586eddb90b329f60d7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1092974b1a4ad7586eddb90b329f60d7">&#9670;&#160;</a></span>memberLimit</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::optional&lt;std::int32_t&gt; TgBot::ChatInviteLink::memberLimit { }</td>
+          <td class="memname">std::optional&lt;std::uint32_t&gt; TgBot::ChatInviteLink::memberLimit { }</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Optional. The maximum number of users that can be members of the chat simultaneously after joining the chat via this invite link; 1-99999. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l02075">2075</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l02149">2149</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -309,61 +309,61 @@ Public Attributes</h2></td></tr>
 
 <p>Optional. Invite link name. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l02066">2066</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l02140">2140</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
-<a id="a62d26013400910aff0f751c78b65c8f8" name="a62d26013400910aff0f751c78b65c8f8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a62d26013400910aff0f751c78b65c8f8">&#9670;&#160;</a></span>pendingJoinRequestCount</h2>
+<a id="a60c4680a6676fedfb68a4f32af1c725e" name="a60c4680a6676fedfb68a4f32af1c725e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a60c4680a6676fedfb68a4f32af1c725e">&#9670;&#160;</a></span>pendingJoinRequestCount</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::optional&lt;std::int32_t&gt; TgBot::ChatInviteLink::pendingJoinRequestCount { }</td>
+          <td class="memname">std::optional&lt;std::uint32_t&gt; TgBot::ChatInviteLink::pendingJoinRequestCount { }</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Optional. Number of pending join requests created using this link. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l02079">2079</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l02153">2153</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
-<a id="a6ec03b8513261ef517a932689726c6e3" name="a6ec03b8513261ef517a932689726c6e3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6ec03b8513261ef517a932689726c6e3">&#9670;&#160;</a></span>subscriptionPeriod</h2>
+<a id="aee23fa2884162371c7301b6d88547693" name="aee23fa2884162371c7301b6d88547693"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aee23fa2884162371c7301b6d88547693">&#9670;&#160;</a></span>subscriptionPeriod</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::optional&lt;std::int32_t&gt; TgBot::ChatInviteLink::subscriptionPeriod { }</td>
+          <td class="memname">std::optional&lt;std::uint32_t&gt; TgBot::ChatInviteLink::subscriptionPeriod { }</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Optional. The number of seconds the subscription will be active for before the next payment. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l02084">2084</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l02158">2158</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
-<a id="ab9082b0f0961d7a935a464d751b82fbf" name="ab9082b0f0961d7a935a464d751b82fbf"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab9082b0f0961d7a935a464d751b82fbf">&#9670;&#160;</a></span>subscriptionPrice</h2>
+<a id="aef5181bf6a3750c5934fb3c3a7a71883" name="aef5181bf6a3750c5934fb3c3a7a71883"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aef5181bf6a3750c5934fb3c3a7a71883">&#9670;&#160;</a></span>subscriptionPrice</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::optional&lt;std::int32_t&gt; TgBot::ChatInviteLink::subscriptionPrice { }</td>
+          <td class="memname">std::optional&lt;std::uint32_t&gt; TgBot::ChatInviteLink::subscriptionPrice { }</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Optional. The amount of Telegram Stars a user must pay initially and after each subsequent subscription period to be a member of the chat using the link. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l02089">2089</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l02163">2163</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>

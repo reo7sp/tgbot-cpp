@@ -25,8 +25,10 @@ var struct_tg_bot_1_1_update =
     [ "preCheckoutQuery", "struct_tg_bot_1_1_update.html#a82d63d848adc97320c3bcea2b53f68bc", null ],
     [ "purchasedPaidMedia", "struct_tg_bot_1_1_update.html#a7fd9e3efecdaea1127bb3c647a0ecc83", null ],
     [ "removedChatBoost", "struct_tg_bot_1_1_update.html#a4790256836d3128f5e107ba3a1bb9fbe", null ],
+    [ "sharedWidgetQuery", "struct_tg_bot_1_1_update.html#aceb2f665ed3c80fe0318ac47191cf57d", null ],
     [ "shippingQuery", "struct_tg_bot_1_1_update.html#a60be755bf83d9dd6767d3b62b82f9654", null ],
     [ "stoppedMessageGeneration", "struct_tg_bot_1_1_update.html#ad09cace04c07ad974b47fbdde913781d", null ],
     [ "subscription", "struct_tg_bot_1_1_update.html#a3a251fcca2ce34860fab8e9a2a875f51", null ],
-    [ "updateId", "struct_tg_bot_1_1_update.html#aa1f17980cc04fa62367620f922ff9fcb", null ]
+    [ "updateId", "struct_tg_bot_1_1_update.html#a319b9431b3af18261cfb67e373aa83f4", null ],
+    [ "widgetQuery", "struct_tg_bot_1_1_update.html#a05c0f7d06eb92982d2cdbf9dbf09ba33", null ]
 ];

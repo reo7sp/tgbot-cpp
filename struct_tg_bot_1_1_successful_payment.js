@@ -10,5 +10,5 @@ var struct_tg_bot_1_1_successful_payment =
     [ "shippingOptionId", "struct_tg_bot_1_1_successful_payment.html#ab814cf57b034a518069f9e1c2669d320", null ],
     [ "subscriptionExpirationDate", "struct_tg_bot_1_1_successful_payment.html#a6fe5186bb6efedcbfaa76e7c14ad8d1b", null ],
     [ "telegramPaymentChargeId", "struct_tg_bot_1_1_successful_payment.html#a42ec4a5d0de537eaf1e9d43866ac3c04", null ],
-    [ "totalAmount", "struct_tg_bot_1_1_successful_payment.html#a457b4d9fc8be91352149a6a80fac65b3", null ]
+    [ "totalAmount", "struct_tg_bot_1_1_successful_payment.html#af8fa7e3a1c46416e5f9680180ab49621", null ]
 ];

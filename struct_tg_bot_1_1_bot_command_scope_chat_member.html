@@ -126,10 +126,10 @@ Public Types</h2></td></tr>
 Public Attributes</h2></td></tr>
 <tr class="memitem:ad822a5269bc29a2d62062f13c3614761" id="r_ad822a5269bc29a2d62062f13c3614761"><td class="memItemLeft">std::string&#160;</td><td class="memItemRight"><a class="el" href="#ad822a5269bc29a2d62062f13c3614761">type</a> { <a class="el" href="#a470d0d8fb61f1942724a7de6f46ca356">TYPE</a> }</td></tr>
 <tr class="memdesc:ad822a5269bc29a2d62062f13c3614761"><td class="mdescLeft">&#160;</td><td class="mdescRight">Scope type, must be chat_member.  <br /></td></tr>
-<tr class="memitem:ae07df791785290e46c83870dc92f84cb" id="r_ae07df791785290e46c83870dc92f84cb"><td class="memItemLeft">std::int64_t&#160;</td><td class="memItemRight"><a class="el" href="#ae07df791785290e46c83870dc92f84cb">chatId</a> { }</td></tr>
-<tr class="memdesc:ae07df791785290e46c83870dc92f84cb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unique identifier for the target chat or username of the target supergroup in the format @username. Channel direct messages chats and channel chats aren't supported.  <br /></td></tr>
-<tr class="memitem:a70e99cb7b85171a84abecefe0cf9db2f" id="r_a70e99cb7b85171a84abecefe0cf9db2f"><td class="memItemLeft">std::int64_t&#160;</td><td class="memItemRight"><a class="el" href="#a70e99cb7b85171a84abecefe0cf9db2f">userId</a> { }</td></tr>
-<tr class="memdesc:a70e99cb7b85171a84abecefe0cf9db2f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unique identifier of the target user.  <br /></td></tr>
+<tr class="memitem:a7a25035b2ad5873e917acbb24206101c" id="r_a7a25035b2ad5873e917acbb24206101c"><td class="memItemLeft">std::variant&lt; std::int64_t, std::string &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a7a25035b2ad5873e917acbb24206101c">chatId</a> { }</td></tr>
+<tr class="memdesc:a7a25035b2ad5873e917acbb24206101c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unique identifier for the target chat or username of the target supergroup in the format @username. Channel direct messages chats and channel chats aren't supported.  <br /></td></tr>
+<tr class="memitem:a847864930ed134340224cb416cf78b11" id="r_a847864930ed134340224cb416cf78b11"><td class="memItemLeft">std::uint64_t&#160;</td><td class="memItemRight"><a class="el" href="#a847864930ed134340224cb416cf78b11">userId</a> { }</td></tr>
+<tr class="memdesc:a847864930ed134340224cb416cf78b11"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unique identifier of the target user.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-static-attribs" class="groupheader"><a id="pub-static-attribs" name="pub-static-attribs"></a>
 Static Public Attributes</h2></td></tr>
@@ -138,7 +138,7 @@ Static Public Attributes</h2></td></tr>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Represents the scope of bot commands, covering a specific member of a group or supergroup chat. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l01019">1019</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l01083">1083</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 </div><a name="doc-typedef-members" id="doc-typedef-members"></a><h2 id="header-doc-typedef-members" class="groupheader">Member Typedef Documentation</h2>
 <a id="a28e07bd6e4fe7e6eef8b0fbb583f0fe1" name="a28e07bd6e4fe7e6eef8b0fbb583f0fe1"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a28e07bd6e4fe7e6eef8b0fbb583f0fe1">&#9670;&#160;</a></span>Ptr</h2>
@@ -152,26 +152,26 @@ Static Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l01020">1020</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l01084">1084</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
 <a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
-<a id="ae07df791785290e46c83870dc92f84cb" name="ae07df791785290e46c83870dc92f84cb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae07df791785290e46c83870dc92f84cb">&#9670;&#160;</a></span>chatId</h2>
+<a id="a7a25035b2ad5873e917acbb24206101c" name="a7a25035b2ad5873e917acbb24206101c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7a25035b2ad5873e917acbb24206101c">&#9670;&#160;</a></span>chatId</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::int64_t TgBot::BotCommandScopeChatMember::chatId { }</td>
+          <td class="memname">std::variant&lt;std::int64_t, std::string&gt; TgBot::BotCommandScopeChatMember::chatId { }</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Unique identifier for the target chat or username of the target supergroup in the format @username. Channel direct messages chats and channel chats aren't supported. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l01032">1032</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l01096">1096</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -195,7 +195,7 @@ Static Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l01022">1022</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l01086">1086</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -213,25 +213,25 @@ Static Public Attributes</h2></td></tr>
 
 <p>Scope type, must be chat_member. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l01027">1027</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l01091">1091</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
-<a id="a70e99cb7b85171a84abecefe0cf9db2f" name="a70e99cb7b85171a84abecefe0cf9db2f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a70e99cb7b85171a84abecefe0cf9db2f">&#9670;&#160;</a></span>userId</h2>
+<a id="a847864930ed134340224cb416cf78b11" name="a847864930ed134340224cb416cf78b11"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a847864930ed134340224cb416cf78b11">&#9670;&#160;</a></span>userId</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::int64_t TgBot::BotCommandScopeChatMember::userId { }</td>
+          <td class="memname">std::uint64_t TgBot::BotCommandScopeChatMember::userId { }</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Unique identifier of the target user. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l01036">1036</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l01100">1100</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>

@@ -1,5 +1,5 @@
 var struct_tg_bot_1_1_get_star_transactions_args =
 [
-    [ "limit", "struct_tg_bot_1_1_get_star_transactions_args.html#a6eca1388d2c18a5e796c7fd5066316a5", null ],
-    [ "offset", "struct_tg_bot_1_1_get_star_transactions_args.html#a63877da59e0b63ca06e9e57d70a972a6", null ]
+    [ "limit", "struct_tg_bot_1_1_get_star_transactions_args.html#a6abf37a89afa4e4352393b93bf5f5580", null ],
+    [ "offset", "struct_tg_bot_1_1_get_star_transactions_args.html#ad175ac8194467fcef769156f8d4bc7cf", null ]
 ];

@@ -134,13 +134,13 @@ Public Attributes</h2></td></tr>
 <tr class="memdesc:aedd2083e0b0d87a8775ea52338ebbfc7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. Original filename as defined by the sender.  <br /></td></tr>
 <tr class="memitem:ab41b26cba7e121438cb1ae126774c8b9" id="r_ab41b26cba7e121438cb1ae126774c8b9"><td class="memItemLeft">std::optional&lt; std::string &gt;&#160;</td><td class="memItemRight"><a class="el" href="#ab41b26cba7e121438cb1ae126774c8b9">mimeType</a> { }</td></tr>
 <tr class="memdesc:ab41b26cba7e121438cb1ae126774c8b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. MIME type of the file as defined by the sender.  <br /></td></tr>
-<tr class="memitem:a6735900a758b10f3f3f05f34fb8541c1" id="r_a6735900a758b10f3f3f05f34fb8541c1"><td class="memItemLeft">std::optional&lt; std::int64_t &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a6735900a758b10f3f3f05f34fb8541c1">fileSize</a> { }</td></tr>
-<tr class="memdesc:a6735900a758b10f3f3f05f34fb8541c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. <a class="el" href="struct_tg_bot_1_1_file.html" title="This object represents a file ready to be downloaded. The file can be downloaded via the link https:/...">File</a> size in bytes. It can be bigger than 2^31 and some programming languages may have difficulty/silent defects in interpreting it. But it has at most 52 significant bits, so a signed 64-bit integer or double-precision float type are safe for storing this value.  <br /></td></tr>
+<tr class="memitem:a124b2fdbf214a27a3f6fd1d00c9e526f" id="r_a124b2fdbf214a27a3f6fd1d00c9e526f"><td class="memItemLeft">std::optional&lt; std::uint64_t &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a124b2fdbf214a27a3f6fd1d00c9e526f">fileSize</a> { }</td></tr>
+<tr class="memdesc:a124b2fdbf214a27a3f6fd1d00c9e526f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. <a class="el" href="struct_tg_bot_1_1_file.html" title="This object represents a file ready to be downloaded. The file can be downloaded via the link https:/...">File</a> size in bytes. It can be bigger than 2^31 and some programming languages may have difficulty/silent defects in interpreting it. But it has at most 52 significant bits, so a signed 64-bit integer or double-precision float type are safe for storing this value.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>This object represents a general file (as opposed to photos, voice messages and audio files). </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l03093">3093</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l03273">3273</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 </div><a name="doc-typedef-members" id="doc-typedef-members"></a><h2 id="header-doc-typedef-members" class="groupheader">Member Typedef Documentation</h2>
 <a id="aeaa3126cddaecc47fa94157fee64c074" name="aeaa3126cddaecc47fa94157fee64c074"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aeaa3126cddaecc47fa94157fee64c074">&#9670;&#160;</a></span>Ptr</h2>
@@ -154,7 +154,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l03094">3094</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l03274">3274</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -173,7 +173,7 @@ Public Attributes</h2></td></tr>
 
 <p>Identifier for this file, which can be used to download or reuse the file. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l03099">3099</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l03279">3279</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -191,25 +191,25 @@ Public Attributes</h2></td></tr>
 
 <p>Optional. Original filename as defined by the sender. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l03112">3112</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l03292">3292</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
-<a id="a6735900a758b10f3f3f05f34fb8541c1" name="a6735900a758b10f3f3f05f34fb8541c1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6735900a758b10f3f3f05f34fb8541c1">&#9670;&#160;</a></span>fileSize</h2>
+<a id="a124b2fdbf214a27a3f6fd1d00c9e526f" name="a124b2fdbf214a27a3f6fd1d00c9e526f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a124b2fdbf214a27a3f6fd1d00c9e526f">&#9670;&#160;</a></span>fileSize</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::optional&lt;std::int64_t&gt; TgBot::Document::fileSize { }</td>
+          <td class="memname">std::optional&lt;std::uint64_t&gt; TgBot::Document::fileSize { }</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Optional. <a class="el" href="struct_tg_bot_1_1_file.html" title="This object represents a file ready to be downloaded. The file can be downloaded via the link https:/...">File</a> size in bytes. It can be bigger than 2^31 and some programming languages may have difficulty/silent defects in interpreting it. But it has at most 52 significant bits, so a signed 64-bit integer or double-precision float type are safe for storing this value. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l03123">3123</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l03303">3303</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -227,7 +227,7 @@ Public Attributes</h2></td></tr>
 
 <p>Unique identifier for this file, which is supposed to be the same over time and for different bots. Can't be used to download or reuse the file. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l03104">3104</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l03284">3284</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -245,7 +245,7 @@ Public Attributes</h2></td></tr>
 
 <p>Optional. MIME type of the file as defined by the sender. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l03116">3116</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l03296">3296</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -263,7 +263,7 @@ Public Attributes</h2></td></tr>
 
 <p>Optional. <a class="el" href="struct_tg_bot_1_1_document.html" title="This object represents a general file (as opposed to photos, voice messages and audio files).">Document</a> thumbnail as defined by the sender. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l03108">3108</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l03288">3288</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>

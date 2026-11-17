@@ -1,7 +1,7 @@
 var struct_tg_bot_1_1_inline_query_result_audio =
 [
     [ "Ptr", "struct_tg_bot_1_1_inline_query_result_audio.html#a3fd9b0da7e60ec834adfb8ad54c1f801", null ],
-    [ "audioDuration", "struct_tg_bot_1_1_inline_query_result_audio.html#a9f714cf945dc94b653ab9692c4d49155", null ],
+    [ "audioDuration", "struct_tg_bot_1_1_inline_query_result_audio.html#a67d64c6dbda48be1bda24455706ef452", null ],
     [ "audioUrl", "struct_tg_bot_1_1_inline_query_result_audio.html#a32196651921816a857b75a7e0163ed40", null ],
     [ "caption", "struct_tg_bot_1_1_inline_query_result_audio.html#a50fe9cff3fad58b7bf06ba7e5a81d62e", null ],
     [ "captionEntities", "struct_tg_bot_1_1_inline_query_result_audio.html#ac23e07fbd6cf38483d42d75d39920f30", null ],

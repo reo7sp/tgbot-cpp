@@ -126,8 +126,8 @@ Public Types</h2></td></tr>
 Public Attributes</h2></td></tr>
 <tr class="memitem:a7cabedcd7e557d607baf968c2fc454f3" id="r_a7cabedcd7e557d607baf968c2fc454f3"><td class="memItemLeft">std::string&#160;</td><td class="memItemRight"><a class="el" href="#a7cabedcd7e557d607baf968c2fc454f3">currency</a> { }</td></tr>
 <tr class="memdesc:a7cabedcd7e557d607baf968c2fc454f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Three-letter ISO 4217 currency code, or “XTR” for payments in Telegram Stars.  <br /></td></tr>
-<tr class="memitem:a457b4d9fc8be91352149a6a80fac65b3" id="r_a457b4d9fc8be91352149a6a80fac65b3"><td class="memItemLeft">std::int32_t&#160;</td><td class="memItemRight"><a class="el" href="#a457b4d9fc8be91352149a6a80fac65b3">totalAmount</a> { }</td></tr>
-<tr class="memdesc:a457b4d9fc8be91352149a6a80fac65b3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Total price in the smallest units of the currency (integer, not float/double). For example, for a price of US$ 1.45 pass amount = 145. See the exp parameter in currencies.json, it shows the number of digits past the decimal point for each currency (2 for the majority of currencies).  <br /></td></tr>
+<tr class="memitem:af8fa7e3a1c46416e5f9680180ab49621" id="r_af8fa7e3a1c46416e5f9680180ab49621"><td class="memItemLeft">std::uint64_t&#160;</td><td class="memItemRight"><a class="el" href="#af8fa7e3a1c46416e5f9680180ab49621">totalAmount</a> { }</td></tr>
+<tr class="memdesc:af8fa7e3a1c46416e5f9680180ab49621"><td class="mdescLeft">&#160;</td><td class="mdescRight">Total price in the smallest units of the currency (integer, not float/double). For example, for a price of US$ 1.45 pass amount = 145. See the exp parameter in currencies.json, it shows the number of digits past the decimal point for each currency (2 for the majority of currencies).  <br /></td></tr>
 <tr class="memitem:a260f6306836c863523054f076c9350c6" id="r_a260f6306836c863523054f076c9350c6"><td class="memItemLeft">std::string&#160;</td><td class="memItemRight"><a class="el" href="#a260f6306836c863523054f076c9350c6">invoicePayload</a> { }</td></tr>
 <tr class="memdesc:a260f6306836c863523054f076c9350c6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Bot-specified invoice payload.  <br /></td></tr>
 <tr class="memitem:a6fe5186bb6efedcbfaa76e7c14ad8d1b" id="r_a6fe5186bb6efedcbfaa76e7c14ad8d1b"><td class="memItemLeft">std::optional&lt; std::int32_t &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a6fe5186bb6efedcbfaa76e7c14ad8d1b">subscriptionExpirationDate</a> { }</td></tr>
@@ -148,7 +148,7 @@ Public Attributes</h2></td></tr>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>This object contains basic information about a successful payment. Note that if the buyer initiates a chargeback with the relevant payment provider following this transaction, the funds may be debited from your balance. This is outside of Telegram's control. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l12820">12820</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l13267">13267</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 </div><a name="doc-typedef-members" id="doc-typedef-members"></a><h2 id="header-doc-typedef-members" class="groupheader">Member Typedef Documentation</h2>
 <a id="ada6d1528d8c44bca7e628f33a89c2c1f" name="ada6d1528d8c44bca7e628f33a89c2c1f"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ada6d1528d8c44bca7e628f33a89c2c1f">&#9670;&#160;</a></span>Ptr</h2>
@@ -162,7 +162,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l12821">12821</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l13268">13268</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -181,7 +181,7 @@ Public Attributes</h2></td></tr>
 
 <p>Three-letter ISO 4217 currency code, or “XTR” for payments in Telegram Stars. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l12826">12826</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l13273">13273</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -199,7 +199,7 @@ Public Attributes</h2></td></tr>
 
 <p>Bot-specified invoice payload. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l12837">12837</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l13284">13284</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -217,7 +217,7 @@ Public Attributes</h2></td></tr>
 
 <p>Optional. True, if the payment is the first payment for a subscription. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l12849">12849</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l13296">13296</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -235,7 +235,7 @@ Public Attributes</h2></td></tr>
 
 <p>Optional. True, if the payment is a recurring payment for a subscription. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l12845">12845</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l13292">13292</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -253,7 +253,7 @@ Public Attributes</h2></td></tr>
 
 <p>Optional. Order information provided by the user. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l12857">12857</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l13304">13304</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -271,7 +271,7 @@ Public Attributes</h2></td></tr>
 
 <p>Provider payment identifier. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l12865">12865</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l13312">13312</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -289,7 +289,7 @@ Public Attributes</h2></td></tr>
 
 <p>Optional. Identifier of the shipping option chosen by the user. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l12853">12853</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l13300">13300</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -307,7 +307,7 @@ Public Attributes</h2></td></tr>
 
 <p>Optional. Expiration date of the subscription, in Unix time; for recurring payments only. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l12841">12841</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l13288">13288</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -325,25 +325,25 @@ Public Attributes</h2></td></tr>
 
 <p>Telegram payment identifier. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l12861">12861</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l13308">13308</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
-<a id="a457b4d9fc8be91352149a6a80fac65b3" name="a457b4d9fc8be91352149a6a80fac65b3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a457b4d9fc8be91352149a6a80fac65b3">&#9670;&#160;</a></span>totalAmount</h2>
+<a id="af8fa7e3a1c46416e5f9680180ab49621" name="af8fa7e3a1c46416e5f9680180ab49621"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af8fa7e3a1c46416e5f9680180ab49621">&#9670;&#160;</a></span>totalAmount</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::int32_t TgBot::SuccessfulPayment::totalAmount { }</td>
+          <td class="memname">std::uint64_t TgBot::SuccessfulPayment::totalAmount { }</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Total price in the smallest units of the currency (integer, not float/double). For example, for a price of US$ 1.45 pass amount = 145. See the exp parameter in currencies.json, it shows the number of digits past the decimal point for each currency (2 for the majority of currencies). </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l12833">12833</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l13280">13280</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>

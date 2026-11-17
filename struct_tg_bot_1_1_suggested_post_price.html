@@ -126,13 +126,13 @@ Public Types</h2></td></tr>
 Public Attributes</h2></td></tr>
 <tr class="memitem:a5d79d2bdcb74e15a24ae1a97b221e29b" id="r_a5d79d2bdcb74e15a24ae1a97b221e29b"><td class="memItemLeft">std::string&#160;</td><td class="memItemRight"><a class="el" href="#a5d79d2bdcb74e15a24ae1a97b221e29b">currency</a> { }</td></tr>
 <tr class="memdesc:a5d79d2bdcb74e15a24ae1a97b221e29b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Currency in which the post will be paid. Currently, must be one of “XTR” for Telegram Stars or “TON” for TON grams.  <br /></td></tr>
-<tr class="memitem:a9429fc83515ca0d2fe4277c9b6514b74" id="r_a9429fc83515ca0d2fe4277c9b6514b74"><td class="memItemLeft">std::int32_t&#160;</td><td class="memItemRight"><a class="el" href="#a9429fc83515ca0d2fe4277c9b6514b74">amount</a> { }</td></tr>
-<tr class="memdesc:a9429fc83515ca0d2fe4277c9b6514b74"><td class="mdescLeft">&#160;</td><td class="mdescRight">The amount of the currency that will be paid for the post in the smallest units of the currency, i.e. Telegram Stars or nanograms. Currently, price in Telegram Stars must be between 5 and 100000, and price in nanograms must be between 10000000 and 10000000000000.  <br /></td></tr>
+<tr class="memitem:a3c127ea21137187f8e85d9ace448120a" id="r_a3c127ea21137187f8e85d9ace448120a"><td class="memItemLeft">std::uint64_t&#160;</td><td class="memItemRight"><a class="el" href="#a3c127ea21137187f8e85d9ace448120a">amount</a> { }</td></tr>
+<tr class="memdesc:a3c127ea21137187f8e85d9ace448120a"><td class="mdescLeft">&#160;</td><td class="mdescRight">The amount of the currency that will be paid for the post in the smallest units of the currency, i.e. Telegram Stars or nanograms. Currently, price in Telegram Stars must be between 5 and 100000, and price in nanograms must be between 10000000 and 10000000000000.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Describes the price of a suggested post. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l13026">13026</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l13473">13473</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 </div><a name="doc-typedef-members" id="doc-typedef-members"></a><h2 id="header-doc-typedef-members" class="groupheader">Member Typedef Documentation</h2>
 <a id="acd383a13c23af61210722b994b9adb62" name="acd383a13c23af61210722b994b9adb62"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#acd383a13c23af61210722b994b9adb62">&#9670;&#160;</a></span>Ptr</h2>
@@ -146,26 +146,26 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l13027">13027</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l13474">13474</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
 <a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
-<a id="a9429fc83515ca0d2fe4277c9b6514b74" name="a9429fc83515ca0d2fe4277c9b6514b74"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9429fc83515ca0d2fe4277c9b6514b74">&#9670;&#160;</a></span>amount</h2>
+<a id="a3c127ea21137187f8e85d9ace448120a" name="a3c127ea21137187f8e85d9ace448120a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3c127ea21137187f8e85d9ace448120a">&#9670;&#160;</a></span>amount</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::int32_t TgBot::SuggestedPostPrice::amount { }</td>
+          <td class="memname">std::uint64_t TgBot::SuggestedPostPrice::amount { }</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>The amount of the currency that will be paid for the post in the smallest units of the currency, i.e. Telegram Stars or nanograms. Currently, price in Telegram Stars must be between 5 and 100000, and price in nanograms must be between 10000000 and 10000000000000. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l13040">13040</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l13487">13487</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -183,7 +183,7 @@ Public Attributes</h2></td></tr>
 
 <p>Currency in which the post will be paid. Currently, must be one of “XTR” for Telegram Stars or “TON” for TON grams. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l13033">13033</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l13480">13480</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>

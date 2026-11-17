@@ -126,8 +126,8 @@ Public Types</h2></td></tr>
 Public Attributes</h2></td></tr>
 <tr class="memitem:ae0502a1778bdd6a5717c034b31f690d2" id="r_ae0502a1778bdd6a5717c034b31f690d2"><td class="memItemLeft">std::string&#160;</td><td class="memItemRight"><a class="el" href="#ae0502a1778bdd6a5717c034b31f690d2">type</a> { <a class="el" href="#a74bc6eb01b2c3be810fd31d4b4591bd1">TYPE</a> }</td></tr>
 <tr class="memdesc:ae0502a1778bdd6a5717c034b31f690d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Scope type, must be chat.  <br /></td></tr>
-<tr class="memitem:a06b7d06920da2e9c88dfc7243d8c12a9" id="r_a06b7d06920da2e9c88dfc7243d8c12a9"><td class="memItemLeft">std::int64_t&#160;</td><td class="memItemRight"><a class="el" href="#a06b7d06920da2e9c88dfc7243d8c12a9">chatId</a> { }</td></tr>
-<tr class="memdesc:a06b7d06920da2e9c88dfc7243d8c12a9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unique identifier for the target chat or username of the target supergroup in the format @username. Channel direct messages chats and channel chats aren't supported.  <br /></td></tr>
+<tr class="memitem:a54d38d63343cdec12963c757238f40d7" id="r_a54d38d63343cdec12963c757238f40d7"><td class="memItemLeft">std::variant&lt; std::int64_t, std::string &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a54d38d63343cdec12963c757238f40d7">chatId</a> { }</td></tr>
+<tr class="memdesc:a54d38d63343cdec12963c757238f40d7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unique identifier for the target chat or username of the target supergroup in the format @username. Channel direct messages chats and channel chats aren't supported.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-static-attribs" class="groupheader"><a id="pub-static-attribs" name="pub-static-attribs"></a>
 Static Public Attributes</h2></td></tr>
@@ -136,7 +136,7 @@ Static Public Attributes</h2></td></tr>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Represents the scope of bot commands, covering a specific chat. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l00971">971</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l01035">1035</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 </div><a name="doc-typedef-members" id="doc-typedef-members"></a><h2 id="header-doc-typedef-members" class="groupheader">Member Typedef Documentation</h2>
 <a id="a8f04acb987d6155646917f957ba87218" name="a8f04acb987d6155646917f957ba87218"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a8f04acb987d6155646917f957ba87218">&#9670;&#160;</a></span>Ptr</h2>
@@ -150,26 +150,26 @@ Static Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l00972">972</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l01036">1036</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
 <a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
-<a id="a06b7d06920da2e9c88dfc7243d8c12a9" name="a06b7d06920da2e9c88dfc7243d8c12a9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a06b7d06920da2e9c88dfc7243d8c12a9">&#9670;&#160;</a></span>chatId</h2>
+<a id="a54d38d63343cdec12963c757238f40d7" name="a54d38d63343cdec12963c757238f40d7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a54d38d63343cdec12963c757238f40d7">&#9670;&#160;</a></span>chatId</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::int64_t TgBot::BotCommandScopeChat::chatId { }</td>
+          <td class="memname">std::variant&lt;std::int64_t, std::string&gt; TgBot::BotCommandScopeChat::chatId { }</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Unique identifier for the target chat or username of the target supergroup in the format @username. Channel direct messages chats and channel chats aren't supported. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l00984">984</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l01048">1048</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -193,7 +193,7 @@ Static Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l00974">974</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l01038">1038</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -211,7 +211,7 @@ Static Public Attributes</h2></td></tr>
 
 <p>Scope type, must be chat. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l00979">979</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l01043">1043</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>

@@ -113,7 +113,7 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('struct_tg_bot_
 </div><!--header-->
 <div class="contents">
 
-<p>Arguments for <a class="el" href="class_tg_bot_1_1_api.html#aebaac21cc4047a14f43c491e5aa739df" title="Use this method to send a game. On success, the sent Message is returned.">Api::sendGame</a>.  
+<p>Arguments for <a class="el" href="class_tg_bot_1_1_api.html#a794f36721db04280ecd8def6e054b797" title="Use this method to send a game. On success, the sent Message is returned.">Api::sendGame</a>.  
  <a href="#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="_types_8h_source.html">Types.h</a>&gt;</code></p>
@@ -130,8 +130,8 @@ Public Attributes</h2></td></tr>
 <tr class="memdesc:a32091a4edfd61f2aea21479f12221a47"><td class="mdescLeft">&#160;</td><td class="mdescRight">A JSON-serialized object for an inline keyboard. If empty, one 'Play game_title' button will be shown. If not empty, the first button must launch the game.  <br /></td></tr>
 <tr class="memitem:ac22d1f4a6dfa379a425398b16473f3df" id="r_ac22d1f4a6dfa379a425398b16473f3df"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#ac22d1f4a6dfa379a425398b16473f3df">disableNotification</a> = false</td></tr>
 <tr class="memdesc:ac22d1f4a6dfa379a425398b16473f3df"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends the message silently. Users will receive a notification with no sound.  <br /></td></tr>
-<tr class="memitem:ace5ea152c6cdce5d0dbdcc00c34e9bd1" id="r_ace5ea152c6cdce5d0dbdcc00c34e9bd1"><td class="memItemLeft">std::int32_t&#160;</td><td class="memItemRight"><a class="el" href="#ace5ea152c6cdce5d0dbdcc00c34e9bd1">messageThreadId</a> = 0</td></tr>
-<tr class="memdesc:ace5ea152c6cdce5d0dbdcc00c34e9bd1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unique identifier for the target message thread (topic) of a forum; for forum supergroups and private chats of bots with forum topic mode enabled only.  <br /></td></tr>
+<tr class="memitem:ad89b9df9ff203f206e1d4c2929271335" id="r_ad89b9df9ff203f206e1d4c2929271335"><td class="memItemLeft">std::uint32_t&#160;</td><td class="memItemRight"><a class="el" href="#ad89b9df9ff203f206e1d4c2929271335">messageThreadId</a> = 0</td></tr>
+<tr class="memdesc:ad89b9df9ff203f206e1d4c2929271335"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unique identifier for the target message thread (topic) of a forum; for forum supergroups and private chats of bots with forum topic mode enabled only.  <br /></td></tr>
 <tr class="memitem:a2d8b38dc3f0dfb4dd168ec2c626176b5" id="r_a2d8b38dc3f0dfb4dd168ec2c626176b5"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a2d8b38dc3f0dfb4dd168ec2c626176b5">protectContent</a> = false</td></tr>
 <tr class="memdesc:a2d8b38dc3f0dfb4dd168ec2c626176b5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Protects the contents of the sent message from forwarding and saving.  <br /></td></tr>
 <tr class="memitem:a80353841f3c662d575baeb06d14f282f" id="r_a80353841f3c662d575baeb06d14f282f"><td class="memItemLeft">std::string&#160;</td><td class="memItemRight"><a class="el" href="#a80353841f3c662d575baeb06d14f282f">businessConnectionId</a> = &quot;&quot;</td></tr>
@@ -142,9 +142,9 @@ Public Attributes</h2></td></tr>
 <tr class="memdesc:ad1f314c97f6cf9cb8ae5c8bdeaf73b64"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unique identifier of the message effect to be added to the message; for private chats only.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Arguments for <a class="el" href="class_tg_bot_1_1_api.html#aebaac21cc4047a14f43c491e5aa739df" title="Use this method to send a game. On success, the sent Message is returned.">Api::sendGame</a>. </p>
+<div class="textblock"><p>Arguments for <a class="el" href="class_tg_bot_1_1_api.html#a794f36721db04280ecd8def6e054b797" title="Use this method to send a game. On success, the sent Message is returned.">Api::sendGame</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l18185">18185</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l19119">19119</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 </div><a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
 <a id="a04cf0975985cb61892ebb37b33c069fd" name="a04cf0975985cb61892ebb37b33c069fd"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a04cf0975985cb61892ebb37b33c069fd">&#9670;&#160;</a></span>allowPaidBroadcast</h2>
@@ -160,7 +160,7 @@ Public Attributes</h2></td></tr>
 
 <p>Pass True to allow up to 1000 messages per second, ignoring broadcasting limits for a fee of 0.1 Telegram Stars per message. The relevant Stars will be withdrawn from the bot's balance. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l18240">18240</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l19174">19174</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -178,7 +178,7 @@ Public Attributes</h2></td></tr>
 
 <p>Unique identifier of the business connection on behalf of which the message will be sent. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l18233">18233</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l19167">19167</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -196,7 +196,7 @@ Public Attributes</h2></td></tr>
 
 <p>Unique identifier for the target chat or username of the target bot in the format @username. Games can't be sent to channel direct messages chats and channel chats. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l18191">18191</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l19125">19125</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -214,7 +214,7 @@ Public Attributes</h2></td></tr>
 
 <p>Sends the message silently. Users will receive a notification with no sound. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l18215">18215</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l19149">19149</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -232,7 +232,7 @@ Public Attributes</h2></td></tr>
 
 <p>Short name of the game, serves as the unique identifier for the game. Set up your games via @BotFather. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l18197">18197</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l19131">19131</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -250,25 +250,25 @@ Public Attributes</h2></td></tr>
 
 <p>Unique identifier of the message effect to be added to the message; for private chats only. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l18246">18246</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l19180">19180</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
-<a id="ace5ea152c6cdce5d0dbdcc00c34e9bd1" name="ace5ea152c6cdce5d0dbdcc00c34e9bd1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ace5ea152c6cdce5d0dbdcc00c34e9bd1">&#9670;&#160;</a></span>messageThreadId</h2>
+<a id="ad89b9df9ff203f206e1d4c2929271335" name="ad89b9df9ff203f206e1d4c2929271335"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad89b9df9ff203f206e1d4c2929271335">&#9670;&#160;</a></span>messageThreadId</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::int32_t TgBot::SendGameArgs::messageThreadId = 0</td>
+          <td class="memname">std::uint32_t TgBot::SendGameArgs::messageThreadId = 0</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Unique identifier for the target message thread (topic) of a forum; for forum supergroups and private chats of bots with forum topic mode enabled only. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l18222">18222</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l19156">19156</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -286,7 +286,7 @@ Public Attributes</h2></td></tr>
 
 <p>Protects the contents of the sent message from forwarding and saving. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l18227">18227</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l19161">19161</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -304,7 +304,7 @@ Public Attributes</h2></td></tr>
 
 <p>A JSON-serialized object for an inline keyboard. If empty, one 'Play game_title' button will be shown. If not empty, the first button must launch the game. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l18209">18209</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l19143">19143</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -322,7 +322,7 @@ Public Attributes</h2></td></tr>
 
 <p>Description of the message to reply to. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l18202">18202</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l19136">19136</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>

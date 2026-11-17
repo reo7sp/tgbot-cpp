@@ -113,7 +113,7 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('struct_tg_bot_
 </div><!--header-->
 <div class="contents">
 
-<p>Arguments for <a class="el" href="class_tg_bot_1_1_api.html#aaa9d63205bcb5edd667e9dd6e5d3d89a" title="Use this method to send rich messages. If the message contains a block with a media element,...">Api::sendRichMessage</a>.  
+<p>Arguments for <a class="el" href="class_tg_bot_1_1_api.html#ae62da0fb86f98c660e93aed1a6e1155f" title="Use this method to send rich messages. If the message contains a block with a media element,...">Api::sendRichMessage</a>.  
  <a href="#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="_types_8h_source.html">Types.h</a>&gt;</code></p>
@@ -121,21 +121,21 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('struct_tg_bot_
 <tr class="heading"><td colspan="2"><h2 id="header-pub-attribs" class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:a3788901fe864566ea232c7ba3c4b4c4a" id="r_a3788901fe864566ea232c7ba3c4b4c4a"><td class="memItemLeft">std::variant&lt; std::int64_t, std::string &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a3788901fe864566ea232c7ba3c4b4c4a">chatId</a> { }</td></tr>
-<tr class="memdesc:a3788901fe864566ea232c7ba3c4b4c4a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unique identifier for the target chat or username of the target bot, supergroup or channel in the format @username.  <br /></td></tr>
+<tr class="memdesc:a3788901fe864566ea232c7ba3c4b4c4a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unique identifier for the target chat or username of the target bot, supergroup, or channel in the format @username; required unless the message is sent as an ephemeral reply to a callback query.  <br /></td></tr>
 <tr class="memitem:ae93139f34d2538070b9b45baebd32c4f" id="r_ae93139f34d2538070b9b45baebd32c4f"><td class="memItemLeft">std::shared_ptr&lt; <a class="el" href="struct_tg_bot_1_1_input_rich_message.html">InputRichMessage</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#ae93139f34d2538070b9b45baebd32c4f">richMessage</a> { }</td></tr>
 <tr class="memdesc:ae93139f34d2538070b9b45baebd32c4f"><td class="mdescLeft">&#160;</td><td class="mdescRight">The message to be sent.  <br /></td></tr>
 <tr class="memitem:a7897bad2d9072d6af80d0556b6c8ab24" id="r_a7897bad2d9072d6af80d0556b6c8ab24"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a7897bad2d9072d6af80d0556b6c8ab24">allowPaidBroadcast</a> = false</td></tr>
 <tr class="memdesc:a7897bad2d9072d6af80d0556b6c8ab24"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pass True to allow up to 1000 messages per second, ignoring broadcasting limits for a fee of 0.1 Telegram Stars per message. The relevant Stars will be withdrawn from the bot's balance.  <br /></td></tr>
 <tr class="memitem:a53e65e6dc27041185239f1742d522953" id="r_a53e65e6dc27041185239f1742d522953"><td class="memItemLeft">std::string&#160;</td><td class="memItemRight"><a class="el" href="#a53e65e6dc27041185239f1742d522953">businessConnectionId</a> = &quot;&quot;</td></tr>
 <tr class="memdesc:a53e65e6dc27041185239f1742d522953"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unique identifier of the business connection on behalf of which the message will be sent. <a class="el" href="class_tg_bot_1_1_bot.html" title="This object holds other objects specific for this bot instance.">Bot</a> can send rich messages on behalf of a business account only if the corresponding user can send rich messages.  <br /></td></tr>
-<tr class="memitem:a313bdf5af5a31fcddd500b3da05b498a" id="r_a313bdf5af5a31fcddd500b3da05b498a"><td class="memItemLeft">std::int64_t&#160;</td><td class="memItemRight"><a class="el" href="#a313bdf5af5a31fcddd500b3da05b498a">directMessagesTopicId</a> = 0</td></tr>
-<tr class="memdesc:a313bdf5af5a31fcddd500b3da05b498a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Identifier of the direct messages topic to which the message will be sent; required if the message is sent to a direct messages chat.  <br /></td></tr>
+<tr class="memitem:aebdd68f93f9a2d3b6c8bfd911115f826" id="r_aebdd68f93f9a2d3b6c8bfd911115f826"><td class="memItemLeft">std::uint64_t&#160;</td><td class="memItemRight"><a class="el" href="#aebdd68f93f9a2d3b6c8bfd911115f826">directMessagesTopicId</a> = 0</td></tr>
+<tr class="memdesc:aebdd68f93f9a2d3b6c8bfd911115f826"><td class="mdescLeft">&#160;</td><td class="mdescRight">Identifier of the direct messages topic to which the message will be sent; required if the message is sent to a direct messages chat.  <br /></td></tr>
 <tr class="memitem:a4e5491e34526a5fcb304f9bf1c36f248" id="r_a4e5491e34526a5fcb304f9bf1c36f248"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a4e5491e34526a5fcb304f9bf1c36f248">disableNotification</a> = false</td></tr>
 <tr class="memdesc:a4e5491e34526a5fcb304f9bf1c36f248"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends the message silently. Users will receive a notification with no sound.  <br /></td></tr>
 <tr class="memitem:af832b591816960a7a28cfa02fc0907ac" id="r_af832b591816960a7a28cfa02fc0907ac"><td class="memItemLeft">std::string&#160;</td><td class="memItemRight"><a class="el" href="#af832b591816960a7a28cfa02fc0907ac">messageEffectId</a> = &quot;&quot;</td></tr>
 <tr class="memdesc:af832b591816960a7a28cfa02fc0907ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unique identifier of the message effect to be added to the message; for private chats only.  <br /></td></tr>
-<tr class="memitem:aa8902e1b7aca06eac52c5579a4899020" id="r_aa8902e1b7aca06eac52c5579a4899020"><td class="memItemLeft">std::int32_t&#160;</td><td class="memItemRight"><a class="el" href="#aa8902e1b7aca06eac52c5579a4899020">messageThreadId</a> = 0</td></tr>
-<tr class="memdesc:aa8902e1b7aca06eac52c5579a4899020"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unique identifier for the target message thread (topic) of a forum; for forum supergroups and private chats of bots with forum topic mode enabled only.  <br /></td></tr>
+<tr class="memitem:a913f6a93bc449a3053a8c171267c38c6" id="r_a913f6a93bc449a3053a8c171267c38c6"><td class="memItemLeft">std::uint32_t&#160;</td><td class="memItemRight"><a class="el" href="#a913f6a93bc449a3053a8c171267c38c6">messageThreadId</a> = 0</td></tr>
+<tr class="memdesc:a913f6a93bc449a3053a8c171267c38c6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unique identifier for the target message thread (topic) of a forum; for forum supergroups and private chats of bots with forum topic mode enabled only.  <br /></td></tr>
 <tr class="memitem:a5c295a2cba743a4d9e0a3b374d7b234a" id="r_a5c295a2cba743a4d9e0a3b374d7b234a"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a5c295a2cba743a4d9e0a3b374d7b234a">protectContent</a> = false</td></tr>
 <tr class="memdesc:a5c295a2cba743a4d9e0a3b374d7b234a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Protects the contents of the sent message from forwarding and saving.  <br /></td></tr>
 <tr class="memitem:a4c2b73e2869c1df40fe849ffb504f25a" id="r_a4c2b73e2869c1df40fe849ffb504f25a"><td class="memItemLeft">std::variant&lt; std::shared_ptr&lt; <a class="el" href="struct_tg_bot_1_1_inline_keyboard_markup.html">InlineKeyboardMarkup</a> &gt;, std::shared_ptr&lt; <a class="el" href="struct_tg_bot_1_1_reply_keyboard_markup.html">ReplyKeyboardMarkup</a> &gt;, std::shared_ptr&lt; <a class="el" href="struct_tg_bot_1_1_reply_keyboard_remove.html">ReplyKeyboardRemove</a> &gt;, std::shared_ptr&lt; <a class="el" href="struct_tg_bot_1_1_force_reply.html">ForceReply</a> &gt; &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a4c2b73e2869c1df40fe849ffb504f25a">replyMarkup</a> = { }</td></tr>
@@ -150,9 +150,9 @@ Public Attributes</h2></td></tr>
 <tr class="memdesc:af0fb4bfb26ae22b264e6caa07756f083"><td class="mdescLeft">&#160;</td><td class="mdescRight">A JSON-serialized object containing the parameters of the ephemeral message to send.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Arguments for <a class="el" href="class_tg_bot_1_1_api.html#aaa9d63205bcb5edd667e9dd6e5d3d89a" title="Use this method to send rich messages. If the message contains a block with a media element,...">Api::sendRichMessage</a>. </p>
+<div class="textblock"><p>Arguments for <a class="el" href="class_tg_bot_1_1_api.html#ae62da0fb86f98c660e93aed1a6e1155f" title="Use this method to send rich messages. If the message contains a block with a media element,...">Api::sendRichMessage</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l19482">19482</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l20421">20421</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 </div><a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
 <a id="a7897bad2d9072d6af80d0556b6c8ab24" name="a7897bad2d9072d6af80d0556b6c8ab24"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a7897bad2d9072d6af80d0556b6c8ab24">&#9670;&#160;</a></span>allowPaidBroadcast</h2>
@@ -168,7 +168,7 @@ Public Attributes</h2></td></tr>
 
 <p>Pass True to allow up to 1000 messages per second, ignoring broadcasting limits for a fee of 0.1 Telegram Stars per message. The relevant Stars will be withdrawn from the bot's balance. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l19499">19499</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l20439">20439</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -186,7 +186,7 @@ Public Attributes</h2></td></tr>
 
 <p>Files uploaded as named multipart parts. Reference each file from a composite Telegram API argument as attach://&lt;name&gt; and use the same name in <a class="el" href="struct_tg_bot_1_1_input_file_attachment.html" title="A named multipart file referenced from a Telegram API argument as attach://name.">InputFileAttachment</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l19565">19565</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l20505">20505</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -204,7 +204,7 @@ Public Attributes</h2></td></tr>
 
 <p>Unique identifier of the business connection on behalf of which the message will be sent. <a class="el" href="class_tg_bot_1_1_bot.html" title="This object holds other objects specific for this bot instance.">Bot</a> can send rich messages on behalf of a business account only if the corresponding user can send rich messages. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l19506">19506</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l20446">20446</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -220,27 +220,27 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Unique identifier for the target chat or username of the target bot, supergroup or channel in the format @username. </p>
+<p>Unique identifier for the target chat or username of the target bot, supergroup, or channel in the format @username; required unless the message is sent as an ephemeral reply to a callback query. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l19487">19487</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l20427">20427</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
-<a id="a313bdf5af5a31fcddd500b3da05b498a" name="a313bdf5af5a31fcddd500b3da05b498a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a313bdf5af5a31fcddd500b3da05b498a">&#9670;&#160;</a></span>directMessagesTopicId</h2>
+<a id="aebdd68f93f9a2d3b6c8bfd911115f826" name="aebdd68f93f9a2d3b6c8bfd911115f826"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aebdd68f93f9a2d3b6c8bfd911115f826">&#9670;&#160;</a></span>directMessagesTopicId</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::int64_t TgBot::SendRichMessageArgs::directMessagesTopicId = 0</td>
+          <td class="memname">std::uint64_t TgBot::SendRichMessageArgs::directMessagesTopicId = 0</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Identifier of the direct messages topic to which the message will be sent; required if the message is sent to a direct messages chat. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l19512">19512</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l20452">20452</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -258,7 +258,7 @@ Public Attributes</h2></td></tr>
 
 <p>Sends the message silently. Users will receive a notification with no sound. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l19518">19518</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l20458">20458</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -276,7 +276,7 @@ Public Attributes</h2></td></tr>
 
 <p>A JSON-serialized object containing the parameters of the ephemeral message to send. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l19571">19571</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l20511">20511</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -294,25 +294,25 @@ Public Attributes</h2></td></tr>
 
 <p>Unique identifier of the message effect to be added to the message; for private chats only. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l19524">19524</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l20464">20464</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
-<a id="aa8902e1b7aca06eac52c5579a4899020" name="aa8902e1b7aca06eac52c5579a4899020"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa8902e1b7aca06eac52c5579a4899020">&#9670;&#160;</a></span>messageThreadId</h2>
+<a id="a913f6a93bc449a3053a8c171267c38c6" name="a913f6a93bc449a3053a8c171267c38c6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a913f6a93bc449a3053a8c171267c38c6">&#9670;&#160;</a></span>messageThreadId</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::int32_t TgBot::SendRichMessageArgs::messageThreadId = 0</td>
+          <td class="memname">std::uint32_t TgBot::SendRichMessageArgs::messageThreadId = 0</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Unique identifier for the target message thread (topic) of a forum; for forum supergroups and private chats of bots with forum topic mode enabled only. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l19531">19531</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l20471">20471</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -330,7 +330,7 @@ Public Attributes</h2></td></tr>
 
 <p>Protects the contents of the sent message from forwarding and saving. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l19536">19536</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l20476">20476</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -348,7 +348,7 @@ Public Attributes</h2></td></tr>
 
 <p>Additional interface options. A JSON-serialized object for an inline keyboard, custom reply keyboard, instructions to remove a reply keyboard or to force a reply from the user. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l19545">19545</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l20485">20485</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -366,7 +366,7 @@ Public Attributes</h2></td></tr>
 
 <p>Description of the message to reply to. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l19550">19550</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l20490">20490</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -384,7 +384,7 @@ Public Attributes</h2></td></tr>
 
 <p>The message to be sent. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l19492">19492</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l20432">20432</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -402,7 +402,7 @@ Public Attributes</h2></td></tr>
 
 <p>A JSON-serialized object containing the parameters of the suggested post to send; for direct messages chats only. If the message is sent as a reply to another suggested post, then that suggested post is automatically declined. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l19558">19558</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l20498">20498</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>

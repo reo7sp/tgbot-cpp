@@ -132,10 +132,10 @@ Public Attributes</h2></td></tr>
 <tr class="memdesc:a0ad0da22b0a217208453aea34ed9a2c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">A valid URL of the photo. Photo must be in JPEG format. Photo size must not exceed 5MB.  <br /></td></tr>
 <tr class="memitem:a1282671c10b281e6c7875c16e4becc57" id="r_a1282671c10b281e6c7875c16e4becc57"><td class="memItemLeft">std::string&#160;</td><td class="memItemRight"><a class="el" href="#a1282671c10b281e6c7875c16e4becc57">thumbnailUrl</a> { }</td></tr>
 <tr class="memdesc:a1282671c10b281e6c7875c16e4becc57"><td class="mdescLeft">&#160;</td><td class="mdescRight">URL of the thumbnail for the photo.  <br /></td></tr>
-<tr class="memitem:a1cff5851638593761c058f371714455e" id="r_a1cff5851638593761c058f371714455e"><td class="memItemLeft">std::optional&lt; std::int32_t &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a1cff5851638593761c058f371714455e">photoWidth</a> { }</td></tr>
-<tr class="memdesc:a1cff5851638593761c058f371714455e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. Width of the photo.  <br /></td></tr>
-<tr class="memitem:a6a1fb71d5f79adedde3c7a2b41115337" id="r_a6a1fb71d5f79adedde3c7a2b41115337"><td class="memItemLeft">std::optional&lt; std::int32_t &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a6a1fb71d5f79adedde3c7a2b41115337">photoHeight</a> { }</td></tr>
-<tr class="memdesc:a6a1fb71d5f79adedde3c7a2b41115337"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. Height of the photo.  <br /></td></tr>
+<tr class="memitem:a36025e4cc965c9fecd9a03017168e480" id="r_a36025e4cc965c9fecd9a03017168e480"><td class="memItemLeft">std::optional&lt; std::uint32_t &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a36025e4cc965c9fecd9a03017168e480">photoWidth</a> { }</td></tr>
+<tr class="memdesc:a36025e4cc965c9fecd9a03017168e480"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. Width of the photo.  <br /></td></tr>
+<tr class="memitem:a27ad23e07eea031b2df74f02595fb0d8" id="r_a27ad23e07eea031b2df74f02595fb0d8"><td class="memItemLeft">std::optional&lt; std::uint32_t &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a27ad23e07eea031b2df74f02595fb0d8">photoHeight</a> { }</td></tr>
+<tr class="memdesc:a27ad23e07eea031b2df74f02595fb0d8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. Height of the photo.  <br /></td></tr>
 <tr class="memitem:a6ebae2354ff1cf73e4e173a6e8324854" id="r_a6ebae2354ff1cf73e4e173a6e8324854"><td class="memItemLeft">std::optional&lt; std::string &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a6ebae2354ff1cf73e4e173a6e8324854">title</a> { }</td></tr>
 <tr class="memdesc:a6ebae2354ff1cf73e4e173a6e8324854"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. Title for the result.  <br /></td></tr>
 <tr class="memitem:a45b5491b14168b41627dcafccb7b2365" id="r_a45b5491b14168b41627dcafccb7b2365"><td class="memItemLeft">std::optional&lt; std::string &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a45b5491b14168b41627dcafccb7b2365">description</a> { }</td></tr>
@@ -160,7 +160,7 @@ Static Public Attributes</h2></td></tr>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Represents a link to a photo. By default, this photo will be sent by the user with optional caption. Alternatively, you can use input_message_content to send a message with the specified content instead of the photo. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l05150">5150</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l05403">5403</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 </div><a name="doc-typedef-members" id="doc-typedef-members"></a><h2 id="header-doc-typedef-members" class="groupheader">Member Typedef Documentation</h2>
 <a id="a0bde3d00f73aa613cc00a7c8d367f5e0" name="a0bde3d00f73aa613cc00a7c8d367f5e0"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a0bde3d00f73aa613cc00a7c8d367f5e0">&#9670;&#160;</a></span>Ptr</h2>
@@ -174,7 +174,7 @@ Static Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l05151">5151</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l05404">5404</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -193,7 +193,7 @@ Static Public Attributes</h2></td></tr>
 
 <p>Optional. Caption of the photo to be sent, 0-1024 characters after entities parsing. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l05190">5190</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l05443">5443</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -211,7 +211,7 @@ Static Public Attributes</h2></td></tr>
 
 <p>Optional. List of special entities that appear in the caption, which can be specified instead of parse_mode. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l05200">5200</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l05453">5453</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -229,7 +229,7 @@ Static Public Attributes</h2></td></tr>
 
 <p>Optional. Short description of the result. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l05186">5186</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l05439">5439</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -247,7 +247,7 @@ Static Public Attributes</h2></td></tr>
 
 <p>Unique identifier for this result, 1-64 bytes. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l05162">5162</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l05415">5415</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -265,7 +265,7 @@ Static Public Attributes</h2></td></tr>
 
 <p>Optional. Content of the message to be sent instead of the photo. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l05212">5212</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l05465">5465</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -283,25 +283,25 @@ Static Public Attributes</h2></td></tr>
 
 <p>Optional. Mode for parsing entities in the photo caption. See formatting options for more details. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l05195">5195</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l05448">5448</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
-<a id="a6a1fb71d5f79adedde3c7a2b41115337" name="a6a1fb71d5f79adedde3c7a2b41115337"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6a1fb71d5f79adedde3c7a2b41115337">&#9670;&#160;</a></span>photoHeight</h2>
+<a id="a27ad23e07eea031b2df74f02595fb0d8" name="a27ad23e07eea031b2df74f02595fb0d8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a27ad23e07eea031b2df74f02595fb0d8">&#9670;&#160;</a></span>photoHeight</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::optional&lt;std::int32_t&gt; TgBot::InlineQueryResultPhoto::photoHeight { }</td>
+          <td class="memname">std::optional&lt;std::uint32_t&gt; TgBot::InlineQueryResultPhoto::photoHeight { }</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Optional. Height of the photo. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l05178">5178</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l05431">5431</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -319,25 +319,25 @@ Static Public Attributes</h2></td></tr>
 
 <p>A valid URL of the photo. Photo must be in JPEG format. Photo size must not exceed 5MB. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l05166">5166</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l05419">5419</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
-<a id="a1cff5851638593761c058f371714455e" name="a1cff5851638593761c058f371714455e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1cff5851638593761c058f371714455e">&#9670;&#160;</a></span>photoWidth</h2>
+<a id="a36025e4cc965c9fecd9a03017168e480" name="a36025e4cc965c9fecd9a03017168e480"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a36025e4cc965c9fecd9a03017168e480">&#9670;&#160;</a></span>photoWidth</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::optional&lt;std::int32_t&gt; TgBot::InlineQueryResultPhoto::photoWidth { }</td>
+          <td class="memname">std::optional&lt;std::uint32_t&gt; TgBot::InlineQueryResultPhoto::photoWidth { }</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Optional. Width of the photo. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l05174">5174</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l05427">5427</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -355,7 +355,7 @@ Static Public Attributes</h2></td></tr>
 
 <p>Optional. Inline keyboard attached to the message. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l05208">5208</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l05461">5461</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -373,7 +373,7 @@ Static Public Attributes</h2></td></tr>
 
 <p>Optional. Pass True if the caption must be shown above the message media. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l05204">5204</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l05457">5457</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -391,7 +391,7 @@ Static Public Attributes</h2></td></tr>
 
 <p>URL of the thumbnail for the photo. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l05170">5170</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l05423">5423</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -409,7 +409,7 @@ Static Public Attributes</h2></td></tr>
 
 <p>Optional. Title for the result. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l05182">5182</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l05435">5435</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -433,7 +433,7 @@ Static Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l05153">5153</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l05406">5406</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -451,7 +451,7 @@ Static Public Attributes</h2></td></tr>
 
 <p>Type of the result, must be photo. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l05158">5158</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l05411">5411</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>

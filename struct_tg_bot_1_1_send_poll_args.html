@@ -113,7 +113,7 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('struct_tg_bot_
 </div><!--header-->
 <div class="contents">
 
-<p>Arguments for <a class="el" href="class_tg_bot_1_1_api.html#a5306250f9ec3af623246df89343c3d74" title="Use this method to send a native poll. On success, the sent Message is returned.">Api::sendPoll</a>.  
+<p>Arguments for <a class="el" href="class_tg_bot_1_1_api.html#acfb228bc6e017cf3f1cf14da2b7845f4" title="Use this method to send a native poll. On success, the sent Message is returned.">Api::sendPoll</a>.  
  <a href="#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="_types_8h_source.html">Types.h</a>&gt;</code></p>
@@ -121,7 +121,7 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('struct_tg_bot_
 <tr class="heading"><td colspan="2"><h2 id="header-pub-attribs" class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:ae39da68152bad5eefeb99e29c3009f53" id="r_ae39da68152bad5eefeb99e29c3009f53"><td class="memItemLeft">std::variant&lt; std::int64_t, std::string &gt;&#160;</td><td class="memItemRight"><a class="el" href="#ae39da68152bad5eefeb99e29c3009f53">chatId</a> { }</td></tr>
-<tr class="memdesc:ae39da68152bad5eefeb99e29c3009f53"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unique identifier for the target chat or username of the target bot, supergroup or channel in the format @username. Polls can't be sent to channel direct messages chats.  <br /></td></tr>
+<tr class="memdesc:ae39da68152bad5eefeb99e29c3009f53"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unique identifier for the target chat or username of the target bot, supergroup, or channel in the format @username. Polls can't be sent to channel direct messages chats.  <br /></td></tr>
 <tr class="memitem:aace69fb131b93d449593699ddfa37fe6" id="r_aace69fb131b93d449593699ddfa37fe6"><td class="memItemLeft">std::string&#160;</td><td class="memItemRight"><a class="el" href="#aace69fb131b93d449593699ddfa37fe6">question</a> { }</td></tr>
 <tr class="memdesc:aace69fb131b93d449593699ddfa37fe6"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="struct_tg_bot_1_1_poll.html" title="This object contains information about a poll.">Poll</a> question, 1-300 characters.  <br /></td></tr>
 <tr class="memitem:a29fa453ce2c83decd7a6a9c4cdbb9251" id="r_a29fa453ce2c83decd7a6a9c4cdbb9251"><td class="memItemLeft">std::vector&lt; std::shared_ptr&lt; <a class="el" href="struct_tg_bot_1_1_input_poll_option.html">InputPollOption</a> &gt; &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a29fa453ce2c83decd7a6a9c4cdbb9251">options</a> { }</td></tr>
@@ -144,14 +144,14 @@ Public Attributes</h2></td></tr>
 <tr class="memdesc:a0dece0ee03ca29844a233fec36396ed4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mode for parsing entities in the explanation. See formatting options for more details.  <br /></td></tr>
 <tr class="memitem:ab171ca3a710e20c9e656bb87e43591ff" id="r_ab171ca3a710e20c9e656bb87e43591ff"><td class="memItemLeft">std::vector&lt; std::shared_ptr&lt; <a class="el" href="struct_tg_bot_1_1_message_entity.html">MessageEntity</a> &gt; &gt;&#160;</td><td class="memItemRight"><a class="el" href="#ab171ca3a710e20c9e656bb87e43591ff">explanationEntities</a> = { }</td></tr>
 <tr class="memdesc:ab171ca3a710e20c9e656bb87e43591ff"><td class="mdescLeft">&#160;</td><td class="mdescRight">A JSON-serialized list of special entities that appear in the poll explanation. It can be specified instead of explanation_parse_mode.  <br /></td></tr>
-<tr class="memitem:aa352aeb358f8c3286a32d778301f753e" id="r_aa352aeb358f8c3286a32d778301f753e"><td class="memItemLeft">std::int32_t&#160;</td><td class="memItemRight"><a class="el" href="#aa352aeb358f8c3286a32d778301f753e">openPeriod</a> = 0</td></tr>
-<tr class="memdesc:aa352aeb358f8c3286a32d778301f753e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Amount of time in seconds the poll will be active after creation, 5-2628000. Can't be used together with close_date.  <br /></td></tr>
+<tr class="memitem:aba8ec523509a74831ee8aec8c2fedca2" id="r_aba8ec523509a74831ee8aec8c2fedca2"><td class="memItemLeft">std::uint32_t&#160;</td><td class="memItemRight"><a class="el" href="#aba8ec523509a74831ee8aec8c2fedca2">openPeriod</a> = 0</td></tr>
+<tr class="memdesc:aba8ec523509a74831ee8aec8c2fedca2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Amount of time in seconds the poll will be active after creation, 5-2628000. Can't be used together with close_date.  <br /></td></tr>
 <tr class="memitem:ad563188993375f6c675ad6abc781fc64" id="r_ad563188993375f6c675ad6abc781fc64"><td class="memItemLeft">std::int32_t&#160;</td><td class="memItemRight"><a class="el" href="#ad563188993375f6c675ad6abc781fc64">closeDate</a> = 0</td></tr>
 <tr class="memdesc:ad563188993375f6c675ad6abc781fc64"><td class="mdescLeft">&#160;</td><td class="mdescRight">Point in time (Unix timestamp) when the poll will be automatically closed. Must be at least 5 and no more than 2628000 seconds in the future. Can't be used together with open_period.  <br /></td></tr>
 <tr class="memitem:ab591bd259955ab47e3e5f66cf6c5728f" id="r_ab591bd259955ab47e3e5f66cf6c5728f"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#ab591bd259955ab47e3e5f66cf6c5728f">isClosed</a> = false</td></tr>
 <tr class="memdesc:ab591bd259955ab47e3e5f66cf6c5728f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pass True if the poll needs to be immediately closed. This can be useful for poll preview.  <br /></td></tr>
-<tr class="memitem:a66465316cd00c5deeead76b1d9c79acc" id="r_a66465316cd00c5deeead76b1d9c79acc"><td class="memItemLeft">std::int32_t&#160;</td><td class="memItemRight"><a class="el" href="#a66465316cd00c5deeead76b1d9c79acc">messageThreadId</a> = 0</td></tr>
-<tr class="memdesc:a66465316cd00c5deeead76b1d9c79acc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unique identifier for the target message thread (topic) of a forum; for forum supergroups and private chats of bots with forum topic mode enabled only.  <br /></td></tr>
+<tr class="memitem:afbf9806edb555d02a84939f9ce8174ba" id="r_afbf9806edb555d02a84939f9ce8174ba"><td class="memItemLeft">std::uint32_t&#160;</td><td class="memItemRight"><a class="el" href="#afbf9806edb555d02a84939f9ce8174ba">messageThreadId</a> = 0</td></tr>
+<tr class="memdesc:afbf9806edb555d02a84939f9ce8174ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unique identifier for the target message thread (topic) of a forum; for forum supergroups and private chats of bots with forum topic mode enabled only.  <br /></td></tr>
 <tr class="memitem:a5aaa78a4d8ec468193a1bd50414a5d80" id="r_a5aaa78a4d8ec468193a1bd50414a5d80"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a5aaa78a4d8ec468193a1bd50414a5d80">protectContent</a> = false</td></tr>
 <tr class="memdesc:a5aaa78a4d8ec468193a1bd50414a5d80"><td class="mdescLeft">&#160;</td><td class="mdescRight">Protects the contents of the sent message from forwarding and saving.  <br /></td></tr>
 <tr class="memitem:ab828503ed1579beb7bf3eac18b3f27d5" id="r_ab828503ed1579beb7bf3eac18b3f27d5"><td class="memItemLeft">std::string&#160;</td><td class="memItemRight"><a class="el" href="#ab828503ed1579beb7bf3eac18b3f27d5">businessConnectionId</a> = &quot;&quot;</td></tr>
@@ -162,8 +162,8 @@ Public Attributes</h2></td></tr>
 <tr class="memdesc:a6467e6dab43ed2e7a90013584f1633b1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pass True to allow up to 1000 messages per second, ignoring broadcasting limits for a fee of 0.1 Telegram Stars per message. The relevant Stars will be withdrawn from the bot's balance.  <br /></td></tr>
 <tr class="memitem:aff70a180b9966c154fb80cc2e0a13f9a" id="r_aff70a180b9966c154fb80cc2e0a13f9a"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#aff70a180b9966c154fb80cc2e0a13f9a">allowsRevoting</a> = false</td></tr>
 <tr class="memdesc:aff70a180b9966c154fb80cc2e0a13f9a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pass True if the poll allows to change chosen answer options, defaults to False for quizzes and to True for regular polls.  <br /></td></tr>
-<tr class="memitem:a2a603dd9ace7ad4a755291f2eaec7b09" id="r_a2a603dd9ace7ad4a755291f2eaec7b09"><td class="memItemLeft">std::vector&lt; std::int32_t &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a2a603dd9ace7ad4a755291f2eaec7b09">correctOptionIds</a> = { }</td></tr>
-<tr class="memdesc:a2a603dd9ace7ad4a755291f2eaec7b09"><td class="mdescLeft">&#160;</td><td class="mdescRight">A JSON-serialized list of monotonically increasing 0-based identifiers of the correct answer options, required for polls in quiz mode.  <br /></td></tr>
+<tr class="memitem:ac5544ad02e0765f7cf194e969cc9671d" id="r_ac5544ad02e0765f7cf194e969cc9671d"><td class="memItemLeft">std::vector&lt; std::uint32_t &gt;&#160;</td><td class="memItemRight"><a class="el" href="#ac5544ad02e0765f7cf194e969cc9671d">correctOptionIds</a> = { }</td></tr>
+<tr class="memdesc:ac5544ad02e0765f7cf194e969cc9671d"><td class="mdescLeft">&#160;</td><td class="mdescRight">A JSON-serialized list of monotonically increasing 0-based identifiers of the correct answer options, required for polls in quiz mode.  <br /></td></tr>
 <tr class="memitem:a3642deafc88f790d403dfda1090341cf" id="r_a3642deafc88f790d403dfda1090341cf"><td class="memItemLeft">std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a3642deafc88f790d403dfda1090341cf">countryCodes</a> = { }</td></tr>
 <tr class="memdesc:a3642deafc88f790d403dfda1090341cf"><td class="mdescLeft">&#160;</td><td class="mdescRight">A JSON-serialized list of 0-12 two-letter ISO 3166-1 alpha-2 country codes indicating the countries from which users can vote in the poll; for channel chats only. Use “FT” as a country code to allow users with anonymous numbers to vote. If omitted or empty, then users from any country can participate in the poll.  <br /></td></tr>
 <tr class="memitem:a0dd209865079f6554e5b27c8fbef1d4e" id="r_a0dd209865079f6554e5b27c8fbef1d4e"><td class="memItemLeft">std::string&#160;</td><td class="memItemRight"><a class="el" href="#a0dd209865079f6554e5b27c8fbef1d4e">description</a> = &quot;&quot;</td></tr>
@@ -190,9 +190,9 @@ Public Attributes</h2></td></tr>
 <tr class="memdesc:aec219feaf507b3b19ab28959bed2e59e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pass True if the poll options must be shown in random order.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Arguments for <a class="el" href="class_tg_bot_1_1_api.html#a5306250f9ec3af623246df89343c3d74" title="Use this method to send a native poll. On success, the sent Message is returned.">Api::sendPoll</a>. </p>
+<div class="textblock"><p>Arguments for <a class="el" href="class_tg_bot_1_1_api.html#acfb228bc6e017cf3f1cf14da2b7845f4" title="Use this method to send a native poll. On success, the sent Message is returned.">Api::sendPoll</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l19271">19271</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l20210">20210</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 </div><a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
 <a id="a1074cc1090117a1c9f01a3b77797d27b" name="a1074cc1090117a1c9f01a3b77797d27b"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a1074cc1090117a1c9f01a3b77797d27b">&#9670;&#160;</a></span>allowAddingOptions</h2>
@@ -208,7 +208,7 @@ Public Attributes</h2></td></tr>
 
 <p>Pass True if answer options can be added to the poll after creation; not supported for anonymous polls and quizzes. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l19384">19384</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l20323">20323</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -226,7 +226,7 @@ Public Attributes</h2></td></tr>
 
 <p>Pass True to allow up to 1000 messages per second, ignoring broadcasting limits for a fee of 0.1 Telegram Stars per message. The relevant Stars will be withdrawn from the bot's balance. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l19391">19391</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l20330">20330</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -244,7 +244,7 @@ Public Attributes</h2></td></tr>
 
 <p>Pass True if the poll allows multiple answers, defaults to False. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l19322">19322</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l20261">20261</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -262,7 +262,7 @@ Public Attributes</h2></td></tr>
 
 <p>Pass True if the poll allows to change chosen answer options, defaults to False for quizzes and to True for regular polls. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l19397">19397</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l20336">20336</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -280,7 +280,7 @@ Public Attributes</h2></td></tr>
 
 <p>Unique identifier of the business connection on behalf of which the message will be sent. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l19378">19378</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l20317">20317</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -296,9 +296,9 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Unique identifier for the target chat or username of the target bot, supergroup or channel in the format @username. Polls can't be sent to channel direct messages chats. </p>
+<p>Unique identifier for the target chat or username of the target bot, supergroup, or channel in the format @username. Polls can't be sent to channel direct messages chats. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l19277">19277</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l20216">20216</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -316,25 +316,25 @@ Public Attributes</h2></td></tr>
 
 <p>Point in time (Unix timestamp) when the poll will be automatically closed. Must be at least 5 and no more than 2628000 seconds in the future. Can't be used together with open_period. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l19354">19354</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l20293">20293</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
-<a id="a2a603dd9ace7ad4a755291f2eaec7b09" name="a2a603dd9ace7ad4a755291f2eaec7b09"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2a603dd9ace7ad4a755291f2eaec7b09">&#9670;&#160;</a></span>correctOptionIds</h2>
+<a id="ac5544ad02e0765f7cf194e969cc9671d" name="ac5544ad02e0765f7cf194e969cc9671d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac5544ad02e0765f7cf194e969cc9671d">&#9670;&#160;</a></span>correctOptionIds</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::vector&lt;std::int32_t&gt; TgBot::SendPollArgs::correctOptionIds = { }</td>
+          <td class="memname">std::vector&lt;std::uint32_t&gt; TgBot::SendPollArgs::correctOptionIds = { }</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>A JSON-serialized list of monotonically increasing 0-based identifiers of the correct answer options, required for polls in quiz mode. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l19403">19403</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l20342">20342</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -352,7 +352,7 @@ Public Attributes</h2></td></tr>
 
 <p>A JSON-serialized list of 0-12 two-letter ISO 3166-1 alpha-2 country codes indicating the countries from which users can vote in the poll; for channel chats only. Use “FT” as a country code to allow users with anonymous numbers to vote. If omitted or empty, then users from any country can participate in the poll. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l19412">19412</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l20351">20351</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -370,7 +370,7 @@ Public Attributes</h2></td></tr>
 
 <p>Description of the poll to be sent, 0-1024 characters after entities parsing. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l19418">19418</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l20357">20357</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -388,7 +388,7 @@ Public Attributes</h2></td></tr>
 
 <p>A JSON-serialized list of special entities that appear in the poll description, which can be specified instead of description_parse_mode. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l19424">19424</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l20363">20363</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -406,7 +406,7 @@ Public Attributes</h2></td></tr>
 
 <p>Mode for parsing entities in the poll description. See formatting options for more details. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l19430">19430</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l20369">20369</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -424,7 +424,7 @@ Public Attributes</h2></td></tr>
 
 <p>Sends the message silently. Users will receive a notification with no sound. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l19293">19293</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l20232">20232</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -442,7 +442,7 @@ Public Attributes</h2></td></tr>
 
 <p>Text that is shown when a user chooses an incorrect answer or taps on the lamp icon in a quiz-style poll, 0-200 characters with at most 2 line feeds after entities parsing. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l19329">19329</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l20268">20268</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -460,7 +460,7 @@ Public Attributes</h2></td></tr>
 
 <p>A JSON-serialized list of special entities that appear in the poll explanation. It can be specified instead of explanation_parse_mode. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l19341">19341</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l20280">20280</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -478,7 +478,7 @@ Public Attributes</h2></td></tr>
 
 <p>Media added to the quiz explanation. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l19435">19435</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l20374">20374</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -496,7 +496,7 @@ Public Attributes</h2></td></tr>
 
 <p>Mode for parsing entities in the explanation. See formatting options for more details. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l19335">19335</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l20274">20274</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -514,7 +514,7 @@ Public Attributes</h2></td></tr>
 
 <p>Pass True if poll results must be shown only after the poll closes. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l19440">19440</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l20379">20379</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -532,7 +532,7 @@ Public Attributes</h2></td></tr>
 
 <p>True, if the poll needs to be anonymous, defaults to True. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l19312">19312</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l20251">20251</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -550,7 +550,7 @@ Public Attributes</h2></td></tr>
 
 <p>Pass True if the poll needs to be immediately closed. This can be useful for poll preview. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l19360">19360</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l20299">20299</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -568,7 +568,7 @@ Public Attributes</h2></td></tr>
 
 <p>Media added to the poll description. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l19445">19445</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l20384">20384</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -586,7 +586,7 @@ Public Attributes</h2></td></tr>
 
 <p>Pass True if voting is limited to users who have been members of the chat where the poll is being sent for more than 24 hours; for channel chats only. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l19452">19452</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l20391">20391</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -604,43 +604,43 @@ Public Attributes</h2></td></tr>
 
 <p>Unique identifier of the message effect to be added to the message; for private chats only. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l19458">19458</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l20397">20397</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
-<a id="a66465316cd00c5deeead76b1d9c79acc" name="a66465316cd00c5deeead76b1d9c79acc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a66465316cd00c5deeead76b1d9c79acc">&#9670;&#160;</a></span>messageThreadId</h2>
+<a id="afbf9806edb555d02a84939f9ce8174ba" name="afbf9806edb555d02a84939f9ce8174ba"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afbf9806edb555d02a84939f9ce8174ba">&#9670;&#160;</a></span>messageThreadId</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::int32_t TgBot::SendPollArgs::messageThreadId = 0</td>
+          <td class="memname">std::uint32_t TgBot::SendPollArgs::messageThreadId = 0</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Unique identifier for the target message thread (topic) of a forum; for forum supergroups and private chats of bots with forum topic mode enabled only. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l19367">19367</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l20306">20306</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
-<a id="aa352aeb358f8c3286a32d778301f753e" name="aa352aeb358f8c3286a32d778301f753e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa352aeb358f8c3286a32d778301f753e">&#9670;&#160;</a></span>openPeriod</h2>
+<a id="aba8ec523509a74831ee8aec8c2fedca2" name="aba8ec523509a74831ee8aec8c2fedca2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aba8ec523509a74831ee8aec8c2fedca2">&#9670;&#160;</a></span>openPeriod</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::int32_t TgBot::SendPollArgs::openPeriod = 0</td>
+          <td class="memname">std::uint32_t TgBot::SendPollArgs::openPeriod = 0</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Amount of time in seconds the poll will be active after creation, 5-2628000. Can't be used together with close_date. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l19347">19347</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l20286">20286</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -658,7 +658,7 @@ Public Attributes</h2></td></tr>
 
 <p>A JSON-serialized list of 1-12 answer options. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l19287">19287</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l20226">20226</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -676,7 +676,7 @@ Public Attributes</h2></td></tr>
 
 <p>Protects the contents of the sent message from forwarding and saving. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l19372">19372</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l20311">20311</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -694,7 +694,7 @@ Public Attributes</h2></td></tr>
 
 <p><a class="el" href="struct_tg_bot_1_1_poll.html" title="This object contains information about a poll.">Poll</a> question, 1-300 characters. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l19282">19282</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l20221">20221</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -712,7 +712,7 @@ Public Attributes</h2></td></tr>
 
 <p>A JSON-serialized list of special entities that appear in the poll question. It can be specified instead of question_parse_mode. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l19464">19464</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l20403">20403</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -730,7 +730,7 @@ Public Attributes</h2></td></tr>
 
 <p>Mode for parsing entities in the question. See formatting options for more details. Currently, only custom emoji entities are allowed. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l19470">19470</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l20409">20409</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -748,7 +748,7 @@ Public Attributes</h2></td></tr>
 
 <p>Additional interface options. A JSON-serialized object for an inline keyboard, custom reply keyboard, instructions to remove a reply keyboard or to force a reply from the user. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l19307">19307</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l20246">20246</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -766,7 +766,7 @@ Public Attributes</h2></td></tr>
 
 <p>Description of the message to reply to. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l19298">19298</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l20237">20237</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -784,7 +784,7 @@ Public Attributes</h2></td></tr>
 
 <p>Pass True if the poll options must be shown in random order. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l19475">19475</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l20414">20414</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -802,7 +802,7 @@ Public Attributes</h2></td></tr>
 
 <p><a class="el" href="struct_tg_bot_1_1_poll.html" title="This object contains information about a poll.">Poll</a> type, “quiz” or “regular”, defaults to “regular” </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l19317">19317</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l20256">20256</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>

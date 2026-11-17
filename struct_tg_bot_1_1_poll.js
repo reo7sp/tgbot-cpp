@@ -4,7 +4,7 @@ var struct_tg_bot_1_1_poll =
     [ "allowsMultipleAnswers", "struct_tg_bot_1_1_poll.html#ab46ee0bff2395c1a8548053598b28300", null ],
     [ "allowsRevoting", "struct_tg_bot_1_1_poll.html#adc2492fd18b43e94e353c6e3913df23d", null ],
     [ "closeDate", "struct_tg_bot_1_1_poll.html#a2b5448a9d3ceb7dce21bf79e571a7d7f", null ],
-    [ "correctOptionIds", "struct_tg_bot_1_1_poll.html#ab53f21c9e8c1b14eb5c2f1be91e47f5e", null ],
+    [ "correctOptionIds", "struct_tg_bot_1_1_poll.html#ad6a860e7e2a2cc8e2387a897e1cd4fdf", null ],
     [ "countryCodes", "struct_tg_bot_1_1_poll.html#ae06ccc9dcc0165dae4c018f20d427637", null ],
     [ "description", "struct_tg_bot_1_1_poll.html#a78cf27e56c87caacc4c204186c0fb474", null ],
     [ "descriptionEntities", "struct_tg_bot_1_1_poll.html#a50d608e36834efaacc6e3589ff7a8019", null ],
@@ -16,10 +16,10 @@ var struct_tg_bot_1_1_poll =
     [ "isClosed", "struct_tg_bot_1_1_poll.html#a3f202c8542a0ba6478b63b55e412638a", null ],
     [ "media", "struct_tg_bot_1_1_poll.html#ab7ca283d6b4b7c7d31a91367cbc7839e", null ],
     [ "membersOnly", "struct_tg_bot_1_1_poll.html#aaa2ba789a1a920b006f9cd16ac2f5068", null ],
-    [ "openPeriod", "struct_tg_bot_1_1_poll.html#acba7c37d63840f8fff2752e6780da0f3", null ],
+    [ "openPeriod", "struct_tg_bot_1_1_poll.html#a3d923df53553d1c44983554acd4aee24", null ],
     [ "options", "struct_tg_bot_1_1_poll.html#a6ec39d44e607254610b80c790ab8eeb5", null ],
     [ "question", "struct_tg_bot_1_1_poll.html#aef1e91693da78e9a4c0d5bbb6e83ba3e", null ],
     [ "questionEntities", "struct_tg_bot_1_1_poll.html#add565ed9193691f73ad648faabce5344", null ],
-    [ "totalVoterCount", "struct_tg_bot_1_1_poll.html#afcaba4e0539d01b8aa4e740b6ff19e33", null ],
+    [ "totalVoterCount", "struct_tg_bot_1_1_poll.html#a6c0eb8eaeac86b28965c7000a0024087", null ],
     [ "type", "struct_tg_bot_1_1_poll.html#ae564a719da71fdd32fc5061a81893d67", null ]
 ];

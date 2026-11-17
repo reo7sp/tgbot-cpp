@@ -9,6 +9,6 @@ var struct_tg_bot_1_1_inline_query_result_voice =
     [ "replyMarkup", "struct_tg_bot_1_1_inline_query_result_voice.html#abfaf62f957f0e9a9b446c92092697d3f", null ],
     [ "title", "struct_tg_bot_1_1_inline_query_result_voice.html#a5f0df289e1dea7105d7a3dfbb49ba76a", null ],
     [ "type", "struct_tg_bot_1_1_inline_query_result_voice.html#a6f774cbf9dbab7d3905c1f0278815c7d", null ],
-    [ "voiceDuration", "struct_tg_bot_1_1_inline_query_result_voice.html#adfbd8bba5228dd33e25629922db9155d", null ],
+    [ "voiceDuration", "struct_tg_bot_1_1_inline_query_result_voice.html#a1e0c4b9b8fd3f42b59830a0e903b416e", null ],
     [ "voiceUrl", "struct_tg_bot_1_1_inline_query_result_voice.html#afc09fe61b4fcdce1644d55ec488ecda9", null ]
 ];

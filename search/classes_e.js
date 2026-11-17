@@ -82,6 +82,7 @@ var searchData=
   ['richtextsubscript_79',['RichTextSubscript',['../struct_tg_bot_1_1_rich_text_subscript.html',1,'TgBot']]],
   ['richtextsuperscript_80',['RichTextSuperscript',['../struct_tg_bot_1_1_rich_text_superscript.html',1,'TgBot']]],
   ['richtexttextmention_81',['RichTextTextMention',['../struct_tg_bot_1_1_rich_text_text_mention.html',1,'TgBot']]],
-  ['richtextunderline_82',['RichTextUnderline',['../struct_tg_bot_1_1_rich_text_underline.html',1,'TgBot']]],
-  ['richtexturl_83',['RichTextUrl',['../struct_tg_bot_1_1_rich_text_url.html',1,'TgBot']]]
+  ['richtexttonaddress_82',['RichTextTonAddress',['../struct_tg_bot_1_1_rich_text_ton_address.html',1,'TgBot']]],
+  ['richtextunderline_83',['RichTextUnderline',['../struct_tg_bot_1_1_rich_text_underline.html',1,'TgBot']]],
+  ['richtexturl_84',['RichTextUrl',['../struct_tg_bot_1_1_rich_text_url.html',1,'TgBot']]]
 ];

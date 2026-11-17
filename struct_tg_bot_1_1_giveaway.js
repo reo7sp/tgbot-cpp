@@ -5,9 +5,9 @@ var struct_tg_bot_1_1_giveaway =
     [ "countryCodes", "struct_tg_bot_1_1_giveaway.html#a7c7f94265c54d44f5b4e9c31002c6dc5", null ],
     [ "hasPublicWinners", "struct_tg_bot_1_1_giveaway.html#a980318591d87aeb30e03e5f47aafadb2", null ],
     [ "onlyNewMembers", "struct_tg_bot_1_1_giveaway.html#a33408fe65c5928c81e09e54102694f5d", null ],
-    [ "premiumSubscriptionMonthCount", "struct_tg_bot_1_1_giveaway.html#ae7988a439e95f5d1a83fb9f6bcaaee85", null ],
+    [ "premiumSubscriptionMonthCount", "struct_tg_bot_1_1_giveaway.html#a0da5165e73b8235fb81edd1b419c9823", null ],
     [ "prizeDescription", "struct_tg_bot_1_1_giveaway.html#aa24933bc89b813e4deb70d685c7806e3", null ],
-    [ "prizeStarCount", "struct_tg_bot_1_1_giveaway.html#a2f4001d7a96a6821ad4090ccdfdbe6ca", null ],
-    [ "winnerCount", "struct_tg_bot_1_1_giveaway.html#a3a70b60af639e4ba6d57aa850d24d580", null ],
+    [ "prizeStarCount", "struct_tg_bot_1_1_giveaway.html#af6e9d5e774777c8ef5e66203bbbcc7d2", null ],
+    [ "winnerCount", "struct_tg_bot_1_1_giveaway.html#a454440e37d7ab2f086343ef8a8a9bde0", null ],
     [ "winnersSelectionDate", "struct_tg_bot_1_1_giveaway.html#a4101dbab94cfed555fa136913d4a4684", null ]
 ];

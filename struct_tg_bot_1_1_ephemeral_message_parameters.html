@@ -121,16 +121,16 @@ Public Types</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-attribs" class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:abc8ae9d5aed7ac30e07b8754b2f98c53" id="r_abc8ae9d5aed7ac30e07b8754b2f98c53"><td class="memItemLeft">std::int64_t&#160;</td><td class="memItemRight"><a class="el" href="#abc8ae9d5aed7ac30e07b8754b2f98c53">receiverUserId</a> { }</td></tr>
-<tr class="memdesc:abc8ae9d5aed7ac30e07b8754b2f98c53"><td class="mdescLeft">&#160;</td><td class="mdescRight">Identifier of the user who will receive the message. It is not guaranteed that the user will receive the message, especially if they are offline. See here for more details.  <br /></td></tr>
+<tr class="memitem:a8c84326c1d4df4cd8944c087dbeeb22b" id="r_a8c84326c1d4df4cd8944c087dbeeb22b"><td class="memItemLeft">std::optional&lt; std::uint64_t &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a8c84326c1d4df4cd8944c087dbeeb22b">receiverUserId</a> { }</td></tr>
+<tr class="memdesc:a8c84326c1d4df4cd8944c087dbeeb22b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. Identifier of the user who will receive the message; required unless the message is sent as an ephemeral reply to a callback query. If omitted, then the parameter chat_id of the method is ignored. If specified together with callback_query_id, then it must be the identifier of the user who pressed the button. Must be omitted for messages sent in chats where the bot isn't a member, unless the message is a reply to an ephemeral message. It is not guaranteed that the user will receive the message, especially if they are offline. See here for more details.  <br /></td></tr>
 <tr class="memitem:ac337a61ac6f55c0764e0f95addf89443" id="r_ac337a61ac6f55c0764e0f95addf89443"><td class="memItemLeft">std::optional&lt; std::string &gt;&#160;</td><td class="memItemRight"><a class="el" href="#ac337a61ac6f55c0764e0f95addf89443">callbackQueryId</a> { }</td></tr>
-<tr class="memdesc:ac337a61ac6f55c0764e0f95addf89443"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. Identifier of the callback query which triggered the message, if any.  <br /></td></tr>
+<tr class="memdesc:ac337a61ac6f55c0764e0f95addf89443"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. Identifier of the callback query which triggered the message, if any. If specified and receiver_user_id is omitted, then the message is sent as an ephemeral reply to the callback query and will be shown only to the user who pressed the button. Ephemeral replies can't be sent to callback queries from messages in channel direct messages chats. The bot must still answer the callback query using answerCallbackQuery.  <br /></td></tr>
 <tr class="memitem:a82264a33a3c0f0acaff106e19b7f391f" id="r_a82264a33a3c0f0acaff106e19b7f391f"><td class="memItemLeft">std::optional&lt; bool &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a82264a33a3c0f0acaff106e19b7f391f">replaceCallbackQueryMessage</a> { }</td></tr>
 <tr class="memdesc:a82264a33a3c0f0acaff106e19b7f391f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. Pass True if the ephemeral message must be shown in place of the original message. Must be False for callback queries from ephemeral messages, which must be edited using regular editEphemeralMessage… methods.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock">
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l03233">3233</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l03472">3472</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 </div><a name="doc-typedef-members" id="doc-typedef-members"></a><h2 id="header-doc-typedef-members" class="groupheader">Member Typedef Documentation</h2>
 <a id="a586f0a81088fe5c28911626c1136d6b3" name="a586f0a81088fe5c28911626c1136d6b3"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a586f0a81088fe5c28911626c1136d6b3">&#9670;&#160;</a></span>Ptr</h2>
@@ -144,7 +144,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l03234">3234</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l03473">3473</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -161,27 +161,27 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Optional. Identifier of the callback query which triggered the message, if any. </p>
+<p>Optional. Identifier of the callback query which triggered the message, if any. If specified and receiver_user_id is omitted, then the message is sent as an ephemeral reply to the callback query and will be shown only to the user who pressed the button. Ephemeral replies can't be sent to callback queries from messages in channel direct messages chats. The bot must still answer the callback query using answerCallbackQuery. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l03244">3244</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l03492">3492</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
-<a id="abc8ae9d5aed7ac30e07b8754b2f98c53" name="abc8ae9d5aed7ac30e07b8754b2f98c53"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abc8ae9d5aed7ac30e07b8754b2f98c53">&#9670;&#160;</a></span>receiverUserId</h2>
+<a id="a8c84326c1d4df4cd8944c087dbeeb22b" name="a8c84326c1d4df4cd8944c087dbeeb22b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8c84326c1d4df4cd8944c087dbeeb22b">&#9670;&#160;</a></span>receiverUserId</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::int64_t TgBot::EphemeralMessageParameters::receiverUserId { }</td>
+          <td class="memname">std::optional&lt;std::uint64_t&gt; TgBot::EphemeralMessageParameters::receiverUserId { }</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Identifier of the user who will receive the message. It is not guaranteed that the user will receive the message, especially if they are offline. See here for more details. </p>
+<p>Optional. Identifier of the user who will receive the message; required unless the message is sent as an ephemeral reply to a callback query. If omitted, then the parameter chat_id of the method is ignored. If specified together with callback_query_id, then it must be the identifier of the user who pressed the button. Must be omitted for messages sent in chats where the bot isn't a member, unless the message is a reply to an ephemeral message. It is not guaranteed that the user will receive the message, especially if they are offline. See here for more details. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l03240">3240</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l03484">3484</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -199,7 +199,7 @@ Public Attributes</h2></td></tr>
 
 <p>Optional. Pass True if the ephemeral message must be shown in place of the original message. Must be False for callback queries from ephemeral messages, which must be edited using regular editEphemeralMessage… methods. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l03250">3250</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l03498">3498</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>

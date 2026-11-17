@@ -7,7 +7,7 @@ var struct_tg_bot_1_1_webhook_info =
     [ "lastErrorDate", "struct_tg_bot_1_1_webhook_info.html#a991a4b61909dc67b4f7fb26eef6a79fe", null ],
     [ "lastErrorMessage", "struct_tg_bot_1_1_webhook_info.html#a021628ea920b78b7b742334a238c3f66", null ],
     [ "lastSynchronizationErrorDate", "struct_tg_bot_1_1_webhook_info.html#a55daf540d3a4f2191d38a40bfc8a4cf7", null ],
-    [ "maxConnections", "struct_tg_bot_1_1_webhook_info.html#a5b0877256db70ab5fcd655ee03fb97e3", null ],
-    [ "pendingUpdateCount", "struct_tg_bot_1_1_webhook_info.html#a61e3f91f8047af3b5293038ab05f0577", null ],
+    [ "maxConnections", "struct_tg_bot_1_1_webhook_info.html#aac08b1f177c52c43411a28d20fba5fcd", null ],
+    [ "pendingUpdateCount", "struct_tg_bot_1_1_webhook_info.html#ab949e899c5e3513e2cb5754ffaca766a", null ],
     [ "url", "struct_tg_bot_1_1_webhook_info.html#a4f1f6efd16518a24e8c153f5e126a36f", null ]
 ];

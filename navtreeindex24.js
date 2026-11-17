@@ -1,0 +1,21 @@
+var NAVTREEINDEX24 =
+{
+"struct_tg_bot_1_1_widget_query_type_sign_data.html#a212ca8e7ab8e52c4961b863d270492f5":[0,2,424,0],
+"struct_tg_bot_1_1_widget_query_type_sign_data.html#a3fd349a4e5d4d7704acb226355638627":[0,2,424,2],
+"struct_tg_bot_1_1_widget_query_type_sign_data.html#a6c0dcd1de6f21a81b3fceba69fbacb7b":[0,2,424,1],
+"struct_tg_bot_1_1_widget_query_type_sign_data.html#ac386cf844febcc43a9753c9d1caa4027":[0,2,424,3],
+"struct_tg_bot_1_1_widget_query_wallet.html":[0,2,425],
+"struct_tg_bot_1_1_widget_query_wallet.html#a1f51d640573c53ef7da8487a0cdce115":[0,2,425,2],
+"struct_tg_bot_1_1_widget_query_wallet.html#a63775eb977f91a976488987118ff8fb3":[0,2,425,1],
+"struct_tg_bot_1_1_widget_query_wallet.html#aacd64382cbf292ea91324392b280947a":[0,2,425,3],
+"struct_tg_bot_1_1_widget_query_wallet.html#ad853d1b3f410eb4230d18924c3531e64":[0,2,425,0],
+"struct_tg_bot_1_1_widget_query_wallet.html#afc17019e2c0d11a4a64dd6f57763edc1":[0,2,425,4],
+"struct_tg_bot_1_1_write_access_allowed.html":[0,2,426],
+"struct_tg_bot_1_1_write_access_allowed.html#a12b5de089be867cd8e8b66c18c756c52":[0,2,426,1],
+"struct_tg_bot_1_1_write_access_allowed.html#a5a119521388e922c237e66c59a239174":[0,2,426,3],
+"struct_tg_bot_1_1_write_access_allowed.html#a8ae03cc0a7a31fa7e7087eeab103468f":[0,2,426,0],
+"struct_tg_bot_1_1_write_access_allowed.html#ab0f1ca9615e7fb1fcd5b4ced8bca558b":[0,2,426,2],
+"tgbot_8h.html":[3,0,0,0,13],
+"tgbot_8h_source.html":[3,0,0,0,13],
+"topics.html":[0]
+};

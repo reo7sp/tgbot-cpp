@@ -148,10 +148,10 @@ Public Attributes</h2></td></tr>
 <tr class="memdesc:a5e11b948dad63b90ab12ed7a75296b43"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. Content of the message to be sent instead of the file.  <br /></td></tr>
 <tr class="memitem:abb6eac36a77b6d7672931c491ce9aaa6" id="r_abb6eac36a77b6d7672931c491ce9aaa6"><td class="memItemLeft">std::optional&lt; std::string &gt;&#160;</td><td class="memItemRight"><a class="el" href="#abb6eac36a77b6d7672931c491ce9aaa6">thumbnailUrl</a> { }</td></tr>
 <tr class="memdesc:abb6eac36a77b6d7672931c491ce9aaa6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. URL of the thumbnail (JPEG only) for the file.  <br /></td></tr>
-<tr class="memitem:a43494f415b72206502d701ef6c091646" id="r_a43494f415b72206502d701ef6c091646"><td class="memItemLeft">std::optional&lt; std::int32_t &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a43494f415b72206502d701ef6c091646">thumbnailWidth</a> { }</td></tr>
-<tr class="memdesc:a43494f415b72206502d701ef6c091646"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. Thumbnail width.  <br /></td></tr>
-<tr class="memitem:a1ecb0a6f4f192c49f0ccdab8e1fb1003" id="r_a1ecb0a6f4f192c49f0ccdab8e1fb1003"><td class="memItemLeft">std::optional&lt; std::int32_t &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a1ecb0a6f4f192c49f0ccdab8e1fb1003">thumbnailHeight</a> { }</td></tr>
-<tr class="memdesc:a1ecb0a6f4f192c49f0ccdab8e1fb1003"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. Thumbnail height.  <br /></td></tr>
+<tr class="memitem:a232fb03a1f969db5191f8a6793e51a80" id="r_a232fb03a1f969db5191f8a6793e51a80"><td class="memItemLeft">std::optional&lt; std::uint32_t &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a232fb03a1f969db5191f8a6793e51a80">thumbnailWidth</a> { }</td></tr>
+<tr class="memdesc:a232fb03a1f969db5191f8a6793e51a80"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. Thumbnail width.  <br /></td></tr>
+<tr class="memitem:a2f8853ec8d00dea2bdc777aacc6546fd" id="r_a2f8853ec8d00dea2bdc777aacc6546fd"><td class="memItemLeft">std::optional&lt; std::uint32_t &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a2f8853ec8d00dea2bdc777aacc6546fd">thumbnailHeight</a> { }</td></tr>
+<tr class="memdesc:a2f8853ec8d00dea2bdc777aacc6546fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. Thumbnail height.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-static-attribs" class="groupheader"><a id="pub-static-attribs" name="pub-static-attribs"></a>
 Static Public Attributes</h2></td></tr>
@@ -160,7 +160,7 @@ Static Public Attributes</h2></td></tr>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Represents a link to a file. By default, this file will be sent by the user with an optional caption. Alternatively, you can use input_message_content to send a message with the specified content instead of the file. Currently, only .PDF and .ZIP files can be sent using this method. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l04811">4811</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l05064">5064</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 </div><a name="doc-typedef-members" id="doc-typedef-members"></a><h2 id="header-doc-typedef-members" class="groupheader">Member Typedef Documentation</h2>
 <a id="ab5910242f8e91a44d9cb17a3d7596ec5" name="ab5910242f8e91a44d9cb17a3d7596ec5"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ab5910242f8e91a44d9cb17a3d7596ec5">&#9670;&#160;</a></span>Ptr</h2>
@@ -174,7 +174,7 @@ Static Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l04812">4812</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l05065">5065</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -193,7 +193,7 @@ Static Public Attributes</h2></td></tr>
 
 <p>Optional. Caption of the document to be sent, 0-1024 characters after entities parsing. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l04831">4831</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l05084">5084</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -211,7 +211,7 @@ Static Public Attributes</h2></td></tr>
 
 <p>Optional. List of special entities that appear in the caption, which can be specified instead of parse_mode. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l04841">4841</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l05094">5094</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -229,7 +229,7 @@ Static Public Attributes</h2></td></tr>
 
 <p>Optional. Short description of the result. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l04853">4853</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l05106">5106</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -247,7 +247,7 @@ Static Public Attributes</h2></td></tr>
 
 <p>A valid URL for the file. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l04845">4845</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l05098">5098</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -265,7 +265,7 @@ Static Public Attributes</h2></td></tr>
 
 <p>Unique identifier for this result, 1-64 bytes. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l04823">4823</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l05076">5076</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -283,7 +283,7 @@ Static Public Attributes</h2></td></tr>
 
 <p>Optional. Content of the message to be sent instead of the file. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l04861">4861</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l05114">5114</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -301,7 +301,7 @@ Static Public Attributes</h2></td></tr>
 
 <p>MIME type of the content of the file, either “application/pdf” or “application/zip” </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l04849">4849</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l05102">5102</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -319,7 +319,7 @@ Static Public Attributes</h2></td></tr>
 
 <p>Optional. Mode for parsing entities in the document caption. See formatting options for more details. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l04836">4836</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l05089">5089</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -337,25 +337,25 @@ Static Public Attributes</h2></td></tr>
 
 <p>Optional. Inline keyboard attached to the message. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l04857">4857</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l05110">5110</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
-<a id="a1ecb0a6f4f192c49f0ccdab8e1fb1003" name="a1ecb0a6f4f192c49f0ccdab8e1fb1003"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1ecb0a6f4f192c49f0ccdab8e1fb1003">&#9670;&#160;</a></span>thumbnailHeight</h2>
+<a id="a2f8853ec8d00dea2bdc777aacc6546fd" name="a2f8853ec8d00dea2bdc777aacc6546fd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2f8853ec8d00dea2bdc777aacc6546fd">&#9670;&#160;</a></span>thumbnailHeight</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::optional&lt;std::int32_t&gt; TgBot::InlineQueryResultDocument::thumbnailHeight { }</td>
+          <td class="memname">std::optional&lt;std::uint32_t&gt; TgBot::InlineQueryResultDocument::thumbnailHeight { }</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Optional. Thumbnail height. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l04873">4873</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l05126">5126</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -373,25 +373,25 @@ Static Public Attributes</h2></td></tr>
 
 <p>Optional. URL of the thumbnail (JPEG only) for the file. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l04865">4865</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l05118">5118</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
-<a id="a43494f415b72206502d701ef6c091646" name="a43494f415b72206502d701ef6c091646"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a43494f415b72206502d701ef6c091646">&#9670;&#160;</a></span>thumbnailWidth</h2>
+<a id="a232fb03a1f969db5191f8a6793e51a80" name="a232fb03a1f969db5191f8a6793e51a80"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a232fb03a1f969db5191f8a6793e51a80">&#9670;&#160;</a></span>thumbnailWidth</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::optional&lt;std::int32_t&gt; TgBot::InlineQueryResultDocument::thumbnailWidth { }</td>
+          <td class="memname">std::optional&lt;std::uint32_t&gt; TgBot::InlineQueryResultDocument::thumbnailWidth { }</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Optional. Thumbnail width. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l04869">4869</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l05122">5122</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -409,7 +409,7 @@ Static Public Attributes</h2></td></tr>
 
 <p>Title for the result. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l04827">4827</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l05080">5080</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -433,7 +433,7 @@ Static Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l04814">4814</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l05067">5067</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -451,7 +451,7 @@ Static Public Attributes</h2></td></tr>
 
 <p>Type of the result, must be document. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l04819">4819</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l05072">5072</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>

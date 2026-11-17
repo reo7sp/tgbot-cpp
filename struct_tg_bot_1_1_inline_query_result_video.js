@@ -13,8 +13,8 @@ var struct_tg_bot_1_1_inline_query_result_video =
     [ "thumbnailUrl", "struct_tg_bot_1_1_inline_query_result_video.html#a55cf02c64ab4994c49fdec75449a5e2f", null ],
     [ "title", "struct_tg_bot_1_1_inline_query_result_video.html#a6519c3cb7929fde9e33c041a0c58e1fa", null ],
     [ "type", "struct_tg_bot_1_1_inline_query_result_video.html#af66e9cebe7ea619593872b097ff2b78d", null ],
-    [ "videoDuration", "struct_tg_bot_1_1_inline_query_result_video.html#a900f0382a78b5fe4b28cd5d0c97576c9", null ],
-    [ "videoHeight", "struct_tg_bot_1_1_inline_query_result_video.html#a4b0fadd2ea839da8fe4b22546e162595", null ],
+    [ "videoDuration", "struct_tg_bot_1_1_inline_query_result_video.html#a410df91a100aa2a6e7abf6fa7c83e9b1", null ],
+    [ "videoHeight", "struct_tg_bot_1_1_inline_query_result_video.html#a82ca3deb8811032a5702dd1684dbbf7b", null ],
     [ "videoUrl", "struct_tg_bot_1_1_inline_query_result_video.html#ace4b498ad92fd17782fbd8e40564f287", null ],
-    [ "videoWidth", "struct_tg_bot_1_1_inline_query_result_video.html#a595c72847eb98601f7d6191dceaf425f", null ]
+    [ "videoWidth", "struct_tg_bot_1_1_inline_query_result_video.html#a9c11e9433d64b3c6aa2c5b561663d925", null ]
 ];

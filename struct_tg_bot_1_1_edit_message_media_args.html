@@ -113,7 +113,7 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('struct_tg_bot_
 </div><!--header-->
 <div class="contents">
 
-<p>Arguments for <a class="el" href="class_tg_bot_1_1_api.html#a97f209a77c9644a04ecd4f1ca26b3d4a" title="Use this method to edit animation, audio, document, live photo, photo, or video messages,...">Api::editMessageMedia</a>.  
+<p>Arguments for <a class="el" href="class_tg_bot_1_1_api.html#a3704f4c894ed0a42b51c9cf942790ed1" title="Use this method to edit animation, audio, document, live photo, photo, or video messages,...">Api::editMessageMedia</a>.  
  <a href="#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="_types_8h_source.html">Types.h</a>&gt;</code></p>
@@ -123,9 +123,9 @@ Public Attributes</h2></td></tr>
 <tr class="memitem:a90fa6a0d820df749b58f32c69b1aad15" id="r_a90fa6a0d820df749b58f32c69b1aad15"><td class="memItemLeft">std::shared_ptr&lt; <a class="el" href="struct_tg_bot_1_1_input_media.html">InputMedia</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a90fa6a0d820df749b58f32c69b1aad15">media</a> { }</td></tr>
 <tr class="memdesc:a90fa6a0d820df749b58f32c69b1aad15"><td class="mdescLeft">&#160;</td><td class="mdescRight">A JSON-serialized object for the new media content of the message.  <br /></td></tr>
 <tr class="memitem:a7a9c735ed88ccb3387c210f84884e04a" id="r_a7a9c735ed88ccb3387c210f84884e04a"><td class="memItemLeft">std::variant&lt; std::int64_t, std::string &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a7a9c735ed88ccb3387c210f84884e04a">chatId</a> = { }</td></tr>
-<tr class="memdesc:a7a9c735ed88ccb3387c210f84884e04a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Required if inline_message_id is not specified. Unique identifier for the target chat or username of the target bot, supergroup or channel in the format @username.  <br /></td></tr>
-<tr class="memitem:acf9cd02af770c5511978012a14cdbb84" id="r_acf9cd02af770c5511978012a14cdbb84"><td class="memItemLeft">std::int32_t&#160;</td><td class="memItemRight"><a class="el" href="#acf9cd02af770c5511978012a14cdbb84">messageId</a> = 0</td></tr>
-<tr class="memdesc:acf9cd02af770c5511978012a14cdbb84"><td class="mdescLeft">&#160;</td><td class="mdescRight">Required if inline_message_id is not specified. Identifier of the message to edit.  <br /></td></tr>
+<tr class="memdesc:a7a9c735ed88ccb3387c210f84884e04a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Required if inline_message_id is not specified. Unique identifier for the target chat or username of the target bot, supergroup, or channel in the format @username.  <br /></td></tr>
+<tr class="memitem:a5580e2b3d9b76273a206ea699002a873" id="r_a5580e2b3d9b76273a206ea699002a873"><td class="memItemLeft">std::uint32_t&#160;</td><td class="memItemRight"><a class="el" href="#a5580e2b3d9b76273a206ea699002a873">messageId</a> = 0</td></tr>
+<tr class="memdesc:a5580e2b3d9b76273a206ea699002a873"><td class="mdescLeft">&#160;</td><td class="mdescRight">Required if inline_message_id is not specified. Identifier of the message to edit.  <br /></td></tr>
 <tr class="memitem:acbc5070eb1feab321ac6313a2bdcd8f9" id="r_acbc5070eb1feab321ac6313a2bdcd8f9"><td class="memItemLeft">std::string&#160;</td><td class="memItemRight"><a class="el" href="#acbc5070eb1feab321ac6313a2bdcd8f9">inlineMessageId</a> = &quot;&quot;</td></tr>
 <tr class="memdesc:acbc5070eb1feab321ac6313a2bdcd8f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Required if chat_id and message_id are not specified. Identifier of the inline message.  <br /></td></tr>
 <tr class="memitem:ae5c463b90e226c1f05212729fb517cf9" id="r_ae5c463b90e226c1f05212729fb517cf9"><td class="memItemLeft">std::shared_ptr&lt; <a class="el" href="struct_tg_bot_1_1_inline_keyboard_markup.html">InlineKeyboardMarkup</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#ae5c463b90e226c1f05212729fb517cf9">replyMarkup</a> = nullptr</td></tr>
@@ -136,9 +136,9 @@ Public Attributes</h2></td></tr>
 <tr class="memdesc:a7878f5da5084faae863d54790d4077e9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Files uploaded as named multipart parts. Reference each file from a composite Telegram API argument as attach://&lt;name&gt; and use the same name in <a class="el" href="struct_tg_bot_1_1_input_file_attachment.html" title="A named multipart file referenced from a Telegram API argument as attach://name.">InputFileAttachment</a>.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Arguments for <a class="el" href="class_tg_bot_1_1_api.html#a97f209a77c9644a04ecd4f1ca26b3d4a" title="Use this method to edit animation, audio, document, live photo, photo, or video messages,...">Api::editMessageMedia</a>. </p>
+<div class="textblock"><p>Arguments for <a class="el" href="class_tg_bot_1_1_api.html#a3704f4c894ed0a42b51c9cf942790ed1" title="Use this method to edit animation, audio, document, live photo, photo, or video messages,...">Api::editMessageMedia</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l15918">15918</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l16775">16775</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 </div><a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
 <a id="a7878f5da5084faae863d54790d4077e9" name="a7878f5da5084faae863d54790d4077e9"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a7878f5da5084faae863d54790d4077e9">&#9670;&#160;</a></span>attachments</h2>
@@ -154,7 +154,7 @@ Public Attributes</h2></td></tr>
 
 <p>Files uploaded as named multipart parts. Reference each file from a composite Telegram API argument as attach://&lt;name&gt; and use the same name in <a class="el" href="struct_tg_bot_1_1_input_file_attachment.html" title="A named multipart file referenced from a Telegram API argument as attach://name.">InputFileAttachment</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l15959">15959</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l16816">16816</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -172,7 +172,7 @@ Public Attributes</h2></td></tr>
 
 <p>Unique identifier of the business connection on behalf of which the message to be edited was sent. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l15952">15952</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l16809">16809</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -188,9 +188,9 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Required if inline_message_id is not specified. Unique identifier for the target chat or username of the target bot, supergroup or channel in the format @username. </p>
+<p>Required if inline_message_id is not specified. Unique identifier for the target chat or username of the target bot, supergroup, or channel in the format @username. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l15929">15929</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l16786">16786</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -208,7 +208,7 @@ Public Attributes</h2></td></tr>
 
 <p>Required if chat_id and message_id are not specified. Identifier of the inline message. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l15941">15941</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l16798">16798</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -226,25 +226,25 @@ Public Attributes</h2></td></tr>
 
 <p>A JSON-serialized object for the new media content of the message. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l15922">15922</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l16779">16779</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
-<a id="acf9cd02af770c5511978012a14cdbb84" name="acf9cd02af770c5511978012a14cdbb84"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acf9cd02af770c5511978012a14cdbb84">&#9670;&#160;</a></span>messageId</h2>
+<a id="a5580e2b3d9b76273a206ea699002a873" name="a5580e2b3d9b76273a206ea699002a873"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5580e2b3d9b76273a206ea699002a873">&#9670;&#160;</a></span>messageId</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::int32_t TgBot::EditMessageMediaArgs::messageId = 0</td>
+          <td class="memname">std::uint32_t TgBot::EditMessageMediaArgs::messageId = 0</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Required if inline_message_id is not specified. Identifier of the message to edit. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l15935">15935</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l16792">16792</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -262,7 +262,7 @@ Public Attributes</h2></td></tr>
 
 <p>A JSON-serialized object for a new inline keyboard. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l15946">15946</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l16803">16803</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>

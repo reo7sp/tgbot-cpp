@@ -113,7 +113,7 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('struct_tg_bot_
 </div><!--header-->
 <div class="contents">
 
-<p>Arguments for <a class="el" href="class_tg_bot_1_1_api.html#a9aa85171fe61dc2d1446399c3f2c89e8" title="Use this method to send animation files (GIF or H.264/MPEG-4 AVC video without sound)....">Api::sendAnimation</a>.  
+<p>Arguments for <a class="el" href="class_tg_bot_1_1_api.html#ab6abed8c24b34b92111aa77c89b9600f" title="Use this method to send animation files (GIF or H.264/MPEG-4 AVC video without sound)....">Api::sendAnimation</a>.  
  <a href="#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="_types_8h_source.html">Types.h</a>&gt;</code></p>
@@ -121,15 +121,15 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('struct_tg_bot_
 <tr class="heading"><td colspan="2"><h2 id="header-pub-attribs" class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:a7cfeb7609c541e47eef44db0ca866c01" id="r_a7cfeb7609c541e47eef44db0ca866c01"><td class="memItemLeft">std::variant&lt; std::int64_t, std::string &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a7cfeb7609c541e47eef44db0ca866c01">chatId</a> { }</td></tr>
-<tr class="memdesc:a7cfeb7609c541e47eef44db0ca866c01"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unique identifier for the target chat or username of the target bot, supergroup or channel in the format @username.  <br /></td></tr>
+<tr class="memdesc:a7cfeb7609c541e47eef44db0ca866c01"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unique identifier for the target chat or username of the target bot, supergroup, or channel in the format @username; required unless the message is sent as an ephemeral reply to a callback query.  <br /></td></tr>
 <tr class="memitem:a595958338ff55712520a6b0f42125d75" id="r_a595958338ff55712520a6b0f42125d75"><td class="memItemLeft">std::variant&lt; std::shared_ptr&lt; <a class="el" href="struct_tg_bot_1_1_input_file.html">InputFile</a> &gt;, std::string &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a595958338ff55712520a6b0f42125d75">animation</a> { }</td></tr>
 <tr class="memdesc:a595958338ff55712520a6b0f42125d75"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="struct_tg_bot_1_1_animation.html" title="This object represents an animation file (GIF or H.264/MPEG-4 AVC video without sound).">Animation</a> to send. Pass a file_id as String to send an animation that exists on the Telegram servers (recommended), pass an HTTP URL as a String for Telegram to get an animation from the Internet, or upload a new animation using multipart/form-data. More information on Sending Files »  <br /></td></tr>
-<tr class="memitem:a26d00319fdfa02061b975e30c83fc442" id="r_a26d00319fdfa02061b975e30c83fc442"><td class="memItemLeft">std::int32_t&#160;</td><td class="memItemRight"><a class="el" href="#a26d00319fdfa02061b975e30c83fc442">duration</a> = 0</td></tr>
-<tr class="memdesc:a26d00319fdfa02061b975e30c83fc442"><td class="mdescLeft">&#160;</td><td class="mdescRight">Duration of sent animation in seconds.  <br /></td></tr>
-<tr class="memitem:ad7137df6481e3108c602716b88688c7a" id="r_ad7137df6481e3108c602716b88688c7a"><td class="memItemLeft">std::int32_t&#160;</td><td class="memItemRight"><a class="el" href="#ad7137df6481e3108c602716b88688c7a">width</a> = 0</td></tr>
-<tr class="memdesc:ad7137df6481e3108c602716b88688c7a"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="struct_tg_bot_1_1_animation.html" title="This object represents an animation file (GIF or H.264/MPEG-4 AVC video without sound).">Animation</a> width.  <br /></td></tr>
-<tr class="memitem:a4ff654855767aba7b03874785aba5254" id="r_a4ff654855767aba7b03874785aba5254"><td class="memItemLeft">std::int32_t&#160;</td><td class="memItemRight"><a class="el" href="#a4ff654855767aba7b03874785aba5254">height</a> = 0</td></tr>
-<tr class="memdesc:a4ff654855767aba7b03874785aba5254"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="struct_tg_bot_1_1_animation.html" title="This object represents an animation file (GIF or H.264/MPEG-4 AVC video without sound).">Animation</a> height.  <br /></td></tr>
+<tr class="memitem:a38d1e84de0fc4234796f27ebd31ecf3a" id="r_a38d1e84de0fc4234796f27ebd31ecf3a"><td class="memItemLeft">std::uint32_t&#160;</td><td class="memItemRight"><a class="el" href="#a38d1e84de0fc4234796f27ebd31ecf3a">duration</a> = 0</td></tr>
+<tr class="memdesc:a38d1e84de0fc4234796f27ebd31ecf3a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Duration of sent animation in seconds.  <br /></td></tr>
+<tr class="memitem:a4e5cd59e51ac82d5a8641f80bb7a22d4" id="r_a4e5cd59e51ac82d5a8641f80bb7a22d4"><td class="memItemLeft">std::uint32_t&#160;</td><td class="memItemRight"><a class="el" href="#a4e5cd59e51ac82d5a8641f80bb7a22d4">width</a> = 0</td></tr>
+<tr class="memdesc:a4e5cd59e51ac82d5a8641f80bb7a22d4"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="struct_tg_bot_1_1_animation.html" title="This object represents an animation file (GIF or H.264/MPEG-4 AVC video without sound).">Animation</a> width.  <br /></td></tr>
+<tr class="memitem:ae584e0c308042f562545626424f931c8" id="r_ae584e0c308042f562545626424f931c8"><td class="memItemLeft">std::uint32_t&#160;</td><td class="memItemRight"><a class="el" href="#ae584e0c308042f562545626424f931c8">height</a> = 0</td></tr>
+<tr class="memdesc:ae584e0c308042f562545626424f931c8"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="struct_tg_bot_1_1_animation.html" title="This object represents an animation file (GIF or H.264/MPEG-4 AVC video without sound).">Animation</a> height.  <br /></td></tr>
 <tr class="memitem:abf54894d5543ae4ed5a712f075a15497" id="r_abf54894d5543ae4ed5a712f075a15497"><td class="memItemLeft">std::variant&lt; std::shared_ptr&lt; <a class="el" href="struct_tg_bot_1_1_input_file.html">InputFile</a> &gt;, std::string &gt;&#160;</td><td class="memItemRight"><a class="el" href="#abf54894d5543ae4ed5a712f075a15497">thumbnail</a> = { }</td></tr>
 <tr class="memdesc:abf54894d5543ae4ed5a712f075a15497"><td class="mdescLeft">&#160;</td><td class="mdescRight">Thumbnail of the file sent; can be ignored if thumbnail generation for the file is supported server-side. The thumbnail should be in JPEG format and less than 200 kB in size. A thumbnail's width and height should not exceed 320. Ignored if the file is not uploaded using multipart/form-data. Thumbnails can't be reused and can be only uploaded as a new file, so you can pass “attach://&lt;file_attach_name&gt;” if the thumbnail was uploaded using multipart/form-data under &lt;file_attach_name&gt;. More information on Sending Files »  <br /></td></tr>
 <tr class="memitem:ae6f31391092a3c7e95d19f9a66157d1f" id="r_ae6f31391092a3c7e95d19f9a66157d1f"><td class="memItemLeft">std::string&#160;</td><td class="memItemRight"><a class="el" href="#ae6f31391092a3c7e95d19f9a66157d1f">caption</a> = &quot;&quot;</td></tr>
@@ -144,8 +144,8 @@ Public Attributes</h2></td></tr>
 <tr class="memdesc:a7c5bc5ef5316d98d1f1840d352f987c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends the message silently. Users will receive a notification with no sound.  <br /></td></tr>
 <tr class="memitem:a834795d5916aac7f6851b60ab11acf59" id="r_a834795d5916aac7f6851b60ab11acf59"><td class="memItemLeft">std::vector&lt; std::shared_ptr&lt; <a class="el" href="struct_tg_bot_1_1_message_entity.html">MessageEntity</a> &gt; &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a834795d5916aac7f6851b60ab11acf59">captionEntities</a> = { }</td></tr>
 <tr class="memdesc:a834795d5916aac7f6851b60ab11acf59"><td class="mdescLeft">&#160;</td><td class="mdescRight">A JSON-serialized list of special entities that appear in the caption, which can be specified instead of parse_mode.  <br /></td></tr>
-<tr class="memitem:abcf15f449e1f1ecebd1adbc0ff754b23" id="r_abcf15f449e1f1ecebd1adbc0ff754b23"><td class="memItemLeft">std::int32_t&#160;</td><td class="memItemRight"><a class="el" href="#abcf15f449e1f1ecebd1adbc0ff754b23">messageThreadId</a> = 0</td></tr>
-<tr class="memdesc:abcf15f449e1f1ecebd1adbc0ff754b23"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unique identifier for the target message thread (topic) of a forum; for forum supergroups and private chats of bots with forum topic mode enabled only.  <br /></td></tr>
+<tr class="memitem:a09d36bd7257aacc2b46cf019e59ae871" id="r_a09d36bd7257aacc2b46cf019e59ae871"><td class="memItemLeft">std::uint32_t&#160;</td><td class="memItemRight"><a class="el" href="#a09d36bd7257aacc2b46cf019e59ae871">messageThreadId</a> = 0</td></tr>
+<tr class="memdesc:a09d36bd7257aacc2b46cf019e59ae871"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unique identifier for the target message thread (topic) of a forum; for forum supergroups and private chats of bots with forum topic mode enabled only.  <br /></td></tr>
 <tr class="memitem:a30d56717b8b568e2ff673c017a13fd24" id="r_a30d56717b8b568e2ff673c017a13fd24"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a30d56717b8b568e2ff673c017a13fd24">protectContent</a> = false</td></tr>
 <tr class="memdesc:a30d56717b8b568e2ff673c017a13fd24"><td class="mdescLeft">&#160;</td><td class="mdescRight">Protects the contents of the sent message from forwarding and saving.  <br /></td></tr>
 <tr class="memitem:ae8fd5117c6a192fd9f9fef8f0e5c4096" id="r_ae8fd5117c6a192fd9f9fef8f0e5c4096"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#ae8fd5117c6a192fd9f9fef8f0e5c4096">hasSpoiler</a> = false</td></tr>
@@ -156,12 +156,12 @@ Public Attributes</h2></td></tr>
 <tr class="memdesc:aa0dcb4f2edb37ff872bab30b28b4d7ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pass True to allow up to 1000 messages per second, ignoring broadcasting limits for a fee of 0.1 Telegram Stars per message. The relevant Stars will be withdrawn from the bot's balance.  <br /></td></tr>
 <tr class="memitem:afe2c6a8216a2a4afbb58cdedac6dff13" id="r_afe2c6a8216a2a4afbb58cdedac6dff13"><td class="memItemLeft">std::string&#160;</td><td class="memItemRight"><a class="el" href="#afe2c6a8216a2a4afbb58cdedac6dff13">callbackQueryId</a> = &quot;&quot;</td></tr>
 <tr class="memdesc:afe2c6a8216a2a4afbb58cdedac6dff13"><td class="mdescLeft">&#160;</td><td class="mdescRight">Identifier of the callback query which triggered the ephemeral message.  <br /></td></tr>
-<tr class="memitem:a5709e6c68a66b71366919811031b8501" id="r_a5709e6c68a66b71366919811031b8501"><td class="memItemLeft">std::int64_t&#160;</td><td class="memItemRight"><a class="el" href="#a5709e6c68a66b71366919811031b8501">directMessagesTopicId</a> = 0</td></tr>
-<tr class="memdesc:a5709e6c68a66b71366919811031b8501"><td class="mdescLeft">&#160;</td><td class="mdescRight">Identifier of the direct messages topic to which the message will be sent; required if the message is sent to a direct messages chat.  <br /></td></tr>
+<tr class="memitem:a0ac1a9d04088b7309f24a7bdc6506cf7" id="r_a0ac1a9d04088b7309f24a7bdc6506cf7"><td class="memItemLeft">std::uint64_t&#160;</td><td class="memItemRight"><a class="el" href="#a0ac1a9d04088b7309f24a7bdc6506cf7">directMessagesTopicId</a> = 0</td></tr>
+<tr class="memdesc:a0ac1a9d04088b7309f24a7bdc6506cf7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Identifier of the direct messages topic to which the message will be sent; required if the message is sent to a direct messages chat.  <br /></td></tr>
 <tr class="memitem:a6e5fd73b1ddddfd752e21e21add68b16" id="r_a6e5fd73b1ddddfd752e21e21add68b16"><td class="memItemLeft">std::string&#160;</td><td class="memItemRight"><a class="el" href="#a6e5fd73b1ddddfd752e21e21add68b16">messageEffectId</a> = &quot;&quot;</td></tr>
 <tr class="memdesc:a6e5fd73b1ddddfd752e21e21add68b16"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unique identifier of the message effect to be added to the message; for private chats only.  <br /></td></tr>
-<tr class="memitem:a90e7496a8d34cde970f5f014eb70732c" id="r_a90e7496a8d34cde970f5f014eb70732c"><td class="memItemLeft">std::int64_t&#160;</td><td class="memItemRight"><a class="el" href="#a90e7496a8d34cde970f5f014eb70732c">receiverUserId</a> = 0</td></tr>
-<tr class="memdesc:a90e7496a8d34cde970f5f014eb70732c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Identifier of the user who will receive the ephemeral message.  <br /></td></tr>
+<tr class="memitem:a10ee6af653b17c031290c6bcbbb756b2" id="r_a10ee6af653b17c031290c6bcbbb756b2"><td class="memItemLeft">std::uint64_t&#160;</td><td class="memItemRight"><a class="el" href="#a10ee6af653b17c031290c6bcbbb756b2">receiverUserId</a> = 0</td></tr>
+<tr class="memdesc:a10ee6af653b17c031290c6bcbbb756b2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Identifier of the user who will receive the ephemeral message.  <br /></td></tr>
 <tr class="memitem:ada99a0f8f4c718b751bf7d842f7063c7" id="r_ada99a0f8f4c718b751bf7d842f7063c7"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#ada99a0f8f4c718b751bf7d842f7063c7">showCaptionAboveMedia</a> = false</td></tr>
 <tr class="memdesc:ada99a0f8f4c718b751bf7d842f7063c7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pass True if the caption must be shown above the message media.  <br /></td></tr>
 <tr class="memitem:a7024e38fa5e2e1a1390d81abe864dd03" id="r_a7024e38fa5e2e1a1390d81abe864dd03"><td class="memItemLeft">std::shared_ptr&lt; <a class="el" href="struct_tg_bot_1_1_suggested_post_parameters.html">SuggestedPostParameters</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a7024e38fa5e2e1a1390d81abe864dd03">suggestedPostParameters</a> = nullptr</td></tr>
@@ -170,9 +170,9 @@ Public Attributes</h2></td></tr>
 <tr class="memdesc:a0134fc60fe6496a6f22031845848d81f"><td class="mdescLeft">&#160;</td><td class="mdescRight">A JSON-serialized object containing the parameters of the ephemeral message to send.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Arguments for <a class="el" href="class_tg_bot_1_1_api.html#a9aa85171fe61dc2d1446399c3f2c89e8" title="Use this method to send animation files (GIF or H.264/MPEG-4 AVC video without sound)....">Api::sendAnimation</a>. </p>
+<div class="textblock"><p>Arguments for <a class="el" href="class_tg_bot_1_1_api.html#ab6abed8c24b34b92111aa77c89b9600f" title="Use this method to send animation files (GIF or H.264/MPEG-4 AVC video without sound)....">Api::sendAnimation</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l17448">17448</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l18378">18378</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 </div><a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
 <a id="aa0dcb4f2edb37ff872bab30b28b4d7ca" name="aa0dcb4f2edb37ff872bab30b28b4d7ca"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aa0dcb4f2edb37ff872bab30b28b4d7ca">&#9670;&#160;</a></span>allowPaidBroadcast</h2>
@@ -188,7 +188,7 @@ Public Attributes</h2></td></tr>
 
 <p>Pass True to allow up to 1000 messages per second, ignoring broadcasting limits for a fee of 0.1 Telegram Stars per message. The relevant Stars will be withdrawn from the bot's balance. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l17557">17557</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l18488">18488</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -206,7 +206,7 @@ Public Attributes</h2></td></tr>
 
 <p><a class="el" href="struct_tg_bot_1_1_animation.html" title="This object represents an animation file (GIF or H.264/MPEG-4 AVC video without sound).">Animation</a> to send. Pass a file_id as String to send an animation that exists on the Telegram servers (recommended), pass an HTTP URL as a String for Telegram to get an animation from the Internet, or upload a new animation using multipart/form-data. More information on Sending Files » </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l17462">17462</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l18393">18393</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -224,7 +224,7 @@ Public Attributes</h2></td></tr>
 
 <p>Unique identifier of the business connection on behalf of which the message will be sent. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l17550">17550</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l18481">18481</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -242,7 +242,7 @@ Public Attributes</h2></td></tr>
 
 <p>Identifier of the callback query which triggered the ephemeral message. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l17562">17562</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l18493">18493</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -260,7 +260,7 @@ Public Attributes</h2></td></tr>
 
 <p><a class="el" href="struct_tg_bot_1_1_animation.html" title="This object represents an animation file (GIF or H.264/MPEG-4 AVC video without sound).">Animation</a> caption (may also be used when resending animation by file_id), 0-1024 characters after entities parsing. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l17495">17495</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l18426">18426</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -278,7 +278,7 @@ Public Attributes</h2></td></tr>
 
 <p>A JSON-serialized list of special entities that appear in the caption, which can be specified instead of parse_mode. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l17527">17527</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l18458">18458</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -294,27 +294,27 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Unique identifier for the target chat or username of the target bot, supergroup or channel in the format @username. </p>
+<p>Unique identifier for the target chat or username of the target bot, supergroup, or channel in the format @username; required unless the message is sent as an ephemeral reply to a callback query. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l17453">17453</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l18384">18384</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
-<a id="a5709e6c68a66b71366919811031b8501" name="a5709e6c68a66b71366919811031b8501"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5709e6c68a66b71366919811031b8501">&#9670;&#160;</a></span>directMessagesTopicId</h2>
+<a id="a0ac1a9d04088b7309f24a7bdc6506cf7" name="a0ac1a9d04088b7309f24a7bdc6506cf7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0ac1a9d04088b7309f24a7bdc6506cf7">&#9670;&#160;</a></span>directMessagesTopicId</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::int64_t TgBot::SendAnimationArgs::directMessagesTopicId = 0</td>
+          <td class="memname">std::uint64_t TgBot::SendAnimationArgs::directMessagesTopicId = 0</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Identifier of the direct messages topic to which the message will be sent; required if the message is sent to a direct messages chat. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l17568">17568</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l18499">18499</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -332,25 +332,25 @@ Public Attributes</h2></td></tr>
 
 <p>Sends the message silently. Users will receive a notification with no sound. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l17521">17521</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l18452">18452</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
-<a id="a26d00319fdfa02061b975e30c83fc442" name="a26d00319fdfa02061b975e30c83fc442"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a26d00319fdfa02061b975e30c83fc442">&#9670;&#160;</a></span>duration</h2>
+<a id="a38d1e84de0fc4234796f27ebd31ecf3a" name="a38d1e84de0fc4234796f27ebd31ecf3a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a38d1e84de0fc4234796f27ebd31ecf3a">&#9670;&#160;</a></span>duration</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::int32_t TgBot::SendAnimationArgs::duration = 0</td>
+          <td class="memname">std::uint32_t TgBot::SendAnimationArgs::duration = 0</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Duration of sent animation in seconds. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l17467">17467</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l18398">18398</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -368,7 +368,7 @@ Public Attributes</h2></td></tr>
 
 <p>A JSON-serialized object containing the parameters of the ephemeral message to send. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l17598">17598</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l18529">18529</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -386,25 +386,25 @@ Public Attributes</h2></td></tr>
 
 <p>Pass True if the animation needs to be covered with a spoiler animation. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l17544">17544</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l18475">18475</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
-<a id="a4ff654855767aba7b03874785aba5254" name="a4ff654855767aba7b03874785aba5254"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4ff654855767aba7b03874785aba5254">&#9670;&#160;</a></span>height</h2>
+<a id="ae584e0c308042f562545626424f931c8" name="ae584e0c308042f562545626424f931c8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae584e0c308042f562545626424f931c8">&#9670;&#160;</a></span>height</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::int32_t TgBot::SendAnimationArgs::height = 0</td>
+          <td class="memname">std::uint32_t TgBot::SendAnimationArgs::height = 0</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p><a class="el" href="struct_tg_bot_1_1_animation.html" title="This object represents an animation file (GIF or H.264/MPEG-4 AVC video without sound).">Animation</a> height. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l17477">17477</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l18408">18408</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -422,25 +422,25 @@ Public Attributes</h2></td></tr>
 
 <p>Unique identifier of the message effect to be added to the message; for private chats only. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l17574">17574</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l18505">18505</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
-<a id="abcf15f449e1f1ecebd1adbc0ff754b23" name="abcf15f449e1f1ecebd1adbc0ff754b23"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abcf15f449e1f1ecebd1adbc0ff754b23">&#9670;&#160;</a></span>messageThreadId</h2>
+<a id="a09d36bd7257aacc2b46cf019e59ae871" name="a09d36bd7257aacc2b46cf019e59ae871"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a09d36bd7257aacc2b46cf019e59ae871">&#9670;&#160;</a></span>messageThreadId</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::int32_t TgBot::SendAnimationArgs::messageThreadId = 0</td>
+          <td class="memname">std::uint32_t TgBot::SendAnimationArgs::messageThreadId = 0</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Unique identifier for the target message thread (topic) of a forum; for forum supergroups and private chats of bots with forum topic mode enabled only. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l17534">17534</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l18465">18465</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -458,7 +458,7 @@ Public Attributes</h2></td></tr>
 
 <p>Mode for parsing entities in the animation caption. See formatting options for more details. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l17515">17515</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l18446">18446</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -476,25 +476,25 @@ Public Attributes</h2></td></tr>
 
 <p>Protects the contents of the sent message from forwarding and saving. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l17539">17539</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l18470">18470</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
-<a id="a90e7496a8d34cde970f5f014eb70732c" name="a90e7496a8d34cde970f5f014eb70732c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a90e7496a8d34cde970f5f014eb70732c">&#9670;&#160;</a></span>receiverUserId</h2>
+<a id="a10ee6af653b17c031290c6bcbbb756b2" name="a10ee6af653b17c031290c6bcbbb756b2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a10ee6af653b17c031290c6bcbbb756b2">&#9670;&#160;</a></span>receiverUserId</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::int64_t TgBot::SendAnimationArgs::receiverUserId = 0</td>
+          <td class="memname">std::uint64_t TgBot::SendAnimationArgs::receiverUserId = 0</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Identifier of the user who will receive the ephemeral message. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l17579">17579</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l18510">18510</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -512,7 +512,7 @@ Public Attributes</h2></td></tr>
 
 <p>Additional interface options. A JSON-serialized object for an inline keyboard, custom reply keyboard, instructions to remove a reply keyboard or to force a reply from the user. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l17509">17509</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l18440">18440</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -530,7 +530,7 @@ Public Attributes</h2></td></tr>
 
 <p>Description of the message to reply to. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l17500">17500</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l18431">18431</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -548,7 +548,7 @@ Public Attributes</h2></td></tr>
 
 <p>Pass True if the caption must be shown above the message media. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l17584">17584</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l18515">18515</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -566,7 +566,7 @@ Public Attributes</h2></td></tr>
 
 <p>A JSON-serialized object containing the parameters of the suggested post to send; for direct messages chats only. If the message is sent as a reply to another suggested post, then that suggested post is automatically declined. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l17592">17592</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l18523">18523</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -584,25 +584,25 @@ Public Attributes</h2></td></tr>
 
 <p>Thumbnail of the file sent; can be ignored if thumbnail generation for the file is supported server-side. The thumbnail should be in JPEG format and less than 200 kB in size. A thumbnail's width and height should not exceed 320. Ignored if the file is not uploaded using multipart/form-data. Thumbnails can't be reused and can be only uploaded as a new file, so you can pass “attach://&lt;file_attach_name&gt;” if the thumbnail was uploaded using multipart/form-data under &lt;file_attach_name&gt;. More information on Sending Files » </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l17489">17489</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l18420">18420</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
-<a id="ad7137df6481e3108c602716b88688c7a" name="ad7137df6481e3108c602716b88688c7a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad7137df6481e3108c602716b88688c7a">&#9670;&#160;</a></span>width</h2>
+<a id="a4e5cd59e51ac82d5a8641f80bb7a22d4" name="a4e5cd59e51ac82d5a8641f80bb7a22d4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4e5cd59e51ac82d5a8641f80bb7a22d4">&#9670;&#160;</a></span>width</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::int32_t TgBot::SendAnimationArgs::width = 0</td>
+          <td class="memname">std::uint32_t TgBot::SendAnimationArgs::width = 0</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p><a class="el" href="struct_tg_bot_1_1_animation.html" title="This object represents an animation file (GIF or H.264/MPEG-4 AVC video without sound).">Animation</a> width. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l17472">17472</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l18403">18403</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>

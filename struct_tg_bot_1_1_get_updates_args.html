@@ -113,7 +113,7 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('struct_tg_bot_
 </div><!--header-->
 <div class="contents">
 
-<p>Arguments for <a class="el" href="class_tg_bot_1_1_api.html#a497274fcfc40552be329803814b2b417" title="Use this method to receive incoming updates using long polling (wiki). Returns an Array of Update obj...">Api::getUpdates</a>.  
+<p>Arguments for <a class="el" href="class_tg_bot_1_1_api.html#ac1e570ed0ccb9f594130ba1a104b6724" title="Use this method to receive incoming updates using long polling (wiki). Returns an Array of Update obj...">Api::getUpdates</a>.  
  <a href="#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="_types_8h_source.html">Types.h</a>&gt;</code></p>
@@ -122,17 +122,17 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('struct_tg_bot_
 Public Attributes</h2></td></tr>
 <tr class="memitem:a909f77c0675de590493222f31519b85a" id="r_a909f77c0675de590493222f31519b85a"><td class="memItemLeft">std::int32_t&#160;</td><td class="memItemRight"><a class="el" href="#a909f77c0675de590493222f31519b85a">offset</a> = 0</td></tr>
 <tr class="memdesc:a909f77c0675de590493222f31519b85a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Identifier of the first update to be returned. Must be greater by one than the highest among the identifiers of previously received updates. By default, updates starting with the earliest unconfirmed update are returned. An update is considered confirmed as soon as getUpdates is called with an offset higher than its update_id. The negative offset can be specified to retrieve updates starting from -offset update from the end of the updates queue. All previous updates will be forgotten.  <br /></td></tr>
-<tr class="memitem:aff5335573207b2a99125156932162f39" id="r_aff5335573207b2a99125156932162f39"><td class="memItemLeft">std::int32_t&#160;</td><td class="memItemRight"><a class="el" href="#aff5335573207b2a99125156932162f39">limit</a> = 100</td></tr>
-<tr class="memdesc:aff5335573207b2a99125156932162f39"><td class="mdescLeft">&#160;</td><td class="mdescRight">Limits the number of updates to be retrieved. Values between 1-100 are accepted. Defaults to 100.  <br /></td></tr>
-<tr class="memitem:ac156f07e4dfa98711318c75914e9ea50" id="r_ac156f07e4dfa98711318c75914e9ea50"><td class="memItemLeft">std::int32_t&#160;</td><td class="memItemRight"><a class="el" href="#ac156f07e4dfa98711318c75914e9ea50">timeout</a> = 0</td></tr>
-<tr class="memdesc:ac156f07e4dfa98711318c75914e9ea50"><td class="mdescLeft">&#160;</td><td class="mdescRight">Timeout in seconds for long polling. Defaults to 0, i.e. usual short polling. Should be positive, short polling should be used for testing purposes only.  <br /></td></tr>
+<tr class="memitem:ab00e831ed4af3ed5f10a33ec6604888c" id="r_ab00e831ed4af3ed5f10a33ec6604888c"><td class="memItemLeft">std::uint32_t&#160;</td><td class="memItemRight"><a class="el" href="#ab00e831ed4af3ed5f10a33ec6604888c">limit</a> = 100</td></tr>
+<tr class="memdesc:ab00e831ed4af3ed5f10a33ec6604888c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Limits the number of updates to be retrieved. Values between 1-100 are accepted. Defaults to 100.  <br /></td></tr>
+<tr class="memitem:af3bc58b3e4d311a27522863bd9aad667" id="r_af3bc58b3e4d311a27522863bd9aad667"><td class="memItemLeft">std::uint32_t&#160;</td><td class="memItemRight"><a class="el" href="#af3bc58b3e4d311a27522863bd9aad667">timeout</a> = 0</td></tr>
+<tr class="memdesc:af3bc58b3e4d311a27522863bd9aad667"><td class="mdescLeft">&#160;</td><td class="mdescRight">Timeout in seconds for long polling. Defaults to 0, i.e. usual short polling. Should be positive, short polling should be used for testing purposes only.  <br /></td></tr>
 <tr class="memitem:aaf17dc2e95f8446feab813a5c383a230" id="r_aaf17dc2e95f8446feab813a5c383a230"><td class="memItemLeft">std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight"><a class="el" href="#aaf17dc2e95f8446feab813a5c383a230">allowedUpdates</a> = { }</td></tr>
 <tr class="memdesc:aaf17dc2e95f8446feab813a5c383a230"><td class="mdescLeft">&#160;</td><td class="mdescRight">A JSON-serialized list of the update types you want your bot to receive. For example, specify ["message", "edited_channel_post", "callback_query"] to only receive updates of these types. See <a class="el" href="struct_tg_bot_1_1_update.html" title="This object represents an incoming update.At most one of the optional fields can be present in any gi...">Update</a> for a complete list of available update types. Specify an empty list to receive all update types except chat_member, message_reaction, and message_reaction_count (default). If not specified, the previous setting will be used.Please note that this parameter doesn't affect updates created before the call to getUpdates, so unwanted updates may be received for a short period of time.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Arguments for <a class="el" href="class_tg_bot_1_1_api.html#a497274fcfc40552be329803814b2b417" title="Use this method to receive incoming updates using long polling (wiki). Returns an Array of Update obj...">Api::getUpdates</a>. </p>
+<div class="textblock"><p>Arguments for <a class="el" href="class_tg_bot_1_1_api.html#ac1e570ed0ccb9f594130ba1a104b6724" title="Use this method to receive incoming updates using long polling (wiki). Returns an Array of Update obj...">Api::getUpdates</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l16679">16679</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l17609">17609</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 </div><a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
 <a id="aaf17dc2e95f8446feab813a5c383a230" name="aaf17dc2e95f8446feab813a5c383a230"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aaf17dc2e95f8446feab813a5c383a230">&#9670;&#160;</a></span>allowedUpdates</h2>
@@ -148,25 +148,25 @@ Public Attributes</h2></td></tr>
 
 <p>A JSON-serialized list of the update types you want your bot to receive. For example, specify ["message", "edited_channel_post", "callback_query"] to only receive updates of these types. See <a class="el" href="struct_tg_bot_1_1_update.html" title="This object represents an incoming update.At most one of the optional fields can be present in any gi...">Update</a> for a complete list of available update types. Specify an empty list to receive all update types except chat_member, message_reaction, and message_reaction_count (default). If not specified, the previous setting will be used.Please note that this parameter doesn't affect updates created before the call to getUpdates, so unwanted updates may be received for a short period of time. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l16715">16715</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l17645">17645</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
-<a id="aff5335573207b2a99125156932162f39" name="aff5335573207b2a99125156932162f39"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aff5335573207b2a99125156932162f39">&#9670;&#160;</a></span>limit</h2>
+<a id="ab00e831ed4af3ed5f10a33ec6604888c" name="ab00e831ed4af3ed5f10a33ec6604888c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab00e831ed4af3ed5f10a33ec6604888c">&#9670;&#160;</a></span>limit</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::int32_t TgBot::GetUpdatesArgs::limit = 100</td>
+          <td class="memname">std::uint32_t TgBot::GetUpdatesArgs::limit = 100</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Limits the number of updates to be retrieved. Values between 1-100 are accepted. Defaults to 100. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l16695">16695</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l17625">17625</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -184,25 +184,25 @@ Public Attributes</h2></td></tr>
 
 <p>Identifier of the first update to be returned. Must be greater by one than the highest among the identifiers of previously received updates. By default, updates starting with the earliest unconfirmed update are returned. An update is considered confirmed as soon as getUpdates is called with an offset higher than its update_id. The negative offset can be specified to retrieve updates starting from -offset update from the end of the updates queue. All previous updates will be forgotten. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l16689">16689</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l17619">17619</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
-<a id="ac156f07e4dfa98711318c75914e9ea50" name="ac156f07e4dfa98711318c75914e9ea50"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac156f07e4dfa98711318c75914e9ea50">&#9670;&#160;</a></span>timeout</h2>
+<a id="af3bc58b3e4d311a27522863bd9aad667" name="af3bc58b3e4d311a27522863bd9aad667"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af3bc58b3e4d311a27522863bd9aad667">&#9670;&#160;</a></span>timeout</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::int32_t TgBot::GetUpdatesArgs::timeout = 0</td>
+          <td class="memname">std::uint32_t TgBot::GetUpdatesArgs::timeout = 0</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Timeout in seconds for long polling. Defaults to 0, i.e. usual short polling. Should be positive, short polling should be used for testing purposes only. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l16702">16702</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l17632">17632</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>

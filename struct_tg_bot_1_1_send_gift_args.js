@@ -6,5 +6,5 @@ var struct_tg_bot_1_1_send_gift_args =
     [ "text", "struct_tg_bot_1_1_send_gift_args.html#a5360d58d5d9df4d66cac988f21a65a55", null ],
     [ "textEntities", "struct_tg_bot_1_1_send_gift_args.html#a834d66abf38f2714325bd0e2530f06e5", null ],
     [ "textParseMode", "struct_tg_bot_1_1_send_gift_args.html#ab82ad70aa82a96d411ad2110c5802f3f", null ],
-    [ "userId", "struct_tg_bot_1_1_send_gift_args.html#a1be506288d9bf88a074bd9fa7f881aea", null ]
+    [ "userId", "struct_tg_bot_1_1_send_gift_args.html#ab8ad9cfd9a4c135714b0b6289da785a0", null ]
 ];

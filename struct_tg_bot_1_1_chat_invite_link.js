@@ -7,9 +7,9 @@ var struct_tg_bot_1_1_chat_invite_link =
     [ "inviteLink", "struct_tg_bot_1_1_chat_invite_link.html#ac28bcdb61382b6754b22312d1b08d389", null ],
     [ "isPrimary", "struct_tg_bot_1_1_chat_invite_link.html#a5cbc5b0989d138dbedf1dfd70e746695", null ],
     [ "isRevoked", "struct_tg_bot_1_1_chat_invite_link.html#a39d1eba729e882a3e3c82288fe70d8bf", null ],
-    [ "memberLimit", "struct_tg_bot_1_1_chat_invite_link.html#a91d37ae404c835d10f5c8ce30b704415", null ],
+    [ "memberLimit", "struct_tg_bot_1_1_chat_invite_link.html#a1092974b1a4ad7586eddb90b329f60d7", null ],
     [ "name", "struct_tg_bot_1_1_chat_invite_link.html#a36966d0bb41d2604c29d424fddf45812", null ],
-    [ "pendingJoinRequestCount", "struct_tg_bot_1_1_chat_invite_link.html#a62d26013400910aff0f751c78b65c8f8", null ],
-    [ "subscriptionPeriod", "struct_tg_bot_1_1_chat_invite_link.html#a6ec03b8513261ef517a932689726c6e3", null ],
-    [ "subscriptionPrice", "struct_tg_bot_1_1_chat_invite_link.html#ab9082b0f0961d7a935a464d751b82fbf", null ]
+    [ "pendingJoinRequestCount", "struct_tg_bot_1_1_chat_invite_link.html#a60c4680a6676fedfb68a4f32af1c725e", null ],
+    [ "subscriptionPeriod", "struct_tg_bot_1_1_chat_invite_link.html#aee23fa2884162371c7301b6d88547693", null ],
+    [ "subscriptionPrice", "struct_tg_bot_1_1_chat_invite_link.html#aef5181bf6a3750c5934fb3c3a7a71883", null ]
 ];

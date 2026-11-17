@@ -7,5 +7,5 @@ var struct_tg_bot_1_1_edit_story_args =
     [ "captionEntities", "struct_tg_bot_1_1_edit_story_args.html#a96158a3a8879120d35f952d7da5f6f14", null ],
     [ "content", "struct_tg_bot_1_1_edit_story_args.html#a9b859d70346099245458e188610ff602", null ],
     [ "parseMode", "struct_tg_bot_1_1_edit_story_args.html#a4eebb86609b32772709452611231f442", null ],
-    [ "storyId", "struct_tg_bot_1_1_edit_story_args.html#a9a624aef8b6ee44241d36ba84ee5fc4f", null ]
+    [ "storyId", "struct_tg_bot_1_1_edit_story_args.html#a5b624c2f9bcada9e18877d8dd73b7fbd", null ]
 ];

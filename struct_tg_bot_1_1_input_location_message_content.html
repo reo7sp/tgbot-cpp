@@ -130,17 +130,17 @@ Public Attributes</h2></td></tr>
 <tr class="memdesc:a13b819b570623bcf8e45ecd19872e257"><td class="mdescLeft">&#160;</td><td class="mdescRight">Longitude of the location in degrees.  <br /></td></tr>
 <tr class="memitem:ab23b01d86d70d449a8e1b7ca8cb8e9ff" id="r_ab23b01d86d70d449a8e1b7ca8cb8e9ff"><td class="memItemLeft">std::optional&lt; double &gt;&#160;</td><td class="memItemRight"><a class="el" href="#ab23b01d86d70d449a8e1b7ca8cb8e9ff">horizontalAccuracy</a> { }</td></tr>
 <tr class="memdesc:ab23b01d86d70d449a8e1b7ca8cb8e9ff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. The radius of uncertainty for the location, measured in meters; 0-1500.  <br /></td></tr>
-<tr class="memitem:a18fb48ecae0307d1b4f9b832333b123f" id="r_a18fb48ecae0307d1b4f9b832333b123f"><td class="memItemLeft">std::optional&lt; std::int32_t &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a18fb48ecae0307d1b4f9b832333b123f">livePeriod</a> { }</td></tr>
-<tr class="memdesc:a18fb48ecae0307d1b4f9b832333b123f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. Period in seconds during which the location can be updated, must be between 60 and 86400, or 0x7FFFFFFF for live locations that can be edited indefinitely.  <br /></td></tr>
-<tr class="memitem:aadbf43f9b27b1459a5db33730d5d77cd" id="r_aadbf43f9b27b1459a5db33730d5d77cd"><td class="memItemLeft">std::optional&lt; std::int32_t &gt;&#160;</td><td class="memItemRight"><a class="el" href="#aadbf43f9b27b1459a5db33730d5d77cd">heading</a> { }</td></tr>
-<tr class="memdesc:aadbf43f9b27b1459a5db33730d5d77cd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. For live locations, a direction in which the user is moving, in degrees. Must be between 1 and 360 if specified.  <br /></td></tr>
-<tr class="memitem:a44b2993503f82e3875f609173a1d9942" id="r_a44b2993503f82e3875f609173a1d9942"><td class="memItemLeft">std::optional&lt; std::int32_t &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a44b2993503f82e3875f609173a1d9942">proximityAlertRadius</a> { }</td></tr>
-<tr class="memdesc:a44b2993503f82e3875f609173a1d9942"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. For live locations, a maximum distance for proximity alerts about approaching another chat member, in meters. Must be between 1 and 100000 if specified.  <br /></td></tr>
+<tr class="memitem:ae095627af038fbea9add675edf406d90" id="r_ae095627af038fbea9add675edf406d90"><td class="memItemLeft">std::optional&lt; std::uint32_t &gt;&#160;</td><td class="memItemRight"><a class="el" href="#ae095627af038fbea9add675edf406d90">livePeriod</a> { }</td></tr>
+<tr class="memdesc:ae095627af038fbea9add675edf406d90"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. Period in seconds during which the location can be updated, must be between 60 and 86400, or 0x7FFFFFFF for live locations that can be edited indefinitely.  <br /></td></tr>
+<tr class="memitem:a4a6c6f49e0f167c917c755c0dcb4a2d8" id="r_a4a6c6f49e0f167c917c755c0dcb4a2d8"><td class="memItemLeft">std::optional&lt; std::uint32_t &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a4a6c6f49e0f167c917c755c0dcb4a2d8">heading</a> { }</td></tr>
+<tr class="memdesc:a4a6c6f49e0f167c917c755c0dcb4a2d8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. For live locations, a direction in which the user is moving, in degrees. Must be between 1 and 360 if specified.  <br /></td></tr>
+<tr class="memitem:af375a0a309f5fe71237c1968c70fb9ca" id="r_af375a0a309f5fe71237c1968c70fb9ca"><td class="memItemLeft">std::optional&lt; std::uint32_t &gt;&#160;</td><td class="memItemRight"><a class="el" href="#af375a0a309f5fe71237c1968c70fb9ca">proximityAlertRadius</a> { }</td></tr>
+<tr class="memdesc:af375a0a309f5fe71237c1968c70fb9ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optional. For live locations, a maximum distance for proximity alerts about approaching another chat member, in meters. Must be between 1 and 100000 if specified.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Represents the content of a location message to be sent as the result of an inline query. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l05689">5689</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l05942">5942</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 </div><a name="doc-typedef-members" id="doc-typedef-members"></a><h2 id="header-doc-typedef-members" class="groupheader">Member Typedef Documentation</h2>
 <a id="a57a95a93279187988270779f8136f65d" name="a57a95a93279187988270779f8136f65d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a57a95a93279187988270779f8136f65d">&#9670;&#160;</a></span>Ptr</h2>
@@ -154,26 +154,26 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l05690">5690</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l05943">5943</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
 <a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
-<a id="aadbf43f9b27b1459a5db33730d5d77cd" name="aadbf43f9b27b1459a5db33730d5d77cd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aadbf43f9b27b1459a5db33730d5d77cd">&#9670;&#160;</a></span>heading</h2>
+<a id="a4a6c6f49e0f167c917c755c0dcb4a2d8" name="a4a6c6f49e0f167c917c755c0dcb4a2d8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4a6c6f49e0f167c917c755c0dcb4a2d8">&#9670;&#160;</a></span>heading</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::optional&lt;std::int32_t&gt; TgBot::InputLocationMessageContent::heading { }</td>
+          <td class="memname">std::optional&lt;std::uint32_t&gt; TgBot::InputLocationMessageContent::heading { }</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Optional. For live locations, a direction in which the user is moving, in degrees. Must be between 1 and 360 if specified. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l05713">5713</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l05966">5966</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -191,7 +191,7 @@ Public Attributes</h2></td></tr>
 
 <p>Optional. The radius of uncertainty for the location, measured in meters; 0-1500. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l05703">5703</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l05956">5956</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -209,25 +209,25 @@ Public Attributes</h2></td></tr>
 
 <p>Latitude of the location in degrees. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l05695">5695</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l05948">5948</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
-<a id="a18fb48ecae0307d1b4f9b832333b123f" name="a18fb48ecae0307d1b4f9b832333b123f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a18fb48ecae0307d1b4f9b832333b123f">&#9670;&#160;</a></span>livePeriod</h2>
+<a id="ae095627af038fbea9add675edf406d90" name="ae095627af038fbea9add675edf406d90"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae095627af038fbea9add675edf406d90">&#9670;&#160;</a></span>livePeriod</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::optional&lt;std::int32_t&gt; TgBot::InputLocationMessageContent::livePeriod { }</td>
+          <td class="memname">std::optional&lt;std::uint32_t&gt; TgBot::InputLocationMessageContent::livePeriod { }</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Optional. Period in seconds during which the location can be updated, must be between 60 and 86400, or 0x7FFFFFFF for live locations that can be edited indefinitely. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l05708">5708</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l05961">5961</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -245,25 +245,25 @@ Public Attributes</h2></td></tr>
 
 <p>Longitude of the location in degrees. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l05699">5699</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l05952">5952</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
-<a id="a44b2993503f82e3875f609173a1d9942" name="a44b2993503f82e3875f609173a1d9942"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a44b2993503f82e3875f609173a1d9942">&#9670;&#160;</a></span>proximityAlertRadius</h2>
+<a id="af375a0a309f5fe71237c1968c70fb9ca" name="af375a0a309f5fe71237c1968c70fb9ca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af375a0a309f5fe71237c1968c70fb9ca">&#9670;&#160;</a></span>proximityAlertRadius</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::optional&lt;std::int32_t&gt; TgBot::InputLocationMessageContent::proximityAlertRadius { }</td>
+          <td class="memname">std::optional&lt;std::uint32_t&gt; TgBot::InputLocationMessageContent::proximityAlertRadius { }</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Optional. For live locations, a maximum distance for proximity alerts about approaching another chat member, in meters. Must be between 1 and 100000 if specified. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l05718">5718</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l05971">5971</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>

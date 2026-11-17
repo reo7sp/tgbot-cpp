@@ -6,7 +6,7 @@ var struct_tg_bot_1_1_send_game_args =
     [ "disableNotification", "struct_tg_bot_1_1_send_game_args.html#ac22d1f4a6dfa379a425398b16473f3df", null ],
     [ "gameShortName", "struct_tg_bot_1_1_send_game_args.html#a1c217403fff7b4cba0f56e0956d6ed11", null ],
     [ "messageEffectId", "struct_tg_bot_1_1_send_game_args.html#ad1f314c97f6cf9cb8ae5c8bdeaf73b64", null ],
-    [ "messageThreadId", "struct_tg_bot_1_1_send_game_args.html#ace5ea152c6cdce5d0dbdcc00c34e9bd1", null ],
+    [ "messageThreadId", "struct_tg_bot_1_1_send_game_args.html#ad89b9df9ff203f206e1d4c2929271335", null ],
     [ "protectContent", "struct_tg_bot_1_1_send_game_args.html#a2d8b38dc3f0dfb4dd168ec2c626176b5", null ],
     [ "replyMarkup", "struct_tg_bot_1_1_send_game_args.html#a32091a4edfd61f2aea21479f12221a47", null ],
     [ "replyParameters", "struct_tg_bot_1_1_send_game_args.html#a0958cc694a8b92ae12e1463a49b0040d", null ]

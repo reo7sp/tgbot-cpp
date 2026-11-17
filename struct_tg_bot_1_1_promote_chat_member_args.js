@@ -19,5 +19,5 @@ var struct_tg_bot_1_1_promote_chat_member_args =
     [ "canSendWelcomeMessages", "struct_tg_bot_1_1_promote_chat_member_args.html#a8f63d65f62c078f7fba74eea1bbae005", null ],
     [ "chatId", "struct_tg_bot_1_1_promote_chat_member_args.html#aa1f91a80ed99e719dd43664095ec679b", null ],
     [ "isAnonymous", "struct_tg_bot_1_1_promote_chat_member_args.html#a9de6291e24c618692d9f7dbf3315760e", null ],
-    [ "userId", "struct_tg_bot_1_1_promote_chat_member_args.html#ae4a83cecdf089acfea34ac7e78a37526", null ]
+    [ "userId", "struct_tg_bot_1_1_promote_chat_member_args.html#aa25989c20563b7ed91e2cb47c53a9feb", null ]
 ];

@@ -1,7 +1,7 @@
 var struct_tg_bot_1_1_keyboard_button_request_users =
 [
     [ "Ptr", "struct_tg_bot_1_1_keyboard_button_request_users.html#a2c2de7a585d64663ab2b5b3ef0d7f622", null ],
-    [ "maxQuantity", "struct_tg_bot_1_1_keyboard_button_request_users.html#a17d49a8b894de3fcf84c60b4a9a24e33", null ],
+    [ "maxQuantity", "struct_tg_bot_1_1_keyboard_button_request_users.html#a8319627b78db93eafac66be7401f8976", null ],
     [ "requestId", "struct_tg_bot_1_1_keyboard_button_request_users.html#a77c7ab8824abf46295ea35b298601719", null ],
     [ "requestName", "struct_tg_bot_1_1_keyboard_button_request_users.html#aaccb86aefb625340a34b5a47be4fa778", null ],
     [ "requestPhoto", "struct_tg_bot_1_1_keyboard_button_request_users.html#aa0de99277f546ae92badeebfcb630539", null ],

@@ -6,7 +6,7 @@ var struct_tg_bot_1_1_edit_message_text_args =
     [ "entities", "struct_tg_bot_1_1_edit_message_text_args.html#ab94936890d7f0f790413c645d85f807e", null ],
     [ "inlineMessageId", "struct_tg_bot_1_1_edit_message_text_args.html#a213c80950d687d633028e6dc3f5c180a", null ],
     [ "linkPreviewOptions", "struct_tg_bot_1_1_edit_message_text_args.html#ab0b28d7000eb3d02102e676c554f154d", null ],
-    [ "messageId", "struct_tg_bot_1_1_edit_message_text_args.html#a7476cb4acadedcc03b97013ff67092c4", null ],
+    [ "messageId", "struct_tg_bot_1_1_edit_message_text_args.html#a4d44ee242b1d70330e19aaa53e513eee", null ],
     [ "parseMode", "struct_tg_bot_1_1_edit_message_text_args.html#ae62efc36aeec4a3174d7facc05232584", null ],
     [ "replyMarkup", "struct_tg_bot_1_1_edit_message_text_args.html#af26284f9d2cb2635adae155f73462403", null ],
     [ "richMessage", "struct_tg_bot_1_1_edit_message_text_args.html#a46f9347ac6d67fd605a49669317aa82c", null ],

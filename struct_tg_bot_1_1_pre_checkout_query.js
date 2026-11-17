@@ -7,5 +7,5 @@ var struct_tg_bot_1_1_pre_checkout_query =
     [ "invoicePayload", "struct_tg_bot_1_1_pre_checkout_query.html#abbc1cb2aed3ff25dde9272909455b9a0", null ],
     [ "orderInfo", "struct_tg_bot_1_1_pre_checkout_query.html#a7a669e35933cc011a8869975252f3105", null ],
     [ "shippingOptionId", "struct_tg_bot_1_1_pre_checkout_query.html#a67319a882a1626b30cae170483b69856", null ],
-    [ "totalAmount", "struct_tg_bot_1_1_pre_checkout_query.html#a02b9ed49670c68da6530ac95d9325624", null ]
+    [ "totalAmount", "struct_tg_bot_1_1_pre_checkout_query.html#a8031af5ca4bfff9938ee4415539e1896", null ]
 ];

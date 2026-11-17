@@ -113,7 +113,7 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('struct_tg_bot_
 </div><!--header-->
 <div class="contents">
 
-<p>Arguments for <a class="el" href="class_tg_bot_1_1_api.html#a2d096c81aa738cf356daa73d4f81da7c" title="Use this method to specify a URL and receive incoming updates via an outgoing webhook....">Api::setWebhook</a>.  
+<p>Arguments for <a class="el" href="class_tg_bot_1_1_api.html#a6d1a689cafaf92394c45511fe1378489" title="Use this method to specify a URL and receive incoming updates via an outgoing webhook....">Api::setWebhook</a>.  
  <a href="#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="_types_8h_source.html">Types.h</a>&gt;</code></p>
@@ -124,8 +124,8 @@ Public Attributes</h2></td></tr>
 <tr class="memdesc:aa464adbe905e1727b194c85931c6894d"><td class="mdescLeft">&#160;</td><td class="mdescRight">HTTPS URL to send updates to. Use an empty string to remove webhook integration.  <br /></td></tr>
 <tr class="memitem:ad79c9c2ee0ac42fe97f38c2f1eb20efc" id="r_ad79c9c2ee0ac42fe97f38c2f1eb20efc"><td class="memItemLeft">std::shared_ptr&lt; <a class="el" href="struct_tg_bot_1_1_input_file.html">InputFile</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#ad79c9c2ee0ac42fe97f38c2f1eb20efc">certificate</a> = nullptr</td></tr>
 <tr class="memdesc:ad79c9c2ee0ac42fe97f38c2f1eb20efc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Upload your public key certificate so that the root certificate in use can be checked. See our self-signed guide for details.  <br /></td></tr>
-<tr class="memitem:a792f333e358ebc259150c1c078c985b6" id="r_a792f333e358ebc259150c1c078c985b6"><td class="memItemLeft">std::int32_t&#160;</td><td class="memItemRight"><a class="el" href="#a792f333e358ebc259150c1c078c985b6">maxConnections</a> = 40</td></tr>
-<tr class="memdesc:a792f333e358ebc259150c1c078c985b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">The maximum allowed number of simultaneous HTTPS connections to the webhook for update delivery, 1-100. Defaults to 40. Use lower values to limit the load on your bot's server, and higher values to increase your bot's throughput.  <br /></td></tr>
+<tr class="memitem:a8e8ff97f243ef94ae7d22eeef3bf9c60" id="r_a8e8ff97f243ef94ae7d22eeef3bf9c60"><td class="memItemLeft">std::uint32_t&#160;</td><td class="memItemRight"><a class="el" href="#a8e8ff97f243ef94ae7d22eeef3bf9c60">maxConnections</a> = 40</td></tr>
+<tr class="memdesc:a8e8ff97f243ef94ae7d22eeef3bf9c60"><td class="mdescLeft">&#160;</td><td class="mdescRight">The maximum allowed number of simultaneous HTTPS connections to the webhook for update delivery, 1-100. Defaults to 40. Use lower values to limit the load on your bot's server, and higher values to increase your bot's throughput.  <br /></td></tr>
 <tr class="memitem:a8f45266e80c5e58b695ee99981ccf1c6" id="r_a8f45266e80c5e58b695ee99981ccf1c6"><td class="memItemLeft">std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a8f45266e80c5e58b695ee99981ccf1c6">allowedUpdates</a> = { }</td></tr>
 <tr class="memdesc:a8f45266e80c5e58b695ee99981ccf1c6"><td class="mdescLeft">&#160;</td><td class="mdescRight">A JSON-serialized list of the update types you want your bot to receive. For example, specify ["message", "edited_channel_post", "callback_query"] to only receive updates of these types. See <a class="el" href="struct_tg_bot_1_1_update.html" title="This object represents an incoming update.At most one of the optional fields can be present in any gi...">Update</a> for a complete list of available update types. Specify an empty list to receive all update types except chat_member, message_reaction, and message_reaction_count (default). If not specified, the previous setting will be used.Please note that this parameter doesn't affect updates created before the call to the setWebhook, so unwanted updates may be received for a short period of time.  <br /></td></tr>
 <tr class="memitem:a0a91054e1208b358285ae0db35bc8da7" id="r_a0a91054e1208b358285ae0db35bc8da7"><td class="memItemLeft">std::string&#160;</td><td class="memItemRight"><a class="el" href="#a0a91054e1208b358285ae0db35bc8da7">ipAddress</a> = &quot;&quot;</td></tr>
@@ -136,9 +136,9 @@ Public Attributes</h2></td></tr>
 <tr class="memdesc:a64b0af4fae092361398852c37cb3d6ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">A secret token to be sent in a header “X-Telegram-Bot-Api-Secret-Token” in every webhook request, 1-256 characters. Only characters A-Z, a-z, 0-9, _ and - are allowed. The header is useful to ensure that the request comes from a webhook set by you.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Arguments for <a class="el" href="class_tg_bot_1_1_api.html#a2d096c81aa738cf356daa73d4f81da7c" title="Use this method to specify a URL and receive incoming updates via an outgoing webhook....">Api::setWebhook</a>. </p>
+<div class="textblock"><p>Arguments for <a class="el" href="class_tg_bot_1_1_api.html#a6d1a689cafaf92394c45511fe1378489" title="Use this method to specify a URL and receive incoming updates via an outgoing webhook....">Api::setWebhook</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l20947">20947</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l22102">22102</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 </div><a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
 <a id="a8f45266e80c5e58b695ee99981ccf1c6" name="a8f45266e80c5e58b695ee99981ccf1c6"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a8f45266e80c5e58b695ee99981ccf1c6">&#9670;&#160;</a></span>allowedUpdates</h2>
@@ -154,7 +154,7 @@ Public Attributes</h2></td></tr>
 
 <p>A JSON-serialized list of the update types you want your bot to receive. For example, specify ["message", "edited_channel_post", "callback_query"] to only receive updates of these types. See <a class="el" href="struct_tg_bot_1_1_update.html" title="This object represents an incoming update.At most one of the optional fields can be present in any gi...">Update</a> for a complete list of available update types. Specify an empty list to receive all update types except chat_member, message_reaction, and message_reaction_count (default). If not specified, the previous setting will be used.Please note that this parameter doesn't affect updates created before the call to the setWebhook, so unwanted updates may be received for a short period of time. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l20979">20979</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l22134">22134</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -172,7 +172,7 @@ Public Attributes</h2></td></tr>
 
 <p>Upload your public key certificate so that the root certificate in use can be checked. See our self-signed guide for details. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l20958">20958</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l22113">22113</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -190,7 +190,7 @@ Public Attributes</h2></td></tr>
 
 <p>Pass True to drop all pending updates. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l20990">20990</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l22145">22145</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -208,25 +208,25 @@ Public Attributes</h2></td></tr>
 
 <p>The fixed IP address which will be used to send webhook requests instead of the IP address resolved through DNS. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l20985">20985</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l22140">22140</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
-<a id="a792f333e358ebc259150c1c078c985b6" name="a792f333e358ebc259150c1c078c985b6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a792f333e358ebc259150c1c078c985b6">&#9670;&#160;</a></span>maxConnections</h2>
+<a id="a8e8ff97f243ef94ae7d22eeef3bf9c60" name="a8e8ff97f243ef94ae7d22eeef3bf9c60"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8e8ff97f243ef94ae7d22eeef3bf9c60">&#9670;&#160;</a></span>maxConnections</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::int32_t TgBot::SetWebhookArgs::maxConnections = 40</td>
+          <td class="memname">std::uint32_t TgBot::SetWebhookArgs::maxConnections = 40</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>The maximum allowed number of simultaneous HTTPS connections to the webhook for update delivery, 1-100. Defaults to 40. Use lower values to limit the load on your bot's server, and higher values to increase your bot's throughput. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l20966">20966</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l22121">22121</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -244,7 +244,7 @@ Public Attributes</h2></td></tr>
 
 <p>A secret token to be sent in a header “X-Telegram-Bot-Api-Secret-Token” in every webhook request, 1-256 characters. Only characters A-Z, a-z, 0-9, _ and - are allowed. The header is useful to ensure that the request comes from a webhook set by you. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l20998">20998</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l22153">22153</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -262,7 +262,7 @@ Public Attributes</h2></td></tr>
 
 <p>HTTPS URL to send updates to. Use an empty string to remove webhook integration. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l20952">20952</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l22107">22107</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>

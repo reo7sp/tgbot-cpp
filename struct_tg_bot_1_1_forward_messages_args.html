@@ -113,7 +113,7 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('struct_tg_bot_
 </div><!--header-->
 <div class="contents">
 
-<p>Arguments for <a class="el" href="class_tg_bot_1_1_api.html#a836d81c130eaa839e1c44b6f3c2d78ba" title="Use this method to forward multiple messages of any kind. If some of the specified messages can&#39;t be ...">Api::forwardMessages</a>.  
+<p>Arguments for <a class="el" href="class_tg_bot_1_1_api.html#adb683004e985387a958a037406f743af" title="Use this method to forward multiple messages of any kind. If some of the specified messages can&#39;t be ...">Api::forwardMessages</a>.  
  <a href="#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="_types_8h_source.html">Types.h</a>&gt;</code></p>
@@ -121,24 +121,24 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('struct_tg_bot_
 <tr class="heading"><td colspan="2"><h2 id="header-pub-attribs" class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:a1591c303665d934fd33172e5daf2fe40" id="r_a1591c303665d934fd33172e5daf2fe40"><td class="memItemLeft">std::variant&lt; std::int64_t, std::string &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a1591c303665d934fd33172e5daf2fe40">chatId</a> { }</td></tr>
-<tr class="memdesc:a1591c303665d934fd33172e5daf2fe40"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unique identifier for the target chat or username of the target bot, supergroup or channel in the format @username.  <br /></td></tr>
+<tr class="memdesc:a1591c303665d934fd33172e5daf2fe40"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unique identifier for the target chat or username of the target bot, supergroup, or channel in the format @username.  <br /></td></tr>
 <tr class="memitem:ade18cdec42db1fc88599d2958cbd5cf6" id="r_ade18cdec42db1fc88599d2958cbd5cf6"><td class="memItemLeft">std::variant&lt; std::int64_t, std::string &gt;&#160;</td><td class="memItemRight"><a class="el" href="#ade18cdec42db1fc88599d2958cbd5cf6">fromChatId</a> { }</td></tr>
-<tr class="memdesc:ade18cdec42db1fc88599d2958cbd5cf6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unique identifier for the chat where the original messages were sent (or username of the target bot, supergroup or channel in the format @username).  <br /></td></tr>
-<tr class="memitem:a8a1787c2736ba37d7416ffb737123a97" id="r_a8a1787c2736ba37d7416ffb737123a97"><td class="memItemLeft">std::vector&lt; std::int32_t &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a8a1787c2736ba37d7416ffb737123a97">messageIds</a> { }</td></tr>
-<tr class="memdesc:a8a1787c2736ba37d7416ffb737123a97"><td class="mdescLeft">&#160;</td><td class="mdescRight">A JSON-serialized list of 1-100 identifiers of messages in the chat from_chat_id to forward. The identifiers must be specified in a strictly increasing order.  <br /></td></tr>
-<tr class="memitem:a25f17563ad1302da047efd5cf98d04dd" id="r_a25f17563ad1302da047efd5cf98d04dd"><td class="memItemLeft">std::int32_t&#160;</td><td class="memItemRight"><a class="el" href="#a25f17563ad1302da047efd5cf98d04dd">messageThreadId</a> = 0</td></tr>
-<tr class="memdesc:a25f17563ad1302da047efd5cf98d04dd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unique identifier for the target message thread (topic) of a forum; for forum supergroups and private chats of bots with forum topic mode enabled only.  <br /></td></tr>
+<tr class="memdesc:ade18cdec42db1fc88599d2958cbd5cf6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unique identifier for the chat where the original messages were sent (or username of the target bot, supergroup, or channel in the format @username).  <br /></td></tr>
+<tr class="memitem:a5545c892c39d65d0495c8c0c6c615632" id="r_a5545c892c39d65d0495c8c0c6c615632"><td class="memItemLeft">std::vector&lt; std::uint32_t &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a5545c892c39d65d0495c8c0c6c615632">messageIds</a> { }</td></tr>
+<tr class="memdesc:a5545c892c39d65d0495c8c0c6c615632"><td class="mdescLeft">&#160;</td><td class="mdescRight">A JSON-serialized list of 1-100 identifiers of messages in the chat from_chat_id to forward. The identifiers must be specified in a strictly increasing order.  <br /></td></tr>
+<tr class="memitem:a6c8b01b25e5f018e5ae36a1de5f93831" id="r_a6c8b01b25e5f018e5ae36a1de5f93831"><td class="memItemLeft">std::uint32_t&#160;</td><td class="memItemRight"><a class="el" href="#a6c8b01b25e5f018e5ae36a1de5f93831">messageThreadId</a> = 0</td></tr>
+<tr class="memdesc:a6c8b01b25e5f018e5ae36a1de5f93831"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unique identifier for the target message thread (topic) of a forum; for forum supergroups and private chats of bots with forum topic mode enabled only.  <br /></td></tr>
 <tr class="memitem:a2d3b223fb05772747c372a9a7e7318c7" id="r_a2d3b223fb05772747c372a9a7e7318c7"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a2d3b223fb05772747c372a9a7e7318c7">disableNotification</a> = false</td></tr>
 <tr class="memdesc:a2d3b223fb05772747c372a9a7e7318c7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends the messages silently. Users will receive a notification with no sound.  <br /></td></tr>
 <tr class="memitem:ab285bacc08659696d762394e1316f79f" id="r_ab285bacc08659696d762394e1316f79f"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#ab285bacc08659696d762394e1316f79f">protectContent</a> = false</td></tr>
 <tr class="memdesc:ab285bacc08659696d762394e1316f79f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Protects the contents of the forwarded messages from forwarding and saving.  <br /></td></tr>
-<tr class="memitem:a4ba038910d0e9a8cb0dc9a196bdcb084" id="r_a4ba038910d0e9a8cb0dc9a196bdcb084"><td class="memItemLeft">std::int64_t&#160;</td><td class="memItemRight"><a class="el" href="#a4ba038910d0e9a8cb0dc9a196bdcb084">directMessagesTopicId</a> = 0</td></tr>
-<tr class="memdesc:a4ba038910d0e9a8cb0dc9a196bdcb084"><td class="mdescLeft">&#160;</td><td class="mdescRight">Identifier of the direct messages topic to which the messages will be forwarded; required if the messages are forwarded to a direct messages chat.  <br /></td></tr>
+<tr class="memitem:a3db3f6675031fb5209c8a225475eaeb9" id="r_a3db3f6675031fb5209c8a225475eaeb9"><td class="memItemLeft">std::uint64_t&#160;</td><td class="memItemRight"><a class="el" href="#a3db3f6675031fb5209c8a225475eaeb9">directMessagesTopicId</a> = 0</td></tr>
+<tr class="memdesc:a3db3f6675031fb5209c8a225475eaeb9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Identifier of the direct messages topic to which the messages will be forwarded; required if the messages are forwarded to a direct messages chat.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Arguments for <a class="el" href="class_tg_bot_1_1_api.html#a836d81c130eaa839e1c44b6f3c2d78ba" title="Use this method to forward multiple messages of any kind. If some of the specified messages can&#39;t be ...">Api::forwardMessages</a>. </p>
+<div class="textblock"><p>Arguments for <a class="el" href="class_tg_bot_1_1_api.html#adb683004e985387a958a037406f743af" title="Use this method to forward multiple messages of any kind. If some of the specified messages can&#39;t be ...">Api::forwardMessages</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l16228">16228</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l17147">17147</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 </div><a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
 <a id="a1591c303665d934fd33172e5daf2fe40" name="a1591c303665d934fd33172e5daf2fe40"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a1591c303665d934fd33172e5daf2fe40">&#9670;&#160;</a></span>chatId</h2>
@@ -152,27 +152,27 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Unique identifier for the target chat or username of the target bot, supergroup or channel in the format @username. </p>
+<p>Unique identifier for the target chat or username of the target bot, supergroup, or channel in the format @username. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l16233">16233</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l17152">17152</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
-<a id="a4ba038910d0e9a8cb0dc9a196bdcb084" name="a4ba038910d0e9a8cb0dc9a196bdcb084"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4ba038910d0e9a8cb0dc9a196bdcb084">&#9670;&#160;</a></span>directMessagesTopicId</h2>
+<a id="a3db3f6675031fb5209c8a225475eaeb9" name="a3db3f6675031fb5209c8a225475eaeb9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3db3f6675031fb5209c8a225475eaeb9">&#9670;&#160;</a></span>directMessagesTopicId</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::int64_t TgBot::ForwardMessagesArgs::directMessagesTopicId = 0</td>
+          <td class="memname">std::uint64_t TgBot::ForwardMessagesArgs::directMessagesTopicId = 0</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Identifier of the direct messages topic to which the messages will be forwarded; required if the messages are forwarded to a direct messages chat. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l16273">16273</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l17192">17192</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -190,7 +190,7 @@ Public Attributes</h2></td></tr>
 
 <p>Sends the messages silently. Users will receive a notification with no sound. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l16260">16260</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l17179">17179</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -206,45 +206,45 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Unique identifier for the chat where the original messages were sent (or username of the target bot, supergroup or channel in the format @username). </p>
+<p>Unique identifier for the chat where the original messages were sent (or username of the target bot, supergroup, or channel in the format @username). </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l16240">16240</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l17159">17159</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
-<a id="a8a1787c2736ba37d7416ffb737123a97" name="a8a1787c2736ba37d7416ffb737123a97"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8a1787c2736ba37d7416ffb737123a97">&#9670;&#160;</a></span>messageIds</h2>
+<a id="a5545c892c39d65d0495c8c0c6c615632" name="a5545c892c39d65d0495c8c0c6c615632"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5545c892c39d65d0495c8c0c6c615632">&#9670;&#160;</a></span>messageIds</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::vector&lt;std::int32_t&gt; TgBot::ForwardMessagesArgs::messageIds { }</td>
+          <td class="memname">std::vector&lt;std::uint32_t&gt; TgBot::ForwardMessagesArgs::messageIds { }</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>A JSON-serialized list of 1-100 identifiers of messages in the chat from_chat_id to forward. The identifiers must be specified in a strictly increasing order. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l16247">16247</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l17166">17166</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
-<a id="a25f17563ad1302da047efd5cf98d04dd" name="a25f17563ad1302da047efd5cf98d04dd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a25f17563ad1302da047efd5cf98d04dd">&#9670;&#160;</a></span>messageThreadId</h2>
+<a id="a6c8b01b25e5f018e5ae36a1de5f93831" name="a6c8b01b25e5f018e5ae36a1de5f93831"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6c8b01b25e5f018e5ae36a1de5f93831">&#9670;&#160;</a></span>messageThreadId</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::int32_t TgBot::ForwardMessagesArgs::messageThreadId = 0</td>
+          <td class="memname">std::uint32_t TgBot::ForwardMessagesArgs::messageThreadId = 0</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Unique identifier for the target message thread (topic) of a forum; for forum supergroups and private chats of bots with forum topic mode enabled only. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l16254">16254</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l17173">17173</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
@@ -262,7 +262,7 @@ Public Attributes</h2></td></tr>
 
 <p>Protects the contents of the forwarded messages from forwarding and saving. </p>
 
-<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l16266">16266</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_types_8h_source.html#l17185">17185</a> of file <a class="el" href="_types_8h_source.html">Types.h</a>.</p>
 
 </div>
 </div>
