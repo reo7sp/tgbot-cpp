@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: "Telegram Bot API"
-  version: "10.3"
+  version: "10.4"
   description: |-
     This OpenAPI specification was generated using the [tgbotspec](https://github.com/metalagman/tgbotspec) tool.
 servers:
@@ -470,6 +470,55 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+  /answerWidgetQuery:
+    post:
+      operationId: answerWidgetQuery
+      tags:
+        - Available methods
+      description: |-
+        Use this method to send an answer to a query from a widget. The query must be answered within 15 seconds. The answer is received only by the widget that sent the query and doesn't change data of the widget; use editMessageWidgetData or editSharedWidgetData to change it. On success, True is returned.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  type: string
+                  description: Data to be returned to the widget, 0-1024 bytes
+                widget_query_id:
+                  type: string
+                  description: Unique identifier for the query to be answered
+              required:
+                - widget_query_id
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/OkResponse'
+                  - type: object
+                    properties:
+                      result:
+                        type: boolean
+                        default: true
+                    required:
+                      - result
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
   /approveChatJoinRequest:
     post:
       operationId: approveChatJoinRequest
@@ -872,7 +921,7 @@ paths:
       tags:
         - Available methods
       description: |-
-        Use this method to copy messages of any kind. Service messages, paid media messages, giveaway messages, giveaway winners messages, and invoice messages can't be copied. A quiz poll can be copied only if the value of the field correct_option_ids is known to the bot. The method is analogous to the method forwardMessage, but the copied message doesn't have a link to the original message. Returns the MessageId of the sent message on success.
+        Use this method to copy messages of any kind. Service messages, paid media messages, giveaway messages, giveaway winners messages, invoice messages, and widget messages can't be copied. A quiz poll can be copied only if the value of the field correct_option_ids is known to the bot. The method is analogous to the method forwardMessage, but the copied message doesn't have a link to the original message. Returns the MessageId of the sent message on success.
       requestBody:
         required: true
         content:
@@ -894,7 +943,7 @@ paths:
                 chat_id:
                   type: integer
                   format: int64
-                  description: Unique identifier for the target chat or username of the target bot, supergroup or channel in the format @username
+                  description: Unique identifier for the target chat or username of the target bot, supergroup, or channel in the format @username
                 direct_messages_topic_id:
                   type: integer
                   description: Identifier of the direct messages topic to which the message will be sent; required if the message is sent to a direct messages chat
@@ -904,7 +953,7 @@ paths:
                 from_chat_id:
                   type: integer
                   format: int64
-                  description: Unique identifier for the chat where the original message was sent (or username of the target bot, supergroup or channel in the format @username)
+                  description: Unique identifier for the chat where the original message was sent (or username of the target bot, supergroup, or channel in the format @username)
                 message_effect_id:
                   type: string
                   description: Unique identifier of the message effect to be added to the message; only available when copying to private chats
@@ -977,7 +1026,7 @@ paths:
       tags:
         - Available methods
       description: |-
-        Use this method to copy messages of any kind. If some of the specified messages can't be found or copied, they are skipped. Service messages, paid media messages, giveaway messages, giveaway winners messages, and invoice messages can't be copied. A quiz poll can be copied only if the value of the field correct_option_ids is known to the bot. The method is analogous to the method forwardMessages, but the copied messages don't have a link to the original message. Album grouping is kept for copied messages. On success, an Array of MessageId of the sent messages is returned.
+        Use this method to copy messages of any kind. If some of the specified messages can't be found or copied, they are skipped. Service messages, paid media messages, giveaway messages, giveaway winners messages, invoice messages, and widget messages can't be copied. A quiz poll can be copied only if the value of the field correct_option_ids is known to the bot. The method is analogous to the method forwardMessages, but the copied messages don't have a link to the original message. Album grouping is kept for copied messages. On success, an Array of MessageId of the sent messages is returned.
       requestBody:
         required: true
         content:
@@ -988,7 +1037,7 @@ paths:
                 chat_id:
                   type: integer
                   format: int64
-                  description: Unique identifier for the target chat or username of the target bot, supergroup or channel in the format @username
+                  description: Unique identifier for the target chat or username of the target bot, supergroup, or channel in the format @username
                 direct_messages_topic_id:
                   type: integer
                   description: Identifier of the direct messages topic to which the messages will be sent; required if the messages are sent to a direct messages chat
@@ -998,7 +1047,7 @@ paths:
                 from_chat_id:
                   type: integer
                   format: int64
-                  description: Unique identifier for the chat where the original messages were sent (or username of the target bot, supergroup or channel in the format @username)
+                  description: Unique identifier for the chat where the original messages were sent (or username of the target bot, supergroup, or channel in the format @username)
                 message_ids:
                   type: array
                   description: A JSON-serialized list of 1-100 identifiers of messages in the chat from_chat_id to copy. The identifiers must be specified in a strictly increasing order.
@@ -1166,7 +1215,7 @@ paths:
       tags:
         - Available methods
       description: |-
-        Use this method to create a topic in a forum supergroup chat or a private chat with a user. In the case of a supergroup chat the bot must be an administrator in the chat for this to work and must have the can_manage_topics administrator right. Returns information about the created topic as a ForumTopic object.
+        Use this method to create a topic in a forum supergroup chat or a private chat with a user. In the case of a supergroup chat the bot must be an administrator in the chat for this to work and must have the can_manage_topics administrator right. In the case of a private chat, a link to the topic can be created in the format https://t.me/<bot_username>/<message_thread_id>; the link opens the topic only for the user. Returns information about the created topic as a ForumTopic object.
       requestBody:
         required: true
         content:
@@ -1585,6 +1634,56 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+  /deleteBusinessAccountGift:
+    post:
+      operationId: deleteBusinessAccountGift
+      tags:
+        - Available methods
+      description: |-
+        Deletes a regular gift owned by a managed business account without receiving Telegram Stars for it. Requires the can_convert_gifts_to_stars business bot right. The gift can be deleted only if it isn't limited (the field total_count of the Gift is omitted) and wasn't refunded. Returns True on success.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                business_connection_id:
+                  type: string
+                  description: Unique identifier of the business connection
+                owned_gift_id:
+                  type: string
+                  description: Unique identifier of the regular gift that should be deleted
+              required:
+                - business_connection_id
+                - owned_gift_id
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/OkResponse'
+                  - type: object
+                    properties:
+                      result:
+                        type: boolean
+                        default: true
+                    required:
+                      - result
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
   /deleteBusinessMessages:
     post:
       operationId: deleteBusinessMessages
@@ -1854,7 +1953,7 @@ paths:
                 chat_id:
                   type: integer
                   format: int64
-                  description: Unique identifier for the target chat or username of the target bot, supergroup or channel in the format @username
+                  description: Unique identifier for the target chat or username of the target bot, supergroup, or channel in the format @username
                 message_id:
                   type: integer
                   description: Identifier of the message to delete
@@ -1963,7 +2062,7 @@ paths:
                 chat_id:
                   type: integer
                   format: int64
-                  description: Unique identifier for the target chat or username of the target bot, supergroup or channel in the format @username
+                  description: Unique identifier for the target chat or username of the target bot, supergroup, or channel in the format @username
                 message_ids:
                   type: array
                   description: A JSON-serialized list of 1-100 identifiers of messages to delete. See deleteMessage for limitations on which messages can be deleted.
@@ -2784,7 +2883,7 @@ paths:
                 chat_id:
                   type: integer
                   format: int64
-                  description: Required if inline_message_id is not specified. Unique identifier for the target chat or username of the target bot, supergroup or channel in the format @username.
+                  description: Required if inline_message_id is not specified. Unique identifier for the target chat or username of the target bot, supergroup, or channel in the format @username.
                 inline_message_id:
                   type: string
                   description: Required if chat_id and message_id are not specified. Identifier of the inline message.
@@ -2913,7 +3012,7 @@ paths:
                 chat_id:
                   type: integer
                   format: int64
-                  description: Required if inline_message_id is not specified. Unique identifier for the target chat or username of the target bot, supergroup or channel in the format @username.
+                  description: Required if inline_message_id is not specified. Unique identifier for the target chat or username of the target bot, supergroup, or channel in the format @username.
                 heading:
                   type: integer
                   description: Direction in which the user is moving, in degrees. Must be between 1 and 360 if specified.
@@ -2994,7 +3093,7 @@ paths:
                 chat_id:
                   type: integer
                   format: int64
-                  description: Required if inline_message_id is not specified. Unique identifier for the target chat or username of the target bot, supergroup or channel in the format @username.
+                  description: Required if inline_message_id is not specified. Unique identifier for the target chat or username of the target bot, supergroup, or channel in the format @username.
                 inline_message_id:
                   type: string
                   description: Required if chat_id and message_id are not specified. Identifier of the inline message.
@@ -3021,7 +3120,7 @@ paths:
                 chat_id:
                   type: integer
                   format: int64
-                  description: Required if inline_message_id is not specified. Unique identifier for the target chat or username of the target bot, supergroup or channel in the format @username.
+                  description: Required if inline_message_id is not specified. Unique identifier for the target chat or username of the target bot, supergroup, or channel in the format @username.
                 inline_message_id:
                   type: string
                   description: Required if chat_id and message_id are not specified. Identifier of the inline message.
@@ -3085,7 +3184,7 @@ paths:
                 chat_id:
                   type: integer
                   format: int64
-                  description: Required if inline_message_id is not specified. Unique identifier for the target chat or username of the target bot, supergroup or channel in the format @username.
+                  description: Required if inline_message_id is not specified. Unique identifier for the target chat or username of the target bot, supergroup, or channel in the format @username.
                 inline_message_id:
                   type: string
                   description: Required if chat_id and message_id are not specified. Identifier of the inline message.
@@ -3145,7 +3244,7 @@ paths:
                 chat_id:
                   type: integer
                   format: int64
-                  description: Required if inline_message_id is not specified. Unique identifier for the target chat or username of the target bot, supergroup or channel in the format @username.
+                  description: Required if inline_message_id is not specified. Unique identifier for the target chat or username of the target bot, supergroup, or channel in the format @username.
                 entities:
                   type: array
                   description: A JSON-serialized list of special entities that appear in message text, which can be specified instead of parse_mode
@@ -3190,6 +3289,116 @@ paths:
                             - $ref: '#/components/schemas/Message'
                             - type: boolean
                               default: true
+                    required:
+                      - result
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /editMessageWidgetData:
+    post:
+      operationId: editMessageWidgetData
+      tags:
+        - Updating messages
+      description: |-
+        Use this method to edit data of a widget in a message sent by the bot or via the bot (for inline bots). Public data of a shared widget can be changed at most once per second. On success, True is returned.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                chat_data:
+                  type: string
+                  description: New data of the widget, which is specific to the message, 0-1024 bytes; pass an empty string to remove the data. If omitted, then the data isn't changed.
+                chat_id:
+                  type: integer
+                  format: int64
+                  description: Required if inline_message_id is not specified. Unique identifier for the target chat or username of the target supergroup in the format @username.
+                inline_message_id:
+                  type: string
+                  description: Required if chat_id and message_id are not specified. Identifier of the inline message.
+                message_id:
+                  type: integer
+                  description: Required if inline_message_id is not specified. Identifier of the message with the widget.
+                public_data:
+                  type: string
+                  description: New public data of the widget, 0-1024 bytes; pass an empty string to remove the public data. If omitted, then the public data isn't changed.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/OkResponse'
+                  - type: object
+                    properties:
+                      result:
+                        type: boolean
+                        default: true
+                    required:
+                      - result
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /editSharedWidgetData:
+    post:
+      operationId: editSharedWidgetData
+      tags:
+        - Updating messages
+      description: |-
+        Use this method to edit public data of a shared widget created by the bot. A shared widget can be edited at most once per second. On success, True is returned.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                cache_time:
+                  type: integer
+                  description: The maximum amount of time in seconds that the public data of the widget may be cached client-side; 5-3600. If omitted, then the current value is kept, which is 30 by default.
+                public_data:
+                  type: string
+                  description: New public data of the widget, 0-1024 bytes; pass an empty string to remove the public data
+                widget_id:
+                  type: string
+                  description: Unique identifier of the shared widget
+              required:
+                - public_data
+                - widget_id
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/OkResponse'
+                  - type: object
+                    properties:
+                      result:
+                        type: boolean
+                        default: true
                     required:
                       - result
         '400':
@@ -3391,7 +3600,7 @@ paths:
                 chat_id:
                   type: integer
                   format: int64
-                  description: Unique identifier for the target chat or username of the target bot, supergroup or channel in the format @username
+                  description: Unique identifier for the target chat or username of the target bot, supergroup, or channel in the format @username
                 direct_messages_topic_id:
                   type: integer
                   description: Identifier of the direct messages topic to which the message will be forwarded; required if the message is forwarded to a direct messages chat
@@ -3401,7 +3610,7 @@ paths:
                 from_chat_id:
                   type: integer
                   format: int64
-                  description: Unique identifier for the chat where the original message was sent (or username of the target bot, supergroup or channel in the format @username)
+                  description: Unique identifier for the chat where the original message was sent (or username of the target bot, supergroup, or channel in the format @username)
                 message_effect_id:
                   type: string
                   description: Unique identifier of the message effect to be added to the message; only available when forwarding to private chats
@@ -3468,7 +3677,7 @@ paths:
                 chat_id:
                   type: integer
                   format: int64
-                  description: Unique identifier for the target chat or username of the target bot, supergroup or channel in the format @username
+                  description: Unique identifier for the target chat or username of the target bot, supergroup, or channel in the format @username
                 direct_messages_topic_id:
                   type: integer
                   description: Identifier of the direct messages topic to which the messages will be forwarded; required if the messages are forwarded to a direct messages chat
@@ -3478,7 +3687,7 @@ paths:
                 from_chat_id:
                   type: integer
                   format: int64
-                  description: Unique identifier for the chat where the original messages were sent (or username of the target bot, supergroup or channel in the format @username)
+                  description: Unique identifier for the chat where the original messages were sent (or username of the target bot, supergroup, or channel in the format @username)
                 message_ids:
                   type: array
                   description: A JSON-serialized list of 1-100 identifiers of messages in the chat from_chat_id to forward. The identifiers must be specified in a strictly increasing order.
@@ -4019,6 +4228,39 @@ paths:
                     properties:
                       result:
                         $ref: '#/components/schemas/MenuButton'
+                    required:
+                      - result
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /getChatShareThemeBackdrops:
+    post:
+      operationId: getChatShareThemeBackdrops
+      tags:
+        - Available methods
+      description: |-
+        Use this method to get the list of backdrops, which can be used as the background of a theme of the screen for sharing a link to a user or a chat. Requires no parameters. Returns a ChatShareThemeBackdrops object.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/OkResponse'
+                  - type: object
+                    properties:
+                      result:
+                        $ref: '#/components/schemas/ChatShareThemeBackdrops'
                     required:
                       - result
         '400':
@@ -4674,6 +4916,51 @@ paths:
                     properties:
                       result:
                         $ref: '#/components/schemas/StickerSet'
+                    required:
+                      - result
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /getUniqueGift:
+    post:
+      operationId: getUniqueGift
+      tags:
+        - Available methods
+      description: |-
+        Use this method to get information about a unique gift by its name. Returns a UniqueGift object on success.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: Unique name of the gift
+              required:
+                - name
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/OkResponse'
+                  - type: object
+                    properties:
+                      result:
+                        $ref: '#/components/schemas/UniqueGift'
                     required:
                       - result
         '400':
@@ -6306,7 +6593,7 @@ paths:
                 chat_id:
                   type: integer
                   format: int64
-                  description: Unique identifier for the target chat or username of the target bot, supergroup or channel in the format @username
+                  description: Unique identifier for the target chat or username of the target bot, supergroup, or channel in the format @username; required unless the message is sent as an ephemeral reply to a callback query
                 direct_messages_topic_id:
                   type: integer
                   description: Identifier of the direct messages topic to which the message will be sent; required if the message is sent to a direct messages chat
@@ -6364,7 +6651,6 @@ paths:
                   description: Animation width
               required:
                 - animation
-                - chat_id
           multipart/form-data:
             schema:
               type: object
@@ -6388,7 +6674,7 @@ paths:
                 chat_id:
                   type: integer
                   format: int64
-                  description: Unique identifier for the target chat or username of the target bot, supergroup or channel in the format @username
+                  description: Unique identifier for the target chat or username of the target bot, supergroup, or channel in the format @username; required unless the message is sent as an ephemeral reply to a callback query
                 direct_messages_topic_id:
                   type: integer
                   description: Identifier of the direct messages topic to which the message will be sent; required if the message is sent to a direct messages chat
@@ -6445,7 +6731,6 @@ paths:
                   description: Animation width
               required:
                 - animation
-                - chat_id
       responses:
         '200':
           description: OK
@@ -6507,7 +6792,7 @@ paths:
                 chat_id:
                   type: integer
                   format: int64
-                  description: Unique identifier for the target chat or username of the target bot, supergroup or channel in the format @username
+                  description: Unique identifier for the target chat or username of the target bot, supergroup, or channel in the format @username; required unless the message is sent as an ephemeral reply to a callback query
                 direct_messages_topic_id:
                   type: integer
                   description: Identifier of the direct messages topic to which the message will be sent; required if the message is sent to a direct messages chat
@@ -6559,7 +6844,6 @@ paths:
                   description: Track name
               required:
                 - audio
-                - chat_id
           multipart/form-data:
             schema:
               type: object
@@ -6583,7 +6867,7 @@ paths:
                 chat_id:
                   type: integer
                   format: int64
-                  description: Unique identifier for the target chat or username of the target bot, supergroup or channel in the format @username
+                  description: Unique identifier for the target chat or username of the target bot, supergroup, or channel in the format @username; required unless the message is sent as an ephemeral reply to a callback query
                 direct_messages_topic_id:
                   type: integer
                   description: Identifier of the direct messages topic to which the message will be sent; required if the message is sent to a direct messages chat
@@ -6634,7 +6918,6 @@ paths:
                   description: Track name
               required:
                 - audio
-                - chat_id
       responses:
         '200':
           description: OK
@@ -6864,7 +7147,7 @@ paths:
                 chat_id:
                   type: integer
                   format: int64
-                  description: Unique identifier for the target chat or username of the target bot, supergroup or channel in the format @username
+                  description: Unique identifier for the target chat or username of the target bot, supergroup, or channel in the format @username; required unless the message is sent as an ephemeral reply to a callback query
                 direct_messages_topic_id:
                   type: integer
                   description: Identifier of the direct messages topic to which the message will be sent; required if the message is sent to a direct messages chat
@@ -6912,7 +7195,6 @@ paths:
                   type: string
                   description: Additional data about the contact in the form of a vCard, 0-2048 bytes
               required:
-                - chat_id
                 - first_name
                 - phone_number
       responses:
@@ -6964,7 +7246,7 @@ paths:
                 chat_id:
                   type: integer
                   format: int64
-                  description: Unique identifier for the target chat or username of the target bot, supergroup or channel in the format @username
+                  description: Unique identifier for the target chat or username of the target bot, supergroup, or channel in the format @username
                 direct_messages_topic_id:
                   type: integer
                   description: Identifier of the direct messages topic to which the message will be sent; required if the message is sent to a direct messages chat
@@ -7057,7 +7339,7 @@ paths:
                 chat_id:
                   type: integer
                   format: int64
-                  description: Unique identifier for the target chat or username of the target bot, supergroup or channel in the format @username
+                  description: Unique identifier for the target chat or username of the target bot, supergroup, or channel in the format @username; required unless the message is sent as an ephemeral reply to a callback query
                 direct_messages_topic_id:
                   type: integer
                   description: Identifier of the direct messages topic to which the message will be sent; required if the message is sent to a direct messages chat
@@ -7105,7 +7387,6 @@ paths:
                   type: string
                   description: Thumbnail of the file sent; can be ignored if thumbnail generation for the file is supported server-side. The thumbnail should be in JPEG format and less than 200 kB in size. A thumbnail's width and height should not exceed 320. Ignored if the file is not uploaded using multipart/form-data. Thumbnails can't be reused and can be only uploaded as a new file, so you can pass “attach://<file_attach_name>” if the thumbnail was uploaded using multipart/form-data under <file_attach_name>. More information on Sending Files »
               required:
-                - chat_id
                 - document
           multipart/form-data:
             schema:
@@ -7126,7 +7407,7 @@ paths:
                 chat_id:
                   type: integer
                   format: int64
-                  description: Unique identifier for the target chat or username of the target bot, supergroup or channel in the format @username
+                  description: Unique identifier for the target chat or username of the target bot, supergroup, or channel in the format @username; required unless the message is sent as an ephemeral reply to a callback query
                 direct_messages_topic_id:
                   type: integer
                   description: Identifier of the direct messages topic to which the message will be sent; required if the message is sent to a direct messages chat
@@ -7174,7 +7455,6 @@ paths:
                   format: binary
                   description: Thumbnail of the file sent; can be ignored if thumbnail generation for the file is supported server-side. The thumbnail should be in JPEG format and less than 200 kB in size. A thumbnail's width and height should not exceed 320. Ignored if the file is not uploaded using multipart/form-data. Thumbnails can't be reused and can be only uploaded as a new file, so you can pass “attach://<file_attach_name>” if the thumbnail was uploaded using multipart/form-data under <file_attach_name>. More information on Sending Files »
               required:
-                - chat_id
                 - document
       responses:
         '200':
@@ -7295,7 +7575,7 @@ paths:
                 chat_id:
                   type: integer
                   format: int64
-                  description: Required if user_id is not specified. Unique identifier for the chat or username of the channel (in the format @username) that will receive the gift.
+                  description: Required if user_id is not specified. Unique identifier for the chat that will receive the gift or username of the channel in the format @username.
                 gift_id:
                   type: string
                   description: Identifier of the gift; limited gifts can't be sent to channel chats
@@ -7365,7 +7645,7 @@ paths:
                 chat_id:
                   type: integer
                   format: int64
-                  description: Unique identifier for the target chat or username of the target bot, supergroup or channel in the format @username
+                  description: Unique identifier for the target chat or username of the target bot, supergroup, or channel in the format @username
                 currency:
                   type: string
                   description: Three-letter ISO 4217 currency code, see more on currencies. Pass “XTR” for payments in Telegram Stars.
@@ -7524,7 +7804,7 @@ paths:
                 chat_id:
                   type: integer
                   format: int64
-                  description: Unique identifier for the target chat or username of the target channel (in the format @channelusername)
+                  description: Unique identifier for the target chat or username of the target bot, supergroup, or channel in the format @username; required unless the message is sent as an ephemeral reply to a callback query
                 direct_messages_topic_id:
                   type: integer
                   description: Identifier of the direct messages topic to which the message will be sent; required if the message is sent to a direct messages chat
@@ -7575,7 +7855,6 @@ paths:
                   allOf:
                       - $ref: '#/components/schemas/SuggestedPostParameters'
               required:
-                - chat_id
                 - live_photo
                 - photo
           multipart/form-data:
@@ -7597,7 +7876,7 @@ paths:
                 chat_id:
                   type: integer
                   format: int64
-                  description: Unique identifier for the target chat or username of the target channel (in the format @channelusername)
+                  description: Unique identifier for the target chat or username of the target bot, supergroup, or channel in the format @username; required unless the message is sent as an ephemeral reply to a callback query
                 direct_messages_topic_id:
                   type: integer
                   description: Identifier of the direct messages topic to which the message will be sent; required if the message is sent to a direct messages chat
@@ -7648,7 +7927,6 @@ paths:
                   type: string
                   description: A JSON-serialized object containing the parameters of the suggested post to send; for direct messages chats only. If the message is sent as a reply to another suggested post, then that suggested post is automatically declined.
               required:
-                - chat_id
                 - live_photo
                 - photo
       responses:
@@ -7700,7 +7978,7 @@ paths:
                 chat_id:
                   type: integer
                   format: int64
-                  description: Unique identifier for the target chat or username of the target bot, supergroup or channel in the format @username
+                  description: Unique identifier for the target chat or username of the target bot, supergroup, or channel in the format @username; required unless the message is sent as an ephemeral reply to a callback query
                 direct_messages_topic_id:
                   type: integer
                   description: Identifier of the direct messages topic to which the message will be sent; required if the message is sent to a direct messages chat
@@ -7754,7 +8032,6 @@ paths:
                   allOf:
                       - $ref: '#/components/schemas/SuggestedPostParameters'
               required:
-                - chat_id
                 - latitude
                 - longitude
       responses:
@@ -7806,7 +8083,7 @@ paths:
                 chat_id:
                   type: integer
                   format: int64
-                  description: Unique identifier for the target chat or username of the target bot, supergroup or channel in the format @username
+                  description: Unique identifier for the target chat or username of the target bot, supergroup, or channel in the format @username
                 direct_messages_topic_id:
                   type: integer
                   description: Identifier of the direct messages topic to which the messages will be sent; required if the messages are sent to a direct messages chat
@@ -7852,7 +8129,7 @@ paths:
                 chat_id:
                   type: integer
                   format: int64
-                  description: Unique identifier for the target chat or username of the target bot, supergroup or channel in the format @username
+                  description: Unique identifier for the target chat or username of the target bot, supergroup, or channel in the format @username
                 direct_messages_topic_id:
                   type: integer
                   description: Identifier of the direct messages topic to which the messages will be sent; required if the messages are sent to a direct messages chat
@@ -7929,7 +8206,7 @@ paths:
                 chat_id:
                   type: integer
                   format: int64
-                  description: Unique identifier for the target chat or username of the target bot, supergroup or channel in the format @username
+                  description: Unique identifier for the target chat or username of the target bot, supergroup, or channel in the format @username; required unless the message is sent as an ephemeral reply to a callback query
                 direct_messages_topic_id:
                   type: integer
                   description: Identifier of the direct messages topic to which the message will be sent; required if the message is sent to a direct messages chat
@@ -7980,7 +8257,6 @@ paths:
                   type: string
                   description: Text of the message to be sent, 1-4096 characters after entities parsing
               required:
-                - chat_id
                 - text
       responses:
         '200':
@@ -8110,7 +8386,7 @@ paths:
                 chat_id:
                   type: integer
                   format: int64
-                  description: Unique identifier for the target chat or username of the target bot, supergroup or channel in the format @username. If the chat is a channel, all Telegram Star proceeds from this media will be credited to the chat's balance. Otherwise, they will be credited to the bot's balance.
+                  description: Unique identifier for the target chat or username of the target bot, supergroup, or channel in the format @username. If the chat is a channel, all Telegram Star proceeds from this media will be credited to the chat's balance. Otherwise, they will be credited to the bot's balance.
                 direct_messages_topic_id:
                   type: integer
                   description: Identifier of the direct messages topic to which the message will be sent; required if the message is sent to a direct messages chat
@@ -8216,7 +8492,7 @@ paths:
                 chat_id:
                   type: integer
                   format: int64
-                  description: Unique identifier for the target chat or username of the target bot, supergroup or channel in the format @username
+                  description: Unique identifier for the target chat or username of the target bot, supergroup, or channel in the format @username; required unless the message is sent as an ephemeral reply to a callback query
                 direct_messages_topic_id:
                   type: integer
                   description: Identifier of the direct messages topic to which the message will be sent; required if the message is sent to a direct messages chat
@@ -8264,7 +8540,6 @@ paths:
                   allOf:
                       - $ref: '#/components/schemas/SuggestedPostParameters'
               required:
-                - chat_id
                 - photo
           multipart/form-data:
             schema:
@@ -8285,7 +8560,7 @@ paths:
                 chat_id:
                   type: integer
                   format: int64
-                  description: Unique identifier for the target chat or username of the target bot, supergroup or channel in the format @username
+                  description: Unique identifier for the target chat or username of the target bot, supergroup, or channel in the format @username; required unless the message is sent as an ephemeral reply to a callback query
                 direct_messages_topic_id:
                   type: integer
                   description: Identifier of the direct messages topic to which the message will be sent; required if the message is sent to a direct messages chat
@@ -8332,7 +8607,6 @@ paths:
                   type: string
                   description: A JSON-serialized object containing the parameters of the suggested post to send; for direct messages chats only. If the message is sent as a reply to another suggested post, then that suggested post is automatically declined.
               required:
-                - chat_id
                 - photo
       responses:
         '200':
@@ -8392,7 +8666,7 @@ paths:
                 chat_id:
                   type: integer
                   format: int64
-                  description: Unique identifier for the target chat or username of the target bot, supergroup or channel in the format @username. Polls can't be sent to channel direct messages chats.
+                  description: Unique identifier for the target chat or username of the target bot, supergroup, or channel in the format @username. Polls can't be sent to channel direct messages chats.
                 close_date:
                   type: integer
                   description: Point in time (Unix timestamp) when the poll will be automatically closed. Must be at least 5 and no more than 2628000 seconds in the future. Can't be used together with open_period.
@@ -8549,7 +8823,7 @@ paths:
                 chat_id:
                   type: integer
                   format: int64
-                  description: Unique identifier for the target chat or username of the target bot, supergroup or channel in the format @username
+                  description: Unique identifier for the target chat or username of the target bot, supergroup, or channel in the format @username; required unless the message is sent as an ephemeral reply to a callback query
                 direct_messages_topic_id:
                   type: integer
                   description: Identifier of the direct messages topic to which the message will be sent; required if the message is sent to a direct messages chat
@@ -8589,7 +8863,6 @@ paths:
                   allOf:
                       - $ref: '#/components/schemas/SuggestedPostParameters'
               required:
-                - chat_id
                 - rich_message
       responses:
         '200':
@@ -8682,6 +8955,99 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+  /sendSharedWidget:
+    post:
+      operationId: sendSharedWidget
+      tags:
+        - Available methods
+      description: |-
+        Use this method to send again a shared widget created by the bot. Currently, in the production environment, widgets can be sent only to private chats, and sent widgets automatically have protected content and therefore can't be forwarded. On success, the sent Message is returned.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                allow_paid_broadcast:
+                  type: boolean
+                  description: Pass True to allow up to 1000 messages per second, ignoring broadcasting limits for a fee of 0.1 Telegram Stars per message. The relevant Stars will be withdrawn from the bot's balance.
+                caption:
+                  type: string
+                  description: Widget caption, 0-1024 characters after entities parsing
+                caption_entities:
+                  type: array
+                  description: A JSON-serialized list of special entities that appear in the caption, which can be specified instead of parse_mode
+                  items:
+                      $ref: '#/components/schemas/MessageEntity'
+                chat_data:
+                  type: string
+                  description: Data of the widget, which is specific to the message, 0-1024 bytes
+                chat_id:
+                  type: integer
+                  format: int64
+                  description: Unique identifier for the target chat or username of the target supergroup in the format @username
+                disable_notification:
+                  type: boolean
+                  description: Sends the message silently. Users will receive a notification with no sound.
+                message_effect_id:
+                  type: string
+                  description: Unique identifier of the message effect to be added to the message; for private chats only
+                message_thread_id:
+                  type: integer
+                  description: Unique identifier for the target message thread (topic) of a forum; for forum supergroups and private chats of bots with forum topic mode enabled only
+                parse_mode:
+                  type: string
+                  description: Mode for parsing entities in the widget caption. See formatting options for more details.
+                protect_content:
+                  type: boolean
+                  description: Protects the contents of the sent message from forwarding and saving
+                reply_markup:
+                  description: Additional interface options. A JSON-serialized object for an inline keyboard, custom reply keyboard, instructions to remove a reply keyboard or to force a reply from the user.
+                  oneOf:
+                      - $ref: '#/components/schemas/InlineKeyboardMarkup'
+                      - $ref: '#/components/schemas/ReplyKeyboardMarkup'
+                      - $ref: '#/components/schemas/ReplyKeyboardRemove'
+                      - $ref: '#/components/schemas/ForceReply'
+                reply_parameters:
+                  description: Description of the message to reply to
+                  allOf:
+                      - $ref: '#/components/schemas/ReplyParameters'
+                show_caption_above_media:
+                  type: boolean
+                  description: Pass True if the caption must be shown above the widget
+                widget_id:
+                  type: string
+                  description: Unique identifier of the shared widget
+              required:
+                - chat_id
+                - widget_id
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/OkResponse'
+                  - type: object
+                    properties:
+                      result:
+                        $ref: '#/components/schemas/Message'
+                    required:
+                      - result
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
   /sendSticker:
     post:
       operationId: sendSticker
@@ -8705,7 +9071,7 @@ paths:
                 chat_id:
                   type: integer
                   format: int64
-                  description: Unique identifier for the target chat or username of the target bot, supergroup or channel in the format @username
+                  description: Unique identifier for the target chat or username of the target bot, supergroup, or channel in the format @username; required unless the message is sent as an ephemeral reply to a callback query
                 direct_messages_topic_id:
                   type: integer
                   description: Identifier of the direct messages topic to which the message will be sent; required if the message is sent to a direct messages chat
@@ -8747,7 +9113,6 @@ paths:
                   allOf:
                       - $ref: '#/components/schemas/SuggestedPostParameters'
               required:
-                - chat_id
                 - sticker
           multipart/form-data:
             schema:
@@ -8762,7 +9127,7 @@ paths:
                 chat_id:
                   type: integer
                   format: int64
-                  description: Unique identifier for the target chat or username of the target bot, supergroup or channel in the format @username
+                  description: Unique identifier for the target chat or username of the target bot, supergroup, or channel in the format @username; required unless the message is sent as an ephemeral reply to a callback query
                 direct_messages_topic_id:
                   type: integer
                   description: Identifier of the direct messages topic to which the message will be sent; required if the message is sent to a direct messages chat
@@ -8803,7 +9168,6 @@ paths:
                   type: string
                   description: A JSON-serialized object containing the parameters of the suggested post to send; for direct messages chats only. If the message is sent as a reply to another suggested post, then that suggested post is automatically declined.
               required:
-                - chat_id
                 - sticker
       responses:
         '200':
@@ -8857,7 +9221,7 @@ paths:
                 chat_id:
                   type: integer
                   format: int64
-                  description: Unique identifier for the target chat or username of the target bot, supergroup or channel in the format @username
+                  description: Unique identifier for the target chat or username of the target bot, supergroup, or channel in the format @username; required unless the message is sent as an ephemeral reply to a callback query
                 direct_messages_topic_id:
                   type: integer
                   description: Identifier of the direct messages topic to which the message will be sent; required if the message is sent to a direct messages chat
@@ -8915,7 +9279,6 @@ paths:
                   description: Name of the venue
               required:
                 - address
-                - chat_id
                 - latitude
                 - longitude
                 - title
@@ -8976,7 +9339,7 @@ paths:
                 chat_id:
                   type: integer
                   format: int64
-                  description: Unique identifier for the target chat or username of the target bot, supergroup or channel in the format @username
+                  description: Unique identifier for the target chat or username of the target bot, supergroup, or channel in the format @username; required unless the message is sent as an ephemeral reply to a callback query
                 cover:
                   type: string
                   description: Cover for the video in the message. Pass a file_id to send a file that exists on the Telegram servers (recommended), pass an HTTP URL for Telegram to get a file from the Internet, or pass “attach://<file_attach_name>” to upload a new one using multipart/form-data under <file_attach_name> name. More information on Sending Files »
@@ -9045,7 +9408,6 @@ paths:
                   type: integer
                   description: Video width
               required:
-                - chat_id
                 - video
           multipart/form-data:
             schema:
@@ -9066,7 +9428,7 @@ paths:
                 chat_id:
                   type: integer
                   format: int64
-                  description: Unique identifier for the target chat or username of the target bot, supergroup or channel in the format @username
+                  description: Unique identifier for the target chat or username of the target bot, supergroup, or channel in the format @username; required unless the message is sent as an ephemeral reply to a callback query
                 cover:
                   type: string
                   format: binary
@@ -9136,7 +9498,6 @@ paths:
                   type: integer
                   description: Video width
               required:
-                - chat_id
                 - video
       responses:
         '200':
@@ -9187,7 +9548,7 @@ paths:
                 chat_id:
                   type: integer
                   format: int64
-                  description: Unique identifier for the target chat or username of the target bot, supergroup or channel in the format @username
+                  description: Unique identifier for the target chat or username of the target bot, supergroup, or channel in the format @username; required unless the message is sent as an ephemeral reply to a callback query
                 direct_messages_topic_id:
                   type: integer
                   description: Identifier of the direct messages topic to which the message will be sent; required if the message is sent to a direct messages chat
@@ -9235,7 +9596,6 @@ paths:
                   type: string
                   description: Video note to send. Pass a file_id as String to send a video note that exists on the Telegram servers (recommended) or upload a new video using multipart/form-data. More information on Sending Files ». Sending video notes by a URL is currently unsupported.
               required:
-                - chat_id
                 - video_note
           multipart/form-data:
             schema:
@@ -9250,7 +9610,7 @@ paths:
                 chat_id:
                   type: integer
                   format: int64
-                  description: Unique identifier for the target chat or username of the target bot, supergroup or channel in the format @username
+                  description: Unique identifier for the target chat or username of the target bot, supergroup, or channel in the format @username; required unless the message is sent as an ephemeral reply to a callback query
                 direct_messages_topic_id:
                   type: integer
                   description: Identifier of the direct messages topic to which the message will be sent; required if the message is sent to a direct messages chat
@@ -9298,7 +9658,6 @@ paths:
                   format: binary
                   description: Video note to send. Pass a file_id as String to send a video note that exists on the Telegram servers (recommended) or upload a new video using multipart/form-data. More information on Sending Files ». Sending video notes by a URL is currently unsupported.
               required:
-                - chat_id
                 - video_note
       responses:
         '200':
@@ -9357,7 +9716,7 @@ paths:
                 chat_id:
                   type: integer
                   format: int64
-                  description: Unique identifier for the target chat or username of the target bot, supergroup or channel in the format @username
+                  description: Unique identifier for the target chat or username of the target bot, supergroup, or channel in the format @username; required unless the message is sent as an ephemeral reply to a callback query
                 direct_messages_topic_id:
                   type: integer
                   description: Identifier of the direct messages topic to which the message will be sent; required if the message is sent to a direct messages chat
@@ -9402,7 +9761,6 @@ paths:
                   type: string
                   description: Audio file to send. Pass a file_id as String to send a file that exists on the Telegram servers (recommended), pass an HTTP URL as a String for Telegram to get a file from the Internet, or upload a new one using multipart/form-data. More information on Sending Files »
               required:
-                - chat_id
                 - voice
           multipart/form-data:
             schema:
@@ -9423,7 +9781,7 @@ paths:
                 chat_id:
                   type: integer
                   format: int64
-                  description: Unique identifier for the target chat or username of the target bot, supergroup or channel in the format @username
+                  description: Unique identifier for the target chat or username of the target bot, supergroup, or channel in the format @username; required unless the message is sent as an ephemeral reply to a callback query
                 direct_messages_topic_id:
                   type: integer
                   description: Identifier of the direct messages topic to which the message will be sent; required if the message is sent to a direct messages chat
@@ -9467,8 +9825,115 @@ paths:
                   format: binary
                   description: Audio file to send. Pass a file_id as String to send a file that exists on the Telegram servers (recommended), pass an HTTP URL as a String for Telegram to get a file from the Internet, or upload a new one using multipart/form-data. More information on Sending Files »
               required:
-                - chat_id
                 - voice
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/OkResponse'
+                  - type: object
+                    properties:
+                      result:
+                        $ref: '#/components/schemas/Message'
+                    required:
+                      - result
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /sendWidget:
+    post:
+      operationId: sendWidget
+      tags:
+        - Available methods
+      description: |-
+        Use this method to send a message with an HTML widget. Currently, in the production environment, widgets can be sent only to private chats, and sent widgets automatically have protected content and therefore can't be forwarded. On success, the sent Message is returned.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                allow_paid_broadcast:
+                  type: boolean
+                  description: Pass True to allow up to 1000 messages per second, ignoring broadcasting limits for a fee of 0.1 Telegram Stars per message. The relevant Stars will be withdrawn from the bot's balance.
+                allow_queries:
+                  type: boolean
+                  description: Pass True to allow the widget to send queries to the bot
+                caption:
+                  type: string
+                  description: Widget caption, 0-1024 characters after entities parsing
+                caption_entities:
+                  type: array
+                  description: A JSON-serialized list of special entities that appear in the caption, which can be specified instead of parse_mode
+                  items:
+                      $ref: '#/components/schemas/MessageEntity'
+                chat_data:
+                  type: string
+                  description: Data of the widget, which is specific to the message, 0-1024 bytes
+                chat_id:
+                  type: integer
+                  format: int64
+                  description: Unique identifier for the target chat or username of the target supergroup in the format @username
+                disable_notification:
+                  type: boolean
+                  description: Sends the message silently. Users will receive a notification with no sound.
+                height:
+                  type: integer
+                  description: Height of the widget in logical pixels; omit if the height of the widget isn't fixed. The height is clamped by the app to the range 50-600.
+                html:
+                  type: string
+                  description: HTML code of the widget, 1-32768 bytes. The code must not exceed 4096 bytes when compressed by zlib with the maximum compression level.
+                is_shared:
+                  type: boolean
+                  description: Pass True to create a shared widget, which can be sent again using the method sendSharedWidget
+                message_effect_id:
+                  type: string
+                  description: Unique identifier of the message effect to be added to the message; for private chats only
+                message_thread_id:
+                  type: integer
+                  description: Unique identifier for the target message thread (topic) of a forum; for forum supergroups and private chats of bots with forum topic mode enabled only
+                parse_mode:
+                  type: string
+                  description: Mode for parsing entities in the widget caption. See formatting options for more details.
+                protect_content:
+                  type: boolean
+                  description: Protects the contents of the sent message from forwarding and saving
+                public_data:
+                  type: string
+                  description: Public data of the widget, 0-1024 bytes, which will be available wherever the widget is shown. If the widget is shared, then all messages with it will have the same public data.
+                reply_markup:
+                  description: Additional interface options. A JSON-serialized object for an inline keyboard, custom reply keyboard, instructions to remove a reply keyboard or to force a reply from the user.
+                  oneOf:
+                      - $ref: '#/components/schemas/InlineKeyboardMarkup'
+                      - $ref: '#/components/schemas/ReplyKeyboardMarkup'
+                      - $ref: '#/components/schemas/ReplyKeyboardRemove'
+                      - $ref: '#/components/schemas/ForceReply'
+                reply_parameters:
+                  description: Description of the message to reply to
+                  allOf:
+                      - $ref: '#/components/schemas/ReplyParameters'
+                show_caption_above_media:
+                  type: boolean
+                  description: Pass True if the caption must be shown above the widget
+                width:
+                  type: integer
+                  description: Width of the widget in logical pixels; omit if the widget must occupy the whole width of the message bubble. The width is clamped by the app to the range from 200 to the maximum width of the message bubble.
+              required:
+                - chat_id
+                - html
       responses:
         '200':
           description: OK
@@ -10371,7 +10836,7 @@ paths:
                 chat_id:
                   type: integer
                   format: int64
-                  description: Unique identifier for the target chat or username of the target bot, supergroup or channel in the format @username
+                  description: Unique identifier for the target chat or username of the target bot, supergroup, or channel in the format @username
                 is_big:
                   type: boolean
                   description: Pass True to set the reaction with a big animation
@@ -11252,7 +11717,7 @@ paths:
                 chat_id:
                   type: integer
                   format: int64
-                  description: Required if inline_message_id is not specified. Unique identifier for the target chat or username of the target bot, supergroup or channel in the format @username.
+                  description: Required if inline_message_id is not specified. Unique identifier for the target chat or username of the target bot, supergroup, or channel in the format @username.
                 inline_message_id:
                   type: string
                   description: Required if chat_id and message_id are not specified. Identifier of the inline message.
@@ -11312,7 +11777,7 @@ paths:
                 chat_id:
                   type: integer
                   format: int64
-                  description: Unique identifier for the target chat or username of the target bot, supergroup or channel in the format @username
+                  description: Unique identifier for the target chat or username of the target bot, supergroup, or channel in the format @username
                 message_id:
                   type: integer
                   description: Identifier of the original message with the poll
@@ -11948,10 +12413,18 @@ paths:
                 chat_id:
                   type: integer
                   format: int64
-                  description: Unique identifier for the target chat or username of the target bot, supergroup or channel in the format @username. Channel direct messages chats can't be verified.
+                  description: Unique identifier for the target chat or username of the target bot, supergroup, or channel in the format @username. Channel direct messages chats can't be verified.
                 custom_description:
                   type: string
                   description: Custom description for the verification; 0-70 characters. Must be empty if the organization isn't allowed to provide a custom verification description.
+                custom_description_entities:
+                  type: array
+                  description: A JSON-serialized list of special entities that appear in the custom description, which can be specified instead of custom_description_parse_mode. Only “text_link” entities are supported.
+                  items:
+                      $ref: '#/components/schemas/MessageEntity'
+                custom_description_parse_mode:
+                  type: string
+                  description: Mode for parsing entities in the custom description. See formatting options for more details. Only “text_link” entities are supported.
               required:
                 - chat_id
       responses:
@@ -11998,6 +12471,14 @@ paths:
                 custom_description:
                   type: string
                   description: Custom description for the verification; 0-70 characters. Must be empty if the organization isn't allowed to provide a custom verification description.
+                custom_description_entities:
+                  type: array
+                  description: A JSON-serialized list of special entities that appear in the custom description, which can be specified instead of custom_description_parse_mode. Only “text_link” entities are supported.
+                  items:
+                      $ref: '#/components/schemas/MessageEntity'
+                custom_description_parse_mode:
+                  type: string
+                  description: Mode for parsing entities in the custom description. See formatting options for more details. Only “text_link” entities are supported.
                 user_id:
                   type: integer
                   description: Unique identifier of the target user
@@ -12135,6 +12616,38 @@ components:
         - width
         - height
         - duration
+   AreaPosition:
+      type: object
+      description: |-
+        Describes the position of a rectangle area on a story media or a TON wallet card.
+      x-tags:
+        - Available types
+      properties:
+        x_percentage:
+          type: number
+          description: The abscissa of the area's center, as a percentage of the media or the card width
+        y_percentage:
+          type: number
+          description: The ordinate of the area's center, as a percentage of the media or the card height
+        width_percentage:
+          type: number
+          description: The width of the area's rectangle, as a percentage of the media or the card width
+        height_percentage:
+          type: number
+          description: The height of the area's rectangle, as a percentage of the media or the card height
+        rotation_angle:
+          type: number
+          description: The clockwise rotation angle of the rectangle, in degrees; 0-360
+        corner_radius_percentage:
+          type: number
+          description: The radius of the rectangle corner rounding, as a percentage of the media or the card width
+      required:
+        - x_percentage
+        - y_percentage
+        - width_percentage
+        - height_percentage
+        - rotation_angle
+        - corner_radius_percentage
    Audio:
       type: object
       description: |-
@@ -13282,6 +13795,14 @@ components:
           description: Optional. The Community to which the chat belongs
           allOf:
               - $ref: '#/components/schemas/Community'
+        ton_wallet_card:
+          description: Optional. For private chats, the TON wallet card of the user, which is shown on their profile page
+          allOf:
+              - $ref: '#/components/schemas/TonWalletCard'
+        share_theme:
+          description: Optional. For private chats, supergroups and channels, the theme of the screen for sharing a link to the user or the chat; omitted if the default theme is used
+          allOf:
+              - $ref: '#/components/schemas/ChatShareTheme'
       required:
         - id
         - type
@@ -13622,7 +14143,7 @@ components:
           description: True, if the user is allowed to send polls and checklists
         can_send_other_messages:
           type: boolean
-          description: True, if the user is allowed to send animations, games, stickers and use inline bots
+          description: True, if the user is allowed to send animations, games, stickers, widgets and use inline bots
         can_add_web_page_previews:
           type: boolean
           description: True, if the user is allowed to add web page previews to their messages
@@ -13767,7 +14288,7 @@ components:
           description: Optional. True, if the user is allowed to send polls and checklists
         can_send_other_messages:
           type: boolean
-          description: Optional. True, if the user is allowed to send animations, games, stickers and use inline bots
+          description: Optional. True, if the user is allowed to send animations, games, stickers, widgets and use inline bots
         can_add_web_page_previews:
           type: boolean
           description: Optional. True, if the user is allowed to add web page previews to their messages
@@ -13813,6 +14334,87 @@ components:
         - small_file_unique_id
         - big_file_id
         - big_file_unique_id
+   ChatShareTheme:
+      type: object
+      description: |-
+        This object describes the theme of the screen for sharing a link to a user or a chat. Currently, it can be one of
+        ChatShareThemeEmoji
+        ChatShareThemeUniqueGift
+      x-tags:
+        - Available types
+   ChatShareThemeBackdrop:
+      type: object
+      description: |-
+        This object describes a backdrop, which can be used as the background of a theme of the screen for sharing a link to a user or a chat.
+      x-tags:
+        - Available types
+      properties:
+        id:
+          type: integer
+          description: Unique identifier of the backdrop
+        name:
+          type: string
+          description: Name of the backdrop
+        colors:
+          description: Colors of the backdrop
+          allOf:
+              - $ref: '#/components/schemas/UniqueGiftBackdropColors'
+      required:
+        - id
+        - name
+        - colors
+   ChatShareThemeBackdrops:
+      type: object
+      description: |-
+        This object contains a list of backdrops, which can be used as the background of a theme of the screen for sharing a link to a user or a chat.
+      x-tags:
+        - Available types
+      properties:
+        backdrops:
+          type: array
+          description: The list of backdrops
+          items:
+              $ref: '#/components/schemas/ChatShareThemeBackdrop'
+      required:
+        - backdrops
+   ChatShareThemeEmoji:
+      type: object
+      description: |-
+        The theme with emoji placed on a background.
+      x-tags:
+        - Available types
+      properties:
+        type:
+          type: string
+          description: Type of the theme, always “emoji”
+        emojis:
+          type: array
+          description: The emoji; 0-6 regular or custom emoji
+          items:
+              $ref: '#/components/schemas/EmojiType'
+        background_backdrop_id:
+          type: integer
+          description: Optional. Identifier of the backdrop used as the background; omitted if the default background is used. Use getChatShareThemeBackdrops to get details about the backdrop.
+      required:
+        - type
+        - emojis
+   ChatShareThemeUniqueGift:
+      type: object
+      description: |-
+        The theme based on a unique gift owned by the user or the chat.
+      x-tags:
+        - Available types
+      properties:
+        type:
+          type: string
+          description: Type of the theme, always “unique_gift”
+        gift:
+          description: The gift
+          allOf:
+              - $ref: '#/components/schemas/UniqueGift'
+      required:
+        - type
+        - gift
    ChatShared:
       type: object
       description: |-
@@ -14142,6 +14744,46 @@ components:
       required:
         - file_id
         - file_unique_id
+   EmojiType:
+      type: object
+      description: |-
+        This object describes an emoji. Currently, it can be one of
+        EmojiTypeEmoji
+        EmojiTypeCustomEmoji
+      x-tags:
+        - Available types
+   EmojiTypeCustomEmoji:
+      type: object
+      description: |-
+        A custom emoji.
+      x-tags:
+        - Available types
+      properties:
+        type:
+          type: string
+          description: Type of the emoji, always “custom_emoji”
+        custom_emoji_id:
+          type: string
+          description: Identifier of the custom emoji. Use getCustomEmojiStickers to get full information about the sticker.
+      required:
+        - type
+        - custom_emoji_id
+   EmojiTypeEmoji:
+      type: object
+      description: |-
+        A regular emoji.
+      x-tags:
+        - Available types
+      properties:
+        type:
+          type: string
+          description: Type of the emoji, always “emoji”
+        emoji:
+          type: string
+          description: The emoji
+      required:
+        - type
+        - emoji
    EncryptedCredentials:
       type: object
       description: |-
@@ -14217,15 +14859,13 @@ components:
       properties:
         receiver_user_id:
           type: integer
-          description: Identifier of the user who will receive the message. It is not guaranteed that the user will receive the message, especially if they are offline. See here for more details.
+          description: Optional. Identifier of the user who will receive the message; required unless the message is sent as an ephemeral reply to a callback query. If omitted, then the parameter chat_id of the method is ignored. If specified together with callback_query_id, then it must be the identifier of the user who pressed the button. Must be omitted for messages sent in chats where the bot isn't a member, unless the message is a reply to an ephemeral message. It is not guaranteed that the user will receive the message, especially if they are offline. See here for more details.
         callback_query_id:
           type: string
-          description: Optional. Identifier of the callback query which triggered the message, if any
+          description: Optional. Identifier of the callback query which triggered the message, if any. If specified and receiver_user_id is omitted, then the message is sent as an ephemeral reply to the callback query and will be shown only to the user who pressed the button. Ephemeral replies can't be sent to callback queries from messages in channel direct messages chats. The bot must still answer the callback query using answerCallbackQuery.
         replace_callback_query_message:
           type: boolean
           description: Optional. Pass True if the ephemeral message must be shown in place of the original message. Must be False for callback queries from ephemeral messages, which must be edited using regular editEphemeralMessage… methods.
-      required:
-        - receiver_user_id
    ExternalReplyInfo:
       type: object
       description: |-
@@ -14293,6 +14933,10 @@ components:
           description: Optional. Message is a voice message, information about the file
           allOf:
               - $ref: '#/components/schemas/Voice'
+        widget:
+          description: Optional. Message is an HTML widget, information about the widget
+          allOf:
+              - $ref: '#/components/schemas/Widget'
         has_media_spoiler:
           type: boolean
           description: Optional. True, if the message media is covered by a spoiler animation
@@ -14832,7 +15476,7 @@ components:
           type: string
           description: Optional. Data to be sent in a callback query to the bot when the button is pressed, 1-64 bytes
         web_app:
-          description: Optional. Description of the Web App that will be launched when the user presses the button. The Web App will be able to send an arbitrary message on behalf of the user using the method answerWebAppQuery. Available only in private chats between a user and the bot. Not supported for messages sent on behalf of a business account.
+          description: Optional. Description of the Web App that will be launched when the user presses the button. The Web App will be able to send an arbitrary message on behalf of the user using the method answerWebAppQuery. Available only in private chats between a user and the bot. Not supported for messages sent on behalf of a business account and ephemeral messages.
           allOf:
               - $ref: '#/components/schemas/WebAppInfo'
         login_url:
@@ -16513,6 +17157,8 @@ components:
         InputVenueMessageContent
         InputContactMessageContent
         InputInvoiceMessageContent
+        InputWidgetMessageContent
+        InputSharedWidgetMessageContent
       x-tags:
         - Inline mode
    InputPaidMedia:
@@ -17316,6 +17962,35 @@ components:
       required:
         - id
         - media
+   InputSharedWidgetMessageContent:
+      type: object
+      description: |-
+        Represents the content of a message with a shared widget to be sent as the result of an inline query. Currently, widgets can't be sent in response to inline queries in the production environment.
+      x-tags:
+        - Inline mode
+      properties:
+        widget_id:
+          type: string
+          description: Unique identifier of the shared widget created by the bot
+        chat_data:
+          type: string
+          description: Optional. Data of the widget, which is specific to the message, 0-1024 bytes
+        caption:
+          type: string
+          description: Optional. Widget caption, 0-1024 characters after entities parsing
+        parse_mode:
+          type: string
+          description: Optional. Mode for parsing entities in the widget caption. See formatting options for more details.
+        caption_entities:
+          type: array
+          description: Optional. List of special entities that appear in the caption, which can be specified instead of parse_mode
+          items:
+              $ref: '#/components/schemas/MessageEntity'
+        show_caption_above_media:
+          type: boolean
+          description: Optional. Pass True if the caption must be shown above the widget
+      required:
+        - widget_id
    InputSticker:
       type: object
       description: |-
@@ -17456,6 +18131,50 @@ components:
         - longitude
         - title
         - address
+   InputWidgetMessageContent:
+      type: object
+      description: |-
+        Represents the content of a message with an HTML widget to be sent as the result of an inline query. Currently, widgets can't be sent in response to inline queries in the production environment.
+      x-tags:
+        - Inline mode
+      properties:
+        html:
+          type: string
+          description: HTML code of the widget, 1-32768 bytes. The code must not exceed 4096 bytes when compressed by zlib with the maximum compression level.
+        width:
+          type: integer
+          description: Optional. Width of the widget in logical pixels; omit if the widget must occupy the whole width of the message bubble. The width is clamped by the app to the range from 200 to the maximum width of the message bubble.
+        height:
+          type: integer
+          description: Optional. Height of the widget in logical pixels; omit if the height of the widget isn't fixed. The height is clamped by the app to the range 50-600.
+        public_data:
+          type: string
+          description: Optional. Public data of the widget, 0-1024 bytes, which will be available wherever the widget is shown. If the widget is shared, then all messages with it will have the same public data.
+        chat_data:
+          type: string
+          description: Optional. Data of the widget, which is specific to the message, 0-1024 bytes
+        caption:
+          type: string
+          description: Optional. Widget caption, 0-1024 characters after entities parsing
+        parse_mode:
+          type: string
+          description: Optional. Mode for parsing entities in the widget caption. See formatting options for more details.
+        caption_entities:
+          type: array
+          description: Optional. List of special entities that appear in the caption, which can be specified instead of parse_mode
+          items:
+              $ref: '#/components/schemas/MessageEntity'
+        show_caption_above_media:
+          type: boolean
+          description: Optional. Pass True if the caption must be shown above the widget
+        allow_queries:
+          type: boolean
+          description: Optional. Pass True to allow the widget to send queries to the bot
+        is_shared:
+          type: boolean
+          description: Optional. Pass True to create a shared widget. Each message sent from the result creates a separate shared widget, whose identifier is received by the bot only in the field widget_id of queries from the widget. To send an existing shared widget in response to an inline query, use InputSharedWidgetMessageContent instead.
+      required:
+        - html
    Invoice:
       type: object
       description: |-
@@ -17598,7 +18317,7 @@ components:
           description: Optional. Suggested name for the bot
         suggested_username:
           type: string
-          description: Optional. Suggested username for the bot
+          description: Optional. Suggested username for the bot. The username must end with “bot”. If the user creating the bot has a Telegram Premium subscription, then the username can also end with “agent”, “ai”, “app”, “game”, or “gay”; in this case, the username will be assigned to the bot as a secondary username, and a regular username ending with “bot” will be assigned to the bot automatically.
       required:
         - request_id
    KeyboardButtonRequestUsers:
@@ -18102,9 +18821,13 @@ components:
           description: Optional. Message is a voice message, information about the file
           allOf:
               - $ref: '#/components/schemas/Voice'
+        widget:
+          description: Optional. Message is an HTML widget, information about the widget
+          allOf:
+              - $ref: '#/components/schemas/Widget'
         caption:
           type: string
-          description: Optional. Caption for the animation, audio, document, paid media, photo, video or voice
+          description: Optional. Caption for the animation, audio, document, live photo, paid media, photo, video, voice, or widget
         caption_entities:
           type: array
           description: Optional. For messages with a caption, special entities like usernames, URLs, bot commands, etc. that appear in the caption
@@ -18112,7 +18835,7 @@ components:
               $ref: '#/components/schemas/MessageEntity'
         show_caption_above_media:
           type: boolean
-          description: Optional. True, if the caption must be shown above the message media
+          description: Optional. True, if the caption must be shown above the message media or the widget
           default: true
         has_media_spoiler:
           type: boolean
@@ -18330,6 +19053,10 @@ components:
           description: 'Optional. Service message: the price for paid messages has changed in the chat'
           allOf:
               - $ref: '#/components/schemas/PaidMessagePriceChanged'
+        paid_messages_waived:
+          description: 'Optional. Service message: the sender of the message used a link of the other user, which allows sending messages to the user without paying Telegram Stars'
+          allOf:
+              - $ref: '#/components/schemas/PaidMessagesWaived'
         poll_option_added:
           description: 'Optional. Service message: answer option was added to a poll'
           allOf:
@@ -18358,6 +19085,10 @@ components:
           description: 'Optional. Service message: payment for a suggested post was refunded'
           allOf:
               - $ref: '#/components/schemas/SuggestedPostRefunded'
+        ton_wallet_transfer:
+          description: 'Optional. Service message: a transfer with a TON wallet'
+          allOf:
+              - $ref: '#/components/schemas/TonWalletTransfer'
         video_chat_scheduled:
           description: 'Optional. Service message: video chat scheduled'
           allOf:
@@ -18407,7 +19138,7 @@ components:
       properties:
         type:
           type: string
-          description: 'Type of the entity. Currently, can be “mention” (@username), “hashtag” (#hashtag or #hashtag@chatusername), “cashtag” ($USD or $USD@chatusername), “bot_command” (/start@jobs_bot), “url” (https://telegram.org), “email” (do-not-reply@telegram.org), “phone_number” (+1-212-555-0123), “bold” (bold text), “italic” (italic text), “underline” (underlined text), “strikethrough” (strikethrough text), “spoiler” (spoiler message), “blockquote” (block quotation), “expandable_blockquote” (collapsed-by-default block quotation), “code” (monowidth string), “pre” (monowidth block), “text_link” (for clickable text URLs), “text_mention” (for users without usernames), “custom_emoji” (for inline custom emoji stickers), or “date_time” (for formatted date and time).'
+          description: 'Type of the entity. Currently, can be “mention” (@username), “hashtag” (#hashtag or #hashtag@chatusername), “cashtag” ($USD or $USD@chatusername), “bot_command” (/start@jobs_bot), “url” (https://telegram.org), “email” (do-not-reply@telegram.org), “phone_number” (+1-212-555-0123), “bank_card_number” (bank card number), “ton_address” (address in the TON blockchain), “bold” (bold text), “italic” (italic text), “underline” (underlined text), “strikethrough” (strikethrough text), “spoiler” (spoiler message), “blockquote” (block quotation), “expandable_blockquote” (collapsed-by-default block quotation), “code” (monowidth string), “pre” (monowidth block), “text_link” (for clickable text URLs), “text_mention” (for users without usernames), “custom_emoji” (for inline custom emoji stickers), or “date_time” (for formatted date and time).'
         offset:
           type: integer
           description: Offset in UTF-16 code units to the start of the entity
@@ -18926,6 +19657,12 @@ components:
           description: The new number of Telegram Stars that must be paid by non-administrator users of the supergroup chat for each sent message
       required:
         - paid_message_star_count
+   PaidMessagesWaived:
+      type: object
+      description: |-
+        Describes a service message about the sender of the message using a link of the other user, which allows sending messages to the user without paying Telegram Stars. Currently holds no information.
+      x-tags:
+        - Available types
    PassportData:
       type: object
       description: |-
@@ -19746,7 +20483,7 @@ components:
         chat_id:
           type: integer
           format: int64
-          description: Optional. If the message to be replied to is from a different chat, unique identifier for the chat or username of the bot, supergroup or channel in the format @username. Not supported for messages sent on behalf of a business account, messages from channel direct messages chats and ephemeral messages.
+          description: Optional. If the message to be replied to is from a different chat, unique identifier for the chat or username of the bot, supergroup, or channel in the format @username. Not supported for messages sent on behalf of a business account, messages from channel direct messages chats and ephemeral messages.
         ephemeral_message_id:
           type: integer
           description: Optional. Identifier of the incoming ephemeral message that will be replied to in the current chat. A reply to an ephemeral message must itself be an ephemeral message. An ephemeral message may only be replied to within 15 seconds of being sent. Required if message_id isn't specified.
@@ -19764,9 +20501,14 @@ components:
           description: Optional. A JSON-serialized list of special entities that appear in the quote. It can be specified instead of quote_parse_mode.
           items:
               $ref: '#/components/schemas/MessageEntity'
+        quote_rich_texts:
+          type: array
+          description: 'Optional. A JSON-serialized list of quoted parts of the rich message to be replied to. Must contain one element for each quoted text of the message in the order of their appearance. Each of the following is a separate quoted text: the text of a paragraph, a heading, a preformatted block, a footer, or a mathematical expression; the text and the credit of a block quotation or a pull quotation; the summary of a details block; the caption and each cell of a table; the text and the credit of a caption of a media block, a collage, a slideshow, or a map. Texts of blocks nested in lists, block quotations, details, collages, and slideshows are separate quoted texts too. The first and the last elements can contain only a part of the corresponding text; all other elements must contain the whole text. Formatting of the quoted parts must be kept, and rich texts must be nested in the same way as in the message received from the server. Mathematical expressions must be quoted entirely. Buttons in RichBlockButtons, anchors and dividers can''t be quoted. Up to 32 quoted texts with total length up to 1024 characters can be specified. Only plain text, RichTextBold, RichTextItalic, RichTextUnderline, RichTextStrikethrough, RichTextSpoiler, RichTextSubscript, RichTextSuperscript, RichTextDateTime, RichTextCustomEmoji, RichTextMathematicalExpression, and arrays of them are kept in the quote; other rich text types are replaced with their text. If non-empty, then quote, quote_parse_mode and quote_entities are ignored.'
+          items:
+              $ref: '#/components/schemas/RichText'
         quote_position:
           type: integer
-          description: Optional. Position of the quote in the original message in UTF-16 code units
+          description: Optional. Position of the quote in the original message in UTF-16 code units. For quotes from rich messages, it is the position in the text formed by joining plain texts of all quotable texts of the message, separated by line feeds.
         checklist_task_id:
           type: integer
           description: Optional. Identifier of the specific checklist task to be replied to
@@ -20553,6 +21295,7 @@ components:
         RichTextEmailAddress
         RichTextPhoneNumber
         RichTextBankCardNumber
+        RichTextTonAddress
         RichTextMention
         RichTextHashtag
         RichTextCashtag
@@ -21026,6 +21769,27 @@ components:
         - type
         - text
         - user
+   RichTextTonAddress:
+      type: object
+      description: |-
+        An address in the TON blockchain.
+      x-tags:
+        - Rich messages
+      properties:
+        type:
+          type: string
+          description: Type of the rich text, always “ton_address”
+        text:
+          description: Text of the address
+          allOf:
+              - $ref: '#/components/schemas/RichText'
+        address:
+          type: string
+          description: The address
+      required:
+        - type
+        - text
+        - address
    RichTextUnderline:
       type: object
       description: |-
@@ -21113,6 +21877,36 @@ components:
               $ref: '#/components/schemas/PhotoSize'
       required:
         - user_id
+   SharedWidgetQuery:
+      type: object
+      description: |-
+        This object represents an incoming query from a forwarded message with a shared widget created by the bot. Use answerWidgetQuery to answer the query. Each user can send at most 5 queries per 5 seconds to the bot from all its widgets.
+      x-tags:
+        - Available types
+      properties:
+        id:
+          type: string
+          description: Unique identifier for this query
+        from:
+          description: Sender
+          allOf:
+              - $ref: '#/components/schemas/User'
+        type:
+          description: Type of the query
+          allOf:
+              - $ref: '#/components/schemas/WidgetQueryType'
+        data:
+          type: string
+          description: Data of the query, 1-64 bytes
+        widget_id:
+          type: string
+          description: Unique identifier of the shared widget, which sent the query
+      required:
+        - id
+        - from
+        - type
+        - data
+        - widget_id
    ShippingAddress:
       type: object
       description: |-
@@ -21374,7 +22168,7 @@ components:
         position:
           description: Position of the area
           allOf:
-              - $ref: '#/components/schemas/StoryAreaPosition'
+              - $ref: '#/components/schemas/AreaPosition'
         type:
           description: Type of the area
           allOf:
@@ -21382,38 +22176,6 @@ components:
       required:
         - position
         - type
-   StoryAreaPosition:
-      type: object
-      description: |-
-        Describes the position of a clickable area within a story.
-      x-tags:
-        - Available types
-      properties:
-        x_percentage:
-          type: number
-          description: The abscissa of the area's center, as a percentage of the media width
-        y_percentage:
-          type: number
-          description: The ordinate of the area's center, as a percentage of the media height
-        width_percentage:
-          type: number
-          description: The width of the area's rectangle, as a percentage of the media width
-        height_percentage:
-          type: number
-          description: The height of the area's rectangle, as a percentage of the media height
-        rotation_angle:
-          type: number
-          description: The clockwise rotation angle of the rectangle, in degrees; 0-360
-        corner_radius_percentage:
-          type: number
-          description: The radius of the rectangle corner rounding, as a percentage of the media width
-      required:
-        - x_percentage
-        - y_percentage
-        - width_percentage
-        - height_percentage
-        - rotation_angle
-        - corner_radius_percentage
    StoryAreaType:
       type: object
       description: |-
@@ -21744,15 +22506,20 @@ components:
       properties:
         text:
           type: string
-          description: Text of the quoted part of a message that is replied to by the given message
+          description: Text of the quoted part of a message that is replied to by the given message; may be empty if the quote was chosen from a rich message
         entities:
           type: array
           description: Optional. Special entities that appear in the quote. Currently, only bold, italic, underline, strikethrough, spoiler, custom_emoji, and date_time entities are kept in quotes.
           items:
               $ref: '#/components/schemas/MessageEntity'
+        rich_texts:
+          type: array
+          description: Optional. Rich text of the quote if it was chosen from a rich message. May contain only plain text, RichTextBold, RichTextItalic, RichTextUnderline, RichTextStrikethrough, RichTextSpoiler, RichTextSubscript, RichTextSuperscript, RichTextDateTime, RichTextCustomEmoji, RichTextMathematicalExpression, and arrays of them.
+          items:
+              $ref: '#/components/schemas/RichText'
         position:
           type: integer
-          description: Approximate quote position in the original message in UTF-16 code units as specified by the sender
+          description: Approximate quote position in the original message in UTF-16 code units as specified by the sender. For quotes from rich messages, it is the position in the text formed by joining plain texts of all quotable texts of the message, separated by line feeds.
         is_manual:
           type: boolean
           description: Optional. True, if the quote was chosen manually by the message sender. Otherwise, the quote was added automatically by the server.
@@ -21760,6 +22527,124 @@ components:
       required:
         - text
         - position
+   TonNft:
+      type: object
+      description: |-
+        This object represents an NFT in the TON blockchain.
+      x-tags:
+        - Available types
+      properties:
+        address:
+          type: string
+          description: Address of the NFT
+        collection_address:
+          type: string
+          description: Optional. Address of the collection to which the NFT belongs; omitted if unknown
+        index:
+          type: string
+          description: Index of the NFT among all NFTs from the collection as a decimal number
+        name:
+          type: string
+          description: Name of the NFT
+        description:
+          type: string
+          description: Description of the NFT
+        attributes:
+          type: array
+          description: Optional. Attributes of the NFT
+          items:
+              $ref: '#/components/schemas/TonNftAttribute'
+        gift:
+          description: Optional. The unique gift corresponding to the NFT
+          allOf:
+              - $ref: '#/components/schemas/UniqueGift'
+      required:
+        - address
+        - index
+        - name
+        - description
+   TonNftAttribute:
+      type: object
+      description: |-
+        This object represents an attribute of an NFT in the TON blockchain.
+      x-tags:
+        - Available types
+      properties:
+        trait_type:
+          type: string
+          description: Trait type of the attribute
+        value:
+          type: string
+          description: Value of the attribute
+      required:
+        - trait_type
+        - value
+   TonWalletCard:
+      type: object
+      description: |-
+        This object describes a TON wallet card, which is shown on the profile page of a user to everyone.
+      x-tags:
+        - Available types
+      properties:
+        address:
+          type: string
+          description: Address of the wallet
+        amount:
+          type: string
+          description: Balance of the wallet, in the smallest units of the cryptocurrency, as a decimal number
+        stickers:
+          type: array
+          description: Stickers placed on the card
+          items:
+              $ref: '#/components/schemas/TonWalletCardSticker'
+        background_nft_address:
+          type: string
+          description: Optional. Address of the NFT of one of the stickers, whose colors must be used for the card background; omitted if the default background must be used
+      required:
+        - address
+        - amount
+        - stickers
+   TonWalletCardSticker:
+      type: object
+      description: |-
+        This object describes a sticker on a TON wallet card.
+      x-tags:
+        - Available types
+      properties:
+        position:
+          description: Position of the sticker on the card
+          allOf:
+              - $ref: '#/components/schemas/AreaPosition'
+        nft:
+          description: The NFT shown as the sticker
+          allOf:
+              - $ref: '#/components/schemas/TonNft'
+      required:
+        - position
+        - nft
+   TonWalletTransfer:
+      type: object
+      description: |-
+        Describes a service message about a transfer with a TON wallet.
+      x-tags:
+        - Available types
+      properties:
+        transaction_id:
+          type: string
+          description: Unique identifier of the transaction; may be empty if the transfer hasn't been sent yet
+        peer_address:
+          type: string
+          description: Address of the transfer peer in the TON blockchain
+        amount:
+          type: string
+          description: The amount of transferred cryptocurrency, in the smallest units of the cryptocurrency, as a decimal number; negative for outgoing transfers
+        comment:
+          type: string
+          description: Optional. Comment added to the transfer; omitted if the comment is encrypted
+      required:
+        - transaction_id
+        - peer_address
+        - amount
    TransactionPartner:
       type: object
       description: |-
@@ -22211,6 +23096,14 @@ components:
           description: Optional. New incoming callback query
           allOf:
               - $ref: '#/components/schemas/CallbackQuery'
+        widget_query:
+          description: Optional. New incoming query from a widget in a message sent by the bot or via the bot
+          allOf:
+              - $ref: '#/components/schemas/WidgetQuery'
+        shared_widget_query:
+          description: Optional. New incoming query from a forwarded message with a shared widget
+          allOf:
+              - $ref: '#/components/schemas/SharedWidgetQuery'
         shipping_query:
           description: Optional. New incoming shipping query. Only for invoices with flexible price.
           allOf:
@@ -22716,6 +23609,168 @@ components:
         - url
         - has_custom_certificate
         - pending_update_count
+   Widget:
+      type: object
+      description: |-
+        This object describes an HTML widget.
+      x-tags:
+        - Available types
+      properties:
+        id:
+          type: string
+          description: Optional. Unique identifier of the shared widget, which can be used to send the widget again using the method sendSharedWidget; omitted if the widget isn't shared
+        width:
+          type: integer
+          description: Optional. Width of the widget in logical pixels; omitted if the widget must occupy the whole width of the message bubble
+        height:
+          type: integer
+          description: Optional. Height of the widget in logical pixels; omitted if the height of the widget isn't fixed
+        html:
+          type: string
+          description: HTML code of the widget
+        public_data:
+          type: string
+          description: Optional. Public data of the widget, which is available wherever the widget is shown. All messages with a shared widget have the same public data.
+        chat_data:
+          type: string
+          description: Optional. Data of the widget, which is specific to the message
+      required:
+        - html
+   WidgetQuery:
+      type: object
+      description: |-
+        This object represents an incoming query from a widget in a message sent by the bot or via the bot. Use answerWidgetQuery to answer the query. Each user can send at most 5 queries per 5 seconds to the bot from all its widgets.
+      x-tags:
+        - Available types
+      properties:
+        id:
+          type: string
+          description: Unique identifier for this query
+        from:
+          description: Sender
+          allOf:
+              - $ref: '#/components/schemas/User'
+        chat:
+          description: Optional. Chat with the message containing the widget; omitted if the widget is in an inline message
+          allOf:
+              - $ref: '#/components/schemas/Chat'
+        message_id:
+          type: integer
+          description: Optional. Identifier of the message containing the widget; omitted if the widget is in an inline message
+        inline_message_id:
+          type: string
+          description: Optional. Identifier of the inline message containing the widget
+        chat_instance:
+          type: string
+          description: Global identifier, uniquely corresponding to the chat to which the message with the widget was sent
+        chat_type:
+          type: string
+          description: Optional. For widgets in inline messages, type of the chat to which the message was sent. Can be either “sender” for a private chat with the inline query sender, “private”, “group”, “supergroup”, or “channel”.
+        type:
+          description: Type of the query
+          allOf:
+              - $ref: '#/components/schemas/WidgetQueryType'
+        data:
+          type: string
+          description: Data of the query, 1-64 bytes
+        widget_id:
+          type: string
+          description: Optional. Unique identifier of the shared widget, which sent the query; omitted if the widget isn't shared
+      required:
+        - id
+        - from
+        - chat_instance
+        - type
+        - data
+   WidgetQueryType:
+      type: object
+      description: |-
+        This object describes the type of a query from a widget. Currently, it can be one of
+        WidgetQueryTypeData
+        WidgetQueryTypeSignData
+        WidgetQueryTypeSentTransaction
+      x-tags:
+        - Available types
+   WidgetQueryTypeData:
+      type: object
+      description: |-
+        The query contains data for the bot.
+      x-tags:
+        - Available types
+      properties:
+        type:
+          type: string
+          description: Type of the query, always “data”
+        wallet_card:
+          description: Optional. TON wallet card of the user who sent the query, if it was sent to the bot along with the query
+          allOf:
+              - $ref: '#/components/schemas/TonWalletCard'
+      required:
+        - type
+   WidgetQueryTypeSentTransaction:
+      type: object
+      description: |-
+        The query notifies the bot about a transaction sent from a TON wallet of the user who sent the query.
+      x-tags:
+        - Available types
+      properties:
+        type:
+          type: string
+          description: Type of the query, always “sent_transaction”
+        wallet:
+          description: The wallet from which the transaction was sent
+          allOf:
+              - $ref: '#/components/schemas/WidgetQueryWallet'
+        msg_hash:
+          type: string
+          description: Value of msg_hash of the transaction
+      required:
+        - type
+        - wallet
+        - msg_hash
+   WidgetQueryTypeSignData:
+      type: object
+      description: |-
+        The query contains data signed by a TON wallet of the user who sent the query. The data is signed for the domain bot<bot_id>, where <bot_id> is the identifier of the bot.
+      x-tags:
+        - Available types
+      properties:
+        type:
+          type: string
+          description: Type of the query, always “sign_data”
+        wallet:
+          description: The wallet that signed the data
+          allOf:
+              - $ref: '#/components/schemas/WidgetQueryWallet'
+        sign_data:
+          type: string
+          description: JSON-serialized signed data
+      required:
+        - type
+        - wallet
+        - sign_data
+   WidgetQueryWallet:
+      type: object
+      description: |-
+        This object describes a TON wallet of the user, which is used in a query from a widget.
+      x-tags:
+        - Available types
+      properties:
+        address:
+          type: string
+          description: Address of the wallet
+        amount:
+          type: string
+          description: Balance of the wallet, in the smallest units of the cryptocurrency, as a decimal number
+        public_key:
+          type: string
+          description: Optional. Hex-encoded public key of the wallet; omitted if unknown
+        state_init:
+          type: string
+          description: Optional. Base64-encoded serialized StateInit of the wallet contract; omitted if and only if public_key is omitted
+      required:
+        - address
+        - amount
    WriteAccessAllowed:
       type: object
       description: |-

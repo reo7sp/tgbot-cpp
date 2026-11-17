@@ -19,6 +19,7 @@ namespace TgBot {
 struct AcceptedGiftTypes;
 struct AffiliateInfo;
 struct Animation;
+struct AreaPosition;
 struct Audio;
 struct BackgroundFill;
 struct BackgroundFillFreeformGradient;
@@ -80,6 +81,11 @@ struct ChatOwnerChanged;
 struct ChatOwnerLeft;
 struct ChatPermissions;
 struct ChatPhoto;
+struct ChatShareTheme;
+struct ChatShareThemeBackdrop;
+struct ChatShareThemeBackdrops;
+struct ChatShareThemeEmoji;
+struct ChatShareThemeUniqueGift;
 struct ChatShared;
 struct Checklist;
 struct ChecklistTask;
@@ -97,6 +103,9 @@ struct DirectMessagePriceChanged;
 struct DirectMessagesTopic;
 struct DisabledButton;
 struct Document;
+struct EmojiType;
+struct EmojiTypeCustomEmoji;
+struct EmojiTypeEmoji;
 struct EncryptedCredentials;
 struct EncryptedPassportElement;
 struct EphemeralMessageParameters;
@@ -203,12 +212,14 @@ struct InputRichBlockVoiceNote;
 struct InputRichMessage;
 struct InputRichMessageContent;
 struct InputRichMessageMedia;
+struct InputSharedWidgetMessageContent;
 struct InputSticker;
 struct InputStoryContent;
 struct InputStoryContentPhoto;
 struct InputStoryContentVideo;
 struct InputTextMessageContent;
 struct InputVenueMessageContent;
+struct InputWidgetMessageContent;
 struct Invoice;
 struct KeyboardButton;
 struct KeyboardButtonPollType;
@@ -255,6 +266,7 @@ struct PaidMediaPreview;
 struct PaidMediaPurchased;
 struct PaidMediaVideo;
 struct PaidMessagePriceChanged;
+struct PaidMessagesWaived;
 struct PassportData;
 struct PassportElementError;
 struct PassportElementErrorDataField;
@@ -347,11 +359,13 @@ struct RichTextStrikethrough;
 struct RichTextSubscript;
 struct RichTextSuperscript;
 struct RichTextTextMention;
+struct RichTextTonAddress;
 struct RichTextUnderline;
 struct RichTextUrl;
 struct SentGuestMessage;
 struct SentWebAppMessage;
 struct SharedUser;
+struct SharedWidgetQuery;
 struct ShippingAddress;
 struct ShippingOption;
 struct ShippingQuery;
@@ -362,7 +376,6 @@ struct Sticker;
 struct StickerSet;
 struct Story;
 struct StoryArea;
-struct StoryAreaPosition;
 struct StoryAreaType;
 struct StoryAreaTypeLink;
 struct StoryAreaTypeLocation;
@@ -380,6 +393,11 @@ struct SuggestedPostPrice;
 struct SuggestedPostRefunded;
 struct SwitchInlineQueryChosenChat;
 struct TextQuote;
+struct TonNft;
+struct TonNftAttribute;
+struct TonWalletCard;
+struct TonWalletCardSticker;
+struct TonWalletTransfer;
 struct TransactionPartner;
 struct TransactionPartnerAffiliateProgram;
 struct TransactionPartnerChat;
@@ -414,7 +432,16 @@ struct Voice;
 struct WebAppData;
 struct WebAppInfo;
 struct WebhookInfo;
+struct Widget;
+struct WidgetQuery;
+struct WidgetQueryType;
+struct WidgetQueryTypeData;
+struct WidgetQueryTypeSentTransaction;
+struct WidgetQueryTypeSignData;
+struct WidgetQueryWallet;
 struct WriteAccessAllowed;
+
+using StoryAreaPosition = AreaPosition;
 
 /**
  * @brief This object describes the types of gifts that can be gifted to a user or a chat.
@@ -468,12 +495,12 @@ struct AffiliateInfo {
      * @brief The number of Telegram Stars received by the affiliate for each 1000 Telegram Stars
      * received by the bot from referred users
     */
-    std::int32_t commissionPerMille { };
+    std::uint32_t commissionPerMille { };
     /**
      * @brief Integer amount of Telegram Stars received by the affiliate from the transaction, rounded
      * to 0; can be negative for refunds
     */
-    std::int32_t amount { };
+    std::int64_t amount { };
     /**
      * @brief Optional. The number of 1/1000000000 shares of Telegram Stars received by the affiliate;
      * from -999999999 to 999999999; can be negative for refunds
@@ -503,15 +530,15 @@ struct Animation {
     /**
      * @brief Video width as defined by the sender
     */
-    std::int32_t width { };
+    std::uint32_t width { };
     /**
      * @brief Video height as defined by the sender
     */
-    std::int32_t height { };
+    std::uint32_t height { };
     /**
      * @brief Duration of the video in seconds as defined by the sender
     */
-    std::int32_t duration { };
+    std::uint32_t duration { };
     /**
      * @brief Optional. Animation thumbnail as defined by the sender
     */
@@ -530,11 +557,48 @@ struct Animation {
      * bits, so a signed 64-bit integer or double-precision float type are safe for storing
      * this value.
     */
-    std::optional<std::int64_t> fileSize { };
+    std::optional<std::uint64_t> fileSize { };
 };
 
 TGBOT_API void from_json(const nlohmann::json& json, Animation& value);
 TGBOT_API void to_json(nlohmann::json& json, const Animation& value);
+
+/**
+ * @brief Describes the position of a rectangle area on a story media or a TON wallet card.
+ * @ingroup api
+ */
+struct AreaPosition {
+    using Ptr = std::shared_ptr<AreaPosition>;
+
+    /**
+     * @brief The abscissa of the area's center, as a percentage of the media or the card width
+    */
+    double xPercentage { };
+    /**
+     * @brief The ordinate of the area's center, as a percentage of the media or the card height
+    */
+    double yPercentage { };
+    /**
+     * @brief The width of the area's rectangle, as a percentage of the media or the card width
+    */
+    double widthPercentage { };
+    /**
+     * @brief The height of the area's rectangle, as a percentage of the media or the card height
+    */
+    double heightPercentage { };
+    /**
+     * @brief The clockwise rotation angle of the rectangle, in degrees; 0-360
+    */
+    double rotationAngle { };
+    /**
+     * @brief The radius of the rectangle corner rounding, as a percentage of the media or the card
+     * width
+    */
+    double cornerRadiusPercentage { };
+};
+
+TGBOT_API void from_json(const nlohmann::json& json, AreaPosition& value);
+TGBOT_API void to_json(nlohmann::json& json, const AreaPosition& value);
 
 /**
  * @brief This object represents an audio file to be treated as music by the Telegram clients.
@@ -555,7 +619,7 @@ struct Audio {
     /**
      * @brief Duration of the audio in seconds as defined by the sender
     */
-    std::int32_t duration { };
+    std::uint32_t duration { };
     /**
      * @brief Optional. Performer of the audio as defined by the sender or by audio tags
     */
@@ -578,7 +642,7 @@ struct Audio {
      * bits, so a signed 64-bit integer or double-precision float type are safe for storing
      * this value.
     */
-    std::optional<std::int64_t> fileSize { };
+    std::optional<std::uint64_t> fileSize { };
     /**
      * @brief Optional. Thumbnail of the album cover to which the music file belongs
     */
@@ -622,7 +686,7 @@ struct BackgroundFillFreeformGradient {
      * @brief A list of the 3 or 4 base colors that are used to generate the freeform gradient in the
      * RGB24 format
     */
-    std::vector<std::int32_t> colors { };
+    std::vector<std::uint32_t> colors { };
 };
 
 TGBOT_API void from_json(const nlohmann::json& json, BackgroundFillFreeformGradient& value);
@@ -644,15 +708,15 @@ struct BackgroundFillGradient {
     /**
      * @brief Top color of the gradient in the RGB24 format
     */
-    std::int32_t topColor { };
+    std::uint32_t topColor { };
     /**
      * @brief Bottom color of the gradient in the RGB24 format
     */
-    std::int32_t bottomColor { };
+    std::uint32_t bottomColor { };
     /**
      * @brief Clockwise rotation angle of the background fill in degrees; 0-359
     */
-    std::int32_t rotationAngle { };
+    std::uint32_t rotationAngle { };
 };
 
 TGBOT_API void from_json(const nlohmann::json& json, BackgroundFillGradient& value);
@@ -674,7 +738,7 @@ struct BackgroundFillSolid {
     /**
      * @brief The color of the background fill in the RGB24 format
     */
-    std::int32_t color { };
+    std::uint32_t color { };
 };
 
 TGBOT_API void from_json(const nlohmann::json& json, BackgroundFillSolid& value);
@@ -738,7 +802,7 @@ struct BackgroundTypeFill {
     /**
      * @brief Dimming of the background in dark themes, as a percentage; 0-100
     */
-    std::int32_t darkThemeDimming { };
+    std::uint32_t darkThemeDimming { };
 };
 
 TGBOT_API void from_json(const nlohmann::json& json, BackgroundTypeFill& value);
@@ -770,7 +834,7 @@ struct BackgroundTypePattern {
     /**
      * @brief Intensity of the pattern when it is shown above the filled background; 0-100
     */
-    std::int32_t intensity { };
+    std::uint32_t intensity { };
     /**
      * @brief Optional. True, if the background fill must be applied only to the pattern itself. All
      * other pixels are black in this case. For dark themes only.
@@ -805,7 +869,7 @@ struct BackgroundTypeWallpaper {
     /**
      * @brief Dimming of the background in dark themes, as a percentage; 0-100
     */
-    std::int32_t darkThemeDimming { };
+    std::uint32_t darkThemeDimming { };
     /**
      * @brief Optional. True, if the wallpaper is downscaled to fit in a 450x450 square and then box-
      * blurred with radius 12
@@ -830,15 +894,15 @@ struct Birthdate {
     /**
      * @brief Day of the user's birth; 1-31
     */
-    std::int32_t day { };
+    std::uint32_t day { };
     /**
      * @brief Month of the user's birth; 1-12
     */
-    std::int32_t month { };
+    std::uint32_t month { };
     /**
      * @brief Optional. Year of the user's birth
     */
-    std::optional<std::int32_t> year { };
+    std::optional<std::uint32_t> year { };
 };
 
 TGBOT_API void from_json(const nlohmann::json& json, Birthdate& value);
@@ -981,7 +1045,7 @@ struct BotCommandScopeChat {
      * @brief Unique identifier for the target chat or username of the target supergroup in the format
      * @username. Channel direct messages chats and channel chats aren't supported.
     */
-    std::int64_t chatId { };
+    std::variant<std::int64_t, std::string> chatId { };
 };
 
 TGBOT_API void from_json(const nlohmann::json& json, BotCommandScopeChat& value);
@@ -1005,7 +1069,7 @@ struct BotCommandScopeChatAdministrators {
      * @brief Unique identifier for the target chat or username of the target supergroup in the format
      * @username. Channel direct messages chats and channel chats aren't supported.
     */
-    std::int64_t chatId { };
+    std::variant<std::int64_t, std::string> chatId { };
 };
 
 TGBOT_API void from_json(const nlohmann::json& json, BotCommandScopeChatAdministrators& value);
@@ -1029,11 +1093,11 @@ struct BotCommandScopeChatMember {
      * @brief Unique identifier for the target chat or username of the target supergroup in the format
      * @username. Channel direct messages chats and channel chats aren't supported.
     */
-    std::int64_t chatId { };
+    std::variant<std::int64_t, std::string> chatId { };
     /**
      * @brief Unique identifier of the target user
     */
-    std::int64_t userId { };
+    std::uint64_t userId { };
 };
 
 TGBOT_API void from_json(const nlohmann::json& json, BotCommandScopeChatMember& value);
@@ -1228,7 +1292,7 @@ struct BusinessConnection {
      * difficulty/silent defects in interpreting it. But it has at most 52 significant bits, so
      * a 64-bit integer or double-precision float type are safe for storing this identifier.
     */
-    std::int64_t userChatId { };
+    std::uint64_t userChatId { };
     /**
      * @brief Date the connection was established in Unix time
     */
@@ -1309,7 +1373,7 @@ struct BusinessMessagesDeleted {
     /**
      * @brief The list of identifiers of deleted messages in the chat of the business account
     */
-    std::vector<std::int32_t> messageIds { };
+    std::vector<std::uint32_t> messageIds { };
 };
 
 TGBOT_API void from_json(const nlohmann::json& json, BusinessMessagesDeleted& value);
@@ -1346,12 +1410,12 @@ struct BusinessOpeningHoursInterval {
      * @brief The minute's sequence number in a week, starting on Monday, marking the start of the
      * time interval during which the business is open; 0 - 7 * 24 * 60
     */
-    std::int32_t openingMinute { };
+    std::uint32_t openingMinute { };
     /**
      * @brief The minute's sequence number in a week, starting on Monday, marking the end of the time
      * interval during which the business is open; 0 - 8 * 24 * 60
     */
-    std::int32_t closingMinute { };
+    std::uint32_t closingMinute { };
 };
 
 TGBOT_API void from_json(const nlohmann::json& json, BusinessOpeningHoursInterval& value);
@@ -1620,7 +1684,7 @@ struct ChatBoostAdded {
     /**
      * @brief Number of boosts added by the user
     */
-    std::int32_t boostCount { };
+    std::uint32_t boostCount { };
 };
 
 TGBOT_API void from_json(const nlohmann::json& json, ChatBoostAdded& value);
@@ -1714,7 +1778,7 @@ struct ChatBoostSourceGiveaway {
      * @brief Identifier of a message in the chat with the giveaway; the message could have been
      * deleted already. May be 0 if the message isn't sent yet.
     */
-    std::int32_t giveawayMessageId { };
+    std::uint32_t giveawayMessageId { };
     /**
      * @brief Optional. User that won the prize in the giveaway if any; for Telegram Premium giveaways
      * only
@@ -1724,7 +1788,7 @@ struct ChatBoostSourceGiveaway {
      * @brief Optional. The number of Telegram Stars to be split between giveaway winners; for
      * Telegram Star giveaways only
     */
-    std::optional<std::int32_t> prizeStarCount { };
+    std::optional<std::uint32_t> prizeStarCount { };
     /**
      * @brief Optional. True, if the giveaway was completed, but there was no user to win the prize
     */
@@ -1823,11 +1887,11 @@ struct ChatFullInfo {
      * @brief Identifier of the accent color for the chat name and backgrounds of the chat photo,
      * reply header, and link preview. See accent colors for more details.
     */
-    std::int32_t accentColorId { };
+    std::uint32_t accentColorId { };
     /**
      * @brief The maximum number of reactions that can be set on a message in the chat
     */
-    std::int32_t maxReactionCount { };
+    std::uint32_t maxReactionCount { };
     /**
      * @brief Optional. Chat photo
     */
@@ -1876,7 +1940,7 @@ struct ChatFullInfo {
      * @brief Optional. Identifier of the accent color for the chat's profile background. See profile
      * accent colors for more details.
     */
-    std::optional<std::int32_t> profileAccentColorId { };
+    std::optional<std::uint32_t> profileAccentColorId { };
     /**
      * @brief Optional. Custom emoji identifier of the emoji chosen by the chat for its profile
      * background
@@ -1945,17 +2009,17 @@ struct ChatFullInfo {
      * @brief Optional. For supergroups, the minimum allowed delay between consecutive messages sent
      * by each unprivileged user; in seconds
     */
-    std::optional<std::int32_t> slowModeDelay { };
+    std::optional<std::uint32_t> slowModeDelay { };
     /**
      * @brief Optional. For supergroups, the minimum number of boosts that a non-administrator user
      * needs to add in order to ignore slow mode and chat permissions
     */
-    std::optional<std::int32_t> unrestrictBoostCount { };
+    std::optional<std::uint32_t> unrestrictBoostCount { };
     /**
      * @brief Optional. The time after which all messages sent to the chat will be automatically
      * deleted; in seconds
     */
-    std::optional<std::int32_t> messageAutoDeleteTime { };
+    std::optional<std::uint32_t> messageAutoDeleteTime { };
     /**
      * @brief Optional. True, if aggressive anti-spam checks are enabled in the supergroup. The field
      * is only available to chat administrators.
@@ -2017,7 +2081,7 @@ struct ChatFullInfo {
      * @brief Optional. The number of Telegram Stars a general user has to pay to send a message to
      * the chat
     */
-    std::optional<std::int32_t> paidMessageStarCount { };
+    std::optional<std::uint32_t> paidMessageStarCount { };
     /**
      * @brief Optional. The bot that processes join request queries in the chat. The field is only
      * available to chat administrators.
@@ -2027,6 +2091,16 @@ struct ChatFullInfo {
      * @brief Optional. The Community to which the chat belongs
     */
     std::shared_ptr<Community> community { };
+    /**
+     * @brief Optional. For private chats, the TON wallet card of the user, which is shown on their
+     * profile page
+    */
+    std::shared_ptr<TonWalletCard> tonWalletCard { };
+    /**
+     * @brief Optional. For private chats, supergroups and channels, the theme of the screen for
+     * sharing a link to the user or the chat; omitted if the default theme is used
+    */
+    std::shared_ptr<ChatShareTheme> shareTheme { };
 };
 
 TGBOT_API void from_json(const nlohmann::json& json, ChatFullInfo& value);
@@ -2072,21 +2146,21 @@ struct ChatInviteLink {
      * @brief Optional. The maximum number of users that can be members of the chat simultaneously
      * after joining the chat via this invite link; 1-99999
     */
-    std::optional<std::int32_t> memberLimit { };
+    std::optional<std::uint32_t> memberLimit { };
     /**
      * @brief Optional. Number of pending join requests created using this link
     */
-    std::optional<std::int32_t> pendingJoinRequestCount { };
+    std::optional<std::uint32_t> pendingJoinRequestCount { };
     /**
      * @brief Optional. The number of seconds the subscription will be active for before the next
      * payment
     */
-    std::optional<std::int32_t> subscriptionPeriod { };
+    std::optional<std::uint32_t> subscriptionPeriod { };
     /**
      * @brief Optional. The amount of Telegram Stars a user must pay initially and after each
      * subsequent subscription period to be a member of the chat using the link
     */
-    std::optional<std::int32_t> subscriptionPrice { };
+    std::optional<std::uint32_t> subscriptionPrice { };
 };
 
 TGBOT_API void from_json(const nlohmann::json& json, ChatInviteLink& value);
@@ -2115,7 +2189,7 @@ struct ChatJoinRequest {
      * The bot can use this identifier for 5 minutes to send messages until the join request is
      * processed, assuming no other administrator contacted the user.
     */
-    std::int64_t userChatId { };
+    std::uint64_t userChatId { };
     /**
      * @brief Date the request was sent in Unix time
     */
@@ -2462,7 +2536,8 @@ struct ChatMemberRestricted {
     */
     bool canSendPolls { };
     /**
-     * @brief True, if the user is allowed to send animations, games, stickers and use inline bots
+     * @brief True, if the user is allowed to send animations, games, stickers, widgets and use inline
+     * bots
     */
     bool canSendOtherMessages { };
     /**
@@ -2623,8 +2698,8 @@ struct ChatPermissions {
     */
     std::optional<bool> canSendPolls { };
     /**
-     * @brief Optional. True, if the user is allowed to send animations, games, stickers and use
-     * inline bots
+     * @brief Optional. True, if the user is allowed to send animations, games, stickers, widgets and
+     * use inline bots
     */
     std::optional<bool> canSendOtherMessages { };
     /**
@@ -2695,6 +2770,111 @@ struct ChatPhoto {
 
 TGBOT_API void from_json(const nlohmann::json& json, ChatPhoto& value);
 TGBOT_API void to_json(nlohmann::json& json, const ChatPhoto& value);
+
+/**
+ * @brief This object describes the theme of the screen for sharing a link to a user or a chat.
+ * Currently, it can be one of ChatShareThemeEmoji ChatShareThemeUniqueGift
+ * @ingroup api
+ */
+struct ChatShareTheme {
+    using Ptr = std::shared_ptr<ChatShareTheme>;
+
+    std::variant<std::shared_ptr<ChatShareThemeEmoji>, std::shared_ptr<ChatShareThemeUniqueGift>> value;
+};
+
+TGBOT_API void from_json(const nlohmann::json& json, ChatShareTheme& value);
+TGBOT_API void to_json(nlohmann::json& json, const ChatShareTheme& value);
+
+/**
+ * @brief This object describes a backdrop, which can be used as the background of a theme of the
+ * screen for sharing a link to a user or a chat.
+ * @ingroup api
+ */
+struct ChatShareThemeBackdrop {
+    using Ptr = std::shared_ptr<ChatShareThemeBackdrop>;
+
+    /**
+     * @brief Unique identifier of the backdrop
+    */
+    std::int32_t id { };
+    /**
+     * @brief Name of the backdrop
+    */
+    std::string name { };
+    /**
+     * @brief Colors of the backdrop
+    */
+    std::shared_ptr<UniqueGiftBackdropColors> colors { };
+};
+
+TGBOT_API void from_json(const nlohmann::json& json, ChatShareThemeBackdrop& value);
+TGBOT_API void to_json(nlohmann::json& json, const ChatShareThemeBackdrop& value);
+
+/**
+ * @brief This object contains a list of backdrops, which can be used as the background of a theme of
+ * the screen for sharing a link to a user or a chat.
+ * @ingroup api
+ */
+struct ChatShareThemeBackdrops {
+    using Ptr = std::shared_ptr<ChatShareThemeBackdrops>;
+
+    /**
+     * @brief The list of backdrops
+    */
+    std::vector<std::shared_ptr<ChatShareThemeBackdrop>> backdrops { };
+};
+
+TGBOT_API void from_json(const nlohmann::json& json, ChatShareThemeBackdrops& value);
+TGBOT_API void to_json(nlohmann::json& json, const ChatShareThemeBackdrops& value);
+
+/**
+ * @brief The theme with emoji placed on a background.
+ * @ingroup api
+ */
+struct ChatShareThemeEmoji {
+    using Ptr = std::shared_ptr<ChatShareThemeEmoji>;
+
+    static TGBOT_API const std::string TYPE;
+
+    /**
+     * @brief Type of the theme, always “emoji”
+    */
+    std::string type { TYPE };
+    /**
+     * @brief The emoji; 0-6 regular or custom emoji
+    */
+    std::vector<std::shared_ptr<EmojiType>> emojis { };
+    /**
+     * @brief Optional. Identifier of the backdrop used as the background; omitted if the default
+     * background is used. Use getChatShareThemeBackdrops to get details about the backdrop.
+    */
+    std::optional<std::int32_t> backgroundBackdropId { };
+};
+
+TGBOT_API void from_json(const nlohmann::json& json, ChatShareThemeEmoji& value);
+TGBOT_API void to_json(nlohmann::json& json, const ChatShareThemeEmoji& value);
+
+/**
+ * @brief The theme based on a unique gift owned by the user or the chat.
+ * @ingroup api
+ */
+struct ChatShareThemeUniqueGift {
+    using Ptr = std::shared_ptr<ChatShareThemeUniqueGift>;
+
+    static TGBOT_API const std::string TYPE;
+
+    /**
+     * @brief Type of the theme, always “unique_gift”
+    */
+    std::string type { TYPE };
+    /**
+     * @brief The gift
+    */
+    std::shared_ptr<UniqueGift> gift { };
+};
+
+TGBOT_API void from_json(const nlohmann::json& json, ChatShareThemeUniqueGift& value);
+TGBOT_API void to_json(nlohmann::json& json, const ChatShareThemeUniqueGift& value);
 
 /**
  * @brief This object contains information about a chat that was shared with the bot using a
@@ -2777,7 +2957,7 @@ struct ChecklistTask {
     /**
      * @brief Unique identifier of the task
     */
-    std::int32_t id { };
+    std::uint32_t id { };
     /**
      * @brief Text of the task
     */
@@ -2842,11 +3022,11 @@ struct ChecklistTasksDone {
     /**
      * @brief Optional. Identifiers of the tasks that were marked as done
     */
-    std::optional<std::vector<std::int32_t>> markedAsDoneTaskIds { };
+    std::optional<std::vector<std::uint32_t>> markedAsDoneTaskIds { };
     /**
      * @brief Optional. Identifiers of the tasks that were marked as not done
     */
-    std::optional<std::vector<std::int32_t>> markedAsNotDoneTaskIds { };
+    std::optional<std::vector<std::uint32_t>> markedAsNotDoneTaskIds { };
 };
 
 TGBOT_API void from_json(const nlohmann::json& json, ChecklistTasksDone& value);
@@ -2900,7 +3080,7 @@ struct Community {
      * But it has at most 52 significant bits, so a signed 64-bit integer or double-precision
      * float type are safe for storing this identifier.
     */
-    std::int64_t id { };
+    std::uint64_t id { };
     /**
      * @brief Name of the community
     */
@@ -2979,7 +3159,7 @@ struct Contact {
      * interpreting it. But it has at most 52 significant bits, so a 64-bit integer or double-
      * precision float type are safe for storing this identifier.
     */
-    std::optional<std::int64_t> userId { };
+    std::optional<std::uint64_t> userId { };
     /**
      * @brief Optional. Additional data about the contact in the form of a vCard
     */
@@ -3021,7 +3201,7 @@ struct Dice {
      * @brief Value of the dice, 1-6 for “”, “” and “” base emoji, 1-5 for “” and “” base emoji, 1-64
      * for “” base emoji
     */
-    std::int32_t value { };
+    std::uint32_t value { };
 };
 
 TGBOT_API void from_json(const nlohmann::json& json, Dice& value);
@@ -3044,7 +3224,7 @@ struct DirectMessagePriceChanged {
      * message sent to the channel. Does not apply to users who have been exempted by
      * administrators. Defaults to 0.
     */
-    std::optional<std::int32_t> directMessageStarCount { };
+    std::optional<std::uint32_t> directMessageStarCount { };
 };
 
 TGBOT_API void from_json(const nlohmann::json& json, DirectMessagePriceChanged& value);
@@ -3063,7 +3243,7 @@ struct DirectMessagesTopic {
      * has at most 52 significant bits, so a 64-bit integer or double-precision float type are
      * safe for storing this identifier.
     */
-    std::int64_t topicId { };
+    std::uint64_t topicId { };
     /**
      * @brief Optional. Information about the user that created the topic. Currently, it is always
      * present.
@@ -3120,11 +3300,70 @@ struct Document {
      * bits, so a signed 64-bit integer or double-precision float type are safe for storing
      * this value.
     */
-    std::optional<std::int64_t> fileSize { };
+    std::optional<std::uint64_t> fileSize { };
 };
 
 TGBOT_API void from_json(const nlohmann::json& json, Document& value);
 TGBOT_API void to_json(nlohmann::json& json, const Document& value);
+
+/**
+ * @brief This object describes an emoji. Currently, it can be one of EmojiTypeEmoji
+ * EmojiTypeCustomEmoji
+ * @ingroup api
+ */
+struct EmojiType {
+    using Ptr = std::shared_ptr<EmojiType>;
+
+    std::variant<std::shared_ptr<EmojiTypeEmoji>, std::shared_ptr<EmojiTypeCustomEmoji>> value;
+};
+
+TGBOT_API void from_json(const nlohmann::json& json, EmojiType& value);
+TGBOT_API void to_json(nlohmann::json& json, const EmojiType& value);
+
+/**
+ * @brief A custom emoji.
+ * @ingroup api
+ */
+struct EmojiTypeCustomEmoji {
+    using Ptr = std::shared_ptr<EmojiTypeCustomEmoji>;
+
+    static TGBOT_API const std::string TYPE;
+
+    /**
+     * @brief Type of the emoji, always “custom_emoji”
+    */
+    std::string type { TYPE };
+    /**
+     * @brief Identifier of the custom emoji. Use getCustomEmojiStickers to get full information about
+     * the sticker.
+    */
+    std::string customEmojiId { };
+};
+
+TGBOT_API void from_json(const nlohmann::json& json, EmojiTypeCustomEmoji& value);
+TGBOT_API void to_json(nlohmann::json& json, const EmojiTypeCustomEmoji& value);
+
+/**
+ * @brief A regular emoji.
+ * @ingroup api
+ */
+struct EmojiTypeEmoji {
+    using Ptr = std::shared_ptr<EmojiTypeEmoji>;
+
+    static TGBOT_API const std::string TYPE;
+
+    /**
+     * @brief Type of the emoji, always “emoji”
+    */
+    std::string type { TYPE };
+    /**
+     * @brief The emoji
+    */
+    std::string emoji { };
+};
+
+TGBOT_API void from_json(const nlohmann::json& json, EmojiTypeEmoji& value);
+TGBOT_API void to_json(nlohmann::json& json, const EmojiTypeEmoji& value);
 
 /**
  * @brief Describes data required for decrypting and authenticating EncryptedPassportElement. See the
@@ -3234,12 +3473,21 @@ struct EphemeralMessageParameters {
     using Ptr = std::shared_ptr<EphemeralMessageParameters>;
 
     /**
-     * @brief Identifier of the user who will receive the message. It is not guaranteed that the user
-     * will receive the message, especially if they are offline. See here for more details.
+     * @brief Optional. Identifier of the user who will receive the message; required unless the
+     * message is sent as an ephemeral reply to a callback query. If omitted, then the
+     * parameter chat_id of the method is ignored. If specified together with
+     * callback_query_id, then it must be the identifier of the user who pressed the button.
+     * Must be omitted for messages sent in chats where the bot isn't a member, unless the
+     * message is a reply to an ephemeral message. It is not guaranteed that the user will
+     * receive the message, especially if they are offline. See here for more details.
     */
-    std::int64_t receiverUserId { };
+    std::optional<std::uint64_t> receiverUserId { };
     /**
-     * @brief Optional. Identifier of the callback query which triggered the message, if any
+     * @brief Optional. Identifier of the callback query which triggered the message, if any. If
+     * specified and receiver_user_id is omitted, then the message is sent as an ephemeral
+     * reply to the callback query and will be shown only to the user who pressed the button.
+     * Ephemeral replies can't be sent to callback queries from messages in channel direct
+     * messages chats. The bot must still answer the callback query using answerCallbackQuery.
     */
     std::optional<std::string> callbackQueryId { };
     /**
@@ -3274,7 +3522,7 @@ struct ExternalReplyInfo {
      * @brief Optional. Unique message identifier inside the original chat. Available only if the
      * original chat is a supergroup or a channel.
     */
-    std::optional<std::int32_t> messageId { };
+    std::optional<std::uint32_t> messageId { };
     /**
      * @brief Optional. Options used for link preview generation for the original message, if it is a
      * text message
@@ -3324,6 +3572,10 @@ struct ExternalReplyInfo {
      * @brief Optional. Message is a voice message, information about the file
     */
     std::shared_ptr<Voice> voice { };
+    /**
+     * @brief Optional. Message is an HTML widget, information about the widget
+    */
+    std::shared_ptr<Widget> widget { };
     /**
      * @brief Optional. True, if the message media is covered by a spoiler animation
     */
@@ -3399,7 +3651,7 @@ struct File {
      * bits, so a signed 64-bit integer or double-precision float type are safe for storing
      * this value.
     */
-    std::optional<std::int64_t> fileSize { };
+    std::optional<std::uint64_t> fileSize { };
     /**
      * @brief Optional. File path. Use https://api.telegram.org/file/bot<token>/<file_path> to get the
      * file.
@@ -3453,7 +3705,7 @@ struct ForumTopic {
     /**
      * @brief Unique identifier of the forum topic
     */
-    std::int32_t messageThreadId { };
+    std::uint32_t messageThreadId { };
     /**
      * @brief Name of the topic
     */
@@ -3461,7 +3713,7 @@ struct ForumTopic {
     /**
      * @brief Color of the topic icon in RGB format
     */
-    std::int32_t iconColor { };
+    std::uint32_t iconColor { };
     /**
      * @brief Optional. Unique identifier of the custom emoji shown as the topic icon
     */
@@ -3502,7 +3754,7 @@ struct ForumTopicCreated {
     /**
      * @brief Color of the topic icon in RGB format
     */
-    std::int32_t iconColor { };
+    std::uint32_t iconColor { };
     /**
      * @brief Optional. Unique identifier of the custom emoji shown as the topic icon
     */
@@ -3601,7 +3853,7 @@ struct GameHighScore {
     /**
      * @brief Position in high score table for the game
     */
-    std::int32_t position { };
+    std::uint32_t position { };
     /**
      * @brief User
     */
@@ -3609,7 +3861,7 @@ struct GameHighScore {
     /**
      * @brief Score
     */
-    std::int32_t score { };
+    std::uint32_t score { };
 };
 
 TGBOT_API void from_json(const nlohmann::json& json, GameHighScore& value);
@@ -3657,12 +3909,12 @@ struct Gift {
     /**
      * @brief The number of Telegram Stars that must be paid to send the sticker
     */
-    std::int32_t starCount { };
+    std::uint32_t starCount { };
     /**
      * @brief Optional. The number of Telegram Stars that must be paid to upgrade the gift to a unique
      * one
     */
-    std::optional<std::int32_t> upgradeStarCount { };
+    std::optional<std::uint32_t> upgradeStarCount { };
     /**
      * @brief Optional. True, if the gift can only be purchased by Telegram Premium subscribers
     */
@@ -3676,22 +3928,22 @@ struct Gift {
      * @brief Optional. The total number of gifts of this type that can be sent by all users; for
      * limited gifts only
     */
-    std::optional<std::int32_t> totalCount { };
+    std::optional<std::uint32_t> totalCount { };
     /**
      * @brief Optional. The number of remaining gifts of this type that can be sent by all users; for
      * limited gifts only
     */
-    std::optional<std::int32_t> remainingCount { };
+    std::optional<std::uint32_t> remainingCount { };
     /**
      * @brief Optional. The total number of gifts of this type that can be sent by the bot; for
      * limited gifts only
     */
-    std::optional<std::int32_t> personalTotalCount { };
+    std::optional<std::uint32_t> personalTotalCount { };
     /**
      * @brief Optional. The number of remaining gifts of this type that can be sent by the bot; for
      * limited gifts only
     */
-    std::optional<std::int32_t> personalRemainingCount { };
+    std::optional<std::uint32_t> personalRemainingCount { };
     /**
      * @brief Optional. Background of the gift
     */
@@ -3700,7 +3952,7 @@ struct Gift {
      * @brief Optional. The total number of different unique gifts that can be obtained by upgrading
      * the gift
     */
-    std::optional<std::int32_t> uniqueGiftVariantCount { };
+    std::optional<std::uint32_t> uniqueGiftVariantCount { };
     /**
      * @brief Optional. Information about the chat that published the gift
     */
@@ -3720,15 +3972,15 @@ struct GiftBackground {
     /**
      * @brief Center color of the background in RGB format
     */
-    std::int32_t centerColor { };
+    std::uint32_t centerColor { };
     /**
      * @brief Edge color of the background in RGB format
     */
-    std::int32_t edgeColor { };
+    std::uint32_t edgeColor { };
     /**
      * @brief Text color of the background in RGB format
     */
-    std::int32_t textColor { };
+    std::uint32_t textColor { };
 };
 
 TGBOT_API void from_json(const nlohmann::json& json, GiftBackground& value);
@@ -3754,11 +4006,11 @@ struct GiftInfo {
      * @brief Optional. Number of Telegram Stars that can be claimed by the receiver by converting the
      * gift; omitted if conversion to Telegram Stars is impossible
     */
-    std::optional<std::int32_t> convertStarCount { };
+    std::optional<std::uint32_t> convertStarCount { };
     /**
      * @brief Optional. Number of Telegram Stars that were prepaid for the ability to upgrade the gift
     */
-    std::optional<std::int32_t> prepaidUpgradeStarCount { };
+    std::optional<std::uint32_t> prepaidUpgradeStarCount { };
     /**
      * @brief Optional. True, if the gift's upgrade was purchased after the gift was sent
     */
@@ -3784,7 +4036,7 @@ struct GiftInfo {
      * @brief Optional. Unique number reserved for this gift when upgraded. See the number field in
      * UniqueGift.
     */
-    std::optional<std::int32_t> uniqueGiftNumber { };
+    std::optional<std::uint32_t> uniqueGiftNumber { };
 };
 
 TGBOT_API void from_json(const nlohmann::json& json, GiftInfo& value);
@@ -3824,7 +4076,7 @@ struct Giveaway {
     /**
      * @brief The number of users which are supposed to be selected as winners of the giveaway
     */
-    std::int32_t winnerCount { };
+    std::uint32_t winnerCount { };
     /**
      * @brief Optional. True, if only users who join the chats after the giveaway started should be
      * eligible to win
@@ -3849,12 +4101,12 @@ struct Giveaway {
      * @brief Optional. The number of Telegram Stars to be split between giveaway winners; for
      * Telegram Star giveaways only
     */
-    std::optional<std::int32_t> prizeStarCount { };
+    std::optional<std::uint32_t> prizeStarCount { };
     /**
      * @brief Optional. The number of months the Telegram Premium subscription won from the giveaway
      * will be active for; for Telegram Premium giveaways only
     */
-    std::optional<std::int32_t> premiumSubscriptionMonthCount { };
+    std::optional<std::uint32_t> premiumSubscriptionMonthCount { };
 };
 
 TGBOT_API void from_json(const nlohmann::json& json, Giveaway& value);
@@ -3871,11 +4123,11 @@ struct GiveawayCompleted {
     /**
      * @brief Number of winners in the giveaway
     */
-    std::int32_t winnerCount { };
+    std::uint32_t winnerCount { };
     /**
      * @brief Optional. Number of undistributed prizes
     */
-    std::optional<std::int32_t> unclaimedPrizeCount { };
+    std::optional<std::uint32_t> unclaimedPrizeCount { };
     /**
      * @brief Optional. Message with the giveaway that was completed, if it wasn't deleted
     */
@@ -3901,7 +4153,7 @@ struct GiveawayCreated {
      * @brief Optional. The number of Telegram Stars to be split between giveaway winners; for
      * Telegram Star giveaways only
     */
-    std::optional<std::int32_t> prizeStarCount { };
+    std::optional<std::uint32_t> prizeStarCount { };
 };
 
 TGBOT_API void from_json(const nlohmann::json& json, GiveawayCreated& value);
@@ -3921,7 +4173,7 @@ struct GiveawayWinners {
     /**
      * @brief Identifier of the message with the giveaway in the chat
     */
-    std::int32_t giveawayMessageId { };
+    std::uint32_t giveawayMessageId { };
     /**
      * @brief Point in time (Unix timestamp) when winners of the giveaway were selected
     */
@@ -3929,7 +4181,7 @@ struct GiveawayWinners {
     /**
      * @brief Total number of winners in the giveaway
     */
-    std::int32_t winnerCount { };
+    std::uint32_t winnerCount { };
     /**
      * @brief List of up to 100 winners of the giveaway
     */
@@ -3938,21 +4190,21 @@ struct GiveawayWinners {
      * @brief Optional. The number of other chats the user had to join in order to be eligible for the
      * giveaway
     */
-    std::optional<std::int32_t> additionalChatCount { };
+    std::optional<std::uint32_t> additionalChatCount { };
     /**
      * @brief Optional. The number of Telegram Stars that were split between giveaway winners; for
      * Telegram Star giveaways only
     */
-    std::optional<std::int32_t> prizeStarCount { };
+    std::optional<std::uint32_t> prizeStarCount { };
     /**
      * @brief Optional. The number of months the Telegram Premium subscription won from the giveaway
      * will be active for; for Telegram Premium giveaways only
     */
-    std::optional<std::int32_t> premiumSubscriptionMonthCount { };
+    std::optional<std::uint32_t> premiumSubscriptionMonthCount { };
     /**
      * @brief Optional. Number of undistributed prizes
     */
-    std::optional<std::int32_t> unclaimedPrizeCount { };
+    std::optional<std::uint32_t> unclaimedPrizeCount { };
     /**
      * @brief Optional. True, if only users who had joined the chats after the giveaway started were
      * eligible to win
@@ -3985,11 +4237,11 @@ struct InaccessibleMessage {
     /**
      * @brief Unique message identifier inside the chat
     */
-    std::int32_t messageId { };
+    std::uint32_t messageId { };
     /**
      * @brief Always 0. The field can be used to differentiate regular and inaccessible messages.
     */
-    std::int32_t date { };
+    std::uint32_t date { };
 };
 
 TGBOT_API void from_json(const nlohmann::json& json, InaccessibleMessage& value);
@@ -4034,7 +4286,8 @@ struct InlineKeyboardButton {
      * @brief Optional. Description of the Web App that will be launched when the user presses the
      * button. The Web App will be able to send an arbitrary message on behalf of the user
      * using the method answerWebAppQuery. Available only in private chats between a user and
-     * the bot. Not supported for messages sent on behalf of a business account.
+     * the bot. Not supported for messages sent on behalf of a business account and ephemeral
+     * messages.
     */
     std::shared_ptr<WebAppInfo> webApp { };
     /**
@@ -4229,11 +4482,11 @@ struct InlineQueryResultArticle {
     /**
      * @brief Optional. Thumbnail width
     */
-    std::optional<std::int32_t> thumbnailWidth { };
+    std::optional<std::uint32_t> thumbnailWidth { };
     /**
      * @brief Optional. Thumbnail height
     */
-    std::optional<std::int32_t> thumbnailHeight { };
+    std::optional<std::uint32_t> thumbnailHeight { };
 };
 
 TGBOT_API void from_json(const nlohmann::json& json, InlineQueryResultArticle& value);
@@ -4287,7 +4540,7 @@ struct InlineQueryResultAudio {
     /**
      * @brief Optional. Audio duration in seconds
     */
-    std::optional<std::int32_t> audioDuration { };
+    std::optional<std::uint32_t> audioDuration { };
     /**
      * @brief Optional. Inline keyboard attached to the message
     */
@@ -4791,11 +5044,11 @@ struct InlineQueryResultContact {
     /**
      * @brief Optional. Thumbnail width
     */
-    std::optional<std::int32_t> thumbnailWidth { };
+    std::optional<std::uint32_t> thumbnailWidth { };
     /**
      * @brief Optional. Thumbnail height
     */
-    std::optional<std::int32_t> thumbnailHeight { };
+    std::optional<std::uint32_t> thumbnailHeight { };
 };
 
 TGBOT_API void from_json(const nlohmann::json& json, InlineQueryResultContact& value);
@@ -4866,11 +5119,11 @@ struct InlineQueryResultDocument {
     /**
      * @brief Optional. Thumbnail width
     */
-    std::optional<std::int32_t> thumbnailWidth { };
+    std::optional<std::uint32_t> thumbnailWidth { };
     /**
      * @brief Optional. Thumbnail height
     */
-    std::optional<std::int32_t> thumbnailHeight { };
+    std::optional<std::uint32_t> thumbnailHeight { };
 };
 
 TGBOT_API void from_json(const nlohmann::json& json, InlineQueryResultDocument& value);
@@ -4932,15 +5185,15 @@ struct InlineQueryResultGif {
     /**
      * @brief Optional. Width of the GIF
     */
-    std::optional<std::int32_t> gifWidth { };
+    std::optional<std::uint32_t> gifWidth { };
     /**
      * @brief Optional. Height of the GIF
     */
-    std::optional<std::int32_t> gifHeight { };
+    std::optional<std::uint32_t> gifHeight { };
     /**
      * @brief Optional. Duration of the GIF in seconds
     */
-    std::optional<std::int32_t> gifDuration { };
+    std::optional<std::uint32_t> gifDuration { };
     /**
      * @brief URL of the static (JPEG or GIF) or animated (MPEG4) thumbnail for the result
     */
@@ -5024,17 +5277,17 @@ struct InlineQueryResultLocation {
      * @brief Optional. Period in seconds during which the location can be updated, must be between 60
      * and 86400, or 0x7FFFFFFF for live locations that can be edited indefinitely
     */
-    std::optional<std::int32_t> livePeriod { };
+    std::optional<std::uint32_t> livePeriod { };
     /**
      * @brief Optional. For live locations, a direction in which the user is moving, in degrees. Must
      * be between 1 and 360 if specified.
     */
-    std::optional<std::int32_t> heading { };
+    std::optional<std::uint32_t> heading { };
     /**
      * @brief Optional. For live locations, a maximum distance for proximity alerts about approaching
      * another chat member, in meters. Must be between 1 and 100000 if specified.
     */
-    std::optional<std::int32_t> proximityAlertRadius { };
+    std::optional<std::uint32_t> proximityAlertRadius { };
     /**
      * @brief Optional. Inline keyboard attached to the message
     */
@@ -5050,11 +5303,11 @@ struct InlineQueryResultLocation {
     /**
      * @brief Optional. Thumbnail width
     */
-    std::optional<std::int32_t> thumbnailWidth { };
+    std::optional<std::uint32_t> thumbnailWidth { };
     /**
      * @brief Optional. Thumbnail height
     */
-    std::optional<std::int32_t> thumbnailHeight { };
+    std::optional<std::uint32_t> thumbnailHeight { };
 };
 
 TGBOT_API void from_json(const nlohmann::json& json, InlineQueryResultLocation& value);
@@ -5087,15 +5340,15 @@ struct InlineQueryResultMpeg4Gif {
     /**
      * @brief Optional. Video width
     */
-    std::optional<std::int32_t> mpeg4Width { };
+    std::optional<std::uint32_t> mpeg4Width { };
     /**
      * @brief Optional. Video height
     */
-    std::optional<std::int32_t> mpeg4Height { };
+    std::optional<std::uint32_t> mpeg4Height { };
     /**
      * @brief Optional. Video duration in seconds
     */
-    std::optional<std::int32_t> mpeg4Duration { };
+    std::optional<std::uint32_t> mpeg4Duration { };
     /**
      * @brief URL of the static (JPEG or GIF) or animated (MPEG4) thumbnail for the result
     */
@@ -5171,11 +5424,11 @@ struct InlineQueryResultPhoto {
     /**
      * @brief Optional. Width of the photo
     */
-    std::optional<std::int32_t> photoWidth { };
+    std::optional<std::uint32_t> photoWidth { };
     /**
      * @brief Optional. Height of the photo
     */
-    std::optional<std::int32_t> photoHeight { };
+    std::optional<std::uint32_t> photoHeight { };
     /**
      * @brief Optional. Title for the result
     */
@@ -5281,11 +5534,11 @@ struct InlineQueryResultVenue {
     /**
      * @brief Optional. Thumbnail width
     */
-    std::optional<std::int32_t> thumbnailWidth { };
+    std::optional<std::uint32_t> thumbnailWidth { };
     /**
      * @brief Optional. Thumbnail height
     */
-    std::optional<std::int32_t> thumbnailHeight { };
+    std::optional<std::uint32_t> thumbnailHeight { };
 };
 
 TGBOT_API void from_json(const nlohmann::json& json, InlineQueryResultVenue& value);
@@ -5347,15 +5600,15 @@ struct InlineQueryResultVideo {
     /**
      * @brief Optional. Video width
     */
-    std::optional<std::int32_t> videoWidth { };
+    std::optional<std::uint32_t> videoWidth { };
     /**
      * @brief Optional. Video height
     */
-    std::optional<std::int32_t> videoHeight { };
+    std::optional<std::uint32_t> videoHeight { };
     /**
      * @brief Optional. Video duration in seconds
     */
-    std::optional<std::int32_t> videoDuration { };
+    std::optional<std::uint32_t> videoDuration { };
     /**
      * @brief Optional. Short description of the result
     */
@@ -5420,7 +5673,7 @@ struct InlineQueryResultVoice {
     /**
      * @brief Optional. Recording duration in seconds
     */
-    std::optional<std::int32_t> voiceDuration { };
+    std::optional<std::uint32_t> voiceDuration { };
     /**
      * @brief Optional. Inline keyboard attached to the message
     */
@@ -5519,7 +5772,7 @@ struct InputChecklistTask {
      * @brief Unique identifier of the task; must be positive and unique among all task identifiers
      * currently present in the checklist
     */
-    std::int32_t id { };
+    std::uint32_t id { };
     /**
      * @brief Text of the task; 1-100 characters after entities parsing
     */
@@ -5611,14 +5864,14 @@ struct InputInvoiceMessageContent {
      * digits past the decimal point for each currency (2 for the majority of currencies).
      * Defaults to 0. Not supported for payments in Telegram Stars.
     */
-    std::optional<std::int32_t> maxTipAmount { };
+    std::optional<std::uint64_t> maxTipAmount { };
     /**
      * @brief Optional. A JSON-serialized Array of suggested amounts of tip in the smallest units of
      * the currency (integer, not float/double). At most 4 suggested tip amounts can be
      * specified. The suggested tip amounts must be positive, passed in a strictly increased
      * order and must not exceed max_tip_amount.
     */
-    std::optional<std::vector<std::int32_t>> suggestedTipAmounts { };
+    std::optional<std::vector<std::uint64_t>> suggestedTipAmounts { };
     /**
      * @brief Optional. A JSON-serialized object for data about the invoice, which will be shared with
      * the payment provider. A detailed description of the required fields should be provided
@@ -5633,15 +5886,15 @@ struct InputInvoiceMessageContent {
     /**
      * @brief Optional. Photo size in bytes
     */
-    std::optional<std::int32_t> photoSize { };
+    std::optional<std::uint32_t> photoSize { };
     /**
      * @brief Optional. Photo width
     */
-    std::optional<std::int32_t> photoWidth { };
+    std::optional<std::uint32_t> photoWidth { };
     /**
      * @brief Optional. Photo height
     */
-    std::optional<std::int32_t> photoHeight { };
+    std::optional<std::uint32_t> photoHeight { };
     /**
      * @brief Optional. Pass True if you require the user's full name to complete the order. Ignored
      * for payments in Telegram Stars.
@@ -5705,17 +5958,17 @@ struct InputLocationMessageContent {
      * @brief Optional. Period in seconds during which the location can be updated, must be between 60
      * and 86400, or 0x7FFFFFFF for live locations that can be edited indefinitely
     */
-    std::optional<std::int32_t> livePeriod { };
+    std::optional<std::uint32_t> livePeriod { };
     /**
      * @brief Optional. For live locations, a direction in which the user is moving, in degrees. Must
      * be between 1 and 360 if specified.
     */
-    std::optional<std::int32_t> heading { };
+    std::optional<std::uint32_t> heading { };
     /**
      * @brief Optional. For live locations, a maximum distance for proximity alerts about approaching
      * another chat member, in meters. Must be between 1 and 100000 if specified.
     */
-    std::optional<std::int32_t> proximityAlertRadius { };
+    std::optional<std::uint32_t> proximityAlertRadius { };
 };
 
 TGBOT_API void from_json(const nlohmann::json& json, InputLocationMessageContent& value);
@@ -5790,15 +6043,15 @@ struct InputMediaAnimation {
     /**
      * @brief Optional. Animation width
     */
-    std::optional<std::int32_t> width { };
+    std::optional<std::uint32_t> width { };
     /**
      * @brief Optional. Animation height
     */
-    std::optional<std::int32_t> height { };
+    std::optional<std::uint32_t> height { };
     /**
      * @brief Optional. Animation duration in seconds
     */
-    std::optional<std::int32_t> duration { };
+    std::optional<std::uint32_t> duration { };
     /**
      * @brief Optional. Pass True if the animation needs to be covered with a spoiler animation
     */
@@ -5855,7 +6108,7 @@ struct InputMediaAudio {
     /**
      * @brief Optional. Duration of the audio in seconds
     */
-    std::optional<std::int32_t> duration { };
+    std::optional<std::uint32_t> duration { };
     /**
      * @brief Optional. Performer of the audio
     */
@@ -6197,7 +6450,7 @@ struct InputMediaVideo {
     /**
      * @brief Optional. Start timestamp for the video in the message
     */
-    std::optional<std::int32_t> startTimestamp { };
+    std::optional<std::uint32_t> startTimestamp { };
     /**
      * @brief Optional. Caption of the video to be sent, 0-1024 characters after entities parsing
     */
@@ -6219,15 +6472,15 @@ struct InputMediaVideo {
     /**
      * @brief Optional. Video width
     */
-    std::optional<std::int32_t> width { };
+    std::optional<std::uint32_t> width { };
     /**
      * @brief Optional. Video height
     */
-    std::optional<std::int32_t> height { };
+    std::optional<std::uint32_t> height { };
     /**
      * @brief Optional. Video duration in seconds
     */
-    std::optional<std::int32_t> duration { };
+    std::optional<std::uint32_t> duration { };
     /**
      * @brief Optional. Pass True if the uploaded video is suitable for streaming
     */
@@ -6279,7 +6532,7 @@ struct InputMediaVoiceNote {
     /**
      * @brief Optional. Duration of the voice message in seconds
     */
-    std::optional<std::int32_t> duration { };
+    std::optional<std::uint32_t> duration { };
 };
 
 TGBOT_API void from_json(const nlohmann::json& json, InputMediaVoiceNote& value);
@@ -6289,7 +6542,8 @@ TGBOT_API void to_json(nlohmann::json& json, const InputMediaVoiceNote& value);
  * @brief This object represents the content of a message to be sent as a result of an inline query.
  * Telegram clients currently support the following types: InputTextMessageContent
  * InputRichMessageContent InputLocationMessageContent InputVenueMessageContent
- * InputContactMessageContent InputInvoiceMessageContent
+ * InputContactMessageContent InputInvoiceMessageContent InputWidgetMessageContent
+ * InputSharedWidgetMessageContent
  * @ingroup api
  */
 struct InputMessageContent {
@@ -6297,7 +6551,8 @@ struct InputMessageContent {
 
     std::variant<std::shared_ptr<InputTextMessageContent>, std::shared_ptr<InputRichMessageContent>,
                  std::shared_ptr<InputLocationMessageContent>, std::shared_ptr<InputVenueMessageContent>,
-                 std::shared_ptr<InputContactMessageContent>, std::shared_ptr<InputInvoiceMessageContent>>
+                 std::shared_ptr<InputContactMessageContent>, std::shared_ptr<InputInvoiceMessageContent>,
+                 std::shared_ptr<InputWidgetMessageContent>, std::shared_ptr<InputSharedWidgetMessageContent>>
         value;
 };
 
@@ -6417,19 +6672,19 @@ struct InputPaidMediaVideo {
     /**
      * @brief Optional. Start timestamp for the video in the message
     */
-    std::optional<std::int32_t> startTimestamp { };
+    std::optional<std::uint32_t> startTimestamp { };
     /**
      * @brief Optional. Video width
     */
-    std::optional<std::int32_t> width { };
+    std::optional<std::uint32_t> width { };
     /**
      * @brief Optional. Video height
     */
-    std::optional<std::int32_t> height { };
+    std::optional<std::uint32_t> height { };
     /**
      * @brief Optional. Video duration in seconds
     */
-    std::optional<std::int32_t> duration { };
+    std::optional<std::uint32_t> duration { };
     /**
      * @brief Optional. Pass True if the uploaded video is suitable for streaming
     */
@@ -6961,15 +7216,15 @@ struct InputRichBlockMap {
     /**
      * @brief Optional. Map zoom level; 0-24
     */
-    std::optional<std::int32_t> zoom { };
+    std::optional<std::uint32_t> zoom { };
     /**
      * @brief Optional. Map width; 0-10000
     */
-    std::optional<std::int32_t> width { };
+    std::optional<std::uint32_t> width { };
     /**
      * @brief Optional. Map height; 0-10000
     */
-    std::optional<std::int32_t> height { };
+    std::optional<std::uint32_t> height { };
     /**
      * @brief Optional. Caption of the block
     */
@@ -7122,7 +7377,7 @@ struct InputRichBlockSectionHeading {
     /**
      * @brief Relative size of the text font; 1-6, 1 is the largest, 6 is the smallest
     */
-    std::int32_t size { };
+    std::uint32_t size { };
 };
 
 TGBOT_API void from_json(const nlohmann::json& json, InputRichBlockSectionHeading& value);
@@ -7356,6 +7611,46 @@ TGBOT_API void from_json(const nlohmann::json& json, InputRichMessageMedia& valu
 TGBOT_API void to_json(nlohmann::json& json, const InputRichMessageMedia& value);
 
 /**
+ * @brief Represents the content of a message with a shared widget to be sent as the result of an
+ * inline query. Currently, widgets can't be sent in response to inline queries in the
+ * production environment.
+ * @ingroup api
+ */
+struct InputSharedWidgetMessageContent {
+    using Ptr = std::shared_ptr<InputSharedWidgetMessageContent>;
+
+    /**
+     * @brief Unique identifier of the shared widget created by the bot
+    */
+    std::string widgetId { };
+    /**
+     * @brief Optional. Data of the widget, which is specific to the message, 0-1024 bytes
+    */
+    std::optional<std::string> chatData { };
+    /**
+     * @brief Optional. Widget caption, 0-1024 characters after entities parsing
+    */
+    std::optional<std::string> caption { };
+    /**
+     * @brief Optional. Mode for parsing entities in the widget caption. See formatting options for
+     * more details.
+    */
+    std::optional<std::string> parseMode { };
+    /**
+     * @brief Optional. List of special entities that appear in the caption, which can be specified
+     * instead of parse_mode
+    */
+    std::optional<std::vector<std::shared_ptr<MessageEntity>>> captionEntities { };
+    /**
+     * @brief Optional. Pass True if the caption must be shown above the widget
+    */
+    std::optional<bool> showCaptionAboveMedia { };
+};
+
+TGBOT_API void from_json(const nlohmann::json& json, InputSharedWidgetMessageContent& value);
+TGBOT_API void to_json(nlohmann::json& json, const InputSharedWidgetMessageContent& value);
+
+/**
  * @brief This object describes a sticker to be added to a sticker set.
  * @ingroup api
  */
@@ -7547,6 +7842,75 @@ TGBOT_API void from_json(const nlohmann::json& json, InputVenueMessageContent& v
 TGBOT_API void to_json(nlohmann::json& json, const InputVenueMessageContent& value);
 
 /**
+ * @brief Represents the content of a message with an HTML widget to be sent as the result of an
+ * inline query. Currently, widgets can't be sent in response to inline queries in the
+ * production environment.
+ * @ingroup api
+ */
+struct InputWidgetMessageContent {
+    using Ptr = std::shared_ptr<InputWidgetMessageContent>;
+
+    /**
+     * @brief HTML code of the widget, 1-32768 bytes. The code must not exceed 4096 bytes when
+     * compressed by zlib with the maximum compression level.
+    */
+    std::string html { };
+    /**
+     * @brief Optional. Width of the widget in logical pixels; omit if the widget must occupy the
+     * whole width of the message bubble. The width is clamped by the app to the range from 200
+     * to the maximum width of the message bubble.
+    */
+    std::optional<std::uint32_t> width { };
+    /**
+     * @brief Optional. Height of the widget in logical pixels; omit if the height of the widget isn't
+     * fixed. The height is clamped by the app to the range 50-600.
+    */
+    std::optional<std::uint32_t> height { };
+    /**
+     * @brief Optional. Public data of the widget, 0-1024 bytes, which will be available wherever the
+     * widget is shown. If the widget is shared, then all messages with it will have the same
+     * public data.
+    */
+    std::optional<std::string> publicData { };
+    /**
+     * @brief Optional. Data of the widget, which is specific to the message, 0-1024 bytes
+    */
+    std::optional<std::string> chatData { };
+    /**
+     * @brief Optional. Widget caption, 0-1024 characters after entities parsing
+    */
+    std::optional<std::string> caption { };
+    /**
+     * @brief Optional. Mode for parsing entities in the widget caption. See formatting options for
+     * more details.
+    */
+    std::optional<std::string> parseMode { };
+    /**
+     * @brief Optional. List of special entities that appear in the caption, which can be specified
+     * instead of parse_mode
+    */
+    std::optional<std::vector<std::shared_ptr<MessageEntity>>> captionEntities { };
+    /**
+     * @brief Optional. Pass True if the caption must be shown above the widget
+    */
+    std::optional<bool> showCaptionAboveMedia { };
+    /**
+     * @brief Optional. Pass True to allow the widget to send queries to the bot
+    */
+    std::optional<bool> allowQueries { };
+    /**
+     * @brief Optional. Pass True to create a shared widget. Each message sent from the result creates
+     * a separate shared widget, whose identifier is received by the bot only in the field
+     * widget_id of queries from the widget. To send an existing shared widget in response to
+     * an inline query, use InputSharedWidgetMessageContent instead.
+    */
+    std::optional<bool> isShared { };
+};
+
+TGBOT_API void from_json(const nlohmann::json& json, InputWidgetMessageContent& value);
+TGBOT_API void to_json(nlohmann::json& json, const InputWidgetMessageContent& value);
+
+/**
  * @brief This object contains basic information about an invoice.
  * @ingroup api
  */
@@ -7575,7 +7939,7 @@ struct Invoice {
      * currencies.json, it shows the number of digits past the decimal point for each currency
      * (2 for the majority of currencies).
     */
-    std::int32_t totalAmount { };
+    std::uint64_t totalAmount { };
 };
 
 TGBOT_API void from_json(const nlohmann::json& json, Invoice& value);
@@ -7757,7 +8121,11 @@ struct KeyboardButtonRequestManagedBot {
     */
     std::optional<std::string> suggestedName { };
     /**
-     * @brief Optional. Suggested username for the bot
+     * @brief Optional. Suggested username for the bot. The username must end with “bot”. If the user
+     * creating the bot has a Telegram Premium subscription, then the username can also end
+     * with “agent”, “ai”, “app”, “game”, or “gay”; in this case, the username will be assigned
+     * to the bot as a secondary username, and a regular username ending with “bot” will be
+     * assigned to the bot automatically.
     */
     std::optional<std::string> suggestedUsername { };
 };
@@ -7792,7 +8160,7 @@ struct KeyboardButtonRequestUsers {
     /**
      * @brief Optional. The maximum number of users to be selected; 1-10. Defaults to 1.
     */
-    std::optional<std::int32_t> maxQuantity { };
+    std::optional<std::uint32_t> maxQuantity { };
     /**
      * @brief Optional. Pass True to request the users' first and last names
     */
@@ -7827,7 +8195,7 @@ struct LabeledPrice {
      * currencies.json, it shows the number of digits past the decimal point for each currency
      * (2 for the majority of currencies).
     */
-    std::int32_t amount { };
+    std::int64_t amount { };
 };
 
 TGBOT_API void from_json(const nlohmann::json& json, LabeledPrice& value);
@@ -7908,15 +8276,15 @@ struct LivePhoto {
     /**
      * @brief Video width as defined by the sender
     */
-    std::int32_t width { };
+    std::uint32_t width { };
     /**
      * @brief Video height as defined by the sender
     */
-    std::int32_t height { };
+    std::uint32_t height { };
     /**
      * @brief Duration of the video in seconds as defined by the sender
     */
-    std::int32_t duration { };
+    std::uint32_t duration { };
     /**
      * @brief Optional. MIME type of the file as defined by the sender
     */
@@ -7927,7 +8295,7 @@ struct LivePhoto {
      * bits, so a signed 64-bit integer or double-precision float type are safe for storing
      * this value.
     */
-    std::optional<std::int64_t> fileSize { };
+    std::optional<std::uint64_t> fileSize { };
 };
 
 TGBOT_API void from_json(const nlohmann::json& json, LivePhoto& value);
@@ -7956,17 +8324,17 @@ struct Location {
      * @brief Optional. Time relative to the message sending date, during which the location can be
      * updated; in seconds. For active live locations only.
     */
-    std::optional<std::int32_t> livePeriod { };
+    std::optional<std::uint32_t> livePeriod { };
     /**
      * @brief Optional. The direction in which user is moving, in degrees; 1-360. For active live
      * locations only.
     */
-    std::optional<std::int32_t> heading { };
+    std::optional<std::uint32_t> heading { };
     /**
      * @brief Optional. The maximum distance for proximity alerts about approaching another chat
      * member, in meters. For sent live locations only.
     */
-    std::optional<std::int32_t> proximityAlertRadius { };
+    std::optional<std::uint32_t> proximityAlertRadius { };
 };
 
 TGBOT_API void from_json(const nlohmann::json& json, Location& value);
@@ -8223,12 +8591,12 @@ struct Message {
      * automatically schedule a message instead of sending it immediately. In such cases, this
      * field will be 0 and the relevant message will be unusable until it is actually sent.
     */
-    std::int32_t messageId { };
+    std::uint32_t messageId { };
     /**
      * @brief Optional. Unique identifier of a message thread or forum topic to which the message
      * belongs; for supergroups and private chats only
     */
-    std::optional<std::int32_t> messageThreadId { };
+    std::optional<std::uint32_t> messageThreadId { };
     /**
      * @brief Optional. Information about the direct messages chat topic that contains the message
     */
@@ -8251,7 +8619,7 @@ struct Message {
      * @brief Optional. If the sender of the message boosted the chat, the number of boosts added by
      * the user
     */
-    std::optional<std::int32_t> senderBoostCount { };
+    std::optional<std::uint32_t> senderBoostCount { };
     /**
      * @brief Optional. The bot that actually sent the message on behalf of the business account.
      * Available only for outgoing messages sent on behalf of the connected business account.
@@ -8270,12 +8638,12 @@ struct Message {
      * The identifier may be reused for another ephemeral message after the message is deleted
      * or expires.
     */
-    std::optional<std::int32_t> ephemeralMessageId { };
+    std::optional<std::uint32_t> ephemeralMessageId { };
     /**
      * @brief Date the message was sent in Unix time. It is always a positive number, representing a
      * valid date.
     */
-    std::int32_t date { };
+    std::uint32_t date { };
     /**
      * @brief Optional. The unique identifier for the guest query. Use this identifier with the method
      * answerGuestQuery to send a response message. If non-empty, the message belongs to the
@@ -8332,7 +8700,7 @@ struct Message {
     /**
      * @brief Optional. Identifier of the specific checklist task that is being replied to
     */
-    std::optional<std::int32_t> replyToChecklistTaskId { };
+    std::optional<std::uint32_t> replyToChecklistTaskId { };
     /**
      * @brief Optional. Persistent identifier of the specific poll option that is being replied to
     */
@@ -8383,7 +8751,7 @@ struct Message {
      * @brief Optional. The number of Telegram Stars that were paid by the sender of the message to
      * send it
     */
-    std::optional<std::int32_t> paidStarCount { };
+    std::optional<std::uint32_t> paidStarCount { };
     /**
      * @brief Optional. For text messages, the actual UTF-8 text of the message
     */
@@ -8459,7 +8827,12 @@ struct Message {
     */
     std::shared_ptr<Voice> voice { };
     /**
-     * @brief Optional. Caption for the animation, audio, document, paid media, photo, video or voice
+     * @brief Optional. Message is an HTML widget, information about the widget
+    */
+    std::shared_ptr<Widget> widget { };
+    /**
+     * @brief Optional. Caption for the animation, audio, document, live photo, paid media, photo,
+     * video, voice, or widget
     */
     std::optional<std::string> caption { };
     /**
@@ -8468,7 +8841,7 @@ struct Message {
     */
     std::optional<std::vector<std::shared_ptr<MessageEntity>>> captionEntities { };
     /**
-     * @brief Optional. True, if the caption must be shown above the message media
+     * @brief Optional. True, if the caption must be shown above the message media or the widget
     */
     std::optional<bool> showCaptionAboveMedia { };
     /**
@@ -8714,6 +9087,11 @@ struct Message {
     */
     std::shared_ptr<PaidMessagePriceChanged> paidMessagePriceChanged { };
     /**
+     * @brief Optional. Service message: the sender of the message used a link of the other user,
+     * which allows sending messages to the user without paying Telegram Stars
+    */
+    std::shared_ptr<PaidMessagesWaived> paidMessagesWaived { };
+    /**
      * @brief Optional. Service message: answer option was added to a poll
     */
     std::shared_ptr<PollOptionAdded> pollOptionAdded { };
@@ -8741,6 +9119,10 @@ struct Message {
      * @brief Optional. Service message: payment for a suggested post was refunded
     */
     std::shared_ptr<SuggestedPostRefunded> suggestedPostRefunded { };
+    /**
+     * @brief Optional. Service message: a transfer with a TON wallet
+    */
+    std::shared_ptr<TonWalletTransfer> tonWalletTransfer { };
     /**
      * @brief Optional. Service message: video chat scheduled
     */
@@ -8781,7 +9163,7 @@ struct MessageAutoDeleteTimerChanged {
     /**
      * @brief New auto-delete time for messages in the chat; in seconds
     */
-    std::int32_t messageAutoDeleteTime { };
+    std::uint32_t messageAutoDeleteTime { };
 };
 
 TGBOT_API void from_json(const nlohmann::json& json, MessageAutoDeleteTimerChanged& value);
@@ -8815,17 +9197,20 @@ struct MessageEntity {
         TextLink,
         TextMention,
         CustomEmoji,
-        DateTime
+        DateTime,
+        TonAddress,
+        BankCardNumber
     };
 
     /**
      * @brief Type of the entity. Currently, can be “mention” (@username), “hashtag” (#hashtag or
      * #hashtag@chatusername), “cashtag” ($USD or $USD@chatusername), “bot_command”
      * (/start@jobs_bot), “url” (https://telegram.org), “email” (do-not-reply@telegram.org),
-     * “phone_number” (+1-212-555-0123), “bold” (bold text), “italic” (italic text),
-     * “underline” (underlined text), “strikethrough” (strikethrough text), “spoiler” (spoiler
-     * message), “blockquote” (block quotation), “expandable_blockquote” (collapsed-by-default
-     * block quotation), “code” (monowidth string), “pre” (monowidth block), “text_link” (for
+     * “phone_number” (+1-212-555-0123), “bank_card_number” (bank card number), “ton_address”
+     * (address in the TON blockchain), “bold” (bold text), “italic” (italic text), “underline”
+     * (underlined text), “strikethrough” (strikethrough text), “spoiler” (spoiler message),
+     * “blockquote” (block quotation), “expandable_blockquote” (collapsed-by-default block
+     * quotation), “code” (monowidth string), “pre” (monowidth block), “text_link” (for
      * clickable text URLs), “text_mention” (for users without usernames), “custom_emoji” (for
      * inline custom emoji stickers), or “date_time” (for formatted date and time).
     */
@@ -8833,11 +9218,11 @@ struct MessageEntity {
     /**
      * @brief Offset in UTF-16 code units to the start of the entity
     */
-    std::int32_t offset { };
+    std::uint32_t offset { };
     /**
      * @brief Length of the entity in UTF-16 code units
     */
-    std::int32_t length { };
+    std::uint32_t length { };
     /**
      * @brief Optional. For “text_link” only, URL that will be opened after user taps on the text
     */
@@ -8886,11 +9271,11 @@ struct MessageGenerationStopped {
     /**
      * @brief Optional. Unique identifier of the message thread in which the message is generated
     */
-    std::optional<std::int32_t> messageThreadId { };
+    std::optional<std::uint32_t> messageThreadId { };
     /**
      * @brief Unique identifier of the message draft which was stopped
     */
-    std::int32_t draftId { };
+    std::int64_t draftId { };
 };
 
 TGBOT_API void from_json(const nlohmann::json& json, MessageGenerationStopped& value);
@@ -8909,7 +9294,7 @@ struct MessageId {
      * immediately. In such cases, this field will be 0 and the relevant message will be
      * unusable until it is actually sent.
     */
-    std::int32_t messageId { };
+    std::uint32_t messageId { };
 };
 
 TGBOT_API void from_json(const nlohmann::json& json, MessageId& value);
@@ -8955,7 +9340,7 @@ struct MessageOriginChannel {
     /**
      * @brief Unique message identifier inside the chat
     */
-    std::int32_t messageId { };
+    std::uint32_t messageId { };
     /**
      * @brief Optional. Signature of the original post author
     */
@@ -9062,7 +9447,7 @@ struct MessageReactionCountUpdated {
     /**
      * @brief Unique message identifier inside the chat
     */
-    std::int32_t messageId { };
+    std::uint32_t messageId { };
     /**
      * @brief Date of the change in Unix time
     */
@@ -9090,7 +9475,7 @@ struct MessageReactionUpdated {
     /**
      * @brief Unique identifier of the message inside the chat
     */
-    std::int32_t messageId { };
+    std::uint32_t messageId { };
     /**
      * @brief Optional. The user that changed the reaction, if the user isn't anonymous
     */
@@ -9220,11 +9605,11 @@ struct OwnedGiftRegular {
      * gift; omitted if the gift cannot be converted to Telegram Stars; for gifts received on
      * behalf of business accounts only
     */
-    std::optional<std::int32_t> convertStarCount { };
+    std::optional<std::uint32_t> convertStarCount { };
     /**
      * @brief Optional. Number of Telegram Stars that were paid for the ability to upgrade the gift
     */
-    std::optional<std::int32_t> prepaidUpgradeStarCount { };
+    std::optional<std::uint32_t> prepaidUpgradeStarCount { };
     /**
      * @brief Optional. True, if the gift's upgrade was purchased after the gift was sent; for gifts
      * received on behalf of business accounts only
@@ -9234,7 +9619,7 @@ struct OwnedGiftRegular {
      * @brief Optional. Unique number reserved for this gift when upgraded. See the number field in
      * UniqueGift.
     */
-    std::optional<std::int32_t> uniqueGiftNumber { };
+    std::optional<std::uint32_t> uniqueGiftNumber { };
 };
 
 TGBOT_API void from_json(const nlohmann::json& json, OwnedGiftRegular& value);
@@ -9284,7 +9669,7 @@ struct OwnedGiftUnique {
      * @brief Optional. Number of Telegram Stars that must be paid to transfer the gift; omitted if
      * the bot cannot transfer the gift
     */
-    std::optional<std::int32_t> transferStarCount { };
+    std::optional<std::uint32_t> transferStarCount { };
     /**
      * @brief Optional. Point in time (Unix timestamp) when the gift can be transferred. If it is in
      * the past, then the gift can be transferred now.
@@ -9305,7 +9690,7 @@ struct OwnedGifts {
     /**
      * @brief The total number of gifts owned by the user or the chat
     */
-    std::int32_t totalCount { };
+    std::uint32_t totalCount { };
     /**
      * @brief The list of gifts
     */
@@ -9345,7 +9730,7 @@ struct PaidMediaInfo {
     /**
      * @brief The number of Telegram Stars that must be paid to buy access to the media
     */
-    std::int32_t starCount { };
+    std::uint32_t starCount { };
     /**
      * @brief Information about the paid media
     */
@@ -9415,15 +9800,15 @@ struct PaidMediaPreview {
     /**
      * @brief Optional. Media width as defined by the sender
     */
-    std::optional<std::int32_t> width { };
+    std::optional<std::uint32_t> width { };
     /**
      * @brief Optional. Media height as defined by the sender
     */
-    std::optional<std::int32_t> height { };
+    std::optional<std::uint32_t> height { };
     /**
      * @brief Optional. Duration of the media in seconds as defined by the sender
     */
-    std::optional<std::int32_t> duration { };
+    std::optional<std::uint32_t> duration { };
 };
 
 TGBOT_API void from_json(const nlohmann::json& json, PaidMediaPreview& value);
@@ -9482,11 +9867,24 @@ struct PaidMessagePriceChanged {
      * @brief The new number of Telegram Stars that must be paid by non-administrator users of the
      * supergroup chat for each sent message
     */
-    std::int32_t paidMessageStarCount { };
+    std::uint32_t paidMessageStarCount { };
 };
 
 TGBOT_API void from_json(const nlohmann::json& json, PaidMessagePriceChanged& value);
 TGBOT_API void to_json(nlohmann::json& json, const PaidMessagePriceChanged& value);
+
+/**
+ * @brief Describes a service message about the sender of the message using a link of the other user,
+ * which allows sending messages to the user without paying Telegram Stars. Currently holds no
+ * information.
+ * @ingroup api
+ */
+struct PaidMessagesWaived {
+    using Ptr = std::shared_ptr<PaidMessagesWaived>;
+};
+
+TGBOT_API void from_json(const nlohmann::json& json, PaidMessagesWaived& value);
+TGBOT_API void to_json(nlohmann::json& json, const PaidMessagesWaived& value);
 
 /**
  * @brief Describes Telegram Passport data shared with the bot by the user.
@@ -9846,7 +10244,7 @@ struct PassportFile {
     /**
      * @brief File size in bytes
     */
-    std::int32_t fileSize { };
+    std::uint32_t fileSize { };
     /**
      * @brief Unix time when the file was uploaded
     */
@@ -9875,15 +10273,15 @@ struct PhotoSize {
     /**
      * @brief Photo width
     */
-    std::int32_t width { };
+    std::uint32_t width { };
     /**
      * @brief Photo height
     */
-    std::int32_t height { };
+    std::uint32_t height { };
     /**
      * @brief Optional. File size in bytes
     */
-    std::optional<std::int32_t> fileSize { };
+    std::optional<std::uint32_t> fileSize { };
 };
 
 TGBOT_API void from_json(const nlohmann::json& json, PhotoSize& value);
@@ -9916,7 +10314,7 @@ struct Poll {
     /**
      * @brief Total number of users that voted in the poll
     */
-    std::int32_t totalVoterCount { };
+    std::uint32_t totalVoterCount { };
     /**
      * @brief True, if the poll is closed
     */
@@ -9953,7 +10351,7 @@ struct Poll {
      * polls in quiz mode which are closed or were sent (not forwarded) by the bot or to the
      * private chat with the bot.
     */
-    std::optional<std::vector<std::int32_t>> correctOptionIds { };
+    std::optional<std::vector<std::uint32_t>> correctOptionIds { };
     /**
      * @brief Optional. Text that is shown when a user chooses an incorrect answer or taps on the lamp
      * icon in a quiz-style poll, 0-200 characters
@@ -9971,7 +10369,7 @@ struct Poll {
     /**
      * @brief Optional. Amount of time in seconds the poll will be active after creation
     */
-    std::optional<std::int32_t> openPeriod { };
+    std::optional<std::uint32_t> openPeriod { };
     /**
      * @brief Optional. Point in time (Unix timestamp) when the poll will be automatically closed
     */
@@ -10016,7 +10414,7 @@ struct PollAnswer {
     /**
      * @brief 0-based identifiers of chosen answer options. May be empty if the vote was retracted.
     */
-    std::vector<std::int32_t> optionIds { };
+    std::vector<std::uint32_t> optionIds { };
     /**
      * @brief Persistent identifiers of the chosen answer options. May be empty if the vote was
      * retracted.
@@ -10109,7 +10507,7 @@ struct PollOption {
     /**
      * @brief Number of users who voted for this option; may be 0 if unknown
     */
-    std::int32_t voterCount { };
+    std::uint32_t voterCount { };
     /**
      * @brief Optional. User who added the option; omitted if the option wasn't added by a user after
      * poll creation
@@ -10215,7 +10613,7 @@ struct PreCheckoutQuery {
      * currencies.json, it shows the number of digits past the decimal point for each currency
      * (2 for the majority of currencies).
     */
-    std::int32_t totalAmount { };
+    std::uint64_t totalAmount { };
     /**
      * @brief Bot-specified invoice payload
     */
@@ -10289,7 +10687,7 @@ struct ProximityAlertTriggered {
     /**
      * @brief The distance between the users
     */
-    std::int32_t distance { };
+    std::uint32_t distance { };
 };
 
 TGBOT_API void from_json(const nlohmann::json& json, ProximityAlertTriggered& value);
@@ -10309,7 +10707,7 @@ struct ReactionCount {
     /**
      * @brief Number of times the reaction was added
     */
-    std::int32_t totalCount { };
+    std::uint32_t totalCount { };
 };
 
 TGBOT_API void from_json(const nlohmann::json& json, ReactionCount& value);
@@ -10414,7 +10812,7 @@ struct RefundedPayment {
      * currencies.json, it shows the number of digits past the decimal point for each currency
      * (2 for the majority of currencies).
     */
-    std::int32_t totalAmount { };
+    std::uint64_t totalAmount { };
     /**
      * @brief Bot-specified invoice payload
     */
@@ -10530,21 +10928,21 @@ struct ReplyParameters {
      * @brief Optional. Identifier of the message that will be replied to in the current chat, or in
      * the chat chat_id if it is specified. Required if ephemeral_message_id isn't specified.
     */
-    std::optional<std::int32_t> messageId { };
+    std::optional<std::uint32_t> messageId { };
     /**
      * @brief Optional. If the message to be replied to is from a different chat, unique identifier
-     * for the chat or username of the bot, supergroup or channel in the format @username. Not
+     * for the chat or username of the bot, supergroup, or channel in the format @username. Not
      * supported for messages sent on behalf of a business account, messages from channel
      * direct messages chats and ephemeral messages.
     */
-    std::optional<std::int64_t> chatId { };
+    std::optional<std::variant<std::int64_t, std::string>> chatId { };
     /**
      * @brief Optional. Identifier of the incoming ephemeral message that will be replied to in the
      * current chat. A reply to an ephemeral message must itself be an ephemeral message. An
      * ephemeral message may only be replied to within 15 seconds of being sent. Required if
      * message_id isn't specified.
     */
-    std::optional<std::int32_t> ephemeralMessageId { };
+    std::optional<std::uint32_t> ephemeralMessageId { };
     /**
      * @brief Optional. Pass True if the message should be sent even if the specified message to be
      * replied to is not found. Always False for replies in another chat or forum topic, and
@@ -10570,13 +10968,36 @@ struct ReplyParameters {
     */
     std::optional<std::vector<std::shared_ptr<MessageEntity>>> quoteEntities { };
     /**
-     * @brief Optional. Position of the quote in the original message in UTF-16 code units
+     * @brief Optional. A JSON-serialized list of quoted parts of the rich message to be replied to.
+     * Must contain one element for each quoted text of the message in the order of their
+     * appearance. Each of the following is a separate quoted text: the text of a paragraph, a
+     * heading, a preformatted block, a footer, or a mathematical expression; the text and the
+     * credit of a block quotation or a pull quotation; the summary of a details block; the
+     * caption and each cell of a table; the text and the credit of a caption of a media block,
+     * a collage, a slideshow, or a map. Texts of blocks nested in lists, block quotations,
+     * details, collages, and slideshows are separate quoted texts too. The first and the last
+     * elements can contain only a part of the corresponding text; all other elements must
+     * contain the whole text. Formatting of the quoted parts must be kept, and rich texts must
+     * be nested in the same way as in the message received from the server. Mathematical
+     * expressions must be quoted entirely. Buttons in RichBlockButtons, anchors and dividers
+     * can't be quoted. Up to 32 quoted texts with total length up to 1024 characters can be
+     * specified. Only plain text, RichTextBold, RichTextItalic, RichTextUnderline,
+     * RichTextStrikethrough, RichTextSpoiler, RichTextSubscript, RichTextSuperscript,
+     * RichTextDateTime, RichTextCustomEmoji, RichTextMathematicalExpression, and arrays of
+     * them are kept in the quote; other rich text types are replaced with their text. If non-
+     * empty, then quote, quote_parse_mode and quote_entities are ignored.
     */
-    std::optional<std::int32_t> quotePosition { };
+    std::optional<std::vector<std::shared_ptr<RichText>>> quoteRichTexts { };
+    /**
+     * @brief Optional. Position of the quote in the original message in UTF-16 code units. For quotes
+     * from rich messages, it is the position in the text formed by joining plain texts of all
+     * quotable texts of the message, separated by line feeds.
+    */
+    std::optional<std::uint32_t> quotePosition { };
     /**
      * @brief Optional. Identifier of the specific checklist task to be replied to
     */
-    std::optional<std::int32_t> checklistTaskId { };
+    std::optional<std::uint32_t> checklistTaskId { };
     /**
      * @brief Optional. Persistent identifier of the specific poll option to be replied to
     */
@@ -10605,7 +11026,7 @@ struct ResponseParameters {
      * @brief Optional. In case of exceeding flood control, the number of seconds left to wait before
      * the request can be repeated
     */
-    std::optional<std::int32_t> retryAfter { };
+    std::optional<std::uint32_t> retryAfter { };
 };
 
 TGBOT_API void from_json(const nlohmann::json& json, ResponseParameters& value);
@@ -11101,15 +11522,15 @@ struct RichBlockMap {
     /**
      * @brief Map zoom level
     */
-    std::int32_t zoom { };
+    std::uint32_t zoom { };
     /**
      * @brief Expected width of the map
     */
-    std::int32_t width { };
+    std::uint32_t width { };
     /**
      * @brief Expected height of the map
     */
-    std::int32_t height { };
+    std::uint32_t height { };
     /**
      * @brief Optional. Caption of the block
     */
@@ -11266,7 +11687,7 @@ struct RichBlockSectionHeading {
     /**
      * @brief Relative size of the text font; 1-6, 1 is the largest, 6 is the smallest
     */
-    std::int32_t size { };
+    std::uint32_t size { };
 };
 
 TGBOT_API void from_json(const nlohmann::json& json, RichBlockSectionHeading& value);
@@ -11354,11 +11775,11 @@ struct RichBlockTableCell {
     /**
      * @brief Optional. The number of columns the cell spans if it is bigger than 1
     */
-    std::optional<std::int32_t> colspan { };
+    std::optional<std::uint32_t> colspan { };
     /**
      * @brief Optional. The number of rows the cell spans if it is bigger than 1
     */
-    std::optional<std::int32_t> rowspan { };
+    std::optional<std::uint32_t> rowspan { };
     /**
      * @brief Horizontal cell content alignment. Currently, must be one of “left”, “center”, or
      * “right”.
@@ -11559,8 +11980,9 @@ TGBOT_API void to_json(nlohmann::json& json, const RichMessageButton& value);
  * RichTextUnderline RichTextStrikethrough RichTextSpoiler RichTextDateTime RichTextTextMention
  * RichTextSubscript RichTextSuperscript RichTextMarked RichTextCode RichTextCustomEmoji
  * RichTextMathematicalExpression RichTextUrl RichTextEmailAddress RichTextPhoneNumber
- * RichTextBankCardNumber RichTextMention RichTextHashtag RichTextCashtag RichTextBotCommand
- * RichTextButton RichTextAnchor RichTextAnchorLink RichTextReference RichTextReferenceLink
+ * RichTextBankCardNumber RichTextTonAddress RichTextMention RichTextHashtag RichTextCashtag
+ * RichTextBotCommand RichTextButton RichTextAnchor RichTextAnchorLink RichTextReference
+ * RichTextReferenceLink
  * @ingroup api
  */
 struct RichText {
@@ -11576,7 +11998,8 @@ struct RichText {
         std::shared_ptr<RichTextBankCardNumber>, std::shared_ptr<RichTextMention>, std::shared_ptr<RichTextHashtag>,
         std::shared_ptr<RichTextCashtag>, std::shared_ptr<RichTextBotCommand>, std::shared_ptr<RichTextButton>,
         std::shared_ptr<RichTextAnchor>, std::shared_ptr<RichTextAnchorLink>, std::shared_ptr<RichTextReference>,
-        std::shared_ptr<RichTextReferenceLink>, std::string, std::vector<std::shared_ptr<RichText>>>
+        std::shared_ptr<RichTextReferenceLink>, std::string, std::vector<std::shared_ptr<RichText>>,
+        std::shared_ptr<RichTextTonAddress>>
         value;
 };
 
@@ -12171,6 +12594,32 @@ TGBOT_API void from_json(const nlohmann::json& json, RichTextTextMention& value)
 TGBOT_API void to_json(nlohmann::json& json, const RichTextTextMention& value);
 
 /**
+ * @brief An address in the TON blockchain.
+ * @ingroup api
+ */
+struct RichTextTonAddress {
+    using Ptr = std::shared_ptr<RichTextTonAddress>;
+
+    static TGBOT_API const std::string TYPE;
+
+    /**
+     * @brief Type of the rich text, always “ton_address”
+    */
+    std::string type { TYPE };
+    /**
+     * @brief Text of the address
+    */
+    std::shared_ptr<RichText> text { };
+    /**
+     * @brief The address
+    */
+    std::string address { };
+};
+
+TGBOT_API void from_json(const nlohmann::json& json, RichTextTonAddress& value);
+TGBOT_API void to_json(nlohmann::json& json, const RichTextTonAddress& value);
+
+/**
  * @brief An underlined text.
  * @ingroup api
  */
@@ -12267,7 +12716,7 @@ struct SharedUser {
      * unable to use this identifier, unless the user is already known to the bot by some other
      * means.
     */
-    std::int64_t userId { };
+    std::uint64_t userId { };
     /**
      * @brief Optional. First name of the user, if the name was requested by the bot
     */
@@ -12288,6 +12737,40 @@ struct SharedUser {
 
 TGBOT_API void from_json(const nlohmann::json& json, SharedUser& value);
 TGBOT_API void to_json(nlohmann::json& json, const SharedUser& value);
+
+/**
+ * @brief This object represents an incoming query from a forwarded message with a shared widget
+ * created by the bot. Use answerWidgetQuery to answer the query. Each user can send at most 5
+ * queries per 5 seconds to the bot from all its widgets.
+ * @ingroup api
+ */
+struct SharedWidgetQuery {
+    using Ptr = std::shared_ptr<SharedWidgetQuery>;
+
+    /**
+     * @brief Unique identifier for this query
+    */
+    std::string id { };
+    /**
+     * @brief Sender
+    */
+    std::shared_ptr<User> from { };
+    /**
+     * @brief Type of the query
+    */
+    std::shared_ptr<WidgetQueryType> type { };
+    /**
+     * @brief Data of the query, 1-64 bytes
+    */
+    std::string data { };
+    /**
+     * @brief Unique identifier of the shared widget, which sent the query
+    */
+    std::string widgetId { };
+};
+
+TGBOT_API void from_json(const nlohmann::json& json, SharedWidgetQuery& value);
+TGBOT_API void to_json(nlohmann::json& json, const SharedWidgetQuery& value);
 
 /**
  * @brief This object represents a shipping address.
@@ -12387,7 +12870,7 @@ struct StarAmount {
     /**
      * @brief Integer amount of Telegram Stars, rounded to 0; can be negative
     */
-    std::int32_t amount { };
+    std::int64_t amount { };
     /**
      * @brief Optional. The number of 1/1000000000 shares of Telegram Stars; from -999999999 to
      * 999999999; can be negative if and only if amount is non-positive
@@ -12418,12 +12901,12 @@ struct StarTransaction {
     /**
      * @brief Integer amount of Telegram Stars transferred by the transaction
     */
-    std::int32_t amount { };
+    std::uint64_t amount { };
     /**
      * @brief Optional. The number of 1/1000000000 shares of Telegram Stars transferred by the
      * transaction; from 0 to 999999999
     */
-    std::optional<std::int32_t> nanostarAmount { };
+    std::optional<std::uint32_t> nanostarAmount { };
     /**
      * @brief Date the transaction was created in Unix time
     */
@@ -12486,11 +12969,11 @@ struct Sticker {
     /**
      * @brief Sticker width
     */
-    std::int32_t width { };
+    std::uint32_t width { };
     /**
      * @brief Sticker height
     */
-    std::int32_t height { };
+    std::uint32_t height { };
     /**
      * @brief True, if the sticker is animated
     */
@@ -12532,7 +13015,7 @@ struct Sticker {
     /**
      * @brief Optional. File size in bytes
     */
-    std::optional<std::int32_t> fileSize { };
+    std::optional<std::uint32_t> fileSize { };
 };
 
 TGBOT_API void from_json(const nlohmann::json& json, Sticker::Type& value);
@@ -12592,7 +13075,7 @@ struct Story {
     /**
      * @brief Unique identifier for the story in the chat
     */
-    std::int32_t id { };
+    std::uint32_t id { };
 };
 
 TGBOT_API void from_json(const nlohmann::json& json, Story& value);
@@ -12608,7 +13091,7 @@ struct StoryArea {
     /**
      * @brief Position of the area
     */
-    std::shared_ptr<StoryAreaPosition> position { };
+    std::shared_ptr<AreaPosition> position { };
     /**
      * @brief Type of the area
     */
@@ -12617,42 +13100,6 @@ struct StoryArea {
 
 TGBOT_API void from_json(const nlohmann::json& json, StoryArea& value);
 TGBOT_API void to_json(nlohmann::json& json, const StoryArea& value);
-
-/**
- * @brief Describes the position of a clickable area within a story.
- * @ingroup api
- */
-struct StoryAreaPosition {
-    using Ptr = std::shared_ptr<StoryAreaPosition>;
-
-    /**
-     * @brief The abscissa of the area's center, as a percentage of the media width
-    */
-    double xPercentage { };
-    /**
-     * @brief The ordinate of the area's center, as a percentage of the media height
-    */
-    double yPercentage { };
-    /**
-     * @brief The width of the area's rectangle, as a percentage of the media width
-    */
-    double widthPercentage { };
-    /**
-     * @brief The height of the area's rectangle, as a percentage of the media height
-    */
-    double heightPercentage { };
-    /**
-     * @brief The clockwise rotation angle of the rectangle, in degrees; 0-360
-    */
-    double rotationAngle { };
-    /**
-     * @brief The radius of the rectangle corner rounding, as a percentage of the media width
-    */
-    double cornerRadiusPercentage { };
-};
-
-TGBOT_API void from_json(const nlohmann::json& json, StoryAreaPosition& value);
-TGBOT_API void to_json(nlohmann::json& json, const StoryAreaPosition& value);
 
 /**
  * @brief Describes the type of a clickable area on a story. Currently, it can be one of
@@ -12805,7 +13252,7 @@ struct StoryAreaTypeWeather {
     /**
      * @brief A color of the area background in the ARGB format
     */
-    std::int32_t backgroundColor { };
+    std::uint32_t backgroundColor { };
 };
 
 TGBOT_API void from_json(const nlohmann::json& json, StoryAreaTypeWeather& value);
@@ -12830,7 +13277,7 @@ struct SuccessfulPayment {
      * currencies.json, it shows the number of digits past the decimal point for each currency
      * (2 for the majority of currencies).
     */
-    std::int32_t totalAmount { };
+    std::uint64_t totalAmount { };
     /**
      * @brief Bot-specified invoice payload
     */
@@ -12985,7 +13432,7 @@ struct SuggestedPostPaid {
      * @brief Optional. The amount of the currency that was received by the channel in nanograms; for
      * payments in TON grams only
     */
-    std::optional<std::int32_t> amount { };
+    std::optional<std::uint64_t> amount { };
     /**
      * @brief Optional. The amount of Telegram Stars that was received by the channel; for payments in
      * Telegram Stars only
@@ -13037,7 +13484,7 @@ struct SuggestedPostPrice {
      * between 5 and 100000, and price in nanograms must be between 10000000 and
      * 10000000000000.
     */
-    std::int32_t amount { };
+    std::uint64_t amount { };
 };
 
 TGBOT_API void from_json(const nlohmann::json& json, SuggestedPostPrice& value);
@@ -13109,7 +13556,8 @@ struct TextQuote {
     using Ptr = std::shared_ptr<TextQuote>;
 
     /**
-     * @brief Text of the quoted part of a message that is replied to by the given message
+     * @brief Text of the quoted part of a message that is replied to by the given message; may be
+     * empty if the quote was chosen from a rich message
     */
     std::string text { };
     /**
@@ -13119,10 +13567,18 @@ struct TextQuote {
     */
     std::optional<std::vector<std::shared_ptr<MessageEntity>>> entities { };
     /**
-     * @brief Approximate quote position in the original message in UTF-16 code units as specified by
-     * the sender
+     * @brief Optional. Rich text of the quote if it was chosen from a rich message. May contain only
+     * plain text, RichTextBold, RichTextItalic, RichTextUnderline, RichTextStrikethrough,
+     * RichTextSpoiler, RichTextSubscript, RichTextSuperscript, RichTextDateTime,
+     * RichTextCustomEmoji, RichTextMathematicalExpression, and arrays of them.
     */
-    std::int32_t position { };
+    std::optional<std::vector<std::shared_ptr<RichText>>> richTexts { };
+    /**
+     * @brief Approximate quote position in the original message in UTF-16 code units as specified by
+     * the sender. For quotes from rich messages, it is the position in the text formed by
+     * joining plain texts of all quotable texts of the message, separated by line feeds.
+    */
+    std::uint32_t position { };
     /**
      * @brief Optional. True, if the quote was chosen manually by the message sender. Otherwise, the
      * quote was added automatically by the server.
@@ -13132,6 +13588,145 @@ struct TextQuote {
 
 TGBOT_API void from_json(const nlohmann::json& json, TextQuote& value);
 TGBOT_API void to_json(nlohmann::json& json, const TextQuote& value);
+
+/**
+ * @brief This object represents an NFT in the TON blockchain.
+ * @ingroup api
+ */
+struct TonNft {
+    using Ptr = std::shared_ptr<TonNft>;
+
+    /**
+     * @brief Address of the NFT
+    */
+    std::string address { };
+    /**
+     * @brief Optional. Address of the collection to which the NFT belongs; omitted if unknown
+    */
+    std::optional<std::string> collectionAddress { };
+    /**
+     * @brief Index of the NFT among all NFTs from the collection as a decimal number
+    */
+    std::string index { };
+    /**
+     * @brief Name of the NFT
+    */
+    std::string name { };
+    /**
+     * @brief Description of the NFT
+    */
+    std::string description { };
+    /**
+     * @brief Optional. Attributes of the NFT
+    */
+    std::optional<std::vector<std::shared_ptr<TonNftAttribute>>> attributes { };
+    /**
+     * @brief Optional. The unique gift corresponding to the NFT
+    */
+    std::shared_ptr<UniqueGift> gift { };
+};
+
+TGBOT_API void from_json(const nlohmann::json& json, TonNft& value);
+TGBOT_API void to_json(nlohmann::json& json, const TonNft& value);
+
+/**
+ * @brief This object represents an attribute of an NFT in the TON blockchain.
+ * @ingroup api
+ */
+struct TonNftAttribute {
+    using Ptr = std::shared_ptr<TonNftAttribute>;
+
+    /**
+     * @brief Trait type of the attribute
+    */
+    std::string traitType { };
+    /**
+     * @brief Value of the attribute
+    */
+    std::string value { };
+};
+
+TGBOT_API void from_json(const nlohmann::json& json, TonNftAttribute& value);
+TGBOT_API void to_json(nlohmann::json& json, const TonNftAttribute& value);
+
+/**
+ * @brief This object describes a TON wallet card, which is shown on the profile page of a user to
+ * everyone.
+ * @ingroup api
+ */
+struct TonWalletCard {
+    using Ptr = std::shared_ptr<TonWalletCard>;
+
+    /**
+     * @brief Address of the wallet
+    */
+    std::string address { };
+    /**
+     * @brief Balance of the wallet, in the smallest units of the cryptocurrency, as a decimal number
+    */
+    std::string amount { };
+    /**
+     * @brief Stickers placed on the card
+    */
+    std::vector<std::shared_ptr<TonWalletCardSticker>> stickers { };
+    /**
+     * @brief Optional. Address of the NFT of one of the stickers, whose colors must be used for the
+     * card background; omitted if the default background must be used
+    */
+    std::optional<std::string> backgroundNftAddress { };
+};
+
+TGBOT_API void from_json(const nlohmann::json& json, TonWalletCard& value);
+TGBOT_API void to_json(nlohmann::json& json, const TonWalletCard& value);
+
+/**
+ * @brief This object describes a sticker on a TON wallet card.
+ * @ingroup api
+ */
+struct TonWalletCardSticker {
+    using Ptr = std::shared_ptr<TonWalletCardSticker>;
+
+    /**
+     * @brief Position of the sticker on the card
+    */
+    std::shared_ptr<AreaPosition> position { };
+    /**
+     * @brief The NFT shown as the sticker
+    */
+    std::shared_ptr<TonNft> nft { };
+};
+
+TGBOT_API void from_json(const nlohmann::json& json, TonWalletCardSticker& value);
+TGBOT_API void to_json(nlohmann::json& json, const TonWalletCardSticker& value);
+
+/**
+ * @brief Describes a service message about a transfer with a TON wallet.
+ * @ingroup api
+ */
+struct TonWalletTransfer {
+    using Ptr = std::shared_ptr<TonWalletTransfer>;
+
+    /**
+     * @brief Unique identifier of the transaction; may be empty if the transfer hasn't been sent yet
+    */
+    std::string transactionId { };
+    /**
+     * @brief Address of the transfer peer in the TON blockchain
+    */
+    std::string peerAddress { };
+    /**
+     * @brief The amount of transferred cryptocurrency, in the smallest units of the cryptocurrency,
+     * as a decimal number; negative for outgoing transfers
+    */
+    std::string amount { };
+    /**
+     * @brief Optional. Comment added to the transfer; omitted if the comment is encrypted
+    */
+    std::optional<std::string> comment { };
+};
+
+TGBOT_API void from_json(const nlohmann::json& json, TonWalletTransfer& value);
+TGBOT_API void to_json(nlohmann::json& json, const TonWalletTransfer& value);
 
 /**
  * @brief This object describes the source of a transaction, or its recipient for outgoing
@@ -13175,7 +13770,7 @@ struct TransactionPartnerAffiliateProgram {
      * @brief The number of Telegram Stars received by the bot for each 1000 Telegram Stars received
      * by the affiliate program sponsor from referred users
     */
-    std::int32_t commissionPerMille { };
+    std::uint32_t commissionPerMille { };
 };
 
 TGBOT_API void from_json(const nlohmann::json& json, TransactionPartnerAffiliateProgram& value);
@@ -13281,7 +13876,7 @@ struct TransactionPartnerTelegramApi {
     /**
      * @brief The number of successful requests that exceeded regular limits and were therefore billed
     */
-    std::int32_t requestCount { };
+    std::uint32_t requestCount { };
 };
 
 TGBOT_API void from_json(const nlohmann::json& json, TransactionPartnerTelegramApi& value);
@@ -13326,7 +13921,7 @@ struct TransactionPartnerUser {
      * @brief Optional. The duration of the paid subscription. Can be available only for
      * “invoice_payment” transactions.
     */
-    std::optional<std::int32_t> subscriptionPeriod { };
+    std::optional<std::uint32_t> subscriptionPeriod { };
     /**
      * @brief Optional. Information about the paid media bought by the user; for “paid_media_payment”
      * transactions only
@@ -13345,7 +13940,7 @@ struct TransactionPartnerUser {
      * @brief Optional. Number of months the gifted Telegram Premium subscription will be active for;
      * for “premium_purchase” transactions only
     */
-    std::optional<std::int32_t> premiumSubscriptionDuration { };
+    std::optional<std::uint32_t> premiumSubscriptionDuration { };
 };
 
 TGBOT_API void from_json(const nlohmann::json& json, TransactionPartnerUser& value);
@@ -13374,7 +13969,7 @@ struct UniqueGift {
     /**
      * @brief Unique number of the upgraded gift among gifts upgraded from the same regular gift
     */
-    std::int32_t number { };
+    std::uint32_t number { };
     /**
      * @brief Model of the gift
     */
@@ -13434,7 +14029,7 @@ struct UniqueGiftBackdrop {
     /**
      * @brief The number of unique gifts that receive this backdrop for every 1000 gifts upgraded
     */
-    std::int32_t rarityPerMille { };
+    std::uint32_t rarityPerMille { };
 };
 
 TGBOT_API void from_json(const nlohmann::json& json, UniqueGiftBackdrop& value);
@@ -13450,19 +14045,19 @@ struct UniqueGiftBackdropColors {
     /**
      * @brief The color in the center of the backdrop in RGB format
     */
-    std::int32_t centerColor { };
+    std::uint32_t centerColor { };
     /**
      * @brief The color on the edges of the backdrop in RGB format
     */
-    std::int32_t edgeColor { };
+    std::uint32_t edgeColor { };
     /**
      * @brief The color to be applied to the symbol in RGB format
     */
-    std::int32_t symbolColor { };
+    std::uint32_t symbolColor { };
     /**
      * @brief The color for the text on the backdrop in RGB format
     */
-    std::int32_t textColor { };
+    std::uint32_t textColor { };
 };
 
 TGBOT_API void from_json(const nlohmann::json& json, UniqueGiftBackdropColors& value);
@@ -13487,19 +14082,19 @@ struct UniqueGiftColors {
     /**
      * @brief Main color used in light themes; RGB format
     */
-    std::int32_t lightThemeMainColor { };
+    std::uint32_t lightThemeMainColor { };
     /**
      * @brief List of 1-3 additional colors used in light themes; RGB format
     */
-    std::vector<std::int32_t> lightThemeOtherColors { };
+    std::vector<std::uint32_t> lightThemeOtherColors { };
     /**
      * @brief Main color used in dark themes; RGB format
     */
-    std::int32_t darkThemeMainColor { };
+    std::uint32_t darkThemeMainColor { };
     /**
      * @brief List of 1-3 additional colors used in dark themes; RGB format
     */
-    std::vector<std::int32_t> darkThemeOtherColors { };
+    std::vector<std::uint32_t> darkThemeOtherColors { };
 };
 
 TGBOT_API void from_json(const nlohmann::json& json, UniqueGiftColors& value);
@@ -13545,7 +14140,7 @@ struct UniqueGiftInfo {
      * @brief Optional. For gifts bought from other users, the price paid for the gift in either
      * Telegram Stars or nanograms
     */
-    std::optional<std::int32_t> lastResaleAmount { };
+    std::optional<std::uint64_t> lastResaleAmount { };
     /**
      * @brief Optional. Unique identifier of the received gift for the bot; only present for gifts
      * received on behalf of business accounts
@@ -13555,7 +14150,7 @@ struct UniqueGiftInfo {
      * @brief Optional. Number of Telegram Stars that must be paid to transfer the gift; omitted if
      * the bot cannot transfer the gift
     */
-    std::optional<std::int32_t> transferStarCount { };
+    std::optional<std::uint32_t> transferStarCount { };
     /**
      * @brief Optional. Point in time (Unix timestamp) when the gift can be transferred. If it is in
      * the past, then the gift can be transferred now.
@@ -13585,7 +14180,7 @@ struct UniqueGiftModel {
      * @brief The number of unique gifts that receive this model for every 1000 gift upgrades. Always
      * 0 for crafted gifts.
     */
-    std::int32_t rarityPerMille { };
+    std::uint32_t rarityPerMille { };
     /**
      * @brief Optional. Rarity of the model if it is a crafted model. Currently, can be “uncommon”,
      * “rare”, “epic”, or “legendary”.
@@ -13614,7 +14209,7 @@ struct UniqueGiftSymbol {
     /**
      * @brief The number of unique gifts that receive this model for every 1000 gifts upgraded
     */
-    std::int32_t rarityPerMille { };
+    std::uint32_t rarityPerMille { };
 };
 
 TGBOT_API void from_json(const nlohmann::json& json, UniqueGiftSymbol& value);
@@ -13636,7 +14231,7 @@ struct Update {
      * a week, then identifier of the next update will be chosen randomly instead of
      * sequentially.
     */
-    std::int32_t updateId { };
+    std::uint32_t updateId { };
     /**
      * @brief Optional. New incoming message of any kind - text, photo, sticker, etc.
     */
@@ -13707,6 +14302,14 @@ struct Update {
      * @brief Optional. New incoming callback query
     */
     std::shared_ptr<CallbackQuery> callbackQuery { };
+    /**
+     * @brief Optional. New incoming query from a widget in a message sent by the bot or via the bot
+    */
+    std::shared_ptr<WidgetQuery> widgetQuery { };
+    /**
+     * @brief Optional. New incoming query from a forwarded message with a shared widget
+    */
+    std::shared_ptr<SharedWidgetQuery> sharedWidgetQuery { };
     /**
      * @brief Optional. New incoming shipping query. Only for invoices with flexible price.
     */
@@ -13787,7 +14390,7 @@ struct User {
      * it. But it has at most 52 significant bits, so a 64-bit integer or double-precision
      * float type are safe for storing this identifier.
     */
-    std::int64_t id { };
+    std::uint64_t id { };
     /**
      * @brief True, if this user is a bot
     */
@@ -13893,7 +14496,7 @@ struct UserProfileAudios {
     /**
      * @brief Total number of profile audios for the target user
     */
-    std::int32_t totalCount { };
+    std::uint32_t totalCount { };
     /**
      * @brief Requested profile audios
     */
@@ -13913,7 +14516,7 @@ struct UserProfilePhotos {
     /**
      * @brief Total number of profile pictures the target user has
     */
-    std::int32_t totalCount { };
+    std::uint32_t totalCount { };
     /**
      * @brief Requested profile pictures (in up to 4 sizes each)
     */
@@ -14035,15 +14638,15 @@ struct Video {
     /**
      * @brief Video width as defined by the sender
     */
-    std::int32_t width { };
+    std::uint32_t width { };
     /**
      * @brief Video height as defined by the sender
     */
-    std::int32_t height { };
+    std::uint32_t height { };
     /**
      * @brief Duration of the video in seconds as defined by the sender
     */
-    std::int32_t duration { };
+    std::uint32_t duration { };
     /**
      * @brief Optional. Video thumbnail
     */
@@ -14055,7 +14658,7 @@ struct Video {
     /**
      * @brief Optional. Timestamp in seconds from which the video will play in the message
     */
-    std::optional<std::int32_t> startTimestamp { };
+    std::optional<std::uint32_t> startTimestamp { };
     /**
      * @brief Optional. List of available qualities of the video
     */
@@ -14074,7 +14677,7 @@ struct Video {
      * bits, so a signed 64-bit integer or double-precision float type are safe for storing
      * this value.
     */
-    std::optional<std::int64_t> fileSize { };
+    std::optional<std::uint64_t> fileSize { };
 };
 
 TGBOT_API void from_json(const nlohmann::json& json, Video& value);
@@ -14090,7 +14693,7 @@ struct VideoChatEnded {
     /**
      * @brief Video chat duration in seconds
     */
-    std::int32_t duration { };
+    std::uint32_t duration { };
 };
 
 TGBOT_API void from_json(const nlohmann::json& json, VideoChatEnded& value);
@@ -14160,11 +14763,11 @@ struct VideoNote {
     /**
      * @brief Video width and height (diameter of the video message) as defined by the sender
     */
-    std::int32_t length { };
+    std::uint32_t length { };
     /**
      * @brief Duration of the video in seconds as defined by the sender
     */
-    std::int32_t duration { };
+    std::uint32_t duration { };
     /**
      * @brief Optional. Video thumbnail
     */
@@ -14172,7 +14775,7 @@ struct VideoNote {
     /**
      * @brief Optional. File size in bytes
     */
-    std::optional<std::int32_t> fileSize { };
+    std::optional<std::uint32_t> fileSize { };
 };
 
 TGBOT_API void from_json(const nlohmann::json& json, VideoNote& value);
@@ -14197,11 +14800,11 @@ struct VideoQuality {
     /**
      * @brief Video width
     */
-    std::int32_t width { };
+    std::uint32_t width { };
     /**
      * @brief Video height
     */
-    std::int32_t height { };
+    std::uint32_t height { };
     /**
      * @brief Codec that was used to encode the video, for example, “h264”, “h265”, or “av01”
     */
@@ -14212,7 +14815,7 @@ struct VideoQuality {
      * bits, so a signed 64-bit integer or double-precision float type are safe for storing
      * this value.
     */
-    std::optional<std::int64_t> fileSize { };
+    std::optional<std::uint64_t> fileSize { };
 };
 
 TGBOT_API void from_json(const nlohmann::json& json, VideoQuality& value);
@@ -14237,7 +14840,7 @@ struct Voice {
     /**
      * @brief Duration of the audio in seconds as defined by the sender
     */
-    std::int32_t duration { };
+    std::uint32_t duration { };
     /**
      * @brief Optional. MIME type of the file as defined by the sender
     */
@@ -14248,7 +14851,7 @@ struct Voice {
      * bits, so a signed 64-bit integer or double-precision float type are safe for storing
      * this value.
     */
-    std::optional<std::int64_t> fileSize { };
+    std::optional<std::uint64_t> fileSize { };
 };
 
 TGBOT_API void from_json(const nlohmann::json& json, Voice& value);
@@ -14310,7 +14913,7 @@ struct WebhookInfo {
     /**
      * @brief Number of updates awaiting delivery
     */
-    std::int32_t pendingUpdateCount { };
+    std::uint32_t pendingUpdateCount { };
     /**
      * @brief Optional. Currently used webhook IP address
     */
@@ -14334,7 +14937,7 @@ struct WebhookInfo {
      * @brief Optional. The maximum allowed number of simultaneous HTTPS connections to the webhook
      * for update delivery
     */
-    std::optional<std::int32_t> maxConnections { };
+    std::optional<std::uint32_t> maxConnections { };
     /**
      * @brief Optional. A list of update types the bot is subscribed to. Defaults to all update types
      * except chat_member, message_reaction, and message_reaction_count.
@@ -14344,6 +14947,228 @@ struct WebhookInfo {
 
 TGBOT_API void from_json(const nlohmann::json& json, WebhookInfo& value);
 TGBOT_API void to_json(nlohmann::json& json, const WebhookInfo& value);
+
+/**
+ * @brief This object describes an HTML widget.
+ * @ingroup api
+ */
+struct Widget {
+    using Ptr = std::shared_ptr<Widget>;
+
+    /**
+     * @brief Optional. Unique identifier of the shared widget, which can be used to send the widget
+     * again using the method sendSharedWidget; omitted if the widget isn't shared
+    */
+    std::optional<std::string> id { };
+    /**
+     * @brief Optional. Width of the widget in logical pixels; omitted if the widget must occupy the
+     * whole width of the message bubble
+    */
+    std::optional<std::uint32_t> width { };
+    /**
+     * @brief Optional. Height of the widget in logical pixels; omitted if the height of the widget
+     * isn't fixed
+    */
+    std::optional<std::uint32_t> height { };
+    /**
+     * @brief HTML code of the widget
+    */
+    std::string html { };
+    /**
+     * @brief Optional. Public data of the widget, which is available wherever the widget is shown.
+     * All messages with a shared widget have the same public data.
+    */
+    std::optional<std::string> publicData { };
+    /**
+     * @brief Optional. Data of the widget, which is specific to the message
+    */
+    std::optional<std::string> chatData { };
+};
+
+TGBOT_API void from_json(const nlohmann::json& json, Widget& value);
+TGBOT_API void to_json(nlohmann::json& json, const Widget& value);
+
+/**
+ * @brief This object represents an incoming query from a widget in a message sent by the bot or via
+ * the bot. Use answerWidgetQuery to answer the query. Each user can send at most 5 queries per
+ * 5 seconds to the bot from all its widgets.
+ * @ingroup api
+ */
+struct WidgetQuery {
+    using Ptr = std::shared_ptr<WidgetQuery>;
+
+    /**
+     * @brief Unique identifier for this query
+    */
+    std::string id { };
+    /**
+     * @brief Sender
+    */
+    std::shared_ptr<User> from { };
+    /**
+     * @brief Optional. Chat with the message containing the widget; omitted if the widget is in an
+     * inline message
+    */
+    std::shared_ptr<Chat> chat { };
+    /**
+     * @brief Optional. Identifier of the message containing the widget; omitted if the widget is in
+     * an inline message
+    */
+    std::optional<std::uint32_t> messageId { };
+    /**
+     * @brief Optional. Identifier of the inline message containing the widget
+    */
+    std::optional<std::string> inlineMessageId { };
+    /**
+     * @brief Global identifier, uniquely corresponding to the chat to which the message with the
+     * widget was sent
+    */
+    std::string chatInstance { };
+    /**
+     * @brief Optional. For widgets in inline messages, type of the chat to which the message was
+     * sent. Can be either “sender” for a private chat with the inline query sender, “private”,
+     * “group”, “supergroup”, or “channel”.
+    */
+    std::optional<std::string> chatType { };
+    /**
+     * @brief Type of the query
+    */
+    std::shared_ptr<WidgetQueryType> type { };
+    /**
+     * @brief Data of the query, 1-64 bytes
+    */
+    std::string data { };
+    /**
+     * @brief Optional. Unique identifier of the shared widget, which sent the query; omitted if the
+     * widget isn't shared
+    */
+    std::optional<std::string> widgetId { };
+};
+
+TGBOT_API void from_json(const nlohmann::json& json, WidgetQuery& value);
+TGBOT_API void to_json(nlohmann::json& json, const WidgetQuery& value);
+
+/**
+ * @brief This object describes the type of a query from a widget. Currently, it can be one of
+ * WidgetQueryTypeData WidgetQueryTypeSignData WidgetQueryTypeSentTransaction
+ * @ingroup api
+ */
+struct WidgetQueryType {
+    using Ptr = std::shared_ptr<WidgetQueryType>;
+
+    std::variant<std::shared_ptr<WidgetQueryTypeData>, std::shared_ptr<WidgetQueryTypeSignData>,
+                 std::shared_ptr<WidgetQueryTypeSentTransaction>>
+        value;
+};
+
+TGBOT_API void from_json(const nlohmann::json& json, WidgetQueryType& value);
+TGBOT_API void to_json(nlohmann::json& json, const WidgetQueryType& value);
+
+/**
+ * @brief The query contains data for the bot.
+ * @ingroup api
+ */
+struct WidgetQueryTypeData {
+    using Ptr = std::shared_ptr<WidgetQueryTypeData>;
+
+    static TGBOT_API const std::string TYPE;
+
+    /**
+     * @brief Type of the query, always “data”
+    */
+    std::string type { TYPE };
+    /**
+     * @brief Optional. TON wallet card of the user who sent the query, if it was sent to the bot
+     * along with the query
+    */
+    std::shared_ptr<TonWalletCard> walletCard { };
+};
+
+TGBOT_API void from_json(const nlohmann::json& json, WidgetQueryTypeData& value);
+TGBOT_API void to_json(nlohmann::json& json, const WidgetQueryTypeData& value);
+
+/**
+ * @brief The query notifies the bot about a transaction sent from a TON wallet of the user who sent
+ * the query.
+ * @ingroup api
+ */
+struct WidgetQueryTypeSentTransaction {
+    using Ptr = std::shared_ptr<WidgetQueryTypeSentTransaction>;
+
+    static TGBOT_API const std::string TYPE;
+
+    /**
+     * @brief Type of the query, always “sent_transaction”
+    */
+    std::string type { TYPE };
+    /**
+     * @brief The wallet from which the transaction was sent
+    */
+    std::shared_ptr<WidgetQueryWallet> wallet { };
+    /**
+     * @brief Value of msg_hash of the transaction
+    */
+    std::string msgHash { };
+};
+
+TGBOT_API void from_json(const nlohmann::json& json, WidgetQueryTypeSentTransaction& value);
+TGBOT_API void to_json(nlohmann::json& json, const WidgetQueryTypeSentTransaction& value);
+
+/**
+ * @brief The query contains data signed by a TON wallet of the user who sent the query. The data is
+ * signed for the domain bot<bot_id>, where <bot_id> is the identifier of the bot.
+ * @ingroup api
+ */
+struct WidgetQueryTypeSignData {
+    using Ptr = std::shared_ptr<WidgetQueryTypeSignData>;
+
+    static TGBOT_API const std::string TYPE;
+
+    /**
+     * @brief Type of the query, always “sign_data”
+    */
+    std::string type { TYPE };
+    /**
+     * @brief The wallet that signed the data
+    */
+    std::shared_ptr<WidgetQueryWallet> wallet { };
+    /**
+     * @brief JSON-serialized signed data
+    */
+    std::string signData { };
+};
+
+TGBOT_API void from_json(const nlohmann::json& json, WidgetQueryTypeSignData& value);
+TGBOT_API void to_json(nlohmann::json& json, const WidgetQueryTypeSignData& value);
+
+/**
+ * @brief This object describes a TON wallet of the user, which is used in a query from a widget.
+ * @ingroup api
+ */
+struct WidgetQueryWallet {
+    using Ptr = std::shared_ptr<WidgetQueryWallet>;
+
+    /**
+     * @brief Address of the wallet
+    */
+    std::string address { };
+    /**
+     * @brief Balance of the wallet, in the smallest units of the cryptocurrency, as a decimal number
+    */
+    std::string amount { };
+    /**
+     * @brief Optional. Hex-encoded public key of the wallet; omitted if unknown
+    */
+    std::optional<std::string> publicKey { };
+    /**
+     * @brief Optional. Base64-encoded serialized StateInit of the wallet contract; omitted if and
+     * only if public_key is omitted
+    */
+    std::optional<std::string> stateInit { };
+};
+
+TGBOT_API void from_json(const nlohmann::json& json, WidgetQueryWallet& value);
+TGBOT_API void to_json(nlohmann::json& json, const WidgetQueryWallet& value);
 
 /**
  * @brief This object represents a service message about a user allowing a bot to write messages after
@@ -14382,7 +15207,7 @@ struct AddStickerToSetArgs {
     /**
      * @brief User identifier of sticker set owner
      */
-    std::int64_t userId { };
+    std::uint64_t userId { };
 
     /**
      * @brief Sticker set name
@@ -14439,7 +15264,7 @@ struct AnswerCallbackQueryArgs {
      * @brief The maximum amount of time in seconds that the result of the callback
      * query may be cached client-side. Defaults to 0.
      */
-    std::int32_t cacheTime = 0;
+    std::uint32_t cacheTime = 0;
 };
 
 /**
@@ -14495,7 +15320,7 @@ struct AnswerInlineQueryArgs {
      * @brief The maximum amount of time in seconds that the result of the inline
      * query may be cached on the server. Defaults to 300.
      */
-    std::int32_t cacheTime = 300;
+    std::uint32_t cacheTime = 300;
 
     /**
      * @brief Pass True if results may be cached on the server side only for the user
@@ -14596,6 +15421,22 @@ struct AnswerWebAppQueryArgs {
 };
 
 /**
+ * @brief Arguments for Api::answerWidgetQuery.
+ * @ingroup api
+ */
+struct AnswerWidgetQueryArgs {
+    /**
+     * @brief Unique identifier for the query to be answered
+     */
+    std::string widgetQueryId { };
+
+    /**
+     * @brief Data to be returned to the widget, 0-1024 bytes
+     */
+    std::string data = "";
+};
+
+/**
  * @brief Arguments for Api::approveChatJoinRequest.
  * @ingroup api
  */
@@ -14609,7 +15450,7 @@ struct ApproveChatJoinRequestArgs {
     /**
      * @brief Unique identifier of the target user
      */
-    std::int64_t userId { };
+    std::uint64_t userId { };
 };
 
 /**
@@ -14625,7 +15466,7 @@ struct ApproveSuggestedPostArgs {
     /**
      * @brief Identifier of a suggested post message to approve
      */
-    std::int32_t messageId { };
+    std::uint32_t messageId { };
 
     /**
      * @brief Point in time (Unix timestamp) when the post is expected to be
@@ -14650,7 +15491,7 @@ struct BanChatMemberArgs {
     /**
      * @brief Unique identifier of the target user
      */
-    std::int64_t userId { };
+    std::uint64_t userId { };
 
     /**
      * @brief Date when the user will be unbanned; Unix time. If user is banned for
@@ -14700,7 +15541,7 @@ struct CloseForumTopicArgs {
     /**
      * @brief Unique identifier for the target message thread of the forum topic
      */
-    std::int32_t messageThreadId { };
+    std::uint32_t messageThreadId { };
 };
 
 /**
@@ -14739,13 +15580,13 @@ struct ConvertGiftToStarsArgs {
 struct CopyMessageArgs {
     /**
      * @brief Unique identifier for the target chat or username of the target bot,
-     * supergroup or channel in the format @username
+     * supergroup, or channel in the format @username
      */
     std::variant<std::int64_t, std::string> chatId { };
 
     /**
      * @brief Unique identifier for the chat where the original message was sent (or
-     * username of the target bot, supergroup or channel in the format
+     * username of the target bot, supergroup, or channel in the format
      * @username)
      */
     std::variant<std::int64_t, std::string> fromChatId { };
@@ -14753,7 +15594,7 @@ struct CopyMessageArgs {
     /**
      * @brief Message identifier in the chat specified in from_chat_id
      */
-    std::int32_t messageId { };
+    std::uint32_t messageId { };
 
     /**
      * @brief New caption for media, 0-1024 characters after entities parsing. If not
@@ -14803,7 +15644,7 @@ struct CopyMessageArgs {
      * forum supergroups and private chats of bots with forum topic mode
      * enabled only
      */
-    std::int32_t messageThreadId = 0;
+    std::uint32_t messageThreadId = 0;
 
     /**
      * @brief Pass True to allow up to 1000 messages per second, ignoring broadcasting
@@ -14816,7 +15657,7 @@ struct CopyMessageArgs {
      * @brief Identifier of the direct messages topic to which the message will be
      * sent; required if the message is sent to a direct messages chat
      */
-    std::int64_t directMessagesTopicId = 0;
+    std::uint64_t directMessagesTopicId = 0;
 
     /**
      * @brief Unique identifier of the message effect to be added to the message; only
@@ -14841,7 +15682,7 @@ struct CopyMessageArgs {
     /**
      * @brief New start timestamp for the copied video in the message
      */
-    std::int32_t videoStartTimestamp = 0;
+    std::uint32_t videoStartTimestamp = 0;
 };
 
 /**
@@ -14851,13 +15692,13 @@ struct CopyMessageArgs {
 struct CopyMessagesArgs {
     /**
      * @brief Unique identifier for the target chat or username of the target bot,
-     * supergroup or channel in the format @username
+     * supergroup, or channel in the format @username
      */
     std::variant<std::int64_t, std::string> chatId { };
 
     /**
      * @brief Unique identifier for the chat where the original messages were sent (or
-     * username of the target bot, supergroup or channel in the format
+     * username of the target bot, supergroup, or channel in the format
      * @username)
      */
     std::variant<std::int64_t, std::string> fromChatId { };
@@ -14867,14 +15708,14 @@ struct CopyMessagesArgs {
      * from_chat_id to copy. The identifiers must be specified in a strictly
      * increasing order.
      */
-    std::vector<std::int32_t> messageIds { };
+    std::vector<std::uint32_t> messageIds { };
 
     /**
      * @brief Unique identifier for the target message thread (topic) of a forum; for
      * forum supergroups and private chats of bots with forum topic mode
      * enabled only
      */
-    std::int32_t messageThreadId = 0;
+    std::uint32_t messageThreadId = 0;
 
     /**
      * @brief Sends the messages silently. Users will receive a notification with no
@@ -14896,7 +15737,7 @@ struct CopyMessagesArgs {
      * @brief Identifier of the direct messages topic to which the messages will be
      * sent; required if the messages are sent to a direct messages chat
      */
-    std::int64_t directMessagesTopicId = 0;
+    std::uint64_t directMessagesTopicId = 0;
 };
 
 /**
@@ -14919,7 +15760,7 @@ struct CreateChatInviteLinkArgs {
      * @brief The maximum number of users that can be members of the chat
      * simultaneously after joining the chat via this invite link; 1-99999
      */
-    std::int32_t memberLimit = 0;
+    std::uint32_t memberLimit = 0;
 
     /**
      * @brief Invite link name; 0-32 characters
@@ -14948,13 +15789,13 @@ struct CreateChatSubscriptionInviteLinkArgs {
      * @brief The number of seconds the subscription will be active for before the
      * next payment. Currently, it must always be 2592000 (30 days).
      */
-    std::int32_t subscriptionPeriod { };
+    std::uint32_t subscriptionPeriod { };
 
     /**
      * @brief The amount of Telegram Stars a user must pay initially and after each
      * subsequent subscription period to be a member of the chat; 1-10000
      */
-    std::int32_t subscriptionPrice { };
+    std::uint32_t subscriptionPrice { };
 
     /**
      * @brief Invite link name; 0-32 characters
@@ -14983,7 +15824,7 @@ struct CreateForumTopicArgs {
      * (0x6FB9F0), 16766590 (0xFFD67E), 13338331 (0xCB86DB), 9367192
      * (0x8EEE98), 16749490 (0xFF93B2), or 16478047 (0xFB6F5F).
      */
-    std::int32_t iconColor = 0;
+    std::uint32_t iconColor = 0;
 
     /**
      * @brief Unique identifier of the custom emoji shown as the topic icon. Use
@@ -15040,7 +15881,7 @@ struct CreateInvoiceLinkArgs {
      * for each currency (2 for the majority of currencies). Defaults to 0. Not
      * supported for payments in Telegram Stars.
      */
-    std::int32_t maxTipAmount = 0;
+    std::uint64_t maxTipAmount = 0;
 
     /**
      * @brief A JSON-serialized Array of suggested amounts of tips in the smallest
@@ -15049,7 +15890,7 @@ struct CreateInvoiceLinkArgs {
      * positive, passed in a strictly increased order and must not exceed
      * max_tip_amount.
      */
-    std::vector<std::int32_t> suggestedTipAmounts = { };
+    std::vector<std::uint64_t> suggestedTipAmounts = { };
 
     /**
      * @brief JSON-serialized data about the invoice, which will be shared with the
@@ -15067,17 +15908,17 @@ struct CreateInvoiceLinkArgs {
     /**
      * @brief Photo size in bytes
      */
-    std::int32_t photoSize = 0;
+    std::uint32_t photoSize = 0;
 
     /**
      * @brief Photo width
      */
-    std::int32_t photoWidth = 0;
+    std::uint32_t photoWidth = 0;
 
     /**
      * @brief Photo height
      */
-    std::int32_t photoHeight = 0;
+    std::uint32_t photoHeight = 0;
 
     /**
      * @brief Pass True if you require the user's full name to complete the order.
@@ -15135,7 +15976,7 @@ struct CreateInvoiceLinkArgs {
      * the same time, including multiple concurrent subscriptions from the same
      * user. Subscription price must no exceed 10000 Telegram Stars.
      */
-    std::int32_t subscriptionPeriod = 0;
+    std::uint32_t subscriptionPeriod = 0;
 };
 
 /**
@@ -15146,7 +15987,7 @@ struct CreateNewStickerSetArgs {
     /**
      * @brief User identifier of created sticker set owner
      */
-    std::int64_t userId { };
+    std::uint64_t userId { };
 
     /**
      * @brief Short name of sticker set, to be used in t.me/addstickers/ URLs (e.g.,
@@ -15204,7 +16045,7 @@ struct DeclineChatJoinRequestArgs {
     /**
      * @brief Unique identifier of the target user
      */
-    std::int64_t userId { };
+    std::uint64_t userId { };
 };
 
 /**
@@ -15220,7 +16061,7 @@ struct DeclineSuggestedPostArgs {
     /**
      * @brief Identifier of a suggested post message to decline
      */
-    std::int32_t messageId { };
+    std::uint32_t messageId { };
 
     /**
      * @brief Comment for the creator of the suggested post; 0-128 characters
@@ -15249,7 +16090,23 @@ struct DeleteAllMessageReactionsArgs {
      * @brief Identifier of the user whose reactions will be removed, if the reactions
      * were added by a user
      */
-    std::int64_t userId = 0;
+    std::uint64_t userId = 0;
+};
+
+/**
+ * @brief Arguments for Api::deleteBusinessAccountGift.
+ * @ingroup api
+ */
+struct DeleteBusinessAccountGiftArgs {
+    /**
+     * @brief Unique identifier of the business connection
+     */
+    std::string businessConnectionId { };
+
+    /**
+     * @brief Unique identifier of the regular gift that should be deleted
+     */
+    std::string ownedGiftId { };
 };
 
 /**
@@ -15268,7 +16125,7 @@ struct DeleteBusinessMessagesArgs {
      * messages must be from the same chat. See deleteMessage for limitations
      * on which messages can be deleted.
      */
-    std::vector<std::int32_t> messageIds { };
+    std::vector<std::uint32_t> messageIds { };
 };
 
 /**
@@ -15309,12 +16166,12 @@ struct DeleteEphemeralMessageArgs {
     /**
      * @brief Identifier of the ephemeral message to delete
      */
-    std::int32_t ephemeralMessageId { };
+    std::uint32_t ephemeralMessageId { };
 
     /**
      * @brief Identifier of the user who received the message
      */
-    std::int64_t receiverUserId { };
+    std::uint64_t receiverUserId { };
 };
 
 /**
@@ -15331,7 +16188,7 @@ struct DeleteForumTopicArgs {
     /**
      * @brief Unique identifier for the target message thread of the forum topic
      */
-    std::int32_t messageThreadId { };
+    std::uint32_t messageThreadId { };
 };
 
 /**
@@ -15341,14 +16198,14 @@ struct DeleteForumTopicArgs {
 struct DeleteMessageArgs {
     /**
      * @brief Unique identifier for the target chat or username of the target bot,
-     * supergroup or channel in the format @username
+     * supergroup, or channel in the format @username
      */
     std::variant<std::int64_t, std::string> chatId { };
 
     /**
      * @brief Identifier of the message to delete
      */
-    std::int32_t messageId { };
+    std::uint32_t messageId { };
 };
 
 /**
@@ -15365,7 +16222,7 @@ struct DeleteMessageReactionArgs {
     /**
      * @brief Identifier of the target message
      */
-    std::int32_t messageId { };
+    std::uint32_t messageId { };
 
     /**
      * @brief Identifier of the chat whose reaction will be removed, if the reaction
@@ -15377,7 +16234,7 @@ struct DeleteMessageReactionArgs {
      * @brief Identifier of the user whose reaction will be removed, if the reaction
      * was added by a user
      */
-    std::int64_t userId = 0;
+    std::uint64_t userId = 0;
 };
 
 /**
@@ -15387,7 +16244,7 @@ struct DeleteMessageReactionArgs {
 struct DeleteMessagesArgs {
     /**
      * @brief Unique identifier for the target chat or username of the target bot,
-     * supergroup or channel in the format @username
+     * supergroup, or channel in the format @username
      */
     std::variant<std::int64_t, std::string> chatId { };
 
@@ -15395,7 +16252,7 @@ struct DeleteMessagesArgs {
      * @brief A JSON-serialized list of 1-100 identifiers of messages to delete. See
      * deleteMessage for limitations on which messages can be deleted.
      */
-    std::vector<std::int32_t> messageIds { };
+    std::vector<std::uint32_t> messageIds { };
 };
 
 /**
@@ -15452,7 +16309,7 @@ struct DeleteStoryArgs {
     /**
      * @brief Unique identifier of the story to delete
      */
-    std::int32_t storyId { };
+    std::uint32_t storyId { };
 };
 
 /**
@@ -15491,7 +16348,7 @@ struct EditChatInviteLinkArgs {
      * @brief The maximum number of users that can be members of the chat
      * simultaneously after joining the chat via this invite link; 1-99999
      */
-    std::int32_t memberLimit = 0;
+    std::uint32_t memberLimit = 0;
 
     /**
      * @brief Invite link name; 0-32 characters
@@ -15541,12 +16398,12 @@ struct EditEphemeralMessageCaptionArgs {
     /**
      * @brief Identifier of the ephemeral message to edit
      */
-    std::int32_t ephemeralMessageId { };
+    std::uint32_t ephemeralMessageId { };
 
     /**
      * @brief Identifier of the user who received the message
      */
-    std::int64_t receiverUserId { };
+    std::uint64_t receiverUserId { };
 
     /**
      * @brief New caption of the message, 0-1024 characters after entities parsing
@@ -15591,7 +16448,7 @@ struct EditEphemeralMessageMediaArgs {
     /**
      * @brief Identifier of the ephemeral message to edit
      */
-    std::int32_t ephemeralMessageId { };
+    std::uint32_t ephemeralMessageId { };
 
     /**
      * @brief A JSON-serialized object for the new media content of the message
@@ -15601,7 +16458,7 @@ struct EditEphemeralMessageMediaArgs {
     /**
      * @brief Identifier of the user who received the message
      */
-    std::int64_t receiverUserId { };
+    std::uint64_t receiverUserId { };
 
     /**
      * @brief A JSON-serialized object for an inline keyboard
@@ -15630,12 +16487,12 @@ struct EditEphemeralMessageReplyMarkupArgs {
     /**
      * @brief Identifier of the ephemeral message to edit
      */
-    std::int32_t ephemeralMessageId { };
+    std::uint32_t ephemeralMessageId { };
 
     /**
      * @brief Identifier of the user who received the message
      */
-    std::int64_t receiverUserId { };
+    std::uint64_t receiverUserId { };
 
     /**
      * @brief A JSON-serialized object for an inline keyboard
@@ -15657,12 +16514,12 @@ struct EditEphemeralMessageTextArgs {
     /**
      * @brief Identifier of the ephemeral message to edit
      */
-    std::int32_t ephemeralMessageId { };
+    std::uint32_t ephemeralMessageId { };
 
     /**
      * @brief Identifier of the user who received the message
      */
-    std::int64_t receiverUserId { };
+    std::uint64_t receiverUserId { };
 
     /**
      * @brief New text of the message, 1-4096 characters after entity parsing;
@@ -15712,7 +16569,7 @@ struct EditForumTopicArgs {
     /**
      * @brief Unique identifier for the target message thread of the forum topic
      */
-    std::int32_t messageThreadId { };
+    std::uint32_t messageThreadId { };
 
     /**
      * @brief New topic name, 0-128 characters. If not specified or empty, the current
@@ -15753,7 +16610,7 @@ struct EditGeneralForumTopicArgs {
 struct EditMessageCaptionArgs {
     /**
      * @brief Required if inline_message_id is not specified. Unique identifier for
-     * the target chat or username of the target bot, supergroup or channel in
+     * the target chat or username of the target bot, supergroup, or channel in
      * the format @username.
      */
     std::variant<std::int64_t, std::string> chatId = { };
@@ -15762,7 +16619,7 @@ struct EditMessageCaptionArgs {
      * @brief Required if inline_message_id is not specified. Identifier of the
      * message to edit.
      */
-    std::int32_t messageId = 0;
+    std::uint32_t messageId = 0;
 
     /**
      * @brief New caption of the message, 0-1024 characters after entities parsing
@@ -15830,7 +16687,7 @@ struct EditMessageChecklistArgs {
     /**
      * @brief Unique identifier for the target message
      */
-    std::int32_t messageId { };
+    std::uint32_t messageId { };
 
     /**
      * @brief A JSON-serialized object for the new inline keyboard for the message
@@ -15855,7 +16712,7 @@ struct EditMessageLiveLocationArgs {
 
     /**
      * @brief Required if inline_message_id is not specified. Unique identifier for
-     * the target chat or username of the target bot, supergroup or channel in
+     * the target chat or username of the target bot, supergroup, or channel in
      * the format @username.
      */
     std::variant<std::int64_t, std::string> chatId = { };
@@ -15864,7 +16721,7 @@ struct EditMessageLiveLocationArgs {
      * @brief Required if inline_message_id is not specified. Identifier of the
      * message to edit.
      */
-    std::int32_t messageId = 0;
+    std::uint32_t messageId = 0;
 
     /**
      * @brief Required if chat_id and message_id are not specified. Identifier of the
@@ -15886,13 +16743,13 @@ struct EditMessageLiveLocationArgs {
      * @brief Direction in which the user is moving, in degrees. Must be between 1 and
      * 360 if specified.
      */
-    std::int32_t heading = 0;
+    std::uint32_t heading = 0;
 
     /**
      * @brief The maximum distance for proximity alerts about approaching another chat
      * member, in meters. Must be between 1 and 100000 if specified.
      */
-    std::int32_t proximityAlertRadius = 0;
+    std::uint32_t proximityAlertRadius = 0;
 
     /**
      * @brief Unique identifier of the business connection on behalf of which the
@@ -15908,7 +16765,7 @@ struct EditMessageLiveLocationArgs {
      * expiration date must remain within the next 90 days. If not specified,
      * then live_period remains unchanged.
      */
-    std::int32_t livePeriod = 0;
+    std::uint32_t livePeriod = 0;
 };
 
 /**
@@ -15923,7 +16780,7 @@ struct EditMessageMediaArgs {
 
     /**
      * @brief Required if inline_message_id is not specified. Unique identifier for
-     * the target chat or username of the target bot, supergroup or channel in
+     * the target chat or username of the target bot, supergroup, or channel in
      * the format @username.
      */
     std::variant<std::int64_t, std::string> chatId = { };
@@ -15932,7 +16789,7 @@ struct EditMessageMediaArgs {
      * @brief Required if inline_message_id is not specified. Identifier of the
      * message to edit.
      */
-    std::int32_t messageId = 0;
+    std::uint32_t messageId = 0;
 
     /**
      * @brief Required if chat_id and message_id are not specified. Identifier of the
@@ -15966,7 +16823,7 @@ struct EditMessageMediaArgs {
 struct EditMessageReplyMarkupArgs {
     /**
      * @brief Required if inline_message_id is not specified. Unique identifier for
-     * the target chat or username of the target bot, supergroup or channel in
+     * the target chat or username of the target bot, supergroup, or channel in
      * the format @username.
      */
     std::variant<std::int64_t, std::string> chatId = { };
@@ -15975,7 +16832,7 @@ struct EditMessageReplyMarkupArgs {
      * @brief Required if inline_message_id is not specified. Identifier of the
      * message to edit.
      */
-    std::int32_t messageId = 0;
+    std::uint32_t messageId = 0;
 
     /**
      * @brief Required if chat_id and message_id are not specified. Identifier of the
@@ -16008,7 +16865,7 @@ struct EditMessageTextArgs {
 
     /**
      * @brief Required if inline_message_id is not specified. Unique identifier for
-     * the target chat or username of the target bot, supergroup or channel in
+     * the target chat or username of the target bot, supergroup, or channel in
      * the format @username.
      */
     std::variant<std::int64_t, std::string> chatId = { };
@@ -16017,7 +16874,7 @@ struct EditMessageTextArgs {
      * @brief Required if inline_message_id is not specified. Identifier of the
      * message to edit.
      */
-    std::int32_t messageId = 0;
+    std::uint32_t messageId = 0;
 
     /**
      * @brief Required if chat_id and message_id are not specified. Identifier of the
@@ -16069,6 +16926,68 @@ struct EditMessageTextArgs {
 };
 
 /**
+ * @brief Arguments for Api::editMessageWidgetData.
+ * @ingroup api
+ */
+struct EditMessageWidgetDataArgs {
+    /**
+     * @brief New data of the widget, which is specific to the message, 0-1024 bytes;
+     * pass an empty string to remove the data. If omitted, then the data isn't
+     * changed.
+     */
+    std::string chatData = "";
+
+    /**
+     * @brief Required if inline_message_id is not specified. Unique identifier for
+     * the target chat or username of the target supergroup in the format
+     * @username.
+     */
+    std::variant<std::int64_t, std::string> chatId = { };
+
+    /**
+     * @brief Required if chat_id and message_id are not specified. Identifier of the
+     * inline message.
+     */
+    std::string inlineMessageId = "";
+
+    /**
+     * @brief Required if inline_message_id is not specified. Identifier of the
+     * message with the widget.
+     */
+    std::uint32_t messageId = 0;
+
+    /**
+     * @brief New public data of the widget, 0-1024 bytes; pass an empty string to
+     * remove the public data. If omitted, then the public data isn't changed.
+     */
+    std::string publicData = "";
+};
+
+/**
+ * @brief Arguments for Api::editSharedWidgetData.
+ * @ingroup api
+ */
+struct EditSharedWidgetDataArgs {
+    /**
+     * @brief New public data of the widget, 0-1024 bytes; pass an empty string to
+     * remove the public data
+     */
+    std::string publicData { };
+
+    /**
+     * @brief Unique identifier of the shared widget
+     */
+    std::string widgetId { };
+
+    /**
+     * @brief The maximum amount of time in seconds that the public data of the widget
+     * may be cached client-side; 5-3600. If omitted, then the current value is
+     * kept, which is 30 by default.
+     */
+    std::uint32_t cacheTime = 0;
+};
+
+/**
  * @brief Arguments for Api::editStory.
  * @ingroup api
  */
@@ -16086,7 +17005,7 @@ struct EditStoryArgs {
     /**
      * @brief Unique identifier of the story to edit
      */
-    std::int32_t storyId { };
+    std::uint32_t storyId { };
 
     /**
      * @brief A JSON-serialized list of clickable areas to be shown on the story
@@ -16139,7 +17058,7 @@ struct EditUserStarSubscriptionArgs {
     /**
      * @brief Identifier of the user whose subscription will be edited
      */
-    std::int64_t userId { };
+    std::uint64_t userId { };
 };
 
 /**
@@ -16161,13 +17080,13 @@ struct ExportChatInviteLinkArgs {
 struct ForwardMessageArgs {
     /**
      * @brief Unique identifier for the target chat or username of the target bot,
-     * supergroup or channel in the format @username
+     * supergroup, or channel in the format @username
      */
     std::variant<std::int64_t, std::string> chatId { };
 
     /**
      * @brief Unique identifier for the chat where the original message was sent (or
-     * username of the target bot, supergroup or channel in the format
+     * username of the target bot, supergroup, or channel in the format
      * @username)
      */
     std::variant<std::int64_t, std::string> fromChatId { };
@@ -16175,7 +17094,7 @@ struct ForwardMessageArgs {
     /**
      * @brief Message identifier in the chat specified in from_chat_id
      */
-    std::int32_t messageId { };
+    std::uint32_t messageId { };
 
     /**
      * @brief Sends the message silently. Users will receive a notification with no
@@ -16194,14 +17113,14 @@ struct ForwardMessageArgs {
      * forum supergroups and private chats of bots with forum topic mode
      * enabled only
      */
-    std::int32_t messageThreadId = 0;
+    std::uint32_t messageThreadId = 0;
 
     /**
      * @brief Identifier of the direct messages topic to which the message will be
      * forwarded; required if the message is forwarded to a direct messages
      * chat
      */
-    std::int64_t directMessagesTopicId = 0;
+    std::uint64_t directMessagesTopicId = 0;
 
     /**
      * @brief Unique identifier of the message effect to be added to the message; only
@@ -16218,7 +17137,7 @@ struct ForwardMessageArgs {
     /**
      * @brief New start timestamp for the forwarded video in the message
      */
-    std::int32_t videoStartTimestamp = 0;
+    std::uint32_t videoStartTimestamp = 0;
 };
 
 /**
@@ -16228,13 +17147,13 @@ struct ForwardMessageArgs {
 struct ForwardMessagesArgs {
     /**
      * @brief Unique identifier for the target chat or username of the target bot,
-     * supergroup or channel in the format @username
+     * supergroup, or channel in the format @username
      */
     std::variant<std::int64_t, std::string> chatId { };
 
     /**
      * @brief Unique identifier for the chat where the original messages were sent (or
-     * username of the target bot, supergroup or channel in the format
+     * username of the target bot, supergroup, or channel in the format
      * @username)
      */
     std::variant<std::int64_t, std::string> fromChatId { };
@@ -16244,14 +17163,14 @@ struct ForwardMessagesArgs {
      * from_chat_id to forward. The identifiers must be specified in a strictly
      * increasing order.
      */
-    std::vector<std::int32_t> messageIds { };
+    std::vector<std::uint32_t> messageIds { };
 
     /**
      * @brief Unique identifier for the target message thread (topic) of a forum; for
      * forum supergroups and private chats of bots with forum topic mode
      * enabled only
      */
-    std::int32_t messageThreadId = 0;
+    std::uint32_t messageThreadId = 0;
 
     /**
      * @brief Sends the messages silently. Users will receive a notification with no
@@ -16270,7 +17189,7 @@ struct ForwardMessagesArgs {
      * forwarded; required if the messages are forwarded to a direct messages
      * chat
      */
-    std::int64_t directMessagesTopicId = 0;
+    std::uint64_t directMessagesTopicId = 0;
 };
 
 /**
@@ -16326,7 +17245,7 @@ struct GetBusinessAccountGiftsArgs {
     /**
      * @brief The maximum number of gifts to be returned; 1-100. Defaults to 100.
      */
-    std::int32_t limit = 0;
+    std::uint32_t limit = 0;
 
     /**
      * @brief Offset of the first entry to return as received from the previous
@@ -16450,7 +17369,7 @@ struct GetChatGiftsArgs {
     /**
      * @brief The maximum number of gifts to be returned; 1-100. Defaults to 100.
      */
-    std::int32_t limit = 0;
+    std::uint32_t limit = 0;
 
     /**
      * @brief Offset of the first entry to return as received from the previous
@@ -16479,7 +17398,7 @@ struct GetChatMemberArgs {
     /**
      * @brief Unique identifier of the target user
      */
-    std::int64_t userId { };
+    std::uint64_t userId { };
 };
 
 /**
@@ -16503,7 +17422,7 @@ struct GetChatMenuButtonArgs {
      * @brief Unique identifier for the target private chat. If not specified, the
      * bot's default menu button will be returned.
      */
-    std::variant<std::int64_t, std::string> chatId = { };
+    std::variant<std::uint64_t, std::string> chatId = { };
 };
 
 /**
@@ -16537,7 +17456,7 @@ struct GetGameHighScoresArgs {
     /**
      * @brief Target user id
      */
-    std::int64_t userId { };
+    std::uint64_t userId { };
 
     /**
      * @brief Required if inline_message_id is not specified. Unique identifier for
@@ -16549,7 +17468,7 @@ struct GetGameHighScoresArgs {
      * @brief Required if inline_message_id is not specified. Identifier of the sent
      * message.
      */
-    std::int32_t messageId = 0;
+    std::uint32_t messageId = 0;
 
     /**
      * @brief Required if chat_id and message_id are not specified. Identifier of the
@@ -16567,7 +17486,7 @@ struct GetManagedBotAccessSettingsArgs {
      * @brief User identifier of the managed bot whose access settings will be
      * returned
      */
-    std::int64_t userId { };
+    std::uint64_t userId { };
 };
 
 /**
@@ -16578,7 +17497,7 @@ struct GetManagedBotTokenArgs {
     /**
      * @brief User identifier of the managed bot whose token will be returned
      */
-    std::int64_t userId { };
+    std::uint64_t userId { };
 };
 
 /**
@@ -16653,12 +17572,12 @@ struct GetStarTransactionsArgs {
      * @brief The maximum number of transactions to be retrieved. Values between 1-100
      * are accepted. Defaults to 100.
      */
-    std::int32_t limit = 0;
+    std::uint32_t limit = 0;
 
     /**
      * @brief Number of transactions to skip in the response
      */
-    std::int32_t offset = 0;
+    std::uint32_t offset = 0;
 };
 
 /**
@@ -16668,6 +17587,17 @@ struct GetStarTransactionsArgs {
 struct GetStickerSetArgs {
     /**
      * @brief Name of the sticker set
+     */
+    std::string name { };
+};
+
+/**
+ * @brief Arguments for Api::getUniqueGift.
+ * @ingroup api
+ */
+struct GetUniqueGiftArgs {
+    /**
+     * @brief Unique name of the gift
      */
     std::string name { };
 };
@@ -16692,14 +17622,14 @@ struct GetUpdatesArgs {
      * @brief Limits the number of updates to be retrieved. Values between 1-100 are
      * accepted. Defaults to 100.
      */
-    std::int32_t limit = 100;
+    std::uint32_t limit = 100;
 
     /**
      * @brief Timeout in seconds for long polling. Defaults to 0, i.e. usual short
      * polling. Should be positive, short polling should be used for testing
      * purposes only.
      */
-    std::int32_t timeout = 0;
+    std::uint32_t timeout = 0;
 
     /**
      * @brief A JSON-serialized list of the update types you want your bot to receive.
@@ -16729,7 +17659,7 @@ struct GetUserChatBoostsArgs {
     /**
      * @brief Unique identifier of the target user
      */
-    std::int64_t userId { };
+    std::uint64_t userId { };
 };
 
 /**
@@ -16740,7 +17670,7 @@ struct GetUserGiftsArgs {
     /**
      * @brief Unique identifier of the user
      */
-    std::int64_t userId { };
+    std::uint64_t userId { };
 
     /**
      * @brief Pass True to exclude gifts that were assigned from the TON blockchain
@@ -16774,7 +17704,7 @@ struct GetUserGiftsArgs {
     /**
      * @brief The maximum number of gifts to be returned; 1-100. Defaults to 100.
      */
-    std::int32_t limit = 0;
+    std::uint32_t limit = 0;
 
     /**
      * @brief Offset of the first entry to return as received from the previous
@@ -16797,12 +17727,12 @@ struct GetUserPersonalChatMessagesArgs {
     /**
      * @brief The maximum number of messages to return; 1-20
      */
-    std::int32_t limit { };
+    std::uint32_t limit { };
 
     /**
      * @brief Unique identifier for the target user
      */
-    std::int64_t userId { };
+    std::uint64_t userId { };
 };
 
 /**
@@ -16813,19 +17743,19 @@ struct GetUserProfileAudiosArgs {
     /**
      * @brief Unique identifier of the target user
      */
-    std::int64_t userId { };
+    std::uint64_t userId { };
 
     /**
      * @brief Limits the number of audios to be retrieved. Values between 1-100 are
      * accepted. Defaults to 100.
      */
-    std::int32_t limit = 0;
+    std::uint32_t limit = 0;
 
     /**
      * @brief Sequential number of the first audio to be returned. By default, all
      * audios are returned.
      */
-    std::int32_t offset = 0;
+    std::uint32_t offset = 0;
 };
 
 /**
@@ -16836,19 +17766,19 @@ struct GetUserProfilePhotosArgs {
     /**
      * @brief Unique identifier of the target user
      */
-    std::int64_t userId { };
+    std::uint64_t userId { };
 
     /**
      * @brief Sequential number of the first photo to be returned. By default, all
      * photos are returned.
      */
-    std::int32_t offset = 0;
+    std::uint32_t offset = 0;
 
     /**
      * @brief Limits the number of photos to be retrieved. Values between 1-100 are
      * accepted. Defaults to 100.
      */
-    std::int32_t limit = 100;
+    std::uint32_t limit = 100;
 };
 
 /**
@@ -16860,19 +17790,19 @@ struct GiftPremiumSubscriptionArgs {
      * @brief Number of months the Telegram Premium subscription will be active for
      * the user; must be one of 3, 6, or 12
      */
-    std::int32_t monthCount { };
+    std::uint32_t monthCount { };
 
     /**
      * @brief Number of Telegram Stars to pay for the Telegram Premium subscription;
      * must be 1000 for 3 months, 1500 for 6 months, and 2500 for 12 months
      */
-    std::int32_t starCount { };
+    std::uint32_t starCount { };
 
     /**
      * @brief Unique identifier of the target user who will receive a Telegram Premium
      * subscription
      */
-    std::int64_t userId { };
+    std::uint64_t userId { };
 
     /**
      * @brief Text that will be shown along with the service message about the
@@ -16935,7 +17865,7 @@ struct PinChatMessageArgs {
     /**
      * @brief Identifier of a message to pin
      */
-    std::int32_t messageId { };
+    std::uint32_t messageId { };
 
     /**
      * @brief Unique identifier of the business connection on behalf of which the
@@ -16960,7 +17890,7 @@ struct PostStoryArgs {
      * @brief Period after which the story is moved to the archive, in seconds; must
      * be one of 6 * 3600, 12 * 3600, 86400, or 2 * 86400
      */
-    std::int32_t activePeriod { };
+    std::uint32_t activePeriod { };
 
     /**
      * @brief Unique identifier of the business connection
@@ -17027,7 +17957,7 @@ struct PromoteChatMemberArgs {
     /**
      * @brief Unique identifier of the target user
      */
-    std::int64_t userId { };
+    std::uint64_t userId { };
 
     /**
      * @brief Pass True if the administrator can change chat title, photo and other
@@ -17157,7 +18087,7 @@ struct ReadBusinessMessageArgs {
     /**
      * @brief Unique identifier of the message to mark as read
      */
-    std::int32_t messageId { };
+    std::uint32_t messageId { };
 };
 
 /**
@@ -17173,7 +18103,7 @@ struct RefundStarPaymentArgs {
     /**
      * @brief Identifier of the user whose payment will be refunded
      */
-    std::int64_t userId { };
+    std::uint64_t userId { };
 };
 
 /**
@@ -17215,7 +18145,7 @@ struct RemoveUserVerificationArgs {
     /**
      * @brief Unique identifier of the target user
      */
-    std::int64_t userId { };
+    std::uint64_t userId { };
 };
 
 /**
@@ -17232,7 +18162,7 @@ struct ReopenForumTopicArgs {
     /**
      * @brief Unique identifier for the target message thread of the forum topic
      */
-    std::int32_t messageThreadId { };
+    std::uint32_t messageThreadId { };
 };
 
 /**
@@ -17255,7 +18185,7 @@ struct ReplaceManagedBotTokenArgs {
     /**
      * @brief User identifier of the managed bot whose token will be replaced
      */
-    std::int64_t userId { };
+    std::uint64_t userId { };
 };
 
 /**
@@ -17266,7 +18196,7 @@ struct ReplaceStickerInSetArgs {
     /**
      * @brief User identifier of the sticker set owner
      */
-    std::int64_t userId { };
+    std::uint64_t userId { };
 
     /**
      * @brief Sticker set name
@@ -17302,7 +18232,7 @@ struct RepostStoryArgs {
      * @brief Period after which the story is moved to the archive, in seconds; must
      * be one of 6 * 3600, 12 * 3600, 86400, or 2 * 86400
      */
-    std::int32_t activePeriod { };
+    std::uint32_t activePeriod { };
 
     /**
      * @brief Unique identifier of the business connection
@@ -17318,7 +18248,7 @@ struct RepostStoryArgs {
     /**
      * @brief Unique identifier of the story that should be reposted
      */
-    std::int32_t fromStoryId { };
+    std::uint32_t fromStoryId { };
 
     /**
      * @brief Pass True to keep the story accessible after it expires
@@ -17346,7 +18276,7 @@ struct RestrictChatMemberArgs {
     /**
      * @brief Unique identifier of the target user
      */
-    std::int64_t userId { };
+    std::uint64_t userId { };
 
     /**
      * @brief A JSON-serialized object for new user permissions
@@ -17401,7 +18331,7 @@ struct SavePreparedInlineMessageArgs {
     /**
      * @brief Unique identifier of the target user that can use the prepared message
      */
-    std::int64_t userId { };
+    std::uint64_t userId { };
 
     /**
      * @brief Pass True if the message can be sent to private chats with bots
@@ -17438,7 +18368,7 @@ struct SavePreparedKeyboardButtonArgs {
     /**
      * @brief Unique identifier of the target user that can use the button
      */
-    std::int64_t userId { };
+    std::uint64_t userId { };
 };
 
 /**
@@ -17448,7 +18378,8 @@ struct SavePreparedKeyboardButtonArgs {
 struct SendAnimationArgs {
     /**
      * @brief Unique identifier for the target chat or username of the target bot,
-     * supergroup or channel in the format @username
+     * supergroup, or channel in the format @username; required unless the
+     * message is sent as an ephemeral reply to a callback query
      */
     std::variant<std::int64_t, std::string> chatId { };
 
@@ -17464,17 +18395,17 @@ struct SendAnimationArgs {
     /**
      * @brief Duration of sent animation in seconds
      */
-    std::int32_t duration = 0;
+    std::uint32_t duration = 0;
 
     /**
      * @brief Animation width
      */
-    std::int32_t width = 0;
+    std::uint32_t width = 0;
 
     /**
      * @brief Animation height
      */
-    std::int32_t height = 0;
+    std::uint32_t height = 0;
 
     /**
      * @brief Thumbnail of the file sent; can be ignored if thumbnail generation for
@@ -17531,7 +18462,7 @@ struct SendAnimationArgs {
      * forum supergroups and private chats of bots with forum topic mode
      * enabled only
      */
-    std::int32_t messageThreadId = 0;
+    std::uint32_t messageThreadId = 0;
 
     /**
      * @brief Protects the contents of the sent message from forwarding and saving
@@ -17565,7 +18496,7 @@ struct SendAnimationArgs {
      * @brief Identifier of the direct messages topic to which the message will be
      * sent; required if the message is sent to a direct messages chat
      */
-    std::int64_t directMessagesTopicId = 0;
+    std::uint64_t directMessagesTopicId = 0;
 
     /**
      * @brief Unique identifier of the message effect to be added to the message; for
@@ -17576,7 +18507,7 @@ struct SendAnimationArgs {
     /**
      * @brief Identifier of the user who will receive the ephemeral message
      */
-    std::int64_t receiverUserId = 0;
+    std::uint64_t receiverUserId = 0;
 
     /**
      * @brief Pass True if the caption must be shown above the message media
@@ -17605,7 +18536,8 @@ struct SendAnimationArgs {
 struct SendAudioArgs {
     /**
      * @brief Unique identifier for the target chat or username of the target bot,
-     * supergroup or channel in the format @username
+     * supergroup, or channel in the format @username; required unless the
+     * message is sent as an ephemeral reply to a callback query
      */
     std::variant<std::int64_t, std::string> chatId { };
 
@@ -17625,7 +18557,7 @@ struct SendAudioArgs {
     /**
      * @brief Duration of the audio in seconds
      */
-    std::int32_t duration = 0;
+    std::uint32_t duration = 0;
 
     /**
      * @brief Performer
@@ -17686,7 +18618,7 @@ struct SendAudioArgs {
      * forum supergroups and private chats of bots with forum topic mode
      * enabled only
      */
-    std::int32_t messageThreadId = 0;
+    std::uint32_t messageThreadId = 0;
 
     /**
      * @brief Protects the contents of the sent message from forwarding and saving
@@ -17715,7 +18647,7 @@ struct SendAudioArgs {
      * @brief Identifier of the direct messages topic to which the message will be
      * sent; required if the message is sent to a direct messages chat
      */
-    std::int64_t directMessagesTopicId = 0;
+    std::uint64_t directMessagesTopicId = 0;
 
     /**
      * @brief Unique identifier of the message effect to be added to the message; for
@@ -17726,7 +18658,7 @@ struct SendAudioArgs {
     /**
      * @brief Identifier of the user who will receive the ephemeral message
      */
-    std::int64_t receiverUserId = 0;
+    std::uint64_t receiverUserId = 0;
 
     /**
      * @brief A JSON-serialized object containing the parameters of the suggested post
@@ -17769,7 +18701,7 @@ struct SendChatActionArgs {
      * @brief Unique identifier for the target message thread or topic of a forum; for
      * supergroups and private chats of bots with forum topic mode enabled only
      */
-    std::int32_t messageThreadId = 0;
+    std::uint32_t messageThreadId = 0;
 
     /**
      * @brief Unique identifier of the business connection on behalf of which the
@@ -17851,7 +18783,8 @@ struct SendChecklistArgs {
 struct SendContactArgs {
     /**
      * @brief Unique identifier for the target chat or username of the target bot,
-     * supergroup or channel in the format @username
+     * supergroup, or channel in the format @username; required unless the
+     * message is sent as an ephemeral reply to a callback query
      */
     std::variant<std::int64_t, std::string> chatId { };
 
@@ -17900,7 +18833,7 @@ struct SendContactArgs {
      * forum supergroups and private chats of bots with forum topic mode
      * enabled only
      */
-    std::int32_t messageThreadId = 0;
+    std::uint32_t messageThreadId = 0;
 
     /**
      * @brief Protects the contents of the sent message from forwarding and saving
@@ -17929,7 +18862,7 @@ struct SendContactArgs {
      * @brief Identifier of the direct messages topic to which the message will be
      * sent; required if the message is sent to a direct messages chat
      */
-    std::int64_t directMessagesTopicId = 0;
+    std::uint64_t directMessagesTopicId = 0;
 
     /**
      * @brief Unique identifier of the message effect to be added to the message; for
@@ -17940,7 +18873,7 @@ struct SendContactArgs {
     /**
      * @brief Identifier of the user who will receive the ephemeral message
      */
-    std::int64_t receiverUserId = 0;
+    std::uint64_t receiverUserId = 0;
 
     /**
      * @brief A JSON-serialized object containing the parameters of the suggested post
@@ -17964,7 +18897,7 @@ struct SendContactArgs {
 struct SendDiceArgs {
     /**
      * @brief Unique identifier for the target chat or username of the target bot,
-     * supergroup or channel in the format @username
+     * supergroup, or channel in the format @username
      */
     std::variant<std::int64_t, std::string> chatId { };
 
@@ -18000,7 +18933,7 @@ struct SendDiceArgs {
      * forum supergroups and private chats of bots with forum topic mode
      * enabled only
      */
-    std::int32_t messageThreadId = 0;
+    std::uint32_t messageThreadId = 0;
 
     /**
      * @brief Protects the contents of the sent message from forwarding
@@ -18024,7 +18957,7 @@ struct SendDiceArgs {
      * @brief Identifier of the direct messages topic to which the message will be
      * sent; required if the message is sent to a direct messages chat
      */
-    std::int64_t directMessagesTopicId = 0;
+    std::uint64_t directMessagesTopicId = 0;
 
     /**
      * @brief Unique identifier of the message effect to be added to the message; for
@@ -18048,7 +18981,8 @@ struct SendDiceArgs {
 struct SendDocumentArgs {
     /**
      * @brief Unique identifier for the target chat or username of the target bot,
-     * supergroup or channel in the format @username
+     * supergroup, or channel in the format @username; required unless the
+     * message is sent as an ephemeral reply to a callback query
      */
     std::variant<std::int64_t, std::string> chatId { };
 
@@ -18121,7 +19055,7 @@ struct SendDocumentArgs {
      * forum supergroups and private chats of bots with forum topic mode
      * enabled only
      */
-    std::int32_t messageThreadId = 0;
+    std::uint32_t messageThreadId = 0;
 
     /**
      * @brief Protects the contents of the sent message from forwarding and saving
@@ -18150,7 +19084,7 @@ struct SendDocumentArgs {
      * @brief Identifier of the direct messages topic to which the message will be
      * sent; required if the message is sent to a direct messages chat
      */
-    std::int64_t directMessagesTopicId = 0;
+    std::uint64_t directMessagesTopicId = 0;
 
     /**
      * @brief Unique identifier of the message effect to be added to the message; for
@@ -18161,7 +19095,7 @@ struct SendDocumentArgs {
     /**
      * @brief Identifier of the user who will receive the ephemeral message
      */
-    std::int64_t receiverUserId = 0;
+    std::uint64_t receiverUserId = 0;
 
     /**
      * @brief A JSON-serialized object containing the parameters of the suggested post
@@ -18219,7 +19153,7 @@ struct SendGameArgs {
      * forum supergroups and private chats of bots with forum topic mode
      * enabled only
      */
-    std::int32_t messageThreadId = 0;
+    std::uint32_t messageThreadId = 0;
 
     /**
      * @brief Protects the contents of the sent message from forwarding and saving
@@ -18257,9 +19191,9 @@ struct SendGiftArgs {
     std::string giftId { };
 
     /**
-     * @brief Required if user_id is not specified. Unique identifier for the chat or
-     * username of the channel (in the format @username) that will receive the
-     * gift.
+     * @brief Required if user_id is not specified. Unique identifier for the chat
+     * that will receive the gift or username of the channel in the format
+     * @username.
      */
     std::variant<std::int64_t, std::string> chatId = { };
 
@@ -18293,7 +19227,7 @@ struct SendGiftArgs {
      * @brief Required if chat_id is not specified. Unique identifier of the target
      * user who will receive the gift.
      */
-    std::int64_t userId = 0;
+    std::uint64_t userId = 0;
 };
 
 /**
@@ -18303,7 +19237,7 @@ struct SendGiftArgs {
 struct SendInvoiceArgs {
     /**
      * @brief Unique identifier for the target chat or username of the target bot,
-     * supergroup or channel in the format @username
+     * supergroup, or channel in the format @username
      */
     std::variant<std::int64_t, std::string> chatId { };
 
@@ -18359,17 +19293,17 @@ struct SendInvoiceArgs {
     /**
      * @brief Photo size in bytes
      */
-    std::int32_t photoSize = 0;
+    std::uint32_t photoSize = 0;
 
     /**
      * @brief Photo width
      */
-    std::int32_t photoWidth = 0;
+    std::uint32_t photoWidth = 0;
 
     /**
      * @brief Photo height
      */
-    std::int32_t photoHeight = 0;
+    std::uint32_t photoHeight = 0;
 
     /**
      * @brief Pass True if you require the user's full name to complete the order.
@@ -18436,7 +19370,7 @@ struct SendInvoiceArgs {
      * forum supergroups and private chats of bots with forum topic mode
      * enabled only
      */
-    std::int32_t messageThreadId = 0;
+    std::uint32_t messageThreadId = 0;
 
     /**
      * @brief The maximum accepted amount for tips in the smallest units of the
@@ -18446,7 +19380,7 @@ struct SendInvoiceArgs {
      * for each currency (2 for the majority of currencies). Defaults to 0. Not
      * supported for payments in Telegram Stars.
      */
-    std::int32_t maxTipAmount = 0;
+    std::uint64_t maxTipAmount = 0;
 
     /**
      * @brief A JSON-serialized Array of suggested amounts of tips in the smallest
@@ -18455,7 +19389,7 @@ struct SendInvoiceArgs {
      * positive, passed in a strictly increased order and must not exceed
      * max_tip_amount.
      */
-    std::vector<std::int32_t> suggestedTipAmounts = { };
+    std::vector<std::uint64_t> suggestedTipAmounts = { };
 
     /**
      * @brief Unique deep-linking parameter. If left empty, forwarded copies of the
@@ -18483,7 +19417,7 @@ struct SendInvoiceArgs {
      * @brief Identifier of the direct messages topic to which the message will be
      * sent; required if the message is sent to a direct messages chat
      */
-    std::int64_t directMessagesTopicId = 0;
+    std::uint64_t directMessagesTopicId = 0;
 
     /**
      * @brief Unique identifier of the message effect to be added to the message; for
@@ -18506,8 +19440,9 @@ struct SendInvoiceArgs {
  */
 struct SendLivePhotoArgs {
     /**
-     * @brief Unique identifier for the target chat or username of the target channel
-     * (in the format @channelusername)
+     * @brief Unique identifier for the target chat or username of the target bot,
+     * supergroup, or channel in the format @username; required unless the
+     * message is sent as an ephemeral reply to a callback query
      */
     std::variant<std::int64_t, std::string> chatId { };
 
@@ -18562,7 +19497,7 @@ struct SendLivePhotoArgs {
      * @brief Identifier of the direct messages topic to which the message will be
      * sent; required if the message is sent to a direct messages chat
      */
-    std::int64_t directMessagesTopicId = 0;
+    std::uint64_t directMessagesTopicId = 0;
 
     /**
      * @brief Sends the message silently. Users will receive a notification with no
@@ -18586,7 +19521,7 @@ struct SendLivePhotoArgs {
      * forum supergroups and private chats of bots with forum topic mode
      * enabled only
      */
-    std::int32_t messageThreadId = 0;
+    std::uint32_t messageThreadId = 0;
 
     /**
      * @brief Mode for parsing entities in the video caption. See formatting options
@@ -18602,7 +19537,7 @@ struct SendLivePhotoArgs {
     /**
      * @brief Identifier of the user who will receive the ephemeral message
      */
-    std::int64_t receiverUserId = 0;
+    std::uint64_t receiverUserId = 0;
 
     /**
      * @brief Additional interface options. A JSON-serialized object for an inline
@@ -18645,7 +19580,8 @@ struct SendLivePhotoArgs {
 struct SendLocationArgs {
     /**
      * @brief Unique identifier for the target chat or username of the target bot,
-     * supergroup or channel in the format @username
+     * supergroup, or channel in the format @username; required unless the
+     * message is sent as an ephemeral reply to a callback query
      */
     std::variant<std::int64_t, std::string> chatId { };
 
@@ -18665,7 +19601,7 @@ struct SendLocationArgs {
      * locations that can be edited indefinitely. Must be 0 for ephemeral
      * messages.
      */
-    std::int32_t livePeriod = 0;
+    std::uint32_t livePeriod = 0;
 
     /**
      * @brief Description of the message to reply to
@@ -18696,21 +19632,21 @@ struct SendLocationArgs {
      * @brief For live locations, a direction in which the user is moving, in degrees.
      * Must be between 1 and 360 if specified.
      */
-    std::int32_t heading = 0;
+    std::uint32_t heading = 0;
 
     /**
      * @brief For live locations, a maximum distance for proximity alerts about
      * approaching another chat member, in meters. Must be between 1 and 100000
      * if specified.
      */
-    std::int32_t proximityAlertRadius = 0;
+    std::uint32_t proximityAlertRadius = 0;
 
     /**
      * @brief Unique identifier for the target message thread (topic) of a forum; for
      * forum supergroups and private chats of bots with forum topic mode
      * enabled only
      */
-    std::int32_t messageThreadId = 0;
+    std::uint32_t messageThreadId = 0;
 
     /**
      * @brief Protects the contents of the sent message from forwarding and saving
@@ -18739,7 +19675,7 @@ struct SendLocationArgs {
      * @brief Identifier of the direct messages topic to which the message will be
      * sent; required if the message is sent to a direct messages chat
      */
-    std::int64_t directMessagesTopicId = 0;
+    std::uint64_t directMessagesTopicId = 0;
 
     /**
      * @brief Unique identifier of the message effect to be added to the message; for
@@ -18750,7 +19686,7 @@ struct SendLocationArgs {
     /**
      * @brief Identifier of the user who will receive the ephemeral message
      */
-    std::int64_t receiverUserId = 0;
+    std::uint64_t receiverUserId = 0;
 
     /**
      * @brief A JSON-serialized object containing the parameters of the suggested post
@@ -18774,7 +19710,7 @@ struct SendLocationArgs {
 struct SendMediaGroupArgs {
     /**
      * @brief Unique identifier for the target chat or username of the target bot,
-     * supergroup or channel in the format @username
+     * supergroup, or channel in the format @username
      */
     std::variant<std::int64_t, std::string> chatId { };
 
@@ -18803,7 +19739,7 @@ struct SendMediaGroupArgs {
      * forum supergroups and private chats of bots with forum topic mode
      * enabled only
      */
-    std::int32_t messageThreadId = 0;
+    std::uint32_t messageThreadId = 0;
 
     /**
      * @brief Protects the contents of the sent messages from forwarding and saving
@@ -18827,7 +19763,7 @@ struct SendMediaGroupArgs {
      * @brief Identifier of the direct messages topic to which the messages will be
      * sent; required if the messages are sent to a direct messages chat
      */
-    std::int64_t directMessagesTopicId = 0;
+    std::uint64_t directMessagesTopicId = 0;
 
     /**
      * @brief Unique identifier of the message effect to be added to the message; for
@@ -18850,7 +19786,8 @@ struct SendMediaGroupArgs {
 struct SendMessageArgs {
     /**
      * @brief Unique identifier for the target chat or username of the target bot,
-     * supergroup or channel in the format @username
+     * supergroup, or channel in the format @username; required unless the
+     * message is sent as an ephemeral reply to a callback query
      */
     std::variant<std::int64_t, std::string> chatId { };
 
@@ -18901,7 +19838,7 @@ struct SendMessageArgs {
      * forum supergroups and private chats of bots with forum topic mode
      * enabled only
      */
-    std::int32_t messageThreadId = 0;
+    std::uint32_t messageThreadId = 0;
 
     /**
      * @brief Protects the contents of the sent message from forwarding and saving
@@ -18930,7 +19867,7 @@ struct SendMessageArgs {
      * @brief Identifier of the direct messages topic to which the message will be
      * sent; required if the message is sent to a direct messages chat
      */
-    std::int64_t directMessagesTopicId = 0;
+    std::uint64_t directMessagesTopicId = 0;
 
     /**
      * @brief Unique identifier of the message effect to be added to the message; for
@@ -18941,7 +19878,7 @@ struct SendMessageArgs {
     /**
      * @brief Identifier of the user who will receive the ephemeral message
      */
-    std::int64_t receiverUserId = 0;
+    std::uint64_t receiverUserId = 0;
 
     /**
      * @brief A JSON-serialized object containing the parameters of the suggested post
@@ -18966,14 +19903,14 @@ struct SendMessageDraftArgs {
     /**
      * @brief Unique identifier for the target private chat
      */
-    std::variant<std::int64_t, std::string> chatId { };
+    std::variant<std::uint64_t, std::string> chatId { };
 
     /**
      * @brief Unique identifier of the message draft; must be non-zero. Changes to
      * drafts with the same identifier are animated. Otherwise, the draft is
      * replaced without animation.
      */
-    std::int32_t draftId { };
+    std::int64_t draftId { };
 
     /**
      * @brief A JSON-serialized list of special entities that appear in message text,
@@ -18984,7 +19921,7 @@ struct SendMessageDraftArgs {
     /**
      * @brief Unique identifier for the target message thread
      */
-    std::int32_t messageThreadId = 0;
+    std::uint32_t messageThreadId = 0;
 
     /**
      * @brief Mode for parsing entities in the message text. See formatting options
@@ -19021,9 +19958,10 @@ struct SendMessageDraftArgs {
 struct SendPaidMediaArgs {
     /**
      * @brief Unique identifier for the target chat or username of the target bot,
-     * supergroup or channel in the format @username. If the chat is a channel,
-     * all Telegram Star proceeds from this media will be credited to the
-     * chat's balance. Otherwise, they will be credited to the bot's balance.
+     * supergroup, or channel in the format @username. If the chat is a
+     * channel, all Telegram Star proceeds from this media will be credited to
+     * the chat's balance. Otherwise, they will be credited to the bot's
+     * balance.
      */
     std::variant<std::int64_t, std::string> chatId { };
 
@@ -19036,7 +19974,7 @@ struct SendPaidMediaArgs {
      * @brief The number of Telegram Stars that must be paid to buy access to the
      * media; 1-25000
      */
-    std::int32_t starCount { };
+    std::uint32_t starCount { };
 
     /**
      * @brief Pass True to allow up to 1000 messages per second, ignoring broadcasting
@@ -19066,7 +20004,7 @@ struct SendPaidMediaArgs {
      * @brief Identifier of the direct messages topic to which the message will be
      * sent; required if the message is sent to a direct messages chat
      */
-    std::int64_t directMessagesTopicId = 0;
+    std::uint64_t directMessagesTopicId = 0;
 
     /**
      * @brief Sends the message silently. Users will receive a notification with no
@@ -19079,7 +20017,7 @@ struct SendPaidMediaArgs {
      * forum supergroups and private chats of bots with forum topic mode
      * enabled only
      */
-    std::int32_t messageThreadId = 0;
+    std::uint32_t messageThreadId = 0;
 
     /**
      * @brief Mode for parsing entities in the media caption. See formatting options
@@ -19140,7 +20078,8 @@ struct SendPaidMediaArgs {
 struct SendPhotoArgs {
     /**
      * @brief Unique identifier for the target chat or username of the target bot,
-     * supergroup or channel in the format @username
+     * supergroup, or channel in the format @username; required unless the
+     * message is sent as an ephemeral reply to a callback query
      */
     std::variant<std::int64_t, std::string> chatId { };
 
@@ -19197,7 +20136,7 @@ struct SendPhotoArgs {
      * forum supergroups and private chats of bots with forum topic mode
      * enabled only
      */
-    std::int32_t messageThreadId = 0;
+    std::uint32_t messageThreadId = 0;
 
     /**
      * @brief Protects the contents of the sent message from forwarding and saving
@@ -19231,7 +20170,7 @@ struct SendPhotoArgs {
      * @brief Identifier of the direct messages topic to which the message will be
      * sent; required if the message is sent to a direct messages chat
      */
-    std::int64_t directMessagesTopicId = 0;
+    std::uint64_t directMessagesTopicId = 0;
 
     /**
      * @brief Unique identifier of the message effect to be added to the message; for
@@ -19242,7 +20181,7 @@ struct SendPhotoArgs {
     /**
      * @brief Identifier of the user who will receive the ephemeral message
      */
-    std::int64_t receiverUserId = 0;
+    std::uint64_t receiverUserId = 0;
 
     /**
      * @brief Pass True if the caption must be shown above the message media
@@ -19271,7 +20210,7 @@ struct SendPhotoArgs {
 struct SendPollArgs {
     /**
      * @brief Unique identifier for the target chat or username of the target bot,
-     * supergroup or channel in the format @username. Polls can't be sent to
+     * supergroup, or channel in the format @username. Polls can't be sent to
      * channel direct messages chats.
      */
     std::variant<std::int64_t, std::string> chatId { };
@@ -19344,7 +20283,7 @@ struct SendPollArgs {
      * @brief Amount of time in seconds the poll will be active after creation,
      * 5-2628000. Can't be used together with close_date.
      */
-    std::int32_t openPeriod = 0;
+    std::uint32_t openPeriod = 0;
 
     /**
      * @brief Point in time (Unix timestamp) when the poll will be automatically
@@ -19364,7 +20303,7 @@ struct SendPollArgs {
      * forum supergroups and private chats of bots with forum topic mode
      * enabled only
      */
-    std::int32_t messageThreadId = 0;
+    std::uint32_t messageThreadId = 0;
 
     /**
      * @brief Protects the contents of the sent message from forwarding and saving
@@ -19400,7 +20339,7 @@ struct SendPollArgs {
      * @brief A JSON-serialized list of monotonically increasing 0-based identifiers
      * of the correct answer options, required for polls in quiz mode
      */
-    std::vector<std::int32_t> correctOptionIds = { };
+    std::vector<std::uint32_t> correctOptionIds = { };
 
     /**
      * @brief A JSON-serialized list of 0-12 two-letter ISO 3166-1 alpha-2 country
@@ -19482,7 +20421,8 @@ struct SendPollArgs {
 struct SendRichMessageArgs {
     /**
      * @brief Unique identifier for the target chat or username of the target bot,
-     * supergroup or channel in the format @username
+     * supergroup, or channel in the format @username; required unless the
+     * message is sent as an ephemeral reply to a callback query
      */
     std::variant<std::int64_t, std::string> chatId { };
 
@@ -19509,7 +20449,7 @@ struct SendRichMessageArgs {
      * @brief Identifier of the direct messages topic to which the message will be
      * sent; required if the message is sent to a direct messages chat
      */
-    std::int64_t directMessagesTopicId = 0;
+    std::uint64_t directMessagesTopicId = 0;
 
     /**
      * @brief Sends the message silently. Users will receive a notification with no
@@ -19528,7 +20468,7 @@ struct SendRichMessageArgs {
      * forum supergroups and private chats of bots with forum topic mode
      * enabled only
      */
-    std::int32_t messageThreadId = 0;
+    std::uint32_t messageThreadId = 0;
 
     /**
      * @brief Protects the contents of the sent message from forwarding and saving
@@ -19579,14 +20519,14 @@ struct SendRichMessageDraftArgs {
     /**
      * @brief Unique identifier for the target private chat
      */
-    std::variant<std::int64_t, std::string> chatId { };
+    std::variant<std::uint64_t, std::string> chatId { };
 
     /**
      * @brief Unique identifier of the message draft; must be non-zero. Changes to
      * drafts with the same identifier are animated. Otherwise, the draft is
      * replaced without animation.
      */
-    std::int32_t draftId { };
+    std::int64_t draftId { };
 
     /**
      * @brief The partial message to be streamed. Direct upload of new files and
@@ -19597,7 +20537,7 @@ struct SendRichMessageDraftArgs {
     /**
      * @brief Unique identifier for the target message thread
      */
-    std::int32_t messageThreadId = 0;
+    std::uint32_t messageThreadId = 0;
 
     /**
      * @brief Pass True to show the user a button to stop further drafts. The bot will
@@ -19616,13 +20556,103 @@ struct SendRichMessageDraftArgs {
 };
 
 /**
+ * @brief Arguments for Api::sendSharedWidget.
+ * @ingroup api
+ */
+struct SendSharedWidgetArgs {
+    /**
+     * @brief Unique identifier for the target chat or username of the target
+     * supergroup in the format @username
+     */
+    std::variant<std::int64_t, std::string> chatId { };
+
+    /**
+     * @brief Unique identifier of the shared widget
+     */
+    std::string widgetId { };
+
+    /**
+     * @brief Pass True to allow up to 1000 messages per second, ignoring broadcasting
+     * limits for a fee of 0.1 Telegram Stars per message. The relevant Stars
+     * will be withdrawn from the bot's balance.
+     */
+    bool allowPaidBroadcast = false;
+
+    /**
+     * @brief Widget caption, 0-1024 characters after entities parsing
+     */
+    std::string caption = "";
+
+    /**
+     * @brief A JSON-serialized list of special entities that appear in the caption,
+     * which can be specified instead of parse_mode
+     */
+    std::vector<std::shared_ptr<MessageEntity>> captionEntities = { };
+
+    /**
+     * @brief Data of the widget, which is specific to the message, 0-1024 bytes
+     */
+    std::string chatData = "";
+
+    /**
+     * @brief Sends the message silently. Users will receive a notification with no
+     * sound.
+     */
+    bool disableNotification = false;
+
+    /**
+     * @brief Unique identifier of the message effect to be added to the message; for
+     * private chats only
+     */
+    std::string messageEffectId = "";
+
+    /**
+     * @brief Unique identifier for the target message thread (topic) of a forum; for
+     * forum supergroups and private chats of bots with forum topic mode
+     * enabled only
+     */
+    std::uint32_t messageThreadId = 0;
+
+    /**
+     * @brief Mode for parsing entities in the widget caption. See formatting options
+     * for more details.
+     */
+    std::string parseMode = "";
+
+    /**
+     * @brief Protects the contents of the sent message from forwarding and saving
+     */
+    bool protectContent = false;
+
+    /**
+     * @brief Additional interface options. A JSON-serialized object for an inline
+     * keyboard, custom reply keyboard, instructions to remove a reply keyboard
+     * or to force a reply from the user.
+     */
+    std::variant<std::shared_ptr<InlineKeyboardMarkup>, std::shared_ptr<ReplyKeyboardMarkup>,
+                 std::shared_ptr<ReplyKeyboardRemove>, std::shared_ptr<ForceReply>>
+        replyMarkup = { };
+
+    /**
+     * @brief Description of the message to reply to
+     */
+    std::shared_ptr<ReplyParameters> replyParameters = nullptr;
+
+    /**
+     * @brief Pass True if the caption must be shown above the widget
+     */
+    bool showCaptionAboveMedia = false;
+};
+
+/**
  * @brief Arguments for Api::sendSticker.
  * @ingroup api
  */
 struct SendStickerArgs {
     /**
      * @brief Unique identifier for the target chat or username of the target bot,
-     * supergroup or channel in the format @username
+     * supergroup, or channel in the format @username; required unless the
+     * message is sent as an ephemeral reply to a callback query
      */
     std::variant<std::int64_t, std::string> chatId { };
 
@@ -19661,7 +20691,7 @@ struct SendStickerArgs {
      * forum supergroups and private chats of bots with forum topic mode
      * enabled only
      */
-    std::int32_t messageThreadId = 0;
+    std::uint32_t messageThreadId = 0;
 
     /**
      * @brief Protects the contents of the sent message from forwarding and saving
@@ -19695,7 +20725,7 @@ struct SendStickerArgs {
      * @brief Identifier of the direct messages topic to which the message will be
      * sent; required if the message is sent to a direct messages chat
      */
-    std::int64_t directMessagesTopicId = 0;
+    std::uint64_t directMessagesTopicId = 0;
 
     /**
      * @brief Unique identifier of the message effect to be added to the message; for
@@ -19706,7 +20736,7 @@ struct SendStickerArgs {
     /**
      * @brief Identifier of the user who will receive the ephemeral message
      */
-    std::int64_t receiverUserId = 0;
+    std::uint64_t receiverUserId = 0;
 
     /**
      * @brief A JSON-serialized object containing the parameters of the suggested post
@@ -19730,7 +20760,8 @@ struct SendStickerArgs {
 struct SendVenueArgs {
     /**
      * @brief Unique identifier for the target chat or username of the target bot,
-     * supergroup or channel in the format @username
+     * supergroup, or channel in the format @username; required unless the
+     * message is sent as an ephemeral reply to a callback query
      */
     std::variant<std::int64_t, std::string> chatId { };
 
@@ -19801,7 +20832,7 @@ struct SendVenueArgs {
      * forum supergroups and private chats of bots with forum topic mode
      * enabled only
      */
-    std::int32_t messageThreadId = 0;
+    std::uint32_t messageThreadId = 0;
 
     /**
      * @brief Protects the contents of the sent message from forwarding and saving
@@ -19830,7 +20861,7 @@ struct SendVenueArgs {
      * @brief Identifier of the direct messages topic to which the message will be
      * sent; required if the message is sent to a direct messages chat
      */
-    std::int64_t directMessagesTopicId = 0;
+    std::uint64_t directMessagesTopicId = 0;
 
     /**
      * @brief Unique identifier of the message effect to be added to the message; for
@@ -19841,7 +20872,7 @@ struct SendVenueArgs {
     /**
      * @brief Identifier of the user who will receive the ephemeral message
      */
-    std::int64_t receiverUserId = 0;
+    std::uint64_t receiverUserId = 0;
 
     /**
      * @brief A JSON-serialized object containing the parameters of the suggested post
@@ -19865,7 +20896,8 @@ struct SendVenueArgs {
 struct SendVideoArgs {
     /**
      * @brief Unique identifier for the target chat or username of the target bot,
-     * supergroup or channel in the format @username
+     * supergroup, or channel in the format @username; required unless the
+     * message is sent as an ephemeral reply to a callback query
      */
     std::variant<std::int64_t, std::string> chatId { };
 
@@ -19885,17 +20917,17 @@ struct SendVideoArgs {
     /**
      * @brief Duration of sent video in seconds
      */
-    std::int32_t duration = 0;
+    std::uint32_t duration = 0;
 
     /**
      * @brief Video width
      */
-    std::int32_t width = 0;
+    std::uint32_t width = 0;
 
     /**
      * @brief Video height
      */
-    std::int32_t height = 0;
+    std::uint32_t height = 0;
 
     /**
      * @brief Thumbnail of the file sent; can be ignored if thumbnail generation for
@@ -19952,7 +20984,7 @@ struct SendVideoArgs {
      * forum supergroups and private chats of bots with forum topic mode
      * enabled only
      */
-    std::int32_t messageThreadId = 0;
+    std::uint32_t messageThreadId = 0;
 
     /**
      * @brief Protects the contents of the sent message from forwarding and saving
@@ -19995,7 +21027,7 @@ struct SendVideoArgs {
      * @brief Identifier of the direct messages topic to which the message will be
      * sent; required if the message is sent to a direct messages chat
      */
-    std::int64_t directMessagesTopicId = 0;
+    std::uint64_t directMessagesTopicId = 0;
 
     /**
      * @brief Unique identifier of the message effect to be added to the message; for
@@ -20006,7 +21038,7 @@ struct SendVideoArgs {
     /**
      * @brief Identifier of the user who will receive the ephemeral message
      */
-    std::int64_t receiverUserId = 0;
+    std::uint64_t receiverUserId = 0;
 
     /**
      * @brief Pass True if the caption must be shown above the message media
@@ -20016,7 +21048,7 @@ struct SendVideoArgs {
     /**
      * @brief Start timestamp for the video in the message
      */
-    std::int32_t startTimestamp = 0;
+    std::uint32_t startTimestamp = 0;
 
     /**
      * @brief A JSON-serialized object containing the parameters of the suggested post
@@ -20040,7 +21072,8 @@ struct SendVideoArgs {
 struct SendVideoNoteArgs {
     /**
      * @brief Unique identifier for the target chat or username of the target bot,
-     * supergroup or channel in the format @username
+     * supergroup, or channel in the format @username; required unless the
+     * message is sent as an ephemeral reply to a callback query
      */
     std::variant<std::int64_t, std::string> chatId { };
 
@@ -20066,12 +21099,12 @@ struct SendVideoNoteArgs {
     /**
      * @brief Duration of sent video in seconds
      */
-    std::int32_t duration = 0;
+    std::uint32_t duration = 0;
 
     /**
      * @brief Video width and height, i.e. diameter of the video message
      */
-    std::int32_t length = 0;
+    std::uint32_t length = 0;
 
     /**
      * @brief Thumbnail of the file sent; can be ignored if thumbnail generation for
@@ -20099,7 +21132,7 @@ struct SendVideoNoteArgs {
      * forum supergroups and private chats of bots with forum topic mode
      * enabled only
      */
-    std::int32_t messageThreadId = 0;
+    std::uint32_t messageThreadId = 0;
 
     /**
      * @brief Protects the contents of the sent message from forwarding and saving
@@ -20128,7 +21161,7 @@ struct SendVideoNoteArgs {
      * @brief Identifier of the direct messages topic to which the message will be
      * sent; required if the message is sent to a direct messages chat
      */
-    std::int64_t directMessagesTopicId = 0;
+    std::uint64_t directMessagesTopicId = 0;
 
     /**
      * @brief Unique identifier of the message effect to be added to the message; for
@@ -20139,7 +21172,7 @@ struct SendVideoNoteArgs {
     /**
      * @brief Identifier of the user who will receive the ephemeral message
      */
-    std::int64_t receiverUserId = 0;
+    std::uint64_t receiverUserId = 0;
 
     /**
      * @brief A JSON-serialized object containing the parameters of the suggested post
@@ -20163,7 +21196,8 @@ struct SendVideoNoteArgs {
 struct SendVoiceArgs {
     /**
      * @brief Unique identifier for the target chat or username of the target bot,
-     * supergroup or channel in the format @username
+     * supergroup, or channel in the format @username; required unless the
+     * message is sent as an ephemeral reply to a callback query
      */
     std::variant<std::int64_t, std::string> chatId { };
 
@@ -20183,7 +21217,7 @@ struct SendVoiceArgs {
     /**
      * @brief Duration of the voice message in seconds
      */
-    std::int32_t duration = 0;
+    std::uint32_t duration = 0;
 
     /**
      * @brief Description of the message to reply to
@@ -20222,7 +21256,7 @@ struct SendVoiceArgs {
      * forum supergroups and private chats of bots with forum topic mode
      * enabled only
      */
-    std::int32_t messageThreadId = 0;
+    std::uint32_t messageThreadId = 0;
 
     /**
      * @brief Protects the contents of the sent message from forwarding and saving
@@ -20251,7 +21285,7 @@ struct SendVoiceArgs {
      * @brief Identifier of the direct messages topic to which the message will be
      * sent; required if the message is sent to a direct messages chat
      */
-    std::int64_t directMessagesTopicId = 0;
+    std::uint64_t directMessagesTopicId = 0;
 
     /**
      * @brief Unique identifier of the message effect to be added to the message; for
@@ -20262,7 +21296,7 @@ struct SendVoiceArgs {
     /**
      * @brief Identifier of the user who will receive the ephemeral message
      */
-    std::int64_t receiverUserId = 0;
+    std::uint64_t receiverUserId = 0;
 
     /**
      * @brief A JSON-serialized object containing the parameters of the suggested post
@@ -20277,6 +21311,127 @@ struct SendVoiceArgs {
      * message to send
      */
     std::shared_ptr<EphemeralMessageParameters> ephemeralMessageParameters = nullptr;
+};
+
+/**
+ * @brief Arguments for Api::sendWidget.
+ * @ingroup api
+ */
+struct SendWidgetArgs {
+    /**
+     * @brief Unique identifier for the target chat or username of the target
+     * supergroup in the format @username
+     */
+    std::variant<std::int64_t, std::string> chatId { };
+
+    /**
+     * @brief HTML code of the widget, 1-32768 bytes. The code must not exceed 4096
+     * bytes when compressed by zlib with the maximum compression level.
+     */
+    std::string html { };
+
+    /**
+     * @brief Pass True to allow up to 1000 messages per second, ignoring broadcasting
+     * limits for a fee of 0.1 Telegram Stars per message. The relevant Stars
+     * will be withdrawn from the bot's balance.
+     */
+    bool allowPaidBroadcast = false;
+
+    /**
+     * @brief Pass True to allow the widget to send queries to the bot
+     */
+    bool allowQueries = false;
+
+    /**
+     * @brief Widget caption, 0-1024 characters after entities parsing
+     */
+    std::string caption = "";
+
+    /**
+     * @brief A JSON-serialized list of special entities that appear in the caption,
+     * which can be specified instead of parse_mode
+     */
+    std::vector<std::shared_ptr<MessageEntity>> captionEntities = { };
+
+    /**
+     * @brief Data of the widget, which is specific to the message, 0-1024 bytes
+     */
+    std::string chatData = "";
+
+    /**
+     * @brief Sends the message silently. Users will receive a notification with no
+     * sound.
+     */
+    bool disableNotification = false;
+
+    /**
+     * @brief Height of the widget in logical pixels; omit if the height of the widget
+     * isn't fixed. The height is clamped by the app to the range 50-600.
+     */
+    std::uint32_t height = 0;
+
+    /**
+     * @brief Pass True to create a shared widget, which can be sent again using the
+     * method sendSharedWidget
+     */
+    bool isShared = false;
+
+    /**
+     * @brief Unique identifier of the message effect to be added to the message; for
+     * private chats only
+     */
+    std::string messageEffectId = "";
+
+    /**
+     * @brief Unique identifier for the target message thread (topic) of a forum; for
+     * forum supergroups and private chats of bots with forum topic mode
+     * enabled only
+     */
+    std::uint32_t messageThreadId = 0;
+
+    /**
+     * @brief Mode for parsing entities in the widget caption. See formatting options
+     * for more details.
+     */
+    std::string parseMode = "";
+
+    /**
+     * @brief Protects the contents of the sent message from forwarding and saving
+     */
+    bool protectContent = false;
+
+    /**
+     * @brief Public data of the widget, 0-1024 bytes, which will be available
+     * wherever the widget is shown. If the widget is shared, then all messages
+     * with it will have the same public data.
+     */
+    std::string publicData = "";
+
+    /**
+     * @brief Additional interface options. A JSON-serialized object for an inline
+     * keyboard, custom reply keyboard, instructions to remove a reply keyboard
+     * or to force a reply from the user.
+     */
+    std::variant<std::shared_ptr<InlineKeyboardMarkup>, std::shared_ptr<ReplyKeyboardMarkup>,
+                 std::shared_ptr<ReplyKeyboardRemove>, std::shared_ptr<ForceReply>>
+        replyMarkup = { };
+
+    /**
+     * @brief Description of the message to reply to
+     */
+    std::shared_ptr<ReplyParameters> replyParameters = nullptr;
+
+    /**
+     * @brief Pass True if the caption must be shown above the widget
+     */
+    bool showCaptionAboveMedia = false;
+
+    /**
+     * @brief Width of the widget in logical pixels; omit if the widget must occupy
+     * the whole width of the message bubble. The width is clamped by the app
+     * to the range from 200 to the maximum width of the message bubble.
+     */
+    std::uint32_t width = 0;
 };
 
 /**
@@ -20399,7 +21554,7 @@ struct SetChatAdministratorCustomTitleArgs {
     /**
      * @brief Unique identifier of the target user
      */
-    std::int64_t userId { };
+    std::uint64_t userId { };
 
     /**
      * @brief New custom title for the administrator; 0-16 characters, emoji are not
@@ -20439,7 +21594,7 @@ struct SetChatMemberTagArgs {
     /**
      * @brief Unique identifier of the target user
      */
-    std::int64_t userId { };
+    std::uint64_t userId { };
 
     /**
      * @brief New tag for the member; 0-16 characters, emoji are not allowed
@@ -20456,7 +21611,7 @@ struct SetChatMenuButtonArgs {
      * @brief Unique identifier for the target private chat. If not specified, the
      * bot's default menu button will be changed.
      */
-    std::variant<std::int64_t, std::string> chatId = { };
+    std::variant<std::uint64_t, std::string> chatId = { };
 
     /**
      * @brief A JSON-serialized object for the bot's new menu button. Defaults to
@@ -20568,12 +21723,12 @@ struct SetGameScoreArgs {
     /**
      * @brief User identifier
      */
-    std::int64_t userId { };
+    std::uint64_t userId { };
 
     /**
      * @brief New score, must be non-negative
      */
-    std::int32_t score { };
+    std::uint32_t score { };
 
     /**
      * @brief Pass True if the high score is allowed to decrease. This can be useful
@@ -20597,7 +21752,7 @@ struct SetGameScoreArgs {
      * @brief Required if inline_message_id is not specified. Identifier of the sent
      * message.
      */
-    std::int32_t messageId = 0;
+    std::uint32_t messageId = 0;
 
     /**
      * @brief Required if chat_id and message_id are not specified. Identifier of the
@@ -20620,14 +21775,14 @@ struct SetManagedBotAccessSettingsArgs {
     /**
      * @brief User identifier of the managed bot whose access settings will be changed
      */
-    std::int64_t userId { };
+    std::uint64_t userId { };
 
     /**
      * @brief A JSON-serialized list of up to 10 identifiers of users who will have
      * access to the bot in addition to its owner. Ignored if
      * is_access_restricted is False.
      */
-    std::vector<std::int32_t> addedUserIds = { };
+    std::vector<std::uint64_t> addedUserIds = { };
 };
 
 /**
@@ -20637,7 +21792,7 @@ struct SetManagedBotAccessSettingsArgs {
 struct SetMessageReactionArgs {
     /**
      * @brief Unique identifier for the target chat or username of the target bot,
-     * supergroup or channel in the format @username
+     * supergroup, or channel in the format @username
      */
     std::variant<std::int64_t, std::string> chatId { };
 
@@ -20646,7 +21801,7 @@ struct SetMessageReactionArgs {
      * group, the reaction is set to the first non-deleted message in the group
      * instead.
      */
-    std::int32_t messageId { };
+    std::uint32_t messageId { };
 
     /**
      * @brief A JSON-serialized list of reaction types to set on the message.
@@ -20789,7 +21944,7 @@ struct SetPassportDataErrorsArgs {
     /**
      * @brief User identifier
      */
-    std::int64_t userId { };
+    std::uint64_t userId { };
 
     /**
      * @brief A JSON-serialized Array describing the errors
@@ -20860,7 +22015,7 @@ struct SetStickerPositionInSetArgs {
     /**
      * @brief New sticker position in the set, zero-based
      */
-    std::int32_t position { };
+    std::uint32_t position { };
 };
 
 /**
@@ -20876,7 +22031,7 @@ struct SetStickerSetThumbnailArgs {
     /**
      * @brief User identifier of the sticker set owner
      */
-    std::int64_t userId { };
+    std::uint64_t userId { };
 
     /**
      * @brief Format of the thumbnail, must be one of “static” for a .WEBP or .PNG
@@ -20926,7 +22081,7 @@ struct SetUserEmojiStatusArgs {
     /**
      * @brief Unique identifier of the target user
      */
-    std::int64_t userId { };
+    std::uint64_t userId { };
 
     /**
      * @brief Custom emoji identifier of the emoji status to set. Pass an empty string
@@ -20963,7 +22118,7 @@ struct SetWebhookArgs {
      * limit the load on your bot's server, and higher values to increase your
      * bot's throughput.
      */
-    std::int32_t maxConnections = 40;
+    std::uint32_t maxConnections = 40;
 
     /**
      * @brief A JSON-serialized list of the update types you want your bot to receive.
@@ -21005,7 +22160,7 @@ struct SetWebhookArgs {
 struct StopMessageLiveLocationArgs {
     /**
      * @brief Required if inline_message_id is not specified. Unique identifier for
-     * the target chat or username of the target bot, supergroup or channel in
+     * the target chat or username of the target bot, supergroup, or channel in
      * the format @username.
      */
     std::variant<std::int64_t, std::string> chatId = { };
@@ -21014,7 +22169,7 @@ struct StopMessageLiveLocationArgs {
      * @brief Required if inline_message_id is not specified. Identifier of the
      * message with live location to stop.
      */
-    std::int32_t messageId = 0;
+    std::uint32_t messageId = 0;
 
     /**
      * @brief Required if chat_id and message_id are not specified. Identifier of the
@@ -21041,14 +22196,14 @@ struct StopMessageLiveLocationArgs {
 struct StopPollArgs {
     /**
      * @brief Unique identifier for the target chat or username of the target bot,
-     * supergroup or channel in the format @username
+     * supergroup, or channel in the format @username
      */
     std::variant<std::int64_t, std::string> chatId { };
 
     /**
      * @brief Identifier of the original message with the poll
      */
-    std::int32_t messageId { };
+    std::uint32_t messageId { };
 
     /**
      * @brief Unique identifier of the business connection on behalf of which the
@@ -21075,7 +22230,7 @@ struct TransferBusinessAccountStarsArgs {
     /**
      * @brief Number of Telegram Stars to transfer; 1-10000
      */
-    std::int32_t starCount { };
+    std::uint32_t starCount { };
 };
 
 /**
@@ -21104,7 +22259,7 @@ struct TransferGiftArgs {
      * business account balance. If positive, then the can_transfer_stars
      * business bot right is required.
      */
-    std::int32_t starCount = 0;
+    std::uint32_t starCount = 0;
 };
 
 /**
@@ -21121,7 +22276,7 @@ struct UnbanChatMemberArgs {
     /**
      * @brief Unique identifier of the target user
      */
-    std::int64_t userId { };
+    std::uint64_t userId { };
 
     /**
      * @brief Do nothing if the user is not banned
@@ -21184,7 +22339,7 @@ struct UnpinAllForumTopicMessagesArgs {
     /**
      * @brief Unique identifier for the target message thread of the forum topic
      */
-    std::int32_t messageThreadId { };
+    std::uint32_t messageThreadId { };
 };
 
 /**
@@ -21221,7 +22376,7 @@ struct UnpinChatMessageArgs {
      * is specified. If not specified, the most recent pinned message (by
      * sending date) will be unpinned.
      */
-    std::int32_t messageId = 0;
+    std::uint32_t messageId = 0;
 };
 
 /**
@@ -21252,7 +22407,7 @@ struct UpgradeGiftArgs {
      * pass 0, otherwise, the can_transfer_stars business bot right is required
      * and gift.upgrade_star_count must be passed.
      */
-    std::int32_t starCount = 0;
+    std::uint32_t starCount = 0;
 };
 
 /**
@@ -21263,7 +22418,7 @@ struct UploadStickerFileArgs {
     /**
      * @brief User identifier of sticker file owner
      */
-    std::int64_t userId { };
+    std::uint64_t userId { };
 
     /**
      * @brief A file with the sticker in .WEBP, .PNG, .TGS, or .WEBM format. See
@@ -21285,7 +22440,7 @@ struct UploadStickerFileArgs {
 struct VerifyChatArgs {
     /**
      * @brief Unique identifier for the target chat or username of the target bot,
-     * supergroup or channel in the format @username. Channel direct messages
+     * supergroup, or channel in the format @username. Channel direct messages
      * chats can't be verified.
      */
     std::variant<std::int64_t, std::string> chatId { };
@@ -21296,6 +22451,19 @@ struct VerifyChatArgs {
      * description.
      */
     std::string customDescription = "";
+
+    /**
+     * @brief A JSON-serialized list of special entities that appear in the custom
+     * description, which can be specified instead of
+     * custom_description_parse_mode. Only “text_link” entities are supported.
+     */
+    std::vector<std::shared_ptr<MessageEntity>> customDescriptionEntities = { };
+
+    /**
+     * @brief Mode for parsing entities in the custom description. See formatting
+     * options for more details. Only “text_link” entities are supported.
+     */
+    std::string customDescriptionParseMode = "";
 };
 
 /**
@@ -21306,7 +22474,7 @@ struct VerifyUserArgs {
     /**
      * @brief Unique identifier of the target user
      */
-    std::int64_t userId { };
+    std::uint64_t userId { };
 
     /**
      * @brief Custom description for the verification; 0-70 characters. Must be empty
@@ -21314,6 +22482,19 @@ struct VerifyUserArgs {
      * description.
      */
     std::string customDescription = "";
+
+    /**
+     * @brief A JSON-serialized list of special entities that appear in the custom
+     * description, which can be specified instead of
+     * custom_description_parse_mode. Only “text_link” entities are supported.
+     */
+    std::vector<std::shared_ptr<MessageEntity>> customDescriptionEntities = { };
+
+    /**
+     * @brief Mode for parsing entities in the custom description. See formatting
+     * options for more details. Only “text_link” entities are supported.
+     */
+    std::string customDescriptionParseMode = "";
 };
 
 } // namespace TgBot

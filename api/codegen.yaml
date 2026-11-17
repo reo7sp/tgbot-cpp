@@ -1,7 +1,6 @@
 types:
-  BotCommandScopeChatMember:
-    fields:
-      user_id: { type: std::int64_t }
+  AreaPosition:
+    aliases: [StoryAreaPosition]
   Chat:
     fields:
       type:
@@ -34,7 +33,11 @@ types:
           TextMention: text_mention
           CustomEmoji: custom_emoji
           DateTime: date_time
+          TonAddress: ton_address
+          BankCardNumber: bank_card_number
   RichText:
+    append_union_types:
+      - std::shared_ptr<RichTextTonAddress>
     extra_union_types:
       - std::string
       - std::vector<std::shared_ptr<RichText>>
@@ -176,6 +179,8 @@ api:
   sendRichMessage:
     supports_attach_references: true
     direct_exclude: [ephemeral_message_parameters]
+    args:
+      chat_id: {declaration_required: true}
   sendRichMessageDraft:
     args_order: [chat_id, draft_id, rich_message, message_thread_id, can_stop, keep_on_stop]
   sendMessage:
@@ -187,7 +192,7 @@ api:
     args_order: [chat_id, photo, caption, reply_parameters, reply_markup, parse_mode, disable_notification, caption_entities, message_thread_id, protect_content, has_spoiler, business_connection_id, allow_paid_broadcast, callback_query_id, direct_messages_topic_id, message_effect_id, receiver_user_id, show_caption_above_media, suggested_post_parameters]
     legacy_ephemeral_parameters: true
   sendPoll:
-    args_order: [chat_id, question, options, disable_notification, reply_parameters, reply_markup, is_anonymous, type, allows_multiple_answers, correct_option_id, explanation, explanation_parse_mode, explanation_entities, open_period, close_date, is_closed, message_thread_id, protect_content, business_connection_id]
+    args_order: [chat_id, question, options, disable_notification, reply_parameters, reply_markup, is_anonymous, type, allows_multiple_answers, explanation, explanation_parse_mode, explanation_entities, open_period, close_date, is_closed, message_thread_id, protect_content, business_connection_id]
     args:
       is_anonymous: {default: true}
   sendSticker:

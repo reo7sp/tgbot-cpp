@@ -63,7 +63,7 @@ public:
 private:
     const Api* _api;
     const EventHandler* _eventHandler;
-    std::int32_t _lastUpdateId = 0;
+    std::uint32_t _lastUpdateId = 0;
     std::int32_t _limit;
     std::int32_t _timeout;
     std::shared_ptr<std::vector<std::string>> _allowUpdates;

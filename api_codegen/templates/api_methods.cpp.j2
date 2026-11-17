@@ -73,7 +73,9 @@ namespace TgBot {
     auto ephemeralMessageParameters = args.ephemeralMessageParameters;
     if (!ephemeralMessageParameters && (args.receiverUserId != 0 || !args.callbackQueryId.empty())) {
         ephemeralMessageParameters = std::make_shared<EphemeralMessageParameters>();
-        ephemeralMessageParameters->receiverUserId = args.receiverUserId;
+        if (args.receiverUserId != 0) {
+            ephemeralMessageParameters->receiverUserId = args.receiverUserId;
+        }
         if (!args.callbackQueryId.empty()) {
             ephemeralMessageParameters->callbackQueryId = args.callbackQueryId;
         }

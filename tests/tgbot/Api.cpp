@@ -7,9 +7,12 @@
 
 #include <nlohmann/json.hpp>
 
+#include <algorithm>
+#include <limits>
 #include <span>
 #include <stdexcept>
 #include <string>
+#include <type_traits>
 #include <utility>
 #include <variant>
 #include <vector>
@@ -44,6 +47,208 @@ bool requestThrows(TgBot::TgException::ErrorCode expectedCode, const std::string
 }
 
 } // namespace
+
+TEST(Api, PaginationPreservesNegativeUpdateOffsetsAndUnsignedQuantities) {
+    static_assert(std::is_same_v<decltype(TgBot::GetUpdatesArgs::offset), std::int32_t>);
+    static_assert(std::is_same_v<decltype(TgBot::GetUpdatesArgs::limit), std::uint32_t>);
+    static_assert(std::is_same_v<decltype(TgBot::GetUpdatesArgs::timeout), std::uint32_t>);
+    static_assert(std::is_same_v<decltype(TgBot::GetUserProfilePhotosArgs::offset), std::uint32_t>);
+    HttpClientMock httpClient;
+    httpClient.response = R"({"ok":true,"result":[]})";
+    TgBot::Api api("token", httpClient, "url");
+
+    EXPECT_TRUE(api.getUpdates(-2, 50, 10).empty());
+    const auto offset
+        = std::find_if(httpClient.requestFields.begin(), httpClient.requestFields.end(), [](const auto& field) {
+              return field.name == "offset";
+          });
+    ASSERT_NE(offset, httpClient.requestFields.end());
+    EXPECT_EQ(std::get<std::string>(offset->value), "-2");
+
+    static_assert(std::is_same_v<decltype(api.getChatMemberCount(std::int64_t { 42 })), std::uint32_t>);
+    httpClient.response = R"({"ok":true,"result":123})";
+    EXPECT_EQ(api.getChatMemberCount(std::int64_t { 42 }), 123U);
+}
+
+TEST(Api, InvoiceArgumentsPreserveLargeTipsAndSignedPriceComponents) {
+    static_assert(std::is_same_v<decltype(TgBot::CreateInvoiceLinkArgs::maxTipAmount), std::uint64_t>);
+    static_assert(
+        std::is_same_v<decltype(TgBot::CreateInvoiceLinkArgs::suggestedTipAmounts), std::vector<std::uint64_t>>);
+    HttpClientMock httpClient;
+    httpClient.response = R"({"ok":true,"result":"https://t.me/invoice"})";
+    TgBot::Api api("token", httpClient, "url");
+    TgBot::CreateInvoiceLinkArgs args;
+    args.title = "Product";
+    args.description = "Description";
+    args.payload = "invoice";
+    args.currency = "USD";
+    args.maxTipAmount = 900000000000ULL;
+    args.suggestedTipAmounts = { 5000000000ULL, 10000000000ULL };
+    auto price = std::make_shared<TgBot::LabeledPrice>();
+    price->label = "Discount";
+    price->amount = -5000000000LL;
+    args.prices = { price };
+    EXPECT_EQ(api.createInvoiceLink(args), "https://t.me/invoice");
+    nlohmann::json fields = nlohmann::json::object();
+    for (const auto& field : httpClient.requestFields) {
+        fields[field.name] = std::get<std::string>(field.value);
+    }
+    EXPECT_EQ(fields.at("max_tip_amount"), "900000000000");
+    EXPECT_EQ(nlohmann::json::parse(fields.at("suggested_tip_amounts").get<std::string>()),
+              nlohmann::json(args.suggestedTipAmounts));
+    EXPECT_EQ(nlohmann::json::parse(fields.at("prices").get<std::string>())[0].at("amount"), -5000000000LL);
+}
+
+TEST(Api, SerializesUnsignedIdentifiersAndSignedChatIds) {
+    HttpClientMock httpClient;
+    httpClient.response = R"({"ok":true,"result":true})";
+    TgBot::Api api("token", httpClient, "url");
+    const auto userId = (std::uint64_t { 1 } << 52) - 1;
+
+    EXPECT_TRUE(api.banChatMember(std::int64_t { -1001234567890LL }, userId));
+    ASSERT_EQ(httpClient.requestFields.size(), 3);
+    EXPECT_EQ(httpClient.requestFields[0].name, "chat_id");
+    EXPECT_EQ(std::get<std::string>(httpClient.requestFields[0].value), "-1001234567890");
+    EXPECT_EQ(httpClient.requestFields[1].name, "user_id");
+    EXPECT_EQ(std::get<std::string>(httpClient.requestFields[1].value), std::to_string(userId));
+
+    const std::vector<std::uint32_t> messageIds { 1, 2147483647 };
+    EXPECT_TRUE(api.deleteMessages(std::int64_t { -1001234567890LL }, messageIds));
+    ASSERT_EQ(httpClient.requestFields.size(), 2);
+    EXPECT_EQ(nlohmann::json::parse(std::get<std::string>(httpClient.requestFields[1].value)),
+              nlohmann::json(messageIds));
+
+    EXPECT_TRUE(api.setManagedBotAccessSettings(true, userId, { userId }));
+    const auto usersField
+        = std::find_if(httpClient.requestFields.begin(), httpClient.requestFields.end(), [](const auto& field) {
+              return field.name == "added_user_ids";
+          });
+    ASSERT_NE(usersField, httpClient.requestFields.end());
+    EXPECT_EQ(nlohmann::json::parse(std::get<std::string>(usersField->value)), nlohmann::json::array({ userId }));
+}
+
+TEST(Api, SerializesChatUsernamesInCommandScopesAndReplyParameters) {
+    HttpClientMock httpClient;
+    httpClient.response = R"({"ok":true,"result":true})";
+    TgBot::Api api("token", httpClient, "url");
+    const auto checkScope = [&](auto details) {
+        details->chatId = std::string("@example");
+        auto scope = std::make_shared<TgBot::BotCommandScope>();
+        scope->value = details;
+        EXPECT_TRUE(api.setMyCommands({ }, scope));
+        const auto field
+            = std::find_if(httpClient.requestFields.begin(), httpClient.requestFields.end(), [](const auto& value) {
+                  return value.name == "scope";
+              });
+        ASSERT_NE(field, httpClient.requestFields.end());
+        const auto json = nlohmann::json::parse(std::get<std::string>(field->value));
+        EXPECT_EQ(json.at("chat_id"), "@example");
+        EXPECT_EQ(json.at("type"), details->type);
+    };
+    checkScope(std::make_shared<TgBot::BotCommandScopeChat>());
+    checkScope(std::make_shared<TgBot::BotCommandScopeChatAdministrators>());
+    auto member = std::make_shared<TgBot::BotCommandScopeChatMember>();
+    member->userId = 42;
+    checkScope(member);
+
+    auto reply = std::make_shared<TgBot::ReplyParameters>();
+    reply->messageId = 7;
+    reply->chatId = std::string("@example");
+    TgBot::SendMessageArgs args;
+    args.chatId = std::int64_t { 42 };
+    args.text = "reply";
+    args.replyParameters = reply;
+    httpClient.response = R"({"ok":true,"result":{"message_id":8,"date":0,"chat":{"id":42,"type":"private"}}})";
+    ASSERT_TRUE(api.sendMessage(args));
+    const auto field
+        = std::find_if(httpClient.requestFields.begin(), httpClient.requestFields.end(), [](const auto& value) {
+              return value.name == "reply_parameters";
+          });
+    ASSERT_NE(field, httpClient.requestFields.end());
+    const auto json = nlohmann::json::parse(std::get<std::string>(field->value));
+    EXPECT_EQ(json.at("chat_id"), "@example");
+    EXPECT_EQ(json.at("message_id"), 7);
+}
+
+TEST(Api, MenuMethodsUseUnsignedPrivateChatIdsAndPreserveDefaultMenu) {
+    using ChatId = std::variant<std::uint64_t, std::string>;
+    static_assert(std::is_same_v<decltype(TgBot::GetChatMenuButtonArgs::chatId), ChatId>);
+    static_assert(std::is_same_v<decltype(TgBot::SetChatMenuButtonArgs::chatId), ChatId>);
+    HttpClientMock httpClient;
+    TgBot::Api api("token", httpClient, "url");
+    const auto chatId = (std::uint64_t { 1 } << 52) - 1;
+    const auto checkChatId = [&] {
+        ASSERT_EQ(httpClient.requestFields.size(), 1);
+        EXPECT_EQ(httpClient.requestFields[0].name, "chat_id");
+        EXPECT_EQ(std::get<std::string>(httpClient.requestFields[0].value), std::to_string(chatId));
+    };
+
+    httpClient.response = R"({"ok":true,"result":{"type":"default"}})";
+    ASSERT_TRUE(api.getChatMenuButton(chatId));
+    checkChatId();
+    TgBot::GetChatMenuButtonArgs getArgs;
+    getArgs.chatId = chatId;
+    ASSERT_TRUE(api.getChatMenuButton(getArgs));
+    checkChatId();
+    ASSERT_TRUE(api.getChatMenuButton());
+    EXPECT_TRUE(httpClient.requestFields.empty());
+    ASSERT_TRUE(api.getChatMenuButton(TgBot::GetChatMenuButtonArgs { }));
+    EXPECT_TRUE(httpClient.requestFields.empty());
+
+    httpClient.response = R"({"ok":true,"result":true})";
+    EXPECT_TRUE(api.setChatMenuButton(chatId));
+    checkChatId();
+    TgBot::SetChatMenuButtonArgs setArgs;
+    setArgs.chatId = chatId;
+    EXPECT_TRUE(api.setChatMenuButton(setArgs));
+    checkChatId();
+    EXPECT_TRUE(api.setChatMenuButton());
+    EXPECT_TRUE(httpClient.requestFields.empty());
+    EXPECT_TRUE(api.setChatMenuButton(TgBot::SetChatMenuButtonArgs { }));
+    EXPECT_TRUE(httpClient.requestFields.empty());
+}
+
+TEST(Api, DraftMethodsPreserveSigned64BitIdsAndUnsignedPrivateChatIds) {
+    using ChatId = std::variant<std::uint64_t, std::string>;
+    static_assert(std::is_same_v<decltype(TgBot::SendMessageDraftArgs::chatId), ChatId>);
+    static_assert(std::is_same_v<decltype(TgBot::SendRichMessageDraftArgs::chatId), ChatId>);
+    static_assert(std::is_same_v<decltype(TgBot::SendMessageDraftArgs::draftId), std::int64_t>);
+    static_assert(std::is_same_v<decltype(TgBot::SendRichMessageDraftArgs::draftId), std::int64_t>);
+    HttpClientMock httpClient;
+    httpClient.response = R"({"ok":true,"result":true})";
+    TgBot::Api api("token", httpClient, "url");
+    const auto chatId = (std::uint64_t { 1 } << 52) - 1;
+    auto richMessage = std::make_shared<TgBot::InputRichMessage>();
+    richMessage->html = "draft";
+
+    for (const auto draftId : { std::numeric_limits<std::int64_t>::min(), std::numeric_limits<std::int64_t>::max() }) {
+        SCOPED_TRACE(draftId);
+        const auto checkIdentifiers = [&] {
+            ASSERT_EQ(httpClient.requestFields.size(), 3);
+            EXPECT_EQ(httpClient.requestFields[0].name, "chat_id");
+            EXPECT_EQ(std::get<std::string>(httpClient.requestFields[0].value), std::to_string(chatId));
+            EXPECT_EQ(httpClient.requestFields[1].name, "draft_id");
+            EXPECT_EQ(std::get<std::string>(httpClient.requestFields[1].value), std::to_string(draftId));
+        };
+        EXPECT_TRUE(api.sendMessageDraft(chatId, draftId, { }, 0, "", "draft"));
+        checkIdentifiers();
+        EXPECT_TRUE(api.sendRichMessageDraft(chatId, draftId, richMessage));
+        checkIdentifiers();
+
+        TgBot::SendMessageDraftArgs textArgs;
+        textArgs.chatId = chatId;
+        textArgs.draftId = draftId;
+        textArgs.text = "draft";
+        EXPECT_TRUE(api.sendMessageDraft(textArgs));
+        checkIdentifiers();
+        TgBot::SendRichMessageDraftArgs richArgs;
+        richArgs.chatId = chatId;
+        richArgs.draftId = draftId;
+        richArgs.richMessage = richMessage;
+        EXPECT_TRUE(api.sendRichMessageDraft(richArgs));
+        checkIdentifiers();
+    }
+}
 
 TEST(Api, GeneratedMethodMapsTelegramErrors) {
     using ErrorCode = TgBot::TgException::ErrorCode;
@@ -530,6 +735,52 @@ TEST(Api, MapsLegacyEphemeralArgumentsToBotApi10_3Parameters) {
     const auto argsParameters = nlohmann::json::parse(std::get<std::string>(httpClient.requestFields[2].value));
     EXPECT_EQ(argsParameters.at("receiver_user_id"), 44);
     EXPECT_EQ(argsParameters.at("callback_query_id"), "args-callback");
+}
+
+TEST(Api, SendsEphemeralReplyWithOnlyCallbackQuery) {
+    HttpClientMock httpClient;
+    httpClient.response = R"({"ok":true,"result":{"message_id":1,"date":2,"chat":{"id":3,"type":"private"}}})";
+    TgBot::Api api("token", httpClient, "https://api.telegram.org");
+
+    TgBot::SendMessageArgs args;
+    args.text = "reply";
+    args.callbackQueryId = "callback";
+    ASSERT_TRUE(api.sendMessage(args));
+
+    ASSERT_EQ(httpClient.requestFields.size(), 2);
+    EXPECT_EQ(httpClient.requestFields[0].name, "text");
+    EXPECT_EQ(httpClient.requestFields[1].name, "ephemeral_message_parameters");
+    EXPECT_EQ(nlohmann::json::parse(std::get<std::string>(httpClient.requestFields[1].value)),
+              nlohmann::json({ { "callback_query_id", "callback" } }));
+
+    args.ephemeralMessageParameters = std::make_shared<TgBot::EphemeralMessageParameters>();
+    args.ephemeralMessageParameters->callbackQueryId = "explicit-callback";
+    args.ephemeralMessageParameters->replaceCallbackQueryMessage = true;
+    ASSERT_TRUE(api.sendMessage(args));
+    EXPECT_EQ(
+        nlohmann::json::parse(std::get<std::string>(httpClient.requestFields[1].value)),
+        nlohmann::json({ { "callback_query_id", "explicit-callback" }, { "replace_callback_query_message", true } }));
+}
+
+TEST(Api, SendsWidgetAndParsesResponse) {
+    HttpClientMock httpClient;
+    httpClient.response
+        = R"({"ok":true,"result":{"message_id":1,"date":2,"chat":{"id":3,"type":"private"},"widget":{"html":"<b>hello</b>"}}})";
+    TgBot::Api api("token", httpClient, "https://api.telegram.org");
+
+    TgBot::SendWidgetArgs args;
+    args.chatId = std::int64_t { 3 };
+    args.html = "<b>hello</b>";
+    const auto message = api.sendWidget(args);
+
+    ASSERT_TRUE(message);
+    ASSERT_TRUE(message->widget);
+    EXPECT_EQ(message->widget->html, args.html);
+    EXPECT_EQ(httpClient.requestUrl, "https://api.telegram.org/bottoken/sendWidget");
+    ASSERT_EQ(httpClient.requestFields.size(), 2);
+    EXPECT_EQ(httpClient.requestFields[0].name, "chat_id");
+    EXPECT_EQ(httpClient.requestFields[1].name, "html");
+    EXPECT_EQ(std::get<std::string>(httpClient.requestFields[1].value), args.html);
 }
 
 TEST(Api, PreservesLegacyDefaults) {

@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import re
 import textwrap
+from collections.abc import Iterable
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
@@ -56,6 +57,7 @@ class _FieldModel:
     description: tuple[str, ...]
     constant: _ConstantModel | None
     enum: _EnumModel | None
+    accepts_integer_string: bool
 
 
 @dataclass(frozen=True)
@@ -73,6 +75,7 @@ class _EnumModel:
 @dataclass(frozen=True)
 class _TypeModel:
     name: str
+    aliases: tuple[str, ...]
     description: tuple[str, ...]
     constants: tuple[_ConstantModel, ...]
     enums: tuple[_EnumModel, ...]
@@ -111,20 +114,83 @@ class _MethodModel:
 
 
 class _OpenApiGenerator:
-    def __init__(self, schema_path: Path, root: Path) -> None:
+    def __init__(self, schema_path: Path, root: Path, config: Schema = CONFIG) -> None:
         self._schema_path = schema_path
         self._root = root
+        self._config = config
 
     def generate(self) -> _GeneratedCount:
         document = yaml.safe_load(self._schema_path.read_text(encoding="utf-8"))
         components = {name: schema for name, schema in document["components"]["schemas"].items() if "x-tags" in schema}
-        types = _TypeModelBuilder(components).build()
-        methods = _MethodModelBuilder(document["paths"]).build()
+        types = _TypeModelBuilder(components, self._config.get("types", {})).build()
+        methods = _MethodModelBuilder(document["paths"], self._config.get("api", {})).build()
+        self._validate_config(components, types, methods)
 
         for path, content in self._outputs(types, methods).items():
             self._write(path, content)
 
         return _GeneratedCount(len(types), len(methods))
+
+    def _validate_config(
+        self,
+        components: dict[str, Schema],
+        types: tuple[_TypeModel, ...],
+        methods: tuple[_MethodModel, ...],
+    ) -> None:
+        self._validate_names("codegen", self._config, {"types", "api"})
+        type_config = self._config.get("types", {})
+        type_models = {model.name: model for model in types}
+        self._validate_names("types", type_config, components)
+        for name, config in type_config.items():
+            path = f"types.{name}"
+            self._validate_names(path, config, {"aliases", "fields", "extra_union_types", "append_union_types"})
+            fields = config.get("fields", {})
+            self._validate_names(f"{path}.fields", fields, components[name].get("properties", {}))
+            for field_name, field_config in fields.items():
+                self._validate_names(f"{path}.fields.{field_name}", field_config, {"type", "enum"})
+            self._validate_names(
+                f"{path}.append_union_types", config.get("append_union_types", ()), type_models[name].union_members
+            )
+
+        api_config = self._config.get("api", {})
+        method_models = {model.name: model for model in methods}
+        self._validate_names("api", api_config, method_models)
+        for name, config in api_config.items():
+            path = f"api.{name}"
+            self._validate_names(
+                path,
+                config,
+                {
+                    "args_order",
+                    "args",
+                    "return_type",
+                    "supports_attach_references",
+                    "legacy_ephemeral_parameters",
+                    "direct_exclude",
+                    "extra_args",
+                    "compatibility_overload_without",
+                },
+            )
+            method = method_models[name]
+            wire_names = {arg.wire_name for arg in method.args}
+            direct_names = {arg.wire_name for arg in method.direct_args}
+            # Legacy arguments and named attachments are also valid public arguments.
+            for key in ("args_order", "args"):
+                self._validate_names(f"{path}.{key}", config.get(key, ()), wire_names | direct_names)
+            self._validate_names(f"{path}.direct_exclude", config.get("direct_exclude", ()), wire_names)
+            self._validate_names(
+                f"{path}.compatibility_overload_without", config.get("compatibility_overload_without", ()), direct_names
+            )
+            for arg_name, arg_config in config.get("args", {}).items():
+                self._validate_names(
+                    f"{path}.args.{arg_name}", arg_config, {"type", "default", "declaration_required", "always_send"}
+                )
+
+    @staticmethod
+    def _validate_names(path: str, names: Iterable[str], allowed: Iterable[str]) -> None:
+        unknown = set(names) - set(allowed)
+        if unknown:
+            raise ValueError(f"Unknown entries in {path}: {', '.join(sorted(unknown))}")
 
     def _outputs(
         self,
@@ -152,29 +218,24 @@ class _OpenApiGenerator:
 
 class _CppTypeResolver:
     @classmethod
-    def api_type(cls, schema: Schema) -> str:
-        if name := cls.ref_name(schema):
-            return f"std::shared_ptr<{name}>"
-        if choices := schema.get("oneOf"):
-            return f"std::variant<{', '.join(cls.api_type(item) for item in choices)}>"
-        if schema.get("type") == "array":
-            return f"std::vector<{cls.api_type(schema['items'])}>"
-
-        return cls.type(schema)
+    def api_type(cls, schema: Schema, name: str = "", owner: str = "") -> str:
+        return cls.type(schema, name, owner)
 
     @classmethod
-    def type(cls, schema: Schema) -> str:
-        if name := cls.ref_name(schema):
-            return f"std::shared_ptr<{name}>"
+    def type(cls, schema: Schema, name: str = "", owner: str = "") -> str:
+        if ref := cls.ref_name(schema):
+            return f"std::shared_ptr<{ref}>"
         if choices := schema.get("oneOf"):
-            return f"std::variant<{', '.join(cls.type(item) for item in choices)}>"
+            return f"std::variant<{', '.join(cls.type(item, name, owner) for item in choices)}>"
         schema_type = schema.get("type")
         if schema_type == "array":
-            return f"std::vector<{cls.type(schema['items'])}>"
+            item_name = name[:-1] if name.endswith("_ids") else name
+            return f"std::vector<{cls.type(schema['items'], item_name, owner)}>"
         if schema_type == "boolean":
             return "bool"
         if schema_type == "integer":
-            return "std::int64_t" if schema.get("format") == "int64" else "std::int32_t"
+            cpp_type = "std::int64_t" if schema.get("format") == "int64" else "std::int32_t"
+            return cls.telegram_integer(name, cpp_type, owner)
         if schema_type == "number":
             return "double"
         if schema_type == "string":
@@ -183,20 +244,133 @@ class _CppTypeResolver:
         return "nlohmann::json"
 
     @staticmethod
-    def telegram_integer(name: str, cpp_type: str) -> str:
-        wide_id = name in {
-            "user_id",
-            "chat_id",
-            "direct_messages_topic_id",
-        } or name.endswith(("_user_id", "_chat_id"))
-        if wide_id and cpp_type == "std::int32_t":
+    def telegram_integer(name: str, cpp_type: str, owner: str = "") -> str:
+        # user_chat_id identifies a private chat with a user, so it is also nonnegative.
+        if (
+            name in {"user_id", "user_chat_id"}
+            or name.endswith("_user_id")
+            or (owner in {"User", "Community"} and name == "id")
+        ):
+            return "std::uint64_t"
+        if name == "direct_messages_topic_id" or (owner == "DirectMessagesTopic" and name == "topic_id"):
+            return "std::uint64_t"
+        if name == "chat_id" or name.endswith("_chat_id"):
             return "std::int64_t"
+        if name == "draft_id":
+            return "std::int64_t"
+        # request_id can be negative. A bare id depends on its owning type.
+        unsigned_id = (
+            name
+            in {
+                "message_id",
+                "message_thread_id",
+                "story_id",
+                "update_id",
+                "option_id",
+                "correct_option_id",
+                "accent_color_id",
+                "profile_accent_color_id",
+            }
+            or name.endswith(("_message_id", "_story_id", "_task_id"))
+            or (name == "id" and owner in {"Story", "ChecklistTask", "InputChecklistTask"})
+        )
+        if unsigned_id:
+            return cpp_type.replace("std::int", "std::uint")
+
+        # Payments allow 12-digit amounts; TON prices can reach 10^13 nanograms.
+        # Labeled prices include discounts, and Stars balances/refunds can be negative.
+        if name == "amount" and owner in {"LabeledPrice", "StarAmount", "AffiliateInfo"}:
+            return "std::int64_t"
+        if (name == "amount" and owner in {"StarTransaction", "SuggestedPostPrice", "SuggestedPostPaid"}) or name in {
+            "total_amount",
+            "max_tip_amount",
+            "suggested_tip_amounts",
+            "last_resale_amount",
+        }:
+            return "std::uint64_t"
+
+        # Identically named fields can have different domains. In particular,
+        # getUpdates supports negative offsets; other pagination offsets do not.
+        unsigned_context = (
+            (
+                name == "offset"
+                and owner in {"MessageEntity", "getStarTransactions", "getUserProfilePhotos", "getUserProfileAudios"}
+            )
+            or (name == "nanostar_amount" and owner == "StarTransaction")
+            or (name == "value" and owner == "Dice")
+            or (name == "date" and owner in {"Message", "InaccessibleMessage"})
+            or (name == "result" and owner == "getChatMemberCount")
+        )
+        # Nonnegative quantities and RGB/ARGB colors from the Bot API field
+        # descriptions. Unlisted integers (including general Unix timestamps,
+        # ratings and ordered-list labels) retain their signed schema type.
+        unsigned_quantity = name.endswith(
+            ("_count", "_width", "_height", "_duration", "_color", "_colors")
+        ) or name in {
+            "active_period",
+            "cache_time",
+            "closing_minute",
+            "color",
+            "colors",
+            "colspan",
+            "commission_per_mille",
+            "dark_theme_dimming",
+            "day",
+            "distance",
+            "duration",
+            "file_size",
+            "heading",
+            "height",
+            "intensity",
+            "length",
+            "limit",
+            "live_period",
+            "max_connections",
+            "max_quantity",
+            "member_limit",
+            "message_auto_delete_time",
+            "month",
+            "number",
+            "open_period",
+            "opening_minute",
+            "photo_size",
+            "position",
+            "proximity_alert_radius",
+            "quote_position",
+            "rarity_per_mille",
+            "retry_after",
+            "rotation_angle",
+            "rowspan",
+            "score",
+            "size",
+            "slow_mode_delay",
+            "start_timestamp",
+            "subscription_period",
+            "subscription_price",
+            "timeout",
+            "unique_gift_number",
+            "video_start_timestamp",
+            "width",
+            "year",
+            "zoom",
+        }
+        if unsigned_context or unsigned_quantity:
+            return cpp_type.replace("std::int", "std::uint")
 
         return cpp_type
 
     @classmethod
-    def field_type(cls, name: str, schema: Schema, required: bool) -> str:
-        result = cls.telegram_integer(name, cls.type(schema))
+    def field_type(cls, name: str, schema: Schema, required: bool, owner: str = "") -> str:
+        # These chat identifiers also accept @username, which tgbotspec currently loses.
+        if name == "chat_id" and owner in {
+            "BotCommandScopeChat",
+            "BotCommandScopeChatAdministrators",
+            "BotCommandScopeChatMember",
+            "ReplyParameters",
+        }:
+            result = "std::variant<std::int64_t, std::string>"
+        else:
+            result = cls.type(schema, name, owner)
         if required or result.startswith("std::shared_ptr<"):
             return result
 
@@ -248,6 +422,7 @@ class _TypeModelBuilder(_BaseModelBuilder):
             types.append(
                 _TypeModel(
                     name=name,
+                    aliases=tuple(self._type_config.get(name, {}).get("aliases", ())),
                     description=self._comment_lines(schema.get("description", ""), 92),
                     constants=self._constants(fields),
                     enums=tuple(field.enum for field in fields if field.enum),
@@ -263,7 +438,9 @@ class _TypeModelBuilder(_BaseModelBuilder):
     def _build_field(self, type_name: str, name: str, schema: Schema, required: bool) -> _FieldModel:
         enum = self._field_enum(type_name, name)
         field_config = self._type_config.get(type_name, {}).get("fields", {}).get(name, {})
-        cpp_type = field_config.get("type", enum.name if enum else _CppTypeResolver.field_type(name, schema, required))
+        cpp_type = field_config.get(
+            "type", enum.name if enum else _CppTypeResolver.field_type(name, schema, required, type_name)
+        )
         return _FieldModel(
             wire_name=name,
             cpp_name=self._cpp_name(name),
@@ -272,6 +449,7 @@ class _TypeModelBuilder(_BaseModelBuilder):
             description=self._comment_lines(schema.get("description", ""), 88),
             constant=self._field_constant(name, schema, required),
             enum=enum,
+            accepts_integer_string=type_name == "MessageGenerationStopped" and name == "draft_id",
         )
 
     def _field_enum(self, type_name: str, field_name: str) -> _EnumModel | None:
@@ -355,8 +533,14 @@ class _TypeModelBuilder(_BaseModelBuilder):
                 if line.strip() in self._names and line.strip() != name
             )
         )
-        # Append extra representations to preserve existing variant indices and defaults.
-        return members + tuple(self._type_config.get(name, {}).get("extra_union_types", ()))
+        config = self._type_config.get(name, {})
+        appended = tuple(member for member in config.get("append_union_types", ()) if member in members)
+        # Preserve existing variant indices when Telegram inserts a new union member.
+        return (
+            tuple(member for member in members if member not in appended)
+            + tuple(config.get("extra_union_types", ()))
+            + appended
+        )
 
 
 class _MethodModelBuilder(_BaseModelBuilder):
@@ -381,7 +565,7 @@ class _MethodModelBuilder(_BaseModelBuilder):
         required = set(request.get("required", [])) | set(multipart.get("required", []))
         binary = self._binary_args(operation)
         arg_names = self._ordered_arg_names(name, properties, required)
-        response_type = _CppTypeResolver.api_type(self._response_schema(operation))
+        response_type = _CppTypeResolver.api_type(self._response_schema(operation), "result", name)
         return_type = method_config.get("return_type", response_type)
         args = tuple(
             self._build_arg(
@@ -414,13 +598,16 @@ class _MethodModelBuilder(_BaseModelBuilder):
                     },
                 }
             )
-        direct_arg_names = self._ordered_arg_names(name, direct_properties, required & direct_properties.keys())
+        direct_required = required & direct_properties.keys()
+        if legacy_ephemeral_parameters:
+            direct_required = direct_required | {"chat_id"}
+        direct_arg_names = self._ordered_arg_names(name, direct_properties, direct_required)
         direct_args = tuple(
             self._build_arg(
                 name,
                 arg_name,
                 direct_properties[arg_name],
-                arg_name in required,
+                arg_name in direct_required,
                 arg_name in binary,
             )
             for arg_name in direct_arg_names
@@ -454,6 +641,8 @@ class _MethodModelBuilder(_BaseModelBuilder):
         declaration_required = required | {
             name for name in properties if method_config.get("args", {}).get(name, {}).get("declaration_required")
         }
+        if method_config.get("legacy_ephemeral_parameters"):
+            declaration_required |= {"chat_id"}
         required_names = sorted(
             (name for name in properties if name in declaration_required),
             key=lambda name: (
@@ -488,13 +677,20 @@ class _MethodModelBuilder(_BaseModelBuilder):
         if override:
             cpp_type = override
         elif name in {"chat_id", "from_chat_id"}:
-            cpp_type = "std::variant<std::int64_t, std::string>"
+            private_chat = name == "chat_id" and method_name in {
+                "getChatMenuButton",
+                "setChatMenuButton",
+                "sendMessageDraft",
+                "sendRichMessageDraft",
+            }
+            integer_type = "std::uint64_t" if private_chat else "std::int64_t"
+            cpp_type = f"std::variant<{integer_type}, std::string>"
         elif name == "certificate" and binary:
             cpp_type = "std::shared_ptr<InputFile>"
         elif binary:
             cpp_type = "std::variant<std::shared_ptr<InputFile>, std::string>"
         else:
-            cpp_type = _CppTypeResolver.telegram_integer(name, _CppTypeResolver.api_type(schema))
+            cpp_type = _CppTypeResolver.api_type(schema, name, method_name)
         return _ArgModel(
             wire_name=name,
             cpp_name=self._cpp_name(name),
@@ -518,7 +714,7 @@ class _MethodModelBuilder(_BaseModelBuilder):
             return default
         if cpp_type == "bool":
             return "false"
-        if cpp_type in {"std::int32_t", "std::int64_t", "double"}:
+        if cpp_type in {"std::int32_t", "std::int64_t", "std::uint32_t", "std::uint64_t", "double"}:
             return "0"
         if cpp_type == "std::string":
             return '""'
@@ -543,7 +739,7 @@ class _MethodModelBuilder(_BaseModelBuilder):
     def _return_description(return_type: str, response_type: str) -> str:
         if return_type == "bool":
             return "True on success."
-        if return_type == "std::int32_t":
+        if return_type in {"std::int32_t", "std::uint32_t", "std::int64_t", "std::uint64_t"}:
             return "The resulting integer."
         if return_type == "std::string":
             return "The resulting string."

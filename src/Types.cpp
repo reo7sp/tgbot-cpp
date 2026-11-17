@@ -66,6 +66,25 @@ void to_json(nlohmann::json& json, const Animation& value) {
     Json::writeOptionalField(json, "file_size", value.fileSize);
 }
 
+void from_json(const nlohmann::json& json, AreaPosition& value) {
+    Json::readRequiredField(json, "x_percentage", value.xPercentage);
+    Json::readRequiredField(json, "y_percentage", value.yPercentage);
+    Json::readRequiredField(json, "width_percentage", value.widthPercentage);
+    Json::readRequiredField(json, "height_percentage", value.heightPercentage);
+    Json::readRequiredField(json, "rotation_angle", value.rotationAngle);
+    Json::readRequiredField(json, "corner_radius_percentage", value.cornerRadiusPercentage);
+}
+
+void to_json(nlohmann::json& json, const AreaPosition& value) {
+    json = nlohmann::json::object();
+    Json::writeRequiredField(json, "x_percentage", value.xPercentage);
+    Json::writeRequiredField(json, "y_percentage", value.yPercentage);
+    Json::writeRequiredField(json, "width_percentage", value.widthPercentage);
+    Json::writeRequiredField(json, "height_percentage", value.heightPercentage);
+    Json::writeRequiredField(json, "rotation_angle", value.rotationAngle);
+    Json::writeRequiredField(json, "corner_radius_percentage", value.cornerRadiusPercentage);
+}
+
 void from_json(const nlohmann::json& json, Audio& value) {
     Json::readRequiredField(json, "file_id", value.fileId);
     Json::readRequiredField(json, "file_unique_id", value.fileUniqueId);
@@ -800,6 +819,8 @@ void from_json(const nlohmann::json& json, ChatFullInfo& value) {
     Json::readOptionalField(json, "paid_message_star_count", value.paidMessageStarCount);
     Json::readOptionalField(json, "guard_bot", value.guardBot);
     Json::readOptionalField(json, "community", value.community);
+    Json::readOptionalField(json, "ton_wallet_card", value.tonWalletCard);
+    Json::readOptionalField(json, "share_theme", value.shareTheme);
 }
 
 void to_json(nlohmann::json& json, const ChatFullInfo& value) {
@@ -857,6 +878,8 @@ void to_json(nlohmann::json& json, const ChatFullInfo& value) {
     Json::writeOptionalField(json, "paid_message_star_count", value.paidMessageStarCount);
     Json::writeOptionalField(json, "guard_bot", value.guardBot);
     Json::writeOptionalField(json, "community", value.community);
+    Json::writeOptionalField(json, "ton_wallet_card", value.tonWalletCard);
+    Json::writeOptionalField(json, "share_theme", value.shareTheme);
 }
 
 void from_json(const nlohmann::json& json, ChatInviteLink& value) {
@@ -1189,6 +1212,64 @@ void to_json(nlohmann::json& json, const ChatPhoto& value) {
     Json::writeRequiredField(json, "big_file_unique_id", value.bigFileUniqueId);
 }
 
+void from_json(const nlohmann::json& json, ChatShareTheme& value) {
+    Json::decode(json, value.value);
+}
+
+void to_json(nlohmann::json& json, const ChatShareTheme& value) {
+    json = Json::encode(value.value);
+}
+
+void from_json(const nlohmann::json& json, ChatShareThemeBackdrop& value) {
+    Json::readRequiredField(json, "id", value.id);
+    Json::readRequiredField(json, "name", value.name);
+    Json::readRequiredField(json, "colors", value.colors);
+}
+
+void to_json(nlohmann::json& json, const ChatShareThemeBackdrop& value) {
+    json = nlohmann::json::object();
+    Json::writeRequiredField(json, "id", value.id);
+    Json::writeRequiredField(json, "name", value.name);
+    Json::writeRequiredField(json, "colors", value.colors);
+}
+
+void from_json(const nlohmann::json& json, ChatShareThemeBackdrops& value) {
+    Json::readRequiredField(json, "backdrops", value.backdrops);
+}
+
+void to_json(nlohmann::json& json, const ChatShareThemeBackdrops& value) {
+    json = nlohmann::json::object();
+    Json::writeRequiredField(json, "backdrops", value.backdrops);
+}
+
+const std::string ChatShareThemeEmoji::TYPE = "emoji";
+
+void from_json(const nlohmann::json& json, ChatShareThemeEmoji& value) {
+    Json::readRequiredField(json, "type", value.type);
+    Json::readRequiredField(json, "emojis", value.emojis);
+    Json::readOptionalField(json, "background_backdrop_id", value.backgroundBackdropId);
+}
+
+void to_json(nlohmann::json& json, const ChatShareThemeEmoji& value) {
+    json = nlohmann::json::object();
+    Json::writeRequiredField(json, "type", value.type);
+    Json::writeRequiredField(json, "emojis", value.emojis);
+    Json::writeOptionalField(json, "background_backdrop_id", value.backgroundBackdropId);
+}
+
+const std::string ChatShareThemeUniqueGift::TYPE = "unique_gift";
+
+void from_json(const nlohmann::json& json, ChatShareThemeUniqueGift& value) {
+    Json::readRequiredField(json, "type", value.type);
+    Json::readRequiredField(json, "gift", value.gift);
+}
+
+void to_json(nlohmann::json& json, const ChatShareThemeUniqueGift& value) {
+    json = nlohmann::json::object();
+    Json::writeRequiredField(json, "type", value.type);
+    Json::writeRequiredField(json, "gift", value.gift);
+}
+
 void from_json(const nlohmann::json& json, ChatShared& value) {
     Json::readRequiredField(json, "request_id", value.requestId);
     Json::readRequiredField(json, "chat_id", value.chatId);
@@ -1404,6 +1485,40 @@ void to_json(nlohmann::json& json, const Document& value) {
     Json::writeOptionalField(json, "file_size", value.fileSize);
 }
 
+void from_json(const nlohmann::json& json, EmojiType& value) {
+    Json::decode(json, value.value);
+}
+
+void to_json(nlohmann::json& json, const EmojiType& value) {
+    json = Json::encode(value.value);
+}
+
+const std::string EmojiTypeCustomEmoji::TYPE = "custom_emoji";
+
+void from_json(const nlohmann::json& json, EmojiTypeCustomEmoji& value) {
+    Json::readRequiredField(json, "type", value.type);
+    Json::readRequiredField(json, "custom_emoji_id", value.customEmojiId);
+}
+
+void to_json(nlohmann::json& json, const EmojiTypeCustomEmoji& value) {
+    json = nlohmann::json::object();
+    Json::writeRequiredField(json, "type", value.type);
+    Json::writeRequiredField(json, "custom_emoji_id", value.customEmojiId);
+}
+
+const std::string EmojiTypeEmoji::TYPE = "emoji";
+
+void from_json(const nlohmann::json& json, EmojiTypeEmoji& value) {
+    Json::readRequiredField(json, "type", value.type);
+    Json::readRequiredField(json, "emoji", value.emoji);
+}
+
+void to_json(nlohmann::json& json, const EmojiTypeEmoji& value) {
+    json = nlohmann::json::object();
+    Json::writeRequiredField(json, "type", value.type);
+    Json::writeRequiredField(json, "emoji", value.emoji);
+}
+
 void from_json(const nlohmann::json& json, EncryptedCredentials& value) {
     Json::readRequiredField(json, "data", value.data);
     Json::readRequiredField(json, "hash", value.hash);
@@ -1445,14 +1560,14 @@ void to_json(nlohmann::json& json, const EncryptedPassportElement& value) {
 }
 
 void from_json(const nlohmann::json& json, EphemeralMessageParameters& value) {
-    Json::readRequiredField(json, "receiver_user_id", value.receiverUserId);
+    Json::readOptionalField(json, "receiver_user_id", value.receiverUserId);
     Json::readOptionalField(json, "callback_query_id", value.callbackQueryId);
     Json::readOptionalField(json, "replace_callback_query_message", value.replaceCallbackQueryMessage);
 }
 
 void to_json(nlohmann::json& json, const EphemeralMessageParameters& value) {
     json = nlohmann::json::object();
-    Json::writeRequiredField(json, "receiver_user_id", value.receiverUserId);
+    Json::writeOptionalField(json, "receiver_user_id", value.receiverUserId);
     Json::writeOptionalField(json, "callback_query_id", value.callbackQueryId);
     Json::writeOptionalField(json, "replace_callback_query_message", value.replaceCallbackQueryMessage);
 }
@@ -1473,6 +1588,7 @@ void from_json(const nlohmann::json& json, ExternalReplyInfo& value) {
     Json::readOptionalField(json, "video", value.video);
     Json::readOptionalField(json, "video_note", value.videoNote);
     Json::readOptionalField(json, "voice", value.voice);
+    Json::readOptionalField(json, "widget", value.widget);
     Json::readOptionalField(json, "has_media_spoiler", value.hasMediaSpoiler);
     Json::readOptionalField(json, "checklist", value.checklist);
     Json::readOptionalField(json, "contact", value.contact);
@@ -1503,6 +1619,7 @@ void to_json(nlohmann::json& json, const ExternalReplyInfo& value) {
     Json::writeOptionalField(json, "video", value.video);
     Json::writeOptionalField(json, "video_note", value.videoNote);
     Json::writeOptionalField(json, "voice", value.voice);
+    Json::writeOptionalField(json, "widget", value.widget);
     Json::writeOptionalField(json, "has_media_spoiler", value.hasMediaSpoiler);
     Json::writeOptionalField(json, "checklist", value.checklist);
     Json::writeOptionalField(json, "contact", value.contact);
@@ -3476,6 +3593,25 @@ void to_json(nlohmann::json& json, const InputRichMessageMedia& value) {
     Json::writeRequiredField(json, "media", value.media);
 }
 
+void from_json(const nlohmann::json& json, InputSharedWidgetMessageContent& value) {
+    Json::readRequiredField(json, "widget_id", value.widgetId);
+    Json::readOptionalField(json, "chat_data", value.chatData);
+    Json::readOptionalField(json, "caption", value.caption);
+    Json::readOptionalField(json, "parse_mode", value.parseMode);
+    Json::readOptionalField(json, "caption_entities", value.captionEntities);
+    Json::readOptionalField(json, "show_caption_above_media", value.showCaptionAboveMedia);
+}
+
+void to_json(nlohmann::json& json, const InputSharedWidgetMessageContent& value) {
+    json = nlohmann::json::object();
+    Json::writeRequiredField(json, "widget_id", value.widgetId);
+    Json::writeOptionalField(json, "chat_data", value.chatData);
+    Json::writeOptionalField(json, "caption", value.caption);
+    Json::writeOptionalField(json, "parse_mode", value.parseMode);
+    Json::writeOptionalField(json, "caption_entities", value.captionEntities);
+    Json::writeOptionalField(json, "show_caption_above_media", value.showCaptionAboveMedia);
+}
+
 void from_json(const nlohmann::json& json, InputSticker& value) {
     Json::readRequiredField(json, "sticker", value.sticker);
     Json::readRequiredField(json, "format", value.format);
@@ -3569,6 +3705,35 @@ void to_json(nlohmann::json& json, const InputVenueMessageContent& value) {
     Json::writeOptionalField(json, "foursquare_type", value.foursquareType);
     Json::writeOptionalField(json, "google_place_id", value.googlePlaceId);
     Json::writeOptionalField(json, "google_place_type", value.googlePlaceType);
+}
+
+void from_json(const nlohmann::json& json, InputWidgetMessageContent& value) {
+    Json::readRequiredField(json, "html", value.html);
+    Json::readOptionalField(json, "width", value.width);
+    Json::readOptionalField(json, "height", value.height);
+    Json::readOptionalField(json, "public_data", value.publicData);
+    Json::readOptionalField(json, "chat_data", value.chatData);
+    Json::readOptionalField(json, "caption", value.caption);
+    Json::readOptionalField(json, "parse_mode", value.parseMode);
+    Json::readOptionalField(json, "caption_entities", value.captionEntities);
+    Json::readOptionalField(json, "show_caption_above_media", value.showCaptionAboveMedia);
+    Json::readOptionalField(json, "allow_queries", value.allowQueries);
+    Json::readOptionalField(json, "is_shared", value.isShared);
+}
+
+void to_json(nlohmann::json& json, const InputWidgetMessageContent& value) {
+    json = nlohmann::json::object();
+    Json::writeRequiredField(json, "html", value.html);
+    Json::writeOptionalField(json, "width", value.width);
+    Json::writeOptionalField(json, "height", value.height);
+    Json::writeOptionalField(json, "public_data", value.publicData);
+    Json::writeOptionalField(json, "chat_data", value.chatData);
+    Json::writeOptionalField(json, "caption", value.caption);
+    Json::writeOptionalField(json, "parse_mode", value.parseMode);
+    Json::writeOptionalField(json, "caption_entities", value.captionEntities);
+    Json::writeOptionalField(json, "show_caption_above_media", value.showCaptionAboveMedia);
+    Json::writeOptionalField(json, "allow_queries", value.allowQueries);
+    Json::writeOptionalField(json, "is_shared", value.isShared);
 }
 
 void from_json(const nlohmann::json& json, Invoice& value) {
@@ -3935,6 +4100,7 @@ void from_json(const nlohmann::json& json, Message& value) {
     Json::readOptionalField(json, "video", value.video);
     Json::readOptionalField(json, "video_note", value.videoNote);
     Json::readOptionalField(json, "voice", value.voice);
+    Json::readOptionalField(json, "widget", value.widget);
     Json::readOptionalField(json, "caption", value.caption);
     Json::readOptionalField(json, "caption_entities", value.captionEntities);
     Json::readOptionalField(json, "show_caption_above_media", value.showCaptionAboveMedia);
@@ -3992,6 +4158,7 @@ void from_json(const nlohmann::json& json, Message& value) {
     Json::readOptionalField(json, "giveaway_completed", value.giveawayCompleted);
     Json::readOptionalField(json, "managed_bot_created", value.managedBotCreated);
     Json::readOptionalField(json, "paid_message_price_changed", value.paidMessagePriceChanged);
+    Json::readOptionalField(json, "paid_messages_waived", value.paidMessagesWaived);
     Json::readOptionalField(json, "poll_option_added", value.pollOptionAdded);
     Json::readOptionalField(json, "poll_option_deleted", value.pollOptionDeleted);
     Json::readOptionalField(json, "suggested_post_approved", value.suggestedPostApproved);
@@ -3999,6 +4166,7 @@ void from_json(const nlohmann::json& json, Message& value) {
     Json::readOptionalField(json, "suggested_post_declined", value.suggestedPostDeclined);
     Json::readOptionalField(json, "suggested_post_paid", value.suggestedPostPaid);
     Json::readOptionalField(json, "suggested_post_refunded", value.suggestedPostRefunded);
+    Json::readOptionalField(json, "ton_wallet_transfer", value.tonWalletTransfer);
     Json::readOptionalField(json, "video_chat_scheduled", value.videoChatScheduled);
     Json::readOptionalField(json, "video_chat_started", value.videoChatStarted);
     Json::readOptionalField(json, "video_chat_ended", value.videoChatEnded);
@@ -4059,6 +4227,7 @@ void to_json(nlohmann::json& json, const Message& value) {
     Json::writeOptionalField(json, "video", value.video);
     Json::writeOptionalField(json, "video_note", value.videoNote);
     Json::writeOptionalField(json, "voice", value.voice);
+    Json::writeOptionalField(json, "widget", value.widget);
     Json::writeOptionalField(json, "caption", value.caption);
     Json::writeOptionalField(json, "caption_entities", value.captionEntities);
     Json::writeOptionalField(json, "show_caption_above_media", value.showCaptionAboveMedia);
@@ -4116,6 +4285,7 @@ void to_json(nlohmann::json& json, const Message& value) {
     Json::writeOptionalField(json, "giveaway_completed", value.giveawayCompleted);
     Json::writeOptionalField(json, "managed_bot_created", value.managedBotCreated);
     Json::writeOptionalField(json, "paid_message_price_changed", value.paidMessagePriceChanged);
+    Json::writeOptionalField(json, "paid_messages_waived", value.paidMessagesWaived);
     Json::writeOptionalField(json, "poll_option_added", value.pollOptionAdded);
     Json::writeOptionalField(json, "poll_option_deleted", value.pollOptionDeleted);
     Json::writeOptionalField(json, "suggested_post_approved", value.suggestedPostApproved);
@@ -4123,6 +4293,7 @@ void to_json(nlohmann::json& json, const Message& value) {
     Json::writeOptionalField(json, "suggested_post_declined", value.suggestedPostDeclined);
     Json::writeOptionalField(json, "suggested_post_paid", value.suggestedPostPaid);
     Json::writeOptionalField(json, "suggested_post_refunded", value.suggestedPostRefunded);
+    Json::writeOptionalField(json, "ton_wallet_transfer", value.tonWalletTransfer);
     Json::writeOptionalField(json, "video_chat_scheduled", value.videoChatScheduled);
     Json::writeOptionalField(json, "video_chat_started", value.videoChatStarted);
     Json::writeOptionalField(json, "video_chat_ended", value.videoChatEnded);
@@ -4222,6 +4393,14 @@ void from_json(const nlohmann::json& json, MessageEntity::Type& value) {
         value = MessageEntity::Type::DateTime;
         return;
     }
+    if (text == "ton_address") {
+        value = MessageEntity::Type::TonAddress;
+        return;
+    }
+    if (text == "bank_card_number") {
+        value = MessageEntity::Type::BankCardNumber;
+        return;
+    }
     throw std::invalid_argument("Unknown MessageEntity.Type value: " + text);
 }
 
@@ -4287,6 +4466,12 @@ void to_json(nlohmann::json& json, const MessageEntity::Type& value) {
     case MessageEntity::Type::DateTime:
         json = "date_time";
         return;
+    case MessageEntity::Type::TonAddress:
+        json = "ton_address";
+        return;
+    case MessageEntity::Type::BankCardNumber:
+        json = "bank_card_number";
+        return;
     }
     throw std::invalid_argument("Unknown MessageEntity.Type value");
 }
@@ -4319,7 +4504,7 @@ void to_json(nlohmann::json& json, const MessageEntity& value) {
 void from_json(const nlohmann::json& json, MessageGenerationStopped& value) {
     Json::readRequiredField(json, "chat", value.chat);
     Json::readOptionalField(json, "message_thread_id", value.messageThreadId);
-    Json::readRequiredField(json, "draft_id", value.draftId);
+    Json::decodeInt64(json.at("draft_id"), value.draftId);
 }
 
 void to_json(nlohmann::json& json, const MessageGenerationStopped& value) {
@@ -4643,6 +4828,13 @@ void from_json(const nlohmann::json& json, PaidMessagePriceChanged& value) {
 void to_json(nlohmann::json& json, const PaidMessagePriceChanged& value) {
     json = nlohmann::json::object();
     Json::writeRequiredField(json, "paid_message_star_count", value.paidMessageStarCount);
+}
+
+void from_json(const nlohmann::json& json, PaidMessagesWaived& value) {
+}
+
+void to_json(nlohmann::json& json, const PaidMessagesWaived& value) {
+    json = nlohmann::json::object();
 }
 
 void from_json(const nlohmann::json& json, PassportData& value) {
@@ -5164,6 +5356,7 @@ void from_json(const nlohmann::json& json, ReplyParameters& value) {
     Json::readOptionalField(json, "quote", value.quote);
     Json::readOptionalField(json, "quote_parse_mode", value.quoteParseMode);
     Json::readOptionalField(json, "quote_entities", value.quoteEntities);
+    Json::readOptionalField(json, "quote_rich_texts", value.quoteRichTexts);
     Json::readOptionalField(json, "quote_position", value.quotePosition);
     Json::readOptionalField(json, "checklist_task_id", value.checklistTaskId);
     Json::readOptionalField(json, "poll_option_id", value.pollOptionId);
@@ -5178,6 +5371,7 @@ void to_json(nlohmann::json& json, const ReplyParameters& value) {
     Json::writeOptionalField(json, "quote", value.quote);
     Json::writeOptionalField(json, "quote_parse_mode", value.quoteParseMode);
     Json::writeOptionalField(json, "quote_entities", value.quoteEntities);
+    Json::writeOptionalField(json, "quote_rich_texts", value.quoteRichTexts);
     Json::writeOptionalField(json, "quote_position", value.quotePosition);
     Json::writeOptionalField(json, "checklist_task_id", value.checklistTaskId);
     Json::writeOptionalField(json, "poll_option_id", value.pollOptionId);
@@ -6048,6 +6242,21 @@ void to_json(nlohmann::json& json, const RichTextTextMention& value) {
     Json::writeRequiredField(json, "user", value.user);
 }
 
+const std::string RichTextTonAddress::TYPE = "ton_address";
+
+void from_json(const nlohmann::json& json, RichTextTonAddress& value) {
+    Json::readRequiredField(json, "type", value.type);
+    Json::readRequiredField(json, "text", value.text);
+    Json::readRequiredField(json, "address", value.address);
+}
+
+void to_json(nlohmann::json& json, const RichTextTonAddress& value) {
+    json = nlohmann::json::object();
+    Json::writeRequiredField(json, "type", value.type);
+    Json::writeRequiredField(json, "text", value.text);
+    Json::writeRequiredField(json, "address", value.address);
+}
+
 const std::string RichTextUnderline::TYPE = "underline";
 
 void from_json(const nlohmann::json& json, RichTextUnderline& value) {
@@ -6109,6 +6318,23 @@ void to_json(nlohmann::json& json, const SharedUser& value) {
     Json::writeOptionalField(json, "last_name", value.lastName);
     Json::writeOptionalField(json, "username", value.username);
     Json::writeOptionalField(json, "photo", value.photo);
+}
+
+void from_json(const nlohmann::json& json, SharedWidgetQuery& value) {
+    Json::readRequiredField(json, "id", value.id);
+    Json::readRequiredField(json, "from", value.from);
+    Json::readRequiredField(json, "type", value.type);
+    Json::readRequiredField(json, "data", value.data);
+    Json::readRequiredField(json, "widget_id", value.widgetId);
+}
+
+void to_json(nlohmann::json& json, const SharedWidgetQuery& value) {
+    json = nlohmann::json::object();
+    Json::writeRequiredField(json, "id", value.id);
+    Json::writeRequiredField(json, "from", value.from);
+    Json::writeRequiredField(json, "type", value.type);
+    Json::writeRequiredField(json, "data", value.data);
+    Json::writeRequiredField(json, "widget_id", value.widgetId);
 }
 
 void from_json(const nlohmann::json& json, ShippingAddress& value) {
@@ -6335,25 +6561,6 @@ void to_json(nlohmann::json& json, const StoryArea& value) {
     json = nlohmann::json::object();
     Json::writeRequiredField(json, "position", value.position);
     Json::writeRequiredField(json, "type", value.type);
-}
-
-void from_json(const nlohmann::json& json, StoryAreaPosition& value) {
-    Json::readRequiredField(json, "x_percentage", value.xPercentage);
-    Json::readRequiredField(json, "y_percentage", value.yPercentage);
-    Json::readRequiredField(json, "width_percentage", value.widthPercentage);
-    Json::readRequiredField(json, "height_percentage", value.heightPercentage);
-    Json::readRequiredField(json, "rotation_angle", value.rotationAngle);
-    Json::readRequiredField(json, "corner_radius_percentage", value.cornerRadiusPercentage);
-}
-
-void to_json(nlohmann::json& json, const StoryAreaPosition& value) {
-    json = nlohmann::json::object();
-    Json::writeRequiredField(json, "x_percentage", value.xPercentage);
-    Json::writeRequiredField(json, "y_percentage", value.yPercentage);
-    Json::writeRequiredField(json, "width_percentage", value.widthPercentage);
-    Json::writeRequiredField(json, "height_percentage", value.heightPercentage);
-    Json::writeRequiredField(json, "rotation_angle", value.rotationAngle);
-    Json::writeRequiredField(json, "corner_radius_percentage", value.cornerRadiusPercentage);
 }
 
 void from_json(const nlohmann::json& json, StoryAreaType& value) {
@@ -6584,6 +6791,7 @@ void to_json(nlohmann::json& json, const SwitchInlineQueryChosenChat& value) {
 void from_json(const nlohmann::json& json, TextQuote& value) {
     Json::readRequiredField(json, "text", value.text);
     Json::readOptionalField(json, "entities", value.entities);
+    Json::readOptionalField(json, "rich_texts", value.richTexts);
     Json::readRequiredField(json, "position", value.position);
     Json::readOptionalField(json, "is_manual", value.isManual);
 }
@@ -6592,8 +6800,82 @@ void to_json(nlohmann::json& json, const TextQuote& value) {
     json = nlohmann::json::object();
     Json::writeRequiredField(json, "text", value.text);
     Json::writeOptionalField(json, "entities", value.entities);
+    Json::writeOptionalField(json, "rich_texts", value.richTexts);
     Json::writeRequiredField(json, "position", value.position);
     Json::writeOptionalField(json, "is_manual", value.isManual);
+}
+
+void from_json(const nlohmann::json& json, TonNft& value) {
+    Json::readRequiredField(json, "address", value.address);
+    Json::readOptionalField(json, "collection_address", value.collectionAddress);
+    Json::readRequiredField(json, "index", value.index);
+    Json::readRequiredField(json, "name", value.name);
+    Json::readRequiredField(json, "description", value.description);
+    Json::readOptionalField(json, "attributes", value.attributes);
+    Json::readOptionalField(json, "gift", value.gift);
+}
+
+void to_json(nlohmann::json& json, const TonNft& value) {
+    json = nlohmann::json::object();
+    Json::writeRequiredField(json, "address", value.address);
+    Json::writeOptionalField(json, "collection_address", value.collectionAddress);
+    Json::writeRequiredField(json, "index", value.index);
+    Json::writeRequiredField(json, "name", value.name);
+    Json::writeRequiredField(json, "description", value.description);
+    Json::writeOptionalField(json, "attributes", value.attributes);
+    Json::writeOptionalField(json, "gift", value.gift);
+}
+
+void from_json(const nlohmann::json& json, TonNftAttribute& value) {
+    Json::readRequiredField(json, "trait_type", value.traitType);
+    Json::readRequiredField(json, "value", value.value);
+}
+
+void to_json(nlohmann::json& json, const TonNftAttribute& value) {
+    json = nlohmann::json::object();
+    Json::writeRequiredField(json, "trait_type", value.traitType);
+    Json::writeRequiredField(json, "value", value.value);
+}
+
+void from_json(const nlohmann::json& json, TonWalletCard& value) {
+    Json::readRequiredField(json, "address", value.address);
+    Json::readRequiredField(json, "amount", value.amount);
+    Json::readRequiredField(json, "stickers", value.stickers);
+    Json::readOptionalField(json, "background_nft_address", value.backgroundNftAddress);
+}
+
+void to_json(nlohmann::json& json, const TonWalletCard& value) {
+    json = nlohmann::json::object();
+    Json::writeRequiredField(json, "address", value.address);
+    Json::writeRequiredField(json, "amount", value.amount);
+    Json::writeRequiredField(json, "stickers", value.stickers);
+    Json::writeOptionalField(json, "background_nft_address", value.backgroundNftAddress);
+}
+
+void from_json(const nlohmann::json& json, TonWalletCardSticker& value) {
+    Json::readRequiredField(json, "position", value.position);
+    Json::readRequiredField(json, "nft", value.nft);
+}
+
+void to_json(nlohmann::json& json, const TonWalletCardSticker& value) {
+    json = nlohmann::json::object();
+    Json::writeRequiredField(json, "position", value.position);
+    Json::writeRequiredField(json, "nft", value.nft);
+}
+
+void from_json(const nlohmann::json& json, TonWalletTransfer& value) {
+    Json::readRequiredField(json, "transaction_id", value.transactionId);
+    Json::readRequiredField(json, "peer_address", value.peerAddress);
+    Json::readRequiredField(json, "amount", value.amount);
+    Json::readOptionalField(json, "comment", value.comment);
+}
+
+void to_json(nlohmann::json& json, const TonWalletTransfer& value) {
+    json = nlohmann::json::object();
+    Json::writeRequiredField(json, "transaction_id", value.transactionId);
+    Json::writeRequiredField(json, "peer_address", value.peerAddress);
+    Json::writeRequiredField(json, "amount", value.amount);
+    Json::writeOptionalField(json, "comment", value.comment);
 }
 
 void from_json(const nlohmann::json& json, TransactionPartner& value) {
@@ -6860,6 +7142,8 @@ void from_json(const nlohmann::json& json, Update& value) {
     Json::readOptionalField(json, "inline_query", value.inlineQuery);
     Json::readOptionalField(json, "chosen_inline_result", value.chosenInlineResult);
     Json::readOptionalField(json, "callback_query", value.callbackQuery);
+    Json::readOptionalField(json, "widget_query", value.widgetQuery);
+    Json::readOptionalField(json, "shared_widget_query", value.sharedWidgetQuery);
     Json::readOptionalField(json, "shipping_query", value.shippingQuery);
     Json::readOptionalField(json, "pre_checkout_query", value.preCheckoutQuery);
     Json::readOptionalField(json, "purchased_paid_media", value.purchasedPaidMedia);
@@ -6892,6 +7176,8 @@ void to_json(nlohmann::json& json, const Update& value) {
     Json::writeOptionalField(json, "inline_query", value.inlineQuery);
     Json::writeOptionalField(json, "chosen_inline_result", value.chosenInlineResult);
     Json::writeOptionalField(json, "callback_query", value.callbackQuery);
+    Json::writeOptionalField(json, "widget_query", value.widgetQuery);
+    Json::writeOptionalField(json, "shared_widget_query", value.sharedWidgetQuery);
     Json::writeOptionalField(json, "shipping_query", value.shippingQuery);
     Json::writeOptionalField(json, "pre_checkout_query", value.preCheckoutQuery);
     Json::writeOptionalField(json, "purchased_paid_media", value.purchasedPaidMedia);
@@ -7191,6 +7477,118 @@ void to_json(nlohmann::json& json, const WebhookInfo& value) {
     Json::writeOptionalField(json, "last_synchronization_error_date", value.lastSynchronizationErrorDate);
     Json::writeOptionalField(json, "max_connections", value.maxConnections);
     Json::writeOptionalField(json, "allowed_updates", value.allowedUpdates);
+}
+
+void from_json(const nlohmann::json& json, Widget& value) {
+    Json::readOptionalField(json, "id", value.id);
+    Json::readOptionalField(json, "width", value.width);
+    Json::readOptionalField(json, "height", value.height);
+    Json::readRequiredField(json, "html", value.html);
+    Json::readOptionalField(json, "public_data", value.publicData);
+    Json::readOptionalField(json, "chat_data", value.chatData);
+}
+
+void to_json(nlohmann::json& json, const Widget& value) {
+    json = nlohmann::json::object();
+    Json::writeOptionalField(json, "id", value.id);
+    Json::writeOptionalField(json, "width", value.width);
+    Json::writeOptionalField(json, "height", value.height);
+    Json::writeRequiredField(json, "html", value.html);
+    Json::writeOptionalField(json, "public_data", value.publicData);
+    Json::writeOptionalField(json, "chat_data", value.chatData);
+}
+
+void from_json(const nlohmann::json& json, WidgetQuery& value) {
+    Json::readRequiredField(json, "id", value.id);
+    Json::readRequiredField(json, "from", value.from);
+    Json::readOptionalField(json, "chat", value.chat);
+    Json::readOptionalField(json, "message_id", value.messageId);
+    Json::readOptionalField(json, "inline_message_id", value.inlineMessageId);
+    Json::readRequiredField(json, "chat_instance", value.chatInstance);
+    Json::readOptionalField(json, "chat_type", value.chatType);
+    Json::readRequiredField(json, "type", value.type);
+    Json::readRequiredField(json, "data", value.data);
+    Json::readOptionalField(json, "widget_id", value.widgetId);
+}
+
+void to_json(nlohmann::json& json, const WidgetQuery& value) {
+    json = nlohmann::json::object();
+    Json::writeRequiredField(json, "id", value.id);
+    Json::writeRequiredField(json, "from", value.from);
+    Json::writeOptionalField(json, "chat", value.chat);
+    Json::writeOptionalField(json, "message_id", value.messageId);
+    Json::writeOptionalField(json, "inline_message_id", value.inlineMessageId);
+    Json::writeRequiredField(json, "chat_instance", value.chatInstance);
+    Json::writeOptionalField(json, "chat_type", value.chatType);
+    Json::writeRequiredField(json, "type", value.type);
+    Json::writeRequiredField(json, "data", value.data);
+    Json::writeOptionalField(json, "widget_id", value.widgetId);
+}
+
+void from_json(const nlohmann::json& json, WidgetQueryType& value) {
+    Json::decode(json, value.value);
+}
+
+void to_json(nlohmann::json& json, const WidgetQueryType& value) {
+    json = Json::encode(value.value);
+}
+
+const std::string WidgetQueryTypeData::TYPE = "data";
+
+void from_json(const nlohmann::json& json, WidgetQueryTypeData& value) {
+    Json::readRequiredField(json, "type", value.type);
+    Json::readOptionalField(json, "wallet_card", value.walletCard);
+}
+
+void to_json(nlohmann::json& json, const WidgetQueryTypeData& value) {
+    json = nlohmann::json::object();
+    Json::writeRequiredField(json, "type", value.type);
+    Json::writeOptionalField(json, "wallet_card", value.walletCard);
+}
+
+const std::string WidgetQueryTypeSentTransaction::TYPE = "sent_transaction";
+
+void from_json(const nlohmann::json& json, WidgetQueryTypeSentTransaction& value) {
+    Json::readRequiredField(json, "type", value.type);
+    Json::readRequiredField(json, "wallet", value.wallet);
+    Json::readRequiredField(json, "msg_hash", value.msgHash);
+}
+
+void to_json(nlohmann::json& json, const WidgetQueryTypeSentTransaction& value) {
+    json = nlohmann::json::object();
+    Json::writeRequiredField(json, "type", value.type);
+    Json::writeRequiredField(json, "wallet", value.wallet);
+    Json::writeRequiredField(json, "msg_hash", value.msgHash);
+}
+
+const std::string WidgetQueryTypeSignData::TYPE = "sign_data";
+
+void from_json(const nlohmann::json& json, WidgetQueryTypeSignData& value) {
+    Json::readRequiredField(json, "type", value.type);
+    Json::readRequiredField(json, "wallet", value.wallet);
+    Json::readRequiredField(json, "sign_data", value.signData);
+}
+
+void to_json(nlohmann::json& json, const WidgetQueryTypeSignData& value) {
+    json = nlohmann::json::object();
+    Json::writeRequiredField(json, "type", value.type);
+    Json::writeRequiredField(json, "wallet", value.wallet);
+    Json::writeRequiredField(json, "sign_data", value.signData);
+}
+
+void from_json(const nlohmann::json& json, WidgetQueryWallet& value) {
+    Json::readRequiredField(json, "address", value.address);
+    Json::readRequiredField(json, "amount", value.amount);
+    Json::readOptionalField(json, "public_key", value.publicKey);
+    Json::readOptionalField(json, "state_init", value.stateInit);
+}
+
+void to_json(nlohmann::json& json, const WidgetQueryWallet& value) {
+    json = nlohmann::json::object();
+    Json::writeRequiredField(json, "address", value.address);
+    Json::writeRequiredField(json, "amount", value.amount);
+    Json::writeOptionalField(json, "public_key", value.publicKey);
+    Json::writeOptionalField(json, "state_init", value.stateInit);
 }
 
 void from_json(const nlohmann::json& json, WriteAccessAllowed& value) {
