@@ -2,11 +2,16 @@
 
 #include <nlohmann/json.hpp>
 
+#include <charconv>
 #include <cstddef>
+#include <cstdint>
+#include <limits>
 #include <memory>
 #include <optional>
 #include <stdexcept>
 #include <string>
+#include <system_error>
+#include <type_traits>
 #include <utility>
 #include <variant>
 #include <vector>
@@ -14,6 +19,23 @@
 /** @cond */
 
 namespace TgBot::Json {
+
+// Some Telegram integer fields, such as draft_id, can arrive as decimal strings.
+inline void decodeInt64(const nlohmann::json& json, std::int64_t& value) {
+    if (json.is_string()) {
+        const auto& text = json.get_ref<const std::string&>();
+        const auto [end, error] = std::from_chars(text.data(), text.data() + text.size(), value);
+        if (error == std::errc { } && end == text.data() + text.size()) {
+            return;
+        }
+    } else if (json.is_number_integer()) {
+        if (!json.is_number_unsigned() || json.get<std::uint64_t>() <= std::numeric_limits<std::int64_t>::max()) {
+            value = json.get<std::int64_t>();
+            return;
+        }
+    }
+    throw std::invalid_argument("Telegram value is not a signed 64-bit integer");
+}
 
 template<typename T>
 void decode(const nlohmann::json& json, T& value);
@@ -50,6 +72,20 @@ bool matchesDiscriminator(const nlohmann::json& json) {
 
 template<typename T>
 void decode(const nlohmann::json& json, T& value) {
+    if constexpr (std::is_unsigned_v<T> && !std::is_same_v<T, bool>) {
+        if (!json.is_number_integer() || (!json.is_number_unsigned() && json.get<std::int64_t>() < 0)
+            || json.get<std::uint64_t>() > std::numeric_limits<T>::max()) {
+            throw std::invalid_argument("Telegram unsigned integer is out of range or is not an integer");
+        }
+    } else if constexpr (std::is_integral_v<T> && std::is_signed_v<T>) {
+        if (!json.is_number_integer()
+            || (json.is_number_unsigned()
+                    ? json.get<std::uint64_t>() > static_cast<std::uint64_t>(std::numeric_limits<T>::max())
+                    : json.get<std::int64_t>() < std::numeric_limits<T>::min()
+                        || json.get<std::int64_t>() > std::numeric_limits<T>::max())) {
+            throw std::invalid_argument("Telegram signed integer is out of range or is not an integer");
+        }
+    }
     json.get_to(value);
 }
 

@@ -137,7 +137,7 @@ Parameter<false, T> optional(std::string_view name, const T& value) {
 }
 
 template<typename T>
-ParameterWithDefault<T> optional(std::string_view name, const T& value, T defaultValue) {
+ParameterWithDefault<T> optional(std::string_view name, const T& value, std::type_identity_t<T> defaultValue) {
     return { name, value, std::move(defaultValue) };
 }
 

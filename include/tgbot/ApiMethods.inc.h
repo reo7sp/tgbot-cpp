@@ -16,7 +16,7 @@
      *
      * @return True on success.
      */
-    bool addStickerToSet(std::int64_t userId,
+    bool addStickerToSet(std::uint64_t userId,
                          std::string_view name,
                          std::shared_ptr<InputSticker> sticker,
                          const std::vector<InputFileAttachment>& attachments = { }) const;
@@ -56,7 +56,7 @@
                              std::string_view text = "",
                              bool showAlert = false,
                              std::string_view url = "",
-                             std::int32_t cacheTime = 0) const;
+                             std::uint32_t cacheTime = 0) const;
 
     /**
      * @brief Use this method to send answers to callback queries sent from inline keyboards. The
@@ -134,7 +134,7 @@
      */
     bool answerInlineQuery(std::string_view inlineQueryId,
                            const std::vector<std::shared_ptr<InlineQueryResult>>& results,
-                           std::int32_t cacheTime = 300,
+                           std::uint32_t cacheTime = 300,
                            bool isPersonal = false,
                            std::string_view nextOffset = "",
                            std::shared_ptr<InlineQueryResultsButton> button = nullptr) const;
@@ -242,6 +242,31 @@
     std::shared_ptr<SentWebAppMessage> answerWebAppQuery(const AnswerWebAppQueryArgs& args) const;
 
     /**
+     * @brief Use this method to send an answer to a query from a widget. The query must be answered
+     * within 15 seconds. The answer is received only by the widget that sent the query and
+     * doesn't change data of the widget; use editMessageWidgetData or editSharedWidgetData to
+     * change it. On success, True is returned.
+     *
+     * @param widgetQueryId Unique identifier for the query to be answered
+     * @param data Data to be returned to the widget, 0-1024 bytes
+     *
+     * @return True on success.
+     */
+    bool answerWidgetQuery(std::string_view widgetQueryId, std::string_view data = "") const;
+
+    /**
+     * @brief Use this method to send an answer to a query from a widget. The query must be answered
+     * within 15 seconds. The answer is received only by the widget that sent the query and
+     * doesn't change data of the widget; use editMessageWidgetData or editSharedWidgetData to
+     * change it. On success, True is returned.
+     *
+     * @param args Method arguments.
+     *
+     * @return True on success.
+     */
+    bool answerWidgetQuery(const AnswerWidgetQueryArgs& args) const;
+
+    /**
      * @brief Use this method to approve a chat join request. The bot must be an administrator in the
      * chat for this to work and must have the can_invite_users administrator right. Returns
      * True on success.
@@ -252,7 +277,7 @@
      *
      * @return True on success.
      */
-    bool approveChatJoinRequest(std::variant<std::int64_t, std::string> chatId, std::int64_t userId) const;
+    bool approveChatJoinRequest(std::variant<std::int64_t, std::string> chatId, std::uint64_t userId) const;
 
     /**
      * @brief Use this method to approve a chat join request. The bot must be an administrator in the
@@ -280,7 +305,7 @@
      * @return True on success.
      */
     bool approveSuggestedPost(std::variant<std::int64_t, std::string> chatId,
-                              std::int32_t messageId,
+                              std::uint32_t messageId,
                               std::int32_t sendDate = 0) const;
 
     /**
@@ -316,7 +341,7 @@
      * @return True on success.
      */
     bool banChatMember(std::variant<std::int64_t, std::string> chatId,
-                       std::int64_t userId,
+                       std::uint64_t userId,
                        std::int32_t untilDate = 0,
                        bool revokeMessages = true) const;
 
@@ -384,7 +409,7 @@
      *
      * @return True on success.
      */
-    bool closeForumTopic(std::variant<std::int64_t, std::string> chatId, std::int32_t messageThreadId) const;
+    bool closeForumTopic(std::variant<std::int64_t, std::string> chatId, std::uint32_t messageThreadId) const;
 
     /**
      * @brief Use this method to close an open topic in a forum supergroup chat. The bot must be an
@@ -444,16 +469,16 @@
 
     /**
      * @brief Use this method to copy messages of any kind. Service messages, paid media messages,
-     * giveaway messages, giveaway winners messages, and invoice messages can't be copied. A
-     * quiz poll can be copied only if the value of the field correct_option_ids is known to
-     * the bot. The method is analogous to the method forwardMessage, but the copied message
-     * doesn't have a link to the original message. Returns the MessageId of the sent message
-     * on success.
+     * giveaway messages, giveaway winners messages, invoice messages, and widget messages
+     * can't be copied. A quiz poll can be copied only if the value of the field
+     * correct_option_ids is known to the bot. The method is analogous to the method
+     * forwardMessage, but the copied message doesn't have a link to the original message.
+     * Returns the MessageId of the sent message on success.
      *
      * @param chatId Unique identifier for the target chat or username of the target bot,
-     * supergroup or channel in the format @username
+     * supergroup, or channel in the format @username
      * @param fromChatId Unique identifier for the chat where the original message was sent (or
-     * username of the target bot, supergroup or channel in the format
+     * username of the target bot, supergroup, or channel in the format
      * @username)
      * @param messageId Message identifier in the chat specified in from_chat_id
      * @param caption New caption for media, 0-1024 characters after entities parsing. If not
@@ -491,7 +516,7 @@
      */
     std::shared_ptr<MessageId> copyMessage(std::variant<std::int64_t, std::string> chatId,
                                            std::variant<std::int64_t, std::string> fromChatId,
-                                           std::int32_t messageId,
+                                           std::uint32_t messageId,
                                            std::string_view caption = "",
                                            std::string_view parseMode = "",
                                            const std::vector<std::shared_ptr<MessageEntity>>& captionEntities = { },
@@ -502,22 +527,22 @@
                                                         std::shared_ptr<ReplyKeyboardRemove>,
                                                         std::shared_ptr<ForceReply>> replyMarkup = { },
                                            bool protectContent = false,
-                                           std::int32_t messageThreadId = 0,
+                                           std::uint32_t messageThreadId = 0,
                                            bool allowPaidBroadcast = false,
-                                           std::int64_t directMessagesTopicId = 0,
+                                           std::uint64_t directMessagesTopicId = 0,
                                            std::string_view messageEffectId = "",
                                            bool showCaptionAboveMedia = false,
                                            std::shared_ptr<SuggestedPostParameters> suggestedPostParameters
                                            = nullptr,
-                                           std::int32_t videoStartTimestamp = 0) const;
+                                           std::uint32_t videoStartTimestamp = 0) const;
 
     /**
      * @brief Use this method to copy messages of any kind. Service messages, paid media messages,
-     * giveaway messages, giveaway winners messages, and invoice messages can't be copied. A
-     * quiz poll can be copied only if the value of the field correct_option_ids is known to
-     * the bot. The method is analogous to the method forwardMessage, but the copied message
-     * doesn't have a link to the original message. Returns the MessageId of the sent message
-     * on success.
+     * giveaway messages, giveaway winners messages, invoice messages, and widget messages
+     * can't be copied. A quiz poll can be copied only if the value of the field
+     * correct_option_ids is known to the bot. The method is analogous to the method
+     * forwardMessage, but the copied message doesn't have a link to the original message.
+     * Returns the MessageId of the sent message on success.
      *
      * @param args Method arguments.
      *
@@ -528,16 +553,16 @@
     /**
      * @brief Use this method to copy messages of any kind. If some of the specified messages can't be
      * found or copied, they are skipped. Service messages, paid media messages, giveaway
-     * messages, giveaway winners messages, and invoice messages can't be copied. A quiz poll
-     * can be copied only if the value of the field correct_option_ids is known to the bot. The
-     * method is analogous to the method forwardMessages, but the copied messages don't have a
-     * link to the original message. Album grouping is kept for copied messages. On success, an
-     * Array of MessageId of the sent messages is returned.
+     * messages, giveaway winners messages, invoice messages, and widget messages can't be
+     * copied. A quiz poll can be copied only if the value of the field correct_option_ids is
+     * known to the bot. The method is analogous to the method forwardMessages, but the copied
+     * messages don't have a link to the original message. Album grouping is kept for copied
+     * messages. On success, an Array of MessageId of the sent messages is returned.
      *
      * @param chatId Unique identifier for the target chat or username of the target bot,
-     * supergroup or channel in the format @username
+     * supergroup, or channel in the format @username
      * @param fromChatId Unique identifier for the chat where the original messages were sent (or
-     * username of the target bot, supergroup or channel in the format
+     * username of the target bot, supergroup, or channel in the format
      * @username)
      * @param messageIds A JSON-serialized list of 1-100 identifiers of messages in the chat
      * from_chat_id to copy. The identifiers must be specified in a strictly
@@ -556,21 +581,21 @@
      */
     std::vector<std::shared_ptr<MessageId>> copyMessages(std::variant<std::int64_t, std::string> chatId,
                                                          std::variant<std::int64_t, std::string> fromChatId,
-                                                         const std::vector<std::int32_t>& messageIds,
-                                                         std::int32_t messageThreadId = 0,
+                                                         const std::vector<std::uint32_t>& messageIds,
+                                                         std::uint32_t messageThreadId = 0,
                                                          bool disableNotification = false,
                                                          bool protectContent = false,
                                                          bool removeCaption = false,
-                                                         std::int64_t directMessagesTopicId = 0) const;
+                                                         std::uint64_t directMessagesTopicId = 0) const;
 
     /**
      * @brief Use this method to copy messages of any kind. If some of the specified messages can't be
      * found or copied, they are skipped. Service messages, paid media messages, giveaway
-     * messages, giveaway winners messages, and invoice messages can't be copied. A quiz poll
-     * can be copied only if the value of the field correct_option_ids is known to the bot. The
-     * method is analogous to the method forwardMessages, but the copied messages don't have a
-     * link to the original message. Album grouping is kept for copied messages. On success, an
-     * Array of MessageId of the sent messages is returned.
+     * messages, giveaway winners messages, invoice messages, and widget messages can't be
+     * copied. A quiz poll can be copied only if the value of the field correct_option_ids is
+     * known to the bot. The method is analogous to the method forwardMessages, but the copied
+     * messages don't have a link to the original message. Album grouping is kept for copied
+     * messages. On success, an Array of MessageId of the sent messages is returned.
      *
      * @param args Method arguments.
      *
@@ -597,7 +622,7 @@
      */
     std::shared_ptr<ChatInviteLink> createChatInviteLink(std::variant<std::int64_t, std::string> chatId,
                                                          std::int32_t expireDate = 0,
-                                                         std::int32_t memberLimit = 0,
+                                                         std::uint32_t memberLimit = 0,
                                                          std::string_view name = "",
                                                          bool createsJoinRequest = false) const;
 
@@ -630,8 +655,8 @@
      * @return The resulting ChatInviteLink object.
      */
     std::shared_ptr<ChatInviteLink> createChatSubscriptionInviteLink(std::variant<std::int64_t, std::string> chatId,
-                                                                     std::int32_t subscriptionPeriod,
-                                                                     std::int32_t subscriptionPrice,
+                                                                     std::uint32_t subscriptionPeriod,
+                                                                     std::uint32_t subscriptionPrice,
                                                                      std::string_view name = "") const;
 
     /**
@@ -650,8 +675,10 @@
     /**
      * @brief Use this method to create a topic in a forum supergroup chat or a private chat with a
      * user. In the case of a supergroup chat the bot must be an administrator in the chat for
-     * this to work and must have the can_manage_topics administrator right. Returns
-     * information about the created topic as a ForumTopic object.
+     * this to work and must have the can_manage_topics administrator right. In the case of a
+     * private chat, a link to the topic can be created in the format
+     * https://t.me/<bot_username>/<message_thread_id>; the link opens the topic only for the
+     * user. Returns information about the created topic as a ForumTopic object.
      *
      * @param chatId Unique identifier for the target chat or username of the target
      * supergroup in the format @username
@@ -666,14 +693,16 @@
      */
     std::shared_ptr<ForumTopic> createForumTopic(std::variant<std::int64_t, std::string> chatId,
                                                  std::string_view name,
-                                                 std::int32_t iconColor = 0,
+                                                 std::uint32_t iconColor = 0,
                                                  std::string_view iconCustomEmojiId = "") const;
 
     /**
      * @brief Use this method to create a topic in a forum supergroup chat or a private chat with a
      * user. In the case of a supergroup chat the bot must be an administrator in the chat for
-     * this to work and must have the can_manage_topics administrator right. Returns
-     * information about the created topic as a ForumTopic object.
+     * this to work and must have the can_manage_topics administrator right. In the case of a
+     * private chat, a link to the topic can be created in the format
+     * https://t.me/<bot_username>/<message_thread_id>; the link opens the topic only for the
+     * user. Returns information about the created topic as a ForumTopic object.
      *
      * @param args Method arguments.
      *
@@ -746,13 +775,13 @@
                                   std::string_view providerToken,
                                   std::string_view currency,
                                   const std::vector<std::shared_ptr<LabeledPrice>>& prices,
-                                  std::int32_t maxTipAmount = 0,
-                                  const std::vector<std::int32_t>& suggestedTipAmounts = { },
+                                  std::uint64_t maxTipAmount = 0,
+                                  const std::vector<std::uint64_t>& suggestedTipAmounts = { },
                                   std::string_view providerData = "",
                                   std::string_view photoUrl = "",
-                                  std::int32_t photoSize = 0,
-                                  std::int32_t photoWidth = 0,
-                                  std::int32_t photoHeight = 0,
+                                  std::uint32_t photoSize = 0,
+                                  std::uint32_t photoWidth = 0,
+                                  std::uint32_t photoHeight = 0,
                                   bool needName = false,
                                   bool needPhoneNumber = false,
                                   bool needEmail = false,
@@ -761,7 +790,7 @@
                                   bool sendEmailToProvider = false,
                                   bool isFlexible = false,
                                   std::string_view businessConnectionId = "",
-                                  std::int32_t subscriptionPeriod = 0) const;
+                                  std::uint32_t subscriptionPeriod = 0) const;
 
     /**
      * @brief Use this method to create a link for an invoice. Returns the created invoice link as
@@ -798,7 +827,7 @@
      *
      * @return True on success.
      */
-    bool createNewStickerSet(std::int64_t userId,
+    bool createNewStickerSet(std::uint64_t userId,
                              std::string_view name,
                              std::string_view title,
                              const std::vector<std::shared_ptr<InputSticker>>& stickers,
@@ -827,7 +856,7 @@
      *
      * @return True on success.
      */
-    bool declineChatJoinRequest(std::variant<std::int64_t, std::string> chatId, std::int64_t userId) const;
+    bool declineChatJoinRequest(std::variant<std::int64_t, std::string> chatId, std::uint64_t userId) const;
 
     /**
      * @brief Use this method to decline a chat join request. The bot must be an administrator in the
@@ -852,7 +881,7 @@
      * @return True on success.
      */
     bool declineSuggestedPost(std::variant<std::int64_t, std::string> chatId,
-                              std::int32_t messageId,
+                              std::uint32_t messageId,
                               std::string_view comment = "") const;
 
     /**
@@ -883,7 +912,7 @@
      */
     bool deleteAllMessageReactions(std::variant<std::int64_t, std::string> chatId,
                                    std::int64_t actorChatId = 0,
-                                   std::int64_t userId = 0) const;
+                                   std::uint64_t userId = 0) const;
 
     /**
      * @brief Use this method to remove up to 10000 recent reactions in a group or a supergroup chat
@@ -896,6 +925,31 @@
      * @return True on success.
      */
     bool deleteAllMessageReactions(const DeleteAllMessageReactionsArgs& args) const;
+
+    /**
+     * @brief Deletes a regular gift owned by a managed business account without receiving Telegram
+     * Stars for it. Requires the can_convert_gifts_to_stars business bot right. The gift can
+     * be deleted only if it isn't limited (the field total_count of the Gift is omitted) and
+     * wasn't refunded. Returns True on success.
+     *
+     * @param businessConnectionId Unique identifier of the business connection
+     * @param ownedGiftId Unique identifier of the regular gift that should be deleted
+     *
+     * @return True on success.
+     */
+    bool deleteBusinessAccountGift(std::string_view businessConnectionId, std::string_view ownedGiftId) const;
+
+    /**
+     * @brief Deletes a regular gift owned by a managed business account without receiving Telegram
+     * Stars for it. Requires the can_convert_gifts_to_stars business bot right. The gift can
+     * be deleted only if it isn't limited (the field total_count of the Gift is omitted) and
+     * wasn't refunded. Returns True on success.
+     *
+     * @param args Method arguments.
+     *
+     * @return True on success.
+     */
+    bool deleteBusinessAccountGift(const DeleteBusinessAccountGiftArgs& args) const;
 
     /**
      * @brief Delete messages on behalf of a business account. Requires the can_delete_sent_messages
@@ -912,7 +966,7 @@
      * @return True on success.
      */
     bool deleteBusinessMessages(std::string_view businessConnectionId,
-                                const std::vector<std::int32_t>& messageIds) const;
+                                const std::vector<std::uint32_t>& messageIds) const;
 
     /**
      * @brief Delete messages on behalf of a business account. Requires the can_delete_sent_messages
@@ -987,8 +1041,8 @@
      * @return True on success.
      */
     bool deleteEphemeralMessage(std::variant<std::int64_t, std::string> chatId,
-                                std::int32_t ephemeralMessageId,
-                                std::int64_t receiverUserId) const;
+                                std::uint32_t ephemeralMessageId,
+                                std::uint64_t receiverUserId) const;
 
     /**
      * @brief Use this method to delete an ephemeral message. Note that it is not guaranteed that the
@@ -1013,7 +1067,7 @@
      *
      * @return True on success.
      */
-    bool deleteForumTopic(std::variant<std::int64_t, std::string> chatId, std::int32_t messageThreadId) const;
+    bool deleteForumTopic(std::variant<std::int64_t, std::string> chatId, std::uint32_t messageThreadId) const;
 
     /**
      * @brief Use this method to delete a forum topic along with all its messages in a forum
@@ -1041,12 +1095,12 @@
      * any message in the corresponding direct messages chat.Returns True on success.
      *
      * @param chatId Unique identifier for the target chat or username of the target bot,
-     * supergroup or channel in the format @username
+     * supergroup, or channel in the format @username
      * @param messageId Identifier of the message to delete
      *
      * @return True on success.
      */
-    bool deleteMessage(std::variant<std::int64_t, std::string> chatId, std::int32_t messageId) const;
+    bool deleteMessage(std::variant<std::int64_t, std::string> chatId, std::uint32_t messageId) const;
 
     /**
      * @brief Use this method to delete a message, including service messages, with the following
@@ -1083,9 +1137,9 @@
      * @return True on success.
      */
     bool deleteMessageReaction(std::variant<std::int64_t, std::string> chatId,
-                               std::int32_t messageId,
+                               std::uint32_t messageId,
                                std::int64_t actorChatId = 0,
-                               std::int64_t userId = 0) const;
+                               std::uint64_t userId = 0) const;
 
     /**
      * @brief Use this method to remove a reaction from a message in a group or a supergroup chat. The
@@ -1103,14 +1157,14 @@
      * messages can't be found, they are skipped. Returns True on success.
      *
      * @param chatId Unique identifier for the target chat or username of the target bot,
-     * supergroup or channel in the format @username
+     * supergroup, or channel in the format @username
      * @param messageIds A JSON-serialized list of 1-100 identifiers of messages to delete. See
      * deleteMessage for limitations on which messages can be deleted.
      *
      * @return True on success.
      */
     bool deleteMessages(std::variant<std::int64_t, std::string> chatId,
-                        const std::vector<std::int32_t>& messageIds) const;
+                        const std::vector<std::uint32_t>& messageIds) const;
 
     /**
      * @brief Use this method to delete multiple messages simultaneously. If some of the specified
@@ -1200,7 +1254,7 @@
      *
      * @return True on success.
      */
-    bool deleteStory(std::string_view businessConnectionId, std::int32_t storyId) const;
+    bool deleteStory(std::string_view businessConnectionId, std::uint32_t storyId) const;
 
     /**
      * @brief Deletes a story previously posted by the bot on behalf of a managed business account.
@@ -1252,7 +1306,7 @@
     std::shared_ptr<ChatInviteLink> editChatInviteLink(std::variant<std::int64_t, std::string> chatId,
                                                        std::string_view inviteLink,
                                                        std::int32_t expireDate = 0,
-                                                       std::int32_t memberLimit = 0,
+                                                       std::uint32_t memberLimit = 0,
                                                        std::string_view name = "",
                                                        bool createsJoinRequest = false) const;
 
@@ -1316,8 +1370,8 @@
      * @return True on success.
      */
     bool editEphemeralMessageCaption(std::variant<std::int64_t, std::string> chatId,
-                                     std::int32_t ephemeralMessageId,
-                                     std::int64_t receiverUserId,
+                                     std::uint32_t ephemeralMessageId,
+                                     std::uint64_t receiverUserId,
                                      std::string_view caption = "",
                                      const std::vector<std::shared_ptr<MessageEntity>>& captionEntities = { },
                                      std::string_view parseMode = "",
@@ -1353,9 +1407,9 @@
      * @return True on success.
      */
     bool editEphemeralMessageMedia(std::variant<std::int64_t, std::string> chatId,
-                                   std::int32_t ephemeralMessageId,
+                                   std::uint32_t ephemeralMessageId,
                                    std::shared_ptr<InputMedia> media,
-                                   std::int64_t receiverUserId,
+                                   std::uint64_t receiverUserId,
                                    std::shared_ptr<InlineKeyboardMarkup> replyMarkup = nullptr,
                                    const std::vector<InputFileAttachment>& attachments = { }) const;
 
@@ -1384,8 +1438,8 @@
      * @return True on success.
      */
     bool editEphemeralMessageReplyMarkup(std::variant<std::int64_t, std::string> chatId,
-                                         std::int32_t ephemeralMessageId,
-                                         std::int64_t receiverUserId,
+                                         std::uint32_t ephemeralMessageId,
+                                         std::uint64_t receiverUserId,
                                          std::shared_ptr<InlineKeyboardMarkup> replyMarkup = nullptr) const;
 
     /**
@@ -1421,8 +1475,8 @@
      * @return True on success.
      */
     bool editEphemeralMessageText(std::variant<std::int64_t, std::string> chatId,
-                                  std::int32_t ephemeralMessageId,
-                                  std::int64_t receiverUserId,
+                                  std::uint32_t ephemeralMessageId,
+                                  std::uint64_t receiverUserId,
                                   std::string_view text = "",
                                   const std::vector<std::shared_ptr<MessageEntity>>& entities = { },
                                   std::shared_ptr<LinkPreviewOptions> linkPreviewOptions = nullptr,
@@ -1460,7 +1514,7 @@
      * @return True on success.
      */
     bool editForumTopic(std::variant<std::int64_t, std::string> chatId,
-                        std::int32_t messageThreadId,
+                        std::uint32_t messageThreadId,
                         std::string_view name = "",
                         std::string_view iconCustomEmojiId = "") const;
 
@@ -1507,7 +1561,7 @@
      * can only be edited within 48 hours from the time they were sent.
      *
      * @param chatId Required if inline_message_id is not specified. Unique identifier for
-     * the target chat or username of the target bot, supergroup or channel in
+     * the target chat or username of the target bot, supergroup, or channel in
      * the format @username.
      * @param messageId Required if inline_message_id is not specified. Identifier of the
      * message to edit.
@@ -1527,7 +1581,7 @@
      * @return The resulting Message object, or nullptr if Telegram returns True.
      */
     std::shared_ptr<Message> editMessageCaption(std::variant<std::int64_t, std::string> chatId = { },
-                                                std::int32_t messageId = 0,
+                                                std::uint32_t messageId = 0,
                                                 std::string_view caption = "",
                                                 std::string_view inlineMessageId = "",
                                                 std::shared_ptr<InlineKeyboardMarkup> replyMarkup = nullptr,
@@ -1566,7 +1620,7 @@
     std::shared_ptr<Message> editMessageChecklist(std::variant<std::int64_t, std::string> chatId,
                                                   std::string_view businessConnectionId,
                                                   std::shared_ptr<InputChecklist> checklist,
-                                                  std::int32_t messageId,
+                                                  std::uint32_t messageId,
                                                   std::shared_ptr<InlineKeyboardMarkup> replyMarkup
                                                   = nullptr) const;
 
@@ -1589,7 +1643,7 @@
      * @param latitude Latitude of new location
      * @param longitude Longitude of new location
      * @param chatId Required if inline_message_id is not specified. Unique identifier for
-     * the target chat or username of the target bot, supergroup or channel in
+     * the target chat or username of the target bot, supergroup, or channel in
      * the format @username.
      * @param messageId Required if inline_message_id is not specified. Identifier of the
      * message to edit.
@@ -1615,14 +1669,14 @@
     std::shared_ptr<Message> editMessageLiveLocation(double latitude,
                                                      double longitude,
                                                      std::variant<std::int64_t, std::string> chatId = { },
-                                                     std::int32_t messageId = 0,
+                                                     std::uint32_t messageId = 0,
                                                      std::string_view inlineMessageId = "",
                                                      std::shared_ptr<InlineKeyboardMarkup> replyMarkup = nullptr,
                                                      double horizontalAccuracy = 0,
-                                                     std::int32_t heading = 0,
-                                                     std::int32_t proximityAlertRadius = 0,
+                                                     std::uint32_t heading = 0,
+                                                     std::uint32_t proximityAlertRadius = 0,
                                                      std::string_view businessConnectionId = "",
-                                                     std::int32_t livePeriod = 0) const;
+                                                     std::uint32_t livePeriod = 0) const;
 
     /**
      * @brief Use this method to edit live location messages. A location can be edited until its
@@ -1649,7 +1703,7 @@
      *
      * @param media A JSON-serialized object for the new media content of the message
      * @param chatId Required if inline_message_id is not specified. Unique identifier for
-     * the target chat or username of the target bot, supergroup or channel in
+     * the target chat or username of the target bot, supergroup, or channel in
      * the format @username.
      * @param messageId Required if inline_message_id is not specified. Identifier of the
      * message to edit.
@@ -1666,7 +1720,7 @@
      */
     std::shared_ptr<Message> editMessageMedia(std::shared_ptr<InputMedia> media,
                                               std::variant<std::int64_t, std::string> chatId = { },
-                                              std::int32_t messageId = 0,
+                                              std::uint32_t messageId = 0,
                                               std::string_view inlineMessageId = "",
                                               std::shared_ptr<InlineKeyboardMarkup> replyMarkup = nullptr,
                                               std::string_view businessConnectionId = "",
@@ -1696,7 +1750,7 @@
      * an inline keyboard can only be edited within 48 hours from the time they were sent.
      *
      * @param chatId Required if inline_message_id is not specified. Unique identifier for
-     * the target chat or username of the target bot, supergroup or channel in
+     * the target chat or username of the target bot, supergroup, or channel in
      * the format @username.
      * @param messageId Required if inline_message_id is not specified. Identifier of the
      * message to edit.
@@ -1709,7 +1763,7 @@
      * @return The resulting Message object, or nullptr if Telegram returns True.
      */
     std::shared_ptr<Message> editMessageReplyMarkup(std::variant<std::int64_t, std::string> chatId = { },
-                                                    std::int32_t messageId = 0,
+                                                    std::uint32_t messageId = 0,
                                                     std::string_view inlineMessageId = "",
                                                     std::shared_ptr<InlineKeyboardMarkup> replyMarkup = nullptr,
                                                     std::string_view businessConnectionId = "") const;
@@ -1735,7 +1789,7 @@
      * @param text New text of the message, 1-4096 characters after entity parsing;
      * required if rich_message isn't specified
      * @param chatId Required if inline_message_id is not specified. Unique identifier for
-     * the target chat or username of the target bot, supergroup or channel in
+     * the target chat or username of the target bot, supergroup, or channel in
      * the format @username.
      * @param messageId Required if inline_message_id is not specified. Identifier of the
      * message to edit.
@@ -1760,7 +1814,7 @@
      */
     std::shared_ptr<Message> editMessageText(std::string_view text = "",
                                              std::variant<std::int64_t, std::string> chatId = { },
-                                             std::int32_t messageId = 0,
+                                             std::uint32_t messageId = 0,
                                              std::string_view inlineMessageId = "",
                                              std::string_view parseMode = "",
                                              std::shared_ptr<LinkPreviewOptions> linkPreviewOptions = nullptr,
@@ -1783,6 +1837,69 @@
     std::shared_ptr<Message> editMessageText(const EditMessageTextArgs& args) const;
 
     /**
+     * @brief Use this method to edit data of a widget in a message sent by the bot or via the bot
+     * (for inline bots). Public data of a shared widget can be changed at most once per
+     * second. On success, True is returned.
+     *
+     * @param chatData New data of the widget, which is specific to the message, 0-1024 bytes;
+     * pass an empty string to remove the data. If omitted, then the data isn't
+     * changed.
+     * @param chatId Required if inline_message_id is not specified. Unique identifier for
+     * the target chat or username of the target supergroup in the format
+     * @username.
+     * @param inlineMessageId Required if chat_id and message_id are not specified. Identifier of the
+     * inline message.
+     * @param messageId Required if inline_message_id is not specified. Identifier of the
+     * message with the widget.
+     * @param publicData New public data of the widget, 0-1024 bytes; pass an empty string to
+     * remove the public data. If omitted, then the public data isn't changed.
+     *
+     * @return True on success.
+     */
+    bool editMessageWidgetData(std::string_view chatData = "",
+                               std::variant<std::int64_t, std::string> chatId = { },
+                               std::string_view inlineMessageId = "",
+                               std::uint32_t messageId = 0,
+                               std::string_view publicData = "") const;
+
+    /**
+     * @brief Use this method to edit data of a widget in a message sent by the bot or via the bot
+     * (for inline bots). Public data of a shared widget can be changed at most once per
+     * second. On success, True is returned.
+     *
+     * @param args Method arguments.
+     *
+     * @return True on success.
+     */
+    bool editMessageWidgetData(const EditMessageWidgetDataArgs& args) const;
+
+    /**
+     * @brief Use this method to edit public data of a shared widget created by the bot. A shared
+     * widget can be edited at most once per second. On success, True is returned.
+     *
+     * @param publicData New public data of the widget, 0-1024 bytes; pass an empty string to
+     * remove the public data
+     * @param widgetId Unique identifier of the shared widget
+     * @param cacheTime The maximum amount of time in seconds that the public data of the widget
+     * may be cached client-side; 5-3600. If omitted, then the current value is
+     * kept, which is 30 by default.
+     *
+     * @return True on success.
+     */
+    bool
+    editSharedWidgetData(std::string_view publicData, std::string_view widgetId, std::uint32_t cacheTime = 0) const;
+
+    /**
+     * @brief Use this method to edit public data of a shared widget created by the bot. A shared
+     * widget can be edited at most once per second. On success, True is returned.
+     *
+     * @param args Method arguments.
+     *
+     * @return True on success.
+     */
+    bool editSharedWidgetData(const EditSharedWidgetDataArgs& args) const;
+
+    /**
      * @brief Edits a story previously posted by the bot on behalf of a managed business account.
      * Requires the can_manage_stories business bot right. Returns Story on success.
      *
@@ -1803,7 +1920,7 @@
      */
     std::shared_ptr<Story> editStory(std::string_view businessConnectionId,
                                      std::shared_ptr<InputStoryContent> content,
-                                     std::int32_t storyId,
+                                     std::uint32_t storyId,
                                      const std::vector<std::shared_ptr<StoryArea>>& areas = { },
                                      std::string_view caption = "",
                                      const std::vector<std::shared_ptr<MessageEntity>>& captionEntities = { },
@@ -1834,7 +1951,7 @@
      * @return True on success.
      */
     bool
-    editUserStarSubscription(bool isCanceled, std::string_view telegramPaymentChargeId, std::int64_t userId) const;
+    editUserStarSubscription(bool isCanceled, std::string_view telegramPaymentChargeId, std::uint64_t userId) const;
 
     /**
      * @brief Allows the bot to cancel or re-enable extension of a subscription paid in Telegram
@@ -1876,9 +1993,9 @@
      * protected content can't be forwarded. On success, the sent Message is returned.
      *
      * @param chatId Unique identifier for the target chat or username of the target bot,
-     * supergroup or channel in the format @username
+     * supergroup, or channel in the format @username
      * @param fromChatId Unique identifier for the chat where the original message was sent (or
-     * username of the target bot, supergroup or channel in the format
+     * username of the target bot, supergroup, or channel in the format
      * @username)
      * @param messageId Message identifier in the chat specified in from_chat_id
      * @param disableNotification Sends the message silently. Users will receive a notification with no
@@ -1901,15 +2018,15 @@
      */
     std::shared_ptr<Message> forwardMessage(std::variant<std::int64_t, std::string> chatId,
                                             std::variant<std::int64_t, std::string> fromChatId,
-                                            std::int32_t messageId,
+                                            std::uint32_t messageId,
                                             bool disableNotification = false,
                                             bool protectContent = false,
-                                            std::int32_t messageThreadId = 0,
-                                            std::int64_t directMessagesTopicId = 0,
+                                            std::uint32_t messageThreadId = 0,
+                                            std::uint64_t directMessagesTopicId = 0,
                                             std::string_view messageEffectId = "",
                                             std::shared_ptr<SuggestedPostParameters> suggestedPostParameters
                                             = nullptr,
-                                            std::int32_t videoStartTimestamp = 0) const;
+                                            std::uint32_t videoStartTimestamp = 0) const;
 
     /**
      * @brief Use this method to forward messages of any kind. Service messages and messages with
@@ -1928,9 +2045,9 @@
      * messages. On success, an Array of MessageId of the sent messages is returned.
      *
      * @param chatId Unique identifier for the target chat or username of the target bot,
-     * supergroup or channel in the format @username
+     * supergroup, or channel in the format @username
      * @param fromChatId Unique identifier for the chat where the original messages were sent (or
-     * username of the target bot, supergroup or channel in the format
+     * username of the target bot, supergroup, or channel in the format
      * @username)
      * @param messageIds A JSON-serialized list of 1-100 identifiers of messages in the chat
      * from_chat_id to forward. The identifiers must be specified in a strictly
@@ -1950,11 +2067,11 @@
      */
     std::vector<std::shared_ptr<MessageId>> forwardMessages(std::variant<std::int64_t, std::string> chatId,
                                                             std::variant<std::int64_t, std::string> fromChatId,
-                                                            const std::vector<std::int32_t>& messageIds,
-                                                            std::int32_t messageThreadId = 0,
+                                                            const std::vector<std::uint32_t>& messageIds,
+                                                            std::uint32_t messageThreadId = 0,
                                                             bool disableNotification = false,
                                                             bool protectContent = false,
-                                                            std::int64_t directMessagesTopicId = 0) const;
+                                                            std::uint64_t directMessagesTopicId = 0) const;
 
     /**
      * @brief Use this method to forward multiple messages of any kind. If some of the specified
@@ -2010,7 +2127,7 @@
                                                         bool excludeUnique = false,
                                                         bool excludeUnlimited = false,
                                                         bool excludeUnsaved = false,
-                                                        std::int32_t limit = 0,
+                                                        std::uint32_t limit = 0,
                                                         std::string_view offset = "",
                                                         bool sortByPrice = false) const;
 
@@ -2145,7 +2262,7 @@
                                              bool excludeUnique = false,
                                              bool excludeUnlimited = false,
                                              bool excludeUnsaved = false,
-                                             std::int32_t limit = 0,
+                                             std::uint32_t limit = 0,
                                              std::string_view offset = "",
                                              bool sortByPrice = false) const;
 
@@ -2170,7 +2287,7 @@
      * @return The resulting ChatMember object.
      */
     std::shared_ptr<ChatMember> getChatMember(std::variant<std::int64_t, std::string> chatId,
-                                              std::int64_t userId) const;
+                                              std::uint64_t userId) const;
 
     /**
      * @brief Use this method to get information about a member of a chat. The method is only
@@ -2191,7 +2308,7 @@
      *
      * @return The resulting integer.
      */
-    std::int32_t getChatMemberCount(std::variant<std::int64_t, std::string> chatId) const;
+    std::uint32_t getChatMemberCount(std::variant<std::int64_t, std::string> chatId) const;
 
     /**
      * @brief Use this method to get the number of members in a chat. Returns Integer on success.
@@ -2200,7 +2317,7 @@
      *
      * @return The resulting integer.
      */
-    std::int32_t getChatMemberCount(const GetChatMemberCountArgs& args) const;
+    std::uint32_t getChatMemberCount(const GetChatMemberCountArgs& args) const;
 
     /**
      * @brief Use this method to get the current value of the bot's menu button in a private chat, or
@@ -2211,7 +2328,7 @@
      *
      * @return The resulting MenuButton object.
      */
-    std::shared_ptr<MenuButton> getChatMenuButton(std::variant<std::int64_t, std::string> chatId = { }) const;
+    std::shared_ptr<MenuButton> getChatMenuButton(std::variant<std::uint64_t, std::string> chatId = { }) const;
 
     /**
      * @brief Use this method to get the current value of the bot's menu button in a private chat, or
@@ -2222,6 +2339,16 @@
      * @return The resulting MenuButton object.
      */
     std::shared_ptr<MenuButton> getChatMenuButton(const GetChatMenuButtonArgs& args) const;
+
+    /**
+     * @brief Use this method to get the list of backdrops, which can be used as the background of a
+     * theme of the screen for sharing a link to a user or a chat. Requires no parameters.
+     * Returns a ChatShareThemeBackdrops object.
+     *
+     *
+     * @return The resulting ChatShareThemeBackdrops object.
+     */
+    std::shared_ptr<ChatShareThemeBackdrops> getChatShareThemeBackdrops() const;
 
     /**
      * @brief Use this method to get information about custom emoji stickers by their identifiers.
@@ -2301,10 +2428,10 @@
      *
      * @return The resulting list of GameHighScore objects.
      */
-    std::vector<std::shared_ptr<GameHighScore>> getGameHighScores(std::int64_t userId,
+    std::vector<std::shared_ptr<GameHighScore>> getGameHighScores(std::uint64_t userId,
                                                                   std::variant<std::int64_t, std::string> chatId
                                                                   = { },
-                                                                  std::int32_t messageId = 0,
+                                                                  std::uint32_t messageId = 0,
                                                                   std::string_view inlineMessageId = "") const;
 
     /**
@@ -2327,7 +2454,7 @@
      *
      * @return The resulting BotAccessSettings object.
      */
-    std::shared_ptr<BotAccessSettings> getManagedBotAccessSettings(std::int64_t userId) const;
+    std::shared_ptr<BotAccessSettings> getManagedBotAccessSettings(std::uint64_t userId) const;
 
     /**
      * @brief Use this method to get the access settings of a managed bot. Returns a BotAccessSettings
@@ -2348,7 +2475,7 @@
      *
      * @return The resulting string.
      */
-    std::string getManagedBotToken(std::int64_t userId) const;
+    std::string getManagedBotToken(std::uint64_t userId) const;
 
     /**
      * @brief Use this method to get the token of a managed bot. Returns the token as String on
@@ -2496,7 +2623,7 @@
      *
      * @return The resulting StarTransactions object.
      */
-    std::shared_ptr<StarTransactions> getStarTransactions(std::int32_t limit = 0, std::int32_t offset = 0) const;
+    std::shared_ptr<StarTransactions> getStarTransactions(std::uint32_t limit = 0, std::uint32_t offset = 0) const;
 
     /**
      * @brief Returns the bot's Telegram Star transactions in chronological order. On success, returns
@@ -2527,6 +2654,26 @@
     std::shared_ptr<StickerSet> getStickerSet(const GetStickerSetArgs& args) const;
 
     /**
+     * @brief Use this method to get information about a unique gift by its name. Returns a UniqueGift
+     * object on success.
+     *
+     * @param name Unique name of the gift
+     *
+     * @return The resulting UniqueGift object.
+     */
+    std::shared_ptr<UniqueGift> getUniqueGift(std::string_view name) const;
+
+    /**
+     * @brief Use this method to get information about a unique gift by its name. Returns a UniqueGift
+     * object on success.
+     *
+     * @param args Method arguments.
+     *
+     * @return The resulting UniqueGift object.
+     */
+    std::shared_ptr<UniqueGift> getUniqueGift(const GetUniqueGiftArgs& args) const;
+
+    /**
      * @brief Use this method to receive incoming updates using long polling (wiki). Returns an Array
      * of Update objects.
      *
@@ -2555,8 +2702,8 @@
      * @return The resulting list of Update objects.
      */
     std::vector<std::shared_ptr<Update>> getUpdates(std::int32_t offset = 0,
-                                                    std::int32_t limit = 100,
-                                                    std::int32_t timeout = 0,
+                                                    std::uint32_t limit = 100,
+                                                    std::uint32_t timeout = 0,
                                                     const std::vector<std::string>& allowedUpdates = { }) const;
 
     /**
@@ -2580,7 +2727,7 @@
      * @return The resulting UserChatBoosts object.
      */
     std::shared_ptr<UserChatBoosts> getUserChatBoosts(std::variant<std::int64_t, std::string> chatId,
-                                                      std::int64_t userId) const;
+                                                      std::uint64_t userId) const;
 
     /**
      * @brief Use this method to get the list of boosts added to a chat by a user. Requires
@@ -2613,13 +2760,13 @@
      *
      * @return The resulting OwnedGifts object.
      */
-    std::shared_ptr<OwnedGifts> getUserGifts(std::int64_t userId,
+    std::shared_ptr<OwnedGifts> getUserGifts(std::uint64_t userId,
                                              bool excludeFromBlockchain = false,
                                              bool excludeLimitedNonUpgradable = false,
                                              bool excludeLimitedUpgradable = false,
                                              bool excludeUnique = false,
                                              bool excludeUnlimited = false,
-                                             std::int32_t limit = 0,
+                                             std::uint32_t limit = 0,
                                              std::string_view offset = "",
                                              bool sortByPrice = false) const;
 
@@ -2642,8 +2789,8 @@
      *
      * @return The resulting list of Message objects.
      */
-    std::vector<std::shared_ptr<Message>> getUserPersonalChatMessages(std::int32_t limit,
-                                                                      std::int64_t userId) const;
+    std::vector<std::shared_ptr<Message>> getUserPersonalChatMessages(std::uint32_t limit,
+                                                                      std::uint64_t userId) const;
 
     /**
      * @brief Use this method to get the last messages from the personal chat (i.e., the chat
@@ -2670,7 +2817,7 @@
      * @return The resulting UserProfileAudios object.
      */
     std::shared_ptr<UserProfileAudios>
-    getUserProfileAudios(std::int64_t userId, std::int32_t limit = 0, std::int32_t offset = 0) const;
+    getUserProfileAudios(std::uint64_t userId, std::uint32_t limit = 0, std::uint32_t offset = 0) const;
 
     /**
      * @brief Use this method to get a list of profile audios for a user. Returns a UserProfileAudios
@@ -2695,7 +2842,7 @@
      * @return The resulting UserProfilePhotos object.
      */
     std::shared_ptr<UserProfilePhotos>
-    getUserProfilePhotos(std::int64_t userId, std::int32_t offset = 0, std::int32_t limit = 100) const;
+    getUserProfilePhotos(std::uint64_t userId, std::uint32_t offset = 0, std::uint32_t limit = 100) const;
 
     /**
      * @brief Use this method to get a list of profile pictures for a user. Returns a
@@ -2738,9 +2885,9 @@
      *
      * @return True on success.
      */
-    bool giftPremiumSubscription(std::int32_t monthCount,
-                                 std::int32_t starCount,
-                                 std::int64_t userId,
+    bool giftPremiumSubscription(std::uint32_t monthCount,
+                                 std::uint32_t starCount,
+                                 std::uint64_t userId,
                                  std::string_view text = "",
                                  const std::vector<std::shared_ptr<MessageEntity>>& textEntities = { },
                                  std::string_view textParseMode = "") const;
@@ -2832,7 +2979,7 @@
      * @return True on success.
      */
     bool pinChatMessage(std::variant<std::int64_t, std::string> chatId,
-                        std::int32_t messageId,
+                        std::uint32_t messageId,
                         std::string_view businessConnectionId = "",
                         bool disableNotification = false) const;
 
@@ -2872,7 +3019,7 @@
      *
      * @return The resulting Story object.
      */
-    std::shared_ptr<Story> postStory(std::int32_t activePeriod,
+    std::shared_ptr<Story> postStory(std::uint32_t activePeriod,
                                      std::string_view businessConnectionId,
                                      std::shared_ptr<InputStoryContent> content,
                                      const std::vector<std::shared_ptr<StoryArea>>& areas = { },
@@ -2941,7 +3088,7 @@
      * @return True on success.
      */
     bool promoteChatMember(std::variant<std::int64_t, std::string> chatId,
-                           std::int64_t userId,
+                           std::uint64_t userId,
                            bool canChangeInfo = false,
                            bool canPostMessages = false,
                            bool canEditMessages = false,
@@ -2987,7 +3134,7 @@
      */
     bool readBusinessMessage(std::variant<std::int64_t, std::string> chatId,
                              std::string_view businessConnectionId,
-                             std::int32_t messageId) const;
+                             std::uint32_t messageId) const;
 
     /**
      * @brief Marks incoming message as read on behalf of a business account. Requires the
@@ -3007,7 +3154,7 @@
      *
      * @return True on success.
      */
-    bool refundStarPayment(std::string_view telegramPaymentChargeId, std::int64_t userId) const;
+    bool refundStarPayment(std::string_view telegramPaymentChargeId, std::uint64_t userId) const;
 
     /**
      * @brief Refunds a successful payment in Telegram Stars. Returns True on success.
@@ -3079,7 +3226,7 @@
      *
      * @return True on success.
      */
-    bool removeUserVerification(std::int64_t userId) const;
+    bool removeUserVerification(std::uint64_t userId) const;
 
     /**
      * @brief Removes verification from a user who is currently verified on behalf of the organization
@@ -3102,7 +3249,7 @@
      *
      * @return True on success.
      */
-    bool reopenForumTopic(std::variant<std::int64_t, std::string> chatId, std::int32_t messageThreadId) const;
+    bool reopenForumTopic(std::variant<std::int64_t, std::string> chatId, std::uint32_t messageThreadId) const;
 
     /**
      * @brief Use this method to reopen a closed topic in a forum supergroup chat. The bot must be an
@@ -3148,7 +3295,7 @@
      *
      * @return The resulting string.
      */
-    std::string replaceManagedBotToken(std::int64_t userId) const;
+    std::string replaceManagedBotToken(std::uint64_t userId) const;
 
     /**
      * @brief Use this method to revoke the current token of a managed bot and generate a new one.
@@ -3177,7 +3324,7 @@
      *
      * @return True on success.
      */
-    bool replaceStickerInSet(std::int64_t userId,
+    bool replaceStickerInSet(std::uint64_t userId,
                              std::string_view name,
                              std::string_view oldSticker,
                              std::shared_ptr<InputSticker> sticker,
@@ -3212,10 +3359,10 @@
      *
      * @return The resulting Story object.
      */
-    std::shared_ptr<Story> repostStory(std::int32_t activePeriod,
+    std::shared_ptr<Story> repostStory(std::uint32_t activePeriod,
                                        std::string_view businessConnectionId,
                                        std::variant<std::int64_t, std::string> fromChatId,
-                                       std::int32_t fromStoryId,
+                                       std::uint32_t fromStoryId,
                                        bool postToChatPage = false,
                                        bool protectContent = false) const;
 
@@ -3253,7 +3400,7 @@
      * @return True on success.
      */
     bool restrictChatMember(std::variant<std::int64_t, std::string> chatId,
-                            std::int64_t userId,
+                            std::uint64_t userId,
                             std::shared_ptr<ChatPermissions> permissions,
                             std::int32_t untilDate = 0,
                             bool useIndependentChatPermissions = false) const;
@@ -3310,7 +3457,7 @@
      * @return The resulting PreparedInlineMessage object.
      */
     std::shared_ptr<PreparedInlineMessage> savePreparedInlineMessage(std::shared_ptr<InlineQueryResult> result,
-                                                                     std::int64_t userId,
+                                                                     std::uint64_t userId,
                                                                      bool allowBotChats = false,
                                                                      bool allowChannelChats = false,
                                                                      bool allowGroupChats = false,
@@ -3338,7 +3485,7 @@
      * @return The resulting PreparedKeyboardButton object.
      */
     std::shared_ptr<PreparedKeyboardButton> savePreparedKeyboardButton(std::shared_ptr<KeyboardButton> button,
-                                                                       std::int64_t userId) const;
+                                                                       std::uint64_t userId) const;
 
     /**
      * @brief Stores a keyboard button that can be used by a user within a Mini App. Returns a
@@ -3357,7 +3504,8 @@
      * to 50 MB in size, this limit may be changed in the future.
      *
      * @param chatId Unique identifier for the target chat or username of the target bot,
-     * supergroup or channel in the format @username
+     * supergroup, or channel in the format @username; required unless the
+     * message is sent as an ephemeral reply to a callback query
      * @param animation Animation to send. Pass a file_id as String to send an animation that
      * exists on the Telegram servers (recommended), pass an HTTP URL as a
      * String for Telegram to get an animation from the Internet, or upload a
@@ -3412,9 +3560,9 @@
      */
     std::shared_ptr<Message> sendAnimation(std::variant<std::int64_t, std::string> chatId,
                                            std::variant<std::shared_ptr<InputFile>, std::string> animation,
-                                           std::int32_t duration = 0,
-                                           std::int32_t width = 0,
-                                           std::int32_t height = 0,
+                                           std::uint32_t duration = 0,
+                                           std::uint32_t width = 0,
+                                           std::uint32_t height = 0,
                                            std::variant<std::shared_ptr<InputFile>, std::string> thumbnail = { },
                                            std::string_view caption = "",
                                            std::shared_ptr<ReplyParameters> replyParameters = nullptr,
@@ -3425,15 +3573,15 @@
                                            std::string_view parseMode = "",
                                            bool disableNotification = false,
                                            const std::vector<std::shared_ptr<MessageEntity>>& captionEntities = { },
-                                           std::int32_t messageThreadId = 0,
+                                           std::uint32_t messageThreadId = 0,
                                            bool protectContent = false,
                                            bool hasSpoiler = false,
                                            std::string_view businessConnectionId = "",
                                            bool allowPaidBroadcast = false,
                                            std::string_view callbackQueryId = "",
-                                           std::int64_t directMessagesTopicId = 0,
+                                           std::uint64_t directMessagesTopicId = 0,
                                            std::string_view messageEffectId = "",
-                                           std::int64_t receiverUserId = 0,
+                                           std::uint64_t receiverUserId = 0,
                                            bool showCaptionAboveMedia = false,
                                            std::shared_ptr<SuggestedPostParameters> suggestedPostParameters
                                            = nullptr) const;
@@ -3457,7 +3605,8 @@
      * instead.
      *
      * @param chatId Unique identifier for the target chat or username of the target bot,
-     * supergroup or channel in the format @username
+     * supergroup, or channel in the format @username; required unless the
+     * message is sent as an ephemeral reply to a callback query
      * @param audio Audio file to send. Pass a file_id as String to send an audio file that
      * exists on the Telegram servers (recommended), pass an HTTP URL as a
      * String for Telegram to get an audio file from the Internet, or upload a
@@ -3509,7 +3658,7 @@
     std::shared_ptr<Message> sendAudio(std::variant<std::int64_t, std::string> chatId,
                                        std::variant<std::shared_ptr<InputFile>, std::string> audio,
                                        std::string_view caption = "",
-                                       std::int32_t duration = 0,
+                                       std::uint32_t duration = 0,
                                        std::string_view performer = "",
                                        std::string_view title = "",
                                        std::variant<std::shared_ptr<InputFile>, std::string> thumbnail = { },
@@ -3521,14 +3670,14 @@
                                        std::string_view parseMode = "",
                                        bool disableNotification = false,
                                        const std::vector<std::shared_ptr<MessageEntity>>& captionEntities = { },
-                                       std::int32_t messageThreadId = 0,
+                                       std::uint32_t messageThreadId = 0,
                                        bool protectContent = false,
                                        std::string_view businessConnectionId = "",
                                        bool allowPaidBroadcast = false,
                                        std::string_view callbackQueryId = "",
-                                       std::int64_t directMessagesTopicId = 0,
+                                       std::uint64_t directMessagesTopicId = 0,
                                        std::string_view messageEffectId = "",
-                                       std::int64_t receiverUserId = 0,
+                                       std::uint64_t receiverUserId = 0,
                                        std::shared_ptr<SuggestedPostParameters> suggestedPostParameters
                                        = nullptr) const;
 
@@ -3570,7 +3719,7 @@
      */
     bool sendChatAction(std::variant<std::int64_t, std::string> chatId,
                         std::string_view action,
-                        std::int32_t messageThreadId = 0,
+                        std::uint32_t messageThreadId = 0,
                         std::string_view businessConnectionId = "") const;
 
     /**
@@ -3653,7 +3802,8 @@
      * @brief Use this method to send phone contacts. On success, the sent Message is returned.
      *
      * @param chatId Unique identifier for the target chat or username of the target bot,
-     * supergroup or channel in the format @username
+     * supergroup, or channel in the format @username; required unless the
+     * message is sent as an ephemeral reply to a callback query
      * @param phoneNumber Contact's phone number
      * @param firstName Contact's first name
      * @param lastName Contact's last name
@@ -3697,14 +3847,14 @@
                                                       std::shared_ptr<ReplyKeyboardMarkup>,
                                                       std::shared_ptr<ReplyKeyboardRemove>,
                                                       std::shared_ptr<ForceReply>> replyMarkup = { },
-                                         std::int32_t messageThreadId = 0,
+                                         std::uint32_t messageThreadId = 0,
                                          bool protectContent = false,
                                          std::string_view businessConnectionId = "",
                                          bool allowPaidBroadcast = false,
                                          std::string_view callbackQueryId = "",
-                                         std::int64_t directMessagesTopicId = 0,
+                                         std::uint64_t directMessagesTopicId = 0,
                                          std::string_view messageEffectId = "",
-                                         std::int64_t receiverUserId = 0,
+                                         std::uint64_t receiverUserId = 0,
                                          std::shared_ptr<SuggestedPostParameters> suggestedPostParameters
                                          = nullptr) const;
 
@@ -3722,7 +3872,7 @@
      * the sent Message is returned.
      *
      * @param chatId Unique identifier for the target chat or username of the target bot,
-     * supergroup or channel in the format @username
+     * supergroup, or channel in the format @username
      * @param disableNotification Sends the message silently. Users will receive a notification with no
      * sound.
      * @param replyParameters Description of the message to reply to
@@ -3760,11 +3910,11 @@
                                                    std::shared_ptr<ReplyKeyboardRemove>,
                                                    std::shared_ptr<ForceReply>> replyMarkup = { },
                                       std::string_view emoji = "",
-                                      std::int32_t messageThreadId = 0,
+                                      std::uint32_t messageThreadId = 0,
                                       bool protectContent = false,
                                       std::string_view businessConnectionId = "",
                                       bool allowPaidBroadcast = false,
-                                      std::int64_t directMessagesTopicId = 0,
+                                      std::uint64_t directMessagesTopicId = 0,
                                       std::string_view messageEffectId = "",
                                       std::shared_ptr<SuggestedPostParameters> suggestedPostParameters
                                       = nullptr) const;
@@ -3785,7 +3935,8 @@
      * in the future.
      *
      * @param chatId Unique identifier for the target chat or username of the target bot,
-     * supergroup or channel in the format @username
+     * supergroup, or channel in the format @username; required unless the
+     * message is sent as an ephemeral reply to a callback query
      * @param document File to send. Pass a file_id as String to send a file that exists on the
      * Telegram servers (recommended), pass an HTTP URL as a String for
      * Telegram to get a file from the Internet, or upload a new one using
@@ -3847,14 +3998,14 @@
                                           bool disableNotification = false,
                                           const std::vector<std::shared_ptr<MessageEntity>>& captionEntities = { },
                                           bool disableContentTypeDetection = false,
-                                          std::int32_t messageThreadId = 0,
+                                          std::uint32_t messageThreadId = 0,
                                           bool protectContent = false,
                                           std::string_view businessConnectionId = "",
                                           bool allowPaidBroadcast = false,
                                           std::string_view callbackQueryId = "",
-                                          std::int64_t directMessagesTopicId = 0,
+                                          std::uint64_t directMessagesTopicId = 0,
                                           std::string_view messageEffectId = "",
-                                          std::int64_t receiverUserId = 0,
+                                          std::uint64_t receiverUserId = 0,
                                           std::shared_ptr<SuggestedPostParameters> suggestedPostParameters
                                           = nullptr) const;
 
@@ -3902,7 +4053,7 @@
                                       std::shared_ptr<ReplyParameters> replyParameters = nullptr,
                                       std::shared_ptr<InlineKeyboardMarkup> replyMarkup = nullptr,
                                       bool disableNotification = false,
-                                      std::int32_t messageThreadId = 0,
+                                      std::uint32_t messageThreadId = 0,
                                       bool protectContent = false,
                                       std::string_view businessConnectionId = "",
                                       bool allowPaidBroadcast = false,
@@ -3922,9 +4073,9 @@
      * Stars by the receiver. Returns True on success.
      *
      * @param giftId Identifier of the gift; limited gifts can't be sent to channel chats
-     * @param chatId Required if user_id is not specified. Unique identifier for the chat or
-     * username of the channel (in the format @username) that will receive the
-     * gift.
+     * @param chatId Required if user_id is not specified. Unique identifier for the chat
+     * that will receive the gift or username of the channel in the format
+     * @username.
      * @param payForUpgrade Pass True to pay for the gift upgrade from the bot's balance, thereby
      * making the upgrade free for the receiver
      * @param text Text that will be shown along with the gift; 0-128 characters
@@ -3946,7 +4097,7 @@
                   std::string_view text = "",
                   const std::vector<std::shared_ptr<MessageEntity>>& textEntities = { },
                   std::string_view textParseMode = "",
-                  std::int64_t userId = 0) const;
+                  std::uint64_t userId = 0) const;
 
     /**
      * @brief Sends a gift to the given user or channel chat. The gift can't be converted to Telegram
@@ -3962,7 +4113,7 @@
      * @brief Use this method to send invoices. On success, the sent Message is returned.
      *
      * @param chatId Unique identifier for the target chat or username of the target bot,
-     * supergroup or channel in the format @username
+     * supergroup, or channel in the format @username
      * @param title Product name, 1-32 characters
      * @param description Product description, 1-255 characters
      * @param payload Bot-defined invoice payload, 1-128 bytes. This will not be displayed to
@@ -4047,9 +4198,9 @@
                                          const std::vector<std::shared_ptr<LabeledPrice>>& prices,
                                          std::string_view providerData = "",
                                          std::string_view photoUrl = "",
-                                         std::int32_t photoSize = 0,
-                                         std::int32_t photoWidth = 0,
-                                         std::int32_t photoHeight = 0,
+                                         std::uint32_t photoSize = 0,
+                                         std::uint32_t photoWidth = 0,
+                                         std::uint32_t photoHeight = 0,
                                          bool needName = false,
                                          bool needPhoneNumber = false,
                                          bool needEmail = false,
@@ -4060,13 +4211,13 @@
                                          std::shared_ptr<ReplyParameters> replyParameters = nullptr,
                                          std::shared_ptr<InlineKeyboardMarkup> replyMarkup = nullptr,
                                          bool disableNotification = false,
-                                         std::int32_t messageThreadId = 0,
-                                         std::int32_t maxTipAmount = 0,
-                                         const std::vector<std::int32_t>& suggestedTipAmounts = { },
+                                         std::uint32_t messageThreadId = 0,
+                                         std::uint64_t maxTipAmount = 0,
+                                         const std::vector<std::uint64_t>& suggestedTipAmounts = { },
                                          std::string_view startParameter = "",
                                          bool protectContent = false,
                                          bool allowPaidBroadcast = false,
-                                         std::int64_t directMessagesTopicId = 0,
+                                         std::uint64_t directMessagesTopicId = 0,
                                          std::string_view messageEffectId = "",
                                          std::shared_ptr<SuggestedPostParameters> suggestedPostParameters
                                          = nullptr) const;
@@ -4083,8 +4234,9 @@
     /**
      * @brief Use this method to send live photos. On success, the sent Message is returned.
      *
-     * @param chatId Unique identifier for the target chat or username of the target channel
-     * (in the format @channelusername)
+     * @param chatId Unique identifier for the target chat or username of the target bot,
+     * supergroup, or channel in the format @username; required unless the
+     * message is sent as an ephemeral reply to a callback query
      * @param livePhoto Live photo video to send. The video must be no longer than 10 seconds
      * and must not exceed 10 MB in size. Pass a file_id as String to send a
      * video that exists on the Telegram servers (recommended) or upload a new
@@ -4138,14 +4290,14 @@
                                            std::string_view callbackQueryId = "",
                                            std::string_view caption = "",
                                            const std::vector<std::shared_ptr<MessageEntity>>& captionEntities = { },
-                                           std::int64_t directMessagesTopicId = 0,
+                                           std::uint64_t directMessagesTopicId = 0,
                                            bool disableNotification = false,
                                            bool hasSpoiler = false,
                                            std::string_view messageEffectId = "",
-                                           std::int32_t messageThreadId = 0,
+                                           std::uint32_t messageThreadId = 0,
                                            std::string_view parseMode = "",
                                            bool protectContent = false,
-                                           std::int64_t receiverUserId = 0,
+                                           std::uint64_t receiverUserId = 0,
                                            std::variant<std::shared_ptr<InlineKeyboardMarkup>,
                                                         std::shared_ptr<ReplyKeyboardMarkup>,
                                                         std::shared_ptr<ReplyKeyboardRemove>,
@@ -4168,7 +4320,8 @@
      * @brief Use this method to send point on the map. On success, the sent Message is returned.
      *
      * @param chatId Unique identifier for the target chat or username of the target bot,
-     * supergroup or channel in the format @username
+     * supergroup, or channel in the format @username; required unless the
+     * message is sent as an ephemeral reply to a callback query
      * @param latitude Latitude of the location
      * @param longitude Longitude of the location
      * @param livePeriod Period in seconds during which the location will be updated (see Live
@@ -4212,7 +4365,7 @@
     std::shared_ptr<Message> sendLocation(std::variant<std::int64_t, std::string> chatId,
                                           double latitude,
                                           double longitude,
-                                          std::int32_t livePeriod = 0,
+                                          std::uint32_t livePeriod = 0,
                                           std::shared_ptr<ReplyParameters> replyParameters = nullptr,
                                           std::variant<std::shared_ptr<InlineKeyboardMarkup>,
                                                        std::shared_ptr<ReplyKeyboardMarkup>,
@@ -4220,16 +4373,16 @@
                                                        std::shared_ptr<ForceReply>> replyMarkup = { },
                                           bool disableNotification = false,
                                           double horizontalAccuracy = 0,
-                                          std::int32_t heading = 0,
-                                          std::int32_t proximityAlertRadius = 0,
-                                          std::int32_t messageThreadId = 0,
+                                          std::uint32_t heading = 0,
+                                          std::uint32_t proximityAlertRadius = 0,
+                                          std::uint32_t messageThreadId = 0,
                                           bool protectContent = false,
                                           std::string_view businessConnectionId = "",
                                           bool allowPaidBroadcast = false,
                                           std::string_view callbackQueryId = "",
-                                          std::int64_t directMessagesTopicId = 0,
+                                          std::uint64_t directMessagesTopicId = 0,
                                           std::string_view messageEffectId = "",
-                                          std::int64_t receiverUserId = 0,
+                                          std::uint64_t receiverUserId = 0,
                                           std::shared_ptr<SuggestedPostParameters> suggestedPostParameters
                                           = nullptr) const;
 
@@ -4248,7 +4401,7 @@
      * same type. On success, an Array of Message objects that were sent is returned.
      *
      * @param chatId Unique identifier for the target chat or username of the target bot,
-     * supergroup or channel in the format @username
+     * supergroup, or channel in the format @username
      * @param media A JSON-serialized Array describing messages to be sent, must include
      * 2-10 items
      * @param disableNotification Sends messages silently. Users will receive a notification with no
@@ -4282,11 +4435,11 @@
                                                   std::shared_ptr<InputMediaVideo>>>& media,
                    bool disableNotification = false,
                    std::shared_ptr<ReplyParameters> replyParameters = nullptr,
-                   std::int32_t messageThreadId = 0,
+                   std::uint32_t messageThreadId = 0,
                    bool protectContent = false,
                    std::string_view businessConnectionId = "",
                    bool allowPaidBroadcast = false,
-                   std::int64_t directMessagesTopicId = 0,
+                   std::uint64_t directMessagesTopicId = 0,
                    std::string_view messageEffectId = "",
                    const std::vector<InputFileAttachment>& attachments = { }) const;
 
@@ -4305,7 +4458,8 @@
      * @brief Use this method to send text messages. On success, the sent Message is returned.
      *
      * @param chatId Unique identifier for the target chat or username of the target bot,
-     * supergroup or channel in the format @username
+     * supergroup, or channel in the format @username; required unless the
+     * message is sent as an ephemeral reply to a callback query
      * @param text Text of the message to be sent, 1-4096 characters after entities parsing
      * @param linkPreviewOptions Link preview generation options for the message
      * @param replyParameters Description of the message to reply to
@@ -4351,14 +4505,14 @@
                                          std::string_view parseMode = "",
                                          bool disableNotification = false,
                                          const std::vector<std::shared_ptr<MessageEntity>>& entities = { },
-                                         std::int32_t messageThreadId = 0,
+                                         std::uint32_t messageThreadId = 0,
                                          bool protectContent = false,
                                          std::string_view businessConnectionId = "",
                                          bool allowPaidBroadcast = false,
                                          std::string_view callbackQueryId = "",
-                                         std::int64_t directMessagesTopicId = 0,
+                                         std::uint64_t directMessagesTopicId = 0,
                                          std::string_view messageEffectId = "",
-                                         std::int64_t receiverUserId = 0,
+                                         std::uint64_t receiverUserId = 0,
                                          std::shared_ptr<SuggestedPostParameters> suggestedPostParameters
                                          = nullptr) const;
 
@@ -4398,10 +4552,10 @@
      *
      * @return True on success.
      */
-    bool sendMessageDraft(std::variant<std::int64_t, std::string> chatId,
-                          std::int32_t draftId,
+    bool sendMessageDraft(std::variant<std::uint64_t, std::string> chatId,
+                          std::int64_t draftId,
                           const std::vector<std::shared_ptr<MessageEntity>>& entities = { },
-                          std::int32_t messageThreadId = 0,
+                          std::uint32_t messageThreadId = 0,
                           std::string_view parseMode = "",
                           std::string_view text = "",
                           bool canStop = false,
@@ -4423,9 +4577,10 @@
      * @brief Use this method to send paid media. On success, the sent Message is returned.
      *
      * @param chatId Unique identifier for the target chat or username of the target bot,
-     * supergroup or channel in the format @username. If the chat is a channel,
-     * all Telegram Star proceeds from this media will be credited to the
-     * chat's balance. Otherwise, they will be credited to the bot's balance.
+     * supergroup, or channel in the format @username. If the chat is a
+     * channel, all Telegram Star proceeds from this media will be credited to
+     * the chat's balance. Otherwise, they will be credited to the bot's
+     * balance.
      * @param media A JSON-serialized Array describing the media to be sent; up to 10 items
      * @param starCount The number of Telegram Stars that must be paid to buy access to the
      * media; 1-25000
@@ -4466,14 +4621,14 @@
      */
     std::shared_ptr<Message> sendPaidMedia(std::variant<std::int64_t, std::string> chatId,
                                            const std::vector<std::shared_ptr<InputPaidMedia>>& media,
-                                           std::int32_t starCount,
+                                           std::uint32_t starCount,
                                            bool allowPaidBroadcast = false,
                                            std::string_view businessConnectionId = "",
                                            std::string_view caption = "",
                                            const std::vector<std::shared_ptr<MessageEntity>>& captionEntities = { },
-                                           std::int64_t directMessagesTopicId = 0,
+                                           std::uint64_t directMessagesTopicId = 0,
                                            bool disableNotification = false,
-                                           std::int32_t messageThreadId = 0,
+                                           std::uint32_t messageThreadId = 0,
                                            std::string_view parseMode = "",
                                            std::string_view payload = "",
                                            bool protectContent = false,
@@ -4500,7 +4655,8 @@
      * @brief Use this method to send photos. On success, the sent Message is returned.
      *
      * @param chatId Unique identifier for the target chat or username of the target bot,
-     * supergroup or channel in the format @username
+     * supergroup, or channel in the format @username; required unless the
+     * message is sent as an ephemeral reply to a callback query
      * @param photo Photo to send. Pass a file_id as String to send a photo that exists on
      * the Telegram servers (recommended), pass an HTTP URL as a String for
      * Telegram to get a photo from the Internet, or upload a new photo using
@@ -4554,15 +4710,15 @@
                                        std::string_view parseMode = "",
                                        bool disableNotification = false,
                                        const std::vector<std::shared_ptr<MessageEntity>>& captionEntities = { },
-                                       std::int32_t messageThreadId = 0,
+                                       std::uint32_t messageThreadId = 0,
                                        bool protectContent = false,
                                        bool hasSpoiler = false,
                                        std::string_view businessConnectionId = "",
                                        bool allowPaidBroadcast = false,
                                        std::string_view callbackQueryId = "",
-                                       std::int64_t directMessagesTopicId = 0,
+                                       std::uint64_t directMessagesTopicId = 0,
                                        std::string_view messageEffectId = "",
-                                       std::int64_t receiverUserId = 0,
+                                       std::uint64_t receiverUserId = 0,
                                        bool showCaptionAboveMedia = false,
                                        std::shared_ptr<SuggestedPostParameters> suggestedPostParameters
                                        = nullptr) const;
@@ -4580,7 +4736,7 @@
      * @brief Use this method to send a native poll. On success, the sent Message is returned.
      *
      * @param chatId Unique identifier for the target chat or username of the target bot,
-     * supergroup or channel in the format @username. Polls can't be sent to
+     * supergroup, or channel in the format @username. Polls can't be sent to
      * channel direct messages chats.
      * @param question Poll question, 1-300 characters
      * @param options A JSON-serialized list of 1-12 answer options
@@ -4664,16 +4820,16 @@
                                       std::string_view explanation = "",
                                       std::string_view explanationParseMode = "",
                                       const std::vector<std::shared_ptr<MessageEntity>>& explanationEntities = { },
-                                      std::int32_t openPeriod = 0,
+                                      std::uint32_t openPeriod = 0,
                                       std::int32_t closeDate = 0,
                                       bool isClosed = false,
-                                      std::int32_t messageThreadId = 0,
+                                      std::uint32_t messageThreadId = 0,
                                       bool protectContent = false,
                                       std::string_view businessConnectionId = "",
                                       bool allowAddingOptions = false,
                                       bool allowPaidBroadcast = false,
                                       bool allowsRevoting = false,
-                                      const std::vector<std::int32_t>& correctOptionIds = { },
+                                      const std::vector<std::uint32_t>& correctOptionIds = { },
                                       const std::vector<std::string>& countryCodes = { },
                                       std::string_view description = "",
                                       const std::vector<std::shared_ptr<MessageEntity>>& descriptionEntities = { },
@@ -4702,7 +4858,8 @@
      * sent Message is returned.
      *
      * @param chatId Unique identifier for the target chat or username of the target bot,
-     * supergroup or channel in the format @username
+     * supergroup, or channel in the format @username; required unless the
+     * message is sent as an ephemeral reply to a callback query
      * @param richMessage The message to be sent
      * @param allowPaidBroadcast Pass True to allow up to 1000 messages per second, ignoring broadcasting
      * limits for a fee of 0.1 Telegram Stars per message. The relevant Stars
@@ -4738,10 +4895,10 @@
                                              std::shared_ptr<InputRichMessage> richMessage,
                                              bool allowPaidBroadcast = false,
                                              std::string_view businessConnectionId = "",
-                                             std::int64_t directMessagesTopicId = 0,
+                                             std::uint64_t directMessagesTopicId = 0,
                                              bool disableNotification = false,
                                              std::string_view messageEffectId = "",
-                                             std::int32_t messageThreadId = 0,
+                                             std::uint32_t messageThreadId = 0,
                                              bool protectContent = false,
                                              std::variant<std::shared_ptr<InlineKeyboardMarkup>,
                                                           std::shared_ptr<ReplyKeyboardMarkup>,
@@ -4786,10 +4943,10 @@
      *
      * @return True on success.
      */
-    bool sendRichMessageDraft(std::variant<std::int64_t, std::string> chatId,
-                              std::int32_t draftId,
+    bool sendRichMessageDraft(std::variant<std::uint64_t, std::string> chatId,
+                              std::int64_t draftId,
                               std::shared_ptr<InputRichMessage> richMessage,
-                              std::int32_t messageThreadId = 0,
+                              std::uint32_t messageThreadId = 0,
                               bool canStop = false,
                               bool keepOnStop = false) const;
 
@@ -4806,11 +4963,77 @@
     bool sendRichMessageDraft(const SendRichMessageDraftArgs& args) const;
 
     /**
+     * @brief Use this method to send again a shared widget created by the bot. Currently, in the
+     * production environment, widgets can be sent only to private chats, and sent widgets
+     * automatically have protected content and therefore can't be forwarded. On success, the
+     * sent Message is returned.
+     *
+     * @param chatId Unique identifier for the target chat or username of the target
+     * supergroup in the format @username
+     * @param widgetId Unique identifier of the shared widget
+     * @param allowPaidBroadcast Pass True to allow up to 1000 messages per second, ignoring broadcasting
+     * limits for a fee of 0.1 Telegram Stars per message. The relevant Stars
+     * will be withdrawn from the bot's balance.
+     * @param caption Widget caption, 0-1024 characters after entities parsing
+     * @param captionEntities A JSON-serialized list of special entities that appear in the caption,
+     * which can be specified instead of parse_mode
+     * @param chatData Data of the widget, which is specific to the message, 0-1024 bytes
+     * @param disableNotification Sends the message silently. Users will receive a notification with no
+     * sound.
+     * @param messageEffectId Unique identifier of the message effect to be added to the message; for
+     * private chats only
+     * @param messageThreadId Unique identifier for the target message thread (topic) of a forum; for
+     * forum supergroups and private chats of bots with forum topic mode
+     * enabled only
+     * @param parseMode Mode for parsing entities in the widget caption. See formatting options
+     * for more details.
+     * @param protectContent Protects the contents of the sent message from forwarding and saving
+     * @param replyMarkup Additional interface options. A JSON-serialized object for an inline
+     * keyboard, custom reply keyboard, instructions to remove a reply keyboard
+     * or to force a reply from the user.
+     * @param replyParameters Description of the message to reply to
+     * @param showCaptionAboveMedia Pass True if the caption must be shown above the widget
+     *
+     * @return The resulting Message object.
+     */
+    std::shared_ptr<Message> sendSharedWidget(std::variant<std::int64_t, std::string> chatId,
+                                              std::string_view widgetId,
+                                              bool allowPaidBroadcast = false,
+                                              std::string_view caption = "",
+                                              const std::vector<std::shared_ptr<MessageEntity>>& captionEntities
+                                              = { },
+                                              std::string_view chatData = "",
+                                              bool disableNotification = false,
+                                              std::string_view messageEffectId = "",
+                                              std::uint32_t messageThreadId = 0,
+                                              std::string_view parseMode = "",
+                                              bool protectContent = false,
+                                              std::variant<std::shared_ptr<InlineKeyboardMarkup>,
+                                                           std::shared_ptr<ReplyKeyboardMarkup>,
+                                                           std::shared_ptr<ReplyKeyboardRemove>,
+                                                           std::shared_ptr<ForceReply>> replyMarkup = { },
+                                              std::shared_ptr<ReplyParameters> replyParameters = nullptr,
+                                              bool showCaptionAboveMedia = false) const;
+
+    /**
+     * @brief Use this method to send again a shared widget created by the bot. Currently, in the
+     * production environment, widgets can be sent only to private chats, and sent widgets
+     * automatically have protected content and therefore can't be forwarded. On success, the
+     * sent Message is returned.
+     *
+     * @param args Method arguments.
+     *
+     * @return The resulting Message object.
+     */
+    std::shared_ptr<Message> sendSharedWidget(const SendSharedWidgetArgs& args) const;
+
+    /**
      * @brief Use this method to send static .WEBP, animated .TGS, or video .WEBM stickers. On
      * success, the sent Message is returned.
      *
      * @param chatId Unique identifier for the target chat or username of the target bot,
-     * supergroup or channel in the format @username
+     * supergroup, or channel in the format @username; required unless the
+     * message is sent as an ephemeral reply to a callback query
      * @param sticker Sticker to send. Pass a file_id as String to send a file that exists on
      * the Telegram servers (recommended), pass an HTTP URL as a String for
      * Telegram to get a .WEBP sticker from the Internet, or upload a new
@@ -4854,15 +5077,15 @@
                                                       std::shared_ptr<ReplyKeyboardRemove>,
                                                       std::shared_ptr<ForceReply>> replyMarkup = { },
                                          bool disableNotification = false,
-                                         std::int32_t messageThreadId = 0,
+                                         std::uint32_t messageThreadId = 0,
                                          bool protectContent = false,
                                          std::string_view emoji = "",
                                          std::string_view businessConnectionId = "",
                                          bool allowPaidBroadcast = false,
                                          std::string_view callbackQueryId = "",
-                                         std::int64_t directMessagesTopicId = 0,
+                                         std::uint64_t directMessagesTopicId = 0,
                                          std::string_view messageEffectId = "",
-                                         std::int64_t receiverUserId = 0,
+                                         std::uint64_t receiverUserId = 0,
                                          std::shared_ptr<SuggestedPostParameters> suggestedPostParameters
                                          = nullptr) const;
 
@@ -4881,7 +5104,8 @@
      * returned.
      *
      * @param chatId Unique identifier for the target chat or username of the target bot,
-     * supergroup or channel in the format @username
+     * supergroup, or channel in the format @username; required unless the
+     * message is sent as an ephemeral reply to a callback query
      * @param latitude Latitude of the venue
      * @param longitude Longitude of the venue
      * @param title Name of the venue
@@ -4935,14 +5159,14 @@
                                                     std::shared_ptr<ForceReply>> replyMarkup = { },
                                        std::string_view googlePlaceId = "",
                                        std::string_view googlePlaceType = "",
-                                       std::int32_t messageThreadId = 0,
+                                       std::uint32_t messageThreadId = 0,
                                        bool protectContent = false,
                                        std::string_view businessConnectionId = "",
                                        bool allowPaidBroadcast = false,
                                        std::string_view callbackQueryId = "",
-                                       std::int64_t directMessagesTopicId = 0,
+                                       std::uint64_t directMessagesTopicId = 0,
                                        std::string_view messageEffectId = "",
-                                       std::int64_t receiverUserId = 0,
+                                       std::uint64_t receiverUserId = 0,
                                        std::shared_ptr<SuggestedPostParameters> suggestedPostParameters
                                        = nullptr) const;
 
@@ -4963,7 +5187,8 @@
      * future.
      *
      * @param chatId Unique identifier for the target chat or username of the target bot,
-     * supergroup or channel in the format @username
+     * supergroup, or channel in the format @username; required unless the
+     * message is sent as an ephemeral reply to a callback query
      * @param video Video to send. Pass a file_id as String to send a video that exists on
      * the Telegram servers (recommended), pass an HTTP URL as a String for
      * Telegram to get a video from the Internet, or upload a new video using
@@ -5025,9 +5250,9 @@
     std::shared_ptr<Message> sendVideo(std::variant<std::int64_t, std::string> chatId,
                                        std::variant<std::shared_ptr<InputFile>, std::string> video,
                                        bool supportsStreaming = false,
-                                       std::int32_t duration = 0,
-                                       std::int32_t width = 0,
-                                       std::int32_t height = 0,
+                                       std::uint32_t duration = 0,
+                                       std::uint32_t width = 0,
+                                       std::uint32_t height = 0,
                                        std::variant<std::shared_ptr<InputFile>, std::string> thumbnail = { },
                                        std::string_view caption = "",
                                        std::shared_ptr<ReplyParameters> replyParameters = nullptr,
@@ -5038,18 +5263,18 @@
                                        std::string_view parseMode = "",
                                        bool disableNotification = false,
                                        const std::vector<std::shared_ptr<MessageEntity>>& captionEntities = { },
-                                       std::int32_t messageThreadId = 0,
+                                       std::uint32_t messageThreadId = 0,
                                        bool protectContent = false,
                                        bool hasSpoiler = false,
                                        std::string_view businessConnectionId = "",
                                        bool allowPaidBroadcast = false,
                                        std::string_view callbackQueryId = "",
                                        std::variant<std::shared_ptr<InputFile>, std::string> cover = { },
-                                       std::int64_t directMessagesTopicId = 0,
+                                       std::uint64_t directMessagesTopicId = 0,
                                        std::string_view messageEffectId = "",
-                                       std::int64_t receiverUserId = 0,
+                                       std::uint64_t receiverUserId = 0,
                                        bool showCaptionAboveMedia = false,
-                                       std::int32_t startTimestamp = 0,
+                                       std::uint32_t startTimestamp = 0,
                                        std::shared_ptr<SuggestedPostParameters> suggestedPostParameters
                                        = nullptr) const;
 
@@ -5070,7 +5295,8 @@
      * the sent Message is returned.
      *
      * @param chatId Unique identifier for the target chat or username of the target bot,
-     * supergroup or channel in the format @username
+     * supergroup, or channel in the format @username; required unless the
+     * message is sent as an ephemeral reply to a callback query
      * @param videoNote Video note to send. Pass a file_id as String to send a video note that
      * exists on the Telegram servers (recommended) or upload a new video using
      * multipart/form-data. More information on Sending Files ». Sending video
@@ -5117,21 +5343,21 @@
                                            std::variant<std::shared_ptr<InputFile>, std::string> videoNote,
                                            std::shared_ptr<ReplyParameters> replyParameters = nullptr,
                                            bool disableNotification = false,
-                                           std::int32_t duration = 0,
-                                           std::int32_t length = 0,
+                                           std::uint32_t duration = 0,
+                                           std::uint32_t length = 0,
                                            std::variant<std::shared_ptr<InputFile>, std::string> thumbnail = { },
                                            std::variant<std::shared_ptr<InlineKeyboardMarkup>,
                                                         std::shared_ptr<ReplyKeyboardMarkup>,
                                                         std::shared_ptr<ReplyKeyboardRemove>,
                                                         std::shared_ptr<ForceReply>> replyMarkup = { },
-                                           std::int32_t messageThreadId = 0,
+                                           std::uint32_t messageThreadId = 0,
                                            bool protectContent = false,
                                            std::string_view businessConnectionId = "",
                                            bool allowPaidBroadcast = false,
                                            std::string_view callbackQueryId = "",
-                                           std::int64_t directMessagesTopicId = 0,
+                                           std::uint64_t directMessagesTopicId = 0,
                                            std::string_view messageEffectId = "",
-                                           std::int64_t receiverUserId = 0,
+                                           std::uint64_t receiverUserId = 0,
                                            std::shared_ptr<SuggestedPostParameters> suggestedPostParameters
                                            = nullptr) const;
 
@@ -5153,7 +5379,8 @@
      * messages of up to 50 MB in size, this limit may be changed in the future.
      *
      * @param chatId Unique identifier for the target chat or username of the target bot,
-     * supergroup or channel in the format @username
+     * supergroup, or channel in the format @username; required unless the
+     * message is sent as an ephemeral reply to a callback query
      * @param voice Audio file to send. Pass a file_id as String to send a file that exists
      * on the Telegram servers (recommended), pass an HTTP URL as a String for
      * Telegram to get a file from the Internet, or upload a new one using
@@ -5195,7 +5422,7 @@
     std::shared_ptr<Message> sendVoice(std::variant<std::int64_t, std::string> chatId,
                                        std::variant<std::shared_ptr<InputFile>, std::string> voice,
                                        std::string_view caption = "",
-                                       std::int32_t duration = 0,
+                                       std::uint32_t duration = 0,
                                        std::shared_ptr<ReplyParameters> replyParameters = nullptr,
                                        std::variant<std::shared_ptr<InlineKeyboardMarkup>,
                                                     std::shared_ptr<ReplyKeyboardMarkup>,
@@ -5204,14 +5431,14 @@
                                        std::string_view parseMode = "",
                                        bool disableNotification = false,
                                        const std::vector<std::shared_ptr<MessageEntity>>& captionEntities = { },
-                                       std::int32_t messageThreadId = 0,
+                                       std::uint32_t messageThreadId = 0,
                                        bool protectContent = false,
                                        std::string_view businessConnectionId = "",
                                        bool allowPaidBroadcast = false,
                                        std::string_view callbackQueryId = "",
-                                       std::int64_t directMessagesTopicId = 0,
+                                       std::uint64_t directMessagesTopicId = 0,
                                        std::string_view messageEffectId = "",
-                                       std::int64_t receiverUserId = 0,
+                                       std::uint64_t receiverUserId = 0,
                                        std::shared_ptr<SuggestedPostParameters> suggestedPostParameters
                                        = nullptr) const;
 
@@ -5227,6 +5454,87 @@
      * @return The resulting Message object.
      */
     std::shared_ptr<Message> sendVoice(const SendVoiceArgs& args) const;
+
+    /**
+     * @brief Use this method to send a message with an HTML widget. Currently, in the production
+     * environment, widgets can be sent only to private chats, and sent widgets automatically
+     * have protected content and therefore can't be forwarded. On success, the sent Message is
+     * returned.
+     *
+     * @param chatId Unique identifier for the target chat or username of the target
+     * supergroup in the format @username
+     * @param html HTML code of the widget, 1-32768 bytes. The code must not exceed 4096
+     * bytes when compressed by zlib with the maximum compression level.
+     * @param allowPaidBroadcast Pass True to allow up to 1000 messages per second, ignoring broadcasting
+     * limits for a fee of 0.1 Telegram Stars per message. The relevant Stars
+     * will be withdrawn from the bot's balance.
+     * @param allowQueries Pass True to allow the widget to send queries to the bot
+     * @param caption Widget caption, 0-1024 characters after entities parsing
+     * @param captionEntities A JSON-serialized list of special entities that appear in the caption,
+     * which can be specified instead of parse_mode
+     * @param chatData Data of the widget, which is specific to the message, 0-1024 bytes
+     * @param disableNotification Sends the message silently. Users will receive a notification with no
+     * sound.
+     * @param height Height of the widget in logical pixels; omit if the height of the widget
+     * isn't fixed. The height is clamped by the app to the range 50-600.
+     * @param isShared Pass True to create a shared widget, which can be sent again using the
+     * method sendSharedWidget
+     * @param messageEffectId Unique identifier of the message effect to be added to the message; for
+     * private chats only
+     * @param messageThreadId Unique identifier for the target message thread (topic) of a forum; for
+     * forum supergroups and private chats of bots with forum topic mode
+     * enabled only
+     * @param parseMode Mode for parsing entities in the widget caption. See formatting options
+     * for more details.
+     * @param protectContent Protects the contents of the sent message from forwarding and saving
+     * @param publicData Public data of the widget, 0-1024 bytes, which will be available
+     * wherever the widget is shown. If the widget is shared, then all messages
+     * with it will have the same public data.
+     * @param replyMarkup Additional interface options. A JSON-serialized object for an inline
+     * keyboard, custom reply keyboard, instructions to remove a reply keyboard
+     * or to force a reply from the user.
+     * @param replyParameters Description of the message to reply to
+     * @param showCaptionAboveMedia Pass True if the caption must be shown above the widget
+     * @param width Width of the widget in logical pixels; omit if the widget must occupy
+     * the whole width of the message bubble. The width is clamped by the app
+     * to the range from 200 to the maximum width of the message bubble.
+     *
+     * @return The resulting Message object.
+     */
+    std::shared_ptr<Message> sendWidget(std::variant<std::int64_t, std::string> chatId,
+                                        std::string_view html,
+                                        bool allowPaidBroadcast = false,
+                                        bool allowQueries = false,
+                                        std::string_view caption = "",
+                                        const std::vector<std::shared_ptr<MessageEntity>>& captionEntities = { },
+                                        std::string_view chatData = "",
+                                        bool disableNotification = false,
+                                        std::uint32_t height = 0,
+                                        bool isShared = false,
+                                        std::string_view messageEffectId = "",
+                                        std::uint32_t messageThreadId = 0,
+                                        std::string_view parseMode = "",
+                                        bool protectContent = false,
+                                        std::string_view publicData = "",
+                                        std::variant<std::shared_ptr<InlineKeyboardMarkup>,
+                                                     std::shared_ptr<ReplyKeyboardMarkup>,
+                                                     std::shared_ptr<ReplyKeyboardRemove>,
+                                                     std::shared_ptr<ForceReply>> replyMarkup = { },
+                                        std::shared_ptr<ReplyParameters> replyParameters = nullptr,
+                                        bool showCaptionAboveMedia = false,
+                                        std::uint32_t width = 0) const;
+
+    /**
+     * @brief Use this method to send a message with an HTML widget. Currently, in the production
+     * environment, widgets can be sent only to private chats, and sent widgets automatically
+     * have protected content and therefore can't be forwarded. On success, the sent Message is
+     * returned.
+     *
+     * @param args Method arguments.
+     *
+     * @return The resulting Message object.
+     */
+    std::shared_ptr<Message> sendWidget(const SendWidgetArgs& args) const;
 
     /**
      * @brief Changes the bio of a managed business account. Requires the can_change_bio business bot
@@ -5363,7 +5671,7 @@
      * @return True on success.
      */
     bool setChatAdministratorCustomTitle(std::variant<std::int64_t, std::string> chatId,
-                                         std::int64_t userId,
+                                         std::uint64_t userId,
                                          std::string_view customTitle) const;
 
     /**
@@ -5414,7 +5722,7 @@
      * @return True on success.
      */
     bool setChatMemberTag(std::variant<std::int64_t, std::string> chatId,
-                          std::int64_t userId,
+                          std::uint64_t userId,
                           std::string_view tag = "") const;
 
     /**
@@ -5439,7 +5747,7 @@
      *
      * @return True on success.
      */
-    bool setChatMenuButton(std::variant<std::int64_t, std::string> chatId = { },
+    bool setChatMenuButton(std::variant<std::uint64_t, std::string> chatId = { },
                            std::shared_ptr<MenuButton> menuButton = nullptr) const;
 
     /**
@@ -5602,12 +5910,12 @@
      *
      * @return The resulting Message object, or nullptr if Telegram returns True.
      */
-    std::shared_ptr<Message> setGameScore(std::int64_t userId,
-                                          std::int32_t score,
+    std::shared_ptr<Message> setGameScore(std::uint64_t userId,
+                                          std::uint32_t score,
                                           bool force = false,
                                           bool disableEditMessage = false,
                                           std::variant<std::int64_t, std::string> chatId = { },
-                                          std::int32_t messageId = 0,
+                                          std::uint32_t messageId = 0,
                                           std::string_view inlineMessageId = "") const;
 
     /**
@@ -5635,8 +5943,8 @@
      * @return True on success.
      */
     bool setManagedBotAccessSettings(bool isAccessRestricted,
-                                     std::int64_t userId,
-                                     const std::vector<std::int32_t>& addedUserIds = { }) const;
+                                     std::uint64_t userId,
+                                     const std::vector<std::uint64_t>& addedUserIds = { }) const;
 
     /**
      * @brief Use this method to change the access settings of a managed bot. Returns True on success.
@@ -5654,7 +5962,7 @@
      * can't use paid reactions. Returns True on success.
      *
      * @param chatId Unique identifier for the target chat or username of the target bot,
-     * supergroup or channel in the format @username
+     * supergroup, or channel in the format @username
      * @param messageId Identifier of the target message. If the message belongs to a media
      * group, the reaction is set to the first non-deleted message in the group
      * instead.
@@ -5668,7 +5976,7 @@
      * @return True on success.
      */
     bool setMessageReaction(std::variant<std::int64_t, std::string> chatId,
-                            std::int32_t messageId,
+                            std::uint32_t messageId,
                             const std::vector<std::shared_ptr<ReactionType>>& reaction = { },
                             bool isBig = false) const;
 
@@ -5848,7 +6156,7 @@
      *
      * @return True on success.
      */
-    bool setPassportDataErrors(std::int64_t userId,
+    bool setPassportDataErrors(std::uint64_t userId,
                                const std::vector<std::shared_ptr<PassportElementError>>& errors) const;
 
     /**
@@ -5943,7 +6251,7 @@
      *
      * @return True on success.
      */
-    bool setStickerPositionInSet(std::string_view sticker, std::int32_t position) const;
+    bool setStickerPositionInSet(std::string_view sticker, std::uint32_t position) const;
 
     /**
      * @brief Use this method to move a sticker in a set created by the bot to a specific position.
@@ -5981,7 +6289,7 @@
      * @return True on success.
      */
     bool setStickerSetThumbnail(std::string_view name,
-                                std::int64_t userId,
+                                std::uint64_t userId,
                                 std::string_view format,
                                 std::variant<std::shared_ptr<InputFile>, std::string> thumbnail = { }) const;
 
@@ -6027,7 +6335,7 @@
      *
      * @return True on success.
      */
-    bool setUserEmojiStatus(std::int64_t userId,
+    bool setUserEmojiStatus(std::uint64_t userId,
                             std::string_view emojiStatusCustomEmojiId = "",
                             std::int32_t emojiStatusExpirationDate = 0) const;
 
@@ -6081,7 +6389,7 @@
      */
     bool setWebhook(std::string_view url,
                     std::shared_ptr<InputFile> certificate = nullptr,
-                    std::int32_t maxConnections = 40,
+                    std::uint32_t maxConnections = 40,
                     const std::vector<std::string>& allowedUpdates = { },
                     std::string_view ipAddress = "",
                     bool dropPendingUpdates = false,
@@ -6109,7 +6417,7 @@
      * otherwise True is returned.
      *
      * @param chatId Required if inline_message_id is not specified. Unique identifier for
-     * the target chat or username of the target bot, supergroup or channel in
+     * the target chat or username of the target bot, supergroup, or channel in
      * the format @username.
      * @param messageId Required if inline_message_id is not specified. Identifier of the
      * message with live location to stop.
@@ -6122,7 +6430,7 @@
      * @return The resulting Message object, or nullptr if Telegram returns True.
      */
     std::shared_ptr<Message> stopMessageLiveLocation(std::variant<std::int64_t, std::string> chatId = { },
-                                                     std::int32_t messageId = 0,
+                                                     std::uint32_t messageId = 0,
                                                      std::string_view inlineMessageId = "",
                                                      std::shared_ptr<InlineKeyboardMarkup> replyMarkup = nullptr,
                                                      std::string_view businessConnectionId = "") const;
@@ -6143,7 +6451,7 @@
      * is returned.
      *
      * @param chatId Unique identifier for the target chat or username of the target bot,
-     * supergroup or channel in the format @username
+     * supergroup, or channel in the format @username
      * @param messageId Identifier of the original message with the poll
      * @param businessConnectionId Unique identifier of the business connection on behalf of which the
      * message to be edited was sent
@@ -6152,7 +6460,7 @@
      * @return The resulting Poll object.
      */
     std::shared_ptr<Poll> stopPoll(std::variant<std::int64_t, std::string> chatId,
-                                   std::int32_t messageId,
+                                   std::uint32_t messageId,
                                    std::string_view businessConnectionId = "",
                                    std::shared_ptr<InlineKeyboardMarkup> replyMarkup = nullptr) const;
 
@@ -6175,7 +6483,7 @@
      *
      * @return True on success.
      */
-    bool transferBusinessAccountStars(std::string_view businessConnectionId, std::int32_t starCount) const;
+    bool transferBusinessAccountStars(std::string_view businessConnectionId, std::uint32_t starCount) const;
 
     /**
      * @brief Transfers Telegram Stars from the business account balance to the bot's balance.
@@ -6205,7 +6513,7 @@
     bool transferGift(std::string_view businessConnectionId,
                       std::int64_t newOwnerChatId,
                       std::string_view ownedGiftId,
-                      std::int32_t starCount = 0) const;
+                      std::uint32_t starCount = 0) const;
 
     /**
      * @brief Transfers an owned unique gift to another user. Requires the
@@ -6234,7 +6542,7 @@
      * @return True on success.
      */
     bool unbanChatMember(std::variant<std::int64_t, std::string> chatId,
-                         std::int64_t userId,
+                         std::uint64_t userId,
                          bool onlyIfBanned = false) const;
 
     /**
@@ -6338,7 +6646,7 @@
      * @return True on success.
      */
     bool unpinAllForumTopicMessages(std::variant<std::int64_t, std::string> chatId,
-                                    std::int32_t messageThreadId) const;
+                                    std::uint32_t messageThreadId) const;
 
     /**
      * @brief Use this method to clear the list of pinned messages in a forum topic in a forum
@@ -6394,7 +6702,7 @@
      */
     bool unpinChatMessage(std::variant<std::int64_t, std::string> chatId,
                           std::string_view businessConnectionId = "",
-                          std::int32_t messageId = 0) const;
+                          std::uint32_t messageId = 0) const;
 
     /**
      * @brief Use this method to remove a message from the list of pinned messages in a chat. In
@@ -6429,7 +6737,7 @@
     bool upgradeGift(std::string_view businessConnectionId,
                      std::string_view ownedGiftId,
                      bool keepOriginalDetails = false,
-                     std::int32_t starCount = 0) const;
+                     std::uint32_t starCount = 0) const;
 
     /**
      * @brief Upgrades a given regular gift to a unique gift. Requires the
@@ -6455,7 +6763,7 @@
      *
      * @return The resulting File object.
      */
-    std::shared_ptr<File> uploadStickerFile(std::int64_t userId,
+    std::shared_ptr<File> uploadStickerFile(std::uint64_t userId,
                                             std::variant<std::shared_ptr<InputFile>, std::string> sticker,
                                             std::string_view stickerFormat) const;
 
@@ -6475,15 +6783,23 @@
      * True on success.
      *
      * @param chatId Unique identifier for the target chat or username of the target bot,
-     * supergroup or channel in the format @username. Channel direct messages
+     * supergroup, or channel in the format @username. Channel direct messages
      * chats can't be verified.
      * @param customDescription Custom description for the verification; 0-70 characters. Must be empty
      * if the organization isn't allowed to provide a custom verification
      * description.
+     * @param customDescriptionEntities A JSON-serialized list of special entities that appear in the custom
+     * description, which can be specified instead of
+     * custom_description_parse_mode. Only “text_link” entities are supported.
+     * @param customDescriptionParseMode Mode for parsing entities in the custom description. See formatting
+     * options for more details. Only “text_link” entities are supported.
      *
      * @return True on success.
      */
-    bool verifyChat(std::variant<std::int64_t, std::string> chatId, std::string_view customDescription = "") const;
+    bool verifyChat(std::variant<std::int64_t, std::string> chatId,
+                    std::string_view customDescription = "",
+                    const std::vector<std::shared_ptr<MessageEntity>>& customDescriptionEntities = { },
+                    std::string_view customDescriptionParseMode = "") const;
 
     /**
      * @brief Verifies a chat on behalf of the organization which is represented by the bot. Returns
@@ -6503,10 +6819,18 @@
      * @param customDescription Custom description for the verification; 0-70 characters. Must be empty
      * if the organization isn't allowed to provide a custom verification
      * description.
+     * @param customDescriptionEntities A JSON-serialized list of special entities that appear in the custom
+     * description, which can be specified instead of
+     * custom_description_parse_mode. Only “text_link” entities are supported.
+     * @param customDescriptionParseMode Mode for parsing entities in the custom description. See formatting
+     * options for more details. Only “text_link” entities are supported.
      *
      * @return True on success.
      */
-    bool verifyUser(std::int64_t userId, std::string_view customDescription = "") const;
+    bool verifyUser(std::uint64_t userId,
+                    std::string_view customDescription = "",
+                    const std::vector<std::shared_ptr<MessageEntity>>& customDescriptionEntities = { },
+                    std::string_view customDescriptionParseMode = "") const;
 
     /**
      * @brief Verifies a user on behalf of the organization which is represented by the bot. Returns

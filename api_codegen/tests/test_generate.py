@@ -62,7 +62,6 @@ def test_compatibility_config_is_grouped_by_telegram_entity() -> None:
         "setBusinessAccountProfilePhoto",
         "setMyProfilePhoto",
     }
-    assert TYPE_CONFIG["BotCommandScopeChatMember"]["fields"]["user_id"]["type"] == "std::int64_t"
     assert TYPE_CONFIG["Chat"]["fields"]["type"]["enum"]["Private"] == "private"
 
 
@@ -101,7 +100,7 @@ def test_integer_widths_follow_schema_and_telegram_id_rules() -> None:
         False,
         False,
     )
-    configured_user_id = type_builder._build_field(
+    scope_user_id = type_builder._build_field(
         "BotCommandScopeChatMember",
         "user_id",
         {"type": "integer", "format": "int32"},
@@ -120,13 +119,157 @@ def test_integer_widths_follow_schema_and_telegram_id_rules() -> None:
         True,
     )
 
-    assert user_id.cpp_type == "std::int64_t"
-    assert limit.cpp_type == "std::int32_t"
+    assert user_id.cpp_type == "std::uint64_t"
+    assert limit.cpp_type == "std::uint32_t"
     assert chat_id.cpp_type == "std::variant<std::int64_t, std::string>"
-    assert direct_messages_topic_id.cpp_type == "std::int64_t"
-    assert configured_user_id.cpp_type == "std::int64_t"
-    assert shared_user_id.cpp_type == "std::int64_t"
-    assert message_id.cpp_type == "std::int32_t"
+    assert direct_messages_topic_id.cpp_type == "std::uint64_t"
+    assert scope_user_id.cpp_type == "std::uint64_t"
+    assert shared_user_id.cpp_type == "std::uint64_t"
+    assert message_id.cpp_type == "std::uint32_t"
+
+
+@pytest.mark.parametrize(
+    ("owner", "name", "expected"),
+    [
+        ("User", "id", "std::uint64_t"),
+        ("Chat", "id", "std::int64_t"),
+        ("Community", "id", "std::uint64_t"),
+        ("DirectMessagesTopic", "topic_id", "std::uint64_t"),
+        ("Story", "id", "std::uint32_t"),
+        ("InputChecklistTask", "id", "std::uint32_t"),
+        ("Update", "update_id", "std::uint32_t"),
+        ("Message", "ephemeral_message_id", "std::uint32_t"),
+        ("Message", "reply_to_checklist_task_id", "std::uint32_t"),
+        ("ChatFullInfo", "accent_color_id", "std::uint32_t"),
+        ("ChatFullInfo", "profile_accent_color_id", "std::uint32_t"),
+        ("KeyboardButtonRequestUsers", "request_id", "std::int32_t"),
+        ("MessageGenerationStopped", "draft_id", "std::int64_t"),
+        ("Message", "migrate_to_chat_id", "std::int64_t"),
+        ("BusinessConnection", "user_chat_id", "std::uint64_t"),
+        ("ChatJoinRequest", "user_chat_id", "std::uint64_t"),
+        ("ChatShared", "chat_id", "std::int64_t"),
+        ("BotCommandScopeChat", "chat_id", "std::variant<std::int64_t, std::string>"),
+        ("BotCommandScopeChatAdministrators", "chat_id", "std::variant<std::int64_t, std::string>"),
+        ("BotCommandScopeChatMember", "chat_id", "std::variant<std::int64_t, std::string>"),
+        ("ReplyParameters", "chat_id", "std::variant<std::int64_t, std::string>"),
+    ],
+)
+def test_id_signedness_depends_on_semantics(owner: str, name: str, expected: str) -> None:
+    schema = {"type": "integer"}
+    if owner in {"User", "Chat", "Community", "DirectMessagesTopic"}:
+        schema["format"] = "int64"
+    assert _CppTypeResolver.field_type(name, schema, True, owner) == expected
+    assert _CppTypeResolver.field_type(name, schema, False, owner) == f"std::optional<{expected}>"
+
+
+@pytest.mark.parametrize(
+    ("name", "expected"),
+    [
+        ("added_user_ids", "std::uint64_t"),
+        ("message_ids", "std::uint32_t"),
+        ("correct_option_ids", "std::uint32_t"),
+        ("option_ids", "std::uint32_t"),
+        ("marked_as_done_task_ids", "std::uint32_t"),
+    ],
+)
+def test_id_arrays_use_the_same_type_as_scalar_ids(name: str, expected: str) -> None:
+    schema = {"type": "array", "items": {"type": "integer"}}
+    assert _CppTypeResolver.field_type(name, schema, True) == f"std::vector<{expected}>"
+    arg = _MethodModelBuilder({})._build_arg("method", name, schema, True, False)
+    assert arg.cpp_type == f"std::vector<{expected}>"
+
+
+def test_string_identifiers_and_signed_offsets_keep_their_types() -> None:
+    assert _CppTypeResolver.field_type("id", {"type": "string"}, True, "Poll") == "std::string"
+    assert _CppTypeResolver.api_type({"type": "string"}, "callback_query_id") == "std::string"
+    assert _CppTypeResolver.api_type({"type": "integer"}, "offset") == "std::int32_t"
+
+
+@pytest.mark.parametrize(
+    ("owner", "name", "expected"),
+    [
+        ("MessageEntity", "offset", "std::uint32_t"),
+        ("getUpdates", "offset", "std::int32_t"),
+        ("getUpdates", "limit", "std::uint32_t"),
+        ("getUpdates", "timeout", "std::uint32_t"),
+        ("getStarTransactions", "offset", "std::uint32_t"),
+        ("getUserProfilePhotos", "offset", "std::uint32_t"),
+        ("getUserProfileAudios", "offset", "std::uint32_t"),
+        ("StarTransaction", "amount", "std::uint64_t"),
+        ("StarTransaction", "nanostar_amount", "std::uint32_t"),
+        ("StarAmount", "amount", "std::int64_t"),
+        ("StarAmount", "nanostar_amount", "std::int32_t"),
+        ("AffiliateInfo", "amount", "std::int64_t"),
+        ("AffiliateInfo", "nanostar_amount", "std::int32_t"),
+        ("LabeledPrice", "amount", "std::int64_t"),
+        ("SuggestedPostPrice", "amount", "std::uint64_t"),
+        ("SuggestedPostPaid", "amount", "std::uint64_t"),
+        ("UniqueGiftInfo", "last_resale_amount", "std::uint64_t"),
+        ("SuccessfulPayment", "total_amount", "std::uint64_t"),
+        ("sendInvoice", "max_tip_amount", "std::uint64_t"),
+        ("Video", "duration", "std::uint32_t"),
+        ("InputMediaVideo", "height", "std::uint32_t"),
+        ("StoryAreaTypeWeather", "background_color", "std::uint32_t"),
+        ("GiveawayWinners", "winner_count", "std::uint32_t"),
+        ("Dice", "value", "std::uint32_t"),
+        ("InputRichBlockListItem", "value", "std::int32_t"),
+        ("RichBlockListItem", "value", "std::int32_t"),
+        ("UserRating", "level", "std::int32_t"),
+        ("UserRating", "rating", "std::int32_t"),
+        ("UserRating", "current_level_rating", "std::int32_t"),
+        ("UserRating", "next_level_rating", "std::int32_t"),
+        ("Message", "date", "std::uint32_t"),
+        ("InaccessibleMessage", "date", "std::uint32_t"),
+        ("RichTextDateTime", "unix_time", "std::int32_t"),
+        ("banChatMember", "until_date", "std::int32_t"),
+        ("getChatMemberCount", "result", "std::uint32_t"),
+    ],
+)
+def test_integer_domains_follow_documented_context(owner: str, name: str, expected: str) -> None:
+    schema = {"type": "integer"}
+    if owner[0].isupper():
+        assert _CppTypeResolver.field_type(name, schema, True, owner) == expected
+        assert _CppTypeResolver.field_type(name, schema, False, owner) == f"std::optional<{expected}>"
+    elif name == "result":
+        assert _CppTypeResolver.api_type(schema, name, owner) == expected
+    else:
+        arg = _MethodModelBuilder({})._build_arg(owner, name, schema, False, False)
+        assert arg.cpp_type == expected
+
+
+def test_unsigned_sizes_and_arrays_preserve_their_widths() -> None:
+    assert (
+        _CppTypeResolver.field_type("file_size", {"type": "integer", "format": "int64"}, True, "File")
+        == "std::uint64_t"
+    )
+    schema = {"type": "array", "items": {"type": "integer"}}
+    assert (
+        _CppTypeResolver.field_type("colors", schema, True, "BackgroundFillFreeformGradient")
+        == "std::vector<std::uint32_t>"
+    )
+    arg = _MethodModelBuilder({})._build_arg("sendInvoice", "suggested_tip_amounts", schema, False, False)
+    assert arg.cpp_type == "std::vector<std::uint64_t>"
+    assert (
+        _CppTypeResolver.field_type("suggested_tip_amounts", schema, False, "InputInvoiceMessageContent")
+        == "std::optional<std::vector<std::uint64_t>>"
+    )
+
+
+@pytest.mark.parametrize(
+    "method_name", ["getChatMenuButton", "setChatMenuButton", "sendMessageDraft", "sendRichMessageDraft"]
+)
+def test_private_chat_method_arguments_use_unsigned_ids(method_name: str) -> None:
+    arg = _MethodModelBuilder({})._build_arg(
+        method_name, "chat_id", {"type": "integer", "format": "int64"}, False, False
+    )
+    assert arg.cpp_type == "std::variant<std::uint64_t, std::string>"
+    assert arg.default_value == "{ }"
+
+
+@pytest.mark.parametrize("method_name", ["sendMessageDraft", "sendRichMessageDraft"])
+def test_draft_method_arguments_use_signed_64_bit_ids(method_name: str) -> None:
+    arg = _MethodModelBuilder({})._build_arg(method_name, "draft_id", {"type": "integer"}, True, False)
+    assert arg.cpp_type == "std::int64_t"
 
 
 def test_type_resolver_handles_json_fallback_and_later_all_of_reference() -> None:
@@ -203,6 +346,10 @@ def test_bot_api_10_3_keeps_legacy_ephemeral_arguments() -> None:
         assert "callback_query_id" not in wire_names
         assert "receiver_user_id" not in wire_names
         assert "ephemeral_message_parameters" in wire_names
+        assert method.direct_args[0].wire_name == "chat_id"
+        assert method.direct_args[0].default_value is None
+        chat_arg = next(arg for arg in method.args if arg.wire_name == "chat_id")
+        assert not chat_arg.required
 
 
 def test_bot_api_10_3_appends_new_direct_arguments() -> None:
@@ -320,7 +467,15 @@ def test_generator_renders_types_methods_and_documentation(
     source_dir.mkdir()
     source_dir.joinpath("Api.cpp").write_text("", encoding="utf-8")
 
-    generated = _OpenApiGenerator(schema_path, tmp_path).generate()
+    config = {
+        "api": {
+            "setWebhook": {
+                "args_order": ["url", "certificate", "max_connections", "allowed_updates"],
+                "args": {"max_connections": {"default": 40}},
+            }
+        }
+    }
+    generated = _OpenApiGenerator(schema_path, tmp_path, config).generate()
 
     types = tmp_path.joinpath("include/tgbot/Types.h").read_text(encoding="utf-8")
     types_source = tmp_path.joinpath("src/Types.cpp").read_text(encoding="utf-8")
@@ -358,13 +513,13 @@ def test_generator_renders_types_methods_and_documentation(
     assert "ApiResponse::decode<std::shared_ptr<User>>" in api_source
     assert "std::shared_ptr<InputFile> certificate = nullptr" in methods
     assert "std::string_view url" in methods
-    assert "std::int32_t maxConnections = 40" in methods
+    assert "std::uint32_t maxConnections = 40" in methods
     assert 'ApiRequest::required("url", url)' in api_source
     assert 'ApiRequest::optional("certificate", certificate)' in api_source
     assert 'ApiRequest::optional("allowed_updates", allowedUpdates)' in api_source
     assert "struct SetWebhookArgs" in types
     assert "std::string url { };" in types
-    assert "std::int32_t maxConnections = 40;" in types
+    assert "std::uint32_t maxConnections = 40;" in types
     assert "std::shared_ptr<InputFile> certificate = nullptr;" in types
     assert "setWebhook( const SetWebhookArgs& args ) const;" in normalized_methods
     assert methods.count("@brief Specify a URL and receive incoming updates.") == 2
@@ -376,7 +531,7 @@ def test_generator_renders_types_methods_and_documentation(
     assert "args.maxConnections" in api_source
     assert "args.allowedUpdates" in api_source
 
-    generated_again = _OpenApiGenerator(schema_path, tmp_path).generate()
+    generated_again = _OpenApiGenerator(schema_path, tmp_path, config).generate()
 
     assert generated_again == generated
     assert tmp_path.joinpath("include/tgbot/Types.h").read_text(encoding="utf-8") == types
@@ -400,6 +555,85 @@ def test_generator_renders_optional_attach_reference_argument(method_name: str) 
     assert method.compatibility_args == method.direct_args
 
 
+@pytest.mark.parametrize(
+    ("config", "error"),
+    [
+        ({"typo": {}}, "Unknown entries in codegen: typo"),
+        ({"types": {"Missing": {}}}, "Unknown entries in types: Missing"),
+        ({"types": {"User": {"field": {}}}}, "Unknown entries in types.User: field"),
+        (
+            {"types": {"User": {"fields": {"missing": {"type": "std::int64_t"}}}}},
+            "Unknown entries in types.User.fields: missing",
+        ),
+        (
+            {"types": {"User": {"fields": {"id": {"typo": True}}}}},
+            "Unknown entries in types.User.fields.id: typo",
+        ),
+        (
+            {"types": {"User": {"append_union_types": ["std::shared_ptr<Missing>"]}}},
+            "Unknown entries in types.User.append_union_types: std::shared_ptr<Missing>",
+        ),
+        ({"api": {"missingMethod": {}}}, "Unknown entries in api: missingMethod"),
+        ({"api": {"setWebhook": {"arg_order": ["url"]}}}, "Unknown entries in api.setWebhook: arg_order"),
+        (
+            {"api": {"setWebhook": {"args_order": ["url", "removed_argument"]}}},
+            "Unknown entries in api.setWebhook.args_order: removed_argument",
+        ),
+        (
+            {"api": {"setWebhook": {"args": {"missing": {"default": 1}}}}},
+            "Unknown entries in api.setWebhook.args: missing",
+        ),
+        (
+            {"api": {"setWebhook": {"args": {"url": {"typo": True}}}}},
+            "Unknown entries in api.setWebhook.args.url: typo",
+        ),
+        (
+            {"api": {"setWebhook": {"direct_exclude": ["missing"]}}},
+            "Unknown entries in api.setWebhook.direct_exclude: missing",
+        ),
+        (
+            {"api": {"setWebhook": {"compatibility_overload_without": ["missing"]}}},
+            "Unknown entries in api.setWebhook.compatibility_overload_without: missing",
+        ),
+    ],
+)
+def test_invalid_config_preserves_generated_files(tmp_path: Path, config: dict, error: str) -> None:
+    schema_path = tmp_path / "schema.yaml"
+    schema_path.write_text(yaml.safe_dump(_schema()), encoding="utf-8")
+    output = tmp_path / "include/tgbot/Types.h"
+    output.parent.mkdir(parents=True)
+    output.write_text("existing generated file\n", encoding="utf-8")
+
+    with pytest.raises(ValueError, match=re.escape(error)):
+        _OpenApiGenerator(schema_path, tmp_path, config).generate()
+
+    assert output.read_text(encoding="utf-8") == "existing generated file\n"
+    assert not tmp_path.joinpath("src").exists()
+
+
+def test_config_accepts_multipart_and_synthetic_arguments(tmp_path: Path) -> None:
+    schema_path = tmp_path / "schema.yaml"
+    schema_path.write_text(yaml.safe_dump(_schema()), encoding="utf-8")
+    config = {
+        "api": {
+            "setWebhook": {
+                "supports_attach_references": True,
+                "extra_args": {"extra": {"type": "string"}},
+                "args_order": ["url", "certificate", "extra", "attachments"],
+                "args": {"certificate": {"type": "std::shared_ptr<InputFile>"}},
+                "direct_exclude": ["extra"],
+            }
+        }
+    }
+
+    _OpenApiGenerator(schema_path, tmp_path, config).generate()
+
+    source = tmp_path.joinpath("src/ApiMethods.cpp").read_text(encoding="utf-8")
+    assert 'ApiRequest::optional("certificate", args.certificate)' in source
+    assert 'ApiRequest::optional("extra", args.extra)' in source
+    assert 'ApiRequest::optional("attachments", args.attachments)' in source
+
+
 def test_generator_rejects_method_without_result_schema(tmp_path: Path) -> None:
     schema = _schema()
     response_parts = schema["paths"]["/getMe"]["post"]["responses"]["200"]["content"]["application/json"]["schema"][
@@ -410,7 +644,7 @@ def test_generator_rejects_method_without_result_schema(tmp_path: Path) -> None:
     schema_path.write_text(yaml.safe_dump(schema), encoding="utf-8")
 
     with pytest.raises(ValueError, match="Response type is missing for getMe"):
-        _OpenApiGenerator(schema_path, tmp_path).generate()
+        _OpenApiGenerator(schema_path, tmp_path, {}).generate()
 
 
 def test_json_argument_defaults_and_unsupported_return_type() -> None:

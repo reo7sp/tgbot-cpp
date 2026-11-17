@@ -42,7 +42,11 @@ void from_json(const nlohmann::json& json, {{ type.name }}& value) {
     Json::decode(json, value.value);
 {% else %}
 {% for field in type.fields %}
+{% if field.accepts_integer_string %}
+    Json::decodeInt64(json.at("{{ field.wire_name }}"), value.{{ field.cpp_name }});
+{% else %}
     Json::{{ "readRequiredField" if field.required else "readOptionalField" }}(json, "{{ field.wire_name }}", value.{{ field.cpp_name }});
+{% endif %}
 {% endfor %}
 {% endif %}
 }

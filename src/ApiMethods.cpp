@@ -6,7 +6,7 @@
 
 namespace TgBot {
 
-bool Api::addStickerToSet(std::int64_t userId,
+bool Api::addStickerToSet(std::uint64_t userId,
                           std::string_view name,
                           std::shared_ptr<InputSticker> sticker,
                           const std::vector<InputFileAttachment>& attachments) const {
@@ -29,7 +29,7 @@ bool Api::answerCallbackQuery(std::string_view callbackQueryId,
                               std::string_view text,
                               bool showAlert,
                               std::string_view url,
-                              std::int32_t cacheTime) const {
+                              std::uint32_t cacheTime) const {
     return ApiResponse::decode<bool>(sendRequest(
             "answerCallbackQuery",
             ApiRequest::makeFields(
@@ -78,7 +78,7 @@ std::shared_ptr<SentGuestMessage> Api::answerGuestQuery(const AnswerGuestQueryAr
 
 bool Api::answerInlineQuery(std::string_view inlineQueryId,
                             const std::vector<std::shared_ptr<InlineQueryResult>>& results,
-                            std::int32_t cacheTime,
+                            std::uint32_t cacheTime,
                             bool isPersonal,
                             std::string_view nextOffset,
                             std::shared_ptr<InlineQueryResultsButton> button) const {
@@ -157,7 +157,22 @@ std::shared_ptr<SentWebAppMessage> Api::answerWebAppQuery(const AnswerWebAppQuer
     return answerWebAppQuery(args.webAppQueryId, args.result);
 }
 
-bool Api::approveChatJoinRequest(std::variant<std::int64_t, std::string> chatId, std::int64_t userId) const {
+bool Api::answerWidgetQuery(std::string_view widgetQueryId, std::string_view data) const {
+    return ApiResponse::decode<bool>(
+        sendRequest(
+            "answerWidgetQuery",
+            ApiRequest::makeFields(
+                ApiRequest::required("widget_query_id", widgetQueryId),
+                ApiRequest::optional("data", data)
+            )
+        ) );
+}
+
+bool Api::answerWidgetQuery(const AnswerWidgetQueryArgs& args) const {
+    return answerWidgetQuery(args.widgetQueryId, args.data);
+}
+
+bool Api::approveChatJoinRequest(std::variant<std::int64_t, std::string> chatId, std::uint64_t userId) const {
     return ApiResponse::decode<bool>(sendRequest(
             "approveChatJoinRequest",
             ApiRequest::makeFields(
@@ -172,7 +187,7 @@ bool Api::approveChatJoinRequest(const ApproveChatJoinRequestArgs& args) const {
 }
 
 bool Api::approveSuggestedPost(std::variant<std::int64_t, std::string> chatId,
-                               std::int32_t messageId,
+                               std::uint32_t messageId,
                                std::int32_t sendDate) const {
     return ApiResponse::decode<bool>(
         sendRequest(
@@ -190,7 +205,7 @@ bool Api::approveSuggestedPost(const ApproveSuggestedPostArgs& args) const {
 }
 
 bool Api::banChatMember(std::variant<std::int64_t, std::string> chatId,
-                        std::int64_t userId,
+                        std::uint64_t userId,
                         std::int32_t untilDate,
                         bool revokeMessages) const {
     return ApiResponse::decode<bool>(sendRequest(
@@ -229,7 +244,7 @@ bool Api::close() const {
         ) );
 }
 
-bool Api::closeForumTopic(std::variant<std::int64_t, std::string> chatId, std::int32_t messageThreadId) const {
+bool Api::closeForumTopic(std::variant<std::int64_t, std::string> chatId, std::uint32_t messageThreadId) const {
     return ApiResponse::decode<bool>(sendRequest(
             "closeForumTopic",
             ApiRequest::makeFields(
@@ -273,7 +288,7 @@ bool Api::convertGiftToStars(const ConvertGiftToStarsArgs& args) const {
 
 std::shared_ptr<MessageId> Api::copyMessage(std::variant<std::int64_t, std::string> chatId,
                                             std::variant<std::int64_t, std::string> fromChatId,
-                                            std::int32_t messageId,
+                                            std::uint32_t messageId,
                                             std::string_view caption,
                                             std::string_view parseMode,
                                             const std::vector<std::shared_ptr<MessageEntity>>& captionEntities,
@@ -284,13 +299,13 @@ std::shared_ptr<MessageId> Api::copyMessage(std::variant<std::int64_t, std::stri
                                                          std::shared_ptr<ReplyKeyboardRemove>,
                                                          std::shared_ptr<ForceReply>> replyMarkup,
                                             bool protectContent,
-                                            std::int32_t messageThreadId,
+                                            std::uint32_t messageThreadId,
                                             bool allowPaidBroadcast,
-                                            std::int64_t directMessagesTopicId,
+                                            std::uint64_t directMessagesTopicId,
                                             std::string_view messageEffectId,
                                             bool showCaptionAboveMedia,
                                             std::shared_ptr<SuggestedPostParameters> suggestedPostParameters,
-                                            std::int32_t videoStartTimestamp) const {
+                                            std::uint32_t videoStartTimestamp) const {
     return ApiResponse::decode<std::shared_ptr<MessageId>>(
         sendRequest(
             "copyMessage",
@@ -338,12 +353,12 @@ std::shared_ptr<MessageId> Api::copyMessage(const CopyMessageArgs& args) const {
 
 std::vector<std::shared_ptr<MessageId>> Api::copyMessages(std::variant<std::int64_t, std::string> chatId,
                                                           std::variant<std::int64_t, std::string> fromChatId,
-                                                          const std::vector<std::int32_t>& messageIds,
-                                                          std::int32_t messageThreadId,
+                                                          const std::vector<std::uint32_t>& messageIds,
+                                                          std::uint32_t messageThreadId,
                                                           bool disableNotification,
                                                           bool protectContent,
                                                           bool removeCaption,
-                                                          std::int64_t directMessagesTopicId) const {
+                                                          std::uint64_t directMessagesTopicId) const {
     return ApiResponse::decode<std::vector<std::shared_ptr<MessageId>>>(
         sendRequest(
             "copyMessages",
@@ -373,7 +388,7 @@ std::vector<std::shared_ptr<MessageId>> Api::copyMessages(const CopyMessagesArgs
 
 std::shared_ptr<ChatInviteLink> Api::createChatInviteLink(std::variant<std::int64_t, std::string> chatId,
                                                           std::int32_t expireDate,
-                                                          std::int32_t memberLimit,
+                                                          std::uint32_t memberLimit,
                                                           std::string_view name,
                                                           bool createsJoinRequest) const {
     return ApiResponse::decode<std::shared_ptr<ChatInviteLink>>(
@@ -395,8 +410,8 @@ std::shared_ptr<ChatInviteLink> Api::createChatInviteLink(const CreateChatInvite
 
 std::shared_ptr<ChatInviteLink>
 Api::createChatSubscriptionInviteLink(std::variant<std::int64_t, std::string> chatId,
-                                      std::int32_t subscriptionPeriod,
-                                      std::int32_t subscriptionPrice,
+                                      std::uint32_t subscriptionPeriod,
+                                      std::uint32_t subscriptionPrice,
                                       std::string_view name) const {
     return ApiResponse::decode<std::shared_ptr<ChatInviteLink>>(sendRequest(
             "createChatSubscriptionInviteLink",
@@ -419,7 +434,7 @@ Api::createChatSubscriptionInviteLink(const CreateChatSubscriptionInviteLinkArgs
 
 std::shared_ptr<ForumTopic> Api::createForumTopic(std::variant<std::int64_t, std::string> chatId,
                                                   std::string_view name,
-                                                  std::int32_t iconColor,
+                                                  std::uint32_t iconColor,
                                                   std::string_view iconCustomEmojiId) const {
     return ApiResponse::decode<std::shared_ptr<ForumTopic>>(
         sendRequest(
@@ -443,13 +458,13 @@ std::string Api::createInvoiceLink(std::string_view title,
                                    std::string_view providerToken,
                                    std::string_view currency,
                                    const std::vector<std::shared_ptr<LabeledPrice>>& prices,
-                                   std::int32_t maxTipAmount,
-                                   const std::vector<std::int32_t>& suggestedTipAmounts,
+                                   std::uint64_t maxTipAmount,
+                                   const std::vector<std::uint64_t>& suggestedTipAmounts,
                                    std::string_view providerData,
                                    std::string_view photoUrl,
-                                   std::int32_t photoSize,
-                                   std::int32_t photoWidth,
-                                   std::int32_t photoHeight,
+                                   std::uint32_t photoSize,
+                                   std::uint32_t photoWidth,
+                                   std::uint32_t photoHeight,
                                    bool needName,
                                    bool needPhoneNumber,
                                    bool needEmail,
@@ -458,7 +473,7 @@ std::string Api::createInvoiceLink(std::string_view title,
                                    bool sendEmailToProvider,
                                    bool isFlexible,
                                    std::string_view businessConnectionId,
-                                   std::int32_t subscriptionPeriod) const {
+                                   std::uint32_t subscriptionPeriod) const {
     return ApiResponse::decode<std::string>(sendRequest(
             "createInvoiceLink",
             ApiRequest::makeFields(
@@ -513,7 +528,7 @@ std::string Api::createInvoiceLink(const CreateInvoiceLinkArgs& args) const {
                              args.subscriptionPeriod);
 }
 
-bool Api::createNewStickerSet(std::int64_t userId,
+bool Api::createNewStickerSet(std::uint64_t userId,
                               std::string_view name,
                               std::string_view title,
                               const std::vector<std::shared_ptr<InputSticker>>& stickers,
@@ -545,7 +560,7 @@ bool Api::createNewStickerSet(const CreateNewStickerSetArgs& args) const {
                                args.attachments);
 }
 
-bool Api::declineChatJoinRequest(std::variant<std::int64_t, std::string> chatId, std::int64_t userId) const {
+bool Api::declineChatJoinRequest(std::variant<std::int64_t, std::string> chatId, std::uint64_t userId) const {
     return ApiResponse::decode<bool>(sendRequest(
             "declineChatJoinRequest",
             ApiRequest::makeFields(
@@ -560,7 +575,7 @@ bool Api::declineChatJoinRequest(const DeclineChatJoinRequestArgs& args) const {
 }
 
 bool Api::declineSuggestedPost(std::variant<std::int64_t, std::string> chatId,
-                               std::int32_t messageId,
+                               std::uint32_t messageId,
                                std::string_view comment) const {
     return ApiResponse::decode<bool>(
         sendRequest(
@@ -579,7 +594,7 @@ bool Api::declineSuggestedPost(const DeclineSuggestedPostArgs& args) const {
 
 bool Api::deleteAllMessageReactions(std::variant<std::int64_t, std::string> chatId,
                                     std::int64_t actorChatId,
-                                    std::int64_t userId) const {
+                                    std::uint64_t userId) const {
     return ApiResponse::decode<bool>(sendRequest(
             "deleteAllMessageReactions",
             ApiRequest::makeFields(
@@ -594,8 +609,22 @@ bool Api::deleteAllMessageReactions(const DeleteAllMessageReactionsArgs& args) c
     return deleteAllMessageReactions(args.chatId, args.actorChatId, args.userId);
 }
 
+bool Api::deleteBusinessAccountGift(std::string_view businessConnectionId, std::string_view ownedGiftId) const {
+    return ApiResponse::decode<bool>(sendRequest(
+            "deleteBusinessAccountGift",
+            ApiRequest::makeFields(
+                ApiRequest::required("business_connection_id", businessConnectionId),
+                ApiRequest::required("owned_gift_id", ownedGiftId)
+            )
+        ) );
+}
+
+bool Api::deleteBusinessAccountGift(const DeleteBusinessAccountGiftArgs& args) const {
+    return deleteBusinessAccountGift(args.businessConnectionId, args.ownedGiftId);
+}
+
 bool Api::deleteBusinessMessages(std::string_view businessConnectionId,
-                                 const std::vector<std::int32_t>& messageIds) const {
+                                 const std::vector<std::uint32_t>& messageIds) const {
     return ApiResponse::decode<bool>(
         sendRequest(
             "deleteBusinessMessages",
@@ -639,8 +668,8 @@ bool Api::deleteChatStickerSet(const DeleteChatStickerSetArgs& args) const {
 }
 
 bool Api::deleteEphemeralMessage(std::variant<std::int64_t, std::string> chatId,
-                                 std::int32_t ephemeralMessageId,
-                                 std::int64_t receiverUserId) const {
+                                 std::uint32_t ephemeralMessageId,
+                                 std::uint64_t receiverUserId) const {
     return ApiResponse::decode<bool>(sendRequest(
             "deleteEphemeralMessage",
             ApiRequest::makeFields(
@@ -655,7 +684,7 @@ bool Api::deleteEphemeralMessage(const DeleteEphemeralMessageArgs& args) const {
     return deleteEphemeralMessage(args.chatId, args.ephemeralMessageId, args.receiverUserId);
 }
 
-bool Api::deleteForumTopic(std::variant<std::int64_t, std::string> chatId, std::int32_t messageThreadId) const {
+bool Api::deleteForumTopic(std::variant<std::int64_t, std::string> chatId, std::uint32_t messageThreadId) const {
     return ApiResponse::decode<bool>(sendRequest(
             "deleteForumTopic",
             ApiRequest::makeFields(
@@ -669,7 +698,7 @@ bool Api::deleteForumTopic(const DeleteForumTopicArgs& args) const {
     return deleteForumTopic(args.chatId, args.messageThreadId);
 }
 
-bool Api::deleteMessage(std::variant<std::int64_t, std::string> chatId, std::int32_t messageId) const {
+bool Api::deleteMessage(std::variant<std::int64_t, std::string> chatId, std::uint32_t messageId) const {
     return ApiResponse::decode<bool>(
         sendRequest(
             "deleteMessage",
@@ -685,9 +714,9 @@ bool Api::deleteMessage(const DeleteMessageArgs& args) const {
 }
 
 bool Api::deleteMessageReaction(std::variant<std::int64_t, std::string> chatId,
-                                std::int32_t messageId,
+                                std::uint32_t messageId,
                                 std::int64_t actorChatId,
-                                std::int64_t userId) const {
+                                std::uint64_t userId) const {
     return ApiResponse::decode<bool>(
         sendRequest(
             "deleteMessageReaction",
@@ -705,7 +734,7 @@ bool Api::deleteMessageReaction(const DeleteMessageReactionArgs& args) const {
 }
 
 bool Api::deleteMessages(std::variant<std::int64_t, std::string> chatId,
-                         const std::vector<std::int32_t>& messageIds) const {
+                         const std::vector<std::uint32_t>& messageIds) const {
     return ApiResponse::decode<bool>(
         sendRequest(
             "deleteMessages",
@@ -763,7 +792,7 @@ bool Api::deleteStickerSet(const DeleteStickerSetArgs& args) const {
     return deleteStickerSet(args.name);
 }
 
-bool Api::deleteStory(std::string_view businessConnectionId, std::int32_t storyId) const {
+bool Api::deleteStory(std::string_view businessConnectionId, std::uint32_t storyId) const {
     return ApiResponse::decode<bool>(
         sendRequest(
             "deleteStory",
@@ -795,7 +824,7 @@ bool Api::deleteWebhook(const DeleteWebhookArgs& args) const {
 std::shared_ptr<ChatInviteLink> Api::editChatInviteLink(std::variant<std::int64_t, std::string> chatId,
                                                         std::string_view inviteLink,
                                                         std::int32_t expireDate,
-                                                        std::int32_t memberLimit,
+                                                        std::uint32_t memberLimit,
                                                         std::string_view name,
                                                         bool createsJoinRequest) const {
     return ApiResponse::decode<std::shared_ptr<ChatInviteLink>>(sendRequest(
@@ -839,8 +868,8 @@ Api::editChatSubscriptionInviteLink(const EditChatSubscriptionInviteLinkArgs& ar
 }
 
 bool Api::editEphemeralMessageCaption(std::variant<std::int64_t, std::string> chatId,
-                                      std::int32_t ephemeralMessageId,
-                                      std::int64_t receiverUserId,
+                                      std::uint32_t ephemeralMessageId,
+                                      std::uint64_t receiverUserId,
                                       std::string_view caption,
                                       const std::vector<std::shared_ptr<MessageEntity>>& captionEntities,
                                       std::string_view parseMode,
@@ -874,9 +903,9 @@ bool Api::editEphemeralMessageCaption(const EditEphemeralMessageCaptionArgs& arg
 }
 
 bool Api::editEphemeralMessageMedia(std::variant<std::int64_t, std::string> chatId,
-                                    std::int32_t ephemeralMessageId,
+                                    std::uint32_t ephemeralMessageId,
                                     std::shared_ptr<InputMedia> media,
-                                    std::int64_t receiverUserId,
+                                    std::uint64_t receiverUserId,
                                     std::shared_ptr<InlineKeyboardMarkup> replyMarkup,
                                     const std::vector<InputFileAttachment>& attachments) const {
     return ApiResponse::decode<bool>(sendRequest(
@@ -902,8 +931,8 @@ bool Api::editEphemeralMessageMedia(const EditEphemeralMessageMediaArgs& args) c
 }
 
 bool Api::editEphemeralMessageReplyMarkup(std::variant<std::int64_t, std::string> chatId,
-                                          std::int32_t ephemeralMessageId,
-                                          std::int64_t receiverUserId,
+                                          std::uint32_t ephemeralMessageId,
+                                          std::uint64_t receiverUserId,
                                           std::shared_ptr<InlineKeyboardMarkup> replyMarkup) const {
     return ApiResponse::decode<bool>(sendRequest(
             "editEphemeralMessageReplyMarkup",
@@ -924,8 +953,8 @@ bool Api::editEphemeralMessageReplyMarkup(const EditEphemeralMessageReplyMarkupA
 }
 
 bool Api::editEphemeralMessageText(std::variant<std::int64_t, std::string> chatId,
-                                   std::int32_t ephemeralMessageId,
-                                   std::int64_t receiverUserId,
+                                   std::uint32_t ephemeralMessageId,
+                                   std::uint64_t receiverUserId,
                                    std::string_view text,
                                    const std::vector<std::shared_ptr<MessageEntity>>& entities,
                                    std::shared_ptr<LinkPreviewOptions> linkPreviewOptions,
@@ -961,7 +990,7 @@ bool Api::editEphemeralMessageText(const EditEphemeralMessageTextArgs& args) con
 }
 
 bool Api::editForumTopic(std::variant<std::int64_t, std::string> chatId,
-                         std::int32_t messageThreadId,
+                         std::uint32_t messageThreadId,
                          std::string_view name,
                          std::string_view iconCustomEmojiId) const {
     return ApiResponse::decode<bool>(
@@ -995,7 +1024,7 @@ bool Api::editGeneralForumTopic(const EditGeneralForumTopicArgs& args) const {
 }
 
 std::shared_ptr<Message> Api::editMessageCaption(std::variant<std::int64_t, std::string> chatId,
-                                                 std::int32_t messageId,
+                                                 std::uint32_t messageId,
                                                  std::string_view caption,
                                                  std::string_view inlineMessageId,
                                                  std::shared_ptr<InlineKeyboardMarkup> replyMarkup,
@@ -1034,7 +1063,7 @@ std::shared_ptr<Message> Api::editMessageCaption(const EditMessageCaptionArgs& a
 std::shared_ptr<Message> Api::editMessageChecklist(std::variant<std::int64_t, std::string> chatId,
                                                    std::string_view businessConnectionId,
                                                    std::shared_ptr<InputChecklist> checklist,
-                                                   std::int32_t messageId,
+                                                   std::uint32_t messageId,
                                                    std::shared_ptr<InlineKeyboardMarkup> replyMarkup) const {
     return ApiResponse::decode<std::shared_ptr<Message>>(sendRequest(
             "editMessageChecklist",
@@ -1059,14 +1088,14 @@ std::shared_ptr<Message> Api::editMessageChecklist(const EditMessageChecklistArg
 std::shared_ptr<Message> Api::editMessageLiveLocation(double latitude,
                                                       double longitude,
                                                       std::variant<std::int64_t, std::string> chatId,
-                                                      std::int32_t messageId,
+                                                      std::uint32_t messageId,
                                                       std::string_view inlineMessageId,
                                                       std::shared_ptr<InlineKeyboardMarkup> replyMarkup,
                                                       double horizontalAccuracy,
-                                                      std::int32_t heading,
-                                                      std::int32_t proximityAlertRadius,
+                                                      std::uint32_t heading,
+                                                      std::uint32_t proximityAlertRadius,
                                                       std::string_view businessConnectionId,
-                                                      std::int32_t livePeriod) const {
+                                                      std::uint32_t livePeriod) const {
     return ApiResponse::decodeObjectOrTrue<Message>(sendRequest(
             "editMessageLiveLocation",
             ApiRequest::makeFields(
@@ -1101,7 +1130,7 @@ std::shared_ptr<Message> Api::editMessageLiveLocation(const EditMessageLiveLocat
 
 std::shared_ptr<Message> Api::editMessageMedia(std::shared_ptr<InputMedia> media,
                                                std::variant<std::int64_t, std::string> chatId,
-                                               std::int32_t messageId,
+                                               std::uint32_t messageId,
                                                std::string_view inlineMessageId,
                                                std::shared_ptr<InlineKeyboardMarkup> replyMarkup,
                                                std::string_view businessConnectionId,
@@ -1131,7 +1160,7 @@ std::shared_ptr<Message> Api::editMessageMedia(const EditMessageMediaArgs& args)
 }
 
 std::shared_ptr<Message> Api::editMessageReplyMarkup(std::variant<std::int64_t, std::string> chatId,
-                                                     std::int32_t messageId,
+                                                     std::uint32_t messageId,
                                                      std::string_view inlineMessageId,
                                                      std::shared_ptr<InlineKeyboardMarkup> replyMarkup,
                                                      std::string_view businessConnectionId) const {
@@ -1157,7 +1186,7 @@ std::shared_ptr<Message> Api::editMessageReplyMarkup(const EditMessageReplyMarku
 
 std::shared_ptr<Message> Api::editMessageText(std::string_view text,
                                               std::variant<std::int64_t, std::string> chatId,
-                                              std::int32_t messageId,
+                                              std::uint32_t messageId,
                                               std::string_view inlineMessageId,
                                               std::string_view parseMode,
                                               std::shared_ptr<LinkPreviewOptions> linkPreviewOptions,
@@ -1199,9 +1228,48 @@ std::shared_ptr<Message> Api::editMessageText(const EditMessageTextArgs& args) c
                            args.attachments);
 }
 
+bool Api::editMessageWidgetData(std::string_view chatData,
+                                std::variant<std::int64_t, std::string> chatId,
+                                std::string_view inlineMessageId,
+                                std::uint32_t messageId,
+                                std::string_view publicData) const {
+    return ApiResponse::decode<bool>(sendRequest(
+            "editMessageWidgetData",
+            ApiRequest::makeFields(
+                ApiRequest::optional("chat_data", chatData),
+                ApiRequest::optional("chat_id", chatId),
+                ApiRequest::optional("inline_message_id", inlineMessageId),
+                ApiRequest::optional("message_id", messageId),
+                ApiRequest::optional("public_data", publicData)
+            )
+        ) );
+}
+
+bool Api::editMessageWidgetData(const EditMessageWidgetDataArgs& args) const {
+    return editMessageWidgetData(args.chatData, args.chatId, args.inlineMessageId, args.messageId, args.publicData);
+}
+
+bool Api::editSharedWidgetData(std::string_view publicData,
+                               std::string_view widgetId,
+                               std::uint32_t cacheTime) const {
+    return ApiResponse::decode<bool>(
+        sendRequest(
+            "editSharedWidgetData",
+            ApiRequest::makeFields(
+                ApiRequest::required("public_data", publicData),
+                ApiRequest::required("widget_id", widgetId),
+                ApiRequest::optional("cache_time", cacheTime)
+            )
+        ) );
+}
+
+bool Api::editSharedWidgetData(const EditSharedWidgetDataArgs& args) const {
+    return editSharedWidgetData(args.publicData, args.widgetId, args.cacheTime);
+}
+
 std::shared_ptr<Story> Api::editStory(std::string_view businessConnectionId,
                                       std::shared_ptr<InputStoryContent> content,
-                                      std::int32_t storyId,
+                                      std::uint32_t storyId,
                                       const std::vector<std::shared_ptr<StoryArea>>& areas,
                                       std::string_view caption,
                                       const std::vector<std::shared_ptr<MessageEntity>>& captionEntities,
@@ -1235,7 +1303,7 @@ std::shared_ptr<Story> Api::editStory(const EditStoryArgs& args) const {
 
 bool Api::editUserStarSubscription(bool isCanceled,
                                    std::string_view telegramPaymentChargeId,
-                                   std::int64_t userId) const {
+                                   std::uint64_t userId) const {
     return ApiResponse::decode<bool>(sendRequest(
             "editUserStarSubscription",
             ApiRequest::makeFields(
@@ -1266,14 +1334,14 @@ std::string Api::exportChatInviteLink(const ExportChatInviteLinkArgs& args) cons
 
 std::shared_ptr<Message> Api::forwardMessage(std::variant<std::int64_t, std::string> chatId,
                                              std::variant<std::int64_t, std::string> fromChatId,
-                                             std::int32_t messageId,
+                                             std::uint32_t messageId,
                                              bool disableNotification,
                                              bool protectContent,
-                                             std::int32_t messageThreadId,
-                                             std::int64_t directMessagesTopicId,
+                                             std::uint32_t messageThreadId,
+                                             std::uint64_t directMessagesTopicId,
                                              std::string_view messageEffectId,
                                              std::shared_ptr<SuggestedPostParameters> suggestedPostParameters,
-                                             std::int32_t videoStartTimestamp) const {
+                                             std::uint32_t videoStartTimestamp) const {
     return ApiResponse::decode<std::shared_ptr<Message>>(sendRequest(
             "forwardMessage",
             ApiRequest::makeFields(
@@ -1306,11 +1374,11 @@ std::shared_ptr<Message> Api::forwardMessage(const ForwardMessageArgs& args) con
 
 std::vector<std::shared_ptr<MessageId>> Api::forwardMessages(std::variant<std::int64_t, std::string> chatId,
                                                              std::variant<std::int64_t, std::string> fromChatId,
-                                                             const std::vector<std::int32_t>& messageIds,
-                                                             std::int32_t messageThreadId,
+                                                             const std::vector<std::uint32_t>& messageIds,
+                                                             std::uint32_t messageThreadId,
                                                              bool disableNotification,
                                                              bool protectContent,
-                                                             std::int64_t directMessagesTopicId) const {
+                                                             std::uint64_t directMessagesTopicId) const {
     return ApiResponse::decode<std::vector<std::shared_ptr<MessageId>>>(sendRequest(
             "forwardMessages",
             ApiRequest::makeFields(
@@ -1350,7 +1418,7 @@ std::shared_ptr<OwnedGifts> Api::getBusinessAccountGifts(std::string_view busine
                                                          bool excludeUnique,
                                                          bool excludeUnlimited,
                                                          bool excludeUnsaved,
-                                                         std::int32_t limit,
+                                                         std::uint32_t limit,
                                                          std::string_view offset,
                                                          bool sortByPrice) const {
     return ApiResponse::decode<std::shared_ptr<OwnedGifts>>(
@@ -1453,7 +1521,7 @@ std::shared_ptr<OwnedGifts> Api::getChatGifts(std::variant<std::int64_t, std::st
                                               bool excludeUnique,
                                               bool excludeUnlimited,
                                               bool excludeUnsaved,
-                                              std::int32_t limit,
+                                              std::uint32_t limit,
                                               std::string_view offset,
                                               bool sortByPrice) const {
     return ApiResponse::decode<std::shared_ptr<OwnedGifts>>(
@@ -1490,7 +1558,7 @@ std::shared_ptr<OwnedGifts> Api::getChatGifts(const GetChatGiftsArgs& args) cons
 }
 
 std::shared_ptr<ChatMember> Api::getChatMember(std::variant<std::int64_t, std::string> chatId,
-                                               std::int64_t userId) const {
+                                               std::uint64_t userId) const {
     return ApiResponse::decode<std::shared_ptr<ChatMember>>(sendRequest(
             "getChatMember",
             ApiRequest::makeFields(
@@ -1504,8 +1572,8 @@ std::shared_ptr<ChatMember> Api::getChatMember(const GetChatMemberArgs& args) co
     return getChatMember(args.chatId, args.userId);
 }
 
-std::int32_t Api::getChatMemberCount(std::variant<std::int64_t, std::string> chatId) const {
-    return ApiResponse::decode<std::int32_t>(
+std::uint32_t Api::getChatMemberCount(std::variant<std::int64_t, std::string> chatId) const {
+    return ApiResponse::decode<std::uint32_t>(
         sendRequest(
             "getChatMemberCount",
             ApiRequest::makeFields(
@@ -1514,11 +1582,11 @@ std::int32_t Api::getChatMemberCount(std::variant<std::int64_t, std::string> cha
         ) );
 }
 
-std::int32_t Api::getChatMemberCount(const GetChatMemberCountArgs& args) const {
+std::uint32_t Api::getChatMemberCount(const GetChatMemberCountArgs& args) const {
     return getChatMemberCount(args.chatId);
 }
 
-std::shared_ptr<MenuButton> Api::getChatMenuButton(std::variant<std::int64_t, std::string> chatId) const {
+std::shared_ptr<MenuButton> Api::getChatMenuButton(std::variant<std::uint64_t, std::string> chatId) const {
     return ApiResponse::decode<std::shared_ptr<MenuButton>>(
         sendRequest(
             "getChatMenuButton",
@@ -1530,6 +1598,14 @@ std::shared_ptr<MenuButton> Api::getChatMenuButton(std::variant<std::int64_t, st
 
 std::shared_ptr<MenuButton> Api::getChatMenuButton(const GetChatMenuButtonArgs& args) const {
     return getChatMenuButton(args.chatId);
+}
+
+std::shared_ptr<ChatShareThemeBackdrops> Api::getChatShareThemeBackdrops() const {
+    return ApiResponse::decode<std::shared_ptr<ChatShareThemeBackdrops>>(
+        sendRequest(
+            "getChatShareThemeBackdrops",
+            ApiRequest::makeFields()
+        ) );
 }
 
 std::vector<std::shared_ptr<Sticker>>
@@ -1569,9 +1645,9 @@ std::vector<std::shared_ptr<Sticker>> Api::getForumTopicIconStickers() const {
         ) );
 }
 
-std::vector<std::shared_ptr<GameHighScore>> Api::getGameHighScores(std::int64_t userId,
+std::vector<std::shared_ptr<GameHighScore>> Api::getGameHighScores(std::uint64_t userId,
                                                                    std::variant<std::int64_t, std::string> chatId,
-                                                                   std::int32_t messageId,
+                                                                   std::uint32_t messageId,
                                                                    std::string_view inlineMessageId) const {
     return ApiResponse::decode<std::vector<std::shared_ptr<GameHighScore>>>(sendRequest(
             "getGameHighScores",
@@ -1588,7 +1664,7 @@ std::vector<std::shared_ptr<GameHighScore>> Api::getGameHighScores(const GetGame
     return getGameHighScores(args.userId, args.chatId, args.messageId, args.inlineMessageId);
 }
 
-std::shared_ptr<BotAccessSettings> Api::getManagedBotAccessSettings(std::int64_t userId) const {
+std::shared_ptr<BotAccessSettings> Api::getManagedBotAccessSettings(std::uint64_t userId) const {
     return ApiResponse::decode<std::shared_ptr<BotAccessSettings>>(
         sendRequest(
             "getManagedBotAccessSettings",
@@ -1603,7 +1679,7 @@ Api::getManagedBotAccessSettings(const GetManagedBotAccessSettingsArgs& args) co
     return getManagedBotAccessSettings(args.userId);
 }
 
-std::string Api::getManagedBotToken(std::int64_t userId) const {
+std::string Api::getManagedBotToken(std::uint64_t userId) const {
     return ApiResponse::decode<std::string>(
         sendRequest(
             "getManagedBotToken",
@@ -1705,7 +1781,7 @@ std::shared_ptr<StarAmount> Api::getMyStarBalance() const {
         ) );
 }
 
-std::shared_ptr<StarTransactions> Api::getStarTransactions(std::int32_t limit, std::int32_t offset) const {
+std::shared_ptr<StarTransactions> Api::getStarTransactions(std::uint32_t limit, std::uint32_t offset) const {
     return ApiResponse::decode<std::shared_ptr<StarTransactions>>(sendRequest(
             "getStarTransactions",
             ApiRequest::makeFields(
@@ -1733,9 +1809,23 @@ std::shared_ptr<StickerSet> Api::getStickerSet(const GetStickerSetArgs& args) co
     return getStickerSet(args.name);
 }
 
+std::shared_ptr<UniqueGift> Api::getUniqueGift(std::string_view name) const {
+    return ApiResponse::decode<std::shared_ptr<UniqueGift>>(
+        sendRequest(
+            "getUniqueGift",
+            ApiRequest::makeFields(
+                ApiRequest::required("name", name)
+            )
+        ) );
+}
+
+std::shared_ptr<UniqueGift> Api::getUniqueGift(const GetUniqueGiftArgs& args) const {
+    return getUniqueGift(args.name);
+}
+
 std::vector<std::shared_ptr<Update>> Api::getUpdates(std::int32_t offset,
-                                                     std::int32_t limit,
-                                                     std::int32_t timeout,
+                                                     std::uint32_t limit,
+                                                     std::uint32_t timeout,
                                                      const std::vector<std::string>& allowedUpdates) const {
     return ApiResponse::decode<std::vector<std::shared_ptr<Update>>>(sendRequest(
             "getUpdates",
@@ -1753,7 +1843,7 @@ std::vector<std::shared_ptr<Update>> Api::getUpdates(const GetUpdatesArgs& args)
 }
 
 std::shared_ptr<UserChatBoosts> Api::getUserChatBoosts(std::variant<std::int64_t, std::string> chatId,
-                                                       std::int64_t userId) const {
+                                                       std::uint64_t userId) const {
     return ApiResponse::decode<std::shared_ptr<UserChatBoosts>>(sendRequest(
             "getUserChatBoosts",
             ApiRequest::makeFields(
@@ -1767,13 +1857,13 @@ std::shared_ptr<UserChatBoosts> Api::getUserChatBoosts(const GetUserChatBoostsAr
     return getUserChatBoosts(args.chatId, args.userId);
 }
 
-std::shared_ptr<OwnedGifts> Api::getUserGifts(std::int64_t userId,
+std::shared_ptr<OwnedGifts> Api::getUserGifts(std::uint64_t userId,
                                               bool excludeFromBlockchain,
                                               bool excludeLimitedNonUpgradable,
                                               bool excludeLimitedUpgradable,
                                               bool excludeUnique,
                                               bool excludeUnlimited,
-                                              std::int32_t limit,
+                                              std::uint32_t limit,
                                               std::string_view offset,
                                               bool sortByPrice) const {
     return ApiResponse::decode<std::shared_ptr<OwnedGifts>>(sendRequest(
@@ -1804,8 +1894,8 @@ std::shared_ptr<OwnedGifts> Api::getUserGifts(const GetUserGiftsArgs& args) cons
                         args.sortByPrice);
 }
 
-std::vector<std::shared_ptr<Message>> Api::getUserPersonalChatMessages(std::int32_t limit,
-                                                                       std::int64_t userId) const {
+std::vector<std::shared_ptr<Message>> Api::getUserPersonalChatMessages(std::uint32_t limit,
+                                                                       std::uint64_t userId) const {
     return ApiResponse::decode<std::vector<std::shared_ptr<Message>>>(sendRequest(
             "getUserPersonalChatMessages",
             ApiRequest::makeFields(
@@ -1821,7 +1911,7 @@ Api::getUserPersonalChatMessages(const GetUserPersonalChatMessagesArgs& args) co
 }
 
 std::shared_ptr<UserProfileAudios>
-Api::getUserProfileAudios(std::int64_t userId, std::int32_t limit, std::int32_t offset) const {
+Api::getUserProfileAudios(std::uint64_t userId, std::uint32_t limit, std::uint32_t offset) const {
     return ApiResponse::decode<std::shared_ptr<UserProfileAudios>>(sendRequest(
             "getUserProfileAudios",
             ApiRequest::makeFields(
@@ -1837,7 +1927,7 @@ std::shared_ptr<UserProfileAudios> Api::getUserProfileAudios(const GetUserProfil
 }
 
 std::shared_ptr<UserProfilePhotos>
-Api::getUserProfilePhotos(std::int64_t userId, std::int32_t offset, std::int32_t limit) const {
+Api::getUserProfilePhotos(std::uint64_t userId, std::uint32_t offset, std::uint32_t limit) const {
     return ApiResponse::decode<std::shared_ptr<UserProfilePhotos>>(sendRequest(
             "getUserProfilePhotos",
             ApiRequest::makeFields(
@@ -1860,9 +1950,9 @@ std::shared_ptr<WebhookInfo> Api::getWebhookInfo() const {
         ) );
 }
 
-bool Api::giftPremiumSubscription(std::int32_t monthCount,
-                                  std::int32_t starCount,
-                                  std::int64_t userId,
+bool Api::giftPremiumSubscription(std::uint32_t monthCount,
+                                  std::uint32_t starCount,
+                                  std::uint64_t userId,
                                   std::string_view text,
                                   const std::vector<std::shared_ptr<MessageEntity>>& textEntities,
                                   std::string_view textParseMode) const {
@@ -1925,7 +2015,7 @@ bool Api::logOut() const {
 }
 
 bool Api::pinChatMessage(std::variant<std::int64_t, std::string> chatId,
-                         std::int32_t messageId,
+                         std::uint32_t messageId,
                          std::string_view businessConnectionId,
                          bool disableNotification) const {
     return ApiResponse::decode<bool>(
@@ -1944,7 +2034,7 @@ bool Api::pinChatMessage(const PinChatMessageArgs& args) const {
     return pinChatMessage(args.chatId, args.messageId, args.businessConnectionId, args.disableNotification);
 }
 
-std::shared_ptr<Story> Api::postStory(std::int32_t activePeriod,
+std::shared_ptr<Story> Api::postStory(std::uint32_t activePeriod,
                                       std::string_view businessConnectionId,
                                       std::shared_ptr<InputStoryContent> content,
                                       const std::vector<std::shared_ptr<StoryArea>>& areas,
@@ -1985,7 +2075,7 @@ std::shared_ptr<Story> Api::postStory(const PostStoryArgs& args) const {
 }
 
 bool Api::promoteChatMember(std::variant<std::int64_t, std::string> chatId,
-                            std::int64_t userId,
+                            std::uint64_t userId,
                             bool canChangeInfo,
                             bool canPostMessages,
                             bool canEditMessages,
@@ -2056,7 +2146,7 @@ bool Api::promoteChatMember(const PromoteChatMemberArgs& args) const {
 
 bool Api::readBusinessMessage(std::variant<std::int64_t, std::string> chatId,
                               std::string_view businessConnectionId,
-                              std::int32_t messageId) const {
+                              std::uint32_t messageId) const {
     return ApiResponse::decode<bool>(
         sendRequest(
             "readBusinessMessage",
@@ -2072,7 +2162,7 @@ bool Api::readBusinessMessage(const ReadBusinessMessageArgs& args) const {
     return readBusinessMessage(args.chatId, args.businessConnectionId, args.messageId);
 }
 
-bool Api::refundStarPayment(std::string_view telegramPaymentChargeId, std::int64_t userId) const {
+bool Api::refundStarPayment(std::string_view telegramPaymentChargeId, std::uint64_t userId) const {
     return ApiResponse::decode<bool>(sendRequest(
             "refundStarPayment",
             ApiRequest::makeFields(
@@ -2122,7 +2212,7 @@ bool Api::removeMyProfilePhoto() const {
         ) );
 }
 
-bool Api::removeUserVerification(std::int64_t userId) const {
+bool Api::removeUserVerification(std::uint64_t userId) const {
     return ApiResponse::decode<bool>(
         sendRequest(
             "removeUserVerification",
@@ -2136,7 +2226,7 @@ bool Api::removeUserVerification(const RemoveUserVerificationArgs& args) const {
     return removeUserVerification(args.userId);
 }
 
-bool Api::reopenForumTopic(std::variant<std::int64_t, std::string> chatId, std::int32_t messageThreadId) const {
+bool Api::reopenForumTopic(std::variant<std::int64_t, std::string> chatId, std::uint32_t messageThreadId) const {
     return ApiResponse::decode<bool>(sendRequest(
             "reopenForumTopic",
             ApiRequest::makeFields(
@@ -2164,7 +2254,7 @@ bool Api::reopenGeneralForumTopic(const ReopenGeneralForumTopicArgs& args) const
     return reopenGeneralForumTopic(args.chatId);
 }
 
-std::string Api::replaceManagedBotToken(std::int64_t userId) const {
+std::string Api::replaceManagedBotToken(std::uint64_t userId) const {
     return ApiResponse::decode<std::string>(
         sendRequest(
             "replaceManagedBotToken",
@@ -2178,7 +2268,7 @@ std::string Api::replaceManagedBotToken(const ReplaceManagedBotTokenArgs& args) 
     return replaceManagedBotToken(args.userId);
 }
 
-bool Api::replaceStickerInSet(std::int64_t userId,
+bool Api::replaceStickerInSet(std::uint64_t userId,
                               std::string_view name,
                               std::string_view oldSticker,
                               std::shared_ptr<InputSticker> sticker,
@@ -2199,10 +2289,10 @@ bool Api::replaceStickerInSet(const ReplaceStickerInSetArgs& args) const {
     return replaceStickerInSet(args.userId, args.name, args.oldSticker, args.sticker, args.attachments);
 }
 
-std::shared_ptr<Story> Api::repostStory(std::int32_t activePeriod,
+std::shared_ptr<Story> Api::repostStory(std::uint32_t activePeriod,
                                         std::string_view businessConnectionId,
                                         std::variant<std::int64_t, std::string> fromChatId,
-                                        std::int32_t fromStoryId,
+                                        std::uint32_t fromStoryId,
                                         bool postToChatPage,
                                         bool protectContent) const {
     return ApiResponse::decode<std::shared_ptr<Story>>(
@@ -2229,7 +2319,7 @@ std::shared_ptr<Story> Api::repostStory(const RepostStoryArgs& args) const {
 }
 
 bool Api::restrictChatMember(std::variant<std::int64_t, std::string> chatId,
-                             std::int64_t userId,
+                             std::uint64_t userId,
                              std::shared_ptr<ChatPermissions> permissions,
                              std::int32_t untilDate,
                              bool useIndependentChatPermissions) const {
@@ -2270,7 +2360,7 @@ std::shared_ptr<ChatInviteLink> Api::revokeChatInviteLink(const RevokeChatInvite
 }
 
 std::shared_ptr<PreparedInlineMessage> Api::savePreparedInlineMessage(std::shared_ptr<InlineQueryResult> result,
-                                                                      std::int64_t userId,
+                                                                      std::uint64_t userId,
                                                                       bool allowBotChats,
                                                                       bool allowChannelChats,
                                                                       bool allowGroupChats,
@@ -2299,7 +2389,7 @@ Api::savePreparedInlineMessage(const SavePreparedInlineMessageArgs& args) const 
 }
 
 std::shared_ptr<PreparedKeyboardButton> Api::savePreparedKeyboardButton(std::shared_ptr<KeyboardButton> button,
-                                                                        std::int64_t userId) const {
+                                                                        std::uint64_t userId) const {
     return ApiResponse::decode<std::shared_ptr<PreparedKeyboardButton>>(sendRequest(
             "savePreparedKeyboardButton",
             ApiRequest::makeFields(
@@ -2317,9 +2407,9 @@ Api::savePreparedKeyboardButton(const SavePreparedKeyboardButtonArgs& args) cons
 std::shared_ptr<Message>
 Api::sendAnimation(std::variant<std::int64_t, std::string> chatId,
                    std::variant<std::shared_ptr<InputFile>, std::string> animation,
-                   std::int32_t duration,
-                   std::int32_t width,
-                   std::int32_t height,
+                   std::uint32_t duration,
+                   std::uint32_t width,
+                   std::uint32_t height,
                    std::variant<std::shared_ptr<InputFile>, std::string> thumbnail,
                    std::string_view caption,
                    std::shared_ptr<ReplyParameters> replyParameters,
@@ -2330,15 +2420,15 @@ Api::sendAnimation(std::variant<std::int64_t, std::string> chatId,
                    std::string_view parseMode,
                    bool disableNotification,
                    const std::vector<std::shared_ptr<MessageEntity>>& captionEntities,
-                   std::int32_t messageThreadId,
+                   std::uint32_t messageThreadId,
                    bool protectContent,
                    bool hasSpoiler,
                    std::string_view businessConnectionId,
                    bool allowPaidBroadcast,
                    std::string_view callbackQueryId,
-                   std::int64_t directMessagesTopicId,
+                   std::uint64_t directMessagesTopicId,
                    std::string_view messageEffectId,
-                   std::int64_t receiverUserId,
+                   std::uint64_t receiverUserId,
                    bool showCaptionAboveMedia,
                    std::shared_ptr<SuggestedPostParameters> suggestedPostParameters) const {
     SendAnimationArgs args;
@@ -2372,7 +2462,9 @@ std::shared_ptr<Message> Api::sendAnimation(const SendAnimationArgs& args) const
     auto ephemeralMessageParameters = args.ephemeralMessageParameters;
     if (!ephemeralMessageParameters && (args.receiverUserId != 0 || !args.callbackQueryId.empty())) {
         ephemeralMessageParameters = std::make_shared<EphemeralMessageParameters>();
-        ephemeralMessageParameters->receiverUserId = args.receiverUserId;
+        if (args.receiverUserId != 0) {
+            ephemeralMessageParameters->receiverUserId = args.receiverUserId;
+        }
         if (!args.callbackQueryId.empty()) {
             ephemeralMessageParameters->callbackQueryId = args.callbackQueryId;
         }
@@ -2380,7 +2472,7 @@ std::shared_ptr<Message> Api::sendAnimation(const SendAnimationArgs& args) const
     return ApiResponse::decode<std::shared_ptr<Message>>(sendRequest(
             "sendAnimation",
             ApiRequest::makeFields(
-                ApiRequest::required("chat_id", args.chatId),
+                ApiRequest::optional("chat_id", args.chatId),
                 ApiRequest::required("animation", args.animation),
                 ApiRequest::optional("duration", args.duration),
                 ApiRequest::optional("width", args.width),
@@ -2409,7 +2501,7 @@ std::shared_ptr<Message> Api::sendAnimation(const SendAnimationArgs& args) const
 std::shared_ptr<Message> Api::sendAudio(std::variant<std::int64_t, std::string> chatId,
                                         std::variant<std::shared_ptr<InputFile>, std::string> audio,
                                         std::string_view caption,
-                                        std::int32_t duration,
+                                        std::uint32_t duration,
                                         std::string_view performer,
                                         std::string_view title,
                                         std::variant<std::shared_ptr<InputFile>, std::string> thumbnail,
@@ -2421,14 +2513,14 @@ std::shared_ptr<Message> Api::sendAudio(std::variant<std::int64_t, std::string> 
                                         std::string_view parseMode,
                                         bool disableNotification,
                                         const std::vector<std::shared_ptr<MessageEntity>>& captionEntities,
-                                        std::int32_t messageThreadId,
+                                        std::uint32_t messageThreadId,
                                         bool protectContent,
                                         std::string_view businessConnectionId,
                                         bool allowPaidBroadcast,
                                         std::string_view callbackQueryId,
-                                        std::int64_t directMessagesTopicId,
+                                        std::uint64_t directMessagesTopicId,
                                         std::string_view messageEffectId,
-                                        std::int64_t receiverUserId,
+                                        std::uint64_t receiverUserId,
                                         std::shared_ptr<SuggestedPostParameters> suggestedPostParameters) const {
     SendAudioArgs args;
     args.chatId = chatId;
@@ -2459,7 +2551,9 @@ std::shared_ptr<Message> Api::sendAudio(const SendAudioArgs& args) const {
     auto ephemeralMessageParameters = args.ephemeralMessageParameters;
     if (!ephemeralMessageParameters && (args.receiverUserId != 0 || !args.callbackQueryId.empty())) {
         ephemeralMessageParameters = std::make_shared<EphemeralMessageParameters>();
-        ephemeralMessageParameters->receiverUserId = args.receiverUserId;
+        if (args.receiverUserId != 0) {
+            ephemeralMessageParameters->receiverUserId = args.receiverUserId;
+        }
         if (!args.callbackQueryId.empty()) {
             ephemeralMessageParameters->callbackQueryId = args.callbackQueryId;
         }
@@ -2467,7 +2561,7 @@ std::shared_ptr<Message> Api::sendAudio(const SendAudioArgs& args) const {
     return ApiResponse::decode<std::shared_ptr<Message>>(sendRequest(
             "sendAudio",
             ApiRequest::makeFields(
-                ApiRequest::required("chat_id", args.chatId),
+                ApiRequest::optional("chat_id", args.chatId),
                 ApiRequest::required("audio", args.audio),
                 ApiRequest::optional("caption", args.caption),
                 ApiRequest::optional("duration", args.duration),
@@ -2493,7 +2587,7 @@ std::shared_ptr<Message> Api::sendAudio(const SendAudioArgs& args) const {
 
 bool Api::sendChatAction(std::variant<std::int64_t, std::string> chatId,
                          std::string_view action,
-                         std::int32_t messageThreadId,
+                         std::uint32_t messageThreadId,
                          std::string_view businessConnectionId) const {
     return ApiResponse::decode<bool>(
         sendRequest(
@@ -2570,14 +2664,14 @@ std::shared_ptr<Message> Api::sendContact(std::variant<std::int64_t, std::string
                                                        std::shared_ptr<ReplyKeyboardMarkup>,
                                                        std::shared_ptr<ReplyKeyboardRemove>,
                                                        std::shared_ptr<ForceReply>> replyMarkup,
-                                          std::int32_t messageThreadId,
+                                          std::uint32_t messageThreadId,
                                           bool protectContent,
                                           std::string_view businessConnectionId,
                                           bool allowPaidBroadcast,
                                           std::string_view callbackQueryId,
-                                          std::int64_t directMessagesTopicId,
+                                          std::uint64_t directMessagesTopicId,
                                           std::string_view messageEffectId,
-                                          std::int64_t receiverUserId,
+                                          std::uint64_t receiverUserId,
                                           std::shared_ptr<SuggestedPostParameters> suggestedPostParameters) const {
     SendContactArgs args;
     args.chatId = chatId;
@@ -2604,7 +2698,9 @@ std::shared_ptr<Message> Api::sendContact(const SendContactArgs& args) const {
     auto ephemeralMessageParameters = args.ephemeralMessageParameters;
     if (!ephemeralMessageParameters && (args.receiverUserId != 0 || !args.callbackQueryId.empty())) {
         ephemeralMessageParameters = std::make_shared<EphemeralMessageParameters>();
-        ephemeralMessageParameters->receiverUserId = args.receiverUserId;
+        if (args.receiverUserId != 0) {
+            ephemeralMessageParameters->receiverUserId = args.receiverUserId;
+        }
         if (!args.callbackQueryId.empty()) {
             ephemeralMessageParameters->callbackQueryId = args.callbackQueryId;
         }
@@ -2613,7 +2709,7 @@ std::shared_ptr<Message> Api::sendContact(const SendContactArgs& args) const {
         sendRequest(
             "sendContact",
             ApiRequest::makeFields(
-                ApiRequest::required("chat_id", args.chatId),
+                ApiRequest::optional("chat_id", args.chatId),
                 ApiRequest::required("phone_number", args.phoneNumber),
                 ApiRequest::required("first_name", args.firstName),
                 ApiRequest::optional("last_name", args.lastName),
@@ -2641,11 +2737,11 @@ std::shared_ptr<Message> Api::sendDice(std::variant<std::int64_t, std::string> c
                                                     std::shared_ptr<ReplyKeyboardRemove>,
                                                     std::shared_ptr<ForceReply>> replyMarkup,
                                        std::string_view emoji,
-                                       std::int32_t messageThreadId,
+                                       std::uint32_t messageThreadId,
                                        bool protectContent,
                                        std::string_view businessConnectionId,
                                        bool allowPaidBroadcast,
-                                       std::int64_t directMessagesTopicId,
+                                       std::uint64_t directMessagesTopicId,
                                        std::string_view messageEffectId,
                                        std::shared_ptr<SuggestedPostParameters> suggestedPostParameters) const {
     return ApiResponse::decode<std::shared_ptr<Message>>(
@@ -2696,14 +2792,14 @@ std::shared_ptr<Message> Api::sendDocument(std::variant<std::int64_t, std::strin
                                            bool disableNotification,
                                            const std::vector<std::shared_ptr<MessageEntity>>& captionEntities,
                                            bool disableContentTypeDetection,
-                                           std::int32_t messageThreadId,
+                                           std::uint32_t messageThreadId,
                                            bool protectContent,
                                            std::string_view businessConnectionId,
                                            bool allowPaidBroadcast,
                                            std::string_view callbackQueryId,
-                                           std::int64_t directMessagesTopicId,
+                                           std::uint64_t directMessagesTopicId,
                                            std::string_view messageEffectId,
-                                           std::int64_t receiverUserId,
+                                           std::uint64_t receiverUserId,
                                            std::shared_ptr<SuggestedPostParameters> suggestedPostParameters) const {
     SendDocumentArgs args;
     args.chatId = chatId;
@@ -2732,7 +2828,9 @@ std::shared_ptr<Message> Api::sendDocument(const SendDocumentArgs& args) const {
     auto ephemeralMessageParameters = args.ephemeralMessageParameters;
     if (!ephemeralMessageParameters && (args.receiverUserId != 0 || !args.callbackQueryId.empty())) {
         ephemeralMessageParameters = std::make_shared<EphemeralMessageParameters>();
-        ephemeralMessageParameters->receiverUserId = args.receiverUserId;
+        if (args.receiverUserId != 0) {
+            ephemeralMessageParameters->receiverUserId = args.receiverUserId;
+        }
         if (!args.callbackQueryId.empty()) {
             ephemeralMessageParameters->callbackQueryId = args.callbackQueryId;
         }
@@ -2740,7 +2838,7 @@ std::shared_ptr<Message> Api::sendDocument(const SendDocumentArgs& args) const {
     return ApiResponse::decode<std::shared_ptr<Message>>(sendRequest(
             "sendDocument",
             ApiRequest::makeFields(
-                ApiRequest::required("chat_id", args.chatId),
+                ApiRequest::optional("chat_id", args.chatId),
                 ApiRequest::required("document", args.document),
                 ApiRequest::optional("thumbnail", args.thumbnail),
                 ApiRequest::optional("caption", args.caption),
@@ -2767,7 +2865,7 @@ std::shared_ptr<Message> Api::sendGame(std::variant<std::int64_t, std::string> c
                                        std::shared_ptr<ReplyParameters> replyParameters,
                                        std::shared_ptr<InlineKeyboardMarkup> replyMarkup,
                                        bool disableNotification,
-                                       std::int32_t messageThreadId,
+                                       std::uint32_t messageThreadId,
                                        bool protectContent,
                                        std::string_view businessConnectionId,
                                        bool allowPaidBroadcast,
@@ -2809,7 +2907,7 @@ bool Api::sendGift(std::string_view giftId,
                    std::string_view text,
                    const std::vector<std::shared_ptr<MessageEntity>>& textEntities,
                    std::string_view textParseMode,
-                   std::int64_t userId) const {
+                   std::uint64_t userId) const {
     return ApiResponse::decode<bool>(sendRequest(
             "sendGift",
             ApiRequest::makeFields(
@@ -2843,9 +2941,9 @@ std::shared_ptr<Message> Api::sendInvoice(std::variant<std::int64_t, std::string
                                           const std::vector<std::shared_ptr<LabeledPrice>>& prices,
                                           std::string_view providerData,
                                           std::string_view photoUrl,
-                                          std::int32_t photoSize,
-                                          std::int32_t photoWidth,
-                                          std::int32_t photoHeight,
+                                          std::uint32_t photoSize,
+                                          std::uint32_t photoWidth,
+                                          std::uint32_t photoHeight,
                                           bool needName,
                                           bool needPhoneNumber,
                                           bool needEmail,
@@ -2856,13 +2954,13 @@ std::shared_ptr<Message> Api::sendInvoice(std::variant<std::int64_t, std::string
                                           std::shared_ptr<ReplyParameters> replyParameters,
                                           std::shared_ptr<InlineKeyboardMarkup> replyMarkup,
                                           bool disableNotification,
-                                          std::int32_t messageThreadId,
-                                          std::int32_t maxTipAmount,
-                                          const std::vector<std::int32_t>& suggestedTipAmounts,
+                                          std::uint32_t messageThreadId,
+                                          std::uint64_t maxTipAmount,
+                                          const std::vector<std::uint64_t>& suggestedTipAmounts,
                                           std::string_view startParameter,
                                           bool protectContent,
                                           bool allowPaidBroadcast,
-                                          std::int64_t directMessagesTopicId,
+                                          std::uint64_t directMessagesTopicId,
                                           std::string_view messageEffectId,
                                           std::shared_ptr<SuggestedPostParameters> suggestedPostParameters) const {
     return ApiResponse::decode<std::shared_ptr<Message>>(sendRequest(
@@ -2946,14 +3044,14 @@ Api::sendLivePhoto(std::variant<std::int64_t, std::string> chatId,
                    std::string_view callbackQueryId,
                    std::string_view caption,
                    const std::vector<std::shared_ptr<MessageEntity>>& captionEntities,
-                   std::int64_t directMessagesTopicId,
+                   std::uint64_t directMessagesTopicId,
                    bool disableNotification,
                    bool hasSpoiler,
                    std::string_view messageEffectId,
-                   std::int32_t messageThreadId,
+                   std::uint32_t messageThreadId,
                    std::string_view parseMode,
                    bool protectContent,
-                   std::int64_t receiverUserId,
+                   std::uint64_t receiverUserId,
                    std::variant<std::shared_ptr<InlineKeyboardMarkup>,
                                 std::shared_ptr<ReplyKeyboardMarkup>,
                                 std::shared_ptr<ReplyKeyboardRemove>,
@@ -2989,7 +3087,9 @@ std::shared_ptr<Message> Api::sendLivePhoto(const SendLivePhotoArgs& args) const
     auto ephemeralMessageParameters = args.ephemeralMessageParameters;
     if (!ephemeralMessageParameters && (args.receiverUserId != 0 || !args.callbackQueryId.empty())) {
         ephemeralMessageParameters = std::make_shared<EphemeralMessageParameters>();
-        ephemeralMessageParameters->receiverUserId = args.receiverUserId;
+        if (args.receiverUserId != 0) {
+            ephemeralMessageParameters->receiverUserId = args.receiverUserId;
+        }
         if (!args.callbackQueryId.empty()) {
             ephemeralMessageParameters->callbackQueryId = args.callbackQueryId;
         }
@@ -2997,7 +3097,7 @@ std::shared_ptr<Message> Api::sendLivePhoto(const SendLivePhotoArgs& args) const
     return ApiResponse::decode<std::shared_ptr<Message>>(sendRequest(
             "sendLivePhoto",
             ApiRequest::makeFields(
-                ApiRequest::required("chat_id", args.chatId),
+                ApiRequest::optional("chat_id", args.chatId),
                 ApiRequest::required("live_photo", args.livePhoto),
                 ApiRequest::required("photo", args.photo),
                 ApiRequest::optional("allow_paid_broadcast", args.allowPaidBroadcast),
@@ -3023,7 +3123,7 @@ std::shared_ptr<Message> Api::sendLivePhoto(const SendLivePhotoArgs& args) const
 std::shared_ptr<Message> Api::sendLocation(std::variant<std::int64_t, std::string> chatId,
                                            double latitude,
                                            double longitude,
-                                           std::int32_t livePeriod,
+                                           std::uint32_t livePeriod,
                                            std::shared_ptr<ReplyParameters> replyParameters,
                                            std::variant<std::shared_ptr<InlineKeyboardMarkup>,
                                                         std::shared_ptr<ReplyKeyboardMarkup>,
@@ -3031,16 +3131,16 @@ std::shared_ptr<Message> Api::sendLocation(std::variant<std::int64_t, std::strin
                                                         std::shared_ptr<ForceReply>> replyMarkup,
                                            bool disableNotification,
                                            double horizontalAccuracy,
-                                           std::int32_t heading,
-                                           std::int32_t proximityAlertRadius,
-                                           std::int32_t messageThreadId,
+                                           std::uint32_t heading,
+                                           std::uint32_t proximityAlertRadius,
+                                           std::uint32_t messageThreadId,
                                            bool protectContent,
                                            std::string_view businessConnectionId,
                                            bool allowPaidBroadcast,
                                            std::string_view callbackQueryId,
-                                           std::int64_t directMessagesTopicId,
+                                           std::uint64_t directMessagesTopicId,
                                            std::string_view messageEffectId,
-                                           std::int64_t receiverUserId,
+                                           std::uint64_t receiverUserId,
                                            std::shared_ptr<SuggestedPostParameters> suggestedPostParameters) const {
     SendLocationArgs args;
     args.chatId = chatId;
@@ -3069,7 +3169,9 @@ std::shared_ptr<Message> Api::sendLocation(const SendLocationArgs& args) const {
     auto ephemeralMessageParameters = args.ephemeralMessageParameters;
     if (!ephemeralMessageParameters && (args.receiverUserId != 0 || !args.callbackQueryId.empty())) {
         ephemeralMessageParameters = std::make_shared<EphemeralMessageParameters>();
-        ephemeralMessageParameters->receiverUserId = args.receiverUserId;
+        if (args.receiverUserId != 0) {
+            ephemeralMessageParameters->receiverUserId = args.receiverUserId;
+        }
         if (!args.callbackQueryId.empty()) {
             ephemeralMessageParameters->callbackQueryId = args.callbackQueryId;
         }
@@ -3077,7 +3179,7 @@ std::shared_ptr<Message> Api::sendLocation(const SendLocationArgs& args) const {
     return ApiResponse::decode<std::shared_ptr<Message>>(sendRequest(
             "sendLocation",
             ApiRequest::makeFields(
-                ApiRequest::required("chat_id", args.chatId),
+                ApiRequest::optional("chat_id", args.chatId),
                 ApiRequest::required("latitude", args.latitude),
                 ApiRequest::required("longitude", args.longitude),
                 ApiRequest::optional("live_period", args.livePeriod),
@@ -3108,11 +3210,11 @@ Api::sendMediaGroup(std::variant<std::int64_t, std::string> chatId,
                                                    std::shared_ptr<InputMediaVideo>>>& media,
                     bool disableNotification,
                     std::shared_ptr<ReplyParameters> replyParameters,
-                    std::int32_t messageThreadId,
+                    std::uint32_t messageThreadId,
                     bool protectContent,
                     std::string_view businessConnectionId,
                     bool allowPaidBroadcast,
-                    std::int64_t directMessagesTopicId,
+                    std::uint64_t directMessagesTopicId,
                     std::string_view messageEffectId,
                     const std::vector<InputFileAttachment>& attachments) const {
     return ApiResponse::decode<std::vector<std::shared_ptr<Message>>>(sendRequest(
@@ -3158,14 +3260,14 @@ std::shared_ptr<Message> Api::sendMessage(std::variant<std::int64_t, std::string
                                           std::string_view parseMode,
                                           bool disableNotification,
                                           const std::vector<std::shared_ptr<MessageEntity>>& entities,
-                                          std::int32_t messageThreadId,
+                                          std::uint32_t messageThreadId,
                                           bool protectContent,
                                           std::string_view businessConnectionId,
                                           bool allowPaidBroadcast,
                                           std::string_view callbackQueryId,
-                                          std::int64_t directMessagesTopicId,
+                                          std::uint64_t directMessagesTopicId,
                                           std::string_view messageEffectId,
-                                          std::int64_t receiverUserId,
+                                          std::uint64_t receiverUserId,
                                           std::shared_ptr<SuggestedPostParameters> suggestedPostParameters) const {
     SendMessageArgs args;
     args.chatId = chatId;
@@ -3192,7 +3294,9 @@ std::shared_ptr<Message> Api::sendMessage(const SendMessageArgs& args) const {
     auto ephemeralMessageParameters = args.ephemeralMessageParameters;
     if (!ephemeralMessageParameters && (args.receiverUserId != 0 || !args.callbackQueryId.empty())) {
         ephemeralMessageParameters = std::make_shared<EphemeralMessageParameters>();
-        ephemeralMessageParameters->receiverUserId = args.receiverUserId;
+        if (args.receiverUserId != 0) {
+            ephemeralMessageParameters->receiverUserId = args.receiverUserId;
+        }
         if (!args.callbackQueryId.empty()) {
             ephemeralMessageParameters->callbackQueryId = args.callbackQueryId;
         }
@@ -3201,7 +3305,7 @@ std::shared_ptr<Message> Api::sendMessage(const SendMessageArgs& args) const {
         sendRequest(
             "sendMessage",
             ApiRequest::makeFields(
-                ApiRequest::required("chat_id", args.chatId),
+                ApiRequest::optional("chat_id", args.chatId),
                 ApiRequest::required("text", args.text),
                 ApiRequest::optional("link_preview_options", args.linkPreviewOptions),
                 ApiRequest::optional("reply_parameters", args.replyParameters),
@@ -3221,10 +3325,10 @@ std::shared_ptr<Message> Api::sendMessage(const SendMessageArgs& args) const {
         ) );
 }
 
-bool Api::sendMessageDraft(std::variant<std::int64_t, std::string> chatId,
-                           std::int32_t draftId,
+bool Api::sendMessageDraft(std::variant<std::uint64_t, std::string> chatId,
+                           std::int64_t draftId,
                            const std::vector<std::shared_ptr<MessageEntity>>& entities,
-                           std::int32_t messageThreadId,
+                           std::uint32_t messageThreadId,
                            std::string_view parseMode,
                            std::string_view text,
                            bool canStop,
@@ -3257,14 +3361,14 @@ bool Api::sendMessageDraft(const SendMessageDraftArgs& args) const {
 
 std::shared_ptr<Message> Api::sendPaidMedia(std::variant<std::int64_t, std::string> chatId,
                                             const std::vector<std::shared_ptr<InputPaidMedia>>& media,
-                                            std::int32_t starCount,
+                                            std::uint32_t starCount,
                                             bool allowPaidBroadcast,
                                             std::string_view businessConnectionId,
                                             std::string_view caption,
                                             const std::vector<std::shared_ptr<MessageEntity>>& captionEntities,
-                                            std::int64_t directMessagesTopicId,
+                                            std::uint64_t directMessagesTopicId,
                                             bool disableNotification,
-                                            std::int32_t messageThreadId,
+                                            std::uint32_t messageThreadId,
                                             std::string_view parseMode,
                                             std::string_view payload,
                                             bool protectContent,
@@ -3333,15 +3437,15 @@ std::shared_ptr<Message> Api::sendPhoto(std::variant<std::int64_t, std::string> 
                                         std::string_view parseMode,
                                         bool disableNotification,
                                         const std::vector<std::shared_ptr<MessageEntity>>& captionEntities,
-                                        std::int32_t messageThreadId,
+                                        std::uint32_t messageThreadId,
                                         bool protectContent,
                                         bool hasSpoiler,
                                         std::string_view businessConnectionId,
                                         bool allowPaidBroadcast,
                                         std::string_view callbackQueryId,
-                                        std::int64_t directMessagesTopicId,
+                                        std::uint64_t directMessagesTopicId,
                                         std::string_view messageEffectId,
-                                        std::int64_t receiverUserId,
+                                        std::uint64_t receiverUserId,
                                         bool showCaptionAboveMedia,
                                         std::shared_ptr<SuggestedPostParameters> suggestedPostParameters) const {
     SendPhotoArgs args;
@@ -3371,7 +3475,9 @@ std::shared_ptr<Message> Api::sendPhoto(const SendPhotoArgs& args) const {
     auto ephemeralMessageParameters = args.ephemeralMessageParameters;
     if (!ephemeralMessageParameters && (args.receiverUserId != 0 || !args.callbackQueryId.empty())) {
         ephemeralMessageParameters = std::make_shared<EphemeralMessageParameters>();
-        ephemeralMessageParameters->receiverUserId = args.receiverUserId;
+        if (args.receiverUserId != 0) {
+            ephemeralMessageParameters->receiverUserId = args.receiverUserId;
+        }
         if (!args.callbackQueryId.empty()) {
             ephemeralMessageParameters->callbackQueryId = args.callbackQueryId;
         }
@@ -3379,7 +3485,7 @@ std::shared_ptr<Message> Api::sendPhoto(const SendPhotoArgs& args) const {
     return ApiResponse::decode<std::shared_ptr<Message>>(sendRequest(
             "sendPhoto",
             ApiRequest::makeFields(
-                ApiRequest::required("chat_id", args.chatId),
+                ApiRequest::optional("chat_id", args.chatId),
                 ApiRequest::required("photo", args.photo),
                 ApiRequest::optional("caption", args.caption),
                 ApiRequest::optional("reply_parameters", args.replyParameters),
@@ -3416,16 +3522,16 @@ std::shared_ptr<Message> Api::sendPoll(std::variant<std::int64_t, std::string> c
                                        std::string_view explanation,
                                        std::string_view explanationParseMode,
                                        const std::vector<std::shared_ptr<MessageEntity>>& explanationEntities,
-                                       std::int32_t openPeriod,
+                                       std::uint32_t openPeriod,
                                        std::int32_t closeDate,
                                        bool isClosed,
-                                       std::int32_t messageThreadId,
+                                       std::uint32_t messageThreadId,
                                        bool protectContent,
                                        std::string_view businessConnectionId,
                                        bool allowAddingOptions,
                                        bool allowPaidBroadcast,
                                        bool allowsRevoting,
-                                       const std::vector<std::int32_t>& correctOptionIds,
+                                       const std::vector<std::uint32_t>& correctOptionIds,
                                        const std::vector<std::string>& countryCodes,
                                        std::string_view description,
                                        const std::vector<std::shared_ptr<MessageEntity>>& descriptionEntities,
@@ -3520,10 +3626,10 @@ std::shared_ptr<Message> Api::sendRichMessage(std::variant<std::int64_t, std::st
                                               std::shared_ptr<InputRichMessage> richMessage,
                                               bool allowPaidBroadcast,
                                               std::string_view businessConnectionId,
-                                              std::int64_t directMessagesTopicId,
+                                              std::uint64_t directMessagesTopicId,
                                               bool disableNotification,
                                               std::string_view messageEffectId,
-                                              std::int32_t messageThreadId,
+                                              std::uint32_t messageThreadId,
                                               bool protectContent,
                                               std::variant<std::shared_ptr<InlineKeyboardMarkup>,
                                                            std::shared_ptr<ReplyKeyboardMarkup>,
@@ -3553,7 +3659,7 @@ std::shared_ptr<Message> Api::sendRichMessage(const SendRichMessageArgs& args) c
     return ApiResponse::decode<std::shared_ptr<Message>>(sendRequest(
             "sendRichMessage",
             ApiRequest::makeFields(
-                ApiRequest::required("chat_id", args.chatId),
+                ApiRequest::optional("chat_id", args.chatId),
                 ApiRequest::required("rich_message", args.richMessage),
                 ApiRequest::optional("allow_paid_broadcast", args.allowPaidBroadcast),
                 ApiRequest::optional("business_connection_id", args.businessConnectionId),
@@ -3571,10 +3677,10 @@ std::shared_ptr<Message> Api::sendRichMessage(const SendRichMessageArgs& args) c
         ) );
 }
 
-bool Api::sendRichMessageDraft(std::variant<std::int64_t, std::string> chatId,
-                               std::int32_t draftId,
+bool Api::sendRichMessageDraft(std::variant<std::uint64_t, std::string> chatId,
+                               std::int64_t draftId,
                                std::shared_ptr<InputRichMessage> richMessage,
-                               std::int32_t messageThreadId,
+                               std::uint32_t messageThreadId,
                                bool canStop,
                                bool keepOnStop) const {
     return ApiResponse::decode<bool>(sendRequest(
@@ -3599,6 +3705,61 @@ bool Api::sendRichMessageDraft(const SendRichMessageDraftArgs& args) const {
                                 args.keepOnStop);
 }
 
+std::shared_ptr<Message> Api::sendSharedWidget(std::variant<std::int64_t, std::string> chatId,
+                                               std::string_view widgetId,
+                                               bool allowPaidBroadcast,
+                                               std::string_view caption,
+                                               const std::vector<std::shared_ptr<MessageEntity>>& captionEntities,
+                                               std::string_view chatData,
+                                               bool disableNotification,
+                                               std::string_view messageEffectId,
+                                               std::uint32_t messageThreadId,
+                                               std::string_view parseMode,
+                                               bool protectContent,
+                                               std::variant<std::shared_ptr<InlineKeyboardMarkup>,
+                                                            std::shared_ptr<ReplyKeyboardMarkup>,
+                                                            std::shared_ptr<ReplyKeyboardRemove>,
+                                                            std::shared_ptr<ForceReply>> replyMarkup,
+                                               std::shared_ptr<ReplyParameters> replyParameters,
+                                               bool showCaptionAboveMedia) const {
+    return ApiResponse::decode<std::shared_ptr<Message>>(sendRequest(
+            "sendSharedWidget",
+            ApiRequest::makeFields(
+                ApiRequest::required("chat_id", chatId),
+                ApiRequest::required("widget_id", widgetId),
+                ApiRequest::optional("allow_paid_broadcast", allowPaidBroadcast),
+                ApiRequest::optional("caption", caption),
+                ApiRequest::optional("caption_entities", captionEntities),
+                ApiRequest::optional("chat_data", chatData),
+                ApiRequest::optional("disable_notification", disableNotification),
+                ApiRequest::optional("message_effect_id", messageEffectId),
+                ApiRequest::optional("message_thread_id", messageThreadId),
+                ApiRequest::optional("parse_mode", parseMode),
+                ApiRequest::optional("protect_content", protectContent),
+                ApiRequest::optional("reply_markup", replyMarkup),
+                ApiRequest::optional("reply_parameters", replyParameters),
+                ApiRequest::optional("show_caption_above_media", showCaptionAboveMedia)
+            )
+        ) );
+}
+
+std::shared_ptr<Message> Api::sendSharedWidget(const SendSharedWidgetArgs& args) const {
+    return sendSharedWidget(args.chatId,
+                            args.widgetId,
+                            args.allowPaidBroadcast,
+                            args.caption,
+                            args.captionEntities,
+                            args.chatData,
+                            args.disableNotification,
+                            args.messageEffectId,
+                            args.messageThreadId,
+                            args.parseMode,
+                            args.protectContent,
+                            args.replyMarkup,
+                            args.replyParameters,
+                            args.showCaptionAboveMedia);
+}
+
 std::shared_ptr<Message> Api::sendSticker(std::variant<std::int64_t, std::string> chatId,
                                           std::variant<std::shared_ptr<InputFile>, std::string> sticker,
                                           std::shared_ptr<ReplyParameters> replyParameters,
@@ -3607,15 +3768,15 @@ std::shared_ptr<Message> Api::sendSticker(std::variant<std::int64_t, std::string
                                                        std::shared_ptr<ReplyKeyboardRemove>,
                                                        std::shared_ptr<ForceReply>> replyMarkup,
                                           bool disableNotification,
-                                          std::int32_t messageThreadId,
+                                          std::uint32_t messageThreadId,
                                           bool protectContent,
                                           std::string_view emoji,
                                           std::string_view businessConnectionId,
                                           bool allowPaidBroadcast,
                                           std::string_view callbackQueryId,
-                                          std::int64_t directMessagesTopicId,
+                                          std::uint64_t directMessagesTopicId,
                                           std::string_view messageEffectId,
-                                          std::int64_t receiverUserId,
+                                          std::uint64_t receiverUserId,
                                           std::shared_ptr<SuggestedPostParameters> suggestedPostParameters) const {
     SendStickerArgs args;
     args.chatId = chatId;
@@ -3640,7 +3801,9 @@ std::shared_ptr<Message> Api::sendSticker(const SendStickerArgs& args) const {
     auto ephemeralMessageParameters = args.ephemeralMessageParameters;
     if (!ephemeralMessageParameters && (args.receiverUserId != 0 || !args.callbackQueryId.empty())) {
         ephemeralMessageParameters = std::make_shared<EphemeralMessageParameters>();
-        ephemeralMessageParameters->receiverUserId = args.receiverUserId;
+        if (args.receiverUserId != 0) {
+            ephemeralMessageParameters->receiverUserId = args.receiverUserId;
+        }
         if (!args.callbackQueryId.empty()) {
             ephemeralMessageParameters->callbackQueryId = args.callbackQueryId;
         }
@@ -3648,7 +3811,7 @@ std::shared_ptr<Message> Api::sendSticker(const SendStickerArgs& args) const {
     return ApiResponse::decode<std::shared_ptr<Message>>(sendRequest(
             "sendSticker",
             ApiRequest::makeFields(
-                ApiRequest::required("chat_id", args.chatId),
+                ApiRequest::optional("chat_id", args.chatId),
                 ApiRequest::required("sticker", args.sticker),
                 ApiRequest::optional("reply_parameters", args.replyParameters),
                 ApiRequest::optional("reply_markup", args.replyMarkup),
@@ -3681,14 +3844,14 @@ std::shared_ptr<Message> Api::sendVenue(std::variant<std::int64_t, std::string> 
                                                      std::shared_ptr<ForceReply>> replyMarkup,
                                         std::string_view googlePlaceId,
                                         std::string_view googlePlaceType,
-                                        std::int32_t messageThreadId,
+                                        std::uint32_t messageThreadId,
                                         bool protectContent,
                                         std::string_view businessConnectionId,
                                         bool allowPaidBroadcast,
                                         std::string_view callbackQueryId,
-                                        std::int64_t directMessagesTopicId,
+                                        std::uint64_t directMessagesTopicId,
                                         std::string_view messageEffectId,
-                                        std::int64_t receiverUserId,
+                                        std::uint64_t receiverUserId,
                                         std::shared_ptr<SuggestedPostParameters> suggestedPostParameters) const {
     SendVenueArgs args;
     args.chatId = chatId;
@@ -3719,7 +3882,9 @@ std::shared_ptr<Message> Api::sendVenue(const SendVenueArgs& args) const {
     auto ephemeralMessageParameters = args.ephemeralMessageParameters;
     if (!ephemeralMessageParameters && (args.receiverUserId != 0 || !args.callbackQueryId.empty())) {
         ephemeralMessageParameters = std::make_shared<EphemeralMessageParameters>();
-        ephemeralMessageParameters->receiverUserId = args.receiverUserId;
+        if (args.receiverUserId != 0) {
+            ephemeralMessageParameters->receiverUserId = args.receiverUserId;
+        }
         if (!args.callbackQueryId.empty()) {
             ephemeralMessageParameters->callbackQueryId = args.callbackQueryId;
         }
@@ -3727,7 +3892,7 @@ std::shared_ptr<Message> Api::sendVenue(const SendVenueArgs& args) const {
     return ApiResponse::decode<std::shared_ptr<Message>>(sendRequest(
             "sendVenue",
             ApiRequest::makeFields(
-                ApiRequest::required("chat_id", args.chatId),
+                ApiRequest::optional("chat_id", args.chatId),
                 ApiRequest::required("latitude", args.latitude),
                 ApiRequest::required("longitude", args.longitude),
                 ApiRequest::required("title", args.title),
@@ -3754,9 +3919,9 @@ std::shared_ptr<Message> Api::sendVenue(const SendVenueArgs& args) const {
 std::shared_ptr<Message> Api::sendVideo(std::variant<std::int64_t, std::string> chatId,
                                         std::variant<std::shared_ptr<InputFile>, std::string> video,
                                         bool supportsStreaming,
-                                        std::int32_t duration,
-                                        std::int32_t width,
-                                        std::int32_t height,
+                                        std::uint32_t duration,
+                                        std::uint32_t width,
+                                        std::uint32_t height,
                                         std::variant<std::shared_ptr<InputFile>, std::string> thumbnail,
                                         std::string_view caption,
                                         std::shared_ptr<ReplyParameters> replyParameters,
@@ -3767,18 +3932,18 @@ std::shared_ptr<Message> Api::sendVideo(std::variant<std::int64_t, std::string> 
                                         std::string_view parseMode,
                                         bool disableNotification,
                                         const std::vector<std::shared_ptr<MessageEntity>>& captionEntities,
-                                        std::int32_t messageThreadId,
+                                        std::uint32_t messageThreadId,
                                         bool protectContent,
                                         bool hasSpoiler,
                                         std::string_view businessConnectionId,
                                         bool allowPaidBroadcast,
                                         std::string_view callbackQueryId,
                                         std::variant<std::shared_ptr<InputFile>, std::string> cover,
-                                        std::int64_t directMessagesTopicId,
+                                        std::uint64_t directMessagesTopicId,
                                         std::string_view messageEffectId,
-                                        std::int64_t receiverUserId,
+                                        std::uint64_t receiverUserId,
                                         bool showCaptionAboveMedia,
-                                        std::int32_t startTimestamp,
+                                        std::uint32_t startTimestamp,
                                         std::shared_ptr<SuggestedPostParameters> suggestedPostParameters) const {
     SendVideoArgs args;
     args.chatId = chatId;
@@ -3814,7 +3979,9 @@ std::shared_ptr<Message> Api::sendVideo(const SendVideoArgs& args) const {
     auto ephemeralMessageParameters = args.ephemeralMessageParameters;
     if (!ephemeralMessageParameters && (args.receiverUserId != 0 || !args.callbackQueryId.empty())) {
         ephemeralMessageParameters = std::make_shared<EphemeralMessageParameters>();
-        ephemeralMessageParameters->receiverUserId = args.receiverUserId;
+        if (args.receiverUserId != 0) {
+            ephemeralMessageParameters->receiverUserId = args.receiverUserId;
+        }
         if (!args.callbackQueryId.empty()) {
             ephemeralMessageParameters->callbackQueryId = args.callbackQueryId;
         }
@@ -3822,7 +3989,7 @@ std::shared_ptr<Message> Api::sendVideo(const SendVideoArgs& args) const {
     return ApiResponse::decode<std::shared_ptr<Message>>(sendRequest(
             "sendVideo",
             ApiRequest::makeFields(
-                ApiRequest::required("chat_id", args.chatId),
+                ApiRequest::optional("chat_id", args.chatId),
                 ApiRequest::required("video", args.video),
                 ApiRequest::optional("supports_streaming", args.supportsStreaming),
                 ApiRequest::optional("duration", args.duration),
@@ -3856,21 +4023,21 @@ Api::sendVideoNote(std::variant<std::int64_t, std::string> chatId,
                    std::variant<std::shared_ptr<InputFile>, std::string> videoNote,
                    std::shared_ptr<ReplyParameters> replyParameters,
                    bool disableNotification,
-                   std::int32_t duration,
-                   std::int32_t length,
+                   std::uint32_t duration,
+                   std::uint32_t length,
                    std::variant<std::shared_ptr<InputFile>, std::string> thumbnail,
                    std::variant<std::shared_ptr<InlineKeyboardMarkup>,
                                 std::shared_ptr<ReplyKeyboardMarkup>,
                                 std::shared_ptr<ReplyKeyboardRemove>,
                                 std::shared_ptr<ForceReply>> replyMarkup,
-                   std::int32_t messageThreadId,
+                   std::uint32_t messageThreadId,
                    bool protectContent,
                    std::string_view businessConnectionId,
                    bool allowPaidBroadcast,
                    std::string_view callbackQueryId,
-                   std::int64_t directMessagesTopicId,
+                   std::uint64_t directMessagesTopicId,
                    std::string_view messageEffectId,
-                   std::int64_t receiverUserId,
+                   std::uint64_t receiverUserId,
                    std::shared_ptr<SuggestedPostParameters> suggestedPostParameters) const {
     SendVideoNoteArgs args;
     args.chatId = chatId;
@@ -3897,7 +4064,9 @@ std::shared_ptr<Message> Api::sendVideoNote(const SendVideoNoteArgs& args) const
     auto ephemeralMessageParameters = args.ephemeralMessageParameters;
     if (!ephemeralMessageParameters && (args.receiverUserId != 0 || !args.callbackQueryId.empty())) {
         ephemeralMessageParameters = std::make_shared<EphemeralMessageParameters>();
-        ephemeralMessageParameters->receiverUserId = args.receiverUserId;
+        if (args.receiverUserId != 0) {
+            ephemeralMessageParameters->receiverUserId = args.receiverUserId;
+        }
         if (!args.callbackQueryId.empty()) {
             ephemeralMessageParameters->callbackQueryId = args.callbackQueryId;
         }
@@ -3906,7 +4075,7 @@ std::shared_ptr<Message> Api::sendVideoNote(const SendVideoNoteArgs& args) const
         sendRequest(
             "sendVideoNote",
             ApiRequest::makeFields(
-                ApiRequest::required("chat_id", args.chatId),
+                ApiRequest::optional("chat_id", args.chatId),
                 ApiRequest::required("video_note", args.videoNote),
                 ApiRequest::optional("reply_parameters", args.replyParameters),
                 ApiRequest::optional("disable_notification", args.disableNotification),
@@ -3929,7 +4098,7 @@ std::shared_ptr<Message> Api::sendVideoNote(const SendVideoNoteArgs& args) const
 std::shared_ptr<Message> Api::sendVoice(std::variant<std::int64_t, std::string> chatId,
                                         std::variant<std::shared_ptr<InputFile>, std::string> voice,
                                         std::string_view caption,
-                                        std::int32_t duration,
+                                        std::uint32_t duration,
                                         std::shared_ptr<ReplyParameters> replyParameters,
                                         std::variant<std::shared_ptr<InlineKeyboardMarkup>,
                                                      std::shared_ptr<ReplyKeyboardMarkup>,
@@ -3938,14 +4107,14 @@ std::shared_ptr<Message> Api::sendVoice(std::variant<std::int64_t, std::string> 
                                         std::string_view parseMode,
                                         bool disableNotification,
                                         const std::vector<std::shared_ptr<MessageEntity>>& captionEntities,
-                                        std::int32_t messageThreadId,
+                                        std::uint32_t messageThreadId,
                                         bool protectContent,
                                         std::string_view businessConnectionId,
                                         bool allowPaidBroadcast,
                                         std::string_view callbackQueryId,
-                                        std::int64_t directMessagesTopicId,
+                                        std::uint64_t directMessagesTopicId,
                                         std::string_view messageEffectId,
-                                        std::int64_t receiverUserId,
+                                        std::uint64_t receiverUserId,
                                         std::shared_ptr<SuggestedPostParameters> suggestedPostParameters) const {
     SendVoiceArgs args;
     args.chatId = chatId;
@@ -3973,7 +4142,9 @@ std::shared_ptr<Message> Api::sendVoice(const SendVoiceArgs& args) const {
     auto ephemeralMessageParameters = args.ephemeralMessageParameters;
     if (!ephemeralMessageParameters && (args.receiverUserId != 0 || !args.callbackQueryId.empty())) {
         ephemeralMessageParameters = std::make_shared<EphemeralMessageParameters>();
-        ephemeralMessageParameters->receiverUserId = args.receiverUserId;
+        if (args.receiverUserId != 0) {
+            ephemeralMessageParameters->receiverUserId = args.receiverUserId;
+        }
         if (!args.callbackQueryId.empty()) {
             ephemeralMessageParameters->callbackQueryId = args.callbackQueryId;
         }
@@ -3981,7 +4152,7 @@ std::shared_ptr<Message> Api::sendVoice(const SendVoiceArgs& args) const {
     return ApiResponse::decode<std::shared_ptr<Message>>(sendRequest(
             "sendVoice",
             ApiRequest::makeFields(
-                ApiRequest::required("chat_id", args.chatId),
+                ApiRequest::optional("chat_id", args.chatId),
                 ApiRequest::required("voice", args.voice),
                 ApiRequest::optional("caption", args.caption),
                 ApiRequest::optional("duration", args.duration),
@@ -4000,6 +4171,76 @@ std::shared_ptr<Message> Api::sendVoice(const SendVoiceArgs& args) const {
                 ApiRequest::optional("ephemeral_message_parameters", ephemeralMessageParameters)
             )
         ) );
+}
+
+std::shared_ptr<Message> Api::sendWidget(std::variant<std::int64_t, std::string> chatId,
+                                         std::string_view html,
+                                         bool allowPaidBroadcast,
+                                         bool allowQueries,
+                                         std::string_view caption,
+                                         const std::vector<std::shared_ptr<MessageEntity>>& captionEntities,
+                                         std::string_view chatData,
+                                         bool disableNotification,
+                                         std::uint32_t height,
+                                         bool isShared,
+                                         std::string_view messageEffectId,
+                                         std::uint32_t messageThreadId,
+                                         std::string_view parseMode,
+                                         bool protectContent,
+                                         std::string_view publicData,
+                                         std::variant<std::shared_ptr<InlineKeyboardMarkup>,
+                                                      std::shared_ptr<ReplyKeyboardMarkup>,
+                                                      std::shared_ptr<ReplyKeyboardRemove>,
+                                                      std::shared_ptr<ForceReply>> replyMarkup,
+                                         std::shared_ptr<ReplyParameters> replyParameters,
+                                         bool showCaptionAboveMedia,
+                                         std::uint32_t width) const {
+    return ApiResponse::decode<std::shared_ptr<Message>>(sendRequest(
+            "sendWidget",
+            ApiRequest::makeFields(
+                ApiRequest::required("chat_id", chatId),
+                ApiRequest::required("html", html),
+                ApiRequest::optional("allow_paid_broadcast", allowPaidBroadcast),
+                ApiRequest::optional("allow_queries", allowQueries),
+                ApiRequest::optional("caption", caption),
+                ApiRequest::optional("caption_entities", captionEntities),
+                ApiRequest::optional("chat_data", chatData),
+                ApiRequest::optional("disable_notification", disableNotification),
+                ApiRequest::optional("height", height),
+                ApiRequest::optional("is_shared", isShared),
+                ApiRequest::optional("message_effect_id", messageEffectId),
+                ApiRequest::optional("message_thread_id", messageThreadId),
+                ApiRequest::optional("parse_mode", parseMode),
+                ApiRequest::optional("protect_content", protectContent),
+                ApiRequest::optional("public_data", publicData),
+                ApiRequest::optional("reply_markup", replyMarkup),
+                ApiRequest::optional("reply_parameters", replyParameters),
+                ApiRequest::optional("show_caption_above_media", showCaptionAboveMedia),
+                ApiRequest::optional("width", width)
+            )
+        ) );
+}
+
+std::shared_ptr<Message> Api::sendWidget(const SendWidgetArgs& args) const {
+    return sendWidget(args.chatId,
+                      args.html,
+                      args.allowPaidBroadcast,
+                      args.allowQueries,
+                      args.caption,
+                      args.captionEntities,
+                      args.chatData,
+                      args.disableNotification,
+                      args.height,
+                      args.isShared,
+                      args.messageEffectId,
+                      args.messageThreadId,
+                      args.parseMode,
+                      args.protectContent,
+                      args.publicData,
+                      args.replyMarkup,
+                      args.replyParameters,
+                      args.showCaptionAboveMedia,
+                      args.width);
 }
 
 bool Api::setBusinessAccountBio(std::string_view businessConnectionId, std::string_view bio) const {
@@ -4087,7 +4328,7 @@ bool Api::setBusinessAccountUsername(const SetBusinessAccountUsernameArgs& args)
 }
 
 bool Api::setChatAdministratorCustomTitle(std::variant<std::int64_t, std::string> chatId,
-                                          std::int64_t userId,
+                                          std::uint64_t userId,
                                           std::string_view customTitle) const {
     return ApiResponse::decode<bool>(
         sendRequest(
@@ -4120,7 +4361,7 @@ bool Api::setChatDescription(const SetChatDescriptionArgs& args) const {
 }
 
 bool Api::setChatMemberTag(std::variant<std::int64_t, std::string> chatId,
-                           std::int64_t userId,
+                           std::uint64_t userId,
                            std::string_view tag) const {
     return ApiResponse::decode<bool>(sendRequest(
             "setChatMemberTag",
@@ -4136,7 +4377,7 @@ bool Api::setChatMemberTag(const SetChatMemberTagArgs& args) const {
     return setChatMemberTag(args.chatId, args.userId, args.tag);
 }
 
-bool Api::setChatMenuButton(std::variant<std::int64_t, std::string> chatId,
+bool Api::setChatMenuButton(std::variant<std::uint64_t, std::string> chatId,
                             std::shared_ptr<MenuButton> menuButton) const {
     return ApiResponse::decode<bool>(
         sendRequest(
@@ -4227,12 +4468,12 @@ bool Api::setCustomEmojiStickerSetThumbnail(const SetCustomEmojiStickerSetThumbn
     return setCustomEmojiStickerSetThumbnail(args.name, args.customEmojiId);
 }
 
-std::shared_ptr<Message> Api::setGameScore(std::int64_t userId,
-                                           std::int32_t score,
+std::shared_ptr<Message> Api::setGameScore(std::uint64_t userId,
+                                           std::uint32_t score,
                                            bool force,
                                            bool disableEditMessage,
                                            std::variant<std::int64_t, std::string> chatId,
-                                           std::int32_t messageId,
+                                           std::uint32_t messageId,
                                            std::string_view inlineMessageId) const {
     return ApiResponse::decodeObjectOrTrue<Message>(sendRequest(
             "setGameScore",
@@ -4259,8 +4500,8 @@ std::shared_ptr<Message> Api::setGameScore(const SetGameScoreArgs& args) const {
 }
 
 bool Api::setManagedBotAccessSettings(bool isAccessRestricted,
-                                      std::int64_t userId,
-                                      const std::vector<std::int32_t>& addedUserIds) const {
+                                      std::uint64_t userId,
+                                      const std::vector<std::uint64_t>& addedUserIds) const {
     return ApiResponse::decode<bool>(sendRequest(
             "setManagedBotAccessSettings",
             ApiRequest::makeFields(
@@ -4276,7 +4517,7 @@ bool Api::setManagedBotAccessSettings(const SetManagedBotAccessSettingsArgs& arg
 }
 
 bool Api::setMessageReaction(std::variant<std::int64_t, std::string> chatId,
-                             std::int32_t messageId,
+                             std::uint32_t messageId,
                              const std::vector<std::shared_ptr<ReactionType>>& reaction,
                              bool isBig) const {
     return ApiResponse::decode<bool>(sendRequest(
@@ -4386,7 +4627,7 @@ bool Api::setMyShortDescription(const SetMyShortDescriptionArgs& args) const {
     return setMyShortDescription(args.shortDescription, args.languageCode);
 }
 
-bool Api::setPassportDataErrors(std::int64_t userId,
+bool Api::setPassportDataErrors(std::uint64_t userId,
                                 const std::vector<std::shared_ptr<PassportElementError>>& errors) const {
     return ApiResponse::decode<bool>(sendRequest(
             "setPassportDataErrors",
@@ -4445,7 +4686,7 @@ bool Api::setStickerMaskPosition(const SetStickerMaskPositionArgs& args) const {
     return setStickerMaskPosition(args.sticker, args.maskPosition);
 }
 
-bool Api::setStickerPositionInSet(std::string_view sticker, std::int32_t position) const {
+bool Api::setStickerPositionInSet(std::string_view sticker, std::uint32_t position) const {
     return ApiResponse::decode<bool>(
         sendRequest(
             "setStickerPositionInSet",
@@ -4461,7 +4702,7 @@ bool Api::setStickerPositionInSet(const SetStickerPositionInSetArgs& args) const
 }
 
 bool Api::setStickerSetThumbnail(std::string_view name,
-                                 std::int64_t userId,
+                                 std::uint64_t userId,
                                  std::string_view format,
                                  std::variant<std::shared_ptr<InputFile>, std::string> thumbnail) const {
     return ApiResponse::decode<bool>(
@@ -4494,7 +4735,7 @@ bool Api::setStickerSetTitle(const SetStickerSetTitleArgs& args) const {
     return setStickerSetTitle(args.name, args.title);
 }
 
-bool Api::setUserEmojiStatus(std::int64_t userId,
+bool Api::setUserEmojiStatus(std::uint64_t userId,
                              std::string_view emojiStatusCustomEmojiId,
                              std::int32_t emojiStatusExpirationDate) const {
     return ApiResponse::decode<bool>(sendRequest(
@@ -4513,7 +4754,7 @@ bool Api::setUserEmojiStatus(const SetUserEmojiStatusArgs& args) const {
 
 bool Api::setWebhook(std::string_view url,
                      std::shared_ptr<InputFile> certificate,
-                     std::int32_t maxConnections,
+                     std::uint32_t maxConnections,
                      const std::vector<std::string>& allowedUpdates,
                      std::string_view ipAddress,
                      bool dropPendingUpdates,
@@ -4543,7 +4784,7 @@ bool Api::setWebhook(const SetWebhookArgs& args) const {
 }
 
 std::shared_ptr<Message> Api::stopMessageLiveLocation(std::variant<std::int64_t, std::string> chatId,
-                                                      std::int32_t messageId,
+                                                      std::uint32_t messageId,
                                                       std::string_view inlineMessageId,
                                                       std::shared_ptr<InlineKeyboardMarkup> replyMarkup,
                                                       std::string_view businessConnectionId) const {
@@ -4568,7 +4809,7 @@ std::shared_ptr<Message> Api::stopMessageLiveLocation(const StopMessageLiveLocat
 }
 
 std::shared_ptr<Poll> Api::stopPoll(std::variant<std::int64_t, std::string> chatId,
-                                    std::int32_t messageId,
+                                    std::uint32_t messageId,
                                     std::string_view businessConnectionId,
                                     std::shared_ptr<InlineKeyboardMarkup> replyMarkup) const {
     return ApiResponse::decode<std::shared_ptr<Poll>>(sendRequest(
@@ -4586,7 +4827,7 @@ std::shared_ptr<Poll> Api::stopPoll(const StopPollArgs& args) const {
     return stopPoll(args.chatId, args.messageId, args.businessConnectionId, args.replyMarkup);
 }
 
-bool Api::transferBusinessAccountStars(std::string_view businessConnectionId, std::int32_t starCount) const {
+bool Api::transferBusinessAccountStars(std::string_view businessConnectionId, std::uint32_t starCount) const {
     return ApiResponse::decode<bool>(
         sendRequest(
             "transferBusinessAccountStars",
@@ -4604,7 +4845,7 @@ bool Api::transferBusinessAccountStars(const TransferBusinessAccountStarsArgs& a
 bool Api::transferGift(std::string_view businessConnectionId,
                        std::int64_t newOwnerChatId,
                        std::string_view ownedGiftId,
-                       std::int32_t starCount) const {
+                       std::uint32_t starCount) const {
     return ApiResponse::decode<bool>(
         sendRequest(
             "transferGift",
@@ -4622,7 +4863,7 @@ bool Api::transferGift(const TransferGiftArgs& args) const {
 }
 
 bool Api::unbanChatMember(std::variant<std::int64_t, std::string> chatId,
-                          std::int64_t userId,
+                          std::uint64_t userId,
                           bool onlyIfBanned) const {
     return ApiResponse::decode<bool>(sendRequest(
             "unbanChatMember",
@@ -4681,7 +4922,7 @@ bool Api::unpinAllChatMessages(const UnpinAllChatMessagesArgs& args) const {
 }
 
 bool Api::unpinAllForumTopicMessages(std::variant<std::int64_t, std::string> chatId,
-                                     std::int32_t messageThreadId) const {
+                                     std::uint32_t messageThreadId) const {
     return ApiResponse::decode<bool>(sendRequest(
             "unpinAllForumTopicMessages",
             ApiRequest::makeFields(
@@ -4710,7 +4951,7 @@ bool Api::unpinAllGeneralForumTopicMessages(const UnpinAllGeneralForumTopicMessa
 
 bool Api::unpinChatMessage(std::variant<std::int64_t, std::string> chatId,
                            std::string_view businessConnectionId,
-                           std::int32_t messageId) const {
+                           std::uint32_t messageId) const {
     return ApiResponse::decode<bool>(
         sendRequest(
             "unpinChatMessage",
@@ -4729,7 +4970,7 @@ bool Api::unpinChatMessage(const UnpinChatMessageArgs& args) const {
 bool Api::upgradeGift(std::string_view businessConnectionId,
                       std::string_view ownedGiftId,
                       bool keepOriginalDetails,
-                      std::int32_t starCount) const {
+                      std::uint32_t starCount) const {
     return ApiResponse::decode<bool>(
         sendRequest(
             "upgradeGift",
@@ -4746,7 +4987,7 @@ bool Api::upgradeGift(const UpgradeGiftArgs& args) const {
     return upgradeGift(args.businessConnectionId, args.ownedGiftId, args.keepOriginalDetails, args.starCount);
 }
 
-std::shared_ptr<File> Api::uploadStickerFile(std::int64_t userId,
+std::shared_ptr<File> Api::uploadStickerFile(std::uint64_t userId,
                                              std::variant<std::shared_ptr<InputFile>, std::string> sticker,
                                              std::string_view stickerFormat) const {
     return ApiResponse::decode<std::shared_ptr<File>>(sendRequest(
@@ -4763,32 +5004,48 @@ std::shared_ptr<File> Api::uploadStickerFile(const UploadStickerFileArgs& args) 
     return uploadStickerFile(args.userId, args.sticker, args.stickerFormat);
 }
 
-bool Api::verifyChat(std::variant<std::int64_t, std::string> chatId, std::string_view customDescription) const {
+bool Api::verifyChat(std::variant<std::int64_t, std::string> chatId,
+                     std::string_view customDescription,
+                     const std::vector<std::shared_ptr<MessageEntity>>& customDescriptionEntities,
+                     std::string_view customDescriptionParseMode) const {
     return ApiResponse::decode<bool>(sendRequest(
             "verifyChat",
             ApiRequest::makeFields(
                 ApiRequest::required("chat_id", chatId),
-                ApiRequest::optional("custom_description", customDescription)
+                ApiRequest::optional("custom_description", customDescription),
+                ApiRequest::optional("custom_description_entities", customDescriptionEntities),
+                ApiRequest::optional("custom_description_parse_mode", customDescriptionParseMode)
             )
         ) );
 }
 
 bool Api::verifyChat(const VerifyChatArgs& args) const {
-    return verifyChat(args.chatId, args.customDescription);
+    return verifyChat(args.chatId,
+                      args.customDescription,
+                      args.customDescriptionEntities,
+                      args.customDescriptionParseMode);
 }
 
-bool Api::verifyUser(std::int64_t userId, std::string_view customDescription) const {
+bool Api::verifyUser(std::uint64_t userId,
+                     std::string_view customDescription,
+                     const std::vector<std::shared_ptr<MessageEntity>>& customDescriptionEntities,
+                     std::string_view customDescriptionParseMode) const {
     return ApiResponse::decode<bool>(sendRequest(
             "verifyUser",
             ApiRequest::makeFields(
                 ApiRequest::required("user_id", userId),
-                ApiRequest::optional("custom_description", customDescription)
+                ApiRequest::optional("custom_description", customDescription),
+                ApiRequest::optional("custom_description_entities", customDescriptionEntities),
+                ApiRequest::optional("custom_description_parse_mode", customDescriptionParseMode)
             )
         ) );
 }
 
 bool Api::verifyUser(const VerifyUserArgs& args) const {
-    return verifyUser(args.userId, args.customDescription);
+    return verifyUser(args.userId,
+                      args.customDescription,
+                      args.customDescriptionEntities,
+                      args.customDescriptionParseMode);
 }
 
 } // namespace TgBot

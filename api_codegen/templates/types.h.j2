@@ -21,6 +21,12 @@ struct {{ type.name }};
 {% endfor %}
 
 {% for type in types %}
+{% for alias in type.aliases %}
+using {{ alias }} = {{ type.name }};
+{% endfor %}
+{% endfor %}
+
+{% for type in types %}
 
 /**
  * @brief{{ " " + type.description[0] if type.description else "" }}
